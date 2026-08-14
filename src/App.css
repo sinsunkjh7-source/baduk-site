@@ -1,0 +1,50 @@
+.app-root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.tabs {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.tabs button.active {
+  outline: 2px solid #3a2a15;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.9rem;
+}
+
+.controls label {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.free-color-toggle {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.free-color-toggle button.active {
+  outline: 2px solid #3a2a15;
+}
+
+.move-count {
+  font-variant-numeric: tabular-nums;
+}

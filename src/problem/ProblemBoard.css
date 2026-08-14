@@ -1,0 +1,24 @@
+.problem-board {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.problem-code {
+  font-size: 0.8rem;
+  color: #666;
+  font-variant-numeric: tabular-nums;
+}
+
+.problem-status {
+  font-weight: 600;
+}
+
+.status-correct {
+  color: #1a7d34;
+}
+
+.status-incorrect {
+  color: #c0392b;
+}
