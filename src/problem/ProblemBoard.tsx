@@ -18,7 +18,13 @@ function buildInitialBoard(problem: Problem): Board {
 
 const INCORRECT_RESET_DELAY_MS = 900;
 
-export function ProblemBoard({ problem, code }: { problem: Problem; code?: string }) {
+interface ProblemBoardProps {
+  problem: Problem;
+  code?: string;
+  onSolved?: () => void;
+}
+
+export function ProblemBoard({ problem, code, onSolved }: ProblemBoardProps) {
   const initialBoard = useMemo(() => buildInitialBoard(problem), [problem]);
   const [board, setBoard] = useState(initialBoard);
   const [status, setStatus] = useState<Status>("idle");
@@ -35,6 +41,12 @@ export function ProblemBoard({ problem, code }: { problem: Problem; code?: strin
       if (resetTimer.current) window.clearTimeout(resetTimer.current);
     };
   }, [initialBoard]);
+
+  useEffect(() => {
+    if (status === "correct") onSolved?.();
+    // onSolved intentionally excluded: status only reaches "correct" once per problem instance.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [status]);
 
   function handlePointClick(p: Point) {
     if (status !== "idle" || board[p.y][p.x] !== null) return;
@@ -77,6 +89,7 @@ export function ProblemBoard({ problem, code }: { problem: Problem; code?: strin
         lastMove={lastMove}
         onPointClick={handlePointClick}
         markers={showAnswer ? problem.correctPoints : undefined}
+        viewRegion={problem.region}
       />
       <div className={`problem-status status-${status}`}>{statusText}</div>
       <button onClick={() => setShowAnswer((v) => !v)}>

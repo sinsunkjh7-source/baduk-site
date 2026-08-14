@@ -1,4 +1,4 @@
-import type { Point, StoneColor } from "../goban/types";
+import type { BoardRegion, Point, StoneColor } from "../goban/types";
 
 export interface InitialStone extends Point {
   color: StoneColor;
@@ -18,8 +18,10 @@ export interface Problem {
   location: ProblemLocation;
   title: string;
   size: number;
+  /** 지정하지 않으면 전체판을 보여준다. 지정하면 그 영역만 잘라서 보여준다 (코너 문제 등). */
+  region?: BoardRegion;
   initialStones: InitialStone[];
   playerColor: StoneColor;
-  /** 이 중 어느 좌표에 두어도 정답으로 인정된다 (동형 정답 지원). */
+  /** 이 중 어느 좌표에 두어도 정답으로 인정된다 (동형 정답 지원, 1개 이상). */
   correctPoints: Point[];
 }

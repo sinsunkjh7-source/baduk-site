@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import type { Board, Point } from "./types";
+import type { Board, BoardRegion, Point } from "./types";
 import { getStarPoints } from "./starPoints";
 import { MARGIN, CELL, COLUMN_LETTERS, toPixel, getViewSize } from "./geometry";
 
@@ -15,6 +15,8 @@ interface GobanProps {
   showCoordinates?: boolean;
   markers?: Point[];
   moveNumbers?: NumberedPoint[];
+  /** Show only this sub-area of the board (e.g. a corner), instead of the full grid. */
+  viewRegion?: BoardRegion;
 }
 
 export function Goban({
@@ -25,15 +27,25 @@ export function Goban({
   showCoordinates = true,
   markers,
   moveNumbers,
+  viewRegion,
 }: GobanProps) {
   const viewSize = getViewSize(size);
   const starPoints = useMemo(() => getStarPoints(size), [size]);
 
+  // A region suppresses coordinate labels — positioning them correctly against an
+  // arbitrary crop isn't worth the complexity for what's meant to be a simple diagram.
+  const effectiveShowCoordinates = showCoordinates && !viewRegion;
+
+  const cropX = viewRegion ? toPixel(viewRegion.minX) - MARGIN : 0;
+  const cropY = viewRegion ? toPixel(viewRegion.minY) - MARGIN : 0;
+  const cropWidth = viewRegion ? toPixel(viewRegion.maxX) - toPixel(viewRegion.minX) + MARGIN * 2 : viewSize;
+  const cropHeight = viewRegion ? toPixel(viewRegion.maxY) - toPixel(viewRegion.minY) + MARGIN * 2 : viewSize;
+
   return (
     <svg
-      viewBox={`0 0 ${viewSize} ${viewSize}`}
-      width={viewSize}
-      height={viewSize}
+      viewBox={`${cropX} ${cropY} ${cropWidth} ${cropHeight}`}
+      width={cropWidth}
+      height={cropHeight}
       style={{ background: "#dcb35c" }}
     >
       {/* grid lines */}
@@ -66,7 +78,7 @@ export function Goban({
       ))}
 
       {/* coordinates */}
-      {showCoordinates &&
+      {effectiveShowCoordinates &&
         Array.from({ length: size }, (_, x) => (
           <text
             key={`colLabel${x}`}
@@ -80,7 +92,7 @@ export function Goban({
             {COLUMN_LETTERS[x]}
           </text>
         ))}
-      {showCoordinates &&
+      {effectiveShowCoordinates &&
         Array.from({ length: size }, (_, y) => (
           <text
             key={`rowLabel${y}`}

@@ -39,4 +39,19 @@ export const ttaenaegiProblems: Problem[] = [
       { x: 6, y: 7 },
     ],
   },
+  {
+    id: "ttaenaegi-1-2-03",
+    location: { unitId: "ttaenaegi", levelId: "1-2", sequence: 3 },
+    title: "19줄판 코너 문제 — 흑돌을 따내보세요 (백 차례)",
+    size: 19,
+    region: { minX: 0, minY: 0, maxX: 8, maxY: 8 },
+    initialStones: [
+      { x: 2, y: 2, color: "black" },
+      { x: 1, y: 2, color: "white" },
+      { x: 3, y: 2, color: "white" },
+      { x: 2, y: 1, color: "white" },
+    ],
+    playerColor: "white",
+    correctPoints: [{ x: 2, y: 3 }],
+  },
 ];

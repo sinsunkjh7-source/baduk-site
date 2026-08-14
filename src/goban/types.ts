@@ -9,6 +9,14 @@ export interface Point {
   y: number;
 }
 
+/** A rectangular sub-area of the board to display (inclusive grid coordinates). */
+export interface BoardRegion {
+  minX: number;
+  minY: number;
+  maxX: number;
+  maxY: number;
+}
+
 export interface PlaceResult {
   board: Board;
   captured: Point[];
