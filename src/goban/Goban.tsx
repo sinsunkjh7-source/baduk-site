@@ -62,12 +62,12 @@ export function Goban({
         </linearGradient>
 
         <filter id={grainId} x="-10%" y="-10%" width="120%" height="120%" colorInterpolationFilters="sRGB">
-          <feTurbulence type="fractalNoise" baseFrequency="0.008 0.15" numOctaves={4} seed={12} result="noise" />
+          <feTurbulence type="fractalNoise" baseFrequency="0.15 0.008" numOctaves={4} seed={12} result="noise" />
           <feColorMatrix in="noise" type="luminanceToAlpha" result="alphaMask" />
           <feComponentTransfer in="alphaMask" result="grainMask">
-            <feFuncA type="gamma" amplitude={1} exponent={2.2} offset={0} />
+            <feFuncA type="gamma" amplitude={1} exponent={1.6} offset={0} />
           </feComponentTransfer>
-          <feFlood floodColor="#4a2f12" floodOpacity={0.55} result="grainColor" />
+          <feFlood floodColor="#4a2f12" floodOpacity={0.2} result="grainColor" />
           <feComposite in="grainColor" in2="grainMask" operator="in" />
         </filter>
 
@@ -77,14 +77,16 @@ export function Goban({
           <stop offset="100%" stopColor="#050505" />
         </radialGradient>
 
-        <radialGradient id={whiteId} cx="32%" cy="28%" r="75%">
+        <radialGradient id={whiteId} cx="30%" cy="26%" r="75%">
           <stop offset="0%" stopColor="#ffffff" />
-          <stop offset="55%" stopColor="#efece2" />
-          <stop offset="100%" stopColor="#cfc9b8" />
+          <stop offset="35%" stopColor="#f5f1e6" />
+          <stop offset="70%" stopColor="#ddd5bc" />
+          <stop offset="100%" stopColor="#a89f88" />
         </radialGradient>
 
         <radialGradient id={highlightId} cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="#ffffff" stopOpacity={0.85} />
+          <stop offset="0%" stopColor="#ffffff" stopOpacity={0.95} />
+          <stop offset="60%" stopColor="#ffffff" stopOpacity={0.35} />
           <stop offset="100%" stopColor="#ffffff" stopOpacity={0} />
         </radialGradient>
 
@@ -123,7 +125,7 @@ export function Goban({
 
       {/* star points */}
       {starPoints.map((p) => (
-        <circle key={`star${p.x}-${p.y}`} cx={toPixel(p.x)} cy={toPixel(p.y)} r={4} fill="#3a2a15" />
+        <circle key={`star${p.x}-${p.y}`} cx={toPixel(p.x)} cy={toPixel(p.y)} r={6} fill="#3a2a15" />
       ))}
 
       {/* coordinates */}
@@ -133,7 +135,7 @@ export function Goban({
             key={`colLabel${x}`}
             x={toPixel(x)}
             y={MARGIN / 2}
-            fontSize={14}
+            fontSize={16}
             textAnchor="middle"
             dominantBaseline="middle"
             fill="#3a2a15"
@@ -147,7 +149,7 @@ export function Goban({
             key={`rowLabel${y}`}
             x={viewSize - MARGIN / 2}
             y={toPixel(y)}
-            fontSize={14}
+            fontSize={16}
             textAnchor="middle"
             dominantBaseline="middle"
             fill="#3a2a15"
@@ -180,8 +182,8 @@ export function Goban({
                     cy={cy}
                     r={stoneRadius}
                     fill={cell === "black" ? `url(#${blackId})` : `url(#${whiteId})`}
-                    stroke={cell === "white" ? "#b9b2a0" : "none"}
-                    strokeWidth={0.5}
+                    stroke={cell === "white" ? "#8f8571" : "none"}
+                    strokeWidth={0.75}
                     filter={`url(#${shadowId})`}
                     pointerEvents="none"
                   />
@@ -199,10 +201,10 @@ export function Goban({
                 <circle
                   cx={cx}
                   cy={cy}
-                  r={7}
+                  r={10}
                   fill="none"
                   stroke={cell === "black" ? "#f5f5f0" : "#1a1a1a"}
-                  strokeWidth={2}
+                  strokeWidth={3}
                   pointerEvents="none"
                 />
               )}
@@ -215,13 +217,13 @@ export function Goban({
       {markers?.map((p) => (
         <rect
           key={`marker${p.x}-${p.y}`}
-          x={toPixel(p.x) - 8}
-          y={toPixel(p.y) - 8}
-          width={16}
-          height={16}
+          x={toPixel(p.x) - 11}
+          y={toPixel(p.y) - 11}
+          width={22}
+          height={22}
           fill="none"
           stroke="#d92626"
-          strokeWidth={3}
+          strokeWidth={4}
           pointerEvents="none"
         />
       ))}
@@ -234,7 +236,7 @@ export function Goban({
             key={`num${p.x}-${p.y}`}
             x={toPixel(p.x)}
             y={toPixel(p.y)}
-            fontSize={13}
+            fontSize={15}
             textAnchor="middle"
             dominantBaseline="middle"
             fill={cell === "black" ? "#f5f5f0" : "#1a1a1a"}

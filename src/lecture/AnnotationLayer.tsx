@@ -13,8 +13,8 @@ function ArrowMark({ id, from, to }: ArrowProps) {
   return (
     <g>
       <defs>
-        <marker id={markerId} markerWidth={10} markerHeight={10} refX={7} refY={5} orient="auto">
-          <path d="M0,0 L10,5 L0,10 Z" fill="#c0392b" />
+        <marker id={markerId} markerWidth={14} markerHeight={14} refX={10} refY={7} orient="auto">
+          <path d="M0,0 L14,7 L0,14 Z" fill="#c0392b" />
         </marker>
       </defs>
       <line
@@ -23,7 +23,7 @@ function ArrowMark({ id, from, to }: ArrowProps) {
         x2={toPixel(to.x)}
         y2={toPixel(to.y)}
         stroke="#c0392b"
-        strokeWidth={3.5}
+        strokeWidth={4.5}
         markerEnd={`url(#${markerId})`}
       />
     </g>
@@ -53,33 +53,33 @@ export function AnnotationLayer({ size, annotations, pendingPoint }: AnnotationL
                 key={a.id}
                 cx={toPixel(a.x)}
                 cy={toPixel(a.y)}
-                r={14}
+                r={19}
                 fill="none"
                 stroke="#1e6fd9"
-                strokeWidth={3.5}
+                strokeWidth={4.5}
               />
             );
           case "square":
             return (
               <rect
                 key={a.id}
-                x={toPixel(a.x) - 12}
-                y={toPixel(a.y) - 12}
-                width={24}
-                height={24}
+                x={toPixel(a.x) - 16}
+                y={toPixel(a.y) - 16}
+                width={32}
+                height={32}
                 fill="none"
                 stroke="#1e6fd9"
-                strokeWidth={3.5}
+                strokeWidth={4.5}
               />
             );
           case "label":
             return (
               <g key={a.id}>
-                <circle cx={toPixel(a.x)} cy={toPixel(a.y)} r={15} fill="#fff" stroke="#1e6fd9" strokeWidth={2} />
+                <circle cx={toPixel(a.x)} cy={toPixel(a.y)} r={20} fill="#fff" stroke="#1e6fd9" strokeWidth={2.5} />
                 <text
                   x={toPixel(a.x)}
                   y={toPixel(a.y)}
-                  fontSize={13}
+                  fontSize={18}
                   textAnchor="middle"
                   dominantBaseline="middle"
                   fill="#1e6fd9"
@@ -98,13 +98,13 @@ export function AnnotationLayer({ size, annotations, pendingPoint }: AnnotationL
             return (
               <rect
                 key={a.id}
-                x={toPixel(x1) - 22}
-                y={toPixel(y1) - 22}
-                width={toPixel(x2) - toPixel(x1) + 44}
-                height={toPixel(y2) - toPixel(y1) + 44}
+                x={toPixel(x1) - 30}
+                y={toPixel(y1) - 30}
+                width={toPixel(x2) - toPixel(x1) + 60}
+                height={toPixel(y2) - toPixel(y1) + 60}
                 fill="rgba(255, 214, 0, 0.25)"
                 stroke="#e0b800"
-                strokeWidth={3}
+                strokeWidth={4}
               />
             );
           }
@@ -112,7 +112,7 @@ export function AnnotationLayer({ size, annotations, pendingPoint }: AnnotationL
             return null;
         }
       })}
-      {pendingPoint && <circle cx={toPixel(pendingPoint.x)} cy={toPixel(pendingPoint.y)} r={8} fill="#e08a1e" />}
+      {pendingPoint && <circle cx={toPixel(pendingPoint.x)} cy={toPixel(pendingPoint.y)} r={11} fill="#e08a1e" />}
     </svg>
   );
 }

@@ -2,7 +2,7 @@ import { CLICK_PRESETS, DEFAULT_PRESET_ID } from "./clickSounds";
 
 const PRESET_STORAGE_KEY = "baduk-sound-preset";
 const VOLUME_STORAGE_KEY = "baduk-sound-volume";
-const DEFAULT_VOLUME = 1;
+const DEFAULT_VOLUME = 1.4;
 
 let audioCtx: AudioContext | null = null;
 let masterGain: GainNode | null = null;
@@ -33,7 +33,7 @@ function getSelectedPreset() {
   return CLICK_PRESETS.find((p) => p.id === getSelectedPresetId()) ?? CLICK_PRESETS[0];
 }
 
-/** 0 (silent) to 1.5 (150%, boosted). Defaults to 1 (100%). */
+/** 0 (silent) to 2 (200%, boosted). Defaults to 1.4 (140%) since short click sounds read as quieter than sustained tones. */
 export function getVolume(): number {
   const raw = localStorage.getItem(VOLUME_STORAGE_KEY);
   const parsed = raw !== null ? Number(raw) : DEFAULT_VOLUME;
