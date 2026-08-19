@@ -21,8 +21,7 @@ function getNoiseBuffer(ctx: AudioContext): AudioBuffer {
 /**
  * Holds at full gain for a short moment before decaying, instead of decaying from the
  * instant it starts. A pure instant-decay envelope buries most of its energy in the
- * first few milliseconds, so it reads as quiet no matter how high the peak gain is —
- * the hold is what actually raises perceived loudness (along with total duration).
+ * first few milliseconds, so it reads as quiet no matter how high the peak gain is.
  */
 function applyEnvelope(gainNode: GainNode, start: number, duration: number, gain: number) {
   const holdEnd = start + Math.min(0.03, duration * 0.3);
@@ -115,22 +114,25 @@ function playSweepClick(
   osc.stop(start + duration + 0.04);
 }
 
-// Durations run noticeably longer than a "true" click, and the envelope holds at peak
-// briefly before decaying (see applyEnvelope) — very short instant-decay bursts read as
-// quiet to the ear no matter how high the gain is. Trim with the volume slider in
-// soundSettings.ts if this ends up too loud rather than shortening these back down.
+// Gains are kept modest per-voice (roughly 0.4-0.65, well under the 1.0 ceiling) and
+// multi-note sequences are timed so each note's delay is >= the previous note's duration
+// wherever possible — that way notes don't sum on top of each other and push the signal
+// into clipping. An earlier version pushed gains close to 1.0 per voice AND let notes
+// overlap AND added a 2.6x makeup-gain stage on top; combined, that clipped audibly
+// ("찢어짐"). Loudness here comes from duration + the hold-before-decay envelope above,
+// not from raw gain — that's the lever that's actually safe to keep pushing on.
 export const CLICK_PRESETS: ClickPreset[] = [
   {
     id: "soft-wood",
     label: "또각 (부드러운 나무)",
     play(ctx, variant, dest) {
       if (variant === "click") {
-        playNoiseClick(ctx, dest, { frequency: 900, q: 2, duration: 0.16, gain: 0.95 });
+        playNoiseClick(ctx, dest, { frequency: 900, q: 2, duration: 0.16, gain: 0.6 });
       } else if (variant === "correct") {
-        playNoiseClick(ctx, dest, { frequency: 900, q: 2, duration: 0.12, gain: 0.85 });
-        playNoiseClick(ctx, dest, { frequency: 1300, q: 2, duration: 0.16, gain: 0.95, delay: 0.13 });
+        playNoiseClick(ctx, dest, { frequency: 900, q: 2, duration: 0.12, gain: 0.5 });
+        playNoiseClick(ctx, dest, { frequency: 1300, q: 2, duration: 0.16, gain: 0.6, delay: 0.13 });
       } else {
-        playNoiseClick(ctx, dest, { frequency: 500, q: 1.5, duration: 0.26, gain: 0.85 });
+        playNoiseClick(ctx, dest, { frequency: 500, q: 1.5, duration: 0.26, gain: 0.5 });
       }
     },
   },
@@ -139,12 +141,12 @@ export const CLICK_PRESETS: ClickPreset[] = [
     label: "딱 (또렷한 클릭)",
     play(ctx, variant, dest) {
       if (variant === "click") {
-        playNoiseClick(ctx, dest, { frequency: 2200, q: 3, duration: 0.1, gain: 1.0 });
+        playNoiseClick(ctx, dest, { frequency: 2200, q: 3, duration: 0.1, gain: 0.62 });
       } else if (variant === "correct") {
-        playNoiseClick(ctx, dest, { frequency: 2200, q: 3, duration: 0.1, gain: 0.95 });
-        playNoiseClick(ctx, dest, { frequency: 2800, q: 3, duration: 0.1, gain: 1.0, delay: 0.1 });
+        playNoiseClick(ctx, dest, { frequency: 2200, q: 3, duration: 0.1, gain: 0.5 });
+        playNoiseClick(ctx, dest, { frequency: 2800, q: 3, duration: 0.1, gain: 0.6, delay: 0.11 });
       } else {
-        playNoiseClick(ctx, dest, { frequency: 1200, q: 2.5, duration: 0.15, gain: 0.95 });
+        playNoiseClick(ctx, dest, { frequency: 1200, q: 2.5, duration: 0.15, gain: 0.55 });
       }
     },
   },
@@ -153,13 +155,13 @@ export const CLICK_PRESETS: ClickPreset[] = [
     label: "톡 (낮고 묵직한 톤)",
     play(ctx, variant, dest) {
       if (variant === "click") {
-        playToneClick(ctx, dest, { frequency: 260, duration: 0.2, gain: 0.75 });
-        playNoiseClick(ctx, dest, { frequency: 700, q: 2, duration: 0.1, gain: 0.45 });
+        playToneClick(ctx, dest, { frequency: 260, duration: 0.2, gain: 0.45 });
+        playNoiseClick(ctx, dest, { frequency: 700, q: 2, duration: 0.1, gain: 0.3 });
       } else if (variant === "correct") {
-        playToneClick(ctx, dest, { frequency: 260, duration: 0.16, gain: 0.7 });
-        playToneClick(ctx, dest, { frequency: 380, duration: 0.2, gain: 0.75, delay: 0.13 });
+        playToneClick(ctx, dest, { frequency: 260, duration: 0.16, gain: 0.45 });
+        playToneClick(ctx, dest, { frequency: 380, duration: 0.2, gain: 0.5, delay: 0.17 });
       } else {
-        playToneClick(ctx, dest, { frequency: 190, duration: 0.32, gain: 0.7 });
+        playToneClick(ctx, dest, { frequency: 190, duration: 0.32, gain: 0.45 });
       }
     },
   },
@@ -168,15 +170,15 @@ export const CLICK_PRESETS: ClickPreset[] = [
     label: "또르르 (경쾌한 이중음)",
     play(ctx, variant, dest) {
       if (variant === "click") {
-        playNoiseClick(ctx, dest, { frequency: 1600, q: 3, duration: 0.07, gain: 0.88 });
-        playNoiseClick(ctx, dest, { frequency: 1900, q: 3, duration: 0.07, gain: 0.7, delay: 0.04 });
+        playNoiseClick(ctx, dest, { frequency: 1600, q: 3, duration: 0.07, gain: 0.55 });
+        playNoiseClick(ctx, dest, { frequency: 1900, q: 3, duration: 0.07, gain: 0.4, delay: 0.04 });
       } else if (variant === "correct") {
-        playNoiseClick(ctx, dest, { frequency: 1600, q: 3, duration: 0.07, gain: 0.88 });
-        playNoiseClick(ctx, dest, { frequency: 1900, q: 3, duration: 0.07, gain: 0.88, delay: 0.08 });
-        playNoiseClick(ctx, dest, { frequency: 2300, q: 3, duration: 0.08, gain: 0.95, delay: 0.16 });
+        playNoiseClick(ctx, dest, { frequency: 1600, q: 3, duration: 0.07, gain: 0.5 });
+        playNoiseClick(ctx, dest, { frequency: 1900, q: 3, duration: 0.07, gain: 0.5, delay: 0.08 });
+        playNoiseClick(ctx, dest, { frequency: 2300, q: 3, duration: 0.08, gain: 0.55, delay: 0.16 });
       } else {
-        playNoiseClick(ctx, dest, { frequency: 1100, q: 1.5, duration: 0.17, gain: 0.75 });
-        playNoiseClick(ctx, dest, { frequency: 900, q: 1.5, duration: 0.19, gain: 0.7, delay: 0.08 });
+        playNoiseClick(ctx, dest, { frequency: 1100, q: 1.5, duration: 0.17, gain: 0.45 });
+        playNoiseClick(ctx, dest, { frequency: 900, q: 1.5, duration: 0.19, gain: 0.4, delay: 0.18 });
       }
     },
   },
@@ -185,12 +187,12 @@ export const CLICK_PRESETS: ClickPreset[] = [
     label: "뿅 (통통 튀는 소리)",
     play(ctx, variant, dest) {
       if (variant === "click") {
-        playSweepClick(ctx, dest, { startFrequency: 320, endFrequency: 900, duration: 0.22, gain: 0.78 });
+        playSweepClick(ctx, dest, { startFrequency: 320, endFrequency: 900, duration: 0.22, gain: 0.5 });
       } else if (variant === "correct") {
-        playSweepClick(ctx, dest, { startFrequency: 500, endFrequency: 1000, duration: 0.2, gain: 0.78 });
-        playSweepClick(ctx, dest, { startFrequency: 700, endFrequency: 1500, duration: 0.22, gain: 0.85, delay: 0.14 });
+        playSweepClick(ctx, dest, { startFrequency: 500, endFrequency: 1000, duration: 0.2, gain: 0.5 });
+        playSweepClick(ctx, dest, { startFrequency: 700, endFrequency: 1500, duration: 0.22, gain: 0.55, delay: 0.21 });
       } else {
-        playSweepClick(ctx, dest, { startFrequency: 500, endFrequency: 220, duration: 0.34, gain: 0.75 });
+        playSweepClick(ctx, dest, { startFrequency: 500, endFrequency: 220, duration: 0.34, gain: 0.45 });
       }
     },
   },

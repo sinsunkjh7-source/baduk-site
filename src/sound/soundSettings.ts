@@ -4,52 +4,34 @@ const PRESET_STORAGE_KEY = "baduk-sound-preset";
 const VOLUME_STORAGE_KEY = "baduk-sound-volume";
 const DEFAULT_VOLUME = 1;
 
-// Applied unconditionally, after compression, so "100%" itself is loud — not just the
-// slider's upper end. A limiter after this catches whatever it pushes over the top.
-const MAKEUP_GAIN = 2.6;
-
 let audioCtx: AudioContext | null = null;
 let masterGain: GainNode | null = null;
-let compressor: DynamicsCompressorNode | null = null;
-let makeupGain: GainNode | null = null;
-let limiter: DynamicsCompressorNode | null = null;
+let safetyLimiter: DynamicsCompressorNode | null = null;
 
-// Chain: masterGain (user's slider) -> compressor (tames dynamics) -> fixed makeup gain
-// (the actual loudness boost) -> limiter (brick-walls whatever the makeup gain pushes
-// over 0dB) -> destination. A limiter alone (no makeup gain) can only prevent clipping —
-// it can't make quiet audio louder, which was the mistake in an earlier version of this
-// file. The makeup stage is what actually raises perceived loudness.
-function getCompressor(ctx: AudioContext): DynamicsCompressorNode {
-  if (!compressor) {
-    compressor = ctx.createDynamicsCompressor();
-    compressor.threshold.value = -18;
-    compressor.knee.value = 8;
-    compressor.ratio.value = 4;
-    compressor.attack.value = 0.003;
-    compressor.release.value = 0.15;
-
-    makeupGain = ctx.createGain();
-    makeupGain.gain.value = MAKEUP_GAIN;
-
-    limiter = ctx.createDynamicsCompressor();
-    limiter.threshold.value = -1;
-    limiter.knee.value = 2;
-    limiter.ratio.value = 20;
-    limiter.attack.value = 0.001;
-    limiter.release.value = 0.1;
-
-    compressor.connect(makeupGain);
-    makeupGain.connect(limiter);
-    limiter.connect(ctx.destination);
+// Just a gentle safety net against literal digital clipping when a few notes overlap —
+// NOT a loudness tool. A previous version chained a hard limiter after a fixed 2.6x
+// makeup gain to force more loudness; combined with overlapping multi-note "correct"
+// sounds, that slammed the limiter hard enough to audibly distort ("찢어짐"). Real
+// loudness now comes only from clickSounds.ts's own gain/duration/envelope choices,
+// kept low enough headroom that this limiter should rarely even engage.
+function getSafetyLimiter(ctx: AudioContext): DynamicsCompressorNode {
+  if (!safetyLimiter) {
+    safetyLimiter = ctx.createDynamicsCompressor();
+    safetyLimiter.threshold.value = -2;
+    safetyLimiter.knee.value = 4;
+    safetyLimiter.ratio.value = 3;
+    safetyLimiter.attack.value = 0.003;
+    safetyLimiter.release.value = 0.15;
+    safetyLimiter.connect(ctx.destination);
   }
-  return compressor;
+  return safetyLimiter;
 }
 
 function getMasterGain(ctx: AudioContext): GainNode {
   if (!masterGain) {
     masterGain = ctx.createGain();
     masterGain.gain.value = getVolume();
-    masterGain.connect(getCompressor(ctx));
+    masterGain.connect(getSafetyLimiter(ctx));
   }
   return masterGain;
 }
@@ -74,8 +56,7 @@ function getSelectedPreset() {
   return CLICK_PRESETS.find((p) => p.id === getSelectedPresetId()) ?? CLICK_PRESETS[0];
 }
 
-/** 0 (silent) to 2 (200%). Defaults to 1 (100%) — the processing chain itself is tuned loud now,
- * so 100% no longer means "quiet baseline you have to boost past." */
+/** 0 (silent) to 2 (200% — may start to sound rough at the very top since it's raw gain, not magic). Defaults to 1 (100%). */
 export function getVolume(): number {
   const raw = localStorage.getItem(VOLUME_STORAGE_KEY);
   const parsed = raw !== null ? Number(raw) : DEFAULT_VOLUME;
