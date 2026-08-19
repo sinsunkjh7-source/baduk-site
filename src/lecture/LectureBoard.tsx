@@ -49,27 +49,43 @@ export function LectureBoard() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [speed, setSpeed] = useState<keyof typeof PLAY_SPEED_MS>("보통");
   const viewportRef = useRef<HTMLDivElement>(null);
+  const boardRowRef = useRef<HTMLDivElement>(null);
+  const sidebarRef = useRef<HTMLDivElement>(null);
   const manuallyAdjustedRef = useRef(false);
 
   useEffect(() => {
     setScenes(listScenes());
   }, []);
 
-  // "100%" only means the native pixel size, which is often too big to fit on
-  // screen. So the default/reset zoom is instead computed to fit the space actually
-  // available for the board — re-measured on resize unless the user has zoomed manually.
-  // Uses window dimensions rather than measuring the board's own container, since that
-  // container sizes itself to the board (it no longer force-grows to fill the page).
+  // "100%" only means the native pixel size, which is often too big to fit on screen.
+  // So the default/reset zoom is instead computed to fit the space actually available —
+  // measured from the real DOM (the board row's width, the sidebar's own rendered
+  // width, the header's height) rather than guessed constants, and re-measured on
+  // resize unless the user has zoomed manually. A small safety margin is subtracted
+  // so rounding never lets the board spill past the edge.
   useLayoutEffect(() => {
-    const SIDEBAR_AND_GAP = 220 + 16;
-    const HORIZONTAL_PADDING = 32;
-    const HEADER_HEIGHT = 64;
-    const VERTICAL_MARGIN = 70;
+    const SAFETY_MARGIN = 12;
 
     function computeFit(): number {
       const natural = getViewSize(lecture.size);
-      const availableWidth = window.innerWidth - SIDEBAR_AND_GAP - HORIZONTAL_PADDING;
-      const availableHeight = window.innerHeight - HEADER_HEIGHT - VERTICAL_MARGIN;
+      const rowEl = boardRowRef.current;
+      const sidebarEl = sidebarRef.current;
+      const headerEl = document.querySelector(".site-header");
+
+      const rowWidth = rowEl?.clientWidth ?? window.innerWidth;
+      const rowStyle = rowEl ? getComputedStyle(rowEl) : null;
+      const rowPadding = rowStyle ? parseFloat(rowStyle.paddingLeft) + parseFloat(rowStyle.paddingRight) : 0;
+      const rowGap = rowStyle ? parseFloat(rowStyle.columnGap || rowStyle.gap || "0") || 0 : 0;
+      const sidebarWidth = sidebarEl?.getBoundingClientRect().width ?? 190;
+
+      const availableWidth = rowWidth - rowPadding - rowGap - sidebarWidth - SAFETY_MARGIN;
+
+      const headerHeight = headerEl?.getBoundingClientRect().height ?? 64;
+      const appRootEl = document.querySelector(".app-root");
+      const appRootStyle = appRootEl ? getComputedStyle(appRootEl) : null;
+      const appRootBottomPadding = appRootStyle ? parseFloat(appRootStyle.paddingBottom) || 0 : 0;
+      const availableHeight = window.innerHeight - headerHeight - appRootBottomPadding - SAFETY_MARGIN * 2;
+
       const fit = Math.min(1, availableWidth / natural, availableHeight / natural);
       return Math.max(ZOOM_MIN, Math.min(ZOOM_MAX, fit));
     }
@@ -163,14 +179,21 @@ export function LectureBoard() {
   }
 
   return (
-    <div className="lecture-board">
+    <div className="lecture-board" ref={boardRowRef}>
       <div className="lecture-main">
         <div className="board-viewport" ref={viewportRef}>
           <div
             className="board-zoom-wrapper"
-            style={{ transform: `scale(${zoom})`, transformOrigin: "top left" }}
+            style={{ width: getViewSize(lecture.size) * zoom, height: getViewSize(lecture.size) * zoom }}
           >
-            <div style={{ position: "relative", display: "inline-block" }}>
+            <div
+              style={{
+                position: "relative",
+                display: "inline-block",
+                transform: `scale(${zoom})`,
+                transformOrigin: "top left",
+              }}
+            >
               <Goban
                 board={lecture.board}
                 size={lecture.size}
@@ -184,7 +207,7 @@ export function LectureBoard() {
         </div>
       </div>
 
-      <aside className="lecture-sidebar">
+      <aside className="lecture-sidebar" ref={sidebarRef}>
         <div className="controls">
           <label>
             착수 방식:
@@ -213,7 +236,7 @@ export function LectureBoard() {
               checked={lecture.enforceRules}
               onChange={(e) => lecture.setEnforceRules(e.target.checked)}
             />
-            규칙 검증 (자충수 금지)
+            착수 금지 (자충수)
           </label>
 
           <label>
@@ -292,30 +315,32 @@ export function LectureBoard() {
 
         <div className="controls">
           확대/축소:
-          <button
-            onClick={() => {
-              manuallyAdjustedRef.current = true;
-              setZoom((z) => Math.max(ZOOM_MIN, +(z - ZOOM_STEP).toFixed(1)));
-            }}
-          >
-            －
-          </button>
-          <span className="zoom-level">{Math.round(zoom * 100)}%</span>
-          <button
-            onClick={() => {
-              manuallyAdjustedRef.current = true;
-              setZoom((z) => Math.min(ZOOM_MAX, +(z + ZOOM_STEP).toFixed(1)));
-            }}
-          >
-            ＋
-          </button>
+          <div className="control-row">
+            <button
+              onClick={() => {
+                manuallyAdjustedRef.current = true;
+                setZoom((z) => Math.max(ZOOM_MIN, +(z - ZOOM_STEP).toFixed(1)));
+              }}
+            >
+              －
+            </button>
+            <span className="zoom-level">{Math.round(zoom * 100)}%</span>
+            <button
+              onClick={() => {
+                manuallyAdjustedRef.current = true;
+                setZoom((z) => Math.min(ZOOM_MAX, +(z + ZOOM_STEP).toFixed(1)));
+              }}
+            >
+              ＋
+            </button>
+          </div>
           <button
             onClick={() => {
               manuallyAdjustedRef.current = false;
               setZoom(fitZoom);
             }}
           >
-            리셋(화면에 맞춤)
+            리셋(화면 맞춤)
           </button>
         </div>
 

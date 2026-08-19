@@ -41,7 +41,7 @@ export function SoundPicker() {
             <input
               type="range"
               min={0}
-              max={3}
+              max={2}
               step={0.1}
               value={volume}
               onChange={(e) => handleVolumeChange(Number(e.target.value))}

@@ -2,22 +2,24 @@ import { CLICK_PRESETS, DEFAULT_PRESET_ID } from "./clickSounds";
 
 const PRESET_STORAGE_KEY = "baduk-sound-preset";
 const VOLUME_STORAGE_KEY = "baduk-sound-volume";
-const DEFAULT_VOLUME = 2.4;
+const DEFAULT_VOLUME = 1.6;
 
 let audioCtx: AudioContext | null = null;
 let masterGain: GainNode | null = null;
 let compressor: DynamicsCompressorNode | null = null;
 
-// A compressor sits after the master gain so pushing volume well past 100% makes
-// the sounds louder-sounding rather than just clipping/distorting.
+// A limiter (not a general compressor) sits after the master gain: threshold is close to
+// 0dB so normal-level audio passes through completely untouched, and only genuine
+// near-clipping peaks get caught. A low threshold here would quietly undo the volume
+// boost instead of protecting it — that was a real bug in an earlier version of this file.
 function getCompressor(ctx: AudioContext): DynamicsCompressorNode {
   if (!compressor) {
     compressor = ctx.createDynamicsCompressor();
-    compressor.threshold.value = -28;
-    compressor.knee.value = 12;
-    compressor.ratio.value = 8;
+    compressor.threshold.value = -3;
+    compressor.knee.value = 6;
+    compressor.ratio.value = 20;
     compressor.attack.value = 0.001;
-    compressor.release.value = 0.15;
+    compressor.release.value = 0.1;
     compressor.connect(ctx.destination);
   }
   return compressor;
@@ -49,7 +51,7 @@ function getSelectedPreset() {
   return CLICK_PRESETS.find((p) => p.id === getSelectedPresetId()) ?? CLICK_PRESETS[0];
 }
 
-/** 0 (silent) to 3 (300%, boosted). Defaults to 2.4 (240%) — a compressor keeps this from clipping. */
+/** 0 (silent) to 2 (200%, boosted). Defaults to 1.6 (160%) — a limiter keeps this from clipping. */
 export function getVolume(): number {
   const raw = localStorage.getItem(VOLUME_STORAGE_KEY);
   const parsed = raw !== null ? Number(raw) : DEFAULT_VOLUME;

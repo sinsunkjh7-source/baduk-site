@@ -218,7 +218,7 @@ export function Goban({
                 </>
               )}
               {lastMove && lastMove.x === x && lastMove.y === y && cell && (
-                <polygon points={trianglePoints(cx, cy, 16)} fill="#2979ff" pointerEvents="none" />
+                <polygon points={trianglePoints(cx, cy, 8)} fill="#2979ff" pointerEvents="none" />
               )}
             </g>
           );
