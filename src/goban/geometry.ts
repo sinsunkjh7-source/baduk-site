@@ -1,7 +1,7 @@
 import type { Point } from "./types";
 
-export const MARGIN = 50;
-export const CELL = 60;
+export const MARGIN = 36;
+export const CELL = 40;
 
 /** Conventional Go column labels — skips "I" to avoid confusion with "1". */
 export const COLUMN_LETTERS = "ABCDEFGHJKLMNOPQRST";

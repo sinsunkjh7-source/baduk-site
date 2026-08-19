@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Goban } from "../goban/Goban";
-import { formatCoord } from "../goban/geometry";
+import { formatCoord, getViewSize } from "../goban/geometry";
 import type { PlacementMode, Point, StoneColor } from "../goban/types";
 import { AnnotationLayer } from "./AnnotationLayer";
 import { useLectureBoard } from "./useLectureBoard";
@@ -44,13 +44,50 @@ export function LectureBoard() {
   const [pendingPoint, setPendingPoint] = useState<Point | null>(null);
   const [jumpInput, setJumpInput] = useState("");
   const [zoom, setZoom] = useState(1);
+  const [fitZoom, setFitZoom] = useState(1);
   const [scenes, setScenes] = useState<Scene[]>([]);
   const [isPlaying, setIsPlaying] = useState(false);
   const [speed, setSpeed] = useState<keyof typeof PLAY_SPEED_MS>("보통");
+  const viewportRef = useRef<HTMLDivElement>(null);
+  const manuallyAdjustedRef = useRef(false);
 
   useEffect(() => {
     setScenes(listScenes());
   }, []);
+
+  // "100%" only means the native pixel size, which is often too big to fit on
+  // screen. So the default/reset zoom is instead computed to fit the space actually
+  // available for the board — re-measured on resize unless the user has zoomed manually.
+  // Uses window dimensions rather than measuring the board's own container, since that
+  // container sizes itself to the board (it no longer force-grows to fill the page).
+  useLayoutEffect(() => {
+    const SIDEBAR_AND_GAP = 220 + 16;
+    const HORIZONTAL_PADDING = 32;
+    const HEADER_HEIGHT = 64;
+    const VERTICAL_MARGIN = 70;
+
+    function computeFit(): number {
+      const natural = getViewSize(lecture.size);
+      const availableWidth = window.innerWidth - SIDEBAR_AND_GAP - HORIZONTAL_PADDING;
+      const availableHeight = window.innerHeight - HEADER_HEIGHT - VERTICAL_MARGIN;
+      const fit = Math.min(1, availableWidth / natural, availableHeight / natural);
+      return Math.max(ZOOM_MIN, Math.min(ZOOM_MAX, fit));
+    }
+
+    const initial = computeFit();
+    setFitZoom(initial);
+    setZoom(initial);
+
+    function onResize() {
+      const fit = computeFit();
+      setFitZoom(fit);
+      if (!manuallyAdjustedRef.current) setZoom(fit);
+    }
+
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lecture.size]);
 
   // Step-based autoplay: re-schedules one move at a time so it always reflects the
   // latest tree position (e.g. stops cleanly at the end of the current line).
@@ -128,7 +165,7 @@ export function LectureBoard() {
   return (
     <div className="lecture-board">
       <div className="lecture-main">
-        <div className="board-viewport">
+        <div className="board-viewport" ref={viewportRef}>
           <div
             className="board-zoom-wrapper"
             style={{ transform: `scale(${zoom})`, transformOrigin: "top left" }}
@@ -255,10 +292,31 @@ export function LectureBoard() {
 
         <div className="controls">
           확대/축소:
-          <button onClick={() => setZoom((z) => Math.max(ZOOM_MIN, +(z - ZOOM_STEP).toFixed(1)))}>－</button>
+          <button
+            onClick={() => {
+              manuallyAdjustedRef.current = true;
+              setZoom((z) => Math.max(ZOOM_MIN, +(z - ZOOM_STEP).toFixed(1)));
+            }}
+          >
+            －
+          </button>
           <span className="zoom-level">{Math.round(zoom * 100)}%</span>
-          <button onClick={() => setZoom((z) => Math.min(ZOOM_MAX, +(z + ZOOM_STEP).toFixed(1)))}>＋</button>
-          <button onClick={() => setZoom(1)}>리셋</button>
+          <button
+            onClick={() => {
+              manuallyAdjustedRef.current = true;
+              setZoom((z) => Math.min(ZOOM_MAX, +(z + ZOOM_STEP).toFixed(1)));
+            }}
+          >
+            ＋
+          </button>
+          <button
+            onClick={() => {
+              manuallyAdjustedRef.current = false;
+              setZoom(fitZoom);
+            }}
+          >
+            리셋(화면에 맞춤)
+          </button>
         </div>
 
         <div className="controls">

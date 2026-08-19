@@ -2,16 +2,32 @@ import { CLICK_PRESETS, DEFAULT_PRESET_ID } from "./clickSounds";
 
 const PRESET_STORAGE_KEY = "baduk-sound-preset";
 const VOLUME_STORAGE_KEY = "baduk-sound-volume";
-const DEFAULT_VOLUME = 1.4;
+const DEFAULT_VOLUME = 2.4;
 
 let audioCtx: AudioContext | null = null;
 let masterGain: GainNode | null = null;
+let compressor: DynamicsCompressorNode | null = null;
+
+// A compressor sits after the master gain so pushing volume well past 100% makes
+// the sounds louder-sounding rather than just clipping/distorting.
+function getCompressor(ctx: AudioContext): DynamicsCompressorNode {
+  if (!compressor) {
+    compressor = ctx.createDynamicsCompressor();
+    compressor.threshold.value = -28;
+    compressor.knee.value = 12;
+    compressor.ratio.value = 8;
+    compressor.attack.value = 0.001;
+    compressor.release.value = 0.15;
+    compressor.connect(ctx.destination);
+  }
+  return compressor;
+}
 
 function getMasterGain(ctx: AudioContext): GainNode {
   if (!masterGain) {
     masterGain = ctx.createGain();
     masterGain.gain.value = getVolume();
-    masterGain.connect(ctx.destination);
+    masterGain.connect(getCompressor(ctx));
   }
   return masterGain;
 }
@@ -33,7 +49,7 @@ function getSelectedPreset() {
   return CLICK_PRESETS.find((p) => p.id === getSelectedPresetId()) ?? CLICK_PRESETS[0];
 }
 
-/** 0 (silent) to 2 (200%, boosted). Defaults to 1.4 (140%) since short click sounds read as quieter than sustained tones. */
+/** 0 (silent) to 3 (300%, boosted). Defaults to 2.4 (240%) — a compressor keeps this from clipping. */
 export function getVolume(): number {
   const raw = localStorage.getItem(VOLUME_STORAGE_KEY);
   const parsed = raw !== null ? Number(raw) : DEFAULT_VOLUME;

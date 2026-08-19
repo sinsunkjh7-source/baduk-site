@@ -9,19 +9,21 @@ import "./App.css";
 
 function App() {
   const [view, setView] = useState<View>({ screen: "home" });
+  const isHomeArea = view.screen === "home" || view.screen === "unit" || view.screen === "level";
 
   return (
     <div className="app-root">
       <header className="site-header">
-        <button className="site-title" onClick={() => setView({ screen: "home" })}>
-          바둑 교육 사이트
-        </button>
+        <span className="site-title">바둑 교육 사이트</span>
         <nav>
+          <button className={isHomeArea ? "active" : ""} onClick={() => setView({ screen: "home" })}>
+            바둑 교육
+          </button>
           <button
             className={view.screen === "lecture" ? "active" : ""}
             onClick={() => setView({ screen: "lecture" })}
           >
-            강의용 바둑판
+            바둑판
           </button>
         </nav>
         <SoundPicker />
