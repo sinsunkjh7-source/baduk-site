@@ -44,7 +44,6 @@ export function Goban({
 
   // Unique per instance so multiple boards on one page don't collide on gradient/filter ids.
   const uid = useId().replace(/:/g, "");
-  const woodId = `wood-${uid}`;
   const grainId = `grain-${uid}`;
   const blackId = `black-${uid}`;
   const whiteId = `white-${uid}`;
@@ -65,12 +64,6 @@ export function Goban({
   return (
     <svg viewBox={`${cropX} ${cropY} ${cropWidth} ${cropHeight}`} width={cropWidth} height={cropHeight}>
       <defs>
-        <linearGradient id={woodId} x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#e8c67d" />
-          <stop offset="45%" stopColor="#dcb35c" />
-          <stop offset="100%" stopColor="#c69a4c" />
-        </linearGradient>
-
         <filter id={grainId} x="-10%" y="-10%" width="120%" height="120%" colorInterpolationFilters="sRGB">
           <feTurbulence type="fractalNoise" baseFrequency="0.15 0.008" numOctaves={4} seed={12} result="noise" />
           <feColorMatrix in="noise" type="luminanceToAlpha" result="alphaMask" />
@@ -89,9 +82,9 @@ export function Goban({
 
         <radialGradient id={whiteId} cx="30%" cy="26%" r="75%">
           <stop offset="0%" stopColor="#ffffff" />
-          <stop offset="28%" stopColor="#f7f4ec" />
-          <stop offset="60%" stopColor="#dcd3b8" />
-          <stop offset="100%" stopColor="#8f8570" />
+          <stop offset="45%" stopColor="#fefefe" />
+          <stop offset="80%" stopColor="#f2f1eb" />
+          <stop offset="100%" stopColor="#e2e0d5" />
         </radialGradient>
 
         <radialGradient id={highlightId} cx="50%" cy="50%" r="50%">
@@ -105,8 +98,8 @@ export function Goban({
         </filter>
       </defs>
 
-      {/* wood board background */}
-      <rect x={0} y={0} width={viewSize} height={viewSize} fill={`url(#${woodId})`} />
+      {/* wood board background — flat, uniform color; the grain filter below adds subtle texture only */}
+      <rect x={0} y={0} width={viewSize} height={viewSize} fill="#e3c481" />
       <rect x={0} y={0} width={viewSize} height={viewSize} fill="none" filter={`url(#${grainId})`} />
 
       {/* grid lines */}
@@ -192,8 +185,7 @@ export function Goban({
                     cy={cy}
                     r={stoneRadius}
                     fill={cell === "black" ? `url(#${blackId})` : `url(#${whiteId})`}
-                    stroke={cell === "white" ? "#8f8571" : "none"}
-                    strokeWidth={0.75}
+                    stroke="none"
                     filter={`url(#${shadowId})`}
                     pointerEvents="none"
                   />

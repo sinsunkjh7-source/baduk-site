@@ -49,8 +49,8 @@ export function LectureBoard() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [speed, setSpeed] = useState<keyof typeof PLAY_SPEED_MS>("보통");
   const viewportRef = useRef<HTMLDivElement>(null);
-  const boardRowRef = useRef<HTMLDivElement>(null);
-  const sidebarRef = useRef<HTMLDivElement>(null);
+  const rootRef = useRef<HTMLDivElement>(null);
+  const toolbarRef = useRef<HTMLDivElement>(null);
   const manuallyAdjustedRef = useRef(false);
 
   useEffect(() => {
@@ -59,32 +59,34 @@ export function LectureBoard() {
 
   // "100%" only means the native pixel size, which is often too big to fit on screen.
   // So the default/reset zoom is instead computed to fit the space actually available —
-  // measured from the real DOM (the board row's width, the sidebar's own rendered
-  // width, the header's height) rather than guessed constants, and re-measured on
-  // resize unless the user has zoomed manually. A small safety margin is subtracted
-  // so rounding never lets the board spill past the edge.
+  // measured from the real DOM (this row's width, the toolbar's own rendered height
+  // below the board, the header's height) rather than guessed constants, and
+  // re-measured on resize unless the user has zoomed manually. A small safety margin is
+  // subtracted so rounding never lets the board spill past the edge.
   useLayoutEffect(() => {
     const SAFETY_MARGIN = 12;
 
     function computeFit(): number {
       const natural = getViewSize(lecture.size);
-      const rowEl = boardRowRef.current;
-      const sidebarEl = sidebarRef.current;
-      const headerEl = document.querySelector(".site-header");
+      const rootEl = rootRef.current;
+      const toolbarEl = toolbarRef.current;
 
-      const rowWidth = rowEl?.clientWidth ?? window.innerWidth;
-      const rowStyle = rowEl ? getComputedStyle(rowEl) : null;
-      const rowPadding = rowStyle ? parseFloat(rowStyle.paddingLeft) + parseFloat(rowStyle.paddingRight) : 0;
-      const rowGap = rowStyle ? parseFloat(rowStyle.columnGap || rowStyle.gap || "0") || 0 : 0;
-      const sidebarWidth = sidebarEl?.getBoundingClientRect().width ?? 190;
+      const rootWidth = rootEl?.clientWidth ?? window.innerWidth;
+      const rootStyle = rootEl ? getComputedStyle(rootEl) : null;
+      const rootPadding = rootStyle ? parseFloat(rootStyle.paddingLeft) + parseFloat(rootStyle.paddingRight) : 0;
+      const availableWidth = rootWidth - rootPadding - SAFETY_MARGIN;
 
-      const availableWidth = rowWidth - rowPadding - rowGap - sidebarWidth - SAFETY_MARGIN;
-
-      const headerHeight = headerEl?.getBoundingClientRect().height ?? 64;
+      // Measuring from the root's own top (rather than summing header height + assumed
+      // gaps) automatically accounts for whatever spacing sits above it, however the
+      // surrounding layout is built.
+      const rootTop = rootEl?.getBoundingClientRect().top ?? 64;
+      const rootGap = rootStyle ? parseFloat(rootStyle.rowGap || rootStyle.gap || "0") || 0 : 0;
+      const toolbarHeight = toolbarEl?.getBoundingClientRect().height ?? 0;
       const appRootEl = document.querySelector(".app-root");
       const appRootStyle = appRootEl ? getComputedStyle(appRootEl) : null;
       const appRootBottomPadding = appRootStyle ? parseFloat(appRootStyle.paddingBottom) || 0 : 0;
-      const availableHeight = window.innerHeight - headerHeight - appRootBottomPadding - SAFETY_MARGIN * 2;
+      const availableHeight =
+        window.innerHeight - rootTop - rootGap - toolbarHeight - appRootBottomPadding - SAFETY_MARGIN;
 
       const fit = Math.min(1, availableWidth / natural, availableHeight / natural);
       return Math.max(ZOOM_MIN, Math.min(ZOOM_MAX, fit));
@@ -102,8 +104,10 @@ export function LectureBoard() {
 
     window.addEventListener("resize", onResize);
     return () => window.removeEventListener("resize", onResize);
+    // Re-run whenever toolbar content that changes its height appears/disappears, so the
+    // fit stays accurate even without a window resize.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [lecture.size]);
+  }, [lecture.size, lecture.mode, lecture.siblings.length, scenes.length, tool]);
 
   // Step-based autoplay: re-schedules one move at a time so it always reflects the
   // latest tree position (e.g. stops cleanly at the end of the current line).
@@ -179,7 +183,7 @@ export function LectureBoard() {
   }
 
   return (
-    <div className="lecture-board" ref={boardRowRef}>
+    <div className="lecture-board" ref={rootRef}>
       <div className="lecture-main">
         <div className="board-viewport" ref={viewportRef}>
           <div
@@ -207,10 +211,10 @@ export function LectureBoard() {
         </div>
       </div>
 
-      <aside className="lecture-sidebar" ref={sidebarRef}>
-        <div className="controls">
+      <div className="lecture-toolbar" ref={toolbarRef}>
+        <div className="toolbar-group">
           <label>
-            착수 방식:
+            착수:
             <select value={lecture.mode} onChange={(e) => lecture.setMode(e.target.value as PlacementMode)}>
               {Object.entries(MODE_LABELS).map(([value, label]) => (
                 <option key={value} value={value}>
@@ -219,7 +223,6 @@ export function LectureBoard() {
               ))}
             </select>
           </label>
-
           {lecture.mode === "free" && (
             <div className="free-color-toggle">
               {(["black", "white"] as const).map((c) => (
@@ -229,51 +232,45 @@ export function LectureBoard() {
               ))}
             </div>
           )}
-
           <label>
             <input
               type="checkbox"
               checked={lecture.enforceRules}
               onChange={(e) => lecture.setEnforceRules(e.target.checked)}
             />
-            착수 금지 (자충수)
+            착수 금지(자충수)
           </label>
-
           <label>
             <input type="checkbox" checked={lecture.showMoveNumbers} onChange={lecture.toggleMoveNumbers} />
-            수순 번호 표시
+            수순 번호
           </label>
         </div>
 
-        <div className="controls">
-          <button onClick={lecture.goToStart}>⏮ 처음으로</button>
+        <div className="toolbar-group">
+          <button onClick={lecture.goToStart}>⏮</button>
           <button onClick={lecture.undo} disabled={lecture.moveNumber === 0}>
-            ◀ 되돌리기
+            ◀
           </button>
           <button onClick={lecture.redo} disabled={lecture.moveNumber === lecture.lineEndMoveNumber}>
-            다시 실행 ▶
+            ▶
           </button>
-          <button onClick={lecture.goToEnd}>마지막으로 ⏭</button>
-
+          <button onClick={lecture.goToEnd}>⏭</button>
           <span className="move-count">
-            수: {lecture.moveNumber} / {lecture.lineEndMoveNumber}
+            {lecture.moveNumber}/{lecture.lineEndMoveNumber}
           </span>
-
-          <div>
-            <input
-              className="jump-input"
-              type="number"
-              min={0}
-              value={jumpInput}
-              onChange={(e) => setJumpInput(e.target.value)}
-              placeholder="수 번호"
-            />
-            <button onClick={handleJump}>이동</button>
-          </div>
+          <input
+            className="jump-input"
+            type="number"
+            min={0}
+            value={jumpInput}
+            onChange={(e) => setJumpInput(e.target.value)}
+            placeholder="수"
+          />
+          <button onClick={handleJump}>이동</button>
         </div>
 
         {lecture.siblings.length > 1 && (
-          <div className="controls branch-list">
+          <div className="toolbar-group branch-list">
             분기:
             {lecture.siblings.map((siblingId) => {
               const node = lecture.tree.nodes[siblingId];
@@ -293,8 +290,7 @@ export function LectureBoard() {
           </div>
         )}
 
-        <div className="controls">
-          주석 도구:
+        <div className="toolbar-group">
           {(Object.keys(TOOL_LABELS) as AnnotationTool[]).map((t) => (
             <button
               key={t}
@@ -308,50 +304,46 @@ export function LectureBoard() {
             </button>
           ))}
           <button onClick={lecture.clearAnnotations} disabled={lecture.annotations.length === 0}>
-            이 장면 주석 지우기
+            주석 지우기
           </button>
-          {TWO_CLICK_TOOLS.includes(tool) && pendingPoint && <span>끝점을 클릭하세요</span>}
+          {TWO_CLICK_TOOLS.includes(tool) && pendingPoint && <span>끝점 클릭</span>}
         </div>
 
-        <div className="controls">
-          확대/축소:
-          <div className="control-row">
-            <button
-              onClick={() => {
-                manuallyAdjustedRef.current = true;
-                setZoom((z) => Math.max(ZOOM_MIN, +(z - ZOOM_STEP).toFixed(1)));
-              }}
-            >
-              －
-            </button>
-            <span className="zoom-level">{Math.round(zoom * 100)}%</span>
-            <button
-              onClick={() => {
-                manuallyAdjustedRef.current = true;
-                setZoom((z) => Math.min(ZOOM_MAX, +(z + ZOOM_STEP).toFixed(1)));
-              }}
-            >
-              ＋
-            </button>
-          </div>
+        <div className="toolbar-group">
+          <button
+            onClick={() => {
+              manuallyAdjustedRef.current = true;
+              setZoom((z) => Math.max(ZOOM_MIN, +(z - ZOOM_STEP).toFixed(1)));
+            }}
+          >
+            －
+          </button>
+          <span className="zoom-level">{Math.round(zoom * 100)}%</span>
+          <button
+            onClick={() => {
+              manuallyAdjustedRef.current = true;
+              setZoom((z) => Math.min(ZOOM_MAX, +(z + ZOOM_STEP).toFixed(1)));
+            }}
+          >
+            ＋
+          </button>
           <button
             onClick={() => {
               manuallyAdjustedRef.current = false;
               setZoom(fitZoom);
             }}
           >
-            리셋(화면 맞춤)
+            화면 맞춤
           </button>
         </div>
 
-        <div className="controls">
-          <button onClick={handleSaveScene}>현재 장면 저장</button>
-
+        <div className="toolbar-group">
+          <button onClick={handleSaveScene}>장면 저장</button>
           <button
             onClick={() => setIsPlaying((p) => !p)}
             disabled={!isPlaying && lecture.moveNumber >= lecture.lineEndMoveNumber}
           >
-            {isPlaying ? "⏸ 일시정지" : "▶ 자동 재생"}
+            {isPlaying ? "⏸ 일시정지" : "▶ 자동재생"}
           </button>
           <select value={speed} onChange={(e) => setSpeed(e.target.value as keyof typeof PLAY_SPEED_MS)}>
             {Object.keys(PLAY_SPEED_MS).map((label) => (
@@ -363,17 +355,17 @@ export function LectureBoard() {
         </div>
 
         {scenes.length > 0 && (
-          <ul className="scene-list">
+          <div className="toolbar-group scene-list">
             {scenes.map((scene) => (
-              <li key={scene.id}>
-                <span>{scene.name}</span>
+              <span key={scene.id} className="scene-chip">
+                {scene.name}
                 <button onClick={() => handleLoadScene(scene)}>불러오기</button>
                 <button onClick={() => handleDeleteScene(scene.id)}>삭제</button>
-              </li>
+              </span>
             ))}
-          </ul>
+          </div>
         )}
-      </aside>
+      </div>
     </div>
   );
 }
