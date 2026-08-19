@@ -6,6 +6,7 @@ import { AnnotationLayer } from "./AnnotationLayer";
 import { useLectureBoard } from "./useLectureBoard";
 import type { AnnotationTool } from "./types";
 import { deleteScene, listScenes, saveScene, type Scene } from "./scenes";
+import { playClickSound } from "../sound/soundSettings";
 import "./LectureBoard.css";
 
 const MODE_LABELS: Record<PlacementMode, string> = {
@@ -70,6 +71,7 @@ export function LectureBoard() {
       } else {
         lecture.place(p);
       }
+      playClickSound();
       return;
     }
 

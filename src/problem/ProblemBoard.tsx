@@ -3,7 +3,7 @@ import { Goban } from "../goban/Goban";
 import { createEmptyBoard, placeStone } from "../goban/boardLogic";
 import type { Board, Point } from "../goban/types";
 import type { Problem } from "./types";
-import { playCorrectSound, playIncorrectSound } from "./sound";
+import { playCorrectSound, playIncorrectSound } from "../sound/soundSettings";
 import "./ProblemBoard.css";
 
 type Status = "idle" | "correct" | "incorrect";

@@ -3,6 +3,7 @@ import { HomePage } from "./site/HomePage";
 import { UnitPage } from "./site/UnitPage";
 import { LevelPage } from "./site/LevelPage";
 import { LectureBoard } from "./lecture/LectureBoard";
+import { SoundPicker } from "./sound/SoundPicker";
 import type { View } from "./site/types";
 import "./App.css";
 
@@ -23,6 +24,7 @@ function App() {
             강의용 바둑판
           </button>
         </nav>
+        <SoundPicker />
       </header>
 
       <main>

@@ -1,0 +1,44 @@
+.sound-picker {
+  position: relative;
+}
+
+.sound-picker-toggle {
+  background: none;
+  border: 1px solid #f5e9d0;
+  color: #f5e9d0;
+  border-radius: 4px;
+  padding: 0.35rem 0.8rem;
+  cursor: pointer;
+}
+
+.sound-picker-panel {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 0.4rem;
+  background: #fdf6e8;
+  border: 1px solid #c9a876;
+  border-radius: 8px;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  min-width: 12rem;
+  z-index: 10;
+}
+
+.sound-preset-btn {
+  text-align: left;
+  border: 1px solid #c9a876;
+  border-radius: 4px;
+  background: #fff;
+  padding: 0.4rem 0.6rem;
+  cursor: pointer;
+  color: #3a2a15;
+}
+
+.sound-preset-btn.active {
+  border-color: #3a2a15;
+  background: #f0e2c0;
+  font-weight: 700;
+}
