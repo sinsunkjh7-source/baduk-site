@@ -123,7 +123,7 @@ export function Goban({
 
       {/* star points */}
       {starPoints.map((p) => (
-        <circle key={`star${p.x}-${p.y}`} cx={toPixel(p.x)} cy={toPixel(p.y)} r={3} fill="#3a2a15" />
+        <circle key={`star${p.x}-${p.y}`} cx={toPixel(p.x)} cy={toPixel(p.y)} r={4} fill="#3a2a15" />
       ))}
 
       {/* coordinates */}
@@ -133,7 +133,7 @@ export function Goban({
             key={`colLabel${x}`}
             x={toPixel(x)}
             y={MARGIN / 2}
-            fontSize={12}
+            fontSize={14}
             textAnchor="middle"
             dominantBaseline="middle"
             fill="#3a2a15"
@@ -147,7 +147,7 @@ export function Goban({
             key={`rowLabel${y}`}
             x={viewSize - MARGIN / 2}
             y={toPixel(y)}
-            fontSize={12}
+            fontSize={14}
             textAnchor="middle"
             dominantBaseline="middle"
             fill="#3a2a15"
@@ -199,10 +199,10 @@ export function Goban({
                 <circle
                   cx={cx}
                   cy={cy}
-                  r={5}
+                  r={7}
                   fill="none"
                   stroke={cell === "black" ? "#f5f5f0" : "#1a1a1a"}
-                  strokeWidth={1.5}
+                  strokeWidth={2}
                   pointerEvents="none"
                 />
               )}
@@ -215,13 +215,13 @@ export function Goban({
       {markers?.map((p) => (
         <rect
           key={`marker${p.x}-${p.y}`}
-          x={toPixel(p.x) - 6}
-          y={toPixel(p.y) - 6}
-          width={12}
-          height={12}
+          x={toPixel(p.x) - 8}
+          y={toPixel(p.y) - 8}
+          width={16}
+          height={16}
           fill="none"
           stroke="#d92626"
-          strokeWidth={2}
+          strokeWidth={3}
           pointerEvents="none"
         />
       ))}
@@ -234,7 +234,7 @@ export function Goban({
             key={`num${p.x}-${p.y}`}
             x={toPixel(p.x)}
             y={toPixel(p.y)}
-            fontSize={11}
+            fontSize={13}
             textAnchor="middle"
             dominantBaseline="middle"
             fill={cell === "black" ? "#f5f5f0" : "#1a1a1a"}

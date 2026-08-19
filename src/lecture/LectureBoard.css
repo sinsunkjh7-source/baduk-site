@@ -1,7 +1,29 @@
 .lecture-board {
   display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.lecture-main {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.lecture-sidebar {
+  flex: 0 0 260px;
+  display: flex;
   flex-direction: column;
-  align-items: center;
+  gap: 0.75rem;
+}
+
+.lecture-sidebar .controls {
+  flex-direction: column;
+  align-items: flex-start;
   gap: 0.5rem;
 }
 
@@ -32,7 +54,6 @@
   flex-direction: column;
   gap: 0.25rem;
   width: 100%;
-  max-width: 500px;
 }
 
 .scene-list li {
@@ -47,10 +68,26 @@
 
 .board-viewport {
   max-width: 100%;
-  max-height: 80vh;
+  max-height: 85vh;
   overflow: auto;
 }
 
 .board-zoom-wrapper {
   display: inline-block;
+}
+
+@media (max-width: 900px) {
+  .lecture-board {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .lecture-sidebar {
+    flex: 1 1 auto;
+  }
+
+  .lecture-sidebar .controls {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
 }
