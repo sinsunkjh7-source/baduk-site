@@ -76,6 +76,35 @@ function playToneClick(
   osc.stop(start + duration + 0.02);
 }
 
+interface SweepClickOptions {
+  startFrequency?: number;
+  endFrequency?: number;
+  type?: OscillatorType;
+  duration?: number;
+  gain?: number;
+  delay?: number;
+}
+
+/** Rising/falling pitch glide — the classic playful "boing" shape. */
+function playSweepClick(
+  ctx: AudioContext,
+  destination: AudioNode,
+  { startFrequency = 300, endFrequency = 900, type = "sine", duration = 0.1, gain = 0.4, delay = 0 }: SweepClickOptions
+) {
+  const start = ctx.currentTime + delay;
+  const osc = ctx.createOscillator();
+  osc.type = type;
+  osc.frequency.setValueAtTime(startFrequency, start);
+  osc.frequency.exponentialRampToValueAtTime(endFrequency, start + duration);
+  const gainNode = ctx.createGain();
+  gainNode.gain.setValueAtTime(gain, start);
+  gainNode.gain.exponentialRampToValueAtTime(0.001, start + duration + 0.03);
+  osc.connect(gainNode);
+  gainNode.connect(destination);
+  osc.start(start);
+  osc.stop(start + duration + 0.04);
+}
+
 export const CLICK_PRESETS: ClickPreset[] = [
   {
     id: "soft-wood",
@@ -134,6 +163,20 @@ export const CLICK_PRESETS: ClickPreset[] = [
       } else {
         playNoiseClick(ctx, dest, { frequency: 1100, q: 1.5, duration: 0.06, gain: 0.35 });
         playNoiseClick(ctx, dest, { frequency: 900, q: 1.5, duration: 0.07, gain: 0.3, delay: 0.05 });
+      }
+    },
+  },
+  {
+    id: "playful-boing",
+    label: "뿅 (통통 튀는 소리)",
+    play(ctx, variant, dest) {
+      if (variant === "click") {
+        playSweepClick(ctx, dest, { startFrequency: 320, endFrequency: 900, duration: 0.09, gain: 0.5 });
+      } else if (variant === "correct") {
+        playSweepClick(ctx, dest, { startFrequency: 500, endFrequency: 1000, duration: 0.08, gain: 0.5 });
+        playSweepClick(ctx, dest, { startFrequency: 700, endFrequency: 1500, duration: 0.1, gain: 0.55, delay: 0.09 });
+      } else {
+        playSweepClick(ctx, dest, { startFrequency: 500, endFrequency: 220, duration: 0.16, gain: 0.45 });
       }
     },
   },
