@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useId, useMemo } from "react";
 import type { Board, BoardRegion, Point } from "./types";
 import { getStarPoints } from "./starPoints";
 import { MARGIN, CELL, COLUMN_LETTERS, toPixel, getViewSize } from "./geometry";
@@ -32,6 +32,15 @@ export function Goban({
   const viewSize = getViewSize(size);
   const starPoints = useMemo(() => getStarPoints(size), [size]);
 
+  // Unique per instance so multiple boards on one page don't collide on gradient/filter ids.
+  const uid = useId().replace(/:/g, "");
+  const woodId = `wood-${uid}`;
+  const grainId = `grain-${uid}`;
+  const blackId = `black-${uid}`;
+  const whiteId = `white-${uid}`;
+  const highlightId = `highlight-${uid}`;
+  const shadowId = `shadow-${uid}`;
+
   // A region suppresses coordinate labels — positioning them correctly against an
   // arbitrary crop isn't worth the complexity for what's meant to be a simple diagram.
   const effectiveShowCoordinates = showCoordinates && !viewRegion;
@@ -41,13 +50,53 @@ export function Goban({
   const cropWidth = viewRegion ? toPixel(viewRegion.maxX) - toPixel(viewRegion.minX) + MARGIN * 2 : viewSize;
   const cropHeight = viewRegion ? toPixel(viewRegion.maxY) - toPixel(viewRegion.minY) + MARGIN * 2 : viewSize;
 
+  const stoneRadius = CELL / 2 - 1.5;
+
   return (
-    <svg
-      viewBox={`${cropX} ${cropY} ${cropWidth} ${cropHeight}`}
-      width={cropWidth}
-      height={cropHeight}
-      style={{ background: "#dcb35c" }}
-    >
+    <svg viewBox={`${cropX} ${cropY} ${cropWidth} ${cropHeight}`} width={cropWidth} height={cropHeight}>
+      <defs>
+        <linearGradient id={woodId} x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#e8c67d" />
+          <stop offset="45%" stopColor="#dcb35c" />
+          <stop offset="100%" stopColor="#c69a4c" />
+        </linearGradient>
+
+        <filter id={grainId} x="-10%" y="-10%" width="120%" height="120%" colorInterpolationFilters="sRGB">
+          <feTurbulence type="fractalNoise" baseFrequency="0.008 0.15" numOctaves={4} seed={12} result="noise" />
+          <feColorMatrix in="noise" type="luminanceToAlpha" result="alphaMask" />
+          <feComponentTransfer in="alphaMask" result="grainMask">
+            <feFuncA type="gamma" amplitude={1} exponent={2.2} offset={0} />
+          </feComponentTransfer>
+          <feFlood floodColor="#4a2f12" floodOpacity={0.55} result="grainColor" />
+          <feComposite in="grainColor" in2="grainMask" operator="in" />
+        </filter>
+
+        <radialGradient id={blackId} cx="32%" cy="28%" r="75%">
+          <stop offset="0%" stopColor="#767676" />
+          <stop offset="35%" stopColor="#2e2e2e" />
+          <stop offset="100%" stopColor="#050505" />
+        </radialGradient>
+
+        <radialGradient id={whiteId} cx="32%" cy="28%" r="75%">
+          <stop offset="0%" stopColor="#ffffff" />
+          <stop offset="55%" stopColor="#efece2" />
+          <stop offset="100%" stopColor="#cfc9b8" />
+        </radialGradient>
+
+        <radialGradient id={highlightId} cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stopColor="#ffffff" stopOpacity={0.85} />
+          <stop offset="100%" stopColor="#ffffff" stopOpacity={0} />
+        </radialGradient>
+
+        <filter id={shadowId} x="-50%" y="-50%" width="200%" height="200%">
+          <feDropShadow dx={0.8} dy={1.4} stdDeviation={1} floodColor="#000000" floodOpacity={0.45} />
+        </filter>
+      </defs>
+
+      {/* wood board background */}
+      <rect x={0} y={0} width={viewSize} height={viewSize} fill={`url(#${woodId})`} />
+      <rect x={0} y={0} width={viewSize} height={viewSize} fill="none" filter={`url(#${grainId})`} />
+
       {/* grid lines */}
       {Array.from({ length: size }, (_, i) => (
         <line
@@ -125,15 +174,26 @@ export function Goban({
                 style={{ cursor: onPointClick ? "pointer" : "default" }}
               />
               {cell && (
-                <circle
-                  cx={cx}
-                  cy={cy}
-                  r={CELL / 2 - 1.5}
-                  fill={cell === "black" ? "#1a1a1a" : "#f5f5f0"}
-                  stroke={cell === "white" ? "#555" : "none"}
-                  strokeWidth={1}
-                  pointerEvents="none"
-                />
+                <>
+                  <circle
+                    cx={cx}
+                    cy={cy}
+                    r={stoneRadius}
+                    fill={cell === "black" ? `url(#${blackId})` : `url(#${whiteId})`}
+                    stroke={cell === "white" ? "#b9b2a0" : "none"}
+                    strokeWidth={0.5}
+                    filter={`url(#${shadowId})`}
+                    pointerEvents="none"
+                  />
+                  <ellipse
+                    cx={cx - stoneRadius * 0.32}
+                    cy={cy - stoneRadius * 0.38}
+                    rx={stoneRadius * 0.4}
+                    ry={stoneRadius * 0.28}
+                    fill={`url(#${highlightId})`}
+                    pointerEvents="none"
+                  />
+                </>
               )}
               {lastMove && lastMove.x === x && lastMove.y === y && cell && (
                 <circle
