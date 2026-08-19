@@ -1,30 +1,50 @@
 import { useState } from "react";
-import { CoreEngineDemo } from "./CoreEngineDemo";
-import { ProblemDemo } from "./ProblemDemo";
+import { HomePage } from "./site/HomePage";
+import { UnitPage } from "./site/UnitPage";
+import { LevelPage } from "./site/LevelPage";
 import { LectureBoard } from "./lecture/LectureBoard";
+import type { View } from "./site/types";
 import "./App.css";
 
-type Tab = "engine" | "problem" | "lecture";
-
 function App() {
-  const [tab, setTab] = useState<Tab>("engine");
+  const [view, setView] = useState<View>({ screen: "home" });
 
   return (
     <div className="app-root">
-      <nav className="tabs">
-        <button className={tab === "engine" ? "active" : ""} onClick={() => setTab("engine")}>
-          바둑판 코어 엔진
+      <header className="site-header">
+        <button className="site-title" onClick={() => setView({ screen: "home" })}>
+          바둑 교육 사이트
         </button>
-        <button className={tab === "problem" ? "active" : ""} onClick={() => setTab("problem")}>
-          문제 풀이
-        </button>
-        <button className={tab === "lecture" ? "active" : ""} onClick={() => setTab("lecture")}>
-          강의용 바둑판
-        </button>
-      </nav>
-      {tab === "engine" && <CoreEngineDemo />}
-      {tab === "problem" && <ProblemDemo />}
-      {tab === "lecture" && <LectureBoard />}
+        <nav>
+          <button
+            className={view.screen === "lecture" ? "active" : ""}
+            onClick={() => setView({ screen: "lecture" })}
+          >
+            강의용 바둑판
+          </button>
+        </nav>
+      </header>
+
+      <main>
+        {view.screen === "home" && (
+          <HomePage onSelectUnit={(unitId) => setView({ screen: "unit", unitId })} />
+        )}
+        {view.screen === "unit" && (
+          <UnitPage
+            unitId={view.unitId}
+            onSelectLevel={(levelId) => setView({ screen: "level", unitId: view.unitId, levelId })}
+            onBack={() => setView({ screen: "home" })}
+          />
+        )}
+        {view.screen === "level" && (
+          <LevelPage
+            unitId={view.unitId}
+            levelId={view.levelId}
+            onBack={() => setView({ screen: "unit", unitId: view.unitId })}
+          />
+        )}
+        {view.screen === "lecture" && <LectureBoard />}
+      </main>
     </div>
   );
 }

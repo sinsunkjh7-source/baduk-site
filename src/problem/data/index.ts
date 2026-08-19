@@ -17,3 +17,7 @@ export function getProblemsByUnit(unitId: string): Problem[] {
 export function getProblemById(id: string): Problem | undefined {
   return allProblems.find((p) => p.id === id);
 }
+
+export function getProblemsByLevel(unitId: string, levelId: string): Problem[] {
+  return getProblemsByUnit(unitId).filter((p) => p.location.levelId === levelId);
+}
