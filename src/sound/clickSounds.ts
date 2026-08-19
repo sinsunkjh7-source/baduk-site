@@ -3,7 +3,7 @@ export type ClickVariant = "click" | "correct" | "incorrect";
 export interface ClickPreset {
   id: string;
   label: string;
-  play: (ctx: AudioContext, variant: ClickVariant) => void;
+  play: (ctx: AudioContext, variant: ClickVariant, destination: AudioNode) => void;
 }
 
 let noiseBufferCache: AudioBuffer | null = null;
@@ -29,6 +29,7 @@ interface NoiseClickOptions {
 
 function playNoiseClick(
   ctx: AudioContext,
+  destination: AudioNode,
   { filterType = "bandpass", frequency = 1200, q = 1, duration = 0.05, gain = 0.5, delay = 0 }: NoiseClickOptions
 ) {
   const start = ctx.currentTime + delay;
@@ -43,7 +44,7 @@ function playNoiseClick(
   gainNode.gain.exponentialRampToValueAtTime(0.001, start + duration);
   source.connect(filter);
   filter.connect(gainNode);
-  gainNode.connect(ctx.destination);
+  gainNode.connect(destination);
   source.start(start);
   source.stop(start + duration + 0.02);
 }
@@ -58,6 +59,7 @@ interface ToneClickOptions {
 
 function playToneClick(
   ctx: AudioContext,
+  destination: AudioNode,
   { frequency = 400, type = "triangle", duration = 0.06, gain = 0.35, delay = 0 }: ToneClickOptions
 ) {
   const start = ctx.currentTime + delay;
@@ -69,7 +71,7 @@ function playToneClick(
   gainNode.gain.setValueAtTime(gain, start);
   gainNode.gain.exponentialRampToValueAtTime(0.001, start + duration);
   osc.connect(gainNode);
-  gainNode.connect(ctx.destination);
+  gainNode.connect(destination);
   osc.start(start);
   osc.stop(start + duration + 0.02);
 }
@@ -78,60 +80,60 @@ export const CLICK_PRESETS: ClickPreset[] = [
   {
     id: "soft-wood",
     label: "또각 (부드러운 나무)",
-    play(ctx, variant) {
+    play(ctx, variant, dest) {
       if (variant === "click") {
-        playNoiseClick(ctx, { frequency: 900, q: 2, duration: 0.05, gain: 0.45 });
+        playNoiseClick(ctx, dest, { frequency: 900, q: 2, duration: 0.05, gain: 0.45 });
       } else if (variant === "correct") {
-        playNoiseClick(ctx, { frequency: 900, q: 2, duration: 0.04, gain: 0.4 });
-        playNoiseClick(ctx, { frequency: 1300, q: 2, duration: 0.05, gain: 0.45, delay: 0.09 });
+        playNoiseClick(ctx, dest, { frequency: 900, q: 2, duration: 0.04, gain: 0.4 });
+        playNoiseClick(ctx, dest, { frequency: 1300, q: 2, duration: 0.05, gain: 0.45, delay: 0.09 });
       } else {
-        playNoiseClick(ctx, { frequency: 500, q: 1.5, duration: 0.09, gain: 0.4 });
+        playNoiseClick(ctx, dest, { frequency: 500, q: 1.5, duration: 0.09, gain: 0.4 });
       }
     },
   },
   {
     id: "sharp-click",
     label: "딱 (또렷한 클릭)",
-    play(ctx, variant) {
+    play(ctx, variant, dest) {
       if (variant === "click") {
-        playNoiseClick(ctx, { frequency: 2200, q: 3, duration: 0.03, gain: 0.5 });
+        playNoiseClick(ctx, dest, { frequency: 2200, q: 3, duration: 0.03, gain: 0.5 });
       } else if (variant === "correct") {
-        playNoiseClick(ctx, { frequency: 2200, q: 3, duration: 0.03, gain: 0.45 });
-        playNoiseClick(ctx, { frequency: 2800, q: 3, duration: 0.03, gain: 0.5, delay: 0.07 });
+        playNoiseClick(ctx, dest, { frequency: 2200, q: 3, duration: 0.03, gain: 0.45 });
+        playNoiseClick(ctx, dest, { frequency: 2800, q: 3, duration: 0.03, gain: 0.5, delay: 0.07 });
       } else {
-        playNoiseClick(ctx, { frequency: 1200, q: 2.5, duration: 0.05, gain: 0.45 });
+        playNoiseClick(ctx, dest, { frequency: 1200, q: 2.5, duration: 0.05, gain: 0.45 });
       }
     },
   },
   {
     id: "deep-tok",
     label: "톡 (낮고 묵직한 톤)",
-    play(ctx, variant) {
+    play(ctx, variant, dest) {
       if (variant === "click") {
-        playToneClick(ctx, { frequency: 260, duration: 0.07, gain: 0.32 });
-        playNoiseClick(ctx, { frequency: 700, q: 2, duration: 0.03, gain: 0.2 });
+        playToneClick(ctx, dest, { frequency: 260, duration: 0.07, gain: 0.32 });
+        playNoiseClick(ctx, dest, { frequency: 700, q: 2, duration: 0.03, gain: 0.2 });
       } else if (variant === "correct") {
-        playToneClick(ctx, { frequency: 260, duration: 0.06, gain: 0.3 });
-        playToneClick(ctx, { frequency: 380, duration: 0.07, gain: 0.32, delay: 0.09 });
+        playToneClick(ctx, dest, { frequency: 260, duration: 0.06, gain: 0.3 });
+        playToneClick(ctx, dest, { frequency: 380, duration: 0.07, gain: 0.32, delay: 0.09 });
       } else {
-        playToneClick(ctx, { frequency: 190, duration: 0.12, gain: 0.3 });
+        playToneClick(ctx, dest, { frequency: 190, duration: 0.12, gain: 0.3 });
       }
     },
   },
   {
     id: "bright-double",
     label: "또르르 (경쾌한 이중음)",
-    play(ctx, variant) {
+    play(ctx, variant, dest) {
       if (variant === "click") {
-        playNoiseClick(ctx, { frequency: 1600, q: 3, duration: 0.02, gain: 0.4 });
-        playNoiseClick(ctx, { frequency: 1900, q: 3, duration: 0.02, gain: 0.3, delay: 0.02 });
+        playNoiseClick(ctx, dest, { frequency: 1600, q: 3, duration: 0.02, gain: 0.4 });
+        playNoiseClick(ctx, dest, { frequency: 1900, q: 3, duration: 0.02, gain: 0.3, delay: 0.02 });
       } else if (variant === "correct") {
-        playNoiseClick(ctx, { frequency: 1600, q: 3, duration: 0.02, gain: 0.4 });
-        playNoiseClick(ctx, { frequency: 1900, q: 3, duration: 0.02, gain: 0.4, delay: 0.06 });
-        playNoiseClick(ctx, { frequency: 2300, q: 3, duration: 0.03, gain: 0.45, delay: 0.12 });
+        playNoiseClick(ctx, dest, { frequency: 1600, q: 3, duration: 0.02, gain: 0.4 });
+        playNoiseClick(ctx, dest, { frequency: 1900, q: 3, duration: 0.02, gain: 0.4, delay: 0.06 });
+        playNoiseClick(ctx, dest, { frequency: 2300, q: 3, duration: 0.03, gain: 0.45, delay: 0.12 });
       } else {
-        playNoiseClick(ctx, { frequency: 1100, q: 1.5, duration: 0.06, gain: 0.35 });
-        playNoiseClick(ctx, { frequency: 900, q: 1.5, duration: 0.07, gain: 0.3, delay: 0.05 });
+        playNoiseClick(ctx, dest, { frequency: 1100, q: 1.5, duration: 0.06, gain: 0.35 });
+        playNoiseClick(ctx, dest, { frequency: 900, q: 1.5, duration: 0.07, gain: 0.3, delay: 0.05 });
       }
     },
   },
