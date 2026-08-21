@@ -13,9 +13,15 @@ import "./ProblemEditor.css";
 type StoneMode = "black" | "white" | "erase" | "answer" | "region";
 
 const SIZES = [9, 13, 19] as const;
+const FULL_SIZE = 19;
 const ZOOM_MIN = 0.5;
 const ZOOM_MAX = 4;
 const ZOOM_STEP = 0.2;
+
+// The 19-line board's on-screen footprint (at fit-to-screen 100%) is the fixed reference
+// frame. 9-line and 13-line boards are scaled up to fill that exact same frame — same
+// outer size, wider line spacing — rather than each size computing its own independent fit.
+const REFERENCE_SIZE = getViewSize(FULL_SIZE);
 
 function boardToStones(board: Board): InitialStone[] {
   const stones: InitialStone[] = [];
@@ -79,20 +85,28 @@ export function ProblemEditor() {
   const effectiveRegion = region && !previewFullBoard ? region : undefined;
   const natural = naturalDims(size, effectiveRegion ?? null);
 
-  // Same real-DOM-measured fit-to-screen approach as the lecture board: the board grows
-  // to use whatever space is left after the bottom toolbar, rather than showing at a fixed
-  // (often too-small) native pixel size.
+  // `zoom` is the fit level of the fixed 19-line reference frame (not of whatever size is
+  // currently selected) — computed once from real screen/toolbar measurements, independent
+  // of which board size is selected. Every size then derives its own render scale from
+  // this same frame below, so switching sizes can never change the frame's pixel footprint.
   useLayoutEffect(() => {
-    const SAFETY_MARGIN = 12;
+    const SAFETY_MARGIN = 16;
 
     function computeFit(): number {
       const rootEl = rootRef.current;
       const toolbarEl = toolbarRef.current;
 
+      // A vertical scrollbar (Windows/Linux non-overlay style) steals width from the right
+      // edge without shrinking window.innerWidth. If one is already showing, clientWidth
+      // already excludes it; if computeFit runs before it appears (e.g. this same reflow is
+      // about to introduce one), account for it explicitly so the board doesn't get sized
+      // for space that's about to disappear out from under it.
+      const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+
       const rootWidth = rootEl?.clientWidth ?? window.innerWidth;
       const rootStyle = rootEl ? getComputedStyle(rootEl) : null;
       const rootPadding = rootStyle ? parseFloat(rootStyle.paddingLeft) + parseFloat(rootStyle.paddingRight) : 0;
-      const availableWidth = rootWidth - rootPadding - SAFETY_MARGIN;
+      const availableWidth = rootWidth - rootPadding - scrollbarWidth - SAFETY_MARGIN;
 
       const rootTop = rootEl?.getBoundingClientRect().top ?? 64;
       const rootGap = rootStyle ? parseFloat(rootStyle.rowGap || rootStyle.gap || "0") || 0 : 0;
@@ -103,27 +117,36 @@ export function ProblemEditor() {
       const availableHeight =
         window.innerHeight - rootTop - rootGap - toolbarHeight - appRootBottomPadding - SAFETY_MARGIN;
 
-      // No "at most 100%" cap here on purpose: a 9-line or 13-line board has fewer
-      // intersections at the same native line spacing, so it must scale up past 100% to
-      // occupy the same on-screen footprint a 19-line board would — that's the point.
-      const fit = Math.min(availableWidth / natural.width, availableHeight / natural.height);
+      const fit = Math.min(availableWidth / REFERENCE_SIZE, availableHeight / REFERENCE_SIZE);
       return Math.max(ZOOM_MIN, Math.min(ZOOM_MAX, fit));
     }
 
-    const initial = computeFit();
-    setFitZoom(initial);
-    if (!manuallyAdjustedRef.current) setZoom(initial);
-
-    function onResize() {
+    function apply() {
       const fit = computeFit();
       setFitZoom(fit);
       if (!manuallyAdjustedRef.current) setZoom(fit);
     }
 
-    window.addEventListener("resize", onResize);
-    return () => window.removeEventListener("resize", onResize);
+    apply();
+    window.addEventListener("resize", apply);
+    // Also react to the toolbar's own size changes (e.g. it wrapping onto more rows as the
+    // unit/level/problem-list content changes) rather than only window resize events —
+    // otherwise a self-inflicted layout shift never gets re-measured.
+    const observer = new ResizeObserver(apply);
+    if (toolbarRef.current) observer.observe(toolbarRef.current);
+    return () => {
+      window.removeEventListener("resize", apply);
+      observer.disconnect();
+    };
+    // Deliberately NOT keyed on size/region/natural — the reference frame is fixed to the
+    // 19-line board, so selecting a different size must never trigger a recompute.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [natural.width, natural.height, problems.length, loading]);
+  }, [problems.length, loading]);
+
+  // The fixed on-screen frame (in pixels) that every board size renders into.
+  const frameSize = REFERENCE_SIZE * zoom;
+  // How much the *currently selected* size/region must be scaled to exactly fill that frame.
+  const renderScale = Math.min(frameSize / natural.width, frameSize / natural.height);
 
   function resetForm() {
     setEditingId(null);
@@ -246,11 +269,11 @@ export function ProblemEditor() {
       <div className="editor-main">
         <div
           className="editor-board-zoom-wrapper"
-          style={{ width: natural.width * zoom, height: natural.height * zoom }}
+          style={{ width: natural.width * renderScale, height: natural.height * renderScale }}
         >
           <div
             className="editor-board"
-            style={{ transform: `scale(${zoom})`, transformOrigin: "top left" }}
+            style={{ transform: `scale(${renderScale})`, transformOrigin: "top left" }}
           >
             <Goban
               board={board}
