@@ -14,7 +14,7 @@ type StoneMode = "black" | "white" | "erase" | "answer" | "region";
 
 const SIZES = [9, 13, 19] as const;
 const ZOOM_MIN = 0.5;
-const ZOOM_MAX = 2;
+const ZOOM_MAX = 4;
 const ZOOM_STEP = 0.2;
 
 function boardToStones(board: Board): InitialStone[] {
@@ -103,7 +103,10 @@ export function ProblemEditor() {
       const availableHeight =
         window.innerHeight - rootTop - rootGap - toolbarHeight - appRootBottomPadding - SAFETY_MARGIN;
 
-      const fit = Math.min(1, availableWidth / natural.width, availableHeight / natural.height);
+      // No "at most 100%" cap here on purpose: a 9-line or 13-line board has fewer
+      // intersections at the same native line spacing, so it must scale up past 100% to
+      // occupy the same on-screen footprint a 19-line board would — that's the point.
+      const fit = Math.min(availableWidth / natural.width, availableHeight / natural.height);
       return Math.max(ZOOM_MIN, Math.min(ZOOM_MAX, fit));
     }
 
