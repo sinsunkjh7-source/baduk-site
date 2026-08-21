@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { Goban } from "../goban/Goban";
 import { createEmptyBoard, placeStone } from "../goban/boardLogic";
 import { useGoban } from "../goban/useGoban";
+import { useFitSquareBox } from "../goban/useFitSquareBox";
 import type { Board, Point } from "../goban/types";
 import type { Problem } from "./types";
 import { playCorrectSound, playIncorrectSound } from "../sound/soundSettings";
@@ -9,6 +10,8 @@ import "./ProblemBoard.css";
 
 type Status = "idle" | "correct" | "incorrect";
 type Mode = "check" | "free";
+
+const MIN_FIT_PX = 200;
 
 function buildInitialBoard(problem: Problem): Board {
   const board = createEmptyBoard(problem.size);
@@ -34,12 +37,25 @@ export function ProblemBoard({ problem, code, onSolved }: ProblemBoardProps) {
   const [lastMove, setLastMove] = useState<Point | null>(null);
   const [showAnswer, setShowAnswer] = useState(false);
   const resetTimer = useRef<number | null>(null);
+  const rootRef = useRef<HTMLDivElement>(null);
+  const aboveRef = useRef<HTMLDivElement>(null);
+  const belowRef = useRef<HTMLDivElement>(null);
 
   // Free-play exploration: lets a student actually play out the position — see captures
   // happen, try a wrong-looking move and see why it fails — instead of only getting an
   // instant correct/incorrect verdict on a single click. Kept as separate board state so
   // switching modes never disturbs the "check the answer" flow.
   const freePlay = useGoban(problem.size, initialBoard);
+
+  // Same fit-box approach as the problem editor, so a problem is played back at the same
+  // on-screen board size it was created at, regardless of 9/13/19 selection.
+  const sizePx = useFitSquareBox({
+    containerRef: rootRef,
+    aboveRef,
+    belowRef,
+    minPx: MIN_FIT_PX,
+    deps: [problem.id, mode, status, showAnswer],
+  });
 
   useEffect(() => {
     setMode("check");
@@ -95,21 +111,23 @@ export function ProblemBoard({ problem, code, onSolved }: ProblemBoardProps) {
         : `${problem.playerColor === "black" ? "흑" : "백"} 차례 — 놓아보세요`;
 
   return (
-    <div className="problem-board">
-      {code && <div className="problem-code">{code}</div>}
-      <h3>{problem.title}</h3>
+    <div className="problem-board" ref={rootRef}>
+      <div className="problem-board-above" ref={aboveRef}>
+        {code && <div className="problem-code">{code}</div>}
+        <h3>{problem.title}</h3>
 
-      <div className="problem-mode-toggle">
-        <button className={mode === "check" ? "active" : ""} onClick={() => setMode("check")}>
-          정답 맞히기
-        </button>
-        <button className={mode === "free" ? "active" : ""} onClick={() => setMode("free")}>
-          자유롭게 놓아보기
-        </button>
+        <div className="problem-mode-toggle">
+          <button className={mode === "check" ? "active" : ""} onClick={() => setMode("check")}>
+            정답 맞히기
+          </button>
+          <button className={mode === "free" ? "active" : ""} onClick={() => setMode("free")}>
+            자유롭게 놓아보기
+          </button>
+        </div>
       </div>
 
-      {mode === "check" ? (
-        <>
+      <div className="board-fit-wrapper" style={{ width: sizePx, height: sizePx }}>
+        {mode === "check" ? (
           <Goban
             board={board}
             size={problem.size}
@@ -118,10 +136,7 @@ export function ProblemBoard({ problem, code, onSolved }: ProblemBoardProps) {
             markers={showAnswer ? problem.correctPoints : undefined}
             viewRegion={problem.region}
           />
-          <div className={`problem-status status-${status}`}>{statusText}</div>
-        </>
-      ) : (
-        <>
+        ) : (
           <Goban
             board={freePlay.board}
             size={problem.size}
@@ -130,6 +145,13 @@ export function ProblemBoard({ problem, code, onSolved }: ProblemBoardProps) {
             markers={showAnswer ? problem.correctPoints : undefined}
             viewRegion={problem.region}
           />
+        )}
+      </div>
+
+      <div className="problem-board-below" ref={belowRef}>
+        {mode === "check" ? (
+          <div className={`problem-status status-${status}`}>{statusText}</div>
+        ) : (
           <div className="free-play-controls">
             <button onClick={() => freePlay.reset(problem.size, initialBoard)}>처음으로</button>
             <button onClick={freePlay.undo} disabled={freePlay.moveIndex === 0}>
@@ -142,10 +164,9 @@ export function ProblemBoard({ problem, code, onSolved }: ProblemBoardProps) {
               수: {freePlay.moveIndex}/{freePlay.moveCount}
             </span>
           </div>
-        </>
-      )}
-
-      <button onClick={() => setShowAnswer((v) => !v)}>{showAnswer ? "정답 숨기기" : "정답 보기"}</button>
+        )}
+        <button onClick={() => setShowAnswer((v) => !v)}>{showAnswer ? "정답 숨기기" : "정답 보기"}</button>
+      </div>
     </div>
   );
 }

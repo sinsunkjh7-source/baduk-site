@@ -1,6 +1,7 @@
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Goban } from "../goban/Goban";
 import { createEmptyBoard } from "../goban/boardLogic";
+import { useFitSquareBox } from "../goban/useFitSquareBox";
 import type { BoardRegion, Board, Point, StoneColor } from "../goban/types";
 import type { InitialStone, Problem } from "./types";
 import { units } from "../curriculum/units";
@@ -50,7 +51,6 @@ export function ProblemEditor() {
   const [mode, setMode] = useState<StoneMode>("black");
   const [pendingCorner, setPendingCorner] = useState<Point | null>(null);
   const [message, setMessage] = useState("");
-  const [fitSizePx, setFitSizePx] = useState(400);
   const [zoomPercent, setZoomPercent] = useState(100);
   const rootRef = useRef<HTMLDivElement>(null);
   const toolbarRef = useRef<HTMLDivElement>(null);
@@ -64,55 +64,15 @@ export function ProblemEditor() {
 
   const effectiveRegion = region && !previewFullBoard ? region : undefined;
 
-  // Rather than hand-computing the board's exact pixel width/height in JS (fragile — easy to
-  // get subtly wrong and end up clipped), we only measure the one genuinely dynamic quantity
-  // — how much space is actually left after the toolbar — as a single side length for a
-  // square box. The box is always the same for every board size (9/13/19 all get the same
-  // outer footprint, matching the last "19줄 잘리지 않게" request), and CSS + the SVG's own
-  // viewBox scaling (width/height: 100% on the <svg>, see ProblemEditor.css) fill that box
-  // correctly and can never overflow it — that's guaranteed by how SVG scaling works, not by
-  // arithmetic we have to get exactly right.
-  useLayoutEffect(() => {
-    const SAFETY_MARGIN = 16;
-
-    function computeFitPx(): number {
-      const rootEl = rootRef.current;
-      const toolbarEl = toolbarRef.current;
-
-      const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
-      const rootWidth = rootEl?.clientWidth ?? window.innerWidth;
-      const rootStyle = rootEl ? getComputedStyle(rootEl) : null;
-      const rootPadding = rootStyle ? parseFloat(rootStyle.paddingLeft) + parseFloat(rootStyle.paddingRight) : 0;
-      const availableWidth = rootWidth - rootPadding - scrollbarWidth - SAFETY_MARGIN;
-
-      const rootTop = rootEl?.getBoundingClientRect().top ?? 64;
-      const rootGap = rootStyle ? parseFloat(rootStyle.rowGap || rootStyle.gap || "0") || 0 : 0;
-      const toolbarHeight = toolbarEl?.getBoundingClientRect().height ?? 0;
-      const appRootEl = document.querySelector(".app-root");
-      const appRootStyle = appRootEl ? getComputedStyle(appRootEl) : null;
-      const appRootBottomPadding = appRootStyle ? parseFloat(appRootStyle.paddingBottom) || 0 : 0;
-      const availableHeight =
-        window.innerHeight - rootTop - rootGap - toolbarHeight - appRootBottomPadding - SAFETY_MARGIN;
-
-      return Math.max(MIN_FIT_PX, Math.min(availableWidth, availableHeight));
-    }
-
-    function apply() {
-      setFitSizePx(computeFitPx());
-    }
-
-    apply();
-    window.addEventListener("resize", apply);
-    const observer = new ResizeObserver(apply);
-    if (toolbarRef.current) observer.observe(toolbarRef.current);
-    return () => {
-      window.removeEventListener("resize", apply);
-      observer.disconnect();
-    };
-    // Deliberately NOT keyed on size/region — every size shares the same fit box.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [problems.length, loading]);
-
+  // The board is always sized to the same fit box regardless of 9/13/19 selection (matching
+  // the "19줄 잘리지 않는 사이즈에 맞춰서" request) — see useFitSquareBox for why this measures
+  // only a side length and leaves the actual scaling to the SVG's own viewBox behavior.
+  const fitSizePx = useFitSquareBox({
+    containerRef: rootRef,
+    belowRef: toolbarRef,
+    minPx: MIN_FIT_PX,
+    deps: [problems.length, loading],
+  });
   const sizePx = (fitSizePx * zoomPercent) / 100;
 
   function resetForm() {

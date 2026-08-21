@@ -2,6 +2,7 @@
   display: flex;
   gap: 1.5rem;
   align-items: flex-start;
+  width: 100%;
 }
 
 .problem-set-main {
@@ -9,6 +10,8 @@
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
+  flex: 1;
+  min-width: 0;
 }
 
 .problem-set-nav {
@@ -19,6 +22,7 @@
 
 .problem-set-sidebar {
   min-width: 10rem;
+  flex-shrink: 0;
 }
 
 .problem-set-sidebar-title {

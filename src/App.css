@@ -64,6 +64,14 @@
   padding: 0;
 }
 
+/* The generic h1 in index.css (56px, 32px margins) is sized for a marketing/blog page —
+   far too heavy for this app's compact unit/level titles, and it eats into the space the
+   problem board needs to fit on screen. */
+.page h1 {
+  font-size: 1.3rem;
+  margin: 0.25rem 0;
+}
+
 .unit-grid {
   display: flex;
   flex-wrap: wrap;
