@@ -14,8 +14,19 @@
   width: 100%;
 }
 
+.editor-board-zoom-wrapper {
+  display: inline-block;
+  overflow: hidden;
+}
+
 .editor-board {
   display: inline-block;
+}
+
+.zoom-level {
+  font-variant-numeric: tabular-nums;
+  min-width: 3.2rem;
+  text-align: center;
 }
 
 .problem-editor-toolbar {
