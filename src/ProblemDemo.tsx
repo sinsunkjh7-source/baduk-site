@@ -1,12 +1,14 @@
 import { ProblemSetPlayer } from "./problem/ProblemSetPlayer";
 import { getProblemsByUnit } from "./problem/data";
+import { useProblems } from "./problem/store";
 
 export function ProblemDemo() {
-  const problems = getProblemsByUnit("ttaenaegi");
+  const { problems } = useProblems();
+  const unitProblems = getProblemsByUnit(problems, "ttaenaegi");
 
   return (
     <div className="app">
-      <ProblemSetPlayer problems={problems} />
+      <ProblemSetPlayer problems={unitProblems} />
     </div>
   );
 }

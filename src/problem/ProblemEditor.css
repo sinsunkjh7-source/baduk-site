@@ -1,0 +1,107 @@
+.problem-editor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0 1rem;
+  box-sizing: border-box;
+}
+
+.editor-main {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.editor-board {
+  display: inline-block;
+}
+
+.problem-editor-toolbar {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem 0.6rem;
+  width: 100%;
+  font-size: 0.8rem;
+  box-sizing: border-box;
+}
+
+.problem-editor-toolbar .toolbar-group {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.25rem 0.6rem;
+  border-right: 1px solid #d8c39a;
+}
+
+.problem-editor-toolbar .toolbar-group:last-child {
+  border-right: none;
+}
+
+.problem-editor-toolbar label {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  white-space: nowrap;
+}
+
+.problem-editor-toolbar button,
+.problem-editor-toolbar select,
+.problem-editor-toolbar input {
+  font-size: 0.8rem;
+  padding: 0.2rem 0.5rem;
+}
+
+.problem-editor-toolbar button.active {
+  outline: 2px solid #3a2a15;
+}
+
+.sequence-input {
+  width: 3.5rem;
+}
+
+.title-input {
+  width: 12rem;
+}
+
+.editor-message {
+  color: #2979ff;
+  font-weight: 600;
+}
+
+.problem-list {
+  flex-wrap: wrap;
+}
+
+.problem-chip {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  background: #fdf6e8;
+  border: 1px solid #c9a876;
+  border-radius: 4px;
+  padding: 0.15rem 0.4rem;
+  white-space: nowrap;
+}
+
+.problem-chip.active {
+  outline: 2px solid #3a2a15;
+}
+
+@media (max-width: 900px) {
+  .problem-editor-toolbar {
+    justify-content: flex-start;
+  }
+
+  .problem-editor-toolbar .toolbar-group {
+    border-right: none;
+    border-bottom: 1px solid #d8c39a;
+    width: 100%;
+  }
+}

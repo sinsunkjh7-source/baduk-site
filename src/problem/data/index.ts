@@ -1,11 +1,7 @@
 import type { Problem } from "../types";
-import { ttaenaegiProblems } from "./ttaenaegi";
 
-// 새 단원 문제 파일을 만들면 여기서 import해서 아래 배열에 추가한다.
-export const allProblems: Problem[] = [...ttaenaegiProblems];
-
-export function getProblemsByUnit(unitId: string): Problem[] {
-  return allProblems
+export function getProblemsByUnit(problems: Problem[], unitId: string): Problem[] {
+  return problems
     .filter((p) => p.location.unitId === unitId)
     .sort(
       (a, b) =>
@@ -14,10 +10,10 @@ export function getProblemsByUnit(unitId: string): Problem[] {
     );
 }
 
-export function getProblemById(id: string): Problem | undefined {
-  return allProblems.find((p) => p.id === id);
+export function getProblemById(problems: Problem[], id: string): Problem | undefined {
+  return problems.find((p) => p.id === id);
 }
 
-export function getProblemsByLevel(unitId: string, levelId: string): Problem[] {
-  return getProblemsByUnit(unitId).filter((p) => p.location.levelId === levelId);
+export function getProblemsByLevel(problems: Problem[], unitId: string, levelId: string): Problem[] {
+  return getProblemsByUnit(problems, unitId).filter((p) => p.location.levelId === levelId);
 }

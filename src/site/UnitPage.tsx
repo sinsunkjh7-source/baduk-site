@@ -1,5 +1,6 @@
 import { getUnit } from "../curriculum/units";
 import { getProblemsByLevel } from "../problem/data";
+import { useProblems } from "../problem/store";
 
 interface UnitPageProps {
   unitId: string;
@@ -9,6 +10,7 @@ interface UnitPageProps {
 
 export function UnitPage({ unitId, onSelectLevel, onBack }: UnitPageProps) {
   const unit = getUnit(unitId);
+  const { problems } = useProblems();
   if (!unit) return null;
 
   return (
@@ -27,7 +29,7 @@ export function UnitPage({ unitId, onSelectLevel, onBack }: UnitPageProps) {
               </div>
             );
           }
-          const count = getProblemsByLevel(unitId, level.id).length;
+          const count = getProblemsByLevel(problems, unitId, level.id).length;
           return (
             <button
               key={level.id}

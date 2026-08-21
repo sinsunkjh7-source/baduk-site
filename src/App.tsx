@@ -3,6 +3,7 @@ import { HomePage } from "./site/HomePage";
 import { UnitPage } from "./site/UnitPage";
 import { LevelPage } from "./site/LevelPage";
 import { LectureBoard } from "./lecture/LectureBoard";
+import { ProblemEditor } from "./problem/ProblemEditor";
 import { SoundPicker } from "./sound/SoundPicker";
 import type { View } from "./site/types";
 import "./App.css";
@@ -24,6 +25,12 @@ function App() {
             onClick={() => setView({ screen: "lecture" })}
           >
             바둑판
+          </button>
+          <button
+            className={view.screen === "problemEditor" ? "active" : ""}
+            onClick={() => setView({ screen: "problemEditor" })}
+          >
+            문제 만들기
           </button>
         </nav>
         <SoundPicker />
@@ -48,6 +55,7 @@ function App() {
           />
         )}
         {view.screen === "lecture" && <LectureBoard />}
+        {view.screen === "problemEditor" && <ProblemEditor />}
       </main>
     </div>
   );
