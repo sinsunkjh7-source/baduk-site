@@ -1,8 +1,7 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Goban } from "../goban/Goban";
 import { createEmptyBoard } from "../goban/boardLogic";
-import { MARGIN, getViewSize, toPixel } from "../goban/geometry";
-import type { Board, BoardRegion, Point, StoneColor } from "../goban/types";
+import type { BoardRegion, Board, Point, StoneColor } from "../goban/types";
 import type { InitialStone, Problem } from "./types";
 import { units } from "../curriculum/units";
 import { useProblems } from "./store";
@@ -13,15 +12,10 @@ import "./ProblemEditor.css";
 type StoneMode = "black" | "white" | "erase" | "answer" | "region";
 
 const SIZES = [9, 13, 19] as const;
-const FULL_SIZE = 19;
-const ZOOM_MIN = 0.5;
-const ZOOM_MAX = 4;
-const ZOOM_STEP = 0.2;
-
-// The 19-line board's on-screen footprint (at fit-to-screen 100%) is the fixed reference
-// frame. 9-line and 13-line boards are scaled up to fill that exact same frame — same
-// outer size, wider line spacing — rather than each size computing its own independent fit.
-const REFERENCE_SIZE = getViewSize(FULL_SIZE);
+const MIN_FIT_PX = 200;
+const ZOOM_MIN_PERCENT = 30;
+const ZOOM_MAX_PERCENT = 300;
+const ZOOM_STEP_PERCENT = 20;
 
 function boardToStones(board: Board): InitialStone[] {
   const stones: InitialStone[] = [];
@@ -36,19 +30,6 @@ function boardToStones(board: Board): InitialStone[] {
 function nextSequence(problems: Problem[], unitId: string, levelId: string): number {
   const existing = getProblemsByLevel(problems, unitId, levelId);
   return existing.reduce((max, p) => Math.max(max, p.location.sequence), 0) + 1;
-}
-
-/** Natural (unscaled) pixel size of the board as currently displayed — the full grid, or
- * just the cropped region when one is set. */
-function naturalDims(size: number, region: BoardRegion | null): { width: number; height: number } {
-  if (!region) {
-    const v = getViewSize(size);
-    return { width: v, height: v };
-  }
-  return {
-    width: toPixel(region.maxX) - toPixel(region.minX) + MARGIN * 2,
-    height: toPixel(region.maxY) - toPixel(region.minY) + MARGIN * 2,
-  };
 }
 
 export function ProblemEditor() {
@@ -69,11 +50,10 @@ export function ProblemEditor() {
   const [mode, setMode] = useState<StoneMode>("black");
   const [pendingCorner, setPendingCorner] = useState<Point | null>(null);
   const [message, setMessage] = useState("");
-  const [zoom, setZoom] = useState(1);
-  const [fitZoom, setFitZoom] = useState(1);
+  const [fitSizePx, setFitSizePx] = useState(400);
+  const [zoomPercent, setZoomPercent] = useState(100);
   const rootRef = useRef<HTMLDivElement>(null);
   const toolbarRef = useRef<HTMLDivElement>(null);
-  const manuallyAdjustedRef = useRef(false);
 
   // Suggest the next free sequence number whenever unit/level changes for a *new* problem.
   useEffect(() => {
@@ -83,26 +63,23 @@ export function ProblemEditor() {
   }, [unitId, levelId, problems, editingId]);
 
   const effectiveRegion = region && !previewFullBoard ? region : undefined;
-  const natural = naturalDims(size, effectiveRegion ?? null);
 
-  // `zoom` is the fit level of the fixed 19-line reference frame (not of whatever size is
-  // currently selected) — computed once from real screen/toolbar measurements, independent
-  // of which board size is selected. Every size then derives its own render scale from
-  // this same frame below, so switching sizes can never change the frame's pixel footprint.
+  // Rather than hand-computing the board's exact pixel width/height in JS (fragile — easy to
+  // get subtly wrong and end up clipped), we only measure the one genuinely dynamic quantity
+  // — how much space is actually left after the toolbar — as a single side length for a
+  // square box. The box is always the same for every board size (9/13/19 all get the same
+  // outer footprint, matching the last "19줄 잘리지 않게" request), and CSS + the SVG's own
+  // viewBox scaling (width/height: 100% on the <svg>, see ProblemEditor.css) fill that box
+  // correctly and can never overflow it — that's guaranteed by how SVG scaling works, not by
+  // arithmetic we have to get exactly right.
   useLayoutEffect(() => {
     const SAFETY_MARGIN = 16;
 
-    function computeFit(): number {
+    function computeFitPx(): number {
       const rootEl = rootRef.current;
       const toolbarEl = toolbarRef.current;
 
-      // A vertical scrollbar (Windows/Linux non-overlay style) steals width from the right
-      // edge without shrinking window.innerWidth. If one is already showing, clientWidth
-      // already excludes it; if computeFit runs before it appears (e.g. this same reflow is
-      // about to introduce one), account for it explicitly so the board doesn't get sized
-      // for space that's about to disappear out from under it.
       const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
-
       const rootWidth = rootEl?.clientWidth ?? window.innerWidth;
       const rootStyle = rootEl ? getComputedStyle(rootEl) : null;
       const rootPadding = rootStyle ? parseFloat(rootStyle.paddingLeft) + parseFloat(rootStyle.paddingRight) : 0;
@@ -117,36 +94,26 @@ export function ProblemEditor() {
       const availableHeight =
         window.innerHeight - rootTop - rootGap - toolbarHeight - appRootBottomPadding - SAFETY_MARGIN;
 
-      const fit = Math.min(availableWidth / REFERENCE_SIZE, availableHeight / REFERENCE_SIZE);
-      return Math.max(ZOOM_MIN, Math.min(ZOOM_MAX, fit));
+      return Math.max(MIN_FIT_PX, Math.min(availableWidth, availableHeight));
     }
 
     function apply() {
-      const fit = computeFit();
-      setFitZoom(fit);
-      if (!manuallyAdjustedRef.current) setZoom(fit);
+      setFitSizePx(computeFitPx());
     }
 
     apply();
     window.addEventListener("resize", apply);
-    // Also react to the toolbar's own size changes (e.g. it wrapping onto more rows as the
-    // unit/level/problem-list content changes) rather than only window resize events —
-    // otherwise a self-inflicted layout shift never gets re-measured.
     const observer = new ResizeObserver(apply);
     if (toolbarRef.current) observer.observe(toolbarRef.current);
     return () => {
       window.removeEventListener("resize", apply);
       observer.disconnect();
     };
-    // Deliberately NOT keyed on size/region/natural — the reference frame is fixed to the
-    // 19-line board, so selecting a different size must never trigger a recompute.
+    // Deliberately NOT keyed on size/region — every size shares the same fit box.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [problems.length, loading]);
 
-  // The fixed on-screen frame (in pixels) that every board size renders into.
-  const frameSize = REFERENCE_SIZE * zoom;
-  // How much the *currently selected* size/region must be scaled to exactly fill that frame.
-  const renderScale = Math.min(frameSize / natural.width, frameSize / natural.height);
+  const sizePx = (fitSizePx * zoomPercent) / 100;
 
   function resetForm() {
     setEditingId(null);
@@ -167,7 +134,6 @@ export function ProblemEditor() {
     setCorrectPoints([]);
     setRegion(null);
     setPendingCorner(null);
-    manuallyAdjustedRef.current = false;
   }
 
   function handleBoardClick(p: Point) {
@@ -267,22 +233,14 @@ export function ProblemEditor() {
   return (
     <div className="problem-editor" ref={rootRef}>
       <div className="editor-main">
-        <div
-          className="editor-board-zoom-wrapper"
-          style={{ width: natural.width * renderScale, height: natural.height * renderScale }}
-        >
-          <div
-            className="editor-board"
-            style={{ transform: `scale(${renderScale})`, transformOrigin: "top left" }}
-          >
-            <Goban
-              board={board}
-              size={size}
-              onPointClick={handleBoardClick}
-              markers={correctPoints}
-              viewRegion={effectiveRegion}
-            />
-          </div>
+        <div className="editor-board-zoom-wrapper" style={{ width: sizePx, height: sizePx }}>
+          <Goban
+            board={board}
+            size={size}
+            onPointClick={handleBoardClick}
+            markers={correctPoints}
+            viewRegion={effectiveRegion}
+          />
         </div>
       </div>
 
@@ -341,30 +299,17 @@ export function ProblemEditor() {
 
         <div className="toolbar-group">
           <button
-            onClick={() => {
-              manuallyAdjustedRef.current = true;
-              setZoom((z) => Math.max(ZOOM_MIN, +(z - ZOOM_STEP).toFixed(1)));
-            }}
+            onClick={() => setZoomPercent((z) => Math.max(ZOOM_MIN_PERCENT, z - ZOOM_STEP_PERCENT))}
           >
             －
           </button>
-          <span className="zoom-level">{Math.round(zoom * 100)}%</span>
+          <span className="zoom-level">{zoomPercent}%</span>
           <button
-            onClick={() => {
-              manuallyAdjustedRef.current = true;
-              setZoom((z) => Math.min(ZOOM_MAX, +(z + ZOOM_STEP).toFixed(1)));
-            }}
+            onClick={() => setZoomPercent((z) => Math.min(ZOOM_MAX_PERCENT, z + ZOOM_STEP_PERCENT))}
           >
             ＋
           </button>
-          <button
-            onClick={() => {
-              manuallyAdjustedRef.current = false;
-              setZoom(fitZoom);
-            }}
-          >
-            화면 맞춤
-          </button>
+          <button onClick={() => setZoomPercent(100)}>화면 맞춤</button>
         </div>
 
         <div className="toolbar-group">

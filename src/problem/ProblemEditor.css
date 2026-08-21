@@ -16,11 +16,17 @@
 
 .editor-board-zoom-wrapper {
   display: inline-block;
-  overflow: hidden;
+  max-width: 100%;
 }
 
-.editor-board {
-  display: inline-block;
+/* The SVG has its own width/height attributes (matching its viewBox), but here we let CSS
+   stretch it to exactly fill the wrapper box instead — the SVG's viewBox scaling guarantees
+   the content fits without clipping or distortion, so the wrapper's size is the only thing
+   that needs to be right. */
+.editor-board-zoom-wrapper svg {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 .zoom-level {
