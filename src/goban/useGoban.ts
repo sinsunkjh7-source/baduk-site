@@ -16,10 +16,10 @@ interface GobanState {
   enforceRules: boolean;
 }
 
-function initState(size: number): GobanState {
+function initState(size: number, initialBoard?: Board): GobanState {
   return {
     size,
-    history: [createEmptyBoard(size)],
+    history: [initialBoard ?? createEmptyBoard(size)],
     moves: [null],
     moveIndex: 0,
     mode: "alternating",
@@ -36,8 +36,8 @@ function nextColorFor(state: GobanState, freeColor?: StoneColor): StoneColor {
   return lastMove?.color === "black" ? "white" : "black";
 }
 
-export function useGoban(initialSize: number) {
-  const [state, setState] = useState<GobanState>(() => initState(initialSize));
+export function useGoban(initialSize: number, initialBoard?: Board) {
+  const [state, setState] = useState<GobanState>(() => initState(initialSize, initialBoard));
 
   const board = state.history[state.moveIndex];
   const lastMove = state.moves[state.moveIndex]?.point ?? null;
@@ -76,8 +76,8 @@ export function useGoban(initialSize: number) {
     }));
   }
 
-  function reset(newSize?: number) {
-    setState((prev) => initState(newSize ?? prev.size));
+  function reset(newSize?: number, newInitialBoard?: Board) {
+    setState((prev) => initState(newSize ?? prev.size, newInitialBoard));
   }
 
   function setMode(mode: PlacementMode) {
