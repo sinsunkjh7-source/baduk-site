@@ -18,12 +18,14 @@ export function LevelPage({ unitId, levelId, onBack }: LevelPageProps) {
 
   return (
     <div className="page">
-      <button className="back-link" onClick={onBack}>
-        ◀ {unit.name}
-      </button>
-      <h1>
-        {unit.name} · {level.label}
-      </h1>
+      <div className="level-page-header">
+        <button className="back-link" onClick={onBack}>
+          ◀ {unit.name}
+        </button>
+        <span className="level-page-title">
+          {unit.name} · {level.label}
+        </span>
+      </div>
       {loading ? (
         <p>불러오는 중...</p>
       ) : levelProblems.length > 0 ? (

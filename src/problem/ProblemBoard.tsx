@@ -38,7 +38,6 @@ export function ProblemBoard({ problem, code, onSolved }: ProblemBoardProps) {
   const [showAnswer, setShowAnswer] = useState(false);
   const resetTimer = useRef<number | null>(null);
   const rootRef = useRef<HTMLDivElement>(null);
-  const aboveRef = useRef<HTMLDivElement>(null);
   const belowRef = useRef<HTMLDivElement>(null);
 
   // Free-play exploration: lets a student actually play out the position — see captures
@@ -48,10 +47,13 @@ export function ProblemBoard({ problem, code, onSolved }: ProblemBoardProps) {
   const freePlay = useGoban(problem.size, initialBoard);
 
   // Same fit-box approach as the problem editor, so a problem is played back at the same
-  // on-screen board size it was created at, regardless of 9/13/19 selection.
+  // on-screen board size it was created at, regardless of 9/13/19 selection. Nothing is
+  // rendered above the board here (title/mode-toggle/status all live below it in one dense
+  // strip) so the fit gets as much of the available height as this screen's own surrounding
+  // nav/header chrome allows — a full menu-layout pass is still pending, but reproducing the
+  // exact creation-time board size is the priority for now.
   const sizePx = useFitSquareBox({
     containerRef: rootRef,
-    aboveRef,
     belowRef,
     minPx: MIN_FIT_PX,
     deps: [problem.id, mode, status, showAnswer],
@@ -112,20 +114,6 @@ export function ProblemBoard({ problem, code, onSolved }: ProblemBoardProps) {
 
   return (
     <div className="problem-board" ref={rootRef}>
-      <div className="problem-board-above" ref={aboveRef}>
-        {code && <div className="problem-code">{code}</div>}
-        <h3>{problem.title}</h3>
-
-        <div className="problem-mode-toggle">
-          <button className={mode === "check" ? "active" : ""} onClick={() => setMode("check")}>
-            정답 맞히기
-          </button>
-          <button className={mode === "free" ? "active" : ""} onClick={() => setMode("free")}>
-            자유롭게 놓아보기
-          </button>
-        </div>
-      </div>
-
       <div className="board-fit-wrapper" style={{ width: sizePx, height: sizePx }}>
         {mode === "check" ? (
           <Goban
@@ -149,23 +137,36 @@ export function ProblemBoard({ problem, code, onSolved }: ProblemBoardProps) {
       </div>
 
       <div className="problem-board-below" ref={belowRef}>
-        {mode === "check" ? (
-          <div className={`problem-status status-${status}`}>{statusText}</div>
-        ) : (
-          <div className="free-play-controls">
-            <button onClick={() => freePlay.reset(problem.size, initialBoard)}>처음으로</button>
-            <button onClick={freePlay.undo} disabled={freePlay.moveIndex === 0}>
-              ◀ 되돌리기
-            </button>
-            <button onClick={freePlay.redo} disabled={freePlay.moveIndex === freePlay.moveCount}>
-              다시 실행 ▶
-            </button>
-            <span className="move-count">
-              수: {freePlay.moveIndex}/{freePlay.moveCount}
-            </span>
-          </div>
-        )}
-        <button onClick={() => setShowAnswer((v) => !v)}>{showAnswer ? "정답 숨기기" : "정답 보기"}</button>
+        <div className="problem-board-toolbar-row">
+          {code && <span className="problem-code">{code}</span>}
+          <span className="problem-title">{problem.title}</span>
+          <button className={mode === "check" ? "active" : ""} onClick={() => setMode("check")}>
+            정답 맞히기
+          </button>
+          <button className={mode === "free" ? "active" : ""} onClick={() => setMode("free")}>
+            자유롭게 놓아보기
+          </button>
+          <button onClick={() => setShowAnswer((v) => !v)}>{showAnswer ? "정답 숨기기" : "정답 보기"}</button>
+        </div>
+
+        <div className="problem-board-toolbar-row">
+          {mode === "check" ? (
+            <span className={`problem-status status-${status}`}>{statusText}</span>
+          ) : (
+            <>
+              <button onClick={() => freePlay.reset(problem.size, initialBoard)}>처음으로</button>
+              <button onClick={freePlay.undo} disabled={freePlay.moveIndex === 0}>
+                ◀ 되돌리기
+              </button>
+              <button onClick={freePlay.redo} disabled={freePlay.moveIndex === freePlay.moveCount}>
+                다시 실행 ▶
+              </button>
+              <span className="move-count">
+                수: {freePlay.moveIndex}/{freePlay.moveCount}
+              </span>
+            </>
+          )}
+        </div>
       </div>
     </div>
   );
