@@ -66,6 +66,30 @@ body {
   margin: 0;
 }
 
+/* Friendlier, rounder baseline for every button in the app (this is an elementary-school-
+   aged, especially lower-grade, audience) — individual screens still layer their own colors
+   and active states on top of this. */
+button {
+  font-family: inherit;
+  border-radius: 8px;
+  cursor: pointer;
+  transition:
+    transform 0.1s,
+    filter 0.1s;
+}
+
+button:hover:not(:disabled) {
+  filter: brightness(1.05);
+}
+
+button:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+button:disabled {
+  cursor: default;
+}
+
 h1,
 h2 {
   font-family: var(--heading);

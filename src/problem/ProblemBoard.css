@@ -61,7 +61,7 @@
 }
 
 .problem-board-toolbar-row button.active {
-  outline: 2px solid #3a2a15;
+  outline: 2px solid var(--accent, #ff8c42);
   font-weight: 700;
 }
 
