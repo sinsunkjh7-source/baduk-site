@@ -916,9 +916,10 @@ body.bg-theme-theme5 {
 }
 
 .side-segmented .board-skin-btn {
-  padding: 2px 6px;
+  padding: 2px 7px;
   font-size: 0.74rem;
-  min-width: 42px;
+  min-width: 48px;
+  white-space: nowrap;
   height: 25px;
   border-radius: 6px;
   display: inline-flex;
