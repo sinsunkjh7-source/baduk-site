@@ -1073,12 +1073,11 @@ class BadukGameApp {
 
   // 🌟 바둑판 스킨 적용 ('wood': 정통 비자목 나무판, 'green': 소프트 그린판 + 흰선) 🌟
   applyBoardSkin(skin) {
-    this.boardSkin = (skin === 'green' || skin === 'sky' || skin === 'magma') ? skin : 'wood';
+    this.boardSkin = (skin === 'green' || skin === 'sky') ? skin : 'wood';
     const wrapper = document.getElementById('boardWrapper');
     if (wrapper) {
       wrapper.classList.toggle('skin-green', this.boardSkin === 'green');
       wrapper.classList.toggle('skin-sky', this.boardSkin === 'sky');
-      wrapper.classList.toggle('skin-magma', this.boardSkin === 'magma');
     }
     document.querySelectorAll('.board-skin-btn').forEach(b => {
       b.classList.toggle('active', b.dataset.skin === this.boardSkin);
@@ -2966,13 +2965,6 @@ class BadukGameApp {
     if (btnLast) btnLast.disabled = (this.engine.currentStep >= this.engine.moves.length);
   }
 
-  magmaCellHash(r, c, seed = 0) {
-    let h = (r * 374761393 + c * 668265263 + seed * 1013904223) ^ 0x5bf03635;
-    h = Math.imul(h ^ (h >>> 16), 0x85ebca6b);
-    h = Math.imul(h ^ (h >>> 13), 0xc2b2ae35);
-    return ((h ^ (h >>> 16)) >>> 0) / 4294967296;
-  }
-
   // 바둑판 바탕 및 격자선 전용 렌더링 (알까기 등에서 재활용)
   renderBoardGridOnly() {
     const ctx = this.ctx;
@@ -2981,138 +2973,8 @@ class BadukGameApp {
 
     const isGreen = this.boardSkin === 'green';
     const isSky = this.boardSkin === 'sky';
-    const isMagma = this.boardSkin === 'magma';
 
-        if (isMagma) {
-      // ⛰️ [낭떠러지 흙길 바둑판 - 대표님 4대 요구사항 반영]
-      // 1. 전체 베이스: 깊은 심연 배경
-      ctx.fillStyle = '#0f0b08';
-      ctx.fillRect(0, 0, size, size);
-
-      // 1. 길의 폭을 이전보다 30% 축소 (cellSize의 약 25%)
-      const pathWidth = Math.max(3, Math.round(cellSize * 0.25));
-
-      // 3. 밝은 흙색 정의
-      const roadBaseColor = '#c28b51';    // 밝은 황토/모래 흙길 본체
-      const roadSurfaceColor = '#d9a56e'; // 흙길 상단 보행면 (더 밝은 햇살 흙빛)
-      const roadEdgeColor = '#4a2b13';    // 흙길 낭떠러지 턱/단면
-
-      // 4. 마그마 제거 -> 가운데가 제일 진한 검은색, 점차 밝아져 낭떠러지 심연 느낌 연출
-      const totalCells = this.size - 1;
-      for (let r = 0; r < totalCells; r++) {
-        for (let c = 0; c < totalCells; c++) {
-          const x1 = cellSize * (c + 1) + pathWidth / 2;
-          const y1 = cellSize * (r + 1) + pathWidth / 2;
-          const x2 = cellSize * (c + 2) - pathWidth / 2;
-          const y2 = cellSize * (r + 2) - pathWidth / 2;
-          const w = x2 - x1;
-          const h = y2 - y1;
-          if (w <= 0 || h <= 0) continue;
-
-          ctx.save();
-          ctx.beginPath();
-          ctx.rect(x1, y1, w, h);
-          ctx.clip();
-
-          const midX = x1 + w / 2;
-          const midY = y1 + h / 2;
-          const maxR = Math.hypot(w / 2, h / 2);
-
-          // 가운데가 제일 진한 검은색(심연), 외곽으로 갈수록 점차 밝아져 깊은 낭떠러지 느낌
-          const chasmGrad = ctx.createRadialGradient(midX, midY, 0, midX, midY, maxR);
-          chasmGrad.addColorStop(0, '#000000'); // 가운데 가장 진한 칠흑의 심연
-          chasmGrad.addColorStop(0.55, '#120d09');
-          chasmGrad.addColorStop(0.85, '#2e2016');
-          chasmGrad.addColorStop(1, '#4d3625'); // 낭떠러지 단애면 상단
-
-          ctx.fillStyle = chasmGrad;
-          ctx.fillRect(x1, y1, w, h);
-
-          // 낭떠러지 절벽 상단 음영 (입체 낙하 깊이감)
-          const shadowDepth = Math.max(2, Math.min(6, w * 0.15));
-          const topShadow = ctx.createLinearGradient(x1, y1, x1, y1 + shadowDepth);
-          topShadow.addColorStop(0, 'rgba(0, 0, 0, 0.7)');
-          topShadow.addColorStop(1, 'rgba(0, 0, 0, 0)');
-          ctx.fillStyle = topShadow;
-          ctx.fillRect(x1, y1, w, shadowDepth);
-
-          const leftShadow = ctx.createLinearGradient(x1, y1, x1 + shadowDepth, y1);
-          leftShadow.addColorStop(0, 'rgba(0, 0, 0, 0.6)');
-          leftShadow.addColorStop(1, 'rgba(0, 0, 0, 0)');
-          ctx.fillStyle = leftShadow;
-          ctx.fillRect(x1, y1, shadowDepth, h);
-
-          ctx.restore();
-        }
-      }
-
-      // 흙길 격자 렌더링 (모서리 4귀가 완벽한 직각으로 연결되는 흙길)
-      const minPos = cellSize;
-      const maxPos = cellSize * this.size;
-      const boardSpan = maxPos - minPos;
-
-      // 1) 흙길 바깥쪽 단애 제방 (단단한 절벽 턱)
-      const edgeWidth = pathWidth + (this.size === 9 ? 2.5 : 1.8);
-      ctx.strokeStyle = roadEdgeColor;
-      ctx.lineWidth = edgeWidth;
-      ctx.lineJoin = 'miter';
-      ctx.lineCap = 'butt';
-      ctx.strokeRect(minPos, minPos, boardSpan, boardSpan);
-
-      for (let i = 1; i < this.size - 1; i++) {
-        const pos = cellSize * (i + 1);
-        ctx.beginPath();
-        ctx.moveTo(minPos, pos);
-        ctx.lineTo(maxPos, pos);
-        ctx.stroke();
-
-        ctx.beginPath();
-        ctx.moveTo(pos, minPos);
-        ctx.lineTo(pos, maxPos);
-        ctx.stroke();
-      }
-
-      // 2) 밝은 흙길 본체
-      ctx.strokeStyle = roadBaseColor;
-      ctx.lineWidth = pathWidth;
-      ctx.lineJoin = 'miter';
-      ctx.strokeRect(minPos, minPos, boardSpan, boardSpan);
-
-      for (let i = 1; i < this.size - 1; i++) {
-        const pos = cellSize * (i + 1);
-        ctx.beginPath();
-        ctx.moveTo(minPos, pos);
-        ctx.lineTo(maxPos, pos);
-        ctx.stroke();
-
-        ctx.beginPath();
-        ctx.moveTo(pos, minPos);
-        ctx.lineTo(pos, maxPos);
-        ctx.stroke();
-      }
-
-      // 3) 흙길 상단 더 밝은 다져진 흙빛 면
-      const surfaceWidth = Math.round(pathWidth * 0.6);
-      ctx.strokeStyle = roadSurfaceColor;
-      ctx.lineWidth = surfaceWidth;
-      ctx.lineJoin = 'miter';
-      ctx.strokeRect(minPos, minPos, boardSpan, boardSpan);
-
-      for (let i = 1; i < this.size - 1; i++) {
-        const pos = cellSize * (i + 1);
-        ctx.beginPath();
-        ctx.moveTo(minPos, pos);
-        ctx.lineTo(maxPos, pos);
-        ctx.stroke();
-
-        ctx.beginPath();
-        ctx.moveTo(pos, minPos);
-        ctx.lineTo(pos, maxPos);
-        ctx.stroke();
-      }
-
-      // 2. 가장 바깥쪽 길에 있는 선을 제거해! (테두리 strokeRect 전면 제거)
-    } else if (isSky) {
+    if (isSky) {
       // ☁️ [연한 하늘색과 아주 연한 구름 바둑판]
       // 1. 연한 하늘빛 그라데이션 (상단 맑은 블루 -> 하단 포근한 구름 하늘빛)
       const skyGrad = ctx.createLinearGradient(0, 0, 0, size);
@@ -3285,8 +3147,7 @@ class BadukGameApp {
 
     const isCrop = this.isMissionActive && !this.isLectureMode && (this.size < 19 && quad !== 'NATIVE9' && quad !== 'FULL19');
 
-    // 3. 선명하고 또렷한 격자선 렌더링 (마그마 스킨은 이미 넓은 흙길로 그려졌으므로 건너뜀)
-    if (!isMagma) {
+    // 3. 선명하고 또렷한 격자선 렌더링
     const gridColor = isSky ? 'rgba(30, 58, 138, 0.78)' : (isGreen ? 'rgba(20, 83, 45, 0.78)' : '#2d1d0c');
     const border1LineColor = isSky ? 'rgba(30, 58, 138, 0.92)' : (isGreen ? 'rgba(20, 83, 45, 0.92)' : '#2d1808');
     const fullBorderColor = isSky ? 'rgba(30, 58, 138, 0.92)' : (isGreen ? 'rgba(20, 83, 45, 0.92)' : '#3d2510');
@@ -3415,13 +3276,12 @@ class BadukGameApp {
       ctx.lineWidth = this.size === 19 ? 2.5 : 3;
       ctx.strokeRect(cellSize, cellSize, cellSize * (this.size - 1), cellSize * (this.size - 1));
     }
-    } // end if (!isMagma)
 
 
     // 4. 화점 (Star Points)
     const starCoords = this.getStarPoints();
-    ctx.fillStyle = isMagma ? '#854d0e' : (isSky ? '#1e3a8a' : (isGreen ? '#14532d' : '#5a3d1c'));
-    const starRadius = isMagma ? (this.size === 9 ? 3 : 2) : Math.max(2.5, cellSize * 0.1);
+    ctx.fillStyle = isSky ? '#1e3a8a' : (isGreen ? '#14532d' : '#5a3d1c');
+    const starRadius = Math.max(2.5, cellSize * 0.1);
 
     for (const p of starCoords) {
       const px = cellSize * (p.x + 1);
@@ -3433,7 +3293,7 @@ class BadukGameApp {
 
     // 5. 좌표 표시
     if (this.coordMode !== 'none' && !isCrop) {
-      ctx.fillStyle = isMagma ? '#d9a56e' : (isSky ? '#1e3a8a' : (isGreen ? '#14532d' : 'rgba(70, 45, 20, 0.85)'));
+      ctx.fillStyle = isSky ? '#1e3a8a' : (isGreen ? '#14532d' : 'rgba(70, 45, 20, 0.85)');
       ctx.font = `bold ${Math.max(10, Math.floor(cellSize * 0.35))}px sans-serif`;
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
