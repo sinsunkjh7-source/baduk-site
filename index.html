@@ -49,23 +49,16 @@
       <div class="ck-nav-container">
         <div class="ck-nav-left">
           <!-- 바둑스쿨 로고 (노란색 왕관 + 볼드 타이포) -->
-          <div class="ck-brand" onclick="window.showMainPortal();" title="바둑스쿨 메인 홈">
-            <svg class="ck-crown-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M4 22L7 10L13 16L16 6L19 16L25 10L28 22H4Z" fill="#fbbf24" stroke="#d97706" stroke-width="2" stroke-linejoin="round"/>
-              <circle cx="4" cy="22" r="2.5" fill="#f59e0b"/>
-              <circle cx="16" cy="6" r="2.5" fill="#ef4444"/>
-              <circle cx="28" cy="22" r="2.5" fill="#f59e0b"/>
-              <rect x="4" y="22" width="24" height="4" rx="2" fill="#d97706"/>
-            </svg>
-            <span class="ck-brand-title">바둑스쿨 <span class="ck-brand-badge">BadukKid</span></span>
+          <div class="ck-brand" onclick="window.showMainPortal();" title="바둑스쿨 메인 홈" style="cursor: pointer; display: flex; align-items: center; gap: 8px; flex-shrink: 0;">
+            <img src="app_icon_tile.png" alt="바둑스쿨 마스코트" style="width: 38px; height: 38px; border-radius: 9px; box-shadow: 0 2px 8px rgba(0,0,0,0.15); object-fit: cover;">
+            <span class="ck-brand-title" style="white-space: nowrap; display: flex; align-items: center; gap: 6px;">바둑스쿨 <span class="ck-brand-badge" style="white-space: nowrap;">BadukKid</span></span>
           </div>
 
-          <!-- 내 아바타 꾸미기 버튼 (스크린샷 핵심!) -->
-          <button type="button" class="ck-nav-item ck-avatar-btn" onclick="window.openAvatarStudio()" title="나만의 바둑돌 캐릭터 만들기">
+          <button type="button" class="ck-nav-item ck-avatar-btn" onclick="window.openAvatarStudio()" title="나만의 바둑이 캐릭터 만들기" style="white-space: nowrap; flex-shrink: 0;">
             <span class="ck-avatar-circle" id="navAvatarCircle">
-              <span class="avatar-face" id="navAvatarFace">🌟</span>
+              <span class="avatar-face" id="navAvatarFace">😊</span>
             </span>
-            <span class="ck-nav-text">내 아바타</span>
+            <span class="ck-nav-text" style="white-space: nowrap;">내 아바타</span>
           </button>
 
           <!-- 드롭다운 네비 메뉴들 -->
@@ -137,112 +130,19 @@
           <span class="ck-title-highlight">신나는 바둑 놀이터, 바둑스쿨</span>
         </h1>
 
-        <!-- 🌟 중앙 캐릭터 파티 크루 (체스키드 마스코트 그대로 재현) 🌟 -->
-        <div class="ck-mascot-crew-wrapper">
-          <!-- 1. 황금 바둑돌 요정 (중앙 - 붉은 별빛 보석을 든 리더) -->
-          <div class="ck-character char-hero-gold">
-            <svg class="char-svg" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <ellipse cx="50" cy="65" rx="36" ry="40" fill="url(#goldGrad)" stroke="#b45309" stroke-width="4"/>
-              <ellipse cx="40" cy="55" rx="5" ry="7" fill="#451a03"/>
-              <ellipse cx="60" cy="55" rx="5" ry="7" fill="#451a03"/>
-              <circle cx="38" cy="53" r="2" fill="#ffffff"/>
-              <circle cx="58" cy="53" r="2" fill="#ffffff"/>
-              <path d="M42 70 Q50 82 58 70" stroke="#78350f" stroke-width="4" stroke-linecap="round" fill="#b91c1c"/>
-              <circle cx="30" cy="68" r="6" fill="#fca5a5" opacity="0.6"/>
-              <circle cx="70" cy="68" r="6" fill="#fca5a5" opacity="0.6"/>
-              <!-- 보석을 번쩍 든 손 -->
-              <polygon points="76,40 92,30 100,48 88,60 74,52" fill="#ef4444" stroke="#991b1b" stroke-width="2.5"/>
-              <polygon points="76,40 86,44 88,60" fill="#f87171"/>
-              <!-- 반짝이 빛 -->
-              <path d="M85 22L88 15L91 22L98 25L91 28L88 35L85 28L78 25Z" fill="#fde047"/>
-              <defs>
-                <linearGradient id="goldGrad" x1="20" y1="20" x2="80" y2="100" gradientUnits="userSpaceOnUse">
-                  <stop stop-color="#fef08a"/>
-                  <stop offset="0.5" stop-color="#facc15"/>
-                  <stop offset="1" stop-color="#d97706"/>
-                </linearGradient>
-              </defs>
-            </svg>
+        <!-- ★ 바둑스쿨 공식 마스코트 흑돌이 & 백돌이 (엄지척 듀오) ★ -->
+        <div class="ck-mascot-crew-wrapper" style="height: auto; min-height: 190px; margin: 10px auto 16px; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative;">
+          <!-- 귀여운 환영 말풍선 -->
+          <div style="background: white; border: 2.5px solid #0284c7; padding: 10px 24px; border-radius: 24px; font-weight: 800; font-size: 1.15rem; color: #0369a1; box-shadow: 0 8px 24px rgba(2, 132, 199, 0.22); margin-bottom: 18px; display: inline-flex; align-items: center; gap: 8px;">
+            <span>👋 안녕! 우리는 바둑스쿨 요정 흑돌이와 백돌이야! 함께 신나게 놀자! 👍</span>
           </div>
-
-          <!-- 2. 신난 핑크소녀 캐릭터 (왼쪽 앞 - 노란 바둑돌을 든 친구) -->
-          <div class="ck-character char-girl-pink">
-            <svg class="char-svg" viewBox="0 0 90 110" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <!-- 머리스타일 (보라 양갈래) -->
-              <circle cx="25" cy="35" r="14" fill="#a855f7"/>
-              <circle cx="65" cy="35" r="14" fill="#a855f7"/>
-              <circle cx="45" cy="45" r="22" fill="#fcd34d"/>
-              <path d="M30 35 Q45 20 60 35" fill="#9333ea"/>
-              <circle cx="38" cy="46" r="3" fill="#1e1b4b"/>
-              <circle cx="52" cy="46" r="3" fill="#1e1b4b"/>
-              <path d="M41 54 Q45 60 49 54" stroke="#b91c1c" stroke-width="2.5" fill="none"/>
-              <rect x="35" y="66" width="20" height="26" rx="6" fill="#ec4899"/>
-              <!-- 노란 황금 바둑알 들기 -->
-              <circle cx="22" cy="58" r="10" fill="#facc15" stroke="#ca8a04" stroke-width="2"/>
-            </svg>
-          </div>
-
-          <!-- 3. 파란 소년 캐릭터 (오른쪽 앞 - 흑돌을 든 스포티 소년) -->
-          <div class="ck-character char-boy-blue">
-            <svg class="char-svg" viewBox="0 0 90 110" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <!-- 블루 모히칸 헤어 -->
-              <path d="M30 35 Q45 10 60 30" fill="#0284c7"/>
-              <circle cx="45" cy="44" r="22" fill="#fed7aa"/>
-              <circle cx="38" cy="45" r="3" fill="#0f172a"/>
-              <circle cx="52" cy="45" r="3" fill="#0f172a"/>
-              <path d="M41 53 Q45 59 49 53" stroke="#b91c1c" stroke-width="2.5" fill="none"/>
-              <rect x="35" y="66" width="20" height="26" rx="6" fill="#2563eb"/>
-              <!-- 손에 든 흑돌이 -->
-              <circle cx="68" cy="62" r="10" fill="#0f172a" stroke="#38bdf8" stroke-width="2"/>
-              <!-- 스케이트보드 -->
-              <rect x="68" y="76" width="20" height="5" rx="2.5" fill="#dc2626" transform="rotate(35 68 76)"/>
-            </svg>
-          </div>
-
-          <!-- 4. 책 읽는 똘똘이 안경 흑돌이 (왼쪽 뒤) -->
-          <div class="ck-character char-stone-glasses">
-            <svg class="char-svg" viewBox="0 0 80 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="40" cy="50" r="28" fill="#1e293b" stroke="#38bdf8" stroke-width="3"/>
-              <!-- 빨간 똘똘이 안경 -->
-              <circle cx="32" cy="48" r="8" stroke="#ef4444" stroke-width="3" fill="none"/>
-              <circle cx="48" cy="48" r="8" stroke="#ef4444" stroke-width="3" fill="none"/>
-              <line x1="40" y1="48" x2="40" y2="48.1" stroke="#ef4444" stroke-width="3"/>
-              <path d="M36 62 Q40 68 44 62" stroke="#ffffff" stroke-width="2.5" fill="none"/>
-              <!-- 바둑 1권 책 들기 -->
-              <rect x="10" y="58" width="22" height="26" rx="3" fill="#0284c7" stroke="#ffffff" stroke-width="1.5"/>
-              <text x="17" y="76" font-size="14" font-weight="900" fill="#ffffff">1</text>
-            </svg>
-          </div>
-
-          <!-- 5. 왕관 쓴 위엄 있는 백돌이 킹 (중앙 뒤) -->
-          <div class="ck-character char-king-white">
-            <svg class="char-svg" viewBox="0 0 90 110" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <!-- 붉은 망토 -->
-              <path d="M20 50 Q45 40 70 50 L75 100 L15 100 Z" fill="#b91c1c"/>
-              <circle cx="45" cy="55" r="26" fill="#ffffff" stroke="#94a3b8" stroke-width="3"/>
-              <!-- 황금 왕관 -->
-              <path d="M28 35 L33 22 L45 30 L57 22 L62 35 Z" fill="#fbbf24" stroke="#d97706" stroke-width="2"/>
-              <circle cx="37" cy="54" r="3" fill="#334155"/>
-              <circle cx="53" cy="54" r="3" fill="#334155"/>
-              <!-- 인자한 미소와 수염 -->
-              <path d="M38 64 Q45 72 52 64" stroke="#475569" stroke-width="3" fill="none"/>
-              <path d="M32 68 Q45 84 58 68" fill="#e2e8f0"/>
-            </svg>
-          </div>
-
-          <!-- 6. 별빛 지팡이를 든 퀸 백돌이 (오른쪽 뒤) -->
-          <div class="ck-character char-queen-star">
-            <svg class="char-svg" viewBox="0 0 80 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="40" cy="50" r="25" fill="#f8fafc" stroke="#c084fc" stroke-width="3"/>
-              <!-- 보라 티아라 -->
-              <path d="M28 32 L40 22 L52 32 Z" fill="#c084fc"/>
-              <circle cx="34" cy="48" r="3" fill="#475569"/>
-              <circle cx="46" cy="48" r="3" fill="#475569"/>
-              <path d="M36 58 Q40 64 44 58" stroke="#ec4899" stroke-width="2.5" fill="none"/>
-              <!-- 별빛 지팡이 -->
-              <line x1="58" y1="40" x2="66" y2="75" stroke="#facc15" stroke-width="3"/>
-              <polygon points="58,35 61,42 68,43 63,48 65,55 58,51 51,55 53,48 48,43 55,42" fill="#fbbf24"/>
-            </svg>
+          
+          <!-- 3D 흑돌이 & 백돌이 엄지척 캐릭터 (사용자 지정 공식 마스코트) -->
+          <div style="position: relative; cursor: pointer; transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);" onmouseover="this.style.transform='scale(1.06)'" onmouseout="this.style.transform='scale(1)'" onclick="location.href='characters.html'" title="클릭하면 7인의 캐릭터 도감으로 이동합니다!">
+            <img src="app_icon_tile.png" alt="바둑스쿨 공식 마스코트 흑돌이와 백돌이" style="width: 170px; height: 170px; border-radius: 36px; box-shadow: 0 16px 40px rgba(15, 23, 42, 0.25); border: 4.5px solid #ffffff;">
+            <div style="position: absolute; bottom: -12px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, #f59e0b, #d97706); color: white; padding: 6px 18px; border-radius: 14px; font-weight: 800; font-size: 0.95rem; box-shadow: 0 4px 14px rgba(0,0,0,0.25); white-space: nowrap;">
+              ✨ 7인의 캐릭터 도감 보기 ✨
+            </div>
           </div>
         </div>
 
