@@ -1,0 +1,754 @@
+[
+  {
+    "id": 1,
+    "code": "t1_ch11_01",
+    "question": "흑△와 ◎를 연결해 보세요.",
+    "hint": "연결이란, 떨어져있는 돌이 하나로 이어지는 것을 말합니다. 연결을 하면 활로가 늘어나서 살기 쉬워지고 튼튼한 모양이 됩니다.",
+    "speech": "흑△와 ◎를 연결해 보세요.",
+    "data": ";W[oq];W[pq];W[qp];W[po];W[no];B[op];B[nq];B[mp];C[mp];C[nq];T[op]",
+    "answer1": ";B[np]",
+    "size": "4",
+    "start": "BA",
+    "group": 11,
+    "stoneDesc": "돌 8개 (흑 3, 백 5)",
+    "matchedSources": [
+      "씽크탱크 1권 18번"
+    ]
+  },
+  {
+    "id": 2,
+    "code": "t1_ch11_02",
+    "question": "흑△와 흑○를 연결해 보세요.",
+    "hint": "",
+    "speech": "흑△와 흑○를 연결해 보세요.",
+    "data": ";W[qq];W[pq];W[oq];W[oo];B[pp];B[qp];B[rp];B[np];B[nq];T[np];T[nq];C[pp];C[qp];C[rp]",
+    "answer1": ";B[op]",
+    "size": "4",
+    "start": "BA",
+    "group": 11,
+    "stoneDesc": "돌 9개 (흑 5, 백 4)",
+    "matchedSources": [
+      "파워씽크 1권 18번"
+    ]
+  },
+  {
+    "id": 3,
+    "code": "t1_ch11_03",
+    "question": "흑이 둘 차례입니다. 흑△와 흑◎를 연결해보세요.",
+    "hint": "돌을 연결하면 활로가 늘어나면서 살기 쉬워집니다. 내 돌은 연결하고 상대방 돌은 끊어야 합니다.",
+    "speech": "흑이 둘 차례입니다. 흑△와 흑◎를 연결해보세요.",
+    "data": ";B[qq];B[qr];B[pr];B[pp];B[oo];W[pq];W[oq];W[or];W[mq];W[qo];W[qm];T[pr];T[qr];T[qq];C[pp];C[oo]",
+    "answer1": ";B[qp]",
+    "size": "4",
+    "start": "BA",
+    "group": 11,
+    "stoneDesc": "돌 11개 (흑 5, 백 6)",
+    "matchedSources": [
+      "논리바둑 1권 18번"
+    ]
+  },
+  {
+    "id": 4,
+    "code": "t1_ch11_04",
+    "question": "흑△와 흑○를 연결해 보세요.",
+    "hint": "",
+    "speech": "흑△와 흑○를 연결해 보세요.",
+    "data": ";W[qq];W[qp];W[pp];W[np];W[nq];B[oo];B[op];B[pq];B[pr];T[oo];T[op];C[pq];C[pr]",
+    "answer1": ";B[oq]",
+    "size": "4",
+    "start": "BA",
+    "group": 11,
+    "stoneDesc": "돌 9개 (흑 4, 백 5)",
+    "matchedSources": [
+      "파워씽크 1권 19번"
+    ]
+  },
+  {
+    "id": 5,
+    "code": "t1_ch11_05",
+    "question": "흑△와 ◎를 연결해 보세요.",
+    "hint": "연결이란, 떨어져있는 돌이 하나로 이어지는 것을 말합니다. 연결을 하면 활로가 늘어나서 살기 쉬워지고 튼튼한 모양이 됩니다.",
+    "speech": "흑△와 ◎를 연결해 보세요.",
+    "data": ";W[qq];W[qp];W[pp];W[op];W[mq];B[pq];B[oq];B[np];B[no];T[np];T[no];C[oq];C[pq]",
+    "answer1": ";B[nq]",
+    "size": "4",
+    "start": "BA",
+    "group": 11,
+    "stoneDesc": "돌 9개 (흑 4, 백 5)",
+    "matchedSources": [
+      "씽크탱크 1권 19번"
+    ]
+  },
+  {
+    "id": 6,
+    "code": "t1_ch11_06",
+    "question": "흑이 둘 차례입니다. 흑을 연결해보세요.",
+    "hint": "돌을 연결하면 활로가 늘어나면서 살기 쉬워집니다. 내 돌은 연결하고 상대방 돌은 끊어야 합니다.",
+    "speech": "흑이 둘 차례입니다. 흑을 연결해보세요.",
+    "data": ";B[rq];B[rr];B[pr];B[or];B[oq];W[qs];W[pq];W[qq];W[rp];W[qo];T[rq];T[rr];C[pr];C[or];C[oq]",
+    "answer1": ";B[qr]",
+    "size": "4",
+    "start": "BA",
+    "group": 11,
+    "stoneDesc": "돌 10개 (흑 5, 백 5)",
+    "matchedSources": [
+      "논리바둑 1권 19번"
+    ]
+  },
+  {
+    "id": 7,
+    "code": "t1_ch11_07",
+    "question": "흑△와 ◎를 연결해 보세요.",
+    "hint": "연결이란, 떨어져있는 돌이 하나로 이어지는 것을 말합니다. 연결을 하면 활로가 늘어나서 살기 쉬워지고 튼튼한 모양이 됩니다.",
+    "speech": "흑△와 ◎를 연결해 보세요.",
+    "data": ";B[qq];B[qr];B[pp];B[op];W[pq];W[oq];W[nq];W[qo];T[op];T[pp];C[qq];C[qr]",
+    "answer1": ";B[qp]",
+    "size": "4",
+    "start": "BA",
+    "group": 11,
+    "stoneDesc": "돌 8개 (흑 4, 백 4)",
+    "matchedSources": [
+      "씽크탱크 1권 20번"
+    ]
+  },
+  {
+    "id": 8,
+    "code": "t1_ch11_08",
+    "question": "흑△와 흑○를 연결해 보세요.",
+    "hint": "",
+    "speech": "흑△와 흑○를 연결해 보세요.",
+    "data": ";W[pr];W[pq];W[qp];W[qo];W[nq];W[np];B[oq];B[or];B[pp];B[po];B[pn];T[pp];T[po];T[pn];C[oq];C[or]",
+    "answer1": ";B[op]",
+    "size": "4",
+    "start": "BA",
+    "group": 11,
+    "stoneDesc": "돌 11개 (흑 5, 백 6)",
+    "matchedSources": [
+      "파워씽크 1권 20번"
+    ]
+  },
+  {
+    "id": 9,
+    "code": "t1_ch11_09",
+    "question": "흑이 둘 차례입니다. 흑을 연결해보세요.",
+    "hint": "돌을 연결하면 활로가 늘어나면서 살기 쉬워집니다. 내 돌은 연결하고 상대방 돌은 끊어야 합니다.",
+    "speech": "흑이 둘 차례입니다. 흑을 연결해보세요.",
+    "data": ";B[rr];B[qr];B[pr];B[oq];B[op];W[mq];W[nr];W[pq];W[qq];W[rq];W[qo];T[op];T[oq];C[pr];C[qr];C[rr]",
+    "answer1": ";B[or]",
+    "size": "4",
+    "start": "BA",
+    "group": 11,
+    "stoneDesc": "돌 11개 (흑 5, 백 6)",
+    "matchedSources": [
+      "논리바둑 1권 20번"
+    ]
+  },
+  {
+    "id": 10,
+    "code": "t1_ch11_10",
+    "question": "흑△와 ◎를 연결해 보세요.",
+    "hint": "연결이란, 떨어져있는 돌이 하나로 이어지는 것을 말합니다. 연결을 하면 활로가 늘어나서 살기 쉬워지고 튼튼한 모양이 됩니다.",
+    "speech": "흑△와 ◎를 연결해 보세요.",
+    "data": ";W[qp];W[qq];W[pq];W[oq];W[mp];B[pp];B[op];B[nq];B[nr];T[op];T[pp];C[nr];C[nq]",
+    "answer1": ";B[np]",
+    "size": "4",
+    "start": "BA",
+    "group": 11,
+    "stoneDesc": "돌 9개 (흑 4, 백 5)",
+    "matchedSources": [
+      "씽크탱크 1권 21번"
+    ]
+  },
+  {
+    "id": 11,
+    "code": "t1_ch11_11",
+    "question": "흑△와 ◎를 연결해 보세요.",
+    "hint": "연결이란, 떨어져있는 돌이 하나로 이어지는 것을 말합니다. 연결을 하면 활로가 늘어나서 살기 쉬워지고 튼튼한 모양이 됩니다.",
+    "speech": "흑△와 ◎를 연결해 보세요.",
+    "data": ";W[qq];W[pp];W[nq];W[mq];W[lq];W[lp];B[mp];B[np];B[oq];B[or];T[or];T[oq];C[np];C[mp]",
+    "answer1": ";B[op]",
+    "size": "4",
+    "start": "BA",
+    "group": 11,
+    "stoneDesc": "돌 10개 (흑 4, 백 6)",
+    "matchedSources": [
+      "씽크탱크 1권 22번"
+    ]
+  },
+  {
+    "id": 12,
+    "code": "t1_ch11_12",
+    "question": "흑△와 ◎를 연결해 보세요.",
+    "hint": "연결이란, 떨어져있는 돌이 하나로 이어지는 것을 말합니다. 연결을 하면 활로가 늘어나서 살기 쉬워지고 튼튼한 모양이 됩니다.",
+    "speech": "흑△와 ◎를 연결해 보세요.",
+    "data": ";W[pr];W[pq];W[op];W[np];W[lq];B[mp];B[nq];B[oq];T[mp];C[nq];C[oq]",
+    "answer1": ";B[mq]",
+    "size": "4",
+    "start": "BA",
+    "group": 11,
+    "stoneDesc": "돌 8개 (흑 3, 백 5)",
+    "matchedSources": [
+      "씽크탱크 1권 23번"
+    ]
+  },
+  {
+    "id": 13,
+    "code": "t1_ch11_13",
+    "question": "흑이 둘 차례입니다. 흑을 연결해보세요.",
+    "hint": "돌을 연결하면 활로가 늘어나면서 살기 쉬워집니다. 내 돌은 연결하고 상대방 돌은 끊어야 합니다.",
+    "speech": "흑이 둘 차례입니다. 흑을 연결해보세요.",
+    "data": ";W[qq];W[qp];W[qo];W[or];W[on];W[nn];B[qn];B[pn];B[np];B[oo];B[pp];T[np];T[oo];T[pp];C[pn];C[qn]",
+    "answer1": ";B[po]",
+    "size": "4",
+    "start": "BA",
+    "group": 11,
+    "stoneDesc": "돌 11개 (흑 5, 백 6)",
+    "matchedSources": [
+      "논리바둑 1권 23번"
+    ]
+  },
+  {
+    "id": 14,
+    "code": "t1_ch11_14",
+    "question": "흑△와 ◎를 연결해 보세요.",
+    "hint": "연결이란, 떨어져있는 돌이 하나로 이어지는 것을 말합니다. 연결을 하면 활로가 늘어나서 살기 쉬워지고 튼튼한 모양이 됩니다.",
+    "speech": "흑△와 ◎를 연결해 보세요.",
+    "data": ";W[qr];W[qq];W[oq];W[nq];W[mq];W[mr];B[nr];B[or];B[pq];B[pp];C[pq];C[pp];T[nr];T[or]",
+    "answer1": ";B[pr]",
+    "size": "4",
+    "start": "BA",
+    "group": 11,
+    "stoneDesc": "돌 10개 (흑 4, 백 6)",
+    "matchedSources": [
+      "씽크탱크 1권 24번"
+    ]
+  },
+  {
+    "id": 15,
+    "code": "t1_ch11_15",
+    "question": "흑이 둘 차례입니다. 흑을 연결해보세요.",
+    "hint": "돌을 연결하면 활로가 늘어나면서 살기 쉬워집니다. 내 돌은 연결하고 상대방 돌은 끊어야 합니다.",
+    "speech": "흑이 둘 차례입니다. 흑을 연결해보세요.",
+    "data": ";W[rq];W[qq];W[pr];W[nq];W[mq];W[lr];B[nr];B[oq];B[np];B[op];B[pp];B[qp];T[oq];T[np];T[op];T[pp];T[qp];C[nr]",
+    "answer1": ";B[or]",
+    "size": "4",
+    "start": "BA",
+    "group": 11,
+    "stoneDesc": "돌 12개 (흑 6, 백 6)",
+    "matchedSources": [
+      "논리바둑 1권 24번"
+    ]
+  },
+  {
+    "id": 16,
+    "code": "t1_ch11_16",
+    "question": "흑△와 ◎를 연결해 보세요.",
+    "hint": "연결이란, 떨어져있는 돌이 하나로 이어지는 것을 말합니다. 연결을 하면 활로가 늘어나서 살기 쉬워지고 튼튼한 모양이 됩니다.",
+    "speech": "흑△와 ◎를 연결해 보세요.",
+    "data": ";W[sr];W[rq];W[qq];W[qp];W[qo];W[oq];W[or];B[rr];B[qr];B[pq];B[pp];B[op];T[rr];T[qr];C[pq];C[pp];C[op]",
+    "answer1": ";B[pr]",
+    "size": "4",
+    "start": "BA",
+    "group": 11,
+    "stoneDesc": "돌 12개 (흑 5, 백 7)",
+    "matchedSources": [
+      "씽크탱크 1권 25번"
+    ]
+  },
+  {
+    "id": 17,
+    "code": "t1_ch11_17",
+    "question": "흑△와 ◎를 연결해 보세요.",
+    "hint": "연결이란, 떨어져있는 돌이 하나로 이어지는 것을 말합니다. 연결을 하면 활로가 늘어나서 살기 쉬워지고 튼튼한 모양이 됩니다.",
+    "speech": "흑△와 ◎를 연결해 보세요.",
+    "data": ";W[pq];W[oq];W[mq];W[qo];W[qm];B[qq];B[pp];B[oo];B[qr];C[pp];C[oo];T[qq];T[qr]",
+    "answer1": ";B[qp]",
+    "size": "4",
+    "start": "BA",
+    "group": 11,
+    "stoneDesc": "돌 9개 (흑 4, 백 5)",
+    "matchedSources": [
+      "씽크탱크 1권 26번"
+    ]
+  },
+  {
+    "id": 18,
+    "code": "t1_ch11_18",
+    "question": "흑△와 ◎를 연결해 보세요.",
+    "hint": "연결이란, 떨어져있는 돌이 하나로 이어지는 것을 말합니다. 연결을 하면 활로가 늘어나서 살기 쉬워지고 튼튼한 모양이 됩니다.",
+    "speech": "흑△와 ◎를 연결해 보세요.",
+    "data": ";W[qr];W[qq];W[op];W[oq];W[or];W[os];B[ps];B[pr];B[pq];B[qp];B[rp];T[ps];T[pr];T[pq];C[qp];C[rp]",
+    "answer1": ";B[pp]",
+    "size": "4",
+    "start": "BA",
+    "group": 11,
+    "stoneDesc": "돌 11개 (흑 5, 백 6)",
+    "matchedSources": [
+      "씽크탱크 1권 27번"
+    ]
+  },
+  {
+    "id": 19,
+    "code": "t1_ch11_19",
+    "question": "흑△와 ◎를 연결해 보세요.",
+    "hint": "연결이란, 떨어져있는 돌이 하나로 이어지는 것을 말합니다. 연결을 하면 활로가 늘어나서 살기 쉬워지고 튼튼한 모양이 됩니다.",
+    "speech": "흑△와 ◎를 연결해 보세요.",
+    "data": ";W[rq];W[qr];W[pq];W[pp];W[op];W[np];W[lq];B[nq];B[oq];B[or];B[pr];B[mp];B[mo];C[mp];C[mo];T[nq];T[oq];T[or];T[pr]",
+    "answer1": ";B[mq]",
+    "size": "4",
+    "start": "BA",
+    "group": 11,
+    "stoneDesc": "돌 13개 (흑 6, 백 7)",
+    "matchedSources": [
+      "씽크탱크 1권 28번"
+    ]
+  },
+  {
+    "id": 20,
+    "code": "t1_ch11_20",
+    "question": "흑의 약점을 찾아 흑을 연결해 보세요.",
+    "hint": "",
+    "speech": "흑의 약점을 찾아 흑을 연결해 보세요.",
+    "data": ";B[qq];B[pp];W[pq];W[oq]",
+    "answer1": ";B[qp]",
+    "size": "4",
+    "start": "BA",
+    "group": 11,
+    "stoneDesc": "돌 4개 (흑 2, 백 2)",
+    "matchedSources": [
+      "알파바둑 1권 1번"
+    ]
+  },
+  {
+    "id": 21,
+    "code": "t1_ch11_21",
+    "question": "흑의 약점을 찾아 흑을 연결해 보세요.",
+    "hint": "",
+    "speech": "흑의 약점을 찾아 흑을 연결해 보세요.",
+    "data": ";B[pp];B[qo];W[qp];W[qq]",
+    "answer1": ";B[po]",
+    "size": "4",
+    "start": "BA",
+    "group": 11,
+    "stoneDesc": "돌 4개 (흑 2, 백 2)",
+    "matchedSources": [
+      "알파바둑 1권 2번"
+    ]
+  },
+  {
+    "id": 22,
+    "code": "t1_ch11_22",
+    "question": "흑의 약점을 찾아 흑을 연결해 보세요.",
+    "hint": "",
+    "speech": "흑의 약점을 찾아 흑을 연결해 보세요.",
+    "data": ";B[pr];B[oq];W[pq];W[qq];W[qr]",
+    "answer1": ";B[or]",
+    "size": "4",
+    "start": "BA",
+    "group": 11,
+    "stoneDesc": "돌 5개 (흑 2, 백 3)",
+    "matchedSources": [
+      "알파바둑 1권 3번"
+    ]
+  },
+  {
+    "id": 23,
+    "code": "t1_ch11_23",
+    "question": "흑의 약점을 찾아 흑을 연결해 보세요.",
+    "hint": "",
+    "speech": "흑의 약점을 찾아 흑을 연결해 보세요.",
+    "data": ";W[pq];W[oq];B[pp];B[np]",
+    "answer1": ";B[op]",
+    "size": "4",
+    "start": "BA",
+    "group": 11,
+    "stoneDesc": "돌 4개 (흑 2, 백 2)",
+    "matchedSources": [
+      "알파바둑 1권 4번"
+    ]
+  },
+  {
+    "id": 24,
+    "code": "t1_ch11_24",
+    "question": "흑의 약점을 찾아 흑을 연결해 보세요.",
+    "hint": "",
+    "speech": "흑의 약점을 찾아 흑을 연결해 보세요.",
+    "data": ";B[pp];B[np];W[oo];W[oq]",
+    "answer1": ";B[op]",
+    "size": "4",
+    "start": "BA",
+    "group": 11,
+    "stoneDesc": "돌 4개 (흑 2, 백 2)",
+    "matchedSources": [
+      "알파바둑 1권 5번"
+    ]
+  },
+  {
+    "id": 25,
+    "code": "t1_ch11_25",
+    "question": "흑의 약점을 찾아 흑을 연결해 보세요.",
+    "hint": "",
+    "speech": "흑의 약점을 찾아 흑을 연결해 보세요.",
+    "data": ";B[qq];B[qo];W[po];W[pp];W[pq]",
+    "answer1": ";B[qp]",
+    "size": "4",
+    "start": "BA",
+    "group": 11,
+    "stoneDesc": "돌 5개 (흑 2, 백 3)",
+    "matchedSources": [
+      "알파바둑 1권 6번"
+    ]
+  },
+  {
+    "id": 26,
+    "code": "t1_ch11_26",
+    "question": "흑의 약점을 찾아 흑을 연결해 보세요.",
+    "hint": "",
+    "speech": "흑의 약점을 찾아 흑을 연결해 보세요.",
+    "data": ";B[pp];B[pq];B[oo];W[qq];W[rp];W[pr];W[oq];W[op]",
+    "answer1": ";B[po]",
+    "size": "4",
+    "start": "BA",
+    "group": 11,
+    "stoneDesc": "돌 8개 (흑 3, 백 5)",
+    "matchedSources": [
+      "알파바둑 1권 7번"
+    ]
+  },
+  {
+    "id": 27,
+    "code": "t1_ch11_27",
+    "question": "흑의 약점을 찾아 흑을 연결해 보세요.",
+    "hint": "",
+    "speech": "흑의 약점을 찾아 흑을 연결해 보세요.",
+    "data": ";B[pq];B[oq];B[np];W[op];W[pp];W[qq];W[qr];W[mq]",
+    "answer1": ";B[nq]",
+    "size": "4",
+    "start": "BA",
+    "group": 11,
+    "stoneDesc": "돌 8개 (흑 3, 백 5)",
+    "matchedSources": [
+      "알파바둑 1권 8번"
+    ]
+  },
+  {
+    "id": 28,
+    "code": "t1_ch11_28",
+    "question": "흑의 약점을 찾아 흑을 연결해 보세요.",
+    "hint": "",
+    "speech": "흑의 약점을 찾아 흑을 연결해 보세요.",
+    "data": ";B[qq];B[pq];B[nq];B[np];W[rq];W[rr];W[qp];W[pp];W[op]",
+    "answer1": ";B[oq]",
+    "size": "4",
+    "start": "BA",
+    "group": 11,
+    "stoneDesc": "돌 9개 (흑 4, 백 5)",
+    "matchedSources": [
+      "알파바둑 1권 9번"
+    ]
+  },
+  {
+    "id": 29,
+    "code": "t1_ch11_29",
+    "question": "흑의 약점을 찾아 흑을 연결해 보세요.",
+    "hint": "",
+    "speech": "흑의 약점을 찾아 흑을 연결해 보세요.",
+    "data": ";B[qp];B[rp];B[op];B[oq];W[pq];W[qq];W[rq];W[or];W[nr]",
+    "answer1": ";B[pp]",
+    "size": "4",
+    "start": "BA",
+    "group": 11,
+    "stoneDesc": "돌 9개 (흑 4, 백 5)",
+    "matchedSources": [
+      "알파바둑 1권 10번"
+    ]
+  },
+  {
+    "id": 30,
+    "code": "t1_ch11_30",
+    "question": "흑의 약점을 찾아 흑을 연결해 보세요.",
+    "hint": "",
+    "speech": "흑의 약점을 찾아 흑을 연결해 보세요.",
+    "data": ";B[qr];B[pr];B[pp];B[qp];B[rp];W[oq];W[or];W[qq];W[rq]",
+    "answer1": ";B[pq]",
+    "size": "4",
+    "start": "BA",
+    "group": 11,
+    "stoneDesc": "돌 9개 (흑 5, 백 4)",
+    "matchedSources": [
+      "알파바둑 1권 11번"
+    ]
+  },
+  {
+    "id": 31,
+    "code": "t1_ch11_31",
+    "question": "흑의 약점을 찾아 흑을 연결해 보세요.",
+    "hint": "",
+    "speech": "흑의 약점을 찾아 흑을 연결해 보세요.",
+    "data": ";B[pp];B[oo];B[oq];W[np];W[qp];W[qq];W[pq]",
+    "answer1": ";B[op]",
+    "size": "4",
+    "start": "BA",
+    "group": 11,
+    "stoneDesc": "돌 7개 (흑 3, 백 4)",
+    "matchedSources": [
+      "알파바둑 1권 12번"
+    ]
+  },
+  {
+    "id": 32,
+    "code": "t1_ch11_32",
+    "question": "흑의 약점을 찾아 흑을 연결해 보세요.",
+    "hint": "",
+    "speech": "흑의 약점을 찾아 흑을 연결해 보세요.",
+    "data": ";B[pq];B[pp];B[po];B[or];W[nq];W[qp];W[qq];W[qr];W[pr]",
+    "answer1": ";B[oq]",
+    "size": "4",
+    "start": "BA",
+    "group": 11,
+    "stoneDesc": "돌 9개 (흑 4, 백 5)",
+    "matchedSources": [
+      "알파바둑 1권 13번"
+    ]
+  },
+  {
+    "id": 33,
+    "code": "t1_ch11_33",
+    "question": "흑의 약점을 찾아 흑을 연결해 보세요.",
+    "hint": "",
+    "speech": "흑의 약점을 찾아 흑을 연결해 보세요.",
+    "data": ";B[qr];B[qs];B[pq];B[oq];B[nq];W[qp];W[qq];W[rr];W[rs]",
+    "answer1": ";B[pr]",
+    "size": "4",
+    "start": "BA",
+    "group": 11,
+    "stoneDesc": "돌 9개 (흑 5, 백 4)",
+    "matchedSources": [
+      "알파바둑 1권 14번"
+    ]
+  },
+  {
+    "id": 34,
+    "code": "t1_ch11_34",
+    "question": "흑의 약점을 찾아 흑을 연결해 보세요.",
+    "hint": "",
+    "speech": "흑의 약점을 찾아 흑을 연결해 보세요.",
+    "data": ";B[qq];B[qp];B[ro];B[rn];B[qn];W[rr];W[qr];W[qo];W[po];W[pp];W[pq]",
+    "answer1": ";B[rp]",
+    "size": "4",
+    "start": "BA",
+    "group": 11,
+    "stoneDesc": "돌 11개 (흑 5, 백 6)",
+    "matchedSources": [
+      "알파바둑 1권 15번"
+    ]
+  },
+  {
+    "id": 35,
+    "code": "t1_ch11_35",
+    "question": "흑의 약점을 찾아 흑을 연결해 보세요.",
+    "hint": "",
+    "speech": "흑의 약점을 찾아 흑을 연결해 보세요.",
+    "data": ";B[ro];B[qo];B[po];B[op];B[oq];B[or];W[on];W[rp];W[qp];W[pp];W[pq];W[pr];W[rr]",
+    "answer1": ";B[oo]",
+    "size": "4",
+    "start": "BA",
+    "group": 11,
+    "stoneDesc": "돌 13개 (흑 6, 백 7)",
+    "matchedSources": [
+      "알파바둑 1권 16번"
+    ]
+  },
+  {
+    "id": 36,
+    "code": "t1_ch11_36",
+    "question": "흑의 약점을 찾아 흑을 연결해 보세요.",
+    "hint": "",
+    "speech": "흑의 약점을 찾아 흑을 연결해 보세요.",
+    "data": ";B[pq];B[oq];B[oo];B[po];W[np];W[nq];W[pp];W[qp];W[qq]",
+    "answer1": ";B[op]",
+    "size": "4",
+    "start": "BA",
+    "group": 11,
+    "stoneDesc": "돌 9개 (흑 4, 백 5)",
+    "matchedSources": [
+      "알파바둑 1권 17번"
+    ]
+  },
+  {
+    "id": 37,
+    "code": "t1_ch11_37",
+    "question": "흑의 약점을 찾아 흑을 연결해 보세요.",
+    "hint": "",
+    "speech": "흑의 약점을 찾아 흑을 연결해 보세요.",
+    "data": ";B[pp];B[oo];B[oq];W[po];W[qo];W[pq];W[qq];W[np]",
+    "answer1": ";B[op]",
+    "size": "4",
+    "start": "BA",
+    "group": 11,
+    "stoneDesc": "돌 8개 (흑 3, 백 5)",
+    "matchedSources": [
+      "알파바둑 1권 18번"
+    ]
+  },
+  {
+    "id": 38,
+    "code": "t1_ch11_38",
+    "question": "단수(활로가 1개)되어 있는 흑을 찾아 연결해 보세요.",
+    "hint": "",
+    "speech": "단수(활로가 1개)되어 있는 흑을 찾아 연결해 보세요.",
+    "data": ";B[pp];B[oo];B[np];B[oq];W[qp];W[po];W[pq]",
+    "answer1": ";B[op]",
+    "size": "4",
+    "start": "BA",
+    "group": 11,
+    "stoneDesc": "돌 7개 (흑 4, 백 3)",
+    "matchedSources": [
+      "알파바둑 1권 19번"
+    ]
+  },
+  {
+    "id": 39,
+    "code": "t1_ch11_39",
+    "question": "단수(활로가 1개)되어 있는 흑을 찾아 연결해 보세요.",
+    "hint": "",
+    "speech": "단수(활로가 1개)되어 있는 흑을 찾아 연결해 보세요.",
+    "data": ";B[qq];B[pq];B[pp];B[qo];B[qn];B[rp];W[rq];W[qr];W[pr];W[oq];W[op];W[po]",
+    "answer1": ";B[qp]",
+    "size": "4",
+    "start": "BA",
+    "group": 11,
+    "stoneDesc": "돌 12개 (흑 6, 백 6)",
+    "matchedSources": [
+      "알파바둑 1권 20번"
+    ]
+  },
+  {
+    "id": 40,
+    "code": "t1_ch11_40",
+    "question": "흑이 둘 차례입니다. 흑을 연결해보세요.",
+    "hint": "돌을 연결하면 활로가 늘어나면서 살기 쉬워집니다. 내 돌은 연결하고 상대방 돌은 끊어야 합니다.",
+    "speech": "흑이 둘 차례입니다. 흑을 연결해보세요.",
+    "data": ";B[qs];B[qr];B[pq];B[oq];B[qp];W[rr];W[rq];W[pr];W[or];W[nr];W[nq]",
+    "answer1": ";B[qq]",
+    "size": "4",
+    "start": "BA",
+    "group": 11,
+    "stoneDesc": "돌 11개 (흑 5, 백 6)",
+    "matchedSources": [
+      "논리바둑 1권 21번"
+    ]
+  },
+  {
+    "id": 41,
+    "code": "t1_ch11_41",
+    "question": "단수(활로가 1개)되어 있는 흑을 찾아 연결해 보세요.",
+    "hint": "",
+    "speech": "단수(활로가 1개)되어 있는 흑을 찾아 연결해 보세요.",
+    "data": ";B[ss];B[sq];B[sp];B[so];B[rp];B[rr];B[qr];B[pr];B[pq];B[pp];W[sn];W[ro];W[qo];W[qp];W[qq];W[rq]",
+    "answer1": ";B[sr]",
+    "size": "4",
+    "start": "BA",
+    "group": 11,
+    "stoneDesc": "돌 16개 (흑 10, 백 6)",
+    "matchedSources": [
+      "알파바둑 1권 21번"
+    ]
+  },
+  {
+    "id": 42,
+    "code": "t1_ch11_42",
+    "question": "흑이 둘 차례입니다. 흑을 연결해보세요.",
+    "hint": "돌을 연결하면 활로가 늘어나면서 살기 쉬워집니다. 내 돌은 연결하고 상대방 돌은 끊어야 합니다.",
+    "speech": "흑이 둘 차례입니다. 흑을 연결해보세요.",
+    "data": ";B[rr];B[qr];B[qq];B[qp];B[oq];B[op];W[pr];W[pp];W[po];W[qo];W[rp];W[rq]",
+    "answer1": ";B[pq]",
+    "size": "4",
+    "start": "BA",
+    "group": 11,
+    "stoneDesc": "돌 12개 (흑 6, 백 6)",
+    "matchedSources": [
+      "논리바둑 1권 22번"
+    ]
+  },
+  {
+    "id": 43,
+    "code": "t1_ch11_43",
+    "question": "단수(활로가 1개)되어 있는 흑을 찾아 연결해 보세요.",
+    "hint": "",
+    "speech": "단수(활로가 1개)되어 있는 흑을 찾아 연결해 보세요.",
+    "data": ";B[qs];B[qr];B[qq];B[pr];B[os];B[ns];B[nr];B[nq];B[np];W[qp];W[pq];W[oq];W[or];W[rq];W[rr];W[rs]",
+    "answer1": ";B[ps]",
+    "size": "4",
+    "start": "BA",
+    "group": 11,
+    "stoneDesc": "돌 16개 (흑 9, 백 7)",
+    "matchedSources": [
+      "알파바둑 1권 22번"
+    ]
+  },
+  {
+    "id": 44,
+    "code": "t1_ch11_44",
+    "question": "단수(활로가 1개)되어 있는 흑을 찾아 연결해 보세요.",
+    "hint": "",
+    "speech": "단수(활로가 1개)되어 있는 흑을 찾아 연결해 보세요.",
+    "data": ";B[rq];B[sq];B[sp];B[so];B[ro];B[qp];B[pp];W[qo];W[rn];W[sn];W[qq];W[rr];W[sr]",
+    "answer1": ";B[rp]",
+    "size": "4",
+    "start": "BA",
+    "group": 11,
+    "stoneDesc": "돌 13개 (흑 7, 백 6)",
+    "matchedSources": [
+      "알파바둑 1권 23번"
+    ]
+  },
+  {
+    "id": 45,
+    "code": "t1_ch11_45",
+    "question": "단수(활로가 1개)되어 있는 흑을 찾아 연결해 보세요.",
+    "hint": "",
+    "speech": "단수(활로가 1개)되어 있는 흑을 찾아 연결해 보세요.",
+    "data": ";B[qr];B[qq];B[qp];B[pp];B[oo];B[np];B[oq];W[po];W[qo];W[pq];W[pr];W[qs];W[rr];W[rq];W[rp]",
+    "answer1": ";B[op]",
+    "size": "4",
+    "start": "BA",
+    "group": 11,
+    "stoneDesc": "돌 15개 (흑 7, 백 8)",
+    "matchedSources": [
+      "알파바둑 1권 24번"
+    ]
+  },
+  {
+    "id": 46,
+    "code": "t1_ch11_46",
+    "question": "흑이 둘 차례입니다. 흑을 연결해보세요.",
+    "hint": "돌을 연결하면 활로가 늘어나면서 살기 쉬워집니다. 내 돌은 연결하고 상대방 돌은 끊어야 합니다.",
+    "speech": "흑이 둘 차례입니다. 흑을 연결해보세요.",
+    "data": ";B[qr];B[qq];B[qp];B[op];B[np];B[mp];W[pr];W[pq];W[nq];W[mq];W[lq];W[qo];W[ro];W[qm]",
+    "answer1": ";B[pp]",
+    "size": "4",
+    "start": "BA",
+    "group": 11,
+    "stoneDesc": "돌 14개 (흑 6, 백 8)",
+    "matchedSources": [
+      "논리바둑 1권 25번"
+    ]
+  },
+  {
+    "id": 47,
+    "code": "t1_ch11_47",
+    "question": "흑이 둘 차례입니다. 흑을 연결해보세요.",
+    "hint": "돌을 연결하면 활로가 늘어나면서 살기 쉬워집니다. 내 돌은 연결하고 상대방 돌은 끊어야 합니다.",
+    "speech": "흑이 둘 차례입니다. 흑을 연결해보세요.",
+    "data": ";B[qs];B[qr];B[sp];B[rp];B[qp];B[pp];B[op];W[rq];W[rr];W[pq];W[pr];W[nq]",
+    "answer1": ";B[qq]",
+    "size": "4",
+    "start": "BA",
+    "group": 11,
+    "stoneDesc": "돌 12개 (흑 7, 백 5)",
+    "matchedSources": [
+      "논리바둑 1권 26번"
+    ]
+  }
+]

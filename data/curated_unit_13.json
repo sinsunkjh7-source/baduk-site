@@ -1,0 +1,722 @@
+[
+  {
+    "id": 1,
+    "code": "t1_ch13_01",
+    "question": "흑이 둘 차례입니다. 백△와 백◎를 끊어보세요.",
+    "hint": "돌이 끊어지면 잡히게 되거나 불리해집니다. 내 돌은 연결하고 상대방 돌은 끊어야 합니다.",
+    "speech": "흑이 둘 차례입니다. 백△와 백◎를 끊어보세요.",
+    "data": ";B[qq];B[pp];B[op];B[qo];B[mq];B[lq];B[lp];W[mp];W[np];W[nn];W[oq];W[pq];T[nn];T[mp];T[np];C[oq];C[pq]",
+    "answer1": ";B[nq]",
+    "size": "4",
+    "start": "BA",
+    "group": 13,
+    "stoneDesc": "돌 12개 (흑 7, 백 5)",
+    "matchedSources": [
+      "논리바둑 1권 16번"
+    ]
+  },
+  {
+    "id": 2,
+    "code": "t1_ch13_02",
+    "question": "흑이 둘 차례입니다. 백△와 백◎를 끊어보세요.",
+    "hint": "돌이 끊어지면 잡히게 되거나 불리해집니다. 내 돌은 연결하고 상대방 돌은 끊어야 합니다.",
+    "speech": "흑이 둘 차례입니다. 백△와 백◎를 끊어보세요.",
+    "data": ";B[qq];B[pr];B[oq];B[op];B[np];B[mp];B[kq];W[lp];W[lo];W[mq];W[nq];W[nr];W[or];T[mq];T[nq];T[nr];T[or];C[lp];C[lo]",
+    "answer1": ";B[lq]",
+    "size": "4",
+    "start": "BA",
+    "group": 13,
+    "stoneDesc": "돌 13개 (흑 7, 백 6)",
+    "matchedSources": [
+      "논리바둑 1권 17번"
+    ]
+  },
+  {
+    "id": 3,
+    "code": "t1_ch13_03",
+    "question": "백△와 ◎를 끊어 보세요.",
+    "hint": "끊음이란, 내 돌로 상대방 돌의 연결을 방해하는 것을 말합니다. 끊어지면 약한 모양이 됩니다. 따라서 내돌은 연결하고 상대방의 돌은 끊어야 합니다.",
+    "speech": "백△와 ◎를 끊어 보세요.",
+    "data": ";B[qp];B[pq];B[oq];B[po];B[no];W[op];W[nq];W[mp];T[mp];T[nq];C[op]",
+    "answer1": ";B[np]",
+    "size": "4",
+    "start": "BA",
+    "group": 13,
+    "stoneDesc": "돌 8개 (흑 5, 백 3)",
+    "matchedSources": [
+      "씽크탱크 1권 18번"
+    ]
+  },
+  {
+    "id": 4,
+    "code": "t1_ch13_04",
+    "question": "흑이 둘 차례입니다. 백△와 백◎를 끊어보세요.",
+    "hint": "돌이 끊어지면 잡히게 되거나 불리해집니다. 내 돌은 연결하고 상대방 돌은 끊어야 합니다.",
+    "speech": "흑이 둘 차례입니다. 백△와 백◎를 끊어보세요.",
+    "data": ";B[rq];B[qr];B[pp];B[pq];B[qp];B[qn];B[pn];B[on];W[ro];W[qo];W[po];W[no];W[op];W[oq];W[or];T[no];T[op];T[oq];T[or];C[po];C[qo];C[ro]",
+    "answer1": ";B[oo]",
+    "size": "4",
+    "start": "BA",
+    "group": 13,
+    "stoneDesc": "돌 15개 (흑 8, 백 7)",
+    "matchedSources": [
+      "논리바둑 1권 18번"
+    ]
+  },
+  {
+    "id": 5,
+    "code": "t1_ch13_05",
+    "question": "흑이 둘 차례입니다. 백을 끊어보세요.",
+    "hint": "돌이 끊어지면 잡히게 되거나 불리해집니다. 내 돌은 연결하고 상대방 돌은 끊어야 합니다.",
+    "speech": "흑이 둘 차례입니다. 백을 끊어보세요.",
+    "data": ";B[qr];B[qq];B[or];B[nr];B[nq];B[mp];B[lq];W[ps];W[pr];W[oq];W[np];W[no];W[pp];W[qp];T[no];T[np];T[oq];T[pp];T[qp];C[pr];C[ps]",
+    "answer1": ";B[pq]",
+    "size": "4",
+    "start": "BA",
+    "group": 13,
+    "stoneDesc": "돌 14개 (흑 7, 백 7)",
+    "matchedSources": [
+      "논리바둑 1권 19번"
+    ]
+  },
+  {
+    "id": 6,
+    "code": "t1_ch13_06",
+    "question": "백△와 ◎를 끊어 보세요.",
+    "hint": "끊음이란, 내 돌로 상대방 돌의 연결을 방해하는 것을 말합니다. 끊어지면 약한 모양이 됩니다. 따라서 내돌은 연결하고 상대방의 돌은 끊어야 합니다.",
+    "speech": "백△와 ◎를 끊어 보세요.",
+    "data": ";W[qr];W[qq];W[pp];W[op];B[nq];B[oq];B[pq];B[qo];T[op];T[pp];C[qq];C[qr]",
+    "answer1": ";B[qp]",
+    "size": "4",
+    "start": "BA",
+    "group": 13,
+    "stoneDesc": "돌 8개 (흑 4, 백 4)",
+    "matchedSources": [
+      "씽크탱크 1권 20번"
+    ]
+  },
+  {
+    "id": 7,
+    "code": "t1_ch13_07",
+    "question": "흑이 둘 차례입니다. 백을 끊어보세요.",
+    "hint": "돌이 끊어지면 잡히게 되거나 불리해집니다. 내 돌은 연결하고 상대방 돌은 끊어야 합니다.",
+    "speech": "흑이 둘 차례입니다. 백을 끊어보세요.",
+    "data": ";W[rs];W[qr];W[pq];W[oq];W[op];W[oo];B[po];B[pp];B[qq];B[rp];B[rr];B[or];B[nq];B[mr];T[oo];T[op];T[oq];T[pq];C[qr];C[rs]",
+    "answer1": ";B[pr]",
+    "size": "4",
+    "start": "BA",
+    "group": 13,
+    "stoneDesc": "돌 14개 (흑 8, 백 6)",
+    "matchedSources": [
+      "논리바둑 1권 20번"
+    ]
+  },
+  {
+    "id": 8,
+    "code": "t1_ch13_08",
+    "question": "백△와 ◎를 끊어 보세요.",
+    "hint": "끊음이란, 내 돌로 상대방 돌의 연결을 방해하는 것을 말합니다. 끊어지면 약한 모양이 됩니다. 따라서 내돌은 연결하고 상대방의 돌은 끊어야 합니다.",
+    "speech": "백△와 ◎를 끊어 보세요.",
+    "data": ";B[qp];B[qq];B[pq];B[oq];B[mp];W[nr];W[nq];W[op];W[pp];T[op];T[pp];C[nq];C[nr]",
+    "answer1": ";B[np]",
+    "size": "4",
+    "start": "BA",
+    "group": 13,
+    "stoneDesc": "돌 9개 (흑 5, 백 4)",
+    "matchedSources": [
+      "씽크탱크 1권 21번"
+    ]
+  },
+  {
+    "id": 9,
+    "code": "t1_ch13_09",
+    "question": "백△와 ◎를 끊어 보세요.",
+    "hint": "끊음이란, 내 돌로 상대방 돌의 연결을 방해하는 것을 말합니다. 끊어지면 약한 모양이 됩니다. 따라서 내돌은 연결하고 상대방의 돌은 끊어야 합니다.",
+    "speech": "백△와 ◎를 끊어 보세요.",
+    "data": ";W[oq];W[or];W[np];W[mp];B[pp];B[qq];B[nq];B[mq];B[lq];B[lp];T[or];T[oq];C[mp];C[np]",
+    "answer1": ";B[op]",
+    "size": "4",
+    "start": "BA",
+    "group": 13,
+    "stoneDesc": "돌 10개 (흑 6, 백 4)",
+    "matchedSources": [
+      "씽크탱크 1권 22번"
+    ]
+  },
+  {
+    "id": 10,
+    "code": "t1_ch13_10",
+    "question": "백△와 ◎를 끊어 보세요.",
+    "hint": "끊음이란, 내 돌로 상대방 돌의 연결을 방해하는 것을 말합니다. 끊어지면 약한 모양이 됩니다. 따라서 내돌은 연결하고 상대방의 돌은 끊어야 합니다.",
+    "speech": "백△와 ◎를 끊어 보세요.",
+    "data": ";W[pq];W[oq];W[np];W[mp];B[mq];B[op];B[pp];B[qq];B[qr];T[oq];T[pq];C[np];C[mp]",
+    "answer1": ";B[nq]",
+    "size": "4",
+    "start": "BA",
+    "group": 13,
+    "stoneDesc": "돌 9개 (흑 5, 백 4)",
+    "matchedSources": [
+      "씽크탱크 1권 23번"
+    ]
+  },
+  {
+    "id": 11,
+    "code": "t1_ch13_11",
+    "question": "흑이 둘 차례입니다. 백을 끊어보세요.",
+    "hint": "돌이 끊어지면 잡히게 되거나 불리해집니다. 내 돌은 연결하고 상대방 돌은 끊어야 합니다.",
+    "speech": "흑이 둘 차례입니다. 백을 끊어보세요.",
+    "data": ";B[rr];B[rq];B[qq];B[or];B[nr];B[nq];W[pr];W[qr];W[oq];W[pp];W[qp];W[rp];T[oq];T[pp];T[qp];T[rp];C[pr];C[qr]",
+    "answer1": ";B[pq]",
+    "size": "4",
+    "start": "BA",
+    "group": 13,
+    "stoneDesc": "돌 12개 (흑 6, 백 6)",
+    "matchedSources": [
+      "논리바둑 1권 23번"
+    ]
+  },
+  {
+    "id": 12,
+    "code": "t1_ch13_12",
+    "question": "백△와 ◎를 끊어 보세요.",
+    "hint": "끊음이란, 내 돌로 상대방 돌의 연결을 방해하는 것을 말합니다. 끊어지면 약한 모양이 됩니다. 따라서 내돌은 연결하고 상대방의 돌은 끊어야 합니다.",
+    "speech": "백△와 ◎를 끊어 보세요.",
+    "data": ";W[pq];W[pp];W[or];W[nr];B[qq];B[qr];B[oq];B[nq];B[mq];B[mr];T[nr];T[or];C[pq];C[pp]",
+    "answer1": ";B[pr]",
+    "size": "4",
+    "start": "BA",
+    "group": 13,
+    "stoneDesc": "돌 10개 (흑 6, 백 4)",
+    "matchedSources": [
+      "씽크탱크 1권 24번"
+    ]
+  },
+  {
+    "id": 13,
+    "code": "t1_ch13_13",
+    "question": "흑이 둘 차례입니다. 백을 끊어보세요.",
+    "hint": "돌이 끊어지면 잡히게 되거나 불리해집니다. 내 돌은 연결하고 상대방 돌은 끊어야 합니다.",
+    "speech": "흑이 둘 차례입니다. 백을 끊어보세요.",
+    "data": ";B[rr];B[rq];B[pq];B[oq];B[nq];B[nr];W[or];W[pr];W[qq];W[qp];W[pp];T[pp];T[qp];T[qq];C[or];C[pr]",
+    "answer1": ";B[qr]",
+    "size": "4",
+    "start": "BA",
+    "group": 13,
+    "stoneDesc": "돌 11개 (흑 6, 백 5)",
+    "matchedSources": [
+      "논리바둑 1권 24번"
+    ]
+  },
+  {
+    "id": 14,
+    "code": "t1_ch13_14",
+    "question": "백△와 ◎를 끊어 보세요.",
+    "hint": "끊음이란, 내 돌로 상대방 돌의 연결을 방해하는 것을 말합니다. 끊어지면 약한 모양이 됩니다. 따라서 내돌은 연결하고 상대방의 돌은 끊어야 합니다.",
+    "speech": "백△와 ◎를 끊어 보세요.",
+    "data": ";B[sr];B[rq];B[qq];B[qp];B[qo];B[oq];B[or];W[rr];W[qr];W[pq];W[pp];W[op];T[rr];T[qr];C[pq];C[pp];C[op]",
+    "answer1": ";B[pr]",
+    "size": "4",
+    "start": "BA",
+    "group": 13,
+    "stoneDesc": "돌 12개 (흑 7, 백 5)",
+    "matchedSources": [
+      "씽크탱크 1권 25번"
+    ]
+  },
+  {
+    "id": 15,
+    "code": "t1_ch13_15",
+    "question": "백△와 ◎를 끊어 보세요.",
+    "hint": "끊음이란, 내 돌로 상대방 돌의 연결을 방해하는 것을 말합니다. 끊어지면 약한 모양이 됩니다. 따라서 내돌은 연결하고 상대방의 돌은 끊어야 합니다.",
+    "speech": "백△와 ◎를 끊어 보세요.",
+    "data": ";W[qr];W[qq];W[pp];W[oo];B[qo];B[qm];B[pq];B[oq];B[mq];T[qr];T[qq];C[pp];C[oo]",
+    "answer1": ";B[qp]",
+    "size": "4",
+    "start": "BA",
+    "group": 13,
+    "stoneDesc": "돌 9개 (흑 5, 백 4)",
+    "matchedSources": [
+      "씽크탱크 1권 26번"
+    ]
+  },
+  {
+    "id": 16,
+    "code": "t1_ch13_16",
+    "question": "백△와 ◎를 끊어 보세요.",
+    "hint": "끊음이란, 내 돌로 상대방 돌의 연결을 방해하는 것을 말합니다. 끊어지면 약한 모양이 됩니다. 따라서 내돌은 연결하고 상대방의 돌은 끊어야 합니다.",
+    "speech": "백△와 ◎를 끊어 보세요.",
+    "data": ";W[rp];W[qp];W[pq];W[pr];W[ps];B[qr];B[qq];B[op];B[oq];B[or];T[ps];T[pr];T[pq];C[qp];C[rp]",
+    "answer1": ";B[pp]",
+    "size": "4",
+    "start": "BA",
+    "group": 13,
+    "stoneDesc": "돌 10개 (흑 5, 백 5)",
+    "matchedSources": [
+      "씽크탱크 1권 27번"
+    ]
+  },
+  {
+    "id": 17,
+    "code": "t1_ch13_17",
+    "question": "백△와 ◎를 끊어 보세요.",
+    "hint": "끊음이란, 내 돌로 상대방 돌의 연결을 방해하는 것을 말합니다. 끊어지면 약한 모양이 됩니다. 따라서 내돌은 연결하고 상대방의 돌은 끊어야 합니다.",
+    "speech": "백△와 ◎를 끊어 보세요.",
+    "data": ";W[pr];W[or];W[oq];W[nq];W[mp];W[mo];B[rq];B[qr];B[pq];B[pp];B[op];B[np];B[lq];T[nq];T[oq];T[or];T[pr];C[mp];C[mo]",
+    "answer1": ";B[mq]",
+    "size": "4",
+    "start": "BA",
+    "group": 13,
+    "stoneDesc": "돌 13개 (흑 7, 백 6)",
+    "matchedSources": [
+      "씽크탱크 1권 28번"
+    ]
+  },
+  {
+    "id": 18,
+    "code": "t1_ch13_18",
+    "question": "백을 끊어보세요.",
+    "hint": "",
+    "speech": "백을 끊어보세요.",
+    "data": ";B[qq];B[pq];B[pp];W[qp];W[po]",
+    "answer1": ";B[qo]",
+    "size": "4",
+    "start": "BA",
+    "group": 13,
+    "stoneDesc": "돌 5개 (흑 3, 백 2)",
+    "matchedSources": [
+      "알파바둑 1권 1번"
+    ]
+  },
+  {
+    "id": 19,
+    "code": "t1_ch13_19",
+    "question": "백을 끊어보세요.",
+    "hint": "",
+    "speech": "백을 끊어보세요.",
+    "data": ";B[qq];B[qp];B[po];W[pp];W[oo]",
+    "answer1": ";B[op]",
+    "size": "4",
+    "start": "BA",
+    "group": 13,
+    "stoneDesc": "돌 5개 (흑 3, 백 2)",
+    "matchedSources": [
+      "알파바둑 1권 2번"
+    ]
+  },
+  {
+    "id": 20,
+    "code": "t1_ch13_20",
+    "question": "백을 끊어보세요.",
+    "hint": "",
+    "speech": "백을 끊어보세요.",
+    "data": ";B[rr];B[qr];B[pq];B[pp];W[po];W[oo];W[qp];W[qq]",
+    "answer1": ";B[qo]",
+    "size": "4",
+    "start": "BA",
+    "group": 13,
+    "stoneDesc": "돌 8개 (흑 4, 백 4)",
+    "matchedSources": [
+      "알파바둑 1권 3번"
+    ]
+  },
+  {
+    "id": 21,
+    "code": "t1_ch13_21",
+    "question": "백을 끊어보세요.",
+    "hint": "",
+    "speech": "백을 끊어보세요.",
+    "data": ";B[qp];B[op];W[po];W[pq];W[qq]",
+    "answer1": ";B[pp]",
+    "size": "4",
+    "start": "BA",
+    "group": 13,
+    "stoneDesc": "돌 5개 (흑 2, 백 3)",
+    "matchedSources": [
+      "알파바둑 1권 4번"
+    ]
+  },
+  {
+    "id": 22,
+    "code": "t1_ch13_22",
+    "question": "백을 끊어보세요.",
+    "hint": "",
+    "speech": "백을 끊어보세요.",
+    "data": ";B[qq];B[pq];B[qo];W[pp];W[op];W[rp];W[rq]",
+    "answer1": ";B[qp]",
+    "size": "4",
+    "start": "BA",
+    "group": 13,
+    "stoneDesc": "돌 7개 (흑 3, 백 4)",
+    "matchedSources": [
+      "알파바둑 1권 5번"
+    ]
+  },
+  {
+    "id": 23,
+    "code": "t1_ch13_23",
+    "question": "백을 끊어보세요.",
+    "hint": "",
+    "speech": "백을 끊어보세요.",
+    "data": ";B[rr];B[qr];B[pq];B[pp];B[po];W[qn];W[qp];W[qq]",
+    "answer1": ";B[qo]",
+    "size": "4",
+    "start": "BA",
+    "group": 13,
+    "stoneDesc": "돌 8개 (흑 5, 백 3)",
+    "matchedSources": [
+      "알파바둑 1권 6번"
+    ]
+  },
+  {
+    "id": 24,
+    "code": "t1_ch13_24",
+    "question": "백을 끊어보세요.",
+    "hint": "",
+    "speech": "백을 끊어보세요.",
+    "data": ";B[qq];B[qp];B[po];B[pr];B[or];B[nq];W[pp];W[pq];W[oo];W[on]",
+    "answer1": ";B[op]",
+    "size": "4",
+    "start": "BA",
+    "group": 13,
+    "stoneDesc": "돌 10개 (흑 6, 백 4)",
+    "matchedSources": [
+      "알파바둑 1권 7번"
+    ]
+  },
+  {
+    "id": 25,
+    "code": "t1_ch13_25",
+    "question": "백을 끊어보세요.",
+    "hint": "",
+    "speech": "백을 끊어보세요.",
+    "data": ";B[sp];B[rq];B[qo];B[po];B[ro];B[op];W[oq];W[nq];W[pp];W[qp];W[rp]",
+    "answer1": ";B[pq]",
+    "size": "4",
+    "start": "BA",
+    "group": 13,
+    "stoneDesc": "돌 11개 (흑 6, 백 5)",
+    "matchedSources": [
+      "알파바둑 1권 8번"
+    ]
+  },
+  {
+    "id": 26,
+    "code": "t1_ch13_26",
+    "question": "백을 끊어보세요.",
+    "hint": "",
+    "speech": "백을 끊어보세요.",
+    "data": ";B[rr];B[qs];B[qq];B[pq];W[qr];W[pr];W[oq];W[nq]",
+    "answer1": ";B[or]",
+    "size": "4",
+    "start": "BA",
+    "group": 13,
+    "stoneDesc": "돌 8개 (흑 4, 백 4)",
+    "matchedSources": [
+      "알파바둑 1권 9번"
+    ]
+  },
+  {
+    "id": 27,
+    "code": "t1_ch13_27",
+    "question": "백을 끊어보세요.",
+    "hint": "",
+    "speech": "백을 끊어보세요.",
+    "data": ";B[sq];B[sr];B[rr];B[qq];B[qp];W[sp];W[rp];W[rq];W[qo];W[qn]",
+    "answer1": ";B[ro]",
+    "size": "4",
+    "start": "BA",
+    "group": 13,
+    "stoneDesc": "돌 10개 (흑 5, 백 5)",
+    "matchedSources": [
+      "알파바둑 1권 10번"
+    ]
+  },
+  {
+    "id": 28,
+    "code": "t1_ch13_28",
+    "question": "백을 끊어보세요.",
+    "hint": "",
+    "speech": "백을 끊어보세요.",
+    "data": ";B[rq];B[qr];B[or];B[qp];B[pp];B[op];W[np];W[no];W[oq];W[pq];W[qq]",
+    "answer1": ";B[nq]",
+    "size": "4",
+    "start": "BA",
+    "group": 13,
+    "stoneDesc": "돌 11개 (흑 6, 백 5)",
+    "matchedSources": [
+      "알파바둑 1권 11번"
+    ]
+  },
+  {
+    "id": 29,
+    "code": "t1_ch13_29",
+    "question": "백을 끊어보세요.",
+    "hint": "",
+    "speech": "백을 끊어보세요.",
+    "data": ";B[rr];B[rq];B[rp];B[pq];B[pr];B[ps];W[qs];W[qr];W[qq];W[qo];W[pp]",
+    "answer1": ";B[qp]",
+    "size": "4",
+    "start": "BA",
+    "group": 13,
+    "stoneDesc": "돌 11개 (흑 6, 백 5)",
+    "matchedSources": [
+      "알파바둑 1권 12번"
+    ]
+  },
+  {
+    "id": 30,
+    "code": "t1_ch13_30",
+    "question": "백을 끊어보세요.",
+    "hint": "",
+    "speech": "백을 끊어보세요.",
+    "data": ";B[qr];B[pq];W[pr];W[oq]",
+    "answer1": ";B[or]",
+    "size": "4",
+    "start": "BA",
+    "group": 13,
+    "stoneDesc": "돌 4개 (흑 2, 백 2)",
+    "matchedSources": [
+      "알파바둑 1권 13번"
+    ]
+  },
+  {
+    "id": 31,
+    "code": "t1_ch13_31",
+    "question": "백을 끊어보세요.",
+    "hint": "",
+    "speech": "백을 끊어보세요.",
+    "data": ";B[qq];B[pp];W[qp];W[po]",
+    "answer1": ";B[qo]",
+    "size": "4",
+    "start": "BA",
+    "group": 13,
+    "stoneDesc": "돌 4개 (흑 2, 백 2)",
+    "matchedSources": [
+      "알파바둑 1권 14번"
+    ]
+  },
+  {
+    "id": 32,
+    "code": "t1_ch13_32",
+    "question": "백을 끊어보세요.",
+    "hint": "",
+    "speech": "백을 끊어보세요.",
+    "data": ";B[qq];B[pp];B[op];W[oo];W[no];W[np];W[oq]",
+    "answer1": ";B[nq]",
+    "size": "4",
+    "start": "BA",
+    "group": 13,
+    "stoneDesc": "돌 7개 (흑 3, 백 4)",
+    "matchedSources": [
+      "알파바둑 1권 15번"
+    ]
+  },
+  {
+    "id": 33,
+    "code": "t1_ch13_33",
+    "question": "백을 끊어보세요.",
+    "hint": "",
+    "speech": "백을 끊어보세요.",
+    "data": ";B[qq];B[pp];B[op];B[qn];W[oo];W[np];W[nq];W[oq]",
+    "answer1": ";B[no]",
+    "size": "4",
+    "start": "BA",
+    "group": 13,
+    "stoneDesc": "돌 8개 (흑 4, 백 4)",
+    "matchedSources": [
+      "알파바둑 1권 16번"
+    ]
+  },
+  {
+    "id": 34,
+    "code": "t1_ch13_34",
+    "question": "백을 끊어보세요.",
+    "hint": "",
+    "speech": "백을 끊어보세요.",
+    "data": ";B[qp];B[pp];B[ro];W[qo];W[oo];W[op]",
+    "answer1": ";B[po]",
+    "size": "4",
+    "start": "BA",
+    "group": 13,
+    "stoneDesc": "돌 6개 (흑 3, 백 3)",
+    "matchedSources": [
+      "알파바둑 1권 17번"
+    ]
+  },
+  {
+    "id": 35,
+    "code": "t1_ch13_35",
+    "question": "백을 끊어보세요.",
+    "hint": "",
+    "speech": "백을 끊어보세요.",
+    "data": ";B[op];B[oo];B[qo];W[qq];W[pq];W[po]",
+    "answer1": ";B[pp]",
+    "size": "4",
+    "start": "BA",
+    "group": 13,
+    "stoneDesc": "돌 6개 (흑 3, 백 3)",
+    "matchedSources": [
+      "알파바둑 1권 18번"
+    ]
+  },
+  {
+    "id": 36,
+    "code": "t1_ch13_36",
+    "question": "백을 끊어보세요.",
+    "hint": "",
+    "speech": "백을 끊어보세요.",
+    "data": ";B[qq];B[rq];B[qo];B[qn];B[qm];W[pn];W[po];W[qp];W[rp]",
+    "answer1": ";B[pp]",
+    "size": "4",
+    "start": "BA",
+    "group": 13,
+    "stoneDesc": "돌 9개 (흑 5, 백 4)",
+    "matchedSources": [
+      "알파바둑 1권 19번"
+    ]
+  },
+  {
+    "id": 37,
+    "code": "t1_ch13_37",
+    "question": "백을 끊어보세요.",
+    "hint": "",
+    "speech": "백을 끊어보세요.",
+    "data": ";B[qr];B[qq];B[pq];B[qp];B[qo];B[np];B[mq];B[mr];W[oo];W[no];W[pp];W[oq];W[or];W[pr]",
+    "answer1": ";B[op]",
+    "size": "4",
+    "start": "BA",
+    "group": 13,
+    "stoneDesc": "돌 14개 (흑 8, 백 6)",
+    "matchedSources": [
+      "알파바둑 1권 20번"
+    ]
+  },
+  {
+    "id": 38,
+    "code": "t1_ch13_38",
+    "question": "백을 끊어보세요.",
+    "hint": "",
+    "speech": "백을 끊어보세요.",
+    "data": ";B[rq];B[rp];B[ro];B[rn];B[qn];B[qr];B[pr];B[or];B[nq];B[np];B[oo];W[qo];W[qp];W[qq];W[pn];W[pm];W[qm]",
+    "answer1": ";B[po]",
+    "size": "4",
+    "start": "BA",
+    "group": 13,
+    "stoneDesc": "돌 17개 (흑 11, 백 6)",
+    "matchedSources": [
+      "알파바둑 1권 21번"
+    ]
+  },
+  {
+    "id": 39,
+    "code": "t1_ch13_39",
+    "question": "흑이 둘 차례입니다. 백을 끊어보세요.",
+    "hint": "돌이 끊어지면 잡히게 되거나 불리해집니다. 내 돌은 연결하고 상대방 돌은 끊어야 합니다.",
+    "speech": "흑이 둘 차례입니다. 백을 끊어보세요.",
+    "data": ";B[rr];B[qr];B[pr];B[pq];B[po];B[pn];B[qn];B[ql];B[np];B[mp];W[pp];W[qo];W[qp];W[qq];W[oq];W[or];W[oo];W[on];W[om]",
+    "answer1": ";B[op]",
+    "size": "4",
+    "start": "BA",
+    "group": 13,
+    "stoneDesc": "돌 19개 (흑 10, 백 9)",
+    "matchedSources": [
+      "논리바둑 1권 21번"
+    ]
+  },
+  {
+    "id": 40,
+    "code": "t1_ch13_40",
+    "question": "흑이 둘 차례입니다. 백을 끊어보세요.",
+    "hint": "돌이 끊어지면 잡히게 되거나 불리해집니다. 내 돌은 연결하고 상대방 돌은 끊어야 합니다.",
+    "speech": "흑이 둘 차례입니다. 백을 끊어보세요.",
+    "data": ";B[sr];B[rs];B[qr];B[qq];B[rq];B[op];B[np];W[oq];W[pq];W[qp];W[rp];W[qn]",
+    "answer1": ";B[pp]",
+    "size": "4",
+    "start": "BA",
+    "group": 13,
+    "stoneDesc": "돌 12개 (흑 7, 백 5)",
+    "matchedSources": [
+      "논리바둑 1권 22번"
+    ]
+  },
+  {
+    "id": 41,
+    "code": "t1_ch13_41",
+    "question": "백을 끊어보세요.",
+    "hint": "",
+    "speech": "백을 끊어보세요.",
+    "data": ";B[qr];B[pr];B[oq];B[nq];B[np];B[rq];B[rp];B[rn];B[qm];B[pm];W[op];W[pp];W[pq];W[qq];W[no];W[mo];W[mp]",
+    "answer1": ";B[oo]",
+    "size": "4",
+    "start": "BA",
+    "group": 13,
+    "stoneDesc": "돌 17개 (흑 10, 백 7)",
+    "matchedSources": [
+      "알파바둑 1권 22번"
+    ]
+  },
+  {
+    "id": 42,
+    "code": "t1_ch13_42",
+    "question": "백을 끊어보세요.",
+    "hint": "",
+    "speech": "백을 끊어보세요.",
+    "data": ";B[rr];B[rs];B[qq];B[qp];B[qo];B[op];B[oq];B[nr];W[pn];W[qn];W[pp];W[pq];W[pr];W[qr]",
+    "answer1": ";B[po]",
+    "size": "4",
+    "start": "BA",
+    "group": 13,
+    "stoneDesc": "돌 14개 (흑 8, 백 6)",
+    "matchedSources": [
+      "알파바둑 1권 23번"
+    ]
+  },
+  {
+    "id": 43,
+    "code": "t1_ch13_43",
+    "question": "백을 끊어보세요.",
+    "hint": "",
+    "speech": "백을 끊어보세요.",
+    "data": ";B[qq];B[qp];B[pr];B[nr];B[nq];B[np];B[po];W[pp];W[op];W[oq];W[on];W[pn];W[qn]",
+    "answer1": ";B[oo]",
+    "size": "4",
+    "start": "BA",
+    "group": 13,
+    "stoneDesc": "돌 13개 (흑 7, 백 6)",
+    "matchedSources": [
+      "알파바둑 1권 24번"
+    ]
+  },
+  {
+    "id": 44,
+    "code": "t1_ch13_44",
+    "question": "흑이 둘 차례입니다. 백을 끊어보세요.",
+    "hint": "돌이 끊어지면 잡히게 되거나 불리해집니다. 내 돌은 연결하고 상대방 돌은 끊어야 합니다.",
+    "speech": "흑이 둘 차례입니다. 백을 끊어보세요.",
+    "data": ";B[rr];B[rq];B[qq];B[oq];B[or];B[mq];B[po];W[pq];W[pr];W[qr];W[qp];W[rp];W[op];W[np]",
+    "answer1": ";B[pp]",
+    "size": "4",
+    "start": "BA",
+    "group": 13,
+    "stoneDesc": "돌 14개 (흑 7, 백 7)",
+    "matchedSources": [
+      "논리바둑 1권 25번"
+    ]
+  },
+  {
+    "id": 45,
+    "code": "t1_ch13_45",
+    "question": "흑이 둘 차례입니다. 백을 끊어보세요.",
+    "hint": "돌이 끊어지면 잡히게 되거나 불리해집니다. 내 돌은 연결하고 상대방 돌은 끊어야 합니다.",
+    "speech": "흑이 둘 차례입니다. 백을 끊어보세요.",
+    "data": ";W[rq];W[qq];W[oq];W[or];W[pp];W[po];W[oo];B[pr];B[qr];B[qp];B[rp];B[op];B[np];B[nq];B[nr]",
+    "answer1": ";B[pq]",
+    "size": "4",
+    "start": "BA",
+    "group": 13,
+    "stoneDesc": "돌 15개 (흑 8, 백 7)",
+    "matchedSources": [
+      "논리바둑 1권 26번"
+    ]
+  }
+]

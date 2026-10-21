@@ -1,0 +1,131 @@
+{
+  "stage": 1,
+  "stageId": "stage1_morning_star",
+  "title": "제1단계: 샛별부 (27급 ~ 25급)",
+  "tournamentDivision": "대회 1단계 샛별부",
+  "totalUnits": 12,
+  "totalProblems": 480,
+  "katagoSearchDepth": "3~5수",
+  "units": [
+    {
+      "unitIndex": 1,
+      "unitId": "unit01_ladder",
+      "title": "축(Ladder)의 원리와 축머리",
+      "domain": "맥·전술",
+      "part1Count": 20,
+      "part2Count": 20,
+      "totalProblems": 40,
+      "file": "unit01_ladder.json"
+    },
+    {
+      "unitIndex": 2,
+      "unitId": "unit02_net",
+      "title": "그물로 가두는 장문(Net)",
+      "domain": "맥·전술",
+      "part1Count": 20,
+      "part2Count": 20,
+      "totalProblems": 40,
+      "file": "unit02_net.json"
+    },
+    {
+      "unitIndex": 3,
+      "unitId": "unit03_snapback_atari",
+      "title": "환격(Snapback)과 촉촉수(연단수)",
+      "domain": "맥·전술",
+      "part1Count": 20,
+      "part2Count": 20,
+      "totalProblems": 40,
+      "file": "unit03_snapback_atari.json"
+    },
+    {
+      "unitIndex": 4,
+      "unitId": "unit04_three_eye_life_death",
+      "title": "3궁도의 급소와 치중 (직3궁·곡3궁)",
+      "domain": "사활",
+      "part1Count": 20,
+      "part2Count": 20,
+      "totalProblems": 40,
+      "file": "unit04_three_eye_life_death.json"
+    },
+    {
+      "unitIndex": 5,
+      "unitId": "unit05_four_eye_life_death",
+      "title": "4궁도 판별법 (직4궁·곡4궁 vs 바보4궁)",
+      "domain": "사활",
+      "part1Count": 20,
+      "part2Count": 20,
+      "totalProblems": 40,
+      "file": "unit05_four_eye_life_death.json"
+    },
+    {
+      "unitIndex": 6,
+      "unitId": "unit06_capturing_race_outer",
+      "title": "수상전: 바깥 활로부터 줄이기",
+      "domain": "수상전",
+      "part1Count": 20,
+      "part2Count": 20,
+      "totalProblems": 40,
+      "file": "unit06_capturing_race_outer.json"
+    },
+    {
+      "unitIndex": 7,
+      "unitId": "unit07_connection_tiger_mouth",
+      "title": "안전한 연결과 호구 방패 (한칸 뜀·날일자)",
+      "domain": "행마",
+      "part1Count": 20,
+      "part2Count": 20,
+      "totalProblems": 40,
+      "file": "unit07_connection_tiger_mouth.json"
+    },
+    {
+      "unitIndex": 8,
+      "unitId": "unit08_opening_corner_side",
+      "title": "19줄 귀·변·중앙 (3·4선 기초) & 화점 날일자 받기",
+      "domain": "포석·정석",
+      "part1Count": 20,
+      "part2Count": 20,
+      "totalProblems": 40,
+      "file": "unit08_opening_corner_side.json"
+    },
+    {
+      "unitIndex": 9,
+      "unitId": "unit09_ko_basics",
+      "title": "패(Ko)의 첫걸음과 단순 패싸움",
+      "domain": "패·규칙",
+      "part1Count": 20,
+      "part2Count": 20,
+      "totalProblems": 40,
+      "file": "unit09_ko_basics.json"
+    },
+    {
+      "unitIndex": 10,
+      "unitId": "unit10_danger_atari_diagnosis",
+      "title": "내 돌의 위험 진단 (단수와 약점 확인)",
+      "domain": "형세·대세",
+      "part1Count": 20,
+      "part2Count": 20,
+      "totalProblems": 40,
+      "file": "unit10_danger_atari_diagnosis.json"
+    },
+    {
+      "unitIndex": 11,
+      "unitId": "unit11_endgame_first_line",
+      "title": "1선 젖혀 잇기와 공배 메우기",
+      "domain": "끝내기",
+      "part1Count": 20,
+      "part2Count": 20,
+      "totalProblems": 40,
+      "file": "unit11_endgame_first_line.json"
+    },
+    {
+      "unitIndex": 12,
+      "unitId": "unit12_comprehensive_exam",
+      "title": "샛별부 19줄 종합 모의평가",
+      "domain": "종합 실전",
+      "part1Count": 20,
+      "part2Count": 20,
+      "totalProblems": 40,
+      "file": "unit12_comprehensive_exam.json"
+    }
+  ]
+}
