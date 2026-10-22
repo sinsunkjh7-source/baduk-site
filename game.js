@@ -1287,16 +1287,22 @@ class BadukGameApp {
       height = canvas.height = window.innerHeight;
     });
 
+    // 보조 함수: arc 호출 시 이전 패스와의 불필요한 연결선(가로선 아티팩트)이 생기지 않도록 moveTo 후 arc 생성
+    const addCircle = (cx, cy, r) => {
+      ctx.moveTo(cx + r, cy);
+      ctx.arc(cx, cy, r, 0, Math.PI * 2);
+    };
+
     // 0. 클래식 5봉우리 뭉게구름 (균형 잡힌 대표 뭉게구름)
     const drawPath0 = () => {
       ctx.beginPath();
       const w = 210, h = 50, r = 25;
       if (ctx.roundRect) ctx.roundRect(-w/2, -h, w, h, [r, r, r, r]);
       else ctx.rect(-w/2, -h, w, h);
-      ctx.arc(-45, -42, 40, 0, Math.PI * 2);
-      ctx.arc(18, -58, 50, 0, Math.PI * 2);
-      ctx.arc(72, -38, 34, 0, Math.PI * 2);
-      ctx.arc(-88, -30, 26, 0, Math.PI * 2);
+      addCircle(-45, -42, 40);
+      addCircle(18, -58, 50);
+      addCircle(72, -38, 34);
+      addCircle(-88, -30, 26);
     };
 
     // 1. 바람결에 기운 비대칭 뭉게구름
@@ -1305,11 +1311,11 @@ class BadukGameApp {
       const w = 260, h = 48, r = 24;
       if (ctx.roundRect) ctx.roundRect(-w/2, -h, w, h, [r, r, r, r]);
       else ctx.rect(-w/2, -h, w, h);
-      ctx.arc(-70, -54, 48, 0, Math.PI * 2);
-      ctx.arc(-10, -46, 42, 0, Math.PI * 2);
-      ctx.arc(55, -36, 35, 0, Math.PI * 2);
-      ctx.arc(105, -26, 25, 0, Math.PI * 2);
-      ctx.arc(-112, -30, 26, 0, Math.PI * 2);
+      addCircle(-70, -54, 48);
+      addCircle(-10, -46, 42);
+      addCircle(55, -36, 35);
+      addCircle(105, -26, 25);
+      addCircle(-112, -30, 26);
     };
 
     // 2. 수평으로 길쭉하고 평온한 층적운
@@ -1318,11 +1324,11 @@ class BadukGameApp {
       const w = 320, h = 42, r = 21;
       if (ctx.roundRect) ctx.roundRect(-w/2, -h, w, h, [r, r, r, r]);
       else ctx.rect(-w/2, -h, w, h);
-      ctx.arc(-100, -32, 30, 0, Math.PI * 2);
-      ctx.arc(-40, -42, 38, 0, Math.PI * 2);
-      ctx.arc(35, -45, 40, 0, Math.PI * 2);
-      ctx.arc(95, -35, 32, 0, Math.PI * 2);
-      ctx.arc(135, -25, 22, 0, Math.PI * 2);
+      addCircle(-100, -32, 30);
+      addCircle(-40, -42, 38);
+      addCircle(35, -45, 40);
+      addCircle(95, -35, 32);
+      addCircle(135, -25, 22);
     };
 
     // 3. 아기자기한 3봉우리 작은 솜사탕 구름
@@ -1331,9 +1337,9 @@ class BadukGameApp {
       const w = 140, h = 40, r = 20;
       if (ctx.roundRect) ctx.roundRect(-w/2, -h, w, h, [r, r, r, r]);
       else ctx.rect(-w/2, -h, w, h);
-      ctx.arc(-26, -35, 32, 0, Math.PI * 2);
-      ctx.arc(24, -42, 38, 0, Math.PI * 2);
-      ctx.arc(58, -26, 22, 0, Math.PI * 2);
+      addCircle(-26, -35, 32);
+      addCircle(24, -42, 38);
+      addCircle(58, -26, 22);
     };
 
     // 4. 중앙이 웅장하게 솟아오른 거대 적운
@@ -1342,11 +1348,11 @@ class BadukGameApp {
       const w = 240, h = 54, r = 27;
       if (ctx.roundRect) ctx.roundRect(-w/2, -h, w, h, [r, r, r, r]);
       else ctx.rect(-w/2, -h, w, h);
-      ctx.arc(-60, -48, 44, 0, Math.PI * 2);
-      ctx.arc(0, -72, 62, 0, Math.PI * 2);
-      ctx.arc(60, -48, 44, 0, Math.PI * 2);
-      ctx.arc(-100, -32, 28, 0, Math.PI * 2);
-      ctx.arc(100, -32, 28, 0, Math.PI * 2);
+      addCircle(-60, -48, 44);
+      addCircle(0, -72, 62);
+      addCircle(60, -48, 44);
+      addCircle(-100, -32, 28);
+      addCircle(100, -32, 28);
     };
 
     // 5. 포근한 쌍봉우리 뭉게구름
@@ -1355,15 +1361,15 @@ class BadukGameApp {
       const w = 180, h = 44, r = 22;
       if (ctx.roundRect) ctx.roundRect(-w/2, -h, w, h, [r, r, r, r]);
       else ctx.rect(-w/2, -h, w, h);
-      ctx.arc(-35, -48, 42, 0, Math.PI * 2);
-      ctx.arc(35, -50, 44, 0, Math.PI * 2);
-      ctx.arc(-75, -28, 24, 0, Math.PI * 2);
-      ctx.arc(75, -28, 24, 0, Math.PI * 2);
+      addCircle(-35, -48, 42);
+      addCircle(35, -50, 44);
+      addCircle(-75, -28, 24);
+      addCircle(75, -28, 24);
     };
 
     const pathFns = [drawPath0, drawPath1, drawPath2, drawPath3, drawPath4, drawPath5];
 
-    // 두 겹 외곽선(그림자 오프셋)을 완전 제거하고, 순수하고 깔끔한 새하얀 2D 모션그래픽 구름으로 단일 렌더링
+    // 두 겹 외곽선 및 연결선 아티팩트가 전혀 없는 순백의 깔끔한 2D 모션그래픽 뭉게구름
     const drawVectorCloud = (type, x, y, scale, alpha) => {
       ctx.save();
       ctx.translate(x, y);
@@ -1378,7 +1384,7 @@ class BadukGameApp {
       ctx.restore();
     };
 
-    // 크기와 형태가 다양하고 고요하게 서서히 흘러가는 9개의 뭉게구름 인스턴스 (외곽선 겹침 없음)
+    // 크기와 형태가 다양하고 고요하게 서서히 흘러가는 9개의 뭉게구름 인스턴스
     const clouds = [
       // 상공 원경 구름 (작고 아기자기하며 아주 천천히 흐름: 속도 0.08 ~ 0.11)
       { type: 3, x: width * 0.08, y: height * 0.07, scale: 0.55, speed: 0.08, alpha: 0.70 },
@@ -1408,27 +1414,16 @@ class BadukGameApp {
 
     const loop = () => {
       if (this.currentBgTheme === 'theme7' || this.currentBgTheme === 'autumn' || this.currentBgTheme === 'clouds') {
-        // 1. 청명하고 깊은 한국의 가을 하늘 그라데이션
+        // 1. 청명하고 투명한 한국의 가을 하늘 그라데이션 (얼룩이나 누런 빛/이상한 색상 없이 맑고 깨끗한 하늘)
         const skyGrad = ctx.createLinearGradient(0, 0, 0, height);
-        skyGrad.addColorStop(0, '#0284c7');    // 상단: 맑고 짙은 코발트 블루
-        skyGrad.addColorStop(0.36, '#38bdf8'); // 중상단: 청량하게 시원한 가을하늘
-        skyGrad.addColorStop(0.74, '#7dd3fc'); // 하단: 포근한 스카이 블루
-        skyGrad.addColorStop(1, '#e0f2fe');    // 지평선 부근: 은은한 에어리 화이트
+        skyGrad.addColorStop(0, '#0284c7');    // 상단: 맑고 깊은 코발트 블루
+        skyGrad.addColorStop(0.35, '#38bdf8'); // 중상단: 청량하게 시원한 가을하늘
+        skyGrad.addColorStop(0.72, '#7dd3fc'); // 하단: 포근한 스카이 블루
+        skyGrad.addColorStop(1, '#bae6fd');    // 지평선: 은은하고 맑은 라이트 블루
         ctx.fillStyle = skyGrad;
         ctx.fillRect(0, 0, width, height);
 
-        // 2. 가을 햇살의 은은한 코로나
-        const sunX = width * 0.88;
-        const sunY = height * 0.12;
-        const sunCorona = ctx.createRadialGradient(sunX, sunY, 10, sunX, sunY, width * 0.52);
-        sunCorona.addColorStop(0, 'rgba(255, 253, 235, 0.65)');
-        sunCorona.addColorStop(0.25, 'rgba(254, 240, 138, 0.22)');
-        sunCorona.addColorStop(0.6, 'rgba(224, 242, 254, 0.06)');
-        sunCorona.addColorStop(1, 'rgba(255, 255, 255, 0)');
-        ctx.fillStyle = sunCorona;
-        ctx.fillRect(0, 0, width, height);
-
-        // 3. 외곽선 중첩 없이 순수하고 다채로운 2D 뭉게구름 드리프트 (40% 속도 감속 유지)
+        // 2. 외곽선 중첩 및 선 튐 없이 순수하고 다채로운 2D 뭉게구름 드리프트 (은은한 속도 유지)
         for (const c of clouds) {
           c.x += c.speed;
           const boundW = 320 * c.scale;
@@ -1439,7 +1434,7 @@ class BadukGameApp {
           drawVectorCloud(c.type, c.x, c.y, c.scale, c.alpha);
         }
 
-        // 4. 가을 하늘을 유유히 날아가는 기러기 V자 편대 (속도 0.18)
+        // 3. 가을 하늘을 유유히 날아가는 기러기 V자 편대 (속도 0.18)
         birdsBaseX += 0.18;
         birdsBaseY += 0.02;
         if (birdsBaseX > width + 150) {
