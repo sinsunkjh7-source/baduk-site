@@ -1095,36 +1095,54 @@ class BadukGameApp {
       height = canvas.height = window.innerHeight;
     });
 
-    // 은은하고 차분한 별무리 (소수의 별만 시차를 두고 부드럽게 반짝임)
-    const numStars = 190;
+    // 🌟 밤하늘을 수놓는 풍성한 별무리 (총 280개로 별의 수는 넉넉하게 유지)
+    const numStars = 280;
     const stars = [];
     for (let i = 0; i < numStars; i++) {
-      // 전체 중 약 12%(약 22개)만 스파클 별로 지정 (산만함 방지)
-      const isSparkle = Math.random() < 0.12;
       stars.push({
         x: Math.random() * width,
         y: Math.random() * height,
-        isSparkle: isSparkle,
-        size: isSparkle ? (1.3 + Math.random() * 1.2) : (0.5 + Math.random() * 0.8),
-        flareLength: 8 + Math.random() * 9,
-        baseAlpha: isSparkle ? (0.5 + Math.random() * 0.5) : (0.2 + Math.random() * 0.5),
-        // 반짝임 주기를 훨씬 느리고 여유롭게 조절 (0.008 ~ 0.022)
-        twinkleSpeed: isSparkle ? (0.008 + Math.random() * 0.015) : (0.005 + Math.random() * 0.012),
+        size: 0.55 + Math.random() * 0.95,
+        baseAlpha: 0.2 + Math.random() * 0.45,
+        twinkleSpeed: 0.005 + Math.random() * 0.012,
         twinklePhase: Math.random() * Math.PI * 2,
         vx: (Math.random() - 0.5) * 0.04 - 0.02,
         vy: (Math.random() - 0.5) * 0.03 - 0.015,
-        color: Math.random() < 0.25 ? '#bae6fd' : (Math.random() < 0.45 ? '#fef08a' : '#ffffff')
+        color: Math.random() < 0.25 ? '#bae6fd' : (Math.random() < 0.45 ? '#fef08a' : '#ffffff'),
+        // 스파클 상태 (null이면 조용히 머무르는 평온한 일반 별)
+        sparkleState: null
       });
     }
+
+    // 🌟 동시 터짐(축포 느낌) 방지: 화면 전체에서 오직 '단 하나의 별'만 어쩌다 한 번씩 은은하게 반짝임
+    const scheduleSparkle = () => {
+      const delay = 3200 + Math.random() * 2800; // 3.2 ~ 6초 간격
+      setTimeout(() => {
+        if (this.currentBgTheme === 'theme6' || this.currentBgTheme === 'starry') {
+          // 현재 반짝이고 있는 별이 전혀 없을 때만 새 별 1개 선택
+          const hasActive = stars.some(s => s.sparkleState !== null);
+          if (!hasActive && stars.length > 0) {
+            const targetStar = stars[Math.floor(Math.random() * stars.length)];
+            targetStar.sparkleState = {
+              life: 0,
+              maxLife: 100, // 약 1.6초 동안 매우 부드럽게 피어났다 은은하게 사라짐
+              flareLength: 8 + Math.random() * 6
+            };
+          }
+        }
+        scheduleSparkle();
+      }, delay);
+    };
+    scheduleSparkle();
 
     const meteors = [];
 
     const spawnMeteor = (forcedX, forcedY) => {
       const startX = forcedX !== undefined ? forcedX : (Math.random() * (width * 0.7) + width * 0.15);
       const startY = forcedY !== undefined ? forcedY : (Math.random() * (height * 0.3));
-      const length = 150 + Math.random() * 90;
-      const speed = 14 + Math.random() * 6;
-      const angle = (Math.PI / 4) + (Math.random() - 0.5) * 0.25;
+      const length = 140 + Math.random() * 80;
+      const speed = 13 + Math.random() * 5;
+      const angle = (Math.PI / 4) + (Math.random() - 0.5) * 0.22;
 
       meteors.push({
         x: startX,
@@ -1133,15 +1151,15 @@ class BadukGameApp {
         dy: Math.sin(angle) * speed,
         length: length,
         life: 0,
-        maxLife: 50,
-        thickness: 2.2
+        maxLife: 52,
+        thickness: 2.0
       });
     };
 
-    setTimeout(() => spawnMeteor(), 1200);
+    setTimeout(() => spawnMeteor(), 1500);
 
     const scheduleMeteor = () => {
-      const delay = 3500 + Math.random() * 3500;
+      const delay = 4500 + Math.random() * 4000;
       setTimeout(() => {
         if (this.currentBgTheme === 'theme6' || this.currentBgTheme === 'starry') {
           spawnMeteor();
@@ -1151,38 +1169,39 @@ class BadukGameApp {
     };
     scheduleMeteor();
 
-    // 4각 십자 별빛 그리기 함수
+    // 4각 십자 별빛 그리기 (단아하고 우아한 ✦ 다이아몬드 광선)
     const drawSparkle = (x, y, flareLen, size, alpha, color) => {
+      if (flareLen <= 0.5) return;
       ctx.save();
       ctx.globalAlpha = alpha;
 
-      // 1. 중앙 부드러운 후광(Halo)
-      const halo = ctx.createRadialGradient(x, y, 0, x, y, flareLen * 0.85);
+      // 1. 은은한 중앙 후광
+      const halo = ctx.createRadialGradient(x, y, 0, x, y, flareLen * 0.8);
       halo.addColorStop(0, '#ffffff');
       halo.addColorStop(0.35, color);
       halo.addColorStop(1, 'rgba(255, 255, 255, 0)');
       ctx.fillStyle = halo;
       ctx.beginPath();
-      ctx.arc(x, y, flareLen * 0.85, 0, Math.PI * 2);
+      ctx.arc(x, y, flareLen * 0.8, 0, Math.PI * 2);
       ctx.fill();
 
-      // 2. 4각 별빛 광선 (다이아몬드 십자 스파클 ✦)
+      // 2. 부드러운 4각 십자 광선
       ctx.fillStyle = '#ffffff';
       ctx.beginPath();
       ctx.moveTo(x, y - flareLen);
-      ctx.quadraticCurveTo(x, y, x + size * 0.55, y);
+      ctx.quadraticCurveTo(x, y, x + size * 0.45, y);
       ctx.lineTo(x + flareLen, y);
-      ctx.quadraticCurveTo(x, y, x, y + size * 0.55);
+      ctx.quadraticCurveTo(x, y, x, y + size * 0.45);
       ctx.lineTo(x, y + flareLen);
-      ctx.quadraticCurveTo(x, y, x - size * 0.55, y);
+      ctx.quadraticCurveTo(x, y, x - size * 0.45, y);
       ctx.lineTo(x - flareLen, y);
-      ctx.quadraticCurveTo(x, y, x, y - size * 0.55);
+      ctx.quadraticCurveTo(x, y, x, y - size * 0.45);
       ctx.closePath();
       ctx.fill();
 
-      // 3. 중심 백열 핵
+      // 3. 중심 백열 코어
       ctx.beginPath();
-      ctx.arc(x, y, size * 0.65, 0, Math.PI * 2);
+      ctx.arc(x, y, size * 0.6, 0, Math.PI * 2);
       ctx.fill();
 
       ctx.restore();
@@ -1197,7 +1216,7 @@ class BadukGameApp {
         ctx.fillStyle = bgGrad;
         ctx.fillRect(0, 0, width, height);
 
-        // 1. 별빛 반짝임 렌더링
+        // 1. 별 렌더링
         for (const s of stars) {
           s.x += s.vx;
           s.y += s.vy;
@@ -1207,33 +1226,26 @@ class BadukGameApp {
           if (s.y > height) s.y = 0;
 
           s.twinklePhase += s.twinkleSpeed;
-          const sinVal = Math.sin(s.twinklePhase);
+          // 평상시 일반 별들의 극히 잔잔한 명암 호흡
+          const calmAlpha = Math.max(0.12, Math.min(0.7, s.baseAlpha * (0.6 + 0.4 * Math.sin(s.twinklePhase))));
 
-          if (s.isSparkle) {
-            // 지수 4.5: 대부분은 작고 조용하다가 절정 시점에만 우아하게 ✦ 십자 광선이 피어남
-            const twinkleFactor = Math.pow(Math.max(0, (sinVal + 1) / 2), 4.5);
-            const currentAlpha = Math.max(0.15, Math.min(1, s.baseAlpha * (0.2 + 0.8 * twinkleFactor)));
+          if (s.sparkleState) {
+            // 오직 선택받은 단 하나의 별만 부드러운 사인 곡선으로 ✦ 피어남
+            s.sparkleState.life++;
+            const progress = s.sparkleState.life / s.sparkleState.maxLife;
+            const curve = Math.sin(progress * Math.PI); // 0 -> 1 -> 0 매끄러운 곡선
+            const currentFlare = s.sparkleState.flareLength * curve;
+            const currentAlpha = Math.min(1, s.baseAlpha + 0.5 * curve);
 
-            if (twinkleFactor > 0.2) {
-              const bloom = (twinkleFactor - 0.2) / 0.8;
-              const dynamicFlare = s.flareLength * (0.3 + 0.7 * bloom);
-              drawSparkle(s.x, s.y, dynamicFlare, s.size, currentAlpha, s.color);
-            } else {
-              // 피크 이전에는 잔잔하고 작은 원형 점으로 유지
-              ctx.save();
-              ctx.globalAlpha = currentAlpha;
-              ctx.fillStyle = s.color;
-              ctx.beginPath();
-              ctx.arc(s.x, s.y, s.size * 0.8, 0, Math.PI * 2);
-              ctx.fill();
-              ctx.restore();
+            drawSparkle(s.x, s.y, currentFlare, s.size * (1 + 0.3 * curve), currentAlpha, s.color);
+
+            if (s.sparkleState.life >= s.sparkleState.maxLife) {
+              s.sparkleState = null;
             }
           } else {
-            // 일반 배경 별들은 극히 부드럽고 차분하게 호흡
-            const twinkleFactor = Math.pow(Math.max(0, (sinVal + 1) / 2), 1.5);
-            const currentAlpha = Math.max(0.1, Math.min(0.85, s.baseAlpha * (0.4 + 0.6 * twinkleFactor)));
+            // 279개의 다른 별들은 그저 고요하고 잔잔한 밤하늘 배경 점으로만 존재
             ctx.save();
-            ctx.globalAlpha = currentAlpha;
+            ctx.globalAlpha = calmAlpha;
             ctx.fillStyle = s.color;
             ctx.beginPath();
             ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
@@ -1259,9 +1271,9 @@ class BadukGameApp {
 
             const grad = ctx.createLinearGradient(tailX, tailY, m.x, m.y);
             grad.addColorStop(0, 'rgba(255, 255, 255, 0)');
-            grad.addColorStop(0.5, `rgba(147, 197, 253, ${0.45 * fade})`);
-            grad.addColorStop(0.88, `rgba(254, 240, 138, ${0.9 * fade})`);
-            grad.addColorStop(1, `rgba(255, 255, 255, ${fade})`);
+            grad.addColorStop(0.5, 'rgba(147, 197, 253, ' + (0.45 * fade) + ')');
+            grad.addColorStop(0.88, 'rgba(254, 240, 138, ' + (0.9 * fade) + ')');
+            grad.addColorStop(1, 'rgba(255, 255, 255, ' + fade + ')');
 
             ctx.save();
             ctx.beginPath();
@@ -1272,7 +1284,7 @@ class BadukGameApp {
             ctx.lineCap = 'round';
             ctx.stroke();
 
-            ctx.fillStyle = `rgba(255, 255, 255, ${fade})`;
+            ctx.fillStyle = 'rgba(255, 255, 255, ' + fade + ')';
             ctx.shadowColor = '#60a5fa';
             ctx.shadowBlur = 10;
             ctx.beginPath();
@@ -1292,7 +1304,6 @@ class BadukGameApp {
     requestAnimationFrame(loop);
   }
 
-  // 🌟 바둑판 스킨 적용 ('wood': 정통 비자목 나무판, 'green': 소프트 그린판 + 흰선) 🌟
   applyBoardSkin(skin) {
     this.boardSkin = (skin === 'green' || skin === 'sky') ? skin : 'wood';
     const wrapper = document.getElementById('boardWrapper');
