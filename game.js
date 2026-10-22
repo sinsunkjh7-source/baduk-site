@@ -557,6 +557,31 @@ class BadukGameApp {
     // 🌟 바탕화면 테마 선택기 ('theme1'~'theme5') 🌟
     const savedTheme = localStorage.getItem('baduk_bg_theme') || 'theme6';
     this.applyBackgroundTheme(savedTheme);
+
+    // 5. 로고 시안 실시간 선택기 초기화 (1~6종)
+    const savedLogo = localStorage.getItem('baduk_logo_theme') || 'logo1';
+    this.applyLogoTheme(savedLogo);
+
+    document.querySelectorAll('.logo-theme-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const logoId = e.currentTarget.dataset.logo;
+        this.applyLogoTheme(logoId);
+        localStorage.setItem('baduk_logo_theme', logoId);
+      });
+    });
+
+    // 상단 로고 배지 클릭 시 다음 로고로 실시간 순환 (1 -> 2 -> ... -> 6 -> 1)
+    const brandBadge = document.getElementById('brandLogoBadge');
+    if (brandBadge) {
+      brandBadge.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const logos = ['logo1', 'logo2', 'logo3', 'logo4', 'logo5', 'logo6'];
+        const nextIdx = (logos.indexOf(this.currentLogoTheme || 'logo1') + 1) % logos.length;
+        const nextLogo = logos[nextIdx];
+        this.applyLogoTheme(nextLogo);
+        localStorage.setItem('baduk_logo_theme', nextLogo);
+      });
+    }
     this.initStarfieldMotion();
     this.initAutumnCloudsMotion();
 
@@ -1044,6 +1069,72 @@ class BadukGameApp {
   }
 
   // 🌟 바탕화면 테마 적용 ('theme1', 'theme2', 'theme3', 'theme4', 'theme5') 🌟
+  applyLogoTheme(logoId) {
+    const validLogos = ['logo1', 'logo2', 'logo3', 'logo4', 'logo5', 'logo6'];
+    const activeLogo = validLogos.includes(logoId) ? logoId : 'logo1';
+    this.currentLogoTheme = activeLogo;
+
+    // 사이드바 버튼 active 갱신
+    document.querySelectorAll('.logo-theme-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.logo === activeLogo);
+    });
+
+    // 각 로고별 HTML 템플릿
+    const logoTemplates = {
+      'logo1': `
+        <div class="logo-render-wrap type-1" title="1번: 3D 입체 흑백돌 듀오 (클릭 시 다음 로고로 변경)">
+          <div class="s1-stones-mini">
+            <span class="s1-b"></span>
+            <span class="s1-w"></span>
+            <span class="s1-spark"></span>
+          </div>
+          <span class="logo-text-jua">바둑스쿨</span>
+        </div>`,
+      'logo2': `
+        <div class="logo-render-wrap type-2" title="2번: 미소 흑백돌 캐릭터 (클릭 시 다음 로고로 변경)">
+          <div class="s2-mascots-mini">
+            <span class="s2-b">^ᴗ^</span>
+            <span class="s2-w">ᵔ◡ᵔ</span>
+          </div>
+          <span class="logo-text-jua">바둑스쿨</span>
+        </div>`,
+      'logo3': `
+        <div class="logo-render-wrap type-3" title="3번: 흑백돌 위트 타이포 (클릭 시 다음 로고로 변경)">
+          <span class="logo-text-jua" style="padding-left:4px;">바<span class="dot-stone-inline b"></span>둑<span class="dot-stone-inline w"></span>스쿨</span>
+        </div>`,
+      'logo4': `
+        <div class="logo-render-wrap type-4" title="4번: 미니멀 바둑판 큐브 (클릭 시 다음 로고로 변경)">
+          <div class="s4-cube-mini">
+            <span class="cube-line-h"></span>
+            <span class="cube-line-v"></span>
+            <span class="s4-b"></span>
+            <span></span>
+            <span></span>
+            <span class="s4-w"></span>
+          </div>
+          <span class="logo-text-jua">바둑스쿨</span>
+        </div>`,
+      'logo5': `
+        <div class="logo-render-wrap type-5" title="5번: 모던 흑백 듀얼 뱃지 (클릭 시 다음 로고로 변경)">
+          <span class="badge-black-mini">바둑<span class="dot-w-mini"></span></span>
+          <span class="logo-text-jua" style="color: #38bdf8;">스쿨</span>
+        </div>`,
+      'logo6': `
+        <div class="logo-render-wrap type-6" title="6번: 조화의 흑백 서클 (클릭 시 다음 로고로 변경)">
+          <div class="s6-circle-mini">
+            <span class="s6-dot-b"></span>
+            <span class="s6-dot-w"></span>
+          </div>
+          <span class="logo-text-jua">바둑스쿨</span>
+        </div>`
+    };
+
+    const targetBadge = document.getElementById('brandLogoBadge');
+    if (targetBadge) {
+      targetBadge.innerHTML = logoTemplates[activeLogo] || logoTemplates['logo1'];
+    }
+  }
+
   applyBackgroundTheme(theme) {
     const aliasMap = {
       'clean': 'theme1',
