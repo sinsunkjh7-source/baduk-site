@@ -58,14 +58,28 @@ class BadukBookSelector {
     }
   }
 
-  show() {
+  show(targetSeriesIndex = null) {
     if (this.modal) {
       this.modal.classList.add('show');
     }
+    const applyTargetSeries = () => {
+      if (targetSeriesIndex !== null && this.catalog && this.catalog[targetSeriesIndex]) {
+        this.selectSeries(this.catalog[targetSeriesIndex]);
+      }
+    };
+
     if (!this.catalog || this.catalog.length === 0) {
-      this.loadCatalog();
-    } else if (this.step1List && this.step1List.children.length === 0) {
-      this.renderStep1();
+      const p = this.loadCatalog();
+      if (p && typeof p.then === 'function') {
+        p.then(() => applyTargetSeries());
+      } else {
+        setTimeout(applyTargetSeries, 100);
+      }
+    } else {
+      if (this.step1List && this.step1List.children.length === 0) {
+        this.renderStep1();
+      }
+      applyTargetSeries();
     }
   }
 

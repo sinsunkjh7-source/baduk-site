@@ -18,7 +18,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css?v=20261022_official_logo_final">
-  <script src="auth.js?v=20261016_0010"></script>
+  <script src="auth.js?v=20261022_open_lib_v6"></script>
 </head>
 <body>
   <!-- 🌌 신비한 별빛 밤하늘과 유성 모션그래픽 캔버스 -->
@@ -95,8 +95,15 @@
             <div class="ck-dropdown-menu" id="learnDropdown">
               <a href="javascript:void(0)" onclick="window.enterAppFromPortal('missions')">🗺️ 30단계 보물섬 모험 지도</a>
               <a href="javascript:void(0)" onclick="window.enterAppFromPortal('missions')">⚡ 실시간 사활 듀얼 배틀</a>
-              <a href="javascript:void(0)" onclick="window.enterAppFromPortal('missions')">📚 78권 공인 교재 학습</a>
+              <a href="javascript:void(0)" onclick="window.enterAppAndOpenLibrary(1)" style="font-weight: 800; color: #ea580c;">🎯 15대 기법별 마스터관 (축·장문·사활 등)</a>
+              <a href="javascript:void(0)" onclick="window.enterAppAndOpenLibrary(0)">📚 78권 공인 교재 라이브러리</a>
             </div>
+          </div>
+
+          <div class="ck-dropdown-wrap">
+            <button type="button" class="ck-nav-item" onclick="window.enterAppAndOpenLibrary(1)" style="color: #ea580c; font-weight: 800; background: rgba(254, 243, 199, 0.85); border-radius: 20px; padding: 6px 14px;">
+              <span>🎯 15대 기법별 마스터</span>
+            </button>
           </div>
 
           <div class="ck-dropdown-wrap">
@@ -347,6 +354,7 @@
             <div style="display: flex; gap: 6px; align-items: center;">
               <span class="badge" id="missionBadge">JH 바둑스쿨 1단계</span>
               <button type="button" id="btnOpenBookSelect" class="badge-action-btn" title="다른 교재나 단원 선택하기">📚 교재 변경</button>
+              <button type="button" class="badge-action-btn" onclick="if(window.gameApp && window.gameApp.bookSelector) window.gameApp.bookSelector.show(1);" title="15대 기법별 심층 마스터관 열기" style="background: linear-gradient(135deg, #f59e0b, #d97706); color: white; font-weight: 800; border: none; box-shadow: 0 2px 8px rgba(245, 158, 11, 0.35);">🎯 15대 기법 모음</button>
               <button type="button" class="badge-action-btn" onclick="window.location.href='editor.html'" title="원장님 전용 문제 선별 및 편집실" style="background:#4338ca; color:#fff;">🛠️ 편집실</button>
             </div>
           </div>
@@ -1179,7 +1187,7 @@
   <script src="catalog_data.js?v=20261022_technique_master"></script>
   <script src="data/books_js/book_stage1_morning_star.js?v=20261020_stage1"></script>
   <script src="data/books_js/book_tier1_intro.js?v=20261014_1041"></script>
-  <script src="book_selector.js?v=20261014_1002"></script>
+  <script src="book_selector.js?v=20261022_open_lib_v6"></script>
   <script src="alkkagi_engine.js?v=20261012_2025"></script>
   <script src="game.js?v=20261022_remove_stone"></script>
 </body>

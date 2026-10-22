@@ -133,6 +133,17 @@
     }
   };
 
+  // 🌟 15대 기법별 라이브러리 바로 열기
+  window.enterAppAndOpenLibrary = function(seriesIndex = 1) {
+    window.enterAppFromPortal('missions');
+    setTimeout(() => {
+      const app = window.badukApp || window.gameApp;
+      if (app && app.bookSelector) {
+        app.bookSelector.show(seriesIndex);
+      }
+    }, 200);
+  };
+
   window.showMainPortal = function() {
     const portal = document.getElementById('mainPortalOverlay');
     if (portal) {
