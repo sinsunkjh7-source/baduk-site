@@ -1095,13 +1095,13 @@ class BadukGameApp {
       height = canvas.height = window.innerHeight;
     });
 
-    // 🌟 캡처 사진에서 보여주신 그 작은 반짝이 별들을 화면 전체에 확연히 많고 골고루 배치 (총 468개)
-    const cols = 26;
-    const rows = 18; // 26 * 18 = 468개 (작은 별들을 약 400개로 대폭 풍성하게 증가)
+    // 🌟 제일 작은 별 200개 추가 증량 (총 672개) 및 별들의 서서히 움직이는 이동 속도 +10% 가속
+    const cols = 32;
+    const rows = 21; // 32 * 21 = 672개 (작은 별을 약 600개로 200개 추가 증가하여 밤하늘 가득 총총히 배치)
     const stars = [];
     for (let r = 0; r < rows; r++) {
       for (let c = 0; c < cols; c++) {
-        const isSmall = Math.random() < 0.85; // 85%는 사용자가 지정한 바로 그 작은 반짝이 별
+        const isSmall = Math.random() < 0.89; // 약 600개는 제일 자그마한 반짝이 별
         stars.push({
           x: ((c + Math.random()) / cols) * width,
           y: ((r + Math.random()) / rows) * height,
@@ -1109,8 +1109,9 @@ class BadukGameApp {
           baseAlpha: isSmall ? (0.42 + Math.random() * 0.58) : (0.45 + Math.random() * 0.55),
           twinkleSpeed: isSmall ? (0.02 + Math.random() * 0.045) : (0.016 + Math.random() * 0.035),
           twinklePhase: Math.random() * Math.PI * 2,
-          vx: (Math.random() - 0.5) * 0.09 - 0.05,
-          vy: (Math.random() - 0.5) * 0.07 - 0.03,
+          // 별들의 이동 속도 10% 빠르게 적용 (* 1.1)
+          vx: ((Math.random() - 0.5) * 0.09 - 0.05) * 1.1,
+          vy: ((Math.random() - 0.5) * 0.07 - 0.03) * 1.1,
           color: Math.random() < 0.25 ? '#bae6fd' : (Math.random() < 0.45 ? '#fef08a' : '#ffffff')
         });
       }
