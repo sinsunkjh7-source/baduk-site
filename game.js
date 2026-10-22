@@ -1287,87 +1287,78 @@ class BadukGameApp {
       height = canvas.height = window.innerHeight;
     });
 
-    // 자연스럽고 부드러운 뭉게구름을 생성하는 소프트 퍼프 오프스크린 캔버스 팩토리
-    const createSoftPuffCloud = (puffs, bboxW, bboxH) => {
-      const oc = document.createElement('canvas');
-      oc.width = bboxW;
-      oc.height = bboxH;
-      const octx = oc.getContext('2d');
-
-      for (const [px, py, pr, popac] of puffs) {
-        const grad = octx.createRadialGradient(px, py, 0, px, py, pr);
-        // 부드럽게 흩어지는 자연스러운 스무스스텝 알파 감쇄
-        grad.addColorStop(0.00, 'rgba(255, 255, 255, ' + (popac * 0.96) + ')');
-        grad.addColorStop(0.35, 'rgba(255, 255, 255, ' + (popac * 0.85) + ')');
-        grad.addColorStop(0.65, 'rgba(255, 255, 255, ' + (popac * 0.50) + ')');
-        grad.addColorStop(0.88, 'rgba(255, 255, 255, ' + (popac * 0.16) + ')');
-        grad.addColorStop(1.00, 'rgba(255, 255, 255, 0)');
-
-        octx.fillStyle = grad;
-        octx.beginPath();
-        octx.arc(px, py, pr, 0, Math.PI * 2);
-        octx.fill();
-      }
-      return { canvas: oc, width: bboxW, height: bboxH };
+    // 1. 대칭형 4단 뭉게구름 벡터 패스
+    const drawSymmetricPath = (ox, oy) => {
+      ctx.beginPath();
+      const w = 190, h = 48, r = 24;
+      if (ctx.roundRect) ctx.roundRect(-w/2 + ox, -h + oy, w, h, [r, r, r, r]);
+      else ctx.rect(-w/2 + ox, -h + oy, w, h);
+      ctx.arc(-42 + ox, -40 + oy, 38, 0, Math.PI * 2);
+      ctx.arc(15 + ox, -55 + oy, 48, 0, Math.PI * 2);
+      ctx.arc(68 + ox, -36 + oy, 32, 0, Math.PI * 2);
+      ctx.arc(-82 + ox, -28 + oy, 25, 0, Math.PI * 2);
     };
 
-    // 크기와 형태가 다양한 5종의 자연스러운 가을 뭉게구름 프로토타입
-    const cloudPrototypes = [
-      // 0. 웅장하고 풍성한 대형 뭉게구름 (Grand Majestic Cumulus)
-      createSoftPuffCloud([
-        [220, 240, 110, 0.90], [320, 250, 130, 0.95], [440, 240, 120, 0.90], [540, 230, 100, 0.85],
-        [280, 170, 120, 0.95], [380, 140, 135, 0.98], [480, 160, 115, 0.95],
-        [340, 110, 95, 0.85], [420, 100, 90, 0.80],
-        [150, 240, 80, 0.60], [600, 230, 75, 0.55], [200, 190, 75, 0.65], [550, 180, 70, 0.60]
-      ], 700, 380),
+    // 2. 비대칭형 5단 몽실이 구름 벡터 패스
+    const drawAsymmetricPath = (ox, oy) => {
+      ctx.beginPath();
+      const w = 240, h = 46, r = 23;
+      if (ctx.roundRect) ctx.roundRect(-w/2 + ox, -h + oy, w, h, [r, r, r, r]);
+      else ctx.rect(-w/2 + ox, -h + oy, w, h);
+      ctx.arc(-65 + ox, -52 + oy, 46, 0, Math.PI * 2);
+      ctx.arc(-5 + ox, -45 + oy, 40, 0, Math.PI * 2);
+      ctx.arc(52 + ox, -35 + oy, 34, 0, Math.PI * 2);
+      ctx.arc(98 + ox, -26 + oy, 24, 0, Math.PI * 2);
+      ctx.arc(-105 + ox, -28 + oy, 25, 0, Math.PI * 2);
+    };
 
-      // 1. 바람결 따라 길쭉하고 평화로운 가을 구름 (Gentle Elongated Cloud)
-      createSoftPuffCloud([
-        [140, 160, 85, 0.75], [230, 150, 95, 0.85], [330, 140, 105, 0.90],
-        [430, 145, 100, 0.85], [520, 160, 80, 0.70],
-        [280, 110, 80, 0.80], [380, 105, 85, 0.80],
-        [80, 170, 60, 0.45], [580, 170, 55, 0.40]
-      ], 650, 260),
+    // 3. 아담한 3단 솜사탕 구름 벡터 패스
+    const drawCompactPath = (ox, oy) => {
+      ctx.beginPath();
+      const w = 150, h = 42, r = 21;
+      if (ctx.roundRect) ctx.roundRect(-w/2 + ox, -h + oy, w, h, [r, r, r, r]);
+      else ctx.rect(-w/2 + ox, -h + oy, w, h);
+      ctx.arc(-28 + ox, -38 + oy, 34, 0, Math.PI * 2);
+      ctx.arc(24 + ox, -46 + oy, 40, 0, Math.PI * 2);
+      ctx.arc(62 + ox, -28 + oy, 24, 0, Math.PI * 2);
+    };
 
-      // 2. 동글동글 포근한 중형 솜뭉치 구름 (Classic Fluffy Cumulus)
-      createSoftPuffCloud([
-        [150, 160, 85, 0.88], [230, 150, 100, 0.95], [310, 160, 85, 0.88],
-        [190, 110, 85, 0.90], [260, 105, 80, 0.88],
-        [95, 170, 60, 0.55], [360, 170, 60, 0.50]
-      ], 450, 260),
+    const drawVectorCloud = (type, x, y, scale, alpha, shadowOffset = 7) => {
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.scale(scale, scale);
+      ctx.globalAlpha = alpha;
 
-      // 3. 상공에 아련하게 떠 있는 작고 몽글한 새털구름 (Small Airy Cloudlet)
-      createSoftPuffCloud([
-        [100, 110, 55, 0.80], [160, 100, 65, 0.88], [220, 110, 50, 0.75],
-        [140, 75, 50, 0.75],
-        [60, 115, 38, 0.45], [255, 115, 35, 0.40]
-      ], 300, 180),
+      const pathFn = type === 0 ? drawSymmetricPath : (type === 1 ? drawAsymmetricPath : drawCompactPath);
 
-      // 4. 비대칭으로 자연스럽게 피어오른 뭉게구름 (Asymmetric Billow)
-      createSoftPuffCloud([
-        [120, 180, 75, 0.70], [200, 170, 95, 0.85], [300, 160, 110, 0.92], [400, 175, 85, 0.75],
-        [240, 120, 90, 0.88], [330, 110, 95, 0.90],
-        [380, 85, 70, 0.75],
-        [70, 190, 50, 0.40], [460, 185, 55, 0.45]
-      ], 520, 280)
-    ];
+      // 하단 부드러운 입체 스카이블루 그림자
+      ctx.fillStyle = 'rgba(186, 230, 253, 0.55)';
+      pathFn(0, shadowOffset);
+      ctx.fill();
 
-    // 크기와 형태가 다양하고 고요하게 서서히 흘러가는 9개의 자연스러운 구름 인스턴스
+      // 구름 본체 (새하얀 깔끔한 2D 모션그래픽 뭉게구름)
+      ctx.fillStyle = '#ffffff';
+      pathFn(0, 0);
+      ctx.fill();
+
+      ctx.restore();
+    };
+
+    // 속도를 40% 이상 대폭 감속하여 고요하고 평화롭게 흐르는 8개의 뭉게구름 인스턴스
     const clouds = [
-      // 원경/상공: 작고 아련하게 아주 천천히 흐르는 구름들 (속도 0.07 ~ 0.10)
-      { type: 3, x: width * 0.05, y: height * 0.06, scale: 0.55, speed: 0.07, alpha: 0.65 },
-      { type: 1, x: width * 0.45, y: height * 0.04, scale: 0.60, speed: 0.09, alpha: 0.68 },
-      { type: 3, x: width * 0.82, y: height * 0.09, scale: 0.50, speed: 0.08, alpha: 0.60 },
+      // 원경 구름 (상공, 아주 느리고 은은함: 속도 0.08 ~ 0.12)
+      { type: 2, x: width * 0.08, y: height * 0.08, scale: 0.65, speed: 0.09, alpha: 0.62 },
+      { type: 0, x: width * 0.52, y: height * 0.12, scale: 0.75, speed: 0.11, alpha: 0.65 },
+      { type: 1, x: width * 0.88, y: height * 0.06, scale: 0.60, speed: 0.08, alpha: 0.58 },
 
-      // 중경: 전형적인 몽글몽글한 중간 크기 구름들 (속도 0.13 ~ 0.18)
-      { type: 2, x: width * 0.15, y: height * 0.20, scale: 0.85, speed: 0.14, alpha: 0.86 },
-      { type: 4, x: width * 0.65, y: height * 0.24, scale: 0.95, speed: 0.17, alpha: 0.88 },
-      { type: 2, x: width * 0.98, y: height * 0.16, scale: 0.80, speed: 0.13, alpha: 0.82 },
+      // 중경 구름 (부드럽고 몽실몽실한 전형적인 뭉게구름: 속도 0.16 ~ 0.22)
+      { type: 0, x: width * 0.22, y: height * 0.22, scale: 1.05, speed: 0.17, alpha: 0.84 },
+      { type: 1, x: width * 0.68, y: height * 0.28, scale: 1.15, speed: 0.20, alpha: 0.88 },
+      { type: 2, x: width * 1.05, y: height * 0.18, scale: 0.95, speed: 0.18, alpha: 0.82 },
 
-      // 근경: 풍성하고 큼직한 웅장한 가을 뭉게구름들 (속도 0.20 ~ 0.26)
-      { type: 0, x: -width * 0.05, y: height * 0.38, scale: 1.15, speed: 0.22, alpha: 0.95 },
-      { type: 1, x: width * 0.38, y: height * 0.32, scale: 1.05, speed: 0.20, alpha: 0.90 },
-      { type: 4, x: width * 0.78, y: height * 0.44, scale: 1.25, speed: 0.25, alpha: 0.94 }
+      // 근경 구름 (포근하고 큼직한 솜사탕 뭉게구름: 속도 0.26 ~ 0.34)
+      { type: 1, x: width * 0.02, y: height * 0.42, scale: 1.55, speed: 0.28, alpha: 0.96 },
+      { type: 0, x: width * 0.58, y: height * 0.50, scale: 1.65, speed: 0.32, alpha: 0.94 }
     ];
 
     // 가을 하늘을 V자로 여유롭게 가로지르는 철새/기러기 5마리 (속도: 0.18)
@@ -1384,14 +1375,14 @@ class BadukGameApp {
       if (this.currentBgTheme === 'theme7' || this.currentBgTheme === 'autumn' || this.currentBgTheme === 'clouds') {
         // 1. 청명하고 깊은 한국의 가을 하늘 그라데이션
         const skyGrad = ctx.createLinearGradient(0, 0, 0, height);
-        skyGrad.addColorStop(0, '#0284c7');    // 상단: 맑고 짙은 코발트 블루
-        skyGrad.addColorStop(0.36, '#38bdf8'); // 중상단: 청량하게 시원한 가을하늘
-        skyGrad.addColorStop(0.74, '#7dd3fc'); // 하단: 포근한 스카이 블루
+        skyGrad.addColorStop(0, '#0284c7');    // 상공: 맑고 짙은 코발트 쪽빛
+        skyGrad.addColorStop(0.36, '#38bdf8'); // 중공: 청명하고 시원한 가을 하늘
+        skyGrad.addColorStop(0.74, '#7dd3fc'); // 하공: 맑은 스카이 블루
         skyGrad.addColorStop(1, '#e0f2fe');    // 지평선 부근: 은은한 에어리 화이트
         ctx.fillStyle = skyGrad;
         ctx.fillRect(0, 0, width, height);
 
-        // 2. 가을 햇살의 은은한 코로나
+        // 2. 우측 상단 가을 햇살 코로나
         const sunX = width * 0.88;
         const sunY = height * 0.12;
         const sunCorona = ctx.createRadialGradient(sunX, sunY, 10, sunX, sunY, width * 0.52);
@@ -1402,23 +1393,18 @@ class BadukGameApp {
         ctx.fillStyle = sunCorona;
         ctx.fillRect(0, 0, width, height);
 
-        // 3. 다양하고 부드러운 자연스러운 뭉게구름 드리프트 (천천히 서서히 이동)
+        // 3. 깔끔하고 사랑스러운 2D 벡터 뭉게구름 렌더링 (40% 감속된 느긋한 흐름)
         for (const c of clouds) {
           c.x += c.speed;
-          const proto = cloudPrototypes[c.type];
-          const renderW = proto.width * c.scale;
-          const renderH = proto.height * c.scale;
-          if (c.x > width + renderW * 0.3) {
-            c.x = -renderW;
-            c.y = height * (0.04 + Math.random() * 0.46);
+          const boundW = 260 * c.scale;
+          if (c.x > width + boundW * 0.6) {
+            c.x = -boundW * 0.8;
+            c.y = height * (0.05 + Math.random() * 0.48);
           }
-          ctx.save();
-          ctx.globalAlpha = c.alpha;
-          ctx.drawImage(proto.canvas, c.x, c.y, renderW, renderH);
-          ctx.restore();
+          drawVectorCloud(c.type, c.x, c.y, c.scale, c.alpha);
         }
 
-        // 4. 가을 하늘을 유유히 날아가는 기러기 V자 편대 (속도 0.18)
+        // 4. 가을 하늘을 여유롭게 날아가는 기러기 V자 편대 (속도 0.18)
         birdsBaseX += 0.18;
         birdsBaseY += 0.02;
         if (birdsBaseX > width + 150) {
