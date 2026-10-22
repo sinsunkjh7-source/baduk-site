@@ -1095,20 +1095,23 @@ class BadukGameApp {
       height = canvas.height = window.innerHeight;
     });
 
-    const numStars = 240;
+    const cols = 18;
+    const rows = 16; // 18 * 16 = 288개 (기존 240개 대비 정확히 +20% 증가 및 화면 전체 골고루 배치)
     const stars = [];
-    for (let i = 0; i < numStars; i++) {
-      stars.push({
-        x: Math.random() * width,
-        y: Math.random() * height,
-        radius: Math.random() < 0.75 ? (0.6 + Math.random() * 0.9) : (1.6 + Math.random() * 1.3),
-        baseAlpha: 0.35 + Math.random() * 0.65,
-        twinkleSpeed: 0.02 + Math.random() * 0.04,
-        twinklePhase: Math.random() * Math.PI * 2,
-        vx: (Math.random() - 0.5) * 0.09 - 0.05,
-        vy: (Math.random() - 0.5) * 0.07 - 0.03,
-        color: Math.random() < 0.25 ? '#bae6fd' : (Math.random() < 0.45 ? '#fef08a' : '#ffffff')
-      });
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++) {
+        stars.push({
+          x: ((c + Math.random()) / cols) * width,
+          y: ((r + Math.random()) / rows) * height,
+          radius: Math.random() < 0.75 ? (0.6 + Math.random() * 0.9) : (1.6 + Math.random() * 1.3),
+          baseAlpha: 0.35 + Math.random() * 0.65,
+          twinkleSpeed: 0.02 + Math.random() * 0.04,
+          twinklePhase: Math.random() * Math.PI * 2,
+          vx: (Math.random() - 0.5) * 0.09 - 0.05,
+          vy: (Math.random() - 0.5) * 0.07 - 0.03,
+          color: Math.random() < 0.25 ? '#bae6fd' : (Math.random() < 0.45 ? '#fef08a' : '#ffffff')
+        });
+      }
     }
 
     const meteors = [];
