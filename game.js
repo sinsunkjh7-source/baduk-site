@@ -1095,23 +1095,25 @@ class BadukGameApp {
       height = canvas.height = window.innerHeight;
     });
 
-    // 4각 십자 별빛 스파클과 배경 미세 별무리
-    const numStars = 230;
+    // 은은하고 차분한 별무리 (소수의 별만 시차를 두고 부드럽게 반짝임)
+    const numStars = 190;
     const stars = [];
     for (let i = 0; i < numStars; i++) {
-      const isSparkle = Math.random() < 0.38; // 약 38%는 선명한 4각 십자 별빛
+      // 전체 중 약 12%(약 22개)만 스파클 별로 지정 (산만함 방지)
+      const isSparkle = Math.random() < 0.12;
       stars.push({
         x: Math.random() * width,
         y: Math.random() * height,
         isSparkle: isSparkle,
-        size: isSparkle ? (1.5 + Math.random() * 1.5) : (0.6 + Math.random() * 0.9),
-        flareLength: 7 + Math.random() * 14,
-        baseAlpha: 0.4 + Math.random() * 0.6,
-        twinkleSpeed: 0.022 + Math.random() * 0.045,
+        size: isSparkle ? (1.3 + Math.random() * 1.2) : (0.5 + Math.random() * 0.8),
+        flareLength: 8 + Math.random() * 9,
+        baseAlpha: isSparkle ? (0.5 + Math.random() * 0.5) : (0.2 + Math.random() * 0.5),
+        // 반짝임 주기를 훨씬 느리고 여유롭게 조절 (0.008 ~ 0.022)
+        twinkleSpeed: isSparkle ? (0.008 + Math.random() * 0.015) : (0.005 + Math.random() * 0.012),
         twinklePhase: Math.random() * Math.PI * 2,
-        vx: (Math.random() - 0.5) * 0.08 - 0.04,
-        vy: (Math.random() - 0.5) * 0.06 - 0.03,
-        color: Math.random() < 0.3 ? '#bae6fd' : (Math.random() < 0.5 ? '#fef08a' : '#ffffff')
+        vx: (Math.random() - 0.5) * 0.04 - 0.02,
+        vy: (Math.random() - 0.5) * 0.03 - 0.015,
+        color: Math.random() < 0.25 ? '#bae6fd' : (Math.random() < 0.45 ? '#fef08a' : '#ffffff')
       });
     }
 
@@ -1205,15 +1207,31 @@ class BadukGameApp {
           if (s.y > height) s.y = 0;
 
           s.twinklePhase += s.twinkleSpeed;
-          // 극적인 반짝임 (지수 곡선으로 깜빡깜빡 선명하게 빛남)
           const sinVal = Math.sin(s.twinklePhase);
-          const twinkleFactor = Math.pow(Math.max(0, (sinVal + 1) / 2), 2.2);
-          const currentAlpha = Math.max(0.12, Math.min(1, s.baseAlpha * (0.25 + 0.75 * twinkleFactor)));
 
           if (s.isSparkle) {
-            const dynamicFlare = s.flareLength * (0.55 + 0.65 * twinkleFactor);
-            drawSparkle(s.x, s.y, dynamicFlare, s.size, currentAlpha, s.color);
+            // 지수 4.5: 대부분은 작고 조용하다가 절정 시점에만 우아하게 ✦ 십자 광선이 피어남
+            const twinkleFactor = Math.pow(Math.max(0, (sinVal + 1) / 2), 4.5);
+            const currentAlpha = Math.max(0.15, Math.min(1, s.baseAlpha * (0.2 + 0.8 * twinkleFactor)));
+
+            if (twinkleFactor > 0.2) {
+              const bloom = (twinkleFactor - 0.2) / 0.8;
+              const dynamicFlare = s.flareLength * (0.3 + 0.7 * bloom);
+              drawSparkle(s.x, s.y, dynamicFlare, s.size, currentAlpha, s.color);
+            } else {
+              // 피크 이전에는 잔잔하고 작은 원형 점으로 유지
+              ctx.save();
+              ctx.globalAlpha = currentAlpha;
+              ctx.fillStyle = s.color;
+              ctx.beginPath();
+              ctx.arc(s.x, s.y, s.size * 0.8, 0, Math.PI * 2);
+              ctx.fill();
+              ctx.restore();
+            }
           } else {
+            // 일반 배경 별들은 극히 부드럽고 차분하게 호흡
+            const twinkleFactor = Math.pow(Math.max(0, (sinVal + 1) / 2), 1.5);
+            const currentAlpha = Math.max(0.1, Math.min(0.85, s.baseAlpha * (0.4 + 0.6 * twinkleFactor)));
             ctx.save();
             ctx.globalAlpha = currentAlpha;
             ctx.fillStyle = s.color;
