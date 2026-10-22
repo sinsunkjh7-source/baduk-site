@@ -1722,18 +1722,32 @@ class BadukGameApp {
           }
         });
 
+        // 🌟 돌을 실제로 따낸 경우 (단수/사활/포획 문제 등에서 수순표에 없는 대칭점이나 유효 착수로 돌을 잡았을 때 정답 인정!)
+        if (matchingBranches.length === 0 && res.captures.length > 0) {
+          this.triggerMissionSuccess();
+          return;
+        }
+
         if (matchingBranches.length === 0) {
           // ❌ 오답: 수순에 맞지 않는 곳에 둔 경우
           window.badukAudio.playDdang();
           this.showFeedbackBadge('wrong');
 
           const speech = document.getElementById('charSpeechText');
-          if (speech) {
-            if (currentMission.isChoiceProblem) {
-              speech.textContent = "보기에 표시된 위치(A, B 등)에 돌을 놓거나 하단 버튼을 선택해 보세요! 🤔";
-            } else {
-              speech.textContent = "아쉬워요! 올바른 수순이 아닙니다. 다시 한번 생각해 보세요! 🤔";
+          if (currentMission.isChoiceProblem) {
+            // 객관식/OX 문제는 바둑판을 터치해도 오답음(땡) 대신 하단 버튼 선택을 부드럽게 유도
+            if (speech) speech.textContent = "하단의 보기 버튼(O/X 또는 선택지)을 눌러 정답을 맞춰보세요! 😊";
+            const choiceBar = document.getElementById("choiceOptionsBar");
+            if (choiceBar) {
+              choiceBar.style.transform = "scale(1.08)";
+              setTimeout(() => { choiceBar.style.transform = ""; }, 250);
             }
+            setTimeout(() => { this.resetCurrentMission(); }, 800);
+            return;
+          }
+
+          if (speech) {
+            speech.textContent = "아쉬워요! 올바른 수순이 아닙니다. 다시 한번 생각해 보세요! 🤔";
           }
 
           // 틀린 착수는 0.9초 후 문제 원래 상태로 복구하여 학생이 곧바로 다시 도전할 수 있게 처리
@@ -3086,9 +3100,10 @@ class BadukGameApp {
     msgEl.textContent = message;
     if (iconEl) iconEl.textContent = icon;
 
-    // 안내 효과음
+    // 안내 효과음 (금수/금지일 때만 부드러운 경고 비프음, 일반 안내는 소프트 알림음)
     if (window.badukAudio) {
-      window.badukAudio.playDdang();
+      if (icon === "🚫") window.badukAudio.playBeep(true);
+      else window.badukAudio.playBeep(false);
     }
 
     // 캐릭터 말풍선 연동

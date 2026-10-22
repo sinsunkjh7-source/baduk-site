@@ -168,60 +168,103 @@ class BadukAudio {
     osc.stop(t + 0.14);
   }
 
-  // 🌟 [딩동댕] 초고음질 맑고 경쾌한 실로폰/글로켄슈필 차임 (맑고 청아한 크리스탈 사운드) 🌟
+  // 🌟 [딩동댕] 전국노래자랑/퀴즈쇼 정통 맑고 화사한 실로폰 '딩-동-댕-동' (도-미-솔-도) 🌟
   playDingDongDang() {
     if (!this.enabled || this.volume <= 0) return;
     this.init();
-    if (!this.ctx) return;
 
+    // 1. 사전 렌더링된 고음질 WAV 오디오 재생 시도 (최우선)
+    try {
+      if (!this._dingDongAudio) {
+        this._dingDongAudio = new Audio('dingdongdang.wav');
+      }
+      this._dingDongAudio.volume = Math.min(1.0, this.volume);
+      this._dingDongAudio.currentTime = 0;
+      const playPromise = this._dingDongAudio.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          // 브라우저 정책 등으로 파일 재생 차단 시 Web Audio API로 즉시 폴백
+          this._playSynthesizedDingDongDang();
+        });
+        return;
+      }
+    } catch (e) {
+      // 폴백으로 이동
+    }
+
+    this._playSynthesizedDingDongDang();
+  }
+
+  // 🌟 Web Audio API 기반 정통 실로폰/글로켄슈필 '도-미-솔-도' 합성 엔진 🌟
+  _playSynthesizedDingDongDang() {
+    if (!this.ctx) return;
     const t = this.ctx.currentTime;
-    // 경쾌하고 높은 옥타브 (미6: 1318.5Hz, 솔6: 1568Hz, 도7: 2093Hz)
+
+    // 한국인이 누구나 명확히 '딩-동-댕-동'으로 인식하는 정통 4단 계이름 (도5 - 미5 - 솔5 - 도6)
     const notes = [
-      { freq: 1318.51, time: 0, dur: 0.38, gain: 0.70 },
-      { freq: 1567.98, time: 0.13, dur: 0.38, gain: 0.75 },
-      { freq: 2093.00, time: 0.26, dur: 0.85, gain: 0.90 }
+      { freq: 523.25, time: 0.00, dur: 0.65, gain: 0.60 }, // 딩 (도5)
+      { freq: 659.25, time: 0.22, dur: 0.65, gain: 0.65 }, // 동 (미5)
+      { freq: 783.99, time: 0.44, dur: 0.75, gain: 0.70 }, // 댕 (솔5)
+      { freq: 1046.50, time: 0.66, dur: 1.20, gain: 0.80 } // 동 (도6 - 길고 청아한 여운)
     ];
 
     notes.forEach(n => {
       const start = t + n.time;
 
-      // 1. 실로폰 말렛의 경쾌하고 청량한 타격 클릭 (Crisp mallet strike)
-      const oscAttack = this.ctx.createOscillator();
-      const gainAttack = this.ctx.createGain();
-      oscAttack.type = 'triangle';
-      oscAttack.frequency.setValueAtTime(3600, start);
-      oscAttack.frequency.exponentialRampToValueAtTime(1000, start + 0.012);
-      gainAttack.gain.setValueAtTime(0.40, start);
-      gainAttack.gain.exponentialRampToValueAtTime(0.001, start + 0.016);
-      oscAttack.connect(gainAttack);
-      gainAttack.connect(this.masterGain);
-      oscAttack.start(start);
-      oscAttack.stop(start + 0.02);
+      // 1. 부드러운 고무 말렛 타격음 (금속 쇳소리 완전 제거)
+      const oscMallet = this.ctx.createOscillator();
+      const gainMallet = this.ctx.createGain();
+      oscMallet.type = 'sine';
+      oscMallet.frequency.setValueAtTime(1400, start);
+      oscMallet.frequency.exponentialRampToValueAtTime(300, start + 0.015);
+      gainMallet.gain.setValueAtTime(0.15, start);
+      gainMallet.gain.exponentialRampToValueAtTime(0.001, start + 0.016);
+      oscMallet.connect(gainMallet);
+      gainMallet.connect(this.masterGain);
+      oscMallet.start(start);
+      oscMallet.stop(start + 0.02);
 
-      // 2. 맑고 투명한 실로폰 바 기본 음 (Pure crystal sine)
+      // 2. 따뜻하고 영롱한 실로폰 바 기본 사인파 (Pure Warm Glockenspiel Tone)
       const oscMain = this.ctx.createOscillator();
       const gainMain = this.ctx.createGain();
       oscMain.type = 'sine';
       oscMain.frequency.setValueAtTime(n.freq, start);
-      gainMain.gain.setValueAtTime(n.gain, start);
+      gainMain.gain.setValueAtTime(n.gain * 0.7, start);
       gainMain.gain.exponentialRampToValueAtTime(0.001, start + n.dur);
       oscMain.connect(gainMain);
       gainMain.connect(this.masterGain);
       oscMain.start(start);
       oscMain.stop(start + n.dur + 0.05);
 
-      // 3. 은방울처럼 반짝이는 청아한 배음 (Shimmering chime overtone)
-      const oscHarmonic = this.ctx.createOscillator();
-      const gainHarmonic = this.ctx.createGain();
-      oscHarmonic.type = 'sine';
-      oscHarmonic.frequency.setValueAtTime(n.freq * 2.76, start);
-      gainHarmonic.gain.setValueAtTime(n.gain * 0.28, start);
-      gainHarmonic.gain.exponentialRampToValueAtTime(0.001, start + (n.dur * 0.45));
-      oscHarmonic.connect(gainHarmonic);
-      gainHarmonic.connect(this.masterGain);
-      oscHarmonic.start(start);
-      oscHarmonic.stop(start + n.dur);
+      // 3. 맑고 청아한 2차 옥타브 배음 (은쟁반에 옥구슬 굴러가는 소리)
+      const oscHarm1 = this.ctx.createOscillator();
+      const gainHarm1 = this.ctx.createGain();
+      oscHarm1.type = 'sine';
+      oscHarm1.frequency.setValueAtTime(n.freq * 2, start);
+      gainHarm1.gain.setValueAtTime(n.gain * 0.22, start);
+      gainHarm1.gain.exponentialRampToValueAtTime(0.001, start + (n.dur * 0.5));
+      oscHarm1.connect(gainHarm1);
+      gainHarm1.connect(this.masterGain);
+      oscHarm1.start(start);
+      oscHarm1.stop(start + n.dur);
+
+      // 4. 은은하고 반짝이는 3차 미세 배음
+      const oscHarm2 = this.ctx.createOscillator();
+      const gainHarm2 = this.ctx.createGain();
+      oscHarm2.type = 'sine';
+      oscHarm2.frequency.setValueAtTime(n.freq * 3, start);
+      gainHarm2.gain.setValueAtTime(n.gain * 0.08, start);
+      gainHarm2.gain.exponentialRampToValueAtTime(0.001, start + (n.dur * 0.3));
+      oscHarm2.connect(gainHarm2);
+      gainHarm2.connect(this.masterGain);
+      oscHarm2.start(start);
+      oscHarm2.stop(start + n.dur);
     });
+  }
+
+  // 호환용 별칭
+  playDingDong() {
+    this.playDingDongDang();
   }
 
   // 🌟 [땡!] 경쾌하고 명확한 퀴즈 땡 사운드 (둔탁함 완전 제거, 경쾌한 실로폰 블록음) 🌟
