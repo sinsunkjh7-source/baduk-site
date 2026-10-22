@@ -1109,9 +1109,9 @@ class BadukGameApp {
           baseAlpha: isSmall ? (0.42 + Math.random() * 0.58) : (0.45 + Math.random() * 0.55),
           twinkleSpeed: isSmall ? (0.02 + Math.random() * 0.045) : (0.016 + Math.random() * 0.035),
           twinklePhase: Math.random() * Math.PI * 2,
-          // 별들의 이동 속도 10% 추가 가속 (1.1 * 1.1 = 1.21)
-          vx: ((Math.random() - 0.5) * 0.09 - 0.05) * 1.21,
-          vy: ((Math.random() - 0.5) * 0.07 - 0.03) * 1.21,
+          // 별들의 이동 속도 10% 추가 가속 (1.21 * 1.1 = 1.331)
+          vx: ((Math.random() - 0.5) * 0.09 - 0.05) * 1.331,
+          vy: ((Math.random() - 0.5) * 0.07 - 0.03) * 1.331,
           color: Math.random() < 0.25 ? '#bae6fd' : (Math.random() < 0.45 ? '#fef08a' : '#ffffff')
         });
       }
