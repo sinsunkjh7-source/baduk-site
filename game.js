@@ -1116,32 +1116,35 @@ class BadukGameApp {
 
     const meteors = [];
 
-    const spawnMeteor = (isLeftZone = false) => {
-      let startX, startY, angle, length, speed, maxLife, thickness;
-      if (isLeftZone) {
-        // 바둑판에 가려지지 않는 좌측 여백(화면 폭의 2%~15% 구간) 안에서 온전히 보이도록 궤적 설계
-        const goLeftwards = Math.random() < 0.45;
-        startX = goLeftwards
-          ? (width * 0.06 + Math.random() * (width * 0.11))
-          : (width * 0.01 + Math.random() * (width * 0.10));
-        startY = Math.random() * (height * 0.55);
-        // 좌측 여백 안에서 길게 떨어지도록 급경사 대각선(약 60도~120도) 불규칙 각도 적용
-        angle = goLeftwards
-          ? (Math.PI * 0.56 + Math.random() * 0.16) // 좌하향 궤적
-          : (Math.PI * 0.30 + Math.random() * 0.16); // 우하향 궤적
-        length = 95 + Math.random() * 115;
-        speed = 9 + Math.random() * 8;
-        maxLife = Math.floor(42 + Math.random() * 25);
-        thickness = 1.8 + Math.random() * 1.1;
+    // 좌우 균형을 위한 토글 (한쪽으로만 쏠리지 않고 화면 전체에 좌우 골고루 출현)
+    let nextSideLeft = Math.random() < 0.5;
+
+    const spawnMeteor = () => {
+      // 절대 동시에 2개 이상 떨어지지 않도록 보장 (화면에 유성이 있으면 건너뜀)
+      if (meteors.length > 0) return;
+
+      // 좌측 반쪽과 우측 반쪽에서 골고루 번갈아(약간의 불규칙성 포함) 출현
+      const useLeftHalf = Math.random() < 0.75 ? nextSideLeft : !nextSideLeft;
+      nextSideLeft = !useLeftHalf;
+
+      let startX, angle;
+      if (useLeftHalf) {
+        // 화면 좌측 영역 (화면 밖으로 바로 사라지지 않도록 시작점에 맞춰 낙하 각도 조절)
+        startX = width * (0.04 + Math.random() * 0.35);
+        angle = (startX < width * 0.18)
+          ? (Math.PI * 0.28 + (Math.random() - 0.5) * 0.16)  // 우하향
+          : (Math.PI * 0.68 + (Math.random() - 0.5) * 0.16); // 좌하향 (좌측 여백 쪽으로 흐름)
       } else {
-        startX = Math.random() * (width * 0.75) + width * 0.15;
-        startY = Math.random() * (height * 0.35);
-        angle = (Math.PI / 4) + (Math.random() - 0.5) * 0.32;
-        length = 130 + Math.random() * 100;
-        speed = 13 + Math.random() * 6;
-        maxLife = Math.floor(45 + Math.random() * 15);
-        thickness = 2.0 + Math.random() * 0.6;
+        // 화면 우측 영역
+        startX = width * (0.61 + Math.random() * 0.35);
+        angle = (startX > width * 0.82)
+          ? (Math.PI * 0.68 + (Math.random() - 0.5) * 0.16)  // 좌하향
+          : (Math.PI * 0.28 + (Math.random() - 0.5) * 0.16); // 우하향 (우측 여백 쪽으로 흐름)
       }
+
+      const startY = Math.random() * (height * 0.32);
+      const length = 140 + Math.random() * 80;
+      const speed = 13 + Math.random() * 5;
 
       meteors.push({
         x: startX,
@@ -1150,50 +1153,25 @@ class BadukGameApp {
         dy: Math.sin(angle) * speed,
         length: length,
         life: 0,
-        maxLife: maxLife,
-        thickness: thickness
+        maxLife: 50,
+        thickness: 2.1
       });
     };
 
-    // 시작 직후 좌측 유성 즉시 출현
-    setTimeout(() => spawnMeteor(true), 700);
-    setTimeout(() => spawnMeteor(false), 1800);
+    // 첫 유성 2.5초 후 1개 출현
+    setTimeout(() => spawnMeteor(), 2500);
 
-    // 기본 배경 유성 스케줄러
+    // 화면 전체 단일 스케줄러: 한 번에 오직 1개씩만, 5~9초의 여유로운 간격으로 좌우 골고루 출현
     const scheduleMeteor = () => {
-      const delay = 3200 + Math.random() * 3500;
+      const delay = 5000 + Math.random() * 4000;
       setTimeout(() => {
         if (this.currentBgTheme === 'theme6' || this.currentBgTheme === 'starry') {
-          spawnMeteor(false);
+          spawnMeteor();
         }
         scheduleMeteor();
       }, delay);
     };
     scheduleMeteor();
-
-    // 좌측 여백 전용 불규칙 유성 스케줄러 (자주, 불규칙한 리듬으로 확실히 보이게)
-    const scheduleLeftMeteor = () => {
-      const r = Math.random();
-      // 35% 확률로 0.9~1.7초 짧은 간격, 45% 확률로 2.0~3.4초 중간 간격, 20% 확률로 3.8~5.2초 간격
-      const irregularDelay = r < 0.35
-        ? (900 + Math.random() * 800)
-        : (r < 0.80 ? (2000 + Math.random() * 1400) : (3800 + Math.random() * 1400));
-      setTimeout(() => {
-        if (this.currentBgTheme === 'theme6' || this.currentBgTheme === 'starry') {
-          spawnMeteor(true);
-          // 가끔(22% 확률) 시차를 두고 좌측에 쌍둥이 유성이 불규칙하게 한 번 더 떨어짐
-          if (Math.random() < 0.22) {
-            setTimeout(() => {
-              if (this.currentBgTheme === 'theme6' || this.currentBgTheme === 'starry') {
-                spawnMeteor(true);
-              }
-            }, 350 + Math.random() * 500);
-          }
-        }
-        scheduleLeftMeteor();
-      }, irregularDelay);
-    };
-    scheduleLeftMeteor();
 
     const loop = () => {
       if (this.currentBgTheme === 'theme6' || this.currentBgTheme === 'starry') {
