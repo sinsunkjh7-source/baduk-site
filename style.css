@@ -32,7 +32,7 @@
   --shadow-lg: 0 14px 34px rgba(15, 60, 100, 0.16);
 
   /* 🌟 한 화면에 모든 메뉴와 바둑판이 100% 쏙 들어가도록 동적 계산된 최적 바둑판 크기 🌟 */
-  --board-size: min(calc(100vh - 114px), calc(100vw - 275px));
+  --board-size: min(calc(100vh - 114px), calc(100vw - 520px));
 }
 
 * {
@@ -187,7 +187,7 @@ body.bg-theme-theme5 {
 
 /* 🌟 상단 헤더: 전체를 아우르는 단일 긴 박스 (.app-header) 🌟 */
 .app-header {
-  width: calc(230px + 10px + var(--board-size));
+  width: calc(240px + 10px + var(--board-size) + 10px + 240px);
   max-width: 100%;
   box-sizing: border-box;
   display: flex;
@@ -3368,6 +3368,10 @@ body.bg-theme-theme5 {
   }
 
   /* 🌟 바둑판 영역 (모바일 최우선 배치) 🌟 */
+  .board-right-spacer {
+    display: none !important;
+  }
+
   .board-section {
     order: 1 !important;
     width: 100% !important;
@@ -4819,4 +4823,13 @@ body.site-locked .app-container {
 .board-feedback-overlay.pos-center .feedback-dynamic-card.single-large-card {
   width: min(260px, 45vmin) !important;
   height: min(260px, 45vmin) !important;
+}
+
+
+/* 🌟 바둑판 화면 정중앙 배치를 위한 우측 투명 밸런스 스페이서 (.board-right-spacer) 🌟 */
+.board-right-spacer {
+  width: 240px;
+  flex-shrink: 0;
+  pointer-events: none;
+  visibility: hidden;
 }
