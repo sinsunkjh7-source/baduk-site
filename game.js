@@ -1099,17 +1099,18 @@ class BadukGameApp {
     const numStars = 300;
     const stars = [];
     for (let i = 0; i < numStars; i++) {
-      // 약 15%(약 45개)는 항상 단아한 ✦ 4각 별빛 모양으로 빛나는 별
-      const isSparkle = Math.random() < 0.16;
+      // 약 20%(약 60개)는 ✦ 4각 다이아몬드 별빛으로 반짝이는 별
+      const isSparkle = Math.random() < 0.20;
       stars.push({
         x: Math.random() * width,
         y: Math.random() * height,
         isSparkle: isSparkle,
-        // 크기를 충분히 키워 선명하게 보이도록 설정
-        size: isSparkle ? (1.6 + Math.random() * 1.2) : (1.0 + Math.random() * 1.4),
-        flareLength: isSparkle ? (5 + Math.random() * 6) : 0, // 앙증맞고 단아한 ✦ 광선 (5~11px)
-        baseAlpha: 0.55 + Math.random() * 0.4, // 밝고 선명한 밝기 (0.55 ~ 0.95)
-        twinkleSpeed: 0.008 + Math.random() * 0.018,
+        // 선명하게 보일 수 있는 크기
+        size: isSparkle ? (1.5 + Math.random() * 1.2) : (0.9 + Math.random() * 1.3),
+        flareLength: isSparkle ? (6 + Math.random() * 6) : 0, // ✦ 광선 길이 (6~12px)
+        baseAlpha: 0.75 + Math.random() * 0.25, // 최대 밝기
+        // 자연스럽고 생생한 깜빡임 속도 (약 1.5 ~ 3.5초 주기)
+        twinkleSpeed: 0.022 + Math.random() * 0.045,
         twinklePhase: Math.random() * Math.PI * 2,
         vx: (Math.random() - 0.5) * 0.05 - 0.02,
         vy: (Math.random() - 0.5) * 0.04 - 0.015,
@@ -1197,7 +1198,7 @@ class BadukGameApp {
         ctx.fillStyle = bgGrad;
         ctx.fillRect(0, 0, width, height);
 
-        // 1. 별무리 렌더링
+        // 1. 별무리 렌더링 (각 별이 독립적으로 선명하게 깜빡임)
         for (const s of stars) {
           s.x += s.vx;
           s.y += s.vy;
@@ -1207,21 +1208,22 @@ class BadukGameApp {
           if (s.y > height) s.y = 0;
 
           s.twinklePhase += s.twinkleSpeed;
-          // 부드러운 밝기 호흡 (급작스러운 폭발/축포 없이 고요하고 우아하게 반짝임)
-          const sinVal = Math.sin(s.twinklePhase);
-          const currentAlpha = Math.max(0.35, Math.min(1.0, s.baseAlpha * (0.75 + 0.25 * sinVal)));
+          // 0(어두움) ~ 1(최고 밝기)의 선명하고 확실한 깜빡임 곡선
+          const factor = Math.pow((Math.sin(s.twinklePhase) + 1) / 2, 1.8);
+          const currentAlpha = 0.16 + (s.baseAlpha - 0.16) * factor;
 
           if (s.isSparkle) {
-            // 크기 폭발 없이 형태 자체가 예쁜 ✦ 별모양으로 은은하게 빛남
-            const flare = s.flareLength * (0.85 + 0.15 * sinVal);
-            drawSparkle(s.x, s.y, flare, s.size, currentAlpha, s.color);
+            // ✦ 십자 별빛 광선이 깜빡임에 따라 선명하게 피어났다 오므라듦
+            const flare = s.flareLength * (0.2 + 0.8 * factor);
+            const dynamicSize = s.size * (0.85 + 0.25 * factor);
+            drawSparkle(s.x, s.y, flare, dynamicSize, currentAlpha, s.color);
           } else {
-            // 또렷하고 맑은 일반 원형 별
+            // 또렷하게 반짝이는 원형 별
             ctx.save();
             ctx.globalAlpha = currentAlpha;
             ctx.fillStyle = s.color;
             ctx.beginPath();
-            ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
+            ctx.arc(s.x, s.y, s.size * (0.8 + 0.3 * factor), 0, Math.PI * 2);
             ctx.fill();
             ctx.restore();
           }
