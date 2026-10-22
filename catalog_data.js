@@ -211,600 +211,9000 @@ window.CATALOG_DATA = [
       {
         "code": "tech_ladder",
         "title": "🪜 축 (Ladder) 완전정복 마스터",
-        "chapterCount": 4,
-        "totalProblems": 80,
+        "chapterCount": 27,
+        "totalProblems": 645,
         "chapters": [
           {
-            "code": "tech_ladder_ch1",
-            "chapterCode": "tech_ladder_ch1",
-            "title": "1단계: [기초] 핵심 개념과 기본 원리",
-            "chapter": "1단계: [기초] 핵심 개념과 기본 원리",
+            "code": "tech_ladder_u01",
+            "chapterCode": "tech_ladder_u01",
+            "title": "1단계 [기초/입문: 30급~21급] Part 1 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 1 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ladder_u02",
+            "chapterCode": "tech_ladder_u02",
+            "title": "1단계 [기초/입문: 30급~21급] Part 2 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 2 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ladder_u03",
+            "chapterCode": "tech_ladder_u03",
+            "title": "1단계 [기초/입문: 30급~21급] Part 3 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 3 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ladder_u04",
+            "chapterCode": "tech_ladder_u04",
+            "title": "1단계 [기초/입문: 30급~21급] Part 4 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 4 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ladder_u05",
+            "chapterCode": "tech_ladder_u05",
+            "title": "1단계 [기초/입문: 30급~21급] Part 5 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 5 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ladder_u06",
+            "chapterCode": "tech_ladder_u06",
+            "title": "1단계 [기초/입문: 30급~21급] Part 6 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 6 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ladder_u07",
+            "chapterCode": "tech_ladder_u07",
+            "title": "1단계 [기초/입문: 30급~21급] Part 7 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 7 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ladder_u08",
+            "chapterCode": "tech_ladder_u08",
+            "title": "1단계 [기초/입문: 30급~21급] Part 8 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 8 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ladder_u09",
+            "chapterCode": "tech_ladder_u09",
+            "title": "1단계 [기초/입문: 30급~21급] Part 9 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 9 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ladder_u10",
+            "chapterCode": "tech_ladder_u10",
+            "title": "1단계 [기초/입문: 30급~21급] Part 10 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 10 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ladder_u11",
+            "chapterCode": "tech_ladder_u11",
+            "title": "1단계 [기초/입문: 30급~21급] Part 11 (19제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 11 (19제)",
+            "problemCount": 19,
+            "problemsCount": 19
+          },
+          {
+            "code": "tech_ladder_u12",
+            "chapterCode": "tech_ladder_u12",
+            "title": "2단계 [초급: 20급~15급] Part 1 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 1 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ladder_u13",
+            "chapterCode": "tech_ladder_u13",
+            "title": "2단계 [초급: 20급~15급] Part 2 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 2 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ladder_u14",
+            "chapterCode": "tech_ladder_u14",
+            "title": "2단계 [초급: 20급~15급] Part 3 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 3 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ladder_u15",
+            "chapterCode": "tech_ladder_u15",
+            "title": "2단계 [초급: 20급~15급] Part 4 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 4 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ladder_u16",
+            "chapterCode": "tech_ladder_u16",
+            "title": "2단계 [초급: 20급~15급] Part 5 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 5 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ladder_u17",
+            "chapterCode": "tech_ladder_u17",
+            "title": "2단계 [초급: 20급~15급] Part 6 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 6 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ladder_u18",
+            "chapterCode": "tech_ladder_u18",
+            "title": "2단계 [초급: 20급~15급] Part 7 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 7 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ladder_u19",
+            "chapterCode": "tech_ladder_u19",
+            "title": "2단계 [초급: 20급~15급] Part 8 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 8 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ladder_u20",
+            "chapterCode": "tech_ladder_u20",
+            "title": "2단계 [초급: 20급~15급] Part 9 (20제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 9 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
-            "code": "tech_ladder_ch2",
-            "chapterCode": "tech_ladder_ch2",
-            "title": "2단계: [초급] 기본 응용과 방향성 탐색",
-            "chapter": "2단계: [초급] 기본 응용과 방향성 탐색",
-            "problemCount": 20,
-            "problemsCount": 20
+            "code": "tech_ladder_u21",
+            "chapterCode": "tech_ladder_u21",
+            "title": "3단계 [중급: 14급~9급] Part 1 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 1 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
           },
           {
-            "code": "tech_ladder_ch3",
-            "chapterCode": "tech_ladder_ch3",
-            "title": "3단계: [중급] 수순의 묘와 함정 피하기",
-            "chapter": "3단계: [중급] 수순의 묘와 함정 피하기",
-            "problemCount": 20,
-            "problemsCount": 20
+            "code": "tech_ladder_u22",
+            "chapterCode": "tech_ladder_u22",
+            "title": "3단계 [중급: 14급~9급] Part 2 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 2 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
           },
           {
-            "code": "tech_ladder_ch4",
-            "chapterCode": "tech_ladder_ch4",
-            "title": "4단계: [고급] 실전 심화 및 유단자 맥점",
-            "chapter": "4단계: [고급] 실전 심화 및 유단자 맥점",
-            "problemCount": 20,
-            "problemsCount": 20
+            "code": "tech_ladder_u23",
+            "chapterCode": "tech_ladder_u23",
+            "title": "3단계 [중급: 14급~9급] Part 3 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 3 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ladder_u24",
+            "chapterCode": "tech_ladder_u24",
+            "title": "3단계 [중급: 14급~9급] Part 4 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 4 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ladder_u25",
+            "chapterCode": "tech_ladder_u25",
+            "title": "3단계 [중급: 14급~9급] Part 5 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 5 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ladder_u26",
+            "chapterCode": "tech_ladder_u26",
+            "title": "3단계 [중급: 14급~9급] Part 6 (18제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 6 (18제)",
+            "problemCount": 18,
+            "problemsCount": 18
+          },
+          {
+            "code": "tech_ladder_u27",
+            "chapterCode": "tech_ladder_u27",
+            "title": "4단계 [고급/유단자: 8급~유단자] (13제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] (13제)",
+            "problemCount": 13,
+            "problemsCount": 13
           }
         ]
       },
       {
         "code": "tech_net",
         "title": "🕸️ 장문 (Net) 그물 포위 마스터",
-        "chapterCount": 4,
-        "totalProblems": 80,
+        "chapterCount": 41,
+        "totalProblems": 989,
         "chapters": [
           {
-            "code": "tech_net_ch1",
-            "chapterCode": "tech_net_ch1",
-            "title": "1단계: [기초] 핵심 개념과 기본 원리",
-            "chapter": "1단계: [기초] 핵심 개념과 기본 원리",
-            "problemCount": 20,
-            "problemsCount": 20
+            "code": "tech_net_u01",
+            "chapterCode": "tech_net_u01",
+            "title": "1단계 [기초/입문: 30급~21급] Part 1 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 1 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
           },
           {
-            "code": "tech_net_ch2",
-            "chapterCode": "tech_net_ch2",
-            "title": "2단계: [초급] 기본 응용과 방향성 탐색",
-            "chapter": "2단계: [초급] 기본 응용과 방향성 탐색",
-            "problemCount": 20,
-            "problemsCount": 20
+            "code": "tech_net_u02",
+            "chapterCode": "tech_net_u02",
+            "title": "1단계 [기초/입문: 30급~21급] Part 2 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 2 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
           },
           {
-            "code": "tech_net_ch3",
-            "chapterCode": "tech_net_ch3",
-            "title": "3단계: [중급] 수순의 묘와 함정 피하기",
-            "chapter": "3단계: [중급] 수순의 묘와 함정 피하기",
-            "problemCount": 20,
-            "problemsCount": 20
+            "code": "tech_net_u03",
+            "chapterCode": "tech_net_u03",
+            "title": "1단계 [기초/입문: 30급~21급] Part 3 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 3 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
           },
           {
-            "code": "tech_net_ch4",
-            "chapterCode": "tech_net_ch4",
-            "title": "4단계: [고급] 실전 심화 및 유단자 맥점",
-            "chapter": "4단계: [고급] 실전 심화 및 유단자 맥점",
-            "problemCount": 20,
-            "problemsCount": 20
+            "code": "tech_net_u04",
+            "chapterCode": "tech_net_u04",
+            "title": "1단계 [기초/입문: 30급~21급] Part 4 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 4 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_net_u05",
+            "chapterCode": "tech_net_u05",
+            "title": "1단계 [기초/입문: 30급~21급] Part 5 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 5 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_net_u06",
+            "chapterCode": "tech_net_u06",
+            "title": "1단계 [기초/입문: 30급~21급] Part 6 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 6 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_net_u07",
+            "chapterCode": "tech_net_u07",
+            "title": "1단계 [기초/입문: 30급~21급] Part 7 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 7 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_net_u08",
+            "chapterCode": "tech_net_u08",
+            "title": "1단계 [기초/입문: 30급~21급] Part 8 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 8 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_net_u09",
+            "chapterCode": "tech_net_u09",
+            "title": "1단계 [기초/입문: 30급~21급] Part 9 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 9 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_net_u10",
+            "chapterCode": "tech_net_u10",
+            "title": "1단계 [기초/입문: 30급~21급] Part 10 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 10 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_net_u11",
+            "chapterCode": "tech_net_u11",
+            "title": "1단계 [기초/입문: 30급~21급] Part 11 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 11 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_net_u12",
+            "chapterCode": "tech_net_u12",
+            "title": "1단계 [기초/입문: 30급~21급] Part 12 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 12 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_net_u13",
+            "chapterCode": "tech_net_u13",
+            "title": "1단계 [기초/입문: 30급~21급] Part 13 (14제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 13 (14제)",
+            "problemCount": 14,
+            "problemsCount": 14
+          },
+          {
+            "code": "tech_net_u14",
+            "chapterCode": "tech_net_u14",
+            "title": "2단계 [초급: 20급~15급] Part 1 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 1 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_net_u15",
+            "chapterCode": "tech_net_u15",
+            "title": "2단계 [초급: 20급~15급] Part 2 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 2 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_net_u16",
+            "chapterCode": "tech_net_u16",
+            "title": "2단계 [초급: 20급~15급] Part 3 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 3 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_net_u17",
+            "chapterCode": "tech_net_u17",
+            "title": "2단계 [초급: 20급~15급] Part 4 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 4 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_net_u18",
+            "chapterCode": "tech_net_u18",
+            "title": "2단계 [초급: 20급~15급] Part 5 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 5 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_net_u19",
+            "chapterCode": "tech_net_u19",
+            "title": "2단계 [초급: 20급~15급] Part 6 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 6 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_net_u20",
+            "chapterCode": "tech_net_u20",
+            "title": "2단계 [초급: 20급~15급] Part 7 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 7 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_net_u21",
+            "chapterCode": "tech_net_u21",
+            "title": "2단계 [초급: 20급~15급] Part 8 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 8 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_net_u22",
+            "chapterCode": "tech_net_u22",
+            "title": "2단계 [초급: 20급~15급] Part 9 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 9 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_net_u23",
+            "chapterCode": "tech_net_u23",
+            "title": "2단계 [초급: 20급~15급] Part 10 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 10 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_net_u24",
+            "chapterCode": "tech_net_u24",
+            "title": "2단계 [초급: 20급~15급] Part 11 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 11 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_net_u25",
+            "chapterCode": "tech_net_u25",
+            "title": "2단계 [초급: 20급~15급] Part 12 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 12 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_net_u26",
+            "chapterCode": "tech_net_u26",
+            "title": "2단계 [초급: 20급~15급] Part 13 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 13 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_net_u27",
+            "chapterCode": "tech_net_u27",
+            "title": "2단계 [초급: 20급~15급] Part 14 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 14 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_net_u28",
+            "chapterCode": "tech_net_u28",
+            "title": "2단계 [초급: 20급~15급] Part 15 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 15 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_net_u29",
+            "chapterCode": "tech_net_u29",
+            "title": "2단계 [초급: 20급~15급] Part 16 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 16 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_net_u30",
+            "chapterCode": "tech_net_u30",
+            "title": "2단계 [초급: 20급~15급] Part 17 (19제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 17 (19제)",
+            "problemCount": 19,
+            "problemsCount": 19
+          },
+          {
+            "code": "tech_net_u31",
+            "chapterCode": "tech_net_u31",
+            "title": "3단계 [중급: 14급~9급] Part 1 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 1 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_net_u32",
+            "chapterCode": "tech_net_u32",
+            "title": "3단계 [중급: 14급~9급] Part 2 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 2 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_net_u33",
+            "chapterCode": "tech_net_u33",
+            "title": "3단계 [중급: 14급~9급] Part 3 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 3 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_net_u34",
+            "chapterCode": "tech_net_u34",
+            "title": "3단계 [중급: 14급~9급] Part 4 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 4 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_net_u35",
+            "chapterCode": "tech_net_u35",
+            "title": "3단계 [중급: 14급~9급] Part 5 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 5 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_net_u36",
+            "chapterCode": "tech_net_u36",
+            "title": "3단계 [중급: 14급~9급] Part 6 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 6 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_net_u37",
+            "chapterCode": "tech_net_u37",
+            "title": "3단계 [중급: 14급~9급] Part 7 (10제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 7 (10제)",
+            "problemCount": 10,
+            "problemsCount": 10
+          },
+          {
+            "code": "tech_net_u38",
+            "chapterCode": "tech_net_u38",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 1 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 1 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_net_u39",
+            "chapterCode": "tech_net_u39",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 2 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 2 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_net_u40",
+            "chapterCode": "tech_net_u40",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 3 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 3 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_net_u41",
+            "chapterCode": "tech_net_u41",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 4 (21제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 4 (21제)",
+            "problemCount": 21,
+            "problemsCount": 21
           }
         ]
       },
       {
         "code": "tech_snapback",
         "title": "🪃 환격 (Snapback) 되따내기 마스터",
-        "chapterCount": 4,
-        "totalProblems": 80,
+        "chapterCount": 44,
+        "totalProblems": 1059,
         "chapters": [
           {
-            "code": "tech_snapback_ch1",
-            "chapterCode": "tech_snapback_ch1",
-            "title": "1단계: [기초] 핵심 개념과 기본 원리",
-            "chapter": "1단계: [기초] 핵심 개념과 기본 원리",
-            "problemCount": 20,
-            "problemsCount": 20
+            "code": "tech_snapback_u01",
+            "chapterCode": "tech_snapback_u01",
+            "title": "1단계 [기초/입문: 30급~21급] Part 1 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 1 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
           },
           {
-            "code": "tech_snapback_ch2",
-            "chapterCode": "tech_snapback_ch2",
-            "title": "2단계: [초급] 기본 응용과 방향성 탐색",
-            "chapter": "2단계: [초급] 기본 응용과 방향성 탐색",
-            "problemCount": 20,
-            "problemsCount": 20
+            "code": "tech_snapback_u02",
+            "chapterCode": "tech_snapback_u02",
+            "title": "1단계 [기초/입문: 30급~21급] Part 2 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 2 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
           },
           {
-            "code": "tech_snapback_ch3",
-            "chapterCode": "tech_snapback_ch3",
-            "title": "3단계: [중급] 수순의 묘와 함정 피하기",
-            "chapter": "3단계: [중급] 수순의 묘와 함정 피하기",
-            "problemCount": 20,
-            "problemsCount": 20
+            "code": "tech_snapback_u03",
+            "chapterCode": "tech_snapback_u03",
+            "title": "1단계 [기초/입문: 30급~21급] Part 3 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 3 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
           },
           {
-            "code": "tech_snapback_ch4",
-            "chapterCode": "tech_snapback_ch4",
-            "title": "4단계: [고급] 실전 심화 및 유단자 맥점",
-            "chapter": "4단계: [고급] 실전 심화 및 유단자 맥점",
-            "problemCount": 20,
-            "problemsCount": 20
+            "code": "tech_snapback_u04",
+            "chapterCode": "tech_snapback_u04",
+            "title": "1단계 [기초/입문: 30급~21급] Part 4 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 4 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_snapback_u05",
+            "chapterCode": "tech_snapback_u05",
+            "title": "1단계 [기초/입문: 30급~21급] Part 5 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 5 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_snapback_u06",
+            "chapterCode": "tech_snapback_u06",
+            "title": "1단계 [기초/입문: 30급~21급] Part 6 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 6 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_snapback_u07",
+            "chapterCode": "tech_snapback_u07",
+            "title": "1단계 [기초/입문: 30급~21급] Part 7 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 7 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_snapback_u08",
+            "chapterCode": "tech_snapback_u08",
+            "title": "1단계 [기초/입문: 30급~21급] Part 8 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 8 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_snapback_u09",
+            "chapterCode": "tech_snapback_u09",
+            "title": "1단계 [기초/입문: 30급~21급] Part 9 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 9 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_snapback_u10",
+            "chapterCode": "tech_snapback_u10",
+            "title": "1단계 [기초/입문: 30급~21급] Part 10 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 10 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_snapback_u11",
+            "chapterCode": "tech_snapback_u11",
+            "title": "1단계 [기초/입문: 30급~21급] Part 11 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 11 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_snapback_u12",
+            "chapterCode": "tech_snapback_u12",
+            "title": "1단계 [기초/입문: 30급~21급] Part 12 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 12 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_snapback_u13",
+            "chapterCode": "tech_snapback_u13",
+            "title": "1단계 [기초/입문: 30급~21급] Part 13 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 13 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_snapback_u14",
+            "chapterCode": "tech_snapback_u14",
+            "title": "1단계 [기초/입문: 30급~21급] Part 14 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 14 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_snapback_u15",
+            "chapterCode": "tech_snapback_u15",
+            "title": "1단계 [기초/입문: 30급~21급] Part 15 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 15 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_snapback_u16",
+            "chapterCode": "tech_snapback_u16",
+            "title": "1단계 [기초/입문: 30급~21급] Part 16 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 16 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_snapback_u17",
+            "chapterCode": "tech_snapback_u17",
+            "title": "1단계 [기초/입문: 30급~21급] Part 17 (22제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 17 (22제)",
+            "problemCount": 22,
+            "problemsCount": 22
+          },
+          {
+            "code": "tech_snapback_u18",
+            "chapterCode": "tech_snapback_u18",
+            "title": "2단계 [초급: 20급~15급] Part 1 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 1 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_snapback_u19",
+            "chapterCode": "tech_snapback_u19",
+            "title": "2단계 [초급: 20급~15급] Part 2 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 2 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_snapback_u20",
+            "chapterCode": "tech_snapback_u20",
+            "title": "2단계 [초급: 20급~15급] Part 3 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 3 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_snapback_u21",
+            "chapterCode": "tech_snapback_u21",
+            "title": "2단계 [초급: 20급~15급] Part 4 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 4 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_snapback_u22",
+            "chapterCode": "tech_snapback_u22",
+            "title": "2단계 [초급: 20급~15급] Part 5 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 5 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_snapback_u23",
+            "chapterCode": "tech_snapback_u23",
+            "title": "2단계 [초급: 20급~15급] Part 6 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 6 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_snapback_u24",
+            "chapterCode": "tech_snapback_u24",
+            "title": "2단계 [초급: 20급~15급] Part 7 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 7 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_snapback_u25",
+            "chapterCode": "tech_snapback_u25",
+            "title": "2단계 [초급: 20급~15급] Part 8 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 8 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_snapback_u26",
+            "chapterCode": "tech_snapback_u26",
+            "title": "2단계 [초급: 20급~15급] Part 9 (15제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 9 (15제)",
+            "problemCount": 15,
+            "problemsCount": 15
+          },
+          {
+            "code": "tech_snapback_u27",
+            "chapterCode": "tech_snapback_u27",
+            "title": "3단계 [중급: 14급~9급] Part 1 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 1 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_snapback_u28",
+            "chapterCode": "tech_snapback_u28",
+            "title": "3단계 [중급: 14급~9급] Part 2 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 2 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_snapback_u29",
+            "chapterCode": "tech_snapback_u29",
+            "title": "3단계 [중급: 14급~9급] Part 3 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 3 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_snapback_u30",
+            "chapterCode": "tech_snapback_u30",
+            "title": "3단계 [중급: 14급~9급] Part 4 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 4 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_snapback_u31",
+            "chapterCode": "tech_snapback_u31",
+            "title": "3단계 [중급: 14급~9급] Part 5 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 5 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_snapback_u32",
+            "chapterCode": "tech_snapback_u32",
+            "title": "3단계 [중급: 14급~9급] Part 6 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 6 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_snapback_u33",
+            "chapterCode": "tech_snapback_u33",
+            "title": "3단계 [중급: 14급~9급] Part 7 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 7 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_snapback_u34",
+            "chapterCode": "tech_snapback_u34",
+            "title": "3단계 [중급: 14급~9급] Part 8 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 8 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_snapback_u35",
+            "chapterCode": "tech_snapback_u35",
+            "title": "3단계 [중급: 14급~9급] Part 9 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 9 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_snapback_u36",
+            "chapterCode": "tech_snapback_u36",
+            "title": "3단계 [중급: 14급~9급] Part 10 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 10 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_snapback_u37",
+            "chapterCode": "tech_snapback_u37",
+            "title": "3단계 [중급: 14급~9급] Part 11 (14제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 11 (14제)",
+            "problemCount": 14,
+            "problemsCount": 14
+          },
+          {
+            "code": "tech_snapback_u38",
+            "chapterCode": "tech_snapback_u38",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 1 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 1 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_snapback_u39",
+            "chapterCode": "tech_snapback_u39",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 2 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 2 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_snapback_u40",
+            "chapterCode": "tech_snapback_u40",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 3 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 3 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_snapback_u41",
+            "chapterCode": "tech_snapback_u41",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 4 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 4 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_snapback_u42",
+            "chapterCode": "tech_snapback_u42",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 5 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 5 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_snapback_u43",
+            "chapterCode": "tech_snapback_u43",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 6 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 6 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_snapback_u44",
+            "chapterCode": "tech_snapback_u44",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 7 (8제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 7 (8제)",
+            "problemCount": 8,
+            "problemsCount": 8
           }
         ]
       },
       {
         "code": "tech_yeon_atari",
         "title": "⚡ 촉촉수 / 연단수 연속 몰아치기",
-        "chapterCount": 4,
-        "totalProblems": 80,
+        "chapterCount": 43,
+        "totalProblems": 1001,
         "chapters": [
           {
-            "code": "tech_yeon_atari_ch1",
-            "chapterCode": "tech_yeon_atari_ch1",
-            "title": "1단계: [기초] 핵심 개념과 기본 원리",
-            "chapter": "1단계: [기초] 핵심 개념과 기본 원리",
-            "problemCount": 20,
-            "problemsCount": 20
+            "code": "tech_yeon_atari_u01",
+            "chapterCode": "tech_yeon_atari_u01",
+            "title": "1단계 [기초/입문: 30급~21급] Part 1 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 1 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
           },
           {
-            "code": "tech_yeon_atari_ch2",
-            "chapterCode": "tech_yeon_atari_ch2",
-            "title": "2단계: [초급] 기본 응용과 방향성 탐색",
-            "chapter": "2단계: [초급] 기본 응용과 방향성 탐색",
-            "problemCount": 20,
-            "problemsCount": 20
+            "code": "tech_yeon_atari_u02",
+            "chapterCode": "tech_yeon_atari_u02",
+            "title": "1단계 [기초/입문: 30급~21급] Part 2 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 2 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
           },
           {
-            "code": "tech_yeon_atari_ch3",
-            "chapterCode": "tech_yeon_atari_ch3",
-            "title": "3단계: [중급] 수순의 묘와 함정 피하기",
-            "chapter": "3단계: [중급] 수순의 묘와 함정 피하기",
-            "problemCount": 20,
-            "problemsCount": 20
+            "code": "tech_yeon_atari_u03",
+            "chapterCode": "tech_yeon_atari_u03",
+            "title": "1단계 [기초/입문: 30급~21급] Part 3 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 3 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
           },
           {
-            "code": "tech_yeon_atari_ch4",
-            "chapterCode": "tech_yeon_atari_ch4",
-            "title": "4단계: [고급] 실전 심화 및 유단자 맥점",
-            "chapter": "4단계: [고급] 실전 심화 및 유단자 맥점",
-            "problemCount": 20,
-            "problemsCount": 20
+            "code": "tech_yeon_atari_u04",
+            "chapterCode": "tech_yeon_atari_u04",
+            "title": "1단계 [기초/입문: 30급~21급] Part 4 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 4 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_yeon_atari_u05",
+            "chapterCode": "tech_yeon_atari_u05",
+            "title": "1단계 [기초/입문: 30급~21급] Part 5 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 5 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_yeon_atari_u06",
+            "chapterCode": "tech_yeon_atari_u06",
+            "title": "1단계 [기초/입문: 30급~21급] Part 6 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 6 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_yeon_atari_u07",
+            "chapterCode": "tech_yeon_atari_u07",
+            "title": "1단계 [기초/입문: 30급~21급] Part 7 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 7 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_yeon_atari_u08",
+            "chapterCode": "tech_yeon_atari_u08",
+            "title": "1단계 [기초/입문: 30급~21급] Part 8 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 8 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_yeon_atari_u09",
+            "chapterCode": "tech_yeon_atari_u09",
+            "title": "1단계 [기초/입문: 30급~21급] Part 9 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 9 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_yeon_atari_u10",
+            "chapterCode": "tech_yeon_atari_u10",
+            "title": "1단계 [기초/입문: 30급~21급] Part 10 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 10 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_yeon_atari_u11",
+            "chapterCode": "tech_yeon_atari_u11",
+            "title": "1단계 [기초/입문: 30급~21급] Part 11 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 11 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_yeon_atari_u12",
+            "chapterCode": "tech_yeon_atari_u12",
+            "title": "1단계 [기초/입문: 30급~21급] Part 12 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 12 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_yeon_atari_u13",
+            "chapterCode": "tech_yeon_atari_u13",
+            "title": "1단계 [기초/입문: 30급~21급] Part 13 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 13 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_yeon_atari_u14",
+            "chapterCode": "tech_yeon_atari_u14",
+            "title": "1단계 [기초/입문: 30급~21급] Part 14 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 14 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_yeon_atari_u15",
+            "chapterCode": "tech_yeon_atari_u15",
+            "title": "1단계 [기초/입문: 30급~21급] Part 15 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 15 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_yeon_atari_u16",
+            "chapterCode": "tech_yeon_atari_u16",
+            "title": "1단계 [기초/입문: 30급~21급] Part 16 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 16 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_yeon_atari_u17",
+            "chapterCode": "tech_yeon_atari_u17",
+            "title": "1단계 [기초/입문: 30급~21급] Part 17 (1제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 17 (1제)",
+            "problemCount": 1,
+            "problemsCount": 1
+          },
+          {
+            "code": "tech_yeon_atari_u18",
+            "chapterCode": "tech_yeon_atari_u18",
+            "title": "2단계 [초급: 20급~15급] Part 1 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 1 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_yeon_atari_u19",
+            "chapterCode": "tech_yeon_atari_u19",
+            "title": "2단계 [초급: 20급~15급] Part 2 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 2 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_yeon_atari_u20",
+            "chapterCode": "tech_yeon_atari_u20",
+            "title": "2단계 [초급: 20급~15급] Part 3 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 3 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_yeon_atari_u21",
+            "chapterCode": "tech_yeon_atari_u21",
+            "title": "2단계 [초급: 20급~15급] Part 4 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 4 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_yeon_atari_u22",
+            "chapterCode": "tech_yeon_atari_u22",
+            "title": "2단계 [초급: 20급~15급] Part 5 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 5 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_yeon_atari_u23",
+            "chapterCode": "tech_yeon_atari_u23",
+            "title": "2단계 [초급: 20급~15급] Part 6 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 6 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_yeon_atari_u24",
+            "chapterCode": "tech_yeon_atari_u24",
+            "title": "2단계 [초급: 20급~15급] Part 7 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 7 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_yeon_atari_u25",
+            "chapterCode": "tech_yeon_atari_u25",
+            "title": "2단계 [초급: 20급~15급] Part 8 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 8 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_yeon_atari_u26",
+            "chapterCode": "tech_yeon_atari_u26",
+            "title": "2단계 [초급: 20급~15급] Part 9 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 9 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_yeon_atari_u27",
+            "chapterCode": "tech_yeon_atari_u27",
+            "title": "2단계 [초급: 20급~15급] Part 10 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 10 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_yeon_atari_u28",
+            "chapterCode": "tech_yeon_atari_u28",
+            "title": "2단계 [초급: 20급~15급] Part 11 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 11 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_yeon_atari_u29",
+            "chapterCode": "tech_yeon_atari_u29",
+            "title": "2단계 [초급: 20급~15급] Part 12 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 12 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_yeon_atari_u30",
+            "chapterCode": "tech_yeon_atari_u30",
+            "title": "2단계 [초급: 20급~15급] Part 13 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 13 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_yeon_atari_u31",
+            "chapterCode": "tech_yeon_atari_u31",
+            "title": "2단계 [초급: 20급~15급] Part 14 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 14 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_yeon_atari_u32",
+            "chapterCode": "tech_yeon_atari_u32",
+            "title": "2단계 [초급: 20급~15급] Part 15 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 15 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_yeon_atari_u33",
+            "chapterCode": "tech_yeon_atari_u33",
+            "title": "2단계 [초급: 20급~15급] Part 16 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 16 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_yeon_atari_u34",
+            "chapterCode": "tech_yeon_atari_u34",
+            "title": "2단계 [초급: 20급~15급] Part 17 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 17 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_yeon_atari_u35",
+            "chapterCode": "tech_yeon_atari_u35",
+            "title": "2단계 [초급: 20급~15급] Part 18 (8제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 18 (8제)",
+            "problemCount": 8,
+            "problemsCount": 8
+          },
+          {
+            "code": "tech_yeon_atari_u36",
+            "chapterCode": "tech_yeon_atari_u36",
+            "title": "3단계 [중급: 14급~9급] Part 1 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 1 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_yeon_atari_u37",
+            "chapterCode": "tech_yeon_atari_u37",
+            "title": "3단계 [중급: 14급~9급] Part 2 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 2 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_yeon_atari_u38",
+            "chapterCode": "tech_yeon_atari_u38",
+            "title": "3단계 [중급: 14급~9급] Part 3 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 3 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_yeon_atari_u39",
+            "chapterCode": "tech_yeon_atari_u39",
+            "title": "3단계 [중급: 14급~9급] Part 4 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 4 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_yeon_atari_u40",
+            "chapterCode": "tech_yeon_atari_u40",
+            "title": "3단계 [중급: 14급~9급] Part 5 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 5 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_yeon_atari_u41",
+            "chapterCode": "tech_yeon_atari_u41",
+            "title": "3단계 [중급: 14급~9급] Part 6 (9제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 6 (9제)",
+            "problemCount": 9,
+            "problemsCount": 9
+          },
+          {
+            "code": "tech_yeon_atari_u42",
+            "chapterCode": "tech_yeon_atari_u42",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 1 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 1 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_yeon_atari_u43",
+            "chapterCode": "tech_yeon_atari_u43",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 2 (8제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 2 (8제)",
+            "problemCount": 8,
+            "problemsCount": 8
           }
         ]
       },
       {
         "code": "tech_connection",
         "title": "🛡️ 행마: 호구 / 쌍립 / 연결의 급소",
-        "chapterCount": 4,
-        "totalProblems": 80,
+        "chapterCount": 121,
+        "totalProblems": 2976,
         "chapters": [
           {
-            "code": "tech_connection_ch1",
-            "chapterCode": "tech_connection_ch1",
-            "title": "1단계: [기초] 핵심 개념과 기본 원리",
-            "chapter": "1단계: [기초] 핵심 개념과 기본 원리",
-            "problemCount": 20,
-            "problemsCount": 20
+            "code": "tech_connection_u01",
+            "chapterCode": "tech_connection_u01",
+            "title": "1단계 [기초/입문: 30급~21급] Part 1 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 1 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
           },
           {
-            "code": "tech_connection_ch2",
-            "chapterCode": "tech_connection_ch2",
-            "title": "2단계: [초급] 기본 응용과 방향성 탐색",
-            "chapter": "2단계: [초급] 기본 응용과 방향성 탐색",
-            "problemCount": 20,
-            "problemsCount": 20
+            "code": "tech_connection_u02",
+            "chapterCode": "tech_connection_u02",
+            "title": "1단계 [기초/입문: 30급~21급] Part 2 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 2 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
           },
           {
-            "code": "tech_connection_ch3",
-            "chapterCode": "tech_connection_ch3",
-            "title": "3단계: [중급] 수순의 묘와 함정 피하기",
-            "chapter": "3단계: [중급] 수순의 묘와 함정 피하기",
-            "problemCount": 20,
-            "problemsCount": 20
+            "code": "tech_connection_u03",
+            "chapterCode": "tech_connection_u03",
+            "title": "1단계 [기초/입문: 30급~21급] Part 3 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 3 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
           },
           {
-            "code": "tech_connection_ch4",
-            "chapterCode": "tech_connection_ch4",
-            "title": "4단계: [고급] 실전 심화 및 유단자 맥점",
-            "chapter": "4단계: [고급] 실전 심화 및 유단자 맥점",
-            "problemCount": 20,
-            "problemsCount": 20
+            "code": "tech_connection_u04",
+            "chapterCode": "tech_connection_u04",
+            "title": "1단계 [기초/입문: 30급~21급] Part 4 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 4 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u05",
+            "chapterCode": "tech_connection_u05",
+            "title": "1단계 [기초/입문: 30급~21급] Part 5 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 5 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u06",
+            "chapterCode": "tech_connection_u06",
+            "title": "1단계 [기초/입문: 30급~21급] Part 6 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 6 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u07",
+            "chapterCode": "tech_connection_u07",
+            "title": "1단계 [기초/입문: 30급~21급] Part 7 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 7 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u08",
+            "chapterCode": "tech_connection_u08",
+            "title": "1단계 [기초/입문: 30급~21급] Part 8 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 8 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u09",
+            "chapterCode": "tech_connection_u09",
+            "title": "1단계 [기초/입문: 30급~21급] Part 9 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 9 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u10",
+            "chapterCode": "tech_connection_u10",
+            "title": "1단계 [기초/입문: 30급~21급] Part 10 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 10 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u11",
+            "chapterCode": "tech_connection_u11",
+            "title": "1단계 [기초/입문: 30급~21급] Part 11 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 11 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u12",
+            "chapterCode": "tech_connection_u12",
+            "title": "1단계 [기초/입문: 30급~21급] Part 12 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 12 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u13",
+            "chapterCode": "tech_connection_u13",
+            "title": "1단계 [기초/입문: 30급~21급] Part 13 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 13 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u14",
+            "chapterCode": "tech_connection_u14",
+            "title": "1단계 [기초/입문: 30급~21급] Part 14 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 14 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u15",
+            "chapterCode": "tech_connection_u15",
+            "title": "1단계 [기초/입문: 30급~21급] Part 15 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 15 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u16",
+            "chapterCode": "tech_connection_u16",
+            "title": "1단계 [기초/입문: 30급~21급] Part 16 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 16 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u17",
+            "chapterCode": "tech_connection_u17",
+            "title": "1단계 [기초/입문: 30급~21급] Part 17 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 17 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u18",
+            "chapterCode": "tech_connection_u18",
+            "title": "1단계 [기초/입문: 30급~21급] Part 18 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 18 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u19",
+            "chapterCode": "tech_connection_u19",
+            "title": "1단계 [기초/입문: 30급~21급] Part 19 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 19 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u20",
+            "chapterCode": "tech_connection_u20",
+            "title": "1단계 [기초/입문: 30급~21급] Part 20 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 20 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u21",
+            "chapterCode": "tech_connection_u21",
+            "title": "1단계 [기초/입문: 30급~21급] Part 21 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 21 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u22",
+            "chapterCode": "tech_connection_u22",
+            "title": "1단계 [기초/입문: 30급~21급] Part 22 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 22 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u23",
+            "chapterCode": "tech_connection_u23",
+            "title": "1단계 [기초/입문: 30급~21급] Part 23 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 23 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u24",
+            "chapterCode": "tech_connection_u24",
+            "title": "1단계 [기초/입문: 30급~21급] Part 24 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 24 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u25",
+            "chapterCode": "tech_connection_u25",
+            "title": "1단계 [기초/입문: 30급~21급] Part 25 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 25 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u26",
+            "chapterCode": "tech_connection_u26",
+            "title": "1단계 [기초/입문: 30급~21급] Part 26 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 26 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u27",
+            "chapterCode": "tech_connection_u27",
+            "title": "1단계 [기초/입문: 30급~21급] Part 27 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 27 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u28",
+            "chapterCode": "tech_connection_u28",
+            "title": "1단계 [기초/입문: 30급~21급] Part 28 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 28 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u29",
+            "chapterCode": "tech_connection_u29",
+            "title": "1단계 [기초/입문: 30급~21급] Part 29 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 29 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u30",
+            "chapterCode": "tech_connection_u30",
+            "title": "1단계 [기초/입문: 30급~21급] Part 30 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 30 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u31",
+            "chapterCode": "tech_connection_u31",
+            "title": "1단계 [기초/입문: 30급~21급] Part 31 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 31 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u32",
+            "chapterCode": "tech_connection_u32",
+            "title": "1단계 [기초/입문: 30급~21급] Part 32 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 32 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u33",
+            "chapterCode": "tech_connection_u33",
+            "title": "1단계 [기초/입문: 30급~21급] Part 33 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 33 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u34",
+            "chapterCode": "tech_connection_u34",
+            "title": "1단계 [기초/입문: 30급~21급] Part 34 (13제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 34 (13제)",
+            "problemCount": 13,
+            "problemsCount": 13
+          },
+          {
+            "code": "tech_connection_u35",
+            "chapterCode": "tech_connection_u35",
+            "title": "2단계 [초급: 20급~15급] Part 1 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 1 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u36",
+            "chapterCode": "tech_connection_u36",
+            "title": "2단계 [초급: 20급~15급] Part 2 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 2 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u37",
+            "chapterCode": "tech_connection_u37",
+            "title": "2단계 [초급: 20급~15급] Part 3 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 3 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u38",
+            "chapterCode": "tech_connection_u38",
+            "title": "2단계 [초급: 20급~15급] Part 4 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 4 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u39",
+            "chapterCode": "tech_connection_u39",
+            "title": "2단계 [초급: 20급~15급] Part 5 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 5 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u40",
+            "chapterCode": "tech_connection_u40",
+            "title": "2단계 [초급: 20급~15급] Part 6 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 6 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u41",
+            "chapterCode": "tech_connection_u41",
+            "title": "2단계 [초급: 20급~15급] Part 7 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 7 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u42",
+            "chapterCode": "tech_connection_u42",
+            "title": "2단계 [초급: 20급~15급] Part 8 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 8 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u43",
+            "chapterCode": "tech_connection_u43",
+            "title": "2단계 [초급: 20급~15급] Part 9 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 9 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u44",
+            "chapterCode": "tech_connection_u44",
+            "title": "2단계 [초급: 20급~15급] Part 10 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 10 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u45",
+            "chapterCode": "tech_connection_u45",
+            "title": "2단계 [초급: 20급~15급] Part 11 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 11 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u46",
+            "chapterCode": "tech_connection_u46",
+            "title": "2단계 [초급: 20급~15급] Part 12 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 12 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u47",
+            "chapterCode": "tech_connection_u47",
+            "title": "2단계 [초급: 20급~15급] Part 13 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 13 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u48",
+            "chapterCode": "tech_connection_u48",
+            "title": "2단계 [초급: 20급~15급] Part 14 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 14 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u49",
+            "chapterCode": "tech_connection_u49",
+            "title": "2단계 [초급: 20급~15급] Part 15 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 15 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u50",
+            "chapterCode": "tech_connection_u50",
+            "title": "2단계 [초급: 20급~15급] Part 16 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 16 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u51",
+            "chapterCode": "tech_connection_u51",
+            "title": "2단계 [초급: 20급~15급] Part 17 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 17 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u52",
+            "chapterCode": "tech_connection_u52",
+            "title": "2단계 [초급: 20급~15급] Part 18 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 18 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u53",
+            "chapterCode": "tech_connection_u53",
+            "title": "2단계 [초급: 20급~15급] Part 19 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 19 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u54",
+            "chapterCode": "tech_connection_u54",
+            "title": "2단계 [초급: 20급~15급] Part 20 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 20 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u55",
+            "chapterCode": "tech_connection_u55",
+            "title": "2단계 [초급: 20급~15급] Part 21 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 21 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u56",
+            "chapterCode": "tech_connection_u56",
+            "title": "2단계 [초급: 20급~15급] Part 22 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 22 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u57",
+            "chapterCode": "tech_connection_u57",
+            "title": "2단계 [초급: 20급~15급] Part 23 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 23 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u58",
+            "chapterCode": "tech_connection_u58",
+            "title": "2단계 [초급: 20급~15급] Part 24 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 24 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u59",
+            "chapterCode": "tech_connection_u59",
+            "title": "2단계 [초급: 20급~15급] Part 25 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 25 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u60",
+            "chapterCode": "tech_connection_u60",
+            "title": "2단계 [초급: 20급~15급] Part 26 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 26 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u61",
+            "chapterCode": "tech_connection_u61",
+            "title": "2단계 [초급: 20급~15급] Part 27 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 27 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u62",
+            "chapterCode": "tech_connection_u62",
+            "title": "2단계 [초급: 20급~15급] Part 28 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 28 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u63",
+            "chapterCode": "tech_connection_u63",
+            "title": "2단계 [초급: 20급~15급] Part 29 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 29 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u64",
+            "chapterCode": "tech_connection_u64",
+            "title": "2단계 [초급: 20급~15급] Part 30 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 30 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u65",
+            "chapterCode": "tech_connection_u65",
+            "title": "2단계 [초급: 20급~15급] Part 31 (22제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 31 (22제)",
+            "problemCount": 22,
+            "problemsCount": 22
+          },
+          {
+            "code": "tech_connection_u66",
+            "chapterCode": "tech_connection_u66",
+            "title": "3단계 [중급: 14급~9급] Part 1 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 1 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u67",
+            "chapterCode": "tech_connection_u67",
+            "title": "3단계 [중급: 14급~9급] Part 2 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 2 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u68",
+            "chapterCode": "tech_connection_u68",
+            "title": "3단계 [중급: 14급~9급] Part 3 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 3 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u69",
+            "chapterCode": "tech_connection_u69",
+            "title": "3단계 [중급: 14급~9급] Part 4 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 4 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u70",
+            "chapterCode": "tech_connection_u70",
+            "title": "3단계 [중급: 14급~9급] Part 5 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 5 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u71",
+            "chapterCode": "tech_connection_u71",
+            "title": "3단계 [중급: 14급~9급] Part 6 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 6 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u72",
+            "chapterCode": "tech_connection_u72",
+            "title": "3단계 [중급: 14급~9급] Part 7 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 7 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u73",
+            "chapterCode": "tech_connection_u73",
+            "title": "3단계 [중급: 14급~9급] Part 8 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 8 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u74",
+            "chapterCode": "tech_connection_u74",
+            "title": "3단계 [중급: 14급~9급] Part 9 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 9 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u75",
+            "chapterCode": "tech_connection_u75",
+            "title": "3단계 [중급: 14급~9급] Part 10 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 10 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u76",
+            "chapterCode": "tech_connection_u76",
+            "title": "3단계 [중급: 14급~9급] Part 11 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 11 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u77",
+            "chapterCode": "tech_connection_u77",
+            "title": "3단계 [중급: 14급~9급] Part 12 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 12 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u78",
+            "chapterCode": "tech_connection_u78",
+            "title": "3단계 [중급: 14급~9급] Part 13 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 13 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u79",
+            "chapterCode": "tech_connection_u79",
+            "title": "3단계 [중급: 14급~9급] Part 14 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 14 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u80",
+            "chapterCode": "tech_connection_u80",
+            "title": "3단계 [중급: 14급~9급] Part 15 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 15 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u81",
+            "chapterCode": "tech_connection_u81",
+            "title": "3단계 [중급: 14급~9급] Part 16 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 16 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u82",
+            "chapterCode": "tech_connection_u82",
+            "title": "3단계 [중급: 14급~9급] Part 17 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 17 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u83",
+            "chapterCode": "tech_connection_u83",
+            "title": "3단계 [중급: 14급~9급] Part 18 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 18 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u84",
+            "chapterCode": "tech_connection_u84",
+            "title": "3단계 [중급: 14급~9급] Part 19 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 19 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u85",
+            "chapterCode": "tech_connection_u85",
+            "title": "3단계 [중급: 14급~9급] Part 20 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 20 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u86",
+            "chapterCode": "tech_connection_u86",
+            "title": "3단계 [중급: 14급~9급] Part 21 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 21 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u87",
+            "chapterCode": "tech_connection_u87",
+            "title": "3단계 [중급: 14급~9급] Part 22 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 22 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u88",
+            "chapterCode": "tech_connection_u88",
+            "title": "3단계 [중급: 14급~9급] Part 23 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 23 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u89",
+            "chapterCode": "tech_connection_u89",
+            "title": "3단계 [중급: 14급~9급] Part 24 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 24 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u90",
+            "chapterCode": "tech_connection_u90",
+            "title": "3단계 [중급: 14급~9급] Part 25 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 25 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u91",
+            "chapterCode": "tech_connection_u91",
+            "title": "3단계 [중급: 14급~9급] Part 26 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 26 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u92",
+            "chapterCode": "tech_connection_u92",
+            "title": "3단계 [중급: 14급~9급] Part 27 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 27 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u93",
+            "chapterCode": "tech_connection_u93",
+            "title": "3단계 [중급: 14급~9급] Part 28 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 28 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u94",
+            "chapterCode": "tech_connection_u94",
+            "title": "3단계 [중급: 14급~9급] Part 29 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 29 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u95",
+            "chapterCode": "tech_connection_u95",
+            "title": "3단계 [중급: 14급~9급] Part 30 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 30 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u96",
+            "chapterCode": "tech_connection_u96",
+            "title": "3단계 [중급: 14급~9급] Part 31 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 31 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u97",
+            "chapterCode": "tech_connection_u97",
+            "title": "3단계 [중급: 14급~9급] Part 32 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 32 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u98",
+            "chapterCode": "tech_connection_u98",
+            "title": "3단계 [중급: 14급~9급] Part 33 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 33 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u99",
+            "chapterCode": "tech_connection_u99",
+            "title": "3단계 [중급: 14급~9급] Part 34 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 34 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u100",
+            "chapterCode": "tech_connection_u100",
+            "title": "3단계 [중급: 14급~9급] Part 35 (7제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 35 (7제)",
+            "problemCount": 7,
+            "problemsCount": 7
+          },
+          {
+            "code": "tech_connection_u101",
+            "chapterCode": "tech_connection_u101",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 1 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 1 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u102",
+            "chapterCode": "tech_connection_u102",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 2 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 2 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u103",
+            "chapterCode": "tech_connection_u103",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 3 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 3 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u104",
+            "chapterCode": "tech_connection_u104",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 4 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 4 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u105",
+            "chapterCode": "tech_connection_u105",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 5 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 5 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u106",
+            "chapterCode": "tech_connection_u106",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 6 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 6 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u107",
+            "chapterCode": "tech_connection_u107",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 7 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 7 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u108",
+            "chapterCode": "tech_connection_u108",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 8 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 8 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u109",
+            "chapterCode": "tech_connection_u109",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 9 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 9 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u110",
+            "chapterCode": "tech_connection_u110",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 10 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 10 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u111",
+            "chapterCode": "tech_connection_u111",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 11 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 11 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u112",
+            "chapterCode": "tech_connection_u112",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 12 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 12 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u113",
+            "chapterCode": "tech_connection_u113",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 13 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 13 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u114",
+            "chapterCode": "tech_connection_u114",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 14 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 14 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u115",
+            "chapterCode": "tech_connection_u115",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 15 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 15 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u116",
+            "chapterCode": "tech_connection_u116",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 16 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 16 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u117",
+            "chapterCode": "tech_connection_u117",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 17 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 17 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u118",
+            "chapterCode": "tech_connection_u118",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 18 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 18 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u119",
+            "chapterCode": "tech_connection_u119",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 19 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 19 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u120",
+            "chapterCode": "tech_connection_u120",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 20 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 20 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_connection_u121",
+            "chapterCode": "tech_connection_u121",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 21 (9제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 21 (9제)",
+            "problemCount": 9,
+            "problemsCount": 9
           }
         ]
       },
       {
         "code": "tech_race_outer",
         "title": "⏱️ 수상전: 바깥 활로 줄이기 마스터",
-        "chapterCount": 4,
-        "totalProblems": 80,
+        "chapterCount": 193,
+        "totalProblems": 4778,
         "chapters": [
           {
-            "code": "tech_race_outer_ch1",
-            "chapterCode": "tech_race_outer_ch1",
-            "title": "1단계: [기초] 핵심 개념과 기본 원리",
-            "chapter": "1단계: [기초] 핵심 개념과 기본 원리",
-            "problemCount": 20,
-            "problemsCount": 20
+            "code": "tech_race_outer_u01",
+            "chapterCode": "tech_race_outer_u01",
+            "title": "1단계 [기초/입문: 30급~21급] Part 1 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 1 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
           },
           {
-            "code": "tech_race_outer_ch2",
-            "chapterCode": "tech_race_outer_ch2",
-            "title": "2단계: [초급] 기본 응용과 방향성 탐색",
-            "chapter": "2단계: [초급] 기본 응용과 방향성 탐색",
-            "problemCount": 20,
-            "problemsCount": 20
+            "code": "tech_race_outer_u02",
+            "chapterCode": "tech_race_outer_u02",
+            "title": "1단계 [기초/입문: 30급~21급] Part 2 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 2 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
           },
           {
-            "code": "tech_race_outer_ch3",
-            "chapterCode": "tech_race_outer_ch3",
-            "title": "3단계: [중급] 수순의 묘와 함정 피하기",
-            "chapter": "3단계: [중급] 수순의 묘와 함정 피하기",
-            "problemCount": 20,
-            "problemsCount": 20
+            "code": "tech_race_outer_u03",
+            "chapterCode": "tech_race_outer_u03",
+            "title": "1단계 [기초/입문: 30급~21급] Part 3 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 3 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
           },
           {
-            "code": "tech_race_outer_ch4",
-            "chapterCode": "tech_race_outer_ch4",
-            "title": "4단계: [고급] 실전 심화 및 유단자 맥점",
-            "chapter": "4단계: [고급] 실전 심화 및 유단자 맥점",
-            "problemCount": 20,
-            "problemsCount": 20
+            "code": "tech_race_outer_u04",
+            "chapterCode": "tech_race_outer_u04",
+            "title": "1단계 [기초/입문: 30급~21급] Part 4 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 4 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u05",
+            "chapterCode": "tech_race_outer_u05",
+            "title": "1단계 [기초/입문: 30급~21급] Part 5 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 5 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u06",
+            "chapterCode": "tech_race_outer_u06",
+            "title": "1단계 [기초/입문: 30급~21급] Part 6 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 6 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u07",
+            "chapterCode": "tech_race_outer_u07",
+            "title": "1단계 [기초/입문: 30급~21급] Part 7 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 7 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u08",
+            "chapterCode": "tech_race_outer_u08",
+            "title": "1단계 [기초/입문: 30급~21급] Part 8 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 8 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u09",
+            "chapterCode": "tech_race_outer_u09",
+            "title": "1단계 [기초/입문: 30급~21급] Part 9 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 9 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u10",
+            "chapterCode": "tech_race_outer_u10",
+            "title": "1단계 [기초/입문: 30급~21급] Part 10 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 10 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u11",
+            "chapterCode": "tech_race_outer_u11",
+            "title": "1단계 [기초/입문: 30급~21급] Part 11 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 11 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u12",
+            "chapterCode": "tech_race_outer_u12",
+            "title": "1단계 [기초/입문: 30급~21급] Part 12 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 12 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u13",
+            "chapterCode": "tech_race_outer_u13",
+            "title": "1단계 [기초/입문: 30급~21급] Part 13 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 13 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u14",
+            "chapterCode": "tech_race_outer_u14",
+            "title": "1단계 [기초/입문: 30급~21급] Part 14 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 14 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u15",
+            "chapterCode": "tech_race_outer_u15",
+            "title": "1단계 [기초/입문: 30급~21급] Part 15 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 15 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u16",
+            "chapterCode": "tech_race_outer_u16",
+            "title": "1단계 [기초/입문: 30급~21급] Part 16 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 16 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u17",
+            "chapterCode": "tech_race_outer_u17",
+            "title": "1단계 [기초/입문: 30급~21급] Part 17 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 17 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u18",
+            "chapterCode": "tech_race_outer_u18",
+            "title": "1단계 [기초/입문: 30급~21급] Part 18 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 18 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u19",
+            "chapterCode": "tech_race_outer_u19",
+            "title": "1단계 [기초/입문: 30급~21급] Part 19 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 19 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u20",
+            "chapterCode": "tech_race_outer_u20",
+            "title": "1단계 [기초/입문: 30급~21급] Part 20 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 20 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u21",
+            "chapterCode": "tech_race_outer_u21",
+            "title": "1단계 [기초/입문: 30급~21급] Part 21 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 21 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u22",
+            "chapterCode": "tech_race_outer_u22",
+            "title": "1단계 [기초/입문: 30급~21급] Part 22 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 22 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u23",
+            "chapterCode": "tech_race_outer_u23",
+            "title": "1단계 [기초/입문: 30급~21급] Part 23 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 23 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u24",
+            "chapterCode": "tech_race_outer_u24",
+            "title": "1단계 [기초/입문: 30급~21급] Part 24 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 24 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u25",
+            "chapterCode": "tech_race_outer_u25",
+            "title": "1단계 [기초/입문: 30급~21급] Part 25 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 25 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u26",
+            "chapterCode": "tech_race_outer_u26",
+            "title": "1단계 [기초/입문: 30급~21급] Part 26 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 26 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u27",
+            "chapterCode": "tech_race_outer_u27",
+            "title": "1단계 [기초/입문: 30급~21급] Part 27 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 27 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u28",
+            "chapterCode": "tech_race_outer_u28",
+            "title": "1단계 [기초/입문: 30급~21급] Part 28 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 28 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u29",
+            "chapterCode": "tech_race_outer_u29",
+            "title": "1단계 [기초/입문: 30급~21급] Part 29 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 29 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u30",
+            "chapterCode": "tech_race_outer_u30",
+            "title": "1단계 [기초/입문: 30급~21급] Part 30 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 30 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u31",
+            "chapterCode": "tech_race_outer_u31",
+            "title": "1단계 [기초/입문: 30급~21급] Part 31 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 31 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u32",
+            "chapterCode": "tech_race_outer_u32",
+            "title": "1단계 [기초/입문: 30급~21급] Part 32 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 32 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u33",
+            "chapterCode": "tech_race_outer_u33",
+            "title": "1단계 [기초/입문: 30급~21급] Part 33 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 33 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u34",
+            "chapterCode": "tech_race_outer_u34",
+            "title": "1단계 [기초/입문: 30급~21급] Part 34 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 34 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u35",
+            "chapterCode": "tech_race_outer_u35",
+            "title": "1단계 [기초/입문: 30급~21급] Part 35 (24제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 35 (24제)",
+            "problemCount": 24,
+            "problemsCount": 24
+          },
+          {
+            "code": "tech_race_outer_u36",
+            "chapterCode": "tech_race_outer_u36",
+            "title": "2단계 [초급: 20급~15급] Part 1 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 1 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u37",
+            "chapterCode": "tech_race_outer_u37",
+            "title": "2단계 [초급: 20급~15급] Part 2 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 2 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u38",
+            "chapterCode": "tech_race_outer_u38",
+            "title": "2단계 [초급: 20급~15급] Part 3 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 3 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u39",
+            "chapterCode": "tech_race_outer_u39",
+            "title": "2단계 [초급: 20급~15급] Part 4 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 4 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u40",
+            "chapterCode": "tech_race_outer_u40",
+            "title": "2단계 [초급: 20급~15급] Part 5 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 5 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u41",
+            "chapterCode": "tech_race_outer_u41",
+            "title": "2단계 [초급: 20급~15급] Part 6 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 6 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u42",
+            "chapterCode": "tech_race_outer_u42",
+            "title": "2단계 [초급: 20급~15급] Part 7 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 7 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u43",
+            "chapterCode": "tech_race_outer_u43",
+            "title": "2단계 [초급: 20급~15급] Part 8 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 8 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u44",
+            "chapterCode": "tech_race_outer_u44",
+            "title": "2단계 [초급: 20급~15급] Part 9 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 9 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u45",
+            "chapterCode": "tech_race_outer_u45",
+            "title": "2단계 [초급: 20급~15급] Part 10 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 10 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u46",
+            "chapterCode": "tech_race_outer_u46",
+            "title": "2단계 [초급: 20급~15급] Part 11 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 11 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u47",
+            "chapterCode": "tech_race_outer_u47",
+            "title": "2단계 [초급: 20급~15급] Part 12 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 12 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u48",
+            "chapterCode": "tech_race_outer_u48",
+            "title": "2단계 [초급: 20급~15급] Part 13 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 13 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u49",
+            "chapterCode": "tech_race_outer_u49",
+            "title": "2단계 [초급: 20급~15급] Part 14 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 14 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u50",
+            "chapterCode": "tech_race_outer_u50",
+            "title": "2단계 [초급: 20급~15급] Part 15 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 15 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u51",
+            "chapterCode": "tech_race_outer_u51",
+            "title": "2단계 [초급: 20급~15급] Part 16 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 16 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u52",
+            "chapterCode": "tech_race_outer_u52",
+            "title": "2단계 [초급: 20급~15급] Part 17 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 17 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u53",
+            "chapterCode": "tech_race_outer_u53",
+            "title": "2단계 [초급: 20급~15급] Part 18 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 18 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u54",
+            "chapterCode": "tech_race_outer_u54",
+            "title": "2단계 [초급: 20급~15급] Part 19 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 19 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u55",
+            "chapterCode": "tech_race_outer_u55",
+            "title": "2단계 [초급: 20급~15급] Part 20 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 20 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u56",
+            "chapterCode": "tech_race_outer_u56",
+            "title": "2단계 [초급: 20급~15급] Part 21 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 21 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u57",
+            "chapterCode": "tech_race_outer_u57",
+            "title": "2단계 [초급: 20급~15급] Part 22 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 22 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u58",
+            "chapterCode": "tech_race_outer_u58",
+            "title": "2단계 [초급: 20급~15급] Part 23 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 23 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u59",
+            "chapterCode": "tech_race_outer_u59",
+            "title": "2단계 [초급: 20급~15급] Part 24 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 24 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u60",
+            "chapterCode": "tech_race_outer_u60",
+            "title": "2단계 [초급: 20급~15급] Part 25 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 25 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u61",
+            "chapterCode": "tech_race_outer_u61",
+            "title": "2단계 [초급: 20급~15급] Part 26 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 26 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u62",
+            "chapterCode": "tech_race_outer_u62",
+            "title": "2단계 [초급: 20급~15급] Part 27 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 27 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u63",
+            "chapterCode": "tech_race_outer_u63",
+            "title": "2단계 [초급: 20급~15급] Part 28 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 28 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u64",
+            "chapterCode": "tech_race_outer_u64",
+            "title": "2단계 [초급: 20급~15급] Part 29 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 29 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u65",
+            "chapterCode": "tech_race_outer_u65",
+            "title": "2단계 [초급: 20급~15급] Part 30 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 30 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u66",
+            "chapterCode": "tech_race_outer_u66",
+            "title": "2단계 [초급: 20급~15급] Part 31 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 31 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u67",
+            "chapterCode": "tech_race_outer_u67",
+            "title": "2단계 [초급: 20급~15급] Part 32 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 32 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u68",
+            "chapterCode": "tech_race_outer_u68",
+            "title": "2단계 [초급: 20급~15급] Part 33 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 33 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u69",
+            "chapterCode": "tech_race_outer_u69",
+            "title": "2단계 [초급: 20급~15급] Part 34 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 34 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u70",
+            "chapterCode": "tech_race_outer_u70",
+            "title": "2단계 [초급: 20급~15급] Part 35 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 35 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u71",
+            "chapterCode": "tech_race_outer_u71",
+            "title": "2단계 [초급: 20급~15급] Part 36 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 36 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u72",
+            "chapterCode": "tech_race_outer_u72",
+            "title": "2단계 [초급: 20급~15급] Part 37 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 37 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u73",
+            "chapterCode": "tech_race_outer_u73",
+            "title": "2단계 [초급: 20급~15급] Part 38 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 38 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u74",
+            "chapterCode": "tech_race_outer_u74",
+            "title": "2단계 [초급: 20급~15급] Part 39 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 39 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u75",
+            "chapterCode": "tech_race_outer_u75",
+            "title": "2단계 [초급: 20급~15급] Part 40 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 40 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u76",
+            "chapterCode": "tech_race_outer_u76",
+            "title": "2단계 [초급: 20급~15급] Part 41 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 41 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u77",
+            "chapterCode": "tech_race_outer_u77",
+            "title": "2단계 [초급: 20급~15급] Part 42 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 42 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u78",
+            "chapterCode": "tech_race_outer_u78",
+            "title": "2단계 [초급: 20급~15급] Part 43 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 43 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u79",
+            "chapterCode": "tech_race_outer_u79",
+            "title": "2단계 [초급: 20급~15급] Part 44 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 44 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u80",
+            "chapterCode": "tech_race_outer_u80",
+            "title": "2단계 [초급: 20급~15급] Part 45 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 45 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u81",
+            "chapterCode": "tech_race_outer_u81",
+            "title": "2단계 [초급: 20급~15급] Part 46 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 46 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u82",
+            "chapterCode": "tech_race_outer_u82",
+            "title": "2단계 [초급: 20급~15급] Part 47 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 47 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u83",
+            "chapterCode": "tech_race_outer_u83",
+            "title": "2단계 [초급: 20급~15급] Part 48 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 48 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u84",
+            "chapterCode": "tech_race_outer_u84",
+            "title": "2단계 [초급: 20급~15급] Part 49 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 49 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u85",
+            "chapterCode": "tech_race_outer_u85",
+            "title": "2단계 [초급: 20급~15급] Part 50 (10제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 50 (10제)",
+            "problemCount": 10,
+            "problemsCount": 10
+          },
+          {
+            "code": "tech_race_outer_u86",
+            "chapterCode": "tech_race_outer_u86",
+            "title": "3단계 [중급: 14급~9급] Part 1 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 1 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u87",
+            "chapterCode": "tech_race_outer_u87",
+            "title": "3단계 [중급: 14급~9급] Part 2 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 2 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u88",
+            "chapterCode": "tech_race_outer_u88",
+            "title": "3단계 [중급: 14급~9급] Part 3 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 3 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u89",
+            "chapterCode": "tech_race_outer_u89",
+            "title": "3단계 [중급: 14급~9급] Part 4 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 4 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u90",
+            "chapterCode": "tech_race_outer_u90",
+            "title": "3단계 [중급: 14급~9급] Part 5 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 5 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u91",
+            "chapterCode": "tech_race_outer_u91",
+            "title": "3단계 [중급: 14급~9급] Part 6 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 6 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u92",
+            "chapterCode": "tech_race_outer_u92",
+            "title": "3단계 [중급: 14급~9급] Part 7 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 7 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u93",
+            "chapterCode": "tech_race_outer_u93",
+            "title": "3단계 [중급: 14급~9급] Part 8 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 8 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u94",
+            "chapterCode": "tech_race_outer_u94",
+            "title": "3단계 [중급: 14급~9급] Part 9 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 9 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u95",
+            "chapterCode": "tech_race_outer_u95",
+            "title": "3단계 [중급: 14급~9급] Part 10 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 10 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u96",
+            "chapterCode": "tech_race_outer_u96",
+            "title": "3단계 [중급: 14급~9급] Part 11 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 11 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u97",
+            "chapterCode": "tech_race_outer_u97",
+            "title": "3단계 [중급: 14급~9급] Part 12 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 12 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u98",
+            "chapterCode": "tech_race_outer_u98",
+            "title": "3단계 [중급: 14급~9급] Part 13 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 13 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u99",
+            "chapterCode": "tech_race_outer_u99",
+            "title": "3단계 [중급: 14급~9급] Part 14 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 14 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u100",
+            "chapterCode": "tech_race_outer_u100",
+            "title": "3단계 [중급: 14급~9급] Part 15 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 15 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u101",
+            "chapterCode": "tech_race_outer_u101",
+            "title": "3단계 [중급: 14급~9급] Part 16 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 16 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u102",
+            "chapterCode": "tech_race_outer_u102",
+            "title": "3단계 [중급: 14급~9급] Part 17 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 17 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u103",
+            "chapterCode": "tech_race_outer_u103",
+            "title": "3단계 [중급: 14급~9급] Part 18 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 18 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u104",
+            "chapterCode": "tech_race_outer_u104",
+            "title": "3단계 [중급: 14급~9급] Part 19 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 19 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u105",
+            "chapterCode": "tech_race_outer_u105",
+            "title": "3단계 [중급: 14급~9급] Part 20 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 20 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u106",
+            "chapterCode": "tech_race_outer_u106",
+            "title": "3단계 [중급: 14급~9급] Part 21 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 21 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u107",
+            "chapterCode": "tech_race_outer_u107",
+            "title": "3단계 [중급: 14급~9급] Part 22 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 22 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u108",
+            "chapterCode": "tech_race_outer_u108",
+            "title": "3단계 [중급: 14급~9급] Part 23 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 23 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u109",
+            "chapterCode": "tech_race_outer_u109",
+            "title": "3단계 [중급: 14급~9급] Part 24 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 24 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u110",
+            "chapterCode": "tech_race_outer_u110",
+            "title": "3단계 [중급: 14급~9급] Part 25 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 25 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u111",
+            "chapterCode": "tech_race_outer_u111",
+            "title": "3단계 [중급: 14급~9급] Part 26 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 26 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u112",
+            "chapterCode": "tech_race_outer_u112",
+            "title": "3단계 [중급: 14급~9급] Part 27 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 27 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u113",
+            "chapterCode": "tech_race_outer_u113",
+            "title": "3단계 [중급: 14급~9급] Part 28 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 28 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u114",
+            "chapterCode": "tech_race_outer_u114",
+            "title": "3단계 [중급: 14급~9급] Part 29 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 29 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u115",
+            "chapterCode": "tech_race_outer_u115",
+            "title": "3단계 [중급: 14급~9급] Part 30 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 30 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u116",
+            "chapterCode": "tech_race_outer_u116",
+            "title": "3단계 [중급: 14급~9급] Part 31 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 31 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u117",
+            "chapterCode": "tech_race_outer_u117",
+            "title": "3단계 [중급: 14급~9급] Part 32 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 32 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u118",
+            "chapterCode": "tech_race_outer_u118",
+            "title": "3단계 [중급: 14급~9급] Part 33 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 33 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u119",
+            "chapterCode": "tech_race_outer_u119",
+            "title": "3단계 [중급: 14급~9급] Part 34 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 34 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u120",
+            "chapterCode": "tech_race_outer_u120",
+            "title": "3단계 [중급: 14급~9급] Part 35 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 35 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u121",
+            "chapterCode": "tech_race_outer_u121",
+            "title": "3단계 [중급: 14급~9급] Part 36 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 36 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u122",
+            "chapterCode": "tech_race_outer_u122",
+            "title": "3단계 [중급: 14급~9급] Part 37 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 37 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u123",
+            "chapterCode": "tech_race_outer_u123",
+            "title": "3단계 [중급: 14급~9급] Part 38 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 38 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u124",
+            "chapterCode": "tech_race_outer_u124",
+            "title": "3단계 [중급: 14급~9급] Part 39 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 39 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u125",
+            "chapterCode": "tech_race_outer_u125",
+            "title": "3단계 [중급: 14급~9급] Part 40 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 40 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u126",
+            "chapterCode": "tech_race_outer_u126",
+            "title": "3단계 [중급: 14급~9급] Part 41 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 41 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u127",
+            "chapterCode": "tech_race_outer_u127",
+            "title": "3단계 [중급: 14급~9급] Part 42 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 42 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u128",
+            "chapterCode": "tech_race_outer_u128",
+            "title": "3단계 [중급: 14급~9급] Part 43 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 43 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u129",
+            "chapterCode": "tech_race_outer_u129",
+            "title": "3단계 [중급: 14급~9급] Part 44 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 44 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u130",
+            "chapterCode": "tech_race_outer_u130",
+            "title": "3단계 [중급: 14급~9급] Part 45 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 45 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u131",
+            "chapterCode": "tech_race_outer_u131",
+            "title": "3단계 [중급: 14급~9급] Part 46 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 46 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u132",
+            "chapterCode": "tech_race_outer_u132",
+            "title": "3단계 [중급: 14급~9급] Part 47 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 47 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u133",
+            "chapterCode": "tech_race_outer_u133",
+            "title": "3단계 [중급: 14급~9급] Part 48 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 48 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u134",
+            "chapterCode": "tech_race_outer_u134",
+            "title": "3단계 [중급: 14급~9급] Part 49 (7제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 49 (7제)",
+            "problemCount": 7,
+            "problemsCount": 7
+          },
+          {
+            "code": "tech_race_outer_u135",
+            "chapterCode": "tech_race_outer_u135",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 1 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 1 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u136",
+            "chapterCode": "tech_race_outer_u136",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 2 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 2 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u137",
+            "chapterCode": "tech_race_outer_u137",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 3 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 3 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u138",
+            "chapterCode": "tech_race_outer_u138",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 4 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 4 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u139",
+            "chapterCode": "tech_race_outer_u139",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 5 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 5 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u140",
+            "chapterCode": "tech_race_outer_u140",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 6 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 6 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u141",
+            "chapterCode": "tech_race_outer_u141",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 7 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 7 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u142",
+            "chapterCode": "tech_race_outer_u142",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 8 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 8 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u143",
+            "chapterCode": "tech_race_outer_u143",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 9 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 9 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u144",
+            "chapterCode": "tech_race_outer_u144",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 10 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 10 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u145",
+            "chapterCode": "tech_race_outer_u145",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 11 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 11 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u146",
+            "chapterCode": "tech_race_outer_u146",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 12 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 12 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u147",
+            "chapterCode": "tech_race_outer_u147",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 13 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 13 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u148",
+            "chapterCode": "tech_race_outer_u148",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 14 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 14 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u149",
+            "chapterCode": "tech_race_outer_u149",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 15 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 15 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u150",
+            "chapterCode": "tech_race_outer_u150",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 16 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 16 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u151",
+            "chapterCode": "tech_race_outer_u151",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 17 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 17 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u152",
+            "chapterCode": "tech_race_outer_u152",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 18 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 18 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u153",
+            "chapterCode": "tech_race_outer_u153",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 19 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 19 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u154",
+            "chapterCode": "tech_race_outer_u154",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 20 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 20 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u155",
+            "chapterCode": "tech_race_outer_u155",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 21 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 21 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u156",
+            "chapterCode": "tech_race_outer_u156",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 22 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 22 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u157",
+            "chapterCode": "tech_race_outer_u157",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 23 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 23 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u158",
+            "chapterCode": "tech_race_outer_u158",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 24 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 24 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u159",
+            "chapterCode": "tech_race_outer_u159",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 25 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 25 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u160",
+            "chapterCode": "tech_race_outer_u160",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 26 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 26 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u161",
+            "chapterCode": "tech_race_outer_u161",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 27 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 27 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u162",
+            "chapterCode": "tech_race_outer_u162",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 28 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 28 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u163",
+            "chapterCode": "tech_race_outer_u163",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 29 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 29 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u164",
+            "chapterCode": "tech_race_outer_u164",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 30 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 30 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u165",
+            "chapterCode": "tech_race_outer_u165",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 31 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 31 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u166",
+            "chapterCode": "tech_race_outer_u166",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 32 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 32 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u167",
+            "chapterCode": "tech_race_outer_u167",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 33 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 33 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u168",
+            "chapterCode": "tech_race_outer_u168",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 34 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 34 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u169",
+            "chapterCode": "tech_race_outer_u169",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 35 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 35 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u170",
+            "chapterCode": "tech_race_outer_u170",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 36 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 36 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u171",
+            "chapterCode": "tech_race_outer_u171",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 37 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 37 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u172",
+            "chapterCode": "tech_race_outer_u172",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 38 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 38 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u173",
+            "chapterCode": "tech_race_outer_u173",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 39 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 39 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u174",
+            "chapterCode": "tech_race_outer_u174",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 40 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 40 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u175",
+            "chapterCode": "tech_race_outer_u175",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 41 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 41 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u176",
+            "chapterCode": "tech_race_outer_u176",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 42 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 42 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u177",
+            "chapterCode": "tech_race_outer_u177",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 43 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 43 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u178",
+            "chapterCode": "tech_race_outer_u178",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 44 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 44 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u179",
+            "chapterCode": "tech_race_outer_u179",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 45 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 45 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u180",
+            "chapterCode": "tech_race_outer_u180",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 46 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 46 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u181",
+            "chapterCode": "tech_race_outer_u181",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 47 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 47 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u182",
+            "chapterCode": "tech_race_outer_u182",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 48 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 48 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u183",
+            "chapterCode": "tech_race_outer_u183",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 49 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 49 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u184",
+            "chapterCode": "tech_race_outer_u184",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 50 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 50 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u185",
+            "chapterCode": "tech_race_outer_u185",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 51 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 51 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u186",
+            "chapterCode": "tech_race_outer_u186",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 52 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 52 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u187",
+            "chapterCode": "tech_race_outer_u187",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 53 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 53 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u188",
+            "chapterCode": "tech_race_outer_u188",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 54 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 54 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u189",
+            "chapterCode": "tech_race_outer_u189",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 55 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 55 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u190",
+            "chapterCode": "tech_race_outer_u190",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 56 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 56 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u191",
+            "chapterCode": "tech_race_outer_u191",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 57 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 57 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u192",
+            "chapterCode": "tech_race_outer_u192",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 58 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 58 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_race_outer_u193",
+            "chapterCode": "tech_race_outer_u193",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 59 (12제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 59 (12제)",
+            "problemCount": 12,
+            "problemsCount": 12
           }
         ]
       },
       {
         "code": "tech_yugamuga",
         "title": "👑 수상전: 유가무가 & 대궁소궁 & 귀삼수",
-        "chapterCount": 4,
-        "totalProblems": 80,
+        "chapterCount": 22,
+        "totalProblems": 494,
         "chapters": [
           {
-            "code": "tech_yugamuga_ch1",
-            "chapterCode": "tech_yugamuga_ch1",
-            "title": "1단계: [기초] 핵심 개념과 기본 원리",
-            "chapter": "1단계: [기초] 핵심 개념과 기본 원리",
-            "problemCount": 20,
-            "problemsCount": 20
+            "code": "tech_yugamuga_u01",
+            "chapterCode": "tech_yugamuga_u01",
+            "title": "1단계 [기초/입문: 30급~21급] Part 1 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 1 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
           },
           {
-            "code": "tech_yugamuga_ch2",
-            "chapterCode": "tech_yugamuga_ch2",
-            "title": "2단계: [초급] 기본 응용과 방향성 탐색",
-            "chapter": "2단계: [초급] 기본 응용과 방향성 탐색",
-            "problemCount": 20,
-            "problemsCount": 20
+            "code": "tech_yugamuga_u02",
+            "chapterCode": "tech_yugamuga_u02",
+            "title": "1단계 [기초/입문: 30급~21급] Part 2 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 2 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
           },
           {
-            "code": "tech_yugamuga_ch3",
-            "chapterCode": "tech_yugamuga_ch3",
-            "title": "3단계: [중급] 수순의 묘와 함정 피하기",
-            "chapter": "3단계: [중급] 수순의 묘와 함정 피하기",
-            "problemCount": 20,
-            "problemsCount": 20
+            "code": "tech_yugamuga_u03",
+            "chapterCode": "tech_yugamuga_u03",
+            "title": "1단계 [기초/입문: 30급~21급] Part 3 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 3 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
           },
           {
-            "code": "tech_yugamuga_ch4",
-            "chapterCode": "tech_yugamuga_ch4",
-            "title": "4단계: [고급] 실전 심화 및 유단자 맥점",
-            "chapter": "4단계: [고급] 실전 심화 및 유단자 맥점",
-            "problemCount": 20,
-            "problemsCount": 20
+            "code": "tech_yugamuga_u04",
+            "chapterCode": "tech_yugamuga_u04",
+            "title": "1단계 [기초/입문: 30급~21급] Part 4 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 4 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_yugamuga_u05",
+            "chapterCode": "tech_yugamuga_u05",
+            "title": "1단계 [기초/입문: 30급~21급] Part 5 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 5 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_yugamuga_u06",
+            "chapterCode": "tech_yugamuga_u06",
+            "title": "1단계 [기초/입문: 30급~21급] Part 6 (6제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 6 (6제)",
+            "problemCount": 6,
+            "problemsCount": 6
+          },
+          {
+            "code": "tech_yugamuga_u07",
+            "chapterCode": "tech_yugamuga_u07",
+            "title": "3단계 [중급: 14급~9급] Part 1 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 1 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_yugamuga_u08",
+            "chapterCode": "tech_yugamuga_u08",
+            "title": "3단계 [중급: 14급~9급] Part 2 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 2 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_yugamuga_u09",
+            "chapterCode": "tech_yugamuga_u09",
+            "title": "3단계 [중급: 14급~9급] Part 3 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 3 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_yugamuga_u10",
+            "chapterCode": "tech_yugamuga_u10",
+            "title": "3단계 [중급: 14급~9급] Part 4 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 4 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_yugamuga_u11",
+            "chapterCode": "tech_yugamuga_u11",
+            "title": "3단계 [중급: 14급~9급] Part 5 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 5 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_yugamuga_u12",
+            "chapterCode": "tech_yugamuga_u12",
+            "title": "3단계 [중급: 14급~9급] Part 6 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 6 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_yugamuga_u13",
+            "chapterCode": "tech_yugamuga_u13",
+            "title": "3단계 [중급: 14급~9급] Part 7 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 7 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_yugamuga_u14",
+            "chapterCode": "tech_yugamuga_u14",
+            "title": "3단계 [중급: 14급~9급] Part 8 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 8 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_yugamuga_u15",
+            "chapterCode": "tech_yugamuga_u15",
+            "title": "3단계 [중급: 14급~9급] Part 9 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 9 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_yugamuga_u16",
+            "chapterCode": "tech_yugamuga_u16",
+            "title": "3단계 [중급: 14급~9급] Part 10 (12제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 10 (12제)",
+            "problemCount": 12,
+            "problemsCount": 12
+          },
+          {
+            "code": "tech_yugamuga_u17",
+            "chapterCode": "tech_yugamuga_u17",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 1 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 1 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_yugamuga_u18",
+            "chapterCode": "tech_yugamuga_u18",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 2 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 2 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_yugamuga_u19",
+            "chapterCode": "tech_yugamuga_u19",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 3 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 3 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_yugamuga_u20",
+            "chapterCode": "tech_yugamuga_u20",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 4 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 4 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_yugamuga_u21",
+            "chapterCode": "tech_yugamuga_u21",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 5 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 5 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_yugamuga_u22",
+            "chapterCode": "tech_yugamuga_u22",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 6 (1제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 6 (1제)",
+            "problemCount": 1,
+            "problemsCount": 1
           }
         ]
       },
       {
         "code": "tech_eye_house",
         "title": "👁️ 사활: 두 눈 만들기 & 옥집 파호",
-        "chapterCount": 4,
-        "totalProblems": 80,
+        "chapterCount": 95,
+        "totalProblems": 2330,
         "chapters": [
           {
-            "code": "tech_eye_house_ch1",
-            "chapterCode": "tech_eye_house_ch1",
-            "title": "1단계: [기초] 핵심 개념과 기본 원리",
-            "chapter": "1단계: [기초] 핵심 개념과 기본 원리",
+            "code": "tech_eye_house_u01",
+            "chapterCode": "tech_eye_house_u01",
+            "title": "1단계 [기초/입문: 30급~21급] Part 1 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 1 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u02",
+            "chapterCode": "tech_eye_house_u02",
+            "title": "1단계 [기초/입문: 30급~21급] Part 2 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 2 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u03",
+            "chapterCode": "tech_eye_house_u03",
+            "title": "1단계 [기초/입문: 30급~21급] Part 3 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 3 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u04",
+            "chapterCode": "tech_eye_house_u04",
+            "title": "1단계 [기초/입문: 30급~21급] Part 4 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 4 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u05",
+            "chapterCode": "tech_eye_house_u05",
+            "title": "1단계 [기초/입문: 30급~21급] Part 5 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 5 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u06",
+            "chapterCode": "tech_eye_house_u06",
+            "title": "1단계 [기초/입문: 30급~21급] Part 6 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 6 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u07",
+            "chapterCode": "tech_eye_house_u07",
+            "title": "1단계 [기초/입문: 30급~21급] Part 7 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 7 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u08",
+            "chapterCode": "tech_eye_house_u08",
+            "title": "1단계 [기초/입문: 30급~21급] Part 8 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 8 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u09",
+            "chapterCode": "tech_eye_house_u09",
+            "title": "1단계 [기초/입문: 30급~21급] Part 9 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 9 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u10",
+            "chapterCode": "tech_eye_house_u10",
+            "title": "1단계 [기초/입문: 30급~21급] Part 10 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 10 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u11",
+            "chapterCode": "tech_eye_house_u11",
+            "title": "1단계 [기초/입문: 30급~21급] Part 11 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 11 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u12",
+            "chapterCode": "tech_eye_house_u12",
+            "title": "1단계 [기초/입문: 30급~21급] Part 12 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 12 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u13",
+            "chapterCode": "tech_eye_house_u13",
+            "title": "1단계 [기초/입문: 30급~21급] Part 13 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 13 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u14",
+            "chapterCode": "tech_eye_house_u14",
+            "title": "1단계 [기초/입문: 30급~21급] Part 14 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 14 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u15",
+            "chapterCode": "tech_eye_house_u15",
+            "title": "1단계 [기초/입문: 30급~21급] Part 15 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 15 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u16",
+            "chapterCode": "tech_eye_house_u16",
+            "title": "1단계 [기초/입문: 30급~21급] Part 16 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 16 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u17",
+            "chapterCode": "tech_eye_house_u17",
+            "title": "1단계 [기초/입문: 30급~21급] Part 17 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 17 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u18",
+            "chapterCode": "tech_eye_house_u18",
+            "title": "1단계 [기초/입문: 30급~21급] Part 18 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 18 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u19",
+            "chapterCode": "tech_eye_house_u19",
+            "title": "1단계 [기초/입문: 30급~21급] Part 19 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 19 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u20",
+            "chapterCode": "tech_eye_house_u20",
+            "title": "1단계 [기초/입문: 30급~21급] Part 20 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 20 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u21",
+            "chapterCode": "tech_eye_house_u21",
+            "title": "1단계 [기초/입문: 30급~21급] Part 21 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 21 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u22",
+            "chapterCode": "tech_eye_house_u22",
+            "title": "1단계 [기초/입문: 30급~21급] Part 22 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 22 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u23",
+            "chapterCode": "tech_eye_house_u23",
+            "title": "1단계 [기초/입문: 30급~21급] Part 23 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 23 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u24",
+            "chapterCode": "tech_eye_house_u24",
+            "title": "1단계 [기초/입문: 30급~21급] Part 24 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 24 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u25",
+            "chapterCode": "tech_eye_house_u25",
+            "title": "1단계 [기초/입문: 30급~21급] Part 25 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 25 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u26",
+            "chapterCode": "tech_eye_house_u26",
+            "title": "1단계 [기초/입문: 30급~21급] Part 26 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 26 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u27",
+            "chapterCode": "tech_eye_house_u27",
+            "title": "1단계 [기초/입문: 30급~21급] Part 27 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 27 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u28",
+            "chapterCode": "tech_eye_house_u28",
+            "title": "1단계 [기초/입문: 30급~21급] Part 28 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 28 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u29",
+            "chapterCode": "tech_eye_house_u29",
+            "title": "1단계 [기초/입문: 30급~21급] Part 29 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 29 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u30",
+            "chapterCode": "tech_eye_house_u30",
+            "title": "1단계 [기초/입문: 30급~21급] Part 30 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 30 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u31",
+            "chapterCode": "tech_eye_house_u31",
+            "title": "1단계 [기초/입문: 30급~21급] Part 31 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 31 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u32",
+            "chapterCode": "tech_eye_house_u32",
+            "title": "1단계 [기초/입문: 30급~21급] Part 32 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 32 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u33",
+            "chapterCode": "tech_eye_house_u33",
+            "title": "1단계 [기초/입문: 30급~21급] Part 33 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 33 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u34",
+            "chapterCode": "tech_eye_house_u34",
+            "title": "1단계 [기초/입문: 30급~21급] Part 34 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 34 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u35",
+            "chapterCode": "tech_eye_house_u35",
+            "title": "1단계 [기초/입문: 30급~21급] Part 35 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 35 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u36",
+            "chapterCode": "tech_eye_house_u36",
+            "title": "1단계 [기초/입문: 30급~21급] Part 36 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 36 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u37",
+            "chapterCode": "tech_eye_house_u37",
+            "title": "1단계 [기초/입문: 30급~21급] Part 37 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 37 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u38",
+            "chapterCode": "tech_eye_house_u38",
+            "title": "1단계 [기초/입문: 30급~21급] Part 38 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 38 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u39",
+            "chapterCode": "tech_eye_house_u39",
+            "title": "1단계 [기초/입문: 30급~21급] Part 39 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 39 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u40",
+            "chapterCode": "tech_eye_house_u40",
+            "title": "1단계 [기초/입문: 30급~21급] Part 40 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 40 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u41",
+            "chapterCode": "tech_eye_house_u41",
+            "title": "1단계 [기초/입문: 30급~21급] Part 41 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 41 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u42",
+            "chapterCode": "tech_eye_house_u42",
+            "title": "1단계 [기초/입문: 30급~21급] Part 42 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 42 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u43",
+            "chapterCode": "tech_eye_house_u43",
+            "title": "1단계 [기초/입문: 30급~21급] Part 43 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 43 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u44",
+            "chapterCode": "tech_eye_house_u44",
+            "title": "1단계 [기초/입문: 30급~21급] Part 44 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 44 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u45",
+            "chapterCode": "tech_eye_house_u45",
+            "title": "1단계 [기초/입문: 30급~21급] Part 45 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 45 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u46",
+            "chapterCode": "tech_eye_house_u46",
+            "title": "1단계 [기초/입문: 30급~21급] Part 46 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 46 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u47",
+            "chapterCode": "tech_eye_house_u47",
+            "title": "1단계 [기초/입문: 30급~21급] Part 47 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 47 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u48",
+            "chapterCode": "tech_eye_house_u48",
+            "title": "1단계 [기초/입문: 30급~21급] Part 48 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 48 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u49",
+            "chapterCode": "tech_eye_house_u49",
+            "title": "1단계 [기초/입문: 30급~21급] Part 49 (10제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 49 (10제)",
+            "problemCount": 10,
+            "problemsCount": 10
+          },
+          {
+            "code": "tech_eye_house_u50",
+            "chapterCode": "tech_eye_house_u50",
+            "title": "2단계 [초급: 20급~15급] Part 1 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 1 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u51",
+            "chapterCode": "tech_eye_house_u51",
+            "title": "2단계 [초급: 20급~15급] Part 2 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 2 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u52",
+            "chapterCode": "tech_eye_house_u52",
+            "title": "2단계 [초급: 20급~15급] Part 3 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 3 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u53",
+            "chapterCode": "tech_eye_house_u53",
+            "title": "2단계 [초급: 20급~15급] Part 4 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 4 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u54",
+            "chapterCode": "tech_eye_house_u54",
+            "title": "2단계 [초급: 20급~15급] Part 5 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 5 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u55",
+            "chapterCode": "tech_eye_house_u55",
+            "title": "2단계 [초급: 20급~15급] Part 6 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 6 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u56",
+            "chapterCode": "tech_eye_house_u56",
+            "title": "2단계 [초급: 20급~15급] Part 7 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 7 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u57",
+            "chapterCode": "tech_eye_house_u57",
+            "title": "2단계 [초급: 20급~15급] Part 8 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 8 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u58",
+            "chapterCode": "tech_eye_house_u58",
+            "title": "2단계 [초급: 20급~15급] Part 9 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 9 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u59",
+            "chapterCode": "tech_eye_house_u59",
+            "title": "2단계 [초급: 20급~15급] Part 10 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 10 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u60",
+            "chapterCode": "tech_eye_house_u60",
+            "title": "2단계 [초급: 20급~15급] Part 11 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 11 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u61",
+            "chapterCode": "tech_eye_house_u61",
+            "title": "2단계 [초급: 20급~15급] Part 12 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 12 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u62",
+            "chapterCode": "tech_eye_house_u62",
+            "title": "2단계 [초급: 20급~15급] Part 13 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 13 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u63",
+            "chapterCode": "tech_eye_house_u63",
+            "title": "2단계 [초급: 20급~15급] Part 14 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 14 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u64",
+            "chapterCode": "tech_eye_house_u64",
+            "title": "2단계 [초급: 20급~15급] Part 15 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 15 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u65",
+            "chapterCode": "tech_eye_house_u65",
+            "title": "2단계 [초급: 20급~15급] Part 16 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 16 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u66",
+            "chapterCode": "tech_eye_house_u66",
+            "title": "2단계 [초급: 20급~15급] Part 17 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 17 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u67",
+            "chapterCode": "tech_eye_house_u67",
+            "title": "2단계 [초급: 20급~15급] Part 18 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 18 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u68",
+            "chapterCode": "tech_eye_house_u68",
+            "title": "2단계 [초급: 20급~15급] Part 19 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 19 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u69",
+            "chapterCode": "tech_eye_house_u69",
+            "title": "2단계 [초급: 20급~15급] Part 20 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 20 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u70",
+            "chapterCode": "tech_eye_house_u70",
+            "title": "2단계 [초급: 20급~15급] Part 21 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 21 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u71",
+            "chapterCode": "tech_eye_house_u71",
+            "title": "2단계 [초급: 20급~15급] Part 22 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 22 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u72",
+            "chapterCode": "tech_eye_house_u72",
+            "title": "2단계 [초급: 20급~15급] Part 23 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 23 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u73",
+            "chapterCode": "tech_eye_house_u73",
+            "title": "2단계 [초급: 20급~15급] Part 24 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 24 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u74",
+            "chapterCode": "tech_eye_house_u74",
+            "title": "2단계 [초급: 20급~15급] Part 25 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 25 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u75",
+            "chapterCode": "tech_eye_house_u75",
+            "title": "2단계 [초급: 20급~15급] Part 26 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 26 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u76",
+            "chapterCode": "tech_eye_house_u76",
+            "title": "2단계 [초급: 20급~15급] Part 27 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 27 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u77",
+            "chapterCode": "tech_eye_house_u77",
+            "title": "2단계 [초급: 20급~15급] Part 28 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 28 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u78",
+            "chapterCode": "tech_eye_house_u78",
+            "title": "2단계 [초급: 20급~15급] Part 29 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 29 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u79",
+            "chapterCode": "tech_eye_house_u79",
+            "title": "2단계 [초급: 20급~15급] Part 30 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 30 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u80",
+            "chapterCode": "tech_eye_house_u80",
+            "title": "2단계 [초급: 20급~15급] Part 31 (16제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 31 (16제)",
+            "problemCount": 16,
+            "problemsCount": 16
+          },
+          {
+            "code": "tech_eye_house_u81",
+            "chapterCode": "tech_eye_house_u81",
+            "title": "3단계 [중급: 14급~9급] Part 1 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 1 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u82",
+            "chapterCode": "tech_eye_house_u82",
+            "title": "3단계 [중급: 14급~9급] Part 2 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 2 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u83",
+            "chapterCode": "tech_eye_house_u83",
+            "title": "3단계 [중급: 14급~9급] Part 3 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 3 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u84",
+            "chapterCode": "tech_eye_house_u84",
+            "title": "3단계 [중급: 14급~9급] Part 4 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 4 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u85",
+            "chapterCode": "tech_eye_house_u85",
+            "title": "3단계 [중급: 14급~9급] Part 5 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 5 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u86",
+            "chapterCode": "tech_eye_house_u86",
+            "title": "3단계 [중급: 14급~9급] Part 6 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 6 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u87",
+            "chapterCode": "tech_eye_house_u87",
+            "title": "3단계 [중급: 14급~9급] Part 7 (20제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 7 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
-            "code": "tech_eye_house_ch2",
-            "chapterCode": "tech_eye_house_ch2",
-            "title": "2단계: [초급] 기본 응용과 방향성 탐색",
-            "chapter": "2단계: [초급] 기본 응용과 방향성 탐색",
-            "problemCount": 20,
-            "problemsCount": 20
+            "code": "tech_eye_house_u88",
+            "chapterCode": "tech_eye_house_u88",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 1 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 1 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
           },
           {
-            "code": "tech_eye_house_ch3",
-            "chapterCode": "tech_eye_house_ch3",
-            "title": "3단계: [중급] 수순의 묘와 함정 피하기",
-            "chapter": "3단계: [중급] 수순의 묘와 함정 피하기",
-            "problemCount": 20,
-            "problemsCount": 20
+            "code": "tech_eye_house_u89",
+            "chapterCode": "tech_eye_house_u89",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 2 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 2 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
           },
           {
-            "code": "tech_eye_house_ch4",
-            "chapterCode": "tech_eye_house_ch4",
-            "title": "4단계: [고급] 실전 심화 및 유단자 맥점",
-            "chapter": "4단계: [고급] 실전 심화 및 유단자 맥점",
-            "problemCount": 20,
-            "problemsCount": 20
+            "code": "tech_eye_house_u90",
+            "chapterCode": "tech_eye_house_u90",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 3 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 3 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u91",
+            "chapterCode": "tech_eye_house_u91",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 4 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 4 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u92",
+            "chapterCode": "tech_eye_house_u92",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 5 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 5 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u93",
+            "chapterCode": "tech_eye_house_u93",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 6 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 6 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u94",
+            "chapterCode": "tech_eye_house_u94",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 7 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 7 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_eye_house_u95",
+            "chapterCode": "tech_eye_house_u95",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 8 (9제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 8 (9제)",
+            "problemCount": 9,
+            "problemsCount": 9
           }
         ]
       },
       {
         "code": "tech_gungdo",
         "title": "🏯 사활: 궁도 (3궁~6궁) 삶과 죽음",
-        "chapterCount": 4,
-        "totalProblems": 80,
+        "chapterCount": 59,
+        "totalProblems": 1414,
         "chapters": [
           {
-            "code": "tech_gungdo_ch1",
-            "chapterCode": "tech_gungdo_ch1",
-            "title": "1단계: [기초] 핵심 개념과 기본 원리",
-            "chapter": "1단계: [기초] 핵심 개념과 기본 원리",
-            "problemCount": 20,
-            "problemsCount": 20
+            "code": "tech_gungdo_u01",
+            "chapterCode": "tech_gungdo_u01",
+            "title": "1단계 [기초/입문: 30급~21급] Part 1 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 1 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
           },
           {
-            "code": "tech_gungdo_ch2",
-            "chapterCode": "tech_gungdo_ch2",
-            "title": "2단계: [초급] 기본 응용과 방향성 탐색",
-            "chapter": "2단계: [초급] 기본 응용과 방향성 탐색",
-            "problemCount": 20,
-            "problemsCount": 20
+            "code": "tech_gungdo_u02",
+            "chapterCode": "tech_gungdo_u02",
+            "title": "1단계 [기초/입문: 30급~21급] Part 2 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 2 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
           },
           {
-            "code": "tech_gungdo_ch3",
-            "chapterCode": "tech_gungdo_ch3",
-            "title": "3단계: [중급] 수순의 묘와 함정 피하기",
-            "chapter": "3단계: [중급] 수순의 묘와 함정 피하기",
-            "problemCount": 20,
-            "problemsCount": 20
+            "code": "tech_gungdo_u03",
+            "chapterCode": "tech_gungdo_u03",
+            "title": "1단계 [기초/입문: 30급~21급] Part 3 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 3 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
           },
           {
-            "code": "tech_gungdo_ch4",
-            "chapterCode": "tech_gungdo_ch4",
-            "title": "4단계: [고급] 실전 심화 및 유단자 맥점",
-            "chapter": "4단계: [고급] 실전 심화 및 유단자 맥점",
-            "problemCount": 20,
-            "problemsCount": 20
+            "code": "tech_gungdo_u04",
+            "chapterCode": "tech_gungdo_u04",
+            "title": "1단계 [기초/입문: 30급~21급] Part 4 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 4 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_gungdo_u05",
+            "chapterCode": "tech_gungdo_u05",
+            "title": "1단계 [기초/입문: 30급~21급] Part 5 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 5 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_gungdo_u06",
+            "chapterCode": "tech_gungdo_u06",
+            "title": "1단계 [기초/입문: 30급~21급] Part 6 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 6 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_gungdo_u07",
+            "chapterCode": "tech_gungdo_u07",
+            "title": "1단계 [기초/입문: 30급~21급] Part 7 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 7 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_gungdo_u08",
+            "chapterCode": "tech_gungdo_u08",
+            "title": "1단계 [기초/입문: 30급~21급] Part 8 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 8 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_gungdo_u09",
+            "chapterCode": "tech_gungdo_u09",
+            "title": "1단계 [기초/입문: 30급~21급] Part 9 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 9 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_gungdo_u10",
+            "chapterCode": "tech_gungdo_u10",
+            "title": "1단계 [기초/입문: 30급~21급] Part 10 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 10 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_gungdo_u11",
+            "chapterCode": "tech_gungdo_u11",
+            "title": "1단계 [기초/입문: 30급~21급] Part 11 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 11 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_gungdo_u12",
+            "chapterCode": "tech_gungdo_u12",
+            "title": "1단계 [기초/입문: 30급~21급] Part 12 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 12 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_gungdo_u13",
+            "chapterCode": "tech_gungdo_u13",
+            "title": "1단계 [기초/입문: 30급~21급] Part 13 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 13 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_gungdo_u14",
+            "chapterCode": "tech_gungdo_u14",
+            "title": "1단계 [기초/입문: 30급~21급] Part 14 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 14 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_gungdo_u15",
+            "chapterCode": "tech_gungdo_u15",
+            "title": "1단계 [기초/입문: 30급~21급] Part 15 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 15 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_gungdo_u16",
+            "chapterCode": "tech_gungdo_u16",
+            "title": "1단계 [기초/입문: 30급~21급] Part 16 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 16 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_gungdo_u17",
+            "chapterCode": "tech_gungdo_u17",
+            "title": "1단계 [기초/입문: 30급~21급] Part 17 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 17 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_gungdo_u18",
+            "chapterCode": "tech_gungdo_u18",
+            "title": "1단계 [기초/입문: 30급~21급] Part 18 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 18 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_gungdo_u19",
+            "chapterCode": "tech_gungdo_u19",
+            "title": "1단계 [기초/입문: 30급~21급] Part 19 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 19 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_gungdo_u20",
+            "chapterCode": "tech_gungdo_u20",
+            "title": "1단계 [기초/입문: 30급~21급] Part 20 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 20 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_gungdo_u21",
+            "chapterCode": "tech_gungdo_u21",
+            "title": "1단계 [기초/입문: 30급~21급] Part 21 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 21 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_gungdo_u22",
+            "chapterCode": "tech_gungdo_u22",
+            "title": "1단계 [기초/입문: 30급~21급] Part 22 (12제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 22 (12제)",
+            "problemCount": 12,
+            "problemsCount": 12
+          },
+          {
+            "code": "tech_gungdo_u23",
+            "chapterCode": "tech_gungdo_u23",
+            "title": "2단계 [초급: 20급~15급] Part 1 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 1 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_gungdo_u24",
+            "chapterCode": "tech_gungdo_u24",
+            "title": "2단계 [초급: 20급~15급] Part 2 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 2 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_gungdo_u25",
+            "chapterCode": "tech_gungdo_u25",
+            "title": "2단계 [초급: 20급~15급] Part 3 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 3 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_gungdo_u26",
+            "chapterCode": "tech_gungdo_u26",
+            "title": "2단계 [초급: 20급~15급] Part 4 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 4 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_gungdo_u27",
+            "chapterCode": "tech_gungdo_u27",
+            "title": "2단계 [초급: 20급~15급] Part 5 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 5 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_gungdo_u28",
+            "chapterCode": "tech_gungdo_u28",
+            "title": "2단계 [초급: 20급~15급] Part 6 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 6 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_gungdo_u29",
+            "chapterCode": "tech_gungdo_u29",
+            "title": "2단계 [초급: 20급~15급] Part 7 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 7 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_gungdo_u30",
+            "chapterCode": "tech_gungdo_u30",
+            "title": "2단계 [초급: 20급~15급] Part 8 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 8 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_gungdo_u31",
+            "chapterCode": "tech_gungdo_u31",
+            "title": "2단계 [초급: 20급~15급] Part 9 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 9 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_gungdo_u32",
+            "chapterCode": "tech_gungdo_u32",
+            "title": "2단계 [초급: 20급~15급] Part 10 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 10 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_gungdo_u33",
+            "chapterCode": "tech_gungdo_u33",
+            "title": "2단계 [초급: 20급~15급] Part 11 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 11 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_gungdo_u34",
+            "chapterCode": "tech_gungdo_u34",
+            "title": "2단계 [초급: 20급~15급] Part 12 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 12 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_gungdo_u35",
+            "chapterCode": "tech_gungdo_u35",
+            "title": "2단계 [초급: 20급~15급] Part 13 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 13 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_gungdo_u36",
+            "chapterCode": "tech_gungdo_u36",
+            "title": "2단계 [초급: 20급~15급] Part 14 (6제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 14 (6제)",
+            "problemCount": 6,
+            "problemsCount": 6
+          },
+          {
+            "code": "tech_gungdo_u37",
+            "chapterCode": "tech_gungdo_u37",
+            "title": "3단계 [중급: 14급~9급] Part 1 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 1 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_gungdo_u38",
+            "chapterCode": "tech_gungdo_u38",
+            "title": "3단계 [중급: 14급~9급] Part 2 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 2 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_gungdo_u39",
+            "chapterCode": "tech_gungdo_u39",
+            "title": "3단계 [중급: 14급~9급] Part 3 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 3 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_gungdo_u40",
+            "chapterCode": "tech_gungdo_u40",
+            "title": "3단계 [중급: 14급~9급] Part 4 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 4 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_gungdo_u41",
+            "chapterCode": "tech_gungdo_u41",
+            "title": "3단계 [중급: 14급~9급] Part 5 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 5 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_gungdo_u42",
+            "chapterCode": "tech_gungdo_u42",
+            "title": "3단계 [중급: 14급~9급] Part 6 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 6 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_gungdo_u43",
+            "chapterCode": "tech_gungdo_u43",
+            "title": "3단계 [중급: 14급~9급] Part 7 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 7 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_gungdo_u44",
+            "chapterCode": "tech_gungdo_u44",
+            "title": "3단계 [중급: 14급~9급] Part 8 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 8 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_gungdo_u45",
+            "chapterCode": "tech_gungdo_u45",
+            "title": "3단계 [중급: 14급~9급] Part 9 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 9 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_gungdo_u46",
+            "chapterCode": "tech_gungdo_u46",
+            "title": "3단계 [중급: 14급~9급] Part 10 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 10 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_gungdo_u47",
+            "chapterCode": "tech_gungdo_u47",
+            "title": "3단계 [중급: 14급~9급] Part 11 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 11 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_gungdo_u48",
+            "chapterCode": "tech_gungdo_u48",
+            "title": "3단계 [중급: 14급~9급] Part 12 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 12 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_gungdo_u49",
+            "chapterCode": "tech_gungdo_u49",
+            "title": "3단계 [중급: 14급~9급] Part 13 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 13 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_gungdo_u50",
+            "chapterCode": "tech_gungdo_u50",
+            "title": "3단계 [중급: 14급~9급] Part 14 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 14 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_gungdo_u51",
+            "chapterCode": "tech_gungdo_u51",
+            "title": "3단계 [중급: 14급~9급] Part 15 (14제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 15 (14제)",
+            "problemCount": 14,
+            "problemsCount": 14
+          },
+          {
+            "code": "tech_gungdo_u52",
+            "chapterCode": "tech_gungdo_u52",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 1 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 1 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_gungdo_u53",
+            "chapterCode": "tech_gungdo_u53",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 2 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 2 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_gungdo_u54",
+            "chapterCode": "tech_gungdo_u54",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 3 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 3 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_gungdo_u55",
+            "chapterCode": "tech_gungdo_u55",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 4 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 4 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_gungdo_u56",
+            "chapterCode": "tech_gungdo_u56",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 5 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 5 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_gungdo_u57",
+            "chapterCode": "tech_gungdo_u57",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 6 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 6 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_gungdo_u58",
+            "chapterCode": "tech_gungdo_u58",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 7 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 7 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_gungdo_u59",
+            "chapterCode": "tech_gungdo_u59",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 8 (7제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 8 (7제)",
+            "problemCount": 7,
+            "problemsCount": 7
           }
         ]
       },
       {
         "code": "tech_chijung",
         "title": "🎯 사활: 치중의 급소 급소 찌르기",
-        "chapterCount": 4,
-        "totalProblems": 80,
+        "chapterCount": 105,
+        "totalProblems": 2580,
         "chapters": [
           {
-            "code": "tech_chijung_ch1",
-            "chapterCode": "tech_chijung_ch1",
-            "title": "1단계: [기초] 핵심 개념과 기본 원리",
-            "chapter": "1단계: [기초] 핵심 개념과 기본 원리",
-            "problemCount": 20,
-            "problemsCount": 20
+            "code": "tech_chijung_u01",
+            "chapterCode": "tech_chijung_u01",
+            "title": "1단계 [기초/입문: 30급~21급] Part 1 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 1 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
           },
           {
-            "code": "tech_chijung_ch2",
-            "chapterCode": "tech_chijung_ch2",
-            "title": "2단계: [초급] 기본 응용과 방향성 탐색",
-            "chapter": "2단계: [초급] 기본 응용과 방향성 탐색",
-            "problemCount": 20,
-            "problemsCount": 20
+            "code": "tech_chijung_u02",
+            "chapterCode": "tech_chijung_u02",
+            "title": "1단계 [기초/입문: 30급~21급] Part 2 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 2 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
           },
           {
-            "code": "tech_chijung_ch3",
-            "chapterCode": "tech_chijung_ch3",
-            "title": "3단계: [중급] 수순의 묘와 함정 피하기",
-            "chapter": "3단계: [중급] 수순의 묘와 함정 피하기",
-            "problemCount": 20,
-            "problemsCount": 20
+            "code": "tech_chijung_u03",
+            "chapterCode": "tech_chijung_u03",
+            "title": "1단계 [기초/입문: 30급~21급] Part 3 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 3 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
           },
           {
-            "code": "tech_chijung_ch4",
-            "chapterCode": "tech_chijung_ch4",
-            "title": "4단계: [고급] 실전 심화 및 유단자 맥점",
-            "chapter": "4단계: [고급] 실전 심화 및 유단자 맥점",
-            "problemCount": 20,
-            "problemsCount": 20
+            "code": "tech_chijung_u04",
+            "chapterCode": "tech_chijung_u04",
+            "title": "1단계 [기초/입문: 30급~21급] Part 4 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 4 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u05",
+            "chapterCode": "tech_chijung_u05",
+            "title": "1단계 [기초/입문: 30급~21급] Part 5 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 5 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u06",
+            "chapterCode": "tech_chijung_u06",
+            "title": "1단계 [기초/입문: 30급~21급] Part 6 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 6 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u07",
+            "chapterCode": "tech_chijung_u07",
+            "title": "1단계 [기초/입문: 30급~21급] Part 7 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 7 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u08",
+            "chapterCode": "tech_chijung_u08",
+            "title": "1단계 [기초/입문: 30급~21급] Part 8 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 8 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u09",
+            "chapterCode": "tech_chijung_u09",
+            "title": "1단계 [기초/입문: 30급~21급] Part 9 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 9 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u10",
+            "chapterCode": "tech_chijung_u10",
+            "title": "1단계 [기초/입문: 30급~21급] Part 10 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 10 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u11",
+            "chapterCode": "tech_chijung_u11",
+            "title": "1단계 [기초/입문: 30급~21급] Part 11 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 11 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u12",
+            "chapterCode": "tech_chijung_u12",
+            "title": "1단계 [기초/입문: 30급~21급] Part 12 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 12 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u13",
+            "chapterCode": "tech_chijung_u13",
+            "title": "1단계 [기초/입문: 30급~21급] Part 13 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 13 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u14",
+            "chapterCode": "tech_chijung_u14",
+            "title": "1단계 [기초/입문: 30급~21급] Part 14 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 14 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u15",
+            "chapterCode": "tech_chijung_u15",
+            "title": "1단계 [기초/입문: 30급~21급] Part 15 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 15 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u16",
+            "chapterCode": "tech_chijung_u16",
+            "title": "1단계 [기초/입문: 30급~21급] Part 16 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 16 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u17",
+            "chapterCode": "tech_chijung_u17",
+            "title": "1단계 [기초/입문: 30급~21급] Part 17 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 17 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u18",
+            "chapterCode": "tech_chijung_u18",
+            "title": "1단계 [기초/입문: 30급~21급] Part 18 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 18 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u19",
+            "chapterCode": "tech_chijung_u19",
+            "title": "1단계 [기초/입문: 30급~21급] Part 19 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 19 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u20",
+            "chapterCode": "tech_chijung_u20",
+            "title": "1단계 [기초/입문: 30급~21급] Part 20 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 20 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u21",
+            "chapterCode": "tech_chijung_u21",
+            "title": "1단계 [기초/입문: 30급~21급] Part 21 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 21 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u22",
+            "chapterCode": "tech_chijung_u22",
+            "title": "1단계 [기초/입문: 30급~21급] Part 22 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 22 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u23",
+            "chapterCode": "tech_chijung_u23",
+            "title": "1단계 [기초/입문: 30급~21급] Part 23 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 23 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u24",
+            "chapterCode": "tech_chijung_u24",
+            "title": "1단계 [기초/입문: 30급~21급] Part 24 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 24 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u25",
+            "chapterCode": "tech_chijung_u25",
+            "title": "1단계 [기초/입문: 30급~21급] Part 25 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 25 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u26",
+            "chapterCode": "tech_chijung_u26",
+            "title": "1단계 [기초/입문: 30급~21급] Part 26 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 26 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u27",
+            "chapterCode": "tech_chijung_u27",
+            "title": "1단계 [기초/입문: 30급~21급] Part 27 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 27 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u28",
+            "chapterCode": "tech_chijung_u28",
+            "title": "1단계 [기초/입문: 30급~21급] Part 28 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 28 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u29",
+            "chapterCode": "tech_chijung_u29",
+            "title": "1단계 [기초/입문: 30급~21급] Part 29 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 29 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u30",
+            "chapterCode": "tech_chijung_u30",
+            "title": "1단계 [기초/입문: 30급~21급] Part 30 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 30 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u31",
+            "chapterCode": "tech_chijung_u31",
+            "title": "1단계 [기초/입문: 30급~21급] Part 31 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 31 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u32",
+            "chapterCode": "tech_chijung_u32",
+            "title": "1단계 [기초/입문: 30급~21급] Part 32 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 32 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u33",
+            "chapterCode": "tech_chijung_u33",
+            "title": "1단계 [기초/입문: 30급~21급] Part 33 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 33 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u34",
+            "chapterCode": "tech_chijung_u34",
+            "title": "1단계 [기초/입문: 30급~21급] Part 34 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 34 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u35",
+            "chapterCode": "tech_chijung_u35",
+            "title": "1단계 [기초/입문: 30급~21급] Part 35 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 35 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u36",
+            "chapterCode": "tech_chijung_u36",
+            "title": "1단계 [기초/입문: 30급~21급] Part 36 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 36 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u37",
+            "chapterCode": "tech_chijung_u37",
+            "title": "1단계 [기초/입문: 30급~21급] Part 37 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 37 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u38",
+            "chapterCode": "tech_chijung_u38",
+            "title": "1단계 [기초/입문: 30급~21급] Part 38 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 38 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u39",
+            "chapterCode": "tech_chijung_u39",
+            "title": "1단계 [기초/입문: 30급~21급] Part 39 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 39 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u40",
+            "chapterCode": "tech_chijung_u40",
+            "title": "1단계 [기초/입문: 30급~21급] Part 40 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 40 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u41",
+            "chapterCode": "tech_chijung_u41",
+            "title": "1단계 [기초/입문: 30급~21급] Part 41 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 41 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u42",
+            "chapterCode": "tech_chijung_u42",
+            "title": "1단계 [기초/입문: 30급~21급] Part 42 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 42 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u43",
+            "chapterCode": "tech_chijung_u43",
+            "title": "1단계 [기초/입문: 30급~21급] Part 43 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 43 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u44",
+            "chapterCode": "tech_chijung_u44",
+            "title": "1단계 [기초/입문: 30급~21급] Part 44 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 44 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u45",
+            "chapterCode": "tech_chijung_u45",
+            "title": "1단계 [기초/입문: 30급~21급] Part 45 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 45 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u46",
+            "chapterCode": "tech_chijung_u46",
+            "title": "1단계 [기초/입문: 30급~21급] Part 46 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 46 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u47",
+            "chapterCode": "tech_chijung_u47",
+            "title": "1단계 [기초/입문: 30급~21급] Part 47 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 47 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u48",
+            "chapterCode": "tech_chijung_u48",
+            "title": "1단계 [기초/입문: 30급~21급] Part 48 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 48 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u49",
+            "chapterCode": "tech_chijung_u49",
+            "title": "1단계 [기초/입문: 30급~21급] Part 49 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 49 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u50",
+            "chapterCode": "tech_chijung_u50",
+            "title": "1단계 [기초/입문: 30급~21급] Part 50 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 50 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u51",
+            "chapterCode": "tech_chijung_u51",
+            "title": "1단계 [기초/입문: 30급~21급] Part 51 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 51 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u52",
+            "chapterCode": "tech_chijung_u52",
+            "title": "1단계 [기초/입문: 30급~21급] Part 52 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 52 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u53",
+            "chapterCode": "tech_chijung_u53",
+            "title": "1단계 [기초/입문: 30급~21급] Part 53 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 53 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u54",
+            "chapterCode": "tech_chijung_u54",
+            "title": "1단계 [기초/입문: 30급~21급] Part 54 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 54 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u55",
+            "chapterCode": "tech_chijung_u55",
+            "title": "1단계 [기초/입문: 30급~21급] Part 55 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 55 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u56",
+            "chapterCode": "tech_chijung_u56",
+            "title": "1단계 [기초/입문: 30급~21급] Part 56 (19제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 56 (19제)",
+            "problemCount": 19,
+            "problemsCount": 19
+          },
+          {
+            "code": "tech_chijung_u57",
+            "chapterCode": "tech_chijung_u57",
+            "title": "2단계 [초급: 20급~15급] Part 1 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 1 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u58",
+            "chapterCode": "tech_chijung_u58",
+            "title": "2단계 [초급: 20급~15급] Part 2 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 2 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u59",
+            "chapterCode": "tech_chijung_u59",
+            "title": "2단계 [초급: 20급~15급] Part 3 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 3 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u60",
+            "chapterCode": "tech_chijung_u60",
+            "title": "2단계 [초급: 20급~15급] Part 4 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 4 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u61",
+            "chapterCode": "tech_chijung_u61",
+            "title": "2단계 [초급: 20급~15급] Part 5 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 5 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u62",
+            "chapterCode": "tech_chijung_u62",
+            "title": "2단계 [초급: 20급~15급] Part 6 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 6 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u63",
+            "chapterCode": "tech_chijung_u63",
+            "title": "2단계 [초급: 20급~15급] Part 7 (8제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 7 (8제)",
+            "problemCount": 8,
+            "problemsCount": 8
+          },
+          {
+            "code": "tech_chijung_u64",
+            "chapterCode": "tech_chijung_u64",
+            "title": "3단계 [중급: 14급~9급] Part 1 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 1 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u65",
+            "chapterCode": "tech_chijung_u65",
+            "title": "3단계 [중급: 14급~9급] Part 2 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 2 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u66",
+            "chapterCode": "tech_chijung_u66",
+            "title": "3단계 [중급: 14급~9급] Part 3 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 3 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u67",
+            "chapterCode": "tech_chijung_u67",
+            "title": "3단계 [중급: 14급~9급] Part 4 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 4 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u68",
+            "chapterCode": "tech_chijung_u68",
+            "title": "3단계 [중급: 14급~9급] Part 5 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 5 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u69",
+            "chapterCode": "tech_chijung_u69",
+            "title": "3단계 [중급: 14급~9급] Part 6 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 6 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u70",
+            "chapterCode": "tech_chijung_u70",
+            "title": "3단계 [중급: 14급~9급] Part 7 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 7 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u71",
+            "chapterCode": "tech_chijung_u71",
+            "title": "3단계 [중급: 14급~9급] Part 8 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 8 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u72",
+            "chapterCode": "tech_chijung_u72",
+            "title": "3단계 [중급: 14급~9급] Part 9 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 9 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u73",
+            "chapterCode": "tech_chijung_u73",
+            "title": "3단계 [중급: 14급~9급] Part 10 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 10 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u74",
+            "chapterCode": "tech_chijung_u74",
+            "title": "3단계 [중급: 14급~9급] Part 11 (11제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 11 (11제)",
+            "problemCount": 11,
+            "problemsCount": 11
+          },
+          {
+            "code": "tech_chijung_u75",
+            "chapterCode": "tech_chijung_u75",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 1 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 1 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u76",
+            "chapterCode": "tech_chijung_u76",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 2 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 2 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u77",
+            "chapterCode": "tech_chijung_u77",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 3 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 3 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u78",
+            "chapterCode": "tech_chijung_u78",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 4 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 4 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u79",
+            "chapterCode": "tech_chijung_u79",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 5 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 5 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u80",
+            "chapterCode": "tech_chijung_u80",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 6 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 6 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u81",
+            "chapterCode": "tech_chijung_u81",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 7 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 7 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u82",
+            "chapterCode": "tech_chijung_u82",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 8 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 8 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u83",
+            "chapterCode": "tech_chijung_u83",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 9 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 9 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u84",
+            "chapterCode": "tech_chijung_u84",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 10 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 10 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u85",
+            "chapterCode": "tech_chijung_u85",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 11 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 11 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u86",
+            "chapterCode": "tech_chijung_u86",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 12 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 12 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u87",
+            "chapterCode": "tech_chijung_u87",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 13 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 13 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u88",
+            "chapterCode": "tech_chijung_u88",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 14 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 14 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u89",
+            "chapterCode": "tech_chijung_u89",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 15 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 15 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u90",
+            "chapterCode": "tech_chijung_u90",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 16 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 16 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u91",
+            "chapterCode": "tech_chijung_u91",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 17 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 17 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u92",
+            "chapterCode": "tech_chijung_u92",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 18 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 18 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u93",
+            "chapterCode": "tech_chijung_u93",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 19 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 19 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u94",
+            "chapterCode": "tech_chijung_u94",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 20 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 20 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u95",
+            "chapterCode": "tech_chijung_u95",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 21 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 21 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u96",
+            "chapterCode": "tech_chijung_u96",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 22 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 22 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u97",
+            "chapterCode": "tech_chijung_u97",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 23 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 23 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u98",
+            "chapterCode": "tech_chijung_u98",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 24 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 24 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u99",
+            "chapterCode": "tech_chijung_u99",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 25 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 25 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u100",
+            "chapterCode": "tech_chijung_u100",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 26 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 26 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u101",
+            "chapterCode": "tech_chijung_u101",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 27 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 27 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u102",
+            "chapterCode": "tech_chijung_u102",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 28 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 28 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u103",
+            "chapterCode": "tech_chijung_u103",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 29 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 29 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u104",
+            "chapterCode": "tech_chijung_u104",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 30 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 30 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_chijung_u105",
+            "chapterCode": "tech_chijung_u105",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 31 (17제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 31 (17제)",
+            "problemCount": 17,
+            "problemsCount": 17
           }
         ]
       },
       {
         "code": "tech_throw_in",
         "title": "🌀 먹여치기 & 회돌이 사석 전술",
-        "chapterCount": 4,
-        "totalProblems": 80,
+        "chapterCount": 39,
+        "totalProblems": 922,
         "chapters": [
           {
-            "code": "tech_throw_in_ch1",
-            "chapterCode": "tech_throw_in_ch1",
-            "title": "1단계: [기초] 핵심 개념과 기본 원리",
-            "chapter": "1단계: [기초] 핵심 개념과 기본 원리",
-            "problemCount": 20,
-            "problemsCount": 20
+            "code": "tech_throw_in_u01",
+            "chapterCode": "tech_throw_in_u01",
+            "title": "1단계 [기초/입문: 30급~21급] Part 1 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 1 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
           },
           {
-            "code": "tech_throw_in_ch2",
-            "chapterCode": "tech_throw_in_ch2",
-            "title": "2단계: [초급] 기본 응용과 방향성 탐색",
-            "chapter": "2단계: [초급] 기본 응용과 방향성 탐색",
-            "problemCount": 20,
-            "problemsCount": 20
+            "code": "tech_throw_in_u02",
+            "chapterCode": "tech_throw_in_u02",
+            "title": "1단계 [기초/입문: 30급~21급] Part 2 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 2 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
           },
           {
-            "code": "tech_throw_in_ch3",
-            "chapterCode": "tech_throw_in_ch3",
-            "title": "3단계: [중급] 수순의 묘와 함정 피하기",
-            "chapter": "3단계: [중급] 수순의 묘와 함정 피하기",
-            "problemCount": 20,
-            "problemsCount": 20
+            "code": "tech_throw_in_u03",
+            "chapterCode": "tech_throw_in_u03",
+            "title": "1단계 [기초/입문: 30급~21급] Part 3 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 3 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
           },
           {
-            "code": "tech_throw_in_ch4",
-            "chapterCode": "tech_throw_in_ch4",
-            "title": "4단계: [고급] 실전 심화 및 유단자 맥점",
-            "chapter": "4단계: [고급] 실전 심화 및 유단자 맥점",
-            "problemCount": 20,
-            "problemsCount": 20
+            "code": "tech_throw_in_u04",
+            "chapterCode": "tech_throw_in_u04",
+            "title": "1단계 [기초/입문: 30급~21급] Part 4 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 4 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_throw_in_u05",
+            "chapterCode": "tech_throw_in_u05",
+            "title": "1단계 [기초/입문: 30급~21급] Part 5 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 5 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_throw_in_u06",
+            "chapterCode": "tech_throw_in_u06",
+            "title": "1단계 [기초/입문: 30급~21급] Part 6 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 6 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_throw_in_u07",
+            "chapterCode": "tech_throw_in_u07",
+            "title": "1단계 [기초/입문: 30급~21급] Part 7 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 7 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_throw_in_u08",
+            "chapterCode": "tech_throw_in_u08",
+            "title": "1단계 [기초/입문: 30급~21급] Part 8 (24제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 8 (24제)",
+            "problemCount": 24,
+            "problemsCount": 24
+          },
+          {
+            "code": "tech_throw_in_u09",
+            "chapterCode": "tech_throw_in_u09",
+            "title": "2단계 [초급: 20급~15급] Part 1 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 1 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_throw_in_u10",
+            "chapterCode": "tech_throw_in_u10",
+            "title": "2단계 [초급: 20급~15급] Part 2 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 2 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_throw_in_u11",
+            "chapterCode": "tech_throw_in_u11",
+            "title": "2단계 [초급: 20급~15급] Part 3 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 3 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_throw_in_u12",
+            "chapterCode": "tech_throw_in_u12",
+            "title": "2단계 [초급: 20급~15급] Part 4 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 4 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_throw_in_u13",
+            "chapterCode": "tech_throw_in_u13",
+            "title": "2단계 [초급: 20급~15급] Part 5 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 5 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_throw_in_u14",
+            "chapterCode": "tech_throw_in_u14",
+            "title": "2단계 [초급: 20급~15급] Part 6 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 6 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_throw_in_u15",
+            "chapterCode": "tech_throw_in_u15",
+            "title": "2단계 [초급: 20급~15급] Part 7 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 7 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_throw_in_u16",
+            "chapterCode": "tech_throw_in_u16",
+            "title": "2단계 [초급: 20급~15급] Part 8 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 8 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_throw_in_u17",
+            "chapterCode": "tech_throw_in_u17",
+            "title": "2단계 [초급: 20급~15급] Part 9 (2제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 9 (2제)",
+            "problemCount": 2,
+            "problemsCount": 2
+          },
+          {
+            "code": "tech_throw_in_u18",
+            "chapterCode": "tech_throw_in_u18",
+            "title": "3단계 [중급: 14급~9급] Part 1 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 1 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_throw_in_u19",
+            "chapterCode": "tech_throw_in_u19",
+            "title": "3단계 [중급: 14급~9급] Part 2 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 2 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_throw_in_u20",
+            "chapterCode": "tech_throw_in_u20",
+            "title": "3단계 [중급: 14급~9급] Part 3 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 3 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_throw_in_u21",
+            "chapterCode": "tech_throw_in_u21",
+            "title": "3단계 [중급: 14급~9급] Part 4 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 4 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_throw_in_u22",
+            "chapterCode": "tech_throw_in_u22",
+            "title": "3단계 [중급: 14급~9급] Part 5 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 5 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_throw_in_u23",
+            "chapterCode": "tech_throw_in_u23",
+            "title": "3단계 [중급: 14급~9급] Part 6 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 6 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_throw_in_u24",
+            "chapterCode": "tech_throw_in_u24",
+            "title": "3단계 [중급: 14급~9급] Part 7 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 7 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_throw_in_u25",
+            "chapterCode": "tech_throw_in_u25",
+            "title": "3단계 [중급: 14급~9급] Part 8 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 8 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_throw_in_u26",
+            "chapterCode": "tech_throw_in_u26",
+            "title": "3단계 [중급: 14급~9급] Part 9 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 9 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_throw_in_u27",
+            "chapterCode": "tech_throw_in_u27",
+            "title": "3단계 [중급: 14급~9급] Part 10 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 10 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_throw_in_u28",
+            "chapterCode": "tech_throw_in_u28",
+            "title": "3단계 [중급: 14급~9급] Part 11 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 11 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_throw_in_u29",
+            "chapterCode": "tech_throw_in_u29",
+            "title": "3단계 [중급: 14급~9급] Part 12 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 12 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_throw_in_u30",
+            "chapterCode": "tech_throw_in_u30",
+            "title": "3단계 [중급: 14급~9급] Part 13 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 13 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_throw_in_u31",
+            "chapterCode": "tech_throw_in_u31",
+            "title": "3단계 [중급: 14급~9급] Part 14 (11제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 14 (11제)",
+            "problemCount": 11,
+            "problemsCount": 11
+          },
+          {
+            "code": "tech_throw_in_u32",
+            "chapterCode": "tech_throw_in_u32",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 1 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 1 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_throw_in_u33",
+            "chapterCode": "tech_throw_in_u33",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 2 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 2 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_throw_in_u34",
+            "chapterCode": "tech_throw_in_u34",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 3 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 3 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_throw_in_u35",
+            "chapterCode": "tech_throw_in_u35",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 4 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 4 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_throw_in_u36",
+            "chapterCode": "tech_throw_in_u36",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 5 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 5 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_throw_in_u37",
+            "chapterCode": "tech_throw_in_u37",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 6 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 6 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_throw_in_u38",
+            "chapterCode": "tech_throw_in_u38",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 7 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 7 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_throw_in_u39",
+            "chapterCode": "tech_throw_in_u39",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 8 (10제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 8 (10제)",
+            "problemCount": 10,
+            "problemsCount": 10
           }
         ]
       },
       {
         "code": "tech_ko",
         "title": "♾️ 패 (Ko) 싸움과 팻감 다루기",
-        "chapterCount": 4,
-        "totalProblems": 80,
+        "chapterCount": 74,
+        "totalProblems": 1783,
         "chapters": [
           {
-            "code": "tech_ko_ch1",
-            "chapterCode": "tech_ko_ch1",
-            "title": "1단계: [기초] 핵심 개념과 기본 원리",
-            "chapter": "1단계: [기초] 핵심 개념과 기본 원리",
-            "problemCount": 20,
-            "problemsCount": 20
+            "code": "tech_ko_u01",
+            "chapterCode": "tech_ko_u01",
+            "title": "1단계 [기초/입문: 30급~21급] Part 1 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 1 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
           },
           {
-            "code": "tech_ko_ch2",
-            "chapterCode": "tech_ko_ch2",
-            "title": "2단계: [초급] 기본 응용과 방향성 탐색",
-            "chapter": "2단계: [초급] 기본 응용과 방향성 탐색",
-            "problemCount": 20,
-            "problemsCount": 20
+            "code": "tech_ko_u02",
+            "chapterCode": "tech_ko_u02",
+            "title": "1단계 [기초/입문: 30급~21급] Part 2 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 2 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
           },
           {
-            "code": "tech_ko_ch3",
-            "chapterCode": "tech_ko_ch3",
-            "title": "3단계: [중급] 수순의 묘와 함정 피하기",
-            "chapter": "3단계: [중급] 수순의 묘와 함정 피하기",
-            "problemCount": 20,
-            "problemsCount": 20
+            "code": "tech_ko_u03",
+            "chapterCode": "tech_ko_u03",
+            "title": "1단계 [기초/입문: 30급~21급] Part 3 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 3 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
           },
           {
-            "code": "tech_ko_ch4",
-            "chapterCode": "tech_ko_ch4",
-            "title": "4단계: [고급] 실전 심화 및 유단자 맥점",
-            "chapter": "4단계: [고급] 실전 심화 및 유단자 맥점",
-            "problemCount": 20,
-            "problemsCount": 20
+            "code": "tech_ko_u04",
+            "chapterCode": "tech_ko_u04",
+            "title": "1단계 [기초/입문: 30급~21급] Part 4 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 4 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ko_u05",
+            "chapterCode": "tech_ko_u05",
+            "title": "1단계 [기초/입문: 30급~21급] Part 5 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 5 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ko_u06",
+            "chapterCode": "tech_ko_u06",
+            "title": "1단계 [기초/입문: 30급~21급] Part 6 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 6 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ko_u07",
+            "chapterCode": "tech_ko_u07",
+            "title": "1단계 [기초/입문: 30급~21급] Part 7 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 7 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ko_u08",
+            "chapterCode": "tech_ko_u08",
+            "title": "1단계 [기초/입문: 30급~21급] Part 8 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 8 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ko_u09",
+            "chapterCode": "tech_ko_u09",
+            "title": "1단계 [기초/입문: 30급~21급] Part 9 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 9 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ko_u10",
+            "chapterCode": "tech_ko_u10",
+            "title": "1단계 [기초/입문: 30급~21급] Part 10 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 10 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ko_u11",
+            "chapterCode": "tech_ko_u11",
+            "title": "1단계 [기초/입문: 30급~21급] Part 11 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 11 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ko_u12",
+            "chapterCode": "tech_ko_u12",
+            "title": "1단계 [기초/입문: 30급~21급] Part 12 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 12 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ko_u13",
+            "chapterCode": "tech_ko_u13",
+            "title": "1단계 [기초/입문: 30급~21급] Part 13 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 13 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ko_u14",
+            "chapterCode": "tech_ko_u14",
+            "title": "1단계 [기초/입문: 30급~21급] Part 14 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 14 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ko_u15",
+            "chapterCode": "tech_ko_u15",
+            "title": "1단계 [기초/입문: 30급~21급] Part 15 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 15 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ko_u16",
+            "chapterCode": "tech_ko_u16",
+            "title": "1단계 [기초/입문: 30급~21급] Part 16 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 16 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ko_u17",
+            "chapterCode": "tech_ko_u17",
+            "title": "1단계 [기초/입문: 30급~21급] Part 17 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 17 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ko_u18",
+            "chapterCode": "tech_ko_u18",
+            "title": "1단계 [기초/입문: 30급~21급] Part 18 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 18 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ko_u19",
+            "chapterCode": "tech_ko_u19",
+            "title": "1단계 [기초/입문: 30급~21급] Part 19 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 19 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ko_u20",
+            "chapterCode": "tech_ko_u20",
+            "title": "1단계 [기초/입문: 30급~21급] Part 20 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 20 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ko_u21",
+            "chapterCode": "tech_ko_u21",
+            "title": "1단계 [기초/입문: 30급~21급] Part 21 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 21 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ko_u22",
+            "chapterCode": "tech_ko_u22",
+            "title": "1단계 [기초/입문: 30급~21급] Part 22 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 22 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ko_u23",
+            "chapterCode": "tech_ko_u23",
+            "title": "1단계 [기초/입문: 30급~21급] Part 23 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 23 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ko_u24",
+            "chapterCode": "tech_ko_u24",
+            "title": "1단계 [기초/입문: 30급~21급] Part 24 (2제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 24 (2제)",
+            "problemCount": 2,
+            "problemsCount": 2
+          },
+          {
+            "code": "tech_ko_u25",
+            "chapterCode": "tech_ko_u25",
+            "title": "2단계 [초급: 20급~15급] Part 1 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 1 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ko_u26",
+            "chapterCode": "tech_ko_u26",
+            "title": "2단계 [초급: 20급~15급] Part 2 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 2 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ko_u27",
+            "chapterCode": "tech_ko_u27",
+            "title": "2단계 [초급: 20급~15급] Part 3 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 3 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ko_u28",
+            "chapterCode": "tech_ko_u28",
+            "title": "2단계 [초급: 20급~15급] Part 4 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 4 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ko_u29",
+            "chapterCode": "tech_ko_u29",
+            "title": "2단계 [초급: 20급~15급] Part 5 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 5 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ko_u30",
+            "chapterCode": "tech_ko_u30",
+            "title": "2단계 [초급: 20급~15급] Part 6 (7제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 6 (7제)",
+            "problemCount": 7,
+            "problemsCount": 7
+          },
+          {
+            "code": "tech_ko_u31",
+            "chapterCode": "tech_ko_u31",
+            "title": "3단계 [중급: 14급~9급] Part 1 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 1 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ko_u32",
+            "chapterCode": "tech_ko_u32",
+            "title": "3단계 [중급: 14급~9급] Part 2 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 2 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ko_u33",
+            "chapterCode": "tech_ko_u33",
+            "title": "3단계 [중급: 14급~9급] Part 3 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 3 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ko_u34",
+            "chapterCode": "tech_ko_u34",
+            "title": "3단계 [중급: 14급~9급] Part 4 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 4 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ko_u35",
+            "chapterCode": "tech_ko_u35",
+            "title": "3단계 [중급: 14급~9급] Part 5 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 5 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ko_u36",
+            "chapterCode": "tech_ko_u36",
+            "title": "3단계 [중급: 14급~9급] Part 6 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 6 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ko_u37",
+            "chapterCode": "tech_ko_u37",
+            "title": "3단계 [중급: 14급~9급] Part 7 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 7 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ko_u38",
+            "chapterCode": "tech_ko_u38",
+            "title": "3단계 [중급: 14급~9급] Part 8 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 8 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ko_u39",
+            "chapterCode": "tech_ko_u39",
+            "title": "3단계 [중급: 14급~9급] Part 9 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 9 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ko_u40",
+            "chapterCode": "tech_ko_u40",
+            "title": "3단계 [중급: 14급~9급] Part 10 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 10 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ko_u41",
+            "chapterCode": "tech_ko_u41",
+            "title": "3단계 [중급: 14급~9급] Part 11 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 11 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ko_u42",
+            "chapterCode": "tech_ko_u42",
+            "title": "3단계 [중급: 14급~9급] Part 12 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 12 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ko_u43",
+            "chapterCode": "tech_ko_u43",
+            "title": "3단계 [중급: 14급~9급] Part 13 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 13 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ko_u44",
+            "chapterCode": "tech_ko_u44",
+            "title": "3단계 [중급: 14급~9급] Part 14 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 14 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ko_u45",
+            "chapterCode": "tech_ko_u45",
+            "title": "3단계 [중급: 14급~9급] Part 15 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 15 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ko_u46",
+            "chapterCode": "tech_ko_u46",
+            "title": "3단계 [중급: 14급~9급] Part 16 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 16 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ko_u47",
+            "chapterCode": "tech_ko_u47",
+            "title": "3단계 [중급: 14급~9급] Part 17 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 17 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ko_u48",
+            "chapterCode": "tech_ko_u48",
+            "title": "3단계 [중급: 14급~9급] Part 18 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 18 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ko_u49",
+            "chapterCode": "tech_ko_u49",
+            "title": "3단계 [중급: 14급~9급] Part 19 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 19 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ko_u50",
+            "chapterCode": "tech_ko_u50",
+            "title": "3단계 [중급: 14급~9급] Part 20 (3제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 20 (3제)",
+            "problemCount": 3,
+            "problemsCount": 3
+          },
+          {
+            "code": "tech_ko_u51",
+            "chapterCode": "tech_ko_u51",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 1 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 1 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ko_u52",
+            "chapterCode": "tech_ko_u52",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 2 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 2 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ko_u53",
+            "chapterCode": "tech_ko_u53",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 3 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 3 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ko_u54",
+            "chapterCode": "tech_ko_u54",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 4 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 4 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ko_u55",
+            "chapterCode": "tech_ko_u55",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 5 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 5 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ko_u56",
+            "chapterCode": "tech_ko_u56",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 6 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 6 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ko_u57",
+            "chapterCode": "tech_ko_u57",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 7 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 7 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ko_u58",
+            "chapterCode": "tech_ko_u58",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 8 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 8 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ko_u59",
+            "chapterCode": "tech_ko_u59",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 9 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 9 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ko_u60",
+            "chapterCode": "tech_ko_u60",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 10 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 10 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ko_u61",
+            "chapterCode": "tech_ko_u61",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 11 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 11 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ko_u62",
+            "chapterCode": "tech_ko_u62",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 12 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 12 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ko_u63",
+            "chapterCode": "tech_ko_u63",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 13 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 13 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ko_u64",
+            "chapterCode": "tech_ko_u64",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 14 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 14 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ko_u65",
+            "chapterCode": "tech_ko_u65",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 15 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 15 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ko_u66",
+            "chapterCode": "tech_ko_u66",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 16 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 16 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ko_u67",
+            "chapterCode": "tech_ko_u67",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 17 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 17 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ko_u68",
+            "chapterCode": "tech_ko_u68",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 18 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 18 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ko_u69",
+            "chapterCode": "tech_ko_u69",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 19 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 19 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ko_u70",
+            "chapterCode": "tech_ko_u70",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 20 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 20 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ko_u71",
+            "chapterCode": "tech_ko_u71",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 21 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 21 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ko_u72",
+            "chapterCode": "tech_ko_u72",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 22 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 22 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ko_u73",
+            "chapterCode": "tech_ko_u73",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 23 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 23 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_ko_u74",
+            "chapterCode": "tech_ko_u74",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 24 (21제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 24 (21제)",
+            "problemCount": 21,
+            "problemsCount": 21
           }
         ]
       },
       {
         "code": "tech_endgame",
         "title": "🏁 끝내기: 1선 젖혀잇기 & 집 계산",
-        "chapterCount": 4,
-        "totalProblems": 80,
+        "chapterCount": 96,
+        "totalProblems": 2367,
         "chapters": [
           {
-            "code": "tech_endgame_ch1",
-            "chapterCode": "tech_endgame_ch1",
-            "title": "1단계: [기초] 핵심 개념과 기본 원리",
-            "chapter": "1단계: [기초] 핵심 개념과 기본 원리",
-            "problemCount": 20,
-            "problemsCount": 20
+            "code": "tech_endgame_u01",
+            "chapterCode": "tech_endgame_u01",
+            "title": "1단계 [기초/입문: 30급~21급] Part 1 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 1 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
           },
           {
-            "code": "tech_endgame_ch2",
-            "chapterCode": "tech_endgame_ch2",
-            "title": "2단계: [초급] 기본 응용과 방향성 탐색",
-            "chapter": "2단계: [초급] 기본 응용과 방향성 탐색",
-            "problemCount": 20,
-            "problemsCount": 20
+            "code": "tech_endgame_u02",
+            "chapterCode": "tech_endgame_u02",
+            "title": "1단계 [기초/입문: 30급~21급] Part 2 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 2 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
           },
           {
-            "code": "tech_endgame_ch3",
-            "chapterCode": "tech_endgame_ch3",
-            "title": "3단계: [중급] 수순의 묘와 함정 피하기",
-            "chapter": "3단계: [중급] 수순의 묘와 함정 피하기",
-            "problemCount": 20,
-            "problemsCount": 20
+            "code": "tech_endgame_u03",
+            "chapterCode": "tech_endgame_u03",
+            "title": "1단계 [기초/입문: 30급~21급] Part 3 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 3 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
           },
           {
-            "code": "tech_endgame_ch4",
-            "chapterCode": "tech_endgame_ch4",
-            "title": "4단계: [고급] 실전 심화 및 유단자 맥점",
-            "chapter": "4단계: [고급] 실전 심화 및 유단자 맥점",
-            "problemCount": 20,
-            "problemsCount": 20
+            "code": "tech_endgame_u04",
+            "chapterCode": "tech_endgame_u04",
+            "title": "1단계 [기초/입문: 30급~21급] Part 4 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 4 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u05",
+            "chapterCode": "tech_endgame_u05",
+            "title": "1단계 [기초/입문: 30급~21급] Part 5 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 5 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u06",
+            "chapterCode": "tech_endgame_u06",
+            "title": "1단계 [기초/입문: 30급~21급] Part 6 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 6 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u07",
+            "chapterCode": "tech_endgame_u07",
+            "title": "1단계 [기초/입문: 30급~21급] Part 7 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 7 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u08",
+            "chapterCode": "tech_endgame_u08",
+            "title": "1단계 [기초/입문: 30급~21급] Part 8 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 8 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u09",
+            "chapterCode": "tech_endgame_u09",
+            "title": "1단계 [기초/입문: 30급~21급] Part 9 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 9 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u10",
+            "chapterCode": "tech_endgame_u10",
+            "title": "1단계 [기초/입문: 30급~21급] Part 10 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 10 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u11",
+            "chapterCode": "tech_endgame_u11",
+            "title": "1단계 [기초/입문: 30급~21급] Part 11 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 11 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u12",
+            "chapterCode": "tech_endgame_u12",
+            "title": "1단계 [기초/입문: 30급~21급] Part 12 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 12 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u13",
+            "chapterCode": "tech_endgame_u13",
+            "title": "1단계 [기초/입문: 30급~21급] Part 13 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 13 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u14",
+            "chapterCode": "tech_endgame_u14",
+            "title": "1단계 [기초/입문: 30급~21급] Part 14 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 14 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u15",
+            "chapterCode": "tech_endgame_u15",
+            "title": "1단계 [기초/입문: 30급~21급] Part 15 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 15 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u16",
+            "chapterCode": "tech_endgame_u16",
+            "title": "2단계 [초급: 20급~15급] Part 1 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 1 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u17",
+            "chapterCode": "tech_endgame_u17",
+            "title": "2단계 [초급: 20급~15급] Part 2 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 2 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u18",
+            "chapterCode": "tech_endgame_u18",
+            "title": "2단계 [초급: 20급~15급] Part 3 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 3 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u19",
+            "chapterCode": "tech_endgame_u19",
+            "title": "2단계 [초급: 20급~15급] Part 4 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 4 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u20",
+            "chapterCode": "tech_endgame_u20",
+            "title": "2단계 [초급: 20급~15급] Part 5 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 5 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u21",
+            "chapterCode": "tech_endgame_u21",
+            "title": "2단계 [초급: 20급~15급] Part 6 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 6 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u22",
+            "chapterCode": "tech_endgame_u22",
+            "title": "2단계 [초급: 20급~15급] Part 7 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 7 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u23",
+            "chapterCode": "tech_endgame_u23",
+            "title": "2단계 [초급: 20급~15급] Part 8 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 8 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u24",
+            "chapterCode": "tech_endgame_u24",
+            "title": "2단계 [초급: 20급~15급] Part 9 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 9 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u25",
+            "chapterCode": "tech_endgame_u25",
+            "title": "2단계 [초급: 20급~15급] Part 10 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 10 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u26",
+            "chapterCode": "tech_endgame_u26",
+            "title": "2단계 [초급: 20급~15급] Part 11 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 11 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u27",
+            "chapterCode": "tech_endgame_u27",
+            "title": "2단계 [초급: 20급~15급] Part 12 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 12 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u28",
+            "chapterCode": "tech_endgame_u28",
+            "title": "2단계 [초급: 20급~15급] Part 13 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 13 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u29",
+            "chapterCode": "tech_endgame_u29",
+            "title": "2단계 [초급: 20급~15급] Part 14 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 14 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u30",
+            "chapterCode": "tech_endgame_u30",
+            "title": "2단계 [초급: 20급~15급] Part 15 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 15 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u31",
+            "chapterCode": "tech_endgame_u31",
+            "title": "2단계 [초급: 20급~15급] Part 16 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 16 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u32",
+            "chapterCode": "tech_endgame_u32",
+            "title": "2단계 [초급: 20급~15급] Part 17 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 17 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u33",
+            "chapterCode": "tech_endgame_u33",
+            "title": "2단계 [초급: 20급~15급] Part 18 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 18 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u34",
+            "chapterCode": "tech_endgame_u34",
+            "title": "2단계 [초급: 20급~15급] Part 19 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 19 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u35",
+            "chapterCode": "tech_endgame_u35",
+            "title": "2단계 [초급: 20급~15급] Part 20 (9제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 20 (9제)",
+            "problemCount": 9,
+            "problemsCount": 9
+          },
+          {
+            "code": "tech_endgame_u36",
+            "chapterCode": "tech_endgame_u36",
+            "title": "3단계 [중급: 14급~9급] Part 1 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 1 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u37",
+            "chapterCode": "tech_endgame_u37",
+            "title": "3단계 [중급: 14급~9급] Part 2 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 2 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u38",
+            "chapterCode": "tech_endgame_u38",
+            "title": "3단계 [중급: 14급~9급] Part 3 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 3 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u39",
+            "chapterCode": "tech_endgame_u39",
+            "title": "3단계 [중급: 14급~9급] Part 4 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 4 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u40",
+            "chapterCode": "tech_endgame_u40",
+            "title": "3단계 [중급: 14급~9급] Part 5 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 5 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u41",
+            "chapterCode": "tech_endgame_u41",
+            "title": "3단계 [중급: 14급~9급] Part 6 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 6 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u42",
+            "chapterCode": "tech_endgame_u42",
+            "title": "3단계 [중급: 14급~9급] Part 7 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 7 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u43",
+            "chapterCode": "tech_endgame_u43",
+            "title": "3단계 [중급: 14급~9급] Part 8 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 8 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u44",
+            "chapterCode": "tech_endgame_u44",
+            "title": "3단계 [중급: 14급~9급] Part 9 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 9 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u45",
+            "chapterCode": "tech_endgame_u45",
+            "title": "3단계 [중급: 14급~9급] Part 10 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 10 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u46",
+            "chapterCode": "tech_endgame_u46",
+            "title": "3단계 [중급: 14급~9급] Part 11 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 11 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u47",
+            "chapterCode": "tech_endgame_u47",
+            "title": "3단계 [중급: 14급~9급] Part 12 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 12 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u48",
+            "chapterCode": "tech_endgame_u48",
+            "title": "3단계 [중급: 14급~9급] Part 13 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 13 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u49",
+            "chapterCode": "tech_endgame_u49",
+            "title": "3단계 [중급: 14급~9급] Part 14 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 14 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u50",
+            "chapterCode": "tech_endgame_u50",
+            "title": "3단계 [중급: 14급~9급] Part 15 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 15 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u51",
+            "chapterCode": "tech_endgame_u51",
+            "title": "3단계 [중급: 14급~9급] Part 16 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 16 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u52",
+            "chapterCode": "tech_endgame_u52",
+            "title": "3단계 [중급: 14급~9급] Part 17 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 17 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u53",
+            "chapterCode": "tech_endgame_u53",
+            "title": "3단계 [중급: 14급~9급] Part 18 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 18 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u54",
+            "chapterCode": "tech_endgame_u54",
+            "title": "3단계 [중급: 14급~9급] Part 19 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 19 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u55",
+            "chapterCode": "tech_endgame_u55",
+            "title": "3단계 [중급: 14급~9급] Part 20 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 20 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u56",
+            "chapterCode": "tech_endgame_u56",
+            "title": "3단계 [중급: 14급~9급] Part 21 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 21 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u57",
+            "chapterCode": "tech_endgame_u57",
+            "title": "3단계 [중급: 14급~9급] Part 22 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 22 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u58",
+            "chapterCode": "tech_endgame_u58",
+            "title": "3단계 [중급: 14급~9급] Part 23 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 23 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u59",
+            "chapterCode": "tech_endgame_u59",
+            "title": "3단계 [중급: 14급~9급] Part 24 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 24 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u60",
+            "chapterCode": "tech_endgame_u60",
+            "title": "3단계 [중급: 14급~9급] Part 25 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 25 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u61",
+            "chapterCode": "tech_endgame_u61",
+            "title": "3단계 [중급: 14급~9급] Part 26 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 26 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u62",
+            "chapterCode": "tech_endgame_u62",
+            "title": "3단계 [중급: 14급~9급] Part 27 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 27 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u63",
+            "chapterCode": "tech_endgame_u63",
+            "title": "3단계 [중급: 14급~9급] Part 28 (9제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 28 (9제)",
+            "problemCount": 9,
+            "problemsCount": 9
+          },
+          {
+            "code": "tech_endgame_u64",
+            "chapterCode": "tech_endgame_u64",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 1 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 1 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u65",
+            "chapterCode": "tech_endgame_u65",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 2 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 2 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u66",
+            "chapterCode": "tech_endgame_u66",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 3 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 3 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u67",
+            "chapterCode": "tech_endgame_u67",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 4 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 4 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u68",
+            "chapterCode": "tech_endgame_u68",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 5 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 5 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u69",
+            "chapterCode": "tech_endgame_u69",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 6 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 6 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u70",
+            "chapterCode": "tech_endgame_u70",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 7 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 7 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u71",
+            "chapterCode": "tech_endgame_u71",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 8 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 8 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u72",
+            "chapterCode": "tech_endgame_u72",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 9 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 9 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u73",
+            "chapterCode": "tech_endgame_u73",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 10 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 10 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u74",
+            "chapterCode": "tech_endgame_u74",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 11 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 11 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u75",
+            "chapterCode": "tech_endgame_u75",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 12 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 12 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u76",
+            "chapterCode": "tech_endgame_u76",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 13 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 13 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u77",
+            "chapterCode": "tech_endgame_u77",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 14 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 14 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u78",
+            "chapterCode": "tech_endgame_u78",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 15 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 15 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u79",
+            "chapterCode": "tech_endgame_u79",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 16 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 16 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u80",
+            "chapterCode": "tech_endgame_u80",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 17 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 17 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u81",
+            "chapterCode": "tech_endgame_u81",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 18 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 18 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u82",
+            "chapterCode": "tech_endgame_u82",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 19 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 19 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u83",
+            "chapterCode": "tech_endgame_u83",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 20 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 20 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u84",
+            "chapterCode": "tech_endgame_u84",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 21 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 21 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u85",
+            "chapterCode": "tech_endgame_u85",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 22 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 22 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u86",
+            "chapterCode": "tech_endgame_u86",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 23 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 23 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u87",
+            "chapterCode": "tech_endgame_u87",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 24 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 24 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u88",
+            "chapterCode": "tech_endgame_u88",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 25 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 25 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u89",
+            "chapterCode": "tech_endgame_u89",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 26 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 26 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u90",
+            "chapterCode": "tech_endgame_u90",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 27 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 27 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u91",
+            "chapterCode": "tech_endgame_u91",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 28 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 28 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u92",
+            "chapterCode": "tech_endgame_u92",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 29 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 29 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u93",
+            "chapterCode": "tech_endgame_u93",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 30 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 30 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u94",
+            "chapterCode": "tech_endgame_u94",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 31 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 31 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u95",
+            "chapterCode": "tech_endgame_u95",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 32 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 32 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_endgame_u96",
+            "chapterCode": "tech_endgame_u96",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 33 (24제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 33 (24제)",
+            "problemCount": 24,
+            "problemsCount": 24
           }
         ]
       },
       {
         "code": "tech_fuseki",
         "title": "🗺️ 포석: 3선·4선과 굳힘·벌림의 원리",
-        "chapterCount": 4,
-        "totalProblems": 80,
+        "chapterCount": 50,
+        "totalProblems": 1202,
         "chapters": [
           {
-            "code": "tech_fuseki_ch1",
-            "chapterCode": "tech_fuseki_ch1",
-            "title": "1단계: [기초] 핵심 개념과 기본 원리",
-            "chapter": "1단계: [기초] 핵심 개념과 기본 원리",
-            "problemCount": 20,
-            "problemsCount": 20
+            "code": "tech_fuseki_u01",
+            "chapterCode": "tech_fuseki_u01",
+            "title": "1단계 [기초/입문: 30급~21급] Part 1 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 1 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
           },
           {
-            "code": "tech_fuseki_ch2",
-            "chapterCode": "tech_fuseki_ch2",
-            "title": "2단계: [초급] 기본 응용과 방향성 탐색",
-            "chapter": "2단계: [초급] 기본 응용과 방향성 탐색",
-            "problemCount": 20,
-            "problemsCount": 20
+            "code": "tech_fuseki_u02",
+            "chapterCode": "tech_fuseki_u02",
+            "title": "1단계 [기초/입문: 30급~21급] Part 2 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 2 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
           },
           {
-            "code": "tech_fuseki_ch3",
-            "chapterCode": "tech_fuseki_ch3",
-            "title": "3단계: [중급] 수순의 묘와 함정 피하기",
-            "chapter": "3단계: [중급] 수순의 묘와 함정 피하기",
-            "problemCount": 20,
-            "problemsCount": 20
+            "code": "tech_fuseki_u03",
+            "chapterCode": "tech_fuseki_u03",
+            "title": "1단계 [기초/입문: 30급~21급] Part 3 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 3 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
           },
           {
-            "code": "tech_fuseki_ch4",
-            "chapterCode": "tech_fuseki_ch4",
-            "title": "4단계: [고급] 실전 심화 및 유단자 맥점",
-            "chapter": "4단계: [고급] 실전 심화 및 유단자 맥점",
-            "problemCount": 20,
-            "problemsCount": 20
+            "code": "tech_fuseki_u04",
+            "chapterCode": "tech_fuseki_u04",
+            "title": "1단계 [기초/입문: 30급~21급] Part 4 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 4 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_fuseki_u05",
+            "chapterCode": "tech_fuseki_u05",
+            "title": "1단계 [기초/입문: 30급~21급] Part 5 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 5 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_fuseki_u06",
+            "chapterCode": "tech_fuseki_u06",
+            "title": "1단계 [기초/입문: 30급~21급] Part 6 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 6 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_fuseki_u07",
+            "chapterCode": "tech_fuseki_u07",
+            "title": "1단계 [기초/입문: 30급~21급] Part 7 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 7 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_fuseki_u08",
+            "chapterCode": "tech_fuseki_u08",
+            "title": "1단계 [기초/입문: 30급~21급] Part 8 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 8 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_fuseki_u09",
+            "chapterCode": "tech_fuseki_u09",
+            "title": "1단계 [기초/입문: 30급~21급] Part 9 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 9 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_fuseki_u10",
+            "chapterCode": "tech_fuseki_u10",
+            "title": "1단계 [기초/입문: 30급~21급] Part 10 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 10 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_fuseki_u11",
+            "chapterCode": "tech_fuseki_u11",
+            "title": "1단계 [기초/입문: 30급~21급] Part 11 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 11 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_fuseki_u12",
+            "chapterCode": "tech_fuseki_u12",
+            "title": "1단계 [기초/입문: 30급~21급] Part 12 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 12 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_fuseki_u13",
+            "chapterCode": "tech_fuseki_u13",
+            "title": "1단계 [기초/입문: 30급~21급] Part 13 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 13 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_fuseki_u14",
+            "chapterCode": "tech_fuseki_u14",
+            "title": "1단계 [기초/입문: 30급~21급] Part 14 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 14 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_fuseki_u15",
+            "chapterCode": "tech_fuseki_u15",
+            "title": "1단계 [기초/입문: 30급~21급] Part 15 (24제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 15 (24제)",
+            "problemCount": 24,
+            "problemsCount": 24
+          },
+          {
+            "code": "tech_fuseki_u16",
+            "chapterCode": "tech_fuseki_u16",
+            "title": "2단계 [초급: 20급~15급] Part 1 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 1 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_fuseki_u17",
+            "chapterCode": "tech_fuseki_u17",
+            "title": "2단계 [초급: 20급~15급] Part 2 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 2 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_fuseki_u18",
+            "chapterCode": "tech_fuseki_u18",
+            "title": "2단계 [초급: 20급~15급] Part 3 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 3 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_fuseki_u19",
+            "chapterCode": "tech_fuseki_u19",
+            "title": "2단계 [초급: 20급~15급] Part 4 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 4 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_fuseki_u20",
+            "chapterCode": "tech_fuseki_u20",
+            "title": "2단계 [초급: 20급~15급] Part 5 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 5 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_fuseki_u21",
+            "chapterCode": "tech_fuseki_u21",
+            "title": "2단계 [초급: 20급~15급] Part 6 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 6 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_fuseki_u22",
+            "chapterCode": "tech_fuseki_u22",
+            "title": "2단계 [초급: 20급~15급] Part 7 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 7 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_fuseki_u23",
+            "chapterCode": "tech_fuseki_u23",
+            "title": "2단계 [초급: 20급~15급] Part 8 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 8 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_fuseki_u24",
+            "chapterCode": "tech_fuseki_u24",
+            "title": "2단계 [초급: 20급~15급] Part 9 (25제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 9 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_fuseki_u25",
+            "chapterCode": "tech_fuseki_u25",
+            "title": "2단계 [초급: 20급~15급] Part 10 (8제)",
+            "chapter": "2단계 [초급: 20급~15급] Part 10 (8제)",
+            "problemCount": 8,
+            "problemsCount": 8
+          },
+          {
+            "code": "tech_fuseki_u26",
+            "chapterCode": "tech_fuseki_u26",
+            "title": "3단계 [중급: 14급~9급] Part 1 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 1 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_fuseki_u27",
+            "chapterCode": "tech_fuseki_u27",
+            "title": "3단계 [중급: 14급~9급] Part 2 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 2 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_fuseki_u28",
+            "chapterCode": "tech_fuseki_u28",
+            "title": "3단계 [중급: 14급~9급] Part 3 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 3 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_fuseki_u29",
+            "chapterCode": "tech_fuseki_u29",
+            "title": "3단계 [중급: 14급~9급] Part 4 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 4 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_fuseki_u30",
+            "chapterCode": "tech_fuseki_u30",
+            "title": "3단계 [중급: 14급~9급] Part 5 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 5 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_fuseki_u31",
+            "chapterCode": "tech_fuseki_u31",
+            "title": "3단계 [중급: 14급~9급] Part 6 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 6 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_fuseki_u32",
+            "chapterCode": "tech_fuseki_u32",
+            "title": "3단계 [중급: 14급~9급] Part 7 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 7 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_fuseki_u33",
+            "chapterCode": "tech_fuseki_u33",
+            "title": "3단계 [중급: 14급~9급] Part 8 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 8 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_fuseki_u34",
+            "chapterCode": "tech_fuseki_u34",
+            "title": "3단계 [중급: 14급~9급] Part 9 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 9 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_fuseki_u35",
+            "chapterCode": "tech_fuseki_u35",
+            "title": "3단계 [중급: 14급~9급] Part 10 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 10 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_fuseki_u36",
+            "chapterCode": "tech_fuseki_u36",
+            "title": "3단계 [중급: 14급~9급] Part 11 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 11 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_fuseki_u37",
+            "chapterCode": "tech_fuseki_u37",
+            "title": "3단계 [중급: 14급~9급] Part 12 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 12 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_fuseki_u38",
+            "chapterCode": "tech_fuseki_u38",
+            "title": "3단계 [중급: 14급~9급] Part 13 (17제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 13 (17제)",
+            "problemCount": 17,
+            "problemsCount": 17
+          },
+          {
+            "code": "tech_fuseki_u39",
+            "chapterCode": "tech_fuseki_u39",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 1 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 1 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_fuseki_u40",
+            "chapterCode": "tech_fuseki_u40",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 2 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 2 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_fuseki_u41",
+            "chapterCode": "tech_fuseki_u41",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 3 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 3 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_fuseki_u42",
+            "chapterCode": "tech_fuseki_u42",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 4 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 4 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_fuseki_u43",
+            "chapterCode": "tech_fuseki_u43",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 5 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 5 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_fuseki_u44",
+            "chapterCode": "tech_fuseki_u44",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 6 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 6 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_fuseki_u45",
+            "chapterCode": "tech_fuseki_u45",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 7 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 7 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_fuseki_u46",
+            "chapterCode": "tech_fuseki_u46",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 8 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 8 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_fuseki_u47",
+            "chapterCode": "tech_fuseki_u47",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 9 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 9 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_fuseki_u48",
+            "chapterCode": "tech_fuseki_u48",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 10 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 10 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_fuseki_u49",
+            "chapterCode": "tech_fuseki_u49",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 11 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 11 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_fuseki_u50",
+            "chapterCode": "tech_fuseki_u50",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 12 (3제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 12 (3제)",
+            "problemCount": 3,
+            "problemsCount": 3
           }
         ]
       },
       {
         "code": "tech_tesuji",
         "title": "💎 실전 맥점: 끼움 / 건너붙임 / 어깨짚기",
-        "chapterCount": 4,
-        "totalProblems": 80,
+        "chapterCount": 101,
+        "totalProblems": 2476,
         "chapters": [
           {
-            "code": "tech_tesuji_ch1",
-            "chapterCode": "tech_tesuji_ch1",
-            "title": "1단계: [기초] 핵심 개념과 기본 원리",
-            "chapter": "1단계: [기초] 핵심 개념과 기본 원리",
-            "problemCount": 20,
-            "problemsCount": 20
+            "code": "tech_tesuji_u01",
+            "chapterCode": "tech_tesuji_u01",
+            "title": "1단계 [기초/입문: 30급~21급] Part 1 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 1 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
           },
           {
-            "code": "tech_tesuji_ch2",
-            "chapterCode": "tech_tesuji_ch2",
-            "title": "2단계: [초급] 기본 응용과 방향성 탐색",
-            "chapter": "2단계: [초급] 기본 응용과 방향성 탐색",
-            "problemCount": 20,
-            "problemsCount": 20
+            "code": "tech_tesuji_u02",
+            "chapterCode": "tech_tesuji_u02",
+            "title": "1단계 [기초/입문: 30급~21급] Part 2 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 2 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
           },
           {
-            "code": "tech_tesuji_ch3",
-            "chapterCode": "tech_tesuji_ch3",
-            "title": "3단계: [중급] 수순의 묘와 함정 피하기",
-            "chapter": "3단계: [중급] 수순의 묘와 함정 피하기",
-            "problemCount": 20,
-            "problemsCount": 20
+            "code": "tech_tesuji_u03",
+            "chapterCode": "tech_tesuji_u03",
+            "title": "1단계 [기초/입문: 30급~21급] Part 3 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 3 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
           },
           {
-            "code": "tech_tesuji_ch4",
-            "chapterCode": "tech_tesuji_ch4",
-            "title": "4단계: [고급] 실전 심화 및 유단자 맥점",
-            "chapter": "4단계: [고급] 실전 심화 및 유단자 맥점",
-            "problemCount": 20,
-            "problemsCount": 20
+            "code": "tech_tesuji_u04",
+            "chapterCode": "tech_tesuji_u04",
+            "title": "1단계 [기초/입문: 30급~21급] Part 4 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 4 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u05",
+            "chapterCode": "tech_tesuji_u05",
+            "title": "1단계 [기초/입문: 30급~21급] Part 5 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 5 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u06",
+            "chapterCode": "tech_tesuji_u06",
+            "title": "1단계 [기초/입문: 30급~21급] Part 6 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 6 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u07",
+            "chapterCode": "tech_tesuji_u07",
+            "title": "1단계 [기초/입문: 30급~21급] Part 7 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 7 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u08",
+            "chapterCode": "tech_tesuji_u08",
+            "title": "1단계 [기초/입문: 30급~21급] Part 8 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 8 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u09",
+            "chapterCode": "tech_tesuji_u09",
+            "title": "1단계 [기초/입문: 30급~21급] Part 9 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 9 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u10",
+            "chapterCode": "tech_tesuji_u10",
+            "title": "1단계 [기초/입문: 30급~21급] Part 10 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 10 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u11",
+            "chapterCode": "tech_tesuji_u11",
+            "title": "1단계 [기초/입문: 30급~21급] Part 11 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 11 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u12",
+            "chapterCode": "tech_tesuji_u12",
+            "title": "1단계 [기초/입문: 30급~21급] Part 12 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 12 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u13",
+            "chapterCode": "tech_tesuji_u13",
+            "title": "1단계 [기초/입문: 30급~21급] Part 13 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 13 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u14",
+            "chapterCode": "tech_tesuji_u14",
+            "title": "1단계 [기초/입문: 30급~21급] Part 14 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 14 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u15",
+            "chapterCode": "tech_tesuji_u15",
+            "title": "1단계 [기초/입문: 30급~21급] Part 15 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 15 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u16",
+            "chapterCode": "tech_tesuji_u16",
+            "title": "1단계 [기초/입문: 30급~21급] Part 16 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 16 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u17",
+            "chapterCode": "tech_tesuji_u17",
+            "title": "1단계 [기초/입문: 30급~21급] Part 17 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 17 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u18",
+            "chapterCode": "tech_tesuji_u18",
+            "title": "1단계 [기초/입문: 30급~21급] Part 18 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 18 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u19",
+            "chapterCode": "tech_tesuji_u19",
+            "title": "1단계 [기초/입문: 30급~21급] Part 19 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 19 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u20",
+            "chapterCode": "tech_tesuji_u20",
+            "title": "1단계 [기초/입문: 30급~21급] Part 20 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 20 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u21",
+            "chapterCode": "tech_tesuji_u21",
+            "title": "1단계 [기초/입문: 30급~21급] Part 21 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 21 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u22",
+            "chapterCode": "tech_tesuji_u22",
+            "title": "1단계 [기초/입문: 30급~21급] Part 22 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 22 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u23",
+            "chapterCode": "tech_tesuji_u23",
+            "title": "1단계 [기초/입문: 30급~21급] Part 23 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 23 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u24",
+            "chapterCode": "tech_tesuji_u24",
+            "title": "1단계 [기초/입문: 30급~21급] Part 24 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 24 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u25",
+            "chapterCode": "tech_tesuji_u25",
+            "title": "1단계 [기초/입문: 30급~21급] Part 25 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 25 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u26",
+            "chapterCode": "tech_tesuji_u26",
+            "title": "1단계 [기초/입문: 30급~21급] Part 26 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 26 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u27",
+            "chapterCode": "tech_tesuji_u27",
+            "title": "1단계 [기초/입문: 30급~21급] Part 27 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 27 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u28",
+            "chapterCode": "tech_tesuji_u28",
+            "title": "1단계 [기초/입문: 30급~21급] Part 28 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 28 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u29",
+            "chapterCode": "tech_tesuji_u29",
+            "title": "1단계 [기초/입문: 30급~21급] Part 29 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 29 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u30",
+            "chapterCode": "tech_tesuji_u30",
+            "title": "1단계 [기초/입문: 30급~21급] Part 30 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 30 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u31",
+            "chapterCode": "tech_tesuji_u31",
+            "title": "1단계 [기초/입문: 30급~21급] Part 31 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 31 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u32",
+            "chapterCode": "tech_tesuji_u32",
+            "title": "1단계 [기초/입문: 30급~21급] Part 32 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 32 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u33",
+            "chapterCode": "tech_tesuji_u33",
+            "title": "1단계 [기초/입문: 30급~21급] Part 33 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 33 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u34",
+            "chapterCode": "tech_tesuji_u34",
+            "title": "1단계 [기초/입문: 30급~21급] Part 34 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 34 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u35",
+            "chapterCode": "tech_tesuji_u35",
+            "title": "1단계 [기초/입문: 30급~21급] Part 35 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 35 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u36",
+            "chapterCode": "tech_tesuji_u36",
+            "title": "1단계 [기초/입문: 30급~21급] Part 36 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 36 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u37",
+            "chapterCode": "tech_tesuji_u37",
+            "title": "1단계 [기초/입문: 30급~21급] Part 37 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 37 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u38",
+            "chapterCode": "tech_tesuji_u38",
+            "title": "1단계 [기초/입문: 30급~21급] Part 38 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 38 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u39",
+            "chapterCode": "tech_tesuji_u39",
+            "title": "1단계 [기초/입문: 30급~21급] Part 39 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 39 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u40",
+            "chapterCode": "tech_tesuji_u40",
+            "title": "1단계 [기초/입문: 30급~21급] Part 40 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 40 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u41",
+            "chapterCode": "tech_tesuji_u41",
+            "title": "1단계 [기초/입문: 30급~21급] Part 41 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 41 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u42",
+            "chapterCode": "tech_tesuji_u42",
+            "title": "1단계 [기초/입문: 30급~21급] Part 42 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 42 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u43",
+            "chapterCode": "tech_tesuji_u43",
+            "title": "1단계 [기초/입문: 30급~21급] Part 43 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 43 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u44",
+            "chapterCode": "tech_tesuji_u44",
+            "title": "1단계 [기초/입문: 30급~21급] Part 44 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 44 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u45",
+            "chapterCode": "tech_tesuji_u45",
+            "title": "1단계 [기초/입문: 30급~21급] Part 45 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 45 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u46",
+            "chapterCode": "tech_tesuji_u46",
+            "title": "1단계 [기초/입문: 30급~21급] Part 46 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 46 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u47",
+            "chapterCode": "tech_tesuji_u47",
+            "title": "1단계 [기초/입문: 30급~21급] Part 47 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 47 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u48",
+            "chapterCode": "tech_tesuji_u48",
+            "title": "1단계 [기초/입문: 30급~21급] Part 48 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 48 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u49",
+            "chapterCode": "tech_tesuji_u49",
+            "title": "1단계 [기초/입문: 30급~21급] Part 49 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 49 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u50",
+            "chapterCode": "tech_tesuji_u50",
+            "title": "1단계 [기초/입문: 30급~21급] Part 50 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 50 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u51",
+            "chapterCode": "tech_tesuji_u51",
+            "title": "1단계 [기초/입문: 30급~21급] Part 51 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 51 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u52",
+            "chapterCode": "tech_tesuji_u52",
+            "title": "1단계 [기초/입문: 30급~21급] Part 52 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 52 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u53",
+            "chapterCode": "tech_tesuji_u53",
+            "title": "1단계 [기초/입문: 30급~21급] Part 53 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 53 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u54",
+            "chapterCode": "tech_tesuji_u54",
+            "title": "1단계 [기초/입문: 30급~21급] Part 54 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 54 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u55",
+            "chapterCode": "tech_tesuji_u55",
+            "title": "1단계 [기초/입문: 30급~21급] Part 55 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 55 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u56",
+            "chapterCode": "tech_tesuji_u56",
+            "title": "1단계 [기초/입문: 30급~21급] Part 56 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 56 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u57",
+            "chapterCode": "tech_tesuji_u57",
+            "title": "1단계 [기초/입문: 30급~21급] Part 57 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 57 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u58",
+            "chapterCode": "tech_tesuji_u58",
+            "title": "1단계 [기초/입문: 30급~21급] Part 58 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 58 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u59",
+            "chapterCode": "tech_tesuji_u59",
+            "title": "1단계 [기초/입문: 30급~21급] Part 59 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 59 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u60",
+            "chapterCode": "tech_tesuji_u60",
+            "title": "1단계 [기초/입문: 30급~21급] Part 60 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 60 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u61",
+            "chapterCode": "tech_tesuji_u61",
+            "title": "1단계 [기초/입문: 30급~21급] Part 61 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 61 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u62",
+            "chapterCode": "tech_tesuji_u62",
+            "title": "1단계 [기초/입문: 30급~21급] Part 62 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 62 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u63",
+            "chapterCode": "tech_tesuji_u63",
+            "title": "1단계 [기초/입문: 30급~21급] Part 63 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 63 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u64",
+            "chapterCode": "tech_tesuji_u64",
+            "title": "1단계 [기초/입문: 30급~21급] Part 64 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 64 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u65",
+            "chapterCode": "tech_tesuji_u65",
+            "title": "1단계 [기초/입문: 30급~21급] Part 65 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 65 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u66",
+            "chapterCode": "tech_tesuji_u66",
+            "title": "1단계 [기초/입문: 30급~21급] Part 66 (25제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 66 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u67",
+            "chapterCode": "tech_tesuji_u67",
+            "title": "1단계 [기초/입문: 30급~21급] Part 67 (17제)",
+            "chapter": "1단계 [기초/입문: 30급~21급] Part 67 (17제)",
+            "problemCount": 17,
+            "problemsCount": 17
+          },
+          {
+            "code": "tech_tesuji_u68",
+            "chapterCode": "tech_tesuji_u68",
+            "title": "2단계 [초급: 20급~15급] (14제)",
+            "chapter": "2단계 [초급: 20급~15급] (14제)",
+            "problemCount": 14,
+            "problemsCount": 14
+          },
+          {
+            "code": "tech_tesuji_u69",
+            "chapterCode": "tech_tesuji_u69",
+            "title": "3단계 [중급: 14급~9급] Part 1 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 1 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u70",
+            "chapterCode": "tech_tesuji_u70",
+            "title": "3단계 [중급: 14급~9급] Part 2 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 2 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u71",
+            "chapterCode": "tech_tesuji_u71",
+            "title": "3단계 [중급: 14급~9급] Part 3 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 3 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u72",
+            "chapterCode": "tech_tesuji_u72",
+            "title": "3단계 [중급: 14급~9급] Part 4 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 4 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u73",
+            "chapterCode": "tech_tesuji_u73",
+            "title": "3단계 [중급: 14급~9급] Part 5 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 5 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u74",
+            "chapterCode": "tech_tesuji_u74",
+            "title": "3단계 [중급: 14급~9급] Part 6 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 6 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u75",
+            "chapterCode": "tech_tesuji_u75",
+            "title": "3단계 [중급: 14급~9급] Part 7 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 7 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u76",
+            "chapterCode": "tech_tesuji_u76",
+            "title": "3단계 [중급: 14급~9급] Part 8 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 8 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u77",
+            "chapterCode": "tech_tesuji_u77",
+            "title": "3단계 [중급: 14급~9급] Part 9 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 9 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u78",
+            "chapterCode": "tech_tesuji_u78",
+            "title": "3단계 [중급: 14급~9급] Part 10 (25제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 10 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u79",
+            "chapterCode": "tech_tesuji_u79",
+            "title": "3단계 [중급: 14급~9급] Part 11 (12제)",
+            "chapter": "3단계 [중급: 14급~9급] Part 11 (12제)",
+            "problemCount": 12,
+            "problemsCount": 12
+          },
+          {
+            "code": "tech_tesuji_u80",
+            "chapterCode": "tech_tesuji_u80",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 1 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 1 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u81",
+            "chapterCode": "tech_tesuji_u81",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 2 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 2 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u82",
+            "chapterCode": "tech_tesuji_u82",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 3 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 3 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u83",
+            "chapterCode": "tech_tesuji_u83",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 4 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 4 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u84",
+            "chapterCode": "tech_tesuji_u84",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 5 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 5 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u85",
+            "chapterCode": "tech_tesuji_u85",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 6 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 6 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u86",
+            "chapterCode": "tech_tesuji_u86",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 7 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 7 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u87",
+            "chapterCode": "tech_tesuji_u87",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 8 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 8 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u88",
+            "chapterCode": "tech_tesuji_u88",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 9 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 9 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u89",
+            "chapterCode": "tech_tesuji_u89",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 10 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 10 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u90",
+            "chapterCode": "tech_tesuji_u90",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 11 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 11 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u91",
+            "chapterCode": "tech_tesuji_u91",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 12 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 12 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u92",
+            "chapterCode": "tech_tesuji_u92",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 13 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 13 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u93",
+            "chapterCode": "tech_tesuji_u93",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 14 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 14 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u94",
+            "chapterCode": "tech_tesuji_u94",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 15 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 15 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u95",
+            "chapterCode": "tech_tesuji_u95",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 16 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 16 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u96",
+            "chapterCode": "tech_tesuji_u96",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 17 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 17 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u97",
+            "chapterCode": "tech_tesuji_u97",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 18 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 18 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u98",
+            "chapterCode": "tech_tesuji_u98",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 19 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 19 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u99",
+            "chapterCode": "tech_tesuji_u99",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 20 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 20 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u100",
+            "chapterCode": "tech_tesuji_u100",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 21 (25제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 21 (25제)",
+            "problemCount": 25,
+            "problemsCount": 25
+          },
+          {
+            "code": "tech_tesuji_u101",
+            "chapterCode": "tech_tesuji_u101",
+            "title": "4단계 [고급/유단자: 8급~유단자] Part 22 (8제)",
+            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 22 (8제)",
+            "problemCount": 8,
+            "problemsCount": 8
           }
         ]
       }
