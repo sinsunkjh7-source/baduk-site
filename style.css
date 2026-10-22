@@ -4828,8 +4828,11 @@ body.site-locked .app-container {
 
 /* 🌟 바둑판 화면 정중앙 배치를 위한 우측 투명 밸런스 스페이서 (.board-right-spacer) 🌟 */
 .board-right-spacer {
-  width: 240px;
-  flex-shrink: 0;
-  pointer-events: none;
-  visibility: hidden;
+  width: 240px !important;
+  min-width: 240px !important;
+  max-width: 240px !important;
+  flex: 0 0 240px !important;
+  height: 1px !important;
+  pointer-events: none !important;
+  visibility: hidden !important;
 }
