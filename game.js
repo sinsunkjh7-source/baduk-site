@@ -1116,12 +1116,28 @@ class BadukGameApp {
 
     const meteors = [];
 
-    const spawnMeteor = (forcedX, forcedY) => {
-      const startX = forcedX !== undefined ? forcedX : (Math.random() * (width * 0.7) + width * 0.15);
-      const startY = forcedY !== undefined ? forcedY : (Math.random() * (height * 0.3));
-      const length = 150 + Math.random() * 90;
-      const speed = 14 + Math.random() * 6;
-      const angle = (Math.PI / 4) + (Math.random() - 0.5) * 0.25;
+    const spawnMeteor = (isLeftZone = false) => {
+      let startX, startY, angle;
+      if (isLeftZone) {
+        // 좌측 영역 유성: 위치·고도·각도를 불규칙하고 다양하게 설정
+        const goLeftwards = Math.random() < 0.35;
+        startX = goLeftwards
+          ? (width * 0.08 + Math.random() * (width * 0.20))
+          : (Math.random() * (width * 0.18));
+        startY = Math.random() * (height * 0.58);
+        angle = goLeftwards
+          ? (Math.PI * 0.62 + (Math.random() - 0.5) * 0.35) // 좌하향 불규칙 각도
+          : (Math.PI * 0.28 + (Math.random() - 0.5) * 0.38); // 우하향 불규칙 각도
+      } else {
+        startX = Math.random() * (width * 0.85) + width * 0.05;
+        startY = Math.random() * (height * 0.35);
+        angle = (Math.PI / 4) + (Math.random() - 0.5) * 0.35;
+      }
+
+      const length = 110 + Math.random() * 130;
+      const speed = 11 + Math.random() * 9;
+      const maxLife = Math.floor(38 + Math.random() * 24);
+      const thickness = 1.6 + Math.random() * 1.0;
 
       meteors.push({
         x: startX,
@@ -1130,24 +1146,39 @@ class BadukGameApp {
         dy: Math.sin(angle) * speed,
         length: length,
         life: 0,
-        maxLife: 50,
-        thickness: 2.2
+        maxLife: maxLife,
+        thickness: thickness
       });
     };
 
-    // 첫 유성 1.2초 후 생성
-    setTimeout(() => spawnMeteor(), 1200);
+    // 첫 유성 생성
+    setTimeout(() => spawnMeteor(true), 1200);
 
+    // 기본 유성 스케줄러 (불규칙한 간격)
     const scheduleMeteor = () => {
-      const delay = 3500 + Math.random() * 3500;
+      const delay = 2500 + Math.pow(Math.random(), 1.4) * 5500;
       setTimeout(() => {
         if (this.currentBgTheme === 'theme6' || this.currentBgTheme === 'starry') {
-          spawnMeteor();
+          spawnMeteor(Math.random() < 0.45);
         }
         scheduleMeteor();
       }, delay);
     };
     scheduleMeteor();
+
+    // 좌측 영역 전용 불규칙 유성 스케줄러 (짧은 간격~긴 휴지기 불규칙 변동)
+    const scheduleLeftMeteor = () => {
+      const irregularDelay = Math.random() < 0.3
+        ? (1600 + Math.random() * 1800)   // 가끔 연달아 떨어지는 짧은 간격
+        : (4200 + Math.random() * 5800);  // 평소 불규칙한 긴 간격
+      setTimeout(() => {
+        if (this.currentBgTheme === 'theme6' || this.currentBgTheme === 'starry') {
+          spawnMeteor(true);
+        }
+        scheduleLeftMeteor();
+      }, irregularDelay);
+    };
+    scheduleLeftMeteor();
 
     const loop = () => {
       if (this.currentBgTheme === 'theme6' || this.currentBgTheme === 'starry') {
