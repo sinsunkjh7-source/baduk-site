@@ -64,6 +64,29 @@ class BadukEngine {
     this.currentStep = targetStep;
   }
 
+  // 🌟 특정 좌표의 돌 제거 (놓아보기 / 수순 편집 지원) 🌟
+  removeStone(x, y) {
+    if (x < 0 || x >= this.size || y < 0 || y >= this.size) return false;
+    if (this.board[y][x] === 0) return false;
+
+    // 1. 해당 착수가 moves 수순 기록에 존재하는 경우
+    const moveIdx = this.moves.findIndex(m => m.x === x && m.y === y);
+    if (moveIdx !== -1) {
+      this.moves.splice(moveIdx, 1);
+      this.moves.forEach((m, idx) => { m.step = idx + 1; });
+      this.goToStep(this.moves.length);
+      return true;
+    }
+
+    // 2. 초기 배치 돌(initialStones)에 있는 경우
+    const initIdx = this.initialStones.findIndex(s => s.x === x && s.y === y);
+    if (initIdx !== -1) {
+      this.initialStones.splice(initIdx, 1);
+    }
+    this.board[y][x] = 0;
+    return true;
+  }
+
   // 내부 착수 실행 (기록 추가 없이 보드 상태만 변경)
   _applyMove(x, y, color) {
     const oppColor = color === 1 ? 2 : 1;

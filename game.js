@@ -1617,6 +1617,24 @@ class BadukGameApp {
       if (this.nextTurn !== expectedUserColor) return;
     }
 
+    // 🌟 [놓아보기 / 강의 모드] 이미 돌이 놓여있는 곳을 다시 클릭하면 해당 돌 제거! 🌟
+    if ((this.isTrialMode || this.isLectureMode) && this.engine.board[y][x] !== 0) {
+      const removedColor = this.engine.board[y][x];
+      this.engine.removeStone(x, y);
+
+      if (window.badukAudio) window.badukAudio.playStone();
+
+      // 교차 착수 모드인 경우, 방금 지운 돌 색상으로 턴을 유지해 곧바로 다른 자리에 다시 놓기 편하도록 지원
+      if (this.placementMode === 'alternate') {
+        this.nextTurn = removedColor;
+      }
+
+      this.hoverPos = null;
+      this.render();
+      this.updateStatus();
+      return;
+    }
+
     // 2. 강의 모드 및 학습 문제 모드 (선생님의 착수 모드 자유 선택: 교차 / 흑만 / 백만)
     let playColor = this.nextTurn;
     if (this.placementMode === 'blackOnly') playColor = 1;
