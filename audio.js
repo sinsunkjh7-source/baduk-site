@@ -172,34 +172,9 @@ class BadukAudio {
   playDingDongDang() {
     if (!this.enabled || this.volume <= 0) return;
     this.init();
-
-    // 1. 사전 렌더링된 고음질 WAV 오디오 재생 시도 (최우선)
-    try {
-      if (!this._dingDongAudio) {
-        this._dingDongAudio = new Audio('dingdongdang.wav');
-      }
-      this._dingDongAudio.volume = Math.min(1.0, this.volume);
-      this._dingDongAudio.currentTime = 0;
-      const playPromise = this._dingDongAudio.play();
-      if (playPromise !== undefined) {
-        playPromise.catch(() => {
-          // 브라우저 정책 등으로 파일 재생 차단 시 Web Audio API로 즉시 폴백
-          this._playSynthesizedDingDongDang();
-        });
-        return;
-      }
-    } catch (e) {
-      // 폴백으로 이동
-    }
-
-    this._playSynthesizedDingDongDang();
-  }
-
-  // 🌟 Web Audio API 기반 정통 실로폰/글로켄슈필 '도-미-솔-도' 합성 엔진 🌟
-  _playSynthesizedDingDongDang() {
     if (!this.ctx) return;
-    const t = this.ctx.currentTime;
 
+    const t = this.ctx.currentTime;
     // 한국인이 누구나 명확히 '딩-동-댕-동'으로 인식하는 정통 4단 계이름 (도5 - 미5 - 솔5 - 도6)
     const notes = [
       { freq: 523.25, time: 0.00, dur: 0.65, gain: 0.60 }, // 딩 (도5)
@@ -247,18 +222,6 @@ class BadukAudio {
       gainHarm1.connect(this.masterGain);
       oscHarm1.start(start);
       oscHarm1.stop(start + n.dur);
-
-      // 4. 은은하고 반짝이는 3차 미세 배음
-      const oscHarm2 = this.ctx.createOscillator();
-      const gainHarm2 = this.ctx.createGain();
-      oscHarm2.type = 'sine';
-      oscHarm2.frequency.setValueAtTime(n.freq * 3, start);
-      gainHarm2.gain.setValueAtTime(n.gain * 0.08, start);
-      gainHarm2.gain.exponentialRampToValueAtTime(0.001, start + (n.dur * 0.3));
-      oscHarm2.connect(gainHarm2);
-      gainHarm2.connect(this.masterGain);
-      oscHarm2.start(start);
-      oscHarm2.stop(start + n.dur);
     });
   }
 
@@ -267,59 +230,46 @@ class BadukAudio {
     this.playDingDongDang();
   }
 
-  // 🌟 [오답음] 아이들이 주눅 들지 않는 귀엽고 부드러운 닌텐도 스타일 '통-통' (마림바 라->미) 🌟
+  // 🌟 [오답음] 듀오링고/카훗 스타일 부드러운 저음 하강 톤 (딩동댕과 180도 확실히 구분되는 오답 사운드) 🌟
   playDdang() {
     if (!this.enabled || this.volume <= 0) return;
     this.init();
-
-    // 1. 사전 렌더링된 부드러운 오디오 WAV 재생 시도
-    try {
-      if (!this._ddangAudio) {
-        this._ddangAudio = new Audio('ddang.wav');
-      }
-      this._ddangAudio.volume = Math.min(1.0, this.volume * 0.85);
-      this._ddangAudio.currentTime = 0;
-      const playPromise = this._ddangAudio.play();
-      if (playPromise !== undefined) {
-        playPromise.catch(() => {
-          this._playSynthesizedDdang();
-        });
-        return;
-      }
-    } catch (e) {}
-
-    this._playSynthesizedDdang();
-  }
-
-  _playSynthesizedDdang() {
     if (!this.ctx) return;
+
     const t = this.ctx.currentTime;
-    const freq = 698.46; // 실로폰 F5 맑은 단타 1회 '땡~~~'
+    const dur = 0.45;
 
-    const osc = this.ctx.createOscillator();
-    const gain = this.ctx.createGain();
-    osc.type = 'sine';
-    osc.frequency.setValueAtTime(freq, t);
+    // 메인 하강 톤 (260Hz -> 175Hz로 부드럽게 미끄러지며 아쉬움을 표현)
+    const osc1 = this.ctx.createOscillator();
+    const gain1 = this.ctx.createGain();
+    osc1.type = 'sine';
+    osc1.frequency.setValueAtTime(260, t);
+    osc1.frequency.exponentialRampToValueAtTime(175, t + dur);
 
-    gain.gain.setValueAtTime(0.70, t);
-    gain.gain.exponentialRampToValueAtTime(0.001, t + 0.85);
+    gain1.gain.setValueAtTime(0.01, t);
+    gain1.gain.linearRampToValueAtTime(0.55, t + 0.01);
+    gain1.gain.exponentialRampToValueAtTime(0.001, t + dur);
 
-    osc.connect(gain);
-    gain.connect(this.masterGain);
-    osc.start(t);
-    osc.stop(t + 0.90);
+    osc1.connect(gain1);
+    gain1.connect(this.masterGain);
+    osc1.start(t);
+    osc1.stop(t + dur + 0.02);
 
-    // 실로폰 2차 배음
-    const oscHarm = this.ctx.createOscillator();
-    const gainHarm = this.ctx.createGain();
-    oscHarm.type = 'sine';
-    oscHarm.frequency.setValueAtTime(freq * 2, t);
-    gainHarm.gain.setValueAtTime(0.25, t);
-    gainHarm.gain.exponentialRampToValueAtTime(0.001, t + 0.45);
-    oscHarm.connect(gainHarm);
-    gainHarm.connect(this.masterGain);
-    oscHarm.start(t);
-    oscHarm.stop(t + 0.50);
+    // 하모닉 단3도 마이너 코드 (오답/실패임을 누구나 직관적으로 알 수 있는 화음)
+    const osc2 = this.ctx.createOscillator();
+    const gain2 = this.ctx.createGain();
+    osc2.type = 'sine';
+    osc2.frequency.setValueAtTime(310, t);
+    osc2.frequency.exponentialRampToValueAtTime(208, t + dur);
+
+    gain2.gain.setValueAtTime(0.01, t);
+    gain2.gain.linearRampToValueAtTime(0.25, t + 0.01);
+    gain2.gain.exponentialRampToValueAtTime(0.001, t + dur);
+
+    osc2.connect(gain2);
+    gain2.connect(this.masterGain);
+    osc2.start(t);
+    osc2.stop(t + dur + 0.02);
   }
 
   // 미션 성공 효과음 (딩동댕 호출)
