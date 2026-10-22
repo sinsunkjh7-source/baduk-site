@@ -1080,7 +1080,7 @@ class BadukGameApp {
     }
   }
 
-  // 🌌 신비한 별빛 밤하늘과 서서히 흐르는 별무리 & 유성 모션그래픽
+  // 🌌 신비한 별빛 밤하늘과 서서히 흐르는 4각 십자 스파클 별빛 & 유성 모션그래픽
   initStarfieldMotion() {
     const canvas = document.getElementById('starfieldCanvas');
     if (!canvas) return;
@@ -1095,19 +1095,23 @@ class BadukGameApp {
       height = canvas.height = window.innerHeight;
     });
 
-    const numStars = 240;
+    // 4각 십자 별빛 스파클과 배경 미세 별무리
+    const numStars = 230;
     const stars = [];
     for (let i = 0; i < numStars; i++) {
+      const isSparkle = Math.random() < 0.38; // 약 38%는 선명한 4각 십자 별빛
       stars.push({
         x: Math.random() * width,
         y: Math.random() * height,
-        radius: Math.random() < 0.75 ? (0.6 + Math.random() * 0.9) : (1.6 + Math.random() * 1.3),
-        baseAlpha: 0.35 + Math.random() * 0.65,
-        twinkleSpeed: 0.02 + Math.random() * 0.04,
+        isSparkle: isSparkle,
+        size: isSparkle ? (1.5 + Math.random() * 1.5) : (0.6 + Math.random() * 0.9),
+        flareLength: 7 + Math.random() * 14,
+        baseAlpha: 0.4 + Math.random() * 0.6,
+        twinkleSpeed: 0.022 + Math.random() * 0.045,
         twinklePhase: Math.random() * Math.PI * 2,
-        vx: (Math.random() - 0.5) * 0.09 - 0.05,
-        vy: (Math.random() - 0.5) * 0.07 - 0.03,
-        color: Math.random() < 0.25 ? '#bae6fd' : (Math.random() < 0.45 ? '#fef08a' : '#ffffff')
+        vx: (Math.random() - 0.5) * 0.08 - 0.04,
+        vy: (Math.random() - 0.5) * 0.06 - 0.03,
+        color: Math.random() < 0.3 ? '#bae6fd' : (Math.random() < 0.5 ? '#fef08a' : '#ffffff')
       });
     }
 
@@ -1132,7 +1136,6 @@ class BadukGameApp {
       });
     };
 
-    // 첫 유성 1.2초 후 생성
     setTimeout(() => spawnMeteor(), 1200);
 
     const scheduleMeteor = () => {
@@ -1146,6 +1149,43 @@ class BadukGameApp {
     };
     scheduleMeteor();
 
+    // 4각 십자 별빛 그리기 함수
+    const drawSparkle = (x, y, flareLen, size, alpha, color) => {
+      ctx.save();
+      ctx.globalAlpha = alpha;
+
+      // 1. 중앙 부드러운 후광(Halo)
+      const halo = ctx.createRadialGradient(x, y, 0, x, y, flareLen * 0.85);
+      halo.addColorStop(0, '#ffffff');
+      halo.addColorStop(0.35, color);
+      halo.addColorStop(1, 'rgba(255, 255, 255, 0)');
+      ctx.fillStyle = halo;
+      ctx.beginPath();
+      ctx.arc(x, y, flareLen * 0.85, 0, Math.PI * 2);
+      ctx.fill();
+
+      // 2. 4각 별빛 광선 (다이아몬드 십자 스파클 ✦)
+      ctx.fillStyle = '#ffffff';
+      ctx.beginPath();
+      ctx.moveTo(x, y - flareLen);
+      ctx.quadraticCurveTo(x, y, x + size * 0.55, y);
+      ctx.lineTo(x + flareLen, y);
+      ctx.quadraticCurveTo(x, y, x, y + size * 0.55);
+      ctx.lineTo(x, y + flareLen);
+      ctx.quadraticCurveTo(x, y, x - size * 0.55, y);
+      ctx.lineTo(x - flareLen, y);
+      ctx.quadraticCurveTo(x, y, x, y - size * 0.55);
+      ctx.closePath();
+      ctx.fill();
+
+      // 3. 중심 백열 핵
+      ctx.beginPath();
+      ctx.arc(x, y, size * 0.65, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.restore();
+    };
+
     const loop = () => {
       if (this.currentBgTheme === 'theme6' || this.currentBgTheme === 'starry') {
         const bgGrad = ctx.createRadialGradient(width * 0.5, height, 50, width * 0.5, height * 0.5, Math.max(width, height) * 0.9);
@@ -1155,7 +1195,7 @@ class BadukGameApp {
         ctx.fillStyle = bgGrad;
         ctx.fillRect(0, 0, width, height);
 
-        // 1. 별 그리기
+        // 1. 별빛 반짝임 렌더링
         for (const s of stars) {
           s.x += s.vx;
           s.y += s.vy;
@@ -1165,25 +1205,26 @@ class BadukGameApp {
           if (s.y > height) s.y = 0;
 
           s.twinklePhase += s.twinkleSpeed;
-          const currentAlpha = s.baseAlpha * (0.6 + 0.4 * Math.sin(s.twinklePhase));
+          // 극적인 반짝임 (지수 곡선으로 깜빡깜빡 선명하게 빛남)
+          const sinVal = Math.sin(s.twinklePhase);
+          const twinkleFactor = Math.pow(Math.max(0, (sinVal + 1) / 2), 2.2);
+          const currentAlpha = Math.max(0.12, Math.min(1, s.baseAlpha * (0.25 + 0.75 * twinkleFactor)));
 
-          ctx.save();
-          ctx.globalAlpha = Math.max(0.12, Math.min(1, currentAlpha));
-          ctx.fillStyle = s.color;
-          ctx.beginPath();
-          ctx.arc(s.x, s.y, s.radius, 0, Math.PI * 2);
-          ctx.fill();
-
-          if (s.radius > 1.8) {
-            ctx.globalAlpha = currentAlpha * 0.4;
+          if (s.isSparkle) {
+            const dynamicFlare = s.flareLength * (0.55 + 0.65 * twinkleFactor);
+            drawSparkle(s.x, s.y, dynamicFlare, s.size, currentAlpha, s.color);
+          } else {
+            ctx.save();
+            ctx.globalAlpha = currentAlpha;
+            ctx.fillStyle = s.color;
             ctx.beginPath();
-            ctx.arc(s.x, s.y, s.radius * 2.8, 0, Math.PI * 2);
+            ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
             ctx.fill();
+            ctx.restore();
           }
-          ctx.restore();
         }
 
-        // 2. 유성 그리기
+        // 2. 유성 렌더링
         for (let i = meteors.length - 1; i >= 0; i--) {
           const m = meteors[i];
           m.x += m.dx;

@@ -129,9 +129,7 @@ body.bg-theme-night {
 /* 🌟 바탕화면 테마 6: 신비한 별빛 밤하늘과 유성 모션그래픽 🌟 */
 body.bg-theme-theme6,
 body.bg-theme-starry {
-  background-color: #04060d;
-  background-image: radial-gradient(ellipse at 50% 100%, #151d3b 0%, #0c1024 45%, #04060d 100%);
-  background-attachment: fixed;
+  background: #04060d !important;
 }
 
 #starfieldCanvas {
@@ -140,7 +138,7 @@ body.bg-theme-starry {
   left: 0;
   width: 100vw;
   height: 100vh;
-  z-index: -1;
+  z-index: 0;
   pointer-events: none;
   display: none;
 }
@@ -148,6 +146,11 @@ body.bg-theme-starry {
 body.bg-theme-theme6 #starfieldCanvas,
 body.bg-theme-starry #starfieldCanvas {
   display: block;
+}
+
+.app-container {
+  position: relative;
+  z-index: 5;
 }
 
 body.bg-theme-theme5 {
