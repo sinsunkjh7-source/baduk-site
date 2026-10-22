@@ -205,6 +205,612 @@
     ]
   },
   {
+    "title": "🎯 15대 핵심 기법 심층 마스터관 (기초부터 고급까지)",
+    "bookCount": 15,
+    "books": [
+      {
+        "code": "tech_ladder",
+        "title": "🪜 축 (Ladder) 완전정복 마스터",
+        "chapterCount": 4,
+        "totalProblems": 80,
+        "chapters": [
+          {
+            "code": "tech_ladder_ch1",
+            "chapterCode": "tech_ladder_ch1",
+            "title": "1단계: [기초] 핵심 개념과 기본 원리",
+            "chapter": "1단계: [기초] 핵심 개념과 기본 원리",
+            "problemCount": 20,
+            "problemsCount": 20
+          },
+          {
+            "code": "tech_ladder_ch2",
+            "chapterCode": "tech_ladder_ch2",
+            "title": "2단계: [초급] 기본 응용과 방향성 탐색",
+            "chapter": "2단계: [초급] 기본 응용과 방향성 탐색",
+            "problemCount": 20,
+            "problemsCount": 20
+          },
+          {
+            "code": "tech_ladder_ch3",
+            "chapterCode": "tech_ladder_ch3",
+            "title": "3단계: [중급] 수순의 묘와 함정 피하기",
+            "chapter": "3단계: [중급] 수순의 묘와 함정 피하기",
+            "problemCount": 20,
+            "problemsCount": 20
+          },
+          {
+            "code": "tech_ladder_ch4",
+            "chapterCode": "tech_ladder_ch4",
+            "title": "4단계: [고급] 실전 심화 및 유단자 맥점",
+            "chapter": "4단계: [고급] 실전 심화 및 유단자 맥점",
+            "problemCount": 20,
+            "problemsCount": 20
+          }
+        ]
+      },
+      {
+        "code": "tech_net",
+        "title": "🕸️ 장문 (Net) 그물 포위 마스터",
+        "chapterCount": 4,
+        "totalProblems": 80,
+        "chapters": [
+          {
+            "code": "tech_net_ch1",
+            "chapterCode": "tech_net_ch1",
+            "title": "1단계: [기초] 핵심 개념과 기본 원리",
+            "chapter": "1단계: [기초] 핵심 개념과 기본 원리",
+            "problemCount": 20,
+            "problemsCount": 20
+          },
+          {
+            "code": "tech_net_ch2",
+            "chapterCode": "tech_net_ch2",
+            "title": "2단계: [초급] 기본 응용과 방향성 탐색",
+            "chapter": "2단계: [초급] 기본 응용과 방향성 탐색",
+            "problemCount": 20,
+            "problemsCount": 20
+          },
+          {
+            "code": "tech_net_ch3",
+            "chapterCode": "tech_net_ch3",
+            "title": "3단계: [중급] 수순의 묘와 함정 피하기",
+            "chapter": "3단계: [중급] 수순의 묘와 함정 피하기",
+            "problemCount": 20,
+            "problemsCount": 20
+          },
+          {
+            "code": "tech_net_ch4",
+            "chapterCode": "tech_net_ch4",
+            "title": "4단계: [고급] 실전 심화 및 유단자 맥점",
+            "chapter": "4단계: [고급] 실전 심화 및 유단자 맥점",
+            "problemCount": 20,
+            "problemsCount": 20
+          }
+        ]
+      },
+      {
+        "code": "tech_snapback",
+        "title": "🪃 환격 (Snapback) 되따내기 마스터",
+        "chapterCount": 4,
+        "totalProblems": 80,
+        "chapters": [
+          {
+            "code": "tech_snapback_ch1",
+            "chapterCode": "tech_snapback_ch1",
+            "title": "1단계: [기초] 핵심 개념과 기본 원리",
+            "chapter": "1단계: [기초] 핵심 개념과 기본 원리",
+            "problemCount": 20,
+            "problemsCount": 20
+          },
+          {
+            "code": "tech_snapback_ch2",
+            "chapterCode": "tech_snapback_ch2",
+            "title": "2단계: [초급] 기본 응용과 방향성 탐색",
+            "chapter": "2단계: [초급] 기본 응용과 방향성 탐색",
+            "problemCount": 20,
+            "problemsCount": 20
+          },
+          {
+            "code": "tech_snapback_ch3",
+            "chapterCode": "tech_snapback_ch3",
+            "title": "3단계: [중급] 수순의 묘와 함정 피하기",
+            "chapter": "3단계: [중급] 수순의 묘와 함정 피하기",
+            "problemCount": 20,
+            "problemsCount": 20
+          },
+          {
+            "code": "tech_snapback_ch4",
+            "chapterCode": "tech_snapback_ch4",
+            "title": "4단계: [고급] 실전 심화 및 유단자 맥점",
+            "chapter": "4단계: [고급] 실전 심화 및 유단자 맥점",
+            "problemCount": 20,
+            "problemsCount": 20
+          }
+        ]
+      },
+      {
+        "code": "tech_yeon_atari",
+        "title": "⚡ 촉촉수 / 연단수 연속 몰아치기",
+        "chapterCount": 4,
+        "totalProblems": 80,
+        "chapters": [
+          {
+            "code": "tech_yeon_atari_ch1",
+            "chapterCode": "tech_yeon_atari_ch1",
+            "title": "1단계: [기초] 핵심 개념과 기본 원리",
+            "chapter": "1단계: [기초] 핵심 개념과 기본 원리",
+            "problemCount": 20,
+            "problemsCount": 20
+          },
+          {
+            "code": "tech_yeon_atari_ch2",
+            "chapterCode": "tech_yeon_atari_ch2",
+            "title": "2단계: [초급] 기본 응용과 방향성 탐색",
+            "chapter": "2단계: [초급] 기본 응용과 방향성 탐색",
+            "problemCount": 20,
+            "problemsCount": 20
+          },
+          {
+            "code": "tech_yeon_atari_ch3",
+            "chapterCode": "tech_yeon_atari_ch3",
+            "title": "3단계: [중급] 수순의 묘와 함정 피하기",
+            "chapter": "3단계: [중급] 수순의 묘와 함정 피하기",
+            "problemCount": 20,
+            "problemsCount": 20
+          },
+          {
+            "code": "tech_yeon_atari_ch4",
+            "chapterCode": "tech_yeon_atari_ch4",
+            "title": "4단계: [고급] 실전 심화 및 유단자 맥점",
+            "chapter": "4단계: [고급] 실전 심화 및 유단자 맥점",
+            "problemCount": 20,
+            "problemsCount": 20
+          }
+        ]
+      },
+      {
+        "code": "tech_connection",
+        "title": "🛡️ 행마: 호구 / 쌍립 / 연결의 급소",
+        "chapterCount": 4,
+        "totalProblems": 80,
+        "chapters": [
+          {
+            "code": "tech_connection_ch1",
+            "chapterCode": "tech_connection_ch1",
+            "title": "1단계: [기초] 핵심 개념과 기본 원리",
+            "chapter": "1단계: [기초] 핵심 개념과 기본 원리",
+            "problemCount": 20,
+            "problemsCount": 20
+          },
+          {
+            "code": "tech_connection_ch2",
+            "chapterCode": "tech_connection_ch2",
+            "title": "2단계: [초급] 기본 응용과 방향성 탐색",
+            "chapter": "2단계: [초급] 기본 응용과 방향성 탐색",
+            "problemCount": 20,
+            "problemsCount": 20
+          },
+          {
+            "code": "tech_connection_ch3",
+            "chapterCode": "tech_connection_ch3",
+            "title": "3단계: [중급] 수순의 묘와 함정 피하기",
+            "chapter": "3단계: [중급] 수순의 묘와 함정 피하기",
+            "problemCount": 20,
+            "problemsCount": 20
+          },
+          {
+            "code": "tech_connection_ch4",
+            "chapterCode": "tech_connection_ch4",
+            "title": "4단계: [고급] 실전 심화 및 유단자 맥점",
+            "chapter": "4단계: [고급] 실전 심화 및 유단자 맥점",
+            "problemCount": 20,
+            "problemsCount": 20
+          }
+        ]
+      },
+      {
+        "code": "tech_race_outer",
+        "title": "⏱️ 수상전: 바깥 활로 줄이기 마스터",
+        "chapterCount": 4,
+        "totalProblems": 80,
+        "chapters": [
+          {
+            "code": "tech_race_outer_ch1",
+            "chapterCode": "tech_race_outer_ch1",
+            "title": "1단계: [기초] 핵심 개념과 기본 원리",
+            "chapter": "1단계: [기초] 핵심 개념과 기본 원리",
+            "problemCount": 20,
+            "problemsCount": 20
+          },
+          {
+            "code": "tech_race_outer_ch2",
+            "chapterCode": "tech_race_outer_ch2",
+            "title": "2단계: [초급] 기본 응용과 방향성 탐색",
+            "chapter": "2단계: [초급] 기본 응용과 방향성 탐색",
+            "problemCount": 20,
+            "problemsCount": 20
+          },
+          {
+            "code": "tech_race_outer_ch3",
+            "chapterCode": "tech_race_outer_ch3",
+            "title": "3단계: [중급] 수순의 묘와 함정 피하기",
+            "chapter": "3단계: [중급] 수순의 묘와 함정 피하기",
+            "problemCount": 20,
+            "problemsCount": 20
+          },
+          {
+            "code": "tech_race_outer_ch4",
+            "chapterCode": "tech_race_outer_ch4",
+            "title": "4단계: [고급] 실전 심화 및 유단자 맥점",
+            "chapter": "4단계: [고급] 실전 심화 및 유단자 맥점",
+            "problemCount": 20,
+            "problemsCount": 20
+          }
+        ]
+      },
+      {
+        "code": "tech_yugamuga",
+        "title": "👑 수상전: 유가무가 & 대궁소궁 & 귀삼수",
+        "chapterCount": 4,
+        "totalProblems": 80,
+        "chapters": [
+          {
+            "code": "tech_yugamuga_ch1",
+            "chapterCode": "tech_yugamuga_ch1",
+            "title": "1단계: [기초] 핵심 개념과 기본 원리",
+            "chapter": "1단계: [기초] 핵심 개념과 기본 원리",
+            "problemCount": 20,
+            "problemsCount": 20
+          },
+          {
+            "code": "tech_yugamuga_ch2",
+            "chapterCode": "tech_yugamuga_ch2",
+            "title": "2단계: [초급] 기본 응용과 방향성 탐색",
+            "chapter": "2단계: [초급] 기본 응용과 방향성 탐색",
+            "problemCount": 20,
+            "problemsCount": 20
+          },
+          {
+            "code": "tech_yugamuga_ch3",
+            "chapterCode": "tech_yugamuga_ch3",
+            "title": "3단계: [중급] 수순의 묘와 함정 피하기",
+            "chapter": "3단계: [중급] 수순의 묘와 함정 피하기",
+            "problemCount": 20,
+            "problemsCount": 20
+          },
+          {
+            "code": "tech_yugamuga_ch4",
+            "chapterCode": "tech_yugamuga_ch4",
+            "title": "4단계: [고급] 실전 심화 및 유단자 맥점",
+            "chapter": "4단계: [고급] 실전 심화 및 유단자 맥점",
+            "problemCount": 20,
+            "problemsCount": 20
+          }
+        ]
+      },
+      {
+        "code": "tech_eye_house",
+        "title": "👁️ 사활: 두 눈 만들기 & 옥집 파호",
+        "chapterCount": 4,
+        "totalProblems": 80,
+        "chapters": [
+          {
+            "code": "tech_eye_house_ch1",
+            "chapterCode": "tech_eye_house_ch1",
+            "title": "1단계: [기초] 핵심 개념과 기본 원리",
+            "chapter": "1단계: [기초] 핵심 개념과 기본 원리",
+            "problemCount": 20,
+            "problemsCount": 20
+          },
+          {
+            "code": "tech_eye_house_ch2",
+            "chapterCode": "tech_eye_house_ch2",
+            "title": "2단계: [초급] 기본 응용과 방향성 탐색",
+            "chapter": "2단계: [초급] 기본 응용과 방향성 탐색",
+            "problemCount": 20,
+            "problemsCount": 20
+          },
+          {
+            "code": "tech_eye_house_ch3",
+            "chapterCode": "tech_eye_house_ch3",
+            "title": "3단계: [중급] 수순의 묘와 함정 피하기",
+            "chapter": "3단계: [중급] 수순의 묘와 함정 피하기",
+            "problemCount": 20,
+            "problemsCount": 20
+          },
+          {
+            "code": "tech_eye_house_ch4",
+            "chapterCode": "tech_eye_house_ch4",
+            "title": "4단계: [고급] 실전 심화 및 유단자 맥점",
+            "chapter": "4단계: [고급] 실전 심화 및 유단자 맥점",
+            "problemCount": 20,
+            "problemsCount": 20
+          }
+        ]
+      },
+      {
+        "code": "tech_gungdo",
+        "title": "🏯 사활: 궁도 (3궁~6궁) 삶과 죽음",
+        "chapterCount": 4,
+        "totalProblems": 80,
+        "chapters": [
+          {
+            "code": "tech_gungdo_ch1",
+            "chapterCode": "tech_gungdo_ch1",
+            "title": "1단계: [기초] 핵심 개념과 기본 원리",
+            "chapter": "1단계: [기초] 핵심 개념과 기본 원리",
+            "problemCount": 20,
+            "problemsCount": 20
+          },
+          {
+            "code": "tech_gungdo_ch2",
+            "chapterCode": "tech_gungdo_ch2",
+            "title": "2단계: [초급] 기본 응용과 방향성 탐색",
+            "chapter": "2단계: [초급] 기본 응용과 방향성 탐색",
+            "problemCount": 20,
+            "problemsCount": 20
+          },
+          {
+            "code": "tech_gungdo_ch3",
+            "chapterCode": "tech_gungdo_ch3",
+            "title": "3단계: [중급] 수순의 묘와 함정 피하기",
+            "chapter": "3단계: [중급] 수순의 묘와 함정 피하기",
+            "problemCount": 20,
+            "problemsCount": 20
+          },
+          {
+            "code": "tech_gungdo_ch4",
+            "chapterCode": "tech_gungdo_ch4",
+            "title": "4단계: [고급] 실전 심화 및 유단자 맥점",
+            "chapter": "4단계: [고급] 실전 심화 및 유단자 맥점",
+            "problemCount": 20,
+            "problemsCount": 20
+          }
+        ]
+      },
+      {
+        "code": "tech_chijung",
+        "title": "🎯 사활: 치중의 급소 급소 찌르기",
+        "chapterCount": 4,
+        "totalProblems": 80,
+        "chapters": [
+          {
+            "code": "tech_chijung_ch1",
+            "chapterCode": "tech_chijung_ch1",
+            "title": "1단계: [기초] 핵심 개념과 기본 원리",
+            "chapter": "1단계: [기초] 핵심 개념과 기본 원리",
+            "problemCount": 20,
+            "problemsCount": 20
+          },
+          {
+            "code": "tech_chijung_ch2",
+            "chapterCode": "tech_chijung_ch2",
+            "title": "2단계: [초급] 기본 응용과 방향성 탐색",
+            "chapter": "2단계: [초급] 기본 응용과 방향성 탐색",
+            "problemCount": 20,
+            "problemsCount": 20
+          },
+          {
+            "code": "tech_chijung_ch3",
+            "chapterCode": "tech_chijung_ch3",
+            "title": "3단계: [중급] 수순의 묘와 함정 피하기",
+            "chapter": "3단계: [중급] 수순의 묘와 함정 피하기",
+            "problemCount": 20,
+            "problemsCount": 20
+          },
+          {
+            "code": "tech_chijung_ch4",
+            "chapterCode": "tech_chijung_ch4",
+            "title": "4단계: [고급] 실전 심화 및 유단자 맥점",
+            "chapter": "4단계: [고급] 실전 심화 및 유단자 맥점",
+            "problemCount": 20,
+            "problemsCount": 20
+          }
+        ]
+      },
+      {
+        "code": "tech_throw_in",
+        "title": "🌀 먹여치기 & 회돌이 사석 전술",
+        "chapterCount": 4,
+        "totalProblems": 80,
+        "chapters": [
+          {
+            "code": "tech_throw_in_ch1",
+            "chapterCode": "tech_throw_in_ch1",
+            "title": "1단계: [기초] 핵심 개념과 기본 원리",
+            "chapter": "1단계: [기초] 핵심 개념과 기본 원리",
+            "problemCount": 20,
+            "problemsCount": 20
+          },
+          {
+            "code": "tech_throw_in_ch2",
+            "chapterCode": "tech_throw_in_ch2",
+            "title": "2단계: [초급] 기본 응용과 방향성 탐색",
+            "chapter": "2단계: [초급] 기본 응용과 방향성 탐색",
+            "problemCount": 20,
+            "problemsCount": 20
+          },
+          {
+            "code": "tech_throw_in_ch3",
+            "chapterCode": "tech_throw_in_ch3",
+            "title": "3단계: [중급] 수순의 묘와 함정 피하기",
+            "chapter": "3단계: [중급] 수순의 묘와 함정 피하기",
+            "problemCount": 20,
+            "problemsCount": 20
+          },
+          {
+            "code": "tech_throw_in_ch4",
+            "chapterCode": "tech_throw_in_ch4",
+            "title": "4단계: [고급] 실전 심화 및 유단자 맥점",
+            "chapter": "4단계: [고급] 실전 심화 및 유단자 맥점",
+            "problemCount": 20,
+            "problemsCount": 20
+          }
+        ]
+      },
+      {
+        "code": "tech_ko",
+        "title": "♾️ 패 (Ko) 싸움과 팻감 다루기",
+        "chapterCount": 4,
+        "totalProblems": 80,
+        "chapters": [
+          {
+            "code": "tech_ko_ch1",
+            "chapterCode": "tech_ko_ch1",
+            "title": "1단계: [기초] 핵심 개념과 기본 원리",
+            "chapter": "1단계: [기초] 핵심 개념과 기본 원리",
+            "problemCount": 20,
+            "problemsCount": 20
+          },
+          {
+            "code": "tech_ko_ch2",
+            "chapterCode": "tech_ko_ch2",
+            "title": "2단계: [초급] 기본 응용과 방향성 탐색",
+            "chapter": "2단계: [초급] 기본 응용과 방향성 탐색",
+            "problemCount": 20,
+            "problemsCount": 20
+          },
+          {
+            "code": "tech_ko_ch3",
+            "chapterCode": "tech_ko_ch3",
+            "title": "3단계: [중급] 수순의 묘와 함정 피하기",
+            "chapter": "3단계: [중급] 수순의 묘와 함정 피하기",
+            "problemCount": 20,
+            "problemsCount": 20
+          },
+          {
+            "code": "tech_ko_ch4",
+            "chapterCode": "tech_ko_ch4",
+            "title": "4단계: [고급] 실전 심화 및 유단자 맥점",
+            "chapter": "4단계: [고급] 실전 심화 및 유단자 맥점",
+            "problemCount": 20,
+            "problemsCount": 20
+          }
+        ]
+      },
+      {
+        "code": "tech_endgame",
+        "title": "🏁 끝내기: 1선 젖혀잇기 & 집 계산",
+        "chapterCount": 4,
+        "totalProblems": 80,
+        "chapters": [
+          {
+            "code": "tech_endgame_ch1",
+            "chapterCode": "tech_endgame_ch1",
+            "title": "1단계: [기초] 핵심 개념과 기본 원리",
+            "chapter": "1단계: [기초] 핵심 개념과 기본 원리",
+            "problemCount": 20,
+            "problemsCount": 20
+          },
+          {
+            "code": "tech_endgame_ch2",
+            "chapterCode": "tech_endgame_ch2",
+            "title": "2단계: [초급] 기본 응용과 방향성 탐색",
+            "chapter": "2단계: [초급] 기본 응용과 방향성 탐색",
+            "problemCount": 20,
+            "problemsCount": 20
+          },
+          {
+            "code": "tech_endgame_ch3",
+            "chapterCode": "tech_endgame_ch3",
+            "title": "3단계: [중급] 수순의 묘와 함정 피하기",
+            "chapter": "3단계: [중급] 수순의 묘와 함정 피하기",
+            "problemCount": 20,
+            "problemsCount": 20
+          },
+          {
+            "code": "tech_endgame_ch4",
+            "chapterCode": "tech_endgame_ch4",
+            "title": "4단계: [고급] 실전 심화 및 유단자 맥점",
+            "chapter": "4단계: [고급] 실전 심화 및 유단자 맥점",
+            "problemCount": 20,
+            "problemsCount": 20
+          }
+        ]
+      },
+      {
+        "code": "tech_fuseki",
+        "title": "🗺️ 포석: 3선·4선과 굳힘·벌림의 원리",
+        "chapterCount": 4,
+        "totalProblems": 80,
+        "chapters": [
+          {
+            "code": "tech_fuseki_ch1",
+            "chapterCode": "tech_fuseki_ch1",
+            "title": "1단계: [기초] 핵심 개념과 기본 원리",
+            "chapter": "1단계: [기초] 핵심 개념과 기본 원리",
+            "problemCount": 20,
+            "problemsCount": 20
+          },
+          {
+            "code": "tech_fuseki_ch2",
+            "chapterCode": "tech_fuseki_ch2",
+            "title": "2단계: [초급] 기본 응용과 방향성 탐색",
+            "chapter": "2단계: [초급] 기본 응용과 방향성 탐색",
+            "problemCount": 20,
+            "problemsCount": 20
+          },
+          {
+            "code": "tech_fuseki_ch3",
+            "chapterCode": "tech_fuseki_ch3",
+            "title": "3단계: [중급] 수순의 묘와 함정 피하기",
+            "chapter": "3단계: [중급] 수순의 묘와 함정 피하기",
+            "problemCount": 20,
+            "problemsCount": 20
+          },
+          {
+            "code": "tech_fuseki_ch4",
+            "chapterCode": "tech_fuseki_ch4",
+            "title": "4단계: [고급] 실전 심화 및 유단자 맥점",
+            "chapter": "4단계: [고급] 실전 심화 및 유단자 맥점",
+            "problemCount": 20,
+            "problemsCount": 20
+          }
+        ]
+      },
+      {
+        "code": "tech_tesuji",
+        "title": "💎 실전 맥점: 끼움 / 건너붙임 / 어깨짚기",
+        "chapterCount": 4,
+        "totalProblems": 80,
+        "chapters": [
+          {
+            "code": "tech_tesuji_ch1",
+            "chapterCode": "tech_tesuji_ch1",
+            "title": "1단계: [기초] 핵심 개념과 기본 원리",
+            "chapter": "1단계: [기초] 핵심 개념과 기본 원리",
+            "problemCount": 20,
+            "problemsCount": 20
+          },
+          {
+            "code": "tech_tesuji_ch2",
+            "chapterCode": "tech_tesuji_ch2",
+            "title": "2단계: [초급] 기본 응용과 방향성 탐색",
+            "chapter": "2단계: [초급] 기본 응용과 방향성 탐색",
+            "problemCount": 20,
+            "problemsCount": 20
+          },
+          {
+            "code": "tech_tesuji_ch3",
+            "chapterCode": "tech_tesuji_ch3",
+            "title": "3단계: [중급] 수순의 묘와 함정 피하기",
+            "chapter": "3단계: [중급] 수순의 묘와 함정 피하기",
+            "problemCount": 20,
+            "problemsCount": 20
+          },
+          {
+            "code": "tech_tesuji_ch4",
+            "chapterCode": "tech_tesuji_ch4",
+            "title": "4단계: [고급] 실전 심화 및 유단자 맥점",
+            "chapter": "4단계: [고급] 실전 심화 및 유단자 맥점",
+            "problemCount": 20,
+            "problemsCount": 20
+          }
+        ]
+      }
+    ]
+  },
+  {
     "title": "씽크탱크시리즈",
     "bookCount": 18,
     "books": [
