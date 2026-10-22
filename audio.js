@@ -267,51 +267,68 @@ class BadukAudio {
     this.playDingDongDang();
   }
 
-  // 🌟 [땡!] 경쾌하고 명확한 퀴즈 땡 사운드 (둔탁함 완전 제거, 경쾌한 실로폰 블록음) 🌟
+  // 🌟 [오답음] 아이들이 주눅 들지 않는 귀엽고 부드러운 닌텐도 스타일 '통-통' (마림바 라->미) 🌟
   playDdang() {
     if (!this.enabled || this.volume <= 0) return;
     this.init();
-    if (!this.ctx) return;
 
+    // 1. 사전 렌더링된 부드러운 오디오 WAV 재생 시도
+    try {
+      if (!this._ddangAudio) {
+        this._ddangAudio = new Audio('ddang.wav');
+      }
+      this._ddangAudio.volume = Math.min(1.0, this.volume * 0.85);
+      this._ddangAudio.currentTime = 0;
+      const playPromise = this._ddangAudio.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          this._playSynthesizedDdang();
+        });
+        return;
+      }
+    } catch (e) {}
+
+    this._playSynthesizedDdang();
+  }
+
+  _playSynthesizedDdang() {
+    if (!this.ctx) return;
     const t = this.ctx.currentTime;
 
-    // 1. 말렛 목탁/블록 타격음 (Crisp woodblock strike)
-    const oscClick = this.ctx.createOscillator();
-    const gainClick = this.ctx.createGain();
-    oscClick.type = 'triangle';
-    oscClick.frequency.setValueAtTime(1800, t);
-    oscClick.frequency.exponentialRampToValueAtTime(500, t + 0.015);
-    gainClick.gain.setValueAtTime(0.45, t);
-    gainClick.gain.exponentialRampToValueAtTime(0.001, t + 0.02);
-    oscClick.connect(gainClick);
-    gainClick.connect(this.masterGain);
-    oscClick.start(t);
-    oscClick.stop(t + 0.025);
+    // 따뜻한 2단 부드러운 마림바 (라4: 440Hz -> 미4: 330Hz)
+    const notes = [
+      { freq: 440.00, time: 0.00, dur: 0.22, gain: 0.55 },
+      { freq: 329.63, time: 0.16, dur: 0.40, gain: 0.60 }
+    ];
 
-    // 2. 경쾌하고 청명한 땡 소리 (Bright dissonant bell pair: F#5 + G5 drop)
-    const osc1 = this.ctx.createOscillator();
-    const gain1 = this.ctx.createGain();
-    osc1.type = 'sine';
-    osc1.frequency.setValueAtTime(740, t); // F#5
-    osc1.frequency.exponentialRampToValueAtTime(440, t + 0.3);
-    gain1.gain.setValueAtTime(0.70, t);
-    gain1.gain.exponentialRampToValueAtTime(0.001, t + 0.32);
-    osc1.connect(gain1);
-    gain1.connect(this.masterGain);
-    osc1.start(t);
-    osc1.stop(t + 0.35);
+    notes.forEach(n => {
+      const start = t + n.time;
 
-    const osc2 = this.ctx.createOscillator();
-    const gain2 = this.ctx.createGain();
-    osc2.type = 'triangle';
-    osc2.frequency.setValueAtTime(784, t); // G5 (반음 불협화음으로 명쾌한 땡 느낌)
-    osc2.frequency.exponentialRampToValueAtTime(480, t + 0.3);
-    gain2.gain.setValueAtTime(0.45, t);
-    gain2.gain.exponentialRampToValueAtTime(0.001, t + 0.32);
-    osc2.connect(gain2);
-    gain2.connect(this.masterGain);
-    osc2.start(t);
-    osc2.stop(t + 0.35);
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(n.freq, start);
+
+      gain.gain.setValueAtTime(n.gain * 0.7, start);
+      gain.gain.exponentialRampToValueAtTime(0.001, start + n.dur);
+
+      osc.connect(gain);
+      gain.connect(this.masterGain);
+      osc.start(start);
+      osc.stop(start + n.dur + 0.02);
+
+      // 따뜻한 2차 배음
+      const oscHarm = this.ctx.createOscillator();
+      const gainHarm = this.ctx.createGain();
+      oscHarm.type = 'sine';
+      oscHarm.frequency.setValueAtTime(n.freq * 2, start);
+      gainHarm.gain.setValueAtTime(n.gain * 0.15, start);
+      gainHarm.gain.exponentialRampToValueAtTime(0.001, start + (n.dur * 0.4));
+      oscHarm.connect(gainHarm);
+      gainHarm.connect(this.masterGain);
+      oscHarm.start(start);
+      oscHarm.stop(start + n.dur);
+    });
   }
 
   // 미션 성공 효과음 (딩동댕 호출)
