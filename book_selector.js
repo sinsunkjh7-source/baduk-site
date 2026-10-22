@@ -106,7 +106,7 @@ class BadukBookSelector {
 
     try {
       // HTTP fetch fallback
-      const resp = await fetch('data/catalog.json');
+      const resp = await fetch('data/catalog.json?v=' + Date.now());
       if (!resp.ok) throw new Error('Catalog fetch failed: ' + resp.status);
       this.catalog = await resp.json();
       this.renderStep1();
@@ -295,7 +295,7 @@ class BadukBookSelector {
 
     // HTTP fetch 시도
     try {
-      const resp = await fetch(`data/books/book_${bookCode}.json`);
+      const resp = await fetch(`data/books/book_${bookCode}.json?v=${Date.now()}`);
       if (resp.ok) {
         return await resp.json();
       }
@@ -306,7 +306,7 @@ class BadukBookSelector {
     // file:// 프로토콜 호환: 동적 script 태그 삽입
     return new Promise((resolve, reject) => {
       const script = document.createElement('script');
-      script.src = `data/books_js/book_${bookCode}.js`;
+      script.src = `data/books_js/book_${bookCode}.js?v=${Date.now()}`;
       script.onload = () => {
         const book = getGlobalBook();
         if (book) {

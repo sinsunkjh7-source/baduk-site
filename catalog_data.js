@@ -1,210 +1,5 @@
 window.CATALOG_DATA = [
   {
-    "title": "🏆 JH 바둑 아카데미 (정식 마스터관)",
-    "bookCount": 1,
-    "books": [
-      {
-        "code": "stage1_morning_star",
-        "title": "제1단계: 샛별부 (27급 ~ 25급 / 480문제)",
-        "chapterCount": 24,
-        "chapters": [
-          {
-            "code": "s1_u01_part1",
-            "chapterCode": "s1_u01_part1",
-            "title": "제1단원: 축(Ladder)의 원리와 축머리 [Part 1: 기초 20제]",
-            "chapter": "제1단원: 축(Ladder)의 원리와 축머리 [Part 1: 기초 20제]",
-            "problemsCount": 20,
-            "problemCount": 20
-          },
-          {
-            "code": "s1_u01_part2",
-            "chapterCode": "s1_u01_part2",
-            "title": "제1단원: 축(Ladder)의 원리와 축머리 [Part 2: 심화 20제]",
-            "chapter": "제1단원: 축(Ladder)의 원리와 축머리 [Part 2: 심화 20제]",
-            "problemsCount": 20,
-            "problemCount": 20
-          },
-          {
-            "code": "s1_u02_part1",
-            "chapterCode": "s1_u02_part1",
-            "title": "제2단원: 그물로 가두는 장문(Net) [Part 1: 기초 20제]",
-            "chapter": "제2단원: 그물로 가두는 장문(Net) [Part 1: 기초 20제]",
-            "problemsCount": 20,
-            "problemCount": 20
-          },
-          {
-            "code": "s1_u02_part2",
-            "chapterCode": "s1_u02_part2",
-            "title": "제2단원: 그물로 가두는 장문(Net) [Part 2: 심화 20제]",
-            "chapter": "제2단원: 그물로 가두는 장문(Net) [Part 2: 심화 20제]",
-            "problemsCount": 20,
-            "problemCount": 20
-          },
-          {
-            "code": "s1_u03_part1",
-            "chapterCode": "s1_u03_part1",
-            "title": "제3단원: 환격(Snapback)과 촉촉수(연단수) [Part 1: 기초 20제]",
-            "chapter": "제3단원: 환격(Snapback)과 촉촉수(연단수) [Part 1: 기초 20제]",
-            "problemsCount": 20,
-            "problemCount": 20
-          },
-          {
-            "code": "s1_u03_part2",
-            "chapterCode": "s1_u03_part2",
-            "title": "제3단원: 환격(Snapback)과 촉촉수(연단수) [Part 2: 심화 20제]",
-            "chapter": "제3단원: 환격(Snapback)과 촉촉수(연단수) [Part 2: 심화 20제]",
-            "problemsCount": 20,
-            "problemCount": 20
-          },
-          {
-            "code": "s1_u04_part1",
-            "chapterCode": "s1_u04_part1",
-            "title": "제4단원: 3궁도의 급소와 치중 (직3궁·곡3궁) [Part 1: 기초 20제]",
-            "chapter": "제4단원: 3궁도의 급소와 치중 (직3궁·곡3궁) [Part 1: 기초 20제]",
-            "problemsCount": 20,
-            "problemCount": 20
-          },
-          {
-            "code": "s1_u04_part2",
-            "chapterCode": "s1_u04_part2",
-            "title": "제4단원: 3궁도의 급소와 치중 (직3궁·곡3궁) [Part 2: 심화 20제]",
-            "chapter": "제4단원: 3궁도의 급소와 치중 (직3궁·곡3궁) [Part 2: 심화 20제]",
-            "problemsCount": 20,
-            "problemCount": 20
-          },
-          {
-            "code": "s1_u05_part1",
-            "chapterCode": "s1_u05_part1",
-            "title": "제5단원: 4궁도 판별법 (직4궁·곡4궁 vs 바보4궁) [Part 1: 기초 20제]",
-            "chapter": "제5단원: 4궁도 판별법 (직4궁·곡4궁 vs 바보4궁) [Part 1: 기초 20제]",
-            "problemsCount": 20,
-            "problemCount": 20
-          },
-          {
-            "code": "s1_u05_part2",
-            "chapterCode": "s1_u05_part2",
-            "title": "제5단원: 4궁도 판별법 (직4궁·곡4궁 vs 바보4궁) [Part 2: 심화 20제]",
-            "chapter": "제5단원: 4궁도 판별법 (직4궁·곡4궁 vs 바보4궁) [Part 2: 심화 20제]",
-            "problemsCount": 20,
-            "problemCount": 20
-          },
-          {
-            "code": "s1_u06_part1",
-            "chapterCode": "s1_u06_part1",
-            "title": "제6단원: 수상전: 바깥 활로부터 줄이기 [Part 1: 기초 20제]",
-            "chapter": "제6단원: 수상전: 바깥 활로부터 줄이기 [Part 1: 기초 20제]",
-            "problemsCount": 20,
-            "problemCount": 20
-          },
-          {
-            "code": "s1_u06_part2",
-            "chapterCode": "s1_u06_part2",
-            "title": "제6단원: 수상전: 바깥 활로부터 줄이기 [Part 2: 심화 20제]",
-            "chapter": "제6단원: 수상전: 바깥 활로부터 줄이기 [Part 2: 심화 20제]",
-            "problemsCount": 20,
-            "problemCount": 20
-          },
-          {
-            "code": "s1_u07_part1",
-            "chapterCode": "s1_u07_part1",
-            "title": "제7단원: 안전한 연결과 호구 방패 (한칸 뜀·날일자) [Part 1: 기초 20제]",
-            "chapter": "제7단원: 안전한 연결과 호구 방패 (한칸 뜀·날일자) [Part 1: 기초 20제]",
-            "problemsCount": 20,
-            "problemCount": 20
-          },
-          {
-            "code": "s1_u07_part2",
-            "chapterCode": "s1_u07_part2",
-            "title": "제7단원: 안전한 연결과 호구 방패 (한칸 뜀·날일자) [Part 2: 심화 20제]",
-            "chapter": "제7단원: 안전한 연결과 호구 방패 (한칸 뜀·날일자) [Part 2: 심화 20제]",
-            "problemsCount": 20,
-            "problemCount": 20
-          },
-          {
-            "code": "s1_u08_part1",
-            "chapterCode": "s1_u08_part1",
-            "title": "제8단원: 19줄 귀·변·중앙 (3·4선 기초) & 화점 날일자 받기 [Part 1: 기초 20제]",
-            "chapter": "제8단원: 19줄 귀·변·중앙 (3·4선 기초) & 화점 날일자 받기 [Part 1: 기초 20제]",
-            "problemsCount": 20,
-            "problemCount": 20
-          },
-          {
-            "code": "s1_u08_part2",
-            "chapterCode": "s1_u08_part2",
-            "title": "제8단원: 19줄 귀·변·중앙 (3·4선 기초) & 화점 날일자 받기 [Part 2: 심화 20제]",
-            "chapter": "제8단원: 19줄 귀·변·중앙 (3·4선 기초) & 화점 날일자 받기 [Part 2: 심화 20제]",
-            "problemsCount": 20,
-            "problemCount": 20
-          },
-          {
-            "code": "s1_u09_part1",
-            "chapterCode": "s1_u09_part1",
-            "title": "제9단원: 패(Ko)의 첫걸음과 단순 패싸움 [Part 1: 기초 20제]",
-            "chapter": "제9단원: 패(Ko)의 첫걸음과 단순 패싸움 [Part 1: 기초 20제]",
-            "problemsCount": 20,
-            "problemCount": 20
-          },
-          {
-            "code": "s1_u09_part2",
-            "chapterCode": "s1_u09_part2",
-            "title": "제9단원: 패(Ko)의 첫걸음과 단순 패싸움 [Part 2: 심화 20제]",
-            "chapter": "제9단원: 패(Ko)의 첫걸음과 단순 패싸움 [Part 2: 심화 20제]",
-            "problemsCount": 20,
-            "problemCount": 20
-          },
-          {
-            "code": "s1_u10_part1",
-            "chapterCode": "s1_u10_part1",
-            "title": "제10단원: 내 돌의 위험 진단 (단수와 약점 확인) [Part 1: 기초 20제]",
-            "chapter": "제10단원: 내 돌의 위험 진단 (단수와 약점 확인) [Part 1: 기초 20제]",
-            "problemsCount": 20,
-            "problemCount": 20
-          },
-          {
-            "code": "s1_u10_part2",
-            "chapterCode": "s1_u10_part2",
-            "title": "제10단원: 내 돌의 위험 진단 (단수와 약점 확인) [Part 2: 심화 20제]",
-            "chapter": "제10단원: 내 돌의 위험 진단 (단수와 약점 확인) [Part 2: 심화 20제]",
-            "problemsCount": 20,
-            "problemCount": 20
-          },
-          {
-            "code": "s1_u11_part1",
-            "chapterCode": "s1_u11_part1",
-            "title": "제11단원: 1선 젖혀 잇기와 공배 메우기 [Part 1: 기초 20제]",
-            "chapter": "제11단원: 1선 젖혀 잇기와 공배 메우기 [Part 1: 기초 20제]",
-            "problemsCount": 20,
-            "problemCount": 20
-          },
-          {
-            "code": "s1_u11_part2",
-            "chapterCode": "s1_u11_part2",
-            "title": "제11단원: 1선 젖혀 잇기와 공배 메우기 [Part 2: 심화 20제]",
-            "chapter": "제11단원: 1선 젖혀 잇기와 공배 메우기 [Part 2: 심화 20제]",
-            "problemsCount": 20,
-            "problemCount": 20
-          },
-          {
-            "code": "s1_u12_part1",
-            "chapterCode": "s1_u12_part1",
-            "title": "제12단원: 샛별부 19줄 종합 모의평가 [Part 1: 기초 20제]",
-            "chapter": "제12단원: 샛별부 19줄 종합 모의평가 [Part 1: 기초 20제]",
-            "problemsCount": 20,
-            "problemCount": 20
-          },
-          {
-            "code": "s1_u12_part2",
-            "chapterCode": "s1_u12_part2",
-            "title": "제12단원: 샛별부 19줄 종합 모의평가 [Part 2: 심화 20제]",
-            "chapter": "제12단원: 샛별부 19줄 종합 모의평가 [Part 2: 심화 20제]",
-            "problemsCount": 20,
-            "problemCount": 20
-          }
-        ]
-      }
-    ]
-  },
-  {
     "title": "🎯 15대 핵심 기법 심층 마스터관 (기초부터 고급까지)",
     "bookCount": 15,
     "books": [
@@ -9205,6 +9000,211 @@ window.CATALOG_DATA = [
             "chapter": "4단계 [고급/유단자: 8급~유단자] Part 22 (8제)",
             "problemCount": 8,
             "problemsCount": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "🏆 JH 바둑 아카데미 (정식 마스터관)",
+    "bookCount": 1,
+    "books": [
+      {
+        "code": "stage1_morning_star",
+        "title": "제1단계: 샛별부 (27급 ~ 25급 / 480문제)",
+        "chapterCount": 24,
+        "chapters": [
+          {
+            "code": "s1_u01_part1",
+            "chapterCode": "s1_u01_part1",
+            "title": "제1단원: 축(Ladder)의 원리와 축머리 [Part 1: 기초 20제]",
+            "chapter": "제1단원: 축(Ladder)의 원리와 축머리 [Part 1: 기초 20제]",
+            "problemsCount": 20,
+            "problemCount": 20
+          },
+          {
+            "code": "s1_u01_part2",
+            "chapterCode": "s1_u01_part2",
+            "title": "제1단원: 축(Ladder)의 원리와 축머리 [Part 2: 심화 20제]",
+            "chapter": "제1단원: 축(Ladder)의 원리와 축머리 [Part 2: 심화 20제]",
+            "problemsCount": 20,
+            "problemCount": 20
+          },
+          {
+            "code": "s1_u02_part1",
+            "chapterCode": "s1_u02_part1",
+            "title": "제2단원: 그물로 가두는 장문(Net) [Part 1: 기초 20제]",
+            "chapter": "제2단원: 그물로 가두는 장문(Net) [Part 1: 기초 20제]",
+            "problemsCount": 20,
+            "problemCount": 20
+          },
+          {
+            "code": "s1_u02_part2",
+            "chapterCode": "s1_u02_part2",
+            "title": "제2단원: 그물로 가두는 장문(Net) [Part 2: 심화 20제]",
+            "chapter": "제2단원: 그물로 가두는 장문(Net) [Part 2: 심화 20제]",
+            "problemsCount": 20,
+            "problemCount": 20
+          },
+          {
+            "code": "s1_u03_part1",
+            "chapterCode": "s1_u03_part1",
+            "title": "제3단원: 환격(Snapback)과 촉촉수(연단수) [Part 1: 기초 20제]",
+            "chapter": "제3단원: 환격(Snapback)과 촉촉수(연단수) [Part 1: 기초 20제]",
+            "problemsCount": 20,
+            "problemCount": 20
+          },
+          {
+            "code": "s1_u03_part2",
+            "chapterCode": "s1_u03_part2",
+            "title": "제3단원: 환격(Snapback)과 촉촉수(연단수) [Part 2: 심화 20제]",
+            "chapter": "제3단원: 환격(Snapback)과 촉촉수(연단수) [Part 2: 심화 20제]",
+            "problemsCount": 20,
+            "problemCount": 20
+          },
+          {
+            "code": "s1_u04_part1",
+            "chapterCode": "s1_u04_part1",
+            "title": "제4단원: 3궁도의 급소와 치중 (직3궁·곡3궁) [Part 1: 기초 20제]",
+            "chapter": "제4단원: 3궁도의 급소와 치중 (직3궁·곡3궁) [Part 1: 기초 20제]",
+            "problemsCount": 20,
+            "problemCount": 20
+          },
+          {
+            "code": "s1_u04_part2",
+            "chapterCode": "s1_u04_part2",
+            "title": "제4단원: 3궁도의 급소와 치중 (직3궁·곡3궁) [Part 2: 심화 20제]",
+            "chapter": "제4단원: 3궁도의 급소와 치중 (직3궁·곡3궁) [Part 2: 심화 20제]",
+            "problemsCount": 20,
+            "problemCount": 20
+          },
+          {
+            "code": "s1_u05_part1",
+            "chapterCode": "s1_u05_part1",
+            "title": "제5단원: 4궁도 판별법 (직4궁·곡4궁 vs 바보4궁) [Part 1: 기초 20제]",
+            "chapter": "제5단원: 4궁도 판별법 (직4궁·곡4궁 vs 바보4궁) [Part 1: 기초 20제]",
+            "problemsCount": 20,
+            "problemCount": 20
+          },
+          {
+            "code": "s1_u05_part2",
+            "chapterCode": "s1_u05_part2",
+            "title": "제5단원: 4궁도 판별법 (직4궁·곡4궁 vs 바보4궁) [Part 2: 심화 20제]",
+            "chapter": "제5단원: 4궁도 판별법 (직4궁·곡4궁 vs 바보4궁) [Part 2: 심화 20제]",
+            "problemsCount": 20,
+            "problemCount": 20
+          },
+          {
+            "code": "s1_u06_part1",
+            "chapterCode": "s1_u06_part1",
+            "title": "제6단원: 수상전: 바깥 활로부터 줄이기 [Part 1: 기초 20제]",
+            "chapter": "제6단원: 수상전: 바깥 활로부터 줄이기 [Part 1: 기초 20제]",
+            "problemsCount": 20,
+            "problemCount": 20
+          },
+          {
+            "code": "s1_u06_part2",
+            "chapterCode": "s1_u06_part2",
+            "title": "제6단원: 수상전: 바깥 활로부터 줄이기 [Part 2: 심화 20제]",
+            "chapter": "제6단원: 수상전: 바깥 활로부터 줄이기 [Part 2: 심화 20제]",
+            "problemsCount": 20,
+            "problemCount": 20
+          },
+          {
+            "code": "s1_u07_part1",
+            "chapterCode": "s1_u07_part1",
+            "title": "제7단원: 안전한 연결과 호구 방패 (한칸 뜀·날일자) [Part 1: 기초 20제]",
+            "chapter": "제7단원: 안전한 연결과 호구 방패 (한칸 뜀·날일자) [Part 1: 기초 20제]",
+            "problemsCount": 20,
+            "problemCount": 20
+          },
+          {
+            "code": "s1_u07_part2",
+            "chapterCode": "s1_u07_part2",
+            "title": "제7단원: 안전한 연결과 호구 방패 (한칸 뜀·날일자) [Part 2: 심화 20제]",
+            "chapter": "제7단원: 안전한 연결과 호구 방패 (한칸 뜀·날일자) [Part 2: 심화 20제]",
+            "problemsCount": 20,
+            "problemCount": 20
+          },
+          {
+            "code": "s1_u08_part1",
+            "chapterCode": "s1_u08_part1",
+            "title": "제8단원: 19줄 귀·변·중앙 (3·4선 기초) & 화점 날일자 받기 [Part 1: 기초 20제]",
+            "chapter": "제8단원: 19줄 귀·변·중앙 (3·4선 기초) & 화점 날일자 받기 [Part 1: 기초 20제]",
+            "problemsCount": 20,
+            "problemCount": 20
+          },
+          {
+            "code": "s1_u08_part2",
+            "chapterCode": "s1_u08_part2",
+            "title": "제8단원: 19줄 귀·변·중앙 (3·4선 기초) & 화점 날일자 받기 [Part 2: 심화 20제]",
+            "chapter": "제8단원: 19줄 귀·변·중앙 (3·4선 기초) & 화점 날일자 받기 [Part 2: 심화 20제]",
+            "problemsCount": 20,
+            "problemCount": 20
+          },
+          {
+            "code": "s1_u09_part1",
+            "chapterCode": "s1_u09_part1",
+            "title": "제9단원: 패(Ko)의 첫걸음과 단순 패싸움 [Part 1: 기초 20제]",
+            "chapter": "제9단원: 패(Ko)의 첫걸음과 단순 패싸움 [Part 1: 기초 20제]",
+            "problemsCount": 20,
+            "problemCount": 20
+          },
+          {
+            "code": "s1_u09_part2",
+            "chapterCode": "s1_u09_part2",
+            "title": "제9단원: 패(Ko)의 첫걸음과 단순 패싸움 [Part 2: 심화 20제]",
+            "chapter": "제9단원: 패(Ko)의 첫걸음과 단순 패싸움 [Part 2: 심화 20제]",
+            "problemsCount": 20,
+            "problemCount": 20
+          },
+          {
+            "code": "s1_u10_part1",
+            "chapterCode": "s1_u10_part1",
+            "title": "제10단원: 내 돌의 위험 진단 (단수와 약점 확인) [Part 1: 기초 20제]",
+            "chapter": "제10단원: 내 돌의 위험 진단 (단수와 약점 확인) [Part 1: 기초 20제]",
+            "problemsCount": 20,
+            "problemCount": 20
+          },
+          {
+            "code": "s1_u10_part2",
+            "chapterCode": "s1_u10_part2",
+            "title": "제10단원: 내 돌의 위험 진단 (단수와 약점 확인) [Part 2: 심화 20제]",
+            "chapter": "제10단원: 내 돌의 위험 진단 (단수와 약점 확인) [Part 2: 심화 20제]",
+            "problemsCount": 20,
+            "problemCount": 20
+          },
+          {
+            "code": "s1_u11_part1",
+            "chapterCode": "s1_u11_part1",
+            "title": "제11단원: 1선 젖혀 잇기와 공배 메우기 [Part 1: 기초 20제]",
+            "chapter": "제11단원: 1선 젖혀 잇기와 공배 메우기 [Part 1: 기초 20제]",
+            "problemsCount": 20,
+            "problemCount": 20
+          },
+          {
+            "code": "s1_u11_part2",
+            "chapterCode": "s1_u11_part2",
+            "title": "제11단원: 1선 젖혀 잇기와 공배 메우기 [Part 2: 심화 20제]",
+            "chapter": "제11단원: 1선 젖혀 잇기와 공배 메우기 [Part 2: 심화 20제]",
+            "problemsCount": 20,
+            "problemCount": 20
+          },
+          {
+            "code": "s1_u12_part1",
+            "chapterCode": "s1_u12_part1",
+            "title": "제12단원: 샛별부 19줄 종합 모의평가 [Part 1: 기초 20제]",
+            "chapter": "제12단원: 샛별부 19줄 종합 모의평가 [Part 1: 기초 20제]",
+            "problemsCount": 20,
+            "problemCount": 20
+          },
+          {
+            "code": "s1_u12_part2",
+            "chapterCode": "s1_u12_part2",
+            "title": "제12단원: 샛별부 19줄 종합 모의평가 [Part 2: 심화 20제]",
+            "chapter": "제12단원: 샛별부 19줄 종합 모의평가 [Part 2: 심화 20제]",
+            "problemsCount": 20,
+            "problemCount": 20
           }
         ]
       }

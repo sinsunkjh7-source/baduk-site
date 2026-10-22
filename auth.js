@@ -134,7 +134,7 @@
   };
 
   // 🌟 15대 기법별 라이브러리 바로 열기
-  window.enterAppAndOpenLibrary = function(seriesIndex = 1) {
+  window.enterAppAndOpenLibrary = function(seriesIndex = 0) {
     window.enterAppFromPortal('missions');
     setTimeout(() => {
       const app = window.badukApp || window.gameApp;
