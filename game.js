@@ -1740,12 +1740,6 @@ class BadukGameApp {
           }
         });
 
-        // 🌟 돌을 실제로 따낸 경우 (단수/사활/포획 문제 등에서 수순표에 없는 대칭점이나 유효 착수로 돌을 잡았을 때 정답 인정!)
-        if (matchingBranches.length === 0 && res.captures.length > 0) {
-          this.triggerMissionSuccess();
-          return;
-        }
-
         if (matchingBranches.length === 0) {
           // ❌ 오답: 수순에 맞지 않는 곳에 둔 경우
           window.badukAudio.playDdang();
