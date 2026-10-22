@@ -97,28 +97,24 @@ class BadukBookSelector {
       return typeof _CAT !== 'undefined' ? _CAT : null;
     };
 
-    const globalCat = getGlobalCat();
-    if (globalCat && Array.isArray(globalCat) && globalCat.length > 0) {
-      this.catalog = globalCat;
-      this.renderStep1();
-      return;
+    // 항상 최신 data/catalog.json 우선 시도 (캐시 문제 완전 차단)
+    try {
+      const resp = await fetch('data/catalog.json?v=' + Date.now());
+      if (resp.ok) {
+        this.catalog = await resp.json();
+        this.renderStep1();
+        return;
+      }
+    } catch (err) {
+      // file:// 또는 오프라인 환경 등 fetch 불가능 시 글로벌 fallback
     }
 
-    try {
-      // HTTP fetch fallback
-      const resp = await fetch('data/catalog.json?v=' + Date.now());
-      if (!resp.ok) throw new Error('Catalog fetch failed: ' + resp.status);
-      this.catalog = await resp.json();
+    const fallbackCat = getGlobalCat();
+    if (fallbackCat && Array.isArray(fallbackCat) && fallbackCat.length > 0) {
+      this.catalog = fallbackCat;
       this.renderStep1();
-    } catch (err) {
-      console.warn('Catalog load error, checking global window fallback:', err);
-      const fallbackCat = getGlobalCat();
-      if (fallbackCat && Array.isArray(fallbackCat) && fallbackCat.length > 0) {
-        this.catalog = fallbackCat;
-        this.renderStep1();
-      } else if (this.step1List) {
-        this.step1List.innerHTML = '<div class="empty-state-msg">카탈로그를 불러오지 못했습니다.</div>';
-      }
+    } else if (this.step1List) {
+      this.step1List.innerHTML = '<div class="empty-state-msg">카탈로그를 불러오지 못했습니다.</div>';
     }
   }
 
@@ -327,13 +323,25 @@ class BadukBookSelector {
       const bookData = await this.fetchBookData(this.selectedBook.code);
       this.currentBookData = bookData;
 
-      const rawChapter = bookData.chapters.find(c => 
+      let rawChapter = bookData.chapters ? bookData.chapters.find(c => 
         (c.chapterCode && String(c.chapterCode) === String(this.selectedChapter.code)) ||
         (c.code && String(c.code) === String(this.selectedChapter.code)) ||
         (c.title && this.selectedChapter.title && c.title.trim() === this.selectedChapter.title.trim()) ||
         (c.chapter && this.selectedChapter.title && c.chapter.trim() === this.selectedChapter.title.trim())
-      );
-      if (!rawChapter || !rawChapter.problems) {
+      ) : null;
+
+      // 버전 갱신 등으로 단원 코드가 불일치할 경우 순번(인덱스) 또는 첫 유효 단원으로 자동 복구
+      if ((!rawChapter || !rawChapter.problems) && bookData.chapters && bookData.chapters.length > 0) {
+        const chList = this.selectedBook.chapters || [];
+        const chIdx = chList.findIndex(c => String(c.code) === String(this.selectedChapter.code));
+        if (chIdx >= 0 && chIdx < bookData.chapters.length && bookData.chapters[chIdx].problems) {
+          rawChapter = bookData.chapters[chIdx];
+        } else {
+          rawChapter = bookData.chapters.find(c => c.problems && c.problems.length > 0) || bookData.chapters[0];
+        }
+      }
+
+      if (!rawChapter || !rawChapter.problems || rawChapter.problems.length === 0) {
         alert('해당 단원에 문제가 없습니다.');
         return;
       }
@@ -403,7 +411,10 @@ class BadukBookSelector {
     try {
       const bookData = await this.fetchBookData(bookCode);
       this.currentBookData = bookData;
-      const rawChapter = bookData.chapters.find(c => String(c.chapterCode) === String(chapterCode));
+      let rawChapter = bookData.chapters ? bookData.chapters.find(c => String(c.chapterCode) === String(chapterCode) || String(c.code) === String(chapterCode)) : null;
+      if ((!rawChapter || !rawChapter.problems) && bookData.chapters && bookData.chapters.length > 0) {
+        rawChapter = bookData.chapters.find(c => c.problems && c.problems.length > 0) || bookData.chapters[0];
+      }
       if (!rawChapter || !rawChapter.problems) {
         alert('해당 단원을 찾을 수 없습니다.');
         return false;
