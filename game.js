@@ -1117,27 +1117,31 @@ class BadukGameApp {
     const meteors = [];
 
     const spawnMeteor = (isLeftZone = false) => {
-      let startX, startY, angle;
+      let startX, startY, angle, length, speed, maxLife, thickness;
       if (isLeftZone) {
-        // 좌측 영역 유성: 위치·고도·각도를 불규칙하고 다양하게 설정
-        const goLeftwards = Math.random() < 0.35;
+        // 바둑판에 가려지지 않는 좌측 여백(화면 폭의 2%~15% 구간) 안에서 온전히 보이도록 궤적 설계
+        const goLeftwards = Math.random() < 0.45;
         startX = goLeftwards
-          ? (width * 0.08 + Math.random() * (width * 0.20))
-          : (Math.random() * (width * 0.18));
-        startY = Math.random() * (height * 0.58);
+          ? (width * 0.06 + Math.random() * (width * 0.11))
+          : (width * 0.01 + Math.random() * (width * 0.10));
+        startY = Math.random() * (height * 0.55);
+        // 좌측 여백 안에서 길게 떨어지도록 급경사 대각선(약 60도~120도) 불규칙 각도 적용
         angle = goLeftwards
-          ? (Math.PI * 0.62 + (Math.random() - 0.5) * 0.35) // 좌하향 불규칙 각도
-          : (Math.PI * 0.28 + (Math.random() - 0.5) * 0.38); // 우하향 불규칙 각도
+          ? (Math.PI * 0.56 + Math.random() * 0.16) // 좌하향 궤적
+          : (Math.PI * 0.30 + Math.random() * 0.16); // 우하향 궤적
+        length = 95 + Math.random() * 115;
+        speed = 9 + Math.random() * 8;
+        maxLife = Math.floor(42 + Math.random() * 25);
+        thickness = 1.8 + Math.random() * 1.1;
       } else {
-        startX = Math.random() * (width * 0.85) + width * 0.05;
+        startX = Math.random() * (width * 0.75) + width * 0.15;
         startY = Math.random() * (height * 0.35);
-        angle = (Math.PI / 4) + (Math.random() - 0.5) * 0.35;
+        angle = (Math.PI / 4) + (Math.random() - 0.5) * 0.32;
+        length = 130 + Math.random() * 100;
+        speed = 13 + Math.random() * 6;
+        maxLife = Math.floor(45 + Math.random() * 15);
+        thickness = 2.0 + Math.random() * 0.6;
       }
-
-      const length = 110 + Math.random() * 130;
-      const speed = 11 + Math.random() * 9;
-      const maxLife = Math.floor(38 + Math.random() * 24);
-      const thickness = 1.6 + Math.random() * 1.0;
 
       meteors.push({
         x: startX,
@@ -1151,29 +1155,40 @@ class BadukGameApp {
       });
     };
 
-    // 첫 유성 생성
-    setTimeout(() => spawnMeteor(true), 1200);
+    // 시작 직후 좌측 유성 즉시 출현
+    setTimeout(() => spawnMeteor(true), 700);
+    setTimeout(() => spawnMeteor(false), 1800);
 
-    // 기본 유성 스케줄러 (불규칙한 간격)
+    // 기본 배경 유성 스케줄러
     const scheduleMeteor = () => {
-      const delay = 2500 + Math.pow(Math.random(), 1.4) * 5500;
+      const delay = 3200 + Math.random() * 3500;
       setTimeout(() => {
         if (this.currentBgTheme === 'theme6' || this.currentBgTheme === 'starry') {
-          spawnMeteor(Math.random() < 0.45);
+          spawnMeteor(false);
         }
         scheduleMeteor();
       }, delay);
     };
     scheduleMeteor();
 
-    // 좌측 영역 전용 불규칙 유성 스케줄러 (짧은 간격~긴 휴지기 불규칙 변동)
+    // 좌측 여백 전용 불규칙 유성 스케줄러 (자주, 불규칙한 리듬으로 확실히 보이게)
     const scheduleLeftMeteor = () => {
-      const irregularDelay = Math.random() < 0.3
-        ? (1600 + Math.random() * 1800)   // 가끔 연달아 떨어지는 짧은 간격
-        : (4200 + Math.random() * 5800);  // 평소 불규칙한 긴 간격
+      const r = Math.random();
+      // 35% 확률로 0.9~1.7초 짧은 간격, 45% 확률로 2.0~3.4초 중간 간격, 20% 확률로 3.8~5.2초 간격
+      const irregularDelay = r < 0.35
+        ? (900 + Math.random() * 800)
+        : (r < 0.80 ? (2000 + Math.random() * 1400) : (3800 + Math.random() * 1400));
       setTimeout(() => {
         if (this.currentBgTheme === 'theme6' || this.currentBgTheme === 'starry') {
           spawnMeteor(true);
+          // 가끔(22% 확률) 시차를 두고 좌측에 쌍둥이 유성이 불규칙하게 한 번 더 떨어짐
+          if (Math.random() < 0.22) {
+            setTimeout(() => {
+              if (this.currentBgTheme === 'theme6' || this.currentBgTheme === 'starry') {
+                spawnMeteor(true);
+              }
+            }, 350 + Math.random() * 500);
+          }
         }
         scheduleLeftMeteor();
       }, irregularDelay);
