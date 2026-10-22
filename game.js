@@ -1080,7 +1080,7 @@ class BadukGameApp {
     }
   }
 
-  // 🌌 신비한 별빛 밤하늘과 서서히 흐르는 4각 십자 스파클 별빛 & 유성 모션그래픽
+  // 🌌 신비한 별빛 밤하늘과 서서히 흐르는 별무리 & 유성 모션그래픽
   initStarfieldMotion() {
     const canvas = document.getElementById('starfieldCanvas');
     if (!canvas) return;
@@ -1095,26 +1095,19 @@ class BadukGameApp {
       height = canvas.height = window.innerHeight;
     });
 
-    // 🌟 밤하늘 가득 선명하고 또렷하게 수놓는 별무리 (총 300개)
-    const numStars = 300;
+    const numStars = 240;
     const stars = [];
     for (let i = 0; i < numStars; i++) {
-      // 약 20%(약 60개)는 ✦ 4각 다이아몬드 별빛으로 반짝이는 별
-      const isSparkle = Math.random() < 0.20;
       stars.push({
         x: Math.random() * width,
         y: Math.random() * height,
-        isSparkle: isSparkle,
-        // 선명하게 보일 수 있는 크기
-        size: isSparkle ? (1.5 + Math.random() * 1.2) : (0.9 + Math.random() * 1.3),
-        flareLength: isSparkle ? (6 + Math.random() * 6) : 0, // ✦ 광선 길이 (6~12px)
-        baseAlpha: 0.75 + Math.random() * 0.25, // 최대 밝기
-        // 자연스럽고 생생한 깜빡임 속도 (약 1.5 ~ 3.5초 주기)
-        twinkleSpeed: 0.022 + Math.random() * 0.045,
+        radius: Math.random() < 0.75 ? (0.6 + Math.random() * 0.9) : (1.6 + Math.random() * 1.3),
+        baseAlpha: 0.35 + Math.random() * 0.65,
+        twinkleSpeed: 0.02 + Math.random() * 0.04,
         twinklePhase: Math.random() * Math.PI * 2,
-        vx: (Math.random() - 0.5) * 0.05 - 0.02,
-        vy: (Math.random() - 0.5) * 0.04 - 0.015,
-        color: Math.random() < 0.28 ? '#bae6fd' : (Math.random() < 0.48 ? '#fef08a' : '#ffffff')
+        vx: (Math.random() - 0.5) * 0.09 - 0.05,
+        vy: (Math.random() - 0.5) * 0.07 - 0.03,
+        color: Math.random() < 0.25 ? '#bae6fd' : (Math.random() < 0.45 ? '#fef08a' : '#ffffff')
       });
     }
 
@@ -1123,9 +1116,9 @@ class BadukGameApp {
     const spawnMeteor = (forcedX, forcedY) => {
       const startX = forcedX !== undefined ? forcedX : (Math.random() * (width * 0.7) + width * 0.15);
       const startY = forcedY !== undefined ? forcedY : (Math.random() * (height * 0.3));
-      const length = 140 + Math.random() * 80;
-      const speed = 13 + Math.random() * 5;
-      const angle = (Math.PI / 4) + (Math.random() - 0.5) * 0.22;
+      const length = 150 + Math.random() * 90;
+      const speed = 14 + Math.random() * 6;
+      const angle = (Math.PI / 4) + (Math.random() - 0.5) * 0.25;
 
       meteors.push({
         x: startX,
@@ -1134,15 +1127,16 @@ class BadukGameApp {
         dy: Math.sin(angle) * speed,
         length: length,
         life: 0,
-        maxLife: 52,
-        thickness: 2.0
+        maxLife: 50,
+        thickness: 2.2
       });
     };
 
-    setTimeout(() => spawnMeteor(), 1500);
+    // 첫 유성 1.2초 후 생성
+    setTimeout(() => spawnMeteor(), 1200);
 
     const scheduleMeteor = () => {
-      const delay = 4000 + Math.random() * 3500;
+      const delay = 3500 + Math.random() * 3500;
       setTimeout(() => {
         if (this.currentBgTheme === 'theme6' || this.currentBgTheme === 'starry') {
           spawnMeteor();
@@ -1151,43 +1145,6 @@ class BadukGameApp {
       }, delay);
     };
     scheduleMeteor();
-
-    // 4각 십자 별빛 그리기 (단아하고 선명한 ✦ 다이아몬드 별 모양)
-    const drawSparkle = (x, y, flareLen, size, alpha, color) => {
-      ctx.save();
-      ctx.globalAlpha = alpha;
-
-      // 1. 은은한 중앙 후광 (Halo)
-      const halo = ctx.createRadialGradient(x, y, 0, x, y, flareLen * 0.9);
-      halo.addColorStop(0, '#ffffff');
-      halo.addColorStop(0.35, color);
-      halo.addColorStop(1, 'rgba(255, 255, 255, 0)');
-      ctx.fillStyle = halo;
-      ctx.beginPath();
-      ctx.arc(x, y, flareLen * 0.9, 0, Math.PI * 2);
-      ctx.fill();
-
-      // 2. 단아한 4각 다이아몬드 별빛 광선 (✦ 모양)
-      ctx.fillStyle = '#ffffff';
-      ctx.beginPath();
-      ctx.moveTo(x, y - flareLen);
-      ctx.quadraticCurveTo(x, y, x + size * 0.5, y);
-      ctx.lineTo(x + flareLen, y);
-      ctx.quadraticCurveTo(x, y, x, y + size * 0.5);
-      ctx.lineTo(x, y + flareLen);
-      ctx.quadraticCurveTo(x, y, x - size * 0.5, y);
-      ctx.lineTo(x - flareLen, y);
-      ctx.quadraticCurveTo(x, y, x, y - size * 0.5);
-      ctx.closePath();
-      ctx.fill();
-
-      // 3. 중심 밝은 핵
-      ctx.beginPath();
-      ctx.arc(x, y, size * 0.7, 0, Math.PI * 2);
-      ctx.fill();
-
-      ctx.restore();
-    };
 
     const loop = () => {
       if (this.currentBgTheme === 'theme6' || this.currentBgTheme === 'starry') {
@@ -1198,7 +1155,7 @@ class BadukGameApp {
         ctx.fillStyle = bgGrad;
         ctx.fillRect(0, 0, width, height);
 
-        // 1. 별무리 렌더링 (각 별이 독립적으로 선명하게 깜빡임)
+        // 1. 별 그리기
         for (const s of stars) {
           s.x += s.vx;
           s.y += s.vy;
@@ -1208,28 +1165,25 @@ class BadukGameApp {
           if (s.y > height) s.y = 0;
 
           s.twinklePhase += s.twinkleSpeed;
-          // 0(어두움) ~ 1(최고 밝기)의 선명하고 확실한 깜빡임 곡선
-          const factor = Math.pow((Math.sin(s.twinklePhase) + 1) / 2, 1.8);
-          const currentAlpha = 0.16 + (s.baseAlpha - 0.16) * factor;
+          const currentAlpha = s.baseAlpha * (0.6 + 0.4 * Math.sin(s.twinklePhase));
 
-          if (s.isSparkle) {
-            // ✦ 십자 별빛 광선이 깜빡임에 따라 선명하게 피어났다 오므라듦
-            const flare = s.flareLength * (0.2 + 0.8 * factor);
-            const dynamicSize = s.size * (0.85 + 0.25 * factor);
-            drawSparkle(s.x, s.y, flare, dynamicSize, currentAlpha, s.color);
-          } else {
-            // 또렷하게 반짝이는 원형 별
-            ctx.save();
-            ctx.globalAlpha = currentAlpha;
-            ctx.fillStyle = s.color;
+          ctx.save();
+          ctx.globalAlpha = Math.max(0.12, Math.min(1, currentAlpha));
+          ctx.fillStyle = s.color;
+          ctx.beginPath();
+          ctx.arc(s.x, s.y, s.radius, 0, Math.PI * 2);
+          ctx.fill();
+
+          if (s.radius > 1.8) {
+            ctx.globalAlpha = currentAlpha * 0.4;
             ctx.beginPath();
-            ctx.arc(s.x, s.y, s.size * (0.8 + 0.3 * factor), 0, Math.PI * 2);
+            ctx.arc(s.x, s.y, s.radius * 2.8, 0, Math.PI * 2);
             ctx.fill();
-            ctx.restore();
           }
+          ctx.restore();
         }
 
-        // 2. 유성 렌더링
+        // 2. 유성 그리기
         for (let i = meteors.length - 1; i >= 0; i--) {
           const m = meteors[i];
           m.x += m.dx;
@@ -1246,9 +1200,9 @@ class BadukGameApp {
 
             const grad = ctx.createLinearGradient(tailX, tailY, m.x, m.y);
             grad.addColorStop(0, 'rgba(255, 255, 255, 0)');
-            grad.addColorStop(0.5, 'rgba(147, 197, 253, ' + (0.45 * fade) + ')');
-            grad.addColorStop(0.88, 'rgba(254, 240, 138, ' + (0.9 * fade) + ')');
-            grad.addColorStop(1, 'rgba(255, 255, 255, ' + fade + ')');
+            grad.addColorStop(0.5, `rgba(147, 197, 253, ${0.45 * fade})`);
+            grad.addColorStop(0.88, `rgba(254, 240, 138, ${0.9 * fade})`);
+            grad.addColorStop(1, `rgba(255, 255, 255, ${fade})`);
 
             ctx.save();
             ctx.beginPath();
@@ -1259,7 +1213,7 @@ class BadukGameApp {
             ctx.lineCap = 'round';
             ctx.stroke();
 
-            ctx.fillStyle = 'rgba(255, 255, 255, ' + fade + ')';
+            ctx.fillStyle = `rgba(255, 255, 255, ${fade})`;
             ctx.shadowColor = '#60a5fa';
             ctx.shadowBlur = 10;
             ctx.beginPath();
@@ -1279,6 +1233,7 @@ class BadukGameApp {
     requestAnimationFrame(loop);
   }
 
+  // 🌟 바둑판 스킨 적용 ('wood': 정통 비자목 나무판, 'green': 소프트 그린판 + 흰선) 🌟
   applyBoardSkin(skin) {
     this.boardSkin = (skin === 'green' || skin === 'sky') ? skin : 'wood';
     const wrapper = document.getElementById('boardWrapper');
