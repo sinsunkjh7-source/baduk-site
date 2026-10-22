@@ -294,41 +294,32 @@ class BadukAudio {
   _playSynthesizedDdang() {
     if (!this.ctx) return;
     const t = this.ctx.currentTime;
+    const freq = 698.46; // 실로폰 F5 맑은 단타 1회 '땡~~~'
 
-    // 따뜻한 2단 부드러운 마림바 (라4: 440Hz -> 미4: 330Hz)
-    const notes = [
-      { freq: 440.00, time: 0.00, dur: 0.22, gain: 0.55 },
-      { freq: 329.63, time: 0.16, dur: 0.40, gain: 0.60 }
-    ];
+    const osc = this.ctx.createOscillator();
+    const gain = this.ctx.createGain();
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(freq, t);
 
-    notes.forEach(n => {
-      const start = t + n.time;
+    gain.gain.setValueAtTime(0.70, t);
+    gain.gain.exponentialRampToValueAtTime(0.001, t + 0.85);
 
-      const osc = this.ctx.createOscillator();
-      const gain = this.ctx.createGain();
-      osc.type = 'sine';
-      osc.frequency.setValueAtTime(n.freq, start);
+    osc.connect(gain);
+    gain.connect(this.masterGain);
+    osc.start(t);
+    osc.stop(t + 0.90);
 
-      gain.gain.setValueAtTime(n.gain * 0.7, start);
-      gain.gain.exponentialRampToValueAtTime(0.001, start + n.dur);
-
-      osc.connect(gain);
-      gain.connect(this.masterGain);
-      osc.start(start);
-      osc.stop(start + n.dur + 0.02);
-
-      // 따뜻한 2차 배음
-      const oscHarm = this.ctx.createOscillator();
-      const gainHarm = this.ctx.createGain();
-      oscHarm.type = 'sine';
-      oscHarm.frequency.setValueAtTime(n.freq * 2, start);
-      gainHarm.gain.setValueAtTime(n.gain * 0.15, start);
-      gainHarm.gain.exponentialRampToValueAtTime(0.001, start + (n.dur * 0.4));
-      oscHarm.connect(gainHarm);
-      gainHarm.connect(this.masterGain);
-      oscHarm.start(start);
-      oscHarm.stop(start + n.dur);
-    });
+    // 실로폰 2차 배음
+    const oscHarm = this.ctx.createOscillator();
+    const gainHarm = this.ctx.createGain();
+    oscHarm.type = 'sine';
+    oscHarm.frequency.setValueAtTime(freq * 2, t);
+    gainHarm.gain.setValueAtTime(0.25, t);
+    gainHarm.gain.exponentialRampToValueAtTime(0.001, t + 0.45);
+    oscHarm.connect(gainHarm);
+    gainHarm.connect(this.masterGain);
+    oscHarm.start(t);
+    oscHarm.stop(t + 0.50);
   }
 
   // 미션 성공 효과음 (딩동댕 호출)
