@@ -4836,3 +4836,28 @@ body.site-locked .app-container {
   pointer-events: none !important;
   visibility: hidden !important;
 }
+
+
+/* 🌟 바탕화면 테마 7: 청명한 가을 하늘과 흘러가는 뭉게구름 모션그래픽 🌟 */
+body.bg-theme-theme7,
+body.bg-theme-autumn,
+body.bg-theme-clouds {
+  background: #0284c7 !important;
+}
+
+#cloudsCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+  display: none;
+}
+
+body.bg-theme-theme7 #cloudsCanvas,
+body.bg-theme-autumn #cloudsCanvas,
+body.bg-theme-clouds #cloudsCanvas {
+  display: block;
+}

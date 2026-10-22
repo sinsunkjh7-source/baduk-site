@@ -558,6 +558,7 @@ class BadukGameApp {
     const savedTheme = localStorage.getItem('baduk_bg_theme') || 'theme6';
     this.applyBackgroundTheme(savedTheme);
     this.initStarfieldMotion();
+    this.initAutumnCloudsMotion();
 
     document.querySelectorAll('.bg-theme-btn').forEach(btn => {
       btn.addEventListener('click', (e) => {
@@ -1051,20 +1052,23 @@ class BadukGameApp {
       'night': 'theme4',
       'meadow': 'theme5',
       'starry': 'theme6',
+      'autumn': 'theme7',
+      'clouds': 'theme7',
       '1': 'theme1',
       '2': 'theme2',
       '3': 'theme3',
       '4': 'theme4',
       '5': 'theme5',
-      '6': 'theme6'
+      '6': 'theme6',
+      '7': 'theme7'
     };
     const targetTheme = aliasMap[theme] || theme || 'theme6';
-    const validThemes = ['theme1', 'theme2', 'theme3', 'theme4', 'theme5', 'theme6'];
+    const validThemes = ['theme1', 'theme2', 'theme3', 'theme4', 'theme5', 'theme6', 'theme7'];
     const activeTheme = validThemes.includes(targetTheme) ? targetTheme : 'theme6';
     this.currentBgTheme = activeTheme;
 
     // 기존 및 신규 body 테마 클래스 모두 초기화 후 추가
-    ['theme1', 'theme2', 'theme3', 'theme4', 'theme5', 'theme6', 'clean', 'sky', 'wood', 'night', 'meadow', 'starry'].forEach(t => {
+    ['theme1', 'theme2', 'theme3', 'theme4', 'theme5', 'theme6', 'theme7', 'clean', 'sky', 'wood', 'night', 'meadow', 'starry', 'autumn', 'clouds'].forEach(t => {
       document.body.classList.remove(`bg-theme-${t}`);
     });
     document.body.classList.add(`bg-theme-${activeTheme}`);
@@ -1074,9 +1078,13 @@ class BadukGameApp {
       b.classList.toggle('active', b.dataset.theme === activeTheme);
     });
 
-    const canvas = document.getElementById('starfieldCanvas');
-    if (canvas) {
-      canvas.style.display = (activeTheme === 'theme6' || activeTheme === 'starry') ? 'block' : 'none';
+    const starCanvas = document.getElementById('starfieldCanvas');
+    if (starCanvas) {
+      starCanvas.style.display = (activeTheme === 'theme6' || activeTheme === 'starry') ? 'block' : 'none';
+    }
+    const cloudCanvas = document.getElementById('cloudsCanvas');
+    if (cloudCanvas) {
+      cloudCanvas.style.display = (activeTheme === 'theme7' || activeTheme === 'autumn' || activeTheme === 'clouds') ? 'block' : 'none';
     }
   }
 
@@ -1255,6 +1263,225 @@ class BadukGameApp {
           if (m.life >= m.maxLife) {
             meteors.splice(i, 1);
           }
+        }
+      }
+      requestAnimationFrame(loop);
+    };
+
+    requestAnimationFrame(loop);
+  }
+
+
+  // ☁️ 청명한 가을 하늘과 서서히 흐르는 3D 입체 뭉게구름 모션그래픽
+  initAutumnCloudsMotion() {
+    const canvas = document.getElementById('cloudsCanvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
+
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    });
+
+    // 뭉게구름 군집 생성 헬퍼 함수
+    const createCloud = (x, y, scale, speed, alpha, depth) => {
+      const numPuffs = 8 + Math.floor(Math.random() * 5);
+      const puffs = [];
+      const baseRadius = (35 + Math.random() * 25) * scale;
+      
+      // 중심부 및 윗부분으로 솟아오르는 원형 뭉게구름 퍼프들
+      for (let i = 0; i < numPuffs; i++) {
+        const angle = (i / (numPuffs - 1)) * Math.PI;
+        const rx = (Math.cos(angle) * (numPuffs * 14) + (Math.random() - 0.5) * 16) * scale;
+        const ry = (-Math.sin(angle) * (baseRadius * 0.95) + (Math.random() - 0.5) * 10) * scale;
+        const r = (baseRadius * (0.65 + Math.random() * 0.45));
+        puffs.push({ dx: rx, dy: ry, r: r });
+      }
+      
+      // 아랫부분 평평하고 묵직한 하단 퍼프 3개
+      for (let j = 0; j < 3; j++) {
+        puffs.push({
+          dx: (j - 1) * (baseRadius * 0.9) * scale,
+          dy: (baseRadius * 0.15) * scale,
+          r: baseRadius * 0.85
+        });
+      }
+
+      return {
+        x: x,
+        y: y,
+        scale: scale,
+        speed: speed,
+        alpha: alpha,
+        depth: depth,
+        puffs: puffs,
+        width: baseRadius * 5
+      };
+    };
+
+    // 가을 하늘 구름 11개 (원경 4개, 중경 4개, 근경 3개)
+    const clouds = [];
+    for (let i = 0; i < 4; i++) {
+      clouds.push(createCloud(
+        Math.random() * width * 1.5 - width * 0.2,
+        height * (0.05 + Math.random() * 0.35),
+        0.55 + Math.random() * 0.35,
+        0.18 + Math.random() * 0.12,
+        0.55 + Math.random() * 0.15,
+        1
+      ));
+    }
+    for (let i = 0; i < 4; i++) {
+      clouds.push(createCloud(
+        Math.random() * width * 1.5 - width * 0.2,
+        height * (0.12 + Math.random() * 0.48),
+        0.95 + Math.random() * 0.35,
+        0.35 + Math.random() * 0.25,
+        0.82 + Math.random() * 0.12,
+        2
+      ));
+    }
+    for (let i = 0; i < 3; i++) {
+      clouds.push(createCloud(
+        Math.random() * width * 1.5 - width * 0.2,
+        height * (0.20 + Math.random() * 0.45),
+        1.45 + Math.random() * 0.45,
+        0.65 + Math.random() * 0.35,
+        0.92 + Math.random() * 0.08,
+        3
+      ));
+    }
+
+    // 가을 하늘을 V자로 여유롭게 가로지르는 철새/기러기 5마리
+    const birds = [];
+    for (let b = 0; b < 5; b++) {
+      const offsetX = -b * 22;
+      const offsetY = (b % 2 === 1 ? (b * 12) : (-b * 12));
+      birds.push({
+        relX: offsetX,
+        relY: offsetY,
+        wingPhase: b * 0.6
+      });
+    }
+    let birdsBaseX = width * 0.2;
+    let birdsBaseY = height * 0.18;
+
+    const renderCloud = (cloud) => {
+      ctx.save();
+      ctx.translate(cloud.x, cloud.y);
+      ctx.globalAlpha = cloud.alpha;
+
+      // 1. 하단 부드러운 푸른빛 음영 층 (구름의 입체감)
+      for (const p of cloud.puffs) {
+        const shadowGrad = ctx.createRadialGradient(
+          p.dx, p.dy + p.r * 0.3, p.r * 0.2,
+          p.dx, p.dy, p.r
+        );
+        shadowGrad.addColorStop(0, 'rgba(215, 232, 248, 0.95)');
+        shadowGrad.addColorStop(0.7, 'rgba(230, 241, 252, 0.7)');
+        shadowGrad.addColorStop(1, 'rgba(255, 255, 255, 0)');
+        ctx.fillStyle = shadowGrad;
+        ctx.beginPath();
+        ctx.arc(p.dx, p.dy, p.r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      // 2. 구름 본체 뽀얀 화이트 층
+      for (const p of cloud.puffs) {
+        const bodyGrad = ctx.createRadialGradient(
+          p.dx - p.r * 0.15, p.dy - p.r * 0.2, 0,
+          p.dx, p.dy, p.r
+        );
+        bodyGrad.addColorStop(0, '#ffffff');
+        bodyGrad.addColorStop(0.65, '#f8fbff');
+        bodyGrad.addColorStop(0.95, 'rgba(240, 248, 255, 0.85)');
+        bodyGrad.addColorStop(1, 'rgba(255, 255, 255, 0)');
+        ctx.fillStyle = bodyGrad;
+        ctx.beginPath();
+        ctx.arc(p.dx, p.dy, p.r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      // 3. 상단 따스한 가을 햇살 하이라이트
+      for (const p of cloud.puffs) {
+        if (p.dy < 0) {
+          const sunGrad = ctx.createRadialGradient(
+            p.dx + p.r * 0.25, p.dy - p.r * 0.35, 0,
+            p.dx, p.dy, p.r * 0.85
+          );
+          sunGrad.addColorStop(0, 'rgba(255, 255, 255, 0.9)');
+          sunGrad.addColorStop(0.4, 'rgba(255, 253, 240, 0.5)');
+          sunGrad.addColorStop(1, 'rgba(255, 255, 255, 0)');
+          ctx.fillStyle = sunGrad;
+          ctx.beginPath();
+          ctx.arc(p.dx, p.dy, p.r * 0.85, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+
+      ctx.restore();
+    };
+
+    const loop = () => {
+      if (this.currentBgTheme === 'theme7' || this.currentBgTheme === 'autumn' || this.currentBgTheme === 'clouds') {
+        // 1. 청명하고 깊은 한국의 가을 하늘 그라데이션
+        const skyGrad = ctx.createLinearGradient(0, 0, 0, height);
+        skyGrad.addColorStop(0, '#0284c7');    // 상공: 맑고 짙은 코발트 블루
+        skyGrad.addColorStop(0.35, '#38bdf8'); // 중공: 청명하고 시원한 쪽빛 하늘
+        skyGrad.addColorStop(0.72, '#7dd3fc'); // 하공: 맑은 스카이 블루
+        skyGrad.addColorStop(1, '#e0f2fe');    // 지평선 부근: 은은한 에어리 화이트
+        ctx.fillStyle = skyGrad;
+        ctx.fillRect(0, 0, width, height);
+
+        // 2. 우측 상단 가을 햇살 코로나
+        const sunX = width * 0.86;
+        const sunY = height * 0.12;
+        const sunCorona = ctx.createRadialGradient(sunX, sunY, 10, sunX, sunY, width * 0.55);
+        sunCorona.addColorStop(0, 'rgba(255, 253, 235, 0.55)');
+        sunCorona.addColorStop(0.2, 'rgba(254, 240, 138, 0.22)');
+        sunCorona.addColorStop(0.5, 'rgba(224, 242, 254, 0.08)');
+        sunCorona.addColorStop(1, 'rgba(255, 255, 255, 0)');
+        ctx.fillStyle = sunCorona;
+        ctx.fillRect(0, 0, width, height);
+
+        // 3. 뭉게구름 렌더링 및 서서히 흐르는 모션
+        for (const c of clouds) {
+          c.x += c.speed;
+          if (c.x > width + c.width) {
+            c.x = -c.width - 60;
+            c.y = height * (0.05 + Math.random() * 0.55);
+          }
+          renderCloud(c);
+        }
+
+        // 4. 가을 하늘을 여유롭게 날아가는 기러기 V자 편대
+        birdsBaseX += 0.42;
+        birdsBaseY += 0.05;
+        if (birdsBaseX > width + 150) {
+          birdsBaseX = -120;
+          birdsBaseY = height * (0.12 + Math.random() * 0.25);
+        }
+        for (const b of birds) {
+          b.wingPhase += 0.06;
+          const wingSpan = 7;
+          const wingFlap = Math.sin(b.wingPhase) * 3;
+          const bx = birdsBaseX + b.relX;
+          const by = birdsBaseY + b.relY;
+
+          ctx.save();
+          ctx.strokeStyle = 'rgba(30, 58, 138, 0.55)';
+          ctx.lineWidth = 1.6;
+          ctx.lineCap = 'round';
+          ctx.beginPath();
+          ctx.moveTo(bx - wingSpan, by - wingFlap);
+          ctx.quadraticCurveTo(bx - wingSpan * 0.4, by + 1, bx, by);
+          ctx.quadraticCurveTo(bx + wingSpan * 0.4, by + 1, bx + wingSpan, by - wingFlap);
+          ctx.stroke();
+          ctx.restore();
         }
       }
       requestAnimationFrame(loop);
