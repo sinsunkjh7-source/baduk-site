@@ -1095,45 +1095,27 @@ class BadukGameApp {
       height = canvas.height = window.innerHeight;
     });
 
-    // 🌟 밤하늘을 수놓는 풍성한 별무리 (총 280개로 별의 수는 넉넉하게 유지)
-    const numStars = 280;
+    // 🌟 밤하늘 가득 선명하고 또렷하게 수놓는 별무리 (총 300개)
+    const numStars = 300;
     const stars = [];
     for (let i = 0; i < numStars; i++) {
+      // 약 15%(약 45개)는 항상 단아한 ✦ 4각 별빛 모양으로 빛나는 별
+      const isSparkle = Math.random() < 0.16;
       stars.push({
         x: Math.random() * width,
         y: Math.random() * height,
-        size: 0.55 + Math.random() * 0.95,
-        baseAlpha: 0.2 + Math.random() * 0.45,
-        twinkleSpeed: 0.005 + Math.random() * 0.012,
+        isSparkle: isSparkle,
+        // 크기를 충분히 키워 선명하게 보이도록 설정
+        size: isSparkle ? (1.6 + Math.random() * 1.2) : (1.0 + Math.random() * 1.4),
+        flareLength: isSparkle ? (5 + Math.random() * 6) : 0, // 앙증맞고 단아한 ✦ 광선 (5~11px)
+        baseAlpha: 0.55 + Math.random() * 0.4, // 밝고 선명한 밝기 (0.55 ~ 0.95)
+        twinkleSpeed: 0.008 + Math.random() * 0.018,
         twinklePhase: Math.random() * Math.PI * 2,
-        vx: (Math.random() - 0.5) * 0.04 - 0.02,
-        vy: (Math.random() - 0.5) * 0.03 - 0.015,
-        color: Math.random() < 0.25 ? '#bae6fd' : (Math.random() < 0.45 ? '#fef08a' : '#ffffff'),
-        // 스파클 상태 (null이면 조용히 머무르는 평온한 일반 별)
-        sparkleState: null
+        vx: (Math.random() - 0.5) * 0.05 - 0.02,
+        vy: (Math.random() - 0.5) * 0.04 - 0.015,
+        color: Math.random() < 0.28 ? '#bae6fd' : (Math.random() < 0.48 ? '#fef08a' : '#ffffff')
       });
     }
-
-    // 🌟 동시 터짐(축포 느낌) 방지: 화면 전체에서 오직 '단 하나의 별'만 어쩌다 한 번씩 은은하게 반짝임
-    const scheduleSparkle = () => {
-      const delay = 3200 + Math.random() * 2800; // 3.2 ~ 6초 간격
-      setTimeout(() => {
-        if (this.currentBgTheme === 'theme6' || this.currentBgTheme === 'starry') {
-          // 현재 반짝이고 있는 별이 전혀 없을 때만 새 별 1개 선택
-          const hasActive = stars.some(s => s.sparkleState !== null);
-          if (!hasActive && stars.length > 0) {
-            const targetStar = stars[Math.floor(Math.random() * stars.length)];
-            targetStar.sparkleState = {
-              life: 0,
-              maxLife: 100, // 약 1.6초 동안 매우 부드럽게 피어났다 은은하게 사라짐
-              flareLength: 8 + Math.random() * 6
-            };
-          }
-        }
-        scheduleSparkle();
-      }, delay);
-    };
-    scheduleSparkle();
 
     const meteors = [];
 
@@ -1159,7 +1141,7 @@ class BadukGameApp {
     setTimeout(() => spawnMeteor(), 1500);
 
     const scheduleMeteor = () => {
-      const delay = 4500 + Math.random() * 4000;
+      const delay = 4000 + Math.random() * 3500;
       setTimeout(() => {
         if (this.currentBgTheme === 'theme6' || this.currentBgTheme === 'starry') {
           spawnMeteor();
@@ -1169,39 +1151,38 @@ class BadukGameApp {
     };
     scheduleMeteor();
 
-    // 4각 십자 별빛 그리기 (단아하고 우아한 ✦ 다이아몬드 광선)
+    // 4각 십자 별빛 그리기 (단아하고 선명한 ✦ 다이아몬드 별 모양)
     const drawSparkle = (x, y, flareLen, size, alpha, color) => {
-      if (flareLen <= 0.5) return;
       ctx.save();
       ctx.globalAlpha = alpha;
 
-      // 1. 은은한 중앙 후광
-      const halo = ctx.createRadialGradient(x, y, 0, x, y, flareLen * 0.8);
+      // 1. 은은한 중앙 후광 (Halo)
+      const halo = ctx.createRadialGradient(x, y, 0, x, y, flareLen * 0.9);
       halo.addColorStop(0, '#ffffff');
       halo.addColorStop(0.35, color);
       halo.addColorStop(1, 'rgba(255, 255, 255, 0)');
       ctx.fillStyle = halo;
       ctx.beginPath();
-      ctx.arc(x, y, flareLen * 0.8, 0, Math.PI * 2);
+      ctx.arc(x, y, flareLen * 0.9, 0, Math.PI * 2);
       ctx.fill();
 
-      // 2. 부드러운 4각 십자 광선
+      // 2. 단아한 4각 다이아몬드 별빛 광선 (✦ 모양)
       ctx.fillStyle = '#ffffff';
       ctx.beginPath();
       ctx.moveTo(x, y - flareLen);
-      ctx.quadraticCurveTo(x, y, x + size * 0.45, y);
+      ctx.quadraticCurveTo(x, y, x + size * 0.5, y);
       ctx.lineTo(x + flareLen, y);
-      ctx.quadraticCurveTo(x, y, x, y + size * 0.45);
+      ctx.quadraticCurveTo(x, y, x, y + size * 0.5);
       ctx.lineTo(x, y + flareLen);
-      ctx.quadraticCurveTo(x, y, x - size * 0.45, y);
+      ctx.quadraticCurveTo(x, y, x - size * 0.5, y);
       ctx.lineTo(x - flareLen, y);
-      ctx.quadraticCurveTo(x, y, x, y - size * 0.45);
+      ctx.quadraticCurveTo(x, y, x, y - size * 0.5);
       ctx.closePath();
       ctx.fill();
 
-      // 3. 중심 백열 코어
+      // 3. 중심 밝은 핵
       ctx.beginPath();
-      ctx.arc(x, y, size * 0.6, 0, Math.PI * 2);
+      ctx.arc(x, y, size * 0.7, 0, Math.PI * 2);
       ctx.fill();
 
       ctx.restore();
@@ -1216,7 +1197,7 @@ class BadukGameApp {
         ctx.fillStyle = bgGrad;
         ctx.fillRect(0, 0, width, height);
 
-        // 1. 별 렌더링
+        // 1. 별무리 렌더링
         for (const s of stars) {
           s.x += s.vx;
           s.y += s.vy;
@@ -1226,26 +1207,18 @@ class BadukGameApp {
           if (s.y > height) s.y = 0;
 
           s.twinklePhase += s.twinkleSpeed;
-          // 평상시 일반 별들의 극히 잔잔한 명암 호흡
-          const calmAlpha = Math.max(0.12, Math.min(0.7, s.baseAlpha * (0.6 + 0.4 * Math.sin(s.twinklePhase))));
+          // 부드러운 밝기 호흡 (급작스러운 폭발/축포 없이 고요하고 우아하게 반짝임)
+          const sinVal = Math.sin(s.twinklePhase);
+          const currentAlpha = Math.max(0.35, Math.min(1.0, s.baseAlpha * (0.75 + 0.25 * sinVal)));
 
-          if (s.sparkleState) {
-            // 오직 선택받은 단 하나의 별만 부드러운 사인 곡선으로 ✦ 피어남
-            s.sparkleState.life++;
-            const progress = s.sparkleState.life / s.sparkleState.maxLife;
-            const curve = Math.sin(progress * Math.PI); // 0 -> 1 -> 0 매끄러운 곡선
-            const currentFlare = s.sparkleState.flareLength * curve;
-            const currentAlpha = Math.min(1, s.baseAlpha + 0.5 * curve);
-
-            drawSparkle(s.x, s.y, currentFlare, s.size * (1 + 0.3 * curve), currentAlpha, s.color);
-
-            if (s.sparkleState.life >= s.sparkleState.maxLife) {
-              s.sparkleState = null;
-            }
+          if (s.isSparkle) {
+            // 크기 폭발 없이 형태 자체가 예쁜 ✦ 별모양으로 은은하게 빛남
+            const flare = s.flareLength * (0.85 + 0.15 * sinVal);
+            drawSparkle(s.x, s.y, flare, s.size, currentAlpha, s.color);
           } else {
-            // 279개의 다른 별들은 그저 고요하고 잔잔한 밤하늘 배경 점으로만 존재
+            // 또렷하고 맑은 일반 원형 별
             ctx.save();
-            ctx.globalAlpha = calmAlpha;
+            ctx.globalAlpha = currentAlpha;
             ctx.fillStyle = s.color;
             ctx.beginPath();
             ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
