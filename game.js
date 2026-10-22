@@ -555,8 +555,9 @@ class BadukGameApp {
     });
 
     // 🌟 바탕화면 테마 선택기 ('theme1'~'theme5') 🌟
-    const savedTheme = localStorage.getItem('baduk_bg_theme') || 'theme5';
+    const savedTheme = localStorage.getItem('baduk_bg_theme') || 'theme6';
     this.applyBackgroundTheme(savedTheme);
+    this.initStarfieldMotion();
 
     document.querySelectorAll('.bg-theme-btn').forEach(btn => {
       btn.addEventListener('click', (e) => {
@@ -1049,18 +1050,21 @@ class BadukGameApp {
       'wood': 'theme3',
       'night': 'theme4',
       'meadow': 'theme5',
+      'starry': 'theme6',
       '1': 'theme1',
       '2': 'theme2',
       '3': 'theme3',
       '4': 'theme4',
-      '5': 'theme5'
+      '5': 'theme5',
+      '6': 'theme6'
     };
-    const targetTheme = aliasMap[theme] || theme || 'theme5';
-    const validThemes = ['theme1', 'theme2', 'theme3', 'theme4', 'theme5'];
-    const activeTheme = validThemes.includes(targetTheme) ? targetTheme : 'theme5';
+    const targetTheme = aliasMap[theme] || theme || 'theme6';
+    const validThemes = ['theme1', 'theme2', 'theme3', 'theme4', 'theme5', 'theme6'];
+    const activeTheme = validThemes.includes(targetTheme) ? targetTheme : 'theme6';
+    this.currentBgTheme = activeTheme;
 
     // 기존 및 신규 body 테마 클래스 모두 초기화 후 추가
-    ['theme1', 'theme2', 'theme3', 'theme4', 'theme5', 'clean', 'sky', 'wood', 'night', 'meadow'].forEach(t => {
+    ['theme1', 'theme2', 'theme3', 'theme4', 'theme5', 'theme6', 'clean', 'sky', 'wood', 'night', 'meadow', 'starry'].forEach(t => {
       document.body.classList.remove(`bg-theme-${t}`);
     });
     document.body.classList.add(`bg-theme-${activeTheme}`);
@@ -1069,6 +1073,164 @@ class BadukGameApp {
     document.querySelectorAll('.bg-theme-btn').forEach(b => {
       b.classList.toggle('active', b.dataset.theme === activeTheme);
     });
+
+    const canvas = document.getElementById('starfieldCanvas');
+    if (canvas) {
+      canvas.style.display = (activeTheme === 'theme6' || activeTheme === 'starry') ? 'block' : 'none';
+    }
+  }
+
+  // 🌌 신비한 별빛 밤하늘과 서서히 흐르는 별무리 & 유성 모션그래픽
+  initStarfieldMotion() {
+    const canvas = document.getElementById('starfieldCanvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
+
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    });
+
+    const numStars = 240;
+    const stars = [];
+    for (let i = 0; i < numStars; i++) {
+      stars.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        radius: Math.random() < 0.75 ? (0.6 + Math.random() * 0.9) : (1.6 + Math.random() * 1.3),
+        baseAlpha: 0.35 + Math.random() * 0.65,
+        twinkleSpeed: 0.02 + Math.random() * 0.04,
+        twinklePhase: Math.random() * Math.PI * 2,
+        vx: (Math.random() - 0.5) * 0.09 - 0.05,
+        vy: (Math.random() - 0.5) * 0.07 - 0.03,
+        color: Math.random() < 0.25 ? '#bae6fd' : (Math.random() < 0.45 ? '#fef08a' : '#ffffff')
+      });
+    }
+
+    const meteors = [];
+
+    const spawnMeteor = (forcedX, forcedY) => {
+      const startX = forcedX !== undefined ? forcedX : (Math.random() * (width * 0.7) + width * 0.15);
+      const startY = forcedY !== undefined ? forcedY : (Math.random() * (height * 0.3));
+      const length = 150 + Math.random() * 90;
+      const speed = 14 + Math.random() * 6;
+      const angle = (Math.PI / 4) + (Math.random() - 0.5) * 0.25;
+
+      meteors.push({
+        x: startX,
+        y: startY,
+        dx: Math.cos(angle) * speed,
+        dy: Math.sin(angle) * speed,
+        length: length,
+        life: 0,
+        maxLife: 50,
+        thickness: 2.2
+      });
+    };
+
+    // 첫 유성 1.2초 후 생성
+    setTimeout(() => spawnMeteor(), 1200);
+
+    const scheduleMeteor = () => {
+      const delay = 3500 + Math.random() * 3500;
+      setTimeout(() => {
+        if (this.currentBgTheme === 'theme6' || this.currentBgTheme === 'starry') {
+          spawnMeteor();
+        }
+        scheduleMeteor();
+      }, delay);
+    };
+    scheduleMeteor();
+
+    const loop = () => {
+      if (this.currentBgTheme === 'theme6' || this.currentBgTheme === 'starry') {
+        const bgGrad = ctx.createRadialGradient(width * 0.5, height, 50, width * 0.5, height * 0.5, Math.max(width, height) * 0.9);
+        bgGrad.addColorStop(0, '#1a2244');
+        bgGrad.addColorStop(0.5, '#0b0f22');
+        bgGrad.addColorStop(1, '#04060d');
+        ctx.fillStyle = bgGrad;
+        ctx.fillRect(0, 0, width, height);
+
+        // 1. 별 그리기
+        for (const s of stars) {
+          s.x += s.vx;
+          s.y += s.vy;
+          if (s.x < 0) s.x = width;
+          if (s.x > width) s.x = 0;
+          if (s.y < 0) s.y = height;
+          if (s.y > height) s.y = 0;
+
+          s.twinklePhase += s.twinkleSpeed;
+          const currentAlpha = s.baseAlpha * (0.6 + 0.4 * Math.sin(s.twinklePhase));
+
+          ctx.save();
+          ctx.globalAlpha = Math.max(0.12, Math.min(1, currentAlpha));
+          ctx.fillStyle = s.color;
+          ctx.beginPath();
+          ctx.arc(s.x, s.y, s.radius, 0, Math.PI * 2);
+          ctx.fill();
+
+          if (s.radius > 1.8) {
+            ctx.globalAlpha = currentAlpha * 0.4;
+            ctx.beginPath();
+            ctx.arc(s.x, s.y, s.radius * 2.8, 0, Math.PI * 2);
+            ctx.fill();
+          }
+          ctx.restore();
+        }
+
+        // 2. 유성 그리기
+        for (let i = meteors.length - 1; i >= 0; i--) {
+          const m = meteors[i];
+          m.x += m.dx;
+          m.y += m.dy;
+          m.life++;
+
+          const progress = m.life / m.maxLife;
+          const fade = progress < 0.25 ? (progress / 0.25) : (1 - (progress - 0.25) / 0.75);
+
+          if (fade > 0) {
+            const dist = Math.hypot(m.dx, m.dy);
+            const tailX = m.x - (m.dx / dist) * m.length;
+            const tailY = m.y - (m.dy / dist) * m.length;
+
+            const grad = ctx.createLinearGradient(tailX, tailY, m.x, m.y);
+            grad.addColorStop(0, 'rgba(255, 255, 255, 0)');
+            grad.addColorStop(0.5, `rgba(147, 197, 253, ${0.45 * fade})`);
+            grad.addColorStop(0.88, `rgba(254, 240, 138, ${0.9 * fade})`);
+            grad.addColorStop(1, `rgba(255, 255, 255, ${fade})`);
+
+            ctx.save();
+            ctx.beginPath();
+            ctx.moveTo(tailX, tailY);
+            ctx.lineTo(m.x, m.y);
+            ctx.strokeStyle = grad;
+            ctx.lineWidth = m.thickness;
+            ctx.lineCap = 'round';
+            ctx.stroke();
+
+            ctx.fillStyle = `rgba(255, 255, 255, ${fade})`;
+            ctx.shadowColor = '#60a5fa';
+            ctx.shadowBlur = 10;
+            ctx.beginPath();
+            ctx.arc(m.x, m.y, m.thickness * 1.5, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.restore();
+          }
+
+          if (m.life >= m.maxLife) {
+            meteors.splice(i, 1);
+          }
+        }
+      }
+      requestAnimationFrame(loop);
+    };
+
+    requestAnimationFrame(loop);
   }
 
   // 🌟 바둑판 스킨 적용 ('wood': 정통 비자목 나무판, 'green': 소프트 그린판 + 흰선) 🌟
