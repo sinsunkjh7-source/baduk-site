@@ -5312,3 +5312,811 @@ body.bg-theme-clouds #cloudsCanvas {
 }
 .s6-circle-mini .s6-dot-b { position: absolute; top: 3px; right: 3px; width: 4px; height: 4px; background: #0f172a; border-radius: 50%; }
 .s6-circle-mini .s6-dot-w { position: absolute; bottom: 3px; left: 3px; width: 4px; height: 4px; background: #ffffff; border-radius: 50%; }
+
+
+/* ==============================================================================
+   🏰 체스키드(ChessKid) 완전 복제 통합 앱 셸 (App Shell) & 사이드바 스타일
+   ============================================================================== */
+
+/* 1. 최상위 앱 셸 컨테이너 (좌측 사이드바 + 중앙 뷰포트 가로 분할) */
+.app-container {
+  display: flex !important;
+  flex-direction: row !important;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+  background: #255a1e;
+}
+
+/* 2. 좌측 고정 사이드바 (Persistent Sidebar) */
+.ck-sidebar {
+  width: 240px;
+  min-width: 240px;
+  max-width: 240px;
+  height: 100vh;
+  background: linear-gradient(180deg, #1b4317 0%, #133310 100%);
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 4px 0 20px rgba(0, 0, 0, 0.35);
+  z-index: 100;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow-y: auto;
+  overflow-x: hidden;
+  user-select: none;
+}
+
+.ck-sidebar.collapsed {
+  margin-left: -240px;
+}
+
+/* 사이드바 헤더 (로고 & 퀵 아이콘) */
+.ck-sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 14px 12px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.ck-sidebar-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: #ffffff;
+  font-family: 'Fredoka', 'Noto Sans KR', sans-serif;
+  font-weight: 900;
+  font-size: 1.3rem;
+  letter-spacing: -0.5px;
+}
+
+.ck-logo-crown {
+  font-size: 1.5rem;
+  filter: drop-shadow(0 2px 4px rgba(245, 158, 11, 0.6));
+}
+
+.ck-logo-text {
+  color: #fef08a;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.ck-sidebar-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.ck-icon-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #fff;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.ck-icon-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-1px);
+}
+
+/* 학생 프로필 & 게이미피케이션 카드 */
+.ck-user-profile-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  background: rgba(0, 0, 0, 0.15);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.ck-user-avatar-wrap {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: #38bdf8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  flex-shrink: 0;
+}
+
+.ck-user-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.ck-user-name {
+  font-size: 0.92rem;
+  font-weight: 800;
+  color: #ffffff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ck-user-stats-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 3px 8px;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: #fef08a;
+  width: fit-content;
+}
+
+.ck-stat-divider {
+  width: 1px;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* 네비게이션 메뉴 목록 */
+.ck-sidebar-nav {
+  flex: 1;
+  padding: 10px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ck-nav-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.ck-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  color: #e2e8f0;
+  text-decoration: none;
+  font-size: 0.93rem;
+  font-weight: 800;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.ck-nav-item:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  transform: translateX(3px);
+}
+
+.ck-nav-item.active {
+  background: #3b82f6;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+}
+
+.ck-nav-icon {
+  font-size: 1.15rem;
+  width: 24px;
+  text-align: center;
+}
+
+.ck-nav-label {
+  flex: 1;
+}
+
+.ck-nav-arrow {
+  font-size: 0.8rem;
+  transition: transform 0.25s;
+  opacity: 0.7;
+}
+
+.ck-nav-group.expanded .ck-nav-arrow {
+  transform: rotate(180deg);
+}
+
+/* 서브메뉴 리스트 */
+.ck-subnav-list {
+  display: none;
+  flex-direction: column;
+  padding-left: 36px;
+  gap: 2px;
+  margin-top: 2px;
+  margin-bottom: 4px;
+}
+
+.ck-nav-group.expanded .ck-subnav-list {
+  display: flex;
+}
+
+.ck-subnav-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 10px;
+  border-radius: 8px;
+  font-size: 0.84rem;
+  color: #cbd5e1;
+  text-decoration: none;
+  font-weight: 700;
+  transition: all 0.15s;
+}
+
+.ck-subnav-link:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #38bdf8;
+}
+
+.ck-subnav-link.active {
+  color: #fef08a;
+  font-weight: 900;
+}
+
+.ck-sub-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.8;
+}
+
+/* 사이드바 푸터 */
+.ck-sidebar-footer {
+  padding: 14px 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.ck-footer-safe-badge {
+  font-size: 0.78rem;
+  color: #86efac;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+.ck-footer-links {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.ck-footer-links a {
+  font-size: 0.72rem;
+  color: #94a3b8;
+  text-decoration: none;
+}
+
+.ck-footer-links a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.ck-footer-copy {
+  font-size: 0.68rem;
+  color: #64748b;
+  margin: 0;
+}
+
+/* ==============================================================================
+   3. 중앙 메인 뷰포트 (Top Pill Tabs + Stage)
+   ============================================================================== */
+.ck-main-viewport {
+  flex: 1;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  background: radial-gradient(circle at 50% 20%, #367c29 0%, #255a1e 100%);
+}
+
+.ck-main-viewport.expanded {
+  margin-left: 0;
+}
+
+/* 상단 캡슐형 서브 탭 바 */
+.ck-top-subnav {
+  height: 56px;
+  min-height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  background: rgba(19, 51, 16, 0.65);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 50;
+}
+
+.ck-sidebar-toggle-btn {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.ck-sidebar-toggle-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.ck-pill-tabs {
+  display: flex;
+  background: rgba(0, 0, 0, 0.35);
+  padding: 4px;
+  border-radius: 30px;
+  gap: 4px;
+}
+
+.ck-pill-btn {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.85);
+  padding: 7px 18px;
+  border-radius: 20px;
+  font-size: 0.88rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.ck-pill-btn:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.ck-pill-btn.active {
+  background: #ffffff;
+  color: #1e3a18;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+}
+
+.ck-quick-stats {
+  display: flex;
+  gap: 8px;
+}
+
+.ck-stat-chip {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 5px 12px;
+  border-radius: 16px;
+  font-size: 0.84rem;
+  font-weight: 800;
+  color: #fef08a;
+}
+
+/* ==============================================================================
+   4. 체스키드식 아바타 커스터마이저 중앙 카드 (Image 2 메인 카드)
+   ============================================================================== */
+.ck-avatar-customizer-view {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  overflow-y: auto;
+}
+
+.ck-central-avatar-card {
+  width: 100%;
+  max-width: 440px;
+  background: #ffffff;
+  border-radius: 28px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
+  padding: 36px 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  animation: cardPopIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes cardPopIn {
+  from { opacity: 0; transform: scale(0.92) translateY(15px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.ck-avatar-hero-frame {
+  overflow: hidden;
+  width: 140px;
+  height: 140px;
+  border-radius: 36px;
+  background: #e0f2fe;
+  border: 4px solid #bae6fd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-shadow: 0 10px 25px rgba(56, 189, 248, 0.25);
+  margin-bottom: 20px;
+}
+
+.ck-avatar-large-icon {
+  font-size: 5rem;
+  line-height: 1;
+}
+
+.ck-avatar-edit-pencil {
+  position: absolute;
+  right: -8px;
+  bottom: -8px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #f59e0b;
+  border: 3px solid #ffffff;
+  color: #fff;
+  font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.ck-avatar-edit-pencil:hover {
+  transform: scale(1.15) rotate(-10deg);
+}
+
+.ck-avatar-card-title {
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: #0f172a;
+  margin: 0 0 6px 0;
+}
+
+.ck-avatar-card-desc {
+  font-size: 0.95rem;
+  color: #64748b;
+  margin: 0 0 24px 0;
+  font-weight: 600;
+}
+
+.ck-avatar-big-btn {
+  width: 100%;
+  padding: 15px;
+  border-radius: 18px;
+  background: linear-gradient(180deg, #f97316 0%, #ea580c 100%);
+  color: #ffffff;
+  font-size: 1.15rem;
+  font-weight: 900;
+  border: none;
+  box-shadow: 0 6px 0 #c2410c, 0 12px 24px rgba(234, 88, 12, 0.4);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.ck-avatar-big-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 0 #c2410c, 0 15px 30px rgba(234, 88, 12, 0.5);
+}
+
+.ck-avatar-big-btn:active {
+  transform: translateY(4px);
+  box-shadow: 0 2px 0 #c2410c;
+}
+
+/* ==============================================================================
+   5. 바둑판 우측 마스터 코치(도원 신선님) 모션 그래픽 존!
+   ============================================================================== */
+.master-coach-area {
+  width: 210px;
+  min-width: 210px;
+  max-width: 210px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 8px;
+  z-index: 10;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+/* 대화형 말풍선 */
+.master-speech-bubble {
+  position: relative;
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 12px 14px;
+  color: #1e293b;
+  font-size: 0.88rem;
+  font-weight: 800;
+  line-height: 1.45;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+  margin-bottom: 14px;
+  text-align: center;
+  border: 2px solid #38bdf8;
+  max-width: 200px;
+  font-size: 0.82rem;
+}
+
+.master-speech-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 10px 8px 0;
+  border-style: solid;
+  border-color: #38bdf8 transparent;
+  display: block;
+  width: 0;
+}
+
+.master-speech-bubble.pop {
+  animation: bubblePop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes bubblePop {
+  0% { transform: scale(0.85); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* 마스터 프레임 & 3D 아바타 */
+.master-coach-frame {
+  position: relative;
+  width: 130px;
+  height: 160px;
+  border-radius: 22px;
+  background: radial-gradient(circle, #e0f2fe 0%, #bae6fd 100%);
+  border: 3px solid #fbbf24;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  animation: coachFloat 3.5s ease-in-out infinite;
+  transition: transform 0.2s;
+}
+.master-coach-frame:hover {
+  transform: scale(1.05);
+}
+
+@keyframes coachFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.master-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* 감정별 애니메이션 리액션 */
+.master-avatar-img.correct {
+  animation: coachJump 0.8s ease-in-out;
+}
+
+@keyframes coachJump {
+  0%, 100% { transform: translateY(0) scale(1); }
+  30% { transform: translateY(-15px) scale(1.08); }
+  60% { transform: translateY(-5px) scale(1.04); }
+}
+
+.master-avatar-img.wrong {
+  animation: coachTilt 0.6s ease-in-out;
+}
+
+@keyframes coachTilt {
+  0%, 100% { transform: rotate(0); }
+  25% { transform: rotate(-8deg); }
+  75% { transform: rotate(8deg); }
+}
+
+.master-avatar-img.hint {
+  animation: coachPulse 0.6s ease-in-out;
+}
+
+@keyframes coachPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); filter: brightness(1.2); }
+}
+
+.master-emotion-badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  z-index: 5;
+}
+
+.master-coach-name {
+  font-size: 0.95rem;
+  font-weight: 900;
+  color: #fef08a;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+  margin-top: 10px;
+}
+
+.master-coach-sub {
+  font-size: 0.75rem;
+  color: #cbd5e1;
+  font-weight: 700;
+}
+
+/* ==============================================================================
+   체스키드 아바타 스튜디오 옵션 칩 & 스킨 & 반응형 스타일
+   ============================================================================== */
+.ck-options-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 14px 0 20px 0;
+  width: 100%;
+}
+.ck-option-chip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  background: #f8fafc;
+  border: 2px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 10px 6px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.ck-option-chip:hover {
+  transform: translateY(-2px);
+  border-color: #38bdf8;
+  background: #f0f9ff;
+}
+.ck-option-chip.active {
+  border-color: #0284c7;
+  background: #e0f2fe;
+  box-shadow: 0 4px 14px rgba(2, 132, 199, 0.25);
+  transform: scale(1.03);
+}
+.chip-img {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+.ck-option-chip span {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: #1e293b;
+}
+
+/* Board / Stone Skins */
+.ck-skin-row {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+  margin-bottom: 12px;
+}
+.ck-skin-btn {
+  flex: 1;
+  padding: 9px 6px;
+  border-radius: 12px;
+  border: 2px solid #e2e8f0;
+  background: #f8fafc;
+  font-size: 0.82rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.ck-skin-btn.active {
+  border-color: #059669;
+  background: #ecfdf5;
+  color: #065f46;
+}
+.ck-skin-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+.ck-stone-btn {
+  padding: 9px 8px;
+  border-radius: 12px;
+  border: 2px solid #e2e8f0;
+  background: #f8fafc;
+  font-size: 0.82rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.ck-stone-btn.active {
+  border-color: #3b82f6;
+  background: #eff6ff;
+  color: #1d4ed8;
+}
+
+/* Coach Card */
+.ck-coach-pick-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+.ck-coach-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #f8fafc;
+  border: 2px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 10px 14px;
+  cursor: pointer;
+}
+.ck-coach-card.active {
+  border-color: #f59e0b;
+  background: #fffbeb;
+}
+.ck-coach-thumb {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+.ck-coach-details {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+.ck-coach-details strong {
+  font-size: 0.95rem;
+  color: #0f172a;
+}
+.ck-coach-details span {
+  font-size: 0.78rem;
+  color: #64748b;
+}
+
+/* Mobile Media Queries */
+@media (max-width: 900px) {
+  .ck-sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 1000;
+  }
+  .ck-sidebar.collapsed {
+    margin-left: -240px;
+  }
+  .master-coach-area {
+    display: none !important;
+  }
+}

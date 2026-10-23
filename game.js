@@ -2614,6 +2614,10 @@ class BadukGameApp {
     this.currentMission = mission;
     if (!mission) return;
 
+    if (window.chesskidShell && window.chesskidShell.masterCoach) {
+      window.chesskidShell.masterCoach.onProblemStart(mission.title, mission.desc);
+    }
+
     // 🌟 문제 크기 맞춤형 스마트 바둑판 자동 확장 (Auto-Fit) 🌟
     // 해당 문제의 돌 배치 영역이 9줄을 넘어서면 13줄 또는 19줄로 자동 확장!
     const targetSize = mission.recommendedSize || 9;
@@ -2934,6 +2938,10 @@ class BadukGameApp {
     const mission = this.missions[this.currentMissionIndex];
     if (!mission) return;
 
+    if (window.chesskidShell && window.chesskidShell.masterCoach) {
+      window.chesskidShell.masterCoach.onHint(mission.hint || '정답 위치를 바둑판에 반짝이로 표시해 두었단다!');
+    }
+
     const speech = document.getElementById('charSpeechText');
 
     // 🌟 1. O/X 및 객관식 선택지 문제인 경우
@@ -3141,6 +3149,9 @@ class BadukGameApp {
     }
 
     if (type === 'correct') {
+      if (window.chesskidShell && window.chesskidShell.masterCoach) {
+        window.chesskidShell.masterCoach.onCorrect();
+      }
       const idx = this.correctFeedbackIndex % CORRECT_FEEDBACK_ITEMS.length;
       this.correctFeedbackIndex++;
       const item = CORRECT_FEEDBACK_ITEMS[idx];
@@ -3161,6 +3172,9 @@ class BadukGameApp {
         speech.textContent = item.speech;
       }
     } else {
+      if (window.chesskidShell && window.chesskidShell.masterCoach) {
+        window.chesskidShell.masterCoach.onWrong();
+      }
       // 오답 격려 배지 (오답1~오답10 로테이션, 정답과 동일한 대형 정사각형 박스 및 정중앙 배치)
       const idx = this.wrongFeedbackIndex % WRONG_FEEDBACK_ITEMS.length;
       this.wrongFeedbackIndex++;

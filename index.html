@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=20261024_restore_v1">
+  <link rel="stylesheet" href="style.css?v=20261024_ck_v1">
   <script src="auth.js?v=20261022_v1792680182"></script>
 </head>
 <body>
@@ -312,8 +312,229 @@
   </div>
 
   <div class="app-container size-9">
+    <!-- 🏰 체스키드(ChessKid) 좌측 고정 사이드바 -->
+    <aside class="ck-sidebar" id="chesskidSidebar">
+      <div class="ck-sidebar-header">
+        <a href="javascript:void(0)" class="ck-sidebar-logo" onclick="window.showMainPortal();" title="바둑스쿨 메인 홈">
+          <span class="ck-logo-crown">👑</span>
+          <span class="ck-logo-text">바둑스쿨</span>
+        </a>
+        <div class="ck-sidebar-actions">
+          <button type="button" class="ck-icon-btn" onclick="window.showMainPortal();" title="홈 대문으로 가기">🏠</button>
+          <button type="button" class="ck-icon-btn" onclick="if(confirm('수업 사이트를 잠그시겠습니까?')) window.lockSiteSession();" title="화면 잠금">🔒</button>
+        </div>
+      </div>
+
+      <!-- 유저 프로필 카드 -->
+      <div class="ck-user-profile-card">
+        <div class="ck-user-avatar-wrap" id="ckUserAvatarWrap">
+          <span id="ckUserAvatarEmoji">👦</span>
+        </div>
+        <div class="ck-user-info">
+          <span class="ck-user-name" id="ckUserName">태오</span>
+          <div class="ck-user-stats-pill">
+            <span>⭐ 150</span>
+            <span class="ck-stat-divider"></span>
+            <span>🔴 1200</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 사이드바 네비게이션 아코디언 메뉴 -->
+      <nav class="ck-sidebar-nav">
+        <!-- 내 아바타 -->
+        <div class="ck-nav-group">
+          <a class="ck-nav-item" data-section="avatar" data-subtab="me">
+            <span class="ck-nav-icon">👦</span>
+            <span class="ck-nav-label">내 아바타</span>
+          </a>
+        </div>
+
+        <!-- 대국실 (Play) -->
+        <div class="ck-nav-group">
+          <a class="ck-nav-item has-sub" data-section="play">
+            <span class="ck-nav-icon">⚔️</span>
+            <span class="ck-nav-label">대국실 (Play)</span>
+            <span class="ck-nav-arrow">▾</span>
+          </a>
+          <div class="ck-subnav-list">
+            <a class="ck-subnav-link" data-section="play" data-subtab="p2p"><span class="ck-sub-dot"></span>🌐 친구 1:1 대국</a>
+            <a class="ck-subnav-link" data-section="play" data-subtab="omok"><span class="ck-sub-dot"></span>⚪⚫ 15줄 오목</a>
+            <a class="ck-subnav-link" data-section="play" data-subtab="alkkagi"><span class="ck-sub-dot"></span>🎯 슬링샷 알까기</a>
+          </div>
+        </div>
+
+        <!-- 사활 퍼즐 (Puzzles) -->
+        <div class="ck-nav-group expanded">
+          <a class="ck-nav-item has-sub active" data-section="puzzles">
+            <span class="ck-nav-icon">🧩</span>
+            <span class="ck-nav-label">사활 퍼즐 (Puzzles)</span>
+            <span class="ck-nav-arrow">▾</span>
+          </a>
+          <div class="ck-subnav-list">
+            <a class="ck-subnav-link active" data-section="puzzles" data-subtab="30stage"><span class="ck-sub-dot"></span>🗺️ 30단계 모험</a>
+            <a class="ck-subnav-link" data-section="puzzles" data-subtab="duel"><span class="ck-sub-dot"></span>⚡ 1:1 사활 듀얼</a>
+            <a class="ck-subnav-link" data-section="puzzles" data-subtab="library"><span class="ck-sub-dot"></span>📚 15대 기법</a>
+          </div>
+        </div>
+
+        <!-- AI 봇 (Bots) -->
+        <div class="ck-nav-group">
+          <a class="ck-nav-item has-sub" data-section="bots">
+            <span class="ck-nav-icon">🤖</span>
+            <span class="ck-nav-label">AI 봇 (Bots)</span>
+            <span class="ck-nav-arrow">▾</span>
+          </a>
+          <div class="ck-subnav-list">
+            <a class="ck-subnav-link" data-section="bots" data-subtab="animal"><span class="ck-sub-dot"></span>🐾 6단계 동물 봇</a>
+            <a class="ck-subnav-link" data-section="bots" data-subtab="handicap"><span class="ck-sub-dot"></span>⚔️ 2~9점 접바둑</a>
+            <a class="ck-subnav-link" data-section="bots" data-subtab="master"><span class="ck-sub-dot"></span>🦁 챔피언 사자전</a>
+          </div>
+        </div>
+
+        <!-- 배움터 (Lessons) -->
+        <div class="ck-nav-group">
+          <a class="ck-nav-item has-sub" data-section="lessons">
+            <span class="ck-nav-icon">📚</span>
+            <span class="ck-nav-label">배움터 (Lessons)</span>
+            <span class="ck-nav-arrow">▾</span>
+          </a>
+          <div class="ck-subnav-list">
+            <a class="ck-subnav-link" data-section="lessons" data-subtab="lecture"><span class="ck-sub-dot"></span>👨‍🏫 전자칠판 강의</a>
+            <a class="ck-subnav-link" data-section="lessons" data-subtab="library"><span class="ck-sub-dot"></span>📚 교재 전권</a>
+            <a class="ck-subnav-link" data-section="lessons" data-subtab="curriculum"><span class="ck-sub-dot"></span>📋 30단계 진도표</a>
+          </div>
+        </div>
+
+        <!-- 선생님 (Teach) -->
+        <div class="ck-nav-group">
+          <a class="ck-nav-item has-sub" data-section="teach">
+            <span class="ck-nav-icon">👨‍🏫</span>
+            <span class="ck-nav-label">선생님 (Teach)</span>
+            <span class="ck-nav-arrow">▾</span>
+          </a>
+          <div class="ck-subnav-list">
+            <a class="ck-subnav-link" data-section="teach" data-subtab="editor"><span class="ck-sub-dot"></span>🛠️ 문제 편집실</a>
+            <a class="ck-subnav-link" data-section="teach" data-subtab="curriculum"><span class="ck-sub-dot"></span>📋 30단계 진도표</a>
+            <a class="ck-subnav-link" data-section="teach" data-subtab="lock"><span class="ck-sub-dot"></span>🔒 수업 잠금</a>
+          </div>
+        </div>
+
+        <!-- 더보기 (More) -->
+        <div class="ck-nav-group">
+          <a class="ck-nav-item has-sub" data-section="more">
+            <span class="ck-nav-icon">⚙️</span>
+            <span class="ck-nav-label">더보기 (More)</span>
+            <span class="ck-nav-arrow">▾</span>
+          </a>
+          <div class="ck-subnav-list">
+            <a class="ck-subnav-link" data-section="more" data-subtab="badges"><span class="ck-sub-dot"></span>🎖️ 획득 뱃지</a>
+            <a class="ck-subnav-link" data-section="more" data-subtab="settings"><span class="ck-sub-dot"></span>⚙️ 환경 & 착수음</a>
+          </div>
+        </div>
+      </nav>
+
+      <!-- 푸터 -->
+      <div class="ck-sidebar-footer">
+        <div class="ck-footer-safe-badge">🛡️ 어린이 안심 바둑 플랫폼</div>
+        <p class="ck-footer-copy">© 2026 바둑스쿨 (BadukSchool)</p>
+      </div>
+    </aside>
+
+    <!-- 🏰 체스키드 메인 뷰포트 -->
+    <div class="ck-main-viewport" id="chesskidMainStage">
+      <!-- 상단 캡슐형 서브 탭 바 -->
+      <div class="ck-top-subnav" id="chesskidTopSubnav">
+        <div class="ck-top-left-group">
+          <button type="button" class="ck-sidebar-toggle-btn" id="btnToggleSidebar" title="사이드바 열기/닫기">☰</button>
+        </div>
+        <div class="ck-pill-tabs" id="ckPillTabs"></div>
+        <div class="ck-top-right-group">
+          <button type="button" class="ck-top-icon-btn" onclick="window.showMainPortal();" title="바둑스쿨 대문으로">🏠</button>
+          <button type="button" class="ck-top-icon-btn" onclick="if(confirm('수업 사이트를 잠그시겠습니까?')) window.lockSiteSession();" title="화면 잠금">🔒</button>
+        </div>
+      </div>
+
+      <!-- 아바타 커스터마이저 전용 뷰 (체스키드 아바타 스튜디오) -->
+      <div class="ck-avatar-customizer-view" id="viewAvatarCustomizer" style="display: none;">
+        <div class="ck-central-avatar-card">
+          <div class="ck-avatar-hero-frame">
+            <div class="ck-avatar-large-icon" id="heroAvatarPreview">
+              <img src="images/characters/char_taeo.jpg" alt="태오" style="width: 100%; height: 100%; object-fit: cover; border-radius: 30px;">
+            </div>
+            <div class="ck-avatar-edit-pencil" id="btnEditAvatarPencil" title="아바타 변경">✏️</div>
+          </div>
+          <h2 class="ck-avatar-card-title" id="heroAvatarName">태오 (Taeo)</h2>
+          <p class="ck-avatar-card-desc" id="heroAvatarDesc">패기 넘치는 바둑 공격수! 사활 모험의 주인공</p>
+
+          <!-- 탭 1: 내 캐릭터 선택 (Me) -->
+          <div id="avatarSubTabMe" class="avatar-sub-panel" style="width: 100%;">
+            <div class="ck-options-grid" id="charSelectGrid">
+              <button type="button" class="ck-option-chip active" data-char="taeo" data-emoji="👦" data-name="태오 (Taeo)" data-desc="패기 넘치는 바둑 공격수! 사활 모험의 주인공">
+                <img src="images/characters/char_taeo.jpg" alt="태오" class="chip-img">
+                <span>태오</span>
+              </button>
+              <button type="button" class="ck-option-chip" data-char="roy" data-emoji="🧒" data-name="로이 (Roy)" data-desc="기발한 묘수를 좋아하는 재간둥이 승부사">
+                <img src="images/characters/char_roy.jpg" alt="로이" class="chip-img">
+                <span>로이</span>
+              </button>
+              <button type="button" class="ck-option-chip" data-char="arin" data-emoji="👧" data-name="아린 (Arin)" data-desc="차분하고 스마트한 수읽기 명수">
+                <img src="images/characters/char_arin.jpg" alt="아린" class="chip-img">
+                <span>아린</span>
+              </button>
+              <button type="button" class="ck-option-chip" data-char="haeun" data-emoji="🎀" data-name="하은 (Haeun)" data-desc="돌의 활로를 소중히 지키는 든든한 수비수">
+                <img src="images/characters/char_haeun.jpg" alt="하은" class="chip-img">
+                <span>하은</span>
+              </button>
+              <button type="button" class="ck-option-chip" data-char="heukdori" data-emoji="⚫" data-name="흑돌이 (Heukdori)" data-desc="씩씩하고 반짝이는 검은 바둑돌 요정">
+                <img src="images/characters/char_heukdori.jpg" alt="흑돌이" class="chip-img">
+                <span>흑돌이</span>
+              </button>
+              <button type="button" class="ck-option-chip" data-char="baekdori" data-emoji="⚪" data-name="백돌이 (Baekdori)" data-desc="상냥하고 둥글둥글한 하얀 바둑돌 요정">
+                <img src="images/characters/char_baekdori.jpg" alt="백돌이" class="chip-img">
+                <span>백돌이</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 탭 2: 바둑판 & 바둑돌 스킨 (Board) -->
+          <div id="avatarSubTabBoard" class="avatar-sub-panel" style="width: 100%; display: none;">
+            <h3 style="font-size: 0.95rem; font-weight: 800; color: #334155; margin: 8px 0 6px 0;">🪵 바둑판 스킨</h3>
+            <div class="ck-skin-row">
+              <button type="button" class="ck-skin-btn active" data-board-skin="wood">🪵 나무판</button>
+              <button type="button" class="ck-skin-btn" data-board-skin="green">🌿 잔디판</button>
+              <button type="button" class="ck-skin-btn" data-board-skin="sky">☁️ 하늘판</button>
+            </div>
+
+            <h3 style="font-size: 0.95rem; font-weight: 800; color: #334155; margin: 14px 0 6px 0;">⚪⚫ 바둑돌 스타일</h3>
+            <div class="ck-skin-grid">
+              <button type="button" class="ck-stone-btn active" data-stone-style="classic">1. 클래식</button>
+              <button type="button" class="ck-stone-btn" data-stone-style="crystal">2. 크리스탈</button>
+              <button type="button" class="ck-stone-btn" data-stone-style="galaxy">3. 은하수</button>
+              <button type="button" class="ck-stone-btn" data-stone-style="cat">4. 고양이</button>
+            </div>
+          </div>
+
+          <!-- 탭 3: 마스터 코치 선택 (Coaches) -->
+          <div id="avatarSubTabCoaches" class="avatar-sub-panel" style="width: 100%; display: none;">
+            <div class="ck-coach-pick-grid">
+              <div class="ck-coach-card active" data-coach="doyuan">
+                <img src="images/characters/char_master_head.jpg" alt="도원 대사님" class="ck-coach-thumb">
+                <div class="ck-coach-details">
+                  <strong>도원 신선님</strong>
+                  <span>인자하고 지혜로운 사활 마스터</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button type="button" class="ck-avatar-big-btn" id="btnSaveAvatarCustom" onclick="window.chesskidShell.saveAvatarSelection();">
+            <span>💾 변경 사항 저장 및 적용</span>
+          </button>
+        </div>
+      </div>
     <!-- 상단 네비게이션 헤더 (모드 선택 및 단원 배지만 간결하게 유지) -->
-    <header class="app-header">
+    <header class="app-header" style="display: none;">
       <div class="header-left">
         <div class="brand-logo-badge official-logo-wrap" id="brandLogoBadge" title="바둑스쿨 메인 홈(대문)으로 이동" onclick="window.showMainPortal();" style="cursor: pointer; background: transparent; border: none; padding: 0; box-shadow: none; display: flex; align-items: center;">
           <img src="images/official_brand_logo.png" alt="바둑스쿨" style="height: 32px; width: auto; object-fit: contain; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.1));">
@@ -367,7 +588,7 @@
           <h2 class="mission-title" id="missionTitle" style="display: none;"></h2>
           <p class="mission-desc" id="missionDesc"></p>
 
-          <!-- 힌트 박스 (교재 원문에 힌트가 있는 경우에만 game.js?v=20261024_fixpass_v1792768209"mission-hint-box" id="missionHintBox" style="display: none;">
+          <!-- 힌트 박스 (교재 원문에 힌트가 있는 경우에만 game.js?v=20261024_ck_v1"mission-hint-box" id="missionHintBox" style="display: none;">
             <span class="hint-icon">💡</span>
             <span class="hint-text" id="missionHintText"></span>
           </div>
@@ -913,7 +1134,18 @@
       </section>
 
       <!-- 🌟 바둑판 화면 정중앙 배치를 위한 우측 대칭 투명 밸런스 스페이서 🌟 -->
-      <div class="board-right-spacer" id="boardRightSpacer" aria-hidden="true"></div>
+      <!-- 🧙‍♂️ 바둑판 우측: 도원 대사님 마스터 코치 모션 그래픽 존! -->
+      <aside class="master-coach-area" id="masterCoachArea">
+        <div class="master-speech-bubble" id="masterSpeechBubble">
+          <div class="speech-bubble-text" id="masterSpeechText">흑돌을 살리는 멋진 수를 찾아보렴!</div>
+        </div>
+        <div class="master-coach-frame" id="masterCoachFigure" title="도원 대사님을 클릭하면 조언을 들을 수 있어요!">
+          <img src="images/characters/char_master_head.jpg" alt="도원 대사님" class="master-avatar-img" id="masterCoachAvatarImg">
+          <div class="master-emotion-badge" id="masterEmotionBadge">✨</div>
+        </div>
+        <div class="master-coach-name" id="masterCoachName">도원 대사님</div>
+        <div class="master-coach-sub">바둑스쿨 마스터 코치</div>
+      </aside>
     </main>
 
     <!-- 🌟 실시간 1:1 온라인 & AI 바둑 대국실 모달 🌟 -->
@@ -1326,7 +1558,8 @@
       <span>🎲</span>
       <span id="nigiriToastText">돌 가리기 완료!</span>
     </div>
-  </div>
+    </div><!-- /#chesskidMainStage -->
+  </div><!-- /.app-container -->
 
   <script src="audio.js?v=20261022_final_audio_v5"></script>
   <script src="baduk_engine.js?v=20261024_fixpass_v1792768209"></script>
@@ -1364,6 +1597,14 @@
   <script src="ai_engine/gnugo.js"></script>
   <script src="ai_engine/gnugo_controller.js?v=20261024_fixpass_v1792768209"></script>
   <script src="ai_match_manager.js?v=20261024_fixpass_v1792768209"></script>
-  <script src="game.js?v=20261024_restore_v1"></script>
+  <script src="game.js?v=20261024_ck_v1"></script>
+  <script src="chesskid_shell.js?v=20261024_ck_v1"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.chesskidShell) {
+        window.chesskidShell.init();
+      }
+    });
+  </script>
 </body>
 </html>
