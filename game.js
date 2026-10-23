@@ -770,15 +770,32 @@ class BadukGameApp {
     }
 
     // AI 난이도
-    document.querySelectorAll('[data-alkkagi-diff]').forEach(btn => {
+    const alkkagiDiffBtns = document.querySelectorAll('[data-alkkagi-diff]');
+    alkkagiDiffBtns.forEach(btn => {
       btn.addEventListener('click', () => {
-        document.querySelectorAll('[data-alkkagi-diff]').forEach(b => b.classList.remove('active'));
+        alkkagiDiffBtns.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         if (this.alkkagiEngine) {
           this.alkkagiEngine.difficulty = btn.dataset.alkkagiDiff || 'normal';
+          try {
+            localStorage.setItem('jh_alkkagi_difficulty', this.alkkagiEngine.difficulty);
+          } catch (e) {}
         }
       });
     });
+
+    // 저장된 알까기 난이도 UI 동기화
+    try {
+      const savedAlkkagiDiff = localStorage.getItem('jh_alkkagi_difficulty');
+      if (savedAlkkagiDiff && ['easy', 'normal', 'hard', 'master'].includes(savedAlkkagiDiff)) {
+        if (this.alkkagiEngine) {
+          this.alkkagiEngine.difficulty = savedAlkkagiDiff;
+        }
+        alkkagiDiffBtns.forEach(b => {
+          b.classList.toggle('active', b.dataset.alkkagiDiff === savedAlkkagiDiff);
+        });
+      }
+    } catch (e) {}
 
     // 흑백 선택
     document.querySelectorAll('[data-alkkagi-color]').forEach(btn => {

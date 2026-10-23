@@ -15,7 +15,12 @@ class AlkkagiEngine {
 
     // 게임 모드: 'ai' | 'pvp'
     this.mode = 'ai';
-    this.difficulty = 'normal'; // 'easy' | 'normal' | 'hard'
+    let savedDiff = 'normal';
+    try {
+      const s = localStorage.getItem('jh_alkkagi_difficulty');
+      if (s && ['easy', 'normal', 'hard', 'master'].includes(s)) savedDiff = s;
+    } catch(e) {}
+    this.difficulty = savedDiff; // 'easy' | 'normal' | 'hard' | 'master'
     this.playerColor = 1; // 1: 흑돌, 2: 백돌
     this.formation = 'line5'; // 'line5' | 'vshape' | 'corners'
 
@@ -458,16 +463,37 @@ class AlkkagiEngine {
         return;
       }
 
-      // AI 전략: 가장 적절한 타겟 계산
+      // AI 전략: 난이도별 최적 타겟 계산
+      const bounds = this.getArenaBounds();
       let bestPair = null;
-      let minScore = Infinity;
+      let bestScore = -Infinity;
 
       for (const my of myStones) {
         for (const opp of oppStones) {
           const dist = Math.hypot(opp.x - my.x, opp.y - my.y);
-          const score = dist;
-          if (score < minScore) {
-            minScore = score;
+          if (dist < 1) continue;
+
+          // 기본 점수: 가까울수록 고득점
+          let score = 1000 - dist;
+
+          if (this.difficulty === 'master' || this.difficulty === 'hard') {
+            // 외곽에 몰린 상대 돌일수록 떨어뜨리기 쉬우므로 가산점
+            const oppMarginX = Math.min(opp.x - bounds.minX, bounds.maxX - opp.x);
+            const oppMarginY = Math.min(opp.y - bounds.minY, bounds.maxY - opp.y);
+            const oppEdgeMargin = Math.min(oppMarginX, oppMarginY);
+            score += Math.max(0, (150 - oppEdgeMargin) * 3.5);
+
+            // 마스터: 내 돌이 위험한 외곽에 있으면 발사 반동으로 인한 자폭 방지
+            if (this.difficulty === 'master') {
+              const myMarginX = Math.min(my.x - bounds.minX, bounds.maxX - my.x);
+              const myMarginY = Math.min(my.y - bounds.minY, bounds.maxY - my.y);
+              const myEdgeMargin = Math.min(myMarginX, myMarginY);
+              if (myEdgeMargin < 30) score -= 250;
+            }
+          }
+
+          if (score > bestScore) {
+            bestScore = score;
             bestPair = { shooter: my, target: opp, dist };
           }
         }
@@ -477,17 +503,24 @@ class AlkkagiEngine {
         const { shooter, target, dist } = bestPair;
         let angle = Math.atan2(target.y - shooter.y, target.x - shooter.x);
 
-        // 난이도별 정밀도 및 파워 조절
-        let powerRatio = Math.min((dist + 70) / 260, 1.0);
+        // 4단계별 물리 정밀도 및 파워 조절
+        let powerRatio = Math.min((dist + 75) / 250, 1.0);
         if (this.difficulty === 'easy') {
-          angle += (Math.random() - 0.5) * 0.22;
-          powerRatio *= (0.7 + Math.random() * 0.4);
+          // 초급: 큰 조준 오차(약 +-16도), 파워 변동 -> 아이들이 신나게 이김
+          angle += (Math.random() - 0.5) * 0.28;
+          powerRatio *= (0.55 + Math.random() * 0.45);
         } else if (this.difficulty === 'normal') {
-          angle += (Math.random() - 0.5) * 0.08;
-          powerRatio = Math.max(powerRatio, 0.65);
+          // 중급: 표준 조준 오차(약 +-5.7도), 안정적 파워
+          angle += (Math.random() - 0.5) * 0.10;
+          powerRatio = Math.max(powerRatio, 0.70);
+        } else if (this.difficulty === 'hard') {
+          // 고급: 정밀 조준(약 +-2도), 강력한 넉아웃 파워
+          angle += (Math.random() - 0.5) * 0.035;
+          powerRatio = Math.min(Math.max(powerRatio * 1.15, 0.85), 1.0);
         } else {
-          angle += (Math.random() - 0.5) * 0.02;
-          powerRatio = Math.max(powerRatio * 1.15, 0.85);
+          // 👑 마스터: 초정밀 스나이퍼 조준(약 +-0.3도), 100% 명중 풀파워 강타
+          angle += (Math.random() - 0.5) * 0.006;
+          powerRatio = Math.min(Math.max(powerRatio * 1.30, 0.95), 1.0);
         }
 
         // 2. AI 조준선 시각 피드백 (플레이어가 볼 수 있게 조준 화살표 표시)
