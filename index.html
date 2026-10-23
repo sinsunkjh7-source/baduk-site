@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=20261022_official_logo_final">
+  <link rel="stylesheet" href="style.css?v=20261023_gnugo_v1792767393">
   <script src="auth.js?v=20261022_v1792680182"></script>
 </head>
 <body>
@@ -367,7 +367,7 @@
           <h2 class="mission-title" id="missionTitle" style="display: none;"></h2>
           <p class="mission-desc" id="missionDesc"></p>
 
-          <!-- 힌트 박스 (교재 원문에 힌트가 있는 경우에만 game.js에서 flex로 노출) -->
+          <!-- 힌트 박스 (교재 원문에 힌트가 있는 경우에만 game.js?v=20261023_gnugo_v1792767393에서 flex로 노출) -->
           <div class="mission-hint-box" id="missionHintBox" style="display: none;">
             <span class="hint-icon">💡</span>
             <span class="hint-text" id="missionHintText"></span>
@@ -917,76 +917,203 @@
       <div class="board-right-spacer" id="boardRightSpacer" aria-hidden="true"></div>
     </main>
 
-    <!-- 🌟 실시간 1:1 온라인 대국실 모달 🌟 -->
+    <!-- 🌟 실시간 1:1 온라인 & AI 바둑 대국실 모달 🌟 -->
     <div class="modal-overlay" id="onlineModal">
-      <div class="modal-box online-modal-box" style="max-width: 480px;">
-        <div class="modal-badge">🌐 JH 바둑 대국실</div>
-        <h2 class="modal-title">1:1 온라인 대국 시작하기</h2>
-        <p class="modal-desc">새로운 대국 방을 만들고 친구에게 링크나 방 번호를 공유해 실시간 대국을 즐기세요.</p>
-
-        <!-- 친구와 1:1 온라인 대국 섹션 -->
-        <div class="online-section" id="sectionCreateRoom">
-          <div class="stone-pick-group">
-            <span class="stone-pick-label">⚔️ 대국 돌 배정 방식</span>
-            <div class="stone-pick-options">
-              <button type="button" class="stone-pick-btn active" data-color="nigiri" id="btnPickNigiri" title="대국 시작 시 50% 확률로 흑/백 자동 돌 가리기">
-                🎲 돌 가리기
-              </button>
-              <button type="button" class="stone-pick-btn" data-color="black" id="btnPickBlack" title="방장이 흑돌(선공), 상대방이 백돌">
-                ⚫ 내가 흑돌
-              </button>
-              <button type="button" class="stone-pick-btn" data-color="white" id="btnPickWhite" title="방장이 백돌(후공), 상대방이 흑돌">
-                ⚪ 내가 백돌
-              </button>
-            </div>
-          </div>
-
-          <div class="stone-pick-group" style="margin-top: 14px;">
-            <span class="stone-pick-label">⏱️ 대국 시간 규칙</span>
-            <div class="stone-pick-options time-pick-options">
-              <button type="button" class="time-pick-btn active" data-time="none" id="btnTimeNone" title="제한시간 없이 여유롭게 대국">
-                ⏱️ 무제한
-              </button>
-              <button type="button" class="time-pick-btn" data-time="5m" id="btnTime5m" title="각자 5분 + 30초 1회 초읽기">
-                ⚡ 5분 (30초 1회)
-              </button>
-              <button type="button" class="time-pick-btn" data-time="10m" id="btnTime10m" title="각자 10분 + 30초 3회 초읽기">
-                ⏳ 10분 (30초 3회)
-              </button>
-              <button type="button" class="time-pick-btn" data-time="15m" id="btnTime15m" title="각자 15분 + 40초 3회 초읽기">
-                🏆 15분 (40초 3회)
-              </button>
-            </div>
-          </div>
-
-          <button id="btnActionCreate" class="modal-btn primary full-width" style="margin-top: 16px;" onclick="if(window.badukOnline){ window.badukOnline.createRoom(); }">
-            🏠 새로운 대국 방 만들기
+      <div class="modal-box online-modal-box" style="max-width: 520px;">
+        <div class="modal-badge" id="modalMainBadge">🌐 JH 바둑 대국실</div>
+        
+        <!-- 상단 2대 모드 탭 -->
+        <div class="match-mode-tabs">
+          <button type="button" class="match-mode-tab-btn active" id="tabBtnAiMatch" onclick="window.switchMatchModalTab('ai')">
+            🤖 어린이 AI 바둑 대국
+          </button>
+          <button type="button" class="match-mode-tab-btn" id="tabBtnP2pMatch" onclick="window.switchMatchModalTab('p2p')">
+            🌐 친구와 1:1 대국
           </button>
         </div>
 
-        <!-- 방 생성 완료 시 링크 공유 영역 -->
-        <div class="online-section created-box" id="sectionShareLink" style="display: none;">
-          <div class="share-info">
-            <span class="room-code-badge" id="displayRoomCode" style="font-size: 1.15rem; padding: 8px 16px;">방 번호: 123456</span>
-            <p class="share-guide">아래 링크를 복사해 친구에게 전달하세요:</p>
-            <div class="link-copy-box">
-              <input type="text" id="shareLinkInput" readonly class="share-input">
-              <button id="btnCopyLink" class="copy-btn">📋 링크 복사</button>
+        <!-- 1. AI 바둑 대국 탭 영역 -->
+        <div id="paneAiMatch" class="match-tab-pane active">
+          <h2 class="modal-title" style="margin-top: 4px;">어린이 AI 바둑 대전</h2>
+          <p class="modal-desc" style="margin-top: 4px; margin-bottom: 14px;">
+            100% 브라우저 인공지능(GNU Go) 탑재! 내 급수에 맞는 동물 친구와 렉 없이 대국해보세요.
+          </p>
+
+          <!-- AI 상대 (6단계 급수) 선택 카드 그리드 -->
+          <div class="stone-pick-group">
+            <span class="stone-pick-label">🐾 대국 상대 (난이도 급수) 선택</span>
+            <div class="ai-levels-grid" id="aiLevelsGrid">
+              <button type="button" class="ai-level-btn" data-level="1">
+                <span class="ai-avatar">🐣</span>
+                <div class="ai-info">
+                  <span class="ai-name">삐약이</span>
+                  <span class="ai-rank">25~30급 (샛별부)</span>
+                </div>
+              </button>
+              <button type="button" class="ai-level-btn" data-level="2">
+                <span class="ai-avatar">🐰</span>
+                <div class="ai-info">
+                  <span class="ai-name">토끼</span>
+                  <span class="ai-rank">20~24급 (꿈나무부)</span>
+                </div>
+              </button>
+              <button type="button" class="ai-level-btn active" data-level="3">
+                <span class="ai-avatar">🦊</span>
+                <div class="ai-info">
+                  <span class="ai-name">여우</span>
+                  <span class="ai-rank">15~19급 (기초반)</span>
+                </div>
+              </button>
+              <button type="button" class="ai-level-btn" data-level="4">
+                <span class="ai-avatar">🐼</span>
+                <div class="ai-info">
+                  <span class="ai-name">판다</span>
+                  <span class="ai-rank">12~14급 (초급반)</span>
+                </div>
+              </button>
+              <button type="button" class="ai-level-btn" data-level="5">
+                <span class="ai-avatar">🐯</span>
+                <div class="ai-info">
+                  <span class="ai-name">호랑이</span>
+                  <span class="ai-rank">10~11급 (중급반)</span>
+                </div>
+              </button>
+              <button type="button" class="ai-level-btn" data-level="6">
+                <span class="ai-avatar">🦁</span>
+                <div class="ai-info">
+                  <span class="ai-name">사자</span>
+                  <span class="ai-rank">8~10급 (도장 마스터)</span>
+                </div>
+              </button>
             </div>
-            <div class="waiting-indicator">
-              <span class="pulse-dot"></span>
-              <span>상대방의 입장을 기다리는 중입니다...</span>
+          </div>
+
+          <!-- 바둑판 크기 선택 (9줄 / 13줄 / 19줄) -->
+          <div class="stone-pick-group" style="margin-top: 12px;">
+            <span class="stone-pick-label">📐 바둑판 규격</span>
+            <div class="board-size-options" id="aiBoardSizeOptions">
+              <button type="button" class="board-size-btn" data-size="9">⚡ 9줄 (입문판)</button>
+              <button type="button" class="board-size-btn" data-size="13">⚔️ 13줄 (실전판)</button>
+              <button type="button" class="board-size-btn active" data-size="19">🏆 19줄 (표준판)</button>
             </div>
+          </div>
+
+          <!-- 대국 돌 배정 -->
+          <div class="stone-pick-group" style="margin-top: 12px;">
+            <span class="stone-pick-label">⚔️ 대국 돌 배정</span>
+            <div class="stone-pick-options" id="aiColorOptions">
+              <button type="button" class="stone-pick-btn active" data-color="black" id="btnAiColorBlack">
+                ⚫ 내가 흑돌 (선공)
+              </button>
+              <button type="button" class="stone-pick-btn" data-color="white" id="btnAiColorWhite">
+                ⚪ 내가 백돌 (덤 6.5집)
+              </button>
+              <button type="button" class="stone-pick-btn" data-color="nigiri" id="btnAiColorNigiri">
+                🎲 돌 가리기
+              </button>
+            </div>
+          </div>
+
+          <!-- 접바둑 점수 선택 (흑돌일 때 활성화) -->
+          <div class="stone-pick-group" id="aiHandicapGroup" style="margin-top: 12px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+              <span class="stone-pick-label" style="margin-bottom: 0;">🎯 접바둑 치수 (흑돌 화점 바둑)</span>
+              <span style="font-size: 0.8rem; color: #2563eb; font-weight: 700;">입문자는 4~9점 추천!</span>
+            </div>
+            <select id="aiHandicapSelect" class="handicap-select">
+              <option value="0">호선 (맞바둑 - 덤 6.5집)</option>
+              <option value="2">2점 접바둑 (덤 0.5집)</option>
+              <option value="3">3점 접바둑 (덤 0.5집)</option>
+              <option value="4" selected>4점 접바둑 (화점 4곳 - 덤 0.5집) ★추천</option>
+              <option value="5">5점 접바둑 (화점 4곳 + 천원)</option>
+              <option value="6">6점 접바둑 (화점 6곳)</option>
+              <option value="7">7점 접바둑 (화점 6곳 + 천원)</option>
+              <option value="8">8점 접바둑 (화점 8곳)</option>
+              <option value="9">9점 접바둑 (화점 8곳 + 천원) ★입문 추천</option>
+            </select>
+          </div>
+
+          <!-- 시작 버튼 -->
+          <button id="btnStartAiMatch" class="modal-btn primary full-width" style="margin-top: 16px; font-size: 1.05rem; padding: 12px;">
+            🚀 AI 바둑 대국 시작하기!
+          </button>
+
+          <div class="ai-engine-notice">
+            <span>🛡️ <b>100% 브라우저(클라이언트) 구동</b>: 서버 과부하 없이 수천 명이 동시에 대국해도 렉 없이 즉각 응수합니다.</span>
           </div>
         </div>
 
-        <div class="divider-text">또는</div>
+        <!-- 2. 친구와 1:1 온라인 대국 탭 영역 -->
+        <div id="paneP2pMatch" class="match-tab-pane" style="display: none;">
+          <h2 class="modal-title" style="margin-top: 4px;">친구와 1:1 온라인 대국</h2>
+          <p class="modal-desc" style="margin-top: 4px; margin-bottom: 14px;">
+            새로운 대국 방을 만들고 친구에게 링크나 방 번호를 공유해 실시간 대국을 즐기세요.
+          </p>
 
-        <!-- 방 참여하기 영역 -->
-        <div class="online-section" id="sectionJoinRoom">
-          <div class="join-input-group">
-            <input type="text" id="joinCodeInput" placeholder="방 번호 6자리 입력 (예: 123456)" class="join-input">
-            <button id="btnActionJoin" class="modal-btn secondary" onclick="const c=document.getElementById('joinCodeInput').value.trim(); if(window.badukOnline){ window.badukOnline.joinRoom(c); }">🚀 대국실 입장하기</button>
+          <!-- 친구와 1:1 온라인 대국 섹션 -->
+          <div class="online-section" id="sectionCreateRoom">
+            <div class="stone-pick-group">
+              <span class="stone-pick-label">⚔️ 대국 돌 배정 방식</span>
+              <div class="stone-pick-options">
+                <button type="button" class="stone-pick-btn active" data-color="nigiri" id="btnPickNigiri" title="대국 시작 시 50% 확률로 흑/백 자동 돌 가리기">
+                  🎲 돌 가리기
+                </button>
+                <button type="button" class="stone-pick-btn" data-color="black" id="btnPickBlack" title="방장이 흑돌(선공), 상대방이 백돌">
+                  ⚫ 내가 흑돌
+                </button>
+                <button type="button" class="stone-pick-btn" data-color="white" id="btnPickWhite" title="방장이 백돌(후공), 상대방이 흑돌">
+                  ⚪ 내가 백돌
+                </button>
+              </div>
+            </div>
+
+            <div class="stone-pick-group" style="margin-top: 14px;">
+              <span class="stone-pick-label">⏱️ 대국 시간 규칙</span>
+              <div class="stone-pick-options time-pick-options">
+                <button type="button" class="time-pick-btn active" data-time="none" id="btnTimeNone" title="제한시간 없이 여유롭게 대국">
+                  ⏱️ 무제한
+                </button>
+                <button type="button" class="time-pick-btn" data-time="5m" id="btnTime5m" title="각자 5분 + 30초 1회 초읽기">
+                  ⚡ 5분 (30초 1회)
+                </button>
+                <button type="button" class="time-pick-btn" data-time="10m" id="btnTime10m" title="각자 10분 + 30초 3회 초읽기">
+                  ⏳ 10분 (30초 3회)
+                </button>
+                <button type="button" class="time-pick-btn" data-time="15m" id="btnTime15m" title="각자 15분 + 40초 3회 초읽기">
+                  🏆 15분 (40초 3회)
+                </button>
+              </div>
+            </div>
+
+            <button id="btnActionCreate" class="modal-btn primary full-width" style="margin-top: 16px;" onclick="if(window.badukOnline){ window.badukOnline.createRoom(); }">
+              🏠 새로운 대국 방 만들기
+            </button>
+          </div>
+
+          <!-- 방 생성 완료 시 링크 공유 영역 -->
+          <div class="online-section created-box" id="sectionShareLink" style="display: none;">
+            <div class="share-info">
+              <span class="room-code-badge" id="displayRoomCode" style="font-size: 1.15rem; padding: 8px 16px;">방 번호: 123456</span>
+              <p class="share-guide">아래 링크를 복사해 친구에게 전달하세요:</p>
+              <div class="link-copy-box">
+                <input type="text" id="shareLinkInput" readonly class="share-input">
+                <button id="btnCopyLink" class="copy-btn">📋 링크 복사</button>
+              </div>
+              <div class="waiting-indicator">
+                <span class="pulse-dot"></span>
+                <span>상대방의 입장을 기다리는 중입니다...</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="divider-text">또는</div>
+
+          <!-- 방 참여하기 영역 -->
+          <div class="online-section" id="sectionJoinRoom">
+            <div class="join-input-group">
+              <input type="text" id="joinCodeInput" placeholder="방 번호 6자리 입력 (예: 123456)" class="join-input">
+              <button id="btnActionJoin" class="modal-btn secondary" onclick="const c=document.getElementById('joinCodeInput').value.trim(); if(window.badukOnline){ window.badukOnline.joinRoom(c); }">🚀 대국실 입장하기</button>
+            </div>
           </div>
         </div>
 
@@ -1203,7 +1330,7 @@
   </div>
 
   <script src="audio.js?v=20261022_final_audio_v5"></script>
-  <script src="baduk_engine.js?v=20261022_remove_stone"></script>
+  <script src="baduk_engine.js?v=20261023_gnugo_v1792767393"></script>
   <script src="online_manager.js"></script>
   <script src="gomoku_ai.js?v=20261023_grandmaster_v2"></script>
   <script src="problem_adapter.js?v=20261018_0552"></script>
@@ -1234,6 +1361,10 @@
   <script src="data/books_js/book_tier1_intro.js?v=20261014_1041"></script>
   <script src="book_selector.js?v=20261022_v1792680182"></script>
   <script src="alkkagi_engine.js?v=20261012_2025"></script>
-  <script src="game.js?v=20261022_v1792680182"></script>
+  <script>window.exports = window.exports || {};</script>
+  <script src="ai_engine/gnugo.js"></script>
+  <script src="ai_engine/gnugo_controller.js"></script>
+  <script src="ai_match_manager.js?v=20261023_gnugo_v1792767393"></script>
+  <script src="game.js?v=20261023_gnugo_v1792767393"></script>
 </body>
 </html>

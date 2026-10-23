@@ -89,6 +89,7 @@ class BadukEngine {
 
   // 내부 착수 실행 (기록 추가 없이 보드 상태만 변경)
   _applyMove(x, y, color) {
+    if (x < 0 || y < 0) return; // 패스(Pass)는 착수 없이 통과
     const oppColor = color === 1 ? 2 : 1;
     this.board[y][x] = color;
 
@@ -241,6 +242,18 @@ class BadukEngine {
       step: stepNum,
       captures: capturedStones
     };
+  }
+
+  // 🌟 한 수 쉬기 (Pass) 🌟
+  pass(color) {
+    if (this.currentStep < this.moves.length) {
+      this.moves = this.moves.slice(0, this.currentStep);
+    }
+    const stepNum = this.moves.length + 1;
+    this.moves.push({ x: -1, y: -1, color, step: stepNum, isPass: true, captures: [] });
+    this.currentStep = this.moves.length;
+    this.koPoint = null;
+    return { success: true, isPass: true, color, step: stepNum, captures: [] };
   }
 
   // 현재 판 위의 모든 단수(Atari) 그룹 탐색

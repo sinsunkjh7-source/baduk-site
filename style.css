@@ -2054,6 +2054,153 @@ body.bg-theme-theme5 {
   box-shadow: 0 2px 8px rgba(37, 99, 235, 0.35);
 }
 
+/* ===================================================
+   🤖 어린이 AI 대국 모달 전용 스타일
+   =================================================== */
+.match-mode-tabs {
+  display: flex;
+  background: #f1f5f9;
+  padding: 4px;
+  border-radius: 12px;
+  margin-bottom: 14px;
+  gap: 4px;
+}
+.match-mode-tab-btn {
+  flex: 1;
+  padding: 10px 8px;
+  border: none;
+  background: transparent;
+  color: #64748b;
+  font-size: 0.92rem;
+  font-weight: 800;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.match-mode-tab-btn:hover {
+  color: #0f172a;
+}
+.match-mode-tab-btn.active {
+  background: #ffffff;
+  color: #2563eb;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+.match-tab-pane {
+  display: none;
+}
+.match-tab-pane.active {
+  display: block;
+}
+
+/* AI 레벨 (6단계) 카드 그리드 */
+.ai-levels-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.ai-level-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #f8fafc;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 8px 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+}
+.ai-level-btn:hover {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+}
+.ai-level-btn.active {
+  background: #eff6ff;
+  border-color: #2563eb;
+  box-shadow: 0 0 10px rgba(37, 99, 235, 0.15);
+}
+.ai-avatar {
+  font-size: 1.6rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+.ai-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.ai-name {
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: #1e293b;
+}
+.ai-rank {
+  font-size: 0.75rem;
+  color: #64748b;
+  font-weight: 600;
+}
+
+/* 바둑판 규격 버튼 */
+.board-size-options {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+.board-size-btn {
+  background: #f1f5f9;
+  border: 1.5px solid #cbd5e1;
+  color: #334155;
+  padding: 8px 6px;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: center;
+}
+.board-size-btn:hover {
+  background: #e2e8f0;
+}
+.board-size-btn.active {
+  background: linear-gradient(135deg, #0284c7, #0369a1);
+  color: #ffffff;
+  border-color: #0284c7;
+  box-shadow: 0 2px 8px rgba(2, 132, 199, 0.35);
+}
+
+/* 접바둑 셀렉트박스 */
+.handicap-select {
+  width: 100%;
+  padding: 9px 12px;
+  background: #f8fafc;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 10px;
+  color: #0f172a;
+  font-size: 0.88rem;
+  font-weight: 700;
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+.handicap-select:focus {
+  border-color: #2563eb;
+  background: #ffffff;
+}
+
+/* AI 엔진 무부하 보증 공지 */
+.ai-engine-notice {
+  margin-top: 12px;
+  padding: 8px 12px;
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 8px;
+  font-size: 0.78rem;
+  color: #166534;
+  line-height: 1.4;
+  text-align: center;
+}
+
+
 /* 돌 가리기 토스트 알림 */
 .nigiri-toast {
   position: fixed;

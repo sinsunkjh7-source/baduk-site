@@ -301,6 +301,10 @@ class BadukGameApp {
     this.isAlkkagiMode = false;
     this.alkkagiEngine = (typeof AlkkagiEngine !== 'undefined') ? new AlkkagiEngine(this) : null;
 
+    // 🤖 어린이 AI 바둑 대국 (그누고 WASM)
+    this.isAIMatch = false;
+    this.aiMatchManager = (typeof AIMatchManager !== 'undefined') ? new AIMatchManager(this) : null;
+
     // 🎭 대국자 캐릭터 아바타 상태
     this.myAvatar = 'fairy_black';
     this.blackAvatar = 'fairy_black';
@@ -1621,6 +1625,15 @@ class BadukGameApp {
     }
 
     if (coords && this.engine.board[coords.y][coords.x] === 0) {
+      if (this.isAIMatch) {
+        const isMyTurn = (this.aiMatchManager.getCurrentTurn() === this.aiMatchManager.userColor);
+        if (!isMyTurn || this.aiMatchManager.isThinking) {
+          this.hoverPos = null;
+          this.canvas.style.cursor = 'not-allowed';
+          this.render();
+          return;
+        }
+      }
       if (this.isOnlineMatch) {
         const currentTurn = (this.engine.currentStep % 2 === 0) ? 1 : 2;
         if (currentTurn !== this.myOnlineColor) {
@@ -1660,6 +1673,12 @@ class BadukGameApp {
     // 0. ⚪⚫ 오목 대전 모드 🌟
     if (this.isOmokMode) {
       this.handleOmokClick(x, y);
+      return;
+    }
+
+    // 0.5. 🤖 어린이 AI 바둑 대국 모드 🌟
+    if (this.isAIMatch) {
+      this.aiMatchManager.onUserMove(x, y);
       return;
     }
 
@@ -3233,10 +3252,11 @@ class BadukGameApp {
   }
 
   switchMode(mode) {
-    if (this.isOnlineMatch && mode !== 'online') {
-      const confirmLeave = confirm("진행 중인 온라인 대국을 종료하고 모드를 변경하시겠습니까?");
+    if ((this.isOnlineMatch || this.isAIMatch) && mode !== 'online') {
+      const confirmLeave = confirm("진행 중인 대국을 종료하고 모드를 변경하시겠습니까?");
       if (!confirmLeave) return;
-      this.onlineManager.leaveRoom();
+      if (this.isOnlineMatch) this.onlineManager.leaveRoom();
+      if (this.isAIMatch) this.isAIMatch = false;
     }
 
     const btnLecture = document.getElementById('btnModeLecture');
@@ -3368,7 +3388,10 @@ class BadukGameApp {
       this.loadMission(this.currentMissionIndex || 0);
     } else if (mode === 'online') {
       const onlineModal = document.getElementById('onlineModal');
-      if (onlineModal) onlineModal.classList.add('show');
+      if (onlineModal) {
+        onlineModal.classList.add('show');
+        if (window.switchMatchModalTab) window.switchMatchModalTab('ai');
+      }
     } else if (mode === 'omok') {
       this.isLectureMode = false;
       this.isMissionActive = false;
@@ -3433,6 +3456,10 @@ class BadukGameApp {
     const stepIndicator = document.getElementById('stepIndicator');
 
     // 🌟 온라인 대국 모드 & AI 바둑 대국 모드 상태 표시 & 전용 패널 동기화 🌟
+    if (this.isAIMatch) {
+      this.aiMatchManager.updateStatus();
+      return;
+    }
     if (this.isOnlineMatch) {
       const activeColor = (this.engine.currentStep % 2 === 0) ? 1 : 2;
       const isMyTurn = (activeColor === this.myOnlineColor);
@@ -3875,6 +3902,8 @@ class BadukGameApp {
       let hoverColor = 1;
       if (this.isOmokMode) {
         hoverColor = (this.omokGameMode === 'ai') ? (this.omokPlayerColor || 1) : this.omokTurn;
+      } else if (this.isAIMatch) {
+        hoverColor = this.aiMatchManager.userColor || 1;
       } else if (this.isOnlineMatch) {
         hoverColor = this.myOnlineColor || 1;
       } else {
