@@ -414,9 +414,23 @@
             </div>
           </div>
 
-          <!-- 2. 바둑판 스킨 선택기 (나무판 / 소프트 그린판 / 연한 하늘구름판) -->
+          <!-- 2. 바탕 화면 테마 선택기 (1~7) -->
+          <div class="side-setting-row" title="바탕화면 테마 변경">
+            <span class="side-setting-label">바탕 스킨</span>
+            <div class="segmented-control side-segmented" id="bgThemeControl">
+              <button type="button" class="bg-theme-btn" data-theme="theme1" title="1. 싱그러운 봄날의 초원과 호수">1</button>
+              <button type="button" class="bg-theme-btn" data-theme="theme2" title="2. 노을빛 물든 따뜻한 호숫가">2</button>
+              <button type="button" class="bg-theme-btn" data-theme="theme3" title="3. 황금빛 단풍과 호수의 가을 풍경">3</button>
+              <button type="button" class="bg-theme-btn" data-theme="theme4" title="4. 포근한 눈 덮인 겨울 오두막">4</button>
+              <button type="button" class="bg-theme-btn" data-theme="theme5" title="5. 동화 같은 야외 바둑 동산">5</button>
+              <button type="button" class="bg-theme-btn active" data-theme="theme6" title="6. 🌌 신비한 별빛 밤하늘과 유성">6</button>
+              <button type="button" class="bg-theme-btn" data-theme="theme7" title="7. ☁️ 청명한 가을 하늘과 뭉게구름">7</button>
+            </div>
+          </div>
+
+          <!-- 3. 바둑판 스킨 선택기 (나무판 / 잔디판 / 하늘판) -->
           <div class="side-setting-row" title="바둑판 스킨 색상 선택">
-            <span class="side-setting-label">판스킨</span>
+            <span class="side-setting-label">바둑판 스킨</span>
             <div class="segmented-control side-segmented" id="boardSkinControl">
               <button type="button" class="board-skin-btn active" data-skin="wood" title="1. 정통 비자목 (나무판)">🪵 나무</button>
               <button type="button" class="board-skin-btn" data-skin="green" title="2. 싱그러운 천연 잔디판">🌿 잔디</button>
@@ -424,7 +438,7 @@
             </div>
           </div>
 
-          <!-- 2. 바둑돌 스타일 선택기 -->
+          <!-- 4. 바둑돌 스타일 선택기 (1~7) -->
           <div class="side-setting-row" title="바둑돌 스타일 선택">
             <span class="side-setting-label">바둑돌</span>
             <div class="segmented-control side-segmented" id="stoneStyleControl">
@@ -438,42 +452,27 @@
             </div>
           </div>
 
-          <!-- 3. 바탕 화면 테마 선택기 (1~5) -->
-          <div class="side-setting-row" title="바탕화면 테마 변경">
-            <span class="side-setting-label">바탕</span>
-            <div class="segmented-control side-segmented" id="bgThemeControl">
-              <button type="button" class="bg-theme-btn" data-theme="theme1" title="1. 싱그러운 봄날의 초원과 호수">1</button>
-              <button type="button" class="bg-theme-btn" data-theme="theme2" title="2. 노을빛 물든 따뜻한 호숫가">2</button>
-              <button type="button" class="bg-theme-btn" data-theme="theme3" title="3. 황금빛 단풍과 호수의 가을 풍경">3</button>
-              <button type="button" class="bg-theme-btn" data-theme="theme4" title="4. 포근한 눈 덮인 겨울 오두막">4</button>
-              <button type="button" class="bg-theme-btn" data-theme="theme5" title="5. 동화 같은 야외 바둑 동산">5</button>
-              <button type="button" class="bg-theme-btn active" data-theme="theme6" title="6. 🌌 신비한 별빛 밤하늘과 유성">6</button>
-              <button type="button" class="bg-theme-btn" data-theme="theme7" title="7. ☁️ 청명한 가을 하늘과 뭉게구름">7</button>
+          <!-- 5. 착수음 선택기 (1~4) -->
+          <div class="side-setting-row" title="착수 효과음 선택">
+            <span class="side-setting-label">착수음</span>
+            <div class="segmented-control side-segmented" id="soundTypeControl">
+              <button type="button" class="sound-type-btn active" data-sound="classic" title="1. 명품 바둑돌">1</button>
+              <button type="button" class="sound-type-btn" data-sound="deep" title="2. 묵직한 통나무">2</button>
+              <button type="button" class="sound-type-btn" data-sound="crisp" title="3. 경쾌한 딱!">3</button>
+              <button type="button" class="sound-type-btn" data-sound="pop" title="4. 귀여운 퐁퐁">4</button>
             </div>
           </div>
 
-          
-
-          <!-- 4. 착수 소리 & 볼륨 & 소리 끄기 -->
-          <div class="side-setting-row side-audio-row" title="착수 효과음 및 음량 조절">
-            <div class="side-audio-top">
-              <span class="side-setting-label">착수소리</span>
-              <div class="segmented-control side-segmented" id="soundTypeControl">
-                <button type="button" class="sound-type-btn active" data-sound="classic" title="1. 명품 바둑돌">1</button>
-                <button type="button" class="sound-type-btn" data-sound="deep" title="2. 묵직한 통나무">2</button>
-                <button type="button" class="sound-type-btn" data-sound="crisp" title="3. 경쾌한 딱!">3</button>
-                <button type="button" class="sound-type-btn" data-sound="pop" title="4. 귀여운 퐁퐁">4</button>
-              </div>
+          <!-- 6. 음량 조절 및 음소거 -->
+          <div class="side-setting-row side-volume-row" title="음량 조절 및 음소거">
+            <span class="side-setting-label">음량</span>
+            <div class="volume-slider-box" title="음량 조절">
+              <span class="vol-icon">🔊</span>
+              <input type="range" id="volumeSlider" min="0" max="150" value="100" class="vol-range">
             </div>
-            <div class="side-audio-bottom">
-              <div class="volume-slider-box" title="음량 조절">
-                <span class="vol-icon">🔊</span>
-                <input type="range" id="volumeSlider" min="0" max="150" value="100" class="vol-range">
-              </div>
-              <button type="button" id="btnSound" class="sound-mute-btn" title="소리 켜기/끄기">
-                <span id="soundIcon">🔊</span>
-              </button>
-            </div>
+            <button type="button" id="btnSound" class="sound-mute-btn" title="소리 켜기/끄기">
+              <span id="soundIcon">🔊</span>
+            </button>
           </div>
         </div>
       </aside>

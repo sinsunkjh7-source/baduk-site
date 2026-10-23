@@ -884,70 +884,85 @@ body.bg-theme-theme5 {
 .side-settings-panel {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 4px;
   background: #ffffff;
-  padding: 8px 10px;
+  padding: 7px 8px;
   border-radius: 14px;
   border: 1.5px solid #e2e8f0;
   box-shadow: 0 4px 12px rgba(15, 60, 100, 0.06);
   margin-top: 3px;
+  box-sizing: border-box;
 }
 
 .side-setting-row {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   background: #f8fafc;
-  padding: 4px 6px;
-  border-radius: 10px;
+  padding: 3px 5px;
+  border-radius: 9px;
   border: 1px solid #e2e8f0;
-  gap: 3px;
+  gap: 4px;
+  box-sizing: border-box;
+  min-height: 31px;
 }
 
 .side-setting-label {
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-weight: 800;
   color: #2563eb;
   white-space: nowrap;
   user-select: none;
-  min-width: 38px;
-  letter-spacing: -0.4px;
+  width: 58px;
+  min-width: 58px;
+  flex-shrink: 0;
+  letter-spacing: -0.5px;
+  text-align: left;
 }
 
 .segmented-control.side-segmented {
   display: flex;
-  gap: 1.5px;
+  gap: 2px;
   align-items: center;
   flex: 1;
-  justify-content: flex-end;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
 }
 
 .side-segmented .size-btn,
-.side-segmented .stone-btn,
-.side-segmented .bg-theme-btn,
 .side-segmented .sound-type-btn {
-  padding: 2px 3px;
-  font-size: 0.74rem;
-  min-width: 17px;
-  height: 25px;
+  padding: 2px 4px;
+  font-size: 0.72rem;
+  min-width: 20px;
+  height: 24px;
   border-radius: 6px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   line-height: 1;
+  flex-shrink: 0;
 }
 
-.side-segmented .stone-btn {
+.side-segmented .stone-btn,
+.side-segmented .bg-theme-btn {
+  padding: 2px 2px;
+  font-size: 0.71rem;
   min-width: 16px;
-  padding: 2px 2.5px;
+  height: 24px;
+  border-radius: 5px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  flex-shrink: 0;
 }
 
 .side-segmented .board-skin-btn {
-  padding: 2px 7px;
-  font-size: 0.74rem;
-  min-width: 48px;
+  padding: 2px 4px;
+  font-size: 0.70rem;
+  min-width: 40px;
   white-space: nowrap;
-  height: 25px;
+  height: 24px;
   border-radius: 6px;
   display: inline-flex;
   align-items: center;
@@ -959,6 +974,7 @@ body.bg-theme-theme5 {
   cursor: pointer;
   font-weight: 700;
   transition: all 0.15s ease;
+  flex-shrink: 0;
 }
 
 .side-segmented .board-skin-btn:hover {
@@ -973,46 +989,43 @@ body.bg-theme-theme5 {
   box-shadow: 0 2px 4px rgba(37, 99, 235, 0.3);
 }
 
-.side-setting-row.side-audio-row {
-  flex-direction: column;
-  gap: 5px;
-  align-items: stretch;
-  padding: 5px 6px;
-}
-
-.side-audio-top {
+.side-setting-row.side-volume-row {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-}
-
-.side-audio-bottom {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-top: 3px;
-  border-top: 1px dashed #e2e8f0;
-  gap: 6px;
-}
-
-.side-audio-bottom .volume-slider-box {
-  display: flex;
-  align-items: center;
+  justify-content: flex-start;
   gap: 4px;
-  flex: 1;
+  flex-wrap: nowrap;
 }
 
-.side-audio-bottom .vol-range {
+.side-volume-row .volume-slider-box {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  flex: 1;
+  min-width: 0;
+}
+
+.side-volume-row .vol-icon {
+  font-size: 0.72rem;
+  flex-shrink: 0;
+}
+
+.side-volume-row .vol-range {
   width: 100%;
-  max-width: 105px;
+  min-width: 40px;
+  max-width: 80px;
   height: 5px;
 }
 
-.side-audio-bottom .sound-mute-btn {
-  padding: 2px 6px;
+.side-volume-row .sound-mute-btn {
+  padding: 2px 5px;
   height: 24px;
-  font-size: 0.78rem;
+  font-size: 0.74rem;
   border-radius: 6px;
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  cursor: pointer;
+  flex-shrink: 0;
 }
 
 /* 🌟 오른쪽: 바둑판 섹션 (바깥 테두리/회색 배경 없이 순수 바둑판만 노출) 🌟 */
