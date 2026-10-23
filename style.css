@@ -531,26 +531,43 @@ body.bg-theme-theme5 {
 .mission-header {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 6px;
-  margin-bottom: 8px;
+  gap: 5px;
+  margin-bottom: 6px;
+  width: 100%;
 }
 
 .mission-step {
-  font-size: 0.85rem;
-  font-weight: 800;
-  color: #2563eb;
-  line-height: 1.3;
+  font-size: 0.88rem;
+  font-weight: 900;
+  color: #0f172a;
+  line-height: 1.35;
+  word-break: keep-all;
+}
+
+.mission-sub-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 4px;
 }
 
 .badge {
   background: #eff6ff;
   color: #2563eb;
   border: 1.5px solid #bfdbfe;
-  font-size: 0.74rem;
-  padding: 2px 7px;
+  font-size: 0.70rem;
+  padding: 2px 5px;
   border-radius: 6px;
   font-weight: 800;
+  white-space: nowrap;
+}
+
+.mission-header-actions {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  flex-shrink: 0;
 }
 
 .badge-action-btn {
@@ -558,12 +575,14 @@ body.bg-theme-theme5 {
   border: none;
   color: #ffffff;
   border-radius: 6px;
-  padding: 3px 8px;
-  font-size: 0.74rem;
+  padding: 3px 6px;
+  font-size: 0.72rem;
   font-weight: 800;
   cursor: pointer;
-  box-shadow: 0 2px 5px rgba(37, 99, 235, 0.3);
-  transition: all 0.2s;
+  white-space: nowrap;
+  box-shadow: 0 2px 4px rgba(37, 99, 235, 0.25);
+  transition: all 0.15s;
+  flex-shrink: 0;
 }
 
 .badge-action-btn:hover {
@@ -571,34 +590,43 @@ body.bg-theme-theme5 {
   transform: translateY(-1px);
 }
 
-.mission-title {
-  font-size: 1.05rem;
-  font-weight: 900;
-  margin-bottom: 4px;
-  color: #0f172a;
+.badge-action-btn.editor-btn {
+  background: #4338ca;
+}
+
+.mission-step {
+  font-size: 0.84rem;
+  font-weight: 800;
+  color: #1e293b;
   line-height: 1.35;
+  word-break: keep-all;
+}
+
+.mission-title {
+  display: none !important;
 }
 
 .mission-desc {
-  font-size: 0.86rem;
+  font-size: 0.95rem;
   line-height: 1.45;
-  color: #334155;
-  margin-bottom: 8px;
-  font-weight: 600;
+  color: #0f172a;
+  margin: 6px 0 8px 0;
+  font-weight: 800;
+  word-break: keep-all;
 }
 
-/* 🌟 문제 번호 1~24 바로가기 그리드 (가로 4개씩 세로로 길게 정렬) 🌟 */
+/* 🌟 문제 번호 1~24 바로가기 그리드 (5열 컴팩트 정렬) 🌟 */
 .problem-number-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 5px;
-  margin: 8px 0 10px 0;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 4px;
+  margin: 6px 0 8px 0;
   background: #f1f5f9;
-  padding: 8px 6px;
-  border-radius: 12px;
+  padding: 6px 5px;
+  border-radius: 10px;
   border: 1.5px solid #cbd5e1;
   box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
-  max-height: 250px;
+  max-height: 220px;
   overflow-y: auto;
 }
 
@@ -606,22 +634,21 @@ body.bg-theme-theme5 {
   background: linear-gradient(180deg, #3b82f6 0%, #2563eb 50%, #1d4ed8 100%);
   border: 1.5px solid #1e40af;
   color: #ffffff;
-  font-size: 0.82rem;
+  font-size: 0.78rem;
   font-weight: 800;
-  padding: 6px 0;
-  border-radius: 7px;
+  padding: 5px 0;
+  border-radius: 6px;
   cursor: pointer;
   transition: all 0.12s ease;
   text-align: center;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 2px 0 #1e3a8a, 0 3px 5px rgba(37, 99, 235, 0.25);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 2px 0 #1e3a8a;
   user-select: none;
 }
 
 .prob-num-btn:hover {
   background: linear-gradient(180deg, #60a5fa 0%, #3b82f6 50%, #2563eb 100%);
   transform: translateY(-1px);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6), 0 3px 0 #1e3a8a, 0 5px 8px rgba(37, 99, 235, 0.35);
 }
 
 .prob-num-btn:active {

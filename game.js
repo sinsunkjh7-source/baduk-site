@@ -2551,18 +2551,21 @@ class BadukGameApp {
     const mSpeech = document.getElementById('charSpeechText');
     const mHint = document.getElementById('missionHintText');
 
-    const chapName = (mission.chapterTitle || (this.currentBookInfo && this.currentBookInfo.chapter) || '학습 단원');
-    const bookName = (mission.bookTitle || (this.currentBookInfo && this.currentBookInfo.book) || '씽크탱크 1권');
+    let chapName = (mission.chapterTitle || (this.currentBookInfo && this.currentBookInfo.chapter) || '학습 단원');
+    // 영문 표기 및 불필요한 Part 수식어 깔끔하게 정돈
+    chapName = chapName.replace(/\([A-Za-z\s]+\)/g, '').replace(/\[Part\s*\d+[^\]]*\]/g, '').replace(/\s+/g, ' ').trim();
+    const bookName = (mission.bookTitle || (this.currentBookInfo && this.currentBookInfo.book) || '제1단계 샛별부');
 
     const numDisplay = mission.displayNumStr || (index + 1);
     if (stepText) {
-      stepText.textContent = `${chapName} (${numDisplay} / 전체 ${this.missions.length})`;
+      stepText.textContent = `${chapName} (${numDisplay} / ${this.missions.length})`;
     }
     if (badgeText) {
       badgeText.textContent = bookName;
     }
     if (mTitle) {
-      mTitle.textContent = mission.title || `${chapName} (${numDisplay})`;
+      mTitle.textContent = '';
+      mTitle.style.display = 'none';
     }
     if (mDesc) mDesc.textContent = mission.desc || '';
     if (mSpeech) {

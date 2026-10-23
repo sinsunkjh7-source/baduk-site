@@ -350,20 +350,21 @@
       <aside class="story-panel" id="missionStoryPanel">
         <div class="card mission-card">
           <div class="mission-header">
-            <span class="mission-step" id="missionStepText">제1단원: 돌의 활로 1</span>
-            <div style="display: flex; gap: 6px; align-items: center;">
-              <span class="badge" id="missionBadge">JH 바둑스쿨 1단계</span>
-              <button type="button" id="btnOpenBookSelect" class="badge-action-btn" title="다른 교재나 단원 선택하기">📚 교재 변경</button>
-
-              <button type="button" class="badge-action-btn" onclick="window.location.href='editor.html'" title="원장님 전용 문제 선별 및 편집실" style="background:#4338ca; color:#fff;">🛠️ 편집실</button>
+            <div class="mission-step" id="missionStepText">제1단원: 축의 원리와 축머리 (15 / 20)</div>
+            <div class="mission-sub-bar">
+              <span class="badge" id="missionBadge">1단계 샛별부</span>
+              <div class="mission-header-actions">
+                <button type="button" id="btnOpenBookSelect" class="badge-action-btn" title="다른 교재나 단원 선택하기">📚 교재 변경</button>
+                <button type="button" class="badge-action-btn editor-btn" onclick="window.location.href='editor.html'" title="원장님 전용 문제 선별 및 편집실">🛠️ 편집실</button>
+              </div>
             </div>
           </div>
 
-          <!-- 번호 바로가기 그리드 -->
+          <!-- 번호 바로가기 그리드 (5열 컴팩트) -->
           <div class="problem-number-grid" id="problemNumberGrid"></div>
 
-          <!-- 미션 본문 안내 -->
-          <h2 class="mission-title" id="missionTitle"></h2>
+          <!-- 미션 본문 안내 (아래 부분에는 문제와 힌트만 노출) -->
+          <h2 class="mission-title" id="missionTitle" style="display: none;"></h2>
           <p class="mission-desc" id="missionDesc"></p>
 
           <!-- 힌트 박스 (교재 원문에 힌트가 있는 경우에만 game.js에서 flex로 노출) -->
