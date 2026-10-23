@@ -582,10 +582,13 @@
           </div>
         </div>
 
-        <!-- 대국 조작 버튼 (기권 / 무르기 / 나가기) -->
-        <div class="match-action-group">
-          <button class="match-act-btn undo" id="btnMatchUndo" title="상대방에게 무르기 동의를 요청합니다">
-            ↩️ 무르기 요청
+        <!-- 대국 조작 버튼 (한 수 쉬기 / 무르기 / 기권 / 나가기) -->
+        <div class="match-action-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px;">
+          <button class="match-act-btn pass" id="btnMatchPass" title="착수하지 않고 한 수를 쉽니다">
+            ✋ 한 수 쉬기
+          </button>
+          <button class="match-act-btn undo" id="btnMatchUndo" title="한 수를 무릅니다">
+            ↩️ 무르기
           </button>
           <button class="match-act-btn resign" id="btnMatchResign" title="현재 대국을 기권(불계패)합니다">
             🏳️ 기권하기
@@ -917,15 +920,82 @@
       <div class="board-right-spacer" id="boardRightSpacer" aria-hidden="true"></div>
     </main>
 
-    <!-- 🌟 실시간 1:1 온라인 대국실 모달 🌟 -->
+    <!-- 🌟 실시간 온라인 바둑 대국실 모달 (카타고 AI & 1:1 친구) 🌟 -->
     <div class="modal-overlay" id="onlineModal">
-      <div class="modal-box online-modal-box" style="max-width: 480px;">
+      <div class="modal-box online-modal-box" style="max-width: 520px;">
         <div class="modal-badge">🌐 JH 바둑 대국실</div>
-        <h2 class="modal-title">1:1 온라인 대국 시작하기</h2>
-        <p class="modal-desc">새로운 대국 방을 만들고 친구에게 링크나 방 번호를 공유해 실시간 대국을 즐기세요.</p>
+        <h2 class="modal-title" style="margin-bottom: 2px;">바둑 대국 시작하기</h2>
+        
+        <!-- 대국 모드 탭 전환: 🤖 카타고 AI 대국 vs 👥 1:1 친구 대국 -->
+        <div class="match-mode-tabs">
+          <button type="button" class="match-tab-btn active" id="tabAiMatch">
+            🤖 카타고 AI 대국
+          </button>
+          <button type="button" class="match-tab-btn" id="tabPvpMatch">
+            👥 1:1 친구 대국
+          </button>
+        </div>
 
-        <!-- 친구와 1:1 온라인 대국 섹션 -->
-        <div class="online-section" id="sectionCreateRoom">
+        <!-- 🤖 1. 카타고 AI 대국 설정 섹션 -->
+        <div class="online-section" id="sectionAiMatch">
+          <!-- AI 기력 레벨 (급수) 선택 -->
+          <div class="stone-pick-group">
+            <span class="stone-pick-label">⚡ 카타고 AI 실력 (급수)</span>
+            <div class="ai-level-grid">
+              <button type="button" class="ai-level-btn" data-ai-level="beginner">🐣 샛별부<br><small>(25~30급)</small></button>
+              <button type="button" class="ai-level-btn" data-ai-level="novice">🌱 꿈나무<br><small>(18~24급)</small></button>
+              <button type="button" class="ai-level-btn active" data-ai-level="intermediate">🌿 초급반<br><small>(11~17급)</small></button>
+              <button type="button" class="ai-level-btn" data-ai-level="advanced">🌲 중급반<br><small>(6~10급)</small></button>
+              <button type="button" class="ai-level-btn" data-ai-level="expert">🦅 고급반<br><small>(1~5급)</small></button>
+              <button type="button" class="ai-level-btn" data-ai-level="dan">👑 유단자<br><small>(1단~3단)</small></button>
+              <button type="button" class="ai-level-btn master" data-ai-level="master">🏆 마스터<br><small>(최강 카타고)</small></button>
+            </div>
+          </div>
+
+          <!-- 바둑판 크기 선택 -->
+          <div class="stone-pick-group" style="margin-top: 12px;">
+            <span class="stone-pick-label">📐 바둑판 크기</span>
+            <div class="ai-pill-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px;">
+              <button type="button" class="ai-size-btn" data-ai-size="9">9줄 (5분 속기)</button>
+              <button type="button" class="ai-size-btn" data-ai-size="13">13줄 (중급전)</button>
+              <button type="button" class="ai-size-btn active" data-ai-size="19">19줄 (정규 바둑)</button>
+            </div>
+          </div>
+
+          <!-- 치수 (접바둑) 설정 -->
+          <div class="stone-pick-group" style="margin-top: 12px;">
+            <span class="stone-pick-label">⚔️ 치수 (접바둑 설정)</span>
+            <div class="ai-handicap-grid">
+              <button type="button" class="ai-handicap-btn active" data-ai-handicap="0">맞바둑 (호선)</button>
+              <button type="button" class="ai-handicap-btn" data-ai-handicap="1">정선 (덤없음)</button>
+              <button type="button" class="ai-handicap-btn" data-ai-handicap="2">2점 접바둑</button>
+              <button type="button" class="ai-handicap-btn" data-ai-handicap="3">3점 접바둑</button>
+              <button type="button" class="ai-handicap-btn" data-ai-handicap="4">4점 접바둑</button>
+              <button type="button" class="ai-handicap-btn" data-ai-handicap="5">5점 접바둑</button>
+              <button type="button" class="ai-handicap-btn" data-ai-handicap="6">6점 접바둑</button>
+              <button type="button" class="ai-handicap-btn" data-ai-handicap="9">9점 접바둑</button>
+            </div>
+          </div>
+
+          <!-- 내 돌 선택 -->
+          <div class="stone-pick-group" style="margin-top: 12px;">
+            <span class="stone-pick-label">⚪⚫ 내 돌 선택</span>
+            <div class="ai-pill-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px;">
+              <button type="button" class="ai-color-btn active" data-ai-color="1">⚫ 내가 흑돌 (선공/접바둑)</button>
+              <button type="button" class="ai-color-btn" data-ai-color="2">⚪ 내가 백돌 (후공)</button>
+            </div>
+          </div>
+
+          <!-- AI 대국 시작 버튼 -->
+          <button id="btnActionStartAi" class="modal-btn primary full-width" style="margin-top: 16px; padding: 12px 0; font-size: 1.05rem; font-weight: 900; background: linear-gradient(135deg, #2563eb, #1d4ed8); box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);">
+            🚀 카타고 AI와 대국 시작하기
+          </button>
+        </div>
+
+        <!-- 👥 2. 친구와 1:1 온라인 대국 섹션 -->
+        <div id="sectionPvpMatch" style="display: none;">
+          <p class="modal-desc" style="margin-top: 4px;">새로운 대국 방을 만들고 친구에게 링크나 방 번호를 공유해 실시간 대국을 즐기세요.</p>
+          <div class="online-section" id="sectionCreateRoom">
           <div class="stone-pick-group">
             <span class="stone-pick-label">⚔️ 대국 돌 배정 방식</span>
             <div class="stone-pick-options">
@@ -990,7 +1060,8 @@
           </div>
         </div>
 
-        <div class="modal-actions" style="margin-top: 20px;">
+        </div>
+        <div class="modal-actions" style="margin-top: 14px;">
           <button id="btnCloseOnlineModal" class="modal-btn secondary full-width" onclick="document.getElementById('onlineModal').classList.remove('show')">닫기</button>
         </div>
       </div>
@@ -1234,6 +1305,7 @@
   <script src="data/books_js/book_tier1_intro.js?v=20261014_1041"></script>
   <script src="book_selector.js?v=20261022_v1792680182"></script>
   <script src="alkkagi_engine.js?v=20261012_2025"></script>
+  <script src="baduk_ai.js?v=20261023_katago_v1"></script>
   <script src="game.js?v=20261022_v1792680182"></script>
 </body>
 </html>

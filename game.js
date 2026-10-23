@@ -272,6 +272,12 @@ class BadukGameApp {
     // 온라인 대국 상태 관리
     this.isOnlineMatch = false;
     this.myOnlineColor = null; // 1: 흑, 2: 백
+    this.badukAI = (typeof BadukAI !== 'undefined') ? new BadukAI(19) : null;
+    this.isAiGoMatch = false;
+    this.isAiGoThinking = false;
+    this.aiGoLevel = 'intermediate';
+    this.aiGoHandicap = 0;
+    this.aiColor = 2;
 
     this.isMissionActive = false;
     this.isTrialMode = false;
@@ -639,6 +645,89 @@ class BadukGameApp {
 
     const btnAlkkagi = document.getElementById('btnModeAlkkagi');
     if (btnAlkkagi) btnAlkkagi.addEventListener('click', () => this.switchMode('alkkagi'));
+
+    // 🤖 카타고 AI 대국 모달 탭 및 설정 이벤트 리스너
+    const tabAiMatch = document.getElementById('tabAiMatch');
+    const tabPvpMatch = document.getElementById('tabPvpMatch');
+    const secAiMatch = document.getElementById('sectionAiMatch');
+    const secPvpMatch = document.getElementById('sectionPvpMatch');
+
+    if (tabAiMatch && tabPvpMatch) {
+      tabAiMatch.addEventListener('click', () => {
+        tabAiMatch.classList.add('active');
+        tabPvpMatch.classList.remove('active');
+        if (secAiMatch) secAiMatch.style.display = 'block';
+        if (secPvpMatch) secPvpMatch.style.display = 'none';
+      });
+      tabPvpMatch.addEventListener('click', () => {
+        tabPvpMatch.classList.add('active');
+        tabAiMatch.classList.remove('active');
+        if (secAiMatch) secAiMatch.style.display = 'none';
+        if (secPvpMatch) secPvpMatch.style.display = 'block';
+      });
+    }
+
+    // AI 레벨 선택 버튼
+    document.querySelectorAll('.ai-level-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.ai-level-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+    });
+
+    // AI 보드 크기 선택 버튼
+    document.querySelectorAll('.ai-size-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.ai-size-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+    });
+
+    // AI 치수(접바둑) 선택 버튼
+    document.querySelectorAll('.ai-handicap-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.ai-handicap-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+    });
+
+    // AI 내 돌 선택 버튼
+    document.querySelectorAll('.ai-color-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.ai-color-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+    });
+
+    // 🚀 카타고 AI 대국 시작 버튼
+    const btnActionStartAi = document.getElementById('btnActionStartAi');
+    if (btnActionStartAi) {
+      btnActionStartAi.addEventListener('click', () => {
+        const levelBtn = document.querySelector('.ai-level-btn.active');
+        const sizeBtn = document.querySelector('.ai-size-btn.active');
+        const handicapBtn = document.querySelector('.ai-handicap-btn.active');
+        const colorBtn = document.querySelector('.ai-color-btn.active');
+
+        const level = levelBtn ? levelBtn.dataset.aiLevel : 'intermediate';
+        const size = sizeBtn ? parseInt(sizeBtn.dataset.aiSize, 10) : 19;
+        const handicap = handicapBtn ? parseInt(handicapBtn.dataset.aiHandicap, 10) : 0;
+        const color = colorBtn ? parseInt(colorBtn.dataset.aiColor, 10) : 1;
+
+        this.startAiGoMatch({ level, size, handicap, color });
+      });
+    }
+
+    // ✋ 한 수 쉬기 버튼
+    const btnMatchPass = document.getElementById('btnMatchPass');
+    if (btnMatchPass) {
+      btnMatchPass.addEventListener('click', () => {
+        if (this.isAiGoMatch) {
+          this.handleAiMatchPass();
+        } else if (this.isOnlineMatch) {
+          this.showBoardToast("한 수를 쉬었습니다.", "✋");
+        }
+      });
+    }
 
     const btnCloseOnline = document.getElementById('btnCloseOnlineModal');
     if (btnCloseOnline) {
@@ -1020,13 +1109,28 @@ class BadukGameApp {
 
     // 🌟 대국실 전용 액션 버튼 연결 🌟
     const btnUndo = document.getElementById('btnMatchUndo');
-    if (btnUndo) btnUndo.addEventListener('click', () => this.onlineManager.requestUndo());
+    if (btnUndo) {
+      btnUndo.addEventListener('click', () => {
+        if (this.isAiGoMatch) this.handleAiMatchUndo();
+        else this.onlineManager.requestUndo();
+      });
+    }
 
     const btnResign = document.getElementById('btnMatchResign');
-    if (btnResign) btnResign.addEventListener('click', () => this.onlineManager.resign());
+    if (btnResign) {
+      btnResign.addEventListener('click', () => {
+        if (this.isAiGoMatch) this.handleAiMatchResign();
+        else this.onlineManager.resign();
+      });
+    }
 
     const btnLeave = document.getElementById('btnMatchLeave');
-    if (btnLeave) btnLeave.addEventListener('click', () => this.onlineManager.leaveRoom());
+    if (btnLeave) {
+      btnLeave.addEventListener('click', () => {
+        if (this.isAiGoMatch) this.exitAiGoMatch();
+        else this.onlineManager.leaveRoom();
+      });
+    }
 
     // 대국 결과 모달 버튼
     const btnReview = document.getElementById('btnReviewGame');
@@ -1663,9 +1767,40 @@ class BadukGameApp {
       return;
     }
 
-    // 1. 🌟 온라인 1:1 대국 모드 🌟
+    // 1. 🌟 온라인 1:1 대국 & 🤖 카타고 AI 대국 모드 🌟
     if (this.isOnlineMatch) {
-      // 차례 검사 (흑돌은 홀수 번째 수, 백돌은 짝수 번째 수)
+      if (this.isAiGoMatch) {
+        if (this.isAiGoThinking) {
+          this.showBoardToast("🤖 카타고 AI가 수읽기 중입니다...", "🤖");
+          return;
+        }
+        if (this.nextTurn !== this.myOnlineColor) {
+          this.showBoardToast("🤖 카타고 AI의 차례입니다! 잠시 기다려 주세요.", "⏳");
+          return;
+        }
+
+        const res = this.engine.playMove(x, y, this.myOnlineColor);
+        if (!res.success) {
+          if (res.reason === 'SUICIDE') {
+            this.showBoardToast("그곳은 '착수금지'입니다", "🚫");
+          }
+          return;
+        }
+
+        if (res.captures.length > 0) window.badukAudio.playCapture();
+        else window.badukAudio.playStone();
+
+        this.nextTurn = this.aiColor;
+        this.hoverPos = null;
+        this.render();
+        this.updateStatus();
+
+        // 🤖 AI 응수 호출
+        setTimeout(() => this.triggerAiGoMove(), 600);
+        return;
+      }
+
+      // 1:1 P2P 친구 대국
       const currentTurn = (this.engine.currentStep % 2 === 0) ? 1 : 2;
       if (currentTurn !== this.myOnlineColor) {
         this.showBoardToast("⏳ 상대방의 차례입니다! 잠시 기다려 주세요.", "⏳");
@@ -1981,6 +2116,301 @@ class BadukGameApp {
         }
       }, 1400);
     }
+  }
+
+
+  // 🌟 접바둑(치수) 화점 좌표 계산
+  getHandicapCoordinates(size, count) {
+    if (count < 2) return [];
+    if (size === 19) {
+      const hoshi = {
+        topRight: { x: 15, y: 3 },
+        bottomLeft: { x: 3, y: 15 },
+        bottomRight: { x: 15, y: 15 },
+        topLeft: { x: 3, y: 3 },
+        tengen: { x: 9, y: 9 },
+        left: { x: 3, y: 9 },
+        right: { x: 15, y: 9 },
+        top: { x: 9, y: 3 },
+        bottom: { x: 9, y: 15 }
+      };
+      if (count === 2) return [hoshi.topRight, hoshi.bottomLeft];
+      if (count === 3) return [hoshi.topRight, hoshi.bottomLeft, hoshi.bottomRight];
+      if (count === 4) return [hoshi.topLeft, hoshi.topRight, hoshi.bottomLeft, hoshi.bottomRight];
+      if (count === 5) return [hoshi.topLeft, hoshi.topRight, hoshi.bottomLeft, hoshi.bottomRight, hoshi.tengen];
+      if (count === 6) return [hoshi.topLeft, hoshi.topRight, hoshi.bottomLeft, hoshi.bottomRight, hoshi.left, hoshi.right];
+      if (count === 7) return [hoshi.topLeft, hoshi.topRight, hoshi.bottomLeft, hoshi.bottomRight, hoshi.left, hoshi.right, hoshi.tengen];
+      if (count === 8) return [hoshi.topLeft, hoshi.topRight, hoshi.bottomLeft, hoshi.bottomRight, hoshi.left, hoshi.right, hoshi.top, hoshi.bottom];
+      if (count >= 9) return [hoshi.topLeft, hoshi.topRight, hoshi.bottomLeft, hoshi.bottomRight, hoshi.left, hoshi.right, hoshi.top, hoshi.bottom, hoshi.tengen];
+    } else if (size === 13) {
+      const hoshi = {
+        topRight: { x: 9, y: 3 },
+        bottomLeft: { x: 3, y: 9 },
+        bottomRight: { x: 9, y: 9 },
+        topLeft: { x: 3, y: 3 },
+        tengen: { x: 6, y: 6 }
+      };
+      if (count === 2) return [hoshi.topRight, hoshi.bottomLeft];
+      if (count === 3) return [hoshi.topRight, hoshi.bottomLeft, hoshi.bottomRight];
+      if (count === 4) return [hoshi.topLeft, hoshi.topRight, hoshi.bottomLeft, hoshi.bottomRight];
+      if (count >= 5) return [hoshi.topLeft, hoshi.topRight, hoshi.bottomLeft, hoshi.bottomRight, hoshi.tengen];
+    } else if (size === 9) {
+      const hoshi = {
+        topRight: { x: 6, y: 2 },
+        bottomLeft: { x: 2, y: 6 },
+        bottomRight: { x: 6, y: 6 },
+        topLeft: { x: 2, y: 2 },
+        tengen: { x: 4, y: 4 }
+      };
+      if (count === 2) return [hoshi.topRight, hoshi.bottomLeft];
+      if (count === 3) return [hoshi.topRight, hoshi.bottomLeft, hoshi.bottomRight];
+      if (count === 4) return [hoshi.topLeft, hoshi.topRight, hoshi.bottomLeft, hoshi.bottomRight];
+      if (count >= 5) return [hoshi.topLeft, hoshi.topRight, hoshi.bottomLeft, hoshi.bottomRight, hoshi.tengen];
+    }
+    return [];
+  }
+
+  // 🤖 카타고 AI 대국 시작
+  startAiGoMatch(config) {
+    const size = parseInt(config.size, 10) || 19;
+    const level = config.level || 'intermediate';
+    const handicap = parseInt(config.handicap, 10) || 0;
+    const myColor = parseInt(config.color, 10) || 1;
+    const aiColor = (myColor === 1) ? 2 : 1;
+
+    this.isOnlineMatch = true;
+    this.isAiGoMatch = true;
+    this.isAiGoThinking = false;
+    this.myOnlineColor = myColor;
+    this.aiColor = aiColor;
+    this.aiGoLevel = level;
+    this.aiGoHandicap = handicap;
+    this.timeRule = 'none';
+
+    if (this.size !== size) {
+      this.changeBoardSize(size);
+    }
+
+    if (!this.badukAI) {
+      this.badukAI = new BadukAI(size);
+    } else {
+      this.badukAI.setSize(size);
+    }
+
+    this.engine.reset();
+
+    // 🌟 접바둑(치수) 화점 배치
+    const handicapStones = this.getHandicapCoordinates(size, handicap);
+    if (handicapStones.length > 0) {
+      this.engine.setInitialStones(handicapStones.map(p => ({ x: p.x, y: p.y, color: 1 })));
+    }
+
+    // 대국실 UI 전환
+    const missionPanel = document.getElementById('missionStoryPanel');
+    const onlinePanel = document.getElementById('onlineMatchPanel');
+    const lectureToolbar = document.getElementById('lectureToolbar');
+    const choiceBar = document.getElementById('choiceOptionsBar');
+
+    if (missionPanel) missionPanel.style.display = 'none';
+    if (onlinePanel) onlinePanel.style.display = 'flex';
+    if (lectureToolbar) lectureToolbar.style.display = 'none';
+    if (choiceBar) {
+      choiceBar.style.display = 'none';
+      choiceBar.innerHTML = '';
+    }
+
+    const levelNames = {
+      'beginner': '🐣 샛별부 (25~30급)',
+      'novice': '🌱 꿈나무 (18~24급)',
+      'intermediate': '🌿 초급반 (11~17급)',
+      'advanced': '🌲 중급반 (6~10급)',
+      'expert': '🦅 고급반 (1~5급)',
+      'dan': '👑 유단자 (1단~3단)',
+      'master': '🏆 마스터 카타고 (최강)'
+    };
+    const levelLabel = levelNames[level] || '카타고 AI';
+
+    const handicapLabels = {
+      0: '맞바둑 (호선 덤 6.5집)',
+      1: '정선 (덤 없음)',
+      2: '2점 접바둑',
+      3: '3점 접바둑',
+      4: '4점 접바둑',
+      5: '5점 접바둑',
+      6: '6점 접바둑',
+      9: '9점 접바둑'
+    };
+    const handicapLabel = handicapLabels[handicap] || (handicap + '점 접바둑');
+
+    const roomTitle = document.getElementById('matchRoomTitle');
+    const sizeBadge = document.getElementById('matchBoardSizeBadge');
+    const nigiriBadge = document.getElementById('matchNigiriBadge');
+    const timeBadge = document.getElementById('matchTimeBadge');
+
+    if (roomTitle) roomTitle.textContent = `🤖 카타고 AI 대국실 (${levelLabel})`;
+    if (sizeBadge) sizeBadge.textContent = `${size}줄 바둑판`;
+    if (nigiriBadge) nigiriBadge.textContent = handicapLabel;
+    if (timeBadge) timeBadge.textContent = '⏱️ 무제한';
+
+    // 플레이어 vs AI 프로필 세팅
+    const nameBlack = document.getElementById('avatarNameBlack');
+    const nameWhite = document.getElementById('avatarNameWhite');
+    const iconBlack = document.getElementById('avatarIconBlack');
+    const iconWhite = document.getElementById('avatarIconWhite');
+    const badgeBlack = document.getElementById('badgeBlackRole');
+    const badgeWhite = document.getElementById('badgeWhiteRole');
+
+    if (myColor === 1) {
+      if (badgeBlack) { badgeBlack.textContent = '나'; badgeBlack.className = 'player-role-badge me'; }
+      if (badgeWhite) { badgeWhite.textContent = '카타고 AI'; badgeWhite.className = 'player-role-badge'; }
+      if (nameWhite) nameWhite.textContent = levelLabel;
+      if (iconWhite) iconWhite.textContent = '🤖';
+    } else {
+      if (badgeBlack) { badgeBlack.textContent = '카타고 AI'; badgeBlack.className = 'player-role-badge'; }
+      if (badgeWhite) { badgeWhite.textContent = '나'; badgeWhite.className = 'player-role-badge me'; }
+      if (nameBlack) nameBlack.textContent = levelLabel;
+      if (iconBlack) iconBlack.textContent = '🤖';
+    }
+
+    const editB = document.getElementById('avatarEditBlack');
+    const editW = document.getElementById('avatarEditWhite');
+    if (editB) editB.style.display = (myColor === 1) ? 'inline-block' : 'none';
+    if (editW) editW.style.display = (myColor === 2) ? 'inline-block' : 'none';
+
+    // 모달 닫기
+    const onlineModal = document.getElementById('onlineModal');
+    if (onlineModal) onlineModal.classList.remove('show');
+
+    // 턴 초기화 및 AI 첫 수 체크 (접바둑 2점 이상이면 흑이 깔려있으므로 백돌 차례!)
+    if (handicap >= 2) {
+      this.nextTurn = 2;
+    } else {
+      this.nextTurn = 1;
+    }
+
+    this.updateStatus();
+    this.render();
+
+    // AI가 첫 턴을 둘 차례이면 AI 발사!
+    if (this.nextTurn === this.aiColor) {
+      setTimeout(() => this.triggerAiGoMove(), 800);
+    }
+  }
+
+  // 🤖 카타고 AI 응수 계산 및 착수
+  triggerAiGoMove() {
+    if (!this.isAiGoMatch || this.isAiGoThinking) return;
+    this.isAiGoThinking = true;
+    this.updateStatus();
+
+    const delays = {
+      'beginner': 400,
+      'novice': 550,
+      'intermediate': 700,
+      'advanced': 900,
+      'expert': 1100,
+      'dan': 1300,
+      'master': 1600
+    };
+    const delay = (delays[this.aiGoLevel] || 700) + Math.random() * 300;
+
+    setTimeout(() => {
+      if (!this.isAiGoMatch) {
+        this.isAiGoThinking = false;
+        return;
+      }
+
+      const best = this.badukAI.findBestMove(this.engine, this.aiColor, this.aiGoLevel);
+      if (best) {
+        const res = this.engine.playMove(best.x, best.y, this.aiColor);
+        if (res && res.success) {
+          if (res.captures.length > 0) window.badukAudio.playCapture();
+          else window.badukAudio.playStone();
+        }
+        this.nextTurn = this.myOnlineColor;
+      } else {
+        this.showBoardToast("🤖 카타고 AI가 한 수를 쉬었습니다.", "🤖");
+        this.nextTurn = this.myOnlineColor;
+      }
+
+      this.isAiGoThinking = false;
+      this.hoverPos = null;
+      this.updateStatus();
+      this.render();
+    }, delay);
+  }
+
+  // ✋ 카타고 AI 대국: 사용자 한 수 쉬기
+  handleAiMatchPass() {
+    if (!this.isAiGoMatch || this.isAiGoThinking) return;
+    if (this.nextTurn !== this.myOnlineColor) {
+      this.showBoardToast("상대방 차례입니다.", "⏳");
+      return;
+    }
+    this.showBoardToast("한 수를 쉬었습니다.", "✋");
+    this.nextTurn = this.aiColor;
+    this.updateStatus();
+    this.render();
+    setTimeout(() => this.triggerAiGoMove(), 700);
+  }
+
+  // ↩️ 카타고 AI 대국: 무르기 (AI는 아이들의 무르기를 즉시 허용!)
+  handleAiMatchUndo() {
+    if (!this.isAiGoMatch || this.isAiGoThinking) return;
+    if (this.engine.moves.length === 0) {
+      this.showBoardToast("무를 수 있는 수가 없습니다.", "↩️");
+      return;
+    }
+
+    // AI와 대국 시에는 나와 AI의 수 2수를 되돌려 내 차례로 복원
+    const movesToUndo = Math.min(2, this.engine.moves.length);
+    for (let i = 0; i < movesToUndo; i++) {
+      this.engine.moves.pop();
+    }
+    this.engine.goToStep(this.engine.moves.length);
+    this.nextTurn = this.myOnlineColor;
+
+    if (window.badukAudio) window.badukAudio.playStone();
+    this.showBoardToast("한 수를 물렀습니다. 다시 두어보세요!", "🤝");
+    this.hoverPos = null;
+    this.updateStatus();
+    this.render();
+  }
+
+  // 🏳️ 카타고 AI 대국: 기권하기
+  handleAiMatchResign() {
+    if (!this.isAiGoMatch) return;
+    const ok = confirm("정말 기권하시겠습니까?");
+    if (!ok) return;
+
+    this.isAiGoMatch = false;
+    this.isOnlineMatch = false;
+    this.isAiGoThinking = false;
+
+    const resModal = document.getElementById('matchResultModal');
+    const resTitle = document.getElementById('resultModalTitle');
+    const resDesc = document.getElementById('resultModalDesc');
+    const resBadge = document.getElementById('resultModalBadge');
+
+    if (resTitle) resTitle.textContent = (this.myOnlineColor === 1 ? '⚪ 백돌(카타고 AI) 불계승!' : '⚫ 흑돌(카타고 AI) 불계승!');
+    if (resDesc) resDesc.textContent = '기권하여 카타고 AI가 승리하였습니다. 다음 판에 다시 도전해 보세요!';
+    if (resBadge) resBadge.textContent = '🏆 대국 종료';
+    if (resModal) resModal.classList.add('show');
+  }
+
+  // 🚪 카타고 AI 대국: 대국실 나가기
+  exitAiGoMatch() {
+    const ok = confirm("진행 중인 카타고 AI 대국을 종료하고 나가시겠습니까?");
+    if (!ok) return;
+
+    this.isAiGoMatch = false;
+    this.isOnlineMatch = false;
+    this.isAiGoThinking = false;
+
+    const onlinePanel = document.getElementById('onlineMatchPanel');
+    if (onlinePanel) onlinePanel.style.display = 'none';
+
+    this.switchMode('lecture');
   }
 
   // 🌟 온라인 대국 시작 🌟
@@ -3434,15 +3864,28 @@ class BadukGameApp {
 
     // 🌟 온라인 대국 모드 & AI 바둑 대국 모드 상태 표시 & 전용 패널 동기화 🌟
     if (this.isOnlineMatch) {
-      const activeColor = (this.engine.currentStep % 2 === 0) ? 1 : 2;
+      const activeColor = this.isAiGoMatch ? (this.nextTurn || 1) : ((this.engine.currentStep % 2 === 0) ? 1 : 2);
       const isMyTurn = (activeColor === this.myOnlineColor);
 
-      if (isMyTurn) {
-        turnText.textContent = `🟢 [내 차례] 착수하세요! (${this.myOnlineColor === 1 ? '흑돌' : '백돌'})`;
-        turnText.style.color = '#38bdf8';
+      if (this.isAiGoMatch) {
+        if (this.isAiGoThinking) {
+          turnText.textContent = "🤖 카타고 AI가 수읽기 중입니다...";
+          turnText.style.color = '#f59e0b';
+        } else if (isMyTurn) {
+          turnText.textContent = `🟢 [내 차례] 착수하세요! (${this.myOnlineColor === 1 ? '흑돌' : '백돌'})`;
+          turnText.style.color = '#38bdf8';
+        } else {
+          turnText.textContent = `🤖 카타고 AI 차례입니다... (${activeColor === 1 ? '흑돌' : '백돌'})`;
+          turnText.style.color = '#94a3b8';
+        }
       } else {
-        turnText.textContent = `⏳ 상대방 수읽기 중... (${activeColor === 1 ? '흑돌' : '백돌'})`;
-        turnText.style.color = '#94a3b8';
+        if (isMyTurn) {
+          turnText.textContent = `🟢 [내 차례] 착수하세요! (${this.myOnlineColor === 1 ? '흑돌' : '백돌'})`;
+          turnText.style.color = '#38bdf8';
+        } else {
+          turnText.textContent = `⏳ 상대방 수읽기 중... (${activeColor === 1 ? '흑돌' : '백돌'})`;
+          turnText.style.color = '#94a3b8';
+        }
       }
       stepIndicator.textContent = `${this.engine.currentStep}수`;
 
