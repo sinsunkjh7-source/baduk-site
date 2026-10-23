@@ -270,19 +270,6 @@
 }
 
 /* Quiet learning surface: one accent, three regions, no nested decorative cards. */
-body.lesson-guide-active {
-  position: relative;
-}
-
-body.lesson-guide-active::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  background: rgba(246, 248, 242, .94);
-}
-
 .app-container.lesson-guide-active {
   --lesson-ink: #26392e;
   --lesson-muted: #627168;
@@ -488,9 +475,39 @@ body.lesson-guide-active::before {
   border-radius: 9px;
 }
 
-.app-container.lesson-guide-active .lecture-toolbar svg {
-  fill: currentColor;
+.app-container.lesson-guide-active #lectureToolbar svg {
+  fill: currentColor !important;
+  opacity: 1;
   filter: none;
+}
+
+.app-container.lesson-guide-active #lectureToolbar button {
+  border-color: #c7d3c9;
+  background: #f2f5f0;
+  color: #26392e;
+}
+
+.app-container.lesson-guide-active #lectureToolbar button.active {
+  background: #34734b;
+  border-color: #34734b;
+  color: #fff;
+}
+
+.app-container.lesson-guide-active #lectureToolbar button:disabled {
+  opacity: 1;
+  background: #eef1ed;
+  border-color: #d9e0d8;
+  color: #647168;
+}
+
+.app-container.lesson-guide-active #lectureToolbar .tb-btn-sub {
+  background: #e1e8de;
+  color: #425447;
+}
+
+.app-container.lesson-guide-active #lectureToolbar .active .tb-btn-sub {
+  background: rgba(255, 255, 255, .18);
+  color: #fff;
 }
 
 .app-container.lesson-guide-active .toolbar-divider {
