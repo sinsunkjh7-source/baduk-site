@@ -22,8 +22,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=20261024_fixpass_v1792768209">
-  <link rel="stylesheet" href="lesson-guide.css?v=20261024_clean_v4">
+  <link rel="stylesheet" href="style.css?v=20261024_restore_v1">
   <script src="auth.js?v=20261022_v1792680182"></script>
 </head>
 <body>
@@ -361,13 +360,28 @@
               <button type="button" class="mission-act-btn btn-go-editor" onclick="window.location.href='editor.html'" title="원장님 전용 문제 선별 및 편집실">🛠️ 편집실</button>
             </div>
           </div>
-          <!-- 번호 바로가기 그리드 (5열 컴팩트) -->
+          <!-- 번호 바로가기 그리드<!-- 번호 바로가기 그리드 (5열 컴팩트) -->
           <div class="problem-number-grid" id="problemNumberGrid"></div>
-        </div>
 
-        <div class="card lesson-review-note" id="matchReviewGuide" hidden>
-          <strong>대국 복기</strong>
-          <p>방향키(←, →)와 바둑판 아래 버튼으로 한 수씩 되짚어보세요.</p>
+          <!-- 미션 본문 안내 (아래 부분에는 문제와 힌트만 노출) -->
+          <h2 class="mission-title" id="missionTitle" style="display: none;"></h2>
+          <p class="mission-desc" id="missionDesc"></p>
+
+          <!-- 힌트 박스 (교재 원문에 힌트가 있는 경우에만 game.js?v=20261024_fixpass_v1792768209"mission-hint-box" id="missionHintBox" style="display: none;">
+            <span class="hint-icon">💡</span>
+            <span class="hint-text" id="missionHintText"></span>
+          </div>
+
+          <!-- 캐릭터 코치 말풍선 (제거 및 공간 보존) -->
+          <div class="char-coach-box" id="charCoachBox" style="visibility: hidden; min-height: 52px; height: 52px;">
+            <div class="char-avatar-mini" id="charCoachAvatar">
+              <span class="avatar-dot black"></span>
+            </div>
+            <div class="char-speech">
+              <strong id="charCoachName"></strong>
+              <p id="charSpeechText"></p>
+            </div>
+          </div>
         </div>
 
 
@@ -390,8 +404,6 @@
 
         <!-- 🌟 좌측 놓아보기 밑으로 이동된 설정 메뉴 (바둑판, 바둑돌, 바탕, 착수소리) 🌟 -->
         <div class="side-settings-panel" id="sideSettingsPanel">
-          <button type="button" id="btnLessonSettings" class="lesson-settings-toggle" aria-expanded="false" aria-controls="lessonSettingsOptions">화면·소리 설정 <span aria-hidden="true">⌄</span></button>
-          <div id="lessonSettingsOptions" class="lesson-settings-options">
           <!-- 1. 바둑판 규격 선택기 -->
           <div class="side-setting-row" title="바둑판 줄 수 선택">
             <span class="side-setting-label">바둑판</span>
@@ -461,7 +473,6 @@
             <button type="button" id="btnSound" class="sound-mute-btn" title="소리 켜기/끄기">
               <span id="soundIcon">🔊</span>
             </button>
-          </div>
           </div>
         </div>
       </aside>
@@ -901,42 +912,7 @@
         </div>
       </section>
 
-      <!-- 문제와 힌트는 항상 함께 표시하고, 캐릭터는 아래에서 보조합니다. -->
-      <aside class="mission-guide-panel" id="missionGuidePanel" aria-labelledby="missionGuideHeading" data-state="ready" hidden>
-        <header class="lesson-guide-header">
-          <h2 id="missionGuideHeading">문제와 힌트</h2>
-          <span class="lesson-guide-count" id="lessonGuideCount"></span>
-        </header>
-        <div class="lesson-guide-content" id="lessonGuideContent">
-          <section class="lesson-guide-question" aria-labelledby="lessonQuestionHeading">
-            <div class="lesson-guide-label-row">
-              <h3 id="lessonQuestionHeading">문제</h3>
-              <span class="lesson-turn-badge" id="lessonTurnBadge"></span>
-            </div>
-            <h2 class="mission-title" id="missionTitle" hidden></h2>
-            <p class="mission-desc lesson-guide-question-text" id="missionDesc"></p>
-          </section>
-          <section class="mission-hint-box lesson-guide-hint" id="missionHintBox" aria-labelledby="lessonHintHeading">
-            <h3 id="lessonHintHeading">힌트</h3>
-            <p class="hint-text" id="missionHintText"></p>
-          </section>
-        </div>
-        <footer class="lesson-guide-coach" id="charCoachBox">
-          <div class="lesson-guide-master" id="charCoachAvatar" aria-hidden="true">
-            <img id="lessonMasterImage" src="images/characters/master_lesson_guide.png" alt="" width="88" height="88" decoding="async">
-          </div>
-          <div class="lesson-guide-coach-copy">
-            <div class="lesson-guide-coach-heading">
-              <span id="charCoachName">도원 마스터</span>
-              <button type="button" id="btnToggleGuideMaster" class="lesson-guide-character-toggle" aria-pressed="false">캐릭터 숨기기</button>
-            </div>
-            <strong id="lessonGuideStatus" role="status" aria-live="polite">함께 풀어봐요</strong>
-            <p id="charSpeechText"></p>
-          </div>
-        </footer>
-      </aside>
-
-      <!-- 학습 이외의 모드에서는 기존 중앙 정렬 공간을 유지합니다. -->
+      <!-- 🌟 바둑판 화면 정중앙 배치를 위한 우측 대칭 투명 밸런스 스페이서 🌟 -->
       <div class="board-right-spacer" id="boardRightSpacer" aria-hidden="true"></div>
     </main>
 
@@ -1388,6 +1364,6 @@
   <script src="ai_engine/gnugo.js"></script>
   <script src="ai_engine/gnugo_controller.js?v=20261024_fixpass_v1792768209"></script>
   <script src="ai_match_manager.js?v=20261024_fixpass_v1792768209"></script>
-  <script src="game.js?v=20261024_clean_v3"></script>
+  <script src="game.js?v=20261024_restore_v1"></script>
 </body>
 </html>
