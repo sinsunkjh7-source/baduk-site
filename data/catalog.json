@@ -1,187 +1,283 @@
 [
   {
-    "title": "🏆 JH 바둑 아카데미 (30단계 정식 마스터관)",
-    "bookCount": 10,
+    "title": "🏆 JH 바둑 아카데미 (정식 10단계 마스터관)",
+    "bookCount": 11,
     "books": [
       {
+        "code": "tier1_intro",
+        "title": "🌱 특별 입문 스타터관 (30급 ~ 28급 / 819문제)",
+        "chapterCount": 21,
+        "totalProblems": 819,
+        "chapters": [
+          {
+            "code": "t1_ch01",
+            "chapterCode": "t1_ch01",
+            "title": "제1단원: 돌의 활로 1 (11제)",
+            "chapter": "제1단원: 돌의 활로 1 (11제)",
+            "problemCount": 11,
+            "problemsCount": 11
+          },
+          {
+            "code": "t1_ch02",
+            "chapterCode": "t1_ch02",
+            "title": "제2단원: 돌의 활로 2 (63제)",
+            "chapter": "제2단원: 돌의 활로 2 (63제)",
+            "problemCount": 63,
+            "problemsCount": 63
+          },
+          {
+            "code": "t1_ch03",
+            "chapterCode": "t1_ch03",
+            "title": "제3단원: 돌 따내기 1 (50제)",
+            "chapter": "제3단원: 돌 따내기 1 (50제)",
+            "problemCount": 50,
+            "problemsCount": 50
+          },
+          {
+            "code": "t1_ch04",
+            "chapterCode": "t1_ch04",
+            "title": "제4단원: 돌 따내기 2 (51제)",
+            "chapter": "제4단원: 돌 따내기 2 (51제)",
+            "problemCount": 51,
+            "problemsCount": 51
+          },
+          {
+            "code": "t1_ch05",
+            "chapterCode": "t1_ch05",
+            "title": "제5단원: 돌 살리기 1 (33제)",
+            "chapter": "제5단원: 돌 살리기 1 (33제)",
+            "problemCount": 33,
+            "problemsCount": 33
+          },
+          {
+            "code": "t1_ch06",
+            "chapterCode": "t1_ch06",
+            "title": "제6단원: 돌 살리기 2 (41제)",
+            "chapter": "제6단원: 돌 살리기 2 (41제)",
+            "problemCount": 41,
+            "problemsCount": 41
+          },
+          {
+            "code": "t1_ch07",
+            "chapterCode": "t1_ch07",
+            "title": "제7단원: 서로 단수 (50제)",
+            "chapter": "제7단원: 서로 단수 (50제)",
+            "problemCount": 50,
+            "problemsCount": 50
+          },
+          {
+            "code": "t1_ch08",
+            "chapterCode": "t1_ch08",
+            "title": "제8단원: 양단수 1 (47제)",
+            "chapter": "제8단원: 양단수 1 (47제)",
+            "problemCount": 47,
+            "problemsCount": 47
+          },
+          {
+            "code": "t1_ch09",
+            "chapterCode": "t1_ch09",
+            "title": "제9단원: 양단수 2 (48제)",
+            "chapter": "제9단원: 양단수 2 (48제)",
+            "problemCount": 48,
+            "problemsCount": 48
+          },
+          {
+            "code": "t1_ch10",
+            "chapterCode": "t1_ch10",
+            "title": "제10단원: 돌의 연결 1 (47제)",
+            "chapter": "제10단원: 돌의 연결 1 (47제)",
+            "problemCount": 47,
+            "problemsCount": 47
+          },
+          {
+            "code": "t1_ch11",
+            "chapterCode": "t1_ch11",
+            "title": "제11단원: 돌의 연결 2 (47제)",
+            "chapter": "제11단원: 돌의 연결 2 (47제)",
+            "problemCount": 47,
+            "problemsCount": 47
+          },
+          {
+            "code": "t1_ch12",
+            "chapterCode": "t1_ch12",
+            "title": "제12단원: 돌의 끊음 1 (46제)",
+            "chapter": "제12단원: 돌의 끊음 1 (46제)",
+            "problemCount": 46,
+            "problemsCount": 46
+          },
+          {
+            "code": "t1_ch13",
+            "chapterCode": "t1_ch13",
+            "title": "제13단원: 돌의 끊음 2 (45제)",
+            "chapter": "제13단원: 돌의 끊음 2 (45제)",
+            "problemCount": 45,
+            "problemsCount": 45
+          },
+          {
+            "code": "t1_ch14",
+            "chapterCode": "t1_ch14",
+            "title": "제14단원: 1선 방향으로 단수치기 1 (34제)",
+            "chapter": "제14단원: 1선 방향으로 단수치기 1 (34제)",
+            "problemCount": 34,
+            "problemsCount": 34
+          },
+          {
+            "code": "t1_ch15",
+            "chapterCode": "t1_ch15",
+            "title": "제15단원: 1선 방향으로 단수치기 2 (34제)",
+            "chapter": "제15단원: 1선 방향으로 단수치기 2 (34제)",
+            "problemCount": 34,
+            "problemsCount": 34
+          },
+          {
+            "code": "t1_ch16",
+            "chapterCode": "t1_ch16",
+            "title": "제16단원: 자기 돌 쪽으로 단수치기 1 (30제)",
+            "chapter": "제16단원: 자기 돌 쪽으로 단수치기 1 (30제)",
+            "problemCount": 30,
+            "problemsCount": 30
+          },
+          {
+            "code": "t1_ch17",
+            "chapterCode": "t1_ch17",
+            "title": "제17단원: 자기 돌 쪽으로 단수치기 2 (29제)",
+            "chapter": "제17단원: 자기 돌 쪽으로 단수치기 2 (29제)",
+            "problemCount": 29,
+            "problemsCount": 29
+          },
+          {
+            "code": "t1_ch18",
+            "chapterCode": "t1_ch18",
+            "title": "제18단원: 끊으면서 단수치기 1 (39제)",
+            "chapter": "제18단원: 끊으면서 단수치기 1 (39제)",
+            "problemCount": 39,
+            "problemsCount": 39
+          },
+          {
+            "code": "t1_ch19",
+            "chapterCode": "t1_ch19",
+            "title": "제19단원: 끊으면서 단수치기 2 (38제)",
+            "chapter": "제19단원: 끊으면서 단수치기 2 (38제)",
+            "problemCount": 38,
+            "problemsCount": 38
+          },
+          {
+            "code": "t1_ch20",
+            "chapterCode": "t1_ch20",
+            "title": "제20단원: 바둑의 승패 - 집 1 (20제)",
+            "chapter": "제20단원: 바둑의 승패 - 집 1 (20제)",
+            "problemCount": 20,
+            "problemsCount": 20
+          },
+          {
+            "code": "t1_ch21",
+            "chapterCode": "t1_ch21",
+            "title": "제21단원: 바둑의 승패 - 집 2 (16제)",
+            "chapter": "제21단원: 바둑의 승패 - 집 2 (16제)",
+            "problemCount": 16,
+            "problemsCount": 16
+          }
+        ]
+      },
+      {
         "code": "stage_01",
-        "title": "제1단계 : 바둑의 입문과 돌의 생명 [30급 ➔ 29급 / 22단원]",
-        "chapterCount": 22,
-        "totalProblems": 440,
+        "title": "제1단계: 🌟 대회 1단계: 샛별부 (27급 ~ 25급)",
+        "chapterCount": 12,
+        "totalProblems": 240,
         "chapters": [
           {
             "code": "stage_01_u01",
             "chapterCode": "stage_01_u01",
-            "title": "바둑판의 선과 눈(교차점) 이해하기 (20제)",
-            "chapter": "바둑판의 선과 눈(교차점) 이해하기 (20제)",
+            "title": "제1단원: 축 (20제)",
+            "chapter": "제1단원: 축 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_01_u02",
             "chapterCode": "stage_01_u02",
-            "title": "돌의 활로(숨구멍)의 개념과 찾기 (20제)",
-            "chapter": "돌의 활로(숨구멍)의 개념과 찾기 (20제)",
+            "title": "제2단원: 그물로 가두는 장문 (20제)",
+            "chapter": "제2단원: 그물로 가두는 장문 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_01_u03",
             "chapterCode": "stage_01_u03",
-            "title": "중앙에 있는 돌의 활로 개수 세기 (4개) (20제)",
-            "chapter": "중앙에 있는 돌의 활로 개수 세기 (4개) (20제)",
+            "title": "제3단원: 환격 (20제)",
+            "chapter": "제3단원: 환격 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_01_u04",
             "chapterCode": "stage_01_u04",
-            "title": "변과 귀에 있는 돌의 활로 개수 세기 (변 3개, 귀 2개) (20제)",
-            "chapter": "변과 귀에 있는 돌의 활로 개수 세기 (변 3개, 귀 2개) (20제)",
+            "title": "제4단원: 3궁도의 급소와 치중 (20제)",
+            "chapter": "제4단원: 3궁도의 급소와 치중 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_01_u05",
             "chapterCode": "stage_01_u05",
-            "title": "1선에 있는 돌의 활로 판별하기 (20제)",
-            "chapter": "1선에 있는 돌의 활로 판별하기 (20제)",
+            "title": "제5단원: 4궁도 판별법 (20제)",
+            "chapter": "제5단원: 4궁도 판별법 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_01_u06",
             "chapterCode": "stage_01_u06",
-            "title": "단수(Atari)의 원리와 단수 판별하기 (20제)",
-            "chapter": "단수(Atari)의 원리와 단수 판별하기 (20제)",
+            "title": "제6단원: 바깥 활로부터 줄이기 (20제)",
+            "chapter": "제6단원: 바깥 활로부터 줄이기 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_01_u07",
             "chapterCode": "stage_01_u07",
-            "title": "단수된 돌 따내기 1 (중앙에서 따내기) (20제)",
-            "chapter": "단수된 돌 따내기 1 (중앙에서 따내기) (20제)",
+            "title": "제7단원: 안전한 연결과 호구 방패 (20제)",
+            "chapter": "제7단원: 안전한 연결과 호구 방패 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_01_u08",
             "chapterCode": "stage_01_u08",
-            "title": "단수된 돌 따내기 2 (변과 귀에서 따내기) (20제)",
-            "chapter": "단수된 돌 따내기 2 (변과 귀에서 따내기) (20제)",
+            "title": "제8단원: 19줄 귀·변·중앙 & 화점 날일자 받기 (20제)",
+            "chapter": "제8단원: 19줄 귀·변·중앙 & 화점 날일자 받기 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_01_u09",
             "chapterCode": "stage_01_u09",
-            "title": "단수된 돌 따내기 3 (1선에서 따내기) (20제)",
-            "chapter": "단수된 돌 따내기 3 (1선에서 따내기) (20제)",
+            "title": "제9단원: 패 (20제)",
+            "chapter": "제9단원: 패 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_01_u10",
             "chapterCode": "stage_01_u10",
-            "title": "도망쳐서 활로 늘리기 (돌 살리기 1) (20제)",
-            "chapter": "도망쳐서 활로 늘리기 (돌 살리기 1) (20제)",
+            "title": "제10단원: 내 돌의 위험 진단 (20제)",
+            "chapter": "제10단원: 내 돌의 위험 진단 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_01_u11",
             "chapterCode": "stage_01_u11",
-            "title": "1선으로 도망칠 때의 주의점 (돌 살리기 2) (20제)",
-            "chapter": "1선으로 도망칠 때의 주의점 (돌 살리기 2) (20제)",
+            "title": "제11단원: 1선 젖혀 잇기와 공배 메우기 (20제)",
+            "chapter": "제11단원: 1선 젖혀 잇기와 공배 메우기 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_01_u12",
             "chapterCode": "stage_01_u12",
-            "title": "서로단수의 판별 (서로 활로가 1개인 상태) (20제)",
-            "chapter": "서로단수의 판별 (서로 활로가 1개인 상태) (20제)",
-            "problemCount": 20,
-            "problemsCount": 20
-          },
-          {
-            "code": "stage_01_u13",
-            "chapterCode": "stage_01_u13",
-            "title": "서로단수에서 먼저 따내는 쪽이 이긴다 (20제)",
-            "chapter": "서로단수에서 먼저 따내는 쪽이 이긴다 (20제)",
-            "problemCount": 20,
-            "problemsCount": 20
-          },
-          {
-            "code": "stage_01_u14",
-            "chapterCode": "stage_01_u14",
-            "title": "내 돌 튼튼하게 잇기: 돌의 연결 1 (직선 연결) (20제)",
-            "chapter": "내 돌 튼튼하게 잇기: 돌의 연결 1 (직선 연결) (20제)",
-            "problemCount": 20,
-            "problemsCount": 20
-          },
-          {
-            "code": "stage_01_u15",
-            "chapterCode": "stage_01_u15",
-            "title": "내 돌 튼튼하게 잇기: 돌의 연결 2 (마늘모 연결) (20제)",
-            "chapter": "내 돌 튼튼하게 잇기: 돌의 연결 2 (마늘모 연결) (20제)",
-            "problemCount": 20,
-            "problemsCount": 20
-          },
-          {
-            "code": "stage_01_u16",
-            "chapterCode": "stage_01_u16",
-            "title": "상대 돌 갈라놓기: 돌의 끊음과 끊는 약점 (20제)",
-            "chapter": "상대 돌 갈라놓기: 돌의 끊음과 끊는 약점 (20제)",
-            "problemCount": 20,
-            "problemsCount": 20
-          },
-          {
-            "code": "stage_01_u17",
-            "chapterCode": "stage_01_u17",
-            "title": "연결과 끊음 실전 판별 종합 훈련 (20제)",
-            "chapter": "연결과 끊음 실전 판별 종합 훈련 (20제)",
-            "problemCount": 20,
-            "problemsCount": 20
-          },
-          {
-            "code": "stage_01_u18",
-            "chapterCode": "stage_01_u18",
-            "title": "어느 쪽으로 칠까 1: 우리 편 쪽으로 단수치기 (20제)",
-            "chapter": "어느 쪽으로 칠까 1: 우리 편 쪽으로 단수치기 (20제)",
-            "problemCount": 20,
-            "problemsCount": 20
-          },
-          {
-            "code": "stage_01_u19",
-            "chapterCode": "stage_01_u19",
-            "title": "어느 쪽으로 칠까 2: 1선(사망선) 쪽으로 단수치기 (20제)",
-            "chapter": "어느 쪽으로 칠까 2: 1선(사망선) 쪽으로 단수치기 (20제)",
-            "problemCount": 20,
-            "problemsCount": 20
-          },
-          {
-            "code": "stage_01_u20",
-            "chapterCode": "stage_01_u20",
-            "title": "상대 돌을 끊으면서 단수치기 (20제)",
-            "chapter": "상대 돌을 끊으면서 단수치기 (20제)",
-            "problemCount": 20,
-            "problemsCount": 20
-          },
-          {
-            "code": "stage_01_u21",
-            "chapterCode": "stage_01_u21",
-            "title": "일석이조의 공격: 양단수 만들기 (20제)",
-            "chapter": "일석이조의 공격: 양단수 만들기 (20제)",
-            "problemCount": 20,
-            "problemsCount": 20
-          },
-          {
-            "code": "stage_01_u22",
-            "chapterCode": "stage_01_u22",
-            "title": "양단수 피하기와 내 약점 잇기 (제1단계 종합 평가) (20제)",
-            "chapter": "양단수 피하기와 내 약점 잇기 (제1단계 종합 평가) (20제)",
+            "title": "제12단원: 샛별부 19줄 실전 종합 평가 (20제)",
+            "chapter": "제12단원: 샛별부 19줄 실전 종합 평가 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           }
@@ -189,167 +285,103 @@
       },
       {
         "code": "stage_02",
-        "title": "제2단계 : 바둑의 절대 규칙과 2대 기법 (촉촉수 & 축) [29급 ➔ 28급 / 20단원]",
-        "chapterCount": 20,
-        "totalProblems": 400,
+        "title": "제2단계: 🌱 대회 2단계: 꿈나무부 (24급 ~ 22급)",
+        "chapterCount": 12,
+        "totalProblems": 240,
         "chapters": [
           {
             "code": "stage_02_u01",
             "chapterCode": "stage_02_u01",
-            "title": "돌을 놓을 수 없는 곳: 착수금지(No-Go) 구역 알기 (20제)",
-            "chapter": "돌을 놓을 수 없는 곳: 착수금지(No-Go) 구역 알기 (20제)",
+            "title": "제1단원: 옥집 (20제)",
+            "chapter": "제1단원: 옥집 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_02_u02",
             "chapterCode": "stage_02_u02",
-            "title": "착수금지 구역 판별하기 (독립된 한 집 속) (20제)",
-            "chapter": "착수금지 구역 판별하기 (독립된 한 집 속) (20제)",
+            "title": "제2단원: 번개4궁과 궁도 넓히기 (20제)",
+            "chapter": "제2단원: 번개4궁과 궁도 넓히기 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_02_u03",
             "chapterCode": "stage_02_u03",
-            "title": "따낼 수 있으면 착수한다! (착수금지의 예외 1) (20제)",
-            "chapter": "따낼 수 있으면 착수한다! (착수금지의 예외 1) (20제)",
+            "title": "제3단원: 먹여치기와 조이기의 맥 (20제)",
+            "chapter": "제3단원: 먹여치기와 조이기의 맥 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_02_u04",
             "chapterCode": "stage_02_u04",
-            "title": "호구 속에 들어가서 따내는 착수금지의 예외 2 (20제)",
-            "chapter": "호구 속에 들어가서 따내는 착수금지의 예외 2 (20제)",
+            "title": "제4단원: 양단수의 맥점 (20제)",
+            "chapter": "제4단원: 양단수의 맥점 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_02_u05",
             "chapterCode": "stage_02_u05",
-            "title": "무한반복을 없애기 위한 절대 규칙: 패의 본질 (20제)",
-            "chapter": "무한반복을 없애기 위한 절대 규칙: 패의 본질 (20제)",
+            "title": "제5단원: 공통 활로와 빅 (20제)",
+            "chapter": "제5단원: 공통 활로와 빅 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_02_u06",
             "chapterCode": "stage_02_u06",
-            "title": "패가 났을 때 곧바로 따내지 못하는 규칙 (한 수 쉬기) (20제)",
-            "chapter": "패가 났을 때 곧바로 따내지 못하는 규칙 (한 수 쉬기) (20제)",
+            "title": "제6단원: 튼튼한 쌍립 vs 둔탁한 빈삼각 (20제)",
+            "chapter": "제6단원: 튼튼한 쌍립 vs 둔탁한 빈삼각 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_02_u07",
             "chapterCode": "stage_02_u07",
-            "title": "'패는 요술쟁이' 1: 팻감의 개념과 패의 공방 (20제)",
-            "chapter": "'패는 요술쟁이' 1: 팻감의 개념과 패의 공방 (20제)",
+            "title": "제7단원: 날일자 달리기와 눈목자 (20제)",
+            "chapter": "제7단원: 날일자 달리기와 눈목자 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_02_u08",
             "chapterCode": "stage_02_u08",
-            "title": "촉촉수(연단수)의 원리: 이어도 연속으로 몰아잡기 (20제)",
-            "chapter": "촉촉수(연단수)의 원리: 이어도 연속으로 몰아잡기 (20제)",
+            "title": "제8단원: 굳힘과 벌림의 황금 공식 (20제)",
+            "chapter": "제8단원: 굳힘과 벌림의 황금 공식 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_02_u09",
             "chapterCode": "stage_02_u09",
-            "title": "촉촉수 1: 1선에 이어도 또 단수가 되는 형태 (20제)",
-            "chapter": "촉촉수 1: 1선에 이어도 또 단수가 되는 형태 (20제)",
+            "title": "제9단원: 초급 패싸움과 팻감 찾기 (20제)",
+            "chapter": "제9단원: 초급 패싸움과 팻감 찾기 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_02_u10",
             "chapterCode": "stage_02_u10",
-            "title": "촉촉수 2: 중앙에서 이어도 또 단수가 되는 형태 (20제)",
-            "chapter": "촉촉수 2: 중앙에서 이어도 또 단수가 되는 형태 (20제)",
+            "title": "제10단원: 큰 집과 작은 집 비교 (20제)",
+            "chapter": "제10단원: 큰 집과 작은 집 비교 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_02_u11",
             "chapterCode": "stage_02_u11",
-            "title": "지그재그 계단식 몰기: 축(Ladder)의 원리와 형태 (20제)",
-            "chapter": "지그재그 계단식 몰기: 축(Ladder)의 원리와 형태 (20제)",
+            "title": "제11단원: 선수 끝내기 vs 후수 끝내기 (20제)",
+            "chapter": "제11단원: 선수 끝내기 vs 후수 끝내기 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_02_u12",
             "chapterCode": "stage_02_u12",
-            "title": "축으로 몰아가는 올바른 방향 찾기 (20제)",
-            "chapter": "축으로 몰아가는 올바른 방향 찾기 (20제)",
-            "problemCount": 20,
-            "problemsCount": 20
-          },
-          {
-            "code": "stage_02_u13",
-            "chapterCode": "stage_02_u13",
-            "title": "축의 함정: 빗나간 축과 활로가 늘어나는 경우 (20제)",
-            "chapter": "축의 함정: 빗나간 축과 활로가 늘어나는 경우 (20제)",
-            "problemCount": 20,
-            "problemsCount": 20
-          },
-          {
-            "code": "stage_02_u14",
-            "chapterCode": "stage_02_u14",
-            "title": "축머리란 무엇인가? (축머리가 있을 때의 변화) (20제)",
-            "chapter": "축머리란 무엇인가? (축머리가 있을 때의 변화) (20제)",
-            "problemCount": 20,
-            "problemsCount": 20
-          },
-          {
-            "code": "stage_02_u15",
-            "chapterCode": "stage_02_u15",
-            "title": "축머리를 보고 축으로 몰면 안 되는 경우 판별 (20제)",
-            "chapter": "축머리를 보고 축으로 몰면 안 되는 경우 판별 (20제)",
-            "problemCount": 20,
-            "problemsCount": 20
-          },
-          {
-            "code": "stage_02_u16",
-            "chapterCode": "stage_02_u16",
-            "title": "기초 수상전 1: 맞붙은 돌의 활로 개수 비교하기 (20제)",
-            "chapter": "기초 수상전 1: 맞붙은 돌의 활로 개수 비교하기 (20제)",
-            "problemCount": 20,
-            "problemsCount": 20
-          },
-          {
-            "code": "stage_02_u17",
-            "chapterCode": "stage_02_u17",
-            "title": "기초 수상전 2: 바깥 활로부터 차례로 줄이기 (20제)",
-            "chapter": "기초 수상전 2: 바깥 활로부터 차례로 줄이기 (20제)",
-            "problemCount": 20,
-            "problemsCount": 20
-          },
-          {
-            "code": "stage_02_u18",
-            "chapterCode": "stage_02_u18",
-            "title": "바둑판의 3대 영역: 귀, 변, 중앙과 집의 개념 (20제)",
-            "chapter": "바둑판의 3대 영역: 귀, 변, 중앙과 집의 개념 (20제)",
-            "problemCount": 20,
-            "problemsCount": 20
-          },
-          {
-            "code": "stage_02_u19",
-            "chapterCode": "stage_02_u19",
-            "title": "줄바둑(단순히 밀기)과 띄어두기(발빠른 행마) (20제)",
-            "chapter": "줄바둑(단순히 밀기)과 띄어두기(발빠른 행마) (20제)",
-            "problemCount": 20,
-            "problemsCount": 20
-          },
-          {
-            "code": "stage_02_u20",
-            "chapterCode": "stage_02_u20",
-            "title": "제2단계 절대 규칙과 2대 기법 종합 평가 (20제)",
-            "chapter": "제2단계 절대 규칙과 2대 기법 종합 평가 (20제)",
+            "title": "제12단원: 꿈나무부 19줄 실전 종합 평가 (20제)",
+            "chapter": "제12단원: 꿈나무부 19줄 실전 종합 평가 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           }
@@ -357,167 +389,103 @@
       },
       {
         "code": "stage_03",
-        "title": "제3단계 : 4대 기법 완성 & 사활의 기본 원리 (25급 관문) [28급 ➔ 25급 (대회 1단계 출전) / 20단원]",
-        "chapterCount": 20,
-        "totalProblems": 400,
+        "title": "제3단계: 🌿 대회 3단계: 새싹부 / 기초부 (21급 ~ 19급)",
+        "chapterCount": 12,
+        "totalProblems": 240,
         "chapters": [
           {
             "code": "stage_03_u01",
             "chapterCode": "stage_03_u01",
-            "title": "활로가 2개일 때 그물 씌워 가두기: 장문(Net) (20제)",
-            "chapter": "활로가 2개일 때 그물 씌워 가두기: 장문(Net) (20제)",
+            "title": "제1단원: 오궁도화 (20제)",
+            "chapter": "제1단원: 오궁도화 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_03_u02",
             "chapterCode": "stage_03_u02",
-            "title": "활로가 3개일 때 씌우는 한 칸 장문 (20제)",
-            "chapter": "활로가 3개일 때 씌우는 한 칸 장문 (20제)",
+            "title": "제2단원: 궁도 좁히기 vs 궁도 넓히기 (20제)",
+            "chapter": "제2단원: 궁도 좁히기 vs 궁도 넓히기 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_03_u03",
             "chapterCode": "stage_03_u03",
-            "title": "하나를 미끼로 주고 몽땅 되따내기: 환격(Snapback) (20제)",
-            "chapter": "하나를 미끼로 주고 몽땅 되따내기: 환격(Snapback) (20제)",
+            "title": "제3단원: 째고 끊음의 맥 (20제)",
+            "chapter": "제3단원: 째고 끊음의 맥 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_03_u04",
             "chapterCode": "stage_03_u04",
-            "title": "1선에서의 환격과 호구 속의 환격 (20제)",
-            "chapter": "1선에서의 환격과 호구 속의 환격 (20제)",
+            "title": "제4단원: 2단 젖힘의 응징과 활용 (20제)",
+            "chapter": "제4단원: 2단 젖힘의 응징과 활용 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_03_u05",
             "chapterCode": "stage_03_u05",
-            "title": "끼워서 환격 모양 만들기 (20제)",
-            "chapter": "끼워서 환격 모양 만들기 (20제)",
+            "title": "제5단원: 유가무가 (20제)",
+            "chapter": "제5단원: 유가무가 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_03_u06",
             "chapterCode": "stage_03_u06",
-            "title": "촉촉수·축·장문·환격 4대 기법 판별 훈련 (20제)",
-            "chapter": "촉촉수·축·장문·환격 4대 기법 판별 훈련 (20제)",
+            "title": "제6단원: 1선 젖힘으로 수 늘리기 (20제)",
+            "chapter": "제6단원: 1선 젖힘으로 수 늘리기 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_03_u07",
             "chapterCode": "stage_03_u07",
-            "title": "사활의 제1원칙: 독립된 완전한 두 집(Live)을 내야 산다 (20제)",
-            "chapter": "사활의 제1원칙: 독립된 완전한 두 집(Live)을 내야 산다 (20제)",
+            "title": "제7단원: 머리 내밀기와 봉쇄 탈출 (20제)",
+            "chapter": "제7단원: 머리 내밀기와 봉쇄 탈출 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_03_u08",
             "chapterCode": "stage_03_u08",
-            "title": "나누어서 두 집 내기 (삶의 급소 찾기) (20제)",
-            "chapter": "나누어서 두 집 내기 (삶의 급소 찾기) (20제)",
+            "title": "제8단원: 화점 한칸 받기 & 삼삼 침입 입문 (20제)",
+            "chapter": "제8단원: 화점 한칸 받기 & 삼삼 침입 입문 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_03_u09",
             "chapterCode": "stage_03_u09",
-            "title": "사활의 치중: 상대 급소에 두어 두 집 못 내게 하기 (Die) (20제)",
-            "chapter": "사활의 치중: 상대 급소에 두어 두 집 못 내게 하기 (Die) (20제)",
+            "title": "제9단원: 팻감의 손익 계산 (20제)",
+            "chapter": "제9단원: 팻감의 손익 계산 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_03_u10",
             "chapterCode": "stage_03_u10",
-            "title": "진짜 집과 가짜 집(옥집) 가려내기 (20제)",
-            "chapter": "진짜 집과 가짜 집(옥집) 가려내기 (20제)",
+            "title": "제10단원: 미생마 (20제)",
+            "chapter": "제10단원: 미생마 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_03_u11",
             "chapterCode": "stage_03_u11",
-            "title": "옥집의 약점을 찔러 상대 돌 잡기 (20제)",
-            "chapter": "옥집의 약점을 찔러 상대 돌 잡기 (20제)",
+            "title": "제11단원: 2선 젖혀 잇기와 안팎 4집 (20제)",
+            "chapter": "제11단원: 2선 젖혀 잇기와 안팎 4집 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_03_u12",
             "chapterCode": "stage_03_u12",
-            "title": "먹여치기 입문: 호구 속에 집어넣어 활로 줄이기 (20제)",
-            "chapter": "먹여치기 입문: 호구 속에 집어넣어 활로 줄이기 (20제)",
-            "problemCount": 20,
-            "problemsCount": 20
-          },
-          {
-            "code": "stage_03_u13",
-            "chapterCode": "stage_03_u13",
-            "title": "먹여쳐서 촉촉수 만들기 (20제)",
-            "chapter": "먹여쳐서 촉촉수 만들기 (20제)",
-            "problemCount": 20,
-            "problemsCount": 20
-          },
-          {
-            "code": "stage_03_u14",
-            "chapterCode": "stage_03_u14",
-            "title": "먹여쳐서 환격 만들기 (20제)",
-            "chapter": "먹여쳐서 환격 만들기 (20제)",
-            "problemCount": 20,
-            "problemsCount": 20
-          },
-          {
-            "code": "stage_03_u15",
-            "chapterCode": "stage_03_u15",
-            "title": "바둑의 목적: 집(영토)이 많은 쪽이 이긴다 (20제)",
-            "chapter": "바둑의 목적: 집(영토)이 많은 쪽이 이긴다 (20제)",
-            "problemCount": 20,
-            "problemsCount": 20
-          },
-          {
-            "code": "stage_03_u16",
-            "chapterCode": "stage_03_u16",
-            "title": "공배 메우기와 완전한 집 굳히기 (20제)",
-            "chapter": "공배 메우기와 완전한 집 굳히기 (20제)",
-            "problemCount": 20,
-            "problemsCount": 20
-          },
-          {
-            "code": "stage_03_u17",
-            "chapterCode": "stage_03_u17",
-            "title": "계가의 기초: 사석(따낸 돌)을 상대 집에 메우기 (20제)",
-            "chapter": "계가의 기초: 사석(따낸 돌)을 상대 집에 메우기 (20제)",
-            "problemCount": 20,
-            "problemsCount": 20
-          },
-          {
-            "code": "stage_03_u18",
-            "chapterCode": "stage_03_u18",
-            "title": "1~3단계 입문 핵심 기술 종합 연습 (20제) (20제)",
-            "chapter": "1~3단계 입문 핵심 기술 종합 연습 (20제) (20제)",
-            "problemCount": 20,
-            "problemsCount": 20
-          },
-          {
-            "code": "stage_03_u19",
-            "chapterCode": "stage_03_u19",
-            "title": "공인 급수대회 1단계 모의 테스트 (20제)",
-            "chapter": "공인 급수대회 1단계 모의 테스트 (20제)",
-            "problemCount": 20,
-            "problemsCount": 20
-          },
-          {
-            "code": "stage_03_u20",
-            "chapterCode": "stage_03_u20",
-            "title": "공인 25급 (대회 1단계 출전 자격) 종합 검정 (20제)",
-            "chapter": "공인 25급 (대회 1단계 출전 자격) 종합 검정 (20제)",
+            "title": "제12단원: 새싹부 19줄 실전 종합 평가 (20제)",
+            "chapter": "제12단원: 새싹부 19줄 실전 종합 평가 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           }
@@ -525,167 +493,103 @@
       },
       {
         "code": "stage_04",
-        "title": "제4단계 : 먹여치기 연계 전술과 3궁도 사활 [25급 ➔ 23급 / 20단원]",
-        "chapterCount": 20,
-        "totalProblems": 400,
+        "title": "제4단계: ⚡ 대회 4단계: 초급부 (18급 ~ 16급)",
+        "chapterCount": 12,
+        "totalProblems": 240,
         "chapters": [
           {
             "code": "stage_04_u01",
             "chapterCode": "stage_04_u01",
-            "title": "단수치고 축으로 몰기 (연계 공격 1) (20제)",
-            "chapter": "단수치고 축으로 몰기 (연계 공격 1) (20제)",
+            "title": "제1단원: 건너붙임의 맥 (20제)",
+            "chapter": "제1단원: 건너붙임의 맥 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_04_u02",
             "chapterCode": "stage_04_u02",
-            "title": "끊으면서 축으로 몰기 (연계 공격 2) (20제)",
-            "chapter": "끊으면서 축으로 몰기 (연계 공격 2) (20제)",
+            "title": "제2단원: 끼움의 맥과 모루침 (20제)",
+            "chapter": "제2단원: 끼움의 맥과 모루침 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_04_u03",
             "chapterCode": "stage_04_u03",
-            "title": "단수치고 장문 씌우기 (연계 공격 3) (20제)",
-            "chapter": "단수치고 장문 씌우기 (연계 공격 3) (20제)",
+            "title": "제3단원: 2집 분리의 급소 찾기 (20제)",
+            "chapter": "제3단원: 2집 분리의 급소 찾기 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_04_u04",
             "chapterCode": "stage_04_u04",
-            "title": "먹여치고 촉촉수로 몰아잡기 (연계 공격 4) (20제)",
-            "chapter": "먹여치고 촉촉수로 몰아잡기 (연계 공격 4) (20제)",
+            "title": "제4단원: 먹여치기를 통한 궁도 붕괴 (20제)",
+            "chapter": "제4단원: 먹여치기를 통한 궁도 붕괴 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_04_u05",
             "chapterCode": "stage_04_u05",
-            "title": "먹여치고 환격으로 되따내기 (연계 공격 5) (20제)",
-            "chapter": "먹여치고 환격으로 되따내기 (연계 공격 5) (20제)",
+            "title": "제5단원: 젖히고 이어 수 늘리기/줄이기 (20제)",
+            "chapter": "제5단원: 젖히고 이어 수 늘리기/줄이기 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_04_u06",
             "chapterCode": "stage_04_u06",
-            "title": "3궁도 사활의 형태: 1자형 3궁과 꺾인 3궁 (20제)",
-            "chapter": "3궁도 사활의 형태: 1자형 3궁과 꺾인 3궁 (20제)",
+            "title": "제6단원: 모자 씌우기와 기대기 전법 (20제)",
+            "chapter": "제6단원: 모자 씌우기와 기대기 전법 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_04_u07",
             "chapterCode": "stage_04_u07",
-            "title": "3궁도 살리기: 한가운데 급소에 두어 두 집 만들기 (20제)",
-            "chapter": "3궁도 살리기: 한가운데 급소에 두어 두 집 만들기 (20제)",
+            "title": "제7단원: 진영 갈라치기 (20제)",
+            "chapter": "제7단원: 진영 갈라치기 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_04_u08",
             "chapterCode": "stage_04_u08",
-            "title": "3궁도 잡기: 한가운데 급소에 치중하여 한 집 없애기 (20제)",
-            "chapter": "3궁도 잡기: 한가운데 급소에 치중하여 한 집 없애기 (20제)",
+            "title": "제8단원: 2립3전과 높은 벌림 (20제)",
+            "chapter": "제8단원: 2립3전과 높은 벌림 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_04_u09",
             "chapterCode": "stage_04_u09",
-            "title": "내 돌 튼튼히 연결하기: 호구 연결 (20제)",
-            "chapter": "내 돌 튼튼히 연결하기: 호구 연결 (20제)",
+            "title": "제9단원: 본패의 공방과 자체 팻감 (20제)",
+            "chapter": "제9단원: 본패의 공방과 자체 팻감 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_04_u10",
             "chapterCode": "stage_04_u10",
-            "title": "내 돌 튼튼히 연결하기: 쌍립(雙立) 서기 (20제)",
-            "chapter": "내 돌 튼튼히 연결하기: 쌍립(雙立) 서기 (20제)",
+            "title": "제10단원: 세력 (20제)",
+            "chapter": "제10단원: 세력 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_04_u11",
             "chapterCode": "stage_04_u11",
-            "title": "대각선 연결: 마늘모(입구자)의 단단함 (20제)",
-            "chapter": "대각선 연결: 마늘모(입구자)의 단단함 (20제)",
+            "title": "제11단원: 먹여쳐서 깎는 끝내기 테크닉 (20제)",
+            "chapter": "제11단원: 먹여쳐서 깎는 끝내기 테크닉 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_04_u12",
             "chapterCode": "stage_04_u12",
-            "title": "수상전의 기본 원칙 1: 바깥 활로부터 차례로 줄이기 (20제)",
-            "chapter": "수상전의 기본 원칙 1: 바깥 활로부터 차례로 줄이기 (20제)",
-            "problemCount": 20,
-            "problemsCount": 20
-          },
-          {
-            "code": "stage_04_u13",
-            "chapterCode": "stage_04_u13",
-            "title": "수상전의 기본 원칙 2: 안쪽을 메우면 자충이 된다 (20제)",
-            "chapter": "수상전의 기본 원칙 2: 안쪽을 메우면 자충이 된다 (20제)",
-            "problemCount": 20,
-            "problemsCount": 20
-          },
-          {
-            "code": "stage_04_u14",
-            "chapterCode": "stage_04_u14",
-            "title": "수상전: 끊고 있는 요석(중요한 돌) 먼저 잡기 (20제)",
-            "chapter": "수상전: 끊고 있는 요석(중요한 돌) 먼저 잡기 (20제)",
-            "problemCount": 20,
-            "problemsCount": 20
-          },
-          {
-            "code": "stage_04_u15",
-            "chapterCode": "stage_04_u15",
-            "title": "포석의 기본 원리 1: 귀를 먼저 차지하라 (20제)",
-            "chapter": "포석의 기본 원리 1: 귀를 먼저 차지하라 (20제)",
-            "problemCount": 20,
-            "problemsCount": 20
-          },
-          {
-            "code": "stage_04_u16",
-            "chapterCode": "stage_04_u16",
-            "title": "포석의 기본 원리 2: 귀에서 변으로 전개하라 (20제)",
-            "chapter": "포석의 기본 원리 2: 귀에서 변으로 전개하라 (20제)",
-            "problemCount": 20,
-            "problemsCount": 20
-          },
-          {
-            "code": "stage_04_u17",
-            "chapterCode": "stage_04_u17",
-            "title": "3선(실리의 선)과 4선(세력의 선)의 의미 (20제)",
-            "chapter": "3선(실리의 선)과 4선(세력의 선)의 의미 (20제)",
-            "problemCount": 20,
-            "problemsCount": 20
-          },
-          {
-            "code": "stage_04_u18",
-            "chapterCode": "stage_04_u18",
-            "title": "상대 모양의 약점 끊기: 양호구 틈새 찌르기 (20제)",
-            "chapter": "상대 모양의 약점 끊기: 양호구 틈새 찌르기 (20제)",
-            "problemCount": 20,
-            "problemsCount": 20
-          },
-          {
-            "code": "stage_04_u19",
-            "chapterCode": "stage_04_u19",
-            "title": "1선 젖혀 잇기의 집 차이 맛보기 (20제)",
-            "chapter": "1선 젖혀 잇기의 집 차이 맛보기 (20제)",
-            "problemCount": 20,
-            "problemsCount": 20
-          },
-          {
-            "code": "stage_04_u20",
-            "chapterCode": "stage_04_u20",
-            "title": "제4단계 연계 전술 및 3궁 사활 종합 평가 (20제)",
-            "chapter": "제4단계 연계 전술 및 3궁 사활 종합 평가 (20제)",
+            "title": "제12단원: 초급부 19줄 실전 종합 평가 (20제)",
+            "chapter": "제12단원: 초급부 19줄 실전 종합 평가 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           }
@@ -693,167 +597,103 @@
       },
       {
         "code": "stage_05",
-        "title": "제5단계 : 4궁도 사활과 옥집 파괴 작전 [23급 ➔ 21급 / 20단원]",
-        "chapterCount": 20,
-        "totalProblems": 400,
+        "title": "제5단계: ⚔️ 대회 5단계: 중급부 (15급 ~ 13급)",
+        "chapterCount": 12,
+        "totalProblems": 240,
         "chapters": [
           {
             "code": "stage_05_u01",
             "chapterCode": "stage_05_u01",
-            "title": "4궁도의 4가지 모양: 직사궁, 곡사궁, 모자사궁, 바보사궁 (20제)",
-            "chapter": "4궁도의 4가지 모양: 직사궁, 곡사궁, 모자사궁, 바보사궁 (20제)",
+            "title": "제1단원: 귀삼수 (20제)",
+            "chapter": "제1단원: 귀삼수 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_05_u02",
             "chapterCode": "stage_05_u02",
-            "title": "무조건 살아있는 4궁: 직사궁(直四宮)과 곡사궁(曲四宮) (20제)",
-            "chapter": "무조건 살아있는 4궁: 직사궁(直四宮)과 곡사궁(曲四宮) (20제)",
+            "title": "제2단원: 변삼수 (20제)",
+            "chapter": "제2단원: 변삼수 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_05_u03",
             "chapterCode": "stage_05_u03",
-            "title": "무조건 죽어있는 4궁: 바보사궁(정사각 4궁) (20제)",
-            "chapter": "무조건 죽어있는 4궁: 바보사궁(정사각 4궁) (20제)",
+            "title": "제3단원: 귀의 1-1 묘수 (20제)",
+            "chapter": "제3단원: 귀의 1-1 묘수 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_05_u04",
             "chapterCode": "stage_05_u04",
-            "title": "치중하면 죽는 4궁: 모자사궁(T자형 4궁)의 급소 치중 (20제)",
-            "chapter": "치중하면 죽는 4궁: 모자사궁(T자형 4궁)의 급소 치중 (20제)",
+            "title": "제4단원: 매화육궁 (20제)",
+            "chapter": "제4단원: 매화육궁 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_05_u05",
             "chapterCode": "stage_05_u05",
-            "title": "4궁도 사활의 실전 판별 훈련 (20제)",
-            "chapter": "4궁도 사활의 실전 판별 훈련 (20제)",
+            "title": "제5단원: 회돌이와 포도송이 (20제)",
+            "chapter": "제5단원: 회돌이와 포도송이 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_05_u06",
             "chapterCode": "stage_05_u06",
-            "title": "단수치고 찝어서 상대 집을 옥집으로 만들기 (20제)",
-            "chapter": "단수치고 찝어서 상대 집을 옥집으로 만들기 (20제)",
+            "title": "제6단원: 소목 날일자 걸침 3대 정석 (20제)",
+            "chapter": "제6단원: 소목 날일자 걸침 3대 정석 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_05_u07",
             "chapterCode": "stage_05_u07",
-            "title": "두 점으로 키워 버려서 상대 집 옥집 만들기 (사석 옥집) (20제)",
-            "chapter": "두 점으로 키워 버려서 상대 집 옥집 만들기 (사석 옥집) (20제)",
+            "title": "제7단원: 소목 한칸 높은 걸침과 변화 (20제)",
+            "chapter": "제7단원: 소목 한칸 높은 걸침과 변화 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_05_u08",
             "chapterCode": "stage_05_u08",
-            "title": "먹여쳐서 옥집 만들기 (20제)",
-            "chapter": "먹여쳐서 옥집 만들기 (20제)",
+            "title": "제8단원: 어깨짚기 (20제)",
+            "chapter": "제8단원: 어깨짚기 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_05_u09",
             "chapterCode": "stage_05_u09",
-            "title": "중요한 돌(요석)과 버려도 되는 돌(폐석) 분별하기 (20제)",
-            "chapter": "중요한 돌(요석)과 버려도 되는 돌(폐석) 분별하기 (20제)",
+            "title": "제9단원: 요석과 폐석 구별 (20제)",
+            "chapter": "제9단원: 요석과 폐석 구별 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_05_u10",
             "chapterCode": "stage_05_u10",
-            "title": "요석을 살리고 폐석을 버리는 지혜 (20제)",
-            "chapter": "요석을 살리고 폐석을 버리는 지혜 (20제)",
+            "title": "제10단원: 수기안인 (20제)",
+            "chapter": "제10단원: 수기안인 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_05_u11",
             "chapterCode": "stage_05_u11",
-            "title": "1선의 환격과 2선에서의 먹여침 환격 (20제)",
-            "chapter": "1선의 환격과 2선에서의 먹여침 환격 (20제)",
+            "title": "제11단원: 역끝내기 (20제)",
+            "chapter": "제11단원: 역끝내기 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_05_u12",
             "chapterCode": "stage_05_u12",
-            "title": "밭전자(田字) 행마와 밭전자 째기 약점 (20제)",
-            "chapter": "밭전자(田字) 행마와 밭전자 째기 약점 (20제)",
-            "problemCount": 20,
-            "problemsCount": 20
-          },
-          {
-            "code": "stage_05_u13",
-            "chapterCode": "stage_05_u13",
-            "title": "밭전자 째기 방어와 연결 요령 (20제)",
-            "chapter": "밭전자 째기 방어와 연결 요령 (20제)",
-            "problemCount": 20,
-            "problemsCount": 20
-          },
-          {
-            "code": "stage_05_u14",
-            "chapterCode": "stage_05_u14",
-            "title": "변 벌림의 기본 원리 1: 1립2전 (한 돌에서 두 칸 벌림) (20제)",
-            "chapter": "변 벌림의 기본 원리 1: 1립2전 (한 돌에서 두 칸 벌림) (20제)",
-            "problemCount": 20,
-            "problemsCount": 20
-          },
-          {
-            "code": "stage_05_u15",
-            "chapterCode": "stage_05_u15",
-            "title": "변 벌림의 기본 원리 2: 2립3전 (두 돌에서 세 칸 벌림) (20제)",
-            "chapter": "변 벌림의 기본 원리 2: 2립3전 (두 돌에서 세 칸 벌림) (20제)",
-            "problemCount": 20,
-            "problemsCount": 20
-          },
-          {
-            "code": "stage_05_u16",
-            "chapterCode": "stage_05_u16",
-            "title": "높은 벌림(4선)과 낮은 벌림(3선)의 차이 (20제)",
-            "chapter": "높은 벌림(4선)과 낮은 벌림(3선)의 차이 (20제)",
-            "problemCount": 20,
-            "problemsCount": 20
-          },
-          {
-            "code": "stage_05_u17",
-            "chapterCode": "stage_05_u17",
-            "title": "끝내기: 1선 젖혀 잇기의 정확한 수순 (20제)",
-            "chapter": "끝내기: 1선 젖혀 잇기의 정확한 수순 (20제)",
-            "problemCount": 20,
-            "problemsCount": 20
-          },
-          {
-            "code": "stage_05_u18",
-            "chapterCode": "stage_05_u18",
-            "title": "끝내기: 후수 젖혀 잇기와 선수 젖혀 잇기 (20제)",
-            "chapter": "끝내기: 후수 젖혀 잇기와 선수 젖혀 잇기 (20제)",
-            "problemCount": 20,
-            "problemsCount": 20
-          },
-          {
-            "code": "stage_05_u19",
-            "chapterCode": "stage_05_u19",
-            "title": "공배 메우기에서의 자충 방지 (20제)",
-            "chapter": "공배 메우기에서의 자충 방지 (20제)",
-            "problemCount": 20,
-            "problemsCount": 20
-          },
-          {
-            "code": "stage_05_u20",
-            "chapterCode": "stage_05_u20",
-            "title": "제5단계 4궁 사활 및 포석 기초 종합 평가 (20제)",
-            "chapter": "제5단계 4궁 사활 및 포석 기초 종합 평가 (20제)",
+            "title": "제12단원: 중급부 19줄 실전 종합 평가 (20제)",
+            "chapter": "제12단원: 중급부 19줄 실전 종합 평가 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           }
@@ -861,167 +701,103 @@
       },
       {
         "code": "stage_06",
-        "title": "제6단계 : 5궁도 사활과 빅(Seki), 20급 관문 돌파 [21급 ➔ 20급 관문 / 20단원]",
-        "chapterCount": 20,
-        "totalProblems": 400,
+        "title": "제6단계: 🛡️ 대회 6단계: 상급부 (12급 ~ 10급)",
+        "chapterCount": 12,
+        "totalProblems": 240,
         "chapters": [
           {
             "code": "stage_06_u01",
             "chapterCode": "stage_06_u01",
-            "title": "5궁도의 형태: 십자오궁, 모자오궁, 권총오궁, 별오궁 (20제)",
-            "chapter": "5궁도의 형태: 십자오궁, 모자오궁, 권총오궁, 별오궁 (20제)",
+            "title": "제1단원: 팻감 공장 만들기 (20제)",
+            "chapter": "제1단원: 팻감 공장 만들기 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_06_u02",
             "chapterCode": "stage_06_u02",
-            "title": "5궁도 사활의 치중 급소: 한가운데 급소 찾아 치중하기 (20제)",
-            "chapter": "5궁도 사활의 치중 급소: 한가운데 급소 찾아 치중하기 (20제)",
+            "title": "제2단원: 패의 종류와 양보 기준 (20제)",
+            "chapter": "제2단원: 패의 종류와 양보 기준 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_06_u03",
             "chapterCode": "stage_06_u03",
-            "title": "5궁도에서 두 집 내고 살아가는 급소 (20제)",
-            "chapter": "5궁도에서 두 집 내고 살아가는 급소 (20제)",
+            "title": "제3단원: 귀의 곡사궁 (20제)",
+            "chapter": "제3단원: 귀의 곡사궁 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_06_u04",
             "chapterCode": "stage_06_u04",
-            "title": "서로 건드릴 수 없는 평화: 빅(Seki)의 원리와 조건 (20제)",
-            "chapter": "서로 건드릴 수 없는 평화: 빅(Seki)의 원리와 조건 (20제)",
+            "title": "제4단원: 빗자루 사활과 2선 젖힘 (20제)",
+            "chapter": "제4단원: 빗자루 사활과 2선 젖힘 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_06_u05",
             "chapterCode": "stage_06_u05",
-            "title": "실전에서 빅이 발생하는 형태 분별하기 (20제)",
-            "chapter": "실전에서 빅이 발생하는 형태 분별하기 (20제)",
+            "title": "제5단원: 자충 유도와 2선 밑붙임의 맥 (20제)",
+            "chapter": "제5단원: 자충 유도와 2선 밑붙임의 맥 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_06_u06",
             "chapterCode": "stage_06_u06",
-            "title": "빅과 죽은 돌의 차이점 명확히 판별하기 (20제)",
-            "chapter": "빅과 죽은 돌의 차이점 명확히 판별하기 (20제)",
+            "title": "제6단원: 패를 품은 수상전 (20제)",
+            "chapter": "제6단원: 패를 품은 수상전 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_06_u07",
             "chapterCode": "stage_06_u07",
-            "title": "수상전 심화 1: 가만히 1선으로 빠져 수 늘리기 (20제)",
-            "chapter": "수상전 심화 1: 가만히 1선으로 빠져 수 늘리기 (20제)",
+            "title": "제7단원: 현대 AI 삼삼 침입 신정석 (20제)",
+            "chapter": "제7단원: 현대 AI 삼삼 침입 신정석 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_06_u08",
             "chapterCode": "stage_06_u08",
-            "title": "수상전 심화 2: 젖혀서 상대의 자충 유도하기 (20제)",
-            "chapter": "수상전 심화 2: 젖혀서 상대의 자충 유도하기 (20제)",
+            "title": "제8단원: 현대 AI 삼삼 침입 신정석 (20제)",
+            "chapter": "제8단원: 현대 AI 삼삼 침입 신정석 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_06_u09",
             "chapterCode": "stage_06_u09",
-            "title": "수상전 심화 3: 먹여쳐서 상대 활로 1수 줄이기 (20제)",
-            "chapter": "수상전 심화 3: 먹여쳐서 상대 활로 1수 줄이기 (20제)",
+            "title": "제9단원: 상대 진영 3선 침투와 근거 마련 (20제)",
+            "chapter": "제9단원: 상대 진영 3선 침투와 근거 마련 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_06_u10",
             "chapterCode": "stage_06_u10",
-            "title": "자충(스스로 활로 메우기)을 피하는 올바른 수읽기 (20제)",
-            "chapter": "자충(스스로 활로 메우기)을 피하는 올바른 수읽기 (20제)",
+            "title": "제10단원: 10초 형세판단 & 2집 묶어 세기 (20제)",
+            "chapter": "제10단원: 10초 형세판단 & 2집 묶어 세기 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_06_u11",
             "chapterCode": "stage_06_u11",
-            "title": "행마의 기본: 두 점 머리는 무조건 젖혀라 (20제)",
-            "chapter": "행마의 기본: 두 점 머리는 무조건 젖혀라 (20제)",
+            "title": "제11단원: 선·후수 종합 조율 끝내기 (20제)",
+            "chapter": "제11단원: 선·후수 종합 조율 끝내기 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_06_u12",
             "chapterCode": "stage_06_u12",
-            "title": "젖힘에 대항하는 행마: 가만히 뻗기(늘기) (20제)",
-            "chapter": "젖힘에 대항하는 행마: 가만히 뻗기(늘기) (20제)",
-            "problemCount": 20,
-            "problemsCount": 20
-          },
-          {
-            "code": "stage_06_u13",
-            "chapterCode": "stage_06_u13",
-            "title": "날일자 행마의 탄력성과 연결 (20제)",
-            "chapter": "날일자 행마의 탄력성과 연결 (20제)",
-            "problemCount": 20,
-            "problemsCount": 20
-          },
-          {
-            "code": "stage_06_u14",
-            "chapterCode": "stage_06_u14",
-            "title": "포석의 발전: 귀 굳힘(화점 날일자 굳힘) (20제)",
-            "chapter": "포석의 발전: 귀 굳힘(화점 날일자 굳힘) (20제)",
-            "problemCount": 20,
-            "problemsCount": 20
-          },
-          {
-            "code": "stage_06_u15",
-            "chapterCode": "stage_06_u15",
-            "title": "귀 걸침의 기초: 화점 날일자 걸침 (20제)",
-            "chapter": "귀 걸침의 기초: 화점 날일자 걸침 (20제)",
-            "problemCount": 20,
-            "problemsCount": 20
-          },
-          {
-            "code": "stage_06_u16",
-            "chapterCode": "stage_06_u16",
-            "title": "끝내기: 2선 젖혀 잇기의 가치와 계산 (20제)",
-            "chapter": "끝내기: 2선 젖혀 잇기의 가치와 계산 (20제)",
-            "problemCount": 20,
-            "problemsCount": 20
-          },
-          {
-            "code": "stage_06_u17",
-            "chapterCode": "stage_06_u17",
-            "title": "끝내기: 옥집을 메우는 순서 (20제)",
-            "chapter": "끝내기: 옥집을 메우는 순서 (20제)",
-            "problemCount": 20,
-            "problemsCount": 20
-          },
-          {
-            "code": "stage_06_u18",
-            "chapterCode": "stage_06_u18",
-            "title": "실전 집 모양 구별과 계가 기초 연습 (20제)",
-            "chapter": "실전 집 모양 구별과 계가 기초 연습 (20제)",
-            "problemCount": 20,
-            "problemsCount": 20
-          },
-          {
-            "code": "stage_06_u19",
-            "chapterCode": "stage_06_u19",
-            "title": "20급 관문 종합 사활·맥 테스트 (20제) (20제)",
-            "chapter": "20급 관문 종합 사활·맥 테스트 (20제) (20제)",
-            "problemCount": 20,
-            "problemsCount": 20
-          },
-          {
-            "code": "stage_06_u20",
-            "chapterCode": "stage_06_u20",
-            "title": "제6단계 20급 관문 돌파 종합 인증 검정 (20제)",
-            "chapter": "제6단계 20급 관문 돌파 종합 인증 검정 (20제)",
+            "title": "제12단원: 상급부 19줄 실전 종합 평가 (20제)",
+            "chapter": "제12단원: 상급부 19줄 실전 종합 평가 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           }
@@ -1029,167 +805,103 @@
       },
       {
         "code": "stage_07",
-        "title": "제7단계 : 유가무가(有家無家)와 실전 패싸움의 전개 [20급 ➔ 19급 / 20단원]",
-        "chapterCount": 20,
-        "totalProblems": 400,
+        "title": "제7단계: 🥋 대회 7단계: 고급부 (9급 ~ 7급)",
+        "chapterCount": 12,
+        "totalProblems": 240,
         "chapters": [
           {
             "code": "stage_07_u01",
             "chapterCode": "stage_07_u01",
-            "title": "수상전 최고 격언: '유가무가(有家無家)면 불상잡(不相雜)' (20제)",
-            "chapter": "수상전 최고 격언: '유가무가(有家無家)면 불상잡(不相雜)' (20제)",
+            "title": "제1단원: 사석작전 (20제)",
+            "chapter": "제1단원: 사석작전 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_07_u02",
             "chapterCode": "stage_07_u02",
-            "title": "유가무가의 기본 원리: 집이 있는 돌은 무조건 이긴다 (20제)",
-            "chapter": "유가무가의 기본 원리: 집이 있는 돌은 무조건 이긴다 (20제)",
+            "title": "제2단원: 꽃놀이패와 국면 흔들기 (20제)",
+            "chapter": "제2단원: 꽃놀이패와 국면 흔들기 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_07_u03",
             "chapterCode": "stage_07_u03",
-            "title": "실전 유가무가 형태 찾아내기 (20제)",
-            "chapter": "실전 유가무가 형태 찾아내기 (20제)",
+            "title": "제3단원: 육사칠활 (20제)",
+            "chapter": "제3단원: 육사칠활 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_07_u04",
             "chapterCode": "stage_07_u04",
-            "title": "상대는 집이 없고 나는 집을 만드는 유가무가 전법 (20제)",
-            "chapter": "상대는 집이 없고 나는 집을 만드는 유가무가 전법 (20제)",
+            "title": "제4단원: 턱밑치중과 근거 박탈 (20제)",
+            "chapter": "제4단원: 턱밑치중과 근거 박탈 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_07_u05",
             "chapterCode": "stage_07_u05",
-            "title": "패싸움의 실전 전개: 패를 따내는 올바른 타이밍 (20제)",
-            "chapter": "패싸움의 실전 전개: 패를 따내는 올바른 타이밍 (20제)",
+            "title": "제5단원: 2선 옆구리 배붙임의 맥 (20제)",
+            "chapter": "제5단원: 2선 옆구리 배붙임의 맥 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_07_u06",
             "chapterCode": "stage_07_u06",
-            "title": "팻감이란 무엇인가: 상대가 무조건 받아야 하는 곳 (20제)",
-            "chapter": "팻감이란 무엇인가: 상대가 무조건 받아야 하는 곳 (20제)",
+            "title": "제6단원: 자충을 부르는 빈삼각 묘수 (20제)",
+            "chapter": "제6단원: 자충을 부르는 빈삼각 묘수 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_07_u07",
             "chapterCode": "stage_07_u07",
-            "title": "자체 팻감과 외곽 팻감 분별하기 (20제)",
-            "chapter": "자체 팻감과 외곽 팻감 분별하기 (20제)",
+            "title": "제7단원: 대궁소궁 (20제)",
+            "chapter": "제7단원: 대궁소궁 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_07_u08",
             "chapterCode": "stage_07_u08",
-            "title": "팻감의 크기 비교: 어느 패가 더 큰가? (20제)",
-            "chapter": "팻감의 크기 비교: 어느 패가 더 큰가? (20제)",
+            "title": "제8단원: 사바키 (20제)",
+            "chapter": "제8단원: 사바키 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_07_u09",
             "chapterCode": "stage_07_u09",
-            "title": "패를 내어 사는 사활 (그냥은 못 산다!) (20제)",
-            "chapter": "패를 내어 사는 사활 (그냥은 못 산다!) (20제)",
+            "title": "제9단원: 중국식 포석과 세력 전개 (20제)",
+            "chapter": "제9단원: 중국식 포석과 세력 전개 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_07_u10",
             "chapterCode": "stage_07_u10",
-            "title": "패를 내어 잡는 사활 (패로 몰아넣기) (20제)",
-            "chapter": "패를 내어 잡는 사활 (패로 몰아넣기) (20제)",
+            "title": "제10단원: 덤 (20제)",
+            "chapter": "제10단원: 덤 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_07_u11",
             "chapterCode": "stage_07_u11",
-            "title": "상대를 뭉치게 몰아잡는 회돌이(Twisting atari)의 원리 (20제)",
-            "chapter": "상대를 뭉치게 몰아잡는 회돌이(Twisting atari)의 원리 (20제)",
+            "title": "제11단원: 10집 이상 대형 끝내기 선점 (20제)",
+            "chapter": "제11단원: 10집 이상 대형 끝내기 선점 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_07_u12",
             "chapterCode": "stage_07_u12",
-            "title": "회돌이 축과 회돌이 장문 (20제)",
-            "chapter": "회돌이 축과 회돌이 장문 (20제)",
-            "problemCount": 20,
-            "problemsCount": 20
-          },
-          {
-            "code": "stage_07_u13",
-            "chapterCode": "stage_07_u13",
-            "title": "정석 입문: 화점 날일자 걸침과 날일자 받기 정석 (20제)",
-            "chapter": "정석 입문: 화점 날일자 걸침과 날일자 받기 정석 (20제)",
-            "problemCount": 20,
-            "problemsCount": 20
-          },
-          {
-            "code": "stage_07_u14",
-            "chapterCode": "stage_07_u14",
-            "title": "정석의 의미: 흑과 백이 서로 대등하게 나눈 형태 (20제)",
-            "chapter": "정석의 의미: 흑과 백이 서로 대등하게 나눈 형태 (20제)",
-            "problemCount": 20,
-            "problemsCount": 20
-          },
-          {
-            "code": "stage_07_u15",
-            "chapterCode": "stage_07_u15",
-            "title": "행마의 맥: 한 칸 뜀으로 시원하게 중앙 진출 (20제)",
-            "chapter": "행마의 맥: 한 칸 뜀으로 시원하게 중앙 진출 (20제)",
-            "problemCount": 20,
-            "problemsCount": 20
-          },
-          {
-            "code": "stage_07_u16",
-            "chapterCode": "stage_07_u16",
-            "title": "중앙 한 칸 뜀에 악수 없다 (20제)",
-            "chapter": "중앙 한 칸 뜀에 악수 없다 (20제)",
-            "problemCount": 20,
-            "problemsCount": 20
-          },
-          {
-            "code": "stage_07_u17",
-            "chapterCode": "stage_07_u17",
-            "title": "끝내기: 1선 마늘모 끝내기 (20제)",
-            "chapter": "끝내기: 1선 마늘모 끝내기 (20제)",
-            "problemCount": 20,
-            "problemsCount": 20
-          },
-          {
-            "code": "stage_07_u18",
-            "chapterCode": "stage_07_u18",
-            "title": "계가: 공배를 다 메운 후 사석으로 집 메우기 (20제)",
-            "chapter": "계가: 공배를 다 메운 후 사석으로 집 메우기 (20제)",
-            "problemCount": 20,
-            "problemsCount": 20
-          },
-          {
-            "code": "stage_07_u19",
-            "chapterCode": "stage_07_u19",
-            "title": "유가무가와 패 복합 실전 연습 (20제) (20제)",
-            "chapter": "유가무가와 패 복합 실전 연습 (20제) (20제)",
-            "problemCount": 20,
-            "problemsCount": 20
-          },
-          {
-            "code": "stage_07_u20",
-            "chapterCode": "stage_07_u20",
-            "title": "제7단계 유가무가 및 패싸움 종합 평가 (20제)",
-            "chapter": "제7단계 유가무가 및 패싸움 종합 평가 (20제)",
+            "title": "제12단원: 고급부 19줄 실전 종합 평가 (20제)",
+            "chapter": "제12단원: 고급부 19줄 실전 종합 평가 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           }
@@ -1197,167 +909,103 @@
       },
       {
         "code": "stage_08",
-        "title": "제8단계 : 1선 고급 수상전과 귀의 특수성 입문 [19급 ➔ 18급 / 20단원]",
-        "chapterCount": 20,
-        "totalProblems": 400,
+        "title": "제8단계: 🦅 대회 8단계: 특급부 / 최우수부 (6급 ~ 4급)",
+        "chapterCount": 12,
+        "totalProblems": 240,
         "chapters": [
           {
             "code": "stage_08_u01",
             "chapterCode": "stage_08_u01",
-            "title": "1선 마늘모(입구자)를 활용한 고급 수상전 맥 (20제)",
-            "chapter": "1선 마늘모(입구자)를 활용한 고급 수상전 맥 (20제)",
+            "title": "제1단원: 실전 사활 8대 정형 완결 (20제)",
+            "chapter": "제1단원: 실전 사활 8대 정형 완결 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_08_u02",
             "chapterCode": "stage_08_u02",
-            "title": "1선 마늘모로 상대 자충 유도하여 이기기 (20제)",
-            "chapter": "1선 마늘모로 상대 자충 유도하여 이기기 (20제)",
+            "title": "제2단원: 실전 사활 8대 정형 완결 (20제)",
+            "chapter": "제2단원: 실전 사활 8대 정형 완결 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_08_u03",
             "chapterCode": "stage_08_u03",
-            "title": "1선 젖힘의 맥: 젖혀서 수 늘리고 상대 수 줄이기 (20제)",
-            "chapter": "1선 젖힘의 맥: 젖혀서 수 늘리고 상대 수 줄이기 (20제)",
+            "title": "제3단원: 2선 턱밑치중과 젖혀 조이기 (20제)",
+            "chapter": "제3단원: 2선 턱밑치중과 젖혀 조이기 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_08_u04",
             "chapterCode": "stage_08_u04",
-            "title": "1선 내림(빠짐)의 맥: 침착하게 내려서 수 늘리기 (20제)",
-            "chapter": "1선 내림(빠짐)의 맥: 침착하게 내려서 수 늘리기 (20제)",
+            "title": "제4단원: 10수 이상의 복합 조이기 수상전 (20제)",
+            "chapter": "제4단원: 10수 이상의 복합 조이기 수상전 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_08_u05",
             "chapterCode": "stage_08_u05",
-            "title": "귀의 특수성 입문: 1선과 2선이 빚어내는 마법의 공간 (20제)",
-            "chapter": "귀의 특수성 입문: 1선과 2선이 빚어내는 마법의 공간 (20제)",
+            "title": "제5단원: 카타고 AI 초반 40수 블루스팟 감각 (20제)",
+            "chapter": "제5단원: 카타고 AI 초반 40수 블루스팟 감각 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_08_u06",
             "chapterCode": "stage_08_u06",
-            "title": "귀에서는 평소에 안 되던 수가 성립한다 (20제)",
-            "chapter": "귀에서는 평소에 안 되던 수가 성립한다 (20제)",
+            "title": "제6단원: 두터움 (20제)",
+            "chapter": "제6단원: 두터움 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_08_u07",
             "chapterCode": "stage_08_u07",
-            "title": "귀에서의 젖힘과 호구 급소 (20제)",
-            "chapter": "귀에서의 젖힘과 호구 급소 (20제)",
+            "title": "제7단원: 특공대 침투 후 심층 수습 (20제)",
+            "chapter": "제7단원: 특공대 침투 후 심층 수습 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_08_u08",
             "chapterCode": "stage_08_u08",
-            "title": "행마법: 날일자 행마와 건너붙임의 약점 (20제)",
-            "chapter": "행마법: 날일자 행마와 건너붙임의 약점 (20제)",
+            "title": "제8단원: 패를 이용한 사석 유도 작전 (20제)",
+            "chapter": "제8단원: 패를 이용한 사석 유도 작전 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_08_u09",
             "chapterCode": "stage_08_u09",
-            "title": "건너붙임 약점을 미리 방어하는 요령 (20제)",
-            "chapter": "건너붙임 약점을 미리 방어하는 요령 (20제)",
+            "title": "제9단원: 불리할 때 판을 흔드는 승부수 (20제)",
+            "chapter": "제9단원: 불리할 때 판을 흔드는 승부수 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_08_u10",
             "chapterCode": "stage_08_u10",
-            "title": "화점 날일자 걸침에 한 칸 받기 정석 (20제)",
-            "chapter": "화점 날일자 걸침에 한 칸 받기 정석 (20제)",
+            "title": "제10단원: 양선수 끝내기 쟁탈전 (20제)",
+            "chapter": "제10단원: 양선수 끝내기 쟁탈전 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_08_u11",
             "chapterCode": "stage_08_u11",
-            "title": "화점 날일자 걸침에 협공(한 칸 협공) 맛보기 (20제)",
-            "chapter": "화점 날일자 걸침에 협공(한 칸 협공) 맛보기 (20제)",
+            "title": "제11단원: 패가 딸린 끝내기와 반집의 가치 (20제)",
+            "chapter": "제11단원: 패가 딸린 끝내기와 반집의 가치 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_08_u12",
             "chapterCode": "stage_08_u12",
-            "title": "협공을 당했을 때 삼삼(3·3)으로 파고들기 (20제)",
-            "chapter": "협공을 당했을 때 삼삼(3·3)으로 파고들기 (20제)",
-            "problemCount": 20,
-            "problemsCount": 20
-          },
-          {
-            "code": "stage_08_u13",
-            "chapterCode": "stage_08_u13",
-            "title": "포석: 넓은 변부터 먼저 벌려라 (20제)",
-            "chapter": "포석: 넓은 변부터 먼저 벌려라 (20제)",
-            "problemCount": 20,
-            "problemsCount": 20
-          },
-          {
-            "code": "stage_08_u14",
-            "chapterCode": "stage_08_u14",
-            "title": "굳힘이 있는 쪽으로 벌리는 가치 (20제)",
-            "chapter": "굳힘이 있는 쪽으로 벌리는 가치 (20제)",
-            "problemCount": 20,
-            "problemsCount": 20
-          },
-          {
-            "code": "stage_08_u15",
-            "chapterCode": "stage_08_u15",
-            "title": "끝내기: 선수 끝내기와 후수 끝내기 완벽 구별 (20제)",
-            "chapter": "끝내기: 선수 끝내기와 후수 끝내기 완벽 구별 (20제)",
-            "problemCount": 20,
-            "problemsCount": 20
-          },
-          {
-            "code": "stage_08_u16",
-            "chapterCode": "stage_08_u16",
-            "title": "양선수 끝내기란 무엇인가 (가장 먼저 둘 곳) (20제)",
-            "chapter": "양선수 끝내기란 무엇인가 (가장 먼저 둘 곳) (20제)",
-            "problemCount": 20,
-            "problemsCount": 20
-          },
-          {
-            "code": "stage_08_u17",
-            "chapterCode": "stage_08_u17",
-            "title": "역끝내기 맛보기 (상대의 선수를 차단) (20제)",
-            "chapter": "역끝내기 맛보기 (상대의 선수를 차단) (20제)",
-            "problemCount": 20,
-            "problemsCount": 20
-          },
-          {
-            "code": "stage_08_u18",
-            "chapterCode": "stage_08_u18",
-            "title": "실전 수상전 수순 풀이 (20제)",
-            "chapter": "실전 수상전 수순 풀이 (20제)",
-            "problemCount": 20,
-            "problemsCount": 20
-          },
-          {
-            "code": "stage_08_u19",
-            "chapterCode": "stage_08_u19",
-            "title": "사활과 수상전이 복합된 실전 문제 (20제)",
-            "chapter": "사활과 수상전이 복합된 실전 문제 (20제)",
-            "problemCount": 20,
-            "problemsCount": 20
-          },
-          {
-            "code": "stage_08_u20",
-            "chapterCode": "stage_08_u20",
-            "title": "제8단계 1선 테크닉 종합 평가 (20제)",
-            "chapter": "제8단계 1선 테크닉 종합 평가 (20제)",
+            "title": "제12단원: 특급부 19줄 실전 종합 평가 (20제)",
+            "chapter": "제12단원: 특급부 19줄 실전 종합 평가 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           }
@@ -1365,167 +1013,103 @@
       },
       {
         "code": "stage_09",
-        "title": "제9단계 : 침투와 차단, 그리고 접촉전의 요령 [18급 ➔ 17급 / 20단원]",
-        "chapterCount": 20,
-        "totalProblems": 400,
+        "title": "제9단계: 🦁 대회 9단계: 연구부 / 단증도전부 (3급 ~ 1급)",
+        "chapterCount": 12,
+        "totalProblems": 240,
         "chapters": [
           {
             "code": "stage_09_u01",
             "chapterCode": "stage_09_u01",
-            "title": "상대의 넓은 진영 갈라치기의 원리와 위치 (20제)",
-            "chapter": "상대의 넓은 진영 갈라치기의 원리와 위치 (20제)",
+            "title": "제1단원: 실전 귀·변 고급 사활 (20제)",
+            "chapter": "제1단원: 실전 귀·변 고급 사활 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_09_u02",
             "chapterCode": "stage_09_u02",
-            "title": "갈라친 후 두 칸 벌림으로 안정을 취하는 법 (20제)",
-            "chapter": "갈라친 후 두 칸 벌림으로 안정을 취하는 법 (20제)",
+            "title": "제2단원: 실전 패를 동반한 사활 (20제)",
+            "chapter": "제2단원: 실전 패를 동반한 사활 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_09_u03",
             "chapterCode": "stage_09_u03",
-            "title": "돌이 부딪쳤을 때(접촉전)의 대원칙: 맞젖힘 (20제)",
-            "chapter": "돌이 부딪쳤을 때(접촉전)의 대원칙: 맞젖힘 (20제)",
+            "title": "제3단원: 수순의 묘 (20제)",
+            "chapter": "제3단원: 수순의 묘 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_09_u04",
             "chapterCode": "stage_09_u04",
-            "title": "무턱대고 젖히면 위험하다: 가만히 뻗는 수의 위력 (20제)",
-            "chapter": "무턱대고 젖히면 위험하다: 가만히 뻗는 수의 위력 (20제)",
+            "title": "제4단원: 만년패와 양패를 품은 수상전 (20제)",
+            "chapter": "제4단원: 만년패와 양패를 품은 수상전 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_09_u05",
             "chapterCode": "stage_09_u05",
-            "title": "끼움의 맥: 상대 돌 사이에 끼워 약점 찌르기 (20제)",
-            "chapter": "끼움의 맥: 상대 돌 사이에 끼워 약점 찌르기 (20제)",
+            "title": "제5단원: AI 난해 협공 정석 타파 (20제)",
+            "chapter": "제5단원: AI 난해 협공 정석 타파 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_09_u06",
             "chapterCode": "stage_09_u06",
-            "title": "붙임의 맥: 기대어 붙이며 모양 정비하기 (20제)",
-            "chapter": "붙임의 맥: 기대어 붙이며 모양 정비하기 (20제)",
+            "title": "제6단원: 심층 타개 (20제)",
+            "chapter": "제6단원: 심층 타개 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_09_u07",
             "chapterCode": "stage_09_u07",
-            "title": "건너붙임의 맥과 상대 행마 차단하기 (20제)",
-            "chapter": "건너붙임의 맥과 상대 행마 차단하기 (20제)",
+            "title": "제7단원: 패를 통한 국면 분할과 바꿔치기 (20제)",
+            "chapter": "제7단원: 패를 통한 국면 분할과 바꿔치기 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_09_u08",
             "chapterCode": "stage_09_u08",
-            "title": "안형(눈모양)의 급소를 차지하여 안정을 취하기 (20제)",
-            "chapter": "안형(눈모양)의 급소를 차지하여 안정을 취하기 (20제)",
+            "title": "제8단원: 0.5집 단위 정밀 계가와 형세 관리 (20제)",
+            "chapter": "제8단원: 0.5집 단위 정밀 계가와 형세 관리 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_09_u09",
             "chapterCode": "stage_09_u09",
-            "title": "모양이 무거워지는 것(우형)을 피하는 행마 (20제)",
-            "chapter": "모양이 무거워지는 것(우형)을 피하는 행마 (20제)",
+            "title": "제9단원: 안팎 계산법 (20제)",
+            "chapter": "제9단원: 안팎 계산법 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_09_u10",
             "chapterCode": "stage_09_u10",
-            "title": "탄력 있는 호구 모양을 갖추는 행마 (20제)",
-            "chapter": "탄력 있는 호구 모양을 갖추는 행마 (20제)",
+            "title": "제10단원: 역끝내기 쟁탈과 끝내기 맥점 (20제)",
+            "chapter": "제10단원: 역끝내기 쟁탈과 끝내기 맥점 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_09_u11",
             "chapterCode": "stage_09_u11",
-            "title": "소목 정석 입문 1: 소목 날일자 걸침과 날일자 받기 (20제)",
-            "chapter": "소목 정석 입문 1: 소목 날일자 걸침과 날일자 받기 (20제)",
+            "title": "제11단원: 초읽기 훈련과 시간 안배 (20제)",
+            "chapter": "제11단원: 초읽기 훈련과 시간 안배 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_09_u12",
             "chapterCode": "stage_09_u12",
-            "title": "소목 정석 입문 2: 소목 날일자 걸침과 한 칸 받기 (20제)",
-            "chapter": "소목 정석 입문 2: 소목 날일자 걸침과 한 칸 받기 (20제)",
-            "problemCount": 20,
-            "problemsCount": 20
-          },
-          {
-            "code": "stage_09_u13",
-            "chapterCode": "stage_09_u13",
-            "title": "소목의 기본 성격: 실리를 단단하게 지키는 귀 (20제)",
-            "chapter": "소목의 기본 성격: 실리를 단단하게 지키는 귀 (20제)",
-            "problemCount": 20,
-            "problemsCount": 20
-          },
-          {
-            "code": "stage_09_u14",
-            "chapterCode": "stage_09_u14",
-            "title": "포석: 3귀를 차지한 쪽의 유리함 (20제)",
-            "chapter": "포석: 3귀를 차지한 쪽의 유리함 (20제)",
-            "problemCount": 20,
-            "problemsCount": 20
-          },
-          {
-            "code": "stage_09_u15",
-            "chapterCode": "stage_09_u15",
-            "title": "끝내기: 2선 젖혀 잇기와 집 계산 (20제)",
-            "chapter": "끝내기: 2선 젖혀 잇기와 집 계산 (20제)",
-            "problemCount": 20,
-            "problemsCount": 20
-          },
-          {
-            "code": "stage_09_u16",
-            "chapterCode": "stage_09_u16",
-            "title": "끝내기: 덤(Komi)의 의미와 덤이 필요한 이유 (20제)",
-            "chapter": "끝내기: 덤(Komi)의 의미와 덤이 필요한 이유 (20제)",
-            "problemCount": 20,
-            "problemsCount": 20
-          },
-          {
-            "code": "stage_09_u17",
-            "chapterCode": "stage_09_u17",
-            "title": "빅의 실전 판별과 계가 시 처리 요령 (20제)",
-            "chapter": "빅의 실전 판별과 계가 시 처리 요령 (20제)",
-            "problemCount": 20,
-            "problemsCount": 20
-          },
-          {
-            "code": "stage_09_u18",
-            "chapterCode": "stage_09_u18",
-            "title": "접촉전에서 발생하는 자충수 피하기 (20제)",
-            "chapter": "접촉전에서 발생하는 자충수 피하기 (20제)",
-            "problemCount": 20,
-            "problemsCount": 20
-          },
-          {
-            "code": "stage_09_u19",
-            "chapterCode": "stage_09_u19",
-            "title": "실전 기보 속의 접촉전 분석 (20제)",
-            "chapter": "실전 기보 속의 접촉전 분석 (20제)",
-            "problemCount": 20,
-            "problemsCount": 20
-          },
-          {
-            "code": "stage_09_u20",
-            "chapterCode": "stage_09_u20",
-            "title": "제9단계 접촉전 및 정석 종합 평가 (20제)",
-            "chapter": "제9단계 접촉전 및 정석 종합 평가 (20제)",
+            "title": "제12단원: 연구부 19줄 실전 종합 평가 (20제)",
+            "chapter": "제12단원: 연구부 19줄 실전 종합 평가 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           }
@@ -1533,167 +1117,103 @@
       },
       {
         "code": "stage_10",
-        "title": "제10단계 : 사석작전(키워 버리기)과 행마의 급소 [17급 ➔ 16급 / 20단원]",
-        "chapterCount": 20,
-        "totalProblems": 400,
+        "title": "제10단계: 🏆 대회 10단계: 유단자부 (아마초단 관문)",
+        "chapterCount": 12,
+        "totalProblems": 240,
         "chapters": [
           {
             "code": "stage_10_u01",
             "chapterCode": "stage_10_u01",
-            "title": "사석작전(捨石作戰)이란: 돌을 버려서 더 큰 이득을 취한다 (20제)",
-            "chapter": "사석작전(捨石作戰)이란: 돌을 버려서 더 큰 이득을 취한다 (20제)",
+            "title": "제1단원: 실전 대마 사활과 안형의 급소 (20제)",
+            "chapter": "제1단원: 실전 대마 사활과 안형의 급소 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_10_u02",
             "chapterCode": "stage_10_u02",
-            "title": "내 돌 1개를 2개로 키워서 버리는 이유 (20제)",
-            "chapter": "내 돌 1개를 2개로 키워서 버리는 이유 (20제)",
+            "title": "제2단원: 복합 궁도 사활과 빅·패 판별 (20제)",
+            "chapter": "제2단원: 복합 궁도 사활과 빅·패 판별 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_10_u03",
             "chapterCode": "stage_10_u03",
-            "title": "2개로 키워 버린 후 먹여쳐서 상대 옥집 만들기 (20제)",
-            "chapter": "2개로 키워 버린 후 먹여쳐서 상대 옥집 만들기 (20제)",
+            "title": "제3단원: 난전 속의 절대 맥점 (20제)",
+            "chapter": "제3단원: 난전 속의 절대 맥점 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_10_u04",
             "chapterCode": "stage_10_u04",
-            "title": "3개로 키워 버려 상대 형태를 완전히 뭉개기 (20제)",
-            "chapter": "3개로 키워 버려 상대 형태를 완전히 뭉개기 (20제)",
+            "title": "제4단원: 외길 20수 이상의 대형 수상전 (20제)",
+            "chapter": "제4단원: 외길 20수 이상의 대형 수상전 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_10_u05",
             "chapterCode": "stage_10_u05",
-            "title": "사석작전을 활용한 수상전 이기기 (20제)",
-            "chapter": "사석작전을 활용한 수상전 이기기 (20제)",
+            "title": "제5단원: 프로 공식 기보 초반 포석 분석 (20제)",
+            "chapter": "제5단원: 프로 공식 기보 초반 포석 분석 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_10_u06",
             "chapterCode": "stage_10_u06",
-            "title": "행마의 급소 1: 호구자리 급소는 무조건 때려라 (20제)",
-            "chapter": "행마의 급소 1: 호구자리 급소는 무조건 때려라 (20제)",
+            "title": "제6단원: 전판적 공방과 대세관 조율 (20제)",
+            "chapter": "제6단원: 전판적 공방과 대세관 조율 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_10_u07",
             "chapterCode": "stage_10_u07",
-            "title": "행마의 급소 2: 중앙 한 칸 뜀에 악수 없다 (20제)",
-            "chapter": "행마의 급소 2: 중앙 한 칸 뜀에 악수 없다 (20제)",
+            "title": "제7단원: 승부를 결정짓는 최후의 패싸움 (20제)",
+            "chapter": "제7단원: 승부를 결정짓는 최후의 패싸움 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_10_u08",
             "chapterCode": "stage_10_u08",
-            "title": "행마의 급소 3: 빈삼각(우형)은 절대 두지 마라 (20제)",
-            "chapter": "행마의 급소 3: 빈삼각(우형)은 절대 두지 마라 (20제)",
+            "title": "제8단원: 패세에서의 승부수와 흔들기 (20제)",
+            "chapter": "제8단원: 패세에서의 승부수와 흔들기 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_10_u09",
             "chapterCode": "stage_10_u09",
-            "title": "유가무가 심화: 먹여쳐서 상대 집을 없애 유가무가로 잡기 (20제)",
-            "chapter": "유가무가 심화: 먹여쳐서 상대 집을 없애 유가무가로 잡기 (20제)",
+            "title": "제9단원: 반집 끝내기의 마침표 (20제)",
+            "chapter": "제9단원: 반집 끝내기의 마침표 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_10_u10",
             "chapterCode": "stage_10_u10",
-            "title": "화점 삼삼(3·3) 침투의 기본 정석과 외세의 가치 (20제)",
-            "chapter": "화점 삼삼(3·3) 침투의 기본 정석과 외세의 가치 (20제)",
+            "title": "제10단원: 유단자 대국 매너와 자가 복기력 (20제)",
+            "chapter": "제10단원: 유단자 대국 매너와 자가 복기력 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_10_u11",
             "chapterCode": "stage_10_u11",
-            "title": "양걸침을 당했을 때의 침착한 대처법 (20제)",
-            "chapter": "양걸침을 당했을 때의 침착한 대처법 (20제)",
+            "title": "제11단원: 아마초단 인가 필기 및 사활 30수 수읽기 종합 테스트 (20제)",
+            "chapter": "제11단원: 아마초단 인가 필기 및 사활 30수 수읽기 종합 테스트 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           },
           {
             "code": "stage_10_u12",
             "chapterCode": "stage_10_u12",
-            "title": "귀 굳힘에 다가섰을 때의 간격과 침투 약점 (20제)",
-            "chapter": "귀 굳힘에 다가섰을 때의 간격과 침투 약점 (20제)",
-            "problemCount": 20,
-            "problemsCount": 20
-          },
-          {
-            "code": "stage_10_u13",
-            "chapterCode": "stage_10_u13",
-            "title": "중앙으로 탈출할 때 모자 씌우기를 피하는 행마 (20제)",
-            "chapter": "중앙으로 탈출할 때 모자 씌우기를 피하는 행마 (20제)",
-            "problemCount": 20,
-            "problemsCount": 20
-          },
-          {
-            "code": "stage_10_u14",
-            "chapterCode": "stage_10_u14",
-            "title": "사활: 2선에서의 궁도 넓히기와 좁히기 (20제)",
-            "chapter": "사활: 2선에서의 궁도 넓히기와 좁히기 (20제)",
-            "problemCount": 20,
-            "problemsCount": 20
-          },
-          {
-            "code": "stage_10_u15",
-            "chapterCode": "stage_10_u15",
-            "title": "사활: 안형의 급소에 치중하여 잡기 (20제)",
-            "chapter": "사활: 안형의 급소에 치중하여 잡기 (20제)",
-            "problemCount": 20,
-            "problemsCount": 20
-          },
-          {
-            "code": "stage_10_u16",
-            "chapterCode": "stage_10_u16",
-            "title": "끝내기: 선수를 잡고 다음 큰 곳을 차지하기 (20제)",
-            "chapter": "끝내기: 선수를 잡고 다음 큰 곳을 차지하기 (20제)",
-            "problemCount": 20,
-            "problemsCount": 20
-          },
-          {
-            "code": "stage_10_u17",
-            "chapterCode": "stage_10_u17",
-            "title": "계가: 공배를 메우는 도중 일어나는 사고 방지 (20제)",
-            "chapter": "계가: 공배를 메우는 도중 일어나는 사고 방지 (20제)",
-            "problemCount": 20,
-            "problemsCount": 20
-          },
-          {
-            "code": "stage_10_u18",
-            "chapterCode": "stage_10_u18",
-            "title": "사석작전과 끊는 맥 복합 실전 연습 (20제) (20제)",
-            "chapter": "사석작전과 끊는 맥 복합 실전 연습 (20제) (20제)",
-            "problemCount": 20,
-            "problemsCount": 20
-          },
-          {
-            "code": "stage_10_u19",
-            "chapterCode": "stage_10_u19",
-            "title": "16급 승급 실전 문제 풀이 (20제)",
-            "chapter": "16급 승급 실전 문제 풀이 (20제)",
-            "problemCount": 20,
-            "problemsCount": 20
-          },
-          {
-            "code": "stage_10_u20",
-            "chapterCode": "stage_10_u20",
-            "title": "제10단계 사석작전 및 행마 종합 평가 (20제)",
-            "chapter": "제10단계 사석작전 및 행마 종합 평가 (20제)",
+            "title": "제12단원: 아마초단 실전 호선 대국 졸업 심사 (20제)",
+            "chapter": "제12단원: 아마초단 실전 호선 대국 졸업 심사 (20제)",
             "problemCount": 20,
             "problemsCount": 20
           }
