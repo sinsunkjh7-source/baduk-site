@@ -97,14 +97,10 @@ class BadukAI {
     switch (difficulty) {
       case 'beginner':
         return this.selectBeginnerMove(engine, legalMoves, aiColor, oppColor);
-      case 'novice':
-        return this.selectNoviceMove(engine, legalMoves, aiColor, oppColor);
       case 'intermediate':
         return this.selectIntermediateMove(engine, legalMoves, aiColor, oppColor);
       case 'advanced':
         return this.selectAdvancedMove(engine, legalMoves, aiColor, oppColor);
-      case 'expert':
-        return this.selectExpertMove(engine, legalMoves, aiColor, oppColor);
       case 'dan':
         return this.selectDanMove(engine, legalMoves, aiColor, oppColor);
       case 'master':
@@ -191,42 +187,6 @@ class BadukAI {
     candidates.sort((a, b) => b.score - a.score);
     const pick = Math.floor(Math.random() * Math.min(3, candidates.length));
     return candidates[pick].move;
-  }
-
-  // 🌱 꿈나무 (18~24급)
-  selectNoviceMove(engine, legalMoves, aiColor, oppColor) {
-    const candidates = [];
-    for (const m of legalMoves) {
-      let score = this.evaluateBasicHeuristic(engine, m.x, m.y, aiColor, oppColor);
-      score += (Math.random() - 0.5) * 110;
-      candidates.push({ move: m, score });
-    }
-    candidates.sort((a, b) => b.score - a.score);
-    const pick = Math.floor(Math.random() * Math.min(2, candidates.length));
-    return candidates[pick].move;
-  }
-
-  // 🦅 고급반 (1~5급)
-  selectExpertMove(engine, legalMoves, aiColor, oppColor) {
-    const scored = legalMoves.map(m => {
-      let score = this.evaluateDeepTactics(engine, m.x, m.y, aiColor, oppColor);
-      score += this.calculateTerritoryInfluence(engine, m.x, m.y, aiColor) * 1.8;
-      score += this.getShapeScore(engine, m.x, m.y, aiColor) * 1.5;
-      score += (Math.random() - 0.5) * 20;
-      return { move: m, score };
-    });
-    scored.sort((a, b) => b.score - a.score);
-    const topCandidates = scored.slice(0, 5);
-    let bestMove = topCandidates[0].move;
-    let maxVal = -Infinity;
-    for (const cand of topCandidates) {
-      const val = this.simulateMinimax(engine, cand.move, aiColor, oppColor, 2);
-      if (val > maxVal) {
-        maxVal = val;
-        bestMove = cand.move;
-      }
-    }
-    return bestMove;
   }
 
   // 🌿 2단계: 중급 (14급~9급)
