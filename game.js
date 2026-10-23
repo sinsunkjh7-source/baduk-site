@@ -429,6 +429,31 @@ class BadukGameApp {
       this.render();
     });
 
+    // The character is optional; question and hint stay available when it is hidden.
+    try {
+      this._lessonGuideMasterHidden = localStorage.getItem('baduk_guide_master_hidden') === 'true';
+    } catch (_) {
+      this._lessonGuideMasterHidden = false;
+    }
+    const lessonSettingsToggle = document.getElementById('btnLessonSettings');
+    if (lessonSettingsToggle) {
+      lessonSettingsToggle.addEventListener('click', () => {
+        const expanded = lessonSettingsToggle.getAttribute('aria-expanded') === 'true';
+        lessonSettingsToggle.setAttribute('aria-expanded', String(!expanded));
+      });
+    }
+    const guideMasterToggle = document.getElementById('btnToggleGuideMaster');
+    if (guideMasterToggle) {
+      guideMasterToggle.addEventListener('click', () => {
+        this._lessonGuideMasterHidden = !this._lessonGuideMasterHidden;
+        try {
+          localStorage.setItem('baduk_guide_master_hidden', String(this._lessonGuideMasterHidden));
+        } catch (_) {}
+        if (this._lessonGuideAnimation) this._lessonGuideAnimation.cancel();
+        this.syncLessonGuideVisibility();
+      });
+    }
+
     // 키보드 단축키 (좌/우 방향키로 수순 탐색)
     window.addEventListener('keydown', (e) => {
       if (this.isOnlineMatch) return;
@@ -2198,6 +2223,7 @@ class BadukGameApp {
     this.isAiGoMatch = false;
     this.isAiGoThinking = false;
     this.isLectureMode = true;
+    this._lessonGuideReview = true;
 
     const resModal = document.getElementById('matchResultModal');
     if (resModal) resModal.classList.remove('show');
@@ -2614,6 +2640,13 @@ class BadukGameApp {
     this.currentMission = mission;
     if (!mission) return;
 
+    // Replace all guide text synchronously; never queue speech or motion across problems.
+    if (this._lessonGuideAnimation) {
+      this._lessonGuideAnimation.cancel();
+      this._lessonGuideAnimation = null;
+    }
+    this._lessonGuideLoadedAt = performance.now();
+
     // 🌟 문제 크기 맞춤형 스마트 바둑판 자동 확장 (Auto-Fit) 🌟
     // 해당 문제의 돌 배치 영역이 9줄을 넘어서면 13줄 또는 19줄로 자동 확장!
     const targetSize = mission.recommendedSize || 9;
@@ -2684,24 +2717,38 @@ class BadukGameApp {
       mTitle.textContent = '';
       mTitle.style.display = 'none';
     }
-    if (mDesc) mDesc.textContent = mission.desc || '';
+    if (mDesc) {
+      mDesc.textContent = this.formatLessonGuideText(mission.desc) || '문제 설명이 등록되어 있지 않습니다.';
+    }
     if (mSpeech) {
       if (this.isTrialMode) {
-        mSpeech.textContent = "✍️ [놓아보기 모드 ON] 흑·백돌을 마음껏 놓아보며 수순과 변화도를 연구해 보세요!";
+        mSpeech.textContent = '흑·백돌을 자유롭게 놓아볼 수 있습니다. 정답 판정은 잠시 멈춥니다.';
       } else {
-        const turnBadge = this.targetPlayer === 2 ? "⚪ [백선 - 백이 둘 차례]" : "⚫ [흑선 - 흑이 둘 차례]";
-        const baseSpeech = (mission.speech && mission.speech.trim()) ? ` ${mission.speech.trim()}` : '';
-        mSpeech.textContent = `${turnBadge}${baseSpeech}`;
+        mSpeech.textContent = mission.isChoiceProblem
+          ? '문제를 읽고 알맞은 답을 골라보세요.'
+          : `${this.targetPlayer === 2 ? '백' : '흑'}이 둘 차례입니다.`;
       }
     }
     const mHintBox = document.getElementById('missionHintBox');
-    if (mission.hint && mission.hint.trim()) {
-      if (mHint) mHint.textContent = mission.hint.trim();
-      if (mHintBox) mHintBox.style.display = 'flex';
-    } else {
-      if (mHint) mHint.textContent = '';
-      if (mHintBox) mHintBox.style.display = 'none';
+    const hintText = this.formatLessonGuideText(mission.hint);
+    if (mHint) {
+      mHint.textContent = hintText || '이 문제에는 별도의 힌트가 없습니다.';
     }
+    if (mHintBox) {
+      mHintBox.style.display = 'flex';
+      mHintBox.classList.toggle('is-empty', !hintText);
+    }
+
+    const guideCount = document.getElementById('lessonGuideCount');
+    if (guideCount) guideCount.textContent = `문제 ${numDisplay}`;
+    const turnBadge = document.getElementById('lessonTurnBadge');
+    if (turnBadge) {
+      turnBadge.textContent = mission.isChoiceProblem ? '선택형' : (this.targetPlayer === 2 ? '백선' : '흑선');
+      turnBadge.dataset.color = mission.isChoiceProblem ? 'choice' : (this.targetPlayer === 2 ? 'white' : 'black');
+    }
+    const guideContent = document.getElementById('lessonGuideContent');
+    if (guideContent) guideContent.scrollTop = 0;
+    this.setLessonGuideState(this.isTrialMode ? 'trial' : 'ready');
 
     const btnPrev = document.getElementById('btnPrevMission');
     const btnNext = document.getElementById('btnNextMission');
@@ -2905,6 +2952,7 @@ class BadukGameApp {
     const btnClear = document.getElementById('btnClearBoard');
 
     if (btn) btn.classList.toggle('active', this.isTrialMode);
+    this.setLessonGuideState(this.isTrialMode ? 'trial' : 'ready');
 
     if (this.isTrialMode) {
       if (btn) btn.innerHTML = '✍️ 놓아보기 중 (해제)';
@@ -2947,6 +2995,8 @@ class BadukGameApp {
       if (/^[○oO]$/i.test(ansText)) ansText = '⭕ O';
       else if (/^[×xXΧ]$/i.test(ansText)) ansText = '❌ X';
 
+      this.setLessonGuideState('answer');
+
       if (speech) {
         speech.textContent = `💡 [정답 안내]: 정답은 【 ${ansText} 】 입니다!`;
       }
@@ -2973,6 +3023,8 @@ class BadukGameApp {
       ? this.activeBranches[0]
       : (mission.getAnswers ? mission.getAnswers(this.size) : []);
     if (!currentBranch || currentBranch.length === 0) return;
+
+    this.setLessonGuideState('answer');
 
     this.answerHighlights = currentBranch.map((a, idx) => ({
       x: a.x,
@@ -3130,6 +3182,7 @@ class BadukGameApp {
 
   // 🌟 바둑판 피드백 배지 회전 표시 (정답 시 단일 대형 박스 & 문제 가리지 않는 스마트 자동 위치) 🌟
   showFeedbackBadge(type) {
+    this.setLessonGuideState(type);
     const overlay = document.getElementById('boardFeedbackOverlay');
     const dynamicCard = document.getElementById('feedbackCardContent');
     const badgeCard = document.getElementById('feedbackBadgeCard');
@@ -3192,6 +3245,8 @@ class BadukGameApp {
     // 🌟 이미지가 브라우저에 완전히 로드된 직후부터 1.8초 타이머 시작 (렌더링 전 닫힘 완전 방지)
     const imgEl = dynamicCard.querySelector('.feedback-large-img');
     const startCloseTimer = () => {
+      // A slow image from an older problem must not close a newer feedback card.
+      if (dynamicCard.querySelector('.feedback-large-img') !== imgEl || !overlay.classList.contains('show')) return;
       if (this._badgeTimer) clearTimeout(this._badgeTimer);
       this._badgeTimer = setTimeout(() => {
         overlay.classList.remove('show');
@@ -3290,6 +3345,7 @@ class BadukGameApp {
     const missionActionArea = document.getElementById('missionActionArea');
 
     this.currentMode = mode;
+    this._lessonGuideReview = false;
 
     if (mode === 'lecture') {
       this.isLectureMode = true;
@@ -3440,6 +3496,7 @@ class BadukGameApp {
       }
       this.alkkagiEngine.initGame();
     }
+    this.syncLessonGuideVisibility();
   }
 
   toggleSound() {
@@ -3447,7 +3504,75 @@ class BadukGameApp {
     document.getElementById('soundIcon').textContent = enabled ? '🔊' : '🔇';
   }
 
+  formatLessonGuideText(value) {
+    return typeof value === 'string'
+      ? value.replace(/\\r\\n|\\n|\\r/g, '\n').replace(/\r\n?/g, '\n').trim()
+      : '';
+  }
+
+  syncLessonGuideVisibility() {
+    const panel = document.getElementById('missionGuidePanel');
+    const container = document.querySelector('.app-container');
+    if (!panel || !container) return;
+    const active = Boolean(this.currentMission && this.isMissionActive && !this.isLectureMode &&
+      !this.isOnlineMatch && !this.isAIMatch && !this.isOmokMode && !this.isAlkkagiMode);
+
+    const reviewGuide = document.getElementById('matchReviewGuide');
+    if (reviewGuide) reviewGuide.hidden = !(this._lessonGuideReview && this.isLectureMode && !this.isOnlineMatch && !this.isAIMatch);
+
+    panel.hidden = !active;
+    panel.dataset.masterHidden = String(Boolean(this._lessonGuideMasterHidden));
+    const toggle = document.getElementById('btnToggleGuideMaster');
+    if (toggle) {
+      toggle.textContent = this._lessonGuideMasterHidden ? '캐릭터 보기' : '캐릭터 숨기기';
+      toggle.setAttribute('aria-pressed', String(Boolean(this._lessonGuideMasterHidden)));
+    }
+
+    if (this._lessonGuideActive === active) return;
+    this._lessonGuideActive = active;
+    container.classList.toggle('lesson-guide-active', active);
+    document.body.classList.toggle('lesson-guide-active', active);
+    if (this._lessonGuideAnimation) this._lessonGuideAnimation.cancel();
+    // The canvas must adopt its new CSS size after moving between game layouts.
+    requestAnimationFrame(() => {
+      this.initCanvasSize();
+      this.render();
+    });
+  }
+
+  setLessonGuideState(state) {
+    const panel = document.getElementById('missionGuidePanel');
+    if (!panel) return;
+    panel.dataset.state = state;
+    const labels = {
+      ready: '함께 풀어봐요',
+      correct: '정답입니다!',
+      wrong: '다시 생각해 보세요',
+      trial: '자유롭게 놓아보는 중',
+      answer: '정답 안내'
+    };
+    const status = document.getElementById('lessonGuideStatus');
+    if (status) status.textContent = labels[state] || labels.ready;
+    if (this._lessonGuideAnimation) {
+      this._lessonGuideAnimation.cancel();
+      this._lessonGuideAnimation = null;
+    }
+
+    // Only a brief acknowledgement, never an idle loop or a delay before the next problem.
+    const master = document.getElementById('lessonMasterImage');
+    if (!master || this._lessonGuideMasterHidden || !this._lessonGuideActive ||
+        !['correct', 'wrong'].includes(state) ||
+        performance.now() - (this._lessonGuideLoadedAt || 0) < 1200 ||
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches || typeof master.animate !== 'function') return;
+    this._lessonGuideAnimation = master.animate([
+      { transform: 'translateY(0) rotate(0deg)' },
+      { transform: 'translateY(-2px) rotate(-2deg)', offset: .45 },
+      { transform: 'translateY(0) rotate(0deg)' }
+    ], { duration: 420, easing: 'ease-in-out', iterations: 1 });
+  }
+
   updateStatus() {
+    this.syncLessonGuideVisibility();
     document.getElementById('blackCaptures').textContent = this.engine.blackCaptures;
     document.getElementById('whiteCaptures').textContent = this.engine.whiteCaptures;
     this.renderStoneTrays();
