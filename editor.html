@@ -349,6 +349,27 @@
       color: #ffffff;
       box-shadow: 0 0 8px rgba(56, 189, 248, 0.4);
     }
+        .editor-size-btn {
+      background: #1e293b;
+      border: 1px solid #475569;
+      color: #94a3b8;
+      font-size: 0.74rem;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .editor-size-btn:hover {
+      background: #334155;
+      color: #f8fafc;
+    }
+    .editor-size-btn.active {
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+      border-color: #d97706;
+      color: #ffffff;
+      box-shadow: 0 2px 4px rgba(245, 158, 11, 0.4);
+    }
     .canvas-wrapper {
       box-shadow: 0 10px 30px rgba(0,0,0,0.6);
       border-radius: 8px;
@@ -780,6 +801,13 @@
           <button type="button" class="tool-btn" onclick="clearCurrentBoard()">
             <span>🔄</span> 비우기
           </button>
+          <!-- 🌟 확장형 바둑판 규격 선택기 🌟 -->
+          <div class="editor-size-group" style="display: inline-flex; gap: 3px; align-items: center; margin-left: auto;">
+            <span style="font-size: 0.76rem; font-weight: 800; color: #94a3b8; margin-right: 2px;">규격:</span>
+            <button type="button" class="editor-size-btn active" data-size="9" onclick="setEditorBoardSize(9)">9줄</button>
+            <button type="button" class="editor-size-btn" data-size="13" onclick="setEditorBoardSize(13)">13줄</button>
+            <button type="button" class="editor-size-btn" data-size="19" onclick="setEditorBoardSize(19)">19줄</button>
+          </div>
         </div>
 
         <div class="canvas-wrapper">
@@ -2029,7 +2057,11 @@
         selectProblem(candIdx);
       } else {
         saveActiveProblemSilent();
-        currentGrid = parseSgfTo9x9(cp.data, cp.answer1);
+        boardSize = detectProblemBoardSize(cp);
+      document.querySelectorAll('.editor-size-btn').forEach(btn => {
+        btn.classList.toggle('active', parseInt(btn.dataset.size, 10) === boardSize);
+      });
+      currentGrid = parseSgfToGrid(cp.data, cp.answer1, boardSize);
         document.getElementById('editProblemCode').value = cp.code || `교재 #${cp.order}`;
         document.getElementById('editQuestion').value = cp.question || '';
         document.getElementById('editHint').value = cp.hint || '';
@@ -2154,17 +2186,45 @@
         // 미니 바둑판 다이어그램 그리기
         const miniCanvas = card.querySelector(`#miniCanvas_${idx}`);
         if (miniCanvas) {
-          const grid = parseSgfTo9x9(cp.data, cp.answer1);
-          drawMiniBoard(miniCanvas, grid);
+          drawMiniBoard(miniCanvas, cp);
         }
       });
     }
 
-    // 미니 바둑판 렌더러 (실제 교재 다이어그램 디자인)
-    function drawMiniBoard(miniCanvas, grid) {
+    // 바둑판 규격별 화점 좌표 반환
+    function getStarPoints(bSize) {
+      if (bSize === 9) {
+        return [[4, 4]];
+      } else if (bSize === 13) {
+        return [[3, 3], [9, 3], [6, 6], [3, 9], [9, 9]];
+      } else if (bSize === 19) {
+        const pts = [];
+        [3, 9, 15].forEach(x => [3, 9, 15].forEach(y => pts.push([x, y])));
+        return pts;
+      }
+      return [];
+    }
+
+    // 미니 바둑판 렌더러 (확장형 다이어그램 디자인: 9·13·19줄 지원)
+    function drawMiniBoard(miniCanvas, pOrGrid, optSize) {
+      if (!miniCanvas) return;
       const mCtx = miniCanvas.getContext('2d');
       const size = miniCanvas.width;
-      const bSize = 9;
+
+      let grid = pOrGrid;
+      let bSize = optSize || 9;
+
+      if (pOrGrid && (pOrGrid.sgf || pOrGrid.data || pOrGrid.ans || pOrGrid.answer1)) {
+        bSize = optSize || detectProblemBoardSize(pOrGrid);
+        grid = parseSgfToGrid(pOrGrid.sgf || pOrGrid.data, pOrGrid.ans || pOrGrid.answer1, bSize);
+      } else if (!Array.isArray(grid)) {
+        return;
+      } else if (optSize) {
+        bSize = optSize;
+      } else {
+        bSize = grid.length || 9;
+      }
+
       const cSize = size / (bSize + 1);
 
       // 목재 바탕
@@ -2192,17 +2252,22 @@
         mCtx.stroke();
       }
 
-      // 4선 화점 (5, 5)
+      // 화점 표시
       mCtx.fillStyle = '#3d2510';
-      mCtx.beginPath();
-      mCtx.arc(cSize * 5, cSize * 5, cSize * 0.14, 0, Math.PI * 2);
-      mCtx.fill();
+      const starPts = getStarPoints(bSize);
+      starPts.forEach(([sx, sy]) => {
+        mCtx.beginPath();
+        mCtx.arc(cSize * (sx + 1), cSize * (sy + 1), Math.max(1.5, cSize * 0.14), 0, Math.PI * 2);
+        mCtx.fill();
+      });
 
       // 돌 및 정답★
       const sRadius = cSize * 0.44;
-      for (let y = 0; y < 9; y++) {
-        for (let x = 0; x < 9; x++) {
+      for (let y = 0; y < bSize; y++) {
+        if (!grid[y]) continue;
+        for (let x = 0; x < bSize; x++) {
           const val = grid[y][x];
+          if (!val) continue;
           const px = cSize * (x + 1);
           const py = cSize * (y + 1);
 
@@ -2237,7 +2302,7 @@
             mCtx.stroke();
 
             mCtx.fillStyle = '#ef4444';
-            mCtx.font = `bold ${Math.floor(cSize * 0.75)}px sans-serif`;
+            mCtx.font = 'bold ' + Math.floor(cSize * 0.75) + 'px sans-serif';
             mCtx.textAlign = 'center';
             mCtx.textBaseline = 'middle';
             mCtx.fillText('★', px, py);
@@ -2301,42 +2366,118 @@
 
     let activeIndex = 0;
     let currentTool = 'black'; // 'black' | 'white' | 'answer' | 'eraser'
-    const boardSize = 9;
+    let boardSize = 9;
 
-    // 현재 편집 중인 문제의 바둑판 상태
-    // 9x9 grid: 0 = 빈곳, 1 = 흑돌, 2 = 백돌, 3 = 정답(Answer)
-    let currentGrid = Array(9).fill(null).map(() => Array(9).fill(0));
+    // 🌟 확장형 바둑판 상태 (9줄, 13줄, 19줄 동적 확장)
+    let currentGrid = Array(boardSize).fill(null).map(() => Array(boardSize).fill(0));
 
     const canvas = document.getElementById('editorCanvas');
     const ctx = canvas.getContext('2d');
     const displaySize = canvas.width;
-    const cellSize = displaySize / (boardSize + 1);
 
-    // SGF 좌표 -> 9x9 인덱스 (10~18 우하귀 기준 10 shift)
+    function setEditorBoardSize(newSize) {
+      boardSize = parseInt(newSize, 10);
+      document.querySelectorAll('.editor-size-btn').forEach(btn => {
+        btn.classList.toggle('active', parseInt(btn.dataset.size, 10) === boardSize);
+      });
+      if (problems && problems[activeIndex]) {
+        currentGrid = parseSgfToGrid(problems[activeIndex].data, problems[activeIndex].answer1, boardSize);
+      }
+      renderBoard();
+    }
+
+    function detectProblemBoardSize(p) {
+      if (!p) return 9;
+      if (p.size) {
+        const s = parseInt(p.size, 10);
+        if (s === 19 || s === 13 || s === 9) return s;
+        if (s === 1 || s === 2) return 19;
+      }
+      if (p.recommendedSize) return p.recommendedSize;
+
+      const points = [];
+      const reg = /;([BW])\[([a-s]{2})\]/gi;
+      let m;
+      while ((m = reg.exec((p.data || '') + (p.answer1 || ''))) !== null) {
+        points.push({
+          x: m[2].charCodeAt(0) - 97,
+          y: m[2].charCodeAt(1) - 97
+        });
+      }
+      if (points.length === 0) return 9;
+      const minX = Math.min(...points.map(pt => pt.x));
+      const minY = Math.min(...points.map(pt => pt.y));
+      const maxX = Math.max(...points.map(pt => pt.x));
+      const maxY = Math.max(...points.map(pt => pt.y));
+
+      if (maxX - minX >= 13 || maxY - minY >= 13) return 19;
+      if (minX <= 5 && maxX >= 14) return 19;
+      if (minY <= 5 && maxY >= 14) return 19;
+
+      const neededX = (maxX >= 10) ? (19 - minX) : (maxX + 1);
+      const neededY = (maxY >= 10) ? (19 - minY) : (maxY + 1);
+      const needed = Math.max(neededX, neededY);
+
+      if (needed <= 9) return 9;
+      if (needed <= 13) return 13;
+      return 19;
+    }
+
+    // 🌟 SGF 좌표 -> 확장형 바둑판(9줄, 13줄, 19줄) 그리드 변환 🌟
     function parseSgfTo9x9(sgfData, ansData) {
-      const grid = Array(9).fill(null).map(() => Array(9).fill(0));
+      return parseSgfToGrid(sgfData, ansData, 9);
+    }
+
+    function parseSgfToGrid(sgfData, ansData, targetSize) {
+      const grid = Array(targetSize).fill(null).map(() => Array(targetSize).fill(0));
       if (!sgfData) return grid;
+
+      const rawPoints = [];
+      const testRegex = /;([BW])\[([a-s]{2})\]/gi;
+      let tm;
+      while ((tm = testRegex.exec(sgfData)) !== null) {
+        rawPoints.push({
+          x: tm[2].charCodeAt(0) - 97,
+          y: tm[2].charCodeAt(1) - 97
+        });
+      }
+
+      let shiftX = 0;
+      let shiftY = 0;
+      if (targetSize < 19 && rawPoints.length > 0) {
+        const maxX = Math.max(...rawPoints.map(p => p.x));
+        const maxY = Math.max(...rawPoints.map(p => p.y));
+        if (maxX >= 10 && maxY >= 10) {
+          shiftX = 19 - targetSize;
+          shiftY = 19 - targetSize;
+        } else if (maxX <= 8 && maxY >= 10) {
+          shiftX = 0;
+          shiftY = 19 - targetSize;
+        } else if (maxX >= 10 && maxY <= 8) {
+          shiftX = 19 - targetSize;
+          shiftY = 0;
+        }
+      }
 
       const regex = /;([BW])\[([a-s]{2})\]/gi;
       let m;
       while ((m = regex.exec(sgfData)) !== null) {
         const color = m[1].toUpperCase() === 'B' ? 1 : 2;
-        const x = m[2].charCodeAt(0) - 97 - 10;
-        const y = m[2].charCodeAt(1) - 97 - 10;
-        if (x >= 0 && x < 9 && y >= 0 && y < 9) {
+        const x = m[2].charCodeAt(0) - 97 - shiftX;
+        const y = m[2].charCodeAt(1) - 97 - shiftY;
+        if (x >= 0 && x < targetSize && y >= 0 && y < targetSize) {
           grid[y][x] = color;
         }
       }
 
-      // 정답 위치 매핑
       if (ansData) {
         const aRegex = /;([BW])\[([a-s]{2})\]/gi;
         let am;
         while ((am = aRegex.exec(ansData)) !== null) {
-          const ax = am[2].charCodeAt(0) - 97 - 10;
-          const ay = am[2].charCodeAt(1) - 97 - 10;
-          if (ax >= 0 && ax < 9 && ay >= 0 && ay < 9) {
-            grid[ay][ax] = 3; // 정답 마커
+          const ax = am[2].charCodeAt(0) - 97 - shiftX;
+          const ay = am[2].charCodeAt(1) - 97 - shiftY;
+          if (ax >= 0 && ax < targetSize && ay >= 0 && ay < targetSize) {
+            grid[ay][ax] = 3;
           }
         }
       }
@@ -2344,21 +2485,52 @@
       return grid;
     }
 
-    // 9x9 grid -> SGF 문자열 변환 (shift 10 역연산)
+    // 🌟 확장형 바둑판 그리드 -> SGF 문자열 역변환 🌟
     function gridToSgf(grid) {
       let data = '';
       let answer1 = '';
+      const targetSize = boardSize;
 
-      for (let y = 0; y < 9; y++) {
-        for (let x = 0; x < 9; x++) {
+      let shiftX = 0;
+      let shiftY = 0;
+      if (targetSize < 19 && problems[activeIndex] && problems[activeIndex].data) {
+        const rawPoints = [];
+        const testRegex = /;([BW])\[([a-s]{2})\]/gi;
+        let tm;
+        while ((tm = testRegex.exec(problems[activeIndex].data)) !== null) {
+          rawPoints.push({
+            x: tm[2].charCodeAt(0) - 97,
+            y: tm[2].charCodeAt(1) - 97
+          });
+        }
+        if (rawPoints.length > 0) {
+          const maxX = Math.max(...rawPoints.map(p => p.x));
+          const maxY = Math.max(...rawPoints.map(p => p.y));
+          if (maxX >= 10 && maxY >= 10) {
+            shiftX = 19 - targetSize;
+            shiftY = 19 - targetSize;
+          } else if (maxX <= 8 && maxY >= 10) {
+            shiftX = 0;
+            shiftY = 19 - targetSize;
+          } else if (maxX >= 10 && maxY <= 8) {
+            shiftX = 19 - targetSize;
+            shiftY = 0;
+          }
+        }
+      }
+
+      for (let y = 0; y < targetSize; y++) {
+        for (let x = 0; x < targetSize; x++) {
           const val = grid[y][x];
-          const sgfCoord = String.fromCharCode(97 + x + 10) + String.fromCharCode(97 + y + 10);
+          const origX = x + shiftX;
+          const origY = y + shiftY;
+          if (origX < 0 || origX >= 19 || origY < 0 || origY >= 19) continue;
+          const sgfCoord = String.fromCharCode(97 + origX) + String.fromCharCode(97 + origY);
           if (val === 1) {
             data += `;B[${sgfCoord}]`;
           } else if (val === 2) {
             data += `;W[${sgfCoord}]`;
           } else if (val === 3) {
-            // 정답 착점 (다중 정답 지원: 귀 2개, 변 3개, 중앙 4개 등)
             answer1 += `;B[${sgfCoord}]`;
           }
         }
@@ -2547,7 +2719,11 @@
       const p = problems[idx];
       if (!p) return;
 
-      currentGrid = parseSgfTo9x9(p.data, p.answer1);
+      boardSize = detectProblemBoardSize(p);
+      document.querySelectorAll('.editor-size-btn').forEach(btn => {
+        btn.classList.toggle('active', parseInt(btn.dataset.size, 10) === boardSize);
+      });
+      currentGrid = parseSgfToGrid(p.data || p.sgf, p.answer1 || p.ans, boardSize);
       document.getElementById('editProblemCode').value = p.code || `#${idx + 1}`;
       document.getElementById('editQuestion').value = p.question || '';
       document.getElementById('editHint').value = p.hint || '';
@@ -2714,9 +2890,10 @@
       if (window.badukAudio && window.badukAudio.playDingDong) window.badukAudio.playDingDong();
     }
 
-    // 바둑판 렌더링
+    // 🌟 확장형 바둑판 렌더링 (9줄, 13줄, 19줄 완벽 지원) 🌟
     function renderBoard() {
       ctx.clearRect(0, 0, displaySize, displaySize);
+      const cellSize = displaySize / (boardSize + 1);
 
       // 1. 목재 바탕
       ctx.fillStyle = '#f2d69f';
@@ -2743,31 +2920,38 @@
         ctx.stroke();
       }
 
-      // 4. 🌟 [원장님 원칙] 4선 화점: 오직 1개 (5, 5)만 렌더링!
+      // 4. 화점
       const starRadius = cellSize * 0.12;
-      const starX = cellSize * (5 + 1);
-      const starY = cellSize * (5 + 1);
+      let starPoints = [];
+      if (boardSize === 9) {
+        starPoints = [{ x: 4, y: 4 }];
+      } else if (boardSize === 13) {
+        starPoints = [{ x: 3, y: 3 }, { x: 9, y: 3 }, { x: 6, y: 6 }, { x: 3, y: 9 }, { x: 9, y: 9 }];
+      } else if (boardSize === 19) {
+        [3, 9, 15].forEach(x => [3, 9, 15].forEach(y => starPoints.push({ x, y })));
+      }
+
       ctx.fillStyle = '#5a3d1c';
-      ctx.beginPath();
-      ctx.arc(starX, starY, starRadius, 0, Math.PI * 2);
-      ctx.fill();
+      starPoints.forEach(sp => {
+        ctx.beginPath();
+        ctx.arc(cellSize * (sp.x + 1), cellSize * (sp.y + 1), starRadius, 0, Math.PI * 2);
+        ctx.fill();
+      });
 
       // 5. 돌 및 정답 마커 렌더링
       const stoneRadius = cellSize * 0.44;
-      for (let y = 0; y < 9; y++) {
-        for (let x = 0; x < 9; x++) {
+      for (let y = 0; y < boardSize; y++) {
+        for (let x = 0; x < boardSize; x++) {
+          if (!currentGrid[y]) continue;
           const val = currentGrid[y][x];
           const px = cellSize * (x + 1);
           const py = cellSize * (y + 1);
 
           if (val === 1) {
-            // 흑돌
             drawStone(px, py, stoneRadius, 1);
           } else if (val === 2) {
-            // 백돌
             drawStone(px, py, stoneRadius, 2);
           } else if (val === 3) {
-            // ⭐ 정답 착점 마커
             ctx.fillStyle = 'rgba(239, 68, 68, 0.25)';
             ctx.beginPath();
             ctx.arc(px, py, stoneRadius * 0.95, 0, Math.PI * 2);
