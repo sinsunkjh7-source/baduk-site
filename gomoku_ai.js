@@ -29,8 +29,10 @@ class GomokuAI {
 
   // 🌟 최선의 착점 계산
   findBestMove(board, aiColor, difficulty = 'hard') {
+    // 🛡️ 원본 바둑판 보존을 위해 완전 독립 복사본 생성
+    const boardCopy = board.map(row => [...row]);
     const oppColor = aiColor === 1 ? 2 : 1;
-    const candidates = this.getCandidates(board, 2);
+    const candidates = this.getCandidates(boardCopy, 2);
 
     if (candidates.length === 0) {
       const center = Math.floor(this.boardSize / 2);
@@ -38,17 +40,31 @@ class GomokuAI {
     }
     if (candidates.length === 1) return candidates[0];
 
+    let move;
     // 👑 [마스터 / 최강 난이도]
     if (difficulty === 'master' || difficulty === 'god') {
-      return this.searchGrandmaster(board, aiColor, oppColor, candidates);
+      move = this.searchGrandmaster(boardCopy, aiColor, oppColor, candidates);
     } else if (difficulty === 'hard') {
-      return this.searchHeuristicDeep(board, aiColor, oppColor, candidates, 1.4);
+      move = this.searchHeuristicDeep(boardCopy, aiColor, oppColor, candidates, 1.4);
     } else if (difficulty === 'normal') {
-      return this.searchHeuristic(board, aiColor, oppColor, candidates, 1.1, 0.05);
+      move = this.searchHeuristic(boardCopy, aiColor, oppColor, candidates, 1.1, 0.05);
     } else {
       // easy (초급: 35% 실수 및 낮은 수비 가중치)
-      return this.searchHeuristic(board, aiColor, oppColor, candidates, 0.7, 0.35);
+      move = this.searchHeuristic(boardCopy, aiColor, oppColor, candidates, 0.7, 0.35);
     }
+
+    // 🛡️ 최종 착점 안전 검증: 이미 돌이 놓여진 자리 착수 방지
+    if (!move || board[move.y][move.x] !== 0) {
+      const emptyCands = candidates.filter(c => board[c.y][c.x] === 0);
+      if (emptyCands.length > 0) {
+        move = emptyCands[0];
+      } else {
+        const c = Math.floor(this.boardSize / 2);
+        move = { x: c, y: c };
+      }
+    }
+
+    return move;
   }
 
   // 👑 [최강 마스터] 9단계 계층형 결정 + VCF 외통수 + Alpha-Beta 탐색
@@ -85,7 +101,10 @@ class GomokuAI {
     for (const pos of candidates) {
       const myPat = this.analyzePointPatterns(board, pos.x, pos.y, aiColor);
       if (myPat.blockedFour >= 1 && myPat.openThree >= 1) return pos; // 4-3 공격
-      if (myPat.openThree >= 2) return pos; // 쌍삼 공격
+      if (myPat.openThree >= 2) {
+        if (aiColor === 1) continue; // 흑돌(선공)일 때는 3-3 금수 규칙 준수
+        return pos; // 백돌일 때는 쌍삼 자유 공격
+      }
     }
 
     // 7단계: 상대의 4-3 또는 쌍삼 급소 사전 원천 차단
@@ -358,6 +377,7 @@ class GomokuAI {
 
   // 🔍 9칸 윈도우 스팬 패턴 분석기 (뛰어 4, 뛰어 3 포함)
   analyzePointPatterns(board, x, y, color) {
+    const oldVal = board[y][x];
     board[y][x] = color;
     let five = 0;
     let openFour = 0;
@@ -377,7 +397,7 @@ class GomokuAI {
       openTwo += pat.openTwo;
     }
 
-    board[y][x] = 0;
+    board[y][x] = oldVal;
     return { five, openFour, blockedFour, openThree, blockedThree, openTwo };
   }
 
