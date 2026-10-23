@@ -1,17 +1,18 @@
 window.BOOK_DATA_tier1_intro = {
-  "series": "JH 바둑스쿨 코스",
-  "book": "JH 바둑스쿨 1단계",
+  "series": "🏆 JH 바둑 아카데미 (30단계 정식 마스터관)",
+  "book": "🌱 제0단계: 입문 첫걸음 (30급 ~ 28급 / 766문제)",
   "bookCode": "tier1_intro",
   "chapterCount": 21,
   "totalProblems": 819,
   "chapters": [
     {
-      "series": "JH 바둑스쿨 코스",
-      "book": "JH 바둑스쿨 1단계",
-      "bookCode": "tier1_intro",
-      "chapter": "제1단원: 돌의 활로 1",
+      "code": "t1_ch01",
       "chapterCode": "t1_ch01",
+      "title": "제1단원: 돌의 활로 1 (11제)",
+      "chapter": "제1단원: 돌의 활로 1 (11제)",
       "desc": "바둑돌은 살아 숨 쉬는 생명체! 상·하·좌·우 직선으로 뻗은 활로(숨구멍)를 찾아 막아봅니다.",
+      "problemCount": 11,
+      "problemsCount": 11,
       "problems": [
         {
           "id": 1,
@@ -193,12 +194,13 @@ window.BOOK_DATA_tier1_intro = {
       ]
     },
     {
-      "series": "JH 바둑스쿨 코스",
-      "book": "JH 바둑스쿨 1단계",
-      "bookCode": "tier1_intro",
-      "chapter": "제2단원: 돌의 활로 2",
+      "code": "t1_ch02",
       "chapterCode": "t1_ch02",
+      "title": "제2단원: 돌의 활로 2 (63제)",
+      "chapter": "제2단원: 돌의 활로 2 (63제)",
       "desc": "흑돌이 이미 일부를 막고 있을 때, 남아 있는 백돌의 숨구멍(활로)을 모두 찾아 막아봅니다.",
+      "problemCount": 63,
+      "problemsCount": 63,
       "problems": [
         {
           "id": 1,
@@ -1221,12 +1223,13 @@ window.BOOK_DATA_tier1_intro = {
       ]
     },
     {
-      "series": "🌱 [정규] 1단계: 입문 코스 (30급 완성)",
-      "book": "입문 마스터 (30급 완성 24단원)",
-      "bookCode": "tier1_intro",
-      "chapter": "제3단원: 돌 따내기 1",
+      "code": "t1_ch03",
       "chapterCode": "t1_ch03",
+      "title": "제3단원: 돌 따내기 1 (50제)",
+      "chapter": "제3단원: 돌 따내기 1 (50제)",
       "desc": "활로가 딱 1개 남은 단수 상태의 상대 돌 1~2점을 찾아 완벽하게 따내 봅니다.",
+      "problemCount": 50,
+      "problemsCount": 50,
       "problems": [
         {
           "id": 1,
@@ -2036,12 +2039,13 @@ window.BOOK_DATA_tier1_intro = {
       ]
     },
     {
-      "series": "🌱 [정규] 1단계: 입문 코스 (30급 완성)",
-      "book": "입문 마스터 (30급 완성 24단원)",
-      "bookCode": "tier1_intro",
-      "chapter": "제4단원: 돌 따내기 2",
+      "code": "t1_ch04",
       "chapterCode": "t1_ch04",
+      "title": "제4단원: 돌 따내기 2 (51제)",
+      "chapter": "제4단원: 돌 따내기 2 (51제)",
       "desc": "3점 이상 뭉친 상대 돌이나 복합 국면에서 단수된 돌을 찾아 대마를 시원하게 따내 봅니다.",
+      "problemCount": 51,
+      "problemsCount": 51,
       "problems": [
         {
           "id": 1,
@@ -2863,12 +2867,13 @@ window.BOOK_DATA_tier1_intro = {
       ]
     },
     {
-      "series": "🌱 [정규] 1단계: 입문 코스 (30급 완성)",
-      "book": "입문 마스터 (30급 완성 24단원)",
-      "bookCode": "tier1_intro",
-      "chapter": "제5단원: 돌 살리기 1",
+      "code": "t1_ch05",
       "chapterCode": "t1_ch05",
+      "title": "제5단원: 돌 살리기 1 (33제)",
+      "chapter": "제5단원: 돌 살리기 1 (33제)",
       "desc": "돌이 2개 이상 뭉쳤을 때, 상대 돌을 통째로 잡거나 내 돌 무리를 안전하게 구출합니다.",
+      "problemCount": 33,
+      "problemsCount": 33,
       "problems": [
         {
           "id": 1,
@@ -3404,12 +3409,13 @@ window.BOOK_DATA_tier1_intro = {
       ]
     },
     {
-      "series": "🌱 [정규] 1단계: 입문 코스 (30급 완성)",
-      "book": "입문 마스터 (30급 완성 24단원)",
-      "bookCode": "tier1_intro",
-      "chapter": "제6단원: 돌 살리기 2",
+      "code": "t1_ch06",
       "chapterCode": "t1_ch06",
+      "title": "제6단원: 돌 살리기 2 (41제)",
+      "chapter": "제6단원: 돌 살리기 2 (41제)",
       "desc": "흑과 백이 서로 활로가 1개씩만 남아 있을 때, 먼저 따내는 쪽이 승리하는 스피드 승부!",
+      "problemCount": 41,
+      "problemsCount": 41,
       "problems": [
         {
           "id": 1,
@@ -4070,12 +4076,13 @@ window.BOOK_DATA_tier1_intro = {
       ]
     },
     {
-      "series": "🌱 [정규] 1단계: 입문 코스 (30급 완성)",
-      "book": "입문 마스터 (30급 완성 24단원)",
-      "bookCode": "tier1_intro",
-      "chapter": "제7단원: 서로 단수",
+      "code": "t1_ch07",
       "chapterCode": "t1_ch07",
+      "title": "제7단원: 서로 단수 (50제)",
+      "chapter": "제7단원: 서로 단수 (50제)",
       "desc": "따로 떨어진 두 돌을 튼튼하게 이어 바위처럼 단단하게 만듭니다.",
+      "problemCount": 50,
+      "problemsCount": 50,
       "problems": [
         {
           "id": 1,
@@ -4880,12 +4887,13 @@ window.BOOK_DATA_tier1_intro = {
       ]
     },
     {
-      "series": "🌱 [정규] 1단계: 입문 코스 (30급 완성)",
-      "book": "입문 마스터 (30급 완성 24단원)",
-      "bookCode": "tier1_intro",
-      "chapter": "제8단원: 양단수 1",
+      "code": "t1_ch08",
       "chapterCode": "t1_ch08",
+      "title": "제8단원: 양단수 1 (47제)",
+      "chapter": "제8단원: 양단수 1 (47제)",
       "desc": "상대방 돌 사이의 약점을 찔러 둘로 갈라놓고 양쪽을 공격합니다.",
+      "problemCount": 47,
+      "problemsCount": 47,
       "problems": [
         {
           "id": 1,
@@ -5643,12 +5651,13 @@ window.BOOK_DATA_tier1_intro = {
       ]
     },
     {
-      "series": "🌱 [정규] 1단계: 입문 코스 (30급 완성)",
-      "book": "입문 마스터 (30급 완성 24단원)",
-      "bookCode": "tier1_intro",
-      "chapter": "제9단원: 양단수 2",
+      "code": "t1_ch09",
       "chapterCode": "t1_ch09",
+      "title": "제9단원: 양단수 2 (48제)",
+      "chapter": "제9단원: 양단수 2 (48제)",
       "desc": "바둑판의 낭떠러지인 1선(사망선) 벽 쪽으로 상대 돌을 몰아서 꼼짝 못 하게 잡습니다.",
+      "problemCount": 48,
+      "problemsCount": 48,
       "problems": [
         {
           "id": 1,
@@ -6423,12 +6432,13 @@ window.BOOK_DATA_tier1_intro = {
       ]
     },
     {
-      "series": "JH 바둑스쿨 코스",
-      "book": "JH 바둑스쿨 1단계",
-      "bookCode": "tier1_intro",
-      "chapter": "제10단원: 돌의 연결 1",
+      "code": "t1_ch10",
       "chapterCode": "t1_ch10",
+      "title": "제10단원: 돌의 연결 1 (47제)",
+      "chapter": "제10단원: 돌의 연결 1 (47제)",
       "desc": "떨어져 있는 아군 돌끼리 직선으로 튼튼하게 이어 활로를 늘리고 바위처럼 단단하게 만듭니다.",
+      "problemCount": 47,
+      "problemsCount": 47,
       "problems": [
         {
           "id": 1,
@@ -7189,12 +7199,13 @@ window.BOOK_DATA_tier1_intro = {
       ]
     },
     {
-      "series": "JH 바둑스쿨 코스",
-      "book": "JH 바둑스쿨 1단계",
-      "bookCode": "tier1_intro",
-      "chapter": "제11단원: 돌의 연결 2",
+      "code": "t1_ch11",
       "chapterCode": "t1_ch11",
+      "title": "제11단원: 돌의 연결 2 (47제)",
+      "chapter": "제11단원: 돌의 연결 2 (47제)",
       "desc": "실전 국면에서 상대방의 침투와 약점을 방어하며 끊어질 위기의 돌을 안전하게 연결합니다.",
+      "problemCount": 47,
+      "problemsCount": 47,
       "problems": [
         {
           "id": 1,
@@ -7951,12 +7962,13 @@ window.BOOK_DATA_tier1_intro = {
       ]
     },
     {
-      "series": "JH 바둑스쿨 코스",
-      "book": "JH 바둑스쿨 1단계",
-      "bookCode": "tier1_intro",
-      "chapter": "제12단원: 돌의 끊음 1",
+      "code": "t1_ch12",
       "chapterCode": "t1_ch12",
+      "title": "제12단원: 돌의 끊음 1 (46제)",
+      "chapter": "제12단원: 돌의 끊음 1 (46제)",
       "desc": "상대방 돌의 연결 약점을 찔러 둘로 갈라놓고 양쪽을 분리하여 공격합니다.",
+      "problemCount": 46,
+      "problemsCount": 46,
       "problems": [
         {
           "id": 1,
@@ -8700,12 +8712,13 @@ window.BOOK_DATA_tier1_intro = {
       ]
     },
     {
-      "series": "JH 바둑스쿨 코스",
-      "book": "JH 바둑스쿨 1단계",
-      "bookCode": "tier1_intro",
-      "chapter": "제13단원: 돌의 끊음 2",
+      "code": "t1_ch13",
       "chapterCode": "t1_ch13",
+      "title": "제13단원: 돌의 끊음 2 (45제)",
+      "chapter": "제13단원: 돌의 끊음 2 (45제)",
       "desc": "복합 실전 국면에서 상대방의 치명적인 절단 급소를 찾아 차단하고 주도권을 잡습니다.",
+      "problemCount": 45,
+      "problemsCount": 45,
       "problems": [
         {
           "id": 1,
@@ -9430,12 +9443,13 @@ window.BOOK_DATA_tier1_intro = {
       ]
     },
     {
-      "series": "JH 바둑스쿨 코스",
-      "book": "JH 바둑스쿨 1단계",
-      "bookCode": "tier1_intro",
-      "chapter": "제14단원: 1선 방향으로 단수치기 1",
+      "code": "t1_ch14",
       "chapterCode": "t1_ch14",
+      "title": "제14단원: 1선 방향으로 단수치기 1 (34제)",
+      "chapter": "제14단원: 1선 방향으로 단수치기 1 (34제)",
       "desc": "돌 2~11개의 단순한 기본 형태부터 차근차근! 1선(사망선) 낭떠러지로 몰아 단수치는 핵심 원리를 완벽하게 익힙니다.",
+      "problemCount": 34,
+      "problemsCount": 34,
       "problems": [
         {
           "code": "t1_ch14_01",
@@ -10236,12 +10250,13 @@ window.BOOK_DATA_tier1_intro = {
       ]
     },
     {
-      "series": "JH 바둑스쿨 코스",
-      "book": "JH 바둑스쿨 1단계",
-      "bookCode": "tier1_intro",
-      "chapter": "제15단원: 1선 방향으로 단수치기 2",
+      "code": "t1_ch15",
       "chapterCode": "t1_ch15",
+      "title": "제15단원: 1선 방향으로 단수치기 2 (34제)",
+      "chapter": "제15단원: 1선 방향으로 단수치기 2 (34제)",
       "desc": "돌 12~18개의 실전 복합 국면과 마지막 실전 무표시 종합 문제까지! 1선 단수의 모든 응용 기술을 완성합니다.",
+      "problemCount": 34,
+      "problemsCount": 34,
       "problems": [
         {
           "code": "t1_ch15_01",
@@ -11032,12 +11047,13 @@ window.BOOK_DATA_tier1_intro = {
       ]
     },
     {
-      "series": "JH 바둑스쿨 코스",
-      "book": "JH 바둑스쿨 1단계",
-      "bookCode": "tier1_intro",
-      "chapter": "제16단원: 자기 돌 쪽으로 단수치기 1",
+      "code": "t1_ch16",
       "chapterCode": "t1_ch16",
+      "title": "제16단원: 자기 돌 쪽으로 단수치기 1 (30제)",
+      "chapter": "제16단원: 자기 돌 쪽으로 단수치기 1 (30제)",
       "desc": "돌 5~11개의 단순한 기본 형태부터 차근차근! 내 돌이 기다리는 아군 진영으로 백△를 몰아 단수치는 핵심 원리를 완벽하게 익힙니다.",
+      "problemCount": 30,
+      "problemsCount": 30,
       "problems": [
         {
           "code": "t1_ch16_01",
@@ -11753,12 +11769,13 @@ window.BOOK_DATA_tier1_intro = {
       ]
     },
     {
-      "series": "JH 바둑스쿨 코스",
-      "book": "JH 바둑스쿨 1단계",
-      "bookCode": "tier1_intro",
-      "chapter": "제17단원: 자기 돌 쪽으로 단수치기 2",
+      "code": "t1_ch17",
       "chapterCode": "t1_ch17",
+      "title": "제17단원: 자기 돌 쪽으로 단수치기 2 (29제)",
+      "chapter": "제17단원: 자기 돌 쪽으로 단수치기 2 (29제)",
       "desc": "돌 12~16개의 복합 실전 국면과 마지막 실전 무표시 종합 문제까지! 자기 돌 방향으로 유인해 잡는 모든 응용 기술을 완성합니다.",
+      "problemCount": 29,
+      "problemsCount": 29,
       "problems": [
         {
           "code": "t1_ch17_01",
@@ -12436,12 +12453,13 @@ window.BOOK_DATA_tier1_intro = {
       ]
     },
     {
-      "series": "JH 바둑스쿨 코스",
-      "book": "JH 바둑스쿨 1단계",
-      "bookCode": "tier1_intro",
-      "chapter": "제18단원: 끊으면서 단수치기 1",
+      "code": "t1_ch18",
       "chapterCode": "t1_ch18",
+      "title": "제18단원: 끊으면서 단수치기 1 (39제)",
+      "chapter": "제18단원: 끊으면서 단수치기 1 (39제)",
       "desc": "돌 5~12개의 단순한 형태부터 차근차근! 상대 돌의 연결 고리를 가르며 시원하게 단수치는 일석이조의 맥점을 완벽하게 익힙니다.",
+      "problemCount": 39,
+      "problemsCount": 39,
       "problems": [
         {
           "code": "t1_ch18_01",
@@ -13351,12 +13369,13 @@ window.BOOK_DATA_tier1_intro = {
       ]
     },
     {
-      "series": "JH 바둑스쿨 코스",
-      "book": "JH 바둑스쿨 1단계",
-      "bookCode": "tier1_intro",
-      "chapter": "제19단원: 끊으면서 단수치기 2",
+      "code": "t1_ch19",
       "chapterCode": "t1_ch19",
+      "title": "제19단원: 끊으면서 단수치기 2 (38제)",
+      "chapter": "제19단원: 끊으면서 단수치기 2 (38제)",
       "desc": "돌 12~21개의 복합 실전 국면과 마지막 실전 무표시 종합 문제까지! 상대 약점을 절단하며 제압하는 끊음 단수의 응용 기술을 완성합니다.",
+      "problemCount": 38,
+      "problemsCount": 38,
       "problems": [
         {
           "code": "t1_ch19_01",
@@ -14240,12 +14259,13 @@ window.BOOK_DATA_tier1_intro = {
       ]
     },
     {
-      "series": "JH 바둑스쿨 코스",
-      "book": "JH 바둑스쿨 1단계",
-      "bookCode": "tier1_intro",
-      "chapter": "제20단원: 바둑의 승패 - 집 1",
+      "code": "t1_ch20",
       "chapterCode": "t1_ch20",
+      "title": "제20단원: 바둑의 승패 - 집 1 (20제)",
+      "chapter": "제20단원: 바둑의 승패 - 집 1 (20제)",
       "desc": "바둑의 본질인 집의 개념과 크기 세기부터, 경계선 틈을 막아 집을 완성하는 기본 원리까지 완벽하게 익힙니다.",
+      "problemCount": 20,
+      "problemsCount": 20,
       "problems": [
         {
           "code": "t1_ch20_01",
@@ -14710,12 +14730,13 @@ window.BOOK_DATA_tier1_intro = {
       ]
     },
     {
-      "series": "JH 바둑스쿨 코스",
-      "book": "JH 바둑스쿨 1단계",
-      "bookCode": "tier1_intro",
-      "chapter": "제21단원: 바둑의 승패 - 집 2",
+      "code": "t1_ch21",
       "chapterCode": "t1_ch21",
+      "title": "제21단원: 바둑의 승패 - 집 2 (16제)",
+      "chapter": "제21단원: 바둑의 승패 - 집 2 (16제)",
       "desc": "흑 집의 완성 여부 판별(OX)과 경계선 완성 착점, 그리고 9줄 실전국 완주 후 승패 판정까지 바둑의 모든 규칙을 완성합니다.",
+      "problemCount": 16,
+      "problemsCount": 16,
       "problems": [
         {
           "code": "t1_ch21_01",
