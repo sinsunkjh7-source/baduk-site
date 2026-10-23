@@ -4009,7 +4009,11 @@ body.site-locked .app-container {
   z-index: 2000;
   animation: dropSlide 0.2s ease;
 }
-.ck-dropdown-wrap:hover .ck-dropdown-menu,
+@media (hover: hover) and (pointer: fine) {
+  .ck-dropdown-wrap:hover .ck-dropdown-menu {
+    display: flex !important;
+  }
+}
 .ck-dropdown-menu.show,
 .ck-dropdown-menu.active {
   display: flex !important;

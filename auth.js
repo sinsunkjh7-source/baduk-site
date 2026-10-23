@@ -173,26 +173,43 @@
   let currentAvatarStone = '⚫ 흑돌';
   let currentAvatarItem = '👑 왕관';
 
-  window.toggleNavDropdown = function(dropdownId) {
-    const target = document.getElementById(dropdownId);
-    const allDropdowns = document.querySelectorAll('.ck-dropdown-menu');
-    allDropdowns.forEach(d => {
-      if (d !== target) {
-        d.classList.remove('active');
-        d.classList.remove('show');
-      }
+  window.closeAllNavDropdowns = function() {
+    document.querySelectorAll('.ck-dropdown-menu').forEach(d => {
+      d.classList.remove('active');
+      d.classList.remove('show');
     });
-    if (target) {
-      target.classList.toggle('active');
-      target.classList.toggle('show');
+  };
+
+  window.toggleNavDropdown = function(dropdownId, e) {
+    if (e) {
+      e.stopPropagation();
+    }
+    const target = document.getElementById(dropdownId);
+    const wasOpen = target && (target.classList.contains('active') || target.classList.contains('show'));
+    window.closeAllNavDropdowns();
+    if (target && !wasOpen) {
+      target.classList.add('active');
+      target.classList.add('show');
     }
   };
 
-  // 배경 클릭 시 드롭다운 닫기
-  document.addEventListener('click', function(e) {
+  // 배경 클릭 / 터치 시 드롭다운 즉시 닫기
+  function handleNavOutsideClose(e) {
     if (!e.target.closest('.ck-dropdown-wrap')) {
-      document.querySelectorAll('.ck-dropdown-menu').forEach(d => d.classList.remove('active'));
+      window.closeAllNavDropdowns();
     }
+  }
+  document.addEventListener('click', handleNavOutsideClose);
+  document.addEventListener('touchstart', handleNavOutsideClose, { passive: true });
+  document.addEventListener('pointerdown', handleNavOutsideClose, { passive: true });
+
+  // 메뉴 항목(링크) 클릭 시에도 드롭다운 닫기
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.ck-dropdown-menu a, .ck-dropdown-menu button').forEach(el => {
+      el.addEventListener('click', () => {
+        window.closeAllNavDropdowns();
+      });
+    });
   });
 
   window.openAvatarStudio = function() {
