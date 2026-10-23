@@ -809,17 +809,79 @@ class BadukGameApp {
       });
     });
 
-    // 진형 배치
+    // 진형 배치 (일자, V자, 7대7, 🎨 2인 자유 작전 배치)
     document.querySelectorAll('[data-formation]').forEach(btn => {
       btn.addEventListener('click', () => {
         document.querySelectorAll('[data-formation]').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
+        const formType = btn.dataset.formation || 'line5';
         if (this.alkkagiEngine) {
-          this.alkkagiEngine.formation = btn.dataset.formation || 'line5';
-          this.alkkagiEngine.initGame();
+          if (formType === 'custom') {
+            this.alkkagiEngine.enterCustomPlacement();
+          } else {
+            const customBox = document.getElementById('alkkagiCustomBox');
+            if (customBox) customBox.style.display = 'none';
+            const btnEdit = document.getElementById('btnAlkkagiEditPlacement');
+            if (btnEdit) btnEdit.style.display = 'none';
+            const btnRestart = document.getElementById('btnAlkkagiRestart');
+            if (btnRestart) btnRestart.textContent = '🔄 새로 시작';
+            this.alkkagiEngine.isPlacingCustom = false;
+            this.alkkagiEngine.formation = formType;
+            this.alkkagiEngine.initGame();
+          }
         }
       });
     });
+
+    // 🎨 2인 자유 작전 배치 도구 리스너 (흑돌, 백돌, 지우개)
+    document.querySelectorAll('.custom-tool-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const tool = btn.dataset.tool;
+        if (this.alkkagiEngine && tool) {
+          this.alkkagiEngine.setCustomTool(tool);
+        }
+      });
+    });
+
+    // 🎨 빠른 프리셋 (3vs3, 5vs5, 7vs7)
+    document.querySelectorAll('.custom-preset-btn[data-preset]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const presetCount = parseInt(btn.dataset.preset, 10) || 5;
+        if (this.alkkagiEngine) {
+          this.alkkagiEngine.loadPresetCustom(presetCount);
+        }
+      });
+    });
+
+    // 🧹 전체 비우기
+    const btnCustomClearAll = document.getElementById('btnCustomClearAll');
+    if (btnCustomClearAll) {
+      btnCustomClearAll.addEventListener('click', () => {
+        if (this.alkkagiEngine) {
+          this.alkkagiEngine.clearAllCustomStones();
+        }
+      });
+    }
+
+    // 🚀 작전 배치로 경기 시작 버튼
+    const btnAlkkagiStartCustomMatch = document.getElementById('btnAlkkagiStartCustomMatch');
+    if (btnAlkkagiStartCustomMatch) {
+      btnAlkkagiStartCustomMatch.addEventListener('click', () => {
+        if (this.alkkagiEngine) {
+          this.alkkagiEngine.startCustomMatch();
+        }
+      });
+    }
+
+    // 🎨 작전 배치 다시 수정 버튼
+    const btnAlkkagiEditPlacement = document.getElementById('btnAlkkagiEditPlacement');
+    if (btnAlkkagiEditPlacement) {
+      btnAlkkagiEditPlacement.addEventListener('click', () => {
+        if (this.alkkagiEngine) {
+          this.alkkagiEngine.enterCustomPlacement();
+        }
+      });
+    }
 
     // 새로고침/재시작
     const btnAlkkagiRestart = document.getElementById('btnAlkkagiRestart');

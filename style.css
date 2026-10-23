@@ -2995,6 +2995,123 @@ body.bg-theme-theme5 {
 .omok-help-card {
   padding: 10px 12px;
 }
+/* ===================================================
+   🎨 알까기 2인 자유 작전 배치 전용 스타일
+   =================================================== */
+.alkkagi-custom-box {
+  background: #f0fdf4 !important;
+  border: 1.5px solid #86efac !important;
+  border-radius: 12px;
+  padding: 10px 12px;
+  box-shadow: 0 2px 8px rgba(34, 197, 94, 0.08);
+}
+
+.custom-tool-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 5px;
+}
+
+.custom-tool-btn {
+  background: #ffffff;
+  border: 1.5px solid #cbd5e1;
+  color: #1e293b;
+  font-size: 0.78rem;
+  font-weight: 800;
+  padding: 8px 4px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  user-select: none;
+}
+
+.custom-tool-btn:hover {
+  background: #f8fafc;
+  border-color: #94a3b8;
+}
+
+.custom-tool-btn.active[data-tool="black"] {
+  background: #0f172a !important;
+  border-color: #000000 !important;
+  color: #ffffff !important;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.35);
+}
+
+.custom-tool-btn.active[data-tool="white"] {
+  background: #ffffff !important;
+  border-color: #d97706 !important;
+  color: #b45309 !important;
+  box-shadow: 0 2px 6px rgba(217, 119, 6, 0.28);
+  font-weight: 900;
+}
+
+.custom-tool-btn.active[data-tool="erase"],
+.custom-tool-btn.erase.active {
+  background: #fee2e2 !important;
+  border-color: #ef4444 !important;
+  color: #b91c1c !important;
+  box-shadow: 0 2px 6px rgba(239, 68, 68, 0.25);
+}
+
+.custom-preset-btn {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  color: #475569;
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 4px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+
+.custom-preset-btn:hover {
+  background: #f1f5f9;
+  color: #0f172a;
+  border-color: #94a3b8;
+}
+
+.custom-preset-btn.clear {
+  color: #dc2626;
+  border-color: #fca5a5;
+  background: #fff1f2;
+}
+
+.custom-preset-btn.clear:hover {
+  background: #fee2e2;
+  border-color: #ef4444;
+}
+
+.custom-start-match-btn {
+  transition: all 0.18s ease;
+  user-select: none;
+}
+
+.custom-start-match-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(16, 185, 129, 0.45) !important;
+}
+
+.custom-start-match-btn:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.custom-placement-btn {
+  transition: all 0.15s ease;
+}
+
+.custom-placement-btn.active {
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8) !important;
+  color: #ffffff !important;
+  border-color: #1e40af !important;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.35) !important;
+}
+
 
 /* ===================================================
    교재별 학습반 3단계 선택 모달 스타일

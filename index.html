@@ -736,8 +736,50 @@
               <button type="button" class="omok-diff-btn active" data-formation="line5">5대5 일자</button>
               <button type="button" class="omok-diff-btn" data-formation="vshape">V자 돌격</button>
               <button type="button" class="omok-diff-btn" data-formation="line7">7대7 대전</button>
+              <button type="button" class="omok-diff-btn custom-placement-btn" data-formation="custom" style="grid-column: span 3; font-weight: 800; background: #eff6ff; color: #1d4ed8; border: 1.5px solid #60a5fa; margin-top: 4px; padding: 7px 4px;">🎨 2인 자유 배치 (원하는 위치/개수 직접 놓기)</button>
             </div>
           </div>
+        </div>
+
+        <!-- 🎨 2인 자유 작전 돌 배치 컨트롤 카드 -->
+        <div class="card alkkagi-custom-box" id="alkkagiCustomBox" style="display: none;">
+          <div class="card-header-icon" style="color: #1d4ed8; font-size: 0.95rem; font-weight: 800; margin-bottom: 4px;">🎨 2인 작전 돌 배치 중</div>
+          <p style="font-size: 0.76rem; color: #475569; margin: 0 0 8px 0; line-height: 1.4;">
+            바둑판을 <strong>터치하여 돌을 놓고</strong>, <strong>드래그</strong>하여 원하는 작전 위치로 이동하세요!
+          </p>
+
+          <!-- 도구 선택 (흑돌, 백돌, 지우개) -->
+          <div class="custom-tool-grid">
+            <button type="button" class="custom-tool-btn active" id="btnCustomToolBlack" data-tool="black">
+              ⚫ 흑돌 놓기
+            </button>
+            <button type="button" class="custom-tool-btn" id="btnCustomToolWhite" data-tool="white">
+              ⚪ 백돌 놓기
+            </button>
+            <button type="button" class="custom-tool-btn erase" id="btnCustomToolErase" data-tool="erase">
+              🗑️ 지우개
+            </button>
+          </div>
+
+          <!-- 현재 배치된 돌 개수 -->
+          <div style="display: flex; justify-content: space-around; align-items: center; background: #ffffff; padding: 6px 10px; border-radius: 8px; border: 1px solid #bfdbfe; font-size: 0.8rem; font-weight: 800; margin: 8px 0;">
+            <span>⚫ 흑돌: <strong id="customBlackCount" style="color: #2563eb;">5개</strong></span>
+            <span>⚪ 백돌: <strong id="customWhiteCount" style="color: #d97706;">5개</strong></span>
+          </div>
+
+          <!-- 빠른 세팅 & 초기화 -->
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 4px; margin-bottom: 10px;">
+            <span style="font-size: 0.72rem; color: #64748b; font-weight: 700; white-space: nowrap;">빠른 세팅:</span>
+            <button type="button" class="custom-preset-btn" data-preset="3">3 vs 3</button>
+            <button type="button" class="custom-preset-btn" data-preset="5">5 vs 5</button>
+            <button type="button" class="custom-preset-btn" data-preset="7">7 vs 7</button>
+            <button type="button" class="custom-preset-btn clear" id="btnCustomClearAll">🧹 비우기</button>
+          </div>
+
+          <!-- 경기 시작 버튼 -->
+          <button type="button" class="custom-start-match-btn" id="btnAlkkagiStartCustomMatch" style="width: 100%; padding: 10px 0; background: linear-gradient(135deg, #10b981, #059669); color: white; border: none; border-radius: 8px; font-size: 0.92rem; font-weight: 900; cursor: pointer; box-shadow: 0 4px 10px rgba(16, 185, 129, 0.35); transition: all 0.15s ease;">
+            🚀 이 작전 배치로 경기 시작!
+          </button>
         </div>
 
         <!-- 남은 돌 수 & 차례 표시 -->
@@ -762,9 +804,12 @@
         </div>
 
         <!-- 하단 액션 버튼 -->
-        <div class="match-action-group">
+        <div class="match-action-group" style="display: flex; gap: 6px;">
           <button type="button" class="match-act-btn resign" id="btnAlkkagiRestart" style="flex: 1;" title="새 알까기 경기 시작">
             🔄 새로 시작
+          </button>
+          <button type="button" class="match-act-btn" id="btnAlkkagiEditPlacement" style="flex: 1; display: none; background: #fef3c7; color: #92400e; border: 1.5px solid #f59e0b;" title="돌 위치 및 개수 다시 수정하기">
+            🎨 배치 다시 수정
           </button>
         </div>
       </aside>

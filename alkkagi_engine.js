@@ -22,7 +22,14 @@ class AlkkagiEngine {
     } catch(e) {}
     this.difficulty = savedDiff; // 'easy' | 'normal' | 'hard' | 'master'
     this.playerColor = 1; // 1: 흑돌, 2: 백돌
-    this.formation = 'line5'; // 'line5' | 'vshape' | 'corners'
+    this.formation = 'line5'; // 'line5' | 'vshape' | 'line7' | 'custom'
+
+    // 🎨 2인 자유 작전 배치 모드 상태
+    this.isPlacingCustom = false;
+    this.customTool = 'black'; // 'black' | 'white' | 'erase'
+    this.draggedPlacementStone = null;
+    this.dragOffset = null;
+    this.customSavedStones = []; // 경기 재시작 시 사용할 작전 배치 스냅샷
 
     // 물리 파라미터
     this.friction = 0.982; // 매 프레임 감속 계수 (원목 바둑판 마찰력)
@@ -85,7 +92,33 @@ class AlkkagiEngine {
     const boardWidth = bounds.maxX - bounds.minX;
     const boardHeight = bounds.maxY - bounds.minY;
 
-    if (this.formation === 'line5') {
+    if (this.formation === 'custom') {
+      // 🎨 2인 자유 작전 배치 모드
+      if (this.isPlacingCustom) {
+        if (!this.stones || this.stones.length === 0) {
+          if (this.customSavedStones && this.customSavedStones.length > 0) {
+            this.stones = this.customSavedStones.map(s => ({ ...s, vx: 0, vy: 0, alive: true, falling: false, fallScale: 1.0 }));
+          } else {
+            this.loadPresetCustom(5);
+            return;
+          }
+        }
+        this.updatePlacementUI();
+        this.render();
+        return;
+      } else {
+        // 이미 저장된 작전 배치로 경기 시작/재시작
+        if (this.customSavedStones && this.customSavedStones.length > 0) {
+          this.stones = this.customSavedStones.map(s => ({ ...s, vx: 0, vy: 0, alive: true, falling: false, fallScale: 1.0 }));
+        } else {
+          this.enterCustomPlacement();
+          return;
+        }
+        this.updateUI();
+        this.render();
+        return;
+      }
+    } else if (this.formation === 'line5') {
       // 5개씩 일자 진형
       const count = 5;
       const stepX = boardWidth / (count + 1);
@@ -189,8 +222,319 @@ class AlkkagiEngine {
     }
   }
 
+  // 🎨 2인 자유 작전 배치 모드 진입
+  enterCustomPlacement() {
+    this.formation = 'custom';
+    this.mode = 'pvp'; // 2인 전용 모드
+    this.isPlacingCustom = true;
+    this.customTool = 'black';
+    this.draggedPlacementStone = null;
+    this.dragOffset = null;
+    this.gameOver = false;
+    this.winner = null;
+    this.dragStone = null;
+    this.isSimulating = false;
+    this.isAiThinking = false;
+
+    // 패널 UI 동기화
+    const pvpBtn = document.getElementById('btnAlkkagiModePvp');
+    const aiBtn = document.getElementById('btnAlkkagiModeAi');
+    const diffRow = document.getElementById('alkkagiDiffRow');
+    const colorBox = document.getElementById('alkkagiColorBox');
+    const customBox = document.getElementById('alkkagiCustomBox');
+    const btnEdit = document.getElementById('btnAlkkagiEditPlacement');
+    const btnRestart = document.getElementById('btnAlkkagiRestart');
+
+    if (pvpBtn) pvpBtn.classList.add('active');
+    if (aiBtn) aiBtn.classList.remove('active');
+    if (diffRow) diffRow.style.display = 'none';
+    if (colorBox) colorBox.style.display = 'none';
+    if (customBox) customBox.style.display = 'block';
+    if (btnEdit) btnEdit.style.display = 'none';
+    if (btnRestart) btnRestart.textContent = '🔄 이 배치로 다시하기';
+
+    document.querySelectorAll('[data-formation]').forEach(b => {
+      b.classList.toggle('active', b.dataset.formation === 'custom');
+    });
+
+    if (!this.stones || this.stones.length === 0) {
+      if (this.customSavedStones && this.customSavedStones.length > 0) {
+        this.stones = this.customSavedStones.map(s => ({ ...s, vx: 0, vy: 0, alive: true, falling: false, fallScale: 1.0 }));
+      } else {
+        this.loadPresetCustom(5);
+        return;
+      }
+    }
+
+    this.updatePlacementUI();
+    this.render();
+  }
+
+  // 🚀 설정된 작전 배치로 경기 정식 시작!
+  startCustomMatch() {
+    const bCount = this.stones.filter(s => s.alive && s.color === 1).length;
+    const wCount = this.stones.filter(s => s.alive && s.color === 2).length;
+
+    if (bCount < 1 || wCount < 1) {
+      alert('흑돌과 백돌을 각각 최소 1개 이상 바둑판에 놓아주세요!');
+      return;
+    }
+
+    // 작전 배치 스냅샷 저장 (재경기 시 그대로 재활용)
+    this.customSavedStones = this.stones.map(s => ({
+      id: s.id,
+      color: s.color,
+      x: s.x,
+      y: s.y,
+      vx: 0,
+      vy: 0,
+      radius: s.radius,
+      alive: true,
+      falling: false,
+      fallScale: 1.0
+    }));
+
+    this.isPlacingCustom = false;
+    this.currentTurn = 1; // 흑돌 선공
+    this.turnCount = 1;
+    this.gameOver = false;
+    this.winner = null;
+    this.dragStone = null;
+    this.isSimulating = false;
+    this.isAiThinking = false;
+
+    // UI 모드 전환
+    const customBox = document.getElementById('alkkagiCustomBox');
+    if (customBox) customBox.style.display = 'none';
+    const btnEdit = document.getElementById('btnAlkkagiEditPlacement');
+    if (btnEdit) btnEdit.style.display = 'block';
+    const btnRestart = document.getElementById('btnAlkkagiRestart');
+    if (btnRestart) btnRestart.textContent = '🔄 이 배치로 다시하기';
+
+    if (window.badukAudio && window.badukAudio.playSuccess) window.badukAudio.playSuccess();
+    this.updateUI();
+    this.render();
+  }
+
+  // 작전 배치 도구 변경 ('black' | 'white' | 'erase')
+  setCustomTool(tool) {
+    this.customTool = tool;
+    document.querySelectorAll('.custom-tool-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.tool === tool);
+    });
+    this.render();
+  }
+
+  // 작전 배치 빠른 프리셋 로드 (3vs3, 5vs5, 7vs7)
+  loadPresetCustom(count) {
+    const cellSize = this.app.cellSize;
+    const r = cellSize * 0.44;
+    const bounds = this.getArenaBounds();
+    const boardWidth = bounds.maxX - bounds.minX;
+    const stepX = boardWidth / (count + 1);
+
+    this.stones = [];
+
+    // 백돌 (상단 4번째 줄 근처)
+    const whiteY = bounds.minY + cellSize * 3;
+    for (let i = 1; i <= count; i++) {
+      this.stones.push({
+        id: 'w_' + i + '_' + Date.now(),
+        color: 2,
+        x: bounds.minX + stepX * i,
+        y: whiteY,
+        vx: 0, vy: 0, radius: r, alive: true, falling: false, fallScale: 1.0
+      });
+    }
+
+    // 흑돌 (하단 4번째 줄 근처)
+    const blackY = bounds.maxY - cellSize * 3;
+    for (let i = 1; i <= count; i++) {
+      this.stones.push({
+        id: 'b_' + i + '_' + Date.now(),
+        color: 1,
+        x: bounds.minX + stepX * i,
+        y: blackY,
+        vx: 0, vy: 0, radius: r, alive: true, falling: false, fallScale: 1.0
+      });
+    }
+
+    this.updatePlacementUI();
+    this.render();
+  }
+
+  // 작전 배치 모든 돌 비우기
+  clearAllCustomStones() {
+    this.stones = [];
+    this.draggedPlacementStone = null;
+    this.updatePlacementUI();
+    this.render();
+  }
+
+  // 작전 배치 상태 UI 갱신
+  updatePlacementUI() {
+    const bCount = this.stones.filter(s => s.alive && s.color === 1).length;
+    const wCount = this.stones.filter(s => s.alive && s.color === 2).length;
+
+    const bEl = document.getElementById('customBlackCount');
+    const wEl = document.getElementById('customWhiteCount');
+    const startBtn = document.getElementById('btnAlkkagiStartCustomMatch');
+    const turnTextEl = document.getElementById('alkkagiTurnText');
+
+    if (bEl) bEl.textContent = bCount + '개';
+    if (wEl) wEl.textContent = wCount + '개';
+
+    const bPanelCount = document.getElementById('alkkagiBlackCount');
+    const wPanelCount = document.getElementById('alkkagiWhiteCount');
+    if (bPanelCount) bPanelCount.textContent = bCount + '개';
+    if (wPanelCount) wPanelCount.textContent = wCount + '개';
+
+    if (startBtn) {
+      const canStart = (bCount >= 1 && wCount >= 1);
+      startBtn.disabled = !canStart;
+      startBtn.style.opacity = canStart ? '1' : '0.6';
+      startBtn.style.cursor = canStart ? 'pointer' : 'not-allowed';
+      startBtn.textContent = canStart ? ('🚀 이 배치로 경기 시작! (흑 ' + bCount + ' vs 백 ' + wCount + ')') : '흑돌/백돌을 각 1개 이상 놓아주세요';
+    }
+
+    if (turnTextEl) {
+      turnTextEl.textContent = '🎨 2인 자유 작전 배치 중 (흑 ' + bCount + ' : 백 ' + wCount + ')';
+    }
+  }
+
+  // 🎨 작전 배치 중 마우스/터치 다운
+  handlePlacementPointerDown(px, py) {
+    const bounds = this.getArenaBounds();
+    const cellSize = this.app.cellSize;
+    const r = cellSize * 0.44;
+
+    // 1. 이미 놓인 돌 터치 확인
+    const clickedIdx = this.stones.findIndex(s => {
+      if (!s.alive) return false;
+      return Math.hypot(s.x - px, s.y - py) <= Math.max(s.radius * 1.5, 28);
+    });
+
+    if (clickedIdx !== -1) {
+      if (this.customTool === 'erase') {
+        this.stones.splice(clickedIdx, 1);
+        if (window.badukAudio) window.badukAudio.playDdang();
+        this.updatePlacementUI();
+        this.render();
+        return;
+      } else {
+        // 이미 놓인 돌을 집어서 원하는 위치로 드래그 이동
+        this.draggedPlacementStone = this.stones[clickedIdx];
+        this.dragOffset = {
+          dx: this.draggedPlacementStone.x - px,
+          dy: this.draggedPlacementStone.y - py
+        };
+        this.render();
+        return;
+      }
+    }
+
+    // 2. 빈 공간 터치: 새 돌 놓기
+    if (this.customTool === 'erase') return;
+
+    // 바둑판 영역 안인지 확인
+    if (
+      px < bounds.minX + r ||
+      px > bounds.maxX - r ||
+      py < bounds.minY + r ||
+      py > bounds.maxY - r
+    ) {
+      return;
+    }
+
+    // 기존 돌과 너무 겹치는지 확인
+    const isOverlapping = this.stones.some(s => s.alive && Math.hypot(s.x - px, s.y - py) < r * 1.95);
+    if (isOverlapping) return;
+
+    // 진영별 최대 개수 (15개) 확인
+    const color = (this.customTool === 'black') ? 1 : 2;
+    const currentSideCount = this.stones.filter(s => s.alive && s.color === color).length;
+    if (currentSideCount >= 15) {
+      alert('각 진영당 최대 15개까지 배치할 수 있습니다.');
+      return;
+    }
+
+    const newStone = {
+      id: (color === 1 ? 'b_' : 'w_') + Date.now() + '_' + Math.random().toString(36).substr(2, 4),
+      color: color,
+      x: px,
+      y: py,
+      vx: 0,
+      vy: 0,
+      radius: r,
+      alive: true,
+      falling: false,
+      fallScale: 1.0
+    };
+    this.stones.push(newStone);
+    this.draggedPlacementStone = newStone;
+    this.dragOffset = { dx: 0, dy: 0 };
+
+    if (window.badukAudio) window.badukAudio.playStone();
+    this.updatePlacementUI();
+    this.render();
+  }
+
+  // 🎨 작전 배치 중 마우스/터치 드래그 이동
+  handlePlacementPointerMove(px, py) {
+    if (this.draggedPlacementStone) {
+      const bounds = this.getArenaBounds();
+      const r = this.draggedPlacementStone.radius;
+      const offX = this.dragOffset ? this.dragOffset.dx : 0;
+      const offY = this.dragOffset ? this.dragOffset.dy : 0;
+
+      const nx = Math.max(bounds.minX + r, Math.min(bounds.maxX - r, px + offX));
+      const ny = Math.max(bounds.minY + r, Math.min(bounds.maxY - r, py + offY));
+
+      this.draggedPlacementStone.x = nx;
+      this.draggedPlacementStone.y = ny;
+      this.canvas.style.cursor = 'grabbing';
+      this.render();
+      return;
+    }
+
+    // 호버 커서 처리
+    const hoverStone = this.stones.find(s => s.alive && Math.hypot(s.x - px, s.y - py) <= Math.max(s.radius * 1.5, 28));
+    if (hoverStone) {
+      this.canvas.style.cursor = (this.customTool === 'erase') ? 'not-allowed' : 'grab';
+    } else {
+      this.canvas.style.cursor = (this.customTool === 'erase') ? 'default' : 'crosshair';
+    }
+  }
+
+  // 🎨 작전 배치 중 마우스/터치 놓기
+  handlePlacementPointerUp() {
+    if (this.draggedPlacementStone) {
+      const current = this.draggedPlacementStone;
+      // 다른 돌과의 심한 겹침 미세 밀어내기 보정
+      for (const other of this.stones) {
+        if (other === current || !other.alive) continue;
+        const dist = Math.hypot(current.x - other.x, current.y - other.y);
+        const minDist = current.radius + other.radius + 1;
+        if (dist < minDist && dist > 0) {
+          const angle = Math.atan2(current.y - other.y, current.x - other.x);
+          current.x = other.x + Math.cos(angle) * minDist;
+          current.y = other.y + Math.sin(angle) * minDist;
+        }
+      }
+      this.draggedPlacementStone = null;
+      this.canvas.style.cursor = 'default';
+      this.updatePlacementUI();
+      this.render();
+    }
+  }
+
   // 마우스/터치 시작: 날릴 돌 선택
   handlePointerDown(px, py) {
+    if (this.isPlacingCustom) {
+      this.handlePlacementPointerDown(px, py);
+      return;
+    }
+
     if (this.gameOver || this.isSimulating || this.isAiThinking) return;
 
     // AI 모드일 때 내 차례가 아니면 터치 불가
@@ -214,6 +558,11 @@ class AlkkagiEngine {
 
   // 마우스/터치 이동: 슬링샷 조준선 갱신 및 커서 모양 변경
   handlePointerMove(px, py) {
+    if (this.isPlacingCustom) {
+      this.handlePlacementPointerMove(px, py);
+      return;
+    }
+
     if (this.dragStone) {
       this.dragCurrent = { x: px, y: py };
       this.canvas.style.cursor = 'crosshair';
@@ -233,6 +582,11 @@ class AlkkagiEngine {
 
   // 마우스/터치 놓기: 알 발사!
   handlePointerUp() {
+    if (this.isPlacingCustom) {
+      this.handlePlacementPointerUp();
+      return;
+    }
+
     if (!this.dragStone || !this.dragCurrent || !this.dragStart) {
       this.dragStone = null;
       this.dragStart = null;
@@ -576,7 +930,7 @@ class AlkkagiEngine {
       const currentRadius = s.radius * (s.falling ? s.fallScale : 1.0);
 
       // 턴인 돌은 부드러운 오라 링 강조
-      if (!this.isSimulating && s.color === this.currentTurn && !s.falling) {
+      if (!this.isPlacingCustom && !this.isSimulating && s.color === this.currentTurn && !s.falling) {
         ctx.strokeStyle = (s.color === 1) ? 'rgba(59, 130, 246, 0.75)' : 'rgba(245, 158, 11, 0.8)';
         ctx.lineWidth = 2.5;
         ctx.beginPath();
@@ -587,6 +941,47 @@ class AlkkagiEngine {
       // 캐릭터 바둑돌 그리기
       this.app.drawCharacterStone(s.x, s.y, currentRadius, s.color, false, null);
       ctx.restore();
+    }
+
+    // 🎨 자유 작전 배치 중 시각 안내 오버레이
+    if (this.isPlacingCustom) {
+      const bannerW = Math.min(380, bounds.maxX - bounds.minX - 24);
+      const bannerH = 34;
+      const bx = (bounds.minX + bounds.maxX) / 2 - bannerW / 2;
+      const by = bounds.minY + 10;
+
+      ctx.save();
+      ctx.fillStyle = 'rgba(15, 23, 42, 0.85)';
+      ctx.shadowColor = 'rgba(0, 0, 0, 0.35)';
+      ctx.shadowBlur = 10;
+      ctx.shadowOffsetY = 2;
+      if (ctx.roundRect) {
+        ctx.beginPath();
+        ctx.roundRect(bx, by, bannerW, bannerH, 17);
+        ctx.fill();
+      } else {
+        ctx.fillRect(bx, by, bannerW, bannerH);
+      }
+
+      ctx.shadowColor = 'transparent';
+      ctx.fillStyle = '#ffffff';
+      ctx.font = 'bold 13px sans-serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      const toolTxt = (this.customTool === 'black') ? '⚫ 흑돌 놓는 중' : ((this.customTool === 'white') ? '⚪ 백돌 놓는 중' : '🗑️ 지우개 (돌 터치 시 삭제)');
+      ctx.fillText(`🎨 2인 작전 배치 (${toolTxt}) • 드래그로 이동`, bx + bannerW / 2, by + bannerH / 2);
+
+      // 드래그 중인 돌 시각 강조 링
+      if (this.draggedPlacementStone) {
+        ctx.strokeStyle = '#3b82f6';
+        ctx.lineWidth = 3.5;
+        ctx.setLineDash([5, 4]);
+        ctx.beginPath();
+        ctx.arc(this.draggedPlacementStone.x, this.draggedPlacementStone.y, this.draggedPlacementStone.radius + 6, 0, Math.PI * 2);
+        ctx.stroke();
+      }
+      ctx.restore();
+      return;
     }
 
     // 3. 슬링샷 조준 가이드 (화살표 & 파워 게이지 궤적)
@@ -691,6 +1086,10 @@ class AlkkagiEngine {
 
   // 사이드 패널 UI 상태 갱신
   updateUI() {
+    if (this.isPlacingCustom) {
+      this.updatePlacementUI();
+      return;
+    }
     const blackAlive = this.stones.filter(s => s.alive && s.color === 1).length;
     const whiteAlive = this.stones.filter(s => s.alive && s.color === 2).length;
 
