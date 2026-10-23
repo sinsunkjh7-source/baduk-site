@@ -177,10 +177,14 @@
     const target = document.getElementById(dropdownId);
     const allDropdowns = document.querySelectorAll('.ck-dropdown-menu');
     allDropdowns.forEach(d => {
-      if (d !== target) d.classList.remove('active');
+      if (d !== target) {
+        d.classList.remove('active');
+        d.classList.remove('show');
+      }
     });
     if (target) {
       target.classList.toggle('active');
+      target.classList.toggle('show');
     }
   };
 

@@ -2554,11 +2554,16 @@ class BadukGameApp {
     let chapName = (mission.chapterTitle || (this.currentBookInfo && this.currentBookInfo.chapter) || '학습 단원');
     // 영문 표기 및 불필요한 Part 수식어 깔끔하게 정돈
     chapName = chapName.replace(/\([A-Za-z\s]+\)/g, '').replace(/\[Part\s*\d+[^\]]*\]/g, '').replace(/\s+/g, ' ').trim();
-    const bookName = (mission.bookTitle || (this.currentBookInfo && this.currentBookInfo.book) || '제1단계 샛별부');
+    let bookName = (mission.bookTitle || (this.currentBookInfo && this.currentBookInfo.book) || '1단계 샛별부 (27~25급)');
+    bookName = bookName.replace(/^제\s*(\d+)단계\s*:\s*/, '$1단계 ').replace('급~', '~');
 
     const numDisplay = mission.displayNumStr || (index + 1);
     if (stepText) {
-      stepText.textContent = `${chapName} (${numDisplay} / ${this.missions.length})`;
+      stepText.textContent = chapName;
+    }
+    const countPill = document.getElementById('missionCountPill');
+    if (countPill) {
+      countPill.textContent = `${numDisplay} / ${this.missions.length}`;
     }
     if (badgeText) {
       badgeText.textContent = bookName;

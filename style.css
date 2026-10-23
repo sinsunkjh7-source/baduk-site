@@ -536,6 +536,40 @@ body.bg-theme-theme5 {
   width: 100%;
 }
 
+.mission-badge-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 6px;
+}
+
+.mission-badge-row .badge {
+  background: #eff6ff;
+  color: #2563eb;
+  border: 1px solid #bfdbfe;
+  font-size: 0.73rem;
+  padding: 2px 7px;
+  border-radius: 6px;
+  font-weight: 800;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1;
+}
+
+.mission-count-pill {
+  background: #f1f5f9;
+  color: #475569;
+  border: 1px solid #cbd5e1;
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 2px 7px;
+  border-radius: 12px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
 .mission-step {
   font-size: 0.88rem;
   font-weight: 900;
@@ -544,62 +578,48 @@ body.bg-theme-theme5 {
   word-break: keep-all;
 }
 
-.mission-sub-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.mission-action-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
   width: 100%;
-  gap: 4px;
+  margin-top: 2px;
 }
 
-.badge {
-  background: #eff6ff;
-  color: #2563eb;
-  border: 1.5px solid #bfdbfe;
-  font-size: 0.70rem;
-  padding: 2px 5px;
-  border-radius: 6px;
-  font-weight: 800;
-  white-space: nowrap;
-}
-
-.mission-header-actions {
-  display: flex;
-  gap: 4px;
+.mission-act-btn {
+  display: inline-flex;
   align-items: center;
-  flex-shrink: 0;
-}
-
-.badge-action-btn {
-  background: linear-gradient(135deg, #2563eb, #1d4ed8);
-  border: none;
-  color: #ffffff;
-  border-radius: 6px;
-  padding: 3px 6px;
-  font-size: 0.72rem;
+  justify-content: center;
+  gap: 4px;
+  padding: 6px 0;
+  font-size: 0.78rem;
   font-weight: 800;
+  border-radius: 7px;
   cursor: pointer;
+  transition: all 0.15s ease;
   white-space: nowrap;
-  box-shadow: 0 2px 4px rgba(37, 99, 235, 0.25);
-  transition: all 0.15s;
-  flex-shrink: 0;
+  border: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
 }
 
-.badge-action-btn:hover {
-  background: #1e40af;
+.mission-act-btn.btn-change-book {
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  color: #ffffff;
+}
+
+.mission-act-btn.btn-change-book:hover {
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
   transform: translateY(-1px);
 }
 
-.badge-action-btn.editor-btn {
-  background: #4338ca;
+.mission-act-btn.btn-go-editor {
+  background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+  color: #ffffff;
 }
 
-.mission-step {
-  font-size: 0.84rem;
-  font-weight: 800;
-  color: #1e293b;
-  line-height: 1.35;
-  word-break: keep-all;
+.mission-act-btn.btn-go-editor:hover {
+  background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%);
+  transform: translateY(-1px);
 }
 
 .mission-title {
@@ -3989,8 +4009,10 @@ body.site-locked .app-container {
   z-index: 2000;
   animation: dropSlide 0.2s ease;
 }
-.ck-dropdown-menu.show {
-  display: flex;
+.ck-dropdown-wrap:hover .ck-dropdown-menu,
+.ck-dropdown-menu.show,
+.ck-dropdown-menu.active {
+  display: flex !important;
 }
 .ck-dropdown-menu a {
   padding: 10px 16px;
