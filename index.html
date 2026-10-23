@@ -100,17 +100,11 @@
             <div class="ck-dropdown-menu" id="learnDropdown">
               <a href="javascript:void(0)" onclick="window.enterAppFromPortal('missions')">🗺️ 30단계 보물섬 모험 지도</a>
               <a href="javascript:void(0)" onclick="window.enterAppFromPortal('missions')">⚡ 실시간 사활 듀얼 배틀</a>
-              <a href="javascript:void(0)" onclick="window.enterAppAndOpenLibrary(0)" style="font-weight: 800; color: #16a34a;">🌱 30단계 정식 마스터관 (입문 819제·샛별부 480제)</a>
-              <a href="javascript:void(0)" onclick="window.enterAppAndOpenLibrary(0)" style="font-weight: 800; color: #ea580c;">🎯 15대 기법별 마스터관 (축·장문·사활 등 27,016제)</a>
-              <a href="javascript:void(0)" onclick="window.enterAppAndOpenLibrary(2)">📚 78권 공인 교재 라이브러리</a>
+              <a href="javascript:void(0)" onclick="window.enterAppAndOpenLibrary(0)">📚 JH 바둑스쿨 라이브러리 (교재·기법 전권)</a>
             </div>
           </div>
 
-          <div class="ck-dropdown-wrap">
-            <button type="button" class="ck-nav-item" onclick="window.enterAppAndOpenLibrary(0)" style="color: #ea580c; font-weight: 800; background: rgba(254, 243, 199, 0.85); border-radius: 20px; padding: 6px 14px;">
-              <span>🎯 15대 기법별 마스터</span>
-            </button>
-          </div>
+
 
           <div class="ck-dropdown-wrap">
             <button type="button" class="ck-nav-item" onclick="window.toggleNavDropdown('teachDropdown')">
@@ -360,7 +354,7 @@
             <div style="display: flex; gap: 6px; align-items: center;">
               <span class="badge" id="missionBadge">JH 바둑스쿨 1단계</span>
               <button type="button" id="btnOpenBookSelect" class="badge-action-btn" title="다른 교재나 단원 선택하기">📚 교재 변경</button>
-              <button type="button" class="badge-action-btn" onclick="if(window.gameApp && window.gameApp.bookSelector) window.gameApp.bookSelector.show(1);" title="15대 기법별 심층 마스터관 열기" style="background: linear-gradient(135deg, #f59e0b, #d97706); color: white; font-weight: 800; border: none; box-shadow: 0 2px 8px rgba(245, 158, 11, 0.35);">🎯 15대 기법 모음</button>
+
               <button type="button" class="badge-action-btn" onclick="window.location.href='editor.html'" title="원장님 전용 문제 선별 및 편집실" style="background:#4338ca; color:#fff;">🛠️ 편집실</button>
             </div>
           </div>
@@ -1082,7 +1076,7 @@
           <div class="bs-title-wrap">
             <span class="bs-logo-icon">📖</span>
             <h2 class="bs-main-title">JH 바둑스쿨 라이브러리</h2>
-            <span class="bs-total-pill">총 10개 시리즈 · 139권 교재</span>
+            <span class="bs-total-pill">10단계 아카데미 · 15대 기법 · 교재 전권</span>
           </div>
           <div class="bs-header-right">
             <!-- 🎲 문제 변형 옵션 (회전/대칭) -->

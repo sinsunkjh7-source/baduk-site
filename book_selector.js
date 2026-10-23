@@ -130,8 +130,13 @@ class BadukBookSelector {
       if (this.selectedSeries && this.selectedSeries.title === series.title) {
         item.classList.add('active');
       }
+      let icon = '📚';
+      if (series.title.includes('JH 바둑')) icon = '🏆';
+      else if (series.title.includes('15대')) icon = '🎯';
+      else if (series.title.includes('고전')) icon = '📜';
+
       item.innerHTML = `
-        <span class="item-badge">🎖️</span>
+        <span class="item-badge">${icon}</span>
         <span class="item-title">${series.title}</span>
         <span class="item-count">${series.bookCount}권</span>
       `;

@@ -22250,3 +22250,4 @@ window.CATALOG_DATA = [
     ]
   }
 ];
+window.BADUK_CATALOG = window.CATALOG_DATA;
