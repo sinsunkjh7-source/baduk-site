@@ -679,15 +679,29 @@ class BadukGameApp {
       });
     }
 
-    // ⚡ 난이도 버튼 클릭 이벤트 바인딩 (초급/중급/고급/👑 마스터)
-    const diffBtns = document.querySelectorAll('.omok-diff-btn');
+    // ⚡ 오목 AI 난이도 버튼 클릭 이벤트 바인딩 (초급/중급/고급/👑 마스터)
+    const diffBtns = document.querySelectorAll('#omokDiffRow [data-diff]');
     diffBtns.forEach(btn => {
       btn.addEventListener('click', () => {
         diffBtns.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         this.omokDifficulty = btn.dataset.diff || 'hard';
+        try {
+          localStorage.setItem('jh_omok_difficulty', this.omokDifficulty);
+        } catch (e) {}
       });
     });
+
+    // 저장된 난이도 복원
+    try {
+      const savedDiff = localStorage.getItem('jh_omok_difficulty');
+      if (savedDiff && ['easy', 'normal', 'hard', 'master'].includes(savedDiff)) {
+        this.omokDifficulty = savedDiff;
+        diffBtns.forEach(b => {
+          b.classList.toggle('active', b.dataset.diff === savedDiff);
+        });
+      }
+    } catch (e) {}
 
     // ⚔️ 내 돌 선택 버튼 클릭 이벤트 바인딩 (흑돌 / 백돌)
     const colorBtns = document.querySelectorAll('.omok-color-btn');
