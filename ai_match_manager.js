@@ -410,13 +410,33 @@
             }
           } else {
             this.consecutivePasses = 0;
-            const res = this.game.engine.playMove(aiMove.x, aiMove.y, this.aiColor);
-            if (res.success) {
+            let moveX = aiMove.x;
+            let moveY = aiMove.y;
+
+            if (aiMove.fallbackRequired || moveX === undefined) {
+              const fb = this.findAnyLegalMove(this.aiColor);
+              if (fb) {
+                moveX = fb.x;
+                moveY = fb.y;
+              }
+            }
+
+            let res = this.game.engine.playMove(moveX, moveY, this.aiColor);
+            if (!res.success) {
+              // 착수 실패 시 임의로 패스하지 않고 반드시 유효한 빈자리 탐색
+              const fb = this.findAnyLegalMove(this.aiColor);
+              if (fb) {
+                res = this.game.engine.playMove(fb.x, fb.y, this.aiColor);
+              }
+            }
+
+            if (res && res.success) {
               if (res.captures.length > 0) window.badukAudio.playCapture();
               else window.badukAudio.playStone();
             } else {
-              // 혹시 모를 착수 거부 시 패스 처리
+              // 보드에 둘 곳이 전혀 없는 극단적 상황에서만 패스
               this.game.engine.pass(this.aiColor);
+              this.consecutivePasses++;
             }
           }
         } catch (err) {
@@ -428,6 +448,44 @@
           this.updateStatus();
         }
       }, delayMs);
+    }
+
+    // 합법적인 빈자리 탐색 (AI 조기 패스 및 착수 거부 방지용 안전망)
+    findAnyLegalMove(color) {
+      const size = this.game.size;
+      const board = this.game.engine.board;
+      const candidates = [];
+
+      for (let y = 0; y < size; y++) {
+        for (let x = 0; x < size; x++) {
+          if (board[y][x] === 0) {
+            // 자충수 검사
+            const oppColor = (color === 1) ? 2 : 1;
+            let hasLib = false;
+            for (const n of this.game.engine.getNeighbors(x, y)) {
+              if (board[n.y][n.x] === 0 || board[n.y][n.x] === color) {
+                hasLib = true;
+                break;
+              }
+            }
+            if (hasLib) {
+              let score = 0;
+              const distFromEdge = Math.min(x, size - 1 - x, y, size - 1 - y);
+              if (distFromEdge === 2 || distFromEdge === 3) score += 3;
+              for (const n of this.game.engine.getNeighbors(x, y)) {
+                if (board[n.y][n.x] !== 0) score += 2;
+              }
+              candidates.push({ x, y, score });
+            }
+          }
+        }
+      }
+
+      if (candidates.length > 0) {
+        candidates.sort((a, b) => b.score - a.score);
+        return candidates[0];
+      }
+      return null;
     }
 
     // 한 수 무르기

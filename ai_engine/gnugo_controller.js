@@ -187,77 +187,45 @@
       }
 
       // GNU Go 출력 SGF에서 마지막 추가된 착수 추출
-      // 예: ;W[dd]C[load and analyze mode]) 또는 ;W[]C[load and analyze mode])
-      const match = output.match(/;([BW])\[([a-z]{0,2})\]C\[load and analyze mode\]/);
+      // 줄바꿈 공백을 정규화하여 SGF 줄바꿈 파싱 버그를 원천 차단
+      const cleanOutput = output.replace(/\r?\n/g, ' ');
+      let match = cleanOutput.match(/;([BW])\[([a-z]{0,2})\](?:\s*C\[[^\]]*\])?\s*\)*\s*$/i);
+      if (!match) {
+        // Fallback: 전체 출력 중 가장 마지막에 위치한 착수 탐색
+        const allMoves = [...cleanOutput.matchAll(/;([BW])\[([a-z]{0,2})\]/gi)];
+        if (allMoves.length > 0) {
+          match = allMoves[allMoves.length - 1];
+        }
+      }
+
       if (!match) {
         console.warn('[GNU Go] 착수 패턴 파싱 실패, 전체 출력:', output);
-        return { isPass: true, reason: 'PARSE_FAIL' };
+        return { isPass: false, fallbackRequired: true, color: aiColor };
       }
 
-      const colorStr = match[1];
-      const coordStr = match[2];
+      const colorStr = match[1].toUpperCase();
+      const coordStr = match[2].toLowerCase();
       const parsedCoord = this.fromSgfCoord(coordStr, boardSize);
 
+      // 종국 판단: 아직 대국 초중반(판의 35% 미만 수순)인데 GNU Go가 패스했을 경우, 패스하지 않고 빈자리 착수 유도
+      const minMovesForEnd = Math.floor(boardSize * boardSize * 0.35);
+      const totalMovesPlayed = moves ? moves.length : 0;
+
       if (!parsedCoord) {
-        return { isPass: true, color: colorStr === 'B' ? 1 : 2 };
-      }
-
-      let chosenX = parsedCoord.x;
-      let chosenY = parsedCoord.y;
-
-      // 아동용 난이도 실수/부드러운 응수 조절
-      const levelConf = AI_LEVELS[level] || AI_LEVELS[3];
-      if (levelConf.blunderRate > 0 && Math.random() < levelConf.blunderRate) {
-        // 급수가 낮은 아이들을 위해 인접한 여유 있는 자리를 찾거나 느슨하게 응수
-        const gentleMove = this.findGentleMove(boardSize, handicapStones, moves, chosenX, chosenY);
-        if (gentleMove) {
-          chosenX = gentleMove.x;
-          chosenY = gentleMove.y;
+        if (totalMovesPlayed < minMovesForEnd) {
+          console.log('[GNU Go] 대국 진행 중 조기 패스 감지 -> 게임 지속 착수 유도');
+          return { isPass: false, fallbackRequired: true, color: colorStr === 'B' ? 1 : 2 };
         }
+        return { isPass: true, color: colorStr === 'B' ? 1 : 2 };
       }
 
       return {
         isPass: false,
-        x: chosenX,
-        y: chosenY,
+        x: parsedCoord.x,
+        y: parsedCoord.y,
         color: colorStr === 'B' ? 1 : 2,
         engineMove: parsedCoord
       };
-    }
-
-    // 저급자(샛별/꿈나무)를 위한 친절한 행마 탐색
-    findGentleMove(boardSize, handicapStones, moves, bestX, bestY) {
-      // 보드 현황 복원
-      const occupied = new Set();
-      if (handicapStones) {
-        handicapStones.forEach(s => occupied.add(`${s.x},${s.y}`));
-      }
-      if (moves) {
-        moves.forEach(m => {
-          if (!m.isPass && m.x >= 0 && m.y >= 0) occupied.add(`${m.x},${m.y}`);
-        });
-      }
-
-      // AI 최선의 수 주변 1~2칸 거리의 여유 있는 빈 자리 찾기
-      const candidates = [];
-      for (let dy = -2; dy <= 2; dy++) {
-        for (let dx = -2; dx <= 2; dx++) {
-          const nx = bestX + dx;
-          const ny = bestY + dy;
-          if (nx >= 1 && nx < boardSize - 1 && ny >= 1 && ny < boardSize - 1) {
-            const key = `${nx},${ny}`;
-            if (!occupied.has(key)) {
-              candidates.push({ x: nx, y: ny });
-            }
-          }
-        }
-      }
-
-      if (candidates.length > 0) {
-        const randIdx = Math.floor(Math.random() * candidates.length);
-        return candidates[randIdx];
-      }
-      return null;
     }
 
     // GNU Go 형세 판단 및 계가
