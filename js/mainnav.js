@@ -12,8 +12,8 @@
     { key: 'play', label: '대국', go: 'play' },
     {
       key: 'games', label: '<span class="bk-mainnav__fun"><svg class="bk-fun-burst" viewBox="0 0 24 24" aria-hidden="true"><polygon points="12.00,0.60 14.65,6.50 20.91,4.89 17.95,10.64 23.11,14.54 16.77,15.80 16.95,22.27 12.00,18.10 7.05,22.27 7.23,15.80 0.89,14.54 6.05,10.64 3.09,4.89 9.35,6.50" fill="#FFD84D" stroke="#C62828" stroke-width="1.5" stroke-linejoin="round"/></svg><span class="bk-fun-text">Fun</span></span>', items: [
-        { key: 'omok', label: '오목', icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18M15 3v18M3 9h18M3 15h18"/><circle cx="9" cy="9" r="2" fill="currentColor" stroke="none"/><circle cx="15" cy="15" r="2" fill="currentColor" stroke="none"/></svg>' },
-        { key: 'alkkagi', label: '알까기', icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="14" r="5"/><path d="M16 9l4-3M17 12l4.5-1M14.5 6.5L17 3"/></svg>' }
+        { key: 'omok', label: '오목', icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="19" r="2.1" fill="currentColor" stroke="none"/><circle cx="9" cy="15" r="2.1" fill="currentColor" stroke="none"/><circle cx="13" cy="11" r="2.1" fill="currentColor" stroke="none"/><circle cx="17" cy="7" r="2.1" fill="currentColor" stroke="none"/><circle cx="21" cy="3" r="2.1" fill="currentColor" stroke="none"/></svg>' },
+        { key: 'alkkagi', label: '알까기', icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="12" r="4.6"/><circle cx="16.5" cy="12" r="4.6"/><path d="M12.3 6.2l1-2M12.3 17.8l1 2M5.5 4.8l-1.2-1.8M5.5 19.2l-1.2 1.8"/></svg>' }
       ]
     },
     {
