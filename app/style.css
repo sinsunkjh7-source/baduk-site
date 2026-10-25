@@ -5326,7 +5326,7 @@ body.bg-theme-clouds #cloudsCanvas {
   height: 100vh;
   overflow: hidden;
   position: relative;
-  background: #255a1e;
+  background: #4A8F3E;
 }
 
 /* 2. 좌측 고정 사이드바 (Persistent Sidebar) */
@@ -5335,7 +5335,7 @@ body.bg-theme-clouds #cloudsCanvas {
   min-width: 240px;
   max-width: 240px;
   height: 100vh;
-  background: linear-gradient(180deg, #1b4317 0%, #133310 100%);
+  background: linear-gradient(180deg, #6FB35F 0%, #559C48 100%);
   color: #ffffff;
   display: flex;
   flex-direction: column;
@@ -6120,3 +6120,89 @@ body.bg-theme-clouds #cloudsCanvas {
     display: none !important;
   }
 }
+
+/* ============================================================
+   바둑스쿨 레이아웃 — 사이드바(좌) · 바둑판(정중앙) · 패널(우)
+   ============================================================ */
+:root {
+  --board-size: min(calc(100vh - 196px), calc(100vw - 700px));
+  --bs-right-w: 276px;
+}
+
+html, body {
+  background: #4A8F3E !important;
+  background-image: none !important;
+}
+
+/* 바둑판: 화면 정중앙 고정 */
+.main-content { position: relative; }
+.board-section {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 54px;
+  width: var(--board-size);
+  z-index: 20;
+}
+.board-section .board-wrapper {
+  width: var(--board-size);
+  height: var(--board-size);
+  max-width: var(--board-size);
+  max-height: var(--board-size);
+  border: none;
+  box-shadow: 0 10px 26px rgba(20, 50, 10, .18);
+}
+
+/* 오른쪽: 문제번호·조작·설정 패널 */
+.story-panel {
+  position: fixed;
+  right: 10px;
+  top: 54px;
+  width: var(--bs-right-w);
+  max-height: calc(100vh - 340px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  z-index: 22;
+  gap: 10px;
+}
+
+/* 오른쪽 아래: 마스터 + 힌트 */
+.master-coach-area {
+  position: fixed;
+  right: 10px;
+  bottom: 12px;
+  width: var(--bs-right-w);
+  z-index: 22;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  background: #FBFFF7;
+  border-radius: 14px;
+  padding: 10px;
+}
+.master-coach-area .master-coach-frame {
+  width: 92px;
+  height: 92px;
+  margin: 0 auto;
+}
+.master-coach-area .master-speech-bubble {
+  position: static;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  transform: none;
+  font-size: 12.5px;
+}
+.master-coach-area .master-coach-name { font-size: 13px; text-align: center; }
+.master-coach-area .master-coach-sub { font-size: 11px; text-align: center; color: #6b7a63; }
+
+/* 패널 내부 줄바꿈 정리 */
+.story-panel .mission-header,
+.story-panel .mission-badge-row,
+.story-panel .mission-act-row,
+.story-panel .mission-action-row { flex-wrap: wrap; }
+.story-panel .mission-act-btn { font-size: 12px; padding: 7px 9px; white-space: nowrap; }
+.story-panel .problem-number-grid { grid-template-columns: repeat(5, 1fr); gap: 5px; }
+.story-panel .problem-number-grid button { font-size: 13px; padding: 6px 0; }
+.story-panel .side-setting-row { font-size: 11.5px; flex-wrap: wrap; gap: 6px; }
