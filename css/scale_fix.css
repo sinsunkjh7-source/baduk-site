@@ -2025,3 +2025,82 @@ html body .guest-toolbar-desktop .guest-toolbar-desktop-navigation__list {
 .bk-sound--game .bk-sound__type.-on {
   background: #EAF6DC; border-color: #5FA34C; color: #33682a;
 }
+
+/* ============================================================
+   사이트 잠금 화면
+   ============================================================ */
+.bk-lock {
+  position: fixed;
+  inset: 0;
+  z-index: 100000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(160deg, #4A8A3A 0%, #35682A 100%);
+  font-family: "Malgun Gothic", system-ui, sans-serif;
+}
+.bk-lock__box {
+  width: 320px;
+  background: #FFFDF6;
+  border-radius: 22px;
+  padding: 30px 26px 24px;
+  text-align: center;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, .35);
+}
+.bk-lock__logo {
+  display: inline-block;
+  font-size: 15px;
+  font-weight: 900;
+  color: #3d7a33;
+  letter-spacing: -.3px;
+  margin-bottom: 14px;
+}
+.bk-lock__box h2 {
+  margin: 0 0 6px;
+  font-size: 21px;
+  font-weight: 900;
+  color: #2f4a25;
+}
+.bk-lock__box p {
+  margin: 0 0 16px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #6b7a63;
+}
+.bk-lock__input-wrap { margin-bottom: 12px; }
+.bk-lock__input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 14px 0;
+  font-size: 24px;
+  letter-spacing: 10px;
+  text-align: center;
+  border: 2px solid #DCEBCE;
+  border-radius: 12px;
+  outline: none;
+  background: #fff;
+}
+.bk-lock__input:focus { border-color: #5FA34C; }
+.bk-lock__ok {
+  width: 100%;
+  padding: 13px 0;
+  border: 0;
+  border-radius: 12px;
+  background: #5FA34C;
+  color: #fff;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 800;
+  cursor: pointer;
+}
+.bk-lock__ok:hover { background: #4d8f3c; }
+.bk-lock__err {
+  margin: 10px 0 0 !important;
+  color: #d9433f !important;
+  font-weight: 800;
+}
+.bk-lock__note {
+  margin: 16px 0 0 !important;
+  font-size: 11.5px !important;
+  color: #9aa892 !important;
+}
