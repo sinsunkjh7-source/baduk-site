@@ -315,3 +315,48 @@ div.ck-sidebar-header {
   background: rgba(255, 255, 255, .18) !important;
   border: none !important;
 }
+
+/* ---------- 12. 마무리 보정 ---------- */
+/* 사이드바 흰 테두리 제거 */
+.ck-sidebar,
+.ck-sidebar.collapsed,
+.ck-sidebar-header {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+.app-container {
+  background: #4A8F3E !important;
+  border: none !important;
+}
+
+/* 상단 바: 진초록 → 우리 초록 */
+.ck-top-subnav,
+.ck-top-subnav * {
+  background-color: transparent !important;
+}
+.ck-top-subnav {
+  background: #4A8F3E !important;
+  border-bottom: none !important;
+}
+
+/* 판 높이 (하단 툴바 자리 확보) */
+.app-container,
+.app-container.size-9,
+.app-container.size-13,
+.app-container.size-19 {
+  --board-size: min(calc(100vh - 186px), calc(100vw - 570px)) !important;
+}
+
+/* 마스터 크기 축소 */
+.bs-master .master-coach-frame,
+.bs-master .char-coach-box {
+  width: 96px !important;
+  height: 96px !important;
+}
+.bs-master { padding: 10px !important; }
+
+/* 사이드바 초록 한 단계 더 연하게 */
+.ck-sidebar {
+  background: linear-gradient(180deg, #6FB35F 0%, #559C48 100%) !important;
+}
