@@ -18,7 +18,11 @@
     over: false,
     thinking: false,
     last: null,
-    passCount: 0
+    passCount: 0,
+    skin: 'wood',
+    showCoords: false,
+    showNumbers: false,
+    showTerritory: false
   };
 
   var engine = new BadukEngine(19);
@@ -69,9 +73,13 @@
     ctx.clearRect(0, 0, s, s);
 
     var g = ctx.createLinearGradient(0, 0, s, s);
-    g.addColorStop(0, '#F2CE93');
-    g.addColorStop(0.5, '#E8B96A');
-    g.addColorStop(1, '#DDA751');
+    if (state.skin === 'green') {
+      g.addColorStop(0, '#DCEFC8'); g.addColorStop(0.5, '#CBE7AE'); g.addColorStop(1, '#B8DB96');
+    } else if (state.skin === 'sky') {
+      g.addColorStop(0, '#D6ECFA'); g.addColorStop(0.5, '#BFE3F7'); g.addColorStop(1, '#A8D6F0');
+    } else {
+      g.addColorStop(0, '#F2CE93'); g.addColorStop(0.5, '#E8B96A'); g.addColorStop(1, '#DDA751');
+    }
     ctx.fillStyle = g;
     ctx.fillRect(0, 0, s, s);
 
@@ -102,6 +110,46 @@
       }
     }
 
+    /* 좌표 */
+    if (state.showCoords) {
+      var FILES = 'ABCDEFGHJKLMNOPQRST';
+      ctx.fillStyle = 'rgba(90, 60, 20, .85)';
+      ctx.font = 'bold ' + Math.max(9, Math.round(m.cell * 0.42)) + 'px "Malgun Gothic", sans-serif';
+      ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      for (var c = 0; c < state.size; c++) {
+        ctx.fillText(FILES[c], pos(c), m.pad * 0.45);
+        ctx.fillText(FILES[c], pos(c), s - m.pad * 0.45);
+      }
+      ctx.textAlign = 'center';
+      for (var r2 = 0; r2 < state.size; r2++) {
+        ctx.fillText(String(state.size - r2), m.pad * 0.45, pos(r2));
+        ctx.fillText(String(state.size - r2), s - m.pad * 0.45, pos(r2));
+      }
+    }
+
+    /* 집(영역) 표시 */
+    if (state.showTerritory) {
+      var terr = computeTerritory();
+      terr.forEach(function (t) {
+        ctx.beginPath();
+        ctx.arc(pos(t.x), pos(t.y), Math.max(2.2, m.cell * 0.16), 0, Math.PI * 2);
+        ctx.fillStyle = (t.color === BLACK) ? 'rgba(20,20,20,.55)' : 'rgba(255,255,255,.85)';
+        ctx.fill();
+      });
+    }
+
+    /* 수순 번호 */
+    if (state.showNumbers && engine.moves) {
+      ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      ctx.font = 'bold ' + Math.max(8, Math.round(m.cell * 0.38)) + 'px "Malgun Gothic", sans-serif';
+      for (var k = 0; k < engine.moves.length; k++) {
+        var mv = engine.moves[k];
+        if (!mv || mv.x == null) continue;
+        ctx.fillStyle = (mv.color === BLACK) ? '#fff' : '#222';
+        ctx.fillText(String(k + 1), pos(mv.x), pos(mv.y));
+      }
+    }
+
     /* 마지막 수 */
     if (state.last) {
       ctx.beginPath();
@@ -110,6 +158,59 @@
       ctx.lineWidth = Math.max(2, s / 260);
       ctx.stroke();
     }
+  }
+
+  /* 영역(집) 계산 — 빈 점을 따라가며 경계 색이 하나면 그 색의 집 */
+  function computeTerritory() {
+    var n = state.size;
+    var seen = [];
+    for (var i = 0; i < n; i++) seen.push(new Array(n).fill(false));
+    var out = [];
+
+    function neighbors(x, y) {
+      var r = [];
+      if (x > 0) r.push([x - 1, y]);
+      if (x < n - 1) r.push([x + 1, y]);
+      if (y > 0) r.push([x, y - 1]);
+      if (y < n - 1) r.push([x, y + 1]);
+      return r;
+    }
+
+    for (var y = 0; y < n; y++) {
+      for (var x = 0; x < n; x++) {
+        if (engine.board[y][x] !== 0 || seen[y][x]) continue;
+        var stack = [[x, y]], region = [], border = {};
+        seen[y][x] = true;
+        while (stack.length) {
+          var p = stack.pop();
+          region.push(p);
+          neighbors(p[0], p[1]).forEach(function (q) {
+            var v = engine.board[q[1]][q[0]];
+            if (v !== 0) { border[v] = true; return; }
+            if (!seen[q[1]][q[0]]) { seen[q[1]][q[0]] = true; stack.push(q); }
+          });
+        }
+        var ks = Object.keys(border);
+        if (ks.length === 1) {
+          var col = parseInt(ks[0], 10);
+          region.forEach(function (p) { out.push({ x: p[0], y: p[1], color: col }); });
+        }
+      }
+    }
+    return out;
+  }
+
+  function areaScore() {
+    var terr = computeTerritory();
+    var b = 0, w = 0;
+    for (var y = 0; y < state.size; y++) {
+      for (var x = 0; x < state.size; x++) {
+        if (engine.board[y][x] === BLACK) b++;
+        else if (engine.board[y][x] === WHITE) w++;
+      }
+    }
+    terr.forEach(function (t) { if (t.color === BLACK) b++; else w++; });
+    return { black: b, white: w };
   }
 
   function drawStone(cx, cy, r, color) {
@@ -285,6 +386,19 @@
     state.size = parseInt(b.dataset.size, 10);
     layout();
     restart();
+  });
+
+  /* ---------- 화면 옵션 ---------- */
+  seg('skinSeg', 'skin', function (b) { state.skin = b.dataset.skin; draw(); });
+  document.getElementById('optCoords').addEventListener('change', function (e) { state.showCoords = e.target.checked; draw(); });
+  document.getElementById('optNumbers').addEventListener('change', function (e) { state.showNumbers = e.target.checked; draw(); });
+  document.getElementById('optTerritory').addEventListener('change', function (e) { state.showTerritory = e.target.checked; draw(); });
+  document.getElementById('btnCount').addEventListener('click', function () {
+    var sc = areaScore();
+    toast('집계 — 흑 ' + sc.black + ' : 백 ' + sc.white + ' (덤 없음)');
+    state.showTerritory = true;
+    document.getElementById('optTerritory').checked = true;
+    draw();
   });
 
   /* ---------- 시작 ---------- */

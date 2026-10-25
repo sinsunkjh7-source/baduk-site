@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>대국 — 바둑스쿨</title>
-<link rel="stylesheet" href="style.css?v=2">
+<link rel="stylesheet" href="style.css?v=3">
 <script src="../../js/site_lock.js?v=5"></script>
 </head>
 <body>
@@ -68,6 +68,19 @@
     </section>
 
     <section class="card">
+      <h2>화면 옵션</h2>
+      <div class="seg" id="skinSeg">
+        <button class="seg-btn active" data-skin="wood" type="button">나무</button>
+        <button class="seg-btn" data-skin="green" type="button">초록</button>
+        <button class="seg-btn" data-skin="sky" type="button">하늘</button>
+      </div>
+      <label class="chk"><input type="checkbox" id="optCoords"> 좌표 표시</label>
+      <label class="chk"><input type="checkbox" id="optNumbers"> 수순 번호</label>
+      <label class="chk"><input type="checkbox" id="optTerritory"> 집(영역) 표시</label>
+      <button class="btn" id="btnCount" type="button">🧮 계가하기</button>
+    </section>
+
+    <section class="card">
       <h2>조작</h2>
       <button class="btn" id="btnUndo" type="button">↩️ 무르기</button>
       <button class="btn" id="btnPass" type="button">⏭️ 패스</button>
@@ -81,6 +94,6 @@
 <script src="../../js/audio.js?v=15"></script>
 <script src="engine.js?v=1"></script>
 <script src="ai.js?v=1"></script>
-<script src="game.js?v=1"></script>
+<script src="game.js?v=2"></script>
 </body>
 </html>
