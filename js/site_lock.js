@@ -37,7 +37,7 @@
         '<h2>선생님 인증</h2>' +
         '<p>비밀번호 4자리를 입력해 주세요.</p>' +
         '<div class="bk-lock__input-wrap">' +
-          '<input class="bk-lock__input" type="password" inputmode="numeric" maxlength="8" autocomplete="off">' +
+          '<input class="bk-lock__input" type="password" inputmode="numeric" maxlength="8" autocomplete="off" placeholder="••••">' +
         '</div>' +
         '<button class="bk-lock__ok" type="button">들어가기</button>' +
         '<p class="bk-lock__err" hidden>비밀번호가 맞지 않습니다.</p>' +
@@ -77,6 +77,11 @@
     ok.addEventListener('click', submit);
     input.addEventListener('keydown', function (e) {
       if (e.key === 'Enter') submit();
+    });
+    /* 4자리를 입력하면 자동으로 확인 */
+    input.addEventListener('input', function () {
+      err.hidden = true;
+      if (input.value.length >= 4) submit();
     });
   }
 

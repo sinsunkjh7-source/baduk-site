@@ -2072,14 +2072,19 @@ html body .guest-toolbar-desktop .guest-toolbar-desktop-navigation__list {
   width: 100%;
   box-sizing: border-box;
   padding: 14px 0;
-  font-size: 24px;
-  letter-spacing: 10px;
+  font-size: 26px;
+  letter-spacing: 12px;
   text-align: center;
+  color: #1f2a17 !important;
+  -webkit-text-fill-color: #1f2a17;
+  caret-color: #5FA34C;
   border: 2px solid #DCEBCE;
   border-radius: 12px;
   outline: none;
   background: #fff;
+  font-family: inherit;
 }
+.bk-lock__input::placeholder { color: #c9d6bf; letter-spacing: 6px; }
 .bk-lock__input:focus { border-color: #5FA34C; }
 .bk-lock__ok {
   width: 100%;
