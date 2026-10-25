@@ -37,8 +37,9 @@
         '<h2>선생님 인증</h2>' +
         '<p>비밀번호 4자리를 입력해 주세요.</p>' +
         '<div class="bk-lock__input-wrap">' +
-          '<input class="bk-lock__input" type="password" inputmode="numeric" maxlength="8" autocomplete="off" placeholder="••••">' +
+          '<input class="bk-lock__input" type="password" inputmode="numeric" maxlength="8" autocomplete="off">' +
         '</div>' +
+        '<p class="bk-lock__hint">숫자 4자리</p>' +
         '<button class="bk-lock__ok" type="button">들어가기</button>' +
         '<p class="bk-lock__err" hidden>비밀번호가 맞지 않습니다.</p>' +
         '<p class="bk-lock__note">🔒 선생님 전용 보안 세션</p>' +
@@ -56,7 +57,15 @@
     var input = el.querySelector('.bk-lock__input');
     var err = el.querySelector('.bk-lock__err');
     var ok = el.querySelector('.bk-lock__ok');
-    setTimeout(function () { input.focus(); }, 80);
+    function focusInput() {
+      try {
+        input.focus({ preventScroll: true });
+        input.setSelectionRange(input.value.length, input.value.length);
+      } catch (e) { input.focus(); }
+    }
+    setTimeout(focusInput, 60);
+    setTimeout(focusInput, 300);
+    el.addEventListener('click', focusInput);
 
     function submit() {
       var pw = input.value.trim();
@@ -73,6 +82,13 @@
         }
       });
     }
+
+    /* 아무 키나 눌러도 입력칸으로 */
+    document.addEventListener('keydown', function (e) {
+      if (document.activeElement !== input && /^[0-9]$/.test(e.key)) {
+        focusInput();
+      }
+    });
 
     ok.addEventListener('click', submit);
     input.addEventListener('keydown', function (e) {

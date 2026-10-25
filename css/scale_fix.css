@@ -2109,3 +2109,11 @@ html body .guest-toolbar-desktop .guest-toolbar-desktop-navigation__list {
   font-size: 11.5px !important;
   color: #9aa892 !important;
 }
+
+.bk-lock__hint {
+  margin: -4px 0 10px !important;
+  font-size: 11.5px !important;
+  color: #9aa892 !important;
+  letter-spacing: 0 !important;
+}
+.bk-lock__input { cursor: text; }
