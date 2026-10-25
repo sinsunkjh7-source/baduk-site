@@ -220,3 +220,31 @@ body {
   gap: 6px !important;
   flex-wrap: wrap !important;
 }
+
+/* ---------- 8. 강제 크기 (인라인 변수 덮어쓰기) ---------- */
+.app-container,
+.app-container.size-9,
+.app-container.size-13,
+.app-container.size-19 {
+  --board-size: min(calc(100vh - 152px), calc(100vw - 624px)) !important;
+}
+.ck-main-viewport {
+  width: calc(100vw - 240px) !important;
+  max-width: calc(100vw - 240px) !important;
+  overflow-x: hidden !important;
+}
+.bs-two-col {
+  width: calc(100vw - 240px) !important;
+  justify-content: flex-start !important;
+  padding: 6px 0 6px 12px !important;
+}
+.bs-two-col .board-wrapper {
+  width: var(--board-size) !important;
+  height: var(--board-size) !important;
+  max-width: var(--board-size) !important;
+  max-height: var(--board-size) !important;
+}
+.bs-right {
+  width: 272px !important;
+  flex: 0 0 272px !important;
+}
