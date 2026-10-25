@@ -168,7 +168,11 @@
       var toggle = link.dataset.toggle;
 
       if (go === 'lessons') { if (!enterApp('lessons')) notReady('바둑 학습'); return; }
-      if (go === 'play') { if (!enterApp('play')) notReady('대국'); return; }
+      if (go === 'play') {
+        if (window.bkGames) window.bkGames.open('play', '대국');
+        else if (!enterApp('play')) notReady('대국');
+        return;
+      }
 
       if (toggle === 'teacher') {
         if (isTeacher()) { toast('강사 모드 (화면 준비 중)'); } else openGate();
