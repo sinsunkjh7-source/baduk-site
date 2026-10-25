@@ -20,7 +20,11 @@
     solved: false,
     last: null,
     hintShown: false,
-    view: 'books'
+    view: 'books',
+    skin: 'wood',
+    showCoords: false,
+    showNumbers: false,
+    showAnswerHint: false
   };
 
   /* ---------- 유틸 ---------- */
@@ -130,6 +134,8 @@
       state.chapterTitle = ch.title || ch.chapter || '단원';
       document.getElementById('probNav').hidden = false;
       document.getElementById('btnHint').hidden = false;
+      document.getElementById('btnAnswer').hidden = false;
+      document.getElementById('btnRetry').hidden = false;
       showProblem(0);
     }).catch(function () {
       document.getElementById('probTitle').textContent = '문제를 불러오지 못했습니다';
@@ -203,7 +209,9 @@
     ctx.clearRect(0, 0, s, s);
 
     var g = ctx.createLinearGradient(0, 0, s, s);
-    g.addColorStop(0, '#F2CE93'); g.addColorStop(0.5, '#E8B96A'); g.addColorStop(1, '#DDA751');
+    if (state.skin === 'green') { g.addColorStop(0, '#DCEFC8'); g.addColorStop(0.5, '#CBE7AE'); g.addColorStop(1, '#B8DB96'); }
+    else if (state.skin === 'sky') { g.addColorStop(0, '#D6ECFA'); g.addColorStop(0.5, '#BFE3F7'); g.addColorStop(1, '#A8D6F0'); }
+    else { g.addColorStop(0, '#F2CE93'); g.addColorStop(0.5, '#E8B96A'); g.addColorStop(1, '#DDA751'); }
     ctx.fillStyle = g; ctx.fillRect(0, 0, s, s);
 
     ctx.strokeStyle = 'rgba(110, 74, 30, .85)';
@@ -215,6 +223,36 @@
 
     var r = m.cell * 0.45;
     state.stones.forEach(function (st) { drawStone(pos(st.x), pos(st.y), r, st.color); });
+
+    if (state.showCoords) {
+      var FILES = 'ABCDEFGHJKLMNOPQRST';
+      ctx.fillStyle = 'rgba(90,60,20,.85)';
+      ctx.font = 'bold ' + Math.max(9, Math.round(m.cell * 0.4)) + 'px "Malgun Gothic", sans-serif';
+      ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      for (var c = 0; c < state.size; c++) {
+        ctx.fillText(FILES[c], pos(c), m.pad * 0.45);
+        ctx.fillText(FILES[c], pos(c), s - m.pad * 0.45);
+      }
+      for (var rr = 0; rr < state.size; rr++) {
+        ctx.fillText(String(state.size - rr), m.pad * 0.45, pos(rr));
+        ctx.fillText(String(state.size - rr), s - m.pad * 0.45, pos(rr));
+      }
+    }
+
+    if (state.showNumbers) {
+      ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      ctx.font = 'bold ' + Math.max(8, Math.round(m.cell * 0.38)) + 'px "Malgun Gothic", sans-serif';
+      state.stones.forEach(function (st, i) {
+        ctx.fillStyle = (st.color === BLACK) ? '#fff' : '#222';
+        ctx.fillText(String(i + 1), pos(st.x), pos(st.y));
+      });
+    }
+
+    if (state.showAnswerHint && state.answer) {
+      ctx.beginPath();
+      ctx.arc(pos(state.answer.x), pos(state.answer.y), m.cell * 0.42, 0, Math.PI * 2);
+      ctx.strokeStyle = '#E23B3B'; ctx.lineWidth = Math.max(2, s / 200); ctx.stroke();
+    }
 
     if (state.last) {
       ctx.beginPath();
@@ -279,6 +317,32 @@
     var p = state.problems[state.probIdx];
     if (p && p.hint) toast('힌트: ' + p.hint.replace(/\s+/g, ' ').slice(0, 60), '');
   });
+
+  document.getElementById('btnAnswer').addEventListener('click', function () {
+    state.showAnswerHint = true;
+    toast('빨간 원이 정답 자리입니다', '');
+    draw();
+  });
+
+  document.getElementById('btnRetry').addEventListener('click', function () {
+    showProblem(state.probIdx);
+  });
+
+  document.getElementById('btnOpts').addEventListener('click', function () {
+    var p = document.getElementById('optPanel');
+    p.hidden = !p.hidden;
+  });
+
+  document.getElementById('skinSeg').addEventListener('click', function (e) {
+    var b = e.target.closest('.seg-btn');
+    if (!b) return;
+    document.querySelectorAll('#skinSeg .seg-btn').forEach(function (x) { x.classList.remove('active'); });
+    b.classList.add('active');
+    state.skin = b.dataset.skin;
+    draw();
+  });
+  document.getElementById('optCoords').addEventListener('change', function (e) { state.showCoords = e.target.checked; draw(); });
+  document.getElementById('optNum').addEventListener('change', function (e) { state.showNumbers = e.target.checked; draw(); });
 
   window.addEventListener('resize', function () { layout(); draw(); });
 

@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>바둑 학습 — 바둑스쿨</title>
-<link rel="stylesheet" href="style.css?v=1">
+<link rel="stylesheet" href="style.css?v=2">
 <script src="../../js/site_lock.js?v=5"></script>
 </head>
 <body>
@@ -25,6 +25,9 @@
         <button class="mini" id="btnNext" type="button">다음</button>
       </span>
       <button class="mini hint" id="btnHint" type="button" hidden>힌트</button>
+      <button class="mini" id="btnAnswer" type="button" hidden>정답 보기</button>
+      <button class="mini" id="btnRetry" type="button" hidden>처음부터</button>
+      <button class="mini" id="btnOpts" type="button">옵션</button>
     </div>
 
     <div class="board-box" id="boardBox">
@@ -33,12 +36,23 @@
     </div>
 
     <div class="prob-desc" id="probDesc"></div>
+      <div class="opt-panel" id="optPanel" hidden>
+      <div class="opt-row"><span>판 스킨</span>
+        <span class="seg" id="skinSeg">
+          <button class="seg-btn active" data-skin="wood" type="button">나무</button>
+          <button class="seg-btn" data-skin="green" type="button">초록</button>
+          <button class="seg-btn" data-skin="sky" type="button">하늘</button>
+        </span>
+      </div>
+      <label class="chk"><input type="checkbox" id="optCoords"> 좌표 표시</label>
+      <label class="chk"><input type="checkbox" id="optNum"> 수순 번호</label>
+    </div>
   </main>
 
 </div>
 <div class="toast" id="toast" hidden></div>
 <script src="catalog.js?v=1"></script>
 <script src="../../js/audio.js?v=15"></script>
-<script src="game.js?v=1"></script>
+<script src="game.js?v=2"></script>
 </body>
 </html>
