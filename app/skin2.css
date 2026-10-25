@@ -1,0 +1,178 @@
+/* ============================================================
+   바둑스쿨 스킨 v2 — 색 단순화 + 연한 초록 + 구분선 제거
+   ============================================================ */
+
+/* ---------- 1. 색상 토큰 ---------- */
+:root {
+  --theme-header-bg: #4E8F42;
+
+  --accent-green: #5FA34C;
+  --accent-green-soft: #EAF6DC;
+  --accent-green-line: #D8E9C9;
+  --accent-blue: #5FA34C;   /* 파랑 → 초록 통일 */
+  --accent-sky: #6FB8F5;
+  --accent-gold: #E9A93F;
+  --accent-gold-hover: #D9942A;
+
+  --text-main: #26331d;
+  --text-dark: #1f2a17;
+  --text-muted: #6b7a63;
+
+  --theme-card-bg: #ffffff;
+  --theme-card-subtle: #FBFFF7;
+  --border-color: #E8F1DE;
+}
+
+/* ---------- 2. 사이드바: 진초록 → 연한 초록 ---------- */
+.ck-sidebar {
+  background: linear-gradient(180deg, #55995010 0%, #559950 0%, #468A3C 100%) !important;
+  background: linear-gradient(180deg, #5AA04E 0%, #4A8F3E 100%) !important;
+  border-right: none !important;
+  box-shadow: none !important;
+}
+.ck-sidebar, .ck-sidebar * { color: #fff !important; }
+.ck-nav-item.active,
+.ck-nav-item:hover {
+  background: rgba(255, 255, 255, .18) !important;
+  border-radius: 10px !important;
+}
+.ck-user-profile-card {
+  background: rgba(255, 255, 255, .14) !important;
+  border: none !important;
+}
+
+/* ---------- 3. 구분선 제거 ---------- */
+.story-panel, .card, .mission-card, .side-settings-panel,
+.match-info-card, .player-vs-card, .turn-status-card {
+  border: none !important;
+  box-shadow: 0 2px 10px rgba(60, 90, 40, .06) !important;
+}
+.card + .card,
+.mission-card + .card,
+.side-settings-panel { border-top: none !important; }
+.board-wrapper { border: 2px solid #E3D3AE !important; }
+
+/* ---------- 4. 버튼 색 통일 (파랑·보라 → 초록) ---------- */
+.mission-act-btn,
+.mission-action-row button,
+.mission-act-row button {
+  background: #F6FBF0 !important;
+  border: 2px solid var(--accent-green-line) !important;
+  color: #33682a !important;
+  box-shadow: none !important;
+}
+.mission-act-btn:hover { background: #EDF7E3 !important; }
+
+.mission-act-btn.primary,
+.btn-change-book,
+.mission-act-btn.active,
+.mission-act-row .primary {
+  background: var(--accent-green) !important;
+  border-color: #4A8A3A !important;
+  color: #fff !important;
+}
+.mission-act-btn.primary:hover { background: #4d8f3c !important; }
+
+/* 문제 번호 */
+.problem-number-grid button,
+.problem-number-grid .num-btn {
+  background: #F6FBF0 !important;
+  border: 2px solid var(--accent-green-line) !important;
+  color: #4a5a41 !important;
+  box-shadow: none !important;
+}
+.problem-number-grid button.active,
+.problem-number-grid .num-btn.active,
+.problem-number-grid button.current {
+  background: var(--accent-green) !important;
+  border-color: #4A8A3A !important;
+  color: #fff !important;
+}
+
+/* 세그먼트(스킨·소리) */
+.segmented-control button,
+.side-segmented button {
+  background: #F6FBF0 !important;
+  border-color: var(--accent-green-line) !important;
+  color: #4a5a41 !important;
+}
+.segmented-control button.active,
+.side-segmented button.active {
+  background: var(--accent-green) !important;
+  border-color: #4A8A3A !important;
+  color: #fff !important;
+}
+
+/* 보라·분홍 강조 제거 */
+.mission-badge-row span,
+.badge,
+.mission-count-pill {
+  background: #EEF6E6 !important;
+  color: #3d7a33 !important;
+  border-color: var(--accent-green-line) !important;
+}
+
+/* ---------- 5. 오른쪽 열 (문제·메뉴·마스터) ---------- */
+.bs-two-col {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: flex-start !important;
+  justify-content: center !important;
+  gap: 14px !important;
+}
+.bs-right {
+  width: 268px;
+  flex: 0 0 268px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: calc(100vh - 64px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+}
+.bs-right .story-panel {
+  width: 100% !important;
+  max-height: none !important;
+  overflow: visible !important;
+  gap: 10px !important;
+}
+.bs-master {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 12px;
+  background: #FBFFF7;
+  border-radius: 14px;
+}
+.bs-master-item { width: 100%; display: flex; justify-content: center; }
+.bs-master .master-coach-frame,
+.bs-master .char-coach-box {
+  width: 116px !important;
+  height: 116px !important;
+  margin: 0 auto !important;
+  position: static !important;
+  transform: none !important;
+}
+.bs-master .master-speech-bubble,
+.bs-master .char-speech {
+  position: static !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  transform: none !important;
+  font-size: 12.5px !important;
+  line-height: 1.45 !important;
+}
+.bs-master .master-coach-name { font-size: 13px !important; text-align: center; }
+
+/* 판 위에 떠 있던 마스터/말풍선 숨김(오른쪽으로 옮겼으므로) */
+.board-wrapper .master-coach-frame,
+.board-wrapper .master-speech-bubble { display: none !important; }
+
+/* ---------- 6. 배경 ---------- */
+body {
+  background: #F4F9EE !important;
+  background-image: none !important;
+}
