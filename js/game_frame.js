@@ -34,7 +34,7 @@
         '<button class="bk-game-back" type="button">← 돌아가기</button>' +
         '<span class="bk-game-title">' + (titleOverride || g.title) + '</span>' +
         '<span class="bk-game-spacer"></span>' +
-        '<button class="bk-game-sound" type="button">⚙ 소리</button>' +
+        '<button class="bk-game-sound" type="button">⚙ 설정</button>' +
       '</div>' +
       '<iframe class="bk-game-frame" src="' + g.path + '" title="' + g.title + '" allow="autoplay"></iframe>';
 
