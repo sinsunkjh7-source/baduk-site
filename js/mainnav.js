@@ -12,16 +12,16 @@
     { key: 'play', label: '대국', go: 'play' },
     {
       key: 'games', label: '<span class="bk-mainnav__fun"><svg class="bk-fun-burst" viewBox="0 0 24 24" aria-hidden="true"><polygon points="12.00,0.60 14.65,6.50 20.91,4.89 17.95,10.64 23.11,14.54 16.77,15.80 16.95,22.27 12.00,18.10 7.05,22.27 7.23,15.80 0.89,14.54 6.05,10.64 3.09,4.89 9.35,6.50" fill="#FFD84D" stroke="#C62828" stroke-width="1.5" stroke-linejoin="round"/></svg><span class="bk-fun-text">Fun</span></span>', items: [
-        { key: 'omok', label: '오목', icon: '⚫' },
-        { key: 'alkkagi', label: '알까기', icon: '🥌' }
+        { key: 'omok', label: '오목', icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18M15 3v18M3 9h18M3 15h18"/><circle cx="9" cy="9" r="2" fill="currentColor" stroke="none"/><circle cx="15" cy="15" r="2" fill="currentColor" stroke="none"/></svg>' },
+        { key: 'alkkagi', label: '알까기', icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="14" r="5"/><path d="M16 9l4-3M17 12l4.5-1M14.5 6.5L17 3"/></svg>' }
       ]
     },
     {
       key: 'story', label: '이야기', items: [
-        { key: 'hanja', label: '바둑 한자', icon: '📕' },
-        { key: 'saju', label: '고사성어', icon: '📜' },
-        { key: 'gyeong-eon', label: '격언 한마디', icon: '💬' },
-        { key: 'injung', label: '인성 스토리', icon: '🌱' }
+        { key: 'hanja', label: '바둑 한자', icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h6a2 2 0 012 2v12a2 2 0 00-2-2H4z"/><path d="M20 5h-6a2 2 0 00-2 2v12a2 2 0 012-2h6z"/></svg>' },
+        { key: 'saju', label: '고사성어', icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 9h8M8 13h8M8 17h4"/></svg>' },
+        { key: 'gyeong-eon', label: '격언 한마디', icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 9h8M8 12h5"/></svg>' },
+        { key: 'injung', label: '인성 스토리', icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20v-7"/><path d="M12 13c0-4 3-6 7-6 0 4-3 6-7 6z"/><path d="M12 16c0-3-2.5-5-6-5 0 3 2.5 5 6 5z"/></svg>' }
       ]
     },
     { key: 'teacher', label: '강사 모드', lock: true }

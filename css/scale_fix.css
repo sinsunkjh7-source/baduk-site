@@ -2151,13 +2151,17 @@ button.bk-lockout-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 22px;
-  height: 22px;
-  font-size: 14px;
-  line-height: 1;
-  border-radius: 7px;
-  background: rgba(255, 255, 255, .22);
+  width: 24px;
+  height: 24px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, .18);
   flex: 0 0 auto;
+}
+.bk-mainnav__ico svg {
+  width: 15px;
+  height: 15px;
+  color: #fff;
+  display: block;
 }
 .bk-mainnav__item.-open .bk-mainnav__sub {
   animation: bk-sub-pop .14s ease-out;
