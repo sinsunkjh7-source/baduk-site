@@ -101,9 +101,34 @@
     });
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', mount);
-  } else {
+  /* 잠그기 버튼 — 열린 상태에서만 보인다 */
+  function lockNow() {
+    try { sessionStorage.removeItem(KEY); } catch (e) {}
+    location.reload();
+  }
+
+  function addLockButton() {
+    if (document.querySelector('.bk-lockout-btn')) return;
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'bk-lockout-btn';
+    b.title = '사이트 잠그기 (로그아웃)';
+    b.innerHTML = '<span>🔒</span> 잠그기';
+    b.addEventListener('click', lockNow);
+    document.body.appendChild(b);
+  }
+
+  function start() {
+    if (unlocked()) {
+      addLockButton();
+      return;
+    }
     mount();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', start);
+  } else {
+    start();
   }
 })();
