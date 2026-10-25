@@ -1606,5 +1606,19 @@
       }
     });
   </script>
+<script>
+/* 바둑스쿨: ?mode= / ?chapter= 로 들어오면 대문(포털)을 건너뛰고 바로 앱 화면 */
+(function () {
+  if (!/[?&](mode|chapter)=/.test(location.search)) return;
+  function hidePortal() {
+    var p = document.getElementById('mainPortalOverlay');
+    if (p) p.classList.add('portal-hidden');
+  }
+  hidePortal();
+  document.addEventListener('DOMContentLoaded', hidePortal);
+  window.addEventListener('load', hidePortal);
+  [150, 400, 900, 1600].forEach(function (t) { setTimeout(hidePortal, t); });
+})();
+</script>
 </body>
 </html>
