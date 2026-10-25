@@ -75,6 +75,7 @@
           try { sessionStorage.setItem(KEY, String(Date.now())); } catch (e) {}
           document.documentElement.style.overflow = '';
           el.remove();
+          addLockButton();   /* 열리자마자 잠그기 버튼 표시 */
         } else {
           err.hidden = false;
           input.value = '';
