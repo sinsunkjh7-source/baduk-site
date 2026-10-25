@@ -1,0 +1,191 @@
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  font-family: "Malgun Gothic", "Apple SD Gothic Neo", system-ui, sans-serif;
+  background: #F7FBF2;
+  color: #26331d;
+}
+
+.wrap {
+  display: flex;
+  gap: 18px;
+  padding: 18px;
+  height: 100%;
+  align-items: flex-start;
+}
+
+/* ---------- 보드 ---------- */
+.board-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+  height: 100%;
+}
+
+.turn-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(60, 90, 40, .08);
+  font-size: 15px;
+  font-weight: 800;
+  color: #3d4a35;
+}
+.turn-stone {
+  width: 16px; height: 16px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 32% 28%, #6e6e6e 0%, #1c1c1c 55%, #0a0a0a 100%);
+  box-shadow: 0 1px 2px rgba(0,0,0,.35);
+}
+.turn-stone.white {
+  background: radial-gradient(circle at 32% 28%, #fff 0%, #f2f2f2 60%, #d9d9d9 100%);
+  box-shadow: 0 1px 2px rgba(0,0,0,.25), inset 0 0 0 1px rgba(0,0,0,.06);
+}
+.move-count { margin-left: auto; color: #7d8a72; font-weight: 700; font-size: 13px; }
+
+.board-box {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #FFFFFF;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(60, 90, 40, .10);
+  padding: 10px;
+}
+#board { display: block; border-radius: 10px; cursor: pointer; touch-action: manipulation; }
+
+/* 결과 */
+.result {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(30, 45, 20, .35);
+  border-radius: 16px;
+  backdrop-filter: blur(2px);
+}
+.result[hidden] { display: none; }
+.result-card {
+  background: #fff;
+  border-radius: 18px;
+  padding: 26px 32px;
+  text-align: center;
+  box-shadow: 0 16px 40px rgba(0,0,0,.25);
+}
+.result-title { margin: 0 0 16px; font-size: 22px; font-weight: 900; color: #2f4a25; }
+
+/* ---------- 패널 ---------- */
+.panel {
+  width: 230px;
+  flex: 0 0 230px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 14px;
+  box-shadow: 0 2px 10px rgba(60, 90, 40, .08);
+}
+.card h2 {
+  margin: 0 0 10px;
+  font-size: 13px;
+  font-weight: 800;
+  color: #6b7a63;
+  letter-spacing: -.2px;
+}
+
+.seg { display: flex; gap: 6px; }
+.seg.col { flex-direction: column; }
+.seg-btn {
+  flex: 1;
+  padding: 10px 8px;
+  border: 2px solid #E4EED9;
+  background: #FBFFF6;
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 800;
+  color: #4a5a41;
+  cursor: pointer;
+  transition: .12s;
+}
+.seg-btn:hover { border-color: #BCD9A8; }
+.seg-btn.active {
+  background: #EAF6DC;
+  border-color: #5FA34C;
+  color: #33682a;
+}
+
+.btn {
+  width: 100%;
+  padding: 11px 10px;
+  margin-top: 8px;
+  border: 2px solid #E4EED9;
+  background: #FBFFF6;
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 800;
+  color: #4a5a41;
+  cursor: pointer;
+}
+.btn:hover { border-color: #BCD9A8; background: #F4FBEC; }
+.btn.primary {
+  background: #5FA34C;
+  border-color: #5FA34C;
+  color: #fff;
+}
+.btn.primary:hover { background: #4d8f3c; }
+
+.tips p { margin: 0; font-size: 13px; line-height: 1.55; color: #5f6d57; }
+.tips b { color: #33682a; }
+
+@media (max-width: 860px) {
+  .wrap { flex-direction: column; padding: 12px; }
+  .panel { width: 100%; flex: 0 0 auto; flex-direction: row; flex-wrap: wrap; }
+  .panel .card { flex: 1 1 160px; }
+  .board-box { min-height: 60vh; }
+}
+
+/* 토글 체크박스 */
+.chk {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 4px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #4a5a41;
+  cursor: pointer;
+}
+.chk input { width: 17px; height: 17px; accent-color: #5FA34C; cursor: pointer; }
+
+/* 토스트 */
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 32px;
+  transform: translateX(-50%);
+  background: rgba(35,45,30,.94);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 800;
+  padding: 12px 22px;
+  border-radius: 999px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.25);
+  z-index: 50;
+}
+.toast[hidden] { display: none; }

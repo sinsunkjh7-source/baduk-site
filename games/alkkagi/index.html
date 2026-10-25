@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>알까기 — 바둑스쿨</title>
+<link rel="stylesheet" href="style.css?v=1">
+</head>
+<body>
+<div class="alkkagi-wrap">
+  <main class="board-col">
+    <canvas id="alkkagiBoard"></canvas>
+  </main>
+  <div class="panel-col">
+<aside class="story-panel omok-panel alkkagi-panel" id="alkkagiSidePanel" class="story-panel omok-panel alkkagi-panel" >
+        <div class="card omok-mode-card">
+          <div class="card-header-icon">🎯 알까기 대전 설정</div>
+          <div class="omok-mode-options">
+            <!-- 1. 대전 모드 선택 -->
+            <button type="button" class="omok-mode-btn active" id="btnAlkkagiModeAi" data-alkkagi-mode="ai">
+              <strong>🤖 AI 대전 (싱글)</strong>
+              <span>인공지능과 실시간 알까기 승부</span>
+            </button>
+
+            <!-- 2. AI 난이도 박스 -->
+            <div class="omok-diff-box" id="alkkagiDiffRow">
+              <div class="omok-diff-header">
+                <span class="omok-diff-title">⚡ AI 조준 난이도</span>
+              </div>
+              <div class="omok-diff-grid">
+                <button type="button" class="omok-diff-btn" data-alkkagi-diff="easy">초급</button>
+                <button type="button" class="omok-diff-btn active" data-alkkagi-diff="normal">중급</button>
+                <button type="button" class="omok-diff-btn" data-alkkagi-diff="hard">고급</button>
+                <button type="button" class="omok-diff-btn master" data-alkkagi-diff="master">👑 마스터 (최강)</button>
+              </div>
+            </div>
+
+            <!-- 3. 내 돌 선택 (선공/후공) -->
+            <div class="omok-color-box" id="alkkagiColorBox">
+              <span class="omok-sub-label">⚔️ 내 돌 선택 (선공/후공)</span>
+              <div class="omok-color-options">
+                <button type="button" class="omok-color-btn active" id="btnAlkkagiColorBlack" data-alkkagi-color="1">
+                  ⚫ 흑돌 (선공)
+                </button>
+                <button type="button" class="omok-color-btn" id="btnAlkkagiColorWhite" data-alkkagi-color="2">
+                  ⚪ 백돌 (후공)
+                </button>
+              </div>
+            </div>
+
+            <!-- 4. 2인 로컬 대전 버튼 -->
+            <button type="button" class="omok-mode-btn" id="btnAlkkagiModePvp" data-alkkagi-mode="pvp" style="margin-top: 4px;">
+              <strong>👥 2인 대전 (로컬)</strong>
+              <span>친구와 번갈아 튕기기</span>
+            </button>
+          </div>
+
+          <!-- 5. 진형 배치 선택 -->
+          <div class="omok-options-card">
+            <span class="omok-sub-label">📐 알까기 진형 배치</span>
+            <div class="omok-diff-grid" style="grid-template-columns: repeat(3, 1fr); margin-top: 4px;">
+              <button type="button" class="omok-diff-btn active" data-formation="line5">5대5 일자</button>
+              <button type="button" class="omok-diff-btn" data-formation="vshape">V자 돌격</button>
+              <button type="button" class="omok-diff-btn" data-formation="line7">7대7 대전</button>
+              <button type="button" class="omok-diff-btn custom-placement-btn" data-formation="custom" style="grid-column: span 3; font-weight: 800; background: #eff6ff; color: #1d4ed8; border: 1.5px solid #60a5fa; margin-top: 4px; padding: 7px 4px;">🎨 2인 자유 배치 (원하는 위치/개수 직접 놓기)</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 🎨 2인 자유 작전 돌 배치 컨트롤 카드 -->
+        <div class="card alkkagi-custom-box" id="alkkagiCustomBox" >
+          <div class="card-header-icon" style="color: #1d4ed8; font-size: 0.95rem; font-weight: 800; margin-bottom: 4px;">🎨 2인 작전 돌 배치 중</div>
+          <p style="font-size: 0.76rem; color: #475569; margin: 0 0 8px 0; line-height: 1.4;">
+            바둑판을 <strong>터치하여 돌을 놓고</strong>, <strong>드래그</strong>하여 원하는 작전 위치로 이동하세요!
+          </p>
+
+          <!-- 도구 선택 (흑돌, 백돌, 지우개) -->
+          <div class="custom-tool-grid">
+            <button type="button" class="custom-tool-btn active" id="btnCustomToolBlack" data-tool="black">
+              ⚫ 흑돌 놓기
+            </button>
+            <button type="button" class="custom-tool-btn" id="btnCustomToolWhite" data-tool="white">
+              ⚪ 백돌 놓기
+            </button>
+            <button type="button" class="custom-tool-btn erase" id="btnCustomToolErase" data-tool="erase">
+              🗑️ 지우개
+            </button>
+          </div>
+
+          <!-- 현재 배치된 돌 개수 -->
+          <div style="display: flex; justify-content: space-around; align-items: center; background: #ffffff; padding: 6px 10px; border-radius: 8px; border: 1px solid #bfdbfe; font-size: 0.8rem; font-weight: 800; margin: 8px 0;">
+            <span>⚫ 흑돌: <strong id="customBlackCount" style="color: #2563eb;">5개</strong></span>
+            <span>⚪ 백돌: <strong id="customWhiteCount" style="color: #d97706;">5개</strong></span>
+          </div>
+
+          <!-- 빠른 세팅 & 초기화 -->
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 4px; margin-bottom: 10px;">
+            <span style="font-size: 0.72rem; color: #64748b; font-weight: 700; white-space: nowrap;">빠른 세팅:</span>
+            <button type="button" class="custom-preset-btn" data-preset="3">3 vs 3</button>
+            <button type="button" class="custom-preset-btn" data-preset="5">5 vs 5</button>
+            <button type="button" class="custom-preset-btn" data-preset="7">7 vs 7</button>
+            <button type="button" class="custom-preset-btn clear" id="btnCustomClearAll">🧹 비우기</button>
+          </div>
+
+          <!-- 경기 시작 버튼 -->
+          <button type="button" class="custom-start-match-btn" id="btnAlkkagiStartCustomMatch" style="width: 100%; padding: 10px 0; background: linear-gradient(135deg, #10b981, #059669); color: white; border: none; border-radius: 8px; font-size: 0.92rem; font-weight: 900; cursor: pointer; box-shadow: 0 4px 10px rgba(16, 185, 129, 0.35); transition: all 0.15s ease;">
+            🚀 이 작전 배치로 경기 시작!
+          </button>
+        </div>
+
+        <!-- 남은 돌 수 & 차례 표시 -->
+        <div class="card omok-turn-card">
+          <div class="current-turn-box">
+            <span class="turn-pulse-dot" id="alkkagiTurnDot"></span>
+            <span class="turn-desc-txt" id="alkkagiTurnText">⚫ 흑돌 차례입니다</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 6px; font-size: 0.82rem; font-weight: 800;">
+            <span>⚫ 흑돌: <strong id="alkkagiBlackCount" style="color: #2563eb;">5개</strong></span>
+            <span>⚪ 백돌: <strong id="alkkagiWhiteCount" style="color: #d97706;">5개</strong></span>
+            <span>턴: <strong id="alkkagiTurnCounter" style="color: #475569;">1턴</strong></span>
+          </div>
+        </div>
+
+        <!-- 게임 가이드 안내 -->
+        <div class="card omok-help-card">
+          <div class="card-header-icon">💡 알까기 조작법</div>
+          <p style="font-size: 0.8rem; color: #475569; margin: 0; line-height: 1.45;">
+            내 돌을 <strong>뒤로 당겼다 놓으면</strong> 반대 방향으로 시원하게 날아갑니다! 상대 돌을 바둑판 밖으로 모두 떨어뜨려 승리하세요!
+          </p>
+        </div>
+
+        <!-- 하단 액션 버튼 -->
+        <div class="match-action-group" style="display: flex; gap: 6px;">
+          <button type="button" class="match-act-btn resign" id="btnAlkkagiRestart" style="flex: 1;" title="새 알까기 경기 시작">
+            🔄 새로 시작
+          </button>
+          <button type="button" class="match-act-btn" id="btnAlkkagiEditPlacement" style="flex: 1; display: none; background: #fef3c7; color: #92400e; border: 1.5px solid #f59e0b;" title="돌 위치 및 개수 다시 수정하기">
+            🎨 배치 다시 수정
+          </button>
+        </div>
+      </aside>
+  </div>
+</div>
+<div class="toast" id="toast" hidden></div>
+<script src="../../js/audio.js?v=15"></script>
+<script src="engine.js?v=1"></script>
+<script src="game.js?v=2"></script>
+</body>
+</html>
