@@ -167,7 +167,11 @@
       var go = link.dataset.go;
       var toggle = link.dataset.toggle;
 
-      if (go === 'lessons') { if (!enterApp('lessons')) notReady('바둑 학습'); return; }
+      if (go === 'lessons') {
+        if (window.bkGames) window.bkGames.open('learn', '바둑 학습');
+        else if (!enterApp('lessons')) notReady('바둑 학습');
+        return;
+      }
       if (go === 'play') {
         if (window.bkGames) window.bkGames.open('play', '대국');
         else if (!enterApp('play')) notReady('대국');

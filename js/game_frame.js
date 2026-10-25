@@ -6,7 +6,8 @@
   var GAMES = {
     omok: { path: 'games/omok/index.html', title: '오목' },
     alkkagi: { path: 'games/alkkagi/index.html', title: '알까기' },
-    play: { path: 'games/play/index.html', title: '대국' }
+    play: { path: 'games/play/index.html', title: '대국' },
+    learn: { path: 'games/learn/index.html', title: '바둑 학습' }
   };
 
   var el = null;

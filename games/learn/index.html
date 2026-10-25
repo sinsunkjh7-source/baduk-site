@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>바둑 학습 — 바둑스쿨</title>
+<link rel="stylesheet" href="style.css?v=1">
+<script src="../../js/site_lock.js?v=5"></script>
+</head>
+<body>
+<div class="wrap">
+
+  <aside class="side">
+    <div class="side-head">바둑 학습</div>
+    <div class="book-list" id="bookList"></div>
+    <div class="chapter-list" id="chapterList" hidden></div>
+  </aside>
+
+  <main class="main">
+    <div class="prob-head">
+      <button class="mini" id="btnBack" type="button" hidden>← 단원</button>
+      <span class="prob-title" id="probTitle">단원을 선택하세요</span>
+      <span class="prob-nav" id="probNav" hidden>
+        <button class="mini" id="btnPrev" type="button">이전</button>
+        <button class="mini" id="btnNext" type="button">다음</button>
+      </span>
+      <button class="mini hint" id="btnHint" type="button" hidden>힌트</button>
+    </div>
+
+    <div class="board-box" id="boardBox">
+      <canvas id="board"></canvas>
+      <div class="answer-toast" id="answerToast" hidden></div>
+    </div>
+
+    <div class="prob-desc" id="probDesc"></div>
+  </main>
+
+</div>
+<div class="toast" id="toast" hidden></div>
+<script src="catalog.js?v=1"></script>
+<script src="../../js/audio.js?v=15"></script>
+<script src="game.js?v=1"></script>
+</body>
+</html>
