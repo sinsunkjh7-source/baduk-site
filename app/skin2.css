@@ -295,3 +295,23 @@ div.ck-sidebar-header {
   box-shadow: none !important;
   border: none !important;
 }
+
+/* ---------- 11. 사이드바 내부 흰 배경 제거 ---------- */
+.ck-sidebar {
+  background: linear-gradient(180deg, #5AA04E 0%, #468A3C 100%) !important;
+}
+.ck-sidebar > *,
+.ck-sidebar-header,
+.ck-sidebar-logo,
+.ck-sidebar-actions,
+.ck-sidebar-nav,
+.ck-nav-group,
+.ck-user-profile-card {
+  background-color: transparent !important;
+  background-image: none !important;
+}
+.ck-sidebar-header { border-bottom: none !important; }
+.ck-sidebar-actions .ck-icon-btn {
+  background: rgba(255, 255, 255, .18) !important;
+  border: none !important;
+}
