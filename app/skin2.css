@@ -176,3 +176,47 @@ body {
   background: #F4F9EE !important;
   background-image: none !important;
 }
+
+/* ---------- 7. 판 크기 자동 (오른쪽 열 자리 확보) ---------- */
+:root {
+  --board-size: min(calc(100vh - 150px), calc(100vw - 596px)) !important;
+}
+.bs-two-col {
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow: hidden !important;
+  padding-right: 8px !important;
+}
+.bs-right, .bs-right * {
+  min-width: 0 !important;
+  box-sizing: border-box;
+}
+.bs-right .mission-header,
+.bs-right .mission-badge-row,
+.bs-right .mission-count-pill,
+.bs-right .mission-act-row,
+.bs-right .mission-action-row {
+  flex-wrap: wrap !important;
+  max-width: 100% !important;
+  overflow: hidden !important;
+}
+.bs-right .mission-act-btn {
+  font-size: 12px !important;
+  padding: 7px 9px !important;
+  white-space: nowrap !important;
+}
+.bs-right .problem-number-grid {
+  grid-template-columns: repeat(5, 1fr) !important;
+  gap: 5px !important;
+}
+.bs-right .problem-number-grid button,
+.bs-right .problem-number-grid .num-btn {
+  font-size: 13px !important;
+  padding: 6px 0 !important;
+}
+.bs-right .side-settings-panel { padding: 10px !important; }
+.bs-right .side-setting-row {
+  font-size: 11.5px !important;
+  gap: 6px !important;
+  flex-wrap: wrap !important;
+}
