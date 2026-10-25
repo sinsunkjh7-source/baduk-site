@@ -360,3 +360,14 @@ div.ck-sidebar-header {
 .ck-sidebar {
   background: linear-gradient(180deg, #6FB35F 0%, #559C48 100%) !important;
 }
+
+/* ---------- 13. 최종 ---------- */
+html { background: #4A8F3E !important; }
+body { background: #4A8F3E !important; background-image: none !important; }
+.app-container { padding: 0 !important; }
+.app-container,
+.app-container.size-9,
+.app-container.size-13,
+.app-container.size-19 {
+  --board-size: min(calc(100vh - 206px), calc(100vw - 570px)) !important;
+}
