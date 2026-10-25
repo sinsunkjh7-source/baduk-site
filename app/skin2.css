@@ -248,3 +248,25 @@ body {
   width: 272px !important;
   flex: 0 0 272px !important;
 }
+
+/* ---------- 9. 균형 잡기 ---------- */
+.app-container,
+.app-container.size-9,
+.app-container.size-13,
+.app-container.size-19 {
+  --board-size: min(calc(100vh - 118px), calc(100vw - 566px)) !important;
+}
+.bs-two-col {
+  justify-content: center !important;
+  gap: 18px !important;
+  padding: 4px 10px !important;
+}
+/* 사이드바 상단 흰 띠 제거 */
+.ck-sidebar-header,
+.ck-sidebar-logo,
+.ck-sidebar-actions {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+.ck-sidebar { padding-top: 6px !important; }
