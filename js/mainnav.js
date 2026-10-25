@@ -168,12 +168,12 @@
       var toggle = link.dataset.toggle;
 
       if (go === 'lessons') {
-        if (window.bkGames) window.bkGames.open('learn', '바둑 학습');
+        if (window.bkGames) window.bkGames.open('appMissions', '바둑 학습');
         else if (!enterApp('lessons')) notReady('바둑 학습');
         return;
       }
       if (go === 'play') {
-        if (window.bkGames) window.bkGames.open('play', '대국');
+        if (window.bkGames) window.bkGames.open('appLecture', '대국');
         else if (!enterApp('play')) notReady('대국');
         return;
       }

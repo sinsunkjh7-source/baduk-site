@@ -7,7 +7,9 @@
     omok: { path: 'games/omok/index.html', title: '오목' },
     alkkagi: { path: 'games/alkkagi/index.html', title: '알까기' },
     play: { path: 'games/play/index.html', title: '대국' },
-    learn: { path: 'games/learn/index.html', title: '바둑 학습' }
+    learn: { path: 'games/learn/index.html', title: '바둑 학습' },
+    appMissions: { path: 'app/index.html?mode=missions', title: '바둑 학습' },
+    appLecture: { path: 'app/index.html?mode=lecture', title: '대국' }
   };
 
   var el = null;
