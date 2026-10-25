@@ -1879,52 +1879,7 @@ html body .guest-toolbar-desktop .guest-toolbar-desktop-navigation__list {
   transform: rotate(-3deg) scale(1.08);
 }
 
-/* ============================================================
-   드롭다운 패널 — 크림 배경 + 초록 테두리, 내용 폭에 맞춤
-   ============================================================ */
-.bk-mainnav__sub {
-  min-width: 0;
-  width: max-content;
-  padding: 6px;
-  background: #FFFDF6;
-  border: 2px solid #DCEBCE;
-  border-radius: 14px;
-  box-shadow: 0 12px 26px rgba(60, 90, 40, .18), 0 2px 6px rgba(60, 90, 40, .08);
-}
-/* 위쪽 꼬리(삼각형) */
-.bk-mainnav__sub::before {
-  content: "";
-  position: absolute;
-  top: -7px;
-  left: 50%;
-  width: 12px;
-  height: 12px;
-  margin-left: -6px;
-  background: #FFFDF6;
-  border-left: 2px solid #DCEBCE;
-  border-top: 2px solid #DCEBCE;
-  transform: rotate(45deg);
-  border-radius: 3px 0 0 0;
-}
-.bk-mainnav__sublink {
-  padding: 9px 18px 9px 14px;
-  font-size: 14.5px;
-  font-weight: 700;
-  color: #43523a;
-  border-radius: 9px;
-  white-space: nowrap;
-}
-.bk-mainnav__sublink:hover {
-  background: #EAF6DC;
-  color: #3d7a33;
-}
-/* 열릴 때 살짝 튀어오르는 느낌 */
-.bk-mainnav__item.-open .bk-mainnav__sub {
-  animation: bk-sub-pop .14s ease-out;
-}
-@keyframes bk-sub-pop {
-  from { opacity: 0; transform: translateX(-50%) translateY(-6px) scale(.97); }
-  to   { opacity: 1; transform: translateX(-50%) translateY(-4px) scale(1); }
+
 }
 
 
@@ -2149,3 +2104,65 @@ button.bk-lockout-btn {
   pointer-events: auto !important;
 }
 .bk-lockout-btn:hover { background: #24401b !important; opacity: 1 !important; }
+
+/* ============================================================
+   드롭다운 패널 — 연녹색 바탕 + 흰 글자 + 아이콘
+   ============================================================ */
+.bk-mainnav__sub {
+  min-width: 0;
+  width: max-content;
+  padding: 7px;
+  background: #8CC66E;
+  border: 2px solid #76B85A;
+  border-radius: 16px;
+  box-shadow: 0 14px 30px rgba(40, 70, 25, .28), 0 2px 6px rgba(40, 70, 25, .12);
+}
+.bk-mainnav__sub::before {
+  content: "";
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  width: 13px;
+  height: 13px;
+  margin-left: -6.5px;
+  background: #8CC66E;
+  border-left: 2px solid #76B85A;
+  border-top: 2px solid #76B85A;
+  transform: rotate(45deg);
+  border-radius: 3px 0 0 0;
+}
+.bk-mainnav__sublink {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 10px 20px 10px 12px;
+  font-size: 14.5px;
+  font-weight: 800;
+  color: #fff;
+  border-radius: 11px;
+  white-space: nowrap;
+  text-shadow: 0 1px 1px rgba(30, 60, 20, .28);
+}
+.bk-mainnav__sublink:hover {
+  background: rgba(255, 255, 255, .22);
+  color: #fff;
+}
+.bk-mainnav__ico {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  font-size: 14px;
+  line-height: 1;
+  border-radius: 7px;
+  background: rgba(255, 255, 255, .22);
+  flex: 0 0 auto;
+}
+.bk-mainnav__item.-open .bk-mainnav__sub {
+  animation: bk-sub-pop .14s ease-out;
+}
+@keyframes bk-sub-pop {
+  from { opacity: 0; transform: translateX(-50%) translateY(-6px) scale(.97); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(-4px) scale(1); }
+}

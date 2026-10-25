@@ -12,16 +12,16 @@
     { key: 'play', label: '대국', go: 'play' },
     {
       key: 'games', label: '<span class="bk-mainnav__fun"><svg class="bk-fun-burst" viewBox="0 0 24 24" aria-hidden="true"><polygon points="12.00,0.60 14.65,6.50 20.91,4.89 17.95,10.64 23.11,14.54 16.77,15.80 16.95,22.27 12.00,18.10 7.05,22.27 7.23,15.80 0.89,14.54 6.05,10.64 3.09,4.89 9.35,6.50" fill="#FFD84D" stroke="#C62828" stroke-width="1.5" stroke-linejoin="round"/></svg><span class="bk-fun-text">Fun</span></span>', items: [
-        { key: 'omok', label: '오목' },
-        { key: 'alkkagi', label: '알까기' }
+        { key: 'omok', label: '오목', icon: '⚫' },
+        { key: 'alkkagi', label: '알까기', icon: '🥌' }
       ]
     },
     {
       key: 'story', label: '이야기', items: [
-        { key: 'hanja', label: '바둑 한자' },
-        { key: 'saju', label: '고사성어' },
-        { key: 'gyeong-eon', label: '격언 한마디' },
-        { key: 'injung', label: '인성 스토리' }
+        { key: 'hanja', label: '바둑 한자', icon: '📕' },
+        { key: 'saju', label: '고사성어', icon: '📜' },
+        { key: 'gyeong-eon', label: '격언 한마디', icon: '💬' },
+        { key: 'injung', label: '인성 스토리', icon: '🌱' }
       ]
     },
     { key: 'teacher', label: '강사 모드', lock: true }
@@ -61,7 +61,7 @@
           a.type = 'button';
           a.className = 'bk-mainnav__sublink';
           a.dataset.sub = it.key;
-          a.textContent = it.label;
+          a.innerHTML = '<span class="bk-mainnav__ico">' + (it.icon || '·') + '</span><span>' + it.label + '</span>';
           sub.appendChild(a);
         });
         wrap.appendChild(sub);
