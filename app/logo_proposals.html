@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Jua&family=Noto+Sans+KR:wght@700;900&family=Poppins:wght@700;900&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #f8fafc;
+    font-family: 'Noto Sans KR', sans-serif;
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+  .header {
+    text-align: center;
+    margin-bottom: 4px;
+  }
+  .header h1 {
+    font-size: 26px;
+    font-weight: 900;
+    color: #0f172a;
+    letter-spacing: -0.5px;
+  }
+  .header p {
+    font-size: 14px;
+    color: #64748b;
+    margin-top: 4px;
+  }
+  .card {
+    background: #ffffff;
+    width: 680px;
+    border-radius: 20px;
+    padding: 24px 32px;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.07);
+    border: 1.5px solid #e2e8f0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .tag {
+    display: inline-block;
+    align-self: flex-start;
+    padding: 4px 12px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 800;
+  }
+  .tag-a { background: #eff6ff; color: #0284c7; }
+  .tag-b { background: #fef3c7; color: #b45309; }
+  .tag-c { background: #f1f5f9; color: #334155; }
+
+  /* Proposal A: 3D Mascot & Pop Jelly */
+  .logo-box-a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 22px;
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+    border-radius: 16px;
+    border: 2px solid #bae6fd;
+  }
+  .logo-box-a img {
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
+    filter: drop-shadow(0 8px 16px rgba(2, 132, 199, 0.25));
+  }
+  .text-group-a {
+    display: flex;
+    flex-direction: column;
+  }
+  .title-a {
+    font-family: 'Jua', sans-serif;
+    font-size: 52px;
+    line-height: 1.05;
+    background: linear-gradient(180deg, #0284c7 0%, #0369a1 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 3px 0 #ffffff) drop-shadow(0 6px 12px rgba(2, 132, 199, 0.25));
+    letter-spacing: 1px;
+  }
+  .title-a .accent {
+    background: linear-gradient(180deg, #f59e0b 0%, #d97706 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .subtitle-a {
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    font-weight: 800;
+    color: #0369a1;
+    letter-spacing: 3px;
+    margin-top: 4px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .subtitle-a span {
+    background: #0284c7;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-size: 10px;
+    letter-spacing: 1px;
+  }
+
+  /* Proposal B: School Badge & Gold Prestige */
+  .logo-box-b {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 22px;
+    padding: 22px;
+    background: #ffffff;
+    border-radius: 16px;
+    border: 2px solid #e2e8f0;
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.02);
+  }
+  .emblem-b {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(145deg, #1e293b, #0f172a);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 20px rgba(15, 23, 42, 0.2);
+    border: 2px solid #cbd5e1;
+  }
+  .stones-duo {
+    display: flex;
+    align-items: center;
+  }
+  .s-black {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #64748b, #090d16);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+    border: 1px solid rgba(255,255,255,0.2);
+    z-index: 1;
+  }
+  .s-white {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #ffffff, #cbd5e1);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    margin-left: -10px;
+    z-index: 2;
+  }
+  .emblem-b-label {
+    font-family: 'Poppins', sans-serif;
+    font-size: 9px;
+    font-weight: 900;
+    color: #f59e0b;
+    letter-spacing: 1.5px;
+    margin-top: 4px;
+  }
+  .text-group-b {
+    display: flex;
+    flex-direction: column;
+  }
+  .title-b {
+    font-family: 'Black Han Sans', sans-serif;
+    font-size: 46px;
+    color: #0f172a;
+    letter-spacing: -0.5px;
+    line-height: 1.05;
+  }
+  .title-b .point {
+    color: #2563eb;
+  }
+  .subtitle-b {
+    font-size: 13px;
+    font-weight: 700;
+    color: #64748b;
+    letter-spacing: 2.5px;
+    margin-top: 5px;
+  }
+
+  /* Proposal C: Clean Modern Round Pill */
+  .logo-box-c {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 22px;
+    background: #0f172a;
+    border-radius: 16px;
+    border: 2px solid #334155;
+  }
+  .emblem-c {
+    width: 76px;
+    height: 76px;
+    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 24px rgba(59, 130, 246, 0.35);
+    color: white;
+  }
+  .emblem-c-icon {
+    font-size: 34px;
+    line-height: 1;
+  }
+  .text-group-c {
+    display: flex;
+    flex-direction: column;
+  }
+  .title-c {
+    font-family: 'Jua', sans-serif;
+    font-size: 48px;
+    color: #ffffff;
+    line-height: 1.05;
+  }
+  .title-c span {
+    color: #60a5fa;
+  }
+  .subtitle-c {
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: #94a3b8;
+    letter-spacing: 2px;
+    margin-top: 4px;
+  }
+
+  .desc {
+    font-size: 13px;
+    color: #475569;
+    line-height: 1.5;
+  }
+  .desc b { color: #0f172a; }
+</style>
+</head>
+<body>
+
+  <div class="header">
+    <h1>🏆 '바둑스쿨 (Baduk School)' 로고 디자인 시안</h1>
+    <p>우리 사이트의 캐릭터와 정체성을 살린 3가지 디자인 제안</p>
+  </div>
+
+  <!-- Proposal A -->
+  <div class="card">
+    <span class="tag tag-a">시안 A · 3D 캐릭터 엠블럼형 (강력 추천 🌟)</span>
+    <div class="logo-box-a">
+      <img src="app_icon_tile.png" alt="마스코트">
+      <div class="text-group-a">
+        <div class="title-a">바둑<span class="accent">스쿨</span></div>
+        <div class="subtitle-a">BADUK SCHOOL <span>EDU</span></div>
+      </div>
+    </div>
+    <div class="desc">
+      <b>특징</b>: 엄지 척 마스코트 캐릭터와 밝고 경쾌한 3D 입체 타이포그래피. 닌텐도/체스키드처럼 아이들과 학부모에게 가장 친근하고 즐거운 인상.
+    </div>
+  </div>
+
+  <!-- Proposal B -->
+  <div class="card">
+    <span class="tag tag-b">시안 B · 정통 아카데미형 (신뢰감 & 공신력 🏛️)</span>
+    <div class="logo-box-b">
+      <div class="emblem-b">
+        <div class="stones-duo">
+          <div class="s-black"></div>
+          <div class="s-white"></div>
+        </div>
+        <div class="emblem-b-label">SCHOOL</div>
+      </div>
+      <div class="text-group-b">
+        <div class="title-b">바둑<span class="point">스쿨</span></div>
+        <div class="subtitle-b">BADUK SCHOOL ACADEMY</div>
+      </div>
+    </div>
+    <div class="desc">
+      <b>특징</b>: 입체 흑돌·백돌 심볼 마크와 단단한 공식 아카데미 서체. 학교 방과후 수업이나 정규 바둑 교육 플랫폼으로서의 신뢰감과 권위를 강조.
+    </div>
+  </div>
+
+  <!-- Proposal C -->
+  <div class="card">
+    <span class="tag tag-c">시안 C · 모던 앱 게임형 (트렌디 & 세련 🎮)</span>
+    <div class="logo-box-c">
+      <div class="emblem-c">
+        <div class="emblem-c-icon">🎓</div>
+      </div>
+      <div class="text-group-c">
+        <div class="title-c">바둑<span>스쿨</span></div>
+        <div class="subtitle-c">SMART BRAIN PLAY · badukschool.com</div>
+      </div>
+    </div>
+    <div class="desc">
+      <b>특징</b>: 스마트 앱 아이콘 모티브와 모던한 블루 포인트. 듀오링고처럼 트렌디하고 스마트한 두뇌 트레이닝 게임 느낌.
+    </div>
+  </div>
+
+</body>
+</html>

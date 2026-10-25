@@ -1,0 +1,819 @@
+window.CURATED_UNIT_4 = [
+  {
+    "id": 1,
+    "code": "t1_ch04_01",
+    "question": "흑이 둘 차례입니다. 단수되어 있는 백△를 잡아보세요.",
+    "hint": "활로가 하나일 때 단수라고 합니다. 단수인 돌의 남은 활로를 막으면 돌을 따낼 수 있습니다.",
+    "speech": "흑이 둘 차례입니다. 단수되어 있는 백△를 잡아보세요.",
+    "data": ";W[rs];W[ss];W[sr];B[sq];B[qs]",
+    "answer1": ";B[rr]",
+    "size": "9",
+    "start": "BA",
+    "group": 4,
+    "stoneDesc": "귀 백 3점 따내기",
+    "matchedSources": [
+      "논리바둑 1권 2단원 15번"
+    ]
+  },
+  {
+    "id": 2,
+    "code": "t1_ch04_02",
+    "question": "흑이 둘 차례입니다. 단수되어 있는 백△를 잡아보세요.",
+    "hint": "활로가 하나일 때 단수라고 합니다. 단수인 돌의 남은 활로를 막으면 돌을 따낼 수 있습니다.",
+    "speech": "흑이 둘 차례입니다. 단수되어 있는 백△를 잡아보세요.",
+    "data": ";B[qs];B[pr];B[or];B[nr];W[ps];W[os];W[ns]",
+    "answer1": ";B[ms]",
+    "size": "9",
+    "start": "BA",
+    "group": 4,
+    "stoneDesc": "변 백 3점 따내기",
+    "matchedSources": [
+      "논리바둑 1권 2단원 16번"
+    ]
+  },
+  {
+    "id": 3,
+    "code": "t1_ch04_03",
+    "question": "단수되어 있는 백을 따내어 보세요.",
+    "hint": "활로가 하나밖에 없을 때(단수일 때) 마지막 활로를 막으면 돌을 따낼 수 있습니다.",
+    "speech": "단수되어 있는 백을 따내어 보세요.",
+    "data": ";W[op];W[oo];W[no];B[oq];B[pp];B[po];B[on];B[np];B[mo]",
+    "answer1": ";B[nn]",
+    "size": "9",
+    "start": "BA",
+    "group": 4,
+    "stoneDesc": "중앙 백 3점 따내기",
+    "matchedSources": [
+      "씽크탱크 1권 2단원 3번",
+      "논리바둑 1권 2단원 13번"
+    ]
+  },
+  {
+    "id": 4,
+    "code": "t1_ch04_04",
+    "question": "백을 잡아보세요.",
+    "hint": "",
+    "speech": "백을 잡아보세요.",
+    "data": ";W[pq];W[pp];W[oq];B[po];B[qp];B[qq];B[pr];B[or];B[nq]",
+    "answer1": ";B[op]",
+    "size": "9",
+    "start": "BA",
+    "group": 4,
+    "stoneDesc": "중앙 백 3점 따내기",
+    "matchedSources": [
+      "알파바둑 1권 2단원 5번"
+    ]
+  },
+  {
+    "id": 5,
+    "code": "t1_ch04_05",
+    "question": "백을 잡아보세요.",
+    "hint": "",
+    "speech": "백을 잡아보세요.",
+    "data": ";W[qp];W[pp];W[po];B[pn];B[qo];B[oo];B[op];B[pq];B[qq]",
+    "answer1": ";B[rp]",
+    "size": "9",
+    "start": "BA",
+    "group": 4,
+    "stoneDesc": "중앙 백 3점 따내기",
+    "matchedSources": [
+      "알파바둑 1권 2단원 6번"
+    ]
+  },
+  {
+    "id": 6,
+    "code": "t1_ch04_06",
+    "question": "단수되어 있는 백△를 따내어 보세요.",
+    "hint": "",
+    "speech": "단수되어 있는 백△를 따내어 보세요.",
+    "data": ";W[pp];W[po];W[op];B[oo];B[np];B[oq];B[pq];B[qp];B[qo]",
+    "answer1": ";B[pn]",
+    "size": "9",
+    "start": "BA",
+    "group": 4,
+    "stoneDesc": "중앙 백 3점 따내기",
+    "matchedSources": [
+      "파워씽크 1권 1-2단원 4번"
+    ]
+  },
+  {
+    "id": 7,
+    "code": "t1_ch04_07",
+    "question": "흑이 둘 차례입니다. 단수되어 있는 백△를 잡아보세요.",
+    "hint": "활로가 하나일 때 단수라고 합니다. 단수인 돌의 남은 활로를 막으면 돌을 따낼 수 있습니다.",
+    "speech": "흑이 둘 차례입니다. 단수되어 있는 백△를 잡아보세요.",
+    "data": ";B[qp];B[pq];B[oq];B[po];B[oo];B[no];B[mp];W[np];W[op];W[pp]",
+    "answer1": ";B[nq]",
+    "size": "9",
+    "start": "BA",
+    "group": 4,
+    "stoneDesc": "중앙 백 3점 따내기",
+    "matchedSources": [
+      "논리바둑 1권 2단원 14번"
+    ]
+  },
+  {
+    "id": 8,
+    "code": "t1_ch04_08",
+    "question": "백△를 잡아 보세요.",
+    "hint": "",
+    "speech": "백△를 잡아 보세요.",
+    "data": ";W[sp];W[rp];W[ro];W[qn];W[po];B[rn];B[qo];B[qp];B[rq];B[sq]",
+    "answer1": ";B[so]",
+    "size": "9",
+    "start": "BA",
+    "group": 4,
+    "stoneDesc": "변 백 3점 따내기 (단수 돌 판별)",
+    "matchedSources": [
+      "알파바둑 1권 2단원 19번"
+    ]
+  },
+  {
+    "id": 9,
+    "code": "t1_ch04_09",
+    "question": "단수되어 있는 백△를 따내어 보세요.",
+    "hint": "활로가 하나밖에 없을 때(단수일 때) 마지막 활로를 막으면 돌을 따낼 수 있습니다.",
+    "speech": "단수되어 있는 백△를 따내어 보세요.",
+    "data": ";W[pq];W[pp];W[op];W[nq];W[mq];B[np];B[oo];B[po];B[qp];B[qq];B[pr]",
+    "answer1": ";B[oq]",
+    "size": "9",
+    "start": "BA",
+    "group": 4,
+    "stoneDesc": "중앙 백 3점 따내기 (단수 돌 판별)",
+    "matchedSources": [
+      "씽크탱크 1권 2단원 17번"
+    ]
+  },
+  {
+    "id": 10,
+    "code": "t1_ch04_10",
+    "question": "흑이 둘 차례입니다. 단수되어 있는 백을 잡아보세요.",
+    "hint": "활로가 하나일 때 단수라고 합니다. 단수인 돌의 남은 활로를 막으면 돌을 따낼 수 있습니다.",
+    "speech": "흑이 둘 차례입니다. 단수되어 있는 백을 잡아보세요.",
+    "data": ";B[pq];B[qp];B[qo];B[pn];B[on];B[no];W[oo];W[po];W[pp];W[np];W[mp]",
+    "answer1": ";B[op]",
+    "size": "9",
+    "start": "BA",
+    "group": 4,
+    "stoneDesc": "중앙 백 3점 따내기 (단수 돌 판별)",
+    "matchedSources": [
+      "논리바둑 1권 2단원 21번"
+    ]
+  },
+  {
+    "id": 11,
+    "code": "t1_ch04_11",
+    "question": "백△를 잡아보세요.",
+    "hint": "",
+    "speech": "백△를 잡아보세요.",
+    "data": ";W[qq];W[po];W[pp];W[op];W[on];B[pn];B[qo];B[qp];B[pq];B[oq];B[np]",
+    "answer1": ";B[oo]",
+    "size": "9",
+    "start": "BA",
+    "group": 4,
+    "stoneDesc": "중앙 백 3점 따내기 (단수 돌 판별)",
+    "matchedSources": [
+      "알파바둑 1권 2단원 16번"
+    ]
+  },
+  {
+    "id": 12,
+    "code": "t1_ch04_12",
+    "question": "단수되어 있는 백△를 따내어 보세요.",
+    "hint": "",
+    "speech": "단수되어 있는 백△를 따내어 보세요.",
+    "data": ";B[pr];B[qq];B[qp];B[oq];B[po];B[oo];W[pq];W[pp];W[op];W[no];W[mp]",
+    "answer1": ";B[np]",
+    "size": "9",
+    "start": "BA",
+    "group": 4,
+    "stoneDesc": "중앙 백 3점 따내기 (단수 돌 판별)",
+    "matchedSources": [
+      "파워씽크 1권 1-2단원 8번"
+    ]
+  },
+  {
+    "id": 13,
+    "code": "t1_ch04_13",
+    "question": "단수되어 있는 백△를 따내어 보세요.",
+    "hint": "",
+    "speech": "단수되어 있는 백△를 따내어 보세요.",
+    "data": ";B[pq];B[oq];B[qp];B[qo];B[pn];B[np];W[op];W[pp];W[po];W[on];W[no]",
+    "answer1": ";B[oo]",
+    "size": "9",
+    "start": "BA",
+    "group": 4,
+    "stoneDesc": "중앙 백 3점 따내기 (단수 돌 판별)",
+    "matchedSources": [
+      "파워씽크 1권 1-4단원 2번"
+    ]
+  },
+  {
+    "id": 14,
+    "code": "t1_ch04_14",
+    "question": "백△를 잡아보세요.",
+    "hint": "",
+    "speech": "백△를 잡아보세요.",
+    "data": ";W[qp];W[pp];W[op];W[nq];B[rp];B[qq];B[pq];B[qo];B[po];B[oo];B[np]",
+    "answer1": ";B[oq]",
+    "size": "9",
+    "start": "BA",
+    "group": 4,
+    "stoneDesc": "중앙 백 3점 따내기 (단수 돌 판별)",
+    "matchedSources": [
+      "알파바둑 1권 2단원 15번"
+    ]
+  },
+  {
+    "id": 15,
+    "code": "t1_ch04_15",
+    "question": "단수되어 있는 백△를 따내어 보세요.",
+    "hint": "",
+    "speech": "단수되어 있는 백△를 따내어 보세요.",
+    "data": ";B[pq];B[or];B[nq];B[np];B[oo];B[po];W[no];W[oq];W[op];W[pp];W[qo];W[qn]",
+    "answer1": ";B[qp]",
+    "size": "9",
+    "start": "BA",
+    "group": 4,
+    "stoneDesc": "중앙 백 3점 따내기 (단수 돌 판별)",
+    "matchedSources": [
+      "파워씽크 1권 1-2단원 12번"
+    ]
+  },
+  {
+    "id": 16,
+    "code": "t1_ch04_16",
+    "question": "단수되어 있는 백△를 따내어 보세요.",
+    "hint": "",
+    "speech": "단수되어 있는 백△를 따내어 보세요.",
+    "data": ";B[qr];B[pr];B[rq];B[rp];B[qo];B[oq];W[pq];W[qq];W[qp];W[po];W[op];W[np]",
+    "answer1": ";B[pp]",
+    "size": "9",
+    "start": "BA",
+    "group": 4,
+    "stoneDesc": "중앙 백 3점 따내기 (단수 돌 판별)",
+    "matchedSources": [
+      "파워씽크 1권 1-4단원 8번"
+    ]
+  },
+  {
+    "id": 17,
+    "code": "t1_ch04_17",
+    "question": "단수되어 있는 백△를 따내어 보세요.",
+    "hint": "상대의 돌을 따낼 때는 내 돌이 잡히지 않습니다.",
+    "speech": "단수되어 있는 백△를 따내어 보세요.",
+    "data": ";W[pp];W[oq];W[np];W[oo];W[on];B[po];B[qp];B[pq];B[or];B[nq];B[mp];B[no]",
+    "answer1": ";B[op]",
+    "size": "9",
+    "start": "BA",
+    "group": 4,
+    "stoneDesc": "중앙 백 3점 따내기 (단수 돌 판별)",
+    "matchedSources": [
+      "씽크탱크 1권 4단원 10번"
+    ]
+  },
+  {
+    "id": 18,
+    "code": "t1_ch04_18",
+    "question": "단수되어 있는 백△를 따내어 보세요.",
+    "hint": "",
+    "speech": "단수되어 있는 백△를 따내어 보세요.",
+    "data": ";B[rq];B[qr];B[pr];B[os];B[nr];B[qp];B[pp];W[qq];W[pq];W[or];W[nq];W[op]",
+    "answer1": ";B[oq]",
+    "size": "9",
+    "start": "BA",
+    "group": 4,
+    "stoneDesc": "중앙 백 3점 따내기 (단수 돌 판별)",
+    "matchedSources": [
+      "파워씽크 1권 1-4단원 3번"
+    ]
+  },
+  {
+    "id": 19,
+    "code": "t1_ch04_19",
+    "question": "단수되어 있는 백△를 따내어 보세요.",
+    "hint": "활로가 하나밖에 없을 때(단수일 때) 마지막 활로를 막으면 돌을 따낼 수 있습니다.",
+    "speech": "단수되어 있는 백△를 따내어 보세요.",
+    "data": ";W[qr];W[qq];W[pp];W[po];W[op];W[nq];W[mq];B[np];B[oq];B[pq];B[qp];B[qo];B[pn]",
+    "answer1": ";B[oo]",
+    "size": "9",
+    "start": "BA",
+    "group": 4,
+    "stoneDesc": "중앙 백 3점 따내기 (단수 돌 판별)",
+    "matchedSources": [
+      "씽크탱크 1권 2단원 18번"
+    ]
+  },
+  {
+    "id": 20,
+    "code": "t1_ch04_20",
+    "question": "단수되어 있는 백△를 따내어 보세요.",
+    "hint": "상대의 돌을 따낼 때는 내 돌이 잡히지 않습니다.",
+    "speech": "단수되어 있는 백△를 따내어 보세요.",
+    "data": ";W[pq];W[pp];W[op];W[nq];W[mp];W[no];B[oq];B[or];B[pr];B[qq];B[qp];B[po];B[oo]",
+    "answer1": ";B[np]",
+    "size": "9",
+    "start": "BA",
+    "group": 4,
+    "stoneDesc": "중앙 백 3점 따내기 (단수 돌 판별)",
+    "matchedSources": [
+      "씽크탱크 1권 4단원 7번"
+    ]
+  },
+  {
+    "id": 21,
+    "code": "t1_ch04_21",
+    "question": "흑이 둘 차례입니다. 단수되어 있는 백을 잡아보세요.",
+    "hint": "활로가 하나일 때 단수라고 합니다. 단수인 돌의 남은 활로를 막으면 돌을 따낼 수 있습니다.",
+    "speech": "흑이 둘 차례입니다. 단수되어 있는 백을 잡아보세요.",
+    "data": ";W[rr];W[qq];W[pq];W[pp];W[ro];W[rp];B[qr];B[pr];B[oq];B[op];B[po];B[qo];B[qp]",
+    "answer1": ";B[rq]",
+    "size": "9",
+    "start": "BA",
+    "group": 4,
+    "stoneDesc": "중앙 백 3점 따내기 (단수 돌 판별)",
+    "matchedSources": [
+      "논리바둑 1권 2단원 23번"
+    ]
+  },
+  {
+    "id": 22,
+    "code": "t1_ch04_22",
+    "question": "단수되어 있는 백△를 따내어 보세요.",
+    "hint": "",
+    "speech": "단수되어 있는 백△를 따내어 보세요.",
+    "data": ";W[pr];W[qq];W[rp];W[oq];W[op];W[pp];B[qp];B[qo];B[po];B[oo];B[np];B[nq];B[or]",
+    "answer1": ";B[pq]",
+    "size": "9",
+    "start": "BA",
+    "group": 4,
+    "stoneDesc": "중앙 백 3점 따내기 (단수 돌 판별)",
+    "matchedSources": [
+      "파워씽크 1권 1-4단원 7번"
+    ]
+  },
+  {
+    "id": 23,
+    "code": "t1_ch04_23",
+    "question": "단수되어 있는 백△를 따내어 보세요.",
+    "hint": "",
+    "speech": "단수되어 있는 백△를 따내어 보세요.",
+    "data": ";B[qq];B[qp];B[pr];B[or];B[nq];B[np];B[op];W[pp];W[pq];W[oq];W[oo];W[pn];W[qo]",
+    "answer1": ";B[po]",
+    "size": "9",
+    "start": "BA",
+    "group": 4,
+    "stoneDesc": "중앙 백 3점 따내기 (단수 돌 판별)",
+    "matchedSources": [
+      "파워씽크 1권 1-4단원 12번"
+    ]
+  },
+  {
+    "id": 24,
+    "code": "t1_ch04_24",
+    "question": "단수되어 있는 백△를 따내어 보세요.",
+    "hint": "상대의 돌을 따낼 때는 내 돌이 잡히지 않습니다.",
+    "speech": "단수되어 있는 백△를 따내어 보세요.",
+    "data": ";W[ss];W[sr];W[rr];W[qs];W[ps];W[pr];W[pq];W[nq];B[qr];B[qq];B[rq];B[sq];B[pp];B[qo]",
+    "answer1": ";B[rs]",
+    "size": "9",
+    "start": "BA",
+    "group": 4,
+    "stoneDesc": "귀 백 3점 따내기 (단수 돌 판별)",
+    "matchedSources": [
+      "씽크탱크 1권 4단원 9번"
+    ]
+  },
+  {
+    "id": 25,
+    "code": "t1_ch04_25",
+    "question": "단수되어 있는 백△를 따내어 보세요.",
+    "hint": "",
+    "speech": "단수되어 있는 백△를 따내어 보세요.",
+    "data": ";W[ss];W[rs];W[rr];W[sq];W[sp];W[rp];W[qp];W[pp];B[rq];B[qq];B[qr];B[qs];B[oq];B[nr]",
+    "answer1": ";B[sr]",
+    "size": "9",
+    "start": "BA",
+    "group": 4,
+    "stoneDesc": "귀 백 3점 따내기 (단수 돌 판별)",
+    "matchedSources": [
+      "파워씽크 1권 1-4단원 11번"
+    ]
+  },
+  {
+    "id": 26,
+    "code": "t1_ch04_26",
+    "question": "단수되어 있는 백△를 따내어 보세요.",
+    "hint": "상대의 돌을 따낼 때는 내 돌이 잡히지 않습니다.",
+    "speech": "단수되어 있는 백△를 따내어 보세요.",
+    "data": ";W[ps];W[qs];W[qr];W[qq];W[qp];W[or];W[nr];W[ns];B[ms];B[mr];B[nq];B[oq];B[pq];B[pr]",
+    "answer1": ";B[os]",
+    "size": "9",
+    "start": "BA",
+    "group": 4,
+    "stoneDesc": "변 백 3점 따내기 (단수 돌 판별)",
+    "matchedSources": [
+      "씽크탱크 1권 4단원 8번"
+    ]
+  },
+  {
+    "id": 27,
+    "code": "t1_ch04_27",
+    "question": "단수되어 있는 백△를 따내어 보세요.",
+    "hint": "상대의 돌을 따낼 때는 내 돌이 잡히지 않습니다.",
+    "speech": "단수되어 있는 백△를 따내어 보세요.",
+    "data": ";W[rq];W[qp];W[pq];W[oq];W[op];W[po];W[pn];B[oo];B[np];B[nq];B[or];B[pr];B[qr];B[qq]",
+    "answer1": ";B[pp]",
+    "size": "9",
+    "start": "BA",
+    "group": 4,
+    "stoneDesc": "중앙 백 3점 따내기 (단수 돌 판별)",
+    "matchedSources": [
+      "씽크탱크 1권 4단원 11번"
+    ]
+  },
+  {
+    "id": 28,
+    "code": "t1_ch04_28",
+    "question": "흑이 둘 차례입니다. 단수되어 있는 백을 잡아보세요.",
+    "hint": "활로가 하나일 때 단수라고 합니다. 단수인 돌의 남은 활로를 막으면 돌을 따낼 수 있습니다.",
+    "speech": "흑이 둘 차례입니다. 단수되어 있는 백을 잡아보세요.",
+    "data": ";W[rr];W[qq];W[qp];W[qo];W[pr];W[or];W[oq];B[pq];B[pp];B[po];B[qn];B[ro];B[rp];B[rq]",
+    "answer1": ";B[qr]",
+    "size": "9",
+    "start": "BA",
+    "group": 4,
+    "stoneDesc": "중앙 백 3점 따내기 (단수 돌 판별)",
+    "matchedSources": [
+      "논리바둑 1권 2단원 24번"
+    ]
+  },
+  {
+    "id": 29,
+    "code": "t1_ch04_29",
+    "question": "단수되어 있는 백△를 따내어 보세요.",
+    "hint": "활로가 하나밖에 없을 때(단수일 때) 마지막 활로를 막으면 돌을 따낼 수 있습니다.",
+    "speech": "단수되어 있는 백△를 따내어 보세요.",
+    "data": ";W[nq];W[mq];W[lq];W[op];W[pp];W[qp];W[no];W[on];B[mp];B[np];B[po];B[qo];B[rp];B[rq];B[qq];B[pq];B[oq]",
+    "answer1": ";B[oo]",
+    "size": "9",
+    "start": "BA",
+    "group": 4,
+    "stoneDesc": "중앙 백 3점 따내기 (단수 돌 판별)",
+    "matchedSources": [
+      "씽크탱크 1권 2단원 16번"
+    ]
+  },
+  {
+    "id": 30,
+    "code": "t1_ch04_30",
+    "question": "단수되어 있는 백을 따내어 보세요.",
+    "hint": "상대의 돌을 따낼 때는 내 돌이 잡히지 않습니다.",
+    "speech": "단수되어 있는 백을 따내어 보세요.",
+    "data": ";W[qs];W[qr];W[rr];W[sr];B[ss];B[ps];B[pr];B[qq];B[rq];B[sq]",
+    "answer1": ";B[rs]",
+    "size": "9",
+    "start": "BA",
+    "group": 4,
+    "stoneDesc": "귀 백 4점 따내기",
+    "matchedSources": [
+      "씽크탱크 1권 4단원 2번"
+    ]
+  },
+  {
+    "id": 31,
+    "code": "t1_ch04_31",
+    "question": "단수되어 있는 백을 따내어 보세요.",
+    "hint": "활로가 하나밖에 없을 때(단수일 때) 마지막 활로를 막으면 돌을 따낼 수 있습니다.",
+    "speech": "단수되어 있는 백을 따내어 보세요.",
+    "data": ";W[op];W[oo];W[no];W[np];B[nq];B[oq];B[pp];B[po];B[on];B[nn];B[mo]",
+    "answer1": ";B[mp]",
+    "size": "9",
+    "start": "BA",
+    "group": 4,
+    "stoneDesc": "중앙 백 4점 따내기",
+    "matchedSources": [
+      "씽크탱크 1권 2단원 4번"
+    ]
+  },
+  {
+    "id": 32,
+    "code": "t1_ch04_32",
+    "question": "흑이 둘 차례입니다. 단수되어 있는 백△를 잡아보세요.",
+    "hint": "활로가 하나일 때 단수라고 합니다. 단수인 돌의 남은 활로를 막으면 돌을 따낼 수 있습니다.",
+    "speech": "흑이 둘 차례입니다. 단수되어 있는 백△를 잡아보세요.",
+    "data": ";W[pp];W[po];W[oo];W[op];B[np];B[oq];B[qp];B[pq];B[qo];B[pn];B[on]",
+    "answer1": ";B[no]",
+    "size": "9",
+    "start": "BA",
+    "group": 4,
+    "stoneDesc": "중앙 백 4점 따내기",
+    "matchedSources": [
+      "논리바둑 1권 2단원 17번"
+    ]
+  },
+  {
+    "id": 33,
+    "code": "t1_ch04_33",
+    "question": "단수되어 있는 백을 따내어 보세요.",
+    "hint": "상대의 돌을 따낼 때는 내 돌이 잡히지 않습니다.",
+    "speech": "단수되어 있는 백을 따내어 보세요.",
+    "data": ";W[pq];W[po];W[op];W[qp];B[pr];B[oq];B[np];B[oo];B[pn];B[qo];B[rp];B[qq]",
+    "answer1": ";B[pp]",
+    "size": "9",
+    "start": "BA",
+    "group": 4,
+    "stoneDesc": "중앙 백 4점 따내기",
+    "matchedSources": [
+      "씽크탱크 1권 4단원 4번"
+    ]
+  },
+  {
+    "id": 34,
+    "code": "t1_ch04_34",
+    "question": "백△를 잡아 보세요.",
+    "hint": "",
+    "speech": "백△를 잡아 보세요.",
+    "data": ";W[sq];W[sr];W[ss];W[rr];W[qq];W[pr];B[sp];B[rq];B[qr]",
+    "answer1": ";B[rs]",
+    "size": "9",
+    "start": "BA",
+    "group": 4,
+    "stoneDesc": "귀 백 4점 따내기 (단수 돌 판별)",
+    "matchedSources": [
+      "알파바둑 1권 2단원 22번"
+    ]
+  },
+  {
+    "id": 35,
+    "code": "t1_ch04_35",
+    "question": "백△를 잡아 보세요.",
+    "hint": "",
+    "speech": "백△를 잡아 보세요.",
+    "data": ";W[ps];W[os];W[or];W[ns];W[pq];B[oq];B[nr];B[ms];B[qs]",
+    "answer1": ";B[pr]",
+    "size": "9",
+    "start": "BA",
+    "group": 4,
+    "stoneDesc": "변 백 4점 따내기 (단수 돌 판별)",
+    "matchedSources": [
+      "알파바둑 1권 2단원 20번"
+    ]
+  },
+  {
+    "id": 36,
+    "code": "t1_ch04_36",
+    "question": "백△를 잡아 보세요.",
+    "hint": "",
+    "speech": "백△를 잡아 보세요.",
+    "data": ";W[ss];W[rs];W[qs];W[qr];W[pq];W[or];B[qq];B[rr];B[pr];B[ps]",
+    "answer1": ";B[sr]",
+    "size": "9",
+    "start": "BA",
+    "group": 4,
+    "stoneDesc": "귀 백 4점 따내기 (단수 돌 판별)",
+    "matchedSources": [
+      "알파바둑 1권 2단원 23번"
+    ]
+  },
+  {
+    "id": 37,
+    "code": "t1_ch04_37",
+    "question": "백△를 잡아 보세요.",
+    "hint": "",
+    "speech": "백△를 잡아 보세요.",
+    "data": ";W[ps];W[pr];W[pq];W[oq];W[np];W[mq];B[op];B[pp];B[or];B[os];B[qq];B[qr];B[qs]",
+    "answer1": ";B[nq]",
+    "size": "9",
+    "start": "BA",
+    "group": 4,
+    "stoneDesc": "변 백 4점 따내기 (단수 돌 판별)",
+    "matchedSources": [
+      "알파바둑 1권 2단원 21번"
+    ]
+  },
+  {
+    "id": 38,
+    "code": "t1_ch04_38",
+    "question": "단수되어 있는 백△를 따내어 보세요.",
+    "hint": "",
+    "speech": "단수되어 있는 백△를 따내어 보세요.",
+    "data": ";B[qr];B[pr];B[or];B[nq];B[rq];B[qp];B[po];W[qq];W[pq];W[oq];W[pp];W[oo];W[np]",
+    "answer1": ";B[op]",
+    "size": "9",
+    "start": "BA",
+    "group": 4,
+    "stoneDesc": "중앙 백 4점 따내기 (단수 돌 판별)",
+    "matchedSources": [
+      "파워씽크 1권 1-4단원 4번"
+    ]
+  },
+  {
+    "id": 39,
+    "code": "t1_ch04_39",
+    "question": "단수되어 있는 백△를 따내어 보세요.",
+    "hint": "상대의 돌을 따낼 때는 내 돌이 잡히지 않습니다.",
+    "speech": "단수되어 있는 백△를 따내어 보세요.",
+    "data": ";W[qp];W[po];W[oo];W[op];W[np];W[pq];W[pr];B[oq];B[nq];B[mp];B[no];B[on];B[pn];B[qo]",
+    "answer1": ";B[pp]",
+    "size": "9",
+    "start": "BA",
+    "group": 4,
+    "stoneDesc": "중앙 백 4점 따내기 (단수 돌 판별)",
+    "matchedSources": [
+      "씽크탱크 1권 4단원 12번"
+    ]
+  },
+  {
+    "id": 40,
+    "code": "t1_ch04_40",
+    "question": "백△를 잡아보세요.",
+    "hint": "",
+    "speech": "백△를 잡아보세요.",
+    "data": ";W[rq];W[ro];W[qp];W[pp];W[op];W[oq];B[qq];B[pq];B[or];B[nq];B[np];B[oo];B[po];B[qo]",
+    "answer1": ";B[rp]",
+    "size": "9",
+    "start": "BA",
+    "group": 4,
+    "stoneDesc": "중앙 백 4점 따내기 (단수 돌 판별)",
+    "matchedSources": [
+      "알파바둑 1권 2단원 17번"
+    ]
+  },
+  {
+    "id": 41,
+    "code": "t1_ch04_41",
+    "question": "흑이 둘 차례입니다. 단수되어 있는 백을 잡아보세요.",
+    "hint": "활로가 하나일 때 단수라고 합니다. 단수인 돌의 남은 활로를 막으면 돌을 따낼 수 있습니다.",
+    "speech": "흑이 둘 차례입니다. 단수되어 있는 백을 잡아보세요.",
+    "data": ";B[sq];B[rq];B[qr];B[pp];B[po];B[qo];B[ro];B[so];W[sp];W[rp];W[qp];W[qq];W[pr];W[oq];W[op]",
+    "answer1": ";B[pq]",
+    "size": "9",
+    "start": "BA",
+    "group": 4,
+    "stoneDesc": "변 백 4점 따내기 (단수 돌 판별)",
+    "matchedSources": [
+      "논리바둑 1권 2단원 26번"
+    ]
+  },
+  {
+    "id": 42,
+    "code": "t1_ch04_42",
+    "question": "흑이 둘 차례입니다. 단수되어 있는 백을 잡아보세요.",
+    "hint": "활로가 하나일 때 단수라고 합니다. 단수인 돌의 남은 활로를 막으면 돌을 따낼 수 있습니다.",
+    "speech": "흑이 둘 차례입니다. 단수되어 있는 백을 잡아보세요.",
+    "data": ";W[qr];W[rq];W[rp];W[oq];W[pq];W[pp];W[po];B[pr];B[or];B[nq];B[op];B[oo];B[pn];B[qo];B[qp]",
+    "answer1": ";B[qq]",
+    "size": "9",
+    "start": "BA",
+    "group": 4,
+    "stoneDesc": "중앙 백 4점 따내기 (단수 돌 판별)",
+    "matchedSources": [
+      "논리바둑 1권 2단원 25번"
+    ]
+  },
+  {
+    "id": 43,
+    "code": "t1_ch04_43",
+    "question": "단수되어 있는 백△를 따내어 보세요.",
+    "hint": "활로가 하나밖에 없을 때(단수일 때) 마지막 활로를 막으면 돌을 따낼 수 있습니다.",
+    "speech": "단수되어 있는 백△를 따내어 보세요.",
+    "data": ";B[pp];B[qp];B[qo];B[pn];B[on];B[nn];B[mo];B[mp];B[nq];W[qr];W[or];W[oq];W[np];W[no];W[oo];W[po]",
+    "answer1": ";B[op]",
+    "size": "9",
+    "start": "BA",
+    "group": 4,
+    "stoneDesc": "중앙 백 4점 따내기 (단수 돌 판별)",
+    "matchedSources": [
+      "씽크탱크 1권 2단원 19번"
+    ]
+  },
+  {
+    "id": 44,
+    "code": "t1_ch04_44",
+    "question": "단수되어 있는 백△를 따내어 보세요.",
+    "hint": "활로가 하나밖에 없을 때(단수일 때) 마지막 활로를 막으면 돌을 따낼 수 있습니다.",
+    "speech": "단수되어 있는 백△를 따내어 보세요.",
+    "data": ";W[oq];W[op];W[pp];W[nq];W[qo];W[qn];W[pn];W[mp];W[lp];B[pq];B[or];B[nr];B[mq];B[np];B[no];B[oo];B[po]",
+    "answer1": ";B[qp]",
+    "size": "9",
+    "start": "BA",
+    "group": 4,
+    "stoneDesc": "중앙 백 4점 따내기 (단수 돌 판별)",
+    "matchedSources": [
+      "씽크탱크 1권 2단원 20번"
+    ]
+  },
+  {
+    "id": 45,
+    "code": "t1_ch04_45",
+    "question": "흑이 둘 차례입니다. 단수되어 있는 백을 잡아보세요.",
+    "hint": "활로가 하나일 때 단수라고 합니다. 단수인 돌의 남은 활로를 막으면 돌을 따낼 수 있습니다.",
+    "speech": "흑이 둘 차례입니다. 단수되어 있는 백을 잡아보세요.",
+    "data": ";W[rq];W[qq];W[or];W[oq];W[pp];W[oo];W[po];W[qo];B[pr];B[pq];B[qp];B[rp];B[ro];B[qn];B[pn];B[on];B[no]",
+    "answer1": ";B[op]",
+    "size": "9",
+    "start": "BA",
+    "group": 4,
+    "stoneDesc": "중앙 백 4점 따내기 (단수 돌 판별)",
+    "matchedSources": [
+      "논리바둑 1권 2단원 22번"
+    ]
+  },
+  {
+    "id": 46,
+    "code": "t1_ch04_46",
+    "question": "단수되어 있는 백을 따내어 보세요.",
+    "hint": "상대의 돌을 따낼 때는 내 돌이 잡히지 않습니다.",
+    "speech": "단수되어 있는 백을 따내어 보세요.",
+    "data": ";W[os];W[or];W[nr];W[mr];W[ms];B[ps];B[pr];B[oq];B[nq];B[mq];B[lr];B[ls]",
+    "answer1": ";B[ns]",
+    "size": "9",
+    "start": "BA",
+    "group": 4,
+    "stoneDesc": "변 백 5점 따내기",
+    "matchedSources": [
+      "씽크탱크 1권 4단원 1번"
+    ]
+  },
+  {
+    "id": 47,
+    "code": "t1_ch04_47",
+    "question": "흑이 둘 차례입니다. 단수되어 있는 백△를 잡아보세요.",
+    "hint": "활로가 하나일 때 단수라고 합니다. 단수인 돌의 남은 활로를 막으면 돌을 따낼 수 있습니다.",
+    "speech": "흑이 둘 차례입니다. 단수되어 있는 백△를 잡아보세요.",
+    "data": ";W[pp];W[op];W[np];W[oo];W[po];B[on];B[pn];B[no];B[qo];B[qp];B[pq];B[oq];B[nq]",
+    "answer1": ";B[mp]",
+    "size": "9",
+    "start": "BA",
+    "group": 4,
+    "stoneDesc": "중앙 백 5점 따내기",
+    "matchedSources": [
+      "논리바둑 1권 2단원 18번"
+    ]
+  },
+  {
+    "id": 48,
+    "code": "t1_ch04_48",
+    "question": "단수되어 있는 백을 따내어 보세요.",
+    "hint": "상대의 돌을 따낼 때는 내 돌이 잡히지 않습니다.",
+    "speech": "단수되어 있는 백을 따내어 보세요.",
+    "data": ";W[pq];W[oq];W[oo];W[op];W[po];W[qo];W[qp];B[qq];B[rp];B[ro];B[qn];B[pn];B[on];B[no];B[np];B[nq];B[or];B[pr]",
+    "answer1": ";B[pp]",
+    "size": "9",
+    "start": "BA",
+    "group": 4,
+    "stoneDesc": "중앙 백 7점 따내기",
+    "matchedSources": [
+      "씽크탱크 1권 4단원 3번"
+    ]
+  },
+  {
+    "id": 49,
+    "code": "t1_ch04_49",
+    "question": "백△를 잡아 보세요.",
+    "hint": "",
+    "speech": "백△를 잡아 보세요.",
+    "data": ";W[sr];W[ss];W[rs];W[qs];W[qr];W[qq];W[pp];W[oq];W[or];B[qp];B[rq];B[sq];B[pq];B[pr];B[ps]",
+    "answer1": ";B[rr]",
+    "size": "9",
+    "start": "BA",
+    "group": 4,
+    "stoneDesc": "귀 백 6점 따내기 (단수 돌 판별)",
+    "matchedSources": [
+      "알파바둑 1권 2단원 24번"
+    ]
+  },
+  {
+    "id": 50,
+    "code": "t1_ch04_50",
+    "question": "단수되어 있는 백△를 따내어 보세요.",
+    "hint": "상대의 돌을 따낼 때는 내 돌이 잡히지 않습니다.",
+    "speech": "단수되어 있는 백△를 따내어 보세요.",
+    "data": ";W[oo];W[po];W[pp];W[pq];W[oq];W[np];W[mp];B[no];B[on];B[pn];B[qo];B[qp];B[qq];B[pr];B[or];B[nq]",
+    "answer1": ";B[op]",
+    "size": "9",
+    "start": "BA",
+    "group": 4,
+    "stoneDesc": "중앙 백 5점 따내기 (단수 돌 판별)",
+    "matchedSources": [
+      "씽크탱크 1권 4단원 13번"
+    ]
+  },
+  {
+    "id": 51,
+    "code": "t1_ch04_51",
+    "question": "백△를 잡아보세요.",
+    "hint": "",
+    "speech": "백△를 잡아보세요.",
+    "data": ";W[qq];W[qp];W[pp];W[op];W[oq];W[nr];W[no];B[np];B[nq];B[oo];B[po];B[qo];B[rp];B[rq];B[qr];B[or]",
+    "answer1": ";B[pq]",
+    "size": "9",
+    "start": "BA",
+    "group": 4,
+    "stoneDesc": "중앙 백 5점 따내기 (단수 돌 판별)",
+    "matchedSources": [
+      "알파바둑 1권 2단원 18번"
+    ]
+  }
+];

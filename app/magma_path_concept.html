@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Sans+KR:wght@800;900&family=Poppins:wght@800;900&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #090d16;
+    font-family: 'Noto Sans KR', sans-serif;
+    color: #f8fafc;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  }
+  .title-area {
+    text-align: center;
+  }
+  .title-area h1 {
+    font-size: 26px;
+    font-weight: 900;
+    color: #f8fafc;
+  }
+  .title-area p {
+    font-size: 14px;
+    color: #94a3b8;
+    margin-top: 6px;
+  }
+  .card {
+    background: #111827;
+    border: 2px solid #374151;
+    border-radius: 24px;
+    width: 680px;
+    padding: 30px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 22px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+  }
+  .emblem-preview {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    padding: 20px;
+    background: #030712;
+    border-radius: 20px;
+    border: 1.5px solid #1f2937;
+    width: 100%;
+  }
+  .logo-text-group {
+    display: flex;
+    flex-direction: column;
+  }
+  .brand-title {
+    font-family: 'Black Han Sans', sans-serif;
+    font-size: 48px;
+    letter-spacing: -0.5px;
+    background: linear-gradient(180deg, #ffffff 30%, #f97316 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 4px 14px rgba(249, 115, 22, 0.4));
+  }
+  .brand-sub {
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    font-weight: 800;
+    color: #fb923c;
+    letter-spacing: 3px;
+    margin-top: 4px;
+  }
+  .desc {
+    font-size: 14px;
+    color: #cbd5e1;
+    line-height: 1.6;
+    text-align: left;
+    width: 100%;
+  }
+  .desc b { color: #f97316; }
+</style>
+</head>
+<body>
+
+  <div class="title-area">
+    <h1>🌋 [마그마와 흙길 바둑] 브랜드 로고 컨셉</h1>
+    <p>땅이 갈라진 틈 사이로 마그마가 이글거리는 자연 흙길 위의 바둑 세계관</p>
+  </div>
+
+  <div class="card">
+    <div class="emblem-preview">
+      <!-- SVG Magma Baduk Emblem -->
+      <svg width="120" height="120" viewBox="0 0 200 200" fill="none">
+        <defs>
+          <!-- Magma glow filter -->
+          <filter id="lava_glow" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="5" result="blur" />
+            <feComposite in="SourceGraphic" in2="blur" operator="over" />
+          </filter>
+          <!-- Magma gradient -->
+          <linearGradient id="magma_grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#ef4444"/>
+            <stop offset="50%" stop-color="#f97316"/>
+            <stop offset="100%" stop-color="#fbbf24"/>
+          </linearGradient>
+          <!-- Dirt texture gradient -->
+          <linearGradient id="dirt_grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#78350f"/>
+            <stop offset="100%" stop-color="#451a03"/>
+          </linearGradient>
+          <!-- App Squircle Clip -->
+          <clipPath id="squircle">
+            <rect width="200" height="200" rx="44" ry="44"/>
+          </clipPath>
+        </defs>
+
+        <!-- Squircle Container with Clip -->
+        <g clip-path="url(#squircle)">
+          <!-- Magma background under earth -->
+          <rect width="200" height="200" fill="#dc2626"/>
+          <!-- Glowing hot magma core -->
+          <circle cx="100" cy="100" r="100" fill="url(#magma_grad)" filter="url(#lava_glow)"/>
+          
+          <!-- Cracked Earth / Dirt Path Islands (Baduk Grid made of organic earth plates) -->
+          <!-- Top-Left Earth Block -->
+          <path d="M 12 12 Q 50 18 84 15 Q 86 50 82 84 Q 50 80 14 85 Z" fill="url(#dirt_grad)" stroke="#291204" stroke-width="3"/>
+          <!-- Top-Right Earth Block -->
+          <path d="M 115 14 Q 150 16 188 12 Q 185 50 186 85 Q 150 82 118 84 Z" fill="url(#dirt_grad)" stroke="#291204" stroke-width="3"/>
+          <!-- Bottom-Left Earth Block -->
+          <path d="M 14 115 Q 50 118 84 116 Q 82 150 85 188 Q 50 184 12 188 Z" fill="url(#dirt_grad)" stroke="#291204" stroke-width="3"/>
+          <!-- Bottom-Right Earth Block -->
+          <path d="M 118 116 Q 150 118 186 115 Q 188 150 188 188 Q 150 186 115 188 Z" fill="url(#dirt_grad)" stroke="#291204" stroke-width="3"/>
+
+          <!-- Crossroad Dirt Bridge / Intersection Path -->
+          <path d="M 75 100 Q 100 96 125 100 M 100 75 Q 104 100 100 125" stroke="#92400e" stroke-width="18" stroke-linecap="round"/>
+          <path d="M 75 100 Q 100 96 125 100 M 100 75 Q 104 100 100 125" stroke="#b45309" stroke-width="12" stroke-linecap="round"/>
+
+          <!-- Bubbling Magma Sparks in fissures -->
+          <circle cx="100" cy="50" r="3.5" fill="#fef08a" filter="url(#lava_glow)"/>
+          <circle cx="100" cy="150" r="3" fill="#fef08a" filter="url(#lava_glow)"/>
+          <circle cx="50" cy="100" r="3" fill="#fef08a" filter="url(#lava_glow)"/>
+          <circle cx="150" cy="100" r="4" fill="#fef08a" filter="url(#lava_glow)"/>
+
+          <!-- 3D Baduk Stones on the safe intersection (Center of the Dirt Path) -->
+          <!-- Black Stone with Rim Highlight -->
+          <g transform="translate(82, 100)">
+            <ellipse cx="0" cy="4" rx="20" ry="8" fill="#180b02" opacity="0.6"/>
+            <circle cx="0" cy="0" r="20" fill="url(#black_stone_grad)" stroke="#f97316" stroke-width="1.5"/>
+            <!-- Cute Eye Reflection -->
+            <ellipse cx="-5" cy="-6" rx="4" ry="7" fill="#ffffff" opacity="0.7" transform="rotate(-15, -5, -6)"/>
+          </g>
+
+          <!-- White Stone with warm magma reflection -->
+          <g transform="translate(118, 92)">
+            <ellipse cx="0" cy="4" rx="20" ry="8" fill="#180b02" opacity="0.6"/>
+            <circle cx="0" cy="0" r="20" fill="url(#white_stone_grad)" stroke="#fdba74" stroke-width="1.5"/>
+            <!-- Cute Eye Reflection -->
+            <ellipse cx="-4" cy="-5" rx="5" ry="8" fill="#ffffff" transform="rotate(-15, -4, -5)"/>
+            <ellipse cx="4" cy="5" rx="3" ry="5" fill="#fdba74" opacity="0.4"/>
+          </g>
+          
+          <defs>
+            <radialGradient id="black_stone_grad" cx="30%" cy="30%" r="70%">
+              <stop offset="0%" stop-color="#475569"/>
+              <stop offset="85%" stop-color="#020617"/>
+              <stop offset="100%" stop-color="#000000"/>
+            </radialGradient>
+            <radialGradient id="white_stone_grad" cx="30%" cy="30%" r="70%">
+              <stop offset="0%" stop-color="#ffffff"/>
+              <stop offset="70%" stop-color="#fed7aa"/>
+              <stop offset="100%" stop-color="#ea580c"/>
+            </radialGradient>
+          </defs>
+
+          <!-- Border Ring -->
+          <rect width="200" height="200" rx="44" ry="44" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="4"/>
+        </g>
+      </svg>
+
+      <!-- Brand Typography -->
+      <div class="logo-text-group">
+        <div class="brand-title">바둑스쿨</div>
+        <div class="brand-sub">BADUK SCHOOL · ADVENTURE</div>
+      </div>
+    </div>
+
+    <div class="desc">
+      <b>🌍 대표님이 구상하신 세계관</b>:<br>
+      갈라진 붉은 대지 사이로 뜨거운 <b>공포의 마그마</b>가 부글부글 끓고 있고, 그 위를 안전하게 이어주는 <b>자연스러운 흙길(바둑의 활로)</b> 위에 흑돌과 백돌이 굳건하게 자리를 지키며 모험을 펼치는 생동감 넘치는 엠블럼입니다.
+    </div>
+  </div>
+
+</body>
+</html>

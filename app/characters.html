@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>바둑스쿨 캐릭터 도감 | 7인의 바둑 왕국 프렌즈</title>
+
+  <style>
+    :root {
+      --bg-sky: #f0fdf4;
+      --primary: #0284c7;
+      --primary-dark: #0369a1;
+      --accent-gold: #f59e0b;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --card-bg: #ffffff;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans KR", sans-serif;
+      background: linear-gradient(180deg, #e0f2fe 0%, #f0fdf4 40%, #fefce8 100%);
+      color: var(--text-main);
+      min-height: 100vh;
+    }
+
+    /* 상단 네비게이션 */
+    .char-nav {
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 2px solid #e2e8f0;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    }
+    .char-nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: inherit;
+    }
+    .char-nav-logo {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #0284c7, #38bdf8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 22px;
+      box-shadow: 0 4px 10px rgba(2, 132, 199, 0.3);
+    }
+    .char-nav-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #0369a1;
+      letter-spacing: -0.5px;
+    }
+    .char-nav-title span {
+      color: #f59e0b;
+    }
+    .char-back-btn {
+      padding: 10px 18px;
+      background: #0284c7;
+      color: white;
+      border-radius: 24px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.25);
+    }
+    .char-back-btn:hover {
+      background: #0369a1;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(2, 132, 199, 0.35);
+    }
+
+    /* 메인 히어로 컨테이너 */
+    .char-hero-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 36px 20px 20px;
+      text-align: center;
+    }
+
+    .char-badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #dbeafe;
+      color: #1e40af;
+      padding: 8px 18px;
+      border-radius: 30px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-bottom: 16px;
+      border: 1px solid #bfdbfe;
+    }
+
+    .char-main-heading {
+      font-size: 2.6rem;
+      font-weight: 900;
+      letter-spacing: -1px;
+      color: #0f172a;
+      margin: 0 0 12px;
+      line-height: 1.25;
+    }
+    .char-main-heading span {
+      background: linear-gradient(135deg, #0284c7, #2563eb, #7c3aed);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .char-subtitle {
+      font-size: 1.15rem;
+      color: #475569;
+      max-width: 680px;
+      margin: 0 auto 36px;
+      line-height: 1.6;
+    }
+
+    /* 마스터 일러스트 파노라마 배너 */
+    .char-ensemble-card {
+      position: relative;
+      background: white;
+      border-radius: 28px;
+      padding: 16px;
+      box-shadow: 0 20px 45px rgba(15, 23, 42, 0.12), 0 4px 16px rgba(0, 0, 0, 0.04);
+      border: 3px solid rgba(255, 255, 255, 0.9);
+      overflow: hidden;
+      margin-bottom: 48px;
+    }
+    .char-ensemble-img {
+      width: 100%;
+      height: auto;
+      border-radius: 20px;
+      display: block;
+      box-shadow: inset 0 0 20px rgba(0,0,0,0.1);
+    }
+    .char-ensemble-caption {
+      margin-top: 14px;
+      font-size: 0.95rem;
+      color: #64748b;
+      font-weight: 600;
+    }
+
+    /* 탭 필터 (전체 / 마스터 / 학생 4인 / 바둑돌 요정) */
+    .char-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 36px;
+    }
+    .char-tab-btn {
+      padding: 10px 22px;
+      border: 2px solid #cbd5e1;
+      background: white;
+      border-radius: 20px;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #475569;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .char-tab-btn.active, .char-tab-btn:hover {
+      background: #0284c7;
+      color: white;
+      border-color: #0284c7;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 14px rgba(2, 132, 199, 0.25);
+    }
+
+    /* 캐릭터 카드 그리드 */
+    .char-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 28px;
+      margin-bottom: 60px;
+    }
+
+    .char-card {
+      background: var(--card-bg);
+      border-radius: 24px;
+      padding: 24px;
+      text-align: left;
+      border: 2px solid #e2e8f0;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+    .char-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(15, 23, 42, 0.14);
+      border-color: #38bdf8;
+    }
+
+    .char-card-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .char-avatar-frame {
+      width: 90px;
+      height: 90px;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 3px solid #e2e8f0;
+      flex-shrink: 0;
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+      background: #f8fafc;
+    }
+    .char-avatar-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+    .char-card:hover .char-avatar-img {
+      transform: scale(1.08);
+    }
+
+    .char-identity {
+      flex: 1;
+    }
+    .char-tag {
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 12px;
+      display: inline-block;
+      margin-bottom: 6px;
+    }
+    .tag-master { background: #e0f2fe; color: #0369a1; }
+    .tag-attack { background: #fee2e2; color: #b91c1c; }
+    .tag-trick { background: #fef3c7; color: #b45309; }
+    .tag-smart { background: #f3e8ff; color: #7e22ce; }
+    .tag-defend { background: #dcfce7; color: #15803d; }
+    .tag-mascot-b { background: #334155; color: #f8fafc; }
+    .tag-mascot-w { background: #f1f5f9; color: #0f172a; border: 1px solid #cbd5e1; }
+
+    .char-name {
+      font-size: 1.4rem;
+      font-weight: 900;
+      color: #0f172a;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .char-title-sub {
+      font-size: 0.9rem;
+      color: #64748b;
+      margin-top: 2px;
+      font-weight: 600;
+    }
+
+    /* 명대사 말풍선 */
+    .char-quote {
+      background: #f8fafc;
+      border-left: 4px solid #0284c7;
+      padding: 10px 14px;
+      border-radius: 0 12px 12px 0;
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: #334155;
+      margin-bottom: 16px;
+      font-style: italic;
+    }
+
+    /* 능력치 바 */
+    .char-stats {
+      margin-bottom: 18px;
+      background: #f8fafc;
+      padding: 12px 14px;
+      border-radius: 14px;
+    }
+    .stat-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #475569;
+    }
+    .stat-row:last-child {
+      margin-bottom: 0;
+    }
+    .stat-bar-bg {
+      width: 140px;
+      height: 8px;
+      background: #e2e8f0;
+      border-radius: 4px;
+      overflow: hidden;
+      margin-left: 10px;
+    }
+    .stat-bar-fill {
+      height: 100%;
+      border-radius: 4px;
+    }
+
+    /* 상세 설명 & 웹사이트 역할 */
+    .char-desc {
+      font-size: 0.92rem;
+      line-height: 1.6;
+      color: #475569;
+      margin-bottom: 16px;
+      flex: 1;
+    }
+
+    .char-role-box {
+      border-top: 1px dashed #cbd5e1;
+      padding-top: 12px;
+      font-size: 0.85rem;
+      color: #0284c7;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* 캐릭터 클릭 시 효과음 & 대사 */
+    .char-voice-btn {
+      margin-top: 12px;
+      padding: 8px 14px;
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      border-radius: 12px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #334155;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+      width: 100%;
+      justify-content: center;
+    }
+    .char-voice-btn:hover {
+      background: #e0f2fe;
+      border-color: #38bdf8;
+      color: #0369a1;
+    }
+
+    /* 하단 푸터 */
+    .char-footer {
+      text-align: center;
+      padding: 40px 20px 60px;
+      border-top: 2px solid #e2e8f0;
+      background: white;
+    }
+
+    @media (max-width: 768px) {
+      .char-main-heading { font-size: 2rem; }
+      .char-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 상단 네비게이션 -->
+  <header class="char-nav">
+    <a href="index.html" class="char-nav-brand">
+      <div class="char-nav-logo">👑</div>
+      <div class="char-nav-title">바둑스쿨 <span>프렌즈</span></div>
+    </a>
+    <a href="index.html" class="char-back-btn">
+      <span>← 홈으로 돌아가기</span>
+    </a>
+  </header>
+
+  <main class="char-hero-container">
+    <div class="char-badge-pill">✨ 바둑스쿨 공식 캐릭터 라인업 대공개 ✨</div>
+    <h1 class="char-main-heading">
+      함께 바둑 왕국을 탐험할<br>
+      <span>7인의 매력만점 프렌즈</span>
+    </h1>
+    <p class="char-subtitle">
+      유쾌한 신선 마스터부터 각양각색의 개성을 지닌 4명의 친구들, 그리고 살아 숨쉬는 바둑돌 요정 흑돌이와 백돌이까지! 우리 아이의 최고의 바둑 친구들을 만나보세요.
+    </p>
+
+    <!-- 1. 그랜드 앙상블 일러스트 배너 -->
+    <div class="char-ensemble-card">
+      <img src="images/character_ensemble.jpg" alt="바둑스쿨 공식 캐릭터 7인 단체 일러스트" class="char-ensemble-img">
+      <div class="char-ensemble-caption">
+        ☁️ 구름 누각에서 마스터 도원 신선님과 함께 바둑을 두고 있는 태오, 로이, 아린, 하은, 그리고 흑돌이와 백돌이!
+      </div>
+    </div>
+
+    <!-- 2. 필터 탭 -->
+    <div class="char-tabs">
+      <button class="char-tab-btn active" onclick="filterChars('all')">🌟 전체 보기 (7)</button>
+      <button class="char-tab-btn" onclick="filterChars('master')">🧙‍♂️ 마스터 도원 (1)</button>
+      <button class="char-tab-btn" onclick="filterChars('student')">🎒 4인 4색 학생 (4)</button>
+      <button class="char-tab-btn" onclick="filterChars('mascot')">⚫⚪ 바둑돌 요정 (2)</button>
+    </div>
+
+    <!-- 3. 캐릭터 도감 카드 그리드 -->
+    <div class="char-grid" id="charGrid">
+
+      <!-- 1. 신선 마스터 도원 -->
+      <div class="char-card" data-category="master">
+        <div class="char-card-header">
+          <div class="char-avatar-frame" style="border-color: #38bdf8;">
+            <img src="images/characters/char_master_doyuan.jpg" alt="마스터 도원 신선님" class="char-avatar-img">
+          </div>
+          <div class="char-identity">
+            <span class="char-tag tag-master">대사부 / 구름 신선</span>
+            <h2 class="char-name">도원 신선님 🧙‍♂️</h2>
+            <div class="char-title-sub">Master Doyuan (바둑 왕국 총사부)</div>
+          </div>
+        </div>
+        <div class="char-quote">
+          "허허허! 바둑판은 우주와 같단다. 한 수 한 수 즐겁게 유영해 보거라!"
+        </div>
+        <div class="char-desc">
+          펄럭이는 하늘빛 도포와 풍성한 하얀 수염, 그리고 장난기 어린 눈웃음이 매력적인 신선 마스터! 엄숙한 훈장님이 아니라, 아이들의 눈높이에서 신비한 바둑 묘수와 인생의 지혜를 유쾌하게 전수해 주는 따뜻한 할아버지 스승님입니다.
+        </div>
+        <div class="char-stats">
+          <div class="stat-row">
+            <span>풍류 & 지혜</span>
+            <div class="stat-bar-bg"><div class="stat-bar-fill" style="width: 100%; background: #0284c7;"></div></div>
+          </div>
+          <div class="stat-row">
+            <span>자상함 & 유쾌함</span>
+            <div class="stat-bar-bg"><div class="stat-bar-fill" style="width: 98%; background: #38bdf8;"></div></div>
+          </div>
+          <div class="stat-row">
+            <span>신비의 묘수</span>
+            <div class="stat-bar-bg"><div class="stat-bar-fill" style="width: 95%; background: #f59e0b;"></div></div>
+          </div>
+        </div>
+        <div class="char-role-box">
+          🏛️ <strong>활약 코너:</strong> 승급 시험 관문 수문장 / 대국 승리·패배 훈화 / 전체 가이드
+        </div>
+        <button class="char-voice-btn" onclick="playVoice('doyuan')">
+          🔊 "허허! 바둑의 참맛을 느껴보자꾸나!" 듣기
+        </button>
+      </div>
+
+      <!-- 2. 태오 (Taeo) -->
+      <div class="char-card" data-category="student">
+        <div class="char-card-header">
+          <div class="char-avatar-frame" style="border-color: #ef4444;">
+            <img src="images/characters/char_taeo.jpg" alt="태오" class="char-avatar-img">
+          </div>
+          <div class="char-identity">
+            <span class="char-tag tag-attack">열혈 공격파 / 사활 탐험가</span>
+            <h2 class="char-name">태오 (Taeo) 🔥</h2>
+            <div class="char-title-sub">열정과 투지의 공격형 스트라이커</div>
+          </div>
+        </div>
+        <div class="char-quote">
+          "사활 문제라면 나한테 맡겨! 내 칼날 같은 축 공격을 받아봐라!"
+        </div>
+        <div class="char-desc">
+          머리에 질끈 동여맨 '바둑' 머리띠와 강렬한 레드 후디가 트레이드마크! 승부욕이 활활 타오르며 상대 대마를 공격하고 잡는 사활 묘수풀이에 최고의 열정을 보입니다. 지더라도 결코 좌절하지 않고 바로 "한 판 더!"를 외치는 의지의 소년입니다.
+        </div>
+        <div class="char-stats">
+          <div class="stat-row">
+            <span>공격력 & 사활</span>
+            <div class="stat-bar-bg"><div class="stat-bar-fill" style="width: 95%; background: #ef4444;"></div></div>
+          </div>
+          <div class="stat-row">
+            <span>승부욕 & 열정</span>
+            <div class="stat-bar-bg"><div class="stat-bar-fill" style="width: 98%; background: #f97316;"></div></div>
+          </div>
+          <div class="stat-row">
+            <span>침착함</span>
+            <div class="stat-bar-bg"><div class="stat-bar-fill" style="width: 65%; background: #94a3b8;"></div></div>
+          </div>
+        </div>
+        <div class="char-role-box">
+          ⚔️ <strong>활약 코너:</strong> 사활 던전 챌린지 / 알까기 배틀존 / 라이벌 대결
+        </div>
+        <button class="char-voice-btn" onclick="playVoice('taeo')">
+          🔊 "내 대마 공격은 아무도 못 막아!" 듣기
+        </button>
+      </div>
+
+      <!-- 3. 로이 (Roy) -->
+      <div class="char-card" data-category="student">
+        <div class="char-card-header">
+          <div class="char-avatar-frame" style="border-color: #f59e0b;">
+            <img src="images/characters/char_roy.jpg" alt="로이" class="char-avatar-img">
+          </div>
+          <div class="char-identity">
+            <span class="char-tag tag-trick">기발한 묘수 / 장난꾸러기</span>
+            <h2 class="char-name">로이 (Roy) ⚡</h2>
+            <div class="char-title-sub">기상천외한 트릭과 재치 만점 소년</div>
+          </div>
+        </div>
+        <div class="char-quote">
+          "헤헤! 아무도 예상 못한 번뜩이는 한 수를 보여줄게! 짜잔~!"
+        </div>
+        <div class="char-desc">
+          밝은 갈색 웨이브 머리에 노란 줄무늬 티셔츠와 데님 멜빵바지를 입은 분위기 메이커! 정석대로 두기보다 남들이 보지 못하는 신기한 맥점이나 재치 있는 속임수를 연구하길 좋아합니다. 호기심이 넘쳐 언제나 바둑판 위에서 새로운 모험을 시도합니다.
+        </div>
+        <div class="char-stats">
+          <div class="stat-row">
+            <span>창의력 & 묘수</span>
+            <div class="stat-bar-bg"><div class="stat-bar-fill" style="width: 96%; background: #f59e0b;"></div></div>
+          </div>
+          <div class="stat-row">
+            <span>스피드 & 속기</span>
+            <div class="stat-bar-bg"><div class="stat-bar-fill" style="width: 90%; background: #eab308;"></div></div>
+          </div>
+          <div class="stat-row">
+            <span>정석 이해도</span>
+            <div class="stat-bar-bg"><div class="stat-bar-fill" style="width: 70%; background: #94a3b8;"></div></div>
+          </div>
+        </div>
+        <div class="char-role-box">
+          💡 <strong>활약 코너:</strong> 오늘의 묘수 퀴즈 / 깜짝 트릭 보물상자 / 스피드 바둑
+        </div>
+        <button class="char-voice-btn" onclick="playVoice('roy')">
+          🔊 "짜잔! 이 묘수, 상상도 못 했지?" 듣기
+        </button>
+      </div>
+
+      <!-- 4. 아린 (Arin) -->
+      <div class="char-card" data-category="student">
+        <div class="char-card-header">
+          <div class="char-avatar-frame" style="border-color: #8b5cf6;">
+            <img src="images/characters/char_arin.jpg" alt="아린" class="char-avatar-img">
+          </div>
+          <div class="char-identity">
+            <span class="char-tag tag-smart">지능파 행마 / 정밀 형세판단</span>
+            <h2 class="char-name">아린 (Arin) 🧠</h2>
+            <div class="char-title-sub">냉철한 계산과 단정한 포니테일 소녀</div>
+          </div>
+        </div>
+        <div class="char-quote">
+          "정확한 수읽기와 집계산이 승리의 열쇠야. 덤 6집 반까지 완벽해!"
+        </div>
+        <div class="char-desc">
+          단정한 포니테일 헤어스타일에 동글이 안경, 그리고 지적인 보라색 조끼가 잘 어울리는 모범생 소녀! 상대의 무리수를 차분하게 응징하며, 끝내기와 집계산에서 프로 기사처럼 정밀함을 발휘합니다. 친구들에게 원리와 논리를 친절하게 가르쳐 줍니다.
+        </div>
+        <div class="char-stats">
+          <div class="stat-row">
+            <span>수읽기 & 끝내기</span>
+            <div class="stat-bar-bg"><div class="stat-bar-fill" style="width: 97%; background: #8b5cf6;"></div></div>
+          </div>
+          <div class="stat-row">
+            <span>형세판단</span>
+            <div class="stat-bar-bg"><div class="stat-bar-fill" style="width: 94%; background: #6366f1;"></div></div>
+          </div>
+          <div class="stat-row">
+            <span>공격 저돌성</span>
+            <div class="stat-bar-bg"><div class="stat-bar-fill" style="width: 68%; background: #94a3b8;"></div></div>
+          </div>
+        </div>
+        <div class="char-role-box">
+          📊 <strong>활약 코너:</strong> 바둑 인공지능 분석실 / 형세판단 훈련소 / 정석 도서관
+        </div>
+        <button class="char-voice-btn" onclick="playVoice('arin')">
+          🔊 "차분히 수읽기해보면 답이 보일 거야!" 듣기
+        </button>
+      </div>
+
+      <!-- 5. 하은 (Haeun) -->
+      <div class="char-card" data-category="student">
+        <div class="char-card-header">
+          <div class="char-avatar-frame" style="border-color: #10b981;">
+            <img src="images/characters/char_haeun.jpg" alt="하은" class="char-avatar-img">
+          </div>
+          <div class="char-identity">
+            <span class="char-tag tag-defend">온화한 수비 / 대마 지킴이</span>
+            <h2 class="char-name">하은 (Haeun) 🌿</h2>
+            <div class="char-title-sub">따뜻한 배려와 끈기 있는 수호천사</div>
+          </div>
+        </div>
+        <div class="char-quote">
+          "내 돌들은 튼튼하게 지킬 거야. 바둑은 조급해하지 않는 게 가장 중요해."
+        </div>
+        <div class="char-desc">
+          사랑스러운 단발머리에 부드러운 파스텔 민트색 가디건을 입은 마음씨 고운 소녀! 무리한 싸움을 피하고 자신의 돌을 두텁고 튼튼하게 지키는 침착한 수비 바둑을 둡니다. 바둑을 처음 배우는 친구들이 실수해도 따뜻하게 격려해 주는 최고의 멘토입니다.
+        </div>
+        <div class="char-stats">
+          <div class="stat-row">
+            <span>수비력 & 두터움</span>
+            <div class="stat-bar-bg"><div class="stat-bar-fill" style="width: 96%; background: #10b981;"></div></div>
+          </div>
+          <div class="stat-row">
+            <span>인내심 & 멘탈</span>
+            <div class="stat-bar-bg"><div class="stat-bar-fill" style="width: 98%; background: #34d399;"></div></div>
+          </div>
+          <div class="stat-row">
+            <span>대마 사냥</span>
+            <div class="stat-bar-bg"><div class="stat-bar-fill" style="width: 62%; background: #94a3b8;"></div></div>
+          </div>
+        </div>
+        <div class="char-role-box">
+          🌱 <strong>활약 코너:</strong> 초급 입문 교실 / 실수 복기 힐링존 / 바둑 예절 안내
+        </div>
+        <button class="char-voice-btn" onclick="playVoice('haeun')">
+          🔊 "조급해하지 마, 천천히 두면 괜찮아!" 듣기
+        </button>
+      </div>
+
+      <!-- 6. 흑돌이 (Heukdori) -->
+      <div class="char-card" data-category="mascot">
+        <div class="char-card-header">
+          <div class="char-avatar-frame" style="border-color: #334155;">
+            <img src="images/characters/char_heukdori.jpg" alt="흑돌이" class="char-avatar-img">
+          </div>
+          <div class="char-identity">
+            <span class="char-tag tag-mascot-b">마스코트 요정 / 선공의 정령</span>
+            <h2 class="char-name">흑돌이 (Heukdori) ⚫</h2>
+            <div class="char-title-sub">반짝이는 흑요석 바둑돌 요정</div>
+          </div>
+        </div>
+        <div class="char-quote">
+          "반짝반짝! 먼저 둘 사람 여기 붙어라~! 바둑판 위를 쿵쿵 뛰어다닐 테야!"
+        </div>
+        <div class="char-desc">
+          윤기가 자르르 흐르는 매끄러운 흑요석 몸체에 초롱초롱 맑은 눈망울과 귀여운 손발이 달린 살아있는 바둑돌 요정! 언제나 활기가 넘치고 먼저 착점하는 흑번의 당당함을 자랑합니다. 바둑판 위에서 통통 튀며 아이들에게 응원 세리머니를 펼칩니다.
+        </div>
+        <div class="char-stats">
+          <div class="stat-row">
+            <span>귀여움 & 에너지</span>
+            <div class="stat-bar-bg"><div class="stat-bar-fill" style="width: 100%; background: #0f172a;"></div></div>
+          </div>
+          <div class="stat-row">
+            <span>점프력 & 착점감</span>
+            <div class="stat-bar-bg"><div class="stat-bar-fill" style="width: 95%; background: #475569;"></div></div>
+          </div>
+          <div class="stat-row">
+            <span>광택도</span>
+            <div class="stat-bar-bg"><div class="stat-bar-fill" style="width: 99%; background: #38bdf8;"></div></div>
+          </div>
+        </div>
+        <div class="char-role-box">
+          ✨ <strong>활약 코너:</strong> 착점 타격 애니메이션 / 흑선 문제 내비게이터 / 정답 축하 팡파르
+        </div>
+        <button class="char-voice-btn" onclick="playVoice('heukdori')">
+          🔊 "흑선 활로를 찾아봐! 통통통~!" 듣기
+        </button>
+      </div>
+
+      <!-- 7. 백돌이 (Baekdori) -->
+      <div class="char-card" data-category="mascot">
+        <div class="char-card-header">
+          <div class="char-avatar-frame" style="border-color: #cbd5e1;">
+            <img src="images/characters/char_baekdori.jpg" alt="백돌이" class="char-avatar-img">
+          </div>
+          <div class="char-identity">
+            <span class="char-tag tag-mascot-w">마스코트 요정 / 후공의 정령</span>
+            <h2 class="char-name">백돌이 (Baekdori) ⚪</h2>
+            <div class="char-title-sub">순백 조개 크리스탈 바둑돌 요정</div>
+          </div>
+        </div>
+        <div class="char-quote">
+          "생글생글! 백번이라도 덤이 있으니 든든해! 함께 예쁜 집을 지어보자!"
+        </div>
+        <div class="char-desc">
+          우윳빛 순백 조개 보석처럼 매끈하고 뽀얀 몸체에 사랑스러운 반달 눈웃음을 지닌 요정! 차분하면서도 상냥한 성격으로, 흑의 착점을 지켜보다가 가장 완벽한 자리에 폭신하게 내려앉습니다. 백선 사활과 끝내기 단계에서 최고의 길잡이가 되어줍니다.
+        </div>
+        <div class="char-stats">
+          <div class="stat-row">
+            <span>순수함 & 눈웃음</span>
+            <div class="stat-bar-bg"><div class="stat-bar-fill" style="width: 100%; background: #e2e8f0;"></div></div>
+          </div>
+          <div class="stat-row">
+            <span>덤(Komi) 활용력</span>
+            <div class="stat-bar-bg"><div class="stat-bar-fill" style="width: 95%; background: #94a3b8;"></div></div>
+          </div>
+          <div class="stat-row">
+            <span>매끄러움</span>
+            <div class="stat-bar-bg"><div class="stat-bar-fill" style="width: 99%; background: #cbd5e1;"></div></div>
+          </div>
+        </div>
+        <div class="char-role-box">
+          🕊️ <strong>활약 코너:</strong> 백선 문제 풀이 가이드 / 따뜻한 오답 힌트 / 평화로운 마무리
+        </div>
+        <button class="char-voice-btn" onclick="playVoice('baekdori')">
+          🔊 "괜찮아, 다시 한번 생각해보자!" 듣기
+        </button>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="char-footer">
+    <div style="font-size: 1.1rem; font-weight: 800; color: #0284c7; margin-bottom: 8px;">
+      바둑스쿨 (BadukSchool) 7인 캐릭터 유니버스
+    </div>
+    <p style="color: #64748b; font-size: 0.9rem; margin: 0;">
+      신선 마스터 도원 • 열혈 소년 태오 • 명랑 소년 로이 • 스마트 소녀 아린 • 차분 소녀 하은 • 흑돌이 & 백돌이 요정
+    </p>
+  </footer>
+
+  <script>
+    // 필터링 기능
+    function filterChars(category) {
+      const cards = document.querySelectorAll('.char-card');
+      const btns = document.querySelectorAll('.char-tab-btn');
+      
+      btns.forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+
+      cards.forEach(card => {
+        if (category === 'all' || card.getAttribute('data-category') === category) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // Web Audio 효과음 시뮬레이션
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+    function playVoice(charName) {
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+
+      const freqs = {
+        doyuan: [220, 277, 330, 440],
+        taeo: [330, 440, 554, 659],
+        roy: [440, 554, 659, 880],
+        arin: [523, 659, 784, 1046],
+        haeun: [392, 493, 587, 784],
+        heukdori: [600, 800, 1000],
+        baekdori: [700, 900, 1200]
+      };
+
+      const notes = freqs[charName] || [440, 550, 660];
+      notes.forEach((freq, idx) => {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = charName === 'doyuan' ? 'triangle' : (charName.startsWith('mascot') || charName.includes('dori') ? 'sine' : 'sine');
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime + idx * 0.08);
+
+        gain.gain.setValueAtTime(0.15, audioCtx.currentTime + idx * 0.08);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + idx * 0.08 + 0.18);
+
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        osc.start(audioCtx.currentTime + idx * 0.08);
+        osc.stop(audioCtx.currentTime + idx * 0.08 + 0.2);
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,1610 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <script>
+    if (location.protocol === 'http:' && location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
+      location.replace('https://' + location.host + location.pathname + location.search + location.hash);
+    }
+  </script>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>바둑스쿨 (BadukSchool) | 어린이를 위한 1등 스마트 바둑 놀이터</title>
+  <link rel="icon" type="image/png" href="app_icon_tile.png">
+  <link rel="apple-touch-icon" href="app_icon_tile.png">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0284c7">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="바둑스쿨">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=20261024_ck_v1">
+  <script src="auth.js?v=20261022_v1792680182"></script>
+</head>
+<body>
+  <!-- 🌌 신비한 별빛 밤하늘과 유성 모션그래픽 캔버스 -->
+  <canvas id="starfieldCanvas"></canvas>
+  <!-- ☁️ 청명한 가을 하늘과 뭉게구름 모션그래픽 캔버스 -->
+  <canvas id="cloudsCanvas"></canvas>
+  <!-- 🔒 선생님 전용 보안 인증 오버레이 (비밀번호: 5840 - 잠금 시에만 활성화) -->
+  <div class="site-auth-overlay" id="siteAuthOverlay">
+    <div class="site-auth-card">
+      <div class="auth-icon-badge">🎓</div>
+      <h2 class="auth-title">바둑스쿨</h2>
+      <p class="auth-subtitle">어린이를 위한 1등 스마트 바둑 놀이터<br>선생님 인증 비밀번호를 입력해 주세요.</p>
+      
+      <form id="authPinForm" onsubmit="event.preventDefault(); window.checkSiteAuthPin();">
+        <div class="auth-input-wrap">
+          <input 
+            type="password" 
+            id="authPinInput" 
+            maxlength="4" 
+            inputmode="numeric" 
+            pattern="[0-9]*" 
+            placeholder="비밀번호 4자리"
+            autocomplete="off"
+            autofocus
+          >
+        </div>
+        <div class="auth-error-msg" id="authErrorMsg"></div>
+        <button type="submit" class="auth-submit-btn" id="btnAuthSubmit">
+          <span>입장하기</span> ➔
+        </button>
+      </form>
+      <div class="auth-security-notice">
+        <span>🛡️ 바둑스쿨 (BadukSchool) 보안 세션 적용</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 🌟 바둑스쿨 메인 포털 대문 (ChessKid 스타일 키즈 포털) 🌟 -->
+  <div class="main-portal-overlay" id="mainPortalOverlay">
+    
+    <!-- 1. 최상단 체스키드 스타일 딥그린 네비게이션 바 -->
+    <header class="ck-navbar">
+      <div class="ck-nav-container">
+        <div class="ck-nav-left">
+          <!-- 바둑스쿨 공식 브랜드 로고 -->
+          <div class="ck-brand" onclick="window.showMainPortal();" title="바둑스쿨 메인 홈" style="cursor: pointer; display: flex; align-items: center; flex-shrink: 0; background: #ffffff; padding: 2px 10px; border-radius: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.15); height: 36px;">
+            <img src="images/official_brand_logo.png" alt="바둑스쿨" style="height: 30px; width: auto; object-fit: contain;">
+          </div>
+
+          <button type="button" class="ck-nav-item ck-avatar-btn" onclick="window.openAvatarStudio()" title="나만의 바둑이 캐릭터 만들기" style="white-space: nowrap; flex-shrink: 0;">
+            <span class="ck-avatar-circle" id="navAvatarCircle">
+              <span class="avatar-face" id="navAvatarFace">😊</span>
+            </span>
+            <span class="ck-nav-text" style="white-space: nowrap;">내 아바타</span>
+          </button>
+
+          <!-- 드롭다운 네비 메뉴들 -->
+          <div class="ck-dropdown-wrap">
+            <button type="button" class="ck-nav-item" onclick="window.toggleNavDropdown('playDropdown', event)">
+              <span>대국실 (Play)</span> <span class="arrow-down">▾</span>
+            </button>
+            <div class="ck-dropdown-menu" id="playDropdown">
+              <a href="javascript:void(0)" onclick="window.enterAppFromPortal('online')">🌐 친구와 1:1 실시간 대국</a>
+              <a href="javascript:void(0)" onclick="window.enterAppFromPortal('online')">🤖 귀여운 동물 AI 봇 대국</a>
+              <a href="javascript:void(0)" onclick="window.enterAppFromPortal('omok')">⚪⚫ 15줄 두뇌 오목</a>
+              <a href="javascript:void(0)" onclick="window.enterAppFromPortal('alkkagi')">🎯 쫀득한 슬링샷 알까기</a>
+            </div>
+          </div>
+
+          <div class="ck-dropdown-wrap">
+            <button type="button" class="ck-nav-item" onclick="window.toggleNavDropdown('learnDropdown', event)">
+              <span>30단계 모험 (Learn)</span> <span class="arrow-down">▾</span>
+            </button>
+            <div class="ck-dropdown-menu" id="learnDropdown">
+              <a href="javascript:void(0)" onclick="window.enterAppFromPortal('missions')">🗺️ 30단계 보물섬 모험 지도</a>
+              <a href="javascript:void(0)" onclick="window.enterAppFromPortal('missions')">⚡ 실시간 사활 듀얼 배틀</a>
+              <a href="javascript:void(0)" onclick="window.enterAppAndOpenLibrary(0)">📚 JH 바둑스쿨 라이브러리 (교재·기법 전권)</a>
+            </div>
+          </div>
+
+
+
+          <div class="ck-dropdown-wrap">
+            <button type="button" class="ck-nav-item" onclick="window.toggleNavDropdown('teachDropdown', event)">
+              <span>선생님 (Teach)</span> <span class="arrow-down">▾</span>
+            </button>
+            <div class="ck-dropdown-menu" id="teachDropdown">
+              <a href="javascript:void(0)" onclick="window.enterAppFromPortal('lecture')">👨‍🏫 전자칠판 강의 모드</a>
+              <a href="editor.html">🛠️ 원장님 문제 편집실</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="ck-nav-right">
+          <button type="button" class="ck-btn-signup" onclick="window.enterAppFromPortal('missions')">
+            <span>시작하기</span>
+          </button>
+          <button type="button" class="ck-nav-text-btn" onclick="window.enterAppFromPortal('lecture')">선생님 입장</button>
+          <button type="button" class="ck-nav-lock-btn" onclick="if(confirm('수업 사이트를 잠그시겠습니까?')) window.lockSiteSession();" title="수업 화면 잠금">🔒 잠금</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- 2. 메인 히어로 (체스키드 일러스트 전경: 원근감 바둑판 잔디밭 + 캐릭터 크루) -->
+    <section class="ck-hero-section">
+      <!-- 배경 일러스트 (푸른 하늘, 뭉게구름, 원경 기와성과 숲) -->
+      <div class="ck-hero-bg">
+        <div class="ck-cloud cloud-1"></div>
+        <div class="ck-cloud cloud-2"></div>
+        <div class="ck-mountain-silhouette"></div>
+        <!-- 좌우 녹색 만화 숲 나무들 -->
+        <div class="ck-tree tree-left"></div>
+        <div class="ck-tree tree-right"></div>
+        <!-- 원근감 있게 펼쳐지는 바둑판 잔디밭 -->
+        <div class="ck-perspective-lawn">
+          <div class="ck-board-grid"></div>
+        </div>
+      </div>
+
+      <!-- 히어로 컨텐츠 (타이틀 + 캐릭터 크루 + 대형 3D 버튼) -->
+      <div class="ck-hero-content">
+        <div class="ck-title-badge">✨ 13,000+ 어린이가 매일 즐기는 1등 두뇌 놀이터 ✨</div>
+        <h1 class="ck-hero-title">
+          The #1 Baduk Platform for Kids<br>
+          <span class="ck-title-highlight">신나는 바둑 놀이터, 바둑스쿨</span>
+        </h1>
+
+        <!-- ★ 바둑스쿨 공식 마스코트 흑돌이 & 백돌이 (엄지척 듀오) ★ -->
+        <div class="ck-mascot-crew-wrapper" style="height: auto; min-height: 190px; margin: 10px auto 16px; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative;">
+          <!-- 귀여운 환영 말풍선 -->
+          <div style="background: white; border: 2.5px solid #0284c7; padding: 10px 24px; border-radius: 24px; font-weight: 800; font-size: 1.15rem; color: #0369a1; box-shadow: 0 8px 24px rgba(2, 132, 199, 0.22); margin-bottom: 18px; display: inline-flex; align-items: center; gap: 8px;">
+            <span>👋 안녕! 우리는 바둑스쿨 요정 흑돌이와 백돌이야! 함께 신나게 놀자! 👍</span>
+          </div>
+          
+          <!-- 3D 흑돌이 & 백돌이 엄지척 캐릭터 (사용자 지정 공식 마스코트) -->
+          <div style="position: relative; cursor: pointer; transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);" onmouseover="this.style.transform='scale(1.06)'" onmouseout="this.style.transform='scale(1)'" onclick="location.href='characters.html'" title="클릭하면 7인의 캐릭터 도감으로 이동합니다!">
+            <img src="app_icon_tile.png" alt="바둑스쿨 공식 마스코트 흑돌이와 백돌이" style="width: 170px; height: 170px; border-radius: 36px; box-shadow: 0 16px 40px rgba(15, 23, 42, 0.25); border: 4.5px solid #ffffff;">
+            <div style="position: absolute; bottom: -12px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, #f59e0b, #d97706); color: white; padding: 6px 18px; border-radius: 14px; font-weight: 800; font-size: 0.95rem; box-shadow: 0 4px 14px rgba(0,0,0,0.25); white-space: nowrap;">
+              ✨ 7인의 캐릭터 도감 보기 ✨
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. 대형 3D 인터랙티브 버튼 2종 (체스키드 메인 CTA) -->
+        <div class="ck-cta-group">
+          <button type="button" class="ck-cta-btn ck-btn-play" onclick="window.enterAppFromPortal('online')">
+            <span>대국 시작 (Play Now)</span>
+          </button>
+          <button type="button" class="ck-cta-btn ck-btn-learn" onclick="window.enterAppFromPortal('missions')">
+            <span>30단계 모험 (Learn Baduk)</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+      <!-- 4. 하단 순백의 신뢰도 지표 바 (Stats Wave Bar) -->
+      <section class="ck-stats-section">
+        <div class="ck-stats-container">
+          <div class="ck-stat-item">
+            <div class="ck-stat-icon-wrap icon-kids">👦👧</div>
+            <div class="ck-stat-num">13,000+</div>
+            <div class="ck-stat-label">즐거운 어린이 원생</div>
+          </div>
+          <div class="ck-stat-item">
+            <div class="ck-stat-icon-wrap icon-school">🏫</div>
+            <div class="ck-stat-num">3,200+</div>
+            <div class="ck-stat-label">방과후 학교 & 학원</div>
+          </div>
+          <div class="ck-stat-item">
+            <div class="ck-stat-icon-wrap icon-board">⚪⚫</div>
+            <div class="ck-stat-num">100,000+</div>
+            <div class="ck-stat-label">온라인 대국 수</div>
+          </div>
+          <div class="ck-stat-item">
+            <div class="ck-stat-icon-wrap icon-puzzle">🧩</div>
+            <div class="ck-stat-num">130,000+</div>
+            <div class="ck-stat-label">해결된 사활·행마 문제</div>
+          </div>
+          <div class="ck-stat-item">
+            <div class="ck-stat-icon-wrap icon-book">📖</div>
+            <div class="ck-stat-num">78권</div>
+            <div class="ck-stat-label">정통 공인 커리큘럼</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. 체스키드 4대 핵심 활동 카드 (세부 입장 구역) -->
+      <section class="ck-pillars-section">
+        <div class="ck-pillars-grid">
+          <div class="ck-card card-learn" onclick="window.enterAppFromPortal('missions')">
+            <div class="card-badge">🌟 30급~유단자</div>
+            <div class="card-emoji">🗺️</div>
+            <h3>30단계 바둑 모험 지도</h3>
+            <p>보물섬 스테이지를 한 칸씩 정복하는 정통 레벨업 여정!</p>
+            <span class="card-link">모험 떠나기 ➔</span>
+          </div>
+
+          <div class="ck-card card-duel" onclick="window.enterAppFromPortal('missions')">
+            <div class="card-badge hot">🔥 스피드 배틀</div>
+            <div class="card-emoji">⚡</div>
+            <h3>1:1 사활 듀얼 배틀</h3>
+            <p>2분 동안 친구와 실시간 문제 배틀! 스피드 점수 레이스!</p>
+            <span class="card-link">사활 듀얼 도전 ➔</span>
+          </div>
+
+          <div class="ck-card card-bots" onclick="window.enterAppFromPortal('online')">
+            <div class="card-badge green">🐾 귀여운 동물</div>
+            <div class="card-emoji">🤖</div>
+            <h3>귀여운 AI 동물 봇 대국</h3>
+            <p>30급 삐약이🐣, 20급 토끼🐰, 10급 호랑이🐯와 신나는 대국!</p>
+            <span class="card-link">봇과 한판 승부 ➔</span>
+          </div>
+
+          <div class="ck-card card-coach" onclick="window.enterAppFromPortal('lecture')">
+            <div class="card-badge purple">👨‍🏫 원장님 추천</div>
+            <div class="card-emoji">🎓</div>
+            <h3>선생님 전자칠판 강의실</h3>
+            <p>시원한 전면 무스크롤 바둑판, 단수 링 가이드, 학교 수업 최적화.</p>
+            <span class="card-link">강의실 입장 ➔</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. 아케이드 쉼터 (오목 & 슬링샷 알까기) -->
+      <section class="ck-arcade-section">
+        <div class="arcade-card-box">
+          <span class="arcade-title">🎮 신나는 두뇌 놀이터</span>
+          <div class="arcade-btn-group">
+            <button type="button" class="ck-sub-btn" onclick="window.enterAppFromPortal('omok')">⚪⚫ 15줄 두뇌 오목 대전</button>
+            <button type="button" class="ck-sub-btn" onclick="window.enterAppFromPortal('alkkagi')">🎯 슬링샷 알까기 배틀</button>
+            <button type="button" class="ck-sub-btn special" onclick="window.location.href='editor.html'">🛠️ 원장님 문제 편집실</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7. 포털 하단 세이프가드 푸터 -->
+      <footer class="ck-footer">
+        <div class="safe-badge-pill">🛡️ 100% Clean & Safe — 욕설/채팅 없는 안심 바둑 플랫폼</div>
+        <p class="ck-copy">바둑스쿨 (BadukSchool) | 어린이를 위한 1등 스마트 바둑 놀이터 | 전국 방과후 및 정규 학원 전용 시스템</p>
+      </footer>
+
+    <!-- 🌟 [신규] 내 아바타 꾸미기 스튜디오 모달 (ChessKid My Avatar 기능) 🌟 -->
+    <div class="ck-avatar-modal" id="avatarStudioModal" style="display: none;">
+      <div class="avatar-modal-card">
+        <div class="avatar-modal-header">
+          <h2>🎨 나만의 바둑돌 아바타 꾸미기</h2>
+          <button type="button" class="btn-close-modal" onclick="window.closeAvatarStudio()">✕</button>
+        </div>
+        
+        <div class="avatar-preview-area">
+          <div class="avatar-big-canvas" id="avatarBigCanvas">
+            <span class="avatar-hero-display" id="avatarHeroDisplay">⭐</span>
+          </div>
+          <input type="text" id="avatarNicknameInput" class="avatar-name-input" placeholder="바둑 닉네임 입력 (예: 날쌘돌이)" maxlength="10">
+        </div>
+
+        <div class="avatar-custom-tabs">
+          <div class="avatar-tab-row">
+            <label>바둑돌 종류:</label>
+            <div class="avatar-options" id="optStones">
+              <button type="button" class="opt-btn active" onclick="window.selectAvatarStone('⚫ 흑돌')">⚫ 흑돌이</button>
+              <button type="button" class="opt-btn" onclick="window.selectAvatarStone('⚪ 백돌')">⚪ 백돌이</button>
+              <button type="button" class="opt-btn" onclick="window.selectAvatarStone('🌟 황금돌')">🌟 황금돌</button>
+              <button type="button" class="opt-btn" onclick="window.selectAvatarStone('💎 보석돌')">💎 루비돌</button>
+            </div>
+          </div>
+
+          <div class="avatar-tab-row">
+            <label>표정 & 악세서리:</label>
+            <div class="avatar-options" id="optItems">
+              <button type="button" class="opt-btn active" onclick="window.selectAvatarItem('👑 왕관')">👑 왕관</button>
+              <button type="button" class="opt-btn" onclick="window.selectAvatarItem('🎓 학사모')">🎓 학사모</button>
+              <button type="button" class="opt-btn" onclick="window.selectAvatarItem('👓 똘똘이')">👓 똘똘이</button>
+              <button type="button" class="opt-btn" onclick="window.selectAvatarItem('🕶️ 썬글라스')">🕶️ 선글라스</button>
+              <button type="button" class="opt-btn" onclick="window.selectAvatarItem('🎀 리본')">🎀 핑크리본</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="avatar-modal-actions">
+          <button type="button" class="btn-save-avatar" onclick="window.saveUserAvatar()">✨ 내 아바타 저장하기</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="app-container size-9">
+    <!-- 🏰 체스키드(ChessKid) 좌측 고정 사이드바 -->
+    <aside class="ck-sidebar" id="chesskidSidebar">
+      <div class="ck-sidebar-header">
+        <a href="javascript:void(0)" class="ck-sidebar-logo" onclick="window.showMainPortal();" title="바둑스쿨 메인 홈">
+          <span class="ck-logo-crown">👑</span>
+          <span class="ck-logo-text">바둑스쿨</span>
+        </a>
+        <div class="ck-sidebar-actions">
+          <button type="button" class="ck-icon-btn" onclick="window.showMainPortal();" title="홈 대문으로 가기">🏠</button>
+          <button type="button" class="ck-icon-btn" onclick="if(confirm('수업 사이트를 잠그시겠습니까?')) window.lockSiteSession();" title="화면 잠금">🔒</button>
+        </div>
+      </div>
+
+      <!-- 유저 프로필 카드 -->
+      <div class="ck-user-profile-card">
+        <div class="ck-user-avatar-wrap" id="ckUserAvatarWrap">
+          <span id="ckUserAvatarEmoji">👦</span>
+        </div>
+        <div class="ck-user-info">
+          <span class="ck-user-name" id="ckUserName">태오</span>
+          <div class="ck-user-stats-pill">
+            <span>⭐ 150</span>
+            <span class="ck-stat-divider"></span>
+            <span>🔴 1200</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 사이드바 네비게이션 아코디언 메뉴 -->
+      <nav class="ck-sidebar-nav">
+        <!-- 내 아바타 -->
+        <div class="ck-nav-group">
+          <a class="ck-nav-item" data-section="avatar" data-subtab="me">
+            <span class="ck-nav-icon">👦</span>
+            <span class="ck-nav-label">내 아바타</span>
+          </a>
+        </div>
+
+        <!-- 대국실 (Play) -->
+        <div class="ck-nav-group">
+          <a class="ck-nav-item has-sub" data-section="play">
+            <span class="ck-nav-icon">⚔️</span>
+            <span class="ck-nav-label">대국실 (Play)</span>
+            <span class="ck-nav-arrow">▾</span>
+          </a>
+          <div class="ck-subnav-list">
+            <a class="ck-subnav-link" data-section="play" data-subtab="p2p"><span class="ck-sub-dot"></span>🌐 친구 1:1 대국</a>
+            <a class="ck-subnav-link" data-section="play" data-subtab="omok"><span class="ck-sub-dot"></span>⚪⚫ 15줄 오목</a>
+            <a class="ck-subnav-link" data-section="play" data-subtab="alkkagi"><span class="ck-sub-dot"></span>🎯 슬링샷 알까기</a>
+          </div>
+        </div>
+
+        <!-- 사활 퍼즐 (Puzzles) -->
+        <div class="ck-nav-group expanded">
+          <a class="ck-nav-item has-sub active" data-section="puzzles">
+            <span class="ck-nav-icon">🧩</span>
+            <span class="ck-nav-label">사활 퍼즐 (Puzzles)</span>
+            <span class="ck-nav-arrow">▾</span>
+          </a>
+          <div class="ck-subnav-list">
+            <a class="ck-subnav-link active" data-section="puzzles" data-subtab="30stage"><span class="ck-sub-dot"></span>🗺️ 30단계 모험</a>
+            <a class="ck-subnav-link" data-section="puzzles" data-subtab="duel"><span class="ck-sub-dot"></span>⚡ 1:1 사활 듀얼</a>
+            <a class="ck-subnav-link" data-section="puzzles" data-subtab="library"><span class="ck-sub-dot"></span>📚 15대 기법</a>
+          </div>
+        </div>
+
+        <!-- AI 봇 (Bots) -->
+        <div class="ck-nav-group">
+          <a class="ck-nav-item has-sub" data-section="bots">
+            <span class="ck-nav-icon">🤖</span>
+            <span class="ck-nav-label">AI 봇 (Bots)</span>
+            <span class="ck-nav-arrow">▾</span>
+          </a>
+          <div class="ck-subnav-list">
+            <a class="ck-subnav-link" data-section="bots" data-subtab="animal"><span class="ck-sub-dot"></span>🐾 6단계 동물 봇</a>
+            <a class="ck-subnav-link" data-section="bots" data-subtab="handicap"><span class="ck-sub-dot"></span>⚔️ 2~9점 접바둑</a>
+            <a class="ck-subnav-link" data-section="bots" data-subtab="master"><span class="ck-sub-dot"></span>🦁 챔피언 사자전</a>
+          </div>
+        </div>
+
+        <!-- 배움터 (Lessons) -->
+        <div class="ck-nav-group">
+          <a class="ck-nav-item has-sub" data-section="lessons">
+            <span class="ck-nav-icon">📚</span>
+            <span class="ck-nav-label">배움터 (Lessons)</span>
+            <span class="ck-nav-arrow">▾</span>
+          </a>
+          <div class="ck-subnav-list">
+            <a class="ck-subnav-link" data-section="lessons" data-subtab="lecture"><span class="ck-sub-dot"></span>👨‍🏫 전자칠판 강의</a>
+            <a class="ck-subnav-link" data-section="lessons" data-subtab="library"><span class="ck-sub-dot"></span>📚 교재 전권</a>
+            <a class="ck-subnav-link" data-section="lessons" data-subtab="curriculum"><span class="ck-sub-dot"></span>📋 30단계 진도표</a>
+          </div>
+        </div>
+
+        <!-- 선생님 (Teach) -->
+        <div class="ck-nav-group">
+          <a class="ck-nav-item has-sub" data-section="teach">
+            <span class="ck-nav-icon">👨‍🏫</span>
+            <span class="ck-nav-label">선생님 (Teach)</span>
+            <span class="ck-nav-arrow">▾</span>
+          </a>
+          <div class="ck-subnav-list">
+            <a class="ck-subnav-link" data-section="teach" data-subtab="editor"><span class="ck-sub-dot"></span>🛠️ 문제 편집실</a>
+            <a class="ck-subnav-link" data-section="teach" data-subtab="curriculum"><span class="ck-sub-dot"></span>📋 30단계 진도표</a>
+            <a class="ck-subnav-link" data-section="teach" data-subtab="lock"><span class="ck-sub-dot"></span>🔒 수업 잠금</a>
+          </div>
+        </div>
+
+        <!-- 더보기 (More) -->
+        <div class="ck-nav-group">
+          <a class="ck-nav-item has-sub" data-section="more">
+            <span class="ck-nav-icon">⚙️</span>
+            <span class="ck-nav-label">더보기 (More)</span>
+            <span class="ck-nav-arrow">▾</span>
+          </a>
+          <div class="ck-subnav-list">
+            <a class="ck-subnav-link" data-section="more" data-subtab="badges"><span class="ck-sub-dot"></span>🎖️ 획득 뱃지</a>
+            <a class="ck-subnav-link" data-section="more" data-subtab="settings"><span class="ck-sub-dot"></span>⚙️ 환경 & 착수음</a>
+          </div>
+        </div>
+      </nav>
+
+      <!-- 푸터 -->
+      <div class="ck-sidebar-footer">
+        <div class="ck-footer-safe-badge">🛡️ 어린이 안심 바둑 플랫폼</div>
+        <p class="ck-footer-copy">© 2026 바둑스쿨 (BadukSchool)</p>
+      </div>
+    </aside>
+
+    <!-- 🏰 체스키드 메인 뷰포트 -->
+    <div class="ck-main-viewport" id="chesskidMainStage">
+      <!-- 상단 캡슐형 서브 탭 바 -->
+      <div class="ck-top-subnav" id="chesskidTopSubnav">
+        <div class="ck-top-left-group">
+          <button type="button" class="ck-sidebar-toggle-btn" id="btnToggleSidebar" title="사이드바 열기/닫기">☰</button>
+        </div>
+        <div class="ck-pill-tabs" id="ckPillTabs"></div>
+        <div class="ck-top-right-group">
+          <button type="button" class="ck-top-icon-btn" onclick="window.showMainPortal();" title="바둑스쿨 대문으로">🏠</button>
+          <button type="button" class="ck-top-icon-btn" onclick="if(confirm('수업 사이트를 잠그시겠습니까?')) window.lockSiteSession();" title="화면 잠금">🔒</button>
+        </div>
+      </div>
+
+      <!-- 아바타 커스터마이저 전용 뷰 (체스키드 아바타 스튜디오) -->
+      <div class="ck-avatar-customizer-view" id="viewAvatarCustomizer" style="display: none;">
+        <div class="ck-central-avatar-card">
+          <div class="ck-avatar-hero-frame">
+            <div class="ck-avatar-large-icon" id="heroAvatarPreview">
+              <img src="images/characters/char_taeo.jpg" alt="태오" style="width: 100%; height: 100%; object-fit: cover; border-radius: 30px;">
+            </div>
+            <div class="ck-avatar-edit-pencil" id="btnEditAvatarPencil" title="아바타 변경">✏️</div>
+          </div>
+          <h2 class="ck-avatar-card-title" id="heroAvatarName">태오 (Taeo)</h2>
+          <p class="ck-avatar-card-desc" id="heroAvatarDesc">패기 넘치는 바둑 공격수! 사활 모험의 주인공</p>
+
+          <!-- 탭 1: 내 캐릭터 선택 (Me) -->
+          <div id="avatarSubTabMe" class="avatar-sub-panel" style="width: 100%;">
+            <div class="ck-options-grid" id="charSelectGrid">
+              <button type="button" class="ck-option-chip active" data-char="taeo" data-emoji="👦" data-name="태오 (Taeo)" data-desc="패기 넘치는 바둑 공격수! 사활 모험의 주인공">
+                <img src="images/characters/char_taeo.jpg" alt="태오" class="chip-img">
+                <span>태오</span>
+              </button>
+              <button type="button" class="ck-option-chip" data-char="roy" data-emoji="🧒" data-name="로이 (Roy)" data-desc="기발한 묘수를 좋아하는 재간둥이 승부사">
+                <img src="images/characters/char_roy.jpg" alt="로이" class="chip-img">
+                <span>로이</span>
+              </button>
+              <button type="button" class="ck-option-chip" data-char="arin" data-emoji="👧" data-name="아린 (Arin)" data-desc="차분하고 스마트한 수읽기 명수">
+                <img src="images/characters/char_arin.jpg" alt="아린" class="chip-img">
+                <span>아린</span>
+              </button>
+              <button type="button" class="ck-option-chip" data-char="haeun" data-emoji="🎀" data-name="하은 (Haeun)" data-desc="돌의 활로를 소중히 지키는 든든한 수비수">
+                <img src="images/characters/char_haeun.jpg" alt="하은" class="chip-img">
+                <span>하은</span>
+              </button>
+              <button type="button" class="ck-option-chip" data-char="heukdori" data-emoji="⚫" data-name="흑돌이 (Heukdori)" data-desc="씩씩하고 반짝이는 검은 바둑돌 요정">
+                <img src="images/characters/char_heukdori.jpg" alt="흑돌이" class="chip-img">
+                <span>흑돌이</span>
+              </button>
+              <button type="button" class="ck-option-chip" data-char="baekdori" data-emoji="⚪" data-name="백돌이 (Baekdori)" data-desc="상냥하고 둥글둥글한 하얀 바둑돌 요정">
+                <img src="images/characters/char_baekdori.jpg" alt="백돌이" class="chip-img">
+                <span>백돌이</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 탭 2: 바둑판 & 바둑돌 스킨 (Board) -->
+          <div id="avatarSubTabBoard" class="avatar-sub-panel" style="width: 100%; display: none;">
+            <h3 style="font-size: 0.95rem; font-weight: 800; color: #334155; margin: 8px 0 6px 0;">🪵 바둑판 스킨</h3>
+            <div class="ck-skin-row">
+              <button type="button" class="ck-skin-btn active" data-board-skin="wood">🪵 나무판</button>
+              <button type="button" class="ck-skin-btn" data-board-skin="green">🌿 잔디판</button>
+              <button type="button" class="ck-skin-btn" data-board-skin="sky">☁️ 하늘판</button>
+            </div>
+
+            <h3 style="font-size: 0.95rem; font-weight: 800; color: #334155; margin: 14px 0 6px 0;">⚪⚫ 바둑돌 스타일</h3>
+            <div class="ck-skin-grid">
+              <button type="button" class="ck-stone-btn active" data-stone-style="classic">1. 클래식</button>
+              <button type="button" class="ck-stone-btn" data-stone-style="crystal">2. 크리스탈</button>
+              <button type="button" class="ck-stone-btn" data-stone-style="galaxy">3. 은하수</button>
+              <button type="button" class="ck-stone-btn" data-stone-style="cat">4. 고양이</button>
+            </div>
+          </div>
+
+          <!-- 탭 3: 마스터 코치 선택 (Coaches) -->
+          <div id="avatarSubTabCoaches" class="avatar-sub-panel" style="width: 100%; display: none;">
+            <div class="ck-coach-pick-grid">
+              <div class="ck-coach-card active" data-coach="doyuan">
+                <img src="images/characters/char_master_head.jpg" alt="도원 대사님" class="ck-coach-thumb">
+                <div class="ck-coach-details">
+                  <strong>도원 신선님</strong>
+                  <span>인자하고 지혜로운 사활 마스터</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button type="button" class="ck-avatar-big-btn" id="btnSaveAvatarCustom" onclick="window.chesskidShell.saveAvatarSelection();">
+            <span>💾 변경 사항 저장 및 적용</span>
+          </button>
+        </div>
+      </div>
+    <!-- 상단 네비게이션 헤더 (모드 선택 및 단원 배지만 간결하게 유지) -->
+    <header class="app-header" style="display: none;">
+      <div class="header-left">
+        <div class="brand-logo-badge official-logo-wrap" id="brandLogoBadge" title="바둑스쿨 메인 홈(대문)으로 이동" onclick="window.showMainPortal();" style="cursor: pointer; background: transparent; border: none; padding: 0; box-shadow: none; display: flex; align-items: center;">
+          <img src="images/official_brand_logo.png" alt="바둑스쿨" style="height: 32px; width: auto; object-fit: contain; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.1));">
+        </div>
+        <button id="btnHeaderHome" class="btn-header-home" title="바둑스쿨 메인 홈으로 나가기">🏠 Home</button>
+        <!-- 👨‍🏫 좌측 별도 배치: 선생님 전용 강의 모드 -->
+        <button id="btnModeLecture" class="mode-select-btn lecture-solo-btn active" title="선생님 자유 놓아보기 및 수순 강의 모드">
+          👨‍🏫 강의 모드
+        </button>
+        <button id="btnHeaderLock" class="btn-header-lock" title="수업 사이트 잠그기">🔒 잠금</button>
+      </div>
+      <div class="header-right">
+        <!-- 🎯 우측 4대 활동 메뉴: 바둑 학습 / 온라인 대국 / 오목 대전 / 알까기 -->
+        <div class="mode-selector-group">
+          <button id="btnModeMissions" class="mode-select-btn" title="단계별 바둑 사활 및 미션 학습 문제">
+            📝 바둑 학습
+          </button>
+          <button id="btnModeOnline" class="mode-select-btn" title="친구와 실시간 1:1 온라인 대국">
+            🌐 온라인 대국
+          </button>
+          <button id="btnModeOmok" class="mode-select-btn" title="인공지능 AI 대전 & 1:1 친구 오목">
+            ⚪⚫ 오목 대전
+          </button>
+          <button id="btnModeAlkkagi" class="mode-select-btn" title="물리 슬링샷 알까기 배틀">
+            🎯 알까기
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- 메인 컨텐츠 영역 -->
+    <main class="main-content">
+      <!-- 왼쪽: 스토리 & 미션 패널 -->
+      <aside class="story-panel" id="missionStoryPanel">
+        <div class="card mission-card">
+          <div class="mission-header">
+            <div class="mission-badge-row">
+              <span class="badge" id="missionBadge">제1단계: 샛별부 (27급~25급)</span>
+              <span class="mission-count-pill" id="missionCountPill">1 / 20</span>
+            </div>
+            <div class="mission-step" id="missionStepText">제1단원: 축의 원리와 축머리</div>
+            <div class="mission-action-row">
+              <button type="button" id="btnOpenBookSelect" class="mission-act-btn btn-change-book" title="다른 교재나 단원 선택하기">📚 교재 변경</button>
+              <button type="button" class="mission-act-btn btn-go-editor" onclick="window.location.href='editor.html'" title="원장님 전용 문제 선별 및 편집실">🛠️ 편집실</button>
+            </div>
+          </div>
+          <!-- 번호 바로가기 그리드<!-- 번호 바로가기 그리드 (5열 컴팩트) -->
+          <div class="problem-number-grid" id="problemNumberGrid"></div>
+
+          <!-- 미션 본문 안내 (아래 부분에는 문제와 힌트만 노출) -->
+          <h2 class="mission-title" id="missionTitle" style="display: none;"></h2>
+          <p class="mission-desc" id="missionDesc"></p>
+
+          <!-- 힌트 박스 (교재 원문에 힌트가 있는 경우에만 game.js?v=20261024_ck_v1"mission-hint-box" id="missionHintBox" style="display: none;">
+            <span class="hint-icon">💡</span>
+            <span class="hint-text" id="missionHintText"></span>
+          </div>
+
+          <!-- 캐릭터 코치 말풍선 (제거 및 공간 보존) -->
+          <div class="char-coach-box" id="charCoachBox" style="visibility: hidden; min-height: 52px; height: 52px;">
+            <div class="char-avatar-mini" id="charCoachAvatar">
+              <span class="avatar-dot black"></span>
+            </div>
+            <div class="char-speech">
+              <strong id="charCoachName"></strong>
+              <p id="charSpeechText"></p>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- 미션 컨트롤: 이전/다시풀기/다음 & 놓아보기/정답보기 -->
+        <div class="mission-actions" id="missionActionArea">
+          <div class="mission-act-row">
+            <button type="button" id="btnPrevMission" class="act-btn secondary" disabled title="이전 문제로 이동">◀ 이전</button>
+            <button type="button" id="btnResetMission" class="act-btn secondary" title="현재 문제를 처음 상태로 다시 풀기">🔄 다시풀기</button>
+            <button type="button" id="btnNextMission" class="act-btn secondary" disabled title="다음 문제로 이동">다음 ▶</button>
+          </div>
+          <div class="mission-act-row sub-row">
+            <button type="button" id="btnTrialMode" class="act-btn trial-btn" title="자유롭게 돌을 놓아보며 수순과 변화도를 연구합니다">
+              ✍️ 놓아보기
+            </button>
+            <button type="button" id="btnShowAnswer" class="act-btn answer-btn" title="정답 착수 위치를 바둑판에 표시합니다">
+              🔍 정답보기
+            </button>
+          </div>
+        </div>
+
+        <!-- 🌟 좌측 놓아보기 밑으로 이동된 설정 메뉴 (바둑판, 바둑돌, 바탕, 착수소리) 🌟 -->
+        <div class="side-settings-panel" id="sideSettingsPanel">
+          <!-- 1. 바둑판 규격 선택기 -->
+          <div class="side-setting-row" title="바둑판 줄 수 선택">
+            <span class="side-setting-label">바둑판</span>
+            <div class="segmented-control side-segmented">
+              <button type="button" class="size-btn active" data-size="9" title="9줄 바둑판">9줄</button>
+              <button type="button" class="size-btn" data-size="13" title="13줄 바둑판">13줄</button>
+              <button type="button" class="size-btn" data-size="19" title="19줄 정규 바둑판">19줄</button>
+            </div>
+          </div>
+
+          <!-- 2. 바탕 화면 테마 선택기 (1~7) -->
+          <div class="side-setting-row" title="바탕화면 테마 변경">
+            <span class="side-setting-label">바탕 스킨</span>
+            <div class="segmented-control side-segmented" id="bgThemeControl">
+              <button type="button" class="bg-theme-btn" data-theme="theme1" title="1. 싱그러운 봄날의 초원과 호수">1</button>
+              <button type="button" class="bg-theme-btn" data-theme="theme2" title="2. 노을빛 물든 따뜻한 호숫가">2</button>
+              <button type="button" class="bg-theme-btn" data-theme="theme3" title="3. 황금빛 단풍과 호수의 가을 풍경">3</button>
+              <button type="button" class="bg-theme-btn" data-theme="theme4" title="4. 포근한 눈 덮인 겨울 오두막">4</button>
+              <button type="button" class="bg-theme-btn" data-theme="theme5" title="5. 동화 같은 야외 바둑 동산">5</button>
+              <button type="button" class="bg-theme-btn active" data-theme="theme6" title="6. 🌌 신비한 별빛 밤하늘과 유성">6</button>
+              <button type="button" class="bg-theme-btn" data-theme="theme7" title="7. ☁️ 청명한 가을 하늘과 뭉게구름">7</button>
+            </div>
+          </div>
+
+          <!-- 3. 바둑판 스킨 선택기 (나무판 / 잔디판 / 하늘판) -->
+          <div class="side-setting-row" title="바둑판 스킨 색상 선택">
+            <span class="side-setting-label">바둑판 스킨</span>
+            <div class="segmented-control side-segmented" id="boardSkinControl">
+              <button type="button" class="board-skin-btn active" data-skin="wood" title="1. 정통 비자목 (나무판)">🪵 나무</button>
+              <button type="button" class="board-skin-btn" data-skin="green" title="2. 싱그러운 천연 잔디판">🌿 잔디</button>
+              <button type="button" class="board-skin-btn" data-skin="sky" title="3. 맑은 하늘과 구름판">☁️ 하늘</button>
+            </div>
+          </div>
+
+          <!-- 4. 바둑돌 스타일 선택기 (1~7) -->
+          <div class="side-setting-row" title="바둑돌 스타일 선택">
+            <span class="side-setting-label">바둑돌</span>
+            <div class="segmented-control side-segmented" id="stoneStyleControl">
+              <button type="button" class="stone-btn active" data-style="classic" title="1. 정통 명품돌">1</button>
+              <button type="button" class="stone-btn" data-style="crystal" title="2. 영롱한 다이아 크리스탈돌">2</button>
+              <button type="button" class="stone-btn" data-style="galaxy" title="3. 신비한 은하수돌">3</button>
+              <button type="button" class="stone-btn" data-style="adventurer" title="4. 앙증 요정돌">4</button>
+              <button type="button" class="stone-btn" data-style="cat" title="5. 귀여운 고양이돌">5</button>
+              <button type="button" class="stone-btn" data-style="gem-sapphire" title="6. 로열 사파이어 & 베이비 핑크">6</button>
+              <button type="button" class="stone-btn" data-style="gem-ruby" title="7. 피죤 블러드 루비 & 임페리얼 에메랄드">7</button>
+            </div>
+          </div>
+
+          <!-- 5. 착수음 선택기 (1~4) -->
+          <div class="side-setting-row" title="착수 효과음 선택">
+            <span class="side-setting-label">착수음</span>
+            <div class="segmented-control side-segmented" id="soundTypeControl">
+              <button type="button" class="sound-type-btn active" data-sound="classic" title="1. 명품 바둑돌">1</button>
+              <button type="button" class="sound-type-btn" data-sound="deep" title="2. 묵직한 통나무">2</button>
+              <button type="button" class="sound-type-btn" data-sound="crisp" title="3. 경쾌한 딱!">3</button>
+              <button type="button" class="sound-type-btn" data-sound="pop" title="4. 귀여운 퐁퐁">4</button>
+            </div>
+          </div>
+
+          <!-- 6. 음량 조절 및 음소거 -->
+          <div class="side-setting-row side-volume-row" title="음량 조절 및 음소거">
+            <span class="side-setting-label">음량</span>
+            <div class="volume-slider-box" title="음량 조절">
+              <span class="vol-icon">🔊</span>
+              <input type="range" id="volumeSlider" min="0" max="150" value="100" class="vol-range">
+            </div>
+            <button type="button" id="btnSound" class="sound-mute-btn" title="소리 켜기/끄기">
+              <span id="soundIcon">🔊</span>
+            </button>
+          </div>
+        </div>
+      </aside>
+
+
+      <!-- 🌟 실시간 1:1 대국실 전용 패널 (온라인 대국 시 활성화) 🌟 -->
+      <aside class="story-panel online-match-panel" id="onlineMatchPanel" style="display: none;">
+        <!-- 대국실 메타 정보 -->
+        <div class="card match-info-card">
+          <div class="match-badge">🌐 실시간 1:1 대국실</div>
+          <h2 class="match-room-title" id="matchRoomTitle">방 번호: 123456</h2>
+          <div class="match-meta-info">
+            <span id="matchBoardSizeBadge" class="meta-pill">19줄 바둑판</span>
+            <span class="meta-pill">덤 6.5집</span>
+            <span id="matchNigiriBadge" class="meta-pill">돌 가리기</span>
+            <span id="matchTimeBadge" class="meta-pill">⏱️ 무제한</span>
+          </div>
+        </div>
+
+        <!-- 흑 vs 백 대국자 현황 -->
+        <div class="card player-vs-card">
+          <!-- 흑돌 플레이어 -->
+          <div class="player-box" id="playerBlackBox">
+            <div class="player-avatar-wrap">
+              <button type="button" class="player-avatar-btn" id="avatarBtnBlack" title="흑돌 캐릭터 변경">
+                <span class="avatar-icon" id="avatarIconBlack">👦</span>
+                <span class="avatar-role-label">흑돌</span>
+                <span class="avatar-edit-icon" id="avatarEditBlack">✏️</span>
+              </button>
+              <!-- 말풍선 (퀵채팅 시 팝업) -->
+              <div class="speech-bubble" id="speechBubbleBlack"></div>
+            </div>
+            <div class="player-details">
+              <div class="player-name-row">
+                <strong class="player-name" id="avatarNameBlack">흑돌 요정</strong>
+                <span class="player-role-badge" id="badgeBlackRole">나</span>
+              </div>
+              <div class="player-clock-row" id="clockRowBlack" style="display: none;">
+                <span class="clock-display" id="clockTimeBlack">10:00</span>
+                <span class="byoyomi-display" id="byoyomiBlack">30초 3회</span>
+              </div>
+              <div class="capture-row">
+                <span class="player-capture-txt">따낸 백돌: <b id="blackCaptureCount">0</b>개</span>
+                <div class="stone-tray" id="blackStoneTray" title="따낸 백돌 사석함"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="vs-divider">VS</div>
+
+          <!-- 백돌 플레이어 -->
+          <div class="player-box" id="playerWhiteBox">
+            <div class="player-avatar-wrap">
+              <button type="button" class="player-avatar-btn" id="avatarBtnWhite" title="백돌 캐릭터 변경">
+                <span class="avatar-icon" id="avatarIconWhite">👧</span>
+                <span class="avatar-role-label">백돌</span>
+                <span class="avatar-edit-icon" id="avatarEditWhite">✏️</span>
+              </button>
+              <!-- 말풍선 (퀵채팅 시 팝업) -->
+              <div class="speech-bubble" id="speechBubbleWhite"></div>
+            </div>
+            <div class="player-details">
+              <div class="player-name-row">
+                <strong class="player-name" id="avatarNameWhite">백돌 천사</strong>
+                <span class="player-role-badge" id="badgeWhiteRole">상대방</span>
+              </div>
+              <div class="player-clock-row" id="clockRowWhite" style="display: none;">
+                <span class="clock-display" id="clockTimeWhite">10:00</span>
+                <span class="byoyomi-display" id="byoyomiWhite">30초 3회</span>
+              </div>
+              <div class="capture-row">
+                <span class="player-capture-txt">따낸 흑돌: <b id="whiteCaptureCount">0</b>개</span>
+                <div class="stone-tray" id="whiteStoneTray" title="따낸 흑돌 사석함"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 턴 안내 & 수순 -->
+        <div class="card turn-status-card">
+          <div class="current-turn-box" id="matchCurrentTurnBox">
+            <span class="turn-pulse-dot" id="matchTurnDot"></span>
+            <span class="turn-desc-txt" id="matchTurnText">내 차례입니다! 착수하세요.</span>
+          </div>
+          <div class="match-timer-box">
+            <span class="timer-label">총 진행 수순:</span>
+            <strong class="timer-value" id="matchStepCounter">0수</strong>
+          </div>
+        </div>
+
+        <!-- 💬 매너 퀵 대화 (욕설/비매너 차단 원클릭 소통) -->
+        <div class="card quick-chat-card">
+          <div class="quick-chat-header">
+            <span>💬 매너 퀵 대화</span>
+            <span class="quick-chat-badge">안심 소통</span>
+          </div>
+          <div class="quick-chat-tabs">
+            <button type="button" class="chat-tab-btn active" data-tab="greeting">🤝 인사</button>
+            <button type="button" class="chat-tab-btn" data-tab="praise">👏 칭찬</button>
+            <button type="button" class="chat-tab-btn" data-tab="think">⏳ 양해</button>
+            <button type="button" class="chat-tab-btn" data-tab="ending">🙇 종료</button>
+            <button type="button" class="chat-tab-btn" data-tab="emoticon">😊 이모티콘</button>
+          </div>
+          <div class="quick-chat-phrases" id="quickChatPhrases">
+            <!-- JS에서 탭별로 자동 렌더링 -->
+          </div>
+        </div>
+
+        <!-- 대국 조작 버튼 (기권 / 무르기 / 나가기) -->
+        <div class="match-action-group">
+          <button class="match-act-btn undo" id="btnMatchUndo" title="상대방에게 무르기 동의를 요청합니다">
+            ↩️ 무르기 요청
+          </button>
+          <button class="match-act-btn resign" id="btnMatchResign" title="현재 대국을 기권(불계패)합니다">
+            🏳️ 기권하기
+          </button>
+          <button class="match-act-btn leave" id="btnMatchLeave" title="대국실을 나가 메인으로 돌아갑니다">
+            🚪 대국실 나가기
+          </button>
+        </div>
+      </aside>
+
+      <!-- 왼쪽: ⚪⚫ 오목 대전 전용 사이드 패널 (AI 대전 & 2인 대전) -->
+      <aside class="story-panel omok-panel" id="omokSidePanel" style="display: none;">
+        <div class="card omok-mode-card">
+          <div class="card-header-icon">🎮 오목 대전 설정</div>
+          <div class="omok-mode-options">
+            <!-- 1. AI 대전 버튼 -->
+            <button type="button" class="omok-mode-btn active" id="btnOmokModeAi" data-omok-mode="ai">
+              <strong>🤖 AI 대전 (싱글)</strong>
+              <span>인공지능과 실시간 대결</span>
+            </button>
+
+            <!-- 2. AI 대전 바로 밑으로 배치된 AI 난이도 박스 (깔끔하고 보기 좋게 정리) -->
+            <div class="omok-diff-box" id="omokDiffRow">
+              <div class="omok-diff-header">
+                <span class="omok-diff-title">⚡ AI 수읽기 난이도</span>
+              </div>
+              <div class="omok-diff-grid">
+                <button type="button" class="omok-diff-btn" data-diff="easy">초급</button>
+                <button type="button" class="omok-diff-btn" data-diff="normal">중급</button>
+                <button type="button" class="omok-diff-btn active" data-diff="hard">고급</button>
+                <button type="button" class="omok-diff-btn master" data-diff="master">👑 마스터 (최강)</button>
+              </div>
+            </div>
+
+            <!-- 3. AI 대전 시 흑/백 선택 (내 돌 선택) -->
+            <div class="omok-color-box" id="omokColorBox">
+              <span class="omok-sub-label">⚔️ 내 돌 선택 (선공/후공)</span>
+              <div class="omok-color-options">
+                <button type="button" class="omok-color-btn active" id="btnOmokColorBlack" data-color="1">
+                  ⚫ 흑돌 (선공)
+                </button>
+                <button type="button" class="omok-color-btn" id="btnOmokColorWhite" data-color="2">
+                  ⚪ 백돌 (후공)
+                </button>
+              </div>
+            </div>
+
+            <!-- 4. 2인 로컬 대전 버튼 -->
+            <button type="button" class="omok-mode-btn" id="btnOmokModePvp" data-omok-mode="pvp" style="margin-top: 4px;">
+              <strong>👥 2인 대전 (로컬)</strong>
+              <span>친구와 번갈아 착수</span>
+            </button>
+          </div>
+
+          <!-- 5. 옵션 설정 (한 수 무르기 허용 & 3·3 금수 규칙) -->
+          <div class="omok-options-card">
+            <span class="omok-sub-label">⚙️ 대국 옵션 규칙</span>
+            <label class="omok-rule-toggle" title="착수 후 한 수 무르기를 허용합니다">
+              <input type="checkbox" id="chkOmokAllowUndo" checked>
+              <span class="omok-rule-txt">↩️ 한 수 무르기 허용</span>
+            </label>
+            <label class="omok-rule-toggle" title="흑돌의 쌍삼(열린 3이 동시에 2개 이상 만들어지는 수) 착수를 금지합니다 (정식 렌주 규칙)">
+              <input type="checkbox" id="chkOmokBanDoubleThree" checked>
+              <span class="omok-rule-txt">🚫 흑돌 3·3 금수 규칙 적용</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- 현재 차례 & 진행 수순 -->
+        <div class="card omok-turn-card">
+          <div class="current-turn-box">
+            <span class="turn-pulse-dot" id="omokTurnDot"></span>
+            <span class="turn-desc-txt" id="omokTurnText">⚫ 흑돌 차례입니다</span>
+          </div>
+          <div class="match-timer-box">
+            <span class="timer-label">총 수순:</span>
+            <strong class="timer-value" id="omokStepCounter">0수</strong>
+          </div>
+        </div>
+
+        <!-- 오목 규칙 안내 -->
+        <div class="card omok-help-card">
+          <div class="card-header-icon">💡 오목 규칙</div>
+          <p style="font-size: 0.82rem; color: #475569; margin: 0; line-height: 1.45;">
+            가로, 세로, 대각선으로 돌 <strong>5개를 먼저 연속으로 잇는 사람이 승리</strong>합니다!
+          </p>
+        </div>
+
+        <!-- 하단 액션 버튼 -->
+        <div class="match-action-group">
+          <button type="button" class="match-act-btn undo" id="btnOmokUndo" title="한 수 무르기">
+            ↩️ 한 수 무르기
+          </button>
+          <button type="button" class="match-act-btn resign" id="btnOmokRestart" title="새 오목 게임 시작">
+            🔄 새로 시작
+          </button>
+        </div>
+      </aside>
+
+      <!-- 왼쪽: 🎯 알까기 배틀 전용 사이드 패널 -->
+      <aside class="story-panel omok-panel alkkagi-panel" id="alkkagiSidePanel" style="display: none;">
+        <div class="card omok-mode-card">
+          <div class="card-header-icon">🎯 알까기 대전 설정</div>
+          <div class="omok-mode-options">
+            <!-- 1. 대전 모드 선택 -->
+            <button type="button" class="omok-mode-btn active" id="btnAlkkagiModeAi" data-alkkagi-mode="ai">
+              <strong>🤖 AI 대전 (싱글)</strong>
+              <span>인공지능과 실시간 알까기 승부</span>
+            </button>
+
+            <!-- 2. AI 난이도 박스 -->
+            <div class="omok-diff-box" id="alkkagiDiffRow">
+              <div class="omok-diff-header">
+                <span class="omok-diff-title">⚡ AI 조준 난이도</span>
+              </div>
+              <div class="omok-diff-grid">
+                <button type="button" class="omok-diff-btn" data-alkkagi-diff="easy">초급</button>
+                <button type="button" class="omok-diff-btn active" data-alkkagi-diff="normal">중급</button>
+                <button type="button" class="omok-diff-btn" data-alkkagi-diff="hard">고급</button>
+                <button type="button" class="omok-diff-btn master" data-alkkagi-diff="master">👑 마스터 (최강)</button>
+              </div>
+            </div>
+
+            <!-- 3. 내 돌 선택 (선공/후공) -->
+            <div class="omok-color-box" id="alkkagiColorBox">
+              <span class="omok-sub-label">⚔️ 내 돌 선택 (선공/후공)</span>
+              <div class="omok-color-options">
+                <button type="button" class="omok-color-btn active" id="btnAlkkagiColorBlack" data-alkkagi-color="1">
+                  ⚫ 흑돌 (선공)
+                </button>
+                <button type="button" class="omok-color-btn" id="btnAlkkagiColorWhite" data-alkkagi-color="2">
+                  ⚪ 백돌 (후공)
+                </button>
+              </div>
+            </div>
+
+            <!-- 4. 2인 로컬 대전 버튼 -->
+            <button type="button" class="omok-mode-btn" id="btnAlkkagiModePvp" data-alkkagi-mode="pvp" style="margin-top: 4px;">
+              <strong>👥 2인 대전 (로컬)</strong>
+              <span>친구와 번갈아 튕기기</span>
+            </button>
+          </div>
+
+          <!-- 5. 진형 배치 선택 -->
+          <div class="omok-options-card">
+            <span class="omok-sub-label">📐 알까기 진형 배치</span>
+            <div class="omok-diff-grid" style="grid-template-columns: repeat(3, 1fr); margin-top: 4px;">
+              <button type="button" class="omok-diff-btn active" data-formation="line5">5대5 일자</button>
+              <button type="button" class="omok-diff-btn" data-formation="vshape">V자 돌격</button>
+              <button type="button" class="omok-diff-btn" data-formation="line7">7대7 대전</button>
+              <button type="button" class="omok-diff-btn custom-placement-btn" data-formation="custom" style="grid-column: span 3; font-weight: 800; background: #eff6ff; color: #1d4ed8; border: 1.5px solid #60a5fa; margin-top: 4px; padding: 7px 4px;">🎨 2인 자유 배치 (원하는 위치/개수 직접 놓기)</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 🎨 2인 자유 작전 돌 배치 컨트롤 카드 -->
+        <div class="card alkkagi-custom-box" id="alkkagiCustomBox" style="display: none;">
+          <div class="card-header-icon" style="color: #1d4ed8; font-size: 0.95rem; font-weight: 800; margin-bottom: 4px;">🎨 2인 작전 돌 배치 중</div>
+          <p style="font-size: 0.76rem; color: #475569; margin: 0 0 8px 0; line-height: 1.4;">
+            바둑판을 <strong>터치하여 돌을 놓고</strong>, <strong>드래그</strong>하여 원하는 작전 위치로 이동하세요!
+          </p>
+
+          <!-- 도구 선택 (흑돌, 백돌, 지우개) -->
+          <div class="custom-tool-grid">
+            <button type="button" class="custom-tool-btn active" id="btnCustomToolBlack" data-tool="black">
+              ⚫ 흑돌 놓기
+            </button>
+            <button type="button" class="custom-tool-btn" id="btnCustomToolWhite" data-tool="white">
+              ⚪ 백돌 놓기
+            </button>
+            <button type="button" class="custom-tool-btn erase" id="btnCustomToolErase" data-tool="erase">
+              🗑️ 지우개
+            </button>
+          </div>
+
+          <!-- 현재 배치된 돌 개수 -->
+          <div style="display: flex; justify-content: space-around; align-items: center; background: #ffffff; padding: 6px 10px; border-radius: 8px; border: 1px solid #bfdbfe; font-size: 0.8rem; font-weight: 800; margin: 8px 0;">
+            <span>⚫ 흑돌: <strong id="customBlackCount" style="color: #2563eb;">5개</strong></span>
+            <span>⚪ 백돌: <strong id="customWhiteCount" style="color: #d97706;">5개</strong></span>
+          </div>
+
+          <!-- 빠른 세팅 & 초기화 -->
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 4px; margin-bottom: 10px;">
+            <span style="font-size: 0.72rem; color: #64748b; font-weight: 700; white-space: nowrap;">빠른 세팅:</span>
+            <button type="button" class="custom-preset-btn" data-preset="3">3 vs 3</button>
+            <button type="button" class="custom-preset-btn" data-preset="5">5 vs 5</button>
+            <button type="button" class="custom-preset-btn" data-preset="7">7 vs 7</button>
+            <button type="button" class="custom-preset-btn clear" id="btnCustomClearAll">🧹 비우기</button>
+          </div>
+
+          <!-- 경기 시작 버튼 -->
+          <button type="button" class="custom-start-match-btn" id="btnAlkkagiStartCustomMatch" style="width: 100%; padding: 10px 0; background: linear-gradient(135deg, #10b981, #059669); color: white; border: none; border-radius: 8px; font-size: 0.92rem; font-weight: 900; cursor: pointer; box-shadow: 0 4px 10px rgba(16, 185, 129, 0.35); transition: all 0.15s ease;">
+            🚀 이 작전 배치로 경기 시작!
+          </button>
+        </div>
+
+        <!-- 남은 돌 수 & 차례 표시 -->
+        <div class="card omok-turn-card">
+          <div class="current-turn-box">
+            <span class="turn-pulse-dot" id="alkkagiTurnDot"></span>
+            <span class="turn-desc-txt" id="alkkagiTurnText">⚫ 흑돌 차례입니다</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 6px; font-size: 0.82rem; font-weight: 800;">
+            <span>⚫ 흑돌: <strong id="alkkagiBlackCount" style="color: #2563eb;">5개</strong></span>
+            <span>⚪ 백돌: <strong id="alkkagiWhiteCount" style="color: #d97706;">5개</strong></span>
+            <span>턴: <strong id="alkkagiTurnCounter" style="color: #475569;">1턴</strong></span>
+          </div>
+        </div>
+
+        <!-- 게임 가이드 안내 -->
+        <div class="card omok-help-card">
+          <div class="card-header-icon">💡 알까기 조작법</div>
+          <p style="font-size: 0.8rem; color: #475569; margin: 0; line-height: 1.45;">
+            내 돌을 <strong>뒤로 당겼다 놓으면</strong> 반대 방향으로 시원하게 날아갑니다! 상대 돌을 바둑판 밖으로 모두 떨어뜨려 승리하세요!
+          </p>
+        </div>
+
+        <!-- 하단 액션 버튼 -->
+        <div class="match-action-group" style="display: flex; gap: 6px;">
+          <button type="button" class="match-act-btn resign" id="btnAlkkagiRestart" style="flex: 1;" title="새 알까기 경기 시작">
+            🔄 새로 시작
+          </button>
+          <button type="button" class="match-act-btn" id="btnAlkkagiEditPlacement" style="flex: 1; display: none; background: #fef3c7; color: #92400e; border: 1.5px solid #f59e0b;" title="돌 위치 및 개수 다시 수정하기">
+            🎨 배치 다시 수정
+          </button>
+        </div>
+      </aside>
+
+      <!-- 중앙: 바둑판 영역 -->
+      <section class="board-section">
+        <div class="board-status">
+          <div class="status-left">
+            <span class="status-turn" id="turnIndicator">흑돌 차례</span>
+            <span class="step-indicator" id="stepIndicator">0수</span>
+          </div>
+          <div class="status-right">
+            <span class="captured-score">사석: 흑 <b id="blackCaptures">0</b> / 백 <b id="whiteCaptures">0</b></span>
+          </div>
+        </div>
+
+        <!-- 바둑판 -->
+        <div class="board-wrapper" id="boardWrapper">
+          <canvas id="badukCanvas" width="600" height="600"></canvas>
+
+          <!-- 🌟 정답/오답 바둑판 정중앙 단일 팝업 피드백 배지 (순수 자체 디자인) 🌟 -->
+          <div class="board-feedback-overlay" id="boardFeedbackOverlay">
+            <div class="feedback-badge-card" id="feedbackBadgeCard">
+              <div id="feedbackCardContent" class="feedback-dynamic-card"></div>
+            </div>
+          </div>
+
+          <!-- 🌟 바둑판 내부 세련된 3D 알림 팝업 (착수 금지 등) 🌟 -->
+          <div class="board-toast-notice" id="boardToastNotice">
+            <span class="board-toast-icon" id="boardToastIcon">🚫</span>
+            <span class="board-toast-msg" id="boardToastMsg">그곳은 '착수금지'입니다</span>
+          </div>
+        </div>
+
+        <!-- 🌟 강의·놓아보기 전용 컨트롤 툴바 (하단 긴 메뉴 박스) 🌟 -->
+        <div class="lecture-toolbar compact-single-row" id="lectureToolbar">
+          <div class="toolbar-left-cluster">
+            <!-- 1. 착수 모드 (기호만): 교차(⚫⚪) / 흑만(⚫) / 백만(⚪) -->
+            <div class="placement-mode-group">
+              <button class="tool-btn icon-only active" data-place-mode="alternate" id="modeAlternate" title="교차 착수 (흑백 번갈아 두기)">
+                <span class="icon-stones-duo"><i class="st-dot black"></i><i class="st-dot white"></i></span>
+              </button>
+              <button class="tool-btn icon-only" data-place-mode="blackOnly" id="modeBlackOnly" title="흑만 착수 (흑돌 연속 두기)">
+                <span class="st-dot black lg"></span>
+              </button>
+              <button class="tool-btn icon-only" data-place-mode="whiteOnly" id="modeWhiteOnly" title="백만 착수 (백돌 연속 두기)">
+                <span class="st-dot white lg"></span>
+              </button>
+            </div>
+
+            <!-- 구분선 -->
+            <div class="toolbar-divider"></div>
+
+            <!-- 2. 수순 네비게이션: 처음 | 뒤로 | 앞으로 | 끝으로 | 판 지우기 (흰돌 바로 옆으로 배치) -->
+            <div class="nav-control-group">
+              <button class="nav-btn icon-only" id="btnNavFirst" title="처음으로 (Shift+←)">
+                <svg viewBox="0 0 24 24" class="nav-svg-icon"><path d="M6 6h3v12H6z M19 6L10.5 12 19 18z"/></svg>
+              </button>
+              <button class="nav-btn icon-only" id="btnNavPrev" title="한 수 뒤로 (← 키)">
+                <svg viewBox="0 0 24 24" class="nav-svg-icon"><path d="M17 6L7 12l10 6z"/></svg>
+              </button>
+              <button class="nav-btn icon-only" id="btnNavNext" title="한 수 앞으로 (→ 키)">
+                <svg viewBox="0 0 24 24" class="nav-svg-icon"><path d="M7 6l10 6-10 6z"/></svg>
+              </button>
+              <button class="nav-btn icon-only" id="btnNavLast" title="끝으로 (Shift+→)">
+                <svg viewBox="0 0 24 24" class="nav-svg-icon"><path d="M5 6l8.5 6L5 18z M15 6h3v12h-3z"/></svg>
+              </button>
+              <button class="nav-btn danger clear-btn" id="btnClearBoard" title="판 지우기 (판 전체 비우기)">
+                <svg viewBox="0 0 24 24" class="clear-svg-icon"><path d="M16 9v10H8V9h8m-1.5-6h-5l-1 1H5v2h14V4h-3.5l-1-1zM18 7H6v12c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7z"/></svg>
+                <span class="clear-text">판 지우기</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 🌟 O/X 및 객관식 선택형 문제 전용 응답 버튼군 (하단 메뉴 박스 정가운데 배치) 🌟 -->
+          <div class="toolbar-choice-cluster" id="choiceOptionsBar" style="display: none;">
+            <!-- JS에서 O / X 버튼이 동적으로 생성됩니다 -->
+          </div>
+
+          <!-- 🌟 오른쪽 보조 표시 로테이션 토글 버튼군 🌟 -->
+          <div class="toolbar-right-cluster">
+            <div class="toolbar-divider"></div>
+            <button id="btnToggleLiberty" class="tb-toggle-btn" title="활로(숨구멍) 표시 순환: 끄기 ➔ ⚫⚪전부 ➔ ⚫흑만 ➔ ⚪백만">
+              <span class="tb-btn-label">활로</span>
+              <span class="tb-btn-sub" id="libertyStatusSub">끄기</span>
+            </button>
+            <button id="btnToggleAtari" class="tb-toggle-btn" title="단수 링 표시 전환 (ON/OFF)">
+              <span class="tb-btn-label">단수</span>
+            </button>
+            <button id="btnToggleSweat" class="tb-toggle-btn icon-only-toggle" title="단수 땀방울 표시 전환 (ON/OFF)">
+              <span class="tb-btn-icon">💦</span>
+            </button>
+            <button id="btnToggleNumbers" class="tb-toggle-btn" title="수순 번호 표시 전환 (ON/OFF)">
+              <span class="tb-btn-label">수순</span>
+            </button>
+            <button id="btnCoordMode" class="tb-toggle-btn active" title="좌표 모드 순환: 좌·상 ➔ 우·하 ➔ 전체 ➔ 숨김">
+              <span class="tb-btn-label">좌표</span>
+              <span class="tb-btn-sub" id="coordStatusSub">좌·상</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 🌟 바둑판 화면 정중앙 배치를 위한 우측 대칭 투명 밸런스 스페이서 🌟 -->
+      <!-- 🧙‍♂️ 바둑판 우측: 도원 대사님 마스터 코치 모션 그래픽 존! -->
+      <aside class="master-coach-area" id="masterCoachArea">
+        <div class="master-speech-bubble" id="masterSpeechBubble">
+          <div class="speech-bubble-text" id="masterSpeechText">흑돌을 살리는 멋진 수를 찾아보렴!</div>
+        </div>
+        <div class="master-coach-frame" id="masterCoachFigure" title="도원 대사님을 클릭하면 조언을 들을 수 있어요!">
+          <img src="images/characters/char_master_head.jpg" alt="도원 대사님" class="master-avatar-img" id="masterCoachAvatarImg">
+          <div class="master-emotion-badge" id="masterEmotionBadge">✨</div>
+        </div>
+        <div class="master-coach-name" id="masterCoachName">도원 대사님</div>
+        <div class="master-coach-sub">바둑스쿨 마스터 코치</div>
+      </aside>
+    </main>
+
+    <!-- 🌟 실시간 1:1 온라인 & AI 바둑 대국실 모달 🌟 -->
+    <div class="modal-overlay" id="onlineModal">
+      <div class="modal-box online-modal-box" style="max-width: 520px;">
+        <div class="modal-badge" id="modalMainBadge">🌐 JH 바둑 대국실</div>
+        
+        <!-- 상단 2대 모드 탭 -->
+        <div class="match-mode-tabs">
+          <button type="button" class="match-mode-tab-btn active" id="tabBtnAiMatch" onclick="window.switchMatchModalTab('ai')">
+            🤖 어린이 AI 바둑 대국
+          </button>
+          <button type="button" class="match-mode-tab-btn" id="tabBtnP2pMatch" onclick="window.switchMatchModalTab('p2p')">
+            🌐 친구와 1:1 대국
+          </button>
+        </div>
+
+        <!-- 1. AI 바둑 대국 탭 영역 -->
+        <div id="paneAiMatch" class="match-tab-pane active">
+          <h2 class="modal-title" style="margin-top: 4px;">어린이 AI 바둑 대전</h2>
+          <p class="modal-desc" style="margin-top: 4px; margin-bottom: 14px;">
+            100% 브라우저 인공지능(GNU Go) 탑재! 내 급수에 맞는 동물 친구와 렉 없이 대국해보세요.
+          </p>
+
+          <!-- AI 상대 (6단계 급수) 선택 카드 그리드 -->
+          <div class="stone-pick-group">
+            <span class="stone-pick-label">🐾 대국 상대 (난이도 급수) 선택</span>
+            <div class="ai-levels-grid" id="aiLevelsGrid">
+              <button type="button" class="ai-level-btn" data-level="1">
+                <span class="ai-avatar">🐣</span>
+                <div class="ai-info">
+                  <span class="ai-name">삐약이</span>
+                  <span class="ai-rank">25~30급 (샛별부)</span>
+                </div>
+              </button>
+              <button type="button" class="ai-level-btn" data-level="2">
+                <span class="ai-avatar">🐰</span>
+                <div class="ai-info">
+                  <span class="ai-name">토끼</span>
+                  <span class="ai-rank">20~24급 (꿈나무부)</span>
+                </div>
+              </button>
+              <button type="button" class="ai-level-btn active" data-level="3">
+                <span class="ai-avatar">🦊</span>
+                <div class="ai-info">
+                  <span class="ai-name">여우</span>
+                  <span class="ai-rank">15~19급 (기초반)</span>
+                </div>
+              </button>
+              <button type="button" class="ai-level-btn" data-level="4">
+                <span class="ai-avatar">🐼</span>
+                <div class="ai-info">
+                  <span class="ai-name">판다</span>
+                  <span class="ai-rank">12~14급 (초급반)</span>
+                </div>
+              </button>
+              <button type="button" class="ai-level-btn" data-level="5">
+                <span class="ai-avatar">🐯</span>
+                <div class="ai-info">
+                  <span class="ai-name">호랑이</span>
+                  <span class="ai-rank">10~11급 (중급반)</span>
+                </div>
+              </button>
+              <button type="button" class="ai-level-btn" data-level="6">
+                <span class="ai-avatar">🦁</span>
+                <div class="ai-info">
+                  <span class="ai-name">사자</span>
+                  <span class="ai-rank">8~10급 (도장 마스터)</span>
+                </div>
+              </button>
+            </div>
+          </div>
+
+          <!-- 바둑판 크기 선택 (9줄 / 13줄 / 19줄) -->
+          <div class="stone-pick-group" style="margin-top: 12px;">
+            <span class="stone-pick-label">📐 바둑판 규격</span>
+            <div class="board-size-options" id="aiBoardSizeOptions">
+              <button type="button" class="board-size-btn" data-size="9">⚡ 9줄 (입문판)</button>
+              <button type="button" class="board-size-btn" data-size="13">⚔️ 13줄 (실전판)</button>
+              <button type="button" class="board-size-btn active" data-size="19">🏆 19줄 (표준판)</button>
+            </div>
+          </div>
+
+          <!-- 대국 돌 배정 -->
+          <div class="stone-pick-group" style="margin-top: 12px;">
+            <span class="stone-pick-label">⚔️ 대국 돌 배정</span>
+            <div class="stone-pick-options" id="aiColorOptions">
+              <button type="button" class="stone-pick-btn active" data-color="black" id="btnAiColorBlack">
+                ⚫ 내가 흑돌 (선공)
+              </button>
+              <button type="button" class="stone-pick-btn" data-color="white" id="btnAiColorWhite">
+                ⚪ 내가 백돌 (덤 6.5집)
+              </button>
+              <button type="button" class="stone-pick-btn" data-color="nigiri" id="btnAiColorNigiri">
+                🎲 돌 가리기
+              </button>
+            </div>
+          </div>
+
+          <!-- 접바둑 점수 선택 (흑돌일 때 활성화) -->
+          <div class="stone-pick-group" id="aiHandicapGroup" style="margin-top: 12px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+              <span class="stone-pick-label" style="margin-bottom: 0;">🎯 접바둑 치수 (흑돌 화점 바둑)</span>
+              <span style="font-size: 0.8rem; color: #2563eb; font-weight: 700;">입문자는 4~9점 추천!</span>
+            </div>
+            <select id="aiHandicapSelect" class="handicap-select">
+              <option value="0">호선 (맞바둑 - 덤 6.5집)</option>
+              <option value="2">2점 접바둑 (덤 0.5집)</option>
+              <option value="3">3점 접바둑 (덤 0.5집)</option>
+              <option value="4" selected>4점 접바둑 (화점 4곳 - 덤 0.5집) ★추천</option>
+              <option value="5">5점 접바둑 (화점 4곳 + 천원)</option>
+              <option value="6">6점 접바둑 (화점 6곳)</option>
+              <option value="7">7점 접바둑 (화점 6곳 + 천원)</option>
+              <option value="8">8점 접바둑 (화점 8곳)</option>
+              <option value="9">9점 접바둑 (화점 8곳 + 천원) ★입문 추천</option>
+            </select>
+          </div>
+
+          <!-- 시작 버튼 -->
+          <button id="btnStartAiMatch" class="modal-btn primary full-width" style="margin-top: 16px; font-size: 1.05rem; padding: 12px;">
+            🚀 AI 바둑 대국 시작하기!
+          </button>
+
+          <div class="ai-engine-notice">
+            <span>🛡️ <b>100% 브라우저(클라이언트) 구동</b>: 서버 과부하 없이 수천 명이 동시에 대국해도 렉 없이 즉각 응수합니다.</span>
+          </div>
+        </div>
+
+        <!-- 2. 친구와 1:1 온라인 대국 탭 영역 -->
+        <div id="paneP2pMatch" class="match-tab-pane" style="display: none;">
+          <h2 class="modal-title" style="margin-top: 4px;">친구와 1:1 온라인 대국</h2>
+          <p class="modal-desc" style="margin-top: 4px; margin-bottom: 14px;">
+            새로운 대국 방을 만들고 친구에게 링크나 방 번호를 공유해 실시간 대국을 즐기세요.
+          </p>
+
+          <!-- 친구와 1:1 온라인 대국 섹션 -->
+          <div class="online-section" id="sectionCreateRoom">
+            <div class="stone-pick-group">
+              <span class="stone-pick-label">⚔️ 대국 돌 배정 방식</span>
+              <div class="stone-pick-options">
+                <button type="button" class="stone-pick-btn active" data-color="nigiri" id="btnPickNigiri" title="대국 시작 시 50% 확률로 흑/백 자동 돌 가리기">
+                  🎲 돌 가리기
+                </button>
+                <button type="button" class="stone-pick-btn" data-color="black" id="btnPickBlack" title="방장이 흑돌(선공), 상대방이 백돌">
+                  ⚫ 내가 흑돌
+                </button>
+                <button type="button" class="stone-pick-btn" data-color="white" id="btnPickWhite" title="방장이 백돌(후공), 상대방이 흑돌">
+                  ⚪ 내가 백돌
+                </button>
+              </div>
+            </div>
+
+            <div class="stone-pick-group" style="margin-top: 14px;">
+              <span class="stone-pick-label">⏱️ 대국 시간 규칙</span>
+              <div class="stone-pick-options time-pick-options">
+                <button type="button" class="time-pick-btn active" data-time="none" id="btnTimeNone" title="제한시간 없이 여유롭게 대국">
+                  ⏱️ 무제한
+                </button>
+                <button type="button" class="time-pick-btn" data-time="5m" id="btnTime5m" title="각자 5분 + 30초 1회 초읽기">
+                  ⚡ 5분 (30초 1회)
+                </button>
+                <button type="button" class="time-pick-btn" data-time="10m" id="btnTime10m" title="각자 10분 + 30초 3회 초읽기">
+                  ⏳ 10분 (30초 3회)
+                </button>
+                <button type="button" class="time-pick-btn" data-time="15m" id="btnTime15m" title="각자 15분 + 40초 3회 초읽기">
+                  🏆 15분 (40초 3회)
+                </button>
+              </div>
+            </div>
+
+            <button id="btnActionCreate" class="modal-btn primary full-width" style="margin-top: 16px;" onclick="if(window.badukOnline){ window.badukOnline.createRoom(); }">
+              🏠 새로운 대국 방 만들기
+            </button>
+          </div>
+
+          <!-- 방 생성 완료 시 링크 공유 영역 -->
+          <div class="online-section created-box" id="sectionShareLink" style="display: none;">
+            <div class="share-info">
+              <span class="room-code-badge" id="displayRoomCode" style="font-size: 1.15rem; padding: 8px 16px;">방 번호: 123456</span>
+              <p class="share-guide">아래 링크를 복사해 친구에게 전달하세요:</p>
+              <div class="link-copy-box">
+                <input type="text" id="shareLinkInput" readonly class="share-input">
+                <button id="btnCopyLink" class="copy-btn">📋 링크 복사</button>
+              </div>
+              <div class="waiting-indicator">
+                <span class="pulse-dot"></span>
+                <span>상대방의 입장을 기다리는 중입니다...</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="divider-text">또는</div>
+
+          <!-- 방 참여하기 영역 -->
+          <div class="online-section" id="sectionJoinRoom">
+            <div class="join-input-group">
+              <input type="text" id="joinCodeInput" placeholder="방 번호 6자리 입력 (예: 123456)" class="join-input">
+              <button id="btnActionJoin" class="modal-btn secondary" onclick="const c=document.getElementById('joinCodeInput').value.trim(); if(window.badukOnline){ window.badukOnline.joinRoom(c); }">🚀 대국실 입장하기</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-actions" style="margin-top: 20px;">
+          <button id="btnCloseOnlineModal" class="modal-btn secondary full-width" onclick="document.getElementById('onlineModal').classList.remove('show')">닫기</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 🌟 실시간 1:1 대국 결과 모달 🌟 -->
+    <div class="modal-overlay" id="matchResultModal">
+      <div class="modal-box match-result-box">
+        <div class="modal-badge" id="resultModalBadge">🏆 대국 종료</div>
+        <div class="scroll-icon" id="resultModalIcon">🎉</div>
+        <h2 class="modal-title" id="resultModalTitle">흑돌 불계승!</h2>
+        <p class="modal-desc" id="resultModalDesc">백돌이 기권하여 흑돌이 승리하였습니다.</p>
+        
+        <div class="modal-actions" style="margin-top: 20px;">
+          <button id="btnReviewGame" class="modal-btn primary">🔍 대국 복기하기 (수순 탐색)</button>
+          <button id="btnExitMatch" class="modal-btn secondary">🚪 대국실 나가기</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 🌟 무르기 동의 요청 모달 🌟 -->
+    <div class="modal-overlay" id="undoRequestModal">
+      <div class="modal-box" style="max-width: 380px;">
+        <div class="modal-badge">↩️ 무르기 요청</div>
+        <div class="scroll-icon" style="font-size: 2.2rem; margin-bottom: 8px;">🤝</div>
+        <h2 class="modal-title" style="font-size: 1.25rem; margin-bottom: 10px;">한 수 무르기 동의</h2>
+        <p class="modal-desc" id="undoRequestDesc" style="color: #cbd5e1; font-size: 0.92rem; line-height: 1.5; margin-bottom: 18px;">
+          상대방이 직전 착수의 <strong>무르기를 요청</strong>했습니다.<br>동의하시겠습니까?
+        </p>
+        
+        <div class="modal-actions" style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+          <button id="btnAcceptUndo" class="modal-btn primary" style="padding: 10px;" onclick="if(window.badukOnline){ window.badukOnline.acceptUndo(); }">✅ 수락</button>
+          <button id="btnRejectUndo" class="modal-btn secondary" style="padding: 10px;" onclick="if(window.badukOnline){ window.badukOnline.rejectUndo(); }">❌ 거절</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 🌟 대국자 캐릭터 아바타 선택 모달 🌟 -->
+    <div class="modal-overlay" id="avatarSelectModal">
+      <div class="modal-box avatar-modal-box" style="max-width: 480px;">
+        <div class="modal-badge">🎭 캐릭터 선택</div>
+        <h2 class="modal-title" style="margin-bottom: 6px; font-size: 1.35rem;">나의 바둑 캐릭터 선택</h2>
+        <p class="modal-desc" style="margin-bottom: 18px; font-size: 0.9rem; color: #cbd5e1;">대국실에서 나를 대표할 귀엽고 멋진 바둑 캐릭터를 선택하세요!</p>
+        
+        <div class="avatar-grid" id="avatarGrid">
+          <!-- 8종 캐릭터 카드 -->
+          <div class="avatar-card active" data-avatar-id="fairy_black">
+            <span class="avatar-card-icon">👦</span>
+            <strong class="avatar-card-name">흑돌 요정</strong>
+            <span class="avatar-card-desc">흑돌의 수호자</span>
+          </div>
+          <div class="avatar-card" data-avatar-id="fairy_white">
+            <span class="avatar-card-icon">👧</span>
+            <strong class="avatar-card-name">백돌 천사</strong>
+            <span class="avatar-card-desc">백옥의 수호자</span>
+          </div>
+          <div class="avatar-card" data-avatar-id="tiger">
+            <span class="avatar-card-icon">🐯</span>
+            <strong class="avatar-card-name">호랑이 관장</strong>
+            <span class="avatar-card-desc">용맹한 수읽기</span>
+          </div>
+          <div class="avatar-card" data-avatar-id="owl">
+            <span class="avatar-card-icon">🦉</span>
+            <strong class="avatar-card-name">지혜 부엉이</strong>
+            <span class="avatar-card-desc">침착한 사활 박사</span>
+          </div>
+          <div class="avatar-card" data-avatar-id="cat">
+            <span class="avatar-card-icon">🐱</span>
+            <strong class="avatar-card-name">총명 냐옹이</strong>
+            <span class="avatar-card-desc">발빠른 집짓기</span>
+          </div>
+          <div class="avatar-card" data-avatar-id="pup">
+            <span class="avatar-card-icon">🐶</span>
+            <strong class="avatar-card-name">충직 바둑이</strong>
+            <span class="avatar-card-desc">끈기의 수비왕</span>
+          </div>
+          <div class="avatar-card" data-avatar-id="knight">
+            <span class="avatar-card-icon">👑</span>
+            <strong class="avatar-card-name">꼬마 기사단</strong>
+            <span class="avatar-card-desc">정정당당 소년기사</span>
+          </div>
+          <div class="avatar-card" data-avatar-id="grandmaster">
+            <span class="avatar-card-icon">🥋</span>
+            <strong class="avatar-card-name">백발 사범님</strong>
+            <span class="avatar-card-desc">전설의 9단 고수</span>
+          </div>
+        </div>
+
+        <div class="modal-actions" style="margin-top: 20px;">
+          <button id="btnCloseAvatarModal" class="modal-btn secondary full-width" onclick="document.getElementById('avatarSelectModal').classList.remove('show')">닫기</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 인문학 지혜 완료 모달 -->
+    <div class="modal-overlay" id="wisdomModal">
+      <div class="modal-box">
+        <div class="modal-badge">🎉 1단원 마스터 완료!</div>
+        <div class="scroll-icon">📜</div>
+        <h2 class="modal-title">오늘의 인문학 지혜</h2>
+        
+        <div class="hanja-box">
+          <span class="hanja-char">活</span>
+          <div class="hanja-info">
+            <strong class="hanja-sound">살 활 (活)</strong>
+            <p class="hanja-meaning">물(氵)이 흐르듯 숨길이 트여 살아 움직이다</p>
+          </div>
+        </div>
+
+        <blockquote class="wisdom-saying">
+          "바둑의 활로(活路)는 나만 사는 길이 아니라, 상대와 어우러지는 호흡입니다. 
+          상대를 숨 막히게 조이면 결국 내 숨구멍도 좁아진다는 공존의 지혜를 기억하세요."
+        </blockquote>
+        <span class="wisdom-source">- 천원(天元) 마스터의 가르침 -</span>
+
+        <div class="modal-actions">
+          <button id="modalBtnRestart" class="modal-btn secondary">다시 복습하기</button>
+          <button id="modalBtnNextChapter" class="modal-btn primary">2단원 (돌 따내기) 도전!</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 📚 교재별 학습반 3단계 선택 모달 (STEP 1: 시리즈 -> STEP 2: 교재 -> STEP 3: 목차) -->
+    <div class="modal-overlay book-select-overlay" id="bookSelectModal">
+      <div class="book-select-container">
+        <!-- 상단 헤더 -->
+        <div class="book-select-header">
+          <div class="bs-title-wrap">
+            <span class="bs-logo-icon">📖</span>
+            <h2 class="bs-main-title">JH 바둑스쿨 라이브러리</h2>
+            <span class="bs-total-pill">10단계 아카데미 · 15대 기법 · 교재 전권</span>
+          </div>
+          <div class="bs-header-right">
+            <!-- 🎲 문제 변형 옵션 (회전/대칭) -->
+            <div class="mutation-control" title="문제의 위치와 방향을 바꿔 새로운 문제로 변형합니다">
+              <span class="mutation-label">🎲 문제 변형:</span>
+              <select id="bookMutationSelect" class="mutation-select">
+                <option value="none">원래 교재 그대로 (기본)</option>
+                <option value="random">⚡ 무작위 변형 (회전/반전 매번 변경)</option>
+                <option value="rot90">🔄 시계방향 90도 회전</option>
+                <option value="rot180">🔄 180도 회전 (대각선 반대)</option>
+                <option value="rot270">🔄 270도 회전</option>
+                <option value="flipH">↔️ 좌우 반전 (거울 대칭)</option>
+                <option value="flipV">↕️ 상하 반전</option>
+              </select>
+            </div>
+            <button type="button" id="btnBookModalClose" class="bs-close-btn" title="닫기">✖</button>
+          </div>
+        </div>
+
+        <!-- 3단계 셀렉터 보드 -->
+        <div class="book-step-columns">
+          <!-- STEP 1: 학습(시리즈) 선택 -->
+          <div class="step-column col-step1">
+            <div class="step-header">
+              <span class="step-tag">STEP 1</span>
+              <h3 class="step-title">학습 선택</h3>
+            </div>
+            <div class="step-list-wrap custom-scrollbar" id="bookStep1List">
+              <!-- JS에서 시리즈 목록 렌더링 -->
+            </div>
+          </div>
+
+          <!-- 연결 커넥터 1 -->
+          <div class="step-connector">➔</div>
+
+          <!-- STEP 2: 교재 선택 -->
+          <div class="step-column col-step2">
+            <div class="step-header">
+              <span class="step-tag">STEP 2</span>
+              <h3 class="step-title">교재 선택</h3>
+            </div>
+            <div class="step-list-wrap custom-scrollbar" id="bookStep2List">
+              <div class="empty-state-msg">학습을 선택해 주세요.</div>
+            </div>
+          </div>
+
+          <!-- 연결 커넥터 2 -->
+          <div class="step-connector">➔</div>
+
+          <!-- STEP 3: 목차(단원) 선택 -->
+          <div class="step-column col-step3">
+            <div class="step-header">
+              <span class="step-tag">STEP 3</span>
+              <h3 class="step-title">목차 선택</h3>
+            </div>
+            <div class="step-list-wrap custom-scrollbar" id="bookStep3List">
+              <div class="empty-state-msg">교재를 선택해 주세요.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 하단 액션 바 (이어하기 / 시작하기) -->
+        <div class="book-select-footer">
+          <button type="button" id="btnBookResume" class="bs-btn bs-btn-resume" title="마지막으로 학습했던 단원을 바로 이어서 풉니다">
+            <span class="btn-icon">➡️</span> 이어하기
+          </button>
+          <button type="button" id="btnBookStart" class="bs-btn bs-btn-start" disabled title="선택한 단원의 문제를 풉니다">
+            <span class="btn-icon">▶</span> 시작하기
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 🎲 돌 가리기 알림 토스트 -->
+    <div class="nigiri-toast" id="nigiriToast">
+      <span>🎲</span>
+      <span id="nigiriToastText">돌 가리기 완료!</span>
+    </div>
+    </div><!-- /#chesskidMainStage -->
+  </div><!-- /.app-container -->
+
+  <script src="audio.js?v=20261022_final_audio_v5"></script>
+  <script src="baduk_engine.js?v=20261024_fixpass_v1792768209"></script>
+  <script src="online_manager.js"></script>
+  <script src="gomoku_ai.js?v=20261023_grandmaster_v2"></script>
+  <script src="problem_adapter.js?v=20261018_0552"></script>
+  <script src="data/hwalro_dedup.js?v=20261014_0102"></script>
+  <script src="data/curated_unit_1.js?v=20261014_0118"></script>
+  <script src="data/curated_unit_2.js?v=20261014_0118"></script>
+  <script src="data/curated_unit_3.js?v=20261014_0118"></script>
+  <script src="data/curated_unit_4.js?v=20261014_0118"></script>
+  <script src="data/curated_unit_5.js?v=20261014_0118"></script>
+  <script src="data/curated_unit_6.js?v=20261014_0800"></script>
+  <script src="data/curated_unit_7.js?v=20261014_0800"></script>
+  <script src="data/curated_unit_8.js?v=20261014_0925"></script>
+  <script src="data/curated_unit_9.js?v=20261014_0925"></script>
+  <script src="data/curated_unit_10.js?v=20261014_0945"></script>
+  <script src="data/curated_unit_11.js?v=20261014_0945"></script>
+  <script src="data/curated_unit_12.js?v=20261014_1002"></script>
+  <script src="data/curated_unit_13.js?v=20261014_1002"></script>
+  <script src="data/curated_unit_14.js?v=20261014_1015"></script>
+  <script src="data/curated_unit_15.js?v=20261014_1015"></script>
+  <script src="data/curated_unit_16.js?v=20261014_1037"></script>
+  <script src="data/curated_unit_17.js?v=20261014_1037"></script>
+  <script src="data/curated_unit_18.js?v=20261014_1041"></script>
+  <script src="data/curated_unit_19.js?v=20261014_1041"></script>
+  <script src="data/curated_unit_20.js?v=20261014_1115"></script>
+  <script src="data/curated_unit_21.js?v=20261014_1115"></script>
+  <script src="catalog_data.js?v=20261022_v1792680182"></script>
+  <script src="data/books_js/book_stage1_morning_star.js?v=20261020_stage1"></script>
+  <script src="data/books_js/book_tier1_intro.js?v=20261014_1041"></script>
+  <script src="book_selector.js?v=20261022_v1792680182"></script>
+  <script src="alkkagi_engine.js?v=20261012_2025"></script>
+  <script>window.exports = window.exports || {};</script>
+  <script src="ai_engine/gnugo.js"></script>
+  <script src="ai_engine/gnugo_controller.js?v=20261024_fixpass_v1792768209"></script>
+  <script src="ai_match_manager.js?v=20261024_fixpass_v1792768209"></script>
+  <script src="game.js?v=20261024_ck_v1"></script>
+  <script src="chesskid_shell.js?v=20261024_ck_v1"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.chesskidShell) {
+        window.chesskidShell.init();
+      }
+    });
+  </script>
+</body>
+</html>

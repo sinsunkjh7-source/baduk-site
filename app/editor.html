@@ -1,0 +1,3088 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JH 바둑스쿨 | 문제 편집실 (제1단원: 돌의 활로 1)</title>
+  <link rel="stylesheet" href="style.css?v=20261013_1859">
+  <style>
+    /* ================= 편집실 전용 스타일 ================= */
+    body {
+      background: #0f172a;
+      color: #f8fafc;
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* 상단 헤더 바 */
+    .editor-header {
+      background: #1e293b;
+      border-bottom: 1px solid #334155;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      z-index: 10;
+    }
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .editor-logo {
+      font-size: 1.25rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #38bdf8, #818cf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .unit-tag {
+      background: #0284c7;
+      color: #ffffff;
+      font-size: 0.85rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 9999px;
+    }
+    .unit-selector-dropdown {
+      background: linear-gradient(135deg, #0284c7, #2563eb);
+      color: #ffffff;
+      font-size: 0.9rem;
+      font-weight: 800;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      border: 1.5px solid #38bdf8;
+      cursor: pointer;
+      outline: none;
+      box-shadow: 0 2px 8px rgba(2, 132, 199, 0.4);
+    }
+    .unit-selector-dropdown option {
+      background: #1e293b;
+      color: #f8fafc;
+      font-weight: 600;
+    }
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .btn-top {
+      background: #334155;
+      color: #f1f5f9;
+      border: 1px solid #475569;
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+    .btn-top:hover {
+      background: #475569;
+    }
+    .btn-top.primary {
+      background: linear-gradient(135deg, #0284c7, #2563eb);
+      border-color: #38bdf8;
+      color: #ffffff;
+    }
+    .btn-top.primary:hover {
+      filter: brightness(1.1);
+    }
+
+    /* 메인 3단 레이아웃 */
+    .editor-body {
+      display: grid;
+      grid-template-columns: 280px 1fr 430px;
+      flex: 1;
+      height: calc(100vh - 58px);
+      overflow: hidden;
+    }
+
+    /* 1. 좌측: 후보 문제 리스트 */
+    .panel-list {
+      background: #1e293b;
+      border-right: 1px solid #334155;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .panel-header {
+      padding: 12px 16px;
+      background: #0f172a;
+      border-bottom: 1px solid #334155;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .panel-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #e2e8f0;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .count-pill {
+      background: #0369a1;
+      color: #e0f2fe;
+      font-size: 0.75rem;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-weight: 700;
+    }
+    .candidate-scroll {
+      flex: 1;
+      overflow-y: auto;
+      padding: 8px;
+    }
+    .candidate-card {
+      background: #334155;
+      border: 2px solid transparent;
+      border-radius: 10px;
+      padding: 10px 12px;
+      margin-bottom: 8px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .candidate-card:hover {
+      background: #3b4d66;
+      border-color: #64748b;
+    }
+    .candidate-card.active {
+      background: #1e3a5f;
+      border-color: #38bdf8;
+      box-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
+    }
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .card-num {
+      font-weight: 800;
+      font-size: 0.95rem;
+      color: #38bdf8;
+    }
+    .card-badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+    .source-tag {
+      font-size: 0.7rem;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 600;
+      background: rgba(2, 132, 199, 0.3);
+      color: #bae6fd;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+    }
+    .source-tag.tag-think {
+      background: rgba(2, 132, 199, 0.25);
+      color: #7dd3fc;
+      border-color: rgba(56, 189, 248, 0.4);
+    }
+    .source-tag.tag-logic {
+      background: rgba(16, 185, 129, 0.25);
+      color: #6ee7b7;
+      border-color: rgba(52, 211, 153, 0.4);
+    }
+    .source-tag.tag-alpha {
+      background: rgba(168, 85, 247, 0.25);
+      color: #d8b4fe;
+      border-color: rgba(192, 132, 252, 0.4);
+    }
+    .source-tag.tag-power {
+      background: rgba(245, 158, 11, 0.25);
+      color: #fcd34d;
+      border-color: rgba(251, 191, 36, 0.4);
+    }
+    .source-tag.tag-dup {
+      background: rgba(239, 68, 68, 0.25);
+      color: #fca5a5;
+      border-color: rgba(248, 113, 113, 0.5);
+    }
+    .source-tag.tag-group1 {
+      background: rgba(56, 189, 248, 0.2);
+      color: #38bdf8;
+      border-color: rgba(56, 189, 248, 0.4);
+    }
+    .source-tag.tag-group2 {
+      background: rgba(167, 139, 250, 0.2);
+      color: #c4b5fd;
+      border-color: rgba(167, 139, 250, 0.4);
+    }
+    .group-section-header {
+      padding: 8px 12px;
+      margin: 10px 0 6px 0;
+      background: #1e293b;
+      border: 1px solid #334155;
+      color: #f1f5f9;
+      font-size: 0.8rem;
+      font-weight: 800;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      border-left: 4px solid #38bdf8;
+    }
+    .group-section-header.step1 {
+      border-left-color: #38bdf8;
+    }
+    .group-section-header.step2 {
+      border-left-color: #fbbf24;
+    }
+    .group-section-header.step3 {
+      border-left-color: #a78bfa;
+    }
+    .candidate-card.drag-over {
+      border-color: #38bdf8 !important;
+      background: #1e3a5f !important;
+      transform: scale(1.02);
+    }
+    .filter-tab-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      padding: 8px 12px;
+      background: #1e293b;
+      border-bottom: 1px solid #334155;
+    }
+    .filter-btn {
+      background: #334155;
+      color: #94a3b8;
+      border: 1px solid #475569;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 4px 8px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .filter-btn:hover {
+      background: #475569;
+      color: #f8fafc;
+    }
+    .filter-btn.active {
+      background: #0284c7;
+      color: #ffffff;
+      border-color: #38bdf8;
+    }
+    .card-q-preview {
+      font-size: 0.82rem;
+      color: #cbd5e1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* 2. 중앙: 바둑판 작업대 & 확정 컨트롤 */
+    .panel-center {
+      background: #0f172a;
+      display: flex;
+      flex-direction: row;
+      gap: 16px;
+      padding: 16px;
+      overflow-y: auto;
+      justify-content: center;
+      align-items: flex-start;
+    }
+    .center-board-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+    .center-form-col {
+      width: 350px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+    .board-toolbar {
+      display: flex;
+      gap: 6px;
+      background: rgba(30, 41, 59, 0.95);
+      border: 1px solid #475569;
+      padding: 6px 10px;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+      z-index: 5;
+    }
+    .tool-btn {
+      background: #334155;
+      color: #f8fafc;
+      border: 1px solid #475569;
+      padding: 6px 10px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.15s;
+    }
+    .tool-btn:hover {
+      background: #475569;
+    }
+    .tool-btn.active {
+      background: #0284c7;
+      border-color: #38bdf8;
+      color: #ffffff;
+      box-shadow: 0 0 8px rgba(56, 189, 248, 0.4);
+    }
+        .editor-size-btn {
+      background: #1e293b;
+      border: 1px solid #475569;
+      color: #94a3b8;
+      font-size: 0.74rem;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .editor-size-btn:hover {
+      background: #334155;
+      color: #f8fafc;
+    }
+    .editor-size-btn.active {
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+      border-color: #d97706;
+      color: #ffffff;
+      box-shadow: 0 2px 4px rgba(245, 158, 11, 0.4);
+    }
+    .canvas-wrapper {
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+      border-radius: 8px;
+      overflow: hidden;
+      display: inline-block;
+    }
+    #editorCanvas {
+      display: block;
+      cursor: crosshair;
+    }
+    .board-footer-guide {
+      font-size: 0.76rem;
+      color: #94a3b8;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      text-align: center;
+    }
+
+    /* 👑 확정 박스 카드 */
+    .confirm-box-card {
+      background: linear-gradient(135deg, rgba(30, 58, 138, 0.5), rgba(15, 23, 42, 0.8));
+      border: 2px solid #38bdf8;
+      box-shadow: 0 4px 16px rgba(56, 189, 248, 0.25);
+      border-radius: 12px;
+      padding: 12px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .confirm-box-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 800;
+      font-size: 0.95rem;
+      color: #38bdf8;
+    }
+    .confirm-input-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .confirm-label {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #e2e8f0;
+      white-space: nowrap;
+    }
+    .confirm-num-input {
+      width: 65px;
+      text-align: center;
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #38bdf8;
+      background: #0f172a;
+      border: 2px solid #0284c7;
+      padding: 6px;
+      border-radius: 8px;
+      outline: none;
+    }
+    .confirm-unit {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #94a3b8;
+    }
+    .btn-confirm-action {
+      flex: 1;
+      background: linear-gradient(135deg, #059669, #10b981);
+      color: #ffffff;
+      border: 1px solid #34d399;
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: all 0.2s;
+      box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+    }
+    .btn-confirm-action:hover {
+      filter: brightness(1.15);
+      transform: translateY(-1px);
+    }
+    .btn-unconfirm {
+      background: transparent;
+      color: #f87171;
+      border: 1px dashed rgba(248, 113, 113, 0.5);
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.78rem;
+      cursor: pointer;
+      transition: all 0.15s;
+      text-align: center;
+    }
+    .btn-unconfirm:hover {
+      background: rgba(239, 68, 68, 0.15);
+      border-color: #ef4444;
+    }
+    .status-badge {
+      font-size: 0.72rem;
+      padding: 2px 8px;
+      border-radius: 9999px;
+      font-weight: 700;
+    }
+    .status-badge.confirmed {
+      background: rgba(34, 197, 94, 0.25);
+      color: #4ade80;
+      border: 1px solid rgba(74, 222, 128, 0.5);
+    }
+    .status-badge.unconfirmed {
+      background: rgba(148, 163, 184, 0.15);
+      color: #94a3b8;
+      border: 1px solid rgba(148, 163, 184, 0.3);
+    }
+
+    /* 폼 요소 공통 */
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .form-label {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #94a3b8;
+      display: flex;
+      justify-content: space-between;
+    }
+    .form-input, .form-textarea {
+      background: #0f172a;
+      border: 1px solid #334155;
+      color: #f8fafc;
+      border-radius: 8px;
+      padding: 7px 9px;
+      font-size: 0.85rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-input:focus, .form-textarea:focus {
+      border-color: #38bdf8;
+    }
+    .form-textarea {
+      resize: vertical;
+      min-height: 48px;
+    }
+    .source-box {
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 8px;
+      padding: 8px;
+      font-size: 0.75rem;
+      color: #cbd5e1;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .source-title {
+      font-weight: 700;
+      color: #38bdf8;
+    }
+
+    /* 3. 우측: 확정된 교재 목록 */
+    .panel-confirmed {
+      background: #182234;
+      border-left: 1px solid #334155;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .confirmed-header {
+      padding: 12px 14px;
+      background: #0f172a;
+      border-bottom: 1px solid #334155;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    }
+    .confirmed-scroll {
+      flex: 1;
+      overflow-y: auto;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .confirmed-card {
+      background: #1e293b;
+      border: 2px solid #334155;
+      border-radius: 12px;
+      padding: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      transition: all 0.15s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      cursor: pointer;
+    }
+    .confirmed-card:hover {
+      border-color: #38bdf8;
+      transform: translateY(-1px);
+    }
+    .confirmed-card.active {
+      border-color: #38bdf8;
+      background: #172554;
+      box-shadow: 0 0 14px rgba(56, 189, 248, 0.4);
+    }
+    .confirmed-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .confirmed-num-badge {
+      background: linear-gradient(135deg, #0284c7, #2563eb);
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 0.88rem;
+      padding: 3px 10px;
+      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      box-shadow: 0 2px 6px rgba(2, 132, 199, 0.4);
+    }
+    .confirmed-card-body {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .mini-board-wrapper {
+      width: 130px;
+      height: 130px;
+      flex-shrink: 0;
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1.5px solid #5a3d1c;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+      background: #f2d69f;
+    }
+    .mini-board-canvas {
+      width: 130px;
+      height: 130px;
+      display: block;
+    }
+    .confirmed-info-col {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      min-width: 0;
+    }
+    .confirmed-q-text {
+      font-size: 0.84rem;
+      font-weight: 700;
+      color: #f1f5f9;
+      line-height: 1.35;
+    }
+    .confirmed-hint-text {
+      font-size: 0.75rem;
+      color: #94a3b8;
+      line-height: 1.3;
+    }
+    .confirmed-ans-badge {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #f87171;
+      background: rgba(239, 68, 68, 0.15);
+      border: 1px solid rgba(248, 113, 113, 0.3);
+      padding: 2px 6px;
+      border-radius: 4px;
+      width: fit-content;
+    }
+    .confirmed-card-actions {
+      display: flex;
+      gap: 6px;
+      justify-content: flex-end;
+      align-items: center;
+      border-top: 1px solid rgba(51, 65, 85, 0.7);
+      padding-top: 8px;
+    }
+    .btn-sm-action {
+      background: #334155;
+      color: #cbd5e1;
+      border: 1px solid #475569;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .btn-sm-action:hover {
+      background: #475569;
+      color: #ffffff;
+    }
+    .btn-sm-action.delete:hover {
+      background: #dc2626;
+      border-color: #ef4444;
+      color: #ffffff;
+    }
+    .btn-sm-action.edit:hover {
+      background: #0284c7;
+      border-color: #38bdf8;
+      color: #ffffff;
+    }
+    .confirmed-tag {
+      font-size: 0.7rem;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 800;
+      background: rgba(34, 197, 94, 0.25);
+      color: #4ade80;
+      border: 1px solid rgba(74, 222, 128, 0.5);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 1. 최상단 헤더 -->
+  <header class="editor-header">
+    <div class="header-left">
+      <div class="editor-logo" onclick="window.location.href='index.html'" title="바둑스쿨 메인 홈(대문)으로 이동" style="cursor: pointer;">
+        <span>🛠️</span>
+        <span>JH 바둑스쿨 문제 편집실</span>
+      </div>
+      <select id="editorUnitSelector" class="unit-selector-dropdown" onchange="switchEditorUnit(this.value)" title="편집 및 검토할 단원을 선택합니다">
+        <option value="unit1">제1단원: 돌의 활로 1 (11문제)</option>
+        <option value="unit2">제2단원: 돌의 활로 2 (63문제)</option>
+        <option value="unit3">제3단원: 돌 따내기 1 (50문제)</option>
+        <option value="unit4">제4단원: 돌 따내기 2 (51문제)</option>
+        <option value="unit5">제5단원: 돌 살리기 1 (33문제)</option>
+        <option value="unit6">제6단원: 돌 살리기 2 (41문제)</option>
+        <option value="unit7">제7단원: 서로 단수 (50문제)</option>
+        <option value="unit8">제8단원: 양단수 1 (47문제)</option>
+        <option value="unit9">제9단원: 양단수 2 (48문제)</option>
+        <option value="unit10">제10단원: 돌의 연결 1 (47문제)</option>
+        <option value="unit11">제11단원: 돌의 연결 2 (47문제)</option>
+        <option value="unit12">제12단원: 돌의 끊음 1 (46문제)</option>
+        <option value="unit13">제13단원: 돌의 끊음 2 (45문제)</option>
+        <option value="unit14">제14단원: 1선 방향으로 단수치기 1 (34문제)</option>
+        <option value="unit15">제15단원: 1선 방향으로 단수치기 2 (34문제)</option>
+        <option value="unit16">제16단원: 자기 돌 쪽으로 단수치기 1 (30문제)</option>
+        <option value="unit17">제17단원: 자기 돌 쪽으로 단수치기 2 (29문제)</option>
+        <option value="unit18">제18단원: 끊으면서 단수치기 1 (39문제)</option>
+        <option value="unit19">제19단원: 끊으면서 단수치기 2 (38문제)</option>
+        <option value="unit20">제20단원: 바둑의 승패 - 집 1 (20문제)</option>
+        <option value="unit21" selected>제21단원: 바둑의 승패 - 집 2 (16문제)</option>
+      </select>
+      <span class="count-pill" id="candidateCountPill">후보: 74문제 (1그룹 11개 / 2그룹 63개)</span>
+      <span id="autoSaveBadge" style="font-size:0.75rem; color:#4ade80; font-weight:700; background:rgba(34,197,94,0.15); border:1px solid rgba(74,222,128,0.3); padding:3px 8px; border-radius:9999px;">🟢 실시간 자동 저장됨</span>
+    </div>
+    <div class="header-right">
+      <button type="button" class="btn-top" onclick="window.location.href='index.html'" style="background: linear-gradient(135deg, #22c55e, #16a34a); color: #ffffff; font-weight: 800; border-color: #15803d; box-shadow: 0 2px 0 #15803d;" title="바둑스쿨 메인 대문(포털)으로 나가기">
+        <span>🏠</span> 바둑스쿨 홈(대문)
+      </button>
+      <button type="button" class="btn-top" onclick="window.location.href='index.html?mode=missions'" title="학생 수업 학습 화면으로 이동">
+        <span>📝</span> 수업 화면
+      </button>
+      <button type="button" class="btn-top" onclick="clearAllConfirmedProblems()" style="color:#ef4444; border-color:rgba(239,68,68,0.4);" title="확정된 1편 교재 목록을 완전히 지우고 비웁니다">
+        <span>🗑️</span> 1편 다 지우기
+      </button>
+      <button type="button" class="btn-top" onclick="resetToOriginalCandidate()" style="color:#94a3b8;" title="작업 내용을 비우고 처음 4대 교재 기본 상태로 되돌립니다">
+        <span>🔄</span> 4대 교재 원본 복원
+      </button>
+      <button type="button" class="btn-top" onclick="playTestCuratedProblems()" style="background: linear-gradient(135deg, #0284c7, #0369a1); color: #ffffff; font-weight: 800; border-color: #0284c7; box-shadow: 0 2px 0 #075985;" title="원장님께서 지금 확정한 문제들로 학생 수업 화면에서 1번 문제부터 직접 풀어봅니다!">
+        <span>▶️</span> 지금 확정한 교재 테스트
+      </button>
+      <button type="button" class="btn-top primary" onclick="exportCuratedUnit()">
+        <span>💾</span> 최종 단원 저장 및 적용
+      </button>
+    </div>
+  </header>
+
+  <!-- 2. 메인 3단 워크스페이스 -->
+  <div class="editor-body">
+    
+    <!-- 1단 (좌측): 후보 문제 목록 -->
+    <aside class="panel-list">
+      <div class="panel-header">
+        <span class="panel-title">
+          <span>📚</span> 4대 교재 후보 문제 (<span id="countFilterAll">74</span>개)
+        </span>
+        <button type="button" class="btn-top" style="padding: 3px 8px; font-size: 0.75rem;" onclick="addNewEmptyProblem()">
+          ➕ 새 문제
+        </button>
+      </div>
+      <div class="filter-tab-bar">
+        <button type="button" class="filter-btn active" data-filter="all" onclick="setFilter('all')">전체 (<span id="countFilterAllBtn">74</span>)</button>
+        <button type="button" class="filter-btn" data-filter="confirmed" onclick="setFilter('confirmed')" style="color:#4ade80; border-color:rgba(74,222,128,0.4); font-weight:800;">✅ 확정 (<span id="countConfirmedFilter">0</span>)</button>
+        <button type="button" class="filter-btn" data-filter="unconfirmed" onclick="setFilter('unconfirmed')">⏳ 미확정 (<span id="countUnconfirmedFilter">74</span>)</button>
+        <button type="button" class="filter-btn" data-filter="group1" onclick="setFilter('group1')">⚪ 1그룹 (11)</button>
+        <button type="button" class="filter-btn" data-filter="group2" onclick="setFilter('group2')">⚫ 2그룹 (63)</button>
+        <button type="button" class="filter-btn" data-filter="씽크탱크" onclick="setFilter('씽크탱크')">씽크탱크</button>
+        <button type="button" class="filter-btn" data-filter="논리바둑" onclick="setFilter('논리바둑')">논리바둑</button>
+        <button type="button" class="filter-btn" data-filter="알파바둑" onclick="setFilter('알파바둑')">알파바둑</button>
+        <button type="button" class="filter-btn" data-filter="파워씽크" onclick="setFilter('파워씽크')">파워씽크</button>
+        <button type="button" class="filter-btn" data-filter="dup" onclick="setFilter('dup')">중복 문제</button>
+      </div>
+      <div class="candidate-scroll" id="candidateListContainer">
+        <!-- 동적 렌더링 -->
+      </div>
+    </aside>
+
+    <!-- 2단 (중앙): 바둑판 작업대 & 확정 컨트롤 -->
+    <main class="panel-center">
+      <!-- 2-A: 바둑판 및 툴바 -->
+      <div class="center-board-col">
+        <div class="board-toolbar">
+          <button type="button" class="tool-btn active" data-tool="black" onclick="setEditorTool('black')">
+            <span style="display:inline-block; width:12px; height:12px; background:#000; border-radius:50%; border:1px solid #fff;"></span>
+            흑돌 배치
+          </button>
+          <button type="button" class="tool-btn" data-tool="white" onclick="setEditorTool('white')">
+            <span style="display:inline-block; width:12px; height:12px; background:#fff; border-radius:50%;"></span>
+            백돌 배치
+          </button>
+          <button type="button" class="tool-btn" data-tool="answer" onclick="setEditorTool('answer')">
+            <span>⭐</span> 정답 착점
+          </button>
+          <button type="button" class="tool-btn" data-tool="eraser" onclick="setEditorTool('eraser')">
+            <span>🗑️</span> 지우개
+          </button>
+          <div style="width: 1px; height: 18px; background: #475569; margin: 0 2px;"></div>
+          <button type="button" class="tool-btn" onclick="clearCurrentBoard()">
+            <span>🔄</span> 비우기
+          </button>
+          <!-- 🌟 확장형 바둑판 규격 선택기 🌟 -->
+          <div class="editor-size-group" style="display: inline-flex; gap: 3px; align-items: center; margin-left: auto;">
+            <span style="font-size: 0.76rem; font-weight: 800; color: #94a3b8; margin-right: 2px;">규격:</span>
+            <button type="button" class="editor-size-btn active" data-size="9" onclick="setEditorBoardSize(9)">9줄</button>
+            <button type="button" class="editor-size-btn" data-size="13" onclick="setEditorBoardSize(13)">13줄</button>
+            <button type="button" class="editor-size-btn" data-size="19" onclick="setEditorBoardSize(19)">19줄</button>
+          </div>
+        </div>
+
+        <div class="canvas-wrapper">
+          <canvas id="editorCanvas" width="480" height="480"></canvas>
+        </div>
+
+        <div class="board-footer-guide">
+          <span>🖱️ 클릭: 선택 도구(흑돌/백돌/정답★) 배치 및 토글 삭제</span>
+          <span>• <strong>⭐ 정답 착점</strong>: 귀(2개), 변(3개), 중앙(4개) 등 <strong>다중 정답 지정 가능</strong></span>
+        </div>
+      </div>
+
+      <!-- 2-B: 문제 정보 & 교재 번호 확정 카드 -->
+      <div class="center-form-col">
+        <!-- 👑 교재 문제 번호 확정 박스 -->
+        <div class="confirm-box-card">
+          <div class="confirm-box-header">
+            <span>👑 교재 문제 번호 확정</span>
+            <span id="confirmStatusBadge" class="status-badge unconfirmed">미확정</span>
+          </div>
+          <div class="confirm-input-row">
+            <label class="confirm-label">교재 번호:</label>
+            <input type="number" id="confirmOrderInput" class="confirm-num-input" min="1" max="100" value="1">
+            <span class="confirm-unit">번으로</span>
+            <button type="button" class="btn-confirm-action" id="btnConfirmAction" onclick="confirmCurrentProblem()">
+              <span>⭐</span> 이 번호로 교재 확정
+            </button>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <span style="font-size:0.75rem; color:#94a3b8;" id="confirmHintText">확정 시 우측 교재 목록에 순서대로 등록됩니다</span>
+            <button type="button" class="btn-unconfirm" id="btnUnconfirm" onclick="unconfirmCurrentProblem()" style="display:none;">
+              ❌ 교재에서 제외
+            </button>
+          </div>
+        </div>
+
+        <!-- 💡 질문·힌트 일괄 자동 채우기 도우미 -->
+        <div style="background: rgba(56, 189, 248, 0.1); border: 1px dashed rgba(56, 189, 248, 0.4); padding: 8px 10px; border-radius: 6px; display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-size: 0.78rem; color: #7dd3fc; font-weight: 700;">💡 질문·힌트 자동 완성</span>
+          <div style="display: flex; gap: 6px;">
+            <button type="button" class="btn-top" style="padding: 3px 8px; font-size: 0.75rem;" onclick="applyStandardTextCurrent()" title="현재 문제의 모양에 맞는 표준 질문과 힌트를 채웁니다">
+              현재 문제 채우기
+            </button>
+            <button type="button" class="btn-top primary" style="padding: 3px 8px; font-size: 0.75rem;" onclick="applyStandardTextAll()" title="일일이 수정하지 않고 모든 문제의 질문과 힌트를 한 번에 표준 문구로 통일합니다">
+              ✨ 74개 일괄 적용
+            </button>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">
+            <span>문제 코드 / 원본 출처</span>
+            <span id="sourceListText" style="color:#38bdf8; font-weight:600; font-size:0.75rem;"></span>
+          </label>
+          <input type="text" id="editProblemCode" class="form-input" readonly>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">문제 질문 (학생에게 보일 설명)</label>
+          <textarea id="editQuestion" class="form-textarea" placeholder="백의 활로를 모두 막아보세요."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">힌트 (Hint)</label>
+          <textarea id="editHint" class="form-textarea" placeholder="상·하·좌·우 직선 길을 찾아보세요."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">사범님 코칭 멘트 (음성/말풍선)</label>
+          <textarea id="editSpeech" class="form-textarea" placeholder="백돌의 숨구멍(활로)을 찾아 모두 막아보세요!"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">착수 차례</label>
+          <select id="editStartTurn" class="form-input">
+            <option value="BA">흑선 (흑이 먼저 둘 차례)</option>
+            <option value="WA">백선 (백이 먼저 둘 차례)</option>
+          </select>
+        </div>
+
+        <!-- 액션 버튼 -->
+        <div style="display:flex; gap:8px; margin-top:4px;">
+          <button type="button" class="btn-top" style="flex:1; justify-content:center; padding:8px;" onclick="saveCurrentProblemEdits()">
+            <span>💾</span> 내용 저장
+          </button>
+          <button type="button" class="btn-top" style="color:#f87171; padding:8px;" onclick="deleteCurrentProblem()" title="후보 목록에서 완전히 제외합니다">
+            <span>🗑️</span> 후보 제외
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <!-- 3단 (우측): 확정된 단원 교재 목록 (실물 교재 스타일!) -->
+    <aside class="panel-confirmed">
+      <div class="confirmed-header">
+        <span class="panel-title">
+          <span>📖</span> 확정된 단원 교재 (<span id="confirmedCountPill">0</span>문제)
+        </span>
+        <div style="display:flex; gap:6px;">
+          <button type="button" class="btn-top" style="color:#ef4444; border-color:rgba(239,68,68,0.4); padding: 4px 8px; font-size: 0.75rem;" onclick="clearAllConfirmedProblems()" title="확정된 교재 목록을 완전히 지웁니다">
+            🗑️ 비우기
+          </button>
+          <button type="button" class="btn-top" style="background:#10b981; color:#fff; font-weight:700; padding: 4px 10px; font-size: 0.75rem; border-color:#34d399;" onclick="playTestCuratedProblems()" title="원장님께서 지금 확정한 문제들로 학생 수업 화면에서 1번부터 직접 풀어봅니다!">
+            ▶️ 테스트
+          </button>
+          <button type="button" class="btn-top" style="padding: 4px 8px; font-size: 0.75rem;" onclick="loadGolden20ToConfirmed()" title="엄선된 제1단원 11문제를 교재 목록에 바로 채웁니다">
+            💡 11문제 예시 로드
+          </button>
+          <button type="button" class="btn-top primary" style="padding: 4px 10px; font-size: 0.75rem;" onclick="exportConfirmedCurriculum()" title="확정된 교재 문제를 정규 수업 화면에 즉시 적용합니다">
+            💾 수업 적용
+          </button>
+        </div>
+      </div>
+
+      <div class="confirmed-scroll" id="confirmedListContainer">
+        <!-- 동적 렌더링: 미니 바둑판 모양과 번호 순서 교재 카드 -->
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- 데이터 및 렌더링 스크립트 -->
+  <script src="audio.js?v=20261014_0102"></script>
+  <script src="data/curated_unit_1.js?v=20261014_0102"></script>
+  <script src="data/curated_unit_2.js?v=20261014_0102"></script>
+  <script src="data/curated_unit_3.js?v=20261014_0102"></script>
+  <script src="data/curated_unit_4.js?v=20261014_0102"></script>
+  <script src="data/curated_unit_5.js?v=20261014_0118"></script>
+  <script src="data/curated_unit_6.js?v=20261014_0118"></script>
+  <script src="data/curated_unit_7.js?v=20261014_0800"></script>
+  <script src="data/curated_unit_8.js?v=20261014_0925"></script>
+  <script src="data/curated_unit_9.js?v=20261014_0925"></script>
+  <script src="data/curated_unit_10.js?v=20261014_0945"></script>
+  <script src="data/curated_unit_11.js?v=20261014_0945"></script>
+  <script src="data/curated_unit_12.js?v=20261014_1002"></script>
+  <script src="data/curated_unit_13.js?v=20261014_1002"></script>
+  <script src="data/curated_unit_14.js?v=20261014_1015"></script>
+  <script src="data/curated_unit_15.js?v=20261014_1015"></script>
+  <script src="data/curated_unit_16.js?v=20261014_1037"></script>
+  <script src="data/curated_unit_17.js?v=20261014_1037"></script>
+  <script src="data/curated_unit_18.js?v=20261014_1041"></script>
+  <script src="data/curated_unit_19.js?v=20261014_1041"></script>
+  <script src="data/curated_unit_20.js?v=20261014_1115"></script>
+  <script src="data/curated_unit_21.js?v=20261014_1115"></script>
+  <script src="data/hwalro_dedup.js?v=20261014_0102"></script>
+  <script>
+    // ========================================================
+    // JH 바둑스쿨 문제 편집실 인터랙티브 컨트롤러
+    // ========================================================
+
+    const CURRENT_VERSION = '20261013_hwalro_74_candidates_v2';
+    let isReordering = false;
+
+    function loadSavedProblems() {
+      const ver = localStorage.getItem('jh_curated_unit_1_ver');
+      if (ver !== CURRENT_VERSION) {
+        localStorage.removeItem('jh_curated_unit_1_draft');
+        localStorage.removeItem('jh_curated_unit_1_confirmed');
+        localStorage.removeItem('jh_curated_unit_1');
+        localStorage.setItem('jh_curated_unit_1_ver', CURRENT_VERSION);
+      }
+
+      const saved = localStorage.getItem('jh_curated_unit_1_draft');
+      if (saved) {
+        try {
+          const parsed = JSON.parse(saved);
+          if (Array.isArray(parsed) && parsed.length > 2) {
+            // 오염 검증: 앞선 문제들의 data가 비정상적으로 모두 똑같다면 원본으로 자동 복구
+            const d0 = parsed[0]?.data;
+            const d1 = parsed[1]?.data;
+            const d2 = parsed[2]?.data;
+            if (d0 && d1 && d2 && d0 === d1 && d1 === d2) {
+              console.warn('복제 오염된 초안 감지 -> 깨끗한 4대 교재 원본 데이터로 자동 복구합니다.');
+              localStorage.removeItem('jh_curated_unit_1_draft');
+            } else {
+              return parsed;
+            }
+          }
+        } catch (e) {
+          console.warn('Draft load failed', e);
+        }
+      }
+      return (window.HWALRO_DEDUP_PROBLEMS && Array.isArray(window.HWALRO_DEDUP_PROBLEMS))
+        ? JSON.parse(JSON.stringify(window.HWALRO_DEDUP_PROBLEMS))
+        : [];
+    }
+
+    let problems = loadSavedProblems();
+
+    function persistDraft() {
+      localStorage.setItem('jh_curated_unit_1_draft', JSON.stringify(problems));
+      const badge = document.getElementById('autoSaveBadge');
+      if (badge) {
+        badge.textContent = '🟢 실시간 자동 저장됨';
+        badge.style.opacity = '1';
+      }
+    }
+
+    function saveActiveProblemSilent() {
+      if (isReordering || !problems || !problems[activeIndex]) return;
+      const p = problems[activeIndex];
+      const converted = gridToSgf(currentGrid);
+      p.data = converted.data;
+      p.answer1 = converted.answer1;
+      const qEl = document.getElementById('editQuestion');
+      if (qEl) p.question = qEl.value;
+      const hEl = document.getElementById('editHint');
+      if (hEl) p.hint = hEl.value;
+      const sEl = document.getElementById('editSpeech');
+      if (sEl) p.speech = sEl.value;
+      const tEl = document.getElementById('editStartTurn');
+      if (tEl) p.start = tEl.value;
+
+      persistDraft();
+    }
+
+    // ========================================================
+    // 확정된 단원 교재 관리 (우측 실물 교재 패널)
+    // ========================================================
+    let currentEditorUnit = 'unit8'; // 'unit1' | 'unit2' | 'unit3' | 'unit4'
+
+    function loadConfirmedProblems() {
+      if (currentEditorUnit === 'unit9') {
+        const saved9 = localStorage.getItem('jh_curated_unit_9_confirmed');
+        if (saved9) {
+          try {
+            const parsed = JSON.parse(saved9);
+            if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+          } catch (e) {}
+        }
+        const src9 = window.CURATED_UNIT_9 || window.JH_CURATED_UNIT_9;
+        if (src9 && Array.isArray(src9)) {
+          return src9.map((p, i) => ({
+            order: i + 1,
+            candidateId: p.id,
+            code: p.code || `t1_ch09_${String(i + 1).padStart(2, '0')}`,
+            data: p.data,
+            answer1: p.answer1,
+            question: p.question,
+            hint: p.hint,
+            speech: p.speech,
+            start: p.start || 'BA',
+            group: p.group || 9,
+            stoneDesc: p.stoneDesc,
+            matchedSources: p.matchedSources || []
+          }));
+        }
+      } else if (currentEditorUnit === 'unit8') {
+        const saved8 = localStorage.getItem('jh_curated_unit_8_confirmed');
+        if (saved8) {
+          try {
+            const parsed = JSON.parse(saved8);
+            if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+          } catch (e) {}
+        }
+        const src8 = window.CURATED_UNIT_8 || window.JH_CURATED_UNIT_8;
+        if (src8 && Array.isArray(src8)) {
+          return src8.map((p, i) => ({
+            order: i + 1,
+            candidateId: p.id,
+            code: p.code || `t1_ch08_${String(i + 1).padStart(2, '0')}`,
+            data: p.data,
+            answer1: p.answer1,
+            question: p.question,
+            hint: p.hint,
+            speech: p.speech,
+            start: p.start || 'BA',
+            group: p.group || 8,
+            stoneDesc: p.stoneDesc,
+            matchedSources: p.matchedSources || []
+          }));
+        }
+      } else if (currentEditorUnit === 'unit9') {
+        localStorage.setItem('jh_curated_unit_9_confirmed', JSON.stringify(confirmedProblems));
+      } else if (currentEditorUnit === 'unit8') {
+        localStorage.setItem('jh_curated_unit_8_confirmed', JSON.stringify(confirmedProblems));
+      } else if (currentEditorUnit === 'unit7') {
+        const saved7 = localStorage.getItem('jh_curated_unit_7_confirmed');
+        if (saved7) {
+          try {
+            const parsed = JSON.parse(saved7);
+            if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+          } catch (e) {}
+        }
+        const src7 = window.CURATED_UNIT_7 || window.JH_CURATED_UNIT_7;
+        if (src7 && Array.isArray(src7)) {
+          return src7.map((p, i) => ({
+            order: i + 1,
+            candidateId: p.id,
+            code: p.code || `t1_ch07_${String(i + 1).padStart(2, '0')}`,
+            data: p.data,
+            answer1: p.answer1,
+            question: p.question,
+            hint: p.hint,
+            speech: p.speech,
+            start: p.start || 'BA',
+            group: p.group || 7,
+            stoneDesc: p.stoneDesc,
+            matchedSources: p.matchedSources || []
+          }));
+        }
+      } else if (currentEditorUnit === 'unit9') {
+        const saved9 = localStorage.getItem('jh_curated_unit_9_confirmed');
+        if (saved9) {
+          try {
+            const parsed = JSON.parse(saved9);
+            if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+          } catch (e) {}
+        }
+        const src9 = window.CURATED_UNIT_9 || window.JH_CURATED_UNIT_9;
+        if (src9 && Array.isArray(src9)) {
+          return src9.map((p, i) => ({
+            order: i + 1,
+            candidateId: p.id,
+            code: p.code || `t1_ch09_${String(i + 1).padStart(2, '0')}`,
+            data: p.data,
+            answer1: p.answer1,
+            question: p.question,
+            hint: p.hint,
+            speech: p.speech,
+            start: p.start || 'BA',
+            group: p.group || 9,
+            stoneDesc: p.stoneDesc,
+            matchedSources: p.matchedSources || []
+          }));
+        }
+      } else if (currentEditorUnit === 'unit8') {
+        const saved8 = localStorage.getItem('jh_curated_unit_8_confirmed');
+        if (saved8) {
+          try {
+            const parsed = JSON.parse(saved8);
+            if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+          } catch (e) {}
+        }
+        const src8 = window.CURATED_UNIT_8 || window.JH_CURATED_UNIT_8;
+        if (src8 && Array.isArray(src8)) {
+          return src8.map((p, i) => ({
+            order: i + 1,
+            candidateId: p.id,
+            code: p.code || `t1_ch08_${String(i + 1).padStart(2, '0')}`,
+            data: p.data,
+            answer1: p.answer1,
+            question: p.question,
+            hint: p.hint,
+            speech: p.speech,
+            start: p.start || 'BA',
+            group: p.group || 8,
+            stoneDesc: p.stoneDesc,
+            matchedSources: p.matchedSources || []
+          }));
+        }
+      } else if (currentEditorUnit === 'unit9') {
+        localStorage.setItem('jh_curated_unit_9_confirmed', JSON.stringify(confirmedProblems));
+      } else if (currentEditorUnit === 'unit8') {
+        localStorage.setItem('jh_curated_unit_8_confirmed', JSON.stringify(confirmedProblems));
+      } else if (currentEditorUnit === 'unit7') {
+        localStorage.setItem('jh_curated_unit_7_confirmed', JSON.stringify(confirmedProblems));
+      } else if (currentEditorUnit === 'unit6') {
+        const saved6 = localStorage.getItem('jh_curated_unit_6_confirmed');
+        if (saved6) {
+          try {
+            const parsed = JSON.parse(saved6);
+            if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+          } catch (e) {}
+        }
+        const src6 = window.CURATED_UNIT_6 || window.JH_CURATED_UNIT_6;
+        if (src6 && Array.isArray(src6)) {
+          return src6.map((p, i) => ({
+            order: i + 1,
+            candidateId: p.id,
+            code: p.code || `t1_ch06_${String(i + 1).padStart(2, '0')}`,
+            data: p.data,
+            answer1: p.answer1,
+            question: p.question,
+            hint: p.hint,
+            speech: p.speech,
+            start: p.start || 'BA',
+            group: p.group || 6,
+            stoneDesc: p.stoneDesc,
+            matchedSources: p.matchedSources || []
+          }));
+        }
+      } else if (currentEditorUnit === 'unit5') {
+        const saved5 = localStorage.getItem('jh_curated_unit_5_confirmed');
+        if (saved5) {
+          try {
+            const parsed = JSON.parse(saved5);
+            if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+          } catch (e) {}
+        }
+        const src5 = window.CURATED_UNIT_5 || window.JH_CURATED_UNIT_5;
+        if (src5 && Array.isArray(src5)) {
+          return src5.map((p, i) => ({
+            order: i + 1,
+            candidateId: p.id,
+            code: p.code || `t1_ch05_${String(i + 1).padStart(2, '0')}`,
+            data: p.data,
+            answer1: p.answer1,
+            question: p.question,
+            hint: p.hint,
+            speech: p.speech,
+            start: p.start || 'BA',
+            group: p.group || 5,
+            stoneDesc: p.stoneDesc,
+            matchedSources: p.matchedSources || []
+          }));
+        }
+      } else if (currentEditorUnit === 'unit21') {
+        const saved21 = localStorage.getItem('jh_curated_unit_21_confirmed');
+        if (saved21) {
+          try {
+            const parsed = JSON.parse(saved21);
+            if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+          } catch (e) {}
+        }
+        const src21 = window.CURATED_MISSIONS_UNIT_21 || window.JH_CURATED_UNIT_21;
+        if (src21 && Array.isArray(src21)) {
+          return src21.map((p, i) => ({
+            order: i + 1,
+            candidateId: p.id,
+            code: p.code || `t1_ch21_${String(i + 1).padStart(2, '0')}`,
+            data: p.data,
+            answer1: p.answer1,
+            sample: p.sample || '',
+            answer: p.answer || '',
+            question: p.question,
+            hint: p.hint,
+            speech: p.speech,
+            start: p.start || 'BA',
+            size: p.size || '9',
+            group: 21,
+            stoneDesc: p.stoneDesc,
+            matchedSources: p.matchedSources || []
+          }));
+        }
+      } else if (currentEditorUnit === 'unit20') {
+        const saved20 = localStorage.getItem('jh_curated_unit_20_confirmed');
+        if (saved20) {
+          try {
+            const parsed = JSON.parse(saved20);
+            if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+          } catch (e) {}
+        }
+        const src20 = window.CURATED_MISSIONS_UNIT_20 || window.JH_CURATED_UNIT_20;
+        if (src20 && Array.isArray(src20)) {
+          return src20.map((p, i) => ({
+            order: i + 1,
+            candidateId: p.id,
+            code: p.code || `t1_ch20_${String(i + 1).padStart(2, '0')}`,
+            data: p.data,
+            answer1: p.answer1,
+            sample: p.sample || '',
+            answer: p.answer || '',
+            question: p.question,
+            hint: p.hint,
+            speech: p.speech,
+            start: p.start || 'BA',
+            size: p.size || '4',
+            group: 20,
+            stoneDesc: p.stoneDesc,
+            matchedSources: p.matchedSources || []
+          }));
+        }
+      } else if (currentEditorUnit === 'unit19') {
+        const saved19 = localStorage.getItem('jh_curated_unit_19_confirmed');
+        if (saved19) {
+          try {
+            const parsed = JSON.parse(saved19);
+            if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+          } catch (e) {}
+        }
+        const src19 = window.CURATED_MISSIONS_UNIT_19 || window.CURATED_UNIT_19;
+        if (src19 && Array.isArray(src19)) {
+          return src19.map((p, i) => ({
+            order: i + 1,
+            candidateId: p.id,
+            code: p.code || `t1_ch19_${String(i + 1).padStart(2, '0')}`,
+            data: p.data,
+            answer1: p.answer1,
+            question: p.question,
+            hint: p.hint,
+            speech: p.speech,
+            start: p.start || 'BA',
+            group: 19,
+            stoneDesc: p.stoneDesc,
+            matchedSources: p.matchedSources || []
+          }));
+        }
+      } else if (currentEditorUnit === 'unit18') {
+        const saved18 = localStorage.getItem('jh_curated_unit_18_confirmed');
+        if (saved18) {
+          try {
+            const parsed = JSON.parse(saved18);
+            if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+          } catch (e) {}
+        }
+        const src18 = window.CURATED_MISSIONS_UNIT_18 || window.CURATED_UNIT_18;
+        if (src18 && Array.isArray(src18)) {
+          return src18.map((p, i) => ({
+            order: i + 1,
+            candidateId: p.id,
+            code: p.code || `t1_ch18_${String(i + 1).padStart(2, '0')}`,
+            data: p.data,
+            answer1: p.answer1,
+            question: p.question,
+            hint: p.hint,
+            speech: p.speech,
+            start: p.start || 'BA',
+            group: 18,
+            stoneDesc: p.stoneDesc,
+            matchedSources: p.matchedSources || []
+          }));
+        }
+      } else if (currentEditorUnit === 'unit17') {
+        const saved17 = localStorage.getItem('jh_curated_unit_17_confirmed');
+        if (saved17) {
+          try {
+            const parsed = JSON.parse(saved17);
+            if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+          } catch (e) {}
+        }
+        const src17 = window.CURATED_MISSIONS_UNIT_17 || window.CURATED_UNIT_17;
+        if (src17 && Array.isArray(src17)) {
+          return src17.map((p, i) => ({
+            order: i + 1,
+            candidateId: p.id,
+            code: p.code || `t1_ch17_${String(i + 1).padStart(2, '0')}`,
+            data: p.data,
+            answer1: p.answer1,
+            question: p.question,
+            hint: p.hint,
+            speech: p.speech,
+            start: p.start || 'BA',
+            group: 17,
+            stoneDesc: p.stoneDesc,
+            matchedSources: p.matchedSources || []
+          }));
+        }
+      } else if (currentEditorUnit === 'unit16') {
+        const saved16 = localStorage.getItem('jh_curated_unit_16_confirmed');
+        if (saved16) {
+          try {
+            const parsed = JSON.parse(saved16);
+            if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+          } catch (e) {}
+        }
+        const src16 = window.CURATED_MISSIONS_UNIT_16 || window.CURATED_UNIT_16;
+        if (src16 && Array.isArray(src16)) {
+          return src16.map((p, i) => ({
+            order: i + 1,
+            candidateId: p.id,
+            code: p.code || `t1_ch16_${String(i + 1).padStart(2, '0')}`,
+            data: p.data,
+            answer1: p.answer1,
+            question: p.question,
+            hint: p.hint,
+            speech: p.speech,
+            start: p.start || 'BA',
+            group: 16,
+            stoneDesc: p.stoneDesc,
+            matchedSources: p.matchedSources || []
+          }));
+        }
+      } else if (currentEditorUnit === 'unit15') {
+        const saved15 = localStorage.getItem('jh_curated_unit_15_confirmed');
+        if (saved15) {
+          try {
+            const parsed = JSON.parse(saved15);
+            if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+          } catch (e) {}
+        }
+        const src15 = window.CURATED_MISSIONS_UNIT_15 || window.CURATED_UNIT_15;
+        if (src15 && Array.isArray(src15)) {
+          return src15.map((p, i) => ({
+            order: i + 1,
+            candidateId: p.id,
+            code: p.code || `t1_ch15_${String(i + 1).padStart(2, '0')}`,
+            data: p.data,
+            answer1: p.answer1,
+            question: p.question,
+            hint: p.hint,
+            speech: p.speech,
+            start: p.start || 'BA',
+            group: 15,
+            stoneDesc: p.stoneDesc,
+            matchedSources: p.matchedSources || []
+          }));
+        }
+      } else if (currentEditorUnit === 'unit14') {
+        const saved14 = localStorage.getItem('jh_curated_unit_14_confirmed');
+        if (saved14) {
+          try {
+            const parsed = JSON.parse(saved14);
+            if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+          } catch (e) {}
+        }
+        const src14 = window.CURATED_MISSIONS_UNIT_14 || window.CURATED_UNIT_14;
+        if (src14 && Array.isArray(src14)) {
+          return src14.map((p, i) => ({
+            order: i + 1,
+            candidateId: p.id,
+            code: p.code || `t1_ch14_${String(i + 1).padStart(2, '0')}`,
+            data: p.data,
+            answer1: p.answer1,
+            question: p.question,
+            hint: p.hint,
+            speech: p.speech,
+            start: p.start || 'BA',
+            group: 14,
+            stoneDesc: p.stoneDesc,
+            matchedSources: p.matchedSources || []
+          }));
+        }
+      } else if (currentEditorUnit === 'unit13') {
+        const saved13 = localStorage.getItem('jh_curated_unit_13_confirmed');
+        if (saved13) {
+          try {
+            const parsed = JSON.parse(saved13);
+            if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+          } catch (e) {}
+        }
+        const src13 = window.CURATED_MISSIONS_UNIT_13 || window.CURATED_UNIT_13;
+        if (src13 && Array.isArray(src13)) {
+          return src13.map((p, i) => ({
+            order: i + 1,
+            candidateId: p.id,
+            code: p.code || `t1_ch13_${String(i + 1).padStart(2, '0')}`,
+            data: p.data,
+            answer1: p.answer1,
+            question: p.question,
+            hint: p.hint,
+            speech: p.speech,
+            start: p.start || 'BA',
+            group: 13,
+            stoneDesc: p.stoneDesc,
+            matchedSources: p.matchedSources || []
+          }));
+        }
+      } else if (currentEditorUnit === 'unit12') {
+        const saved12 = localStorage.getItem('jh_curated_unit_12_confirmed');
+        if (saved12) {
+          try {
+            const parsed = JSON.parse(saved12);
+            if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+          } catch (e) {}
+        }
+        const src12 = window.CURATED_MISSIONS_UNIT_12 || window.CURATED_UNIT_12;
+        if (src12 && Array.isArray(src12)) {
+          return src12.map((p, i) => ({
+            order: i + 1,
+            candidateId: p.id,
+            code: p.code || `t1_ch12_${String(i + 1).padStart(2, '0')}`,
+            data: p.data,
+            answer1: p.answer1,
+            question: p.question,
+            hint: p.hint,
+            speech: p.speech,
+            start: p.start || 'BA',
+            group: 12,
+            stoneDesc: p.stoneDesc,
+            matchedSources: p.matchedSources || []
+          }));
+        }
+      } else if (currentEditorUnit === 'unit11') {
+        const saved11 = localStorage.getItem('jh_curated_unit_11_confirmed');
+        if (saved11) {
+          try {
+            const parsed = JSON.parse(saved11);
+            if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+          } catch (e) {}
+        }
+        const src11 = window.CURATED_MISSIONS_UNIT_11 || window.CURATED_UNIT_11;
+        if (src11 && Array.isArray(src11)) {
+          return src11.map((p, i) => ({
+            order: i + 1,
+            candidateId: p.id,
+            code: p.code || `t1_ch11_${String(i + 1).padStart(2, '0')}`,
+            data: p.data,
+            answer1: p.answer1,
+            question: p.question,
+            hint: p.hint,
+            speech: p.speech,
+            start: p.start || 'BA',
+            group: p.group || 11,
+            stoneDesc: p.stoneDesc,
+            matchedSources: p.matchedSources || []
+          }));
+        }
+      } else if (currentEditorUnit === 'unit10') {
+        const saved10 = localStorage.getItem('jh_curated_unit_10_confirmed');
+        if (saved10) {
+          try {
+            const parsed = JSON.parse(saved10);
+            if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+          } catch (e) {}
+        }
+        const src10 = window.CURATED_MISSIONS_UNIT_10 || window.CURATED_UNIT_10;
+        if (src10 && Array.isArray(src10)) {
+          return src10.map((p, i) => ({
+            order: i + 1,
+            candidateId: p.id,
+            code: p.code || `t1_ch10_${String(i + 1).padStart(2, '0')}`,
+            data: p.data,
+            answer1: p.answer1,
+            question: p.question,
+            hint: p.hint,
+            speech: p.speech,
+            start: p.start || 'BA',
+            group: p.group || 10,
+            stoneDesc: p.stoneDesc,
+            matchedSources: p.matchedSources || []
+          }));
+        }
+      } else if (currentEditorUnit === 'unit9') {
+        const saved9 = localStorage.getItem('jh_curated_unit_9_confirmed');
+        if (saved9) {
+          try {
+            const parsed = JSON.parse(saved9);
+            if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+          } catch (e) {}
+        }
+        const src9 = window.CURATED_UNIT_9 || window.JH_CURATED_UNIT_9;
+        if (src9 && Array.isArray(src9)) {
+          return src9.map((p, i) => ({
+            order: i + 1,
+            candidateId: p.id,
+            code: p.code || `t1_ch09_${String(i + 1).padStart(2, '0')}`,
+            data: p.data,
+            answer1: p.answer1,
+            question: p.question,
+            hint: p.hint,
+            speech: p.speech,
+            start: p.start || 'BA',
+            group: p.group || 9,
+            stoneDesc: p.stoneDesc,
+            matchedSources: p.matchedSources || []
+          }));
+        }
+      } else if (currentEditorUnit === 'unit8') {
+        const saved8 = localStorage.getItem('jh_curated_unit_8_confirmed');
+        if (saved8) {
+          try {
+            const parsed = JSON.parse(saved8);
+            if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+          } catch (e) {}
+        }
+        const src8 = window.CURATED_UNIT_8 || window.JH_CURATED_UNIT_8;
+        if (src8 && Array.isArray(src8)) {
+          return src8.map((p, i) => ({
+            order: i + 1,
+            candidateId: p.id,
+            code: p.code || `t1_ch08_${String(i + 1).padStart(2, '0')}`,
+            data: p.data,
+            answer1: p.answer1,
+            question: p.question,
+            hint: p.hint,
+            speech: p.speech,
+            start: p.start || 'BA',
+            group: p.group || 8,
+            stoneDesc: p.stoneDesc,
+            matchedSources: p.matchedSources || []
+          }));
+        }
+      } else if (currentEditorUnit === 'unit9') {
+        localStorage.setItem('jh_curated_unit_9_confirmed', JSON.stringify(confirmedProblems));
+      } else if (currentEditorUnit === 'unit8') {
+        localStorage.setItem('jh_curated_unit_8_confirmed', JSON.stringify(confirmedProblems));
+      } else if (currentEditorUnit === 'unit7') {
+        const saved7 = localStorage.getItem('jh_curated_unit_7_confirmed');
+        if (saved7) {
+          try {
+            const parsed = JSON.parse(saved7);
+            if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+          } catch (e) {}
+        }
+        const src7 = window.CURATED_UNIT_7 || window.JH_CURATED_UNIT_7;
+        if (src7 && Array.isArray(src7)) {
+          return src7.map((p, i) => ({
+            order: i + 1,
+            candidateId: p.id,
+            code: p.code || `t1_ch07_${String(i + 1).padStart(2, '0')}`,
+            data: p.data,
+            answer1: p.answer1,
+            question: p.question,
+            hint: p.hint,
+            speech: p.speech,
+            start: p.start || 'BA',
+            group: p.group || 7,
+            stoneDesc: p.stoneDesc,
+            matchedSources: p.matchedSources || []
+          }));
+        }
+      } else if (currentEditorUnit === 'unit9') {
+        const saved9 = localStorage.getItem('jh_curated_unit_9_confirmed');
+        if (saved9) {
+          try {
+            const parsed = JSON.parse(saved9);
+            if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+          } catch (e) {}
+        }
+        const src9 = window.CURATED_UNIT_9 || window.JH_CURATED_UNIT_9;
+        if (src9 && Array.isArray(src9)) {
+          return src9.map((p, i) => ({
+            order: i + 1,
+            candidateId: p.id,
+            code: p.code || `t1_ch09_${String(i + 1).padStart(2, '0')}`,
+            data: p.data,
+            answer1: p.answer1,
+            question: p.question,
+            hint: p.hint,
+            speech: p.speech,
+            start: p.start || 'BA',
+            group: p.group || 9,
+            stoneDesc: p.stoneDesc,
+            matchedSources: p.matchedSources || []
+          }));
+        }
+      } else if (currentEditorUnit === 'unit8') {
+        const saved8 = localStorage.getItem('jh_curated_unit_8_confirmed');
+        if (saved8) {
+          try {
+            const parsed = JSON.parse(saved8);
+            if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+          } catch (e) {}
+        }
+        const src8 = window.CURATED_UNIT_8 || window.JH_CURATED_UNIT_8;
+        if (src8 && Array.isArray(src8)) {
+          return src8.map((p, i) => ({
+            order: i + 1,
+            candidateId: p.id,
+            code: p.code || `t1_ch08_${String(i + 1).padStart(2, '0')}`,
+            data: p.data,
+            answer1: p.answer1,
+            question: p.question,
+            hint: p.hint,
+            speech: p.speech,
+            start: p.start || 'BA',
+            group: p.group || 8,
+            stoneDesc: p.stoneDesc,
+            matchedSources: p.matchedSources || []
+          }));
+        }
+      } else if (currentEditorUnit === 'unit9') {
+        localStorage.setItem('jh_curated_unit_9_confirmed', JSON.stringify(confirmedProblems));
+      } else if (currentEditorUnit === 'unit8') {
+        localStorage.setItem('jh_curated_unit_8_confirmed', JSON.stringify(confirmedProblems));
+      } else if (currentEditorUnit === 'unit7') {
+        localStorage.setItem('jh_curated_unit_7_confirmed', JSON.stringify(confirmedProblems));
+      } else if (currentEditorUnit === 'unit6') {
+        localStorage.setItem('jh_curated_unit_6_confirmed', JSON.stringify(confirmedProblems));
+      } else if (currentEditorUnit === 'unit5') {
+        localStorage.setItem('jh_curated_unit_5_confirmed', JSON.stringify(confirmedProblems));
+      } else if (currentEditorUnit === 'unit4') {
+        const saved4 = localStorage.getItem('jh_curated_unit_4_confirmed');
+        if (saved4) {
+          try {
+            const parsed = JSON.parse(saved4);
+            if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+          } catch (e) {}
+        }
+        if (window.JH_CURATED_UNIT_4 && Array.isArray(window.JH_CURATED_UNIT_4)) {
+          return window.JH_CURATED_UNIT_4.map((p, i) => ({
+            order: i + 1,
+            candidateId: p.id,
+            code: p.code || `t1_ch04_${String(i + 1).padStart(2, '0')}`,
+            data: p.data,
+            answer1: p.answer1,
+            question: p.question,
+            hint: p.hint,
+            speech: p.speech,
+            start: p.start || 'BA',
+            group: p.group || 4,
+            stoneDesc: p.stoneDesc,
+            matchedSources: p.matchedSources || []
+          }));
+        }
+      } else if (currentEditorUnit === 'unit3') {
+        const saved3 = localStorage.getItem('jh_curated_unit_3_confirmed');
+        if (saved3) {
+          try {
+            const parsed = JSON.parse(saved3);
+            if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+          } catch (e) {}
+        }
+        if (window.JH_CURATED_UNIT_3 && Array.isArray(window.JH_CURATED_UNIT_3)) {
+          return window.JH_CURATED_UNIT_3.map((p, i) => ({
+            order: i + 1,
+            candidateId: p.id,
+            code: p.code || `t1_ch03_${String(i + 1).padStart(2, '0')}`,
+            data: p.data,
+            answer1: p.answer1,
+            question: p.question,
+            hint: p.hint,
+            speech: p.speech,
+            start: p.start || 'BA',
+            group: p.group || 3,
+            stoneDesc: p.stoneDesc,
+            matchedSources: p.matchedSources || []
+          }));
+        }
+      } else if (currentEditorUnit === 'unit2') {
+        const saved2 = localStorage.getItem('jh_curated_unit_2_confirmed');
+        if (saved2) {
+          try {
+            const parsed = JSON.parse(saved2);
+            if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+          } catch (e) {}
+        }
+        if (window.JH_CURATED_UNIT_2 && Array.isArray(window.JH_CURATED_UNIT_2)) {
+          return window.JH_CURATED_UNIT_2.map((p, i) => ({
+            order: i + 1,
+            candidateId: p.id,
+            code: p.code || `t1_ch02_${String(i + 1).padStart(2, '0')}`,
+            data: p.data,
+            answer1: p.answer1,
+            question: p.question,
+            hint: p.hint,
+            speech: p.speech,
+            start: p.start || 'BA',
+            group: p.group || 2,
+            stoneDesc: p.stoneDesc,
+            matchedSources: p.matchedSources || []
+          }));
+        }
+      } else {
+        const saved1 = localStorage.getItem('jh_curated_unit_1_confirmed');
+        if (saved1) {
+          try {
+            const parsed = JSON.parse(saved1);
+            if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+          } catch (e) {}
+        }
+        if (window.JH_CURATED_UNIT_1 && Array.isArray(window.JH_CURATED_UNIT_1)) {
+          return window.JH_CURATED_UNIT_1.map((p, i) => ({
+            order: i + 1,
+            candidateId: p.id,
+            code: p.code || `t1_ch01_${String(i + 1).padStart(2, '0')}`,
+            data: p.data,
+            answer1: p.answer1,
+            question: p.question,
+            hint: p.hint,
+            speech: p.speech,
+            start: p.start || 'BA',
+            group: p.group || 1,
+            stoneDesc: p.stoneDesc,
+            matchedSources: p.matchedSources || []
+          }));
+        }
+      }
+      return [];
+    }
+
+    let confirmedProblems = loadConfirmedProblems();
+
+    function switchEditorUnit(unitKey) {
+      currentEditorUnit = unitKey;
+      confirmedProblems = loadConfirmedProblems();
+      const pill = document.getElementById('candidateCountPill');
+      if (pill) {
+        if (unitKey === 'unit21') {
+          pill.textContent = `제21단원: 바둑의 승패 - 집 2 (${confirmedProblems.length}제 - 집 완성 판별, 착점 및 9줄 실전 승패)`;
+        } else if (unitKey === 'unit20') {
+          pill.textContent = `제20단원: 바둑의 승패 - 집 1 (${confirmedProblems.length}제 - 집 세기 및 경계선 막아 집 만들기)`;
+        } else if (unitKey === 'unit19') {
+          pill.textContent = `제19단원: 끊으면서 단수치기 2 (${confirmedProblems.length}문제 - 실전 복합 및 무표시 실전 종합)`;
+        } else if (unitKey === 'unit18') {
+          pill.textContent = `제18단원: 끊으면서 단수치기 1 (${confirmedProblems.length}문제 - 일석이조 양동작전 기본 원리)`;
+        } else if (unitKey === 'unit17') {
+          pill.textContent = `제17단원: 자기 돌 쪽으로 단수치기 2 (${confirmedProblems.length}문제 - 실전 복합 및 무표시 실전 종합)`;
+        } else if (unitKey === 'unit16') {
+          pill.textContent = `제16단원: 자기 돌 쪽으로 단수치기 1 (${confirmedProblems.length}문제 - 아군 진영 몰기 기본 원리)`;
+        } else if (unitKey === 'unit15') {
+          pill.textContent = `제15단원: 1선 방향으로 단수치기 2 (${confirmedProblems.length}문제 - 실전 심화 및 무표시 실전 몰기)`;
+        } else if (unitKey === 'unit14') {
+          pill.textContent = `제14단원: 1선 방향으로 단수치기 1 (${confirmedProblems.length}문제 - 1선 낭떠러지 기본 원리)`;
+        } else if (unitKey === 'unit13') {
+          pill.textContent = `제13단원: 돌의 끊음 2 (${confirmedProblems.length}문제 - 심화 및 무표시 실전 끊음)`;
+        } else if (unitKey === 'unit12') {
+          pill.textContent = `제12단원: 돌의 끊음 1 (${confirmedProblems.length}문제 - 기초 호구 및 약점 끊기)`;
+        } else if (unitKey === 'unit11') {
+          pill.textContent = `제11단원: 돌의 연결 2 (${confirmedProblems.length}문제 - 실전 침투 및 복합 국면 연결)`;
+        } else if (unitKey === 'unit10') {
+          pill.textContent = `제10단원: 돌의 연결 1 (${confirmedProblems.length}문제 - 기초 호구 및 약점 잇기)`;
+        } else if (unitKey === 'unit9') {
+          pill.textContent = `제9단원: 양단수 2 (${confirmedProblems.length}문제 - 심화 및 무표시 실전 판별)`;
+        } else if (unitKey === 'unit8') {
+          pill.textContent = `제8단원: 양단수 1 (${confirmedProblems.length}문제 - 호구형 기초 및 급소 찾기)`;
+        } else if (unitKey === 'unit7') {
+          pill.textContent = `제7단원: 서로 단수 (${confirmedProblems.length}문제 - 1~3점 맞따내기 및 실전 판별)`;
+        } else if (unitKey === 'unit6') {
+          pill.textContent = `제6단원: 돌 살리기 2 (${confirmedProblems.length}문제 - 대마 살리기 및 공격 응수)`;
+        } else if (unitKey === 'unit5') {
+          pill.textContent = `제5단원: 돌 살리기 1 (${confirmedProblems.length}문제 - 흑 1~2개 살리기 및 ▲표시)`;
+        } else if (unitKey === 'unit4') {
+          pill.textContent = `제4단원: 돌 따내기 2 (${confirmedProblems.length}문제 - 3~5점 대마 및 복합 국면)`;
+        } else if (unitKey === 'unit3') {
+          pill.textContent = `제3단원: 돌 따내기 1 (${confirmedProblems.length}문제 - 백 1~2점 기초 포획)`;
+        } else if (unitKey === 'unit2') {
+          pill.textContent = `제2단원: 돌의 활로 2 (${confirmedProblems.length}문제 - 남은 활로 1~2개)`;
+        } else {
+          pill.textContent = `제1단원: 돌의 활로 1 (${confirmedProblems.length}문제 - 백돌만 있는 순수 활로)`;
+        }
+      }
+      renderConfirmedList();
+      renderCandidateList();
+      updateConfirmBoxUI();
+      if (confirmedProblems.length > 0) {
+        selectConfirmedProblem(0);
+      }
+    }
+
+    function saveConfirmedProblems() {
+      if (currentEditorUnit === 'unit21') {
+        localStorage.setItem('jh_curated_unit_21_confirmed', JSON.stringify(confirmedProblems));
+      } else if (currentEditorUnit === 'unit20') {
+        localStorage.setItem('jh_curated_unit_20_confirmed', JSON.stringify(confirmedProblems));
+      } else if (currentEditorUnit === 'unit19') {
+        localStorage.setItem('jh_curated_unit_19_confirmed', JSON.stringify(confirmedProblems));
+      } else if (currentEditorUnit === 'unit18') {
+        localStorage.setItem('jh_curated_unit_18_confirmed', JSON.stringify(confirmedProblems));
+      } else if (currentEditorUnit === 'unit17') {
+        localStorage.setItem('jh_curated_unit_17_confirmed', JSON.stringify(confirmedProblems));
+      } else if (currentEditorUnit === 'unit16') {
+        localStorage.setItem('jh_curated_unit_16_confirmed', JSON.stringify(confirmedProblems));
+      } else if (currentEditorUnit === 'unit15') {
+        localStorage.setItem('jh_curated_unit_15_confirmed', JSON.stringify(confirmedProblems));
+      } else if (currentEditorUnit === 'unit14') {
+        localStorage.setItem('jh_curated_unit_14_confirmed', JSON.stringify(confirmedProblems));
+      } else if (currentEditorUnit === 'unit13') {
+        localStorage.setItem('jh_curated_unit_13_confirmed', JSON.stringify(confirmedProblems));
+      } else if (currentEditorUnit === 'unit12') {
+        localStorage.setItem('jh_curated_unit_12_confirmed', JSON.stringify(confirmedProblems));
+      } else if (currentEditorUnit === 'unit11') {
+        localStorage.setItem('jh_curated_unit_11_confirmed', JSON.stringify(confirmedProblems));
+      } else if (currentEditorUnit === 'unit10') {
+        localStorage.setItem('jh_curated_unit_10_confirmed', JSON.stringify(confirmedProblems));
+      } else if (currentEditorUnit === 'unit9') {
+        localStorage.setItem('jh_curated_unit_9_confirmed', JSON.stringify(confirmedProblems));
+      } else if (currentEditorUnit === 'unit8') {
+        localStorage.setItem('jh_curated_unit_8_confirmed', JSON.stringify(confirmedProblems));
+      } else if (currentEditorUnit === 'unit7') {
+        localStorage.setItem('jh_curated_unit_7_confirmed', JSON.stringify(confirmedProblems));
+      } else if (currentEditorUnit === 'unit6') {
+        localStorage.setItem('jh_curated_unit_6_confirmed', JSON.stringify(confirmedProblems));
+      } else if (currentEditorUnit === 'unit5') {
+        localStorage.setItem('jh_curated_unit_5_confirmed', JSON.stringify(confirmedProblems));
+      } else if (currentEditorUnit === 'unit4') {
+        localStorage.setItem('jh_curated_unit_4_confirmed', JSON.stringify(confirmedProblems));
+      } else if (currentEditorUnit === 'unit3') {
+        localStorage.setItem('jh_curated_unit_3_confirmed', JSON.stringify(confirmedProblems));
+      } else if (currentEditorUnit === 'unit2') {
+        localStorage.setItem('jh_curated_unit_2_confirmed', JSON.stringify(confirmedProblems));
+      } else {
+        localStorage.setItem('jh_curated_unit_1_confirmed', JSON.stringify(confirmedProblems));
+      }
+      const badge = document.getElementById('autoSaveBadge');
+      if (badge) {
+        badge.textContent = '🟢 실시간 자동 저장됨';
+        badge.style.opacity = '1';
+      }
+    }
+
+    // 가운데 확정 컨트롤 박스 UI 동기화
+    function updateConfirmBoxUI() {
+      if (!problems || !problems[activeIndex]) return;
+      const p = problems[activeIndex];
+      const confIdx = confirmedProblems.findIndex(cp => cp.candidateId === p.id || (cp.data === p.data && cp.answer1 === p.answer1));
+      const badge = document.getElementById('confirmStatusBadge');
+      const orderInput = document.getElementById('confirmOrderInput');
+      const btnAction = document.getElementById('btnConfirmAction');
+      const btnUnconfirm = document.getElementById('btnUnconfirm');
+      const hintText = document.getElementById('confirmHintText');
+
+      if (confIdx >= 0) {
+        const cp = confirmedProblems[confIdx];
+        if (badge) {
+          badge.textContent = `✅ 교재 #${cp.order}번 확정됨`;
+          badge.className = 'status-badge confirmed';
+        }
+        if (orderInput) orderInput.value = cp.order;
+        if (btnAction) btnAction.innerHTML = '<span>🔄</span> 교재 번호/내용 수정 반영';
+        if (btnUnconfirm) btnUnconfirm.style.display = 'inline-block';
+        if (hintText) hintText.textContent = `현재 교재 #${cp.order}번으로 등록되어 있습니다.`;
+      } else {
+        if (badge) {
+          badge.textContent = '미확정';
+          badge.className = 'status-badge unconfirmed';
+        }
+        const maxOrder = confirmedProblems.reduce((m, item) => Math.max(m, item.order || 0), 0);
+        if (orderInput) orderInput.value = maxOrder + 1;
+        if (btnAction) btnAction.innerHTML = '<span>⭐</span> 이 번호로 교재 확정';
+        if (btnUnconfirm) btnUnconfirm.style.display = 'none';
+        if (hintText) hintText.textContent = '확정 시 우측 교재 목록에 순서대로 등록됩니다';
+      }
+    }
+
+    // 현재 문제 교재로 확정 버튼
+    function confirmCurrentProblem() {
+      if (!problems || !problems[activeIndex]) return;
+      saveActiveProblemSilent();
+      const currentP = problems[activeIndex];
+      const orderInput = document.getElementById('confirmOrderInput');
+      const targetOrder = parseInt(orderInput.value, 10);
+      if (isNaN(targetOrder) || targetOrder < 1) {
+        alert('1 이상의 번호를 입력해주세요.');
+        return;
+      }
+
+      // 기존 확정 여부 확인
+      const existingIdx = confirmedProblems.findIndex(cp => cp.candidateId === currentP.id || (cp.data === currentP.data && cp.answer1 === currentP.answer1));
+
+      const newItem = {
+        order: targetOrder,
+        candidateId: currentP.id,
+        code: `t1_ch01_${String(targetOrder).padStart(2, '0')}`,
+        data: currentP.data,
+        answer1: currentP.answer1,
+        question: currentP.question,
+        hint: currentP.hint,
+        speech: currentP.speech,
+        start: currentP.start || 'BA',
+        group: currentP.group,
+        stoneDesc: currentP.stoneDesc,
+        matchedSources: currentP.matchedSources || []
+      };
+
+      if (existingIdx >= 0) {
+        // 이미 있던 문제의 번호/내용 수정
+        confirmedProblems[existingIdx] = newItem;
+      } else {
+        // 동일 번호가 이미 존재하면 해당 번호 이상을 1씩 밀어줌
+        confirmedProblems.forEach(cp => {
+          if (cp.order >= targetOrder) cp.order += 1;
+        });
+        confirmedProblems.push(newItem);
+      }
+
+      // order 순 정렬
+      confirmedProblems.sort((a, b) => a.order - b.order);
+
+      saveConfirmedProblems();
+      renderConfirmedList();
+      renderCandidateList();
+      updateConfirmBoxUI();
+      playDingDong();
+
+      // 다음 번호 자동 제안
+      const maxOrder = confirmedProblems.reduce((m, item) => Math.max(m, item.order || 0), 0);
+      if (orderInput) orderInput.value = maxOrder + 1;
+
+      const badge = document.getElementById('autoSaveBadge');
+      if (badge) {
+        badge.textContent = `⭐ 교재 #${targetOrder}번 확정 완료!`;
+        badge.style.opacity = '1';
+      }
+    }
+
+    // 교재 확정 취소
+    function unconfirmCurrentProblem() {
+      if (!problems || !problems[activeIndex]) return;
+      const currentP = problems[activeIndex];
+      const idx = confirmedProblems.findIndex(cp => cp.candidateId === currentP.id || (cp.data === currentP.data && cp.answer1 === currentP.answer1));
+      if (idx >= 0) {
+        confirmedProblems.splice(idx, 1);
+        saveConfirmedProblems();
+        renderConfirmedList();
+        renderCandidateList();
+        updateConfirmBoxUI();
+      }
+    }
+
+    // 엄선 11문제 예시 로드
+    function loadGolden20ToConfirmed() {
+      const base = window.JH_CURATED_UNIT_1;
+      if (!base || !Array.isArray(base)) {
+        alert('엄선 데이터셋을 불러올 수 없습니다.');
+        return;
+      }
+      if (confirmedProblems.length > 0 && !confirm('현재 확정된 교재 목록을 덮어쓰고 제1단원 엄선 11문제 세트로 채우시겠습니까?')) {
+        return;
+      }
+      confirmedProblems = base.map((p, i) => ({
+        order: i + 1,
+        candidateId: p.id,
+        code: p.code || `t1_ch01_${String(i + 1).padStart(2, '0')}`,
+        data: p.data,
+        answer1: p.answer1,
+        question: p.question,
+        hint: p.hint,
+        speech: p.speech,
+        start: p.start || 'BA',
+        group: p.group,
+        stoneDesc: p.stoneDesc,
+        matchedSources: p.matchedSources || []
+      }));
+      saveConfirmedProblems();
+      renderConfirmedList();
+      renderCandidateList();
+      updateConfirmBoxUI();
+      alert('🎉 제1단원 엄선 11문제가 우측 교재 목록에 확정 로드되었습니다!');
+    }
+    const loadCurated11ToConfirmed = loadGolden20ToConfirmed;
+
+    // 확정 교재 정규 수업 화면에 내보내기 & 저장
+    function exportConfirmedCurriculum() {
+      if (confirmedProblems.length === 0) {
+        alert('아직 확정된 교재 문제가 없습니다. 가운데에서 번호를 입력하고 [⭐ 이 번호로 교재 확정] 버튼을 눌러주세요.');
+        return;
+      }
+      saveConfirmedProblems();
+      alert(`🎉 원장님께서 확정하신 총 ${confirmedProblems.length}문제가 정규 수업 화면에 성공적으로 적용되었습니다!\n'수업 화면으로 이동' 또는 '지금 확정한 교재 테스트' 버튼을 누르시면 학생 모드에서 바로 플레이하실 수 있습니다.`);
+    }
+
+    // 지금 확정한 문제 바로 테스트 플레이
+    function playTestCuratedProblems() {
+      saveConfirmedProblems();
+      const m = currentEditorUnit.match(/unit(\d+)/);
+      if (m) {
+        const num = String(m[1]).padStart(2, '0');
+        window.location.href = `index.html?mode=missions&chapter=t1_ch${num}`;
+      } else {
+        window.location.href = 'index.html?mode=missions&chapter=t1_ch01';
+      }
+    }
+
+    // 1편(1단원) 확정 교재 목록 완전히 비우기
+    function clearAllConfirmedProblems(force = false) {
+      if (force || confirm('확정된 1단원 교재 목록을 모두 지우고 완전히 비우시겠습니까?')) {
+        confirmedProblems = [];
+        localStorage.removeItem('jh_curated_unit_1_confirmed');
+        localStorage.removeItem('jh_curated_unit_1');
+        localStorage.removeItem('jh_curated_unit_1_draft');
+        saveConfirmedProblems();
+        renderConfirmedList();
+        renderCandidateList();
+        updateConfirmBoxUI();
+        if (!force) alert('1단원 확정 목록이 깨끗하게 모두 지워졌습니다.');
+      }
+    }
+
+    // 확정된 문제 편집기로 불러오기
+    function selectConfirmedProblem(confIdx) {
+      const cp = confirmedProblems[confIdx];
+      if (!cp) return;
+      let candIdx = problems.findIndex(p => p.id === cp.candidateId || (p.data === cp.data && p.answer1 === cp.answer1));
+      if (candIdx >= 0) {
+        selectProblem(candIdx);
+      } else {
+        saveActiveProblemSilent();
+        boardSize = detectProblemBoardSize(cp);
+      document.querySelectorAll('.editor-size-btn').forEach(btn => {
+        btn.classList.toggle('active', parseInt(btn.dataset.size, 10) === boardSize);
+      });
+      currentGrid = parseSgfToGrid(cp.data, cp.answer1, boardSize);
+        document.getElementById('editProblemCode').value = cp.code || `교재 #${cp.order}`;
+        document.getElementById('editQuestion').value = cp.question || '';
+        document.getElementById('editHint').value = cp.hint || '';
+        document.getElementById('editSpeech').value = cp.speech || '';
+        document.getElementById('editStartTurn').value = cp.start || 'BA';
+        renderBoard();
+        updateConfirmBoxUI();
+      }
+      document.querySelectorAll('.confirmed-card').forEach((el, i) => {
+        el.classList.toggle('active', i === confIdx);
+      });
+    }
+
+    // 우측 확정 문제 순서 이동
+    function moveConfirmedUp(confIdx) {
+      if (confIdx <= 0) return;
+      const cur = confirmedProblems[confIdx];
+      const prev = confirmedProblems[confIdx - 1];
+      const tempOrder = cur.order;
+      cur.order = prev.order;
+      prev.order = tempOrder;
+      confirmedProblems.sort((a, b) => a.order - b.order);
+      saveConfirmedProblems();
+      renderConfirmedList();
+      renderCandidateList();
+      updateConfirmBoxUI();
+    }
+
+    function moveConfirmedDown(confIdx) {
+      if (confIdx >= confirmedProblems.length - 1) return;
+      const cur = confirmedProblems[confIdx];
+      const next = confirmedProblems[confIdx + 1];
+      const tempOrder = cur.order;
+      cur.order = next.order;
+      next.order = tempOrder;
+      confirmedProblems.sort((a, b) => a.order - b.order);
+      saveConfirmedProblems();
+      renderConfirmedList();
+      renderCandidateList();
+      updateConfirmBoxUI();
+    }
+
+    function deleteConfirmed(confIdx) {
+      if (confirm(`제 ${confirmedProblems[confIdx].order}번 문제를 교재에서 제외하시겠습니까?`)) {
+        confirmedProblems.splice(confIdx, 1);
+        saveConfirmedProblems();
+        renderConfirmedList();
+        renderCandidateList();
+        updateConfirmBoxUI();
+      }
+    }
+
+    // 우측 교재 목록 렌더링 (실물 교재 스타일 + 미니 바둑판!)
+    function renderConfirmedList() {
+      const container = document.getElementById('confirmedListContainer');
+      if (!container) return;
+      container.innerHTML = '';
+
+      const pill = document.getElementById('confirmedCountPill');
+      if (pill) pill.textContent = confirmedProblems.length;
+
+      if (confirmedProblems.length === 0) {
+        container.innerHTML = `
+          <div style="text-align: center; padding: 40px 16px; color: #94a3b8; display:flex; flex-direction:column; gap:12px; align-items:center;">
+            <span style="font-size: 2.5rem;">📖</span>
+            <strong style="color: #cbd5e1; font-size: 0.95rem;">아직 확정된 교재 문제가 없습니다.</strong>
+            <p style="font-size: 0.82rem; line-height: 1.5; margin: 0;">
+              가운데 편집 화면에서 교재 순서 번호를 입력하고<br>
+              <strong style="color:#38bdf8;">[⭐ 이 번호로 교재 확정]</strong> 버튼을 누르면<br>
+              이곳에 실제 바둑 교재처럼 차례대로 등록됩니다!
+            </p>
+            <button type="button" class="btn-top primary" style="margin-top:6px;" onclick="loadGolden20ToConfirmed()">
+              💡 제1단원 엄선 11문제 예시 불러오기
+            </button>
+          </div>
+        `;
+        return;
+      }
+
+      confirmedProblems.sort((a, b) => a.order - b.order);
+
+      confirmedProblems.forEach((cp, idx) => {
+        const card = document.createElement('div');
+        card.className = 'confirmed-card';
+        card.setAttribute('data-conf-index', idx);
+
+        const ansMatches = (cp.answer1 || '').match(/;B\[[a-s]{2}\]/gi) || [];
+        const ansBadge = ansMatches.length > 1
+          ? `<span class="confirmed-ans-badge">⭐ 정답: ${ansMatches.length}곳 (순서 무관)</span>`
+          : `<span class="confirmed-ans-badge">⭐ 정답: 1곳</span>`;
+
+        card.innerHTML = `
+          <div class="confirmed-card-top">
+            <span class="confirmed-num-badge">👑 제 ${cp.order} 번</span>
+            <div style="display:flex; gap:4px; align-items:center;">
+              <button type="button" class="btn-sm-action edit" onclick="selectConfirmedProblem(${idx})" title="편집기에 로드">✏️ 편집</button>
+              <button type="button" class="btn-sm-action" onclick="moveConfirmedUp(${idx})" ${idx === 0 ? 'disabled style="opacity:0.35;"' : ''} title="순서 위로">▲</button>
+              <button type="button" class="btn-sm-action" onclick="moveConfirmedDown(${idx})" ${idx === confirmedProblems.length - 1 ? 'disabled style="opacity:0.35;"' : ''} title="순서 아래로">▼</button>
+              <button type="button" class="btn-sm-action delete" onclick="deleteConfirmed(${idx})" title="교재 제외">❌</button>
+            </div>
+          </div>
+          <div class="confirmed-card-body">
+            <div class="mini-board-wrapper">
+              <canvas class="mini-board-canvas" width="130" height="130" id="miniCanvas_${idx}"></canvas>
+            </div>
+            <div class="confirmed-info-col">
+              <div class="confirmed-q-text">${cp.question || '백의 활로를 막아 보세요.'}</div>
+              ${ansBadge}
+              <div class="confirmed-hint-text">💡 ${cp.hint || '활로는 직선으로 이어집니다.'}</div>
+            </div>
+          </div>
+        `;
+
+        card.addEventListener('click', (e) => {
+          if (!e.target.closest('button')) {
+            selectConfirmedProblem(idx);
+          }
+        });
+
+        container.appendChild(card);
+
+        // 미니 바둑판 다이어그램 그리기
+        const miniCanvas = card.querySelector(`#miniCanvas_${idx}`);
+        if (miniCanvas) {
+          drawMiniBoard(miniCanvas, cp);
+        }
+      });
+    }
+
+    // 바둑판 규격별 화점 좌표 반환
+    function getStarPoints(bSize) {
+      if (bSize === 9) {
+        return [[4, 4]];
+      } else if (bSize === 13) {
+        return [[3, 3], [9, 3], [6, 6], [3, 9], [9, 9]];
+      } else if (bSize === 19) {
+        const pts = [];
+        [3, 9, 15].forEach(x => [3, 9, 15].forEach(y => pts.push([x, y])));
+        return pts;
+      }
+      return [];
+    }
+
+    // 미니 바둑판 렌더러 (확장형 다이어그램 디자인: 9·13·19줄 지원)
+    function drawMiniBoard(miniCanvas, pOrGrid, optSize) {
+      if (!miniCanvas) return;
+      const mCtx = miniCanvas.getContext('2d');
+      const size = miniCanvas.width;
+
+      let grid = pOrGrid;
+      let bSize = optSize || 9;
+
+      if (pOrGrid && (pOrGrid.sgf || pOrGrid.data || pOrGrid.ans || pOrGrid.answer1)) {
+        bSize = optSize || detectProblemBoardSize(pOrGrid);
+        grid = parseSgfToGrid(pOrGrid.sgf || pOrGrid.data, pOrGrid.ans || pOrGrid.answer1, bSize);
+      } else if (!Array.isArray(grid)) {
+        return;
+      } else if (optSize) {
+        bSize = optSize;
+      } else {
+        bSize = grid.length || 9;
+      }
+
+      const cSize = size / (bSize + 1);
+
+      // 목재 바탕
+      mCtx.fillStyle = '#f2d69f';
+      mCtx.fillRect(0, 0, size, size);
+
+      // 외곽 테두리
+      mCtx.strokeStyle = '#3d2510';
+      mCtx.lineWidth = 1.6;
+      mCtx.strokeRect(cSize, cSize, cSize * (bSize - 1), cSize * (bSize - 1));
+
+      // 격자선
+      mCtx.strokeStyle = '#5a3d1c';
+      mCtx.lineWidth = 0.9;
+      for (let i = 0; i < bSize; i++) {
+        const pos = cSize * (i + 1);
+        mCtx.beginPath();
+        mCtx.moveTo(cSize, pos);
+        mCtx.lineTo(cSize * bSize, pos);
+        mCtx.stroke();
+
+        mCtx.beginPath();
+        mCtx.moveTo(pos, cSize);
+        mCtx.lineTo(pos, cSize * bSize);
+        mCtx.stroke();
+      }
+
+      // 화점 표시
+      mCtx.fillStyle = '#3d2510';
+      const starPts = getStarPoints(bSize);
+      starPts.forEach(([sx, sy]) => {
+        mCtx.beginPath();
+        mCtx.arc(cSize * (sx + 1), cSize * (sy + 1), Math.max(1.5, cSize * 0.14), 0, Math.PI * 2);
+        mCtx.fill();
+      });
+
+      // 돌 및 정답★
+      const sRadius = cSize * 0.44;
+      for (let y = 0; y < bSize; y++) {
+        if (!grid[y]) continue;
+        for (let x = 0; x < bSize; x++) {
+          const val = grid[y][x];
+          if (!val) continue;
+          const px = cSize * (x + 1);
+          const py = cSize * (y + 1);
+
+          if (val === 1) { // 흑돌
+            mCtx.save();
+            mCtx.fillStyle = '#0f172a';
+            mCtx.beginPath();
+            mCtx.arc(px, py, sRadius, 0, Math.PI * 2);
+            mCtx.fill();
+            mCtx.strokeStyle = '#000000';
+            mCtx.lineWidth = 0.5;
+            mCtx.stroke();
+            mCtx.restore();
+          } else if (val === 2) { // 백돌
+            mCtx.save();
+            mCtx.fillStyle = '#ffffff';
+            mCtx.beginPath();
+            mCtx.arc(px, py, sRadius, 0, Math.PI * 2);
+            mCtx.fill();
+            mCtx.strokeStyle = '#94a3b8';
+            mCtx.lineWidth = 0.8;
+            mCtx.stroke();
+            mCtx.restore();
+          } else if (val === 3) { // 정답 착점★
+            mCtx.save();
+            mCtx.fillStyle = 'rgba(239, 68, 68, 0.25)';
+            mCtx.beginPath();
+            mCtx.arc(px, py, sRadius * 0.95, 0, Math.PI * 2);
+            mCtx.fill();
+            mCtx.strokeStyle = '#ef4444';
+            mCtx.lineWidth = 1.3;
+            mCtx.stroke();
+
+            mCtx.fillStyle = '#ef4444';
+            mCtx.font = 'bold ' + Math.floor(cSize * 0.75) + 'px sans-serif';
+            mCtx.textAlign = 'center';
+            mCtx.textBaseline = 'middle';
+            mCtx.fillText('★', px, py);
+            mCtx.restore();
+          }
+        }
+      }
+    }
+
+    // 현재 문제에 표준 질문·힌트 적용
+    function applyStandardTextCurrent() {
+      if (!problems || !problems[activeIndex]) return;
+      const p = problems[activeIndex];
+      const isG1 = (p.group === 1 || p.blackCount === 0);
+      if (isG1) {
+        document.getElementById('editQuestion').value = '백의 활로를 모두 막아보세요.';
+        document.getElementById('editHint').value = '활로는 상·하·좌·우 직선으로 이어집니다. 반짝이는 길을 찾아보세요.';
+        document.getElementById('editSpeech').value = '백돌의 숨구멍(활로)을 모두 찾아 막아보세요!';
+      } else {
+        document.getElementById('editQuestion').value = '남아 있는 백돌의 숨구멍(활로)을 막아 보세요.';
+        document.getElementById('editHint').value = '이미 흑돌이 막고 있는 곳을 피해 비어 있는 직선 길을 찾아보세요.';
+        document.getElementById('editSpeech').value = '남아 있는 백돌의 숨구멍을 찾아 모두 막아보세요!';
+      }
+      saveActiveProblemSilent();
+      renderCandidateList();
+    }
+
+    // 74문제 전체에 표준 질문·힌트 일괄 적용
+    function applyStandardTextAll() {
+      if (!confirm('74문제 전체의 질문, 힌트, 사범님 코칭 멘트를 형태(1그룹/2그룹)에 맞춘 표준 문구로 일괄 자동 통일하시겠습니까?\n(일일이 수정하지 않아도 한 번에 완성됩니다!)')) return;
+      problems.forEach(p => {
+        const isG1 = (p.group === 1 || p.blackCount === 0);
+        if (isG1) {
+          p.question = '백의 활로를 모두 막아보세요.';
+          p.hint = '활로는 상·하·좌·우 직선으로 이어집니다. 반짝이는 길을 찾아보세요.';
+          p.speech = '백돌의 숨구멍(활로)을 모두 찾아 막아보세요!';
+        } else {
+          p.question = '남아 있는 백돌의 숨구멍(활로)을 막아 보세요.';
+          p.hint = '이미 흑돌이 막고 있는 곳을 피해 비어 있는 직선 길을 찾아보세요.';
+          p.speech = '남아 있는 백돌의 숨구멍을 찾아 모두 막아보세요!';
+        }
+      });
+      persistDraft();
+      renderCandidateList();
+      loadProblemToUI(activeIndex);
+      alert('✨ 74문제 전체의 질문과 힌트가 표준 문구로 일괄 적용되었습니다!');
+    }
+
+    function resetToOriginalCandidate() {
+      if (confirm('현재 작업 중인 수정 및 순서 변경 내용을 모두 지우고, 처음 4대 교재 기본 상태로 되돌리시겠습니까?')) {
+        localStorage.removeItem('jh_curated_unit_1_draft');
+        problems = (window.HWALRO_DEDUP_PROBLEMS && Array.isArray(window.HWALRO_DEDUP_PROBLEMS))
+          ? JSON.parse(JSON.stringify(window.HWALRO_DEDUP_PROBLEMS))
+          : [];
+        activeIndex = 0;
+        renderCandidateList();
+        if (problems.length > 0) selectProblem(0);
+        alert('처음 4대 교재 기본 상태로 초기화되었습니다.');
+      }
+    }
+
+    let activeIndex = 0;
+    let currentTool = 'black'; // 'black' | 'white' | 'answer' | 'eraser'
+    let boardSize = 9;
+
+    // 🌟 확장형 바둑판 상태 (9줄, 13줄, 19줄 동적 확장)
+    let currentGrid = Array(boardSize).fill(null).map(() => Array(boardSize).fill(0));
+
+    const canvas = document.getElementById('editorCanvas');
+    const ctx = canvas.getContext('2d');
+    const displaySize = canvas.width;
+
+    function setEditorBoardSize(newSize) {
+      boardSize = parseInt(newSize, 10);
+      document.querySelectorAll('.editor-size-btn').forEach(btn => {
+        btn.classList.toggle('active', parseInt(btn.dataset.size, 10) === boardSize);
+      });
+      if (problems && problems[activeIndex]) {
+        currentGrid = parseSgfToGrid(problems[activeIndex].data, problems[activeIndex].answer1, boardSize);
+      }
+      renderBoard();
+    }
+
+    function detectProblemBoardSize(p) {
+      if (!p) return 9;
+      if (p.size) {
+        const s = parseInt(p.size, 10);
+        if (s === 19 || s === 13 || s === 9) return s;
+        if (s === 1 || s === 2) return 19;
+      }
+      if (p.recommendedSize) return p.recommendedSize;
+
+      const points = [];
+      const reg = /;([BW])\[([a-s]{2})\]/gi;
+      let m;
+      while ((m = reg.exec((p.data || '') + (p.answer1 || ''))) !== null) {
+        points.push({
+          x: m[2].charCodeAt(0) - 97,
+          y: m[2].charCodeAt(1) - 97
+        });
+      }
+      if (points.length === 0) return 9;
+      const minX = Math.min(...points.map(pt => pt.x));
+      const minY = Math.min(...points.map(pt => pt.y));
+      const maxX = Math.max(...points.map(pt => pt.x));
+      const maxY = Math.max(...points.map(pt => pt.y));
+
+      if (maxX - minX >= 13 || maxY - minY >= 13) return 19;
+      if (minX <= 5 && maxX >= 14) return 19;
+      if (minY <= 5 && maxY >= 14) return 19;
+
+      const neededX = (maxX >= 10) ? (19 - minX) : (maxX + 1);
+      const neededY = (maxY >= 10) ? (19 - minY) : (maxY + 1);
+      const needed = Math.max(neededX, neededY);
+
+      if (needed <= 9) return 9;
+      if (needed <= 13) return 13;
+      return 19;
+    }
+
+    // 🌟 SGF 좌표 -> 확장형 바둑판(9줄, 13줄, 19줄) 그리드 변환 🌟
+    function parseSgfTo9x9(sgfData, ansData) {
+      return parseSgfToGrid(sgfData, ansData, 9);
+    }
+
+    function parseSgfToGrid(sgfData, ansData, targetSize) {
+      const grid = Array(targetSize).fill(null).map(() => Array(targetSize).fill(0));
+      if (!sgfData) return grid;
+
+      const rawPoints = [];
+      const testRegex = /;([BW])\[([a-s]{2})\]/gi;
+      let tm;
+      while ((tm = testRegex.exec(sgfData)) !== null) {
+        rawPoints.push({
+          x: tm[2].charCodeAt(0) - 97,
+          y: tm[2].charCodeAt(1) - 97
+        });
+      }
+
+      let shiftX = 0;
+      let shiftY = 0;
+      if (targetSize < 19 && rawPoints.length > 0) {
+        const maxX = Math.max(...rawPoints.map(p => p.x));
+        const maxY = Math.max(...rawPoints.map(p => p.y));
+        if (maxX >= 10 && maxY >= 10) {
+          shiftX = 19 - targetSize;
+          shiftY = 19 - targetSize;
+        } else if (maxX <= 8 && maxY >= 10) {
+          shiftX = 0;
+          shiftY = 19 - targetSize;
+        } else if (maxX >= 10 && maxY <= 8) {
+          shiftX = 19 - targetSize;
+          shiftY = 0;
+        }
+      }
+
+      const regex = /;([BW])\[([a-s]{2})\]/gi;
+      let m;
+      while ((m = regex.exec(sgfData)) !== null) {
+        const color = m[1].toUpperCase() === 'B' ? 1 : 2;
+        const x = m[2].charCodeAt(0) - 97 - shiftX;
+        const y = m[2].charCodeAt(1) - 97 - shiftY;
+        if (x >= 0 && x < targetSize && y >= 0 && y < targetSize) {
+          grid[y][x] = color;
+        }
+      }
+
+      if (ansData) {
+        const aRegex = /;([BW])\[([a-s]{2})\]/gi;
+        let am;
+        while ((am = aRegex.exec(ansData)) !== null) {
+          const ax = am[2].charCodeAt(0) - 97 - shiftX;
+          const ay = am[2].charCodeAt(1) - 97 - shiftY;
+          if (ax >= 0 && ax < targetSize && ay >= 0 && ay < targetSize) {
+            grid[ay][ax] = 3;
+          }
+        }
+      }
+
+      return grid;
+    }
+
+    // 🌟 확장형 바둑판 그리드 -> SGF 문자열 역변환 🌟
+    function gridToSgf(grid) {
+      let data = '';
+      let answer1 = '';
+      const targetSize = boardSize;
+
+      let shiftX = 0;
+      let shiftY = 0;
+      if (targetSize < 19 && problems[activeIndex] && problems[activeIndex].data) {
+        const rawPoints = [];
+        const testRegex = /;([BW])\[([a-s]{2})\]/gi;
+        let tm;
+        while ((tm = testRegex.exec(problems[activeIndex].data)) !== null) {
+          rawPoints.push({
+            x: tm[2].charCodeAt(0) - 97,
+            y: tm[2].charCodeAt(1) - 97
+          });
+        }
+        if (rawPoints.length > 0) {
+          const maxX = Math.max(...rawPoints.map(p => p.x));
+          const maxY = Math.max(...rawPoints.map(p => p.y));
+          if (maxX >= 10 && maxY >= 10) {
+            shiftX = 19 - targetSize;
+            shiftY = 19 - targetSize;
+          } else if (maxX <= 8 && maxY >= 10) {
+            shiftX = 0;
+            shiftY = 19 - targetSize;
+          } else if (maxX >= 10 && maxY <= 8) {
+            shiftX = 19 - targetSize;
+            shiftY = 0;
+          }
+        }
+      }
+
+      for (let y = 0; y < targetSize; y++) {
+        for (let x = 0; x < targetSize; x++) {
+          const val = grid[y][x];
+          const origX = x + shiftX;
+          const origY = y + shiftY;
+          if (origX < 0 || origX >= 19 || origY < 0 || origY >= 19) continue;
+          const sgfCoord = String.fromCharCode(97 + origX) + String.fromCharCode(97 + origY);
+          if (val === 1) {
+            data += `;B[${sgfCoord}]`;
+          } else if (val === 2) {
+            data += `;W[${sgfCoord}]`;
+          } else if (val === 3) {
+            answer1 += `;B[${sgfCoord}]`;
+          }
+        }
+      }
+      return { data, answer1 };
+    }
+
+    // 초기화
+    function init() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const uParam = urlParams.get('unit');
+      if (uParam) {
+        currentEditorUnit = uParam;
+        const sel = document.getElementById('curatedUnitSelect') || document.getElementById('editorUnitSelector');
+        if (sel) sel.value = uParam;
+      }
+      switchEditorUnit(currentEditorUnit);
+      if (urlParams.get('clear') === '1') {
+        clearAllConfirmedProblems(true);
+      }
+      renderCandidateList();
+      renderConfirmedList();
+      if (problems.length > 0) {
+        selectProblem(0);
+      }
+      bindCanvasEvents();
+    }
+
+    let currentFilter = 'all';
+
+    function setFilter(filter) {
+      currentFilter = filter;
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.filter === filter);
+      });
+      renderCandidateList();
+    }
+
+    // 좌측 후보 목록 렌더링
+    function renderCandidateList() {
+      const container = document.getElementById('candidateListContainer');
+      container.innerHTML = '';
+      
+      const countEl = document.getElementById('countFilterAll');
+      if (countEl) countEl.textContent = problems.length;
+      const countBtnEl = document.getElementById('countFilterAllBtn');
+      if (countBtnEl) countBtnEl.textContent = problems.length;
+
+      const confirmedCount = problems.filter(p => confirmedProblems.some(cp => cp.candidateId === p.id || (cp.data === p.data && cp.answer1 === p.answer1))).length;
+      const unconfirmedCount = problems.length - confirmedCount;
+      const countConfEl = document.getElementById('countConfirmedFilter');
+      if (countConfEl) countConfEl.textContent = confirmedCount;
+      const countUnconfEl = document.getElementById('countUnconfirmedFilter');
+      if (countUnconfEl) countUnconfEl.textContent = unconfirmedCount;
+
+      const g1Count = problems.filter(p => p.group === 1 || p.blackCount === 0).length;
+      const g2Count = problems.length - g1Count;
+      const countPill = document.getElementById('candidateCountPill');
+      if (countPill) countPill.textContent = `후보: ${problems.length}문제 (1그룹 ${g1Count}개 / 2그룹 ${g2Count}개)`;
+
+      let renderedCount = 0;
+      let lastGroupSeen = null;
+
+      problems.forEach((p, idx) => {
+        const isDup = p.matchedSources && p.matchedSources.length > 1;
+        const isGroup1 = (p.group === 1 || p.blackCount === 0);
+        const confirmedMatch = confirmedProblems.find(cp => cp.candidateId === p.id || (cp.data === p.data && cp.answer1 === p.answer1));
+        const isConfirmed = !!confirmedMatch;
+
+        let matchFilter = true;
+        if (currentFilter === 'confirmed') {
+          matchFilter = isConfirmed;
+        } else if (currentFilter === 'unconfirmed') {
+          matchFilter = !isConfirmed;
+        } else if (currentFilter === 'group1') {
+          matchFilter = isGroup1;
+        } else if (currentFilter === 'group2') {
+          matchFilter = !isGroup1;
+        } else if (currentFilter === '씽크탱크') {
+          matchFilter = (p.primaryBook === '씽크탱크' || (p.matchedSources && p.matchedSources.some(s => s.includes('씽크탱크'))));
+        } else if (currentFilter === '논리바둑') {
+          matchFilter = (p.primaryBook === '논리바둑' || (p.matchedSources && p.matchedSources.some(s => s.includes('논리바둑'))));
+        } else if (currentFilter === '알파바둑') {
+          matchFilter = (p.primaryBook === '알파바둑' || (p.matchedSources && p.matchedSources.some(s => s.includes('알파바둑'))));
+        } else if (currentFilter === '파워씽크') {
+          matchFilter = (p.primaryBook === '파워씽크' || (p.matchedSources && p.matchedSources.some(s => s.includes('파워씽크'))));
+        } else if (currentFilter === 'dup') {
+          matchFilter = isDup;
+        }
+
+        if (!matchFilter) return;
+        renderedCount++;
+
+        // 전체 필터일 때 그룹 구분선 추가
+        if (currentFilter === 'all') {
+          const currentGroup = isGroup1 ? 1 : 2;
+          if (currentGroup !== lastGroupSeen) {
+            const header = document.createElement('div');
+            header.className = 'group-section-header' + (currentGroup === 2 ? ' group2' : '');
+            header.innerHTML = (currentGroup === 1)
+              ? `<span>⚪ [제1그룹] 백돌만 있는 기초 활로 문제 (${g1Count}개)</span>`
+              : `<span>⚫ [제2그룹] 흑돌 외 나머지 활로를 막는 문제 (${g2Count}개)</span>`;
+            container.appendChild(header);
+            lastGroupSeen = currentGroup;
+          }
+        }
+
+        const card = document.createElement('div');
+        card.className = 'candidate-card' + (idx === activeIndex ? ' active' : '');
+        card.setAttribute('data-index', idx);
+        card.draggable = true;
+
+        // 드래그 앤 드롭 순서 변경 이벤트
+        card.addEventListener('dragstart', (e) => {
+          e.dataTransfer.setData('text/plain', idx);
+        });
+        card.addEventListener('dragover', (e) => {
+          e.preventDefault();
+          card.classList.add('drag-over');
+        });
+        card.addEventListener('dragleave', () => {
+          card.classList.remove('drag-over');
+        });
+        card.addEventListener('drop', (e) => {
+          e.preventDefault();
+          card.classList.remove('drag-over');
+          const fromIdx = parseInt(e.dataTransfer.getData('text/plain'), 10);
+          const toIdx = idx;
+          if (!isNaN(fromIdx) && fromIdx !== toIdx) {
+            saveActiveProblemSilent();
+            isReordering = true;
+            const [moved] = problems.splice(fromIdx, 1);
+            problems.splice(toIdx, 0, moved);
+            activeIndex = toIdx;
+            reindexProblems();
+            renderCandidateList();
+            loadProblemToUI(toIdx);
+            isReordering = false;
+          }
+        });
+
+        const confirmedTag = isConfirmed
+          ? `<span class="confirmed-tag">👑 교재 #${confirmedMatch.order}번</span>`
+          : '';
+
+        const groupTag = isGroup1
+          ? '<span class="source-tag tag-group1">⚪ 백돌 단독</span>'
+          : `<span class="source-tag tag-group2">⚫ 흑돌 ${p.blackCount || 1}점 놓임</span>`;
+        
+        const tagsHtml = (p.matchedSources || []).map(s => {
+          let cls = 'tag-think';
+          if (s.includes('논리바둑')) cls = 'tag-logic';
+          else if (s.includes('알파바둑')) cls = 'tag-alpha';
+          else if (s.includes('파워씽크')) cls = 'tag-power';
+          if (s.includes('(동일)')) cls += ' tag-dup';
+          return `<span class="source-tag ${cls}">${s}</span>`;
+        }).join('');
+
+        card.innerHTML = `
+          <div class="card-top">
+            <span class="card-num">#${idx + 1}</span>
+            <div class="card-badge-row">${confirmedTag}${groupTag}${tagsHtml}</div>
+          </div>
+          <div class="card-q-preview">${p.question || '활로 문제'}</div>
+        `;
+
+        card.addEventListener('click', () => {
+          selectProblem(idx);
+        });
+
+        container.appendChild(card);
+      });
+    }
+
+    // 문제 순서 재정렬 번호 동기화
+    function reindexProblems() {
+      problems.forEach((p, i) => {
+        p.id = i + 1;
+        p.code = 'hwalro_' + String(i + 1).padStart(2, '0');
+      });
+      persistDraft();
+    }
+
+    // UI에 문제 데이터 로드 (저장을 절대 트리거하지 않는 순수 로더)
+    function loadProblemToUI(idx) {
+      const p = problems[idx];
+      if (!p) return;
+
+      boardSize = detectProblemBoardSize(p);
+      document.querySelectorAll('.editor-size-btn').forEach(btn => {
+        btn.classList.toggle('active', parseInt(btn.dataset.size, 10) === boardSize);
+      });
+      currentGrid = parseSgfToGrid(p.data || p.sgf, p.answer1 || p.ans, boardSize);
+      document.getElementById('editProblemCode').value = p.code || `#${idx + 1}`;
+      document.getElementById('editQuestion').value = p.question || '';
+      document.getElementById('editHint').value = p.hint || '';
+      document.getElementById('editSpeech').value = p.speech || '';
+      document.getElementById('editStartTurn').value = p.start || 'BA';
+      document.getElementById('sourceListText').textContent = (p.matchedSources || []).join(' | ');
+
+      const posEl = document.getElementById('currentProblemPos');
+      if (posEl) posEl.textContent = `현재 #${idx + 1}번 / ${problems.length}문제`;
+      const targetInput = document.getElementById('targetOrderInput');
+      if (targetInput) targetInput.value = idx + 1;
+
+      renderBoard();
+      updateActiveCardHighlight();
+      updateConfirmBoxUI();
+    }
+
+    function updateActiveCardHighlight() {
+      document.querySelectorAll('.candidate-card').forEach((el) => {
+        el.classList.toggle('active', parseInt(el.getAttribute('data-index')) === activeIndex);
+      });
+    }
+
+    // 문제 순서 위로 이동
+    function moveProblemUp() {
+      if (activeIndex <= 0) return;
+      saveActiveProblemSilent();
+      isReordering = true;
+      const toIdx = activeIndex - 1;
+      const [moved] = problems.splice(activeIndex, 1);
+      problems.splice(toIdx, 0, moved);
+      activeIndex = toIdx;
+      reindexProblems();
+      renderCandidateList();
+      loadProblemToUI(toIdx);
+      isReordering = false;
+    }
+
+    // 문제 순서 아래로 이동
+    function moveProblemDown() {
+      if (activeIndex >= problems.length - 1) return;
+      saveActiveProblemSilent();
+      isReordering = true;
+      const toIdx = activeIndex + 1;
+      const [moved] = problems.splice(activeIndex, 1);
+      problems.splice(toIdx, 0, moved);
+      activeIndex = toIdx;
+      reindexProblems();
+      renderCandidateList();
+      loadProblemToUI(toIdx);
+      isReordering = false;
+    }
+
+    // 문제 순서 목표 번호 직접 지정 이동
+    function moveProblemToTarget() {
+      const targetVal = parseInt(document.getElementById('targetOrderInput').value, 10);
+      if (isNaN(targetVal) || targetVal < 1 || targetVal > problems.length) {
+        alert(`1번부터 ${problems.length}번 사이의 번호를 입력해주세요.`);
+        return;
+      }
+      const toIdx = targetVal - 1;
+      if (toIdx === activeIndex) return;
+
+      // 1. 현재 문제의 수정사항을 이동 전에 확실하게 먼저 저장!
+      saveActiveProblemSilent();
+
+      // 2. 재배치 플래그 가동 (다른 이벤트의 오염 차단)
+      isReordering = true;
+
+      // 3. 배열 이동
+      const [moved] = problems.splice(activeIndex, 1);
+      problems.splice(toIdx, 0, moved);
+
+      // 4. activeIndex를 이동된 위치(toIdx)로 즉시 갱신!
+      activeIndex = toIdx;
+
+      // 5. 전체 번호 동기화 및 렌더링
+      reindexProblems();
+      renderCandidateList();
+      loadProblemToUI(toIdx);
+
+      isReordering = false;
+    }
+
+    // 문제 선택
+    function selectProblem(idx) {
+      if (idx < 0 || idx >= problems.length) return;
+      if (!isReordering && idx !== activeIndex && problems[activeIndex] && currentGrid) {
+        saveActiveProblemSilent();
+      }
+      activeIndex = idx;
+      loadProblemToUI(idx);
+    }
+
+    // 툴 선택
+    function setEditorTool(tool) {
+      currentTool = tool;
+      document.querySelectorAll('.tool-btn[data-tool]').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.tool === tool);
+      });
+    }
+
+    // 캔버스 클릭 이벤트 바인딩
+    function bindCanvasEvents() {
+      canvas.addEventListener('click', (e) => {
+        const rect = canvas.getBoundingClientRect();
+        const clientX = e.clientX - rect.left;
+        const clientY = e.clientY - rect.top;
+
+        // 최근접 교차점 (0~8) 계산
+        const col = Math.round((clientX - cellSize) / cellSize);
+        const row = Math.round((clientY - cellSize) / cellSize);
+
+        if (col >= 0 && col < 9 && row >= 0 && row < 9) {
+          handleBoardClick(col, row);
+        }
+      });
+
+      // 우측 입력폼 실시간 자동 저장 바인딩
+      ['editQuestion', 'editHint', 'editSpeech', 'editStartTurn'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.addEventListener('input', saveActiveProblemSilent);
+          el.addEventListener('change', saveActiveProblemSilent);
+        }
+      });
+    }
+
+    // 착수 또는 편집 처리
+    function handleBoardClick(x, y) {
+      if (currentTool === 'black') {
+        currentGrid[y][x] = (currentGrid[y][x] === 1) ? 0 : 1;
+        playStoneSound();
+      } else if (currentTool === 'white') {
+        currentGrid[y][x] = (currentGrid[y][x] === 2) ? 0 : 2;
+        playStoneSound();
+      } else if (currentTool === 'answer') {
+        // 다중 정답 별(★) 토글 지원: 이미 별이면 삭제, 아니면 별 추가 (활로 2~4개 모두 지정 가능)
+        if (currentGrid[y][x] === 3) {
+          currentGrid[y][x] = 0;
+        } else {
+          currentGrid[y][x] = 3;
+          playDingDong();
+        }
+      } else if (currentTool === 'eraser') {
+        currentGrid[y][x] = 0;
+      }
+      renderBoard();
+      saveActiveProblemSilent();
+    }
+
+    function clearCurrentBoard() {
+      if (confirm('현재 바둑판의 모든 돌과 정답을 비우시겠습니까?')) {
+        currentGrid = Array(9).fill(null).map(() => Array(9).fill(0));
+        renderBoard();
+        saveActiveProblemSilent();
+      }
+    }
+
+    function playStoneSound() {
+      if (window.badukAudio && window.badukAudio.playStone) window.badukAudio.playStone();
+    }
+    function playDingDong() {
+      if (window.badukAudio && window.badukAudio.playDingDong) window.badukAudio.playDingDong();
+    }
+
+    // 🌟 확장형 바둑판 렌더링 (9줄, 13줄, 19줄 완벽 지원) 🌟
+    function renderBoard() {
+      ctx.clearRect(0, 0, displaySize, displaySize);
+      const cellSize = displaySize / (boardSize + 1);
+
+      // 1. 목재 바탕
+      ctx.fillStyle = '#f2d69f';
+      ctx.fillRect(0, 0, displaySize, displaySize);
+
+      // 2. 외곽 테두리
+      ctx.strokeStyle = '#3d2510';
+      ctx.lineWidth = 2.5;
+      ctx.strokeRect(cellSize, cellSize, cellSize * (boardSize - 1), cellSize * (boardSize - 1));
+
+      // 3. 격자선
+      ctx.strokeStyle = '#2d1d0c';
+      ctx.lineWidth = 1.3;
+      for (let i = 0; i < boardSize; i++) {
+        const pos = cellSize * (i + 1);
+        ctx.beginPath();
+        ctx.moveTo(cellSize, pos);
+        ctx.lineTo(cellSize * boardSize, pos);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(pos, cellSize);
+        ctx.lineTo(pos, cellSize * boardSize);
+        ctx.stroke();
+      }
+
+      // 4. 화점
+      const starRadius = cellSize * 0.12;
+      let starPoints = [];
+      if (boardSize === 9) {
+        starPoints = [{ x: 4, y: 4 }];
+      } else if (boardSize === 13) {
+        starPoints = [{ x: 3, y: 3 }, { x: 9, y: 3 }, { x: 6, y: 6 }, { x: 3, y: 9 }, { x: 9, y: 9 }];
+      } else if (boardSize === 19) {
+        [3, 9, 15].forEach(x => [3, 9, 15].forEach(y => starPoints.push({ x, y })));
+      }
+
+      ctx.fillStyle = '#5a3d1c';
+      starPoints.forEach(sp => {
+        ctx.beginPath();
+        ctx.arc(cellSize * (sp.x + 1), cellSize * (sp.y + 1), starRadius, 0, Math.PI * 2);
+        ctx.fill();
+      });
+
+      // 5. 돌 및 정답 마커 렌더링
+      const stoneRadius = cellSize * 0.44;
+      for (let y = 0; y < boardSize; y++) {
+        for (let x = 0; x < boardSize; x++) {
+          if (!currentGrid[y]) continue;
+          const val = currentGrid[y][x];
+          const px = cellSize * (x + 1);
+          const py = cellSize * (y + 1);
+
+          if (val === 1) {
+            drawStone(px, py, stoneRadius, 1);
+          } else if (val === 2) {
+            drawStone(px, py, stoneRadius, 2);
+          } else if (val === 3) {
+            ctx.fillStyle = 'rgba(239, 68, 68, 0.25)';
+            ctx.beginPath();
+            ctx.arc(px, py, stoneRadius * 0.95, 0, Math.PI * 2);
+            ctx.fill();
+
+            ctx.strokeStyle = '#ef4444';
+            ctx.lineWidth = 3;
+            ctx.stroke();
+
+            ctx.fillStyle = '#ef4444';
+            ctx.font = `bold ${Math.floor(cellSize * 0.55)}px sans-serif`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('★', px, py);
+          }
+        }
+      }
+    }
+
+    // 사실적인 바둑돌 렌더링
+    function drawStone(x, y, radius, color) {
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(x, y, radius, 0, Math.PI * 2);
+      
+      const grad = ctx.createRadialGradient(
+        x - radius * 0.3, y - radius * 0.3, radius * 0.1,
+        x, y, radius
+      );
+
+      if (color === 1) { // 흑돌
+        grad.addColorStop(0, '#475569');
+        grad.addColorStop(0.5, '#0f172a');
+        grad.addColorStop(1, '#020617');
+      } else { // 백돌
+        grad.addColorStop(0, '#ffffff');
+        grad.addColorStop(0.7, '#f1f5f9');
+        grad.addColorStop(1, '#cbd5e1');
+      }
+
+      ctx.fillStyle = grad;
+      ctx.shadowColor = 'rgba(0,0,0,0.35)';
+      ctx.shadowBlur = 4;
+      ctx.shadowOffsetX = 1.5;
+      ctx.shadowOffsetY = 2;
+      ctx.fill();
+      ctx.restore();
+    }
+
+    // 수정 내용 수동 저장 버튼
+    function saveCurrentProblemEdits() {
+      saveActiveProblemSilent();
+      renderCandidateList();
+      alert(`✅ #${activeIndex + 1}번 문제의 수정 내용이 안전하게 저장되었습니다!`);
+    }
+
+    // 문제 삭제/제외
+    function deleteCurrentProblem() {
+      if (confirm(`정말 #${activeIndex + 1}번 문제를 목록에서 제외하시겠습니까?`)) {
+        problems.splice(activeIndex, 1);
+        reindexProblems();
+        if (activeIndex >= problems.length) activeIndex = Math.max(0, problems.length - 1);
+        renderCandidateList();
+        if (problems.length > 0) selectProblem(activeIndex);
+        else clearCurrentBoard();
+      }
+    }
+
+    // 신규 빈 문제 추가
+    function addNewEmptyProblem() {
+      const newNum = problems.length + 1;
+      const newP = {
+        id: newNum,
+        code: 'hwalro_' + String(newNum).padStart(2, '0'),
+        type: '1',
+        question: '백의 활로(살아가는 길)를 모두 막아 보세요.',
+        hint: '활로는 상·하·좌·우 직선으로 이어집니다.',
+        speech: '원장님 추천 오리지널 활로 문제!',
+        data: ';W[pp];B[qp];B[pq];B[op]',
+        answer1: ';B[po]',
+        matchedSources: ['원장님 직접 창작'],
+        isSelected: true
+      };
+      problems.push(newP);
+      renderCandidateList();
+      selectProblem(problems.length - 1);
+    }
+
+    // 최종 단원 내보내기 및 정규 코스 적용
+    function exportCuratedUnit() {
+      saveActiveProblemSilent();
+      const listToSave = (confirmedProblems && confirmedProblems.length > 0) ? confirmedProblems : problems;
+      const isConfirmedList = (confirmedProblems && confirmedProblems.length > 0);
+
+      const unitData = {
+        title: '제1단원: 돌의 활로 (숨구멍 찾기)',
+        count: listToSave.length,
+        problems: listToSave.map((p, idx) => ({
+          code: `t1_ch01_${String(idx + 1).padStart(2, '0')}`,
+          type: '1',
+          question: p.question,
+          hint: p.hint,
+          speech: p.speech,
+          data: p.data,
+          answer1: p.answer1,
+          size: '9',
+          start: p.start || 'BA',
+          matchedSources: p.matchedSources || []
+        }))
+      };
+
+      // localStorage에 확정 저장 (수업 화면과 100% 동기화)
+      if (isConfirmedList) {
+        saveConfirmedProblems();
+      } else {
+        localStorage.setItem('jh_curated_unit_1', JSON.stringify(unitData));
+      }
+
+      // 소장 및 백업용 JSON 파일 다운로드
+      const blob = new Blob([JSON.stringify(unitData, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `unit_1_hwalro_curated_${listToSave.length}problems.json`;
+      a.click();
+      URL.revokeObjectURL(url);
+
+      alert(`🎉 원장님께서 완성하신 [제1단원: 돌의 활로] 총 ${listToSave.length}문제가 브라우저에 안전하게 저장되었으며, 학생 수업 화면에 즉시 적용되었습니다!\n(소장 및 백업용 파일도 함께 다운로드되었습니다.)`);
+    }
+
+    window.onload = init;
+  </script>
+</body>
+</html>
