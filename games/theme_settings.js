@@ -15,12 +15,9 @@
     if (id === 'base') {
       target.style.backgroundImage = 'none';
       target.style.backgroundColor = '#EEF6E6';
-    } else if (id === '6') {
-      target.style.backgroundImage = 'none';
-      target.style.backgroundColor = '#0b1430';
-    } else if (id === '7') {
-      target.style.backgroundImage = 'none';
-      target.style.backgroundColor = '#cfe9fa';
+    } else if (id === '6' || id === '7') {
+      target.style.backgroundColor = '#EEF6E6';
+      target.style.backgroundImage = "url('../../images/bg_theme_" + id + ".jpg')";
     } else {
       target.style.backgroundColor = '#EEF6E6';
       target.style.backgroundImage = "url('../../images/bg_theme_" + id + ".jpg')";

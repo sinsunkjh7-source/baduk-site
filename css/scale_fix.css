@@ -2079,9 +2079,8 @@ html body .guest-toolbar-desktop .guest-toolbar-desktop-navigation__list {
 button.bk-lockout-btn {
   position: fixed !important;
   right: 20px !important;
-  top: 33px !important;
-  transform: translateY(-50%) !important;
-  bottom: auto !important;
+  bottom: 20px !important;
+  top: auto !important;
   left: auto !important;
   z-index: 99999 !important;
   display: inline-flex !important;
@@ -2280,19 +2279,10 @@ button.bk-lockout-btn {
 .bk-game-overlay { background: #F7FBF2 !important; }
 .bk-game-frame { height: auto !important; flex: 1 !important; }
 
-
-/* 잠그기 버튼 자리 확보 — 설정 버튼을 왼쪽으로 */
-.bk-game-bar {
-  padding-right: 132px !important;
-}
-.bk-game-bar .bk-game-sound {
-  margin-right: 0 !important;
-}
-
-
-/* 오버레이 56px 바에서는 정확히 중앙 */
-body:has(.bk-game-bar) .bk-lockout-btn,
-body:has(.bk-game-bar) button.bk-lockout-btn {
-  top: 28px !important;
-  transform: translateY(-50%) !important;
-}
+/* 오목·알까기: 지원하지 않는 항목 숨김 */
+.bk-game-overlay.-simple .bk-chip[data-kind="skin"],
+.bk-game-overlay.-simple .bk-chip[data-kind="stone"],
+.bk-game-overlay.-simple .bk-chip[data-kind="size"] { display: none !important; }
+.bk-game-overlay.-simple .bk-sound__row:has(.bk-chip[data-kind="skin"]),
+.bk-game-overlay.-simple .bk-sound__row:has(.bk-chip[data-kind="stone"]),
+.bk-game-overlay.-simple .bk-sound__row:has(.bk-chip[data-kind="size"]) { display: none !important; }

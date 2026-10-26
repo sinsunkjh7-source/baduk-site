@@ -27,6 +27,8 @@
     var g = GAMES[key];
     if (!g) return false;
 
+    var SIMPLE = (key === 'omok' || key === 'alkkagi');
+
     /* 앱 화면은 열 때마다 새로 받는다 (구버전 HTML 캐시 방지) */
     if (g.path.indexOf('app/index.html') === 0 || g.path.indexOf('games/') === 0) {
       g = { path: g.path + (g.path.indexOf('?') === -1 ? '?' : '&') + 'r=' + Date.now(), title: g.title };
@@ -35,7 +37,7 @@
     if (el) close();
 
     el = document.createElement('div');
-    el.className = 'bk-game-overlay';
+    el.className = 'bk-game-overlay' + (SIMPLE ? ' -simple' : '');
     el.innerHTML =
       '<div class="bk-game-bar">' +
         '<img class="bk-game-logo" src="images/baduk_logo_final.png" alt="바둑스쿨">' +
