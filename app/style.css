@@ -6551,3 +6551,38 @@ html, body, body.bg-theme-theme5, body[class*="bg-theme"] {
   font-weight: 900 !important;
 }
 .prob-num-btn.active.solved::after { background: #D98A12; }
+
+/* 앱 헤더(화면 전환 메뉴) 복원 — 상단 오버레이 메뉴 대체 */
+.app-header {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 10px !important;
+  height: 56px !important;
+  padding: 0 14px !important;
+  background: #E6F1DC !important;
+  border-bottom: none !important;
+  position: relative !important;
+  z-index: 30 !important;
+}
+.app-header .mode-select-btn {
+  background: #FFFFFF !important;
+  border: 1.5px solid #D3E6C4 !important;
+  color: #33502A !important;
+  font-size: 14px !important;
+  font-weight: 800 !important;
+  padding: 8px 14px !important;
+  border-radius: 10px !important;
+  cursor: pointer !important;
+}
+.app-header .mode-select-btn.active {
+  background: #5FA34C !important;
+  border-color: #4A8A3A !important;
+  color: #fff !important;
+}
+.app-header .mode-selector-group { display: flex !important; gap: 6px !important; }
+.app-header .header-left, .app-header .header-right { display: flex !important; align-items: center !important; gap: 8px !important; }
+/* 헤더가 생겼으니 판·패널을 아래로 */
+.board-section { top: 70px !important; }
+.story-panel { top: 70px !important; }
+:root { --board-size: min(calc(100vh - 150px), calc(100vw - 660px)) !important; }
