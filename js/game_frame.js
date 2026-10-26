@@ -39,7 +39,7 @@
     el.innerHTML =
       '<div class="bk-game-bar">' +
         '<img class="bk-game-logo" src="images/baduk_logo_final.png" alt="바둑스쿨">' +
-        '<button class="bk-game-back" type="button">← 돌아가기</button>' +
+        '<button class="bk-game-back" type="button">🏠 홈</button>' +
         '<span class="bk-game-spacer"></span>' +
         '<button class="bk-game-sound" type="button">⚙ 설정</button>' +
       '</div>' +

@@ -6604,3 +6604,9 @@ html, body, body.bg-theme-theme5, body[class*="bg-theme"] {
 /* 헤더가 사이드바 위에 오도록 */
 .app-header { z-index: 500 !important; }
 .ck-sidebar { z-index: 100 !important; }
+
+/* 되돌림: 앱 헤더는 숨기고, 사이드바 헤더 복원 */
+.app-header { display: none !important; }
+.ck-sidebar-header { display: flex !important; }
+.ck-sidebar { padding-top: 6px !important; }
+.board-section, .story-panel { top: 12px !important; }

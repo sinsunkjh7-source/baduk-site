@@ -2250,3 +2250,31 @@ button.bk-lockout-btn {
 }
 .bk-game-overlay { background: #DCEBD1 !important; }
 .bk-game-frame { height: 100vh !important; }
+
+/* 되돌림: 오버레이 상단 바 복원 (버튼 이름만 '홈') */
+.bk-game-bar {
+  position: static !important;
+  flex: 0 0 56px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  padding: 0 16px !important;
+  right: auto !important; top: auto !important;
+  background: #4A8A3A !important;
+  color: #fff !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15) !important;
+  z-index: 2 !important;
+}
+.bk-game-bar .bk-game-logo,
+.bk-game-bar .bk-game-back,
+.bk-game-bar .bk-game-title,
+.bk-game-bar .bk-game-spacer { display: inline-flex !important; }
+.bk-game-bar .bk-game-title { display: inline !important; }
+.bk-game-bar .bk-game-sound {
+  background: rgba(255,255,255,.16) !important;
+  color: #fff !important;
+  box-shadow: none !important;
+  border-radius: 9px !important;
+}
+.bk-game-overlay { background: #F7FBF2 !important; }
+.bk-game-frame { height: auto !important; flex: 1 !important; }
