@@ -1,0 +1,2280 @@
+/* ============================================================
+   scale_fix.css — 원본 실측값에 맞춘 레이아웃 고정
+   ------------------------------------------------------------
+   기준: baduk.com 을 1440x900 에서 측정한 값
+     header 60px · logo 160x60 · nav 16px · Sign Up 85x32
+     h1 56px / 폭 600(2줄) · 히어로 버튼 270x56
+     통계 숫자 30px / 라벨 16px · 섹션 제목 30px
+
+   zoom(배율) 방식은 폐기했다. 배율은 모든 요소를 같은 비율로 키우므로
+   원본과 값이 어긋난다. 측정값을 직접 지정하는 쪽이 정확하다.
+   ============================================================ */
+
+body { zoom: 1; }
+
+/* ---------- 상단 툴바 ---------- */
+.guest-toolbar-desktop {
+  height: 64px !important;
+  min-height: 64px !important;
+  padding: 0 40px !important;
+  align-items: center;
+}
+
+.guest-toolbar-desktop-navigation a,
+.guest-toolbar-desktop-navigation button,
+.guest-toolbar-desktop-navigation span:not([class*="icon"]) {
+  font-size: 17px !important;
+  font-weight: 400 !important;
+}
+
+/* 로고 160x60 */
+.guest-toolbar-desktop a[href="/"],
+.guest-toolbar-desktop [class*="logo"] {
+  display: flex;
+  align-items: center;
+  height: 50px;
+  width: auto;
+}
+.guest-toolbar-desktop a[href="/"] img,
+.guest-toolbar-desktop [class*="logo"] img {
+  height: 50px !important;
+  width: 192px !important;
+  max-height: none;
+  object-fit: contain;
+  object-position: left center;
+}
+
+/* Sign Up 85x32 */
+.guest-toolbar-desktop .btn,
+.guest-toolbar-desktop [class*="sign"] {
+  height: 32px !important;
+  min-height: 32px !important;
+  line-height: 32px;
+  padding: 0 16px !important;
+  font-size: 16px !important;
+  border-radius: 16px;
+}
+
+/* ---------- 히어로 ---------- */
+h1 {
+  font-size: 56px !important;
+  font-weight: 800 !important;
+  line-height: 1.2 !important;
+  max-width: 600px !important;
+  margin: 0 auto !important;
+  text-align: center;
+  letter-spacing: 0 !important;
+}
+
+/* 히어로 버튼 실제 구조: a.ck-button > span.ck-button__text */
+.ck-button { height: 56px !important; min-height: 56px !important; border-radius: 10px !important; }
+.ck-button__text { font-size: 16px !important; font-weight: 700 !important; }
+
+/* 히어로 버튼 270x56 */
+.hero .btn,
+.landing-hero .btn,
+[class*="hero"] .btn {
+  width: 270px;
+  height: 56px !important;
+  min-height: 56px !important;
+  font-size: 16px !important;
+  padding: 0 !important;
+  border-radius: 10px;
+}
+
+/* ---------- 통계 ---------- */
+[class*="stat"] strong,
+[class*="stat"] b,
+[class*="count"] {
+  font-size: 30px !important;
+  font-weight: 700 !important;
+}
+[class*="stat"] span,
+.stat-label {
+  font-size: 16px !important;
+  font-weight: 400 !important;
+}
+
+/* ---------- 섹션 제목 ---------- */
+body:not(:has(.ck-sidebar)) h2 { font-size: 30px !important; font-weight: 700 !important; line-height: 1.35 !important; }
+h3 { font-size: 22px !important; font-weight: 700 !important; }
+p, li { font-size: 16px !important; line-height: 1.5 !important; }
+
+img, picture { max-width: 100%; height: auto; }
+
+/* ============================================================
+   앱 화면 (사이드바 + 카드 그리드)
+   원본 내부 화면 기준: 사이드바 290px, 메뉴 14px, 카드 3열
+   ============================================================ */
+body:has(.ck-sidebar) .ck-sidebar {
+  width: 290px !important;
+  min-width: 290px !important;
+  flex: 0 0 290px !important;
+  font-size: 15px !important;
+}
+
+.ck-sidebar .ck-sb-nav a,
+.ck-sidebar .ck-subnav-link,
+.ck-sidebar .ck-sb-nav span {
+  font-size: 20px !important;
+  line-height: 1.4 !important;
+}
+.ck-sidebar .ck-subnav-link {
+  padding: 14px 18px !important;
+  border-radius: 14px !important;
+}
+/* 사이드바 상단 로고 */
+.ck-sb-logo {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  padding: 10px 0 14px !important;
+  margin: 0 auto !important;
+}
+.ck-sb-logo .bk-sb-logo__img {
+  display: block;
+  height: 64px;
+  width: auto;
+  max-width: 94%;
+  margin: 0 auto;
+}
+/* 사이드바 상단 아이콘 버튼·라벨도 같이 키움 */
+.ck-sidebar [class*="icon"],
+.ck-sidebar [class*="avatar"] { font-size: 12px !important; }
+.ck-sidebar [class*="section"], .ck-sidebar [class*="title"] { font-size: 15px !important; }
+
+.ck-app-shell { max-width: 100% !important; overflow-x: hidden; }
+
+body:has(.ck-sidebar) [class*="pill"] a,
+body:has(.ck-sidebar) [class*="pill"] button { font-size: 14px !important; }
+
+.ck-app-shell [class*="card"] { min-width: 280px; }
+.ck-app-shell [class*="card"] h2,
+.ck-app-shell [class*="card"] h3 { font-size: 22px !important; }
+.ck-app-shell [class*="card"] p { font-size: 15px !important; }
+.ck-app-shell [class*="card"] .btn,
+.ck-app-shell [class*="card"] button { height: 52px; font-size: 16px !important; }
+
+
+/* ============================================================
+   통계 아래 콘텐츠 섹션
+   ------------------------------------------------------------
+   원본 CSS 의 글자색이 흰색으로 남아 있어 흰 배경에서 제목이
+   보이지 않았다(실제로는 내용이 있는데 빈 공간처럼 보임).
+   ============================================================ */
+.home-guest-play-cards,
+.home-guest-about-baduk,
+.home-page__section {
+  color: #24381a !important;
+}
+
+.home-guest-play-cards h2,
+.home-guest-about-baduk h2,
+.home-page__section h2 {
+  color: #24381a !important;
+  font-size: 30px !important;
+  font-weight: 700 !important;
+}
+
+.home-guest-play-cards p,
+.home-guest-about-baduk p,
+.home-page__section p {
+  color: #3c5a2e !important;
+  font-size: 16px !important;
+}
+
+/* 카드형 항목은 흰 배경 + 그림자로 분리 */
+.home-guest-play-cards [class*="card"] {
+  background: #ffffff !important;
+  border-radius: 16px !important;
+  box-shadow: 0 4px 14px rgba(20, 40, 20, 0.10) !important;
+  padding: 24px !important;
+}
+.home-guest-play-cards [class*="card"] h2,
+.home-guest-play-cards [class*="card"] h3 {
+  font-size: 22px !important;
+  color: #24381a !important;
+}
+
+
+/* ============================================================
+   'Play …' 카드 그리드 — 원본 실측값
+   카드 470x377 · 썸네일 470x228(상단 둥근 모서리 20px) · 내용 영역 149
+   ============================================================ */
+.home-guest-play-cards__cards-wrapper {
+  display: grid !important;
+  grid-template-columns: 470px 470px !important;
+  gap: 20px !important;
+  justify-content: center !important;
+  width: 960px !important;
+  max-width: 100%;
+}
+
+.home-guest-play-cards .simple-card {
+  width: 470px !important;
+  height: auto !important;
+  min-height: 377px;
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+.home-guest-play-cards .simple-card__wrapper {
+  width: 100% !important;
+  height: 100% !important;
+  padding: 0 !important;
+  background: #fff !important;
+  border-radius: 20px !important;
+  overflow: hidden !important;
+  box-shadow: 0 2px 10px rgba(20, 40, 20, 0.10) !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.home-guest-play-cards .simple-card__thumb {
+  width: 100% !important;
+  height: 228px !important;
+  object-fit: cover;
+  border-radius: 20px 20px 0 0 !important;
+  background: #62a043;      /* 썸네일 이미지가 없을 때 바둑판 느낌의 초록 */
+}
+
+.home-guest-play-cards .simple-card__content {
+  min-height: 149px !important;
+  padding: 16px 22px !important;
+  box-sizing: border-box;
+}
+
+.home-guest-play-cards .simple-card__content h2,
+.home-guest-play-cards .simple-card__content h3 {
+  font-size: 24px !important;
+  font-weight: 800 !important;
+  color: #24381a !important;
+  margin: 0 0 8px !important;
+}
+
+.home-guest-play-cards .simple-card__content p {
+  font-size: 16px !important;
+  line-height: 1.45 !important;
+  color: #3c5a2e !important;
+  margin: 0 !important;
+}
+
+/* 섹션 제목·부제 폭을 원본과 같이 960px로 */
+.home-guest-play-cards__title,
+.home-guest-play-cards__introduction {
+  width: 960px !important;
+  max-width: 100%;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  text-align: center;
+}
+
+
+/* 카드 내용이 카드 밖으로 넘쳐 다음 카드와 겹치는 문제 */
+.home-guest-play-cards .simple-card { overflow: hidden !important; }
+.home-guest-play-cards .simple-card__content { flex: 1 1 auto !important; }
+.home-guest-play-cards .simple-card__content h2,
+.home-guest-play-cards .simple-card__content h3 { margin: 0 !important; }
+.home-guest-play-cards .simple-card__content p { margin: 0 !important; }
+
+/* 헤더가 섹션 제목을 가리지 않도록 */
+.home-guest-play-cards, .home-guest-about-baduk { scroll-margin-top: 88px; }
+
+
+/* ============================================================
+   바둑스쿨 홈 이미지 (1672x869)
+   이미지에 제목·버튼이 함께 그려져 있으므로 HTML 쪽 글자/버튼은 숨기고,
+   버튼 자리에는 투명 클릭 영역(핫스팟)을 얹는다.
+   좌표는 이미지 실측: 시작하기 left 33.1% / 배우기 left 50.8%,
+   top 67.9%, height 6.0%
+   ============================================================ */
+.home-guest-banner,
+.home-guest-banner__image-wrapper {
+  position: relative !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  aspect-ratio: 1672 / 869;
+  height: auto !important;
+  overflow: hidden !important;
+  background: #d9f0ff !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.home-guest-banner__image {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  object-position: center top !important;
+}
+
+/* 이미지에 이미 그려진 요소들은 HTML 에서 숨긴다 */
+.home-guest-banner__title,
+.home-guest-banner__subtitle,
+.home-guest-banner__description,
+.home-guest-banner__buttons,
+.home-guest-banner .ck-button {
+  display: none !important;
+}
+
+/* 클릭 영역 */
+.bk-hotspot {
+  position: absolute;
+  top: 88.41%;
+  height: 8.64%;
+  display: block;
+  border-radius: 10px;
+  z-index: 5;
+  transition: box-shadow .15s ease, transform .15s ease;
+}
+.bk-hotspot--start { left: 34.12%; width: 14.95%; }
+.bk-hotspot--learn { left: 51.32%; width: 14.86%; }
+
+.bk-hotspot:hover {
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, .85), 0 6px 18px rgba(0, 0, 0, .18);
+}
+.bk-hotspot:active { transform: translateY(1px); }
+
+/* 좁은 화면: 이미지 비율 유지한 채 전체 보이기 */
+@media (max-width: 900px) {
+  .home-guest-banner, .home-guest-banner__image-wrapper { aspect-ratio: 1672 / 869; }
+}
+
+
+/* 새 홈 이미지에 통계 줄이 포함되어 있어 기존 통계 섹션은 숨긴다 */
+.baduk-stats { display: none !important; }
+
+
+/* 바둑스쿨 로고 워드마크 (검은돌·흰돌 + 이름) */
+.bk-logo {
+  display: flex !important;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none !important;
+}
+.bk-logo__stones { display: inline-flex; align-items: center; }
+.bk-logo__stones i {
+  width: 22px; height: 22px; border-radius: 50%; display: block;
+  box-shadow: inset -2px -2px 4px rgba(0,0,0,.25);
+}
+.bk-logo__stones i:first-child { background: #1b1b1b; }
+.bk-logo__stones i:last-child { background: #fff; margin-left: -8px; box-shadow: 0 0 0 1px #b9c6b2 inset; }
+.bk-logo__text {
+  font-family: "Black Han Sans", "Malgun Gothic", sans-serif;
+  font-size: 30px; font-weight: 900; color: #f7d34e;
+  letter-spacing: -0.5px; line-height: 1;
+  text-shadow: 0 2px 0 rgba(0,0,0,.12);
+}
+
+
+/* 상단 로고: badukschool-logo-box-white (실측 44px 높이) */
+.bk-logo { display: flex !important; align-items: center; gap: 10px; text-decoration: none !important; }
+.bk-logo__img {
+  height: 44px;
+  width: auto;
+  display: block;
+  border-radius: 8px;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,.18));
+}
+/* 작은 화면 */
+@media (max-width: 700px) { .bk-logo__img { height: 36px; } }
+
+
+/* 기존 규칙(160x60 !important)보다 우선 — 로고를 40px로 고정 */
+.guest-toolbar-desktop a.bk-logo img.bk-logo__img,
+.guest-toolbar-desktop .bk-logo .bk-logo__img {
+  height: 46px !important;
+  width: auto !important;
+  max-height: 46px !important;
+  max-width: 200px !important;
+  border-radius: 6px;
+}
+
+
+/* ============================================================
+   바둑스쿨 헤더 로고 (심볼 + JH 모노그램 + 워드마크)
+   JH 는 원본 자산 안에서 전체 높이의 15%뿐이라 48px 헤더에서 7px로 뭉개진다.
+   → 심볼은 자산 이미지, 글자는 HTML 로 그려 크기를 따로 키운다.
+   ============================================================ */
+.bk-logo { display: flex !important; align-items: center; gap: 8px; height: 60px; text-decoration: none !important; }
+.bk-logo__mark { height: 38px !important; width: auto !important; max-height: 38px !important; display: block; }
+.bk-logo__word { display: flex; flex-direction: column; justify-content: center; line-height: 1; }
+.bk-logo__jh { display: flex; gap: 2px; margin-left: 2px; margin-bottom: 1px; }
+.bk-logo__jh i {
+  font-style: normal; font-weight: 900; font-size: 12px; line-height: 1;
+  font-family: "Arial Black", "Malgun Gothic", sans-serif;
+}
+.bk-logo__jh i:first-child { color: #1b1b1b; }
+.bk-logo__jh i:last-child {
+  color: #fff;
+  -webkit-text-stroke: 1.6px #1b1b1b;
+  paint-order: stroke fill;
+}
+.bk-logo__name {
+  font-family: "Black Han Sans", "Malgun Gothic", sans-serif;
+  font-size: 24px; font-weight: 900; color: #ffffff;
+  letter-spacing: -0.4px; line-height: 1;
+  text-shadow: 0 1px 0 rgba(0,0,0,.18);
+}
+@media (max-width: 700px) {
+  .bk-logo__mark { height: 36px !important; }
+  .bk-logo__name { font-size: 21px; }
+  .bk-logo__jh i { font-size: 12px; }
+}
+
+
+/* ============================================================
+   헤더 로고 — jh-inside-stones (JH가 두 바둑알 안에 새겨진 버전)
+   라이브 badukschool.com 과 같은 방식: 흰 알약 안에 로고를 넣는다.
+   ============================================================ */
+.guest-toolbar-desktop a.bk-logo {
+  background: #ffffff !important;
+  border-radius: 12px !important;
+  padding: 3px 10px !important;
+  height: 48px !important;
+  display: flex !important;
+  align-items: center !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .16);
+}
+.guest-toolbar-desktop .bk-logo .bk-logo__img,
+.guest-toolbar-desktop a.bk-logo img.bk-logo__img {
+  height: 44px !important;
+  width: auto !important;
+  max-height: 44px !important;
+  max-width: 190px !important;
+  border-radius: 0 !important;
+  filter: none !important;
+  display: block;
+}
+@media (max-width: 700px) {
+  .guest-toolbar-desktop a.bk-logo { height: 38px !important; padding: 2px 8px !important; }
+  .guest-toolbar-desktop .bk-logo .bk-logo__img { height: 32px !important; max-height: 32px !important; }
+}
+
+
+/* ============================================================
+   박스 없는 로고 — 흰 글자 + 노란 JH, 투명 배경
+   초록 헤더에 그대로 얹어 바탕과 섞이지 않게 한다.
+   ============================================================ */
+.guest-toolbar-desktop a.bk-logo {
+  background: transparent !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  height: 60px !important;
+  display: flex !important;
+  align-items: center !important;
+}
+.guest-toolbar-desktop .bk-logo .bk-logo__img,
+.guest-toolbar-desktop a.bk-logo img.bk-logo__img {
+  height: 46px !important;
+  width: auto !important;
+  max-height: 46px !important;
+  max-width: 260px !important;
+  border-radius: 0 !important;
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, .18));
+  display: block;
+}
+@media (max-width: 700px) {
+  .guest-toolbar-desktop a.bk-logo { height: 60px !important; }
+  .guest-toolbar-desktop .bk-logo .bk-logo__img { height: 38px !important; max-height: 38px !important; }
+}
+
+
+/* 로고 확대: 헤더 64px 안에서 54px */
+.guest-toolbar-desktop a.bk-logo { height: 64px !important; }
+.guest-toolbar-desktop .bk-logo .bk-logo__img,
+.guest-toolbar-desktop a.bk-logo img.bk-logo__img {
+  height: 54px !important;
+  max-height: 54px !important;
+  max-width: 300px !important;
+}
+
+
+/* 원본 로고 파일(1983x793) 그대로 사용 — 60px */
+.guest-toolbar-desktop .bk-logo .bk-logo__img,
+.guest-toolbar-desktop a.bk-logo img.bk-logo__img {
+  height: 64px !important;
+  max-height: 64px !important;
+  max-width: 300px !important;
+}
+
+
+/* ============================================================
+   좁은 화면 대응 — 로고가 커진 만큼 메뉴와 겹치지 않도록
+   ============================================================ */
+@media (max-width: 1240px) {
+  .guest-toolbar-desktop { padding: 0 18px !important; }
+  .guest-toolbar-desktop .bk-logo .bk-logo__img,
+  .guest-toolbar-desktop a.bk-logo img.bk-logo__img { height: 46px !important; max-height: 46px !important; }
+  .guest-toolbar-desktop-navigation a,
+  .guest-toolbar-desktop-navigation button,
+  .guest-toolbar-popup-menu__link { font-size: 15px !important; }
+}
+
+@media (max-width: 1080px) {
+  .guest-toolbar-desktop .bk-logo .bk-logo__img,
+  .guest-toolbar-desktop a.bk-logo img.bk-logo__img { height: 40px !important; max-height: 40px !important; }
+  .guest-toolbar-desktop-navigation a,
+  .guest-toolbar-desktop-navigation button,
+  .guest-toolbar-popup-menu__link { font-size: 14px !important; }
+  .guest-toolbar-desktop__auth { display: none !important; }
+}
+
+
+/* 1080px 이하: 메뉴 두 개를 숨겨 회원가입 버튼과 겹치지 않게 */
+@media (max-width: 1080px) {
+  .guest-toolbar-desktop-navigation__list > li:nth-child(4),
+  .guest-toolbar-desktop-navigation__list > li:nth-child(5) { display: none !important; }
+  .guest-toolbar-desktop-navigation__list { gap: 10px !important; }
+}
+
+
+/* ============================================================
+   원본 로고 그대로 쓰기 위한 밝은 헤더
+   ------------------------------------------------------------
+   원본 로고는 진초록 글자라 초록 헤더에서는 읽히지 않는다.
+   로고를 변형(색칠)하는 대신 헤더를 밝게 바꿔 원본을 그대로 살린다.
+   ============================================================ */
+.guest-toolbar-desktop {
+  background: #FBF8EF !important;
+  border-bottom: 1px solid #E6E1D2 !important;
+}
+
+/* 메뉴 글자: 밝은 배경에 맞춰 진초록 */
+.guest-toolbar-desktop-navigation a,
+.guest-toolbar-desktop-navigation button,
+.guest-toolbar-popup-menu__link,
+.guest-toolbar-popup-menu__toggle-icon {
+  color: #21401A !important;
+}
+.guest-toolbar-desktop-navigation a:hover,
+.guest-toolbar-popup-menu__link:hover { color: #0E6B2F !important; }
+
+/* 로그인·언어 등 우측 항목 */
+.guest-toolbar-desktop [class*="login"],
+.guest-toolbar-desktop [class*="lang"],
+.guest-toolbar-desktop [class*="locale"] {
+  color: #21401A !important;
+}
+
+/* 회원가입 버튼은 주황 유지 (대비 확보) */
+.guest-toolbar-desktop .btn,
+.guest-toolbar-desktop [class*="sign"] {
+  color: #ffffff !important;
+}
+
+/* 원본 로고는 그대로 — 그림자/색보정 없음 */
+.guest-toolbar-desktop .bk-logo .bk-logo__img,
+.guest-toolbar-desktop a.bk-logo img.bk-logo__img {
+  filter: none !important;
+}
+
+
+/* 밝은 헤더에서 흰 글자로 남아 안 보이는 항목 보정 */
+.guest-toolbar-desktop .ck-button.-ghost-white .ck-button__text,
+.guest-toolbar-desktop .ck-button.-ghost-white { color: #21401A !important; }
+.guest-toolbar-desktop .ck-button.-ghost-white:hover .ck-button__text { color: #0E6B2F !important; }
+
+/* 언어 선택 */
+.guest-toolbar-desktop .simple-dropdown,
+.guest-toolbar-desktop select,
+.guest-toolbar-desktop .simple-dropdown__option {
+  color: #21401A !important;
+  background: transparent !important;
+}
+.guest-toolbar-desktop .simple-dropdown__option { background: #ffffff !important; }
+
+/* 회원가입(주황)만 흰 글자 유지 */
+.guest-toolbar-desktop .ck-button:not(.-ghost-white) .ck-button__text { color: #ffffff !important; }
+
+
+/* ============================================================
+   되돌림: 헤더 초록 복원 + 흰 글자 로고 (60px)
+   ============================================================ */
+.guest-toolbar-desktop {
+  background: #4A8A3A !important;
+  border-bottom: none !important;
+}
+.guest-toolbar-desktop-navigation a,
+.guest-toolbar-desktop-navigation button,
+.guest-toolbar-popup-menu__link,
+.guest-toolbar-popup-menu__toggle-icon {
+  color: #ffffff !important;
+}
+.guest-toolbar-desktop-navigation a:hover,
+.guest-toolbar-popup-menu__link:hover { color: #F2C14E !important; }
+
+.guest-toolbar-desktop .ck-button.-ghost-white,
+.guest-toolbar-desktop .ck-button.-ghost-white .ck-button__text,
+.guest-toolbar-desktop .simple-dropdown,
+.guest-toolbar-desktop .simple-dropdown__option {
+  color: #ffffff !important;
+  background: transparent !important;
+}
+.guest-toolbar-desktop .btn,
+.guest-toolbar-desktop [class*="sign"] { color: #ffffff !important; }
+
+
+/* 로고를 폭 기준으로 제한해 헤더 안에 여백을 확보한다 */
+.guest-toolbar-desktop .bk-logo .bk-logo__img,
+.guest-toolbar-desktop a.bk-logo img.bk-logo__img {
+  height: 56px !important;
+  max-height: 56px !important;
+  max-width: 220px !important;
+  width: auto !important;
+}
+
+
+/* ============================================================
+   로고 크기 최종 확정 (앞선 규칙들을 덮어쓴다 —
+   같은 속성이 여러 번 쌓여서 어느 값이 이기는지 알 수 없게 됐다)
+   ============================================================ */
+html body .guest-toolbar-desktop a.bk-logo img.bk-logo__img {
+  height: 50px !important;
+  max-height: 50px !important;
+  width: auto !important;
+  max-width: 200px !important;
+  display: block !important;
+}
+
+
+/* 헤더와 히어로 경계 분리 — 단색 초록이 일러스트에 묻히지 않게 */
+html body .guest-toolbar-desktop {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.18) !important;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.12) !important;
+  position: relative;
+  z-index: 20;
+}
+
+
+/* 회원가입 버튼 축소 — 헤더 72px 안에서 56px는 과했다 (원본 사이트 32~34px) */
+html body .guest-toolbar-desktop .ck-button.-default:not(.-ghost-white),
+html body .guest-toolbar-desktop a.ck-button.-s.-default {
+  height: 34px !important;
+  min-height: 34px !important;
+  padding: 0 14px !important;
+  border-radius: 8px !important;
+}
+html body .guest-toolbar-desktop .ck-button.-default:not(.-ghost-white) .ck-button__text {
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  line-height: 34px !important;
+}
+
+
+/* 언어 선택(select)이 진초록 글자로 남아 초록 헤더에서 안 보이던 문제 */
+html body .guest-toolbar-desktop select.simple-dropdown__select {
+  color: #ffffff !important;
+  background: transparent !important;
+  border: 0 !important;
+}
+html body .guest-toolbar-desktop select.simple-dropdown__select option {
+  color: #21401A !important;
+  background: #ffffff !important;
+}
+
+
+/* 언어 선택 제거 — 한국어 사이트에 언어 전환이 필요 없고, 우측이 산만했다 */
+html body .guest-toolbar-desktop .simple-dropdown,
+html body .guest-toolbar-desktop select.simple-dropdown__select {
+  display: none !important;
+}
+
+/* 회원가입 ↔ 로그인 간격을 조금 넓혀 숨통을 준다 */
+html body .guest-toolbar-desktop .guest-toolbar-desktop__actions {
+  gap: 20px !important;
+}
+
+
+/* 로그인 = 테두리 버튼 (회원가입과 짝을 이루되 채움은 주 버튼만) */
+html body .guest-toolbar-desktop .ck-button.-ghost-white {
+  height: 34px !important;
+  min-height: 34px !important;
+  padding: 0 14px !important;
+  border: 1px solid rgba(255, 255, 255, 0.55) !important;
+  border-radius: 8px !important;
+  background: transparent !important;
+}
+html body .guest-toolbar-desktop .ck-button.-ghost-white .ck-button__text {
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  color: #ffffff !important;
+  line-height: 32px !important;
+}
+html body .guest-toolbar-desktop .ck-button.-ghost-white:hover {
+  border-color: #ffffff !important;
+  background: rgba(255, 255, 255, 0.12) !important;
+}
+
+
+/* ============================================================
+   히어로 재구성 — 버튼과 통계를 이미지에서 분리해 HTML로
+   이미지: images/hero_cut.webp (3344x1320, 곡선까지 포함)
+   버튼 좌표는 원본 픽셀 측정값을 % 로 변환
+   ============================================================ */
+.bk-hero {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3344 / 1320;
+  overflow: hidden;
+  background: #d9f0ff;
+}
+.bk-hero__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+/* CTA 공통 */
+.bk-cta {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.9em;
+  border-radius: 999px;
+  text-decoration: none !important;
+  box-sizing: border-box;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
+  transition: transform .12s ease, box-shadow .12s ease, filter .12s ease;
+  cursor: pointer;
+}
+.bk-cta:hover { transform: translateY(-2px); filter: brightness(1.04); }
+.bk-cta:active { transform: translateY(1px); box-shadow: 0 3px 10px rgba(0,0,0,.20); }
+
+.bk-cta svg { width: 1.25em; height: 1.25em; flex: 0 0 auto; color: #fff; }
+.bk-cta__label {
+  color: #fff;
+  font-weight: 800;
+  letter-spacing: -0.2px;
+  white-space: nowrap;
+  font-size: clamp(12px, 1.35vw, 22px);
+}
+
+/* 주황: left 34.12% / top 88.41% / 14.95% x 8.64% */
+.bk-cta--play {
+  background: linear-gradient(180deg, #ffa74f 0%, #f4822e 100%);
+}
+
+/* 초록: left 51.32% / top 88.48% / 14.86% x 8.56% */
+.bk-cta--learn {
+  background: linear-gradient(180deg, #63b84a 0%, #3f9433 100%);
+}
+
+/* ============================================================
+   통계 줄 — 실제 텍스트 + 아이콘 이미지
+   ============================================================ */
+.bk-stats {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  align-items: center;
+  width: min(960px, 92%);
+  margin: 0 auto;
+  padding: 26px 0 34px;
+  background: #fff;
+}
+.bk-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 0 8px;
+  border-right: 1px solid #e8e8e8;
+}
+.bk-stat:last-child { border-right: 0; }
+.bk-stat img {
+  /* 5개 공통 박스 — 136px의 0.9배 = 122px 정사각
+     이미지 교체 시에도 박스 크기가 변하지 않는다 */
+  width: 122px;
+  height: 122px;
+  max-width: 100%;
+  object-fit: contain;
+  display: block;
+}
+.bk-stat span {
+  font-size: 17px;
+  font-weight: 700;
+  color: #1e2a44;
+  letter-spacing: -0.3px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+@media (max-width: 900px) {
+  .bk-stats { width: 100%; padding: 18px 0 24px; }
+  .bk-stat img { height: 44px; }
+  .bk-stat span { font-size: 13px; white-space: normal; }
+  .bk-cta__label { font-size: 13px; }
+}
+
+
+/* ============================================================
+   곡선 + CTA 줄 (이미지에서 분리)
+   ============================================================ */
+.bk-curve {
+  position: relative;
+  margin-top: -46px;
+  height: 46px;
+  z-index: 2;
+  pointer-events: none;
+}
+.bk-curve svg { display: block; width: 100%; height: 100%; }
+
+.bk-cta-row {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 22px;
+  margin-top: -22px;
+  padding-bottom: 6px;
+  background: #fff;
+}
+
+.bk-cta {
+  position: static;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 215px;
+  height: 50px;
+  border-radius: 999px;
+  text-decoration: none !important;
+  transition: transform .12s ease, filter .12s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.16);
+}
+.bk-cta:hover { transform: translateY(-2px); filter: brightness(1.04); }
+.bk-cta:active { transform: translateY(1px); }
+.bk-cta svg { width: 20px; height: 20px; color: #fff; }
+.bk-cta__label {
+  color: #fff;
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: -0.2px;
+  white-space: nowrap;
+}
+
+@media (max-width: 900px) {
+  .bk-cta-row { gap: 12px; margin-top: -14px; }
+  .bk-cta { width: 160px; height: 44px; }
+  .bk-cta__label { font-size: 14px; }
+  .bk-cta svg { width: 16px; height: 16px; }
+}
+
+
+/* 원본 이미지의 버튼을 그대로 쓰고 클릭 영역만 얹는다 */
+.bk-curve, .bk-cta-row { display: none !important; }
+
+
+/* ============================================================
+   히어로 위 CTA (HTML 버튼)
+   이미지 속 버튼 pill: 500x114 @ (1141,1167) / (1716,1168)  [2x 자산]
+   테두리(크림) 11px 포함해 덮는다 → box = pill + 22px
+   ============================================================ */
+.bk-btn {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55em;
+  border-radius: 999px;
+  text-decoration: none !important;
+  box-sizing: border-box;
+  border: clamp(4px, 0.44vw, 11px) solid #FCF3DF;
+  background-clip: padding-box;
+  transition: transform .12s ease, filter .12s ease;
+}
+.bk-btn:hover {
+  transform: translateY(-3px);
+  filter: brightness(1.07) saturate(1.05);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.28);
+}
+.bk-btn:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.22);
+}
+
+.bk-btn svg { width: 1.5em; height: 1.5em; flex: 0 0 auto; color: #fff; }
+.bk-btn span {
+  color: #fff;
+  font-weight: 800;
+  letter-spacing: -0.2px;
+  white-space: nowrap;
+  font-size: clamp(13px, 1.55vw, 26px);
+}
+
+.bk-btn--play {
+  /* 왼쪽 알약: 원본 그림의 알약(34.1~49.1%)을 덮으면서 가운데 틈을 만든다 */
+  left: 32.50%;
+  top: 87.50%;
+  width: 16.70%;
+  height: 11.15%;
+  background: linear-gradient(180deg, #ffa74f 0%, #f4822e 100%);
+  box-shadow: 0 3px 6px rgba(0,0,0,0.18);
+}
+.bk-btn--learn {
+  /* 오른쪽 알약: 51.15% 에서 시작 → 가운데 약 2% 틈 */
+  left: 51.15%;
+  top: 87.57%;
+  width: 16.70%;
+  height: 11.05%;
+  background: linear-gradient(180deg, #63b84a 0%, #3f9433 100%);
+  box-shadow: 0 3px 6px rgba(0,0,0,0.18);
+}
+.bk-hotspot { display: none !important; }
+
+
+/* 원본 그림의 버튼을 그대로 쓰고 클릭 영역만 얹는 상태로 되돌림
+   (HTML 버튼은 원본 아트와 겹침 잔여물이 남아 보류) */
+.bk-btn { display: flex !important; }
+
+
+/* ============================================================
+   바둑 카드 섹션 (영문 대국 with Other Kids 대체)
+   ============================================================ */
+.bk-cards {
+  width: min(960px, 92%);
+  margin: 0 auto;
+  padding: 34px 0 56px;
+  text-align: center;
+}
+.bk-cards__title {
+  font-size: 30px !important;
+  font-weight: 800 !important;
+  color: #24381a !important;
+  margin: 0 0 10px !important;
+}
+.bk-cards__intro {
+  font-size: 16px !important;
+  color: #4a5d3a !important;
+  margin: 0 0 34px !important;
+}
+.bk-cards__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.bk-card {
+  display: block;
+  background: #fff;
+  border-radius: 20px;
+  overflow: hidden;
+  text-decoration: none !important;
+  box-shadow: 0 2px 10px rgba(20, 40, 20, 0.10);
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.bk-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(20, 40, 20, 0.16);
+}
+.bk-card__thumb {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 940 / 456;
+  object-fit: cover;
+}
+.bk-card__body { padding: 18px 22px 20px; text-align: left; }
+.bk-card__body h3 {
+  font-size: 24px !important;
+  font-weight: 800 !important;
+  color: #24381a !important;
+  margin: 0 0 6px !important;
+}
+.bk-card__body p {
+  font-size: 16px !important;
+  color: #4a5d3a !important;
+  margin: 0 !important;
+}
+@media (max-width: 760px) {
+  .bk-cards__grid { grid-template-columns: 1fr; }
+  .bk-cards__title { font-size: 24px !important; }
+}
+
+
+
+
+/* ============================================================
+   [필수] 한글 음절 깨짐 방지
+   기본 CSS의 전역 font-feature-settings: "clig" 0, "liga" 0 이
+   크롬에서 한글 자모 조합을 깨뜨린다 (회원가입 → 자화원가입처럼 보임)
+   ============================================================ */
+html, body, body * {
+  font-feature-settings: normal !important;
+  font-variant-ligatures: normal !important;
+}
+
+/* ============================================================
+   헤더 회원가입 / 로그인 (원래 모양 그대로, 마크업만 자체 제작)
+   ============================================================ */
+.bk-actions { display: flex; align-items: center; gap: 10px; }
+.guest-toolbar-desktop__actions { flex-shrink: 0; }
+.bk-hbtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  padding: 0 22px;
+  border-radius: 12px;
+  font-family: "Malgun Gothic", "Apple SD Gothic Neo", system-ui, sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0;
+  text-decoration: none !important;
+  white-space: nowrap;
+  cursor: pointer;
+  border: 0;
+  transition: transform .12s ease, box-shadow .12s ease, background-color .12s ease;
+}
+.bk-hbtn--signup { background: #f5a623; color: #fff !important; }
+.bk-hbtn--signup:hover { background: #ffb43a; }
+.bk-hbtn--login { background: transparent; color: #fff !important; box-shadow: inset 0 0 0 1.5px rgba(255,255,255,.9); }
+.bk-hbtn--login:hover { background: rgba(255,255,255,.12); }
+
+
+/* 로그인 글자색: 기존 규칙(.guest-toolbar-desktop [class*="login"])이
+   우리 버튼 클래스(bk-hbtn--login)까지 잡아 어두운 초록으로 덮던 문제 */
+.guest-toolbar-desktop__actions .bk-hbtn--login,
+.guest-toolbar-desktop__actions .bk-hbtn--login:hover,
+.guest-toolbar-desktop__actions .bk-hbtn--signup,
+.guest-toolbar-desktop__actions .bk-hbtn--signup:hover {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+
+/* ============================================================
+   홈 꽃잎 낙하 레이어
+   ============================================================ */
+#bk-petals {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10;   /* 랜딩 래퍼 안에서: 헤더(20) 아래, 콘텐츠 위 */
+}
+
+
+/* ============================================================
+   히어로 폭포 물 흐름 레이어
+   ============================================================ */
+.bk-hero { position: relative; }
+#bk-water {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+.bk-hero .bk-btn { z-index: 2; }
+
+
+/* ============================================================
+   히어로 아래 ~ 페이지 끝까지 배경을 연한 연녹색으로
+   (히어로 바닥 흰색을 #EFF7E4로 바꾼 것과 같은 색)
+   ============================================================ */
+.ck-landing-wrapper {
+  background: #EFF7E4 !important;
+}
+body { background: #EFF7E4 !important; }
+.bk-stats {
+  background: transparent !important;
+}
+
+
+/* ============================================================
+   카드 아래 섹션들의 흰 글자 → 어두운 녹색
+   (원래 다크 배경 전제라 연녹색 위에서 안 보이던 문제)
+   ============================================================ */
+.home-guest__section h1,
+.home-guest__section h2,
+.home-guest__section h3,
+.home-guest__section h4,
+.home-guest__section p,
+.home-guest__section li,
+.home-guest__section a,
+.home-guest__section span,
+.home-guest__section div,
+.home-guest__section strong {
+  color: #2f4a24 !important;
+}
+.home-guest__section .bk-card__body h3,
+.home-guest__section .bk-card__body p { color: #24381a !important; }
+
+/* 푸터 링크도 읽히게 */
+.guest-footer a,
+.guest-footer p,
+.guest-footer span,
+.guest-footer li,
+.guest-footer h2,
+.guest-footer h3 { color: #3a5230 !important; }
+.guest-footer svg { display: none !important; }   /* 검게 렌더되던 거대 장식 SVG */
+
+
+/* ============================================================
+   새 푸터
+   ============================================================ */
+.bk-footer {
+  background: #E3F0D2;
+  border-top: 1px solid rgba(70, 110, 50, 0.16);
+  padding: 46px 0 22px;
+  margin-top: 40px;
+}
+.bk-footer__inner {
+  width: min(1180px, 92%);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 40px;
+  align-items: start;
+}
+.bk-footer__brand img {
+  display: block;
+  width: auto;
+  height: 44px;
+  max-width: 220px;
+  background: #4A8A3A;
+  padding: 8px 12px;
+  border-radius: 10px;
+}
+.bk-footer__brand p {
+  margin: 12px 0 0;
+  font-size: 14px;
+  color: #47603a !important;
+}
+.bk-footer__brand .bk-footer__domain {
+  margin-top: 4px;
+  font-weight: 800;
+  color: #2f4a24 !important;
+  letter-spacing: 0.3px;
+}
+.bk-footer__cols {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 18px;
+}
+.bk-fcol h4 {
+  margin: 0 0 10px;
+  font-size: 14px;
+  font-weight: 800;
+  color: #24381a !important;
+}
+.bk-fcol ul { margin: 0; padding: 0; list-style: none; }
+.bk-fcol li { margin: 0 0 7px; }
+.bk-fcol a {
+  font-size: 13px;
+  color: #4c6440 !important;
+  text-decoration: none;
+}
+.bk-fcol a:hover { color: #2f7a2a !important; text-decoration: underline; }
+.bk-footer__legal {
+  width: min(1180px, 92%);
+  margin: 28px auto 0;
+  padding-top: 16px;
+  border-top: 1px solid rgba(70, 110, 50, 0.14);
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #5b7050 !important;
+}
+@media (max-width: 900px) {
+  .bk-footer__inner { grid-template-columns: 1fr; gap: 26px; }
+  .bk-footer__cols { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+
+/* ============================================================
+   골드 배너
+   ============================================================ */
+.bk-gold {
+  background: transparent;
+  padding: 24px 0;
+  width: 100%;
+  align-self: stretch;
+}
+.bk-gold__inner {
+  border-radius: 24px;
+  background: linear-gradient(120deg, #5FA83F 0%, #3F8A2E 100%);
+  padding: 34px 40px;
+  box-shadow: 0 12px 30px rgba(47, 122, 42, 0.18);
+}
+.bk-gold__inner {
+  width: min(1080px, 92%);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 26px;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+.bk-gold__text { min-width: 0; flex: 1 1 auto; }
+.bk-gold__badge {
+  position: relative;
+  width: 78px;
+  height: 78px;
+  flex: 0 0 auto;
+}
+.bk-gold__stone {
+  position: absolute;
+  border-radius: 50%;
+  display: block;
+}
+.bk-gold__stone--black {
+  width: 52px; height: 52px; left: 0; top: 8px;
+  background: radial-gradient(circle at 32% 28%, #6f6f6f, #101010 72%);
+  box-shadow: 0 6px 14px rgba(0,0,0,.32);
+}
+.bk-gold__stone--white {
+  width: 40px; height: 40px; right: 0; bottom: 6px;
+  background: radial-gradient(circle at 32% 28%, #ffffff, #dedede 78%);
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,.08), 0 6px 12px rgba(0,0,0,.22);
+}
+.bk-gold__text { text-align: left; }
+.bk-gold__text h2 {
+  margin: 0 0 6px !important;
+  font-size: 30px !important;
+  font-weight: 800 !important;
+  color: #ffffff !important;
+  letter-spacing: -0.5px;
+}
+.bk-gold__text p {
+  margin: 0 !important;
+  font-size: 16px !important;
+  color: #EAF6E2 !important;
+}
+.bk-gold__text strong { color: #FFE9A8 !important; }
+.bk-gold__cta {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 52px;
+  padding: 0 30px;
+  border-radius: 12px;
+  background: #F5A623;
+  color: #ffffff !important;
+  font-size: 17px;
+  font-weight: 800;
+  text-decoration: none !important;
+  box-shadow: 0 4px 0 #C9820D, 0 10px 20px rgba(0,0,0,.18);
+  transition: transform .14s ease, box-shadow .14s ease, background .14s ease;
+  white-space: nowrap;
+}
+.bk-gold__cta:hover {
+  background: #FFB53C;
+  transform: translateY(-3px);
+  box-shadow: 0 7px 0 #C9820D, 0 14px 26px rgba(0,0,0,.22);
+}
+@media (max-width: 760px) {
+  .bk-gold__inner { gap: 18px; flex-wrap: wrap; }
+  .bk-gold__text { text-align: center; }
+  .bk-gold__text h2 { font-size: 24px !important; }
+  .bk-gold__cta { margin: 0 auto; width: 100%; }
+}
+
+
+/* ============================================================
+   랜딩 스크롤바 (윈도우11 오버레이 스크롤바로 안 보이던 문제)
+   실제 스크롤은 .ck-landing-wrapper 안에서 일어난다
+   ============================================================ */
+.ck-landing-wrapper {
+  scrollbar-width: thin;
+  scrollbar-color: #9CC97A #E4F0D4;
+}
+.ck-landing-wrapper::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+.ck-landing-wrapper::-webkit-scrollbar-track {
+  background: #E4F0D4;
+}
+.ck-landing-wrapper::-webkit-scrollbar-thumb {
+  background: #9CC97A;
+  border: 3px solid #E4F0D4;
+  border-radius: 8px;
+}
+.ck-landing-wrapper::-webkit-scrollbar-thumb:hover {
+  background: #7FB25A;
+}
+
+
+/* ============================================================
+   상단 바 정리: 메뉴 중앙 정렬 + hover/active 피드백
+   ============================================================ */
+.guest-toolbar-desktop__container {
+  display: grid !important;
+  grid-template-columns: auto 1fr auto !important;
+  align-items: center !important;
+}
+.guest-toolbar-desktop-navigation {
+  justify-self: center !important;
+  margin-right: 0 !important;
+}
+.guest-toolbar-popup-menu__link,
+.guest-toolbar-desktop-navigation__link {
+  padding: 7px 11px !important;
+  border-radius: 10px !important;
+  transition: background-color .15s ease, color .15s ease;
+}
+.guest-toolbar-popup-menu__link:hover,
+.guest-toolbar-desktop-navigation__link:hover {
+  background: rgba(255, 255, 255, 0.16) !important;
+}
+.guest-toolbar-popup-menu__link.-active,
+.guest-toolbar-desktop-navigation__link.-active {
+  background: rgba(255, 255, 255, 0.22) !important;
+}
+
+
+/* 사이드바 상단 요소 크기 정리 (게스트 라벨·카운터·아이콘 버튼) */
+.ck-sidebar [class*="guest"],
+.ck-sidebar [class*="label"],
+.ck-sidebar [class*="user-name"] { font-size: 15px !important; }
+.ck-sidebar .ck-sb-pill-stat,
+.ck-sidebar [class*="pill-stat"] { font-size: 15px !important; }
+.ck-sidebar [class*="pill-stat"] span { font-size: 15px !important; }
+.ck-sidebar [class*="avatar-btn"],
+.ck-sidebar [class*="sb-actions"] button,
+.ck-sidebar [class*="sb-actions"] a {
+  min-width: 44px !important;
+  min-height: 44px !important;
+  font-size: 15px !important;
+}
+.ck-sidebar [class*="sb-icon"] { font-size: 15px !important; }
+
+
+/* 사이드바 미니 아이콘 버튼 (채팅·아바타·설정) */
+.ck-sidebar .ck-sb-mini-icon-btn,
+.ck-sidebar .ck-badge-btn {
+  width: 54px !important;
+  height: 54px !important;
+  font-size: 22px !important;
+  border-radius: 14px !important;
+}
+
+
+/* 사이드바 하단 링크·안내문 (7px 수준이던 것) */
+.ck-sidebar [class*="footer"] a,
+.ck-sidebar [class*="footer"] span,
+.ck-sidebar [class*="legal"] a,
+.ck-sidebar [class*="legal"] span,
+.ck-sidebar .ck-sb-removed-note,
+.ck-sidebar [class*="note"] {
+  font-size: 12px !important;
+  line-height: 1.6 !important;
+}
+
+
+/* ============================================================
+   상단 바 프로필 아바타
+   ============================================================ */
+.bk-avatar {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  margin-right: 10px;
+  border-radius: 50%;
+  background: #FFE9A8;
+  text-decoration: none !important;
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.18);
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+.bk-avatar:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,.25); }
+.bk-avatar__img {
+  font-family: "Malgun Gothic", sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+  color: #3d7a33 !important;
+  letter-spacing: -0.5px;
+  line-height: 1;
+}
+.bk-avatar__dot {
+  position: absolute;
+  right: 1px;
+  bottom: 1px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #6FCF4F;
+  border: 2px solid #4A8A3A;
+}
+
+
+/* 아바타 드롭다운 */
+.bk-avatar-wrap { position: relative; display: inline-flex; }
+.bk-avatar { border: 0; cursor: pointer; padding: 0; }
+.bk-avatar-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  min-width: 190px;
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.22), 0 2px 6px rgba(0, 0, 0, 0.1);
+  padding: 8px;
+  z-index: 60;
+}
+.bk-avatar-menu__item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  border: 0;
+  background: transparent;
+  padding: 11px 12px;
+  border-radius: 10px;
+  font-family: "Malgun Gothic", system-ui, sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: #24381a;
+  cursor: pointer;
+  text-align: left;
+}
+.bk-avatar-menu__item:hover { background: #EFF7E4; }
+.bk-avatar-menu__ico { font-size: 17px; }
+
+
+/* 사이드바 아바타 버튼: '아바타' 두 글자가 한 줄에 들어가게 */
+.ck-sidebar .ck-badge-btn {
+  width: 66px !important;
+  height: 66px !important;
+  font-size: 16px !important;
+  line-height: 1 !important;
+  letter-spacing: -0.6px !important;
+  white-space: nowrap !important;
+}
+.ck-sidebar .ck-badge-btn span { font-size: 16px !important; white-space: nowrap !important; }
+
+
+/* ============================================================
+   소리 설정 패널
+   ============================================================ */
+.bk-sound {
+  position: fixed;
+  z-index: 9999;
+  width: 306px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, .25), 0 2px 8px rgba(0, 0, 0, .12);
+  padding: 14px 16px 16px;
+  font-family: "Malgun Gothic", system-ui, sans-serif;
+  display: none;
+}
+.bk-sound.-show { display: block; }
+.bk-sound__head {
+  font-size: 15px;
+  font-weight: 800;
+  color: #24381a;
+  margin-bottom: 12px;
+}
+.bk-sound__row { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+.bk-sound__label { font-size: 13px; font-weight: 700; color: #4b5c42; width: 40px; flex: none; }
+.bk-sound__range {
+  -webkit-appearance: none;
+  appearance: none;
+  flex: 1;
+  height: 6px;
+  border-radius: 3px;
+  background: #dfe8d6;
+  outline: none;
+  cursor: pointer;
+}
+.bk-sound__range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #4A8A3A;
+  border: 2px solid #fff;
+  box-shadow: 0 1px 3px rgba(0,0,0,.3);
+  cursor: pointer;
+}
+.bk-sound__range::-moz-range-thumb {
+  width: 16px; height: 16px; border: 2px solid #fff; border-radius: 50%;
+  background: #4A8A3A; cursor: pointer;
+}
+.bk-sound__val { font-size: 12px; font-weight: 700; color: #4A8A3A; width: 40px; text-align: right; flex: none; }
+.bk-sound__row--btns { flex-wrap: wrap; }
+.bk-sound__type {
+  border: 2px solid #dfe8d6;
+  background: #f7fbf2;
+  color: #3d5c30;
+  font: 700 12px "Malgun Gothic", sans-serif;
+  padding: 6px 9px;
+  border-radius: 9px;
+  cursor: pointer;
+  flex: none;
+}
+.bk-sound__type.active { background: #4A8A3A; border-color: #4A8A3A; color: #fff; }
+.bk-sound__mute {
+  width: 100%;
+  border: 0;
+  border-radius: 10px;
+  background: #EFF7E4;
+  color: #2f5526;
+  font: 700 13px "Malgun Gothic", sans-serif;
+  padding: 10px;
+  cursor: pointer;
+}
+.bk-sound__mute.-off { background: #f0f0f0; color: #888; }
+
+
+/* ============================================================
+   헤더 B안 최종 확정 (앞선 규칙들을 모두 덮는다)
+   헤더 76 / 로고 50 / 메뉴 17 / 아바타 44 / 버튼 44
+   ============================================================ */
+html body .guest-toolbar-desktop {
+  height: 64px !important;
+  min-height: 64px !important;
+  padding: 0 40px !important;
+}
+html body .guest-toolbar-desktop a.bk-logo img.bk-logo__img {
+  height: 44px !important;
+  max-height: 44px !important;
+  width: auto !important;
+  max-width: 176px !important;
+}
+html body .guest-toolbar-desktop-navigation a,
+html body .guest-toolbar-desktop-navigation button,
+html body .guest-toolbar-desktop-navigation span:not([class*="icon"]) {
+  font-size: 16px !important;
+}
+html body .guest-toolbar-desktop .bk-hbtn {
+  height: 38px !important;
+  min-height: 38px !important;
+  padding: 0 18px !important;
+  font-size: 15px !important;
+  line-height: 1 !important;
+  border-radius: 10px !important;
+  box-sizing: border-box !important;
+}
+html body .guest-toolbar-desktop .bk-avatar {
+  width: 38px !important;
+  height: 38px !important;
+}
+html body .guest-toolbar-desktop .bk-avatar__img { font-size: 11px !important; }
+
+
+/* 사이드바 상단 아이콘 3개(채팅·아바타·설정) 가운데 정렬 */
+.ck-sidebar .ck-sb-icons-row {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+
+/* 사이드바 게스트 영역(이름·전적 pill) 가운데 정렬 */
+.ck-sidebar .ck-sb-user-card {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  text-align: center !important;
+}
+.ck-sidebar .ck-sb-user-stats {
+  justify-content: center !important;
+  width: 100% !important;
+}
+
+
+/* ============================================================
+   상단 메뉴 이중 배경 제거
+   li(사각형 .1) + a(둥근 .16) 가 동시에 칠해져 두 겹으로 보이던 문제
+   → li 쪽 배경을 없애고 링크의 둥근 배경 하나만 남긴다
+   ============================================================ */
+html body .guest-toolbar-desktop .guest-toolbar-popup-menu,
+html body .guest-toolbar-desktop .guest-toolbar-popup-menu:hover,
+html body .guest-toolbar-desktop .guest-toolbar-popup-menu.-over,
+html body .guest-toolbar-desktop .guest-toolbar-popup-menu.-active {
+  background: transparent !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+/* 메뉴 알약 높이도 헤더에 맞게 줄임 (60 → 40) */
+html body .guest-toolbar-desktop .guest-toolbar-popup-menu__link {
+  height: 40px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  border-radius: 10px !important;
+}
+
+
+/* ============================================================
+   헤더 도메인 주소 (로고 오른쪽, 작게)
+   ============================================================ */
+html body .guest-toolbar-desktop .bk-domain {
+  display: inline-flex !important;
+  align-items: center !important;
+  margin-left: 10px !important;
+  padding: 3px 8px !important;
+  border-radius: 6px !important;
+  background: rgba(0, 0, 0, 0.16) !important;
+  color: rgba(255, 255, 255, 0.92) !important;
+  font: 700 12px/1 Verdana, Geneva, "Malgun Gothic", sans-serif !important;
+  letter-spacing: -0.2px !important;
+  white-space: nowrap !important;
+  align-self: center !important;
+  transform: translateY(1px);
+}
+
+
+/* ============================================================
+   상단 메뉴 이중 배경 제거 (2) — 드롭다운 없는 일반 링크
+   li(사각 .1) + a(둥근 .16) 가 겹쳐 두 겹으로 보이던 문제
+   ============================================================ */
+html body .guest-toolbar-desktop .guest-toolbar-desktop-navigation__link-item,
+html body .guest-toolbar-desktop .guest-toolbar-desktop-navigation__link-item:hover,
+html body .guest-toolbar-desktop .guest-toolbar-desktop-navigation__link-item.-active {
+  background: transparent !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+html body .guest-toolbar-desktop .guest-toolbar-desktop-navigation__link-item > a {
+  height: 40px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  border-radius: 10px !important;
+}
+/* ul 도 배경 없음 확인 */
+html body .guest-toolbar-desktop .guest-toolbar-desktop-navigation__list {
+  background: transparent !important;
+}
+
+
+/* ============================================================
+   바둑판 (BadukBoard)
+   ============================================================ */
+.bk-board {
+  --bk-n: 19;
+  --bk-wood: #E8B96A;
+  --bk-line: #7A5628;
+  width: min(100%, 560px);
+  margin: 0 auto;
+  padding: 10px 10px 6px;
+  background: #f3e2c4;
+  border-radius: 14px;
+  box-shadow: 0 6px 18px rgba(0,0,0,.16), inset 0 0 0 2px #d9bd8c;
+  box-sizing: border-box;
+  font-family: "Malgun Gothic", sans-serif;
+  user-select: none;
+}
+.bk-board__files,
+.bk-board__ranks {
+  display: grid;
+  color: #6b4a22;
+  font-size: 11px;
+  font-weight: 700;
+  text-align: center;
+}
+.bk-board__files {
+  grid-template-columns: repeat(var(--bk-n), 1fr);
+  padding: 0 26px 4px 26px;
+}
+.bk-board__body { display: flex; gap: 4px; }
+.bk-board__ranks {
+  grid-template-rows: repeat(var(--bk-n), 1fr);
+  align-items: center;
+  width: 22px;
+}
+.bk-board__grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(var(--bk-n), 1fr);
+  grid-template-rows: repeat(var(--bk-n), 1fr);
+  background: var(--bk-wood);
+  border-top: 2px solid var(--bk-line);
+  border-left: 2px solid var(--bk-line);
+  aspect-ratio: 1 / 1;
+  box-shadow: inset 0 0 26px rgba(120,80,30,.18);
+}
+.bk-cell {
+  position: relative;
+  border-right: 2px solid var(--bk-line);
+  border-bottom: 2px solid var(--bk-line);
+  cursor: pointer;
+}
+.bk-cell:hover::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: rgba(255,255,255,.18);
+}
+.bk-star {
+  position: absolute; left: 50%; top: 50%;
+  width: 26%; height: 26%;
+  transform: translate(-50%,-50%);
+  border-radius: 50%;
+  background: var(--bk-line);
+  opacity: .85;
+}
+.bk-stone {
+  position: absolute; left: 50%; top: 50%;
+  width: 92%; height: 92%;
+  transform: translate(-50%,-50%);
+  border-radius: 50%;
+  z-index: 2;
+}
+.bk-stone--black {
+  background: radial-gradient(circle at 32% 28%, #6e6e6e 0%, #1c1c1c 55%, #0a0a0a 100%);
+  box-shadow: 0 2px 3px rgba(0,0,0,.45);
+}
+.bk-stone--white {
+  background: radial-gradient(circle at 32% 28%, #ffffff 0%, #f2f2f2 60%, #d9d9d9 100%);
+  box-shadow: 0 2px 3px rgba(0,0,0,.3), inset 0 0 0 1px rgba(0,0,0,.06);
+}
+.bk-last {
+  position: absolute; left: 50%; top: 50%;
+  width: 34%; height: 34%;
+  transform: translate(-50%,-50%);
+  border-radius: 50%;
+  border: 2px solid #e23b3b;
+  z-index: 3;
+}
+.bk-board--blue  { --bk-wood: #cfe0f2; --bk-line: #3a5f8a; }
+.bk-board--green { --bk-wood: #cfe8c4; --bk-line: #3d6b2f; }
+/* 예전 보드 클래스가 남아 있어도 보이지 않게 */
+.ck-removed-board { display: none !important; }
+
+/* ============================================================
+   자체 상단 메뉴 (5칸)  — 원본 메뉴는 숨김
+   ============================================================ */
+.guest-toolbar-desktop-navigation { display: none !important; }
+
+.bk-mainnav {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  justify-self: center;
+  margin: 0 auto;
+}
+.bk-mainnav__item { position: relative; }
+.bk-mainnav__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 10px 18px;
+  border: 0;
+  background: transparent;
+  color: #fff;
+  font-family: inherit;
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: -.2px;
+  border-radius: 10px;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background .15s;
+}
+.bk-mainnav__link:hover,
+.bk-mainnav__item.-open > .bk-mainnav__link {
+  background: rgba(255,255,255,.16);
+}
+.bk-mainnav__lock { font-size: 13px; opacity: .9; }
+
+.bk-mainnav__sub {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-4px);
+  min-width: 168px;
+  padding: 6px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 12px 28px rgba(0,0,0,.22);
+  display: none;
+  z-index: 60;
+}
+.bk-mainnav__item.-open .bk-mainnav__sub { display: block; }
+.bk-mainnav__sublink {
+  display: block;
+  width: 100%;
+  padding: 10px 14px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: #3d4a35;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  text-align: left;
+  cursor: pointer;
+}
+.bk-mainnav__sublink:hover { background: #EFF7E4; color: #3d7a33; }
+
+/* 잠금 게이트 */
+#bk-gate {
+  position: fixed; inset: 0; z-index: 9999;
+  background: rgba(20,30,16,.55);
+  display: flex; align-items: center; justify-content: center;
+  backdrop-filter: blur(2px);
+}
+.bk-gate__box {
+  width: 320px; padding: 26px 24px 20px;
+  background: #fff; border-radius: 18px;
+  box-shadow: 0 20px 50px rgba(0,0,0,.3);
+  text-align: center;
+  font-family: "Malgun Gothic", sans-serif;
+}
+.bk-gate__box h3 { margin: 0 0 6px; font-size: 20px; color: #2f4a25; }
+.bk-gate__box p { margin: 0 0 14px; font-size: 13px; line-height: 1.5; color: #6b7a63; }
+.bk-gate__input {
+  width: 100%; box-sizing: border-box;
+  padding: 12px 14px; font-size: 18px; letter-spacing: 4px;
+  text-align: center;
+  border: 2px solid #d8e4cf; border-radius: 10px; outline: none;
+}
+.bk-gate__input:focus { border-color: #5FA34C; }
+.bk-gate__row { display: flex; gap: 8px; margin-top: 12px; }
+.bk-gate__row button {
+  flex: 1; padding: 11px 0; border-radius: 10px;
+  font-family: inherit; font-size: 15px; font-weight: 800; cursor: pointer;
+}
+.bk-gate__cancel { border: 2px solid #e2e2e2; background: #fff; color: #777; }
+.bk-gate__ok { border: 0; background: #5FA34C; color: #fff; }
+.bk-gate__err { margin: 10px 0 0 !important; color: #d9433f !important; font-weight: 700; }
+
+/* 토스트 */
+#bk-toast {
+  position: fixed; left: 50%; bottom: 40px; z-index: 9999;
+  transform: translateX(-50%) translateY(10px);
+  padding: 12px 22px; border-radius: 999px;
+  background: rgba(35,45,30,.92); color: #fff;
+  font-family: "Malgun Gothic", sans-serif; font-size: 14px; font-weight: 700;
+  opacity: 0; pointer-events: none; transition: .22s;
+}
+#bk-toast.-show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+@media (max-width: 1080px) {
+  .bk-mainnav__link { font-size: 15px; padding: 9px 12px; }
+}
+
+/* Fun 라벨 — 살짝 비스듬히, 노란색 */
+.bk-mainnav__fun {
+  display: inline-block;
+  font-family: 'Fredoka', 'Baloo 2', sans-serif;
+  font-weight: 800;
+  font-size: 20px;
+  letter-spacing: .5px;
+  color: #FFFFFF;
+  transform: rotate(-8deg) translateY(-1px);
+  text-shadow: 0 2px 0 rgba(0,0,0,.18);
+  padding: 0 2px;
+  transition: transform .15s ease;
+}
+.bk-mainnav__link:hover .bk-mainnav__fun {
+  transform: rotate(-3deg) scale(1.08);
+}
+
+
+}
+
+
+/* ============================================================
+   Fun — 코믹 폭발이 글자 뒤에서 반쯤 올라온다
+   ============================================================ */
+.bk-mainnav__fun {
+  position: relative;
+  display: inline-block;
+  padding: 0 3px;
+}
+.bk-fun-burst {
+  position: absolute;
+  left: -6px;
+  top: -9px;
+  width: 20px;
+  height: 20px;
+  z-index: 0;                    /* 글자 뒤 */
+  transform: rotate(-12deg);
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,.28));
+  animation: bk-burst-pop 2.4s ease-in-out infinite;
+  transform-origin: 70% 80%;
+  pointer-events: none;
+}
+.bk-fun-text {
+  position: relative;
+  z-index: 1;                    /* 글자가 폭발을 가린다 */
+}
+@keyframes bk-burst-pop {
+  0%, 100% { transform: rotate(-12deg) scale(1); }
+  50%      { transform: rotate(-6deg)  scale(1.1); }
+}
+.bk-mainnav__link:hover .bk-fun-burst {
+  animation-duration: .9s;
+}
+
+/* ============================================================
+   게임 오버레이 (오목 등)
+   ============================================================ */
+.bk-game-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  background: #F7FBF2;
+  display: flex;
+  flex-direction: column;
+}
+.bk-game-bar {
+  flex: 0 0 56px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 16px;
+  background: #4A8A3A;
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  z-index: 2;
+}
+.bk-game-back {
+  border: 0;
+  background: rgba(255,255,255,.18);
+  color: #fff;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 800;
+  padding: 9px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.bk-game-back:hover { background: rgba(255,255,255,.3); }
+.bk-game-title { font-size: 17px; font-weight: 800; letter-spacing: -.2px; }
+.bk-game-spacer { flex: 1; }
+.bk-game-frame {
+  flex: 1;
+  width: 100%;
+  border: 0;
+  background: #F7FBF2;
+}
+
+/* 게임 화면 소리 버튼 + 패널 위치 */
+.bk-game-sound {
+  border: 0;
+  background: rgba(255,255,255,.18);
+  color: #fff;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 800;
+  padding: 9px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-left: 8px;
+}
+.bk-game-sound:hover { background: rgba(255,255,255,.3); }
+.bk-sound--game { top: 64px; right: 16px; z-index: 10050; }
+.bk-sound--game .bk-sound__val {
+  min-width: 42px; text-align: right; font-weight: 800; color: #3d7a33; font-size: 13px;
+}
+.bk-sound--game .bk-sound__type.-on {
+  background: #EAF6DC; border-color: #5FA34C; color: #33682a;
+}
+
+/* ============================================================
+   사이트 잠금 화면
+   ============================================================ */
+.bk-lock {
+  position: fixed;
+  inset: 0;
+  z-index: 100000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(160deg, #4A8A3A 0%, #35682A 100%);
+  font-family: "Malgun Gothic", system-ui, sans-serif;
+}
+.bk-lock__box {
+  width: 320px;
+  background: #FFFDF6;
+  border-radius: 22px;
+  padding: 30px 26px 24px;
+  text-align: center;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, .35);
+}
+.bk-lock__logo {
+  display: inline-block;
+  font-size: 15px;
+  font-weight: 900;
+  color: #3d7a33;
+  letter-spacing: -.3px;
+  margin-bottom: 14px;
+}
+.bk-lock__box h2 {
+  margin: 0 0 6px;
+  font-size: 21px;
+  font-weight: 900;
+  color: #2f4a25;
+}
+.bk-lock__box p {
+  margin: 0 0 16px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #6b7a63;
+}
+.bk-lock__input-wrap { margin-bottom: 12px; }
+.bk-lock__input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 14px 0;
+  font-size: 26px;
+  letter-spacing: 12px;
+  text-align: center;
+  color: #1f2a17 !important;
+  -webkit-text-fill-color: #1f2a17;
+  caret-color: #5FA34C;
+  border: 2px solid #DCEBCE;
+  border-radius: 12px;
+  outline: none;
+  background: #fff;
+  font-family: inherit;
+}
+.bk-lock__input::placeholder { color: #c9d6bf; letter-spacing: 6px; }
+.bk-lock__input:focus { border-color: #5FA34C; }
+.bk-lock__ok {
+  width: 100%;
+  padding: 13px 0;
+  border: 0;
+  border-radius: 12px;
+  background: #5FA34C;
+  color: #fff;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 800;
+  cursor: pointer;
+}
+.bk-lock__ok:hover { background: #4d8f3c; }
+.bk-lock__err {
+  margin: 10px 0 0 !important;
+  color: #d9433f !important;
+  font-weight: 800;
+}
+.bk-lock__note {
+  margin: 16px 0 0 !important;
+  font-size: 11.5px !important;
+  color: #9aa892 !important;
+}
+
+.bk-lock__hint {
+  margin: -4px 0 10px !important;
+  font-size: 11.5px !important;
+  color: #9aa892 !important;
+  letter-spacing: 0 !important;
+}
+.bk-lock__input { cursor: text; }
+
+
+/* 사이트 잠그기 버튼 (강제 표시) */
+.bk-lockout-btn,
+button.bk-lockout-btn {
+  position: fixed !important;
+  right: 20px !important;
+  bottom: 20px !important;
+  top: auto !important;
+  left: auto !important;
+  z-index: 99999 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  width: auto !important;
+  height: auto !important;
+  padding: 11px 18px !important;
+  border: 2px solid #fff !important;
+  border-radius: 999px !important;
+  background: #2f4a25 !important;
+  color: #fff !important;
+  font-family: "Malgun Gothic", system-ui, sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 800 !important;
+  line-height: 1 !important;
+  cursor: pointer !important;
+  opacity: .92 !important;
+  visibility: visible !important;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, .28) !important;
+  pointer-events: auto !important;
+}
+.bk-lockout-btn:hover { background: #24401b !important; opacity: 1 !important; }
+
+/* ============================================================
+   드롭다운 패널 — 연녹색 바탕 + 흰 글자 + 아이콘
+   ============================================================ */
+.bk-mainnav__sub {
+  min-width: 0;
+  width: max-content;
+  padding: 7px;
+  background: #8CC66E;
+  border: 2px solid #76B85A;
+  border-radius: 16px;
+  box-shadow: 0 14px 30px rgba(40, 70, 25, .28), 0 2px 6px rgba(40, 70, 25, .12);
+}
+.bk-mainnav__sub::before {
+  content: "";
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  width: 13px;
+  height: 13px;
+  margin-left: -6.5px;
+  background: #8CC66E;
+  border-left: 2px solid #76B85A;
+  border-top: 2px solid #76B85A;
+  transform: rotate(45deg);
+  border-radius: 3px 0 0 0;
+}
+.bk-mainnav__sublink {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 10px 20px 10px 12px;
+  font-size: 14.5px;
+  font-weight: 800;
+  color: #fff;
+  border-radius: 11px;
+  white-space: nowrap;
+  text-shadow: 0 1px 1px rgba(30, 60, 20, .28);
+}
+.bk-mainnav__sublink:hover {
+  background: rgba(255, 255, 255, .22);
+  color: #fff;
+}
+.bk-mainnav__ico {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, .18);
+  flex: 0 0 auto;
+}
+.bk-mainnav__ico svg {
+  width: 15px;
+  height: 15px;
+  color: #fff;
+  display: block;
+}
+.bk-mainnav__item.-open .bk-mainnav__sub {
+  animation: bk-sub-pop .14s ease-out;
+}
+@keyframes bk-sub-pop {
+  from { opacity: 0; transform: translateX(-50%) translateY(-6px) scale(.97); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(-4px) scale(1); }
+}
+
+/* ===== 게임·앱 오버레이 상단 메뉴 ===== */
+.bk-game-nav { display: flex; gap: 4px; margin-left: 14px; }
+.bk-game-nav button {
+  padding: 8px 14px;
+  border: 0;
+  border-radius: 9px;
+  background: rgba(255, 255, 255, .12);
+  color: #fff;
+  font-family: inherit;
+  font-size: 13.5px;
+  font-weight: 800;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.bk-game-nav button:hover { background: rgba(255, 255, 255, .22); }
+.bk-game-nav button.active { background: #fff; color: #33682a; }
+@media (max-width: 900px) {
+  .bk-game-nav { margin-left: 6px; gap: 2px; }
+  .bk-game-nav button { padding: 7px 9px; font-size: 12px; }
+}
+
+/* 상단바 로고 */
+.bk-game-logo { height: 30px; width: auto; margin-right: 4px; border-radius: 4px; }
+/* 설정 칩 */
+.bk-sound__row--chips { flex-wrap: wrap; gap: 4px; }
+.bk-chip {
+  min-width: 30px; padding: 5px 8px;
+  border: 1.5px solid #DCEBCE; border-radius: 8px;
+  background: #F6FBF0; color: #3B5B31;
+  font-family: inherit; font-size: 12px; font-weight: 800; cursor: pointer;
+}
+.bk-chip:hover { background: #EDF7E3; }
+.bk-chip.-on { background: #5FA34C; border-color: #4A8A3A; color: #fff; }
+
+/* 상단 로고 (크림 배지 형태) */
+.bk-game-logo {
+  height: 32px; width: auto;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.18);
+  margin-right: 6px;
+}
+
+/* 흰색 로고: 배지 없이 그대로 */
+.bk-game-logo {
+  height: 34px; width: auto;
+  border-radius: 0;
+  box-shadow: none;
+  background: transparent;
+  margin-right: 10px;
+}
+
+/* 앱 로딩 중 흰 깜빡임 방지 */
+.bk-game-frame { background: #DCEBD1 !important; }
+
+/* 오버레이 상단 바 제거 — 앱 헤더 하나만 남긴다 */
+.bk-game-bar {
+  position: fixed !important;
+  right: 12px !important;
+  top: 8px !important;
+  height: 40px !important;
+  flex: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  z-index: 9500 !important;
+  padding: 0 !important;
+  gap: 0 !important;
+}
+.bk-game-bar .bk-game-logo,
+.bk-game-bar .bk-game-back,
+.bk-game-bar .bk-game-title,
+.bk-game-bar .bk-game-spacer { display: none !important; }
+.bk-game-bar .bk-game-sound {
+  background: rgba(255,255,255,.92) !important;
+  color: #33682a !important;
+  border-radius: 10px !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15) !important;
+}
+.bk-game-overlay { background: #DCEBD1 !important; }
+.bk-game-frame { height: 100vh !important; }
+
+/* 되돌림: 오버레이 상단 바 복원 (버튼 이름만 '홈') */
+.bk-game-bar {
+  position: static !important;
+  flex: 0 0 56px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  padding: 0 16px !important;
+  right: auto !important; top: auto !important;
+  background: #4A8A3A !important;
+  color: #fff !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15) !important;
+  z-index: 2 !important;
+}
+.bk-game-bar .bk-game-logo,
+.bk-game-bar .bk-game-back,
+.bk-game-bar .bk-game-title,
+.bk-game-bar .bk-game-spacer { display: inline-flex !important; }
+.bk-game-bar .bk-game-title { display: inline !important; }
+.bk-game-bar .bk-game-sound {
+  background: rgba(255,255,255,.16) !important;
+  color: #fff !important;
+  box-shadow: none !important;
+  border-radius: 9px !important;
+}
+.bk-game-overlay { background: #F7FBF2 !important; }
+.bk-game-frame { height: auto !important; flex: 1 !important; }
