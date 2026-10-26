@@ -6650,3 +6650,15 @@ html.bk-embed .app-container,
 html.bk-embed .ck-main-viewport {
   background-color: #4A8A3A !important;
 }
+
+/* 임베드: 테마 배경 이미지 제거 → 상단 띠/얼룩 없이 단색 */
+html.bk-embed body,
+html.bk-embed .app-container,
+html.bk-embed .ck-main-viewport {
+  background-image: none !important;
+  background-color: #DCEBD1 !important;
+}
+html.bk-embed body[class*="bg-theme"] {
+  background-image: none !important;
+  background-color: #DCEBD1 !important;
+}
