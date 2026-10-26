@@ -40,12 +40,6 @@
       '<div class="bk-game-bar">' +
         '<img class="bk-game-logo" src="images/baduk_logo_final.png" alt="바둑스쿨">' +
         '<button class="bk-game-back" type="button">← 돌아가기</button>' +
-        '<nav class="bk-game-nav">' +
-          '<button type="button" data-key="appMissions">바둑 학습</button>' +
-          '<button type="button" data-key="appLecture">대국</button>' +
-          '<button type="button" data-key="omok">오목</button>' +
-          '<button type="button" data-key="alkkagi">알까기</button>' +
-        '</nav>' +
         '<span class="bk-game-spacer"></span>' +
         '<button class="bk-game-sound" type="button">⚙ 설정</button>' +
       '</div>' +
@@ -57,21 +51,6 @@
 
     el.querySelector('.bk-game-back').addEventListener('click', close);
 
-    /* 화면 안에서 바로 다른 화면으로 전환 */
-    function setActive(key) {
-      el.querySelectorAll('.bk-game-nav button').forEach(function (b) {
-        b.classList.toggle('active', b.dataset.key === key);
-      });
-    }
-    setActive(key);
-    el.querySelectorAll('.bk-game-nav button').forEach(function (b) {
-      b.addEventListener('click', function () {
-        var k = b.dataset.key;
-        if (!GAMES[k]) return;
-        frame.src = GAMES[k].path;
-        setActive(k);
-      });
-    });
 
     /* ---- 소리 설정 (사이트 설정과 같은 값 공유) ---- */
     var TYPES = [['classic', '명품'], ['deep', '묵직'], ['crisp', '경쾌'], ['pop', '퐁퐁']];
