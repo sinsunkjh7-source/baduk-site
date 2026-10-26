@@ -2286,3 +2286,6 @@ button.bk-lockout-btn {
 .bk-game-overlay.-simple .bk-sound__row:has(.bk-chip[data-kind="skin"]),
 .bk-game-overlay.-simple .bk-sound__row:has(.bk-chip[data-kind="stone"]),
 .bk-game-overlay.-simple .bk-sound__row:has(.bk-chip[data-kind="size"]) { display: none !important; }
+
+/* 오목·알까기는 설정 미지원 → 상단 설정 버튼 숨김 */
+.bk-game-overlay.-simple .bk-game-sound { display: none !important; }
