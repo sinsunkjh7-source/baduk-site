@@ -6673,3 +6673,21 @@ html.bk-embed body.bg-theme-theme7 .ck-main-viewport {
 }
 html.bk-embed body.bg-theme-clean .ck-main-viewport { background-image: none !important; }
 
+
+/* 테마 6·7은 캔버스 애니메이션 사용 (정적 이미지 제거) */
+html.bk-embed body.bg-theme-theme6 .ck-main-viewport {
+  background-image: none !important;
+  background-color: #0b1430 !important;
+}
+html.bk-embed body.bg-theme-theme7 .ck-main-viewport {
+  background-image: none !important;
+  background-color: #cfe9fa !important;
+}
+#starfieldCanvas, #cloudsCanvas {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  z-index: 0 !important;
+  pointer-events: none !important;
+}
