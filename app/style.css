@@ -6511,3 +6511,43 @@ html, body, body.bg-theme-theme5, body[class*="bg-theme"] {
   top: auto !important;
   z-index: 60 !important;
 }
+
+/* ===== 문제 번호: 안 푼 / 푼 / 지금 ===== */
+.prob-num-btn {
+  background: #FFFFFF !important;
+  border: 1.5px solid #CFE0C0 !important;
+  color: #33502A !important;
+  box-shadow: 0 1px 0 #E4EEDC !important;
+  position: relative;
+}
+.prob-num-btn:hover {
+  background: #F4FAEE !important;
+  transform: translateY(-1px);
+}
+/* 이미 푼 문제 */
+.prob-num-btn.solved {
+  background: #E3F2D6 !important;
+  border-color: #9DC98A !important;
+  color: #2F6B24 !important;
+}
+.prob-num-btn.solved::after {
+  content: '✓';
+  position: absolute;
+  top: -5px; right: -5px;
+  width: 15px; height: 15px;
+  line-height: 15px;
+  border-radius: 50%;
+  background: #4A8A3A;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 900;
+}
+/* 지금 문제 */
+.prob-num-btn.active {
+  background: linear-gradient(180deg, #FFC65A 0%, #F4A62A 100%) !important;
+  border-color: #D98A12 !important;
+  color: #4A2A00 !important;
+  box-shadow: 0 0 0 3px rgba(244, 166, 42, .35) !important;
+  font-weight: 900 !important;
+}
+.prob-num-btn.active.solved::after { background: #D98A12; }

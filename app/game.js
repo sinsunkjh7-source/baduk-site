@@ -199,6 +199,7 @@ class BadukGameApp {
 
     if (foundChapter && Array.isArray(foundChapter.problems) && typeof BadukProblemAdapter !== 'undefined') {
       const pCount = foundChapter.problems.length;
+      this.loadSolvedMissionsPending = true;
       this.missions = foundChapter.problems.map((p, idx) => BadukProblemAdapter.adaptProblem(p, idx + 1, pCount, foundChapter.chapter, introBook.book, 'none'));
       this.currentBookInfo = {
         series: introBook.series || 'JH 바둑스쿨 코스',
@@ -1953,6 +1954,7 @@ class BadukGameApp {
     }
 
     this.solvedMissions.add(this.currentMissionIndex);
+    this.saveSolvedMissions();
     this.renderProblemNumberGrid();
 
     // 🌟 모든 문제를 하나도 남김없이 다 풀었는지 철저하게 검사 🌟
@@ -2865,9 +2867,36 @@ class BadukGameApp {
     }
   }
 
+  solvedKey() {
+    const info = this.currentBookInfo || {};
+    const b = info.book || info.title || info.code || '';
+    const c = info.chapter || '';
+    return 'jm_solved::' + b + '::' + c;
+  }
+
+  loadSolvedMissions() {
+    try {
+      const raw = localStorage.getItem(this.solvedKey());
+      this.solvedMissions = new Set(raw ? JSON.parse(raw) : []);
+    } catch (e) {
+      this.solvedMissions = new Set();
+    }
+    this.renderProblemNumberGrid();
+  }
+
+  saveSolvedMissions() {
+    try {
+      localStorage.setItem(this.solvedKey(), JSON.stringify([...this.solvedMissions]));
+    } catch (e) {}
+  }
+
   renderProblemNumberGrid() {
     const grid = document.getElementById('problemNumberGrid');
     if (!grid) return;
+    if (this.loadSolvedMissionsPending) {
+      this.loadSolvedMissionsPending = false;
+      try { const raw = localStorage.getItem(this.solvedKey()); this.solvedMissions = new Set(raw ? JSON.parse(raw) : []); } catch (e) {}
+    }
     grid.innerHTML = '';
     this.missions.forEach((m, idx) => {
       const btn = document.createElement('button');
