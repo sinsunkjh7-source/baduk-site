@@ -8,7 +8,7 @@
     a.textContent = '🏠 홈';
     a.setAttribute('aria-label', '홈으로');
     a.style.cssText = [
-      'position:fixed', 'bottom:16px', 'left:16px', 'z-index:99999',
+      'position:fixed', 'top:64px', 'left:16px', 'z-index:99999',
       'display:inline-flex', 'align-items:center', 'gap:6px',
       'padding:9px 16px', 'border-radius:999px',
       'background:#4A8A3A', 'color:#fff', 'font-size:15px', 'font-weight:800',
