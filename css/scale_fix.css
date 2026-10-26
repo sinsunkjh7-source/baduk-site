@@ -2170,3 +2170,24 @@ button.bk-lockout-btn {
   from { opacity: 0; transform: translateX(-50%) translateY(-6px) scale(.97); }
   to   { opacity: 1; transform: translateX(-50%) translateY(-4px) scale(1); }
 }
+
+/* ===== 게임·앱 오버레이 상단 메뉴 ===== */
+.bk-game-nav { display: flex; gap: 4px; margin-left: 14px; }
+.bk-game-nav button {
+  padding: 8px 14px;
+  border: 0;
+  border-radius: 9px;
+  background: rgba(255, 255, 255, .12);
+  color: #fff;
+  font-family: inherit;
+  font-size: 13.5px;
+  font-weight: 800;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.bk-game-nav button:hover { background: rgba(255, 255, 255, .22); }
+.bk-game-nav button.active { background: #fff; color: #33682a; }
+@media (max-width: 900px) {
+  .bk-game-nav { margin-left: 6px; gap: 2px; }
+  .bk-game-nav button { padding: 7px 9px; font-size: 12px; }
+}

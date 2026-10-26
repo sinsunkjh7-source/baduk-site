@@ -6227,3 +6227,9 @@ body { margin: 0 !important; padding: 0 !important; }
 .app-container { padding: 0 !important; top: 0 !important; }
 :root { --board-size: min(calc(100vh - 132px), calc(100vw - 660px)) !important; }
 .board-section { top: 46px !important; }
+
+
+/* ===== 사이트 내부(embed) 모드: 앱 자체 사이드바 숨김 ===== */
+html.bk-embed .ck-sidebar { display: none !important; }
+html.bk-embed .app-container { width: 100% !important; }
+html.bk-embed .ck-main-viewport { width: 100vw !important; max-width: 100vw !important; }

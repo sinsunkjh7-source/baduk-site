@@ -34,7 +34,12 @@
     el.innerHTML =
       '<div class="bk-game-bar">' +
         '<button class="bk-game-back" type="button">← 돌아가기</button>' +
-        '<span class="bk-game-title">' + (titleOverride || g.title) + '</span>' +
+        '<nav class="bk-game-nav">' +
+          '<button type="button" data-key="appMissions">바둑 학습</button>' +
+          '<button type="button" data-key="appLecture">대국</button>' +
+          '<button type="button" data-key="omok">오목</button>' +
+          '<button type="button" data-key="alkkagi">알까기</button>' +
+        '</nav>' +
         '<span class="bk-game-spacer"></span>' +
         '<button class="bk-game-sound" type="button">⚙ 설정</button>' +
       '</div>' +
@@ -45,6 +50,22 @@
     frame = el.querySelector('.bk-game-frame');
 
     el.querySelector('.bk-game-back').addEventListener('click', close);
+
+    /* 화면 안에서 바로 다른 화면으로 전환 */
+    function setActive(key) {
+      el.querySelectorAll('.bk-game-nav button').forEach(function (b) {
+        b.classList.toggle('active', b.dataset.key === key);
+      });
+    }
+    setActive(key);
+    el.querySelectorAll('.bk-game-nav button').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var k = b.dataset.key;
+        if (!GAMES[k]) return;
+        frame.src = GAMES[k].path;
+        setActive(k);
+      });
+    });
 
     /* ---- 소리 설정 (사이트 설정과 같은 값 공유) ---- */
     var TYPES = [['classic', '명품'], ['deep', '묵직'], ['crisp', '경쾌'], ['pop', '퐁퐁']];
@@ -141,6 +162,12 @@
   window.addEventListener('message', function (e) {
     if (e && e.data === 'bk:close') close();
   });
+
+  /* 주소 뒤 #키 로 바로 열기 (예: /#appMissions) */
+  if (location.hash) {
+    var hk = location.hash.replace('#', '');
+    if (GAMES[hk]) setTimeout(function () { open(hk); }, 250);
+  }
 
   window.bkGames = { open: open, close: close };
 })();
