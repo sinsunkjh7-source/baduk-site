@@ -2204,3 +2204,11 @@ button.bk-lockout-btn {
 }
 .bk-chip:hover { background: #EDF7E3; }
 .bk-chip.-on { background: #5FA34C; border-color: #4A8A3A; color: #fff; }
+
+/* 상단 로고 (크림 배지 형태) */
+.bk-game-logo {
+  height: 32px; width: auto;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.18);
+  margin-right: 6px;
+}
