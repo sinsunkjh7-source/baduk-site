@@ -1661,5 +1661,29 @@ html.skip-portal body{ background:#4A8F3E !important; }
   window.addEventListener('load', function () { override(); setTimeout(override, 600); setTimeout(override, 1500); });
 })();
 </script>
+<script>
+/* 사이트 상단 '설정'에서 보낸 값을 앱 컨트롤에 적용 */
+window.addEventListener('message', function (e) {
+  var d = e.data || {};
+  if (!d || !d.bkSetting) return;
+
+  if (d.kind === 'volume') {
+    var v = document.getElementById('volumeSlider');
+    if (v) { v.value = d.value; v.dispatchEvent(new Event('input', { bubbles: true })); }
+    return;
+  }
+  var map = {
+    size: '.size-btn[data-size="' + d.value + '"]',
+    bg: '.bg-theme-btn[data-theme="' + d.value + '"]',
+    skin: '.board-skin-btn[data-skin="' + d.value + '"]',
+    stone: '.stone-btn[data-style="' + d.value + '"]',
+    sound: '.sound-type-btn[data-sound="' + d.value + '"]'
+  };
+  var sel = map[d.kind];
+  if (!sel) return;
+  var el = document.querySelector(sel);
+  if (el) el.click();
+});
+</script>
 </body>
 </html>

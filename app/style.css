@@ -6360,3 +6360,14 @@ html, body, body.bg-theme-theme5, body[class*="bg-theme"] {
   background: #DCEBD1 !important;
   background-image: none !important;
 }
+
+
+/* v4 — 상단 잔여 바 제거, 왕관 제거, 설정은 상단바로 이동 */
+.ck-navbar { display: none !important; }
+.ck-logo-crown { display: none !important; }
+.side-settings-panel { display: none !important; }
+/* 마스터·힌트 영역 확대 */
+.story-panel { bottom: 158px !important; }
+.master-coach-area { max-height: 148px !important; padding: 8px !important; }
+.master-coach-area .master-coach-frame { width: 92px !important; height: 92px !important; }
+.master-coach-area .master-speech-bubble { display: flex !important; font-size: 12px !important; line-height: 1.4 !important; }

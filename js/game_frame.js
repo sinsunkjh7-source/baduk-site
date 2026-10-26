@@ -33,6 +33,7 @@
     el.className = 'bk-game-overlay';
     el.innerHTML =
       '<div class="bk-game-bar">' +
+        '<img class="bk-game-logo" src="images/baduk_header_logo.png" alt="바둑스쿨">' +
         '<button class="bk-game-back" type="button">← 돌아가기</button>' +
         '<nav class="bk-game-nav">' +
           '<button type="button" data-key="appMissions">바둑 학습</button>' +
@@ -72,7 +73,31 @@
     var panel = document.createElement('div');
     panel.className = 'bk-sound bk-sound--game';
     panel.innerHTML =
-      '<div class="bk-sound__head">소리 설정</div>' +
+      '<div class="bk-sound__head">설정</div>' +
+      '<div class="bk-sound__row bk-sound__row--chips">' +
+        '<span class="bk-sound__label">바둑판</span>' +
+        [9, 13, 19].map(function (n) {
+          return '<button type="button" class="bk-chip" data-kind="size" data-val="' + n + '">' + n + '줄</button>';
+        }).join('') +
+      '</div>' +
+      '<div class="bk-sound__row bk-sound__row--chips">' +
+        '<span class="bk-sound__label">바탕</span>' +
+        [1, 2, 3, 4, 5, 6, 7].map(function (n) {
+          return '<button type="button" class="bk-chip" data-kind="bg" data-val="theme' + n + '">' + n + '</button>';
+        }).join('') +
+      '</div>' +
+      '<div class="bk-sound__row bk-sound__row--chips">' +
+        '<span class="bk-sound__label">판</span>' +
+        [['wood', '나무'], ['green', '잔디'], ['sky', '하늘']].map(function (t) {
+          return '<button type="button" class="bk-chip" data-kind="skin" data-val="' + t[0] + '">' + t[1] + '</button>';
+        }).join('') +
+      '</div>' +
+      '<div class="bk-sound__row bk-sound__row--chips">' +
+        '<span class="bk-sound__label">바둑돌</span>' +
+        [1, 2, 3, 4, 5, 6, 7].map(function (n) {
+          return '<button type="button" class="bk-chip" data-kind="stone" data-val="S' + n + '">' + n + '</button>';
+        }).join('') +
+      '</div>' +
       '<div class="bk-sound__row">' +
         '<span class="bk-sound__label">음량</span>' +
         '<input class="bk-sound__range" type="range" min="0" max="200" step="5" value="100">' +
@@ -91,6 +116,21 @@
     var valEl = panel.querySelector('.bk-sound__val');
     var mute = panel.querySelector('.bk-sound__mute');
     var typeBtns = panel.querySelectorAll('.bk-sound__type');
+
+    /* 앱 옵션(판 크기·바탕·판 스킨·바둑돌) 전달 */
+    var STYLES = ['classic', 'crystal', 'galaxy', 'adventurer', 'cat', 'gem-sapphire', 'gem-ruby'];
+    panel.querySelectorAll('.bk-chip').forEach(function (chip) {
+      chip.addEventListener('click', function () {
+        var kind = chip.dataset.kind, val = chip.dataset.val;
+        if (kind === 'stone') val = STYLES[parseInt(val.slice(1), 10) - 1] || 'classic';
+        var group = panel.querySelectorAll('.bk-chip[data-kind="' + kind + '"]');
+        group.forEach(function (c) { c.classList.remove('-on'); });
+        chip.classList.add('-on');
+        if (frame && frame.contentWindow) {
+          try { frame.contentWindow.postMessage({ bkSetting: true, kind: kind, value: val }, '*'); } catch (e) {}
+        }
+      });
+    });
 
     function sync() {
       var a = window.badukAudio;

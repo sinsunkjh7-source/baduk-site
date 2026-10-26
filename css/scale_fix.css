@@ -2191,3 +2191,16 @@ button.bk-lockout-btn {
   .bk-game-nav { margin-left: 6px; gap: 2px; }
   .bk-game-nav button { padding: 7px 9px; font-size: 12px; }
 }
+
+/* 상단바 로고 */
+.bk-game-logo { height: 30px; width: auto; margin-right: 4px; border-radius: 4px; }
+/* 설정 칩 */
+.bk-sound__row--chips { flex-wrap: wrap; gap: 4px; }
+.bk-chip {
+  min-width: 30px; padding: 5px 8px;
+  border: 1.5px solid #DCEBCE; border-radius: 8px;
+  background: #F6FBF0; color: #3B5B31;
+  font-family: inherit; font-size: 12px; font-weight: 800; cursor: pointer;
+}
+.bk-chip:hover { background: #EDF7E3; }
+.bk-chip.-on { background: #5FA34C; border-color: #4A8A3A; color: #fff; }
