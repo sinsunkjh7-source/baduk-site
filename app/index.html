@@ -52,6 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 </script>
 <script src="../site_lock.js?v=8" defer></script>
+<link rel="stylesheet" href="home.css?v=1">
 </head>
 <body>
   <!-- 🌌 신비한 별빛 밤하늘과 유성 모션그래픽 캔버스 -->
@@ -1427,102 +1428,59 @@ window.addEventListener('message', function (e) {
 });
 </script>
 <!-- ===== 앱 내부 홈(랜딩) — Shadow DOM 격리 ===== -->
-<div id="bksHome"></div>
+<section id="bksHome" hidden>
+  <div class="bkhome-bar">
+    <img src="images/baduk_logo_final.png" alt="바둑스쿨">
+    <nav class="bkhome-menu">
+      <button type="button" data-go="missions">바둑 학습</button>
+      <button type="button" data-go="online">대국</button>
+      <button type="button" data-go="omok">오목</button>
+      <button type="button" data-go="alkkagi">알까기</button>
+    </nav>
+  </div>
+
+  <div class="bkhome-hero"><img src="images/hero_cut_nobtn.webp" alt="바둑스쿨"></div>
+
+  <div class="bkhome-cta">
+    <button type="button" class="go-play" data-go="online">▶ 바둑 시작하기</button>
+    <button type="button" class="go-learn" data-go="missions">▣ 바둑 배우기</button>
+  </div>
+
+  <ul class="bkhome-stats">
+    <li><img src="images/stat_1.png" alt=""><span>행복한 아이들</span></li>
+    <li><img src="images/stat_2.png" alt=""><span>체계적인 바둑 강의</span></li>
+    <li><img src="images/stat_3.png" alt=""><span>종합적 사고력 향상</span></li>
+    <li><img src="images/stat_4.png" alt=""><span>건전한 바둑·오목·알까기</span></li>
+    <li><img src="images/stat_5.png" alt=""><span>한자·격언·인성 함양</span></li>
+  </ul>
+</section>
 <script>
 (function () {
-  var host = document.getElementById('bksHome');
-  if (!host) return;
+  var home = document.getElementById('bksHome');
+  var app = document.querySelector('.app-container');
+  if (!home) return;
 
-  var CSS = [
-    'landing/css/vars.css',
-    'landing/css/baduk_core.css',
-    'landing/css/baduk_theme.css',
-    'landing/css/baduk_custom_fix.css',
-    'landing/css/baduk_app.css',
-    'landing/css/scale_fix.css',
-    'landing/css/baduk_landing.css'
-  ];
-
-  function ensureCss() {
-    CSS.forEach(function (href) {
-      if (document.querySelector('link[data-bks-css="' + href + '"]')) return;
-      var l = document.createElement('link');
-      l.rel = 'stylesheet';
-      l.href = href + '?v=1';
-      l.setAttribute('data-bks-css', href);
-      document.head.appendChild(l);
-    });
+  function showHome(on) {
+    home.hidden = !on;
+    document.documentElement.classList.toggle('bk-home', on);
+    if (app) app.style.visibility = on ? 'hidden' : 'visible';
+    if (on) window.scrollTo(0, 0);
   }
+  window.bkHome = showHome;
 
-  function loadScript(src) {
-    return new Promise(function (res) {
-      if (document.querySelector('script[data-bks-js="' + src + '"]')) return res();
-      var sc = document.createElement('script');
-      sc.src = src + '?v=1';
-      sc.setAttribute('data-bks-js', src);
-      sc.onload = res; sc.onerror = res;
-      document.body.appendChild(sc);
-    });
-  }
+  home.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-go]');
+    if (!b) return;
+    var mode = b.dataset.go;
+    showHome(false);
+    var a = window.badukApp || window.gameApp;
+    if (a && a.switchMode) setTimeout(function () { a.switchMode(mode); }, 60);
+  });
 
-  function go(kind) {
-    var app = window.badukApp || window.gameApp;
-    var map = { learn: 'missions', play: 'online', omok: 'omok', alkkagi: 'alkkagi' };
-    if (map[kind] && app && app.switchMode) {
-      app.switchMode(map[kind]);
-      window.bksShowHome(false);
-    }
-  }
+  window.showMainPortal = function () { showHome(true); };
 
-  window.bksShowHome = function (on) {
-    var show = on !== false;
-    host.style.display = show ? 'block' : 'none';
-    var ac = document.querySelector('.app-container');
-    if (ac) ac.style.visibility = show ? 'hidden' : 'visible';
-    document.documentElement.classList.toggle('bks-home', show);
-    if (show) window.scrollTo(0, 0);
-  };
-
-  host.addEventListener('click', function (e) {
-    var el = e.target.closest('a,button');
-    if (!el) return;
-    if (el.dataset && el.dataset.bk) { e.preventDefault(); go(el.dataset.bk); return; }
-    var t = (el.textContent || '').replace(/\s+/g, ' ').trim();
-    if (/바둑 학습|학습|시작|배우기/.test(t)) { e.preventDefault(); go('learn'); return; }
-    if (/대국/.test(t)) { e.preventDefault(); go('play'); return; }
-    if (/오목|Fun/.test(t)) { e.preventDefault(); go('omok'); return; }
-    if (/알까기/.test(t)) { e.preventDefault(); go('alkkagi'); return; }
-  }, true);
-
-  fetch('landing/landing.html?v=1')
-    .then(function (r) { return r.text(); })
-    .then(function (html) {
-      host.innerHTML = html;
-      ensureCss();
-
-      /* 옛 상단바 액션(회원가입/로그인/언어) 제거 + 우리 메뉴 삽입 */
-      var tb = host.querySelector('.guest-toolbar-desktop');
-      if (tb) {
-        var acts = tb.querySelector('.guest-toolbar-desktop__actions');
-        if (acts) acts.style.display = 'none';
-        var navHost = tb;
-        var menu = document.createElement('nav');
-        menu.style.cssText = 'display:flex;align-items:center;gap:6px;margin-left:6px';
-        menu.innerHTML =
-          '<button type="button" data-bk="learn" style="font:inherit;font-size:15.5px;font-weight:900;color:#fff;background:transparent;border:0;padding:9px 14px;border-radius:10px;cursor:pointer">바둑 학습</button>' +
-          '<button type="button" data-bk="play" style="font:inherit;font-size:15.5px;font-weight:900;color:#fff;background:transparent;border:0;padding:9px 14px;border-radius:10px;cursor:pointer">대국</button>' +
-          '<button type="button" data-bk="omok" style="font:inherit;font-size:15.5px;font-weight:900;color:#fff;background:transparent;border:0;padding:9px 14px;border-radius:10px;cursor:pointer">오목</button>' +
-          '<button type="button" data-bk="alkkagi" style="font:inherit;font-size:15.5px;font-weight:900;color:#fff;background:transparent;border:0;padding:9px 14px;border-radius:10px;cursor:pointer">알까기</button>';
-        menu.style.display = 'flex';
-        menu.style.marginRight = 'auto';
-        tb.insertBefore(menu, tb.children[1] || null);
-      }
-
-      loadScript('js/petals.js').then(function () { return loadScript('js/waterfall.js'); });
-      window.bksShowHome(!!window.BKS_START_HOME);
-      window.showMainPortal = function () { window.bksShowHome(true); };
-    })
-    .catch(function () { host.style.display = 'none'; });
+  var direct = /[?&](mode|embed)=/.test(location.search);
+  showHome(!direct);
 })();
 </script>
 <script>
