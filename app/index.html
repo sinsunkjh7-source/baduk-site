@@ -37,7 +37,7 @@ html, body { background: #DCEBD1 !important; background-image: none !important; 
 #mainPortalOverlay { display: none !important; }
 .ck-navbar, .ck-top-subnav { display: none !important; }
 </style>
-<script>window.BKS_START_HOME = /[?&]home=1/.test(location.search);</script>
+<script>window.BKS_START_HOME = !/[?&]mode=/.test(location.search);</script>
 <script>
 window.BKS_THEME = (/[?&]theme=(\d)/.exec(location.search) || [])[1] || null;
 </script>
@@ -51,6 +51,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }, 900);
 });
 </script>
+<script src="../site_lock.js?v=8" defer></script>
 </head>
 <body>
   <!-- 🌌 신비한 별빛 밤하늘과 유성 모션그래픽 캔버스 -->
@@ -1455,10 +1456,10 @@ window.addEventListener('message', function (e) {
 });
 </script>
 <!-- ===== 앱 내부 홈(랜딩) — Shadow DOM 격리 ===== -->
-<div id="bksHomeHost" aria-label="바둑스쿨 홈"></div>
+<div id="bksHome"></div>
 <script>
 (function () {
-  var host = document.getElementById('bksHomeHost');
+  var host = document.getElementById('bksHome');
   if (!host) return;
 
   var CSS = [
@@ -1471,76 +1472,86 @@ window.addEventListener('message', function (e) {
     'landing/css/baduk_landing.css'
   ];
 
-  var root = host.attachShadow({ mode: 'open' });
+  function ensureCss() {
+    CSS.forEach(function (href) {
+      if (document.querySelector('link[data-bks-css="' + href + '"]')) return;
+      var l = document.createElement('link');
+      l.rel = 'stylesheet';
+      l.href = href + '?v=1';
+      l.setAttribute('data-bks-css', href);
+      document.head.appendChild(l);
+    });
+  }
 
-  var base = document.createElement('style');
-  base.textContent = ':host{display:block;background:#F7FBF2;min-height:100vh}' +
-    '*{box-sizing:border-box}' +
-    '.landingPage{min-height:100vh}' +
-    '.guest-toolbar-desktop{height:66px!important;display:flex!important;align-items:center!important;' +
-    'padding:0 20px!important;background:#4A8A3A!important;gap:14px!important}' +
-    '.guest-toolbar-desktop__container{display:flex!important;align-items:center!important;' +
-    'justify-content:space-between!important;width:100%!important;gap:18px!important}' +
-    '.guest-toolbar-desktop-navigation__list{display:flex!important;align-items:center!important;gap:6px!important}' +
-    '.guest-toolbar-desktop-navigation__link,.guest-toolbar-popup-menu__item-link{' +
-    'font-size:15.5px!important;font-weight:900!important;color:#fff!important;' +
-    'padding:9px 14px!important;border-radius:10px!important;text-decoration:none!important;' +
-    'display:inline-flex!important;align-items:center!important;gap:5px!important}' +
-    '.guest-toolbar-desktop-navigation__link:hover{background:rgba(255,255,255,.18)!important}' +
-    '.toolbar-logo__img{height:42px!important;width:auto!important}' +
-    '.guest-layout__toolbar{height:66px!important;display:flex!important;align-items:center!important;' +
-    'align-items:center!important;gap:10px!important;padding:0 18px!important}' +
-    '.guest-toolbar-desktop a,.guest-toolbar-desktop button{font-size:15px!important;' +
-    'font-weight:800!important;padding:9px 14px!important;border-radius:10px!important}' +
-    '.guest-toolbar-desktop img{height:38px!important;width:auto!important}';
-  root.appendChild(base);
+  function loadScript(src) {
+    return new Promise(function (res) {
+      if (document.querySelector('script[data-bks-js="' + src + '"]')) return res();
+      var sc = document.createElement('script');
+      sc.src = src + '?v=1';
+      sc.setAttribute('data-bks-js', src);
+      sc.onload = res; sc.onerror = res;
+      document.body.appendChild(sc);
+    });
+  }
 
-  CSS.forEach(function (href) {
-    var l = document.createElement('link');
-    l.rel = 'stylesheet';
-    l.href = href + '?t=' + Date.now();
-    root.appendChild(l);
-  });
-
-  /* 5칸 메뉴 → 앱 모드 */
   function go(kind) {
     var app = window.badukApp || window.gameApp;
     var map = { learn: 'missions', play: 'online', omok: 'omok', alkkagi: 'alkkagi' };
     if (map[kind] && app && app.switchMode) {
       app.switchMode(map[kind]);
       window.bksShowHome(false);
-      return true;
     }
-    return false;
   }
 
   window.bksShowHome = function (on) {
-    host.style.display = on === false ? 'none' : 'block';
+    var show = on !== false;
+    host.style.display = show ? 'block' : 'none';
     var ac = document.querySelector('.app-container');
-    if (ac) ac.style.visibility = (on === false) ? 'visible' : 'hidden';
-    document.documentElement.classList.toggle('bks-home', on !== false);
+    if (ac) ac.style.visibility = show ? 'hidden' : 'visible';
+    document.documentElement.classList.toggle('bks-home', show);
+    if (show) window.scrollTo(0, 0);
   };
 
-  root.addEventListener('click', function (e) {
+  host.addEventListener('click', function (e) {
     var el = e.target.closest('a,button');
     if (!el) return;
+    if (el.dataset && el.dataset.bk) { e.preventDefault(); go(el.dataset.bk); return; }
     var t = (el.textContent || '').replace(/\s+/g, ' ').trim();
-    if (/바둑 학습|학습/.test(t) && go('learn')) { e.preventDefault(); return; }
-    if (/대국/.test(t) && go('play')) { e.preventDefault(); return; }
-    if (/오목/.test(t) && go('omok')) { e.preventDefault(); return; }
-    if (/알까기/.test(t) && go('alkkagi')) { e.preventDefault(); return; }
+    if (/바둑 학습|학습|시작|배우기/.test(t)) { e.preventDefault(); go('learn'); return; }
+    if (/대국/.test(t)) { e.preventDefault(); go('play'); return; }
+    if (/오목|Fun/.test(t)) { e.preventDefault(); go('omok'); return; }
+    if (/알까기/.test(t)) { e.preventDefault(); go('alkkagi'); return; }
   }, true);
 
-  fetch('landing/landing.html?t=' + Date.now())
+  fetch('landing/landing.html?v=1')
     .then(function (r) { return r.text(); })
     .then(function (html) {
-      var wrap = document.createElement('div');
-      wrap.innerHTML = html;
-      root.appendChild(wrap);
+      host.innerHTML = html;
+      ensureCss();
+
+      /* 옛 상단바 액션(회원가입/로그인/언어) 제거 + 우리 메뉴 삽입 */
+      var tb = host.querySelector('.guest-toolbar-desktop');
+      if (tb) {
+        var acts = tb.querySelector('.guest-toolbar-desktop__actions');
+        if (acts) acts.style.display = 'none';
+        var navHost = tb;
+        var menu = document.createElement('nav');
+        menu.style.cssText = 'display:flex;align-items:center;gap:6px;margin-left:6px';
+        menu.innerHTML =
+          '<button type="button" data-bk="learn" style="font:inherit;font-size:15.5px;font-weight:900;color:#fff;background:transparent;border:0;padding:9px 14px;border-radius:10px;cursor:pointer">바둑 학습</button>' +
+          '<button type="button" data-bk="play" style="font:inherit;font-size:15.5px;font-weight:900;color:#fff;background:transparent;border:0;padding:9px 14px;border-radius:10px;cursor:pointer">대국</button>' +
+          '<button type="button" data-bk="omok" style="font:inherit;font-size:15.5px;font-weight:900;color:#fff;background:transparent;border:0;padding:9px 14px;border-radius:10px;cursor:pointer">오목</button>' +
+          '<button type="button" data-bk="alkkagi" style="font:inherit;font-size:15.5px;font-weight:900;color:#fff;background:transparent;border:0;padding:9px 14px;border-radius:10px;cursor:pointer">알까기</button>';
+        menu.style.display = 'flex';
+        menu.style.marginRight = 'auto';
+        tb.insertBefore(menu, tb.children[1] || null);
+      }
+
+      loadScript('js/petals.js').then(function () { return loadScript('js/waterfall.js'); });
       window.bksShowHome(!!window.BKS_START_HOME);
       window.showMainPortal = function () { window.bksShowHome(true); };
     })
-    .catch(function (err) { host.style.display = 'none';  });
+    .catch(function () { host.style.display = 'none'; });
 })();
 </script>
 <script>
@@ -1569,5 +1580,13 @@ window.addEventListener('message', function (e) {
   window.addEventListener('resize', function () { setTimeout(place, 200); });
 })();
 </script>
+<style>
+/* 홈 상단 메뉴 줄바꿈 방지 */
+#bksHome .guest-toolbar-desktop-navigation__link,
+#bksHome .guest-toolbar-popup-menu__item-link,
+#bksHome .bks-bar__menu button,
+#bksHome a, #bksHome button { white-space: nowrap !important; }
+#bksHome .guest-toolbar-desktop__container { gap: 10px !important; }
+</style>
 </body>
 </html>
