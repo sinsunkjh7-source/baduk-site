@@ -215,3 +215,122 @@ button { font-family: inherit; cursor: pointer; }
   pointer-events: none;
   z-index: 2;
 }
+
+
+/* 잠금 화면 (이전 사이트에서 이관) */
+.bk-lock {
+  position: fixed;
+  inset: 0;
+  z-index: 100000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(160deg, #4A8A3A 0%, #35682A 100%);
+  font-family: "Malgun Gothic", system-ui, sans-serif;
+}
+.bk-lock__box {
+  width: 320px;
+  background: #FFFDF6;
+  border-radius: 22px;
+  padding: 30px 26px 24px;
+  text-align: center;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, .35);
+}
+.bk-lock__logo {
+  display: inline-block;
+  font-size: 15px;
+  font-weight: 900;
+  color: #3d7a33;
+  letter-spacing: -.3px;
+  margin-bottom: 14px;
+}
+.bk-lock__box h2 {
+  margin: 0 0 6px;
+  font-size: 21px;
+  font-weight: 900;
+  color: #2f4a25;
+}
+.bk-lock__box p {
+  margin: 0 0 16px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #6b7a63;
+}
+.bk-lock__input-wrap { margin-bottom: 12px; }
+.bk-lock__input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 14px 0;
+  font-size: 26px;
+  letter-spacing: 12px;
+  text-align: center;
+  color: #1f2a17 !important;
+  -webkit-text-fill-color: #1f2a17;
+  caret-color: #5FA34C;
+  border: 2px solid #DCEBCE;
+  border-radius: 12px;
+  outline: none;
+  background: #fff;
+  font-family: inherit;
+}
+.bk-lock__input::placeholder { color: #c9d6bf; letter-spacing: 6px; }
+.bk-lock__input:focus { border-color: #5FA34C; }
+.bk-lock__ok {
+  width: 100%;
+  padding: 13px 0;
+  border: 0;
+  border-radius: 12px;
+  background: #5FA34C;
+  color: #fff;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 800;
+  cursor: pointer;
+}
+.bk-lock__ok:hover { background: #4d8f3c; }
+.bk-lock__err {
+  margin: 10px 0 0 !important;
+  color: #d9433f !important;
+  font-weight: 800;
+}
+.bk-lock__note {
+  margin: 16px 0 0 !important;
+  font-size: 11.5px !important;
+  color: #9aa892 !important;
+}
+.bk-lock__hint {
+  margin: -4px 0 10px !important;
+  font-size: 11.5px !important;
+  color: #9aa892 !important;
+  letter-spacing: 0 !important;
+}
+.bk-lock__input { cursor: text; }
+.bk-lockout-btn,
+button.bk-lockout-btn {
+  position: fixed !important;
+  right: 20px !important;
+  bottom: 20px !important;
+  top: auto !important;
+  left: auto !important;
+  z-index: 99999 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  width: auto !important;
+  height: auto !important;
+  padding: 11px 18px !important;
+  border: 2px solid #fff !important;
+  border-radius: 999px !important;
+  background: #2f4a25 !important;
+  color: #fff !important;
+  font-family: "Malgun Gothic", system-ui, sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 800 !important;
+  line-height: 1 !important;
+  cursor: pointer !important;
+  opacity: .92 !important;
+  visibility: visible !important;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, .28) !important;
+  pointer-events: auto !important;
+}
+.bk-lockout-btn:hover { background: #24401b !important; opacity: 1 !important; }
