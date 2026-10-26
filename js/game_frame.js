@@ -8,8 +8,8 @@
     alkkagi: { path: 'games/alkkagi/index.html', title: '알까기' },
     play: { path: 'games/play/index.html', title: '대국' },
     learn: { path: 'games/learn/index.html', title: '바둑 학습' },
-    appMissions: { path: 'app/index.html?mode=missions&embed=1&v=4', title: '바둑 학습' },
-    appLecture: { path: 'app/index.html?mode=online&embed=1&v=4', title: '대국' }
+    appMissions: { path: 'app/index.html?mode=missions&embed=1&v=5', title: '바둑 학습' },
+    appLecture: { path: 'app/index.html?mode=online&embed=1&v=5', title: '대국' }
   };
 
   var el = null;
@@ -26,6 +26,11 @@
   function open(key, titleOverride) {
     var g = GAMES[key];
     if (!g) return false;
+
+    /* 앱 화면은 열 때마다 새로 받는다 (구버전 HTML 캐시 방지) */
+    if (g.path.indexOf('app/index.html') === 0) {
+      g = { path: g.path + '&r=' + Date.now(), title: g.title };
+    }
 
     if (el) close();
 
