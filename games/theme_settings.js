@@ -37,10 +37,10 @@
 
       var css = document.createElement('style');
       css.textContent =
-        '.bks-set-btn{position:absolute;top:10px;right:10px;left:auto;z-index:60;display:flex;align-items:center;gap:6px;' +
+        '.bks-set-btn{position:absolute;bottom:14px;left:14px;top:auto;right:auto;z-index:60;display:flex;align-items:center;gap:6px;' +
           'padding:8px 12px;border-radius:10px;border:1.5px solid #D3E6C4;background:#fff;color:#33682a;' +
           'font-family:inherit;font-size:13px;font-weight:800;cursor:pointer}' +
-        '.bks-set-panel{position:absolute;top:52px;right:10px;z-index:70;width:232px;padding:14px;' +
+        '.bks-set-panel{position:absolute;bottom:60px;left:14px;top:auto;right:auto;z-index:70;width:232px;padding:14px;' +
           'background:#fff;border-radius:14px;box-shadow:0 12px 30px rgba(40,70,25,.22);border:2px solid #E8F1DE}' +
         '.bks-set-panel h4{margin:0 0 8px;font-size:13px;color:#2f4a25}' +
         '.bks-set-row{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px}' +

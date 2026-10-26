@@ -193,3 +193,12 @@ html, body {
 /* 판 영역은 투명 — 바탕 테마가 판 주변에 보이도록 */
 .board-box, .board-area { background: transparent !important; }
 .board-box > * { position: relative; z-index: 1; }
+
+/* 바탕 위에서 요소가 떠 보이지 않게 카드 형태로 */
+.turn-bar {
+  background: #fff !important;
+  border-radius: 12px !important;
+  box-shadow: 0 4px 14px rgba(20, 40, 10, .12) !important;
+  margin: 12px 12px 0 !important;
+}
+.wrap, .alkkagi-wrap { padding: 12px !important; }
