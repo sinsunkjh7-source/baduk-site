@@ -189,3 +189,7 @@ html, body {
   z-index: 50;
 }
 .toast[hidden] { display: none; }
+
+/* 판 영역은 투명 — 바탕 테마가 판 주변에 보이도록 */
+.board-box, .board-area { background: transparent !important; }
+.board-box > * { position: relative; z-index: 1; }
