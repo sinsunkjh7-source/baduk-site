@@ -1,0 +1,296 @@
+/* ==============================================================================
+   🏰 BadukSchool Official Production Helper & Dropdown CSS
+   ============================================================================== */
+
+/* Landing Page Layer */
+.ck-landing-wrapper {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: #ffffff;
+  overflow-y: auto;
+  overflow-x: hidden;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.ck-landing-wrapper.hidden {
+  opacity: 0;
+  transform: translateY(-20px);
+  pointer-events: none;
+}
+
+/* Header Navbar Fixes (Exact Live BadukSchool Match) */
+.guest-toolbar-desktop {
+  position: sticky;
+  top: 0;
+  z-index: 600;
+  background: #588b2b !important;
+  width: 100%;
+  height: 48px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.guest-toolbar-desktop__container {
+  max-width: 1440px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  height: 100%;
+}
+
+.guest-toolbar-desktop-navigation__list {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 0;
+}
+
+.guest-toolbar-desktop-navigation__link-item {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.guest-toolbar-desktop-navigation__link {
+  color: #ffffff !important;
+  padding: 0 16px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  font-family: var(--ck-font-display);
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.guest-toolbar-desktop-navigation__link:hover {
+  background: rgba(0, 0, 0, 0.12);
+}
+
+/* Dropdown Menu Popup (Exact Live Green Match #4d8226) */
+.guest-toolbar-popup-menu {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+.guest-toolbar-popup-menu:hover,
+.guest-toolbar-popup-menu.open {
+  background: #4a7824;
+}
+
+.guest-toolbar-popup-menu__link {
+  color: #ffffff !important;
+  padding: 0 16px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--ck-font-display);
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.guest-toolbar-popup-menu__toggle-icon::after {
+  content: '▾';
+  font-size: 0.75rem;
+}
+
+.guest-toolbar-popup-menu.open .guest-toolbar-popup-menu__toggle-icon::after {
+  content: '▴';
+}
+
+.guest-toolbar-popup-menu__list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #4d8226 !important;
+  border-radius: 0 0 14px 14px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+  min-width: 230px;
+  padding: 8px 6px 12px 6px;
+  display: none !important;
+  flex-direction: column;
+  gap: 2px;
+  z-index: 1000;
+  list-style: none;
+}
+
+.guest-toolbar-popup-menu.open .guest-toolbar-popup-menu__list,
+.guest-toolbar-popup-menu:hover .guest-toolbar-popup-menu__list {
+  display: flex !important;
+}
+
+.guest-toolbar-popup-menu__item-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 9px 14px;
+  border-radius: 8px;
+  color: #ffffff !important;
+  text-decoration: none;
+  font-family: var(--ck-font-display);
+  font-weight: 700;
+  font-size: 0.92rem;
+  transition: background 0.15s;
+}
+
+.guest-toolbar-popup-menu__item-link:hover {
+  background: rgba(255, 255, 255, 0.18);
+  color: #ffffff !important;
+}
+
+.guest-toolbar-popup-menu__icon {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.guest-toolbar-popup-menu__icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* 2880px Hero Banner Full Width */
+.home-guest-banner {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  background: #d4f4fa;
+}
+
+.home-guest-banner__image-wrapper {
+  position: relative;
+  width: 100%;
+  line-height: 0;
+}
+
+.home-guest-banner__image {
+  width: 100%;
+  height: auto;
+  display: block;
+  min-height: 480px;
+  object-fit: cover;
+  object-position: center bottom;
+}
+
+.home-guest-banner__title {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 900px;
+  text-align: center;
+  font-family: var(--ck-font-display);
+  font-size: clamp(2rem, 4vw, 3.8rem);
+  font-weight: 900;
+  color: #1e293b;
+  line-height: 1.15;
+  text-shadow: 0 2px 10px rgba(255, 255, 255, 0.8);
+  pointer-events: none;
+}
+
+.home-guest-banner__curve {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 50;
+  width: 100%;
+}
+
+.home-guest-banner__buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
+
+.home-guest-banner__button {
+  background: linear-gradient(180deg, #ffa94d 0%, #f58220 100%) !important;
+  box-shadow: 0 4px 0 #b85404, 0 8px 20px rgba(245, 130, 32, 0.35) !important;
+  color: #ffffff !important;
+  font-family: var(--ck-font-display) !important;
+  font-size: 1.25rem !important;
+  font-weight: 900 !important;
+  padding: 14px 36px !important;
+  border-radius: 9999px !important;
+  border: none !important;
+  cursor: pointer !important;
+  text-decoration: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: transform 0.1s ease, filter 0.15s ease !important;
+}
+
+.home-guest-banner__button:hover {
+  filter: brightness(1.05) !important;
+  transform: translateY(-2px) !important;
+}
+
+.home-guest-banner__button:active {
+  transform: translateY(2px) !important;
+  box-shadow: 0 1px 0 #b85404 !important;
+}
+
+/* 5 Stats Strip */
+.baduk-stats {
+  background: #ffffff;
+  padding: 24px 20px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.baduk-stats__list {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.baduk-stats__stats-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.baduk-stats__icon {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 8px;
+}
+
+.baduk-stats__title {
+  font-family: var(--ck-font-display);
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #1e293b;
+  margin: 0;
+  line-height: 1.1;
+}
+
+.baduk-stats__label {
+  font-family: var(--ck-font-body);
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #64748b;
+  margin-top: 4px;
+}

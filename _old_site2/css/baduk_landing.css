@@ -1,0 +1,438 @@
+/* ==============================================================================
+   🏰 BadukSchool Official Landing Page Styles (1:1 Pixel-Accurate Clone)
+   Matches Official Screenshot media_1792794933716_031de2e7.png
+   ============================================================================== */
+
+.ck-landing-wrapper {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: #ffffff;
+  overflow-y: auto;
+  overflow-x: hidden;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.ck-landing-wrapper.hidden {
+  opacity: 0;
+  transform: translateY(-20px);
+  pointer-events: none;
+}
+
+/* 1. Official Green Top Navbar (#588b2b) */
+.ck-global-navbar {
+  width: 100%;
+  background: var(--ck-green-header);
+  position: sticky;
+  top: 0;
+  z-index: 500;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.ck-nav-inner {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 24px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ck-nav-left {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+/* Official BadukSchool Brand Logo */
+.ck-brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.ck-brand-logo:hover {
+  transform: scale(1.03);
+}
+
+.ck-logo-crown {
+  font-size: 1.3rem;
+  line-height: 1;
+}
+
+.ck-logo-text {
+  font-family: var(--ck-font-display);
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: #ffffff;
+  letter-spacing: -0.5px;
+}
+
+/* Nav Item Links & Dropdowns */
+.ck-nav-link {
+  color: #ffffff;
+  font-family: var(--ck-font-display);
+  font-weight: 700;
+  font-size: 0.92rem;
+  text-decoration: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  opacity: 0.95;
+  transition: opacity 0.15s;
+}
+
+.ck-nav-link:hover {
+  opacity: 1;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.2);
+}
+
+.ck-nav-dropdown-wrap {
+  position: relative;
+}
+
+.ck-dropdown-btn {
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-family: var(--ck-font-display);
+  font-weight: 700;
+  font-size: 0.92rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  opacity: 0.95;
+}
+
+.ck-dropdown-btn:hover {
+  opacity: 1;
+}
+
+.ck-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  min-width: 170px;
+  padding: 6px;
+  display: none;
+  flex-direction: column;
+  gap: 2px;
+  z-index: 600;
+}
+
+.ck-nav-dropdown-wrap.open .ck-dropdown-menu {
+  display: flex;
+}
+
+.ck-dropdown-menu a {
+  padding: 8px 12px;
+  color: #334155;
+  text-decoration: none;
+  font-family: var(--ck-font-body);
+  font-weight: 700;
+  font-size: 0.88rem;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: background 0.15s;
+}
+
+.ck-dropdown-menu a:hover {
+  background: #f1f5f9;
+  color: #0f172a;
+}
+
+/* Right Nav Buttons */
+.ck-nav-right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.ck-btn-nav-signup {
+  background: var(--ck-orange-primary);
+  color: #ffffff;
+  border: none;
+  border-radius: 9999px;
+  padding: 5px 14px;
+  font-family: var(--ck-font-display);
+  font-weight: 800;
+  font-size: 0.86rem;
+  cursor: pointer;
+  box-shadow: 0 2px 0 #b85404;
+  transition: transform 0.1s ease, filter 0.1s ease;
+}
+
+.ck-btn-nav-signup:hover {
+  filter: brightness(1.05);
+}
+
+.ck-nav-login {
+  color: #ffffff;
+  font-family: var(--ck-font-display);
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.ck-nav-login:hover {
+  text-decoration: underline;
+}
+
+.ck-nav-lang {
+  color: #ffffff;
+  font-family: var(--ck-font-display);
+  font-weight: 700;
+  font-size: 0.88rem;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  cursor: pointer;
+}
+
+/* 2. Official Hero Banner Section (100% Full Width Edge-to-Edge) */
+.ck-official-hero-wrapper {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  background: #d4f4fa;
+  line-height: 0;
+}
+
+.ck-official-hero-stage {
+  width: 100%;
+  position: relative;
+  line-height: 0;
+}
+
+.ck-hero-img-banner {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Interactive Clickable Hotspots for Play Now and 바둑 배우기 */
+.ck-hero-hotspot-play {
+  position: absolute;
+  left: 36.5%;
+  top: 86.2%;
+  width: 12.8%;
+  height: 9.8%;
+  cursor: pointer;
+  border-radius: 9999px;
+  background: transparent;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  z-index: 20;
+}
+
+.ck-hero-hotspot-play:hover {
+  box-shadow: 0 0 16px rgba(255, 169, 77, 0.8);
+  transform: scale(1.04);
+}
+
+.ck-hero-hotspot-learn {
+  position: absolute;
+  left: 50.0%;
+  top: 86.2%;
+  width: 12.8%;
+  height: 9.8%;
+  cursor: pointer;
+  border-radius: 9999px;
+  background: transparent;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  z-index: 20;
+}
+
+.ck-hero-hotspot-learn:hover {
+  box-shadow: 0 0 16px rgba(255, 192, 120, 0.8);
+  transform: scale(1.04);
+}
+
+/* 3. Official 5 Key Stats Strip */
+.ck-official-stats-bar {
+  width: 100%;
+  background: #ffffff;
+  border-bottom: 1.5px solid #e2e8f0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  display: flex;
+  justify-content: center;
+}
+
+.ck-stats-inner {
+  width: 100%;
+  max-width: 1300px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 22px 24px;
+}
+
+.ck-stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.ck-stat-icon-wrap {
+  font-size: 2.3rem;
+  margin-bottom: 6px;
+}
+
+.ck-stat-num {
+  font-family: var(--ck-font-display);
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: #1e293b;
+  line-height: 1.1;
+}
+
+.ck-stat-label {
+  font-family: var(--ck-font-body);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #64748b;
+  margin-top: 4px;
+}
+
+/* 4. Why BadukSchool Features Grid */
+.ck-features-section {
+  max-width: 1300px;
+  margin: 50px auto;
+  padding: 0 24px;
+}
+
+.ck-features-title {
+  text-align: center;
+  font-family: var(--ck-font-display);
+  font-size: 2rem;
+  font-weight: 900;
+  color: #1e293b;
+  margin-bottom: 8px;
+}
+
+.ck-features-subtitle {
+  text-align: center;
+  font-family: var(--ck-font-body);
+  font-size: 1.05rem;
+  color: #64748b;
+  margin-bottom: 32px;
+}
+
+.ck-features-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.ck-feature-box {
+  background: #ffffff;
+  border: 2px solid #e2e8f0;
+  border-radius: 20px;
+  padding: 24px 18px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.ck-feature-box:hover {
+  transform: translateY(-4px);
+  border-color: var(--ck-green-header);
+  box-shadow: 0 10px 25px rgba(88, 139, 43, 0.15);
+}
+
+.ck-feature-icon {
+  font-size: 2.6rem;
+  margin-bottom: 12px;
+}
+
+.ck-feature-h3 {
+  font-family: var(--ck-font-display);
+  font-size: 1.15rem;
+  font-weight: 900;
+  color: #1e293b;
+  margin-bottom: 8px;
+}
+
+.ck-feature-p {
+  font-family: var(--ck-font-body);
+  font-size: 0.88rem;
+  color: #64748b;
+  line-height: 1.4;
+}
+
+/* 5. Safe & COPPA Certified Banner */
+.ck-coppa-banner {
+  background: #f8fafc;
+  border-top: 1px solid #e2e8f0;
+  border-bottom: 1px solid #e2e8f0;
+  padding: 24px 20px;
+  text-align: center;
+}
+
+.ck-coppa-inner {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.ck-coppa-text h4 {
+  font-family: var(--ck-font-display);
+  font-size: 1.1rem;
+  color: #1e293b;
+  font-weight: 800;
+}
+
+.ck-coppa-text p {
+  font-family: var(--ck-font-body);
+  font-size: 0.85rem;
+  color: #64748b;
+}
+
+/* 6. Footer */
+.ck-landing-footer {
+  background: #ffffff;
+  padding: 24px 20px;
+  text-align: center;
+  color: #64748b;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.ck-footer-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 10px;
+}
+
+.ck-footer-links a {
+  color: #64748b;
+  text-decoration: none;
+}
+
+.ck-footer-links a:hover {
+  color: var(--ck-green-header);
+}
+
+@media (max-width: 768px) {
+  .ck-features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

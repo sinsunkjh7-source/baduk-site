@@ -29,11 +29,19 @@
     if (name === 'home') document.querySelector('.brand').blur();
   }
 
+  var PAGES = {
+    play: 'games/play/index.html',
+    omok: 'games/omok/index.html',
+    alkkagi: 'games/alkkagi/index.html'
+  };
+
   document.addEventListener('click', function (e) {
     var el = e.target.closest('[data-go]');
     if (!el) return;
     e.preventDefault();
-    show(el.dataset.go);
+    var go = el.dataset.go;
+    if (PAGES[go]) { location.href = PAGES[go]; return; }
+    show(go);
   });
 
   /* ---------- SGF 파싱 ---------- */
