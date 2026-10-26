@@ -6633,3 +6633,11 @@ html, body, body.bg-theme-theme5, body[class*="bg-theme"] {
   position: static !important;
   align-self: stretch !important;
 }
+
+/* 상단 바 아래 검은 띠 제거 — 콘텐츠를 바에 붙인다 */
+html.bk-embed .board-section,
+html.bk-embed .story-panel { top: 0 !important; }
+html.bk-embed .app-container { margin-top: 0 !important; padding-top: 0 !important; }
+html.bk-embed body { padding-top: 0 !important; }
+/* 바탕 테마가 어두워도 띠가 보이지 않게 최상단 여백 제거 */
+html.bk-embed .ck-main-viewport { padding-top: 0 !important; }
