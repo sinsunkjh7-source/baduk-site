@@ -6356,10 +6356,10 @@ html, body, body.bg-theme-theme5, body[class*="bg-theme"] {
 
 
 /* 배경 통일 (뷰포트까지) */
-.ck-main-viewport, .ck-main-viewport::before, .ck-main-viewport::after {
-  background: #DCEBD1 !important;
+.ck-main-viewport::before, .ck-main-viewport::after {
   background-image: none !important;
 }
+html.bk-embed .ck-main-viewport { background-color: #EEF6E6 !important; }
 
 
 /* v4 — 상단 잔여 바 제거, 왕관 제거, 설정은 상단바로 이동 */
@@ -6651,24 +6651,31 @@ html.bk-embed .ck-main-viewport {
   background-repeat: no-repeat !important;
 }
 html.bk-embed body.bg-theme-theme1 .ck-main-viewport {
-  background-image: linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(0,0,0,.05) 100%), url('images/bg_theme_1.jpg');
+  background-image: linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(0,0,0,.05) 100%), url('images/bg_theme_1.jpg') !important;
 }
 html.bk-embed body.bg-theme-theme2 .ck-main-viewport {
-  background-image: linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(0,0,0,.05) 100%), url('images/bg_theme_2.jpg');
+  background-image: linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(0,0,0,.05) 100%), url('images/bg_theme_2.jpg') !important;
 }
 html.bk-embed body.bg-theme-theme3 .ck-main-viewport {
-  background-image: linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(0,0,0,.05) 100%), url('images/bg_theme_3.jpg');
+  background-image: linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(0,0,0,.05) 100%), url('images/bg_theme_3.jpg') !important;
 }
 html.bk-embed body.bg-theme-theme4 .ck-main-viewport {
-  background-image: linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(0,0,0,.05) 100%), url('images/bg_theme_4.jpg');
+  background-image: linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(0,0,0,.05) 100%), url('images/bg_theme_4.jpg') !important;
 }
 html.bk-embed body.bg-theme-theme5 .ck-main-viewport {
-  background-image: linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(0,0,0,.05) 100%), url('images/bg_theme_5.jpg');
+  background-image: linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(0,0,0,.05) 100%), url('images/bg_theme_5.jpg') !important;
 }
 html.bk-embed body.bg-theme-theme6 .ck-main-viewport {
-  background-image: linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(0,0,0,.05) 100%), url('images/bg_theme_6.jpg');
+  background-image: linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(0,0,0,.05) 100%), url('images/bg_theme_6.jpg') !important;
 }
 html.bk-embed body.bg-theme-theme7 .ck-main-viewport {
-  background-image: linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(0,0,0,.05) 100%), url('images/bg_theme_7.jpg');
+  background-image: linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(0,0,0,.05) 100%), url('images/bg_theme_7.jpg') !important;
 }
 html.bk-embed body.bg-theme-clean .ck-main-viewport { background-image: none !important; }
+/* 테마 6·7은 이미지가 없어 메뉴에서 숨김, 판 영역은 5번 이미지로 대체 */
+.bg-theme-btn[data-theme="theme6"],
+.bg-theme-btn[data-theme="theme7"] { display: none !important; }
+html.bk-embed body.bg-theme-theme6 .ck-main-viewport,
+html.bk-embed body.bg-theme-theme7 .ck-main-viewport {
+  background-image: linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(0,0,0,.05) 100%), url('images/bg_theme_5.jpg') !important;
+}
