@@ -2079,7 +2079,8 @@ html body .guest-toolbar-desktop .guest-toolbar-desktop-navigation__list {
 button.bk-lockout-btn {
   position: fixed !important;
   right: 20px !important;
-  top: 14px !important;
+  top: 33px !important;
+  transform: translateY(-50%) !important;
   bottom: auto !important;
   left: auto !important;
   z-index: 99999 !important;
@@ -2286,4 +2287,12 @@ button.bk-lockout-btn {
 }
 .bk-game-bar .bk-game-sound {
   margin-right: 0 !important;
+}
+
+
+/* 오버레이 56px 바에서는 정확히 중앙 */
+body:has(.bk-game-bar) .bk-lockout-btn,
+body:has(.bk-game-bar) button.bk-lockout-btn {
+  top: 28px !important;
+  transform: translateY(-50%) !important;
 }
