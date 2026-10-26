@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=20261026_ck3">
+  <link rel="stylesheet" href="style.css?v=20261026_ck4">
   <script src="auth.js?v=20261022_v1792680182"></script>
 <script>
 (function(){ if(/[?&](mode|chapter)=/.test(location.search)) document.documentElement.className += ' skip-portal'; })();
@@ -75,254 +75,7 @@ html, body { background: #DCEBD1 !important; background-image: none !important; 
   </div>
 
   <!-- 🌟 바둑스쿨 메인 포털 대문 (ChessKid 스타일 키즈 포털) 🌟 -->
-  <div class="main-portal-overlay" id="mainPortalOverlay">
-    
-    <!-- 1. 최상단 체스키드 스타일 딥그린 네비게이션 바 -->
-    <header class="ck-navbar">
-      <div class="ck-nav-container">
-        <div class="ck-nav-left">
-          <!-- 바둑스쿨 공식 브랜드 로고 -->
-          <div class="ck-brand" onclick="window.showMainPortal();" title="바둑스쿨 메인 홈" style="cursor: pointer; display: flex; align-items: center; flex-shrink: 0; background: #ffffff; padding: 2px 10px; border-radius: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.15); height: 36px;">
-            <img src="images/official_brand_logo.png" alt="바둑스쿨" style="height: 30px; width: auto; object-fit: contain;">
-          </div>
-
-          <button type="button" class="ck-nav-item ck-avatar-btn" onclick="window.openAvatarStudio()" title="나만의 바둑이 캐릭터 만들기" style="white-space: nowrap; flex-shrink: 0;">
-            <span class="ck-avatar-circle" id="navAvatarCircle">
-              <span class="avatar-face" id="navAvatarFace">😊</span>
-            </span>
-            <span class="ck-nav-text" style="white-space: nowrap;">내 아바타</span>
-          </button>
-
-          <!-- 드롭다운 네비 메뉴들 -->
-          <div class="ck-dropdown-wrap">
-            <button type="button" class="ck-nav-item" onclick="window.toggleNavDropdown('playDropdown', event)">
-              <span>대국실 (Play)</span> <span class="arrow-down">▾</span>
-            </button>
-            <div class="ck-dropdown-menu" id="playDropdown">
-              <a href="javascript:void(0)" onclick="window.enterAppFromPortal('online')">🌐 친구와 1:1 실시간 대국</a>
-              <a href="javascript:void(0)" onclick="window.enterAppFromPortal('online')">🤖 귀여운 동물 AI 봇 대국</a>
-              <a href="javascript:void(0)" onclick="window.enterAppFromPortal('omok')">⚪⚫ 15줄 두뇌 오목</a>
-              <a href="javascript:void(0)" onclick="window.enterAppFromPortal('alkkagi')">🎯 쫀득한 슬링샷 알까기</a>
-            </div>
-          </div>
-
-          <div class="ck-dropdown-wrap">
-            <button type="button" class="ck-nav-item" onclick="window.toggleNavDropdown('learnDropdown', event)">
-              <span>30단계 모험 (Learn)</span> <span class="arrow-down">▾</span>
-            </button>
-            <div class="ck-dropdown-menu" id="learnDropdown">
-              <a href="javascript:void(0)" onclick="window.enterAppFromPortal('missions')">🗺️ 30단계 보물섬 모험 지도</a>
-              <a href="javascript:void(0)" onclick="window.enterAppFromPortal('missions')">⚡ 실시간 사활 듀얼 배틀</a>
-              <a href="javascript:void(0)" onclick="window.enterAppAndOpenLibrary(0)">📚 JH 바둑스쿨 라이브러리 (교재·기법 전권)</a>
-            </div>
-          </div>
-
-
-
-          <div class="ck-dropdown-wrap">
-            <button type="button" class="ck-nav-item" onclick="window.toggleNavDropdown('teachDropdown', event)">
-              <span>선생님 (Teach)</span> <span class="arrow-down">▾</span>
-            </button>
-            <div class="ck-dropdown-menu" id="teachDropdown">
-              <a href="javascript:void(0)" onclick="window.enterAppFromPortal('lecture')">👨‍🏫 전자칠판 강의 모드</a>
-              <a href="editor.html">🛠️ 원장님 문제 편집실</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="ck-nav-right">
-          <button type="button" class="ck-btn-signup" onclick="window.enterAppFromPortal('missions')">
-            <span>시작하기</span>
-          </button>
-          <button type="button" class="ck-nav-text-btn" onclick="window.enterAppFromPortal('lecture')">선생님 입장</button>
-          <button type="button" class="ck-nav-lock-btn" onclick="if(confirm('수업 사이트를 잠그시겠습니까?')) window.lockSiteSession();" title="수업 화면 잠금">🔒 잠금</button>
-        </div>
-      </div>
-    </header>
-
-    <!-- 2. 메인 히어로 (체스키드 일러스트 전경: 원근감 바둑판 잔디밭 + 캐릭터 크루) -->
-    <section class="ck-hero-section">
-      <!-- 배경 일러스트 (푸른 하늘, 뭉게구름, 원경 기와성과 숲) -->
-      <div class="ck-hero-bg">
-        <div class="ck-cloud cloud-1"></div>
-        <div class="ck-cloud cloud-2"></div>
-        <div class="ck-mountain-silhouette"></div>
-        <!-- 좌우 녹색 만화 숲 나무들 -->
-        <div class="ck-tree tree-left"></div>
-        <div class="ck-tree tree-right"></div>
-        <!-- 원근감 있게 펼쳐지는 바둑판 잔디밭 -->
-        <div class="ck-perspective-lawn">
-          <div class="ck-board-grid"></div>
-        </div>
-      </div>
-
-      <!-- 히어로 컨텐츠 (타이틀 + 캐릭터 크루 + 대형 3D 버튼) -->
-      <div class="ck-hero-content">
-        <div class="ck-title-badge">✨ 13,000+ 어린이가 매일 즐기는 1등 두뇌 놀이터 ✨</div>
-        <h1 class="ck-hero-title">
-          The #1 Baduk Platform for Kids<br>
-          <span class="ck-title-highlight">신나는 바둑 놀이터, 바둑스쿨</span>
-        </h1>
-
-        <!-- ★ 바둑스쿨 공식 마스코트 흑돌이 & 백돌이 (엄지척 듀오) ★ -->
-        <div class="ck-mascot-crew-wrapper" style="height: auto; min-height: 190px; margin: 10px auto 16px; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative;">
-          <!-- 귀여운 환영 말풍선 -->
-          <div style="background: white; border: 2.5px solid #0284c7; padding: 10px 24px; border-radius: 24px; font-weight: 800; font-size: 1.15rem; color: #0369a1; box-shadow: 0 8px 24px rgba(2, 132, 199, 0.22); margin-bottom: 18px; display: inline-flex; align-items: center; gap: 8px;">
-            <span>👋 안녕! 우리는 바둑스쿨 요정 흑돌이와 백돌이야! 함께 신나게 놀자! 👍</span>
-          </div>
-          
-          <!-- 3D 흑돌이 & 백돌이 엄지척 캐릭터 (사용자 지정 공식 마스코트) -->
-          <div style="position: relative; cursor: pointer; transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);" onmouseover="this.style.transform='scale(1.06)'" onmouseout="this.style.transform='scale(1)'" onclick="location.href='characters.html'" title="클릭하면 7인의 캐릭터 도감으로 이동합니다!">
-            <img src="app_icon_tile.png" alt="바둑스쿨 공식 마스코트 흑돌이와 백돌이" style="width: 170px; height: 170px; border-radius: 36px; box-shadow: 0 16px 40px rgba(15, 23, 42, 0.25); border: 4.5px solid #ffffff;">
-            <div style="position: absolute; bottom: -12px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, #f59e0b, #d97706); color: white; padding: 6px 18px; border-radius: 14px; font-weight: 800; font-size: 0.95rem; box-shadow: 0 4px 14px rgba(0,0,0,0.25); white-space: nowrap;">
-              ✨ 7인의 캐릭터 도감 보기 ✨
-            </div>
-          </div>
-        </div>
-
-        <!-- 3. 대형 3D 인터랙티브 버튼 2종 (체스키드 메인 CTA) -->
-        <div class="ck-cta-group">
-          <button type="button" class="ck-cta-btn ck-btn-play" onclick="window.enterAppFromPortal('online')">
-            <span>대국 시작 (Play Now)</span>
-          </button>
-          <button type="button" class="ck-cta-btn ck-btn-learn" onclick="window.enterAppFromPortal('missions')">
-            <span>30단계 모험 (Learn Baduk)</span>
-          </button>
-        </div>
-      </div>
-    </section>
-
-      <!-- 4. 하단 순백의 신뢰도 지표 바 (Stats Wave Bar) -->
-      <section class="ck-stats-section">
-        <div class="ck-stats-container">
-          <div class="ck-stat-item">
-            <div class="ck-stat-icon-wrap icon-kids">👦👧</div>
-            <div class="ck-stat-num">13,000+</div>
-            <div class="ck-stat-label">즐거운 어린이 원생</div>
-          </div>
-          <div class="ck-stat-item">
-            <div class="ck-stat-icon-wrap icon-school">🏫</div>
-            <div class="ck-stat-num">3,200+</div>
-            <div class="ck-stat-label">방과후 학교 & 학원</div>
-          </div>
-          <div class="ck-stat-item">
-            <div class="ck-stat-icon-wrap icon-board">⚪⚫</div>
-            <div class="ck-stat-num">100,000+</div>
-            <div class="ck-stat-label">온라인 대국 수</div>
-          </div>
-          <div class="ck-stat-item">
-            <div class="ck-stat-icon-wrap icon-puzzle">🧩</div>
-            <div class="ck-stat-num">130,000+</div>
-            <div class="ck-stat-label">해결된 사활·행마 문제</div>
-          </div>
-          <div class="ck-stat-item">
-            <div class="ck-stat-icon-wrap icon-book">📖</div>
-            <div class="ck-stat-num">78권</div>
-            <div class="ck-stat-label">정통 공인 커리큘럼</div>
-          </div>
-        </div>
-      </section>
-
-      <!-- 5. 체스키드 4대 핵심 활동 카드 (세부 입장 구역) -->
-      <section class="ck-pillars-section">
-        <div class="ck-pillars-grid">
-          <div class="ck-card card-learn" onclick="window.enterAppFromPortal('missions')">
-            <div class="card-badge">🌟 30급~유단자</div>
-            <div class="card-emoji">🗺️</div>
-            <h3>30단계 바둑 모험 지도</h3>
-            <p>보물섬 스테이지를 한 칸씩 정복하는 정통 레벨업 여정!</p>
-            <span class="card-link">모험 떠나기 ➔</span>
-          </div>
-
-          <div class="ck-card card-duel" onclick="window.enterAppFromPortal('missions')">
-            <div class="card-badge hot">🔥 스피드 배틀</div>
-            <div class="card-emoji">⚡</div>
-            <h3>1:1 사활 듀얼 배틀</h3>
-            <p>2분 동안 친구와 실시간 문제 배틀! 스피드 점수 레이스!</p>
-            <span class="card-link">사활 듀얼 도전 ➔</span>
-          </div>
-
-          <div class="ck-card card-bots" onclick="window.enterAppFromPortal('online')">
-            <div class="card-badge green">🐾 귀여운 동물</div>
-            <div class="card-emoji">🤖</div>
-            <h3>귀여운 AI 동물 봇 대국</h3>
-            <p>30급 삐약이🐣, 20급 토끼🐰, 10급 호랑이🐯와 신나는 대국!</p>
-            <span class="card-link">봇과 한판 승부 ➔</span>
-          </div>
-
-          <div class="ck-card card-coach" onclick="window.enterAppFromPortal('lecture')">
-            <div class="card-badge purple">👨‍🏫 원장님 추천</div>
-            <div class="card-emoji">🎓</div>
-            <h3>선생님 전자칠판 강의실</h3>
-            <p>시원한 전면 무스크롤 바둑판, 단수 링 가이드, 학교 수업 최적화.</p>
-            <span class="card-link">강의실 입장 ➔</span>
-          </div>
-        </div>
-      </section>
-
-      <!-- 6. 아케이드 쉼터 (오목 & 슬링샷 알까기) -->
-      <section class="ck-arcade-section">
-        <div class="arcade-card-box">
-          <span class="arcade-title">🎮 신나는 두뇌 놀이터</span>
-          <div class="arcade-btn-group">
-            <button type="button" class="ck-sub-btn" onclick="window.enterAppFromPortal('omok')">⚪⚫ 15줄 두뇌 오목 대전</button>
-            <button type="button" class="ck-sub-btn" onclick="window.enterAppFromPortal('alkkagi')">🎯 슬링샷 알까기 배틀</button>
-            <button type="button" class="ck-sub-btn special" onclick="window.location.href='editor.html'">🛠️ 원장님 문제 편집실</button>
-          </div>
-        </div>
-      </section>
-
-      <!-- 7. 포털 하단 세이프가드 푸터 -->
-      <footer class="ck-footer">
-        <div class="safe-badge-pill">🛡️ 100% Clean & Safe — 욕설/채팅 없는 안심 바둑 플랫폼</div>
-        <p class="ck-copy">바둑스쿨 (BadukSchool) | 어린이를 위한 1등 스마트 바둑 놀이터 | 전국 방과후 및 정규 학원 전용 시스템</p>
-      </footer>
-
-    <!-- 🌟 [신규] 내 아바타 꾸미기 스튜디오 모달 (ChessKid My Avatar 기능) 🌟 -->
-    <div class="ck-avatar-modal" id="avatarStudioModal" style="display: none;">
-      <div class="avatar-modal-card">
-        <div class="avatar-modal-header">
-          <h2>🎨 나만의 바둑돌 아바타 꾸미기</h2>
-          <button type="button" class="btn-close-modal" onclick="window.closeAvatarStudio()">✕</button>
-        </div>
-        
-        <div class="avatar-preview-area">
-          <div class="avatar-big-canvas" id="avatarBigCanvas">
-            <span class="avatar-hero-display" id="avatarHeroDisplay">⭐</span>
-          </div>
-          <input type="text" id="avatarNicknameInput" class="avatar-name-input" placeholder="바둑 닉네임 입력 (예: 날쌘돌이)" maxlength="10">
-        </div>
-
-        <div class="avatar-custom-tabs">
-          <div class="avatar-tab-row">
-            <label>바둑돌 종류:</label>
-            <div class="avatar-options" id="optStones">
-              <button type="button" class="opt-btn active" onclick="window.selectAvatarStone('⚫ 흑돌')">⚫ 흑돌이</button>
-              <button type="button" class="opt-btn" onclick="window.selectAvatarStone('⚪ 백돌')">⚪ 백돌이</button>
-              <button type="button" class="opt-btn" onclick="window.selectAvatarStone('🌟 황금돌')">🌟 황금돌</button>
-              <button type="button" class="opt-btn" onclick="window.selectAvatarStone('💎 보석돌')">💎 루비돌</button>
-            </div>
-          </div>
-
-          <div class="avatar-tab-row">
-            <label>표정 & 악세서리:</label>
-            <div class="avatar-options" id="optItems">
-              <button type="button" class="opt-btn active" onclick="window.selectAvatarItem('👑 왕관')">👑 왕관</button>
-              <button type="button" class="opt-btn" onclick="window.selectAvatarItem('🎓 학사모')">🎓 학사모</button>
-              <button type="button" class="opt-btn" onclick="window.selectAvatarItem('👓 똘똘이')">👓 똘똘이</button>
-              <button type="button" class="opt-btn" onclick="window.selectAvatarItem('🕶️ 썬글라스')">🕶️ 선글라스</button>
-              <button type="button" class="opt-btn" onclick="window.selectAvatarItem('🎀 리본')">🎀 핑크리본</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="avatar-modal-actions">
-          <button type="button" class="btn-save-avatar" onclick="window.saveUserAvatar()">✨ 내 아바타 저장하기</button>
-        </div>
-      </div>
-    </div>
-
-  </div>
+  <!-- (대문 제거: 사이트 홈이 홈 역할을 한다) -->
 
   <div class="app-container size-9">
     <!-- 🏰 체스키드(ChessKid) 좌측 고정 사이드바 -->
@@ -604,7 +357,7 @@ html, body { background: #DCEBD1 !important; background-image: none !important; 
             <div class="bs-hint-body">
           <p class="mission-desc" id="missionDesc"></p>
 
-          <!-- 힌트 박스 (교재 원문에 힌트가 있는 경우에만 game.js?v=20261026_ck3"mission-hint-box" id="missionHintBox" style="display: none;">
+          <!-- 힌트 박스 (교재 원문에 힌트가 있는 경우에만 game.js?v=20261026_ck4"mission-hint-box" id="missionHintBox" style="display: none;">
             <span class="hint-icon">💡</span>
             <span class="hint-text" id="missionHintText"></span>
           </div>
@@ -1614,7 +1367,7 @@ html, body { background: #DCEBD1 !important; background-image: none !important; 
   <script src="ai_engine/gnugo.js"></script>
   <script src="ai_engine/gnugo_controller.js?v=20261024_fixpass_v1792768209"></script>
   <script src="ai_match_manager.js?v=20261024_fixpass_v1792768209"></script>
-  <script src="game.js?v=20261026_ck3"></script>
+  <script src="game.js?v=20261026_ck4"></script>
   <script src="chesskid_shell.js?v=20261024_ck_v1"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
