@@ -6642,3 +6642,33 @@ html.bk-embed body { padding-top: 0 !important; }
 /* 바탕 테마가 어두워도 띠가 보이지 않게 최상단 여백 제거 */
 html.bk-embed .ck-main-viewport { padding-top: 0 !important; }
 
+
+/* ===== 바탕 테마를 판 영역에만 적용 ===== */
+html.bk-embed body { background: #EEF6E6 !important; background-image: none !important; }
+html.bk-embed .ck-main-viewport {
+  background-size: cover !important;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+}
+html.bk-embed body.bg-theme-theme1 .ck-main-viewport {
+  background-image: linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(0,0,0,.05) 100%), url('images/bg_theme_1.jpg');
+}
+html.bk-embed body.bg-theme-theme2 .ck-main-viewport {
+  background-image: linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(0,0,0,.05) 100%), url('images/bg_theme_2.jpg');
+}
+html.bk-embed body.bg-theme-theme3 .ck-main-viewport {
+  background-image: linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(0,0,0,.05) 100%), url('images/bg_theme_3.jpg');
+}
+html.bk-embed body.bg-theme-theme4 .ck-main-viewport {
+  background-image: linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(0,0,0,.05) 100%), url('images/bg_theme_4.jpg');
+}
+html.bk-embed body.bg-theme-theme5 .ck-main-viewport {
+  background-image: linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(0,0,0,.05) 100%), url('images/bg_theme_5.jpg');
+}
+html.bk-embed body.bg-theme-theme6 .ck-main-viewport {
+  background-image: linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(0,0,0,.05) 100%), url('images/bg_theme_6.jpg');
+}
+html.bk-embed body.bg-theme-theme7 .ck-main-viewport {
+  background-image: linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(0,0,0,.05) 100%), url('images/bg_theme_7.jpg');
+}
+html.bk-embed body.bg-theme-clean .ck-main-viewport { background-image: none !important; }
