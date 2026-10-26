@@ -3042,7 +3042,7 @@
 <script src="app_src/ai_match_manager.js"></script>
 <script src="app_src/game.js"></script>
 <script src="app_src/chesskid_shell.js"></script>
-<script src="js/screens.js?v=5"></script>
+<script src="js/screens.js?v=8"></script>
 <script>
 /* BK_TEST: 화면 전환 검증용 (?click=learn|play|omok|alkkagi) */
 (function () {
@@ -3060,7 +3060,14 @@
       if (a) a.click();
       setTimeout(function () {
         var app = document.getElementById('bksApp');
-        document.title = 'T|hero|app=' + (app ? (app.hidden ? 'hidden' : 'shown') : 'none')
+        var g = function (sel) {
+          var e = document.querySelector(sel);
+          if (!e) return 'na';
+          var b = e.getBoundingClientRect(), c = getComputedStyle(e);
+          return [Math.round(b.x), Math.round(b.y), Math.round(b.width), Math.round(b.height), c.display, c.position].join(',');
+        };
+        document.title = 'T|hero|side=' + g('.ck-sidebar') + '|board=' + g('.board-section')
+          + '|story=' + g('.story-panel') + '|app=' + g('.app-container')
           + '|patched=' + (window.badukApp && window.badukApp.__bkPatched)
           + '|enterApp=' + (window.badukApp && typeof window.badukApp.enterApp)
           + '|badukApp=' + (typeof window.badukApp)
@@ -3112,6 +3119,26 @@ if (/[?&]geo=1/.test(location.search)) {
       + '|cta:' + q('.bv-hero-actions, .hero-buttons, .bk-hero-buttons')
       + '|stats:' + q('.bv-stats, .bk-stats, .stats-section');
   }, 2200);
+}
+</script>
+<script>
+/* DBG_SHOW: 화면 전환 오류 확인 (?dbg=1) */
+if (/[?&]dbg=1/.test(location.search)) {
+  setTimeout(function () {
+    try {
+      window.bkShowScreen('missions');
+      setTimeout(function () {
+        var app = document.getElementById('bksApp');
+        var bd = document.querySelector('.board-section');
+        var bb = bd ? bd.getBoundingClientRect() : null;
+        document.title = 'DBG|ok|app=' + (app.hidden ? 'hidden' : 'shown')
+          + '|board=' + (bb ? [Math.round(bb.width), Math.round(bb.height)].join('x') : 'na')
+          + '|mode=' + document.documentElement.className;
+      }, 1200);
+    } catch (e) {
+      document.title = 'DBG|err|' + e.name + ':' + e.message;
+    }
+  }, 1500);
 }
 </script>
 </body>

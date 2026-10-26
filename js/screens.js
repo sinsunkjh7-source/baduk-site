@@ -7,6 +7,31 @@
   function appEl() { return document.getElementById('bksApp'); }
   function homeEl() { return document.getElementById('landingPage'); }
 
+  /* 앱 모드 전용 최소 스타일 (레이아웃 기준점 고정) */
+  function ensureAppModeCss() {
+    if (document.getElementById('bksAppMode')) return;
+    var st = document.createElement('style');
+    st.id = 'bksAppMode';
+    st.textContent = [
+      'html.bk-app-mode, html.bk-app-mode body { overflow: hidden !important; height: 100% !important; margin: 0 !important; padding: 0 !important; }',
+      'html.bk-app-mode #bksApp { position: fixed !important; inset: 0 !important; overflow: auto !important; z-index: 50; }',
+      'html.bk-app-mode .app-container { width: 100vw !important; max-width: none !important; margin: 0 !important; }'
+    ].join(' ');
+    document.head.appendChild(st);
+  }
+
+  /* 앱 화면일 때는 사이트 CSS를 끈다 (충돌 방지) */
+  function siteCssLinks() {
+    return Array.prototype.filter.call(
+      document.querySelectorAll('link[rel="stylesheet"]'),
+      function (l) { return (l.getAttribute('href') || '').indexOf('app_src') < 0; }
+    );
+  }
+  function toggleSiteCss(disable) {
+    siteCssLinks().forEach(function (l) { l.disabled = !!disable; });
+    document.documentElement.classList.toggle('bk-app-mode', !!disable);
+  }
+
   var cssLoaded = false;
   function loadAppCss() {
     if (cssLoaded) return;
@@ -22,17 +47,28 @@
     var app = appEl(), home = homeEl();
     var toApp = name && name !== 'home';
 
+    if (!toApp) toggleSiteCss(false);
     if (home) home.style.display = toApp ? 'none' : '';
     if (app) app.hidden = !toApp;
     document.documentElement.classList.toggle('bk-screen', !!toApp);
     window.scrollTo(0, 0);
 
+    ensureAppModeCss();
     if (toApp) {
+      toggleSiteCss(true);
       loadAppCss();
       var a = window.badukApp;
       if (a && a.switchMode) {
         try { a.switchMode(name); } catch (e) { console.warn(e); }
       }
+      /* 숨은 상태에서 잰 크기를 다시 계산시킨다 */
+      window.bkRelayout = function () {
+        window.dispatchEvent(new Event('resize'));
+        if (a && a.resizeBoard) { try { a.resizeBoard(); } catch (e) {} }
+      };
+      requestAnimationFrame(function () { window.bkRelayout(); });
+      setTimeout(window.bkRelayout, 120);
+      setTimeout(window.bkRelayout, 400);
     }
   }
   window.bkShowScreen = showScreen;
