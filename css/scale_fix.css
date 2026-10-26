@@ -2212,3 +2212,12 @@ button.bk-lockout-btn {
   box-shadow: 0 1px 4px rgba(0,0,0,.18);
   margin-right: 6px;
 }
+
+/* 흰색 로고: 배지 없이 그대로 */
+.bk-game-logo {
+  height: 34px; width: auto;
+  border-radius: 0;
+  box-shadow: none;
+  background: transparent;
+  margin-right: 10px;
+}
