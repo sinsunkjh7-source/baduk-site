@@ -6586,3 +6586,21 @@ html, body, body.bg-theme-theme5, body[class*="bg-theme"] {
 .board-section { top: 70px !important; }
 .story-panel { top: 70px !important; }
 :root { --board-size: min(calc(100vh - 150px), calc(100vw - 660px)) !important; }
+
+/* 사이드바 자체 헤더(로고·홈·잠금) 제거 — 앱 헤더와 중복 */
+.ck-sidebar-header { display: none !important; }
+.ck-sidebar { padding-top: 10px !important; }
+
+/* 헤더를 화면 전체 폭으로 */
+.app-header {
+  position: fixed !important;
+  left: 0 !important; right: 0 !important; top: 0 !important;
+  width: 100% !important;
+  height: 56px !important;
+}
+.ck-sidebar { padding-top: 64px !important; }
+.board-section, .story-panel { top: 70px !important; }
+
+/* 헤더가 사이드바 위에 오도록 */
+.app-header { z-index: 500 !important; }
+.ck-sidebar { z-index: 100 !important; }

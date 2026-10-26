@@ -2224,3 +2224,29 @@ button.bk-lockout-btn {
 
 /* 앱 로딩 중 흰 깜빡임 방지 */
 .bk-game-frame { background: #DCEBD1 !important; }
+
+/* 오버레이 상단 바 제거 — 앱 헤더 하나만 남긴다 */
+.bk-game-bar {
+  position: fixed !important;
+  right: 12px !important;
+  top: 8px !important;
+  height: 40px !important;
+  flex: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  z-index: 9500 !important;
+  padding: 0 !important;
+  gap: 0 !important;
+}
+.bk-game-bar .bk-game-logo,
+.bk-game-bar .bk-game-back,
+.bk-game-bar .bk-game-title,
+.bk-game-bar .bk-game-spacer { display: none !important; }
+.bk-game-bar .bk-game-sound {
+  background: rgba(255,255,255,.92) !important;
+  color: #33682a !important;
+  border-radius: 10px !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15) !important;
+}
+.bk-game-overlay { background: #DCEBD1 !important; }
+.bk-game-frame { height: 100vh !important; }
