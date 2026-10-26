@@ -28,8 +28,8 @@
     if (!g) return false;
 
     /* 앱 화면은 열 때마다 새로 받는다 (구버전 HTML 캐시 방지) */
-    if (g.path.indexOf('app/index.html') === 0) {
-      g = { path: g.path + '&r=' + Date.now(), title: g.title };
+    if (g.path.indexOf('app/index.html') === 0 || g.path.indexOf('games/') === 0) {
+      g = { path: g.path + (g.path.indexOf('?') === -1 ? '?' : '&') + 'r=' + Date.now(), title: g.title };
     }
 
     if (el) close();
