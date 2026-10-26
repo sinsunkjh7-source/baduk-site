@@ -104,12 +104,15 @@
     }
 
     const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.get('mode') === 'missions') {
-      setTimeout(() => {
-        window.enterAppFromPortal('missions');
-      }, 150);
+    const directMode = urlParams.get('mode');
+    const hasDirect = !!directMode || !!urlParams.get('chapter');
+
+    if (hasDirect) {
+      // ?mode= / ?chapter= 로 들어오면 대문을 열지 않고 바로 앱 화면
+      const target = (directMode === 'missions' || urlParams.get('chapter')) ? 'missions' : directMode;
+      setTimeout(() => { window.enterAppFromPortal(target); }, 60);
     } else {
-      // 기본 주소로 접속한 경우 대문이 확실히 전면에 나타나도록 보장
+      // 기본 주소로 접속한 경우에만 대문
       window.showMainPortal();
     }
   });

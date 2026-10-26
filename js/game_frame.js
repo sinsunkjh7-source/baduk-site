@@ -9,7 +9,7 @@
     play: { path: 'games/play/index.html', title: '대국' },
     learn: { path: 'games/learn/index.html', title: '바둑 학습' },
     appMissions: { path: 'app/index.html?mode=missions', title: '바둑 학습' },
-    appLecture: { path: 'app/index.html?mode=lecture', title: '대국' }
+    appLecture: { path: 'app/index.html?mode=online', title: '대국' }
   };
 
   var el = null;
