@@ -204,3 +204,14 @@ button { font-family: inherit; cursor: pointer; }
   .panel-side { width: 100%; flex: 0 0 auto; max-height: 40vh; }
   .cta { font-size: 16px; padding: 10px 20px; border-width: 4px; }
 }
+
+/* 히어로 모션 캔버스 */
+.hero { position: relative; }
+#bk-water {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+}
