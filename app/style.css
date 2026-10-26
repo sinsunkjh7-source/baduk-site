@@ -6642,23 +6642,3 @@ html.bk-embed body { padding-top: 0 !important; }
 /* 바탕 테마가 어두워도 띠가 보이지 않게 최상단 여백 제거 */
 html.bk-embed .ck-main-viewport { padding-top: 0 !important; }
 
-/* 상단 띠를 상단 바와 같은 색으로 (테마 배경이 비쳐도 검게 보이지 않게) */
-html.bk-embed body {
-  background-color: #4A8A3A !important;
-}
-html.bk-embed .app-container,
-html.bk-embed .ck-main-viewport {
-  background-color: #4A8A3A !important;
-}
-
-/* 임베드: 테마 배경 이미지 제거 → 상단 띠/얼룩 없이 단색 */
-html.bk-embed body,
-html.bk-embed .app-container,
-html.bk-embed .ck-main-viewport {
-  background-image: none !important;
-  background-color: #DCEBD1 !important;
-}
-html.bk-embed body[class*="bg-theme"] {
-  background-image: none !important;
-  background-color: #DCEBD1 !important;
-}
