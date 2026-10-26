@@ -276,6 +276,9 @@ class BadukProblemAdapter {
     const spanX = allPoints.length > 0 ? (maxX - minX + 1) : 4;
     const spanY = allPoints.length > 0 ? (maxY - minY + 1) : 4;
 
+    /* 넓은 문제(포석 등)는 자르지 않고 19줄 전체로 */
+    const WIDE = (spanX > 12 || spanY > 12);
+
     // 🌟 사분면 및 원본 영역 정밀 판별 (원 교재 size 코드 1, 2, 4, 5, 6, 7, 9 완벽 지원)
     // 1: 19줄 전판 / 중앙 문제
     // 2: 하변 (Bottom Side)
@@ -365,6 +368,7 @@ class BadukProblemAdapter {
       maxX: maxX,
       minY: minY,
       maxY: maxY,
+      __wide: WIDE,
       spanX: spanX,
       spanY: spanY,
 
