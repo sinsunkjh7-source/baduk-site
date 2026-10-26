@@ -6484,3 +6484,30 @@ html, body, body.bg-theme-theme5, body[class*="bg-theme"] {
   margin-top: 8px !important;
   position: static !important;
 }
+
+/* 버튼을 문제 박스 바로 아래로 */
+.story-panel {
+  display: flex !important;
+  flex-direction: column !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+}
+.story-panel .card.mission-card {
+  flex: 0 0 auto !important;
+  overflow: visible !important;
+  min-height: 0 !important;
+}
+.story-panel .mission-actions {
+  margin-top: 10px !important;
+  position: static !important;
+}
+
+/* 잠금 버튼이 정답보기를 가리지 않게 왼쪽 아래로 */
+.btn-header-lock {
+  position: fixed !important;
+  right: auto !important;
+  left: 252px !important;
+  bottom: 14px !important;
+  top: auto !important;
+  z-index: 60 !important;
+}
