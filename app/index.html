@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=20261026_ck2">
+  <link rel="stylesheet" href="style.css?v=20261026_ck3">
   <script src="auth.js?v=20261022_v1792680182"></script>
 <script>
 (function(){ if(/[?&](mode|chapter)=/.test(location.search)) document.documentElement.className += ' skip-portal'; })();
@@ -31,18 +31,12 @@
 html.skip-portal #mainPortalOverlay{ display:none !important; }
 html.skip-portal body{ background:#4A8F3E !important; }
 </style>
-<script>
-/* CSS 캐시 원천 차단 — 매번 새로 받는다 */
-(function () {
-  var links = document.querySelectorAll('link[rel="stylesheet"]');
-  for (var i = 0; i < links.length; i++) {
-    var h = links[i].getAttribute('href') || '';
-    if (h.indexOf('style.css') === -1) continue;
-    var base = h.split('?')[0];
-    links[i].setAttribute('href', base + '?t=' + Date.now());
-  }
-})();
-</script>
+<style>
+/* 첫 화면 즉시 우리 색으로 (깜빡임 방지) */
+html, body { background: #DCEBD1 !important; background-image: none !important; }
+#mainPortalOverlay { display: none !important; }
+.ck-navbar, .ck-top-subnav { display: none !important; }
+</style>
 </head>
 <body>
   <!-- 🌌 신비한 별빛 밤하늘과 유성 모션그래픽 캔버스 -->
@@ -610,7 +604,7 @@ html.skip-portal body{ background:#4A8F3E !important; }
             <div class="bs-hint-body">
           <p class="mission-desc" id="missionDesc"></p>
 
-          <!-- 힌트 박스 (교재 원문에 힌트가 있는 경우에만 game.js?v=20261026_ck2"mission-hint-box" id="missionHintBox" style="display: none;">
+          <!-- 힌트 박스 (교재 원문에 힌트가 있는 경우에만 game.js?v=20261026_ck3"mission-hint-box" id="missionHintBox" style="display: none;">
             <span class="hint-icon">💡</span>
             <span class="hint-text" id="missionHintText"></span>
           </div>
@@ -1620,7 +1614,7 @@ html.skip-portal body{ background:#4A8F3E !important; }
   <script src="ai_engine/gnugo.js"></script>
   <script src="ai_engine/gnugo_controller.js?v=20261024_fixpass_v1792768209"></script>
   <script src="ai_match_manager.js?v=20261024_fixpass_v1792768209"></script>
-  <script src="game.js?v=20261026_ck2"></script>
+  <script src="game.js?v=20261026_ck3"></script>
   <script src="chesskid_shell.js?v=20261024_ck_v1"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {

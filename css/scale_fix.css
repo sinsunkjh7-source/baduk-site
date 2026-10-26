@@ -2221,3 +2221,6 @@ button.bk-lockout-btn {
   background: transparent;
   margin-right: 10px;
 }
+
+/* 앱 로딩 중 흰 깜빡임 방지 */
+.bk-game-frame { background: #DCEBD1 !important; }
