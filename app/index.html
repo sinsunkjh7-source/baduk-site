@@ -306,36 +306,7 @@ document.addEventListener('DOMContentLoaded', function () {
         </div>
       </div>
     <!-- 상단 네비게이션 헤더 (모드 선택 및 단원 배지만 간결하게 유지) -->
-    <header class="app-header" style="display: none;">
-      <div class="header-left">
-        <div class="brand-logo-badge official-logo-wrap" id="brandLogoBadge" title="바둑스쿨 메인 홈(대문)으로 이동" onclick="window.showMainPortal();" style="cursor: pointer; background: transparent; border: none; padding: 0; box-shadow: none; display: flex; align-items: center;">
-          <img src="images/official_brand_logo.png" alt="바둑스쿨" style="height: 32px; width: auto; object-fit: contain; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.1));">
-        </div>
-        <button id="btnHeaderHome" class="btn-header-home" title="바둑스쿨 메인 홈으로 나가기">🏠 Home</button>
-        <!-- 👨‍🏫 좌측 별도 배치: 선생님 전용 강의 모드 -->
-        <button id="btnModeLecture" class="mode-select-btn lecture-solo-btn active" title="선생님 자유 놓아보기 및 수순 강의 모드">
-          👨‍🏫 강의 모드
-        </button>
-        <button id="btnHeaderLock" class="btn-header-lock" title="수업 사이트 잠그기">🔒 잠금</button>
-      </div>
-      <div class="header-right">
-        <!-- 🎯 우측 4대 활동 메뉴: 바둑 학습 / 온라인 대국 / 오목 대전 / 알까기 -->
-        <div class="mode-selector-group">
-          <button id="btnModeMissions" class="mode-select-btn" title="단계별 바둑 사활 및 미션 학습 문제">
-            📝 바둑 학습
-          </button>
-          <button id="btnModeOnline" class="mode-select-btn" title="친구와 실시간 1:1 온라인 대국">
-            🌐 온라인 대국
-          </button>
-          <button id="btnModeOmok" class="mode-select-btn" title="인공지능 AI 대전 & 1:1 친구 오목">
-            ⚪⚫ 오목 대전
-          </button>
-          <button id="btnModeAlkkagi" class="mode-select-btn" title="물리 슬링샷 알까기 배틀">
-            🎯 알까기
-          </button>
-        </div>
-      </div>
-    </header>
+    <!-- 앱 헤더 제거: 화면 전환은 사이드바가 담당 -->
 
     <!-- 메인 컨텐츠 영역 -->
     <main class="main-content">
