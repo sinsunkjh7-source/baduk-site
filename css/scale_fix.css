@@ -2278,3 +2278,12 @@ button.bk-lockout-btn {
 }
 .bk-game-overlay { background: #F7FBF2 !important; }
 .bk-game-frame { height: auto !important; flex: 1 !important; }
+
+
+/* 잠그기 버튼 자리 확보 — 설정 버튼을 왼쪽으로 */
+.bk-game-bar {
+  padding-right: 132px !important;
+}
+.bk-game-bar .bk-game-sound {
+  margin-right: 0 !important;
+}
