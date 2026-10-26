@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=20261026_ck4">
+  <link rel="stylesheet" href="style.css?v=20261026_ck5">
   <script src="auth.js?v=20261022_v1792680182"></script>
 <script>
 (function(){ if(/[?&](mode|chapter)=/.test(location.search)) document.documentElement.className += ' skip-portal'; })();
@@ -210,16 +210,7 @@ html, body { background: #DCEBD1 !important; background-image: none !important; 
     <!-- 🏰 체스키드 메인 뷰포트 -->
     <div class="ck-main-viewport" id="chesskidMainStage">
       <!-- 상단 캡슐형 서브 탭 바 -->
-      <div class="ck-top-subnav" id="chesskidTopSubnav">
-        <div class="ck-top-left-group">
-          <button type="button" class="ck-sidebar-toggle-btn" id="btnToggleSidebar" title="사이드바 열기/닫기">☰</button>
-        </div>
-        <div class="ck-pill-tabs" id="ckPillTabs"></div>
-        <div class="ck-top-right-group">
-          <button type="button" class="ck-top-icon-btn" onclick="window.showMainPortal();" title="바둑스쿨 대문으로">🏠</button>
-          <button type="button" class="ck-top-icon-btn" onclick="if(confirm('수업 사이트를 잠그시겠습니까?')) window.lockSiteSession();" title="화면 잠금">🔒</button>
-        </div>
-      </div>
+      <!-- 상단 모드 바 제거 (사이트 메뉴가 대체) -->
 
       <!-- 아바타 커스터마이저 전용 뷰 (체스키드 아바타 스튜디오) -->
       <div class="ck-avatar-customizer-view" id="viewAvatarCustomizer" style="display: none;">
@@ -357,7 +348,7 @@ html, body { background: #DCEBD1 !important; background-image: none !important; 
             <div class="bs-hint-body">
           <p class="mission-desc" id="missionDesc"></p>
 
-          <!-- 힌트 박스 (교재 원문에 힌트가 있는 경우에만 game.js?v=20261026_ck4"mission-hint-box" id="missionHintBox" style="display: none;">
+          <!-- 힌트 박스 (교재 원문에 힌트가 있는 경우에만 game.js?v=20261026_ck5"mission-hint-box" id="missionHintBox" style="display: none;">
             <span class="hint-icon">💡</span>
             <span class="hint-text" id="missionHintText"></span>
           </div>
@@ -1367,7 +1358,7 @@ html, body { background: #DCEBD1 !important; background-image: none !important; 
   <script src="ai_engine/gnugo.js"></script>
   <script src="ai_engine/gnugo_controller.js?v=20261024_fixpass_v1792768209"></script>
   <script src="ai_match_manager.js?v=20261024_fixpass_v1792768209"></script>
-  <script src="game.js?v=20261026_ck4"></script>
+  <script src="game.js?v=20261026_ck5"></script>
   <script src="chesskid_shell.js?v=20261024_ck_v1"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
