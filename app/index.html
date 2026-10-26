@@ -1640,5 +1640,25 @@ html.skip-portal body{ background:#4A8F3E !important; }
   setTimeout(open, 500);
 })();
 </script>
+<script>
+/* 사이트 안(iframe)에서 열렸을 때: 앱 대문을 쓰지 않고, 로고·홈 클릭은 사이트 홈으로 복귀 */
+(function () {
+  if (!/[?&]embed=1/.test(location.search)) return;
+
+  function toSiteHome() {
+    try { parent.postMessage('bk:close', '*'); } catch (e) {}
+  }
+
+  function override() {
+    window.showMainPortal = toSiteHome;
+    var p = document.getElementById('mainPortalOverlay');
+    if (p) p.classList.add('portal-hidden');
+    document.documentElement.classList.add('skip-portal');
+  }
+
+  document.addEventListener('DOMContentLoaded', override);
+  window.addEventListener('load', function () { override(); setTimeout(override, 600); setTimeout(override, 1500); });
+})();
+</script>
 </body>
 </html>
