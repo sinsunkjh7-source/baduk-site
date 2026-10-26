@@ -56,6 +56,13 @@
 
     /* ---- 소리 설정 (사이트 설정과 같은 값 공유) ---- */
     var TYPES = [['classic', '명품'], ['deep', '묵직'], ['crisp', '경쾌'], ['pop', '퐁퐁']];
+    function post(payload) {
+      payload.bkSetting = true;
+      if (frame && frame.contentWindow) {
+        try { frame.contentWindow.postMessage(payload, '*'); } catch (e) {}
+      }
+    }
+
     var panel = document.createElement('div');
     panel.className = 'bk-sound bk-sound--game';
     panel.innerHTML =
@@ -153,6 +160,7 @@
     range.addEventListener('input', function () {
       valEl.textContent = range.value + '%';
       if (window.badukAudio) window.badukAudio.setVolume(parseInt(range.value, 10) / 100);
+      post({ kind: 'volume', value: range.value });
       broadcast();
     });
 
@@ -164,6 +172,7 @@
     typeBtns.forEach(function (btn) {
       btn.addEventListener('click', function () {
         if (window.badukAudio) window.badukAudio.setSoundType(btn.dataset.sound);
+        post({ kind: 'sound', value: btn.dataset.sound });
         sync(); broadcast();
         if (window.badukAudio) window.badukAudio.playStone();
       });
