@@ -6425,3 +6425,62 @@ html, body, body.bg-theme-theme5, body[class*="bg-theme"] {
 }
 .bs-hint-body .mission-hint,
 .bs-hint-body .hint-text { font-size: 14px !important; line-height: 1.5 !important; color: #4a5a41 !important; }
+
+/* 마스터 박스 3배 + 문제 글자 확대 + 힌트 자리 */
+.bs-hint-row {
+  min-height: 320px !important;
+  align-items: flex-start !important;
+  padding: 14px !important;
+  gap: 14px !important;
+}
+.bs-hint-master {
+  width: 90px !important; height: 90px !important;
+  flex: 0 0 90px !important;
+}
+.bs-hint-body {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
+  height: 100% !important;
+  min-height: 288px !important;
+}
+.bs-hint-body .mission-desc {
+  font-size: 23px !important;
+  line-height: 1.45 !important;
+  font-weight: 900 !important;
+  color: #26401e !important;
+  margin: 0 !important;
+  word-break: keep-all !important;
+}
+/* 힌트가 들어갈 자리 */
+.bs-hint-body .mission-hint-box {
+  margin-top: 6px !important;
+  padding: 12px 14px !important;
+  background: #FFFDF3 !important;
+  border: 2px dashed #E8DCB4 !important;
+  border-radius: 12px !important;
+  font-size: 16px !important;
+  line-height: 1.6 !important;
+  color: #5a5330 !important;
+}
+.bs-hint-body .mission-hint-box[style*="display: none"] { display: none !important; }
+.bs-hint-body .hint-text { font-size: 16px !important; line-height: 1.6 !important; }
+
+/* 패널: 내용 스크롤 + 버튼은 항상 안쪽 하단 */
+.story-panel {
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: hidden !important;
+}
+.story-panel .card.mission-card {
+  flex: 1 1 auto !important;
+  min-height: 0 !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  scrollbar-width: thin;
+}
+.story-panel .mission-actions {
+  flex: 0 0 auto !important;
+  margin-top: 8px !important;
+  position: static !important;
+}
