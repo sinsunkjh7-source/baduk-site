@@ -33,7 +33,7 @@
     el.className = 'bk-game-overlay';
     el.innerHTML =
       '<div class="bk-game-bar">' +
-        '<img class="bk-game-logo" src="images/baduk_header_logo.png" alt="바둑스쿨">' +
+        '<img class="bk-game-logo" src="images/baduk_header_logo_t.png" alt="바둑스쿨">' +
         '<button class="bk-game-back" type="button">← 돌아가기</button>' +
         '<nav class="bk-game-nav">' +
           '<button type="button" data-key="appMissions">바둑 학습</button>' +
