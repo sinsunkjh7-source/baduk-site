@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>오목 — 바둑스쿨</title>
+<link rel="stylesheet" href="style.css?v=2">
+<script src="../../js/site_lock.js?v=5"></script>
+</head>
+<body>
+<div class="wrap">
+
+  <main class="board-area">
+    <div class="turn-bar">
+      <span class="turn-stone" id="turnStone"></span>
+      <span class="turn-text" id="turnText">흑 차례</span>
+      <span class="move-count" id="moveCount">0수</span>
+    </div>
+
+    <div class="board-box" id="boardBox">
+      <canvas id="board"></canvas>
+      <div class="result" id="result" hidden>
+        <div class="result-card">
+          <p class="result-title" id="resultTitle">흑 승리!</p>
+          <button class="btn primary" id="btnAgain" type="button">다시 두기</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <aside class="panel">
+    <section class="card">
+      <h2>대전 상대</h2>
+      <div class="seg" id="modeSeg">
+        <button class="seg-btn active" data-mode="ai" type="button">AI 대전</button>
+        <button class="seg-btn" data-mode="pvp" type="button">2인 대전</button>
+      </div>
+    </section>
+
+    <section class="card" id="colorCard">
+      <h2>내 돌</h2>
+      <div class="seg" id="colorSeg">
+        <button class="seg-btn active" data-color="1" type="button">⚫ 흑 (선공)</button>
+        <button class="seg-btn" data-color="2" type="button">⚪ 백 (후공)</button>
+      </div>
+    </section>
+
+    <section class="card" id="diffCard">
+      <h2>AI 난이도</h2>
+      <div class="seg col" id="diffSeg">
+        <button class="seg-btn" data-diff="easy" type="button">🌱 초급</button>
+        <button class="seg-btn active" data-diff="normal" type="button">🌿 중급</button>
+        <button class="seg-btn" data-diff="hard" type="button">🔥 고급</button>
+        <button class="seg-btn" data-diff="master" type="button">👑 마스터</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>규칙</h2>
+      <label class="chk"><input type="checkbox" id="optUndo" checked> 무르기 허용</label>
+      <label class="chk"><input type="checkbox" id="optBan33" checked> 흑 3·3 금수</label>
+    </section>
+
+    <section class="card">
+      <h2>조작</h2>
+      <button class="btn" id="btnUndo" type="button">↩️ 무르기</button>
+      <button class="btn" id="btnRestart" type="button">🔄 새로 시작</button>
+    </section>
+
+    <section class="card tips">
+      <h2>규칙</h2>
+      <p>가로·세로·대각선으로 <b>돌 5개</b>를 먼저 이으면 이깁니다.</p>
+    </section>
+  </aside>
+
+</div>
+
+<div class="toast" id="toast" hidden></div>
+<script src="../../js/audio.js?v=15"></script>
+<script src="ai.js"></script>
+<script src="game.js?v=3"></script>
+<script src="../theme_settings.js?v=3"></script>
+<script>window.BkGameSettings && BkGameSettings.init({host:".wrap",target:".wrap"});</script>
+</body>
+</html>

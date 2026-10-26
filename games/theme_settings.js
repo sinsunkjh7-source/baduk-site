@@ -109,6 +109,24 @@
       });
 
       btn.addEventListener('click', function () { panel.hidden = !panel.hidden; });
+
+      /* 사이트 상단 '설정'에서 보낸 값도 여기서 적용 */
+      window.addEventListener('message', function (e) {
+        var d = e && e.data;
+        if (!d || !d.bkSetting) return;
+        if (d.kind === 'bg') {
+          var id = String(d.value).replace('theme', '');
+          applyTheme(target, id);
+          row.querySelectorAll('.bks-chip').forEach(function (c) {
+            c.classList.toggle('-on', c.textContent === (id === 'base' ? '기본' : id));
+          });
+        } else if (d.kind === 'volume') {
+          vol.value = d.value;
+          if (window.badukAudio && window.badukAudio.setVolume) {
+            window.badukAudio.setVolume(parseInt(d.value, 10) / 100);
+          }
+        }
+      });
     }
   };
 })();
