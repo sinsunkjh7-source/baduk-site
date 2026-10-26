@@ -6610,3 +6610,26 @@ html, body, body.bg-theme-theme5, body[class*="bg-theme"] {
 .ck-sidebar-header { display: flex !important; }
 .ck-sidebar { padding-top: 6px !important; }
 .board-section, .story-panel { top: 12px !important; }
+
+/* 앱 내부 홈 오버레이 */
+#bksHomeHost {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: #F7FBF2;
+}
+
+/* 버튼은 문제 박스 바로 아래 고정 (아래로 밀리지 않게) */
+.story-panel {
+  justify-content: flex-start !important;
+  align-content: flex-start !important;
+}
+.story-panel .mission-actions,
+.story-panel #missionActionArea {
+  margin-top: 10px !important;
+  margin-bottom: 0 !important;
+  position: static !important;
+  align-self: stretch !important;
+}

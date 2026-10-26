@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=20261026_ck8">
+  <link rel="stylesheet" href="style.css?v=20261026_ck9">
   <script src="auth.js?v=20261022_v1792680182"></script>
 <script>
 (function(){ if(/[?&](mode|chapter)=/.test(location.search)) document.documentElement.className += ' skip-portal'; })();
@@ -1400,6 +1400,7 @@ html, body { background: #DCEBD1 !important; background-image: none !important; 
   if (!/[?&]embed=1/.test(location.search)) return;
 
   function toSiteHome() {
+    if (typeof window.bksShowHome === 'function') { window.bksShowHome(true); return; }
     try { parent.postMessage('bk:close', '*'); } catch (e) {}
   }
 
@@ -1438,6 +1439,83 @@ window.addEventListener('message', function (e) {
   var el = document.querySelector(sel);
   if (el) el.click();
 });
+</script>
+<!-- ===== 앱 내부 홈(랜딩) — Shadow DOM 격리 ===== -->
+<div id="bksHomeHost" aria-label="바둑스쿨 홈"></div>
+<script>
+(function () {
+  var host = document.getElementById('bksHomeHost');
+  if (!host) return;
+
+  var CSS = [
+    'landing/css/vars.css',
+    'landing/css/baduk_core.css',
+    'landing/css/baduk_theme.css',
+    'landing/css/baduk_custom_fix.css',
+    'landing/css/baduk_app.css',
+    'landing/css/scale_fix.css',
+    'landing/css/baduk_landing.css'
+  ];
+
+  var root = host.attachShadow({ mode: 'open' });
+
+  var base = document.createElement('style');
+  base.textContent = ':host{display:block;background:#F7FBF2;min-height:100vh}' +
+    '*{box-sizing:border-box}' +
+    '.landingPage{min-height:100vh}' +
+    '.guest-layout__toolbar,.guest-toolbar-desktop{height:64px!important;display:flex!important;' +
+    'align-items:center!important;gap:10px!important;padding:0 18px!important}' +
+    '.guest-toolbar-desktop a,.guest-toolbar-desktop button{font-size:15px!important;' +
+    'font-weight:800!important;padding:9px 14px!important;border-radius:10px!important}' +
+    '.guest-toolbar-desktop img{height:38px!important;width:auto!important}';
+  root.appendChild(base);
+
+  CSS.forEach(function (href) {
+    var l = document.createElement('link');
+    l.rel = 'stylesheet';
+    l.href = href + '?t=' + Date.now();
+    root.appendChild(l);
+  });
+
+  /* 5칸 메뉴 → 앱 모드 */
+  function go(kind) {
+    var app = window.badukApp || window.gameApp;
+    var map = { learn: 'missions', play: 'online', omok: 'omok', alkkagi: 'alkkagi' };
+    if (map[kind] && app && app.switchMode) {
+      app.switchMode(map[kind]);
+      window.bksShowHome(false);
+      return true;
+    }
+    return false;
+  }
+
+  window.bksShowHome = function (on) {
+    host.style.display = on === false ? 'none' : 'block';
+    var ac = document.querySelector('.app-container');
+    if (ac) ac.style.visibility = (on === false) ? 'visible' : 'hidden';
+    document.documentElement.classList.toggle('bks-home', on !== false);
+  };
+
+  root.addEventListener('click', function (e) {
+    var el = e.target.closest('a,button');
+    if (!el) return;
+    var t = (el.textContent || '').replace(/\s+/g, ' ').trim();
+    if (/바둑 학습|학습/.test(t) && go('learn')) { e.preventDefault(); return; }
+    if (/대국/.test(t) && go('play')) { e.preventDefault(); return; }
+    if (/오목/.test(t) && go('omok')) { e.preventDefault(); return; }
+    if (/알까기/.test(t) && go('alkkagi')) { e.preventDefault(); return; }
+  }, true);
+
+  fetch('landing/landing.html?t=' + Date.now())
+    .then(function (r) { return r.text(); })
+    .then(function (html) {
+      var wrap = document.createElement('div');
+      wrap.innerHTML = html;
+      root.appendChild(wrap);
+      window.bksShowHome(/[?&]home=1/.test(location.search));
+    })
+    .catch(function () { host.style.display = 'none'; });
+})();
 </script>
 </body>
 </html>
