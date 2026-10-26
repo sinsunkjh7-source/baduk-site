@@ -6371,3 +6371,18 @@ html, body, body.bg-theme-theme5, body[class*="bg-theme"] {
 .master-coach-area { max-height: 148px !important; padding: 8px !important; }
 .master-coach-area .master-coach-frame { width: 92px !important; height: 92px !important; }
 .master-coach-area .master-speech-bubble { display: flex !important; font-size: 12px !important; line-height: 1.4 !important; }
+
+/* 오른쪽 패널: 내용에 맞춰 줄이기 (빈 공간 제거) */
+.story-panel {
+  bottom: auto !important;
+  height: auto !important;
+  max-height: calc(100vh - 210px) !important;
+}
+/* 문제 지문(힌트) 박스 강조 */
+.story-panel .mission-card .mission-desc,
+.story-panel .mission-card p {
+  font-size: 14.5px !important;
+  line-height: 1.55 !important;
+  color: #2f4a25 !important;
+  font-weight: 800 !important;
+}
