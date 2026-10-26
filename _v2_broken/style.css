@@ -55,7 +55,7 @@ button { font-family: inherit; cursor: pointer; }
 
 /* ---------- 화면 전환 ---------- */
 .view { display: block; }
-.view[hidden] { display: none; }
+.view[hidden] { display: none !important; }
 
 /* ---------- 홈: 히어로 ---------- */
 .hero { position: relative; line-height: 0; }
