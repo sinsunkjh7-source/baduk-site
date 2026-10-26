@@ -31,6 +31,18 @@
 html.skip-portal #mainPortalOverlay{ display:none !important; }
 html.skip-portal body{ background:#4A8F3E !important; }
 </style>
+<script>
+/* CSS 캐시 원천 차단 — 매번 새로 받는다 */
+(function () {
+  var links = document.querySelectorAll('link[rel="stylesheet"]');
+  for (var i = 0; i < links.length; i++) {
+    var h = links[i].getAttribute('href') || '';
+    if (h.indexOf('style.css') === -1) continue;
+    var base = h.split('?')[0];
+    links[i].setAttribute('href', base + '?t=' + Date.now());
+  }
+})();
+</script>
 </head>
 <body>
   <!-- 🌌 신비한 별빛 밤하늘과 유성 모션그래픽 캔버스 -->
