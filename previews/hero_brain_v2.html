@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>바둑스쿨 · 히어로 시안 (두뇌 성장)</title>
+<style>
+  :root{
+    --bg0:#07130F; --bg1:#0C2118; --bg2:#123024;
+    --ink:#EAF4EC; --ink-dim:#9DBCA8;
+    --green:#7BD389; --green-deep:#3E8B4E; --wood:#F2C87A;
+    --line:rgba(160,220,180,.12);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    background:
+      radial-gradient(1200px 700px at 78% 42%, rgba(70,170,110,.20), transparent 62%),
+      radial-gradient(900px 600px at 12% 8%, rgba(242,200,122,.10), transparent 60%),
+      linear-gradient(160deg, var(--bg0) 0%, var(--bg1) 48%, var(--bg2) 100%);
+    color:var(--ink);
+    font-family:"Pretendard","Malgun Gothic","Apple SD Gothic Neo",system-ui,sans-serif;
+    overflow:hidden;
+  }
+  /* 배경 격자 */
+  .grid{
+    position:fixed; inset:0; pointer-events:none; opacity:.5;
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size:64px 64px;
+    mask-image:radial-gradient(120% 90% at 50% 40%, #000 30%, transparent 78%);
+    -webkit-mask-image:radial-gradient(120% 90% at 50% 40%, #000 30%, transparent 78%);
+  }
+
+  .hero{
+    position:relative; height:100vh; display:grid;
+    grid-template-columns:minmax(420px, 46%) 1fr;
+    align-items:center; gap:24px; padding:0 clamp(28px,5vw,88px);
+  }
+
+  /* ── 왼쪽 카피 ── */
+  .copy{position:relative; z-index:2; max-width:560px}
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:13.5px; font-weight:700; letter-spacing:.08em;
+    color:var(--green);
+    padding:7px 14px; border-radius:999px;
+    border:1px solid rgba(123,211,137,.28);
+    background:rgba(123,211,137,.07);
+  }
+  .eyebrow i{width:6px;height:6px;border-radius:50%;background:var(--green);
+    box-shadow:0 0 12px var(--green); animation:blink 2.4s ease-in-out infinite}
+  @keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+
+  h1{
+    margin-top:22px;
+    font-size:clamp(38px,4.4vw,62px); line-height:1.14; letter-spacing:-.03em; font-weight:900;
+  }
+  h1 .accent{
+    background:linear-gradient(100deg,#B9F2C4 0%,#7BD389 40%,#F2C87A 100%);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .sub{
+    margin-top:20px; font-size:clamp(15px,1.25vw,19px); line-height:1.72;
+    color:var(--ink-dim); font-weight:500;
+  }
+  .sub b{color:#D8EEDD; font-weight:800}
+
+  .cta{display:flex; align-items:center; gap:14px; margin-top:34px; flex-wrap:wrap}
+  .btn{
+    display:inline-flex; align-items:center; gap:10px;
+    height:58px; padding:0 30px; border-radius:999px; border:0;
+    font-size:18px; font-weight:900; font-family:inherit; cursor:pointer;
+    transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
+  }
+  .btn:hover{transform:translateY(-2px)}
+  .btn-primary{
+    background:linear-gradient(180deg,#8FE39C,#59B96C); color:#062314;
+    box-shadow:0 14px 34px rgba(89,185,108,.32), inset 0 1px 0 rgba(255,255,255,.5);
+  }
+  .btn-primary:hover{box-shadow:0 18px 40px rgba(89,185,108,.42)}
+  .btn-ghost{
+    background:rgba(255,255,255,.055); color:var(--ink);
+    border:1.5px solid rgba(180,225,195,.26); backdrop-filter:blur(6px);
+  }
+  .btn-ghost:hover{background:rgba(255,255,255,.1)}
+
+  .marks{display:flex; gap:26px; margin-top:38px; padding-top:26px;
+    border-top:1px solid rgba(160,220,180,.14); flex-wrap:wrap}
+  .mark{display:flex; flex-direction:column; gap:4px}
+  .mark b{font-size:19px; font-weight:900; color:#DFF3E3; letter-spacing:-.01em}
+  .mark span{font-size:12.5px; color:#83A992; letter-spacing:.02em}
+
+  /* ── 오른쪽 모션 그래픽 ── */
+  .visual{position:relative; height:100%; display:flex; align-items:center; justify-content:center}
+  canvas{width:100%; height:100%; display:block}
+  .visual::after{
+    content:""; position:absolute; inset:6% 4% 10% 8%; border-radius:50%;
+    background:radial-gradient(circle, rgba(123,211,137,.13), transparent 66%);
+    filter:blur(30px); pointer-events:none;
+  }
+
+  @media (max-width:980px){
+    body{overflow:auto}
+    .hero{grid-template-columns:1fr; height:auto; padding:56px 22px 40px; gap:8px}
+    .visual{order:-1; height:44vh}
+    h1{font-size:34px}
+    .btn{height:52px; padding:0 22px; font-size:16px}
+    .marks{gap:18px; margin-top:26px; padding-top:20px}
+  }
+</style>
+</head>
+<body>
+<div class="grid"></div>
+
+<section class="hero">
+  <div class="copy">
+    <span class="eyebrow"><i></i>바둑으로 자라는 생각</span>
+
+    <h1>한 수 한 수,<br><span class="accent">두뇌가 자란다</span></h1>
+
+    <p class="sub">
+      바둑은 <b>계산</b>과 <b>직관</b>을 함께 쓰는 놀이입니다.
+      아이는 수를 읽으며 집중력을, 형세를 보며 판단력을 키웁니다.
+      <b>매일 20분</b>의 수읽기가 아이의 사고를 바꿉니다.
+    </p>
+
+    <div class="cta">
+      <button class="btn btn-primary">▶ 바둑 시작하기</button>
+      <button class="btn btn-ghost">▣ 바둑 배우기</button>
+    </div>
+
+    <div class="marks">
+      <div class="mark"><b>집중력</b><span>한 수를 읽는 힘</span></div>
+      <div class="mark"><b>판단력</b><span>형세를 보는 눈</span></div>
+      <div class="mark"><b>인내심</b><span>끝까지 두는 마음</span></div>
+    </div>
+  </div>
+
+  <div class="visual">
+    <canvas id="brain"></canvas>
+  </div>
+</section>
+
+<script>
+(function () {
+  var cv = document.getElementById('brain');
+  var ctx = cv.getContext('2d');
+  var DPR = Math.min(window.devicePixelRatio || 1, 2);
+  var W = 0, H = 0, B = null;
+
+  /* 두 반구 실루엣 */
+  function lobePath(cx, cy, s, dir) {
+    var p = new Path2D();
+    var x = cx + dir * s * 0.04;
+    p.moveTo(x, cy - s * 0.46);
+    p.bezierCurveTo(x + dir * s * 0.30, cy - s * 0.50, x + dir * s * 0.46, cy - s * 0.26, x + dir * s * 0.44, cy - s * 0.02);
+    p.bezierCurveTo(x + dir * s * 0.52, cy + s * 0.10, x + dir * s * 0.44, cy + s * 0.30, x + dir * s * 0.28, cy + s * 0.30);
+    p.bezierCurveTo(x + dir * s * 0.26, cy + s * 0.42, x + dir * s * 0.10, cy + s * 0.44, x, cy + s * 0.36);
+    p.closePath();
+    return p;
+  }
+
+  var L, R, fibers = [], stones = [], pulses = [], T = 0;
+
+  function build() {
+    var cx = W * 0.5, cy = H * 0.5, s = Math.min(W, H) * 0.86;
+    L = lobePath(cx, cy, s, -1);
+    R = lobePath(cx, cy, s, 1);
+    B = { cx: cx, cy: cy, s: s };
+
+    var tmp = document.createElement('canvas').getContext('2d');
+    var pts = [];
+    var step = s / 15;
+    for (var i = -8; i <= 8; i++) {
+      for (var j = -8; j <= 8; j++) {
+        var x = cx + i * step, y = cy + j * step;
+        if (tmp.isPointInPath(L, x, y) || tmp.isPointInPath(R, x, y)) pts.push({ x: x, y: y });
+      }
+    }
+
+    fibers = [];
+    for (var k = 0; k < 130; k++) {
+      var a = pts[(Math.random() * pts.length) | 0];
+      var b = pts[(Math.random() * pts.length) | 0];
+      if (!a || !b) continue;
+      var d = Math.hypot(a.x - b.x, a.y - b.y);
+      if (d < step * 1.2 || d > step * 5) continue;
+      var mx = (a.x + b.x) / 2 + (Math.random() - 0.5) * step * 1.6;
+      var my = (a.y + b.y) / 2 + (Math.random() - 0.5) * step * 1.6;
+      fibers.push({ a: a, b: b, mx: mx, my: my, ph: Math.random() * 6.28, sp: 0.5 + Math.random() });
+    }
+
+    stones = [];
+    var picked = [];
+    for (var m = 0; m < 26 && pts.length; m++) {
+      var q = pts[(Math.random() * pts.length) | 0];
+      if (picked.indexOf(q) >= 0) continue;
+      picked.push(q);
+      stones.push({ n: q, black: m % 2 === 0, ph: Math.random() * 6.28 });
+    }
+
+    window.__brain = pts;
+  }
+
+  function resize() {
+    var r = cv.getBoundingClientRect();
+    W = r.width; H = r.height;
+    cv.width = Math.round(W * DPR); cv.height = Math.round(H * DPR);
+    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    build();
+  }
+
+  function spawn() {
+    var pts = window.__brain || [];
+    if (!pts.length) return;
+    var a = pts[(Math.random() * pts.length) | 0];
+    var f = fibers[(Math.random() * fibers.length) | 0];
+    if (!f || !a) return;
+    pulses.push({ f: f, t: 0, sp: 0.5 + Math.random() * 0.7 });
+    if (pulses.length > 42) pulses.shift();
+  }
+
+  function draw(dt) {
+    T += dt;
+    ctx.clearRect(0, 0, W, H);
+    if (!B) return;
+
+    /* 반구 채움 */
+    [L, R].forEach(function (p) {
+      var g = ctx.createRadialGradient(B.cx, B.cy - B.s * 0.05, B.s * 0.04, B.cx, B.cy, B.s * 0.55);
+      g.addColorStop(0, 'rgba(123,211,137,.17)');
+      g.addColorStop(0.6, 'rgba(80,160,110,.07)');
+      g.addColorStop(1, 'rgba(8,26,18,0)');
+      ctx.fillStyle = g;
+      ctx.fill(p);
+    });
+
+    /* 섬유질 */
+    ctx.save();
+    ctx.lineCap = 'round';
+    fibers.forEach(function (f) {
+      var k = 0.5 + 0.5 * Math.sin(T * f.sp + f.ph);
+      ctx.beginPath();
+      ctx.moveTo(f.a.x, f.a.y);
+      ctx.quadraticCurveTo(f.mx, f.my, f.b.x, f.b.y);
+      ctx.lineWidth = 0.9 + 0.8 * k;
+      ctx.strokeStyle = 'rgba(150,225,175,' + (0.07 + 0.12 * k) + ')';
+      ctx.stroke();
+    });
+    ctx.restore();
+
+    /* 외곽선 + 중앙 틈 */
+    var breathe = 1 + Math.sin(T * 1.1) * 0.005;
+    ctx.save();
+    ctx.translate(B.cx, B.cy); ctx.scale(breathe, breathe); ctx.translate(-B.cx, -B.cy);
+    ctx.lineWidth = 1.8; ctx.lineJoin = 'round';
+    ctx.strokeStyle = 'rgba(160,240,185,.55)';
+    ctx.shadowColor = 'rgba(123,211,137,.5)'; ctx.shadowBlur = 22;
+    ctx.stroke(L); ctx.stroke(R);
+    ctx.restore();
+
+    /* 신호 */
+    if (Math.random() < 0.7) spawn();
+    pulses.forEach(function (p, idx) {
+      p.t += dt * p.sp;
+      if (p.t >= 1) { pulses.splice(idx, 1); return; }
+      var t = p.t, e = t * t * (3 - 2 * t);
+      var x = (1 - e) * (1 - e) * p.f.a.x + 2 * (1 - e) * e * p.f.mx + e * e * p.f.b.x;
+      var y = (1 - e) * (1 - e) * p.f.a.y + 2 * (1 - e) * e * p.f.my + e * e * p.f.b.y;
+      var al = Math.sin(Math.PI * t);
+      var g = ctx.createRadialGradient(x, y, 0, x, y, 16);
+      g.addColorStop(0, 'rgba(215,255,225,' + (0.95 * al) + ')');
+      g.addColorStop(0.4, 'rgba(123,211,137,' + (0.45 * al) + ')');
+      g.addColorStop(1, 'rgba(123,211,137,0)');
+      ctx.fillStyle = g;
+      ctx.beginPath(); ctx.arc(x, y, 16, 0, 6.283); ctx.fill();
+    });
+
+    /* 돌 */
+    var r = Math.max(5, Math.min(W, H) * 0.014);
+    stones.forEach(function (s) {
+      var k = 0.6 + 0.4 * Math.sin(T * 1.3 + s.ph);
+      ctx.beginPath(); ctx.arc(s.n.x, s.n.y, r, 0, 6.283);
+      if (s.black) {
+        ctx.fillStyle = 'rgba(10,16,14,.95)'; ctx.fill();
+        ctx.lineWidth = 1.1;
+        ctx.strokeStyle = 'rgba(200,240,215,' + (0.15 + 0.25 * k) + ')';
+        ctx.stroke();
+      } else {
+        ctx.fillStyle = 'rgba(240,250,244,' + (0.78 + 0.18 * k) + ')'; ctx.fill();
+      }
+    });
+
+    /* 성장 링 */
+    var c = (T * 0.32) % 1;
+    ctx.beginPath();
+    ctx.arc(B.cx, B.cy, B.s * (0.12 + c * 0.44), 0, 6.283);
+    ctx.lineWidth = 1.4;
+    ctx.strokeStyle = 'rgba(242,200,122,' + (0.20 * (1 - c)) + ')';
+    ctx.stroke();
+  }
+
+  var last = performance.now();
+  function loop(now) {
+    var dt = Math.min((now - last) / 1000, 0.05);
+    last = now;
+    draw(dt);
+    requestAnimationFrame(loop);
+  }
+  window.addEventListener('resize', resize);
+  resize();
+  requestAnimationFrame(loop);
+})();
+</script>
+</body>
+</html>
