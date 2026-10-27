@@ -74,9 +74,19 @@
 
   /* ---------- 크기 ---------- */
   function layout() {
-    var col = canvas.parentElement.getBoundingClientRect();
-    var avail = Math.min(col.width - 20, col.height - 20);
-    avail = Math.max(280, Math.min(avail, 900));
+    var isMobile = window.innerWidth <= 900;
+    var avail;
+    if (isMobile) {
+      /* 모바일/태블릿: 상단 여백을 살려 화면 폭에 맞춘 시원한 30% 확대 */
+      avail = Math.min(window.innerWidth - 24, window.innerHeight * 0.62);
+    } else {
+      /* PC: 여백을 최소화하여 큼직하고 시원한 30% 확대 바둑판 */
+      var col = canvas.parentElement.getBoundingClientRect();
+      avail = Math.min(col.width - 20, col.height - 20);
+      avail = Math.min(avail, 1020);
+    }
+    avail = Math.max(340, Math.round(avail));
+    if (window.innerWidth < 360) avail = window.innerWidth - 16;
 
     app.displaySize = avail;
     app.cellSize = avail / (SIZE + 1);

@@ -8,7 +8,8 @@ html, body { margin: 0; height: 100%; background: #F7FBF2; font-family: "Malgun 
 .toast { position: fixed; left: 50%; bottom: 28px; transform: translateX(-50%); background: rgba(35,45,30,.94); color: #fff; font-size: 14px; font-weight: 800; padding: 12px 22px; border-radius: 999px; z-index: 99; }
 .toast[hidden] { display: none; }
 @media (max-width: 900px) {
-  .alkkagi-wrap { flex-direction: column; }
+  .alkkagi-wrap { flex-direction: column; height: auto; min-height: 100%; padding: 8px; }
+  .board-col { width: 100%; min-height: auto; padding: 10px 4px; }
   .panel-col { width: 100%; flex: 0 0 auto; }
 }
 
