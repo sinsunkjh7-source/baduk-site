@@ -40,7 +40,7 @@
     historyIndex: -1,
     showAtari: true,            // 🚨 단수 링 (기본 ON)
     showSweat: true,            // 💦 3D 땀방울 (기본 ON)
-    showCoords: false,          // 🔤 좌표 표시
+    showCoords: true,          // 🔤 좌표 표시
     showStepNumbers: false      // 🔢 수순 번호
   };
 
@@ -514,16 +514,16 @@
     var rows = state.boardRows; // 가로선 9
 
     // 셀 크기 최적화: 여백을 최소화하여 화면 높이와 너비를 가득 채움 (최대 115px)
-    var cell = Math.min((availW - 12) / (cols + 0.7), (availH - 12) / (rows + 0.7));
+    var cell = Math.min((availW - 12) / (cols + 0.85), (availH - 12) / (rows + 0.85));
     cell = Math.max(32, Math.min(cell, 115));
 
-    var dispW = Math.round((cols + 0.7) * cell);
-    var dispH = Math.round((rows + 0.7) * cell);
+    var dispW = Math.round((cols + 0.85) * cell);
+    var dispH = Math.round((rows + 0.85) * cell);
 
     var dpr = window.devicePixelRatio || 1;
     metrics.cellSize = cell;
-    metrics.startX = cell * 0.75;
-    metrics.startY = cell * 0.75;
+    metrics.startX = cell * 0.80;
+    metrics.startY = cell * 0.80;
     metrics.displayW = dispW;
     metrics.displayH = dispH;
     metrics.dpr = dpr;
@@ -783,15 +783,17 @@
 
       // 상단 가로 좌표 (A, B, C, D...)
       var colLabels = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T'];
+      var topCoordY = Math.max(10, Math.round((startY - overhang) * 0.52));
       for (var cc = 0; cc < cols; cc++) {
         var lblX = startX + cell * cc;
-        ctx.fillText(colLabels[cc] || (cc + 1), lblX, startY - overhang - 8);
+        ctx.fillText(colLabels[cc] || (cc + 1), lblX, topCoordY);
       }
 
       // 좌측 세로 좌표 (1, 2, 3...)
+      var leftCoordX = Math.max(10, Math.round((startX - overhang) * 0.52));
       for (var rr = 0; rr < rows; rr++) {
         var lblY = startY + cell * rr;
-        ctx.fillText(rows - rr, startX - overhang - 10, lblY);
+        ctx.fillText(rows - rr, leftCoordX, lblY);
       }
     }
 
