@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>알까기 — 바둑스쿨</title>
-<link rel="stylesheet" href="style.css?v=1">
-<script src="../../js/site_lock.js?v=5"></script>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; media-src 'self'; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; worker-src 'none'">
+<link rel="stylesheet" href="style.css?v=static-68a173ca45abc653">
 </head>
 <body>
 <div class="alkkagi-wrap">
@@ -13,7 +13,11 @@
     <canvas id="alkkagiBoard"></canvas>
   </main>
   <div class="panel-col">
-<aside class="story-panel omok-panel alkkagi-panel" id="alkkagiSidePanel" class="story-panel omok-panel alkkagi-panel" >
+<aside class="story-panel omok-panel alkkagi-panel" id="alkkagiSidePanel">
+      <div class="alkkagi-header-row">
+        <h1 class="alkkagi-page-title">🎯 알까기</h1>
+        <a class="home-link" href="/#home">← 홈으로</a>
+      </div>
         <div class="card omok-mode-card">
           <div class="card-header-icon">🎯 알까기 대전 설정</div>
           <div class="omok-mode-options">
@@ -114,6 +118,7 @@
           <div class="current-turn-box">
             <span class="turn-pulse-dot" id="alkkagiTurnDot"></span>
             <span class="turn-desc-txt" id="alkkagiTurnText">⚫ 흑돌 차례입니다</span>
+            <a class="home-link" href="/#home">홈으로</a>
           </div>
           <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 6px; font-size: 0.82rem; font-weight: 800;">
             <span>⚫ 흑돌: <strong id="alkkagiBlackCount" style="color: #2563eb;">5개</strong></span>
@@ -143,9 +148,8 @@
   </div>
 </div>
 <div class="toast" id="toast" hidden></div>
-<script src="../../js/audio.js?v=15"></script>
-<script src="engine.js?v=1"></script>
-<script src="game.js?v=2"></script>
-<script src="../../js/game_home_btn.js?v=2"></script>
+<script src="audio.js?v=static-68a173ca45abc653"></script>
+<script src="engine.js?v=static-68a173ca45abc653"></script>
+<script src="game.js?v=static-68a173ca45abc653"></script>
 </body>
 </html>

@@ -99,12 +99,32 @@
       "sha256": "b4599fe160cd9821a2270412009b5befedb2123a4204334a20bdcb32ac130860"
     },
     "shell.js": {
-      "bytes": 7545,
-      "sha256": "64033f846e054c31816d941d53aeda834a88555ebe2db9d123bb601325a26b92"
+      "bytes": 7792,
+      "sha256": "d8368b424f2ab3e9cc7240e10d91822b63042e10d8e82697a9ec459a03651dfc"
     },
     "styles.css": {
       "bytes": 31775,
       "sha256": "a300a96872bb3c9479722c95857a5a977e9e21ea807cd3182ae5365132ff4fb4"
+    },
+    "games/alkkagi/audio.js": {
+      "bytes": 13069,
+      "sha256": "4d6b091e6c9aded29a3bfa6fc437d165210f4b5cd1d0bcb94296b693306f83a0"
+    },
+    "games/alkkagi/engine.js": {
+      "bytes": 39362,
+      "sha256": "2888dc5f64c1862e375bdeef93f77b06d6d9856b20b77316a9b3477707e6c1d8"
+    },
+    "games/alkkagi/game.js": {
+      "bytes": 8606,
+      "sha256": "ba8e561ef9c01290d75e7cff21f16c72bd0334690c91aec2a85091d14d9193bc"
+    },
+    "games/alkkagi/index.html": {
+      "bytes": 9313,
+      "sha256": "16a437536dcdeb19327d5b8a4c06a636ad57dc7f0dad0f164e158a5383ed3006"
+    },
+    "games/alkkagi/style.css": {
+      "bytes": 18117,
+      "sha256": "a754cfccf0627ffd804dbe7b9c5f3ddb353c7db8b01000b4af8f7eb05a659566"
     }
   }
 }

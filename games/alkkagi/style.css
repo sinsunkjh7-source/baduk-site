@@ -497,3 +497,11 @@ html, body { margin: 0; height: 100%; background: #F7FBF2; font-family: "Malgun 
 .ck-coach-card.active{border-color: #f59e0b;
   background: #fffbeb;}
 .master-coach-area{display: none !important;}
+
+
+/* Standalone navigation, no injected home-button script. */
+.home-link { color: #33682a; font-weight: 800; margin-left: auto; text-underline-offset: 3px; text-decoration: none; font-size: 0.9rem; }
+.home-link:hover { text-decoration: underline; color: #224c1a; }
+.home-link:focus-visible { outline: 2px solid #33682a; outline-offset: 3px; }
+.alkkagi-header-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; padding: 2px 4px; }
+.alkkagi-page-title { margin: 0; font-size: 1.15rem; font-weight: 900; color: #1e293b; }
