@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>바둑스쿨 · 히어로 모션 v2 (수읽기)</title>
+<style>
+  :root{
+    --bg0:#04100C; --bg1:#07190F; --bg2:#0A2116;
+    --ink:#F0F8F2; --ink2:#B2CCBD; --dim:#7FA391;
+    --green:#8FE2A0; --mint:#C9F5D6; --gold:#F2CB86;
+    --hair:rgba(150,215,175,.14);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    background:
+      radial-gradient(1100px 760px at 72% 48%, rgba(58,158,102,.16), transparent 66%),
+      radial-gradient(760px 520px at 4% 0%, rgba(242,203,134,.06), transparent 60%),
+      linear-gradient(160deg,var(--bg0),var(--bg1) 46%,var(--bg2));
+    color:var(--ink);
+    font-family:"Pretendard","Malgun Gothic","Apple SD Gothic Neo",system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased; overflow-x:hidden;
+  }
+  .brand{position:absolute;top:30px;left:clamp(22px,5vw,84px);z-index:5}
+  .brand img{height:38px;width:auto;filter:drop-shadow(0 2px 10px rgba(0,0,0,.45))}
+
+  .hero{position:relative;min-height:100vh;display:grid;
+    grid-template-columns:minmax(430px,45%) 1fr;align-items:center;
+    padding:96px clamp(22px,5vw,84px) 64px}
+  .copy{position:relative;z-index:3;max-width:552px}
+  .eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:12px;font-weight:800;
+    letter-spacing:.16em;text-transform:uppercase;color:var(--green);
+    padding:8px 15px;border-radius:999px;border:1px solid rgba(143,226,160,.24);
+    background:rgba(143,226,160,.05)}
+  .eyebrow i{width:5px;height:5px;border-radius:50%;background:var(--green);
+    box-shadow:0 0 10px var(--green);animation:bl 2.6s ease-in-out infinite}
+  @keyframes bl{0%,100%{opacity:1}50%{opacity:.28}}
+
+  h1{margin-top:26px;font-size:clamp(40px,4.5vw,64px);line-height:1.13;
+     letter-spacing:-.04em;font-weight:900;color:#F4FBF6}
+  h1 .accent{display:block;margin-top:4px;
+    background:linear-gradient(96deg,#D9FBE2,#8FE2A0 48%,#F2CB86);
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .sub{margin-top:22px;font-size:clamp(15px,1.18vw,17.5px);line-height:1.8;
+       color:var(--ink2);font-weight:450}
+  .sub b{color:#E6F6EB;font-weight:800}
+  .sub .hl{color:#D6F6DF;font-weight:800;border-bottom:1px solid rgba(143,226,160,.35);padding-bottom:1px}
+
+  .cta{display:flex;gap:13px;margin-top:36px;flex-wrap:wrap}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;height:58px;
+    padding:0 30px;border-radius:999px;border:0;cursor:pointer;font-family:inherit;
+    font-size:17.5px;font-weight:900;letter-spacing:-.01em;
+    transition:transform .18s cubic-bezier(.2,.7,.3,1),box-shadow .18s ease,background .18s ease}
+  .btn:hover{transform:translateY(-2px)}
+  .btn-primary{background:linear-gradient(180deg,#9DEBA9,#57BA6B);color:#04170E;
+    box-shadow:0 16px 38px rgba(78,181,100,.32),inset 0 1px 0 rgba(255,255,255,.55)}
+  .btn-ghost{background:rgba(255,255,255,.05);color:#E9F6ED;
+    border:1.5px solid rgba(178,224,193,.22);backdrop-filter:blur(8px)}
+  .btn:focus-visible{outline:2px solid var(--green);outline-offset:3px}
+
+  .marks{display:flex;margin-top:42px;padding-top:24px;border-top:1px solid var(--hair);flex-wrap:wrap}
+  .mark{padding-right:28px;margin-right:28px;border-right:1px solid var(--hair)}
+  .mark:last-child{border-right:0;margin-right:0;padding-right:0}
+  .mark b{display:block;font-size:17.5px;font-weight:900;color:#E7F6EC;letter-spacing:-.02em}
+  .mark span{display:block;margin-top:4px;font-size:12px;color:var(--dim)}
+
+  .visual{position:relative;height:min(76vh,720px);min-height:420px}
+  canvas{width:100%;height:100%;display:block}
+
+  .caption{position:absolute;left:0;right:0;bottom:26px;text-align:center;
+    font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:rgba(160,205,178,.55)}
+
+  @media (max-width:1080px){
+    .hero{grid-template-columns:1fr;padding:88px 24px 48px}
+    .visual{order:-1;height:42vh;min-height:300px}
+    .brand{top:20px;left:24px}
+    h1{font-size:clamp(31px,7vw,42px)}
+  }
+  @media (prefers-reduced-motion:reduce){ *{animation:none!important;transition:none!important} }
+</style>
+</head>
+<body>
+
+<div class="brand"><img src="../images/baduk_logo_final.png" alt="바둑스쿨"></div>
+
+<section class="hero">
+  <div class="copy">
+    <span class="eyebrow"><i></i>바둑으로 자라는 생각</span>
+    <h1>한 수 한 수,<span class="accent">두뇌가 자란다</span></h1>
+    <p class="sub">
+      바둑은 <b>계산</b>과 <b>직관</b>을 함께 쓰는 놀이입니다.
+      한 수를 두기 전에 <b>여러 갈래</b>를 그려 보는 힘이 사고력이 됩니다.
+      <span class="hl">매일 20분</span>의 수읽기가 아이를 바꿉니다.
+    </p>
+    <div class="cta">
+      <button class="btn btn-primary">▶ 바둑 시작하기</button>
+      <button class="btn btn-ghost">▣ 바둑 배우기</button>
+    </div>
+    <div class="marks">
+      <div class="mark"><b>집중력</b><span>한 수를 읽는 힘</span></div>
+      <div class="mark"><b>판단력</b><span>형세를 보는 눈</span></div>
+      <div class="mark"><b>인내심</b><span>끝까지 두는 마음</span></div>
+    </div>
+  </div>
+
+  <div class="visual"><canvas id="c" aria-label="돌 하나에서 갈래가 뻗어나가는 수읽기 그래픽"></canvas></div>
+</section>
+
+<div class="caption">한 수에서 시작되는 생각의 갈래</div>
+
+<script>
+(function () {
+  var cv = document.getElementById('c');
+  var ctx = cv.getContext('2d');
+  var DPR = 1;
+  var W = 0, H = 0, cx = 0, cy = 0, SCALE = 1;
+  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* 결정적 난수 */
+  var seed = 77717;
+  function rnd() {
+    seed |= 0; seed = seed + 0x6D2B79F5 | 0;
+    var t = Math.imul(seed ^ seed >>> 15, 1 | seed);
+    t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+    return ((t ^ t >>> 14) >>> 0) / 4294967296;
+  }
+
+  var LOOP = 9.0;      /* 한 주기(초) */
+  var tree = [];       /* 가지 */
+  var leaves = [];     /* 끝점(돌) */
+
+  function build() {
+    tree = []; leaves = [];
+    cx = W * 0.52; cy = H * 0.54;
+    SCALE = Math.min(W, H);
+
+    /* 뿌리 가지: 위·아래로 갈라지는 이진 트리 */
+    function grow(x, y, ang, len, depth, t0, parentIdx) {
+      var steps = 14;
+      var pts = [{ x: x, y: y }];
+      var a = ang, px = x, py = y;
+      for (var i = 1; i <= steps; i++) {
+        var bend = (rnd() - 0.5) * 0.05;
+        a += bend;
+        px += Math.cos(a) * (len / steps);
+        py += Math.sin(a) * (len / steps);
+        pts.push({ x: px, y: py });
+      }
+      var idx = tree.length;
+      tree.push({ pts: pts, depth: depth, t0: t0, dur: 0.75 + depth * 0.05, w: Math.max(1, 3.6 - depth * 0.55) });
+
+      if (depth >= 3) { leaves.push({ x: px, y: py, t: t0 + 0.75, depth: depth }); return; }
+
+      var spread = 0.44 + rnd() * 0.22;
+      var nt = t0 + 0.42 + rnd() * 0.18;
+      grow(px, py, a - spread, len * 0.70, depth + 1, nt, idx);
+      grow(px, py, a + spread * (0.8 + rnd() * 0.4), len * 0.66, depth + 1, nt + 0.06, idx);
+    }
+
+    grow(cx, cy + SCALE * 0.20, -Math.PI / 2, SCALE * 0.17, 0, 0.55, -1);
+  }
+
+  function resize() {
+    var b = cv.getBoundingClientRect();
+    W = b.width; H = b.height;
+    cv.width = Math.round(W * DPR); cv.height = Math.round(H * DPR);
+    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    seed = 77717;
+    build();
+  }
+
+  function ease(t) { return t < 0 ? 0 : t > 1 ? 1 : t * t * (3 - 2 * t); }
+
+  /* 한 프레임: t초 */
+  function render(t) {
+    ctx.clearRect(0, 0, W, H);
+    if (!tree.length) return;
+
+    var cyc = t % LOOP;
+    var fadeOut = cyc > LOOP - 1.1 ? 1 - (cyc - (LOOP - 1.1)) / 1.1 : 1;
+
+    /* 배경 판 (아주 옅은 격자 + 비네트) */
+    var g0 = ctx.createRadialGradient(cx, cy, 0, cx, cy, SCALE * 0.62);
+    g0.addColorStop(0, 'rgba(143,226,160,.10)');
+    g0.addColorStop(0.55, 'rgba(60,150,100,.045)');
+    g0.addColorStop(1, 'rgba(4,16,12,0)');
+    ctx.fillStyle = g0;
+    ctx.fillRect(0, 0, W, H);
+
+    var step = SCALE * 0.035;
+    ctx.save();
+    ctx.globalAlpha = 0.35;
+    ctx.strokeStyle = 'rgba(150,215,175,.10)';
+    ctx.lineWidth = 1;
+    for (var gx = cx - step * 9; gx <= cx + step * 9; gx += step) {
+      ctx.beginPath(); ctx.moveTo(gx, cy - step * 9); ctx.lineTo(gx, cy + step * 9); ctx.stroke();
+    }
+    for (var gy = cy - step * 9; gy <= cy + step * 9; gy += step) {
+      ctx.beginPath(); ctx.moveTo(cx - step * 9, gy); ctx.lineTo(cx + step * 9, gy); ctx.stroke();
+    }
+    ctx.restore();
+
+    /* 가지 그리기 (자라나는 애니메이션) */
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    tree.forEach(function (br) {
+      var p = ease((cyc - br.t0) / br.dur);
+      if (p <= 0) return;
+      var n = Math.max(1, Math.floor(br.pts.length * p));
+      var alpha = (0.30 + 0.45 * (1 - br.depth / 4)) * fadeOut;
+
+      var grad = ctx.createLinearGradient(br.pts[0].x, br.pts[0].y, br.pts[n - 1].x, br.pts[n - 1].y);
+      grad.addColorStop(0, 'rgba(201,245,214,' + alpha + ')');
+      grad.addColorStop(1, 'rgba(143,226,160,' + (alpha * 0.75) + ')');
+
+      ctx.beginPath();
+      ctx.moveTo(br.pts[0].x, br.pts[0].y);
+      for (var i = 1; i < n; i++) ctx.lineTo(br.pts[i].x, br.pts[i].y);
+      ctx.lineWidth = br.w;
+      ctx.strokeStyle = grad;
+      ctx.shadowColor = 'rgba(143,226,160,.35)';
+      ctx.shadowBlur = 10 - br.depth * 2;
+      ctx.stroke();
+      ctx.shadowBlur = 0;
+    });
+
+    /* 뿌리 돌 (한 개) */
+    var rootP = ease((cyc - 0.15) / 0.5);
+    if (rootP > 0 && cyc < LOOP - 0.4) {
+      var rr = SCALE * 0.021 * (0.8 + 0.2 * rootP);
+      ctx.beginPath();
+      ctx.arc(cx, cy + SCALE * 0.20, rr, 0, 6.283);
+      ctx.fillStyle = 'rgba(8,14,12,' + (0.95 * fadeOut) + ')';
+      ctx.fill();
+      ctx.lineWidth = 1.4;
+      ctx.strokeStyle = 'rgba(210,245,220,' + (0.45 * fadeOut) + ')';
+      ctx.stroke();
+
+      /* 착수 파동 */
+      var wave = (cyc - 0.15) / 1.6;
+      if (wave < 1) {
+        ctx.beginPath();
+        ctx.arc(cx, cy + SCALE * 0.20, rr + SCALE * 0.16 * ease(wave), 0, 6.283);
+        ctx.lineWidth = 1.2;
+        ctx.strokeStyle = 'rgba(201,245,214,' + (0.28 * (1 - wave)) + ')';
+        ctx.stroke();
+      }
+    }
+
+    /* 끝점: 작은 백돌 + 발광 */
+    leaves.forEach(function (lf, i) {
+      var p = ease((cyc - lf.t) / 0.55);
+      if (p <= 0) return;
+      var r = SCALE * 0.0075 * (0.6 + 0.4 * p);
+      ctx.beginPath();
+      ctx.arc(lf.x, lf.y, r, 0, 6.283);
+      ctx.fillStyle = 'rgba(240,252,244,' + (0.9 * p * fadeOut) + ')';
+      ctx.fill();
+
+      var g = ctx.createRadialGradient(lf.x, lf.y, 0, lf.x, lf.y, r * 6);
+      g.addColorStop(0, 'rgba(201,245,214,' + (0.30 * p * fadeOut) + ')');
+      g.addColorStop(1, 'rgba(201,245,214,0)');
+      ctx.fillStyle = g;
+      ctx.beginPath(); ctx.arc(lf.x, lf.y, r * 6, 0, 6.283); ctx.fill();
+    });
+
+    /* 정답 가지: 하나만 금색으로 밝아짐 */
+    var solver = tree[tree.length - 1];
+    if (solver) {
+      var sp = ease((cyc - 4.2) / 1.4);
+      if (sp > 0) {
+        ctx.beginPath();
+        ctx.moveTo(solver.pts[0].x, solver.pts[0].y);
+        for (var k = 1; k < solver.pts.length; k++) ctx.lineTo(solver.pts[k].x, solver.pts[k].y);
+        ctx.lineWidth = 2.4;
+        ctx.strokeStyle = 'rgba(242,203,134,' + (0.55 * sp * fadeOut) + ')';
+        ctx.shadowColor = 'rgba(242,203,134,.6)';
+        ctx.shadowBlur = 16;
+        ctx.stroke();
+        ctx.shadowBlur = 0;
+      }
+    }
+  }
+
+  /* ── 재생 / 캡처 모드 ── */
+  var mt = /[?&]t=([0-9.]+)/.exec(location.search);
+  resize();
+
+  if (mt) {
+    var target = parseFloat(mt[1]);
+    requestAnimationFrame(function () {
+      resize();
+      (function hold() { render(target); requestAnimationFrame(hold); })();
+      document.title = 'F|t=' + target + '|W=' + Math.round(W);
+    });
+  } else if (reduced) {
+    render(4.6);
+  } else {
+    var t0 = performance.now();
+    (function loop(now) {
+      render((now - t0) / 1000);
+      requestAnimationFrame(loop);
+    })(t0);
+  }
+
+  window.addEventListener('resize', function () {
+    var keep = mt ? parseFloat(mt[1]) : null;
+    resize();
+    if (keep !== null) render(keep);
+  });
+})();
+</script>
+</body>
+</html>
