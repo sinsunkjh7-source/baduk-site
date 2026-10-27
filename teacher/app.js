@@ -38,10 +38,10 @@
     trialMoves: [],             // [{x, y, color, step}]
     historyStack: [],           // [boardCopy]
     historyIndex: -1,
-    showAtari: true,            // 🚨 단수 링 (기본 ON)
-    showSweat: true,            // 💦 3D 땀방울 (기본 ON)
-    coordMode: 'right-bottom',  // 🔤 좌표 회전 모드: 'right-bottom'(우측·하단) | 'left-top'(좌·상) | 'all-four'(전체) | 'none'(숨김)
-    showStepNumbers: false,     // 🔢 수순 번호
+    showAtari: localStorage.getItem('teacher_show_atari') !== null ? (localStorage.getItem('teacher_show_atari') === 'true') : true,
+    showSweat: localStorage.getItem('teacher_show_sweat') !== null ? (localStorage.getItem('teacher_show_sweat') === 'true') : true,
+    coordMode: localStorage.getItem('teacher_coord_mode') || 'right-bottom',
+    showStepNumbers: localStorage.getItem('teacher_show_step_numbers') === 'true',
 
     // 🌟 원장님 4대 환경설정 (바탕화면, 바둑판, 바둑알, 음량) 🌟
     theme: localStorage.getItem('teacher_theme') || 'theme-green',
@@ -180,6 +180,7 @@
       });
   }
 
+  // 🌟 마지막 선택한 교육 시리즈/교재/단원/문제 영구 보존 및 복원 🌟
   function populateSeries() {
     seriesSelect.innerHTML = '';
     state.catalog.forEach(function (sec, idx) {
@@ -188,37 +189,57 @@
       opt.textContent = (idx + 1) + '. ' + sec.title + ' (' + (sec.books ? sec.books.length : 0) + '권)';
       seriesSelect.appendChild(opt);
     });
-    seriesSelect.value = 0;
-    onSeriesChange();
+
+    var savedSeries = localStorage.getItem('teacher_last_series');
+    var seriesIdx = 0;
+    if (savedSeries !== null) {
+      var parsed = parseInt(savedSeries, 10);
+      if (!isNaN(parsed) && parsed >= 0 && parsed < state.catalog.length) {
+        seriesIdx = parsed;
+      }
+    }
+    seriesSelect.value = seriesIdx;
+    onSeriesChange(true);
   }
 
-  function onSeriesChange() {
+  function onSeriesChange(isRestoring) {
     var secIdx = parseInt(seriesSelect.value, 10);
     state.currentSeriesIndex = secIdx;
+    localStorage.setItem('teacher_last_series', secIdx.toString());
+
     var sec = state.catalog[secIdx];
     bookSelect.innerHTML = '';
     if (!sec || !sec.books) return;
 
-    sec.books.forEach(function (b, bIdx) {
+    sec.books.forEach(function (b) {
       var opt = document.createElement('option');
       opt.value = b.code;
       opt.textContent = b.title + ' (' + (b.totalProblems || 0) + '제)';
       bookSelect.appendChild(opt);
     });
 
-    if (sec.books.length > 0) {
-      bookSelect.value = sec.books[0].code;
-      loadBook(sec.books[0].code);
+    var targetBookCode = sec.books[0] ? sec.books[0].code : null;
+    if (isRestoring) {
+      var savedBook = localStorage.getItem('teacher_last_book');
+      if (savedBook && sec.books.some(function (b) { return b.code === savedBook; })) {
+        targetBookCode = savedBook;
+      }
+    }
+
+    if (targetBookCode) {
+      bookSelect.value = targetBookCode;
+      loadBook(targetBookCode, isRestoring);
     }
   }
 
-  function loadBook(code) {
+  function loadBook(code, isRestoring) {
+    localStorage.setItem('teacher_last_book', code);
     fetch('data/books/book_' + code + '.json')
       .then(function (res) { return res.json(); })
       .then(function (bookData) {
         state.currentBook = bookData;
         currentBookTitle.textContent = bookData.book || bookData.title || ('교재 ' + code);
-        populateChapters(bookData);
+        populateChapters(bookData, isRestoring);
       })
       .catch(function (err) {
         console.error('Failed to load book_' + code + '.json:', err);
@@ -226,7 +247,7 @@
       });
   }
 
-  function populateChapters(bookData) {
+  function populateChapters(bookData, isRestoring) {
     chapterSelect.innerHTML = '';
     var chapters = bookData.chapters || [];
     chapters.forEach(function (ch, idx) {
@@ -235,23 +256,47 @@
       opt.textContent = ch.chapter || ch.title || ('제 ' + (idx + 1) + '단원');
       chapterSelect.appendChild(opt);
     });
-    chapterSelect.value = 0;
-    onChapterChange();
+
+    var targetChIdx = 0;
+    if (isRestoring) {
+      var savedCh = localStorage.getItem('teacher_last_chapter');
+      if (savedCh !== null) {
+        var parsedCh = parseInt(savedCh, 10);
+        if (!isNaN(parsedCh) && parsedCh >= 0 && parsedCh < chapters.length) {
+          targetChIdx = parsedCh;
+        }
+      }
+    }
+    chapterSelect.value = targetChIdx;
+    onChapterChange(isRestoring);
   }
 
-  function onChapterChange() {
+  function onChapterChange(isRestoring) {
     var chIdx = parseInt(chapterSelect.value, 10);
     state.currentChapterIndex = chIdx;
+    localStorage.setItem('teacher_last_chapter', chIdx.toString());
+
     var chapters = state.currentBook ? state.currentBook.chapters : [];
     var ch = chapters[chIdx];
     if (!ch) return;
 
     currentChapterTitle.textContent = '— ' + (ch.chapter || ch.title || '');
     state.currentProblems = ch.problems || [];
-    state.currentProblemIndex = 0;
 
+    var targetProblemIdx = 0;
+    if (isRestoring) {
+      var savedProb = localStorage.getItem('teacher_last_problem');
+      if (savedProb !== null) {
+        var parsedProb = parseInt(savedProb, 10);
+        if (!isNaN(parsedProb) && parsedProb >= 0 && parsedProb < state.currentProblems.length) {
+          targetProblemIdx = parsedProb;
+        }
+      }
+    }
+
+    state.currentProblemIndex = targetProblemIdx;
     renderProblemGrid();
-    loadProblem(0);
+    loadProblem(targetProblemIdx);
   }
 
   function renderProblemGrid() {
@@ -383,6 +428,7 @@
   function loadProblem(idx) {
     if (idx < 0 || idx >= state.currentProblems.length) return;
     state.currentProblemIndex = idx;
+    localStorage.setItem('teacher_last_problem', idx.toString());
     state.showAnswer = false;
     state.solved = false;
     hintBox.hidden = true;
@@ -1278,11 +1324,9 @@
     if (e.key === 'Enter') submitPin();
   });
 
-  seriesSelect.addEventListener('change', onSeriesChange);
-  bookSelect.addEventListener('change', function () {
-    loadBook(bookSelect.value);
-  });
-  chapterSelect.addEventListener('change', onChapterChange);
+  seriesSelect.addEventListener('change', function () { onSeriesChange(false); });
+  bookSelect.addEventListener('change', function () { loadBook(bookSelect.value, false); });
+  chapterSelect.addEventListener('change', function () { onChapterChange(false); });
 
   document.getElementById('btnPrevProblem').addEventListener('click', function () {
     if (state.currentProblemIndex > 0) loadProblem(state.currentProblemIndex - 1);
@@ -1449,12 +1493,13 @@
       });
     }
 
-    // 4. 시각 보조 도구 (단수, 땀방울, 좌표, 수순)
+    // 4. 시각 보조 도구 (단수, 땀방울, 좌표, 수순 영구 보존)
     var btnToggleAtari = document.getElementById('btnToggleAtari');
     if (btnToggleAtari) {
       btnToggleAtari.classList.toggle('active', state.showAtari);
       btnToggleAtari.addEventListener('click', function () {
         state.showAtari = !state.showAtari;
+        localStorage.setItem('teacher_show_atari', state.showAtari.toString());
         btnToggleAtari.classList.toggle('active', state.showAtari);
         drawBoard();
       });
@@ -1465,6 +1510,7 @@
       btnToggleSweat.classList.toggle('active', state.showSweat);
       btnToggleSweat.addEventListener('click', function () {
         state.showSweat = !state.showSweat;
+        localStorage.setItem('teacher_show_sweat', state.showSweat.toString());
         btnToggleSweat.classList.toggle('active', state.showSweat);
         drawBoard();
       });
@@ -1484,6 +1530,7 @@
       btnToggleCoords.addEventListener('click', function () {
         var cIdx = coordModes.indexOf(state.coordMode);
         state.coordMode = coordModes[(cIdx + 1) % coordModes.length];
+        localStorage.setItem('teacher_coord_mode', state.coordMode);
         btnToggleCoords.innerHTML = coordLabels[state.coordMode];
         btnToggleCoords.classList.toggle('active', state.coordMode !== 'none');
         toast('좌표 모드: ' + coordLabels[state.coordMode].replace('🔤 ', ''));
@@ -1496,6 +1543,7 @@
       btnToggleNumbers.classList.toggle('active', state.showStepNumbers);
       btnToggleNumbers.addEventListener('click', function () {
         state.showStepNumbers = !state.showStepNumbers;
+        localStorage.setItem('teacher_show_step_numbers', state.showStepNumbers.toString());
         btnToggleNumbers.classList.toggle('active', state.showStepNumbers);
         drawBoard();
       });
@@ -1588,6 +1636,7 @@
           drawBoard();
         } else if (settingType === 'soundType') {
           state.soundType = val;
+          localStorage.setItem('baduk_audio_type', val);
           if (window.badukAudio) {
             window.badukAudio.setSoundType(val);
             window.badukAudio.playStone(); // 미리듣기
@@ -1607,6 +1656,7 @@
         if (volLabel) volLabel.textContent = pct + '%';
         var val = pct / 100;
         state.volume = val;
+        localStorage.setItem('baduk_audio_volume', val.toString());
         if (window.badukAudio) window.badukAudio.setVolume(val);
       });
 
