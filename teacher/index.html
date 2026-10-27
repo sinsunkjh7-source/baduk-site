@@ -7,7 +7,7 @@
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
 <title>🔒 강사 모드 — 바둑스쿨 교재 사령탑</title>
-<link rel="stylesheet" href="style.css?v=teacher-panel-v11">
+<link rel="stylesheet" href="style.css?v=teacher-panel-v12">
 </head>
 <body>
 
@@ -42,7 +42,6 @@
         <button type="button" id="btnOpenSettings" class="btn-tool" title="환경설정 (바탕화면, 바둑판, 바둑알, 음량)">
           <span>⚙️</span> 환경설정
         </button>
-      <button type="button" id="btnToggleFree" class="btn-tool" title="자유롭게 돌을 놓아볼 수 있는 모드">✏️ 자유 시연 모드: <span id="freeModeStatus">OFF</span></button>
       <button type="button" id="btnFullscreen" class="btn-tool" title="빔프로젝터/대형화면용 전체화면">⛶ 전체화면</button>
       <button type="button" id="btnLockOut" class="btn-tool danger">🔒 잠그고 나가기</button>
       <a href="/#home" class="btn-tool home">← 홈으로</a>
@@ -199,13 +198,17 @@
             <span class="stone-icon-pair">⚫⚪</span>
             <span>정통 명품돌</span>
           </button>
-          <button type="button" class="opt-card" data-val="gem">
-            <span class="stone-icon-pair">💎💖</span>
-            <span>영롱한 보석돌</span>
+          <button type="button" class="opt-card" data-val="cat">
+            <span class="stone-icon-pair">🐱🐾</span>
+            <span>고양이</span>
           </button>
-          <button type="button" class="opt-card" data-val="cute">
-            <span class="stone-icon-pair">🐱✨</span>
-            <span>앙증 요정돌</span>
+          <button type="button" class="opt-card" data-val="galaxy">
+            <span class="stone-icon-pair">🌌✨</span>
+            <span>우주</span>
+          </button>
+          <button type="button" class="opt-card" data-val="crystal">
+            <span class="stone-icon-pair">💎🤍</span>
+            <span>흑백 다이아몬드</span>
           </button>
         </div>
       </section>
@@ -245,7 +248,7 @@
 <!-- 정답 / 오답 알림 토스트 -->
 <div id="teacherToast" class="teacher-toast" hidden></div>
 
-<script src="audio.js?v=teacher-panel-v11"></script>
-<script src="app.js?v=teacher-panel-v11"></script>
+<script src="audio.js?v=teacher-panel-v12"></script>
+<script src="app.js?v=teacher-panel-v12"></script>
 </body>
 </html>

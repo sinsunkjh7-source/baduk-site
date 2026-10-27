@@ -545,9 +545,11 @@ html, body {
   grid-template-columns: repeat(2, 1fr);
   gap: 5px;
 }
-[data-setting="boardSkin"].settings-options,
-[data-setting="stoneStyle"].settings-options {
+[data-setting="boardSkin"].settings-options {
   grid-template-columns: repeat(3, 1fr);
+}
+[data-setting="stoneStyle"].settings-options {
+  grid-template-columns: repeat(2, 1fr);
 }
 .opt-card {
   background: #f8fbf4;
