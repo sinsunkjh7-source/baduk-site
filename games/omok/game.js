@@ -18,6 +18,7 @@
     difficulty: 'normal',
     humanColor: BLACK,    // AI 대전에서 내 돌
     ban33: true,          // 흑 3·3 금수
+    ban33White: false,    // 백 3·3 금수
     undoAllowed: true,
     aiColor: WHITE,
     over: false,
@@ -56,7 +57,8 @@
   function layout() {
     var box = boardBox.getBoundingClientRect();
     var avail = Math.min(box.width - 20, box.height - 20);
-    avail = Math.max(280, Math.min(avail, 980));   /* 화면이 크면 더 크게 */
+    avail = Math.max(340, Math.min(avail, 1020));  /* 30% 확대 및 대화면 최적화 */
+    if (window.innerWidth < 360) avail = window.innerWidth - 16;
 
     var dpr = window.devicePixelRatio || 1;
     var pad = Math.round(avail * 0.045);
@@ -213,6 +215,18 @@
     showResult((color === BLACK ? '흑' : '백') + ' 승리!');
   }
 
+  function isBannedMove(x, y, color) {
+    if (!ai) return false;
+    var banned = (color === BLACK && state.ban33) || (color === WHITE && state.ban33White);
+    if (!banned) return false;
+    try {
+      var pat = ai.analyzePointPatterns(state.board, x, y, color);
+      return pat && pat.openThree >= 2;
+    } catch (e) {
+      return false;
+    }
+  }
+
   function humanMove(x, y) {
     if (state.over || state.aiThinking) return;
     if (state.mode === 'ai' && state.turn !== state.humanColor) return;
@@ -220,12 +234,12 @@
 
     var color = state.turn;
 
-    /* 흑 3·3 금수 */
-    if (color === BLACK && state.ban33 && ai) {
-      try {
-        var pat = ai.analyzePointPatterns(state.board, x, y, BLACK);
-        if (pat && pat.openThree >= 2) { sfx('playDdang'); toast('🚫 흑은 3·3 금수입니다'); return; }
-      } catch (e) { /* 엔진 미지원 시 통과 */ }
+    /* 3·3 금수 검사 (흑/백 개별 규칙 적용) */
+    if (isBannedMove(x, y, color)) {
+      sfx('playDdang');
+      var name = (color === BLACK ? '흑' : '백');
+      toast('🚫 ' + name + '은 3·3 금수입니다');
+      return;
     }
 
     if (!place(x, y, color)) return;
@@ -260,7 +274,10 @@
       aiTimer = null;
       var move = null;
       try {
-        move = ai.findBestMove(state.board, state.aiColor, state.difficulty);
+        move = ai.findBestMove(state.board, state.aiColor, state.difficulty, {
+          ban33: state.ban33,
+          ban33White: state.ban33White
+        });
       } catch (e) {
         move = null;
       }
@@ -280,6 +297,11 @@
   }
 
   function pickEmpty() {
+    for (var y = 0; y < SIZE; y++) {
+      for (var x = 0; x < SIZE; x++) {
+        if (!state.board[y][x] && !isBannedMove(x, y, state.aiColor)) return { x: x, y: y };
+      }
+    }
     for (var y = 0; y < SIZE; y++) {
       for (var x = 0; x < SIZE; x++) {
         if (!state.board[y][x]) return { x: x, y: y };
@@ -366,6 +388,12 @@
   document.getElementById('optBan33').addEventListener('change', function (e) {
     state.ban33 = e.target.checked;
   });
+  var optBan33WhiteEl = document.getElementById('optBan33White');
+  if (optBan33WhiteEl) {
+    optBan33WhiteEl.addEventListener('change', function (e) {
+      state.ban33White = e.target.checked;
+    });
+  }
 
   document.getElementById('diffSeg').addEventListener('click', function (e) {
     var btn = e.target.closest('.seg-btn');

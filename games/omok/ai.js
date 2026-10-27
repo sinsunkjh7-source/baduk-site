@@ -27,12 +27,18 @@ class GomokuAI {
     };
   }
 
+  isBanned33(color, rules = {}) {
+    if (color === 1) return rules.ban33 !== undefined ? !!rules.ban33 : true;
+    if (color === 2) return !!rules.ban33White;
+    return false;
+  }
+
   // 🌟 최선의 착점 계산
-  findBestMove(board, aiColor, difficulty = 'hard') {
+  findBestMove(board, aiColor, difficulty = 'hard', rules = {}) {
     // 🛡️ 원본 바둑판 보존을 위해 완전 독립 복사본 생성
     const boardCopy = board.map(row => [...row]);
     const oppColor = aiColor === 1 ? 2 : 1;
-    const candidates = this.getCandidates(boardCopy, 2);
+    let candidates = this.getCandidates(boardCopy, 2);
 
     if (candidates.length === 0) {
       const center = Math.floor(this.boardSize / 2);
@@ -40,17 +46,29 @@ class GomokuAI {
     }
     if (candidates.length === 1) return candidates[0];
 
+    // AI에게 3·3 금수가 켜져 있으면 착수 금지 자리 필터링
+    if (this.isBanned33(aiColor, rules)) {
+      const legalCandidates = candidates.filter(pos => {
+        if (this.isFive(boardCopy, pos.x, pos.y, aiColor)) return true;
+        const pat = this.analyzePointPatterns(boardCopy, pos.x, pos.y, aiColor);
+        return pat.openThree < 2;
+      });
+      if (legalCandidates.length > 0) {
+        candidates = legalCandidates;
+      }
+    }
+
     let move;
     // 👑 [마스터 / 최강 난이도]
     if (difficulty === 'master' || difficulty === 'god') {
-      move = this.searchGrandmaster(boardCopy, aiColor, oppColor, candidates);
+      move = this.searchGrandmaster(boardCopy, aiColor, oppColor, candidates, rules);
     } else if (difficulty === 'hard') {
-      move = this.searchHeuristicDeep(boardCopy, aiColor, oppColor, candidates, 1.4);
+      move = this.searchHeuristicDeep(boardCopy, aiColor, oppColor, candidates, 1.4, rules);
     } else if (difficulty === 'normal') {
-      move = this.searchHeuristic(boardCopy, aiColor, oppColor, candidates, 1.1, 0.05);
+      move = this.searchHeuristic(boardCopy, aiColor, oppColor, candidates, 1.1, 0.05, rules);
     } else {
       // easy (초급: 35% 실수 및 낮은 수비 가중치)
-      move = this.searchHeuristic(boardCopy, aiColor, oppColor, candidates, 0.7, 0.35);
+      move = this.searchHeuristic(boardCopy, aiColor, oppColor, candidates, 0.7, 0.35, rules);
     }
 
     // 🛡️ 최종 착점 안전 검증: 이미 돌이 놓여진 자리 착수 방지
@@ -68,7 +86,7 @@ class GomokuAI {
   }
 
   // 👑 [최강 마스터] 9단계 계층형 결정 + VCF 외통수 + Alpha-Beta 탐색
-  searchGrandmaster(board, aiColor, oppColor, candidates) {
+  searchGrandmaster(board, aiColor, oppColor, candidates, rules = {}) {
     // 1단계: AI 즉시 5목 승리
     for (const pos of candidates) {
       if (this.isFive(board, pos.x, pos.y, aiColor)) return pos;
@@ -102,8 +120,8 @@ class GomokuAI {
       const myPat = this.analyzePointPatterns(board, pos.x, pos.y, aiColor);
       if (myPat.blockedFour >= 1 && myPat.openThree >= 1) return pos; // 4-3 공격
       if (myPat.openThree >= 2) {
-        if (aiColor === 1) continue; // 흑돌(선공)일 때는 3-3 금수 규칙 준수
-        return pos; // 백돌일 때는 쌍삼 자유 공격
+        if (this.isBanned33(aiColor, rules)) continue; // 3-3 금수 준수
+        return pos; // 금수가 아닐 때만 쌍삼 공격
       }
     }
 
@@ -111,8 +129,12 @@ class GomokuAI {
     const oppDoubleThreats = [];
     for (const pos of candidates) {
       const oppPat = this.analyzePointPatterns(board, pos.x, pos.y, oppColor);
-      if ((oppPat.blockedFour >= 1 && oppPat.openThree >= 1) || oppPat.openThree >= 2) {
+      if (oppPat.blockedFour >= 1 && oppPat.openThree >= 1) {
         oppDoubleThreats.push(pos);
+      } else if (oppPat.openThree >= 2) {
+        if (!this.isBanned33(oppColor, rules)) {
+          oppDoubleThreats.push(pos);
+        }
       }
     }
     if (oppDoubleThreats.length > 0) {
@@ -308,7 +330,7 @@ class GomokuAI {
   }
 
   // 🎯 [고급 난이도] 패턴 복합 탐지 휴리스틱 (4-3 / 쌍삼 공격 & 철통 방어)
-  searchHeuristicDeep(board, aiColor, oppColor, candidates, defenseWeight = 1.3) {
+  searchHeuristicDeep(board, aiColor, oppColor, candidates, defenseWeight = 1.3, rules = {}) {
     // 1. 5목 즉시 승리
     for (const pos of candidates) {
       if (this.isFive(board, pos.x, pos.y, aiColor)) return pos;
@@ -334,13 +356,15 @@ class GomokuAI {
     // 5. 상대 쌍삼 차단
     for (const pos of candidates) {
       const oppPat = this.analyzePointPatterns(board, pos.x, pos.y, oppColor);
-      if (oppPat.openThree >= 2) return pos;
+      if (oppPat.openThree >= 2) {
+        if (!this.isBanned33(oppColor, rules)) return pos;
+      }
     }
 
-    return this.searchHeuristic(board, aiColor, oppColor, candidates, defenseWeight, 0.0);
+    return this.searchHeuristic(board, aiColor, oppColor, candidates, defenseWeight, 0.0, rules);
   }
 
-  searchHeuristic(board, aiColor, oppColor, candidates, defenseWeight, randomness) {
+  searchHeuristic(board, aiColor, oppColor, candidates, defenseWeight, randomness, rules = {}) {
     for (const pos of candidates) {
       if (this.isFive(board, pos.x, pos.y, aiColor)) return pos;
     }
@@ -351,9 +375,12 @@ class GomokuAI {
     let bestScore = -Infinity;
     let bestMoves = [];
 
+    const aiBanned = this.isBanned33(aiColor, rules);
+    const oppBanned = this.isBanned33(oppColor, rules);
+
     for (const pos of candidates) {
-      const attackScore = this.evaluatePoint(board, pos.x, pos.y, aiColor);
-      const defenseScore = this.evaluatePoint(board, pos.x, pos.y, oppColor);
+      const attackScore = this.evaluatePoint(board, pos.x, pos.y, aiColor, aiBanned);
+      const defenseScore = this.evaluatePoint(board, pos.x, pos.y, oppColor, oppBanned);
 
       let totalScore = attackScore + (defenseScore * defenseWeight);
       const center = (this.boardSize - 1) / 2;
@@ -459,13 +486,16 @@ class GomokuAI {
     return { five, openFour, blockedFour, openThree, blockedThree, openTwo };
   }
 
-  evaluatePoint(board, x, y, color) {
+  evaluatePoint(board, x, y, color, isBanned = false) {
     const pat = this.analyzePointPatterns(board, x, y, color);
     if (pat.five > 0) return this.SCORE.WIN_FIVE;
     if (pat.openFour > 0) return this.SCORE.OPEN_FOUR;
     if (pat.blockedFour >= 2) return this.SCORE.DOUBLE_FOUR;
     if (pat.blockedFour >= 1 && pat.openThree >= 1) return this.SCORE.FOUR_THREE;
-    if (pat.openThree >= 2) return this.SCORE.DOUBLE_THREE;
+    if (pat.openThree >= 2) {
+      if (isBanned) return -100000000;
+      return this.SCORE.DOUBLE_THREE;
+    }
 
     let score = 0;
     score += pat.blockedFour * this.SCORE.BLOCKED_FOUR;

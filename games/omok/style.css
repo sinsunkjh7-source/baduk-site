@@ -194,3 +194,5 @@ html, body {
 /* Standalone navigation, no injected home-button script. */
 .home-link { color: #33682a; font-weight: 800; margin-left: 8px; text-underline-offset: 3px; }
 .home-link:focus-visible { outline: 2px solid #33682a; outline-offset: 3px; }
+
+.tips-sub { margin-top: 6px; font-size: 12px; color: #7d8a72; }
