@@ -1468,20 +1468,47 @@
 
     applyTheme(state.theme);
 
-    // 열기
+    // 열기 및 닫기 토글 제어
+    function openModal() {
+      syncModalUI();
+      modal.hidden = false;
+      if (btnOpen) btnOpen.classList.add('active');
+    }
+    function closeModal() {
+      modal.hidden = true;
+      if (btnOpen) btnOpen.classList.remove('active');
+    }
+
     if (btnOpen) {
-      btnOpen.addEventListener('click', function () {
-        syncModalUI();
-        modal.hidden = false;
+      btnOpen.addEventListener('click', function (e) {
+        e.stopPropagation();
+        if (modal.hidden) {
+          openModal();
+        } else {
+          closeModal();
+        }
       });
     }
 
-    // 닫기
-    function closeModal() {
-      modal.hidden = true;
-    }
     if (btnClose) btnClose.addEventListener('click', closeModal);
     if (btnSave) btnSave.addEventListener('click', closeModal);
+
+    // ESC 키로 닫기
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !modal.hidden) {
+        closeModal();
+      }
+    });
+
+    // 바깥 클릭 시 닫기 (메인 화면 및 바둑판 조작 방해 없이 패널 외부 클릭 시 자연스럽게 닫힘)
+    document.addEventListener('pointerdown', function (e) {
+      if (!modal.hidden) {
+        var dialog = modal.querySelector('.settings-dialog');
+        if (dialog && !dialog.contains(e.target) && !btnOpen.contains(e.target)) {
+          closeModal();
+        }
+      }
+    });
 
     // 바탕화면 / 바둑판 / 바둑알 옵션 카드 클릭
     document.querySelectorAll('.settings-options .opt-card').forEach(function (card) {
