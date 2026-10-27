@@ -79,16 +79,16 @@
       "sha256": "4d6b091e6c9aded29a3bfa6fc437d165210f4b5cd1d0bcb94296b693306f83a0"
     },
     "games/omok/game.js": {
-      "bytes": 16187,
-      "sha256": "bcaffacd4d9108483f1f48eda673cc63966343b9fc0949b6e6562d18d987ca58"
+      "bytes": 19036,
+      "sha256": "1089699a396fcd18779479cabc96c626cf2e68771bfb1e8f8af40650b3527f05"
     },
     "games/omok/index.html": {
       "bytes": 3520,
-      "sha256": "d51acf49defb16dc111476b1775816a7a588f5b8c11b48a5fd71977dc55e2209"
+      "sha256": "43aab6dd4491915e3c8004c6b42266501f2b7aa4e0beb2afe1ad914d4525a88a"
     },
     "games/omok/style.css": {
-      "bytes": 4638,
-      "sha256": "403fd822075407d5983e895bd8eaccdb711fcb2083fd221263cef8a030284b09"
+      "bytes": 4736,
+      "sha256": "39423c63c28d5e7246e0fa9b54b99339e64bb145f07c84523189c1a0059b68dc"
     },
     "index.html": {
       "bytes": 10331,
@@ -100,7 +100,7 @@
     },
     "shell.js": {
       "bytes": 7786,
-      "sha256": "5f3e71240451ccf2cb45b098bc43aa015e1389ea316e627af31387279044bfd0"
+      "sha256": "e668a4c871952f39fdc5003607b89d1d902dd55af33bb12c023e0554c9fda2dc"
     },
     "styles.css": {
       "bytes": 31775,

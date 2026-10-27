@@ -23,7 +23,8 @@
     aiColor: WHITE,
     over: false,
     aiThinking: false,
-    last: null
+    last: null,
+    winLine: null
   };
 
   var ai = (typeof GomokuAI !== 'undefined') ? new GomokuAI(SIZE) : null;
@@ -128,6 +129,71 @@
       ctx.lineWidth = Math.max(2, s / 240);
       ctx.stroke();
     }
+
+    // 🏆 5목 승리 라인 및 마커 표시
+    if (state.winLine) {
+      drawWinningLine(state.winLine);
+    }
+  }
+
+  function drawWinningLine(winLine) {
+    if (!winLine || !winLine.start || !winLine.end) return;
+    var p1x = pos(winLine.start.x);
+    var p1y = pos(winLine.start.y);
+    var p2x = pos(winLine.end.x);
+    var p2y = pos(winLine.end.y);
+
+    var angle = Math.atan2(p2y - p1y, p2x - p1x);
+    var extend = metrics.cell * 0.42;
+    var x1 = p1x - Math.cos(angle) * extend;
+    var y1 = p1y - Math.sin(angle) * extend;
+    var x2 = p2x + Math.cos(angle) * extend;
+    var y2 = p2y + Math.sin(angle) * extend;
+
+    var dpr = metrics.dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.save();
+    ctx.lineCap = 'round';
+
+    // 1. 외곽 부드러운 붉은 글로우 라인
+    ctx.beginPath();
+    ctx.moveTo(x1, y1);
+    ctx.lineTo(x2, y2);
+    ctx.strokeStyle = 'rgba(239, 68, 68, 0.45)';
+    ctx.lineWidth = Math.max(8, metrics.cell * 0.28);
+    ctx.stroke();
+
+    // 2. 메인 승리선
+    ctx.beginPath();
+    ctx.moveTo(x1, y1);
+    ctx.lineTo(x2, y2);
+    ctx.strokeStyle = '#EF4444';
+    ctx.lineWidth = Math.max(4, metrics.cell * 0.13);
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.35)';
+    ctx.shadowBlur = 6;
+    ctx.stroke();
+
+    // 3. 5목 각 돌 중심에 빛나는 승리 링과 포인트 마커
+    var stones = winLine.stones || [];
+    var r = metrics.cell * 0.44;
+    for (var i = 0; i < stones.length; i++) {
+      var sx = pos(stones[i].x);
+      var sy = pos(stones[i].y);
+
+      // 화이트 링
+      ctx.beginPath();
+      ctx.arc(sx, sy, r * 0.52, 0, Math.PI * 2);
+      ctx.strokeStyle = '#FFFFFF';
+      ctx.lineWidth = Math.max(2.5, metrics.cell * 0.08);
+      ctx.stroke();
+
+      // 레드 센터 점
+      ctx.beginPath();
+      ctx.arc(sx, sy, r * 0.28, 0, Math.PI * 2);
+      ctx.fillStyle = '#EF4444';
+      ctx.fill();
+    }
+    ctx.restore();
   }
 
   function drawStone(cx, cy, r, color) {
@@ -191,28 +257,48 @@
     return true;
   }
 
-  function checkWin(x, y, color) {
+  function getWinningLine(x, y, color) {
     var dirs = [[1, 0], [0, 1], [1, 1], [1, -1]];
     for (var d = 0; d < dirs.length; d++) {
-      var dx = dirs[d][0], dy = dirs[d][1], n = 1;
-      for (var sign = -1; sign <= 1; sign += 2) {
-        var k = 1;
-        while (inRange(x + dx * k * sign, y + dy * k * sign) &&
-               state.board[y + dy * k * sign][x + dx * k * sign] === color) {
-          n++; k++;
-        }
+      var dx = dirs[d][0], dy = dirs[d][1];
+      var stones = [{ x: x, y: y }];
+      var k = 1;
+      while (inRange(x + dx * k, y + dy * k) && state.board[y + dy * k][x + dx * k] === color) {
+        stones.push({ x: x + dx * k, y: y + dy * k });
+        k++;
       }
-      if (n >= 5) return true;
+      k = 1;
+      while (inRange(x - dx * k, y - dy * k) && state.board[y - dy * k][x - dx * k] === color) {
+        stones.unshift({ x: x - dx * k, y: y - dy * k });
+        k++;
+      }
+      if (stones.length >= 5) {
+        return {
+          start: stones[0],
+          end: stones[stones.length - 1],
+          stones: stones,
+          dir: [dx, dy]
+        };
+      }
     }
-    return false;
+    return null;
   }
 
-  function endGame(color) {
+  function checkWin(x, y, color) {
+    return !!getWinningLine(x, y, color);
+  }
+
+  var resultTimer = null;
+  function endGame(color, winLine) {
     sfx('playSuccess');
     state.over = true;
     state.aiThinking = false;
+    state.winLine = winLine || getWinningLine(state.last ? state.last.x : 0, state.last ? state.last.y : 0, color);
     refreshUI();
-    showResult((color === BLACK ? '흑' : '백') + ' 승리!');
+    clearTimeout(resultTimer);
+    resultTimer = setTimeout(function () {
+      showResult((color === BLACK ? '흑' : '백') + ' 승리!');
+    }, 550);
   }
 
   /* ---------- 전체 판 열린 3 (활삼) 정밀 판정 엔진 ---------- */
@@ -320,7 +406,8 @@
 
     if (!place(x, y, color)) return;
     sfx('playStone');
-    if (checkWin(x, y, color)) { endGame(color); return; }
+    var wLine = getWinningLine(x, y, color);
+    if (wLine) { endGame(color, wLine); return; }
 
     state.turn = color === BLACK ? WHITE : BLACK;
     refreshUI();
@@ -366,7 +453,8 @@
       sfx('playStone');
       state.aiThinking = false;
 
-      if (checkWin(move.x, move.y, state.aiColor)) { endGame(state.aiColor); return; }
+      var wLine = getWinningLine(move.x, move.y, state.aiColor);
+      if (wLine) { endGame(state.aiColor, wLine); return; }
       state.turn = state.humanColor;
       refreshUI();
     }, 220);
@@ -399,6 +487,8 @@
   /* ---------- 버튼 ---------- */
   function restart() {
     cancelAI();
+    clearTimeout(resultTimer);
+    state.winLine = null;
     state.board = emptyBoard();
     state.turn = BLACK;
     state.history = [];
@@ -415,6 +505,8 @@
 
   function undo() {
     if (!state.undoAllowed) { toast('무르기가 꺼져 있습니다'); return; }
+    clearTimeout(resultTimer);
+    state.winLine = null;
     if (state.over) { state.over = false; hideResult(); }
     if (!state.history.length) return;
     cancelAI();
