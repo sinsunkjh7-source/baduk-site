@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>오목 — 바둑스쿨</title>
-<link rel="stylesheet" href="style.css?v=2">
-<script src="../../js/site_lock.js?v=5"></script>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; media-src 'self'; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; worker-src 'none'">
+<link rel="stylesheet" href="style.css?v=static-68a173ca45abc653">
 </head>
 <body>
 <div class="wrap">
@@ -14,6 +14,7 @@
     <div class="turn-bar">
       <span class="turn-stone" id="turnStone"></span>
       <span class="turn-text" id="turnText">흑 차례</span>
+      <a class="home-link" href="/#home">홈으로</a>
       <span class="move-count" id="moveCount">0수</span>
     </div>
 
@@ -76,9 +77,8 @@
 </div>
 
 <div class="toast" id="toast" hidden></div>
-<script src="../../js/audio.js?v=15"></script>
-<script src="ai.js"></script>
-<script src="game.js?v=3"></script>
-<script src="../../js/game_home_btn.js?v=2"></script>
+<script src="audio.js?v=static-68a173ca45abc653"></script>
+<script src="ai.js?v=static-68a173ca45abc653"></script>
+<script src="game.js?v=static-68a173ca45abc653"></script>
 </body>
 </html>

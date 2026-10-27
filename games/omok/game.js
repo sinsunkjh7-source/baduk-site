@@ -238,12 +238,26 @@
     if (state.mode === 'ai' && state.turn === state.aiColor) aiTurn();
   }
 
+  // Invalidate queued work whenever the board is replaced or rewound.
+  var aiTimer = null;
+  var aiGeneration = 0;
+  function cancelAI() {
+    clearTimeout(aiTimer);
+    aiTimer = null;
+    aiGeneration++;
+    state.aiThinking = false;
+  }
+
   function aiTurn() {
     if (!ai) return;
+    cancelAI();
+    var generation = aiGeneration;
     state.aiThinking = true;
     refreshUI();
 
-    setTimeout(function () {
+    aiTimer = setTimeout(function () {
+      if (generation !== aiGeneration || state.over || state.mode !== 'ai' || state.turn !== state.aiColor) return;
+      aiTimer = null;
       var move = null;
       try {
         move = ai.findBestMove(state.board, state.aiColor, state.difficulty);
@@ -286,6 +300,7 @@
 
   /* ---------- 버튼 ---------- */
   function restart() {
+    cancelAI();
     state.board = emptyBoard();
     state.turn = BLACK;
     state.history = [];
@@ -304,6 +319,7 @@
     if (!state.undoAllowed) { toast('무르기가 꺼져 있습니다'); return; }
     if (state.over) { state.over = false; hideResult(); }
     if (!state.history.length) return;
+    cancelAI();
 
     var steps = (state.mode === 'ai') ? 2 : 1;
     if (state.mode === 'ai' && state.history.length === 1) steps = 1;

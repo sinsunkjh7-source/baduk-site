@@ -1,8 +1,8 @@
 {
-  "release": "static-d7238a732be0aa93",
+  "release": "static-68a173ca45abc653",
   "mode": "static",
   "domain": "badukschool.com",
-  "builtAt": "2026-10-27T06:53:37.576Z",
+  "builtAt": "2026-10-27T07:43:56.066Z",
   "serviceWorker": false,
   "backend": false,
   "files": {
@@ -70,21 +70,41 @@
       "bytes": 2003,
       "sha256": "e0ae1694b2f52612799c6e65da7487b8e0bf604400eb307c92d13a9750f414f1"
     },
+    "games/omok/ai.js": {
+      "bytes": 20037,
+      "sha256": "9bc22b2a3951a240b9896c118643a2b780d9a64ce5e8a840a769e9c1cc8a637d"
+    },
+    "games/omok/audio.js": {
+      "bytes": 13069,
+      "sha256": "4d6b091e6c9aded29a3bfa6fc437d165210f4b5cd1d0bcb94296b693306f83a0"
+    },
+    "games/omok/game.js": {
+      "bytes": 12509,
+      "sha256": "a7f92cb3d6253b16d5967cca598a37da749089f8f78110cffbc849772c3076fa"
+    },
+    "games/omok/index.html": {
+      "bytes": 3226,
+      "sha256": "9a666ea89b4d333f721c36c0796061e56bb91e941db13037b22c6b9b81907cb8"
+    },
+    "games/omok/style.css": {
+      "bytes": 4375,
+      "sha256": "785bf8c3c92eccd233ddccbf5cfecdfb03cc29145aba3bc3c236642e4c33be20"
+    },
     "index.html": {
       "bytes": 10331,
-      "sha256": "8fb4380b88b1a1d2ab07cb7963e422f1cd1d203215bf5ee859c3b208b7eb170b"
+      "sha256": "dfecc5aa8b156769a32b0063ccc4a8abbfaf45f928b1ce2fc8e74221a8211cad"
     },
     "manifest.webmanifest": {
       "bytes": 470,
-      "sha256": "be2a9a229fd612afdf2461eea913994eb4fc30063e1528127d0686d08f3809f4"
+      "sha256": "b4599fe160cd9821a2270412009b5befedb2123a4204334a20bdcb32ac130860"
     },
     "shell.js": {
-      "bytes": 6696,
-      "sha256": "69a3d65bf3d03d49783be843241e9b7f65532fcf5d19f8f100d146479f4e68fd"
+      "bytes": 7545,
+      "sha256": "64033f846e054c31816d941d53aeda834a88555ebe2db9d123bb601325a26b92"
     },
     "styles.css": {
       "bytes": 31775,
-      "sha256": "386c9d38d79cd837f4a55a130a9d26741c8f5164d5cceab386f066e6e70948a1"
+      "sha256": "a300a96872bb3c9479722c95857a5a977e9e21ea807cd3182ae5365132ff4fb4"
     }
   }
 }
