@@ -50,11 +50,7 @@
       if (saved === 'green') return 'darkwood';
       return saved || 'wood';
     })(),
-    stoneStyle: (function() {
-      var saved = localStorage.getItem('teacher_stone_style');
-      if (saved === 'gem' || saved === 'cute') return 'cat';
-      return saved || 'classic';
-    })(),
+    stoneStyle: localStorage.getItem('teacher_stone_style') || 'classic',
     soundType: localStorage.getItem('baduk_audio_type') || 'classic',
     volume: parseFloat(localStorage.getItem('baduk_audio_volume') || '1.0'),
 
@@ -984,7 +980,7 @@
     ctx.save();
     if (alpha !== undefined) ctx.globalAlpha = alpha;
 
-    // 🌟 고양이, 우주, 흑백 다이아몬드 고화질 3D 스프라이트 렌더링
+    // 1. 고양이, 우주, 흑백 다이아몬드 (3D 고화질 스프라이트)
     var spriteKey = state.stoneStyle + '_' + color;
     var spriteImg = stoneSprites[spriteKey];
 
@@ -994,17 +990,36 @@
       ctx.shadowOffsetY = r * 0.14;
       ctx.drawImage(spriteImg, cx - r, cy - r, r * 2, r * 2);
     } else {
-      // 정통 명품 바둑돌 (Classic) 3D 입체 그라데이션
       var grad = ctx.createRadialGradient(cx - r * 0.32, cy - r * 0.35, r * 0.08, cx, cy, r);
-      if (color === 1) {
-        grad.addColorStop(0, '#666666');
-        grad.addColorStop(0.55, '#1e1e1e');
-        grad.addColorStop(1, '#080808');
+
+      if (state.stoneStyle === 'gem') {
+        // 💎 영롱한 보석돌: 로열 블루 사파이어(흑) & 로즈 핑크(백)
+        if (color === 1) {
+          grad.addColorStop(0, '#dbeafe');
+          grad.addColorStop(0.2, '#60a5fa');
+          grad.addColorStop(0.5, '#2563eb');
+          grad.addColorStop(0.8, '#1e40af');
+          grad.addColorStop(1, '#0f172a');
+        } else {
+          grad.addColorStop(0, '#ffffff');
+          grad.addColorStop(0.2, '#fdf2f8');
+          grad.addColorStop(0.48, '#fbcfe8');
+          grad.addColorStop(0.8, '#f472b6');
+          grad.addColorStop(1, '#be185d');
+        }
       } else {
-        grad.addColorStop(0, '#ffffff');
-        grad.addColorStop(0.6, '#f3f3f3');
-        grad.addColorStop(1, '#d4d4d4');
+        // 정통 명품 바둑돌 (Classic) 및 눈 두개 돌 바탕
+        if (color === 1) {
+          grad.addColorStop(0, '#666666');
+          grad.addColorStop(0.55, '#1e1e1e');
+          grad.addColorStop(1, '#080808');
+        } else {
+          grad.addColorStop(0, '#ffffff');
+          grad.addColorStop(0.6, '#f3f3f3');
+          grad.addColorStop(1, '#d4d4d4');
+        }
       }
+
       ctx.beginPath();
       ctx.arc(cx, cy, r, 0, Math.PI * 2);
       ctx.fillStyle = grad;
@@ -1014,6 +1029,30 @@
       ctx.fill();
     }
     ctx.restore();
+
+    // 2. 앙증맞은 '눈 두개 돌' (cute): 반짝이는 초롱초롱 눈망울 렌더링
+    if (state.stoneStyle === 'cute' && r >= 10) {
+      ctx.save();
+      var eyeY = cy - r * 0.06;
+      ctx.fillStyle = '#ffffff';
+      ctx.beginPath();
+      ctx.arc(cx - r * 0.30, eyeY, r * 0.18, 0, Math.PI * 2);
+      ctx.arc(cx + r * 0.30, eyeY, r * 0.18, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.fillStyle = '#111111';
+      ctx.beginPath();
+      ctx.arc(cx - r * 0.28, eyeY, r * 0.10, 0, Math.PI * 2);
+      ctx.arc(cx + r * 0.32, eyeY, r * 0.10, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.fillStyle = '#ffffff';
+      ctx.beginPath();
+      ctx.arc(cx - r * 0.33, eyeY - r * 0.04, r * 0.04, 0, Math.PI * 2);
+      ctx.arc(cx + r * 0.27, eyeY - r * 0.04, r * 0.04, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+    }
   }
 
   /* ---------- 착수 인터랙션 ---------- */
