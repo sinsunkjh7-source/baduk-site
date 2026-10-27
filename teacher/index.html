@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🔒 강사 모드 — 바둑스쿨 교재 사령탑</title>
+<link rel="stylesheet" href="style.css?v=teacher-20261027v1">
+</head>
+<body>
+
+<!-- 비밀번호 잠금 화면 (PIN) -->
+<div id="pinGate" class="pin-gate-modal">
+  <div class="pin-gate-card">
+    <div class="pin-gate-icon">🔒</div>
+    <h2>강사 전용 모드</h2>
+    <p>학원 현장 수업용 166권 교재 라이브러리입니다.<br>선생님 비밀번호(PIN)를 입력해 주세요.</p>
+    <div class="pin-input-wrap">
+      <input type="password" id="pinInput" inputmode="numeric" maxlength="8" placeholder="비밀번호 (초기값: 2580)" autofocus>
+    </div>
+    <div class="pin-gate-actions">
+      <a href="/#home" class="btn-secondary">홈으로 나가기</a>
+      <button type="button" id="btnPinSubmit" class="btn-primary">들어가기</button>
+    </div>
+    <p id="pinError" class="pin-error" hidden>비밀번호가 올바르지 않습니다.</p>
+  </div>
+</div>
+
+<!-- 메인 강사 모드 레이아웃 -->
+<div id="teacherApp" class="teacher-app" hidden>
+  
+  <!-- 상단 강사 헤더바 -->
+  <header class="teacher-header">
+    <div class="header-left">
+      <span class="badge-teacher">🔒 강사 수업 모드</span>
+      <h1 id="currentBookTitle">교재를 선택해 주세요</h1>
+      <span id="currentChapterTitle" class="chapter-title-tag"></span>
+    </div>
+    <div class="header-right">
+      <button type="button" id="btnToggleFree" class="btn-tool" title="자유롭게 돌을 놓아볼 수 있는 모드">✏️ 자유 시연 모드: <span id="freeModeStatus">OFF</span></button>
+      <button type="button" id="btnFullscreen" class="btn-tool" title="빔프로젝터/대형화면용 전체화면">⛶ 전체화면</button>
+      <button type="button" id="btnLockOut" class="btn-tool danger">🔒 잠그고 나가기</button>
+      <a href="/#home" class="btn-tool home">← 홈으로</a>
+    </div>
+  </header>
+
+  <div class="teacher-body">
+    
+    <!-- 좌측 사이드바: 12개 시리즈 및 166권 교재 선택 -->
+    <aside class="teacher-sidebar">
+      <div class="sidebar-section">
+        <label for="seriesSelect" class="sidebar-label">📚 교육 시리즈 (총 12종)</label>
+        <select id="seriesSelect" class="form-select"></select>
+      </div>
+
+      <div class="sidebar-section">
+        <label for="bookSelect" class="sidebar-label">📖 권 선택 (총 166권)</label>
+        <select id="bookSelect" class="form-select"></select>
+      </div>
+
+      <div class="sidebar-section">
+        <label for="chapterSelect" class="sidebar-label">📑 단원 (챕터)</label>
+        <select id="chapterSelect" class="form-select"></select>
+      </div>
+
+      <div class="sidebar-section problem-list-section">
+        <div class="section-title-row">
+          <span class="sidebar-label">🎯 단원 문제 목록</span>
+          <span id="problemProgress" class="problem-progress">0 / 0</span>
+        </div>
+        <div id="problemGrid" class="problem-grid"></div>
+      </div>
+    </aside>
+
+    <!-- 중앙 메인 수업용 바둑판 영역 -->
+    <main class="teacher-stage">
+      
+      <!-- 문제 지문 카드 -->
+      <section class="question-bar">
+        <div class="question-header">
+          <span class="q-num" id="qNumBadge">문제 1</span>
+          <span class="q-turn" id="qTurnBadge">⚫ 흑선</span>
+          <button type="button" id="btnHint" class="btn-hint">💡 힌트 보기</button>
+          <button type="button" id="btnAnswer" class="btn-answer">👁️ 정답 보기</button>
+          <button type="button" id="btnReset" class="btn-reset">🔄 초기화</button>
+        </div>
+        <p class="question-text" id="questionText">문제를 불러오는 중입니다...</p>
+        <div class="hint-box" id="hintBox" hidden>
+          <span class="hint-icon">💡</span> <span id="hintText"></span>
+        </div>
+      </section>
+
+      <!-- 대형 수업 바둑판 캔버스 -->
+      <div class="board-container" id="boardContainer">
+        <canvas id="teachingBoard"></canvas>
+      </div>
+
+      <!-- 하단 수업 내비게이션 바 -->
+      <footer class="teaching-controls">
+        <button type="button" id="btnPrevProblem" class="btn-nav">◀ 이전 문제 (←)</button>
+        <span class="problem-nav-indicator" id="navIndicator">1 / 24</span>
+        <button type="button" id="btnNextProblem" class="btn-nav primary">다음 문제 (→) ▶</button>
+      </footer>
+
+    </main>
+
+  </div>
+
+</div>
+
+<!-- 정답 / 오답 알림 토스트 -->
+<div id="teacherToast" class="teacher-toast" hidden></div>
+
+<script src="audio.js?v=teacher-20261027v1"></script>
+<script src="app.js?v=teacher-20261027v1"></script>
+</body>
+</html>

@@ -99,7 +99,7 @@
       if (input.value === TEACHER_PASS) {
         try { sessionStorage.setItem(SESSION_KEY, '1'); } catch (e) {}
         close();
-        toast('강사 모드로 들어왔습니다 (화면 준비 중)');
+        location.assign('teacher/index.html');
       } else {
         err.hidden = false; input.value = ''; input.focus();
       }
@@ -179,7 +179,7 @@
       }
 
       if (toggle === 'teacher') {
-        if (isTeacher()) { toast('강사 모드 (화면 준비 중)'); } else openGate();
+        if (isTeacher()) { location.assign('teacher/index.html'); } else openGate();
         return;
       }
 
