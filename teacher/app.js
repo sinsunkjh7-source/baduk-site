@@ -4,7 +4,7 @@
    ============================================================ */
 
 (function () {
-  var TEACHER_PASS = '2580';
+  var TEACHER_PASS = '5840';
   var SESSION_KEY = 'bkTeacherOk';
 
   /* ---------- 상태 ---------- */
