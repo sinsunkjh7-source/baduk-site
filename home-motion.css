@@ -1,0 +1,1 @@
+.hero>.bks-home-motion{position:absolute;display:block;pointer-events:none!important;z-index:1;max-width:none;user-select:none}.hero>.bks-home-motion[hidden]{display:none!important}.hero>.hero-actions{z-index:2}@media(prefers-reduced-motion:reduce){.hero>.bks-home-motion{display:none!important}}
