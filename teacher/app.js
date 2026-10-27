@@ -168,7 +168,7 @@
 
   /* ---------- 카탈로그 및 교재 로드 ---------- */
   function initCatalog() {
-    fetch('data/catalog.json')
+    fetch('data/catalog.json?v=teacher-catalog-v15')
       .then(function (res) { return res.json(); })
       .then(function (cat) {
         state.catalog = cat;
