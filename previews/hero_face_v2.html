@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>바둑스쿨 · 히어로 모션 (옆얼굴 · 두뇌 · 별)</title>
+<style>
+  :root{
+    --space0:#04060F; --space1:#070C1C; --space2:#0A1226;
+    --ink:#EFF7F4; --ink2:#AFC6BE; --dim:#7C998F;
+    --mint:#8FE2A0; --gold:#F2CB86;
+    --hair:rgba(150,215,190,.14);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    background:linear-gradient(160deg,var(--space0),var(--space1) 52%,var(--space2));
+    color:var(--ink);
+    font-family:"Pretendard","Malgun Gothic","Apple SD Gothic Neo",system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased; overflow-x:hidden;
+  }
+  .brand{position:absolute;top:30px;left:clamp(22px,5vw,84px);z-index:5}
+  .brand img{height:38px;width:auto;filter:drop-shadow(0 2px 10px rgba(0,0,0,.5))}
+
+  .hero{position:relative;min-height:100vh;display:grid;
+    grid-template-columns:minmax(430px,44%) 1fr;align-items:center;
+    padding:96px clamp(22px,5vw,84px) 64px}
+  .copy{position:relative;z-index:3;max-width:548px}
+  .eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:12px;font-weight:800;
+    letter-spacing:.16em;text-transform:uppercase;color:var(--mint);
+    padding:8px 15px;border-radius:999px;border:1px solid rgba(143,226,160,.22);
+    background:rgba(143,226,160,.05)}
+  .eyebrow i{width:5px;height:5px;border-radius:50%;background:var(--mint);
+    box-shadow:0 0 10px var(--mint);animation:bl 2.6s ease-in-out infinite}
+  @keyframes bl{0%,100%{opacity:1}50%{opacity:.25}}
+
+  h1{margin-top:26px;font-size:clamp(40px,4.5vw,64px);line-height:1.13;
+     letter-spacing:-.04em;font-weight:900;color:#F5FBF7}
+  h1 .accent{display:block;margin-top:4px;
+    background:linear-gradient(96deg,#DCFBE4,#8FE2A0 46%,#F2CB86);
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .sub{margin-top:22px;font-size:clamp(15px,1.18vw,17.5px);line-height:1.8;
+       color:var(--ink2);font-weight:450}
+  .sub b{color:#E6F6EB;font-weight:800}
+  .sub .hl{color:#D6F6DF;font-weight:800;border-bottom:1px solid rgba(143,226,160,.32);padding-bottom:1px}
+
+  .cta{display:flex;gap:13px;margin-top:36px;flex-wrap:wrap}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;height:58px;
+    padding:0 30px;border-radius:999px;border:0;cursor:pointer;font-family:inherit;
+    font-size:17.5px;font-weight:900;letter-spacing:-.01em;
+    transition:transform .18s cubic-bezier(.2,.7,.3,1),box-shadow .18s ease,background .18s ease}
+  .btn:hover{transform:translateY(-2px)}
+  .btn-primary{background:linear-gradient(180deg,#9DEBA9,#57BA6B);color:#04170E;
+    box-shadow:0 16px 38px rgba(78,181,100,.3),inset 0 1px 0 rgba(255,255,255,.55)}
+  .btn-ghost{background:rgba(255,255,255,.05);color:#E9F6ED;
+    border:1.5px solid rgba(178,224,193,.2);backdrop-filter:blur(8px)}
+  .btn:focus-visible{outline:2px solid var(--mint);outline-offset:3px}
+
+  .marks{display:flex;margin-top:42px;padding-top:24px;border-top:1px solid var(--hair);flex-wrap:wrap}
+  .mark{padding-right:28px;margin-right:28px;border-right:1px solid var(--hair)}
+  .mark:last-child{border-right:0;margin-right:0;padding-right:0}
+  .mark b{display:block;font-size:17.5px;font-weight:900;color:#E7F6EC;letter-spacing:-.02em}
+  .mark span{display:block;margin-top:4px;font-size:12px;color:var(--dim)}
+
+  .visual{position:relative;height:min(86vh,840px);min-height:440px}
+  canvas{width:100%;height:100%;display:block}
+
+  @media (max-width:1080px){
+    .hero{grid-template-columns:1fr;padding:88px 24px 48px}
+    .visual{order:-1;height:48vh;min-height:320px}
+    .brand{top:20px;left:24px}
+    h1{font-size:clamp(31px,7vw,42px)}
+  }
+  @media (prefers-reduced-motion:reduce){ *{animation:none!important;transition:none!important} }
+</style>
+</head>
+<body>
+
+<div class="brand"><img src="../images/baduk_logo_final.png" alt="바둑스쿨"></div>
+
+<section class="hero">
+  <div class="copy">
+    <span class="eyebrow"><i></i>바둑으로 자라는 생각</span>
+    <h1>한 수 한 수,<span class="accent">생각이 깨어난다</span></h1>
+    <p class="sub">
+      바둑을 두는 동안 아이의 뇌에서는 <b>수천 개의 연결</b>이 만들어집니다.
+      하나의 수가 다음 수를 부르고, 그 연결이 <b>생각의 우주</b>를 넓힙니다.
+      <span class="hl">매일 20분</span>, 두뇌가 자라는 시간.
+    </p>
+    <div class="cta">
+      <button class="btn btn-primary">▶ 바둑 시작하기</button>
+      <button class="btn btn-ghost">▣ 바둑 배우기</button>
+    </div>
+    <div class="marks">
+      <div class="mark"><b>집중력</b><span>한 수를 읽는 힘</span></div>
+      <div class="mark"><b>판단력</b><span>형세를 보는 눈</span></div>
+      <div class="mark"><b>인내심</b><span>끝까지 두는 마음</span></div>
+    </div>
+  </div>
+
+  <div class="visual"><canvas id="c" aria-label="옆얼굴 안 두뇌에서 신경세포가 터지고 별과 연결되는 그래픽"></canvas></div>
+</section>
+
+<script>
+(function () {
+  var cv = document.getElementById('c');
+  var ctx = cv.getContext('2d');
+  var W = 0, H = 0, OX = 0, OY = 0, F = 0;
+
+  var seed = 99117;
+  function rnd() {
+    seed |= 0; seed = seed + 0x6D2B79F5 | 0;
+    var t = Math.imul(seed ^ seed >>> 15, 1 | seed);
+    t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+    return ((t ^ t >>> 14) >>> 0) / 4294967296;
+  }
+  function ease(a) { return a < 0 ? 0 : a > 1 ? 1 : a * a * (3 - 2 * a); }
+  var DUR = 24;
+
+  /* ── 옆얼굴 (오른쪽을 봄) ── */
+  var PROFILE = [
+    [0.315,0.150],[0.355,0.095],[0.415,0.062],[0.480,0.058],
+    [0.545,0.078],[0.588,0.118],[0.607,0.163],[0.614,0.205],
+    [0.606,0.228],[0.628,0.250],[0.672,0.320],[0.636,0.340],
+    [0.624,0.352],[0.638,0.366],[0.618,0.386],[0.630,0.404],
+    [0.612,0.424],[0.598,0.452],[0.560,0.478],[0.520,0.505],
+    [0.510,0.560],[0.505,0.640],[0.470,0.700],[0.380,0.712],
+    [0.352,0.650],[0.336,0.575],[0.315,0.500],[0.296,0.415],
+    [0.288,0.330],[0.292,0.240]
+  ];
+
+  /* ── 두뇌 윤곽 (0..1, 자체 박스 기준) ── */
+  var BRAIN_OUTLINE = [
+    [0.50,0.03],[0.64,0.05],[0.76,0.12],[0.83,0.23],[0.85,0.36],
+    [0.80,0.47],[0.70,0.55],[0.58,0.60],[0.46,0.59],[0.34,0.55],
+    [0.24,0.47],[0.18,0.36],[0.18,0.24],[0.26,0.11],[0.37,0.045]
+  ];
+  /* 두개골 안쪽 박스 (얼굴 정규화 좌표) */
+  var BRAIN_BOX = { x: 0.318, y: 0.090, w: 0.268, h: 0.238 };
+
+  var stars = [], neurons = [], syn = [], tend = [], conj = [];
+  var facePath = null, brainPath = null, BC = null, BR = 0;
+
+  function toPx(q) {
+    return [OX + (q[0] - 0.5) * F * 1.25, OY + (q[1] - 0.5) * F];
+  }
+  function brainPt(q) {
+    return toPx([BRAIN_BOX.x + q[0] * BRAIN_BOX.w, BRAIN_BOX.y + q[1] * BRAIN_BOX.h]);
+  }
+
+  function smoothPath(points) {
+    var p = new Path2D();
+    var pts = points;
+    p.moveTo(pts[0][0], pts[0][1]);
+    for (var i = 1; i <= pts.length; i++) {
+      var a = pts[i - 1], b = pts[i % pts.length];
+      p.quadraticCurveTo(a[0], a[1], (a[0] + b[0]) / 2, (a[1] + b[1]) / 2);
+    }
+    p.closePath();
+    return p;
+  }
+
+  function build() {
+    seed = 99117;
+    stars = []; neurons = []; syn = []; tend = []; conj = [];
+
+    OX = W * 0.585; OY = H * 0.50;
+    F = Math.min(W * 0.74, H * 1.10);
+
+    facePath = smoothPath(PROFILE.map(toPx));
+    brainPath = smoothPath(BRAIN_OUTLINE.map(brainPt));
+
+    /* 별 */
+    for (var i = 0; i < 230; i++) {
+      stars.push({
+        x: rnd() * W, y: rnd() * H,
+        r: 0.5 + rnd() * 1.3, ph: rnd() * 6.283,
+        sp: 0.3 + rnd() * 0.8, gold: rnd() < 0.25
+      });
+    }
+
+    /* 두뇌 영역 중심/반지름 */
+    var bb0 = brainPt([0, 0]), bb1 = brainPt([1, 1]);
+    BC = [(bb0[0] + bb1[0]) / 2, (bb0[1] + bb1[1]) / 2];
+    BR = Math.min(Math.abs(bb1[0] - bb0[0]), Math.abs(bb1[1] - bb0[1])) / 2;
+
+    /* 뉴런: 두뇌 윤곽 안쪽에만 */
+    var probe = document.createElement('canvas').getContext('2d');
+    var guard = 0;
+    while (neurons.length < 78 && guard < 20000) {
+      guard++;
+      var ang = rnd() * 6.283, rr = Math.sqrt(rnd()) * 0.96;
+      var x = BC[0] + Math.cos(ang) * BR * 1.30 * rr;
+      var y = BC[1] + Math.sin(ang) * BR * 1.05 * rr;
+      if (!probe.isPointInPath(brainPath, x, y)) continue;
+      neurons.push({ x: x, y: y, ph: rnd() * 6.283, idx: neurons.length, d: 0 });
+    }
+
+    /* 시냅스 */
+    neurons.forEach(function (n) {
+      neurons
+        .filter(function (m) { return m !== n; })
+        .map(function (m) { return { m: m, d: Math.hypot(m.x - n.x, m.y - n.y) }; })
+        .sort(function (a, b) { return a.d - b.d; })
+        .slice(0, 2)
+        .forEach(function (o) {
+          if (o.d > BR * 0.62) return;
+          var key = Math.min(n.idx, o.m.idx) + '-' + Math.max(n.idx, o.m.idx);
+          if (syn.some(function (s) { return s.key === key; })) return;
+          syn.push({ a: n, b: o.m, key: key, ph: rnd() * 6.283 });
+        });
+    });
+
+    /* 발화: 두뇌 중심 → 바깥 */
+    neurons.forEach(function (n) {
+      n.d = Math.hypot(n.x - BC[0], n.y - BC[1]) / (BR * 1.2);
+      n.ignite = 5.0 + n.d * 5.6;
+      n.burst = rnd() * 0.35;
+    });
+
+    /* 텐드릴: 두뇌 외곽 → 별 */
+    var probe2 = document.createElement('canvas').getContext('2d');
+    var outer = neurons.slice().sort(function (a, b) { return b.d - a.d; }).slice(0, 15);
+    outer.forEach(function (n, i) {
+      var best = null, bd = 1e9;
+      stars.forEach(function (st) {
+        if (probe2.isPointInPath(facePath, st.x, st.y)) return;   /* 얼굴 안 별 제외 */
+        var d = Math.hypot(st.x - n.x, st.y - n.y);
+        if (d < bd && d > F * 0.18) { bd = d; best = st; }
+      });
+      if (!best) return;
+      tend.push({
+        n: n, star: best,
+        mx: (n.x + best.x) / 2 + (rnd() - 0.5) * F * 0.22,
+        my: (n.y + best.y) / 2 + (rnd() - 0.5) * F * 0.22,
+        t0: 12.5 + i * 0.42, dur: 2.0 + rnd() * 0.7
+      });
+    });
+
+    for (var a = 0; a < tend.length; a++) {
+      for (var b = a + 1; b < tend.length; b++) {
+        if (Math.hypot(tend[a].star.x - tend[b].star.x, tend[a].star.y - tend[b].star.y) < F * 0.5) {
+          conj.push({ a: tend[a].star, b: tend[b].star, t0: 19 + conj.length * 0.4 });
+        }
+      }
+    }
+  }
+
+  function resize() {
+    var b = cv.getBoundingClientRect();
+    W = b.width; H = b.height;
+    cv.width = Math.round(W); cv.height = Math.round(H);
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    build();
+  }
+
+  function render(t) {
+    ctx.clearRect(0, 0, W, H);
+    if (!facePath) return;
+    var tt = t % DUR;
+
+    /* 별 */
+    stars.forEach(function (st) {
+      var tw = 0.45 + 0.55 * (0.5 + 0.5 * Math.sin(t * st.sp + st.ph));
+      var col = st.gold ? '242,203,134' : '198,226,255';
+      ctx.beginPath();
+      ctx.arc(st.x, st.y, st.r * (0.85 + 0.3 * tw), 0, 6.283);
+      ctx.fillStyle = 'rgba(' + col + ',' + (0.2 + 0.48 * tw) + ')';
+      ctx.fill();
+    });
+
+    /* 얼굴 라인 */
+    var dp = ease((tt - 0.4) / 3.2);
+    if (dp > 0) {
+      ctx.save();
+      ctx.lineWidth = 1.7;
+      ctx.lineJoin = 'round';
+      ctx.strokeStyle = 'rgba(205,242,218,.66)';
+      ctx.shadowColor = 'rgba(143,226,160,.5)';
+      ctx.shadowBlur = 16;
+      ctx.setLineDash([3200, 3200]);
+      ctx.lineDashOffset = 3200 * (1 - dp);
+      ctx.stroke(facePath);
+      ctx.restore();
+    }
+
+    /* 두뇌 윤곽 (얇게) */
+    var bp = ease((tt - 3.6) / 1.8);
+    if (bp > 0) {
+      ctx.save();
+      ctx.lineWidth = 1;
+      ctx.strokeStyle = 'rgba(143,226,160,' + (0.14 * bp) + ')';
+      ctx.stroke(brainPath);
+      ctx.restore();
+    }
+
+    /* 두뇌 내부 발광 (두뇌 안으로만 클립) */
+    if (bp > 0) {
+      ctx.save();
+      ctx.clip(brainPath);
+      var g0 = ctx.createRadialGradient(BC[0], BC[1], 0, BC[0], BC[1], BR * 1.5);
+      g0.addColorStop(0, 'rgba(143,226,160,' + (0.085 * bp) + ')');
+      g0.addColorStop(0.55, 'rgba(90,180,140,' + (0.035 * bp) + ')');
+      g0.addColorStop(1, 'rgba(10,26,24,0)');
+      ctx.fillStyle = g0;
+      ctx.fillRect(0, 0, W, H);
+      ctx.restore();
+    }
+
+    /* 시냅스 */
+    ctx.save();
+    ctx.clip(brainPath);
+    syn.forEach(function (s) {
+      var on = Math.min(ease((tt - s.a.ignite) / 0.8), ease((tt - s.b.ignite) / 0.8));
+      if (on <= 0) return;
+      ctx.beginPath();
+      ctx.moveTo(s.a.x, s.a.y);
+      ctx.lineTo(s.b.x, s.b.y);
+      ctx.lineWidth = 0.6 + 0.45 * on;
+      ctx.strokeStyle = 'rgba(143,226,160,' + (0.08 + 0.22 * on) + ')';
+      ctx.stroke();
+
+      var per = 2.2, ph = ((t + s.ph) % per) / per;
+      if (on > 0.6) {
+        var x = s.a.x + (s.b.x - s.a.x) * ph;
+        var y = s.a.y + (s.b.y - s.a.y) * ph;
+        var al = Math.sin(Math.PI * ph) * 0.85 * on;
+        var gg = ctx.createRadialGradient(x, y, 0, x, y, 5.5);
+        gg.addColorStop(0, 'rgba(230,255,238,' + al + ')');
+        gg.addColorStop(0.45, 'rgba(143,226,160,' + (0.4 * al) + ')');
+        gg.addColorStop(1, 'rgba(143,226,160,0)');
+        ctx.fillStyle = gg;
+        ctx.beginPath(); ctx.arc(x, y, 5.5, 0, 6.283); ctx.fill();
+      }
+    });
+    ctx.restore();
+
+    /* 뉴런 + 터짐(버스트) */
+    ctx.save();
+    ctx.clip(brainPath);
+    neurons.forEach(function (n) {
+      var on = ease((tt - n.ignite) / 0.55);
+      if (on <= 0) return;
+
+      /* 터지는 순간의 고리 */
+      var bt = (tt - n.ignite - n.burst) / 1.1;
+      if (bt > 0 && bt < 1) {
+        var rr = BR * 0.02 + BR * 0.22 * ease(bt);
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, rr, 0, 6.283);
+        ctx.lineWidth = 1.3 * (1 - bt);
+        ctx.strokeStyle = 'rgba(200,250,215,' + (0.5 * (1 - bt)) + ')';
+        ctx.stroke();
+      }
+
+      var pl = 0.5 + 0.5 * Math.sin(t * 1.9 + n.ph);
+      var r = 1.4 + 0.9 * on + 0.35 * pl * on;
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, r, 0, 6.283);
+      ctx.fillStyle = 'rgba(210,248,222,' + (0.15 + 0.72 * on) + ')';
+      ctx.fill();
+
+      if (on > 0.4) {
+        var g2 = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, r * 6);
+        g2.addColorStop(0, 'rgba(170,245,195,' + (0.24 * on) + ')');
+        g2.addColorStop(1, 'rgba(170,245,195,0)');
+        ctx.fillStyle = g2;
+        ctx.beginPath(); ctx.arc(n.x, n.y, r * 6, 0, 6.283); ctx.fill();
+      }
+    });
+    ctx.restore();
+
+    /* 텐드릴 */
+    tend.forEach(function (td) {
+      var p = ease((tt - td.t0) / td.dur);
+      if (p <= 0) return;
+      var steps = 22, n = Math.max(2, Math.floor(steps * p));
+      ctx.beginPath();
+      ctx.moveTo(td.n.x, td.n.y);
+      for (var i = 1; i <= n; i++) {
+        var u = i / steps;
+        var x = (1 - u) * (1 - u) * td.n.x + 2 * (1 - u) * u * td.mx + u * u * td.star.x;
+        var y = (1 - u) * (1 - u) * td.n.y + 2 * (1 - u) * u * td.my + u * u * td.star.y;
+        ctx.lineTo(x, y);
+      }
+      ctx.lineWidth = 1.05;
+      ctx.strokeStyle = 'rgba(160,235,190,' + (0.28 * p) + ')';
+      ctx.stroke();
+
+      if (p > 0.98) {
+        var k = ease((tt - td.t0 - td.dur) / 1.1);
+        var g3 = ctx.createRadialGradient(td.star.x, td.star.y, 0, td.star.x, td.star.y, 22 * (0.4 + k));
+        g3.addColorStop(0, 'rgba(255,243,212,' + (0.55 * k) + ')');
+        g3.addColorStop(0.35, 'rgba(242,203,134,' + (0.26 * k) + ')');
+        g3.addColorStop(1, 'rgba(242,203,134,0)');
+        ctx.fillStyle = g3;
+        ctx.beginPath(); ctx.arc(td.star.x, td.star.y, 22 * (0.4 + k), 0, 6.283); ctx.fill();
+        ctx.beginPath();
+        ctx.arc(td.star.x, td.star.y, 1.8 + 1.4 * k, 0, 6.283);
+        ctx.fillStyle = 'rgba(255,250,232,' + (0.85 * k) + ')';
+        ctx.fill();
+      }
+    });
+
+    /* 별자리 */
+    conj.forEach(function (c) {
+      var p = ease((tt - c.t0) / 1.8);
+      if (p <= 0) return;
+      ctx.beginPath();
+      ctx.moveTo(c.a.x, c.a.y);
+      ctx.lineTo(c.a.x + (c.b.x - c.a.x) * p, c.a.y + (c.b.y - c.a.y) * p);
+      ctx.lineWidth = 0.7;
+      ctx.strokeStyle = 'rgba(242,203,134,' + (0.2 * p) + ')';
+      ctx.stroke();
+    });
+  }
+
+  var mt = /[?&]t=([0-9.]+)/.exec(location.search);
+  resize();
+
+  if (mt) {
+    var target = parseFloat(mt[1]);
+    requestAnimationFrame(function () {
+      resize();
+      (function hold() { render(target); requestAnimationFrame(hold); })();
+      document.title = 'F|t=' + target + '|n=' + neurons.length;
+    });
+  } else {
+    var t0 = performance.now();
+    (function loop(now) { render((now - t0) / 1000); requestAnimationFrame(loop); })(t0);
+  }
+
+  window.addEventListener('resize', function () { resize(); if (mt) render(parseFloat(mt[1])); });
+})();
+</script>
+</body>
+</html>
