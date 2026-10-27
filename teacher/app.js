@@ -45,7 +45,11 @@
 
     // 🌟 원장님 4대 환경설정 (바탕화면, 바둑판, 바둑알, 음량) 🌟
     theme: localStorage.getItem('teacher_theme') || 'theme-green',
-    boardSkin: localStorage.getItem('teacher_board_skin') || 'wood',
+    boardSkin: (function() {
+      var saved = localStorage.getItem('teacher_board_skin');
+      if (saved === 'green') return 'darkwood';
+      return saved || 'wood';
+    })(),
     stoneStyle: localStorage.getItem('teacher_stone_style') || 'classic',
     soundType: localStorage.getItem('baduk_audio_type') || 'classic',
     volume: parseFloat(localStorage.getItem('baduk_audio_volume') || '1.0'),
@@ -579,17 +583,51 @@
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     ctx.clearRect(0, 0, dispW, dispH);
 
-    // 🌟 바둑판 스킨 렌더링 (wood: 정통 비자목, green: 소프트 그린, sky: 시원한 스카이) 🌟
+    // 🌟 바둑판 스킨 렌더링 (wood: 밝은 비자목, darkwood: 진한 원목 [선명한 세로 나뭇결], sky: 시원한 스카이) 🌟
     var boardBorderColor = '#7c481e';
-    if (state.boardSkin === 'green') {
-      ctx.fillStyle = '#22421c';
+    if (state.boardSkin === 'darkwood') {
+      // 🌟 [원장님 지침] 1번보다 진한 바둑판 & 세로 나뭇결이 또렷하게 잘 보이는 바둑판 🌟
+      ctx.fillStyle = '#deb06c';
       ctx.fillRect(0, 0, dispW, dispH);
-      boardBorderColor = '#142710';
+
+      ctx.save();
+      // 1) 촘촘하고 뚜렷한 세로 나뭇결 스트로크
+      for (var gx = 1; gx < dispW; gx += 2.5) {
+        var wave = Math.sin(gx * 0.14 + (gx % 7) * 0.5);
+        var grainAlpha = 0.045 + 0.05 * (wave * 0.5 + 0.5);
+        ctx.strokeStyle = 'rgba(90, 48, 12, ' + grainAlpha + ')';
+        ctx.lineWidth = 0.85;
+        ctx.beginPath();
+        ctx.moveTo(gx, 0);
+        ctx.lineTo(gx, dispH);
+        ctx.stroke();
+      }
+      // 2) 뚜렷한 천연 나이테 결 띠 (세로 리본)
+      var deepRibbons = [0.08, 0.18, 0.29, 0.43, 0.58, 0.72, 0.85, 0.95];
+      deepRibbons.forEach(function (r, idx) {
+        var rx = Math.round(dispW * r);
+        ctx.strokeStyle = 'rgba(80, 40, 8, 0.14)';
+        ctx.lineWidth = (idx % 2 === 0) ? 2.6 : 1.8;
+        ctx.beginPath();
+        ctx.moveTo(rx, 0);
+        ctx.lineTo(rx, dispH);
+        ctx.stroke();
+
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.13)';
+        ctx.lineWidth = 1.2;
+        ctx.beginPath();
+        ctx.moveTo(rx + 1.8, 0);
+        ctx.lineTo(rx + 1.8, dispH);
+        ctx.stroke();
+      });
+      ctx.restore();
+      boardBorderColor = '#5c300c';
     } else if (state.boardSkin === 'sky') {
       ctx.fillStyle = '#dbeafe';
       ctx.fillRect(0, 0, dispW, dispH);
       boardBorderColor = '#2563eb';
     } else {
+      // wood: 밝은 비자목
       ctx.fillStyle = '#f6ebd6';
       ctx.fillRect(0, 0, dispW, dispH);
 
@@ -631,7 +669,7 @@
 
     // 🌟 [원장님 지침 1번] 테두리 외의 격자선은 얇고 또렷하게 (1px)
     ctx.lineWidth = 1.0;
-    var gridLineColor = (state.boardSkin === 'green') ? 'rgba(255, 255, 255, 0.82)' : ((state.boardSkin === 'sky') ? '#1e3a8a' : 'rgba(45, 25, 10, 0.85)');
+    var gridLineColor = (state.boardSkin === 'darkwood') ? 'rgba(35, 18, 5, 0.92)' : ((state.boardSkin === 'sky') ? '#1e3a8a' : 'rgba(45, 25, 10, 0.85)');
     ctx.strokeStyle = gridLineColor;
 
     if (!spec.isFull19) {
@@ -818,7 +856,7 @@
 
     // 🌟 [원장님 지침] 바둑판 좌표 회전 표시 (우측하변 -> 좌상 -> 전체 -> 숨김)
     if (state.coordMode !== 'none') {
-      var coordTextColor = (state.boardSkin === 'green') ? '#bbf7d0' : ((state.boardSkin === 'sky') ? '#1e3a8a' : '#6d4218');
+      var coordTextColor = (state.boardSkin === 'darkwood') ? '#4a2608' : ((state.boardSkin === 'sky') ? '#1e3a8a' : '#6d4218');
       ctx.fillStyle = coordTextColor;
       ctx.font = 'bold ' + Math.max(10, Math.round(cell * 0.28)) + 'px sans-serif';
       ctx.textAlign = 'center';
