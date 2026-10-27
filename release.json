@@ -1,0 +1,90 @@
+{
+  "release": "static-d7238a732be0aa93",
+  "mode": "static",
+  "domain": "badukschool.com",
+  "builtAt": "2026-10-27T06:53:37.576Z",
+  "serviceWorker": false,
+  "backend": false,
+  "files": {
+    ".nojekyll": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "CNAME": {
+      "bytes": 16,
+      "sha256": "442e9db9aa50bc41c3c3a8a51d42d97e668f58f67857d029722794743aae9661"
+    },
+    "assets/Fredoka-OFL.txt": {
+      "bytes": 4388,
+      "sha256": "5c9e7eee5c6b25f4b05b8d53b2e470ea4962f9ced742d044a98f7d95d1375bab"
+    },
+    "assets/baduk_logo_final.png": {
+      "bytes": 338530,
+      "sha256": "b3dcc85ae4e9560819519a92952f259f7c5cfcccd9e9149c9e6f7cad5605ec30"
+    },
+    "assets/card_animals.png": {
+      "bytes": 434665,
+      "sha256": "90509098d2c7079bd640a96a6278d2e11a9c6fb2eb7a43c721e73975e286a982"
+    },
+    "assets/card_board.png": {
+      "bytes": 403913,
+      "sha256": "c8c816aa138a05f6b70707ab19c0c8ceae5e30b64e923f0ac2a46dc014df566f"
+    },
+    "assets/card_kids.png": {
+      "bytes": 301015,
+      "sha256": "625c630e7cac6b039ff1c1f70f6519953e0e92339d0d1c4d331ae0ee509e82ae"
+    },
+    "assets/card_pavilion.png": {
+      "bytes": 403941,
+      "sha256": "3b75447f5dc279235087f0a16d78f0a7ba48cedf35203267ba917f71d4bd4a62"
+    },
+    "assets/fredoka-latin-700.woff2": {
+      "bytes": 15900,
+      "sha256": "ee61b48acab42fcfee4e1c398b03bbae7e09d1be8471779c440a97dc85118c16"
+    },
+    "assets/hero_cut_nobtn.webp": {
+      "bytes": 496142,
+      "sha256": "0ca38101476044c0c9721b3c5c38ab11f3ae27d400d37bed3ebe354b7645da05"
+    },
+    "assets/stat_1.png": {
+      "bytes": 159422,
+      "sha256": "67caa5b21adee54a3f69c9d23bb702f5a6dab629bc45114d71b14f86d53b95c2"
+    },
+    "assets/stat_2.png": {
+      "bytes": 123545,
+      "sha256": "b91d082da3eaa086ebe14435c817abba2fd218103a0c297dc82e0c91be98823a"
+    },
+    "assets/stat_3.png": {
+      "bytes": 167816,
+      "sha256": "90e85dc20117d4e767ec15ccdb279fc49b292173e07e88f3c72d7a933a576211"
+    },
+    "assets/stat_4.png": {
+      "bytes": 127901,
+      "sha256": "eb7b9150b4adde78b6494af82153d431e072ca3b64db72ddd3f2280f38f26a5b"
+    },
+    "assets/stat_5.png": {
+      "bytes": 171401,
+      "sha256": "4a62b9b13cbb99a4e7c37342994a455bd5b0418d15af5373c802c77764495418"
+    },
+    "deployment-mode.js": {
+      "bytes": 2003,
+      "sha256": "e0ae1694b2f52612799c6e65da7487b8e0bf604400eb307c92d13a9750f414f1"
+    },
+    "index.html": {
+      "bytes": 10331,
+      "sha256": "8fb4380b88b1a1d2ab07cb7963e422f1cd1d203215bf5ee859c3b208b7eb170b"
+    },
+    "manifest.webmanifest": {
+      "bytes": 470,
+      "sha256": "be2a9a229fd612afdf2461eea913994eb4fc30063e1528127d0686d08f3809f4"
+    },
+    "shell.js": {
+      "bytes": 6696,
+      "sha256": "69a3d65bf3d03d49783be843241e9b7f65532fcf5d19f8f100d146479f4e68fd"
+    },
+    "styles.css": {
+      "bytes": 31775,
+      "sha256": "386c9d38d79cd837f4a55a130a9d26741c8f5164d5cceab386f066e6e70948a1"
+    }
+  }
+}
