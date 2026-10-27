@@ -215,16 +215,92 @@
     showResult((color === BLACK ? '흑' : '백') + ' 승리!');
   }
 
+  /* ---------- 전체 판 열린 3 (활삼) 정밀 판정 엔진 ---------- */
+  function countOpenThrees(board, color) {
+    var patterns = [
+      { pat: '001110', stones: [2, 3, 4] },
+      { pat: '011100', stones: [1, 2, 3] },
+      { pat: '010110', stones: [1, 3, 4] },
+      { pat: '011010', stones: [1, 2, 4] }
+    ];
+
+    function countLine(cells) {
+      var s = '';
+      for (var i = 0; i < cells.length; i++) {
+        var c = cells[i];
+        s += (c === color ? '1' : (c === 0 ? '0' : '2'));
+      }
+      var found = {};
+      var count = 0;
+      for (var i = 0; i <= s.length - 6; i++) {
+        var sub = s.substr(i, 6);
+        for (var p = 0; p < patterns.length; p++) {
+          if (sub === patterns[p].pat) {
+            var offsets = patterns[p].stones;
+            var key = (i + offsets[0]) + ',' + (i + offsets[1]) + ',' + (i + offsets[2]);
+            if (!found[key]) {
+              found[key] = true;
+              count++;
+            }
+          }
+        }
+      }
+      return count;
+    }
+
+    var total = 0;
+    // 1. 가로 (Rows)
+    for (var y = 0; y < SIZE; y++) total += countLine(board[y]);
+    // 2. 세로 (Columns)
+    for (var x = 0; x < SIZE; x++) {
+      var col = [];
+      for (var y = 0; y < SIZE; y++) col.push(board[y][x]);
+      total += countLine(col);
+    }
+    // 3. 대각선 (Top-Left to Bottom-Right \)
+    for (var d = -(SIZE - 1); d < SIZE; d++) {
+      var diag = [];
+      for (var y = 0; y < SIZE; y++) {
+        var x = y + d;
+        if (x >= 0 && x < SIZE) diag.push(board[y][x]);
+      }
+      if (diag.length >= 6) total += countLine(diag);
+    }
+    // 4. 대각선 (Bottom-Left to Top-Right /)
+    for (var sum = 0; sum < 2 * SIZE - 1; sum++) {
+      var diag = [];
+      for (var y = 0; y < SIZE; y++) {
+        var x = sum - y;
+        if (x >= 0 && x < SIZE) diag.push(board[y][x]);
+      }
+      if (diag.length >= 6) total += countLine(diag);
+    }
+    return total;
+  }
+
+  function syncOptions() {
+    var banEl = document.getElementById('optBan33');
+    if (banEl) state.ban33 = banEl.checked;
+    var banWhiteEl = document.getElementById('optBan33White');
+    if (banWhiteEl) state.ban33White = banWhiteEl.checked;
+    var undoEl = document.getElementById('optUndo');
+    if (undoEl) state.undoAllowed = undoEl.checked;
+  }
+
   function isBannedMove(x, y, color) {
-    if (!ai) return false;
+    syncOptions();
     var banned = (color === BLACK && state.ban33) || (color === WHITE && state.ban33White);
     if (!banned) return false;
-    try {
-      var pat = ai.analyzePointPatterns(state.board, x, y, color);
-      return pat && pat.openThree >= 2;
-    } catch (e) {
-      return false;
-    }
+
+    // 5목 완성(승리 수)은 금수 면제
+    if (checkWin(x, y, color)) return false;
+
+    var before = countOpenThrees(state.board, color);
+    state.board[y][x] = color;
+    var after = countOpenThrees(state.board, color);
+    state.board[y][x] = 0;
+
+    return after >= 2 && after > before;
   }
 
   function humanMove(x, y) {
@@ -382,17 +458,11 @@
     restart();
   });
 
-  document.getElementById('optUndo').addEventListener('change', function (e) {
-    state.undoAllowed = e.target.checked;
-  });
-  document.getElementById('optBan33').addEventListener('change', function (e) {
-    state.ban33 = e.target.checked;
-  });
+  document.getElementById('optUndo').addEventListener('change', syncOptions);
+  document.getElementById('optBan33').addEventListener('change', syncOptions);
   var optBan33WhiteEl = document.getElementById('optBan33White');
   if (optBan33WhiteEl) {
-    optBan33WhiteEl.addEventListener('change', function (e) {
-      state.ban33White = e.target.checked;
-    });
+    optBan33WhiteEl.addEventListener('change', syncOptions);
   }
 
   document.getElementById('diffSeg').addEventListener('click', function (e) {
@@ -405,6 +475,7 @@
 
   /* ---------- 시작 ---------- */
   function boot() {
+    syncOptions();
     layout();
     refreshUI();
   }
