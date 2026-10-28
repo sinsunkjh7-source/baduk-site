@@ -317,6 +317,7 @@ html, body {
   justify-content: center;
   min-height: 0;
   position: relative;
+  padding-right: 140px;
 }
 #teachingBoard {
   box-shadow: 0 14px 36px rgba(35, 55, 25, 0.35), 0 3px 8px rgba(0, 0, 0, 0.18);
@@ -719,4 +720,89 @@ html, body {
   color: #92400e;
   font-weight: 700;
   word-break: keep-all;
+}
+
+
+/* ---------- 🌟 바둑판 옆 차분하고 품격 있는 피드백 카드 (정답 / 오답) 🌟 ---------- */
+.side-feedback-card {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%) translateX(16px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 124px;
+  padding: 20px 14px;
+  border-radius: 18px;
+  background: rgba(22, 27, 34, 0.94);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
+  pointer-events: none;
+  opacity: 0;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
+  z-index: 1000;
+  white-space: nowrap;
+}
+
+.side-feedback-card.show {
+  transform: translateY(-50%) translateX(0);
+  opacity: 1;
+}
+
+/* ⭕ 정답: 단아한 비취빛 엠블럼과 품격 있는 정착(正着) 스타일 */
+.side-feedback-card.correct {
+  border: 1.5px solid rgba(45, 212, 191, 0.65);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45), 0 0 22px rgba(45, 212, 191, 0.22);
+}
+
+.side-feedback-card.correct .feedback-emblem {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #34d399, #059669 70%, #064e3b);
+  box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.4), 0 5px 14px rgba(5, 150, 105, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+}
+
+.side-feedback-card.correct .feedback-text {
+  color: #f0fdf4;
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  font-family: 'Pretendard', -apple-system, sans-serif;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* ❌ 오답: 차분하고 절제된 톤다운 버건디/슬레이트 */
+.side-feedback-card.wrong {
+  border: 1.5px solid rgba(244, 63, 94, 0.55);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45), 0 0 22px rgba(244, 63, 94, 0.18);
+}
+
+.side-feedback-card.wrong .feedback-emblem {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #fb7185, #e11d48 70%, #881337);
+  box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.3), 0 5px 14px rgba(225, 29, 72, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+}
+
+.side-feedback-card.wrong .feedback-text {
+  color: #fff1f2;
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  font-family: 'Pretendard', -apple-system, sans-serif;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }

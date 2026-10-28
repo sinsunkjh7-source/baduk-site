@@ -132,6 +132,42 @@
     toastTimer = setTimeout(function () { el.hidden = true; }, 1600);
   }
 
+  /* ---------- 🌟 바둑판 옆 차분한 피드백 카드 (정답 / 오답) 🌟 ---------- */
+  var sideFeedbackTimer = null;
+  function showSideFeedback(type) {
+    var card = document.getElementById('sideFeedbackCard');
+    var emblem = document.getElementById('feedbackEmblem');
+    var text = document.getElementById('feedbackText');
+    if (!card || !emblem || !text) return;
+
+    clearTimeout(sideFeedbackTimer);
+    card.classList.remove('correct', 'wrong', 'show');
+
+    if (type === 'correct') {
+      card.classList.add('correct');
+      emblem.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>';
+      text.textContent = '정답입니다';
+    } else {
+      card.classList.add('wrong');
+      emblem.innerHTML = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>';
+      text.textContent = '오답입니다';
+    }
+
+    card.hidden = false;
+    void card.offsetWidth;
+    card.classList.add('show');
+
+    var duration = type === 'correct' ? 1400 : 1200;
+    sideFeedbackTimer = setTimeout(function () {
+      card.classList.remove('show');
+      setTimeout(function () {
+        if (!card.classList.contains('show')) card.hidden = true;
+      }, 300);
+    }, duration);
+  }
+  window.showSideFeedback = showSideFeedback;
+
+
   /* ---------- 비밀번호 인증 ---------- */
   function checkAuth() {
     var ok = sessionStorage.getItem(SESSION_KEY) === '1' || localStorage.getItem(SESSION_KEY) === '1';
@@ -460,6 +496,10 @@
   }
 
   function loadProblem(idx) {
+      // 바둑판 옆 피드백 카드 초기화
+      var sCard = document.getElementById('sideFeedbackCard');
+      if (sCard) { sCard.classList.remove('show'); sCard.hidden = true; }
+
     if (idx < 0 || idx >= state.currentProblems.length) return;
     state.currentProblemIndex = idx;
     localStorage.setItem('teacher_last_problem', idx.toString());
@@ -1320,7 +1360,7 @@
       // ❌ 오답: 수순이나 활로에 맞지 않는 곳에 둔 경우
       state.board[gy][gx] = myColor;
       sfx('playDdang');
-      toast('오답입니다. 다시 도전해 보세요! 🤔');
+      showSideFeedback('wrong');
       drawBoard();
       setTimeout(function () {
         state.board[gy][gx] = 0;
@@ -1361,7 +1401,7 @@
       state.solvedMap[curKey] = true;
       renderProblemGrid();
       sfx('playSuccess');
-      toast('정답입니다! 👏');
+      showSideFeedback('correct');
 
       // 🌟 문제 정답 시 1.1초 후 자동으로 다음 문제로 전환
       clearTimeout(state.autoNextTimer);
@@ -1414,7 +1454,7 @@
             state.solvedMap[cKey] = true;
             renderProblemGrid();
             sfx('playSuccess');
-            toast('정답입니다! 👏');
+            showSideFeedback('correct');
             clearTimeout(state.autoNextTimer);
             state.autoNextTimer = setTimeout(function () {
               if (state.currentProblemIndex < state.currentProblems.length - 1) {
