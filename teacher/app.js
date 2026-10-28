@@ -676,38 +676,9 @@
       ctx.fillRect(0, 0, dispW, dispH);
       boardBorderColor = '#2563eb';
     } else {
-      // wood: 밝은 비자목
-      ctx.fillStyle = '#f6ebd6';
+      // wood: 밝은 비자목 - 그라데이션 없는 깔끔한 단색 솔리드 비자목
+      ctx.fillStyle = '#f2cc84';
       ctx.fillRect(0, 0, dispW, dispH);
-
-      ctx.save();
-      for (var gx = 2; gx < dispW; gx += 3) {
-        var grainAlpha = 0.015 + 0.02 * Math.sin(gx * 0.19 + (gx % 5));
-        ctx.strokeStyle = 'rgba(120, 75, 25, ' + grainAlpha + ')';
-        ctx.lineWidth = 0.7;
-        ctx.beginPath();
-        ctx.moveTo(gx, 0);
-        ctx.lineTo(gx, dispH);
-        ctx.stroke();
-      }
-      var grainRibbons = [0.11, 0.24, 0.39, 0.54, 0.68, 0.83, 0.94];
-      grainRibbons.forEach(function (r) {
-        var rx = Math.round(dispW * r);
-        ctx.strokeStyle = 'rgba(130, 80, 25, 0.04)';
-        ctx.lineWidth = 2.0;
-        ctx.beginPath();
-        ctx.moveTo(rx, 0);
-        ctx.lineTo(rx, dispH);
-        ctx.stroke();
-
-        ctx.strokeStyle = 'rgba(255, 255, 255, 0.06)';
-        ctx.lineWidth = 1.0;
-        ctx.beginPath();
-        ctx.moveTo(rx + 1.5, 0);
-        ctx.lineTo(rx + 1.5, dispH);
-        ctx.stroke();
-      });
-      ctx.restore();
       boardBorderColor = '#7c481e';
     }
     canvas.style.borderColor = boardBorderColor;

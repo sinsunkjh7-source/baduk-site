@@ -209,12 +209,8 @@
       bCtx.fillRect(0, 0, dispW, dispH);
       boardBorderColor = '#2563eb';
     } else {
-      // 밝은 비자목 (wood) - 화사하고 따뜻한 천연 비자목 황금빛 그라디언트
-      var g = bCtx.createLinearGradient(0, 0, dispW, dispH);
-      g.addColorStop(0, '#F6D79F');
-      g.addColorStop(0.5, '#ECC480');
-      g.addColorStop(1, '#E2B467');
-      bCtx.fillStyle = g;
+      // 밝은 비자목 (wood) - 그라데이션 없는 깔끔한 단색 솔리드 비자목
+      bCtx.fillStyle = '#f2cc84';
       bCtx.fillRect(0, 0, dispW, dispH);
       boardBorderColor = '#8c5828';
     }

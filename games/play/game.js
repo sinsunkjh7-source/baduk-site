@@ -72,15 +72,13 @@
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     ctx.clearRect(0, 0, s, s);
 
-    var g = ctx.createLinearGradient(0, 0, s, s);
     if (state.skin === 'green') {
-      g.addColorStop(0, '#DCEFC8'); g.addColorStop(0.5, '#CBE7AE'); g.addColorStop(1, '#B8DB96');
+      ctx.fillStyle = '#CBE7AE';
     } else if (state.skin === 'sky') {
-      g.addColorStop(0, '#D6ECFA'); g.addColorStop(0.5, '#BFE3F7'); g.addColorStop(1, '#A8D6F0');
+      ctx.fillStyle = '#dbeafe';
     } else {
-      g.addColorStop(0, '#F2CE93'); g.addColorStop(0.5, '#E8B96A'); g.addColorStop(1, '#DDA751');
+      ctx.fillStyle = '#f2cc84'; // 밝은 비자목 단색 솔리드
     }
-    ctx.fillStyle = g;
     ctx.fillRect(0, 0, s, s);
 
     ctx.strokeStyle = 'rgba(110, 74, 30, .85)';
