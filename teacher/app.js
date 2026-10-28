@@ -540,6 +540,20 @@
       return { cols: 10, rows: 9, isFull19: false, quadrant: 'BR' };
     }
 
+    for (var bi = 2; bi <= 5; bi++) {
+      var rawAns = p['answer' + bi];
+      if (rawAns && typeof rawAns === 'string') allSgf += rawAns;
+    }
+    points = [];
+    var reg2 = /;([BW])\[([a-s]{2})\]/gi;
+    var m2;
+    while ((m2 = reg2.exec(allSgf)) !== null) {
+      points.push({
+        x: m2[2].charCodeAt(0) - 97,
+        y: m2[2].charCodeAt(1) - 97
+      });
+    }
+
     var minX = Math.min.apply(null, points.map(function(pt){return pt.x;}));
     var minY = Math.min.apply(null, points.map(function(pt){return pt.y;}));
     var maxX = Math.max.apply(null, points.map(function(pt){return pt.x;}));
@@ -562,10 +576,31 @@
       quadrant = 'BR'; // 표준 교재 우하귀
     }
 
-    // 🌟 원장님 핵심 지침: 원 교재 문제 표준은 세로선 10, 가로선 9 (열린 선 다이어그램)
+    // 🌟 원장님 핵심 지침: 기본 세로선 10, 가로선 9 (열린 선 다이어그램)를 유지하되,
+    // 정답 착점이 바둑판 밖으로 잘려 풀지 못하는 문제가 없도록 안전 적응형 확장!
+    var cols = 10;
+    var rows = 9;
+    if (quadrant === 'BR') {
+      cols = Math.max(10, 19 - minX);
+      rows = Math.max(9, 19 - minY);
+    } else if (quadrant === 'BL') {
+      cols = Math.max(10, maxX + 1);
+      rows = Math.max(9, 19 - minY);
+    } else if (quadrant === 'TL') {
+      cols = Math.max(10, maxX + 1);
+      rows = Math.max(9, maxY + 1);
+    } else if (quadrant === 'TR') {
+      cols = Math.max(10, 19 - minX);
+      rows = Math.max(9, maxY + 1);
+    }
+
+    if (cols >= 14 || rows >= 14) {
+      return { cols: 19, rows: 19, isFull19: true, quadrant: 'FULL19' };
+    }
+
     return {
-      cols: 10,
-      rows: 9,
+      cols: cols,
+      rows: rows,
       isFull19: false,
       quadrant: quadrant
     };
@@ -1418,12 +1453,29 @@
   });
 
   document.getElementById('btnAnswer').addEventListener('click', function () {
+    if (state.autoNextTimer) {
+      clearTimeout(state.autoNextTimer);
+      state.autoNextTimer = null;
+    }
     state.showAnswer = !state.showAnswer;
-    this.textContent = state.showAnswer ? '🙈 정답 숨김' : '👁️ 정답';
+    this.textContent = state.showAnswer ? '🙈 정답 숨김' : '👁️ 정답 보기';
+
+    // 정답을 볼 때는 놓아보기 모드를 자동으로 해제하여 잔존 돌과 충돌 방지
+    if (state.showAnswer && state.trialMode) {
+      state.trialMode = false;
+      var btnTrialEl = document.getElementById('btnToggleTrial');
+      if (btnTrialEl) btnTrialEl.classList.remove('active');
+      restoreProblemBoardState();
+      updatePlacementUI();
+    }
     drawBoard();
   });
 
   document.getElementById('btnReset').addEventListener('click', function () {
+    if (state.autoNextTimer) {
+      clearTimeout(state.autoNextTimer);
+      state.autoNextTimer = null;
+    }
     state.trialMode = false;
     var btnTrialEl = document.getElementById('btnToggleTrial');
     if (btnTrialEl) btnTrialEl.classList.remove('active');
@@ -1433,11 +1485,11 @@
     state.trialMoves = [];
     state.activeBranches = state.answerBranches.slice();
     state.isOpponentResponding = false;
+    state.placementMode = 'alternate';
+
     var p = state.currentProblems[state.currentProblemIndex];
     var defColor = getProblemStartingColor(p);
     state.nextTurn = defColor;
-    if (state.placementMode === 'blackOnly') state.nextTurn = 1;
-    else if (state.placementMode === 'whiteOnly') state.nextTurn = 2;
 
     state.historyStack = [{
       board: state.board.map(function (row) { return row.slice(); }),
@@ -1575,10 +1627,20 @@
     var btnTrial = document.getElementById('btnToggleTrial');
     if (btnTrial) {
       btnTrial.addEventListener('click', function () {
+        if (state.autoNextTimer) {
+          clearTimeout(state.autoNextTimer);
+          state.autoNextTimer = null;
+        }
         state.trialMode = !state.trialMode;
         btnTrial.classList.toggle('active', state.trialMode);
 
         if (state.trialMode) {
+          // 놓아보기를 켤 때 정답 보기가 켜져 있으면 자동으로 숨김
+          if (state.showAnswer) {
+            state.showAnswer = false;
+            var btnAns = document.getElementById('btnAnswer');
+            if (btnAns) btnAns.textContent = '👁️ 정답 보기';
+          }
           state.trialMoves = [];
           var startTurn = 1;
           if (state.playedMoves.length > 0) {
