@@ -60,6 +60,7 @@
     playedMoves: [],            // 현재 문제 풀이에서 둔 착수 목록
     isOpponentResponding: false // 상대방(컴퓨터) 응수 대기 플래그
   };
+  window.teacherState = state;
 
   /* DOM 요소 */
     /* 🎨 바둑알 고화질 3D 스프라이트 프리로딩 (고양이, 우주, 흑백 다이아몬드) */
@@ -460,8 +461,6 @@
 
     // 🌟 놓아보기 히스토리 및 문제 풀이 수순 초기화
     state.trialMoves = [];
-    state.historyStack = [state.board.map(function(row){ return row.slice(); })];
-    state.historyIndex = 0;
     state.playedMoves = [];
     state.isOpponentResponding = false;
     var defColor = 1;
@@ -471,7 +470,17 @@
       defColor = 2;
     }
     state.nextTurn = defColor;
+    if (state.placementMode === 'blackOnly') state.nextTurn = 1;
+    else if (state.placementMode === 'whiteOnly') state.nextTurn = 2;
+
+    state.historyStack = [{
+      board: state.board.map(function(row){ return row.slice(); }),
+      nextTurn: state.nextTurn,
+      moves: []
+    }];
+    state.historyIndex = 0;
     layoutBoard();
+    if (typeof updatePlacementUI === 'function') updatePlacementUI();
     drawBoard();
   }
 
@@ -605,6 +614,7 @@
 
   /* ---------- 바둑판 렌더링 (가로선 9 x 세로선 10, 열린 선 다이어그램) ---------- */
   var metrics = { displayW: 0, displayH: 0, cellSize: 0, startX: 0, startY: 0, dpr: 1 };
+  window.teacherMetrics = metrics;
 
   function layoutBoard() {
     var rect = boardContainer.getBoundingClientRect();
@@ -1087,14 +1097,30 @@
 
     if (gx < 0 || gx >= state.boardCols || gy < 0 || gy >= state.boardRows) return;
 
-    // 🌟 [원장님 지침] 놓아보기 모드: 자유 착수, 흑/백 연속 착수, 이미 있는 돌 클릭 시 즉시 제거!
+    // 🌟 [원장님 지침] 놓아보기 모드: 자유 착수, 흑/백 교차/연속 착수, 사석 완벽 따내기 & 착수금지 방지!
     if (state.trialMode) {
       if (state.board[gy][gx] !== 0) {
         // 🌟 돌 두 번 클릭(이미 있는 돌 클릭) 시 제거!
+        var removedColor = state.board[gy][gx];
         state.board[gy][gx] = 0;
+
+        // 수순 목록에서 제거 및 번호 재정렬
+        state.trialMoves = state.trialMoves.filter(function (m) {
+          return !(m.x === gx && m.y === gy);
+        });
+        state.trialMoves.forEach(function (m, idx) {
+          m.step = idx + 1;
+        });
+
+        // 교차 모드인 경우: 지운 돌의 색상으로 턴 복귀
+        if (state.placementMode === 'alternate') {
+          state.nextTurn = removedColor;
+        }
+
         sfx('playStone');
-        toast('돌을 제거했습니다.');
+        toast('돌을 제거했습니다. (다음: ' + (state.nextTurn === 1 ? '⚫ 흑' : '⚪ 백') + ')');
         pushTrialHistory();
+        updatePlacementUI();
         drawBoard();
         return;
       }
@@ -1103,23 +1129,48 @@
       if (state.placementMode === 'blackOnly') playColor = 1;
       else if (state.placementMode === 'whiteOnly') playColor = 2;
 
+      // 1. 가상 착수
       state.board[gy][gx] = playColor;
 
-      // 상대방 활로 0인 사석 따내기 처리
+      // 2. 상대방 사석(활로 0) 따내기 처리
       var oppColor = playColor === 1 ? 2 : 1;
       var testGroups = getStoneGroups(state.board, state.boardCols, state.boardRows);
-      var capturedAny = false;
+      var capturedCount = 0;
       testGroups.forEach(function (g) {
         if (g.color === oppColor && g.liberties === 0) {
           g.stones.forEach(function (s) {
             state.board[s.y][s.x] = 0;
+            capturedCount++;
           });
-          capturedAny = true;
         }
       });
 
-      if (capturedAny) sfx('playSuccess');
-      else sfx('playStone');
+      // 3. 자충수(착수금지점) 검사: 상대를 따내지 못했는데 자신의 활로가 0인 경우
+      var ownGroups = getStoneGroups(state.board, state.boardCols, state.boardRows);
+      var selfSuicide = false;
+      ownGroups.forEach(function (g) {
+        if (g.color === playColor && g.liberties === 0) {
+          var hasPlaced = g.stones.some(function (s) { return s.x === gx && s.y === gy; });
+          if (hasPlaced) {
+            selfSuicide = true;
+          }
+        }
+      });
+
+      if (selfSuicide && capturedCount === 0) {
+        state.board[gy][gx] = 0; // 착수 취소
+        sfx('playDdang');
+        toast('자충수(활로 없음 / 착수금지점)입니다! 🚫');
+        return;
+      }
+
+      // 사석 따내기 효과음 및 알림
+      if (capturedCount > 0) {
+        sfx('playCapture');
+        toast('상대 돌 ' + capturedCount + '점을 따냈습니다! 💥');
+      } else {
+        sfx('playStone');
+      }
 
       // 수순 번호 기록
       state.trialMoves.push({
@@ -1129,10 +1180,13 @@
         step: state.trialMoves.length + 1
       });
 
+      // 교차 모드 턴 교대
       if (state.placementMode === 'alternate') {
         state.nextTurn = playColor === 1 ? 2 : 1;
       }
+
       pushTrialHistory();
+      updatePlacementUI();
       drawBoard();
       return;
     }
@@ -1263,7 +1317,29 @@
           state.board[nextOppMove.y][nextOppMove.x] = oppColor;
           state.playedMoves.push(nextOppMove);
           state.isOpponentResponding = false;
-          sfx('playStone');
+
+          // 🌟 상대방 착수로 인해 활로가 0이 된 내(흑/백) 돌 사석 따내기 완벽 처리!
+          var oppCheckGroups = getStoneGroups(state.board, state.boardCols, state.boardRows);
+          var oppCapturedCount = 0;
+          oppCheckGroups.forEach(function (g) {
+            if (g.color === myColor && g.liberties === 0) {
+              g.stones.forEach(function (s) {
+                state.board[s.y][s.x] = 0;
+                oppCapturedCount++;
+              });
+            }
+          });
+
+          if (oppCapturedCount > 0) {
+            sfx('playCapture');
+            toast('상대방이 돌 ' + oppCapturedCount + '점을 따냈습니다! 💥');
+          } else {
+            sfx('playStone');
+          }
+
+          // 턴을 다시 내 차례(myColor)로 복귀
+          state.nextTurn = myColor;
+          updatePlacementUI();
           drawBoard();
 
           // 상대방 응수 후 문제 완료 여부 확인
@@ -1280,6 +1356,8 @@
                 loadProblem(state.currentProblemIndex + 1);
               }
             }, 1100);
+          } else {
+            toast('다음 수를 놓아보세요!');
           }
         }, 500);
       } else {
@@ -1322,8 +1400,26 @@
     state.board = state.initialBoard.map(function (row) { return row.slice(); });
     state.showAnswer = false;
     state.playedMoves = [];
+    state.trialMoves = [];
     state.activeBranches = state.answerBranches.slice();
     state.isOpponentResponding = false;
+    var defColor = 1;
+    if (state.answerBranches.length > 0 && state.answerBranches[0].length > 0) {
+      defColor = state.answerBranches[0][0].color;
+    } else if (state.currentProblems[state.currentProblemIndex] && state.currentProblems[state.currentProblemIndex].start && state.currentProblems[state.currentProblemIndex].start.toUpperCase() === 'W') {
+      defColor = 2;
+    }
+    state.nextTurn = defColor;
+    if (state.placementMode === 'blackOnly') state.nextTurn = 1;
+    else if (state.placementMode === 'whiteOnly') state.nextTurn = 2;
+
+    state.historyStack = [{
+      board: state.board.map(function (row) { return row.slice(); }),
+      nextTurn: state.nextTurn,
+      moves: []
+    }];
+    state.historyIndex = 0;
+    updatePlacementUI();
     document.getElementById('btnAnswer').textContent = '👁️ 정답 보기';
     drawBoard();
   });
@@ -1374,19 +1470,77 @@
 
   /* ---------- 시작 ---------- */
   
-  /* ---------- 🌟 놓아보기 히스토리 스택 🌟 ---------- */
+  /* ---------- 🌟 놓아보기 히스토리 스택 & 턴 보존 🌟 ---------- */
   function pushTrialHistory() {
     var copy = state.board.map(function (row) { return row.slice(); });
     state.historyStack = state.historyStack.slice(0, state.historyIndex + 1);
-    state.historyStack.push(copy);
+    state.historyStack.push({
+      board: copy,
+      nextTurn: state.nextTurn,
+      moves: state.trialMoves.slice()
+    });
     state.historyIndex = state.historyStack.length - 1;
   }
 
   function applyHistoryIndex(idx) {
     if (idx < 0 || idx >= state.historyStack.length) return;
     state.historyIndex = idx;
-    state.board = state.historyStack[idx].map(function (row) { return row.slice(); });
+    var snap = state.historyStack[idx];
+    if (snap && snap.board) {
+      state.board = snap.board.map(function (row) { return row.slice(); });
+      state.nextTurn = snap.nextTurn;
+      state.trialMoves = (snap.moves || []).slice();
+    } else if (Array.isArray(snap)) {
+      state.board = snap.map(function (row) { return row.slice(); });
+    }
+    updatePlacementUI();
     drawBoard();
+  }
+
+  function restoreProblemBoardState() {
+    state.board = state.initialBoard.map(function (row) { return row.slice(); });
+    state.playedMoves.forEach(function (m) {
+      state.board[m.y][m.x] = m.color;
+      var oc = m.color === 1 ? 2 : 1;
+      var groups = getStoneGroups(state.board, state.boardCols, state.boardRows);
+      groups.forEach(function (g) {
+        if (g.color === oc && g.liberties === 0) {
+          g.stones.forEach(function (s) {
+            state.board[s.y][s.x] = 0;
+          });
+        }
+      });
+    });
+    var defColor = 1;
+    if (state.answerBranches.length > 0 && state.answerBranches[0].length > 0) {
+      defColor = state.answerBranches[0][0].color;
+    } else if (state.currentProblems[state.currentProblemIndex] && state.currentProblems[state.currentProblemIndex].start && state.currentProblems[state.currentProblemIndex].start.toUpperCase() === 'W') {
+      defColor = 2;
+    }
+    state.nextTurn = defColor;
+  }
+
+  function updatePlacementUI() {
+    var btns = document.querySelectorAll('.placement-group .tool-btn');
+    btns.forEach(function (btn) {
+      var mode = btn.dataset.placeMode;
+      btn.classList.toggle('active', mode === state.placementMode);
+      if (mode === 'alternate') {
+        var nextStoneText = state.nextTurn === 1 ? '⚫ 흑' : '⚪ 백';
+        btn.title = '흑·백 교차 착수 (다음 착수: ' + nextStoneText + ')';
+      }
+    });
+
+    if (state.trialMode && qTurnBadge) {
+      var turnLabel = (state.placementMode === 'blackOnly') ? '⚫ 흑만' :
+                      (state.placementMode === 'whiteOnly') ? '⚪ 백만' :
+                      (state.nextTurn === 1 ? '🔄⚫ 흑선' : '🔄⚪ 백선');
+      qTurnBadge.textContent = '✍️ ' + turnLabel;
+    } else if (!state.trialMode && qTurnBadge && state.currentProblems[state.currentProblemIndex]) {
+      var p = state.currentProblems[state.currentProblemIndex];
+      var tCol = (p.start && p.start.toUpperCase() === 'W') ? '⚪ 백선' : '⚫ 흑선';
+      qTurnBadge.textContent = tCol;
+    }
   }
 
   /* ---------- 🌟 강사용 수업 특수 툴바 이벤트 바인딩 🌟 ---------- */
@@ -1397,7 +1551,36 @@
       btnTrial.addEventListener('click', function () {
         state.trialMode = !state.trialMode;
         btnTrial.classList.toggle('active', state.trialMode);
-        toast(state.trialMode ? '✍️ 놓아보기 모드 켜짐' : '문제 풀이 모드로 복귀');
+
+        if (state.trialMode) {
+          state.trialMoves = [];
+          var startTurn = 1;
+          if (state.playedMoves.length > 0) {
+            var lastM = state.playedMoves[state.playedMoves.length - 1];
+            startTurn = lastM.color === 1 ? 2 : 1;
+          } else if (state.answerBranches.length > 0 && state.answerBranches[0].length > 0) {
+            startTurn = state.answerBranches[0][0].color;
+          } else if (state.currentProblems[state.currentProblemIndex] && state.currentProblems[state.currentProblemIndex].start && state.currentProblems[state.currentProblemIndex].start.toUpperCase() === 'W') {
+            startTurn = 2;
+          }
+
+          if (state.placementMode === 'blackOnly') state.nextTurn = 1;
+          else if (state.placementMode === 'whiteOnly') state.nextTurn = 2;
+          else state.nextTurn = startTurn;
+
+          state.historyStack = [{
+            board: state.board.map(function (row) { return row.slice(); }),
+            nextTurn: state.nextTurn,
+            moves: []
+          }];
+          state.historyIndex = 0;
+          toast('✍️ 놓아보기 모드 켜짐 (' + (state.nextTurn === 1 ? '⚫ 흑선' : '⚪ 백선') + ')');
+        } else {
+          restoreProblemBoardState();
+          toast('문제 풀이 모드로 복귀했습니다.');
+        }
+
+        updatePlacementUI();
         drawBoard();
       });
     }
@@ -1405,12 +1588,28 @@
     // 2. 착수 모드 (교차 / 흑만 / 백만)
     document.querySelectorAll('.placement-group .tool-btn').forEach(function (btn) {
       btn.addEventListener('click', function () {
-        document.querySelectorAll('.placement-group .tool-btn').forEach(function (b) { b.classList.remove('active'); });
-        btn.classList.add('active');
-        state.placementMode = btn.dataset.placeMode || 'alternate';
-        if (state.placementMode === 'blackOnly') state.nextTurn = 1;
-        else if (state.placementMode === 'whiteOnly') state.nextTurn = 2;
-        toast(state.placementMode === 'blackOnly' ? '⚫ 흑돌만 놓기 모드' : (state.placementMode === 'whiteOnly' ? '⚪ 백돌만 놓기 모드' : '⚫⚪ 교차 착수 모드'));
+        var mode = btn.dataset.placeMode || 'alternate';
+        state.placementMode = mode;
+        if (mode === 'blackOnly') {
+          state.nextTurn = 1;
+        } else if (mode === 'whiteOnly') {
+          state.nextTurn = 2;
+        } else if (mode === 'alternate') {
+          if (state.trialMoves && state.trialMoves.length > 0) {
+            var lastM = state.trialMoves[state.trialMoves.length - 1];
+            state.nextTurn = lastM.color === 1 ? 2 : 1;
+          } else {
+            var defColor = 1;
+            if (state.answerBranches.length > 0 && state.answerBranches[0].length > 0) {
+              defColor = state.answerBranches[0][0].color;
+            } else if (state.currentProblems[state.currentProblemIndex] && state.currentProblems[state.currentProblemIndex].start && state.currentProblems[state.currentProblemIndex].start.toUpperCase() === 'W') {
+              defColor = 2;
+            }
+            state.nextTurn = defColor;
+          }
+        }
+        updatePlacementUI();
+        toast(mode === 'blackOnly' ? '⚫ 흑돌만 놓기 모드' : (mode === 'whiteOnly' ? '⚪ 백돌만 놓기 모드' : '🔄 교차 착수 (다음: ' + (state.nextTurn === 1 ? '⚫ 흑' : '⚪ 백') + ')'));
       });
     });
 
@@ -1457,8 +1656,23 @@
       btnClearBoard.addEventListener('click', function () {
         state.board = state.initialBoard.map(function (row) { return row.slice(); });
         state.trialMoves = [];
-        state.historyStack = [state.board.map(function (row) { return row.slice(); })];
+        var startTurn = 1;
+        if (state.answerBranches.length > 0 && state.answerBranches[0].length > 0) {
+          startTurn = state.answerBranches[0][0].color;
+        } else if (state.currentProblems[state.currentProblemIndex] && state.currentProblems[state.currentProblemIndex].start && state.currentProblems[state.currentProblemIndex].start.toUpperCase() === 'W') {
+          startTurn = 2;
+        }
+        if (state.placementMode === 'blackOnly') state.nextTurn = 1;
+        else if (state.placementMode === 'whiteOnly') state.nextTurn = 2;
+        else state.nextTurn = startTurn;
+
+        state.historyStack = [{
+          board: state.board.map(function (row) { return row.slice(); }),
+          nextTurn: state.nextTurn,
+          moves: []
+        }];
         state.historyIndex = 0;
+        updatePlacementUI();
         toast('판을 초기 상태로 비웠습니다.');
         drawBoard();
       });
