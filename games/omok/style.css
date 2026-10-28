@@ -323,8 +323,31 @@ html, body {
   text-align: right;
 }
 
-/* 바탕화면 테마 클래스 */
-body.theme-green, .theme-green { background: #eff7e4 !important; }
-body.theme-cream, .theme-cream { background: #fef9ed !important; }
-body.theme-forest, .theme-forest { background: #1c3617 !important; }
-body.theme-slate, .theme-slate { background: #1e293b !important; }
+/* ---------- 🌟 바둑판을 직접 감싸는 바탕 영역 테마 🌟 ---------- */
+/* 웹페이지 기본 배경은 은은한 시그니처 유지 */
+body.theme-green, body.theme-cream, body.theme-forest, body.theme-slate {
+  background: #F7FBF2 !important;
+}
+
+/* 바둑판을 직접 감싸는 바탕 영역 (.board-box) */
+.board-box {
+  transition: background .2s ease, box-shadow .2s ease;
+}
+body.theme-green .board-box, .board-box.theme-green {
+  background: #eff7e4 !important;
+}
+body.theme-cream .board-box, .board-box.theme-cream {
+  background: #fef9ed !important;
+}
+body.theme-forest .board-box, .board-box.theme-forest {
+  background: #1c3617 !important;
+}
+body.theme-slate .board-box, .board-box.theme-slate {
+  background: #1e293b !important;
+}
+
+/* 다크 바탕 시 바둑판 입체 그림자 */
+body.theme-forest .board-box #board,
+body.theme-slate .board-box #board {
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45), 0 3px 8px rgba(0, 0, 0, 0.3);
+}

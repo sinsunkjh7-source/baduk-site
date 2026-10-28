@@ -107,6 +107,7 @@
   }
 
   /* ---------- 화점 좌표 구하기 ---------- */
+  window.getStarPoints = getStarPoints;
   function getStarPoints(size) {
     if (size === 19) {
       return [
@@ -121,10 +122,9 @@
         [9, 3], [9, 9]
       ];
     } else if (size === 9) {
+      // 🌟 9줄 바둑판은 정중앙 천원 1개만 표시
       return [
-        [2, 2], [2, 6],
-        [4, 4],
-        [6, 2], [6, 6]
+        [4, 4]
       ];
     }
     return [];
