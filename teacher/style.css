@@ -317,7 +317,7 @@ html, body {
   justify-content: center;
   min-height: 0;
   position: relative;
-  padding-right: 140px;
+  /* padding-right reverted */
 }
 #teachingBoard {
   box-shadow: 0 14px 36px rgba(35, 55, 25, 0.35), 0 3px 8px rgba(0, 0, 0, 0.18);
@@ -723,93 +723,69 @@ html, body {
 }
 
 
-/* ---------- 🌟 바둑판 옆 차분하고 품격 있는 피드백 카드 (정답 / 오답) 🌟 ---------- */
+/* ---------- 🌟 바둑판 중앙 2배 크기 정답/오답 마스코트 카드 🌟 ---------- */
 .side-feedback-card {
   position: absolute;
-  right: 16px;
+  left: 50%;
   top: 50%;
-  transform: translateY(-50%) translateX(16px);
+  transform: translate(-50%, -50%) scale(0.82);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 12px;
-  width: 124px;
-  padding: 20px 14px;
-  border-radius: 18px;
-  background: rgba(22, 27, 34, 0.94);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
+  gap: 16px;
+  min-width: 210px;
+  padding: 30px 42px;
+  border-radius: 26px;
+  background: rgba(18, 23, 30, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.65), 0 0 45px rgba(0, 0, 0, 0.35);
   pointer-events: none;
   opacity: 0;
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
-  z-index: 1000;
+  transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.25s ease;
+  z-index: 10000;
   white-space: nowrap;
 }
 
 .side-feedback-card.show {
-  transform: translateY(-50%) translateX(0);
+  transform: translate(-50%, -50%) scale(1);
   opacity: 1;
 }
 
 /* ⭕ 정답: 단아한 비취빛 엠블럼과 품격 있는 정착(正着) 스타일 */
 .side-feedback-card.correct {
-  border: 1.5px solid rgba(45, 212, 191, 0.65);
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45), 0 0 22px rgba(45, 212, 191, 0.22);
-}
-
-.side-feedback-card.correct .feedback-emblem {
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, #34d399, #059669 70%, #064e3b);
-  box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.4), 0 5px 14px rgba(5, 150, 105, 0.35);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #ffffff;
+  border: 2px solid rgba(45, 212, 191, 0.8);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.65), 0 0 35px rgba(45, 212, 191, 0.3);
 }
 
 .side-feedback-card.correct .feedback-text {
   color: #f0fdf4;
-  font-size: 19px;
+  font-size: 28px;
   font-weight: 800;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
   font-family: 'Pretendard', -apple-system, sans-serif;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 3px 8px rgba(0, 0, 0, 0.6);
 }
 
 /* ❌ 오답: 차분하고 절제된 톤다운 버건디/슬레이트 */
 .side-feedback-card.wrong {
-  border: 1.5px solid rgba(244, 63, 94, 0.55);
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45), 0 0 22px rgba(244, 63, 94, 0.18);
-}
-
-.side-feedback-card.wrong .feedback-emblem {
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, #fb7185, #e11d48 70%, #881337);
-  box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.3), 0 5px 14px rgba(225, 29, 72, 0.3);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #ffffff;
+  border: 2px solid rgba(244, 63, 94, 0.75);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.65), 0 0 35px rgba(244, 63, 94, 0.25);
 }
 
 .side-feedback-card.wrong .feedback-text {
   color: #fff1f2;
-  font-size: 19px;
+  font-size: 28px;
   font-weight: 800;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
   font-family: 'Pretendard', -apple-system, sans-serif;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 3px 8px rgba(0, 0, 0, 0.6);
 }
 
 .side-feedback-card .feedback-emblem {
-  width: 64px;
-  height: 64px;
+  width: 106px;
+  height: 106px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -823,8 +799,7 @@ html, body {
   border-radius: 50%;
   object-fit: cover;
   display: block;
-  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.45));
-  transition: transform 0.25s ease;
+  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.5));
 }
 
 .side-feedback-card.correct .feedback-avatar {
@@ -837,12 +812,12 @@ html, body {
 
 @keyframes mascotBounce {
   0% { transform: scale(0.85); }
-  50% { transform: scale(1.1); }
+  50% { transform: scale(1.08); }
   100% { transform: scale(1); }
 }
 
 @keyframes mascotWiggle {
   0%, 100% { transform: rotate(0deg); }
-  25% { transform: rotate(-8deg); }
-  75% { transform: rotate(8deg); }
+  25% { transform: rotate(-7deg); }
+  75% { transform: rotate(7deg); }
 }

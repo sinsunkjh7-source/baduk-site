@@ -142,6 +142,8 @@
 
     clearTimeout(sideFeedbackTimer);
     card.classList.remove('correct', 'wrong', 'show');
+    card.style.right = '';
+    card.style.left = '';
 
     // 🌟 현재 문제의 차례(흑선 / 백선)에 맞춰 사이트 히어로 흑돌이 / 흰돌이 마스코트 자동 전환 🌟
     var p = state.currentProblems ? state.currentProblems[state.currentProblemIndex] : null;
@@ -173,7 +175,7 @@
       card.classList.remove('show');
       setTimeout(function () {
         if (!card.classList.contains('show')) card.hidden = true;
-      }, 300);
+      }, 350);
     }, duration);
   }
   window.showSideFeedback = showSideFeedback;
