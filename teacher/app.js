@@ -1517,23 +1517,23 @@
     }
 
     var coordModes = ['right-bottom', 'left-top', 'all-four', 'none'];
-    var coordLabels = {
-      'right-bottom': '🔤 좌표: 우·하',
-      'left-top': '🔤 좌표: 좌·상',
-      'all-four': '🔤 좌표: 전체',
-      'none': '🔤 좌표: 숨김'
+    var coordModeNames = {
+      'right-bottom': '우·하 좌표 표시',
+      'left-top': '좌·상 좌표 표시',
+      'all-four': '전체 좌표 표시',
+      'none': '좌표 끄기'
     };
     var btnToggleCoords = document.getElementById('btnToggleCoords');
     if (btnToggleCoords) {
-      btnToggleCoords.innerHTML = coordLabels[state.coordMode] || '🔤 좌표';
+      btnToggleCoords.innerHTML = '🔤 좌표';
       btnToggleCoords.classList.toggle('active', state.coordMode !== 'none');
       btnToggleCoords.addEventListener('click', function () {
         var cIdx = coordModes.indexOf(state.coordMode);
         state.coordMode = coordModes[(cIdx + 1) % coordModes.length];
         localStorage.setItem('teacher_coord_mode', state.coordMode);
-        btnToggleCoords.innerHTML = coordLabels[state.coordMode];
+        btnToggleCoords.innerHTML = '🔤 좌표';
         btnToggleCoords.classList.toggle('active', state.coordMode !== 'none');
-        toast('좌표 모드: ' + coordLabels[state.coordMode].replace('🔤 ', ''));
+        toast('좌표 모드: ' + (coordModeNames[state.coordMode] || state.coordMode));
         drawBoard();
       });
     }

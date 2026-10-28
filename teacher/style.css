@@ -385,6 +385,37 @@ html, body {
   box-shadow: 0 2px 8px rgba(16, 185, 129, 0.4);
 }
 
+
+/* 🌟 좌측 사이드바 문제 이동 내비게이션 바 (문제 목록 밑) 🌟 */
+.sidebar-nav-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1.5px solid var(--border-light);
+  flex-shrink: 0;
+}
+.sidebar-nav-controls .btn-nav {
+  flex: 1;
+  padding: 8px 6px;
+  font-size: 13px;
+  font-weight: 800;
+  text-align: center;
+  white-space: nowrap;
+  border-radius: 8px;
+}
+.sidebar-nav-controls .problem-nav-indicator {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--green-deep);
+  white-space: nowrap;
+  padding: 0 4px;
+  min-width: 44px;
+  text-align: center;
+}
+
 /* 🌟 하단 내비게이션 바 (이전 문제 / 다음 문제) 🌟 */
 .teaching-controls {
   height: 44px;

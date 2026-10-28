@@ -73,6 +73,11 @@
           <span id="problemProgress" class="problem-progress">0 / 0</span>
         </div>
         <div id="problemGrid" class="problem-grid"></div>
+        <div class="sidebar-nav-controls" id="sidebarNavControls">
+          <button type="button" id="btnPrevProblem" class="btn-nav">이전 문제</button>
+          <span class="problem-nav-indicator" id="navIndicator">1 / 25</span>
+          <button type="button" id="btnNextProblem" class="btn-nav primary">다음 문제</button>
+        </div>
       </div>
     </aside>
 
@@ -99,17 +104,12 @@
         <canvas id="teachingBoard"></canvas>
       </div>
 
-      <!-- 🌟 강사용 수업 특수 툴바 (놓아보기 / 착수모드 / 무르기 / 단수링 / 땀방울 / 좌표 / 수순) 🌟 -->
+      <!-- 🌟 강사용 수업 특수 툴바 (놓아보기 / 무르기 / 좌표 / 수순) 🌟 -->
       <div class="teaching-toolbar" id="teachingToolbar">
         <div class="tool-group">
           <button type="button" class="tool-btn btn-trial" id="btnToggleTrial" title="놓아보기 모드 토글">
             <span>✍️</span> 놓아보기
           </button>
-        </div>
-        <div class="tool-group placement-group">
-          <button type="button" class="tool-btn active" data-place-mode="alternate" title="흑·백 교차 착수">⚫⚪ 교차</button>
-          <button type="button" class="tool-btn" data-place-mode="blackOnly" title="흑돌만 연속 착수">⚫ 흑만</button>
-          <button type="button" class="tool-btn" data-place-mode="whiteOnly" title="백돌만 연속 착수">⚪ 백만</button>
         </div>
         <div class="tool-group nav-group">
           <button type="button" class="tool-btn" id="btnNavFirst" title="처음으로">|◀</button>
@@ -119,19 +119,12 @@
           <button type="button" class="tool-btn" id="btnClearBoard" title="놓아본 돌 비우기">🗑️</button>
         </div>
         <div class="tool-group assist-group">
-          <button type="button" class="tool-btn" id="btnToggleAtari" title="단수 맞은 돌 빨간 링 표시">🚨 단수</button>
-          <button type="button" class="tool-btn" id="btnToggleSweat" title="단수 돌 3D 땀방울 연출">💦 땀방울</button>
           <button type="button" class="tool-btn" id="btnToggleCoords" title="바둑판 좌표 표시">🔤 좌표</button>
           <button type="button" class="tool-btn" id="btnToggleNumbers" title="착수 수순 번호 표시">🔢 수순</button>
         </div>
       </div>
 
-      <!-- 하단 수업 내비게이션 바 -->
-      <footer class="teaching-controls">
-        <button type="button" id="btnPrevProblem" class="btn-nav">◀ 이전 문제 (←)</button>
-        <span class="problem-nav-indicator" id="navIndicator">1 / 24</span>
-        <button type="button" id="btnNextProblem" class="btn-nav primary">다음 문제 (→) ▶</button>
-      </footer>
+
 
     </main>
 
@@ -257,6 +250,6 @@
 <div id="teacherToast" class="teacher-toast" hidden></div>
 
 <script src="audio.js?v=teacher-panel-v15"></script>
-<script src="app.js?v=teacher-panel-v16"></script>
+<script src="app.js?v=teacher-panel-v17"></script>
 </body>
 </html>
