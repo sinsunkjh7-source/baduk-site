@@ -143,48 +143,34 @@
     clearTimeout(sideFeedbackTimer);
     card.classList.remove('correct', 'wrong', 'show');
 
-    // 🌟 바둑판 오른쪽 여백의 '정중앙'에 수학적으로 정확히 배치 🌟
+    // 🌟 바둑판 오른쪽 여백의 '정중앙'에 위치 계산 🌟
     if (canvas && boardContainer) {
       var cRect = canvas.getBoundingClientRect();
       var bRect = boardContainer.getBoundingClientRect();
-      var emptySpace = bRect.right - cRect.right; // 바둑판 오른쪽 끝 ~ 화면 오른쪽 끝 여백
+      var emptySpace = bRect.right - cRect.right;
+      var cardWidth = 140;
 
-      // 2배 크기(약 200~210px)를 기본으로 하되, 여백에 완벽히 맞춤
-      var cardWidth = Math.min(220, Math.max(150, Math.floor(emptySpace - 36)));
-      if (emptySpace >= 160) {
+      if (emptySpace >= cardWidth + 16) {
         var targetRight = Math.max(16, Math.floor((emptySpace - cardWidth) / 2));
-        card.style.width = cardWidth + 'px';
         card.style.right = targetRight + 'px';
         card.style.left = 'auto';
         card.style.top = '50%';
         card.style.transform = 'translateY(-50%)';
       } else {
-        card.style.width = '160px';
-        card.style.right = '12px';
+        card.style.right = '16px';
         card.style.left = 'auto';
         card.style.top = '50%';
         card.style.transform = 'translateY(-50%)';
       }
     }
 
-    // 🌟 현재 문제의 차례(흑선 / 백선)에 맞춰 사이트 히어로 흑돌이 / 흰돌이 마스코트 자동 전환 🌟
-    var p = state.currentProblems ? state.currentProblems[state.currentProblemIndex] : null;
-    var isWhiteTurn = false;
-    if (state.answerBranches && state.answerBranches.length > 0 && state.answerBranches[0].length > 0) {
-      isWhiteTurn = state.answerBranches[0][0].color === 2;
-    } else if (p && p.start && p.start.toUpperCase() === 'W') {
-      isWhiteTurn = true;
-    }
-
-    var charPrefix = isWhiteTurn ? 'badge_baekdori' : 'badge_heukdori';
-
     if (type === 'correct') {
       card.classList.add('correct');
-      emblem.innerHTML = '<img src="images/characters/' + charPrefix + '_correct.png" alt="정답 캐릭터" class="feedback-avatar">';
+      emblem.innerHTML = '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>';
       text.textContent = '정답입니다';
     } else {
       card.classList.add('wrong');
-      emblem.innerHTML = '<img src="images/characters/' + charPrefix + '_wrong.png" alt="오답 캐릭터" class="feedback-avatar">';
+      emblem.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>';
       text.textContent = '오답입니다';
     }
 
