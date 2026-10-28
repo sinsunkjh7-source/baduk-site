@@ -46,7 +46,7 @@
     // 🌟 원장님 4대 환경설정 (바탕화면, 바둑판, 바둑알, 음량) 🌟
     theme: localStorage.getItem('teacher_theme') || 'theme-green',
     boardSkin: (function() {
-      var saved = localStorage.getItem('teacher_board_skin');
+      var saved = localStorage.getItem('baduk_board_skin') || localStorage.getItem('teacher_board_skin');
       if (saved === 'green') return 'darkwood';
       return saved || 'wood';
     })(),
@@ -1629,6 +1629,7 @@
         } else if (settingType === 'boardSkin') {
           state.boardSkin = val;
           localStorage.setItem('teacher_board_skin', val);
+          localStorage.setItem('baduk_board_skin', val);
           drawBoard();
         } else if (settingType === 'stoneStyle') {
           state.stoneStyle = val;

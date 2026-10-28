@@ -127,10 +127,11 @@
       ctx.fillStyle = '#dbeafe';
       ctx.fillRect(0, 0, s, s);
     } else {
+      // 밝은 비자목
       var g = ctx.createLinearGradient(0, 0, s, s);
-      g.addColorStop(0, '#F0C987');
-      g.addColorStop(0.5, '#E8B96A');
-      g.addColorStop(1, '#DFA954');
+      g.addColorStop(0, '#F6D79F');
+      g.addColorStop(0.5, '#ECC480');
+      g.addColorStop(1, '#E2B467');
       ctx.fillStyle = g;
       ctx.fillRect(0, 0, s, s);
     }

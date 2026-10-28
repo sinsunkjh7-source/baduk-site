@@ -24,7 +24,7 @@
 
     // 환경설정
     theme: localStorage.getItem('sandbox_theme') || 'green',
-    boardSkin: localStorage.getItem('sandbox_board_skin') || 'darkwood',
+    boardSkin: localStorage.getItem('baduk_board_skin') || localStorage.getItem('sandbox_board_skin') || 'wood',
     stoneStyle: localStorage.getItem('sandbox_stone_style') || 'classic',
     volume: parseFloat(localStorage.getItem('sandbox_audio_volume') || '1.0'),
     soundType: localStorage.getItem('sandbox_audio_type') || 'classic',
@@ -177,7 +177,7 @@
     var size = state.boardSize;
     var startX = metrics.startX;
     var startY = metrics.startY;
-    var dispW = metrics.displayW;
+    var dispW = metrics.dispW;
     var dispH = metrics.dispH;
     var dpr = metrics.dpr;
 
@@ -209,8 +209,12 @@
       bCtx.fillRect(0, 0, dispW, dispH);
       boardBorderColor = '#2563eb';
     } else {
-      // 밝은 비자목 (wood)
-      bCtx.fillStyle = '#f6ebd6';
+      // 밝은 비자목 (wood) - 화사하고 따뜻한 천연 비자목 황금빛 그라디언트
+      var g = bCtx.createLinearGradient(0, 0, dispW, dispH);
+      g.addColorStop(0, '#F6D79F');
+      g.addColorStop(0.5, '#ECC480');
+      g.addColorStop(1, '#E2B467');
+      bCtx.fillStyle = g;
       bCtx.fillRect(0, 0, dispW, dispH);
       boardBorderColor = '#8c5828';
     }
@@ -1108,6 +1112,7 @@
         btn.classList.add('active');
         state.boardSkin = btn.dataset.skin;
         localStorage.setItem('sandbox_board_skin', state.boardSkin);
+        localStorage.setItem('baduk_board_skin', state.boardSkin);
         drawBoard();
       });
     });
