@@ -51,3 +51,30 @@ body[data-bks-page=teacher] #pinGate{inset:var(--bks-nav-h) 0 0!important}
 .bks-nav [hidden]{display:none!important}
 
 .bks-nav .fun-word{display:inline-flex;align-items:center;gap:5px}.bks-nav .fun-burst{position:static!important;display:inline-block;width:21px!important;height:21px!important;flex:none;overflow:visible}.bks-nav .fun-text{font-family:Fredoka,"Arial Rounded MT Bold",sans-serif;font-size:18px;font-weight:900;line-height:1;color:#fff3a8}
+
+/* brand-size-restored-1793202038090: restore original header branding and typography, retain unified functions. */
+@font-face{font-family:Fredoka;src:url(/assets/fredoka-latin-700.woff2) format("woff2");font-style:normal;font-weight:700;font-display:swap}
+.bks-nav-inner{max-width:1560px;padding:0 40px;gap:14px}
+.bks-brand{width:auto;flex-direction:row;align-items:center;gap:12px;line-height:1.5}
+.bks-brand img{width:169px!important;height:44px!important;max-height:none;flex:none}
+.bks-brand small{display:inline;font-size:12px;font-weight:800;line-height:1.5;letter-spacing:.25px;color:#e5f3d8;margin:0;white-space:nowrap}
+.bks-nav a,.bks-nav button{font-size:17px;font-weight:800;line-height:1.25;letter-spacing:-.2px}
+.bks-account-link{font-size:15px!important;font-weight:700!important}
+.bks-nav .fun-word{position:relative;display:inline-block;padding:0 3px;gap:0;font-family:Fredoka,"Baloo 2",sans-serif;font-style:normal;font-weight:800;font-size:20px;line-height:23px;letter-spacing:.5px;color:#fff;transform:rotate(-8deg) translateY(-1px);text-shadow:0 2px 0 #0000002e;transition:transform .15s ease}
+.bks-nav .fun-burst{position:absolute!important;left:-6px;top:-9px;width:20px!important;height:20px!important;z-index:0;transform:rotate(-12deg);filter:drop-shadow(0 1px 2px #00000047);animation:fun-burst-pop 2.4s ease-in-out infinite;transform-origin:70% 80%;pointer-events:none}
+.bks-nav .fun-text{position:relative;z-index:1;font-family:inherit;font-size:inherit;font-weight:inherit;line-height:inherit;color:inherit;letter-spacing:inherit}
+.bks-nav .fun-toggle:hover .fun-word{transform:rotate(-3deg) scale(1.08)}
+.bks-nav .fun-toggle:hover .fun-burst{animation-duration:.9s}
+@media(max-width:1250px){.bks-nav-links a,.bks-nav-group>button{font-size:16px}.bks-account-link{font-size:15px!important}}
+@media(max-width:1200px){.bks-nav-inner{padding:0 24px;gap:14px}.bks-brand small{display:none}.bks-nav a,.bks-nav button{font-size:16px}}
+@media(max-width:980px){.bks-nav-inner{padding:0 18px;gap:12px}.bks-brand img{width:153px!important;height:40px!important}}
+@media(max-width:820px){.bks-nav-inner{padding:0 16px}.bks-nav-links a,.bks-nav-group>button{font-size:16px}}
+@media(max-width:600px){.bks-nav-inner{padding:0 12px;gap:6px}.bks-brand{width:auto}.bks-nav-actions{gap:5px}.bks-nav-btn{font-size:16px;padding:8px 7px;gap:4px}.bks-nav-btn svg{width:18px;height:18px}.bks-home>span,.bks-settings-toggle>span,.bks-tools-toggle>span{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);clip-path:inset(50%);white-space:nowrap;border:0}}
+@media(max-width:420px){.bks-nav-inner{padding:0 8px;gap:4px}.bks-nav-actions{gap:4px}.bks-nav-btn{padding:8px 6px}.bks-brand{width:auto}}
+@media(prefers-reduced-motion:reduce){.bks-nav .fun-burst{animation:none}}
+
+@keyframes fun-burst-pop{0%,100%{transform:rotate(-12deg) scale(1)}50%{transform:rotate(-6deg) scale(1.1)}}
+@media(max-width:600px){.bks-nav-inner{padding:0 16px}}
+@media(max-width:420px){.bks-nav-inner{padding:0 16px}.bks-nav-btn{padding:8px 5px}}
+
+.bks-nav{border-bottom:0}
