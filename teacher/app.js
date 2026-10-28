@@ -143,13 +143,24 @@
     clearTimeout(sideFeedbackTimer);
     card.classList.remove('correct', 'wrong', 'show');
 
+    // 🌟 현재 문제의 차례(흑선 / 백선)에 맞춰 사이트 히어로 흑돌이 / 흰돌이 마스코트 자동 전환 🌟
+    var p = state.currentProblems ? state.currentProblems[state.currentProblemIndex] : null;
+    var isWhiteTurn = false;
+    if (state.answerBranches && state.answerBranches.length > 0 && state.answerBranches[0].length > 0) {
+      isWhiteTurn = state.answerBranches[0][0].color === 2;
+    } else if (p && p.start && p.start.toUpperCase() === 'W') {
+      isWhiteTurn = true;
+    }
+
+    var charPrefix = isWhiteTurn ? 'badge_baekdori' : 'badge_heukdori';
+
     if (type === 'correct') {
       card.classList.add('correct');
-      emblem.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>';
+      emblem.innerHTML = '<img src="images/characters/' + charPrefix + '_correct.png" alt="정답 캐릭터" class="feedback-avatar">';
       text.textContent = '정답입니다';
     } else {
       card.classList.add('wrong');
-      emblem.innerHTML = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>';
+      emblem.innerHTML = '<img src="images/characters/' + charPrefix + '_wrong.png" alt="오답 캐릭터" class="feedback-avatar">';
       text.textContent = '오답입니다';
     }
 

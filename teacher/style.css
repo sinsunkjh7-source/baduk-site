@@ -806,3 +806,43 @@ html, body {
   font-family: 'Pretendard', -apple-system, sans-serif;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
+
+.side-feedback-card .feedback-emblem {
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none !important;
+  box-shadow: none !important;
+}
+
+.side-feedback-card .feedback-avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.45));
+  transition: transform 0.25s ease;
+}
+
+.side-feedback-card.correct .feedback-avatar {
+  animation: mascotBounce 0.45s ease;
+}
+
+.side-feedback-card.wrong .feedback-avatar {
+  animation: mascotWiggle 0.4s ease;
+}
+
+@keyframes mascotBounce {
+  0% { transform: scale(0.85); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+@keyframes mascotWiggle {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-8deg); }
+  75% { transform: rotate(8deg); }
+}
