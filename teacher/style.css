@@ -723,69 +723,68 @@ html, body {
 }
 
 
-/* ---------- 🌟 바둑판 중앙 2배 크기 정답/오답 마스코트 카드 🌟 ---------- */
+/* ---------- 🌟 바둑판 오른쪽 여백의 정중앙 2배 크기 피드백 카드 🌟 ---------- */
 .side-feedback-card {
   position: absolute;
-  left: 50%;
   top: 50%;
-  transform: translate(-50%, -50%) scale(0.82);
+  transform: translateY(-50%) scale(0.9);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 16px;
-  min-width: 210px;
-  padding: 30px 42px;
-  border-radius: 26px;
+  gap: 14px;
+  width: 200px;
+  padding: 24px 20px;
+  border-radius: 22px;
   background: rgba(18, 23, 30, 0.95);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.65), 0 0 45px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55), 0 0 35px rgba(0, 0, 0, 0.3);
   pointer-events: none;
   opacity: 0;
-  transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.25s ease;
+  transition: transform 0.32s cubic-bezier(0.175, 0.885, 0.32, 1.2), opacity 0.25s ease;
   z-index: 10000;
   white-space: nowrap;
 }
 
 .side-feedback-card.show {
-  transform: translate(-50%, -50%) scale(1);
+  transform: translateY(-50%) scale(1);
   opacity: 1;
 }
 
 /* ⭕ 정답: 단아한 비취빛 엠블럼과 품격 있는 정착(正着) 스타일 */
 .side-feedback-card.correct {
   border: 2px solid rgba(45, 212, 191, 0.8);
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.65), 0 0 35px rgba(45, 212, 191, 0.3);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55), 0 0 30px rgba(45, 212, 191, 0.28);
 }
 
 .side-feedback-card.correct .feedback-text {
   color: #f0fdf4;
-  font-size: 28px;
+  font-size: 26px;
   font-weight: 800;
   letter-spacing: 2px;
   font-family: 'Pretendard', -apple-system, sans-serif;
-  text-shadow: 0 3px 8px rgba(0, 0, 0, 0.6);
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
 }
 
 /* ❌ 오답: 차분하고 절제된 톤다운 버건디/슬레이트 */
 .side-feedback-card.wrong {
   border: 2px solid rgba(244, 63, 94, 0.75);
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.65), 0 0 35px rgba(244, 63, 94, 0.25);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55), 0 0 30px rgba(244, 63, 94, 0.24);
 }
 
 .side-feedback-card.wrong .feedback-text {
   color: #fff1f2;
-  font-size: 28px;
+  font-size: 26px;
   font-weight: 800;
   letter-spacing: 2px;
   font-family: 'Pretendard', -apple-system, sans-serif;
-  text-shadow: 0 3px 8px rgba(0, 0, 0, 0.6);
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
 }
 
 .side-feedback-card .feedback-emblem {
-  width: 106px;
-  height: 106px;
+  width: 92px;
+  height: 92px;
   display: flex;
   align-items: center;
   justify-content: center;

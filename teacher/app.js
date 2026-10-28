@@ -142,8 +142,30 @@
 
     clearTimeout(sideFeedbackTimer);
     card.classList.remove('correct', 'wrong', 'show');
-    card.style.right = '';
-    card.style.left = '';
+
+    // 🌟 바둑판 오른쪽 여백의 '정중앙'에 수학적으로 정확히 배치 🌟
+    if (canvas && boardContainer) {
+      var cRect = canvas.getBoundingClientRect();
+      var bRect = boardContainer.getBoundingClientRect();
+      var emptySpace = bRect.right - cRect.right; // 바둑판 오른쪽 끝 ~ 화면 오른쪽 끝 여백
+
+      // 2배 크기(약 200~210px)를 기본으로 하되, 여백에 완벽히 맞춤
+      var cardWidth = Math.min(220, Math.max(150, Math.floor(emptySpace - 36)));
+      if (emptySpace >= 160) {
+        var targetRight = Math.max(16, Math.floor((emptySpace - cardWidth) / 2));
+        card.style.width = cardWidth + 'px';
+        card.style.right = targetRight + 'px';
+        card.style.left = 'auto';
+        card.style.top = '50%';
+        card.style.transform = 'translateY(-50%)';
+      } else {
+        card.style.width = '160px';
+        card.style.right = '12px';
+        card.style.left = 'auto';
+        card.style.top = '50%';
+        card.style.transform = 'translateY(-50%)';
+      }
+    }
 
     // 🌟 현재 문제의 차례(흑선 / 백선)에 맞춰 사이트 히어로 흑돌이 / 흰돌이 마스코트 자동 전환 🌟
     var p = state.currentProblems ? state.currentProblems[state.currentProblemIndex] : null;
