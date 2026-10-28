@@ -99,3 +99,19 @@ body[data-bks-page=sandbox] #teachingToolbar[data-bks-compact] .bks-board-tools-
 body[data-bks-page=sandbox] #drawToolbar.bks-palette{left:var(--bks-board-palette-left,auto)!important;right:auto!important;top:var(--bks-board-palette-center,50%)!important;transform:translateY(-50%);width:var(--bks-board-palette-width,286px)!important;max-height:var(--bks-board-palette-max-height,70dvh)!important}
 
 @media(max-width:600px){body[data-bks-page=sandbox] #teachingToolbar[data-bks-compact]{height:152px;min-height:152px;max-height:152px}body[data-bks-page=sandbox] #teachingToolbar[data-bks-compact] .bks-board-tools-frame{grid-template-rows:104px 27px}}
+
+/* sandbox-compact-settings-1793231169065: smaller sandbox footer, separate program settings. */
+body[data-bks-page=sandbox] #teachingToolbar.bks-board-tools-ready{height:48px;min-height:48px;max-height:48px}
+body[data-bks-page=sandbox] .bks-board-tools-frame{grid-template-rows:32px}
+body[data-bks-page=sandbox] #moveInfoBadge{display:none!important}
+body[data-bks-page=sandbox] .bks-board-tools-right{display:flex;width:100%;align-items:center;gap:8px;justify-content:space-between}
+body[data-bks-page=sandbox] .bks-board-tools-right>.assist-group{margin-left:auto}
+body[data-bks-page=sandbox] .bks-bottom-settings{min-height:32px;padding:5px 6px;gap:5px;flex:none;border:1px solid #cbdcbd;background:#f5faef}
+body[data-bks-page=sandbox] .bks-bottom-settings[aria-expanded=true]{background:#4a8a3a;color:#fff}
+body[data-bks-page=sandbox] .bks-bottom-settings svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+body[data-bks-page=sandbox] #teachingToolbar[data-bks-compact]{height:88px;min-height:88px;max-height:88px}
+body[data-bks-page=sandbox] #teachingToolbar[data-bks-compact] .bks-board-tools-frame{grid-template-rows:72px}
+body[data-bks-page=sandbox] #teachingToolbar[data-bks-compact] .bks-board-tools-right{flex-wrap:wrap;gap:6px}
+body[data-bks-page=sandbox] .bks-sandbox-settings>.bks-section{border-bottom:0}
+body[data-bks-page=sandbox] .bks-sandbox-settings>.bks-section>h3{display:none}
+@media(max-width:600px){body[data-bks-page=sandbox] #teachingToolbar[data-bks-compact]{height:128px;min-height:128px;max-height:128px}body[data-bks-page=sandbox] #teachingToolbar[data-bks-compact] .bks-board-tools-frame{grid-template-rows:112px}}
