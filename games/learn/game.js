@@ -298,7 +298,7 @@
     } else {
       sfx('playDdang');
       toast('다시 생각해보세요', 'no');
-      state.stones.push({ x: x, y: y, color: BLACK });
+      state.stones.push({ x: x, y: y, color: (state.answer && state.answer.color) ? state.answer.color : BLACK });
       draw();
       setTimeout(function () {
         state.stones.pop();

@@ -426,6 +426,34 @@
   }
 
   /* ---------- 단일 문제 로드 ---------- */
+  /* ---------- 🌟 문제 시작 색상 판별 (정답 수순 최우선 & WA/WH 메타데이터 연동) 🌟 ---------- */
+  function getProblemStartingColor(p) {
+    if (!p) return 1;
+    // 1. 실제 정답 수순(answerBranches)의 1수 색상이 가장 확실한 정답 기준!
+    if (state.answerBranches && state.answerBranches.length > 0 && state.answerBranches[0].length > 0) {
+      return state.answerBranches[0][0].color;
+    }
+    // 2. answer1 직접 SGF 파싱
+    var ans = p.answer1 || p.answer || '';
+    if (typeof ans === 'string') {
+      var match = /;([BW])\[/i.exec(ans);
+      if (match) {
+        return match[1].toUpperCase() === 'W' ? 2 : 1;
+      }
+    }
+    // 3. 메타데이터 start 필드 (WA, WH, W 등 백선 접두사 판별)
+    if (p.start && typeof p.start === 'string') {
+      var st = p.start.trim().toUpperCase();
+      if (st.startsWith('W')) return 2;
+      if (st.startsWith('B')) return 1;
+    }
+    // 4. 문제 지문에 '백선' 또는 '백 차례'가 명시된 경우
+    if (p.question && (p.question.indexOf('백선') !== -1 || p.question.indexOf('백 차례') !== -1 || p.question.indexOf('백차례') !== -1)) {
+      return 2;
+    }
+    return 1; // 기본값 흑선
+  }
+
   function loadProblem(idx) {
     if (idx < 0 || idx >= state.currentProblems.length) return;
     state.currentProblemIndex = idx;
@@ -444,8 +472,6 @@
 
     var p = state.currentProblems[idx];
     qNumBadge.textContent = '문제 ' + (idx + 1);
-    var turnColor = (p.start && p.start.toUpperCase() === 'W') ? '⚪ 백선' : '⚫ 흑선';
-    qTurnBadge.textContent = turnColor;
     questionText.textContent = (p.question || '알맞은 곳에 돌을 놓아 보세요.').replace(/\r\n/g, '\n');
     hintText.textContent = p.hint || '힌트가 없는 문제입니다.';
     navIndicator.textContent = (idx + 1) + ' / ' + state.currentProblems.length;
@@ -456,22 +482,23 @@
     state.boardCols = state.boardSpec.cols;
     state.boardRows = state.boardSpec.rows;
     
-    // SGF 파싱 및 보드 초기화
+    // SGF 파싱 및 보드 초기화 (정답 분기 파싱 포함)
     parseProblemSgf(p, state.boardSpec);
 
-    // 🌟 놓아보기 히스토리 및 문제 풀이 수순 초기화
+    // 🌟 문제 시작 색상 정확하게 판정 (정답 1수 기준 & WA/WH 메타데이터 동기화)
+    var defColor = getProblemStartingColor(p);
+    state.nextTurn = defColor;
+
+    // 🌟 새 문제 로드 시 기본 착수 모드(교차)로 초기화하여 이전 문제의 흑만/백만 잔존 방지
+    state.placementMode = 'alternate';
+
+    // 🌟 상단 턴 배지 텍스트를 시작 색상과 100% 일치시킴!
+    qTurnBadge.textContent = (defColor === 2) ? '⚪ 백선' : '⚫ 흑선';
+
+    // 놓아보기 히스토리 및 문제 풀이 수순 초기화
     state.trialMoves = [];
     state.playedMoves = [];
     state.isOpponentResponding = false;
-    var defColor = 1;
-    if (state.answerBranches.length > 0 && state.answerBranches[0].length > 0) {
-      defColor = state.answerBranches[0][0].color;
-    } else if (p.start && p.start.toUpperCase() === 'W') {
-      defColor = 2;
-    }
-    state.nextTurn = defColor;
-    if (state.placementMode === 'blackOnly') state.nextTurn = 1;
-    else if (state.placementMode === 'whiteOnly') state.nextTurn = 2;
 
     state.historyStack = [{
       board: state.board.map(function(row){ return row.slice(); }),
@@ -1208,12 +1235,7 @@
     if (state.board[gy][gx] !== 0 || state.isOpponentResponding) return;
 
     var p = state.currentProblems[state.currentProblemIndex];
-    var myColor = state.nextTurn || 1;
-    if (state.answerBranches.length > 0 && state.answerBranches[0].length > 0) {
-      if (state.playedMoves.length === 0) {
-        myColor = state.answerBranches[0][0].color;
-      }
-    }
+    var myColor = getProblemStartingColor(p);
     var oppColor = myColor === 1 ? 2 : 1;
 
     // 🌟 [원장님 원칙] 활로 막기 등 정답 착점 다중 수순 및 순서 무관(Order-Independent) 판정! 🌟
@@ -1403,12 +1425,8 @@
     state.trialMoves = [];
     state.activeBranches = state.answerBranches.slice();
     state.isOpponentResponding = false;
-    var defColor = 1;
-    if (state.answerBranches.length > 0 && state.answerBranches[0].length > 0) {
-      defColor = state.answerBranches[0][0].color;
-    } else if (state.currentProblems[state.currentProblemIndex] && state.currentProblems[state.currentProblemIndex].start && state.currentProblems[state.currentProblemIndex].start.toUpperCase() === 'W') {
-      defColor = 2;
-    }
+    var p = state.currentProblems[state.currentProblemIndex];
+    var defColor = getProblemStartingColor(p);
     state.nextTurn = defColor;
     if (state.placementMode === 'blackOnly') state.nextTurn = 1;
     else if (state.placementMode === 'whiteOnly') state.nextTurn = 2;
@@ -1538,8 +1556,8 @@
       qTurnBadge.textContent = '✍️ ' + turnLabel;
     } else if (!state.trialMode && qTurnBadge && state.currentProblems[state.currentProblemIndex]) {
       var p = state.currentProblems[state.currentProblemIndex];
-      var tCol = (p.start && p.start.toUpperCase() === 'W') ? '⚪ 백선' : '⚫ 흑선';
-      qTurnBadge.textContent = tCol;
+      var defCol = getProblemStartingColor(p);
+      qTurnBadge.textContent = (defCol === 2) ? '⚪ 백선' : '⚫ 흑선';
     }
   }
 
@@ -1656,12 +1674,8 @@
       btnClearBoard.addEventListener('click', function () {
         state.board = state.initialBoard.map(function (row) { return row.slice(); });
         state.trialMoves = [];
-        var startTurn = 1;
-        if (state.answerBranches.length > 0 && state.answerBranches[0].length > 0) {
-          startTurn = state.answerBranches[0][0].color;
-        } else if (state.currentProblems[state.currentProblemIndex] && state.currentProblems[state.currentProblemIndex].start && state.currentProblems[state.currentProblemIndex].start.toUpperCase() === 'W') {
-          startTurn = 2;
-        }
+        var p = state.currentProblems[state.currentProblemIndex];
+        var startTurn = getProblemStartingColor(p);
         if (state.placementMode === 'blackOnly') state.nextTurn = 1;
         else if (state.placementMode === 'whiteOnly') state.nextTurn = 2;
         else state.nextTurn = startTurn;
