@@ -8,6 +8,7 @@
     alkkagi: { path: 'games/alkkagi/index.html', title: '알까기' },
     play: { path: 'games/play/index.html', title: '대국' },
     learn: { path: 'games/learn/index.html', title: '바둑 학습' },
+    sandbox: { path: 'sandbox/index.html', title: '놓아보기' },
     appMissions: { path: 'app/index.html?mode=missions&embed=1&v=5', title: '바둑 학습' },
     appLecture: { path: 'app/index.html?mode=online&embed=1&v=5', title: '대국' }
   };

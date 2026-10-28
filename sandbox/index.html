@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>바둑스쿨 놓아보기 연구실 — 19·13·9줄 & 판서 칠판</title>
+  <link rel="stylesheet" href="style.css?v=20261028-v1">
+</head>
+<body>
+
+<div class="sandbox-app" id="sandboxApp">
+  
+  <!-- 🌟 상단 시그니처 그린 헤더 🌟 -->
+  <header class="sandbox-header">
+    <div class="header-left">
+      <a href="../index.html" class="btn-home" title="바둑스쿨 홈으로 나가기">🏠 홈으로</a>
+      <div class="brand-title">
+        <span>바둑스쿨 놓아보기</span>
+        <span class="brand-badge">자유 연구실</span>
+      </div>
+    </div>
+
+    <!-- 19줄 / 13줄 / 9줄 바둑판 선택기 -->
+    <div class="header-center">
+      <div class="size-selector" id="sizeSelector" role="group" aria-label="바둑판 줄 수 선택">
+        <button type="button" class="size-btn active" data-size="19" title="19줄 정규 바둑판">19줄</button>
+        <button type="button" class="size-btn" data-size="13" title="13줄 중급 바둑판">13줄</button>
+        <button type="button" class="size-btn" data-size="9" title="9줄 입문 바둑판">9줄</button>
+      </div>
+    </div>
+
+    <div class="header-right">
+      <button type="button" class="btn-draw-toggle" id="btnToggleDrawing" title="판서 및 글쓰기 도구 켜기/끄기">
+        <span>✍️</span> 판서 도구
+      </button>
+      <button type="button" class="btn-header-tool" id="btnOpenSettings" title="환경설정 (바탕화면, 바둑판, 바둑알, 음량)">
+        ⚙️ 설정
+      </button>
+    </div>
+  </header>
+
+  <!-- 🌟 중앙 메인 무대 🌟 -->
+  <main class="sandbox-stage theme-green" id="sandboxStage">
+    
+    <!-- 🌟 글쓰기 / 판서 툴바 (색상, 두께, 선 종류, 지우개 등) 🌟 -->
+    <div class="draw-toolbar" id="drawToolbar">
+      <!-- 도구 선택 (선 종류) -->
+      <div class="draw-group tool-types">
+        <button type="button" class="tool-opt-btn active" data-tool="pen" title="자유 곡선 펜 (글씨 쓰기)">✏️ 펜</button>
+        <button type="button" class="tool-opt-btn" data-tool="arrow" title="화살표 그리기 (수순/방향 표시)">➔ 화살표</button>
+        <button type="button" class="tool-opt-btn" data-tool="line" title="직선 긋기">📏 직선</button>
+        <button type="button" class="tool-opt-btn" data-tool="circle" title="원/타원 (돌 그룹 강조)">⭕ 원</button>
+        <button type="button" class="tool-opt-btn" data-tool="eraser" title="지우개 (그린 선 지우기)">🧹 지우개</button>
+      </div>
+
+      <div class="draw-divider"></div>
+
+      <!-- 색상 팔레트 -->
+      <div class="draw-group color-palette" id="colorPalette">
+        <button type="button" class="color-dot active" data-color="#ef4444" style="background:#ef4444;" title="빨강"></button>
+        <button type="button" class="color-dot" data-color="#f59e0b" style="background:#f59e0b;" title="노랑"></button>
+        <button type="button" class="color-dot" data-color="#3b82f6" style="background:#3b82f6;" title="파랑"></button>
+        <button type="button" class="color-dot" data-color="#10b981" style="background:#10b981;" title="초록"></button>
+        <button type="button" class="color-dot" data-color="#ffffff" style="background:#ffffff;" title="흰색"></button>
+        <button type="button" class="color-dot" data-color="#1e293b" style="background:#1e293b;" title="검정"></button>
+      </div>
+
+      <div class="draw-divider"></div>
+
+      <!-- 두께 선택 -->
+      <div class="draw-group line-widths" id="lineWidths">
+        <button type="button" class="tool-opt-btn" data-width="2" title="가는 선 (2px)"><span class="size-dot" style="width:5px;height:5px;"></span></button>
+        <button type="button" class="tool-opt-btn active" data-width="5" title="보통 선 (5px)"><span class="size-dot" style="width:8px;height:8px;"></span></button>
+        <button type="button" class="tool-opt-btn" data-width="9" title="굵은 선 (9px)"><span class="size-dot" style="width:12px;height:12px;"></span></button>
+        <button type="button" class="tool-opt-btn" data-width="15" title="형광펜 (15px)"><span class="size-dot" style="width:16px;height:16px;"></span></button>
+      </div>
+
+      <div class="draw-divider"></div>
+
+      <!-- 취소 및 판서 비우기 -->
+      <div class="draw-group draw-actions">
+        <button type="button" class="tool-opt-btn" id="btnDrawUndo" title="마지막 그린 선 되돌리기 (Undo)">↩️ 실행 취소</button>
+        <button type="button" class="tool-opt-btn" id="btnDrawClear" title="판서한 글씨/그림만 전체 지우기">🗑️ 판서 지우기</button>
+      </div>
+    </div>
+
+    <!-- 🌟 바둑판 & 판서 캔버스 컨테이너 🌟 -->
+    <div class="board-container" id="boardContainer">
+      <div class="canvas-stack" id="canvasStack">
+        <!-- 1. 바둑판 캔버스 (격자, 화점, 바둑돌, 수순, 단수링, 땀방울) -->
+        <canvas id="boardCanvas"></canvas>
+        <!-- 2. 판서 드로잉 오버레이 캔버스 (글쓰기, 선, 화살표, 지우개) -->
+        <canvas id="drawingCanvas"></canvas>
+      </div>
+    </div>
+
+    <!-- 🌟 하단 바둑 조작 툴바 🌟 -->
+    <div class="teaching-toolbar" id="teachingToolbar">
+      <!-- 착수 모드 -->
+      <div class="tool-group placement-group">
+        <button type="button" class="tool-btn active" data-place-mode="alternate" title="흑·백 교차 착수">⚫⚪</button>
+        <button type="button" class="tool-btn" data-place-mode="blackOnly" title="흑돌만 연속 착수">⚫</button>
+        <button type="button" class="tool-btn" data-place-mode="whiteOnly" title="백돌만 연속 착수">⚪</button>
+      </div>
+
+      <!-- 수순 무르기/조작 -->
+      <div class="tool-group nav-group">
+        <button type="button" class="tool-btn" id="btnNavFirst" title="처음으로">|◀</button>
+        <button type="button" class="tool-btn" id="btnNavPrev" title="한 수 무르기(뒤로)">◀</button>
+        <button type="button" class="tool-btn" id="btnNavNext" title="한 수 앞으로">▶</button>
+        <button type="button" class="tool-btn" id="btnNavLast" title="끝으로">▶|</button>
+        <button type="button" class="tool-btn" id="btnClearBoard" title="놓아본 돌 전체 비우기">🗑️</button>
+      </div>
+
+      <!-- 보조 시각 도구 -->
+      <div class="tool-group assist-group">
+        <button type="button" class="tool-btn active" id="btnToggleAtari" title="단수 맞은 돌 빨간 링 표시">🚨</button>
+        <button type="button" class="tool-btn active" id="btnToggleSweat" title="단수 돌 3D 땀방울 연출">💦</button>
+        <button type="button" class="tool-btn" id="btnToggleCoords" title="바둑판 좌표 표시">🔤 좌표</button>
+        <button type="button" class="tool-btn" id="btnToggleNumbers" title="착수 수순 번호 표시">🔢 수순</button>
+      </div>
+
+      <!-- 진행 수순 정보 -->
+      <div class="move-info-badge" id="moveInfoBadge">
+        0수 (흑 차례) | 따낸돌 흑 0 : 백 0
+      </div>
+    </div>
+
+  </main>
+
+  <!-- 🌟 환경설정 슬림 플로팅 패널 🌟 -->
+  <div class="settings-panel" id="settingsPanel" hidden>
+    <div class="settings-header">
+      <span class="settings-title">⚙️ 환경 설정</span>
+      <button type="button" class="btn-close-settings" id="btnCloseSettings">✕</button>
+    </div>
+
+    <!-- 바탕화면 테마 -->
+    <div class="setting-group">
+      <span class="setting-label">🎨 바탕화면 테마</span>
+      <div class="setting-options" id="optTheme">
+        <button type="button" class="setting-opt-btn active" data-theme="green">시그니처 초록</button>
+        <button type="button" class="setting-opt-btn" data-theme="cream">크림화이트</button>
+        <button type="button" class="setting-opt-btn" data-theme="forest">포레스트</button>
+        <button type="button" class="setting-opt-btn" data-theme="slate">모던 슬레이트</button>
+      </div>
+    </div>
+
+    <!-- 바둑판 스킨 -->
+    <div class="setting-group">
+      <span class="setting-label">🪵 바둑판 재질</span>
+      <div class="setting-options" id="optBoardSkin">
+        <button type="button" class="setting-opt-btn" data-skin="wood">밝은 비자목</button>
+        <button type="button" class="setting-opt-btn active" data-skin="darkwood">진한 원목 (나뭇결)</button>
+        <button type="button" class="setting-opt-btn" data-skin="sky">시원한 스카이</button>
+      </div>
+    </div>
+
+    <!-- 바둑알 스킨 -->
+    <div class="setting-group">
+      <span class="setting-label">⚪ 바둑알 디자인 (6종)</span>
+      <div class="setting-options" id="optStoneStyle">
+        <button type="button" class="setting-opt-btn active" data-stone="classic">정통 클래식</button>
+        <button type="button" class="setting-opt-btn" data-stone="gem">영롱한 보석</button>
+        <button type="button" class="setting-opt-btn" data-stone="cute">귀여운 눈</button>
+        <button type="button" class="setting-opt-btn" data-stone="cat">3D 고양이</button>
+        <button type="button" class="setting-opt-btn" data-stone="galaxy">우주 은하</button>
+        <button type="button" class="setting-opt-btn" data-stone="crystal">크리스탈 다이아</button>
+      </div>
+    </div>
+
+    <!-- 착수음 사운드 종류 -->
+    <div class="setting-group">
+      <span class="setting-label">🔔 착수음 종류</span>
+      <div class="setting-options" id="optSoundType">
+        <button type="button" class="setting-opt-btn active" data-sound="classic">경쾌한 바둑돌</button>
+        <button type="button" class="setting-opt-btn" data-sound="stone">맑은 딸깍</button>
+        <button type="button" class="setting-opt-btn" data-sound="wood">둔탁한 묵직</button>
+        <button type="button" class="setting-opt-btn" data-sound="maple">정갈한 단풍</button>
+      </div>
+    </div>
+
+    <!-- 음량 조절 -->
+    <div class="setting-group">
+      <span class="setting-label">🔊 착수음 음량</span>
+      <div class="volume-slider-row">
+        <input type="range" min="0" max="100" value="100" class="volume-slider" id="volumeSlider">
+        <span class="volume-val" id="volumeVal">100%</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 토스트 메시지 -->
+  <div class="sandbox-toast" id="sandboxToast" hidden></div>
+
+</div>
+
+<script src="audio.js?v=20261028-v1"></script>
+<script src="app.js?v=20261028-v1"></script>
+</body>
+</html>

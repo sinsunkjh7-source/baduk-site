@@ -1,0 +1,489 @@
+/* =========================================================
+   JH 바둑스쿨 — 자유 놓아보기 및 판서 연구실 스타일시트
+   ========================================================= */
+
+:root {
+  --green: #4a8a3a;
+  --green-deep: #2f5c24;
+  --green-soft: #eff7e4;
+  --orange: #f59e0b;
+  --orange-deep: #d97706;
+  --ink: #1f2937;
+  --muted: #64748b;
+  --border-light: #e2e8f0;
+  --border-medium: #cbd5e1;
+  --panel-bg: #ffffff;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", sans-serif;
+  background: var(--green-soft);
+  color: var(--ink);
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+  user-select: none;
+}
+
+/* ---------- 전체 래퍼 ---------- */
+.sandbox-app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  position: relative;
+}
+
+/* ---------- 상단 그린 헤더 ---------- */
+.sandbox-header {
+  height: 52px;
+  background: linear-gradient(135deg, var(--green-deep) 0%, var(--green) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  color: #ffffff;
+  flex: 0 0 52px;
+  box-shadow: 0 2px 10px rgba(47, 74, 36, 0.25);
+  z-index: 50;
+}
+
+.header-left, .header-center, .header-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-home {
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 800;
+  padding: 6px 12px;
+  border-radius: 20px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: all .15s;
+}
+.btn-home:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-1px);
+}
+
+.brand-title {
+  font-size: 16px;
+  font-weight: 900;
+  letter-spacing: -0.3px;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.brand-badge {
+  background: #fef08a;
+  color: #854d0e;
+  font-size: 11px;
+  font-weight: 900;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+/* 바둑판 줄 수 선택기 (19줄 / 13줄 / 9줄) */
+.size-selector {
+  display: flex;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 20px;
+  padding: 3px;
+  gap: 3px;
+}
+.size-btn {
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 800;
+  padding: 4px 12px;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all .15s;
+}
+.size-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+.size-btn.active {
+  background: #ffffff;
+  color: var(--green-deep);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+/* 판서 모드 토글 버튼 */
+.btn-draw-toggle {
+  background: #ffffff;
+  border: 1.5px solid #d97706;
+  color: #b45309;
+  font-size: 13px;
+  font-weight: 800;
+  padding: 6px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
+  transition: all .15s;
+}
+.btn-draw-toggle:hover {
+  background: #fffbeb;
+  transform: translateY(-1px);
+}
+.btn-draw-toggle.active {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #ffffff;
+  border-color: #b45309;
+  box-shadow: 0 2px 10px rgba(217, 119, 6, 0.45);
+}
+
+.btn-header-tool {
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 800;
+  padding: 6px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all .15s;
+}
+.btn-header-tool:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* ---------- 메인 무대 ---------- */
+.sandbox-stage {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: var(--green-soft);
+  padding: 6px 12px;
+  overflow: hidden;
+  position: relative;
+}
+.sandbox-stage.theme-green { background: #eff7e4; }
+.sandbox-stage.theme-forest { background: #1c3617; }
+.sandbox-stage.theme-cream { background: #fef9ed; }
+.sandbox-stage.theme-slate { background: #1e293b; }
+
+/* 🌟 판서/드로잉 도구 툴바 🌟 */
+.draw-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: #ffffff;
+  border: 1.5px solid #fcd34d;
+  border-radius: 12px;
+  padding: 6px 16px;
+  margin-bottom: 6px;
+  flex: 0 0 auto;
+  box-shadow: 0 4px 14px rgba(245, 158, 11, 0.15);
+  flex-wrap: wrap;
+  transition: all .2s;
+}
+.draw-toolbar[hidden] {
+  display: none !important;
+}
+
+.draw-group {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.draw-divider {
+  width: 1px;
+  height: 22px;
+  background: var(--border-medium);
+  margin: 0 4px;
+}
+
+.tool-opt-btn {
+  background: transparent;
+  border: 1.5px solid transparent;
+  color: #475569;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 5px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: all .15s;
+}
+.tool-opt-btn:hover {
+  background: #f1f5f9;
+}
+.tool-opt-btn.active {
+  background: #fffbeb;
+  border-color: var(--orange);
+  color: var(--orange-deep);
+  font-weight: 800;
+}
+
+/* 색상 팔레트 원형 버튼 */
+.color-dot {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.25);
+  cursor: pointer;
+  transition: transform .12s;
+  padding: 0;
+}
+.color-dot:hover {
+  transform: scale(1.2);
+}
+.color-dot.active {
+  transform: scale(1.25);
+  outline: 2px solid var(--orange);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.35);
+}
+
+/* 선 두께 버튼 */
+.size-dot {
+  display: inline-block;
+  background: #334155;
+  border-radius: 50%;
+}
+
+/* ---------- 바둑판 & 판서 캔버스 컨테이너 ---------- */
+.board-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.canvas-stack {
+  position: relative;
+  display: inline-block;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.28);
+  border-radius: 6px;
+  background: #deb06c;
+}
+
+#boardCanvas {
+  display: block;
+  border-radius: 6px;
+}
+
+#drawingCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  border-radius: 6px;
+  cursor: default;
+  touch-action: none;
+}
+#drawingCanvas.mode-draw {
+  cursor: crosshair;
+}
+#drawingCanvas.mode-eraser {
+  cursor: cell;
+}
+
+/* ---------- 하단 바둑 툴바 ---------- */
+.teaching-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #ffffff;
+  border: 1.5px solid var(--border-medium);
+  border-radius: 12px;
+  padding: 6px 14px;
+  margin-top: 6px;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  box-shadow: 0 3px 12px rgba(47, 74, 36, 0.08);
+}
+
+.tool-group {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.tool-btn {
+  background: transparent;
+  border: 1px solid transparent;
+  color: #36502f;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 5px 8px;
+  min-width: 32px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+.tool-btn:hover {
+  background: #e2f0d9;
+  color: var(--green-deep);
+}
+.tool-btn.active {
+  background: var(--green);
+  color: #ffffff;
+  border-color: var(--green-deep);
+  font-weight: 800;
+  box-shadow: 0 2px 6px rgba(74, 138, 58, 0.35);
+}
+
+/* 수순 및 따낸 돌 카운터 */
+.move-info-badge {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--green-deep);
+  background: #f4faee;
+  border: 1px solid #d4e7cd;
+  padding: 4px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+}
+
+/* ---------- 환경설정 슬림 플로팅 패널 ---------- */
+.settings-panel {
+  position: absolute;
+  top: 60px;
+  right: 14px;
+  width: 290px;
+  background: #ffffff;
+  border: 1.5px solid var(--border-medium);
+  border-radius: 14px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.18);
+  padding: 16px;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-height: calc(100vh - 80px);
+  overflow-y: auto;
+}
+.settings-panel[hidden] {
+  display: none !important;
+}
+
+.settings-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1.5px solid var(--border-light);
+  padding-bottom: 8px;
+}
+.settings-title {
+  font-size: 15px;
+  font-weight: 900;
+  color: var(--green-deep);
+}
+.btn-close-settings {
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.setting-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.setting-label {
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--ink);
+}
+.setting-options {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px;
+}
+.setting-opt-btn {
+  background: #f8fafc;
+  border: 1.5px solid var(--border-medium);
+  border-radius: 8px;
+  padding: 7px 4px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ink);
+  cursor: pointer;
+  text-align: center;
+  transition: all .15s;
+}
+.setting-opt-btn:hover {
+  background: #f1f5f9;
+}
+.setting-opt-btn.active {
+  background: var(--green);
+  border-color: var(--green-deep);
+  color: #ffffff;
+  font-weight: 800;
+}
+
+.volume-slider-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.volume-slider {
+  flex: 1;
+  accent-color: var(--green);
+  cursor: pointer;
+}
+.volume-val {
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--green-deep);
+  min-width: 38px;
+  text-align: right;
+}
+
+/* ---------- 토스트 알림 ---------- */
+.sandbox-toast {
+  position: absolute;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(23, 23, 23, 0.88);
+  color: #ffffff;
+  font-size: 13.5px;
+  font-weight: 700;
+  padding: 9px 18px;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+  pointer-events: none;
+  z-index: 200;
+  transition: opacity .2s;
+}
+.sandbox-toast[hidden] {
+  display: none;
+}

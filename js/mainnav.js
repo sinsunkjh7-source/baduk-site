@@ -9,7 +9,8 @@
 
   var MENU = [
     { key: 'learn', label: '바둑 학습', go: 'lessons' },
-    { key: 'play', label: '대국', go: 'play' },
+    { key: 'play', label: '바둑 대국', go: 'play' },
+    { key: 'sandbox', label: '놓아보기', go: 'sandbox' },
     {
       key: 'games', label: '<span class="bk-mainnav__fun"><svg class="bk-fun-burst" viewBox="0 0 24 24" aria-hidden="true"><polygon points="12.00,0.60 14.65,6.50 20.91,4.89 17.95,10.64 23.11,14.54 16.77,15.80 16.95,22.27 12.00,18.10 7.05,22.27 7.23,15.80 0.89,14.54 6.05,10.64 3.09,4.89 9.35,6.50" fill="#FFD84D" stroke="#C62828" stroke-width="1.5" stroke-linejoin="round"/></svg><span class="bk-fun-text">Fun</span></span>', items: [
         { key: 'omok', label: '오목', icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="1.5" y="1.5" width="21" height="21" rx="4.5" fill="#F2C87A"/><path d="M6.5 1.5v21M12 1.5v21M17.5 1.5v21M1.5 6.5h21M1.5 12h21M1.5 17.5h21" stroke="#B98540" stroke-width="1.1"/><circle cx="6.5" cy="17.5" r="3.1" fill="#242424"/><circle cx="12" cy="12" r="3.1" fill="#FFFFFF"/><circle cx="17.5" cy="6.5" r="3.1" fill="#242424"/></svg>' },
@@ -170,6 +171,10 @@
       if (go === 'lessons') {
         if (window.bkGames) window.bkGames.open('appMissions', '바둑 학습');
         else if (!enterApp('lessons')) notReady('바둑 학습');
+        return;
+      }
+      if (go === 'sandbox') {
+        location.assign('sandbox/index.html');
         return;
       }
       if (go === 'play') {
