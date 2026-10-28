@@ -78,3 +78,7 @@ body[data-bks-page=teacher] #pinGate{inset:var(--bks-nav-h) 0 0!important}
 @media(max-width:420px){.bks-nav-inner{padding:0 16px}.bks-nav-btn{padding:8px 5px}}
 
 .bks-nav{border-bottom:0}
+
+/* header-balance-1793225324565: full-width balanced header, preserve typography and logo sizes. */
+@media(min-width:1251px){.bks-nav-inner{max-width:none;width:100%;padding-inline:clamp(24px,2vw,56px);gap:clamp(14px,1vw,24px)}.bks-nav-links{gap:clamp(6px,.65vw,10px)}.bks-nav-links>a,.bks-nav-group>button{padding-inline:10px}.bks-nav-actions{margin-left:0;gap:12px}}
+@media(min-width:1600px){.bks-nav-links{display:grid;grid-template-columns:minmax(12px,1fr) repeat(6,max-content) minmax(12px,1fr) max-content max-content;column-gap:clamp(16px,1.2vw,32px);align-items:center}.bks-nav-links>*{grid-row:1}.bks-nav-links>:nth-child(1){grid-column:2}.bks-nav-links>:nth-child(2){grid-column:3}.bks-nav-links>:nth-child(3){grid-column:4}.bks-nav-links>:nth-child(4){grid-column:5}.bks-nav-links>:nth-child(5){grid-column:6}.bks-nav-links>:nth-child(6){grid-column:7}.bks-nav-links>.bks-account-first{grid-column:9;margin-left:0}.bks-nav-links>.bks-account-link:last-child{grid-column:10}}
