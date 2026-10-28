@@ -119,6 +119,11 @@
   /* ---------- 토스트 ---------- */
   var toastTimer = null;
   function toast(msg) {
+    if (!msg) return;
+    // 🌟 [원장님 지침] 정답, 오답 외의 모든 안내 팝업 문구 원천 차단
+    if (msg.indexOf('정답') === -1 && msg.indexOf('오답') === -1) {
+      return;
+    }
     var el = document.getElementById('teacherToast');
     if (!el) return;
     el.textContent = msg;
@@ -177,7 +182,7 @@
       })
       .catch(function (err) {
         console.error('Failed to load catalog.json:', err);
-        toast('교재 목록을 불러오지 못했습니다.');
+        // toast 제거됨
       });
   }
 
@@ -244,7 +249,7 @@
       })
       .catch(function (err) {
         console.error('Failed to load book_' + code + '.json:', err);
-        toast('교재 파일을 불러오지 못했습니다: book_' + code);
+        // toast 제거됨
       });
   }
 
@@ -1185,7 +1190,7 @@
         }
 
         sfx('playStone');
-        toast('돌을 제거했습니다. (다음: ' + (state.nextTurn === 1 ? '⚫ 흑' : '⚪ 백') + ')');
+        // toast 제거됨
         pushTrialHistory();
         updatePlacementUI();
         drawBoard();
@@ -1227,7 +1232,7 @@
       if (selfSuicide && capturedCount === 0) {
         state.board[gy][gx] = 0; // 착수 취소
         sfx('playDdang');
-        toast('자충수(활로 없음 / 착수금지점)입니다! 🚫');
+        // toast 제거됨
         return;
       }
 
@@ -1364,7 +1369,7 @@
         if (state.currentProblemIndex < state.currentProblems.length - 1) {
           loadProblem(state.currentProblemIndex + 1);
         } else {
-          toast('축하합니다! 이 단원의 모든 문제를 완료했습니다! 🎉');
+          // toast 제거됨
         }
       }, 1100);
     } else {
@@ -1373,7 +1378,7 @@
       var nextOppMove = currentBranch[nextStep];
       if (nextOppMove && nextOppMove.color === oppColor) {
         state.isOpponentResponding = true;
-        toast('상대방 응수를 확인하세요...');
+        // toast 제거됨
         setTimeout(function () {
           state.board[nextOppMove.y][nextOppMove.x] = oppColor;
           state.playedMoves.push(nextOppMove);
@@ -1417,12 +1422,12 @@
               }
             }, 1100);
           } else {
-            toast('다음 수를 놓아보세요!');
+            // toast 제거됨
           }
         }, 500);
       } else {
         // 남은 활로를 연속으로 막아야 하는 다중 착수 문제
-        toast('좋아요! 👏 남은 활로도 마저 막아보세요! (' + (currentBranch.length - state.playedMoves.length) + '개 남음)');
+        // toast 제거됨
       }
     }
   });
@@ -1506,7 +1511,7 @@
       state.freeMode = !state.freeMode;
       if (freeModeStatus) freeModeStatus.textContent = state.freeMode ? 'ON' : 'OFF';
       this.classList.toggle('active', state.freeMode);
-      toast(state.freeMode ? '✏️ 자유 시연 모드 켜짐' : '수업 문제 모드로 복귀');
+      // toast 제거됨
     });
   }
 
@@ -1660,10 +1665,10 @@
             moves: []
           }];
           state.historyIndex = 0;
-          toast('✍️ 놓아보기 모드 켜짐 (' + (state.nextTurn === 1 ? '⚫ 흑선' : '⚪ 백선') + ')');
+          // toast 제거됨
         } else {
           restoreProblemBoardState();
-          toast('문제 풀이 모드로 복귀했습니다.');
+          // toast 제거됨
         }
 
         updatePlacementUI();
@@ -1695,7 +1700,7 @@
           }
         }
         updatePlacementUI();
-        toast(mode === 'blackOnly' ? '⚫ 흑돌만 놓기 모드' : (mode === 'whiteOnly' ? '⚪ 백돌만 놓기 모드' : '🔄 교차 착수 (다음: ' + (state.nextTurn === 1 ? '⚫ 흑' : '⚪ 백') + ')'));
+        // toast 제거됨
       });
     });
 
@@ -1704,7 +1709,7 @@
     if (btnNavFirst) {
       btnNavFirst.addEventListener('click', function () {
         applyHistoryIndex(0);
-        toast('처음 상태로 되돌렸습니다.');
+        // toast 제거됨
       });
     }
 
@@ -1715,7 +1720,7 @@
           applyHistoryIndex(state.historyIndex - 1);
           sfx('playStone');
         } else {
-          toast('더 이상 물릴 수가 없습니다.');
+          // toast 제거됨
         }
       });
     }
@@ -1755,7 +1760,7 @@
         }];
         state.historyIndex = 0;
         updatePlacementUI();
-        toast('판을 초기 상태로 비웠습니다.');
+        // toast 제거됨
         drawBoard();
       });
     }
@@ -1800,7 +1805,7 @@
         localStorage.setItem('teacher_coord_mode', state.coordMode);
         btnToggleCoords.innerHTML = '🔤 좌표';
         btnToggleCoords.classList.toggle('active', state.coordMode !== 'none');
-        toast('좌표 모드: ' + (coordModeNames[state.coordMode] || state.coordMode));
+        // toast 제거됨
         drawBoard();
       });
     }
