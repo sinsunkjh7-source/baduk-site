@@ -495,6 +495,11 @@
     // 🌟 상단 턴 배지 텍스트를 시작 색상과 100% 일치시킴!
     qTurnBadge.textContent = (defColor === 2) ? '⚪ 백선' : '⚫ 흑선';
 
+    // 🌟 다른 번호/문제로 넘어갈 때 놓아보기 모드 자동 해제 및 문제 풀이 모드로 복귀
+    state.trialMode = false;
+    var btnTrialEl = document.getElementById('btnToggleTrial');
+    if (btnTrialEl) btnTrialEl.classList.remove('active');
+
     // 놓아보기 히스토리 및 문제 풀이 수순 초기화
     state.trialMoves = [];
     state.playedMoves = [];
@@ -1419,6 +1424,9 @@
   });
 
   document.getElementById('btnReset').addEventListener('click', function () {
+    state.trialMode = false;
+    var btnTrialEl = document.getElementById('btnToggleTrial');
+    if (btnTrialEl) btnTrialEl.classList.remove('active');
     state.board = state.initialBoard.map(function (row) { return row.slice(); });
     state.showAnswer = false;
     state.playedMoves = [];
