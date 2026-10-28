@@ -1231,10 +1231,9 @@
         return;
       }
 
-      // 사석 따내기 효과음 및 알림
+      // 사석 따내기 효과음 (화면 팝업 메시지는 제거하고 깔끔한 사운드만 재생)
       if (capturedCount > 0) {
         sfx('playCapture');
-        toast('상대 돌 ' + capturedCount + '점을 따냈습니다! 💥');
       } else {
         sfx('playStone');
       }
@@ -1394,7 +1393,6 @@
 
           if (oppCapturedCount > 0) {
             sfx('playCapture');
-            toast('상대방이 돌 ' + oppCapturedCount + '점을 따냈습니다! 💥');
           } else {
             sfx('playStone');
           }
