@@ -17,6 +17,7 @@
       <div class="alkkagi-header-row">
         <h1 class="alkkagi-page-title">🎯 알까기</h1>
         <a class="home-link" href="/#home">← 홈으로</a>
+        <button type="button" class="btn-settings-toggle" id="btnOpenSettings" title="환경설정">⚙️ 설정</button>
       </div>
         <div class="card omok-mode-card">
           <div class="card-header-icon">🎯 알까기 대전 설정</div>
@@ -118,6 +119,7 @@
           <div class="current-turn-box">
             <span class="turn-pulse-dot" id="alkkagiTurnDot"></span>
             <span class="turn-desc-txt" id="alkkagiTurnText">⚫ 흑돌 차례입니다</span>
+            <button type="button" class="btn-settings-toggle" id="btnOpenSettingsTurn" title="환경설정">⚙️ 설정</button>
             <a class="home-link" href="/#home">홈으로</a>
           </div>
           <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 6px; font-size: 0.82rem; font-weight: 800;">
@@ -147,6 +149,67 @@
       </aside>
   </div>
 </div>
+  <!-- 🌟 환경설정 슬림 플로팅 패널 🌟 -->
+  <div class="settings-panel" id="settingsPanel" hidden>
+    <div class="settings-header">
+      <span class="settings-title">⚙️ 환경 설정</span>
+      <button type="button" class="btn-close-settings" id="btnCloseSettings">✕</button>
+    </div>
+
+    <!-- 바탕화면 테마 -->
+    <div class="setting-group">
+      <span class="setting-label">🎨 바탕화면 테마</span>
+      <div class="setting-options" id="optTheme">
+        <button type="button" class="setting-opt-btn active" data-theme="green">시그니처 초록</button>
+        <button type="button" class="setting-opt-btn" data-theme="cream">크림화이트</button>
+        <button type="button" class="setting-opt-btn" data-theme="forest">포레스트</button>
+        <button type="button" class="setting-opt-btn" data-theme="slate">모던 슬레이트</button>
+      </div>
+    </div>
+
+    <!-- 바둑판 스킨 -->
+    <div class="setting-group">
+      <span class="setting-label">🪵 바둑판 재질</span>
+      <div class="setting-options" id="optBoardSkin">
+        <button type="button" class="setting-opt-btn" data-skin="wood">밝은 비자목</button>
+        <button type="button" class="setting-opt-btn active" data-skin="darkwood">진한 원목 (나뭇결)</button>
+        <button type="button" class="setting-opt-btn" data-skin="sky">시원한 스카이</button>
+      </div>
+    </div>
+
+    <!-- 바둑알 스킨 -->
+    <div class="setting-group">
+      <span class="setting-label">⚪ 바둑알 디자인 (6종)</span>
+      <div class="setting-options" id="optStoneStyle">
+        <button type="button" class="setting-opt-btn active" data-stone="classic">정통 클래식</button>
+        <button type="button" class="setting-opt-btn" data-stone="gem">영롱한 보석</button>
+        <button type="button" class="setting-opt-btn" data-stone="cute">귀여운 눈</button>
+        <button type="button" class="setting-opt-btn" data-stone="cat">3D 고양이</button>
+        <button type="button" class="setting-opt-btn" data-stone="galaxy">우주 은하</button>
+        <button type="button" class="setting-opt-btn" data-stone="crystal">크리스탈 다이아</button>
+      </div>
+    </div>
+
+    <!-- 착수음 사운드 종류 -->
+    <div class="setting-group">
+      <span class="setting-label">🔔 착수음 종류</span>
+      <div class="setting-options" id="optSoundType">
+        <button type="button" class="setting-opt-btn active" data-sound="classic">경쾌한 바둑돌</button>
+        <button type="button" class="setting-opt-btn" data-sound="stone">맑은 딸깍</button>
+        <button type="button" class="setting-opt-btn" data-sound="wood">둔탁한 묵직</button>
+        <button type="button" class="setting-opt-btn" data-sound="maple">정갈한 단풍</button>
+      </div>
+    </div>
+
+    <!-- 음량 조절 -->
+    <div class="setting-group">
+      <span class="setting-label">🔊 착수음 음량</span>
+      <div class="volume-slider-row">
+        <input type="range" min="0" max="100" value="100" class="volume-slider" id="volumeSlider">
+        <span class="volume-val" id="volumeVal">100%</span>
+      </div>
+    </div>
+  </div>
 <div class="toast" id="toast" hidden></div>
 <script src="audio.js?v=static-68a173ca45abc653"></script>
 <script src="engine.js?v=static-68a173ca45abc653"></script>

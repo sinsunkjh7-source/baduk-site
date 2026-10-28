@@ -59,6 +59,8 @@ class BadukAudio {
   }
 
   // 🌟 이중 소리 방지: 단 하나의 명쾌한 단타 사운드 재생 🌟
+  playPlaceSound(color = 1) { this.playStone(); }
+
   playStone() {
     if (!this.enabled || this.volume <= 0) return;
     this.init();
@@ -67,12 +69,17 @@ class BadukAudio {
     const t = this.ctx.currentTime;
 
     switch (this.soundType) {
+      case 'wood':
       case 'deep': // 2. 묵직한 통나무 바둑판 소리
         this._playDeepWood(t);
         break;
+      case 'stone':
+      case 'stone':
       case 'crisp': // 3. 경쾌하고 시원한 딱! 소리
         this._playCrispClick(t);
         break;
+      case 'maple':
+      case 'maple':
       case 'pop': // 4. 귀여운 퐁퐁 소리
         this._playCutePop(t);
         break;

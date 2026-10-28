@@ -27,6 +27,32 @@
     winLine: null
   };
 
+  /* 🌟 환경설정 상태 (로컬 스토리지 연동) 🌟 */
+  var omokSettings = {
+    theme: localStorage.getItem('omok_theme') || localStorage.getItem('baduk_theme') || 'green',
+    boardSkin: localStorage.getItem('omok_board_skin') || localStorage.getItem('baduk_board_skin') || 'darkwood',
+    stoneStyle: localStorage.getItem('omok_stone_style') || localStorage.getItem('baduk_stone_style') || 'classic',
+    volume: parseFloat(localStorage.getItem('omok_audio_volume') || localStorage.getItem('baduk_audio_volume') || '1.0'),
+    soundType: localStorage.getItem('omok_audio_type') || localStorage.getItem('baduk_audio_type') || 'classic'
+  };
+
+  /* 3D 돌 스프라이트 이미지 */
+  var stoneSprites = {};
+  var spriteUrls = {
+    'cat_1': '../../images/stone_cat_b.png',
+    'cat_2': '../../images/stone_cat_w.png',
+    'galaxy_1': '../../images/stone_galaxy_b.png',
+    'galaxy_2': '../../images/stone_galaxy_w.png',
+    'crystal_1': '../../images/stone_crystal_b.png',
+    'crystal_2': '../../images/stone_crystal_w.png'
+  };
+  Object.keys(spriteUrls).forEach(function (k) {
+    var img = new Image();
+    img.src = spriteUrls[k];
+    img.onload = function () { draw(); };
+    stoneSprites[k] = img;
+  });
+
   var ai = (typeof GomokuAI !== 'undefined') ? new GomokuAI(SIZE) : null;
 
   /* ---------- 소리 (사이트 설정 공유) ---------- */
@@ -81,13 +107,33 @@
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     ctx.clearRect(0, 0, s, s);
 
-    // 나무 바탕
-    var g = ctx.createLinearGradient(0, 0, s, s);
-    g.addColorStop(0, '#F0C987');
-    g.addColorStop(0.5, '#E8B96A');
-    g.addColorStop(1, '#DFA954');
-    ctx.fillStyle = g;
-    ctx.fillRect(0, 0, s, s);
+    // 바둑판 스킨
+    if (omokSettings.boardSkin === 'darkwood') {
+      ctx.fillStyle = '#deb06c';
+      ctx.fillRect(0, 0, s, s);
+      ctx.save();
+      for (var gx = 1; gx < s; gx += 2) {
+        var wave = Math.sin(gx * 0.18 + (gx % 5));
+        var grainAlpha = 0.035 + 0.04 * (wave * 0.5 + 0.5);
+        ctx.strokeStyle = 'rgba(95, 48, 14, ' + grainAlpha + ')';
+        ctx.lineWidth = 0.75;
+        ctx.beginPath();
+        ctx.moveTo(gx, 0);
+        ctx.lineTo(gx, s);
+        ctx.stroke();
+      }
+      ctx.restore();
+    } else if (omokSettings.boardSkin === 'sky') {
+      ctx.fillStyle = '#dbeafe';
+      ctx.fillRect(0, 0, s, s);
+    } else {
+      var g = ctx.createLinearGradient(0, 0, s, s);
+      g.addColorStop(0, '#F0C987');
+      g.addColorStop(0.5, '#E8B96A');
+      g.addColorStop(1, '#DFA954');
+      ctx.fillStyle = g;
+      ctx.fillRect(0, 0, s, s);
+    }
 
     // 격자
     ctx.strokeStyle = 'rgba(110, 74, 30, .85)';
@@ -197,26 +243,77 @@
   }
 
   function drawStone(cx, cy, r, color) {
-    var grad = ctx.createRadialGradient(cx - r * 0.35, cy - r * 0.4, r * 0.1, cx, cy, r);
-    if (color === BLACK) {
-      grad.addColorStop(0, '#6e6e6e');
-      grad.addColorStop(0.55, '#1c1c1c');
-      grad.addColorStop(1, '#080808');
+    ctx.save();
+    var spriteKey = omokSettings.stoneStyle + '_' + color;
+    var spriteImg = stoneSprites[spriteKey];
+
+    if (spriteImg && spriteImg.complete && spriteImg.naturalWidth > 0) {
+      ctx.shadowColor = 'rgba(0, 0, 0, 0.42)';
+      ctx.shadowBlur = r * 0.4;
+      ctx.shadowOffsetY = r * 0.14;
+      ctx.drawImage(spriteImg, cx - r, cy - r, r * 2, r * 2);
     } else {
-      grad.addColorStop(0, '#ffffff');
-      grad.addColorStop(0.6, '#f4f4f4');
-      grad.addColorStop(1, '#d6d6d6');
+      var grad = ctx.createRadialGradient(cx - r * 0.35, cy - r * 0.4, r * 0.1, cx, cy, r);
+      if (omokSettings.stoneStyle === 'gem') {
+        if (color === BLACK) {
+          grad.addColorStop(0, '#dbeafe');
+          grad.addColorStop(0.2, '#60a5fa');
+          grad.addColorStop(0.5, '#2563eb');
+          grad.addColorStop(0.8, '#1e40af');
+          grad.addColorStop(1, '#0f172a');
+        } else {
+          grad.addColorStop(0, '#ffffff');
+          grad.addColorStop(0.2, '#fdf2f8');
+          grad.addColorStop(0.48, '#fbcfe8');
+          grad.addColorStop(0.8, '#f472b6');
+          grad.addColorStop(1, '#be185d');
+        }
+      } else {
+        if (color === BLACK) {
+          grad.addColorStop(0, '#6e6e6e');
+          grad.addColorStop(0.55, '#1c1c1c');
+          grad.addColorStop(1, '#080808');
+        } else {
+          grad.addColorStop(0, '#ffffff');
+          grad.addColorStop(0.6, '#f4f4f4');
+          grad.addColorStop(1, '#d6d6d6');
+        }
+      }
+      ctx.beginPath();
+      ctx.arc(cx, cy, r, 0, Math.PI * 2);
+      ctx.fillStyle = grad;
+      ctx.shadowColor = 'rgba(0,0,0,.35)';
+      ctx.shadowBlur = r * 0.45;
+      ctx.shadowOffsetY = r * 0.12;
+      ctx.fill();
+
+      // 귀여운 눈 두개 돌 연출 (cute)
+      if (omokSettings.stoneStyle === 'cute') {
+        ctx.shadowColor = 'transparent';
+        var eyeR = r * 0.18;
+        var eyeY = cy - r * 0.08;
+        var eyeOffsetX = r * 0.28;
+
+        ctx.fillStyle = '#ffffff';
+        ctx.beginPath();
+        ctx.arc(cx - eyeOffsetX, eyeY, eyeR, 0, Math.PI * 2);
+        ctx.arc(cx + eyeOffsetX, eyeY, eyeR, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.fillStyle = (color === BLACK) ? '#111827' : '#1e3a8a';
+        ctx.beginPath();
+        ctx.arc(cx - eyeOffsetX, eyeY + eyeR * 0.15, eyeR * 0.65, 0, Math.PI * 2);
+        ctx.arc(cx + eyeOffsetX, eyeY + eyeR * 0.15, eyeR * 0.65, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.fillStyle = '#ffffff';
+        ctx.beginPath();
+        ctx.arc(cx - eyeOffsetX + eyeR * 0.2, eyeY - eyeR * 0.15, eyeR * 0.3, 0, Math.PI * 2);
+        ctx.arc(cx + eyeOffsetX + eyeR * 0.2, eyeY - eyeR * 0.15, eyeR * 0.3, 0, Math.PI * 2);
+        ctx.fill();
+      }
     }
-    ctx.beginPath();
-    ctx.arc(cx, cy, r, 0, Math.PI * 2);
-    ctx.fillStyle = grad;
-    ctx.shadowColor = 'rgba(0,0,0,.35)';
-    ctx.shadowBlur = r * 0.45;
-    ctx.shadowOffsetY = r * 0.12;
-    ctx.fill();
-    ctx.shadowColor = 'transparent';
-    ctx.shadowBlur = 0;
-    ctx.shadowOffsetY = 0;
+    ctx.restore();
   }
 
   /* ---------- 상태 표시 ---------- */
@@ -584,4 +681,105 @@
 
   window.addEventListener('resize', function () { layout(); draw(); });
   boot();
+
+  /* ---------- 🌟 환경설정 이벤트 바인딩 🌟 ---------- */
+  function initOmokSettings() {
+    var panel = document.getElementById('settingsPanel');
+    var btnOpen = document.getElementById('btnOpenSettings');
+    var btnClose = document.getElementById('btnCloseSettings');
+    if (!panel || !btnOpen) return;
+
+    panel.addEventListener('mousedown', function (e) { e.stopPropagation(); });
+    panel.addEventListener('click', function (e) { e.stopPropagation(); });
+
+    btnOpen.addEventListener('click', function (e) {
+      e.stopPropagation();
+      panel.hidden = !panel.hidden;
+    });
+    if (btnClose) {
+      btnClose.addEventListener('click', function (e) {
+        e.stopPropagation();
+        panel.hidden = true;
+      });
+    }
+
+    // 테마 복원 및 바인딩
+    document.body.className = 'theme-' + omokSettings.theme;
+    document.querySelectorAll('#optTheme .setting-opt-btn').forEach(function (b) {
+      b.classList.toggle('active', b.dataset.theme === omokSettings.theme);
+      b.addEventListener('click', function () {
+        document.querySelectorAll('#optTheme .setting-opt-btn').forEach(function (btn) { btn.classList.remove('active'); });
+        b.classList.add('active');
+        omokSettings.theme = b.dataset.theme;
+        localStorage.setItem('omok_theme', omokSettings.theme);
+        localStorage.setItem('baduk_theme', omokSettings.theme);
+        document.body.className = 'theme-' + omokSettings.theme;
+      });
+    });
+
+    // 바둑판 스킨
+    document.querySelectorAll('#optBoardSkin .setting-opt-btn').forEach(function (b) {
+      b.classList.toggle('active', b.dataset.skin === omokSettings.boardSkin);
+      b.addEventListener('click', function () {
+        document.querySelectorAll('#optBoardSkin .setting-opt-btn').forEach(function (btn) { btn.classList.remove('active'); });
+        b.classList.add('active');
+        omokSettings.boardSkin = b.dataset.skin;
+        localStorage.setItem('omok_board_skin', omokSettings.boardSkin);
+        localStorage.setItem('baduk_board_skin', omokSettings.boardSkin);
+        draw();
+      });
+    });
+
+    // 바둑알 디자인 (6종)
+    document.querySelectorAll('#optStoneStyle .setting-opt-btn').forEach(function (b) {
+      b.classList.toggle('active', b.dataset.stone === omokSettings.stoneStyle);
+      b.addEventListener('click', function () {
+        document.querySelectorAll('#optStoneStyle .setting-opt-btn').forEach(function (btn) { btn.classList.remove('active'); });
+        b.classList.add('active');
+        omokSettings.stoneStyle = b.dataset.stone;
+        localStorage.setItem('omok_stone_style', omokSettings.stoneStyle);
+        localStorage.setItem('baduk_stone_style', omokSettings.stoneStyle);
+        draw();
+      });
+    });
+
+    // 사운드 종류 & 볼륨
+    document.querySelectorAll('#optSoundType .setting-opt-btn').forEach(function (b) {
+      b.classList.toggle('active', b.dataset.sound === omokSettings.soundType);
+      b.addEventListener('click', function () {
+        document.querySelectorAll('#optSoundType .setting-opt-btn').forEach(function (btn) { btn.classList.remove('active'); });
+        b.classList.add('active');
+        omokSettings.soundType = b.dataset.sound;
+        localStorage.setItem('omok_audio_type', omokSettings.soundType);
+        localStorage.setItem('baduk_audio_type', omokSettings.soundType);
+        if (window.badukAudio) {
+          window.badukAudio.setSoundType(omokSettings.soundType);
+          sfx('playStone');
+        }
+      });
+    });
+
+    var volumeSlider = document.getElementById('volumeSlider');
+    var volumeVal = document.getElementById('volumeVal');
+    if (volumeSlider) {
+      volumeSlider.value = Math.round(omokSettings.volume * 100);
+      if (volumeVal) volumeVal.textContent = volumeSlider.value + '%';
+      volumeSlider.addEventListener('input', function () {
+        var val = parseInt(volumeSlider.value, 10);
+        if (volumeVal) volumeVal.textContent = val + '%';
+        omokSettings.volume = val / 100;
+        localStorage.setItem('omok_audio_volume', omokSettings.volume);
+        localStorage.setItem('baduk_audio_volume', omokSettings.volume);
+        if (window.badukAudio) window.badukAudio.setVolume(omokSettings.volume);
+      });
+    }
+
+    if (window.badukAudio) {
+      window.badukAudio.setSoundType(omokSettings.soundType);
+      window.badukAudio.setVolume(omokSettings.volume);
+    }
+  }
+
+  initOmokSettings();
+
 })();

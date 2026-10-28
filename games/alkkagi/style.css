@@ -506,3 +506,151 @@ html, body { margin: 0; height: 100%; background: #F7FBF2; font-family: "Malgun 
 .home-link:focus-visible { outline: 2px solid #33682a; outline-offset: 3px; }
 .alkkagi-header-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; padding: 2px 4px; }
 .alkkagi-page-title { margin: 0; font-size: 1.15rem; font-weight: 900; color: #1e293b; }
+
+
+/* ---------- 🌟 환경설정 플로팅 패널 & 버튼 🌟 ---------- */
+.btn-settings-toggle {
+  background: rgba(74, 138, 58, 0.12);
+  border: 1.5px solid rgba(74, 138, 58, 0.4);
+  color: #2f5c24;
+  font-size: 12.5px;
+  font-weight: 800;
+  padding: 4px 11px;
+  border-radius: 16px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  text-decoration: none;
+  transition: all .15s ease;
+}
+.btn-settings-toggle:hover {
+  background: rgba(74, 138, 58, 0.22);
+  transform: translateY(-1px);
+}
+
+.settings-panel {
+  position: fixed;
+  top: 52px;
+  right: 18px;
+  width: 295px;
+  background: #ffffff;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 14px;
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.24);
+  padding: 16px;
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  max-height: calc(100vh - 70px);
+  overflow-y: auto;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+.settings-panel[hidden] {
+  display: none !important;
+}
+
+.settings-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1.5px solid #e2e8f0;
+  padding-bottom: 8px;
+}
+.settings-title {
+  font-size: 14.5px;
+  font-weight: 900;
+  color: #2f5c24;
+}
+.btn-close-settings {
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  color: #64748b;
+  cursor: pointer;
+  padding: 2px 6px;
+  line-height: 1;
+}
+.btn-close-settings:hover {
+  color: #0f172a;
+}
+
+.setting-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.setting-label {
+  font-size: 12px;
+  font-weight: 800;
+  color: #1e293b;
+}
+.setting-options {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 5px;
+}
+.setting-opt-btn {
+  background: #f8fafc;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 7px;
+  padding: 6px 4px;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #1e293b;
+  cursor: pointer;
+  text-align: center;
+  transition: all .15s;
+}
+.setting-opt-btn:hover {
+  background: #f1f5f9;
+}
+.setting-opt-btn.active {
+  background: #4a8a3a;
+  border-color: #2f5c24;
+  color: #ffffff;
+  font-weight: 800;
+}
+
+.volume-slider-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.volume-slider {
+  flex: 1;
+  accent-color: #4a8a3a;
+  cursor: pointer;
+}
+.volume-val {
+  font-size: 12px;
+  font-weight: 800;
+  color: #2f5c24;
+  min-width: 36px;
+  text-align: right;
+}
+
+/* 바탕화면 테마 클래스 */
+body.theme-green, .theme-green { background: #eff7e4 !important; }
+body.theme-cream, .theme-cream { background: #fef9ed !important; }
+body.theme-forest, .theme-forest { background: #1c3617 !important; }
+body.theme-slate, .theme-slate { background: #1e293b !important; }
+
+
+/* 다크 테마 헤더 가독성 */
+body.theme-forest .alkkagi-page-title,
+body.theme-slate .alkkagi-page-title {
+  color: #ffffff;
+}
+body.theme-forest .alkkagi-header-row .home-link,
+body.theme-slate .alkkagi-header-row .home-link {
+  color: #93c5fd;
+}
+body.theme-forest .alkkagi-header-row .btn-settings-toggle,
+body.theme-slate .alkkagi-header-row .btn-settings-toggle {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.45);
+  color: #ffffff;
+}

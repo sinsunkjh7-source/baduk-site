@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>오목 — 바둑스쿨</title>
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; media-src 'self'; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; worker-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; media-src 'self'; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; worker-src 'none'">
 <link rel="stylesheet" href="style.css?v=static-20261027v4">
 </head>
 <body>
@@ -15,6 +15,7 @@
       <span class="turn-stone" id="turnStone"></span>
       <span class="turn-text" id="turnText">흑 차례</span>
       <a class="home-link" href="/#home">홈으로</a>
+      <button type="button" class="btn-settings-toggle" id="btnOpenSettings" title="환경설정">⚙️ 설정</button>
       <span class="move-count" id="moveCount">0수</span>
     </div>
 
@@ -77,6 +78,68 @@
   </aside>
 
 </div>
+
+  <!-- 🌟 환경설정 슬림 플로팅 패널 🌟 -->
+  <div class="settings-panel" id="settingsPanel" hidden>
+    <div class="settings-header">
+      <span class="settings-title">⚙️ 환경 설정</span>
+      <button type="button" class="btn-close-settings" id="btnCloseSettings">✕</button>
+    </div>
+
+    <!-- 바탕화면 테마 -->
+    <div class="setting-group">
+      <span class="setting-label">🎨 바탕화면 테마</span>
+      <div class="setting-options" id="optTheme">
+        <button type="button" class="setting-opt-btn active" data-theme="green">시그니처 초록</button>
+        <button type="button" class="setting-opt-btn" data-theme="cream">크림화이트</button>
+        <button type="button" class="setting-opt-btn" data-theme="forest">포레스트</button>
+        <button type="button" class="setting-opt-btn" data-theme="slate">모던 슬레이트</button>
+      </div>
+    </div>
+
+    <!-- 바둑판 스킨 -->
+    <div class="setting-group">
+      <span class="setting-label">🪵 바둑판 재질</span>
+      <div class="setting-options" id="optBoardSkin">
+        <button type="button" class="setting-opt-btn" data-skin="wood">밝은 비자목</button>
+        <button type="button" class="setting-opt-btn active" data-skin="darkwood">진한 원목 (나뭇결)</button>
+        <button type="button" class="setting-opt-btn" data-skin="sky">시원한 스카이</button>
+      </div>
+    </div>
+
+    <!-- 바둑알 스킨 -->
+    <div class="setting-group">
+      <span class="setting-label">⚪ 바둑알 디자인 (6종)</span>
+      <div class="setting-options" id="optStoneStyle">
+        <button type="button" class="setting-opt-btn active" data-stone="classic">정통 클래식</button>
+        <button type="button" class="setting-opt-btn" data-stone="gem">영롱한 보석</button>
+        <button type="button" class="setting-opt-btn" data-stone="cute">귀여운 눈</button>
+        <button type="button" class="setting-opt-btn" data-stone="cat">3D 고양이</button>
+        <button type="button" class="setting-opt-btn" data-stone="galaxy">우주 은하</button>
+        <button type="button" class="setting-opt-btn" data-stone="crystal">크리스탈 다이아</button>
+      </div>
+    </div>
+
+    <!-- 착수음 사운드 종류 -->
+    <div class="setting-group">
+      <span class="setting-label">🔔 착수음 종류</span>
+      <div class="setting-options" id="optSoundType">
+        <button type="button" class="setting-opt-btn active" data-sound="classic">경쾌한 바둑돌</button>
+        <button type="button" class="setting-opt-btn" data-sound="stone">맑은 딸깍</button>
+        <button type="button" class="setting-opt-btn" data-sound="wood">둔탁한 묵직</button>
+        <button type="button" class="setting-opt-btn" data-sound="maple">정갈한 단풍</button>
+      </div>
+    </div>
+
+    <!-- 음량 조절 -->
+    <div class="setting-group">
+      <span class="setting-label">🔊 착수음 음량</span>
+      <div class="volume-slider-row">
+        <input type="range" min="0" max="100" value="100" class="volume-slider" id="volumeSlider">
+        <span class="volume-val" id="volumeVal">100%</span>
+      </div>
+    </div>
+  </div>
 
 <div class="toast" id="toast" hidden></div>
 <script src="audio.js?v=static-20261027v4"></script>
