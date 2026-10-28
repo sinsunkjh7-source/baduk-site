@@ -609,15 +609,15 @@
   function layoutBoard() {
     var rect = boardContainer.getBoundingClientRect();
     // 🌟 [원장님 지침 6번] 바둑판 크기를 화면에 꽉 차도록 대폭 확대
-    var availW = rect.width - 16;
-    var availH = rect.height - 16;
+    var availW = rect.width - 8;
+    var availH = rect.height - 8;
 
     var cols = state.boardCols; // 세로선 10
     var rows = state.boardRows; // 가로선 9
 
-    // 셀 크기 최적화: 여백을 최소화하여 화면 높이와 너비를 가득 채움 (최대 115px)
-    var cell = Math.min((availW - 12) / (cols + 0.85), (availH - 12) / (rows + 0.85));
-    cell = Math.max(32, Math.min(cell, 115));
+    // 셀 크기 최적화: 여백을 최소화하여 화면 높이와 너비를 가득 채움 (대폭 확장)
+    var cell = Math.min((availW - 6) / (cols + 0.85), (availH - 6) / (rows + 0.85));
+    cell = Math.max(32, Math.min(cell, 150));
 
     var dispW = Math.round((cols + 0.85) * cell);
     var dispH = Math.round((rows + 0.85) * cell);
@@ -1343,7 +1343,7 @@
 
   document.getElementById('btnAnswer').addEventListener('click', function () {
     state.showAnswer = !state.showAnswer;
-    this.textContent = state.showAnswer ? '🙈 정답 숨기기' : '👁️ 정답 보기';
+    this.textContent = state.showAnswer ? '🙈 정답 숨김' : '👁️ 정답';
     drawBoard();
   });
 

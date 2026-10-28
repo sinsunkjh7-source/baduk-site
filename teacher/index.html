@@ -78,26 +78,28 @@
           <span class="problem-nav-indicator" id="navIndicator">1 / 25</span>
           <button type="button" id="btnNextProblem" class="btn-nav primary">다음 문제</button>
         </div>
+
+        <!-- 🌟 문제 지문 및 힌트/정답 박스 (좌측 사이드바 이전문제 버튼 하단) 🌟 -->
+        <section class="question-bar" id="sidebarQuestionBar">
+          <div class="question-header">
+            <span class="q-num" id="qNumBadge">문제 1</span>
+            <span class="q-turn" id="qTurnBadge">⚫ 흑선</span>
+            <button type="button" id="btnHint" class="btn-hint">💡 힌트</button>
+            <button type="button" id="btnAnswer" class="btn-answer">👁️ 정답</button>
+            <button type="button" id="btnReset" class="btn-reset">🔄 초기화</button>
+          </div>
+          <p class="question-text" id="questionText">문제를 불러오는 중입니다...</p>
+          <div class="hint-box" id="hintBox" hidden>
+            <span class="hint-icon">💡</span> <span id="hintText"></span>
+          </div>
+        </section>
       </div>
     </aside>
 
     <!-- 중앙 메인 수업용 바둑판 영역 -->
     <main class="teacher-stage">
       
-      <!-- 문제 지문 카드 -->
-      <section class="question-bar">
-        <div class="question-header">
-          <span class="q-num" id="qNumBadge">문제 1</span>
-          <span class="q-turn" id="qTurnBadge">⚫ 흑선</span>
-          <button type="button" id="btnHint" class="btn-hint">💡 힌트 보기</button>
-          <button type="button" id="btnAnswer" class="btn-answer">👁️ 정답 보기</button>
-          <button type="button" id="btnReset" class="btn-reset">🔄 초기화</button>
-        </div>
-        <p class="question-text" id="questionText">문제를 불러오는 중입니다...</p>
-        <div class="hint-box" id="hintBox" hidden>
-          <span class="hint-icon">💡</span> <span id="hintText"></span>
-        </div>
-      </section>
+
 
       <!-- 대형 수업 바둑판 캔버스 -->
       <div class="board-container" id="boardContainer">
@@ -257,6 +259,6 @@
 <div id="teacherToast" class="teacher-toast" hidden></div>
 
 <script src="audio.js?v=teacher-panel-v15"></script>
-<script src="app.js?v=teacher-panel-v18"></script>
+<script src="app.js?v=teacher-panel-v19"></script>
 </body>
 </html>
