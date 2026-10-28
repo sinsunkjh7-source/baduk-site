@@ -168,7 +168,7 @@
 
   /* ---------- 카탈로그 및 교재 로드 ---------- */
   function initCatalog() {
-    fetch('data/catalog.json?v=teacher-catalog-v15')
+    fetch('data/catalog.json?v=teacher-catalog-v16')
       .then(function (res) { return res.json(); })
       .then(function (cat) {
         state.catalog = cat;
@@ -1426,7 +1426,7 @@
       btnTrial.addEventListener('click', function () {
         state.trialMode = !state.trialMode;
         btnTrial.classList.toggle('active', state.trialMode);
-        toast(state.trialMode ? '✍️ 놓아보기 모드 ON' : '문제 풀이 모드로 복귀');
+        toast(state.trialMode ? '✍️ 놓아보기 모드 켜짐' : '문제 풀이 모드로 복귀');
         drawBoard();
       });
     }
