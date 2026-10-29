@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>당구 3구 — 바둑스쿨 Fun</title>
+<link rel="stylesheet" href="/unified-nav.css?v=fun-menu-20261029f">
+<link rel="stylesheet" href="style.css?v=bill-1">
+<script src="/unified-nav.js?v=fun-menu-20261029g" defer></script>
+</head>
+<body data-bks-page="billiards">
+
+<main class="b-wrap">
+  <section class="b-board-col">
+    <div class="b-head">
+      <div class="b-score"><span>득점</span><b id="score">0</b></div>
+      <div class="b-score"><span>시도</span><b id="shots">0</b></div>
+      <div class="b-score"><span>최고</span><b id="best">0</b></div>
+      <div class="b-turn" id="turnBar">당신 차례</div>
+    </div>
+
+    <div class="b-canvas-box">
+      <canvas id="table" width="960" height="480"></canvas>
+    </div>
+
+    <div class="b-power">
+      <span class="b-power-label">세기</span>
+      <div class="b-power-track"><div class="b-power-fill" id="powerFill"></div></div>
+    </div>
+  </section>
+
+  <aside class="b-side">
+    <h2 class="b-title">당구 3구</h2>
+    <p class="b-desc">내 공(흰색)으로 빨강·노랑을 <b>모두 맞히면</b> 1점입니다. 공을 드래그해 방향과 세기를 정하세요.</p>
+
+    <div class="b-actions">
+      <button type="button" id="btnNew" class="b-btn primary">새 게임</button>
+      <button type="button" id="btnReset" class="b-btn">공 위치 초기화</button>
+    </div>
+
+    <details class="b-rules">
+      <summary>규칙 보기</summary>
+      <ul>
+        <li>내 공으로 빨강과 노랑을 차례로 맞히면 득점</li>
+        <li>쿠션(벽)은 몇 번 맞아도 됩니다</li>
+        <li>한 쪽만 맞히면 실패 — 다음 시도</li>
+      </ul>
+    </details>
+
+    <p class="b-msg" id="msg" hidden></p>
+  </aside>
+</main>
+
+<script src="game.js?v=bill-1"></script>
+</body>
+</html>
