@@ -18,6 +18,44 @@
   <!-- 🌟 중앙 메인 대국 스테이지 (놓아보기 캔버스 탑재) 🌟 -->
   <main class="play-stage theme-green" id="playStage">
     
+    <!-- ⏱️ 제한 시간 & 초읽기 시계 바 (선택 시 활성화) -->
+    <div class="match-timer-bar" id="matchTimerBar" hidden>
+      <div class="timer-card black-timer" id="blackTimerCard">
+        <div class="timer-player-info">
+          <span class="timer-stone">⚫</span>
+          <span class="timer-name" id="timerBlackName">흑</span>
+        </div>
+        <div class="timer-digits" id="timerBlackTime">10:00</div>
+        <div class="timer-byo" id="timerBlackByo">초읽기 30초 (3회)</div>
+      </div>
+
+      <div class="timer-turn-pulse" id="timerTurnPulse">
+        <span class="pulse-dot"></span>
+        <span id="timerTurnText">⚫ 흑의 시간</span>
+      </div>
+
+      <div class="timer-card white-timer" id="whiteTimerCard">
+        <div class="timer-player-info">
+          <span class="timer-stone">⚪</span>
+          <span class="timer-name" id="timerWhiteName">백</span>
+        </div>
+        <div class="timer-digits" id="timerWhiteTime">10:00</div>
+        <div class="timer-byo" id="timerWhiteByo">초읽기 30초 (3회)</div>
+      </div>
+    </div>
+
+    <!-- 🎨 프리 접바둑 자유 배치 안내 배너 -->
+    <div class="free-placement-banner" id="freePlacementBanner" hidden>
+      <div class="banner-text">
+        <span class="banner-icon">🎨</span>
+        <span><strong>프리 접바둑 돌 놓기 모드</strong>: 바둑판 빈 곳을 클릭하여 흑돌을 자유롭게 배치하세요. (배치된 돌: <strong id="freePlacedCount">0</strong>개)</span>
+      </div>
+      <div class="banner-btns">
+        <button type="button" class="btn-banner-finish" id="btnFreePlacementDone">✅ 배치 완료 (대국 시작)</button>
+        <button type="button" class="btn-banner-clear" id="btnFreePlacementReset">🔄 전체 지우기</button>
+      </div>
+    </div>
+
     <!-- AI 생각 중 알림 배지 -->
     <div class="ai-thinking-badge" id="aiThinkingBadge" hidden>
       <span class="thinking-spinner">⏳</span>
@@ -106,14 +144,14 @@
               <span class="bot-card-avatar">🐼</span>
               <div class="bot-card-info">
                 <strong>지혜로운 판다</strong>
-                <small>고급 (아마 1단)</small>
+                <small>상급 (1~2급)</small>
               </div>
             </button>
             <button type="button" class="match-bot-card" data-bot="master">
               <span class="bot-card-avatar">🐯</span>
               <div class="bot-card-info">
                 <strong>용맹한 호랑이</strong>
-                <small>최강 (아마 5단)</small>
+                <small>유단자 (기원 1단/타이젬 2~3단)</small>
               </div>
             </button>
           </div>
@@ -124,7 +162,7 @@
           <label class="match-section-label">📐 바둑판 크기</label>
           <div class="match-chips" id="matchSizeChips">
             <button type="button" class="match-chip active" data-size="19">19줄 (정규 바둑판)</button>
-            <button type="button" class="match-chip" data-size="13">13줄 (중급 바둑판)</button>
+            <button type="button" class="match-chip" data-size="13">13줄</button>
             <button type="button" class="match-chip" data-size="9">9줄 (입문 빠른 바둑판)</button>
           </div>
         </div>
@@ -153,6 +191,45 @@
             <button type="button" class="match-chip" data-handicap="7">7점 접바둑</button>
             <button type="button" class="match-chip" data-handicap="8">8점 접바둑</button>
             <button type="button" class="match-chip" data-handicap="9">9점 접바둑</button>
+            <button type="button" class="match-chip" data-handicap="free">🎨 프리 접바둑 (자유 배치 / 9점 이상)</button>
+          </div>
+
+          <!-- 프리 접바둑 세부 설정 패널 -->
+          <div class="free-handicap-sub" id="freeHandicapSub" style="display: none;">
+            <div class="free-sub-row">
+              <span class="free-sub-label">접바둑 점수 프리셋:</span>
+              <div class="free-preset-chips" id="freePresetChips">
+                <button type="button" class="free-preset-chip active" data-count="10">10점</button>
+                <button type="button" class="free-preset-chip" data-count="12">12점</button>
+                <button type="button" class="free-preset-chip" data-count="13">13점</button>
+                <button type="button" class="free-preset-chip" data-count="16">16점</button>
+                <button type="button" class="free-preset-chip" data-count="17">17점</button>
+                <button type="button" class="free-preset-chip" data-count="25">25점</button>
+                <button type="button" class="free-preset-chip" data-count="custom">👆 직접 판에 놓기</button>
+              </div>
+            </div>
+            <div class="free-sub-row" id="freeCountRow">
+              <span class="free-sub-label">점수 직접 지정:</span>
+              <div class="free-stepper">
+                <button type="button" class="free-stepper-btn" id="btnDecFreeCount">-</button>
+                <input type="number" id="inputFreeCount" min="9" max="50" value="10" readonly>
+                <button type="button" class="free-stepper-btn" id="btnIncFreeCount">+</button>
+                <span class="free-stepper-unit">점 접바둑</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. 제한 시간 선택 -->
+        <div class="match-section">
+          <label class="match-section-label">⏱️ 제한 시간 선택</label>
+          <div class="match-chips" id="matchTimeChips">
+            <button type="button" class="match-chip active" data-time="none">무제한 (시간 없음)</button>
+            <button type="button" class="match-chip" data-time="10m30s">10분 + 초읽기 30초 3회</button>
+            <button type="button" class="match-chip" data-time="20m30s">20분 + 초읽기 30초 3회</button>
+            <button type="button" class="match-chip" data-time="30m40s">30분 + 초읽기 40초 3회</button>
+            <button type="button" class="match-chip" data-time="5m20s">5분 + 초읽기 20초 3회 (속기)</button>
+            <button type="button" class="match-chip" data-time="1m10s">1분 + 초읽기 10초 3회 (초속기)</button>
           </div>
         </div>
       </div>

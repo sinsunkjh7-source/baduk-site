@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>오델로 — 바둑스쿨 Fun</title>
 <link rel="stylesheet" href="/unified-nav.css?v=fun-menu-20261029L">
-<link rel="stylesheet" href="style.css?v=othello-1">
+<link rel="stylesheet" href="style.css?v=othello-4">
 <script src="/unified-nav.js?v=fun-menu-20261029L" defer></script>
 </head>
 <body data-bks-page="othello">
@@ -30,8 +30,27 @@
     <div class="o-actions">
       <button type="button" id="btnNew" class="o-btn primary">새 게임</button>
       <button type="button" id="btnUndo" class="o-btn">무르기</button>
+      <button type="button" id="btnHint" class="o-btn">힌트 보기</button>
       <button type="button" id="btnMode" class="o-btn">AI 대전 중</button>
     </div>
+
+    <label class="o-field">
+      <span>AI 난이도</span>
+      <select id="selLevel">
+        <option value="2">쉬움</option>
+        <option value="4" selected>보통</option>
+        <option value="6">어려움</option>
+      </select>
+    </label>
+
+    <label class="o-field">
+      <span>착수 미리보기</span>
+      <select id="selPreview">
+        <option value="off" selected>끄기</option>
+        <option value="stones">뒤집힐 돌만</option>
+        <option value="result">결과까지</option>
+      </select>
+    </label>
 
     <details class="o-rules">
       <summary>규칙 보기</summary>
@@ -46,6 +65,6 @@
   </aside>
 </main>
 
-<script src="game.js?v=othello-2"></script>
+<script src="game.js?v=othello-4"></script>
 </body>
 </html>
