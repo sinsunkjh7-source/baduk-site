@@ -626,8 +626,13 @@
     }
 
     var points = [];
-    var reg = /;([BW])\[([a-s]{2})\]/gi;
+    // 🌟 돌(B, W)뿐만 아니라 마크(T, C, L, M, S) 및 모든 정답 분기의 점들을 수집하여 규격 및 사분면 결정
+    var reg = /(?:;|^)([BWTCMSL]|TR|CR|SQ|MA|LB)\[([a-s]{2})(?::[^\]]*)?\]/gi;
     var allSgf = (p.data || '') + (p.answer1 || '');
+    for (var bi = 2; bi <= 5; bi++) {
+      var rawAns = p['answer' + bi];
+      if (rawAns && typeof rawAns === 'string') allSgf += rawAns;
+    }
     var m;
     while ((m = reg.exec(allSgf)) !== null) {
       points.push({
@@ -638,20 +643,6 @@
 
     if (points.length === 0) {
       return { cols: 10, rows: 9, isFull19: false, quadrant: 'BR' };
-    }
-
-    for (var bi = 2; bi <= 5; bi++) {
-      var rawAns = p['answer' + bi];
-      if (rawAns && typeof rawAns === 'string') allSgf += rawAns;
-    }
-    points = [];
-    var reg2 = /;([BW])\[([a-s]{2})\]/gi;
-    var m2;
-    while ((m2 = reg2.exec(allSgf)) !== null) {
-      points.push({
-        x: m2[2].charCodeAt(0) - 97,
-        y: m2[2].charCodeAt(1) - 97
-      });
     }
 
     var minX = Math.min.apply(null, points.map(function(pt){return pt.x;}));
@@ -736,16 +727,30 @@
       }
     }
 
-    // 초기 돌 배치
+    state.marks = []; // 🌟 세모(△), 동그라미(○), 문자 라벨(가/1/A), 네모(□) 마크 저장
+
+    // 초기 돌 배치 및 마크 파싱
     var sgfData = p.data || '';
-    var regex = /;([BW])\[([a-s]{2})\]/gi;
+    var regex = /(?:;|^)([BWTCMSL]|TR|CR|SQ|MA|LB)\[([a-s]{2})(?::([^\]]*))?\]/gi;
     var m;
     while ((m = regex.exec(sgfData)) !== null) {
-      var color = m[1].toUpperCase() === 'B' ? 1 : 2;
+      var tag = m[1].toUpperCase();
       var x = m[2].charCodeAt(0) - 97 - state.shiftX;
       var y = m[2].charCodeAt(1) - 97 - state.shiftY;
       if (x >= 0 && x < cols && y >= 0 && y < rows) {
-        state.board[y][x] = color;
+        if (tag === 'B') {
+          state.board[y][x] = 1; // 흑돌
+        } else if (tag === 'W') {
+          state.board[y][x] = 2; // 백돌
+        } else if (tag === 'T' || tag === 'TR') {
+          state.marks.push({ x: x, y: y, type: 'triangle' });
+        } else if (tag === 'C' || tag === 'CR') {
+          state.marks.push({ x: x, y: y, type: 'circle' });
+        } else if (tag === 'L' || tag === 'LB') {
+          state.marks.push({ x: x, y: y, type: 'label', label: m[3] || '' });
+        } else if (tag === 'M' || tag === 'MA' || tag === 'S' || tag === 'SQ') {
+          state.marks.push({ x: x, y: y, type: 'square' });
+        }
       }
     }
 
@@ -1139,6 +1144,16 @@
       }
     }
 
+    // 🌟 5-2. 세모(△), 동그라미(○), 문자 라벨(가/1/A), 네모(□) 마크 렌더링 🌟
+    if (state.marks && state.marks.length > 0) {
+      state.marks.forEach(function (mk) {
+        var mx = startX + cell * mk.x;
+        var my = startY + cell * mk.y;
+        var stoneColor = state.board[mk.y][mk.x]; // 0: 빈칸, 1: 흑돌, 2: 백돌
+        drawProblemMark(mx, my, cell, mk, stoneColor);
+      });
+    }
+
     // 🌟 [원장님 지침] 수순 번호 표시 (놓아보기로 둔 돌 위에 1, 2, 3...)
     if (state.showStepNumbers && state.trialMoves.length > 0) {
       state.trialMoves.forEach(function (tm) {
@@ -1170,6 +1185,258 @@
     }
   }
 
+  /* ---------- 🌟 문제 마크 렌더링 (세모 △, 동그라미 ○, 문자 라벨, 네모 □) ---------- */
+  function drawProblemMark(cx, cy, cell, mk, stoneColor) {
+    ctx.save();
+
+    if (mk.type === 'triangle') {
+      // 🌟 세모(△): 정삼각형
+      var triH = cell * 0.28;
+      var triW = cell * 0.32;
+      ctx.beginPath();
+      ctx.moveTo(cx, cy - triH * 0.95);
+      ctx.lineTo(cx + triW, cy + triH * 0.75);
+      ctx.lineTo(cx - triW, cy + triH * 0.75);
+      ctx.closePath();
+
+      if (stoneColor === 1) {
+        // 흑돌 위 세모: 선명한 화이트
+        ctx.strokeStyle = '#ffffff';
+        ctx.lineWidth = Math.max(2.4, cell * 0.08);
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.22)';
+        ctx.fill();
+        ctx.stroke();
+      } else if (stoneColor === 2) {
+        // 백돌 위 세모: 짙은 블랙/차콜
+        ctx.strokeStyle = '#18181b';
+        ctx.lineWidth = Math.max(2.4, cell * 0.08);
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.16)';
+        ctx.fill();
+        ctx.stroke();
+      } else {
+        // 빈 교차점 위 세모: 선명한 레드
+        ctx.strokeStyle = '#dc2626';
+        ctx.lineWidth = Math.max(2.6, cell * 0.09);
+        ctx.fillStyle = 'rgba(239, 68, 68, 0.25)';
+        ctx.shadowColor = 'rgba(255, 255, 255, 0.8)';
+        ctx.shadowBlur = 4;
+        ctx.fill();
+        ctx.stroke();
+      }
+    } else if (mk.type === 'circle') {
+      // 🌟 동그라미(○)
+      var circleR = cell * 0.24;
+      ctx.beginPath();
+      ctx.arc(cx, cy, circleR, 0, Math.PI * 2);
+
+      if (stoneColor === 1) {
+        // 흑돌 위 동그라미
+        ctx.strokeStyle = '#ffffff';
+        ctx.lineWidth = Math.max(2.4, cell * 0.08);
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.20)';
+        ctx.fill();
+        ctx.stroke();
+      } else if (stoneColor === 2) {
+        // 백돌 위 동그라미
+        ctx.strokeStyle = '#18181b';
+        ctx.lineWidth = Math.max(2.4, cell * 0.08);
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.16)';
+        ctx.fill();
+        ctx.stroke();
+      } else {
+        // 빈 교차점 위 동그라미 (O표시)
+        ctx.strokeStyle = '#dc2626';
+        ctx.lineWidth = Math.max(2.8, cell * 0.095);
+        ctx.fillStyle = 'rgba(239, 68, 68, 0.22)';
+        ctx.shadowColor = 'rgba(255, 255, 255, 0.9)';
+        ctx.shadowBlur = 5;
+        ctx.fill();
+        ctx.stroke();
+      }
+    } else if (mk.type === 'label') {
+      // 🌟 문자 라벨 (L): '가', '나', '1', 'A' 등
+      var text = mk.label || '';
+      var fontSize = Math.max(12, Math.round(cell * 0.44));
+      ctx.font = '900 ' + fontSize + 'px -apple-system, BlinkMacSystemFont, "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+
+      if (stoneColor === 1) {
+        ctx.fillStyle = '#ffffff';
+        ctx.fillText(text, cx, cy);
+      } else if (stoneColor === 2) {
+        ctx.fillStyle = '#18181b';
+        ctx.fillText(text, cx, cy);
+      } else {
+        var badgeR = cell * 0.32;
+        ctx.beginPath();
+        ctx.arc(cx, cy, badgeR, 0, Math.PI * 2);
+        ctx.fillStyle = '#ffffff';
+        ctx.shadowColor = 'rgba(0, 0, 0, 0.25)';
+        ctx.shadowBlur = 4;
+        ctx.fill();
+        ctx.strokeStyle = '#cbd5e1';
+        ctx.lineWidth = 1.5;
+        ctx.stroke();
+
+        ctx.fillStyle = '#0f172a';
+        ctx.fillText(text, cx, cy);
+      }
+    } else if (mk.type === 'square') {
+      // 🌟 네모(□)
+      var sqHalf = cell * 0.22;
+      ctx.beginPath();
+      ctx.rect(cx - sqHalf, cy - sqHalf, sqHalf * 2, sqHalf * 2);
+
+      if (stoneColor === 1) {
+        ctx.strokeStyle = '#ffffff';
+        ctx.lineWidth = Math.max(2.4, cell * 0.08);
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.20)';
+        ctx.fill();
+        ctx.stroke();
+      } else if (stoneColor === 2) {
+        ctx.strokeStyle = '#18181b';
+        ctx.lineWidth = Math.max(2.4, cell * 0.08);
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.16)';
+        ctx.fill();
+        ctx.stroke();
+      } else {
+        ctx.strokeStyle = '#dc2626';
+        ctx.lineWidth = Math.max(2.6, cell * 0.09);
+        ctx.fillStyle = 'rgba(239, 68, 68, 0.22)';
+        ctx.fill();
+        ctx.stroke();
+      }
+    }
+    ctx.restore();
+  }
+
+  /* ---------- 🌟 문제 마크 렌더링 (세모 △, 동그라미 ○, 문자 라벨, 네모 □) ---------- */
+  function drawProblemMark(cx, cy, cell, mk, stoneColor) {
+    ctx.save();
+
+    if (mk.type === 'triangle') {
+      // 🌟 세모(△): 정삼각형
+      var triH = cell * 0.28;
+      var triW = cell * 0.32;
+      ctx.beginPath();
+      ctx.moveTo(cx, cy - triH * 0.95);
+      ctx.lineTo(cx + triW, cy + triH * 0.75);
+      ctx.lineTo(cx - triW, cy + triH * 0.75);
+      ctx.closePath();
+
+      if (stoneColor === 1) {
+        // 흑돌 위 세모: 선명한 화이트
+        ctx.strokeStyle = '#ffffff';
+        ctx.lineWidth = Math.max(2.4, cell * 0.08);
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.22)';
+        ctx.fill();
+        ctx.stroke();
+      } else if (stoneColor === 2) {
+        // 백돌 위 세모: 짙은 블랙/차콜
+        ctx.strokeStyle = '#18181b';
+        ctx.lineWidth = Math.max(2.4, cell * 0.08);
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.16)';
+        ctx.fill();
+        ctx.stroke();
+      } else {
+        // 빈 교차점 위 세모: 선명한 레드
+        ctx.strokeStyle = '#dc2626';
+        ctx.lineWidth = Math.max(2.6, cell * 0.09);
+        ctx.fillStyle = 'rgba(239, 68, 68, 0.25)';
+        ctx.shadowColor = 'rgba(255, 255, 255, 0.8)';
+        ctx.shadowBlur = 4;
+        ctx.fill();
+        ctx.stroke();
+      }
+    } else if (mk.type === 'circle') {
+      // 🌟 동그라미(○)
+      var circleR = cell * 0.24;
+      ctx.beginPath();
+      ctx.arc(cx, cy, circleR, 0, Math.PI * 2);
+
+      if (stoneColor === 1) {
+        // 흑돌 위 동그라미
+        ctx.strokeStyle = '#ffffff';
+        ctx.lineWidth = Math.max(2.4, cell * 0.08);
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.20)';
+        ctx.fill();
+        ctx.stroke();
+      } else if (stoneColor === 2) {
+        // 백돌 위 동그라미
+        ctx.strokeStyle = '#18181b';
+        ctx.lineWidth = Math.max(2.4, cell * 0.08);
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.16)';
+        ctx.fill();
+        ctx.stroke();
+      } else {
+        // 빈 교차점 위 동그라미 (O표시)
+        ctx.strokeStyle = '#dc2626';
+        ctx.lineWidth = Math.max(2.8, cell * 0.095);
+        ctx.fillStyle = 'rgba(239, 68, 68, 0.22)';
+        ctx.shadowColor = 'rgba(255, 255, 255, 0.9)';
+        ctx.shadowBlur = 5;
+        ctx.fill();
+        ctx.stroke();
+      }
+    } else if (mk.type === 'label') {
+      // 🌟 문자 라벨 (L): '가', '나', '1', 'A' 등
+      var text = mk.label || '';
+      var fontSize = Math.max(12, Math.round(cell * 0.44));
+      ctx.font = '900 ' + fontSize + 'px -apple-system, BlinkMacSystemFont, "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+
+      if (stoneColor === 1) {
+        ctx.fillStyle = '#ffffff';
+        ctx.fillText(text, cx, cy);
+      } else if (stoneColor === 2) {
+        ctx.fillStyle = '#18181b';
+        ctx.fillText(text, cx, cy);
+      } else {
+        var badgeR = cell * 0.32;
+        ctx.beginPath();
+        ctx.arc(cx, cy, badgeR, 0, Math.PI * 2);
+        ctx.fillStyle = '#ffffff';
+        ctx.shadowColor = 'rgba(0, 0, 0, 0.25)';
+        ctx.shadowBlur = 4;
+        ctx.fill();
+        ctx.strokeStyle = '#cbd5e1';
+        ctx.lineWidth = 1.5;
+        ctx.stroke();
+
+        ctx.fillStyle = '#0f172a';
+        ctx.fillText(text, cx, cy);
+      }
+    } else if (mk.type === 'square') {
+      // 🌟 네모(□)
+      var sqHalf = cell * 0.22;
+      ctx.beginPath();
+      ctx.rect(cx - sqHalf, cy - sqHalf, sqHalf * 2, sqHalf * 2);
+
+      if (stoneColor === 1) {
+        ctx.strokeStyle = '#ffffff';
+        ctx.lineWidth = Math.max(2.4, cell * 0.08);
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.20)';
+        ctx.fill();
+        ctx.stroke();
+      } else if (stoneColor === 2) {
+        ctx.strokeStyle = '#18181b';
+        ctx.lineWidth = Math.max(2.4, cell * 0.08);
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.16)';
+        ctx.fill();
+        ctx.stroke();
+      } else {
+        ctx.strokeStyle = '#dc2626';
+        ctx.lineWidth = Math.max(2.6, cell * 0.09);
+        ctx.fillStyle = 'rgba(239, 68, 68, 0.22)';
+        ctx.fill();
+        ctx.stroke();
+      }
+    }
+    ctx.restore();
+  }
+
   function drawStone(cx, cy, r, color, alpha) {
     ctx.save();
     if (alpha !== undefined) ctx.globalAlpha = alpha;
