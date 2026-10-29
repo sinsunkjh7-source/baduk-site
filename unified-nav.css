@@ -122,3 +122,11 @@ body[data-bks-page=sandbox] .bks-bottom-board-size .size-btn{font:700 13px/1.3 '
 body[data-bks-page=sandbox] .bks-bottom-board-size .size-btn.active{background:#4a8a3a;color:#fff;box-shadow:none}
 body[data-bks-page=sandbox] .bks-bottom-board-size .size-btn:hover{background:#e1efcf;color:#284d20}
 body[data-bks-page=sandbox] .bks-bottom-board-size .size-btn.active:hover{background:#4a8a3a;color:#fff}
+
+/* Fun 하위 분류 */
+.bks-sub-group{display:block}
+.bks-sub-group+.bks-sub-group{margin-top:6px;padding-top:6px;border-top:1px solid var(--bks-border)}
+.bks-sub-title{display:block;padding:8px 12px 4px;font-size:12.5px;font-weight:900;letter-spacing:.02em;color:#4f6f45}
+.bks-nav-sub a[data-bks-soon]{color:#93a58c}
+.bks-toast{position:fixed;left:50%;bottom:34px;transform:translateX(-50%) translateY(10px);background:rgba(28,45,25,.95);color:#fff;padding:11px 20px;border-radius:999px;font-size:14px;font-weight:700;z-index:200010;opacity:0;transition:.22s;font-family:inherit;pointer-events:none}
+.bks-toast.-show{opacity:1;transform:translateX(-50%) translateY(0)}
