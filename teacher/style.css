@@ -292,19 +292,19 @@ html, body {
 .btn-reset:hover { background: #ffe4e6; }
 
 .question-text {
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 800;
   color: var(--ink);
-  line-height: 1.5;
+  line-height: 1.55;
   white-space: pre-line;
 }
 .hint-box {
   background: #fffbeb;
   border-left: 4px solid var(--orange);
-  padding: 8px 12px;
-  border-radius: 0 6px 6px 0;
-  margin-top: 8px;
-  font-size: 13px;
+  padding: 9px 13px;
+  border-radius: 0 7px 7px 0;
+  margin-top: 10px;
+  font-size: 16.5px;
   color: #92400e;
   font-weight: 700;
 }
@@ -679,47 +679,54 @@ html, body {
 .sidebar-section .question-header {
   display: flex;
   align-items: center;
-  gap: 5px;
-  margin-bottom: 8px;
-  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 10px;
+  flex-wrap: nowrap;
 }
 .sidebar-section .question-header .q-num,
 .sidebar-section .question-header .q-turn {
-  font-size: 11px;
+  font-size: 11.5px;
   font-weight: 800;
-  padding: 3px 6px;
-  border-radius: 5px;
+  padding: 4px 7px;
+  border-radius: 6px;
+  white-space: nowrap;
 }
 .sidebar-section .question-header .btn-hint,
 .sidebar-section .question-header .btn-answer,
 .sidebar-section .question-header .btn-reset {
-  padding: 3px 7px;
-  font-size: 11px;
+  padding: 4px 8px;
+  font-size: 11.5px;
   font-weight: 700;
-  border-radius: 5px;
+  border-radius: 6px;
+  white-space: nowrap;
   cursor: pointer;
 }
 .sidebar-section .question-header .btn-answer {
   margin-left: auto;
 }
 .sidebar-section .question-text {
-  font-size: 13.5px;
+  font-size: 17.5px;
   font-weight: 800;
   color: var(--ink);
-  line-height: 1.5;
+  line-height: 1.55;
   white-space: pre-line;
   word-break: keep-all;
 }
 .sidebar-section .hint-box {
   background: #fffbeb;
-  border-left: 3px solid var(--orange);
-  padding: 6px 10px;
-  border-radius: 0 6px 6px 0;
-  margin-top: 8px;
-  font-size: 12px;
+  border-left: 3.5px solid var(--orange);
+  padding: 8px 12px;
+  border-radius: 0 7px 7px 0;
+  margin-top: 10px;
+  font-size: 15.5px;
+  line-height: 1.5;
   color: #92400e;
   font-weight: 700;
   word-break: keep-all;
+}
+.sidebar-section .hint-box .hint-icon {
+  font-size: 16px;
+  margin-right: 3px;
 }
 
 

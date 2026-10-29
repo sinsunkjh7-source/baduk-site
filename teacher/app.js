@@ -526,7 +526,6 @@
     localStorage.setItem('teacher_last_problem', idx.toString());
     state.showAnswer = false;
     state.solved = false;
-    hintBox.hidden = true;
 
     if (state.autoNextTimer) {
       clearTimeout(state.autoNextTimer);
@@ -539,7 +538,18 @@
     var p = state.currentProblems[idx];
     qNumBadge.textContent = '문제 ' + (idx + 1);
     questionText.textContent = (p.question || '알맞은 곳에 돌을 놓아 보세요.').replace(/\r\n/g, '\n');
-    hintText.textContent = p.hint || '힌트가 없는 문제입니다.';
+
+    // 힌트가 있는 문제만 힌트 박스 표시, 힌트가 없으면 빈 공간으로 숨김
+    var hasHint = !!(p.hint && p.hint.trim() && p.hint.trim() !== '힌트가 없는 문제입니다.');
+    if (hasHint) {
+      hintText.textContent = p.hint.trim();
+      hintBox.hidden = false;
+    } else {
+      hintText.textContent = '';
+      hintBox.hidden = true;
+    }
+    var btnAnsEl = document.getElementById('btnAnswer');
+    if (btnAnsEl) btnAnsEl.textContent = '👁️ 정답';
     navIndicator.textContent = (idx + 1) + ' / ' + state.currentProblems.length;
     problemProgress.textContent = (idx + 1) + ' / ' + state.currentProblems.length;
 
@@ -1512,9 +1522,12 @@
     }
   });
 
-  document.getElementById('btnHint').addEventListener('click', function () {
-    hintBox.hidden = !hintBox.hidden;
-  });
+  var btnHintEl = document.getElementById('btnHint');
+  if (btnHintEl) {
+    btnHintEl.addEventListener('click', function () {
+      hintBox.hidden = !hintBox.hidden;
+    });
+  }
 
   document.getElementById('btnAnswer').addEventListener('click', function () {
     if (state.autoNextTimer) {
@@ -1522,7 +1535,7 @@
       state.autoNextTimer = null;
     }
     state.showAnswer = !state.showAnswer;
-    this.textContent = state.showAnswer ? '🙈 정답 숨김' : '👁️ 정답 보기';
+    this.textContent = state.showAnswer ? '🙈 숨김' : '👁️ 정답';
 
     // 정답을 볼 때는 놓아보기 모드를 자동으로 해제하여 잔존 돌과 충돌 방지
     if (state.showAnswer && state.trialMode) {
@@ -1562,7 +1575,8 @@
     }];
     state.historyIndex = 0;
     updatePlacementUI();
-    document.getElementById('btnAnswer').textContent = '👁️ 정답 보기';
+    var btnAnsReset = document.getElementById('btnAnswer');
+    if (btnAnsReset) btnAnsReset.textContent = '👁️ 정답';
     drawBoard();
   });
 
