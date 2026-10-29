@@ -31,17 +31,21 @@ body {
   height: 100vh;
   width: 100vw;
   user-select: none;
+  display: flex;
+  flex-direction: column;
 }
 
 /* ---------- 전체 래퍼 ---------- */
 .play-app {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  flex: 1;
+  min-height: 0;
   width: 100vw;
+  height: auto;
   overflow: hidden;
   position: relative;
-  padding-top: var(--bks-nav-h, 54px);
+  padding-top: 0 !important;
 }
 
 /* ---------- 상단 대국 설정 컨트롤 바 (제거됨) ---------- */
@@ -173,16 +177,19 @@ body {
   transform: translateY(-1px);
 }
 
-/* ---------- 중앙 메인 스테이지 (놓아보기 정밀 배치) ---------- */
+/* ---------- 중앙 메인 스테이지 (정중앙 바둑판 완벽 배치) ---------- */
 .play-stage {
   flex: 1;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   background: var(--green-soft);
-  padding: 6px 12px;
+  padding: 10px 16px;
   overflow: hidden;
   position: relative;
   min-height: 0;
+  margin: 0;
 }
 
 .play-stage.theme-green { background: #eff7e4; }
@@ -192,20 +199,26 @@ body {
 
 .board-container {
   flex: 1;
+  width: 100%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: 0;
   position: relative;
   overflow: hidden;
+  margin: 0 auto;
 }
 
 .canvas-stack {
   position: relative;
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   box-shadow: 0 12px 35px rgba(0, 0, 0, 0.28);
   border-radius: 6px;
   background: transparent;
+  line-height: 0;
 }
 
 #boardCanvas {

@@ -26,7 +26,7 @@
     // 시각 보조 도구 (놓아보기 연동)
     showAtari: localStorage.getItem('play_show_atari') !== 'false',
     showSweat: localStorage.getItem('play_show_sweat') !== 'false',
-    showCoords: localStorage.getItem('play_show_coords') !== 'false',
+    showCoords: false,
     showStepNumbers: localStorage.getItem('play_show_numbers') === 'true',
 
     // 환경설정 (놓아보기 / 강사모드 연동)
@@ -123,29 +123,36 @@
     return [];
   }
 
-  /* ---------- 바둑판 레이아웃 계산 (놓아보기 정밀 공식) ---------- */
+  /* ---------- 바둑판 레이아웃 계산 (정중앙 최대화 & 좌표 제거 최적 비율) ---------- */
   function layoutBoard() {
     var rect = boardContainer.getBoundingClientRect();
-    var availW = rect.width - 16;
-    var availH = rect.height - 16;
+    var availW = rect.width;
+    var availH = rect.height;
 
     if (availW <= 0 || availH <= 0) {
       var sRect = playStage.getBoundingClientRect();
-      availW = sRect.width - 24;
-      availH = sRect.height - 24;
+      availW = sRect.width - 20;
+      availH = sRect.height - 20;
     }
 
-    var size = state.boardSize;
-    var cell = Math.min((availW - 12) / (size + 0.85), (availH - 12) / (size + 0.85));
-    cell = Math.max(16, Math.min(cell, 95));
+    // 상하좌우 안전 여백 (그림자 및 테두리 숨통 공간: 12px)
+    var safety = 12;
+    var sideLen = Math.floor(Math.min(availW - safety, availH - safety));
+    sideLen = Math.max(280, sideLen);
 
-    var dispW = Math.round((size + 0.85) * cell);
-    var dispH = dispW;
+    var size = state.boardSize;
+    // 좌표가 제거되어 외곽 여백을 약 0.7 셀로 정밀 분배 (비자목 바둑판 황금비율)
+    // (size - 1 + 1.4) * cell = sideLen  ==>  cell = sideLen / (size + 0.4)
+    var cell = sideLen / (size + 0.4);
+    var pad = (sideLen - (size - 1) * cell) / 2;
+
+    var dispW = sideLen;
+    var dispH = sideLen;
 
     var dpr = window.devicePixelRatio || 1;
     metrics.cellSize = cell;
-    metrics.startX = cell * 0.92;
-    metrics.startY = cell * 0.92;
+    metrics.startX = pad;
+    metrics.startY = pad;
     metrics.dispW = dispW;
     metrics.dispH = dispH;
     metrics.dpr = dpr;
@@ -232,10 +239,8 @@
       ctx.fill();
     });
 
-    // 4. 좌표 표시
-    if (state.showCoords) {
-      drawCoordinates();
-    }
+    // 4. 좌표 표시 (사용자 요청: 좌표 영구 제거)
+    // if (state.showCoords) { drawCoordinates(); }
 
     // 5. 계가 영역 표시
     if (state.showingTerritory && engine.lastScore) {
