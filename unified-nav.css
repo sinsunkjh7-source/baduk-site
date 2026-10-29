@@ -23,7 +23,7 @@
 .bks-settings{position:fixed;top:var(--bks-nav-h);right:0;bottom:0;width:380px;max-width:100vw;z-index:200010;background:var(--bks-paper);color:var(--bks-ink);border-left:1px solid var(--bks-border);box-shadow:-8px 0 30px #1b391c26;overflow-y:auto;overscroll-behavior:contain;padding:0 20px 24px;font:14px/1.55 "Malgun Gothic","Apple SD Gothic Neo",sans-serif}
 .bks-settings[hidden]{display:none!important}.bks-settings-head{display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:var(--bks-paper);padding:17px 0 12px;border-bottom:1px solid var(--bks-border);z-index:2}.bks-settings-head h2{margin:0;font-size:21px;color:var(--bks-deep)}
 .bks-button{border:1px solid var(--bks-border);background:#fff;color:var(--bks-ink);border-radius:8px;padding:8px 12px;font:700 13px/1.3 "Malgun Gothic",sans-serif;cursor:pointer}.bks-button:hover{background:#e6f3d8}.bks-button-primary{background:var(--bks-green);color:white;border-color:var(--bks-green)}
-.bks-section{padding:15px 0;border-bottom:1px solid var(--bks-border)}.bks-section>h3{margin:0 0 12px;font-size:15px;color:var(--bks-deep)}.bks-field{margin:0 0 14px}.bks-field label{display:flex;justify-content:space-between;align-items:center;font-weight:700;margin-bottom:7px}.bks-field input[type=range]{width:100%;accent-color:var(--bks-green)}.bks-note{font-size:12px;color:#62715b;margin:6px 0}.bks-program-settings:empty{display:none}
+.bks-section{padding:15px 0;border-bottom:1px solid var(--bks-border)}.bks-section>h3{display:none!important}.bks-field{margin:0 0 14px}.bks-field label{display:flex;justify-content:space-between;align-items:center;font-weight:700;margin-bottom:7px}.bks-field input[type=range]{width:100%;accent-color:var(--bks-green)}.bks-note{font-size:12px;color:#62715b;margin:6px 0}.bks-program-settings:empty{display:none}
 .bks-settings #settingsPanel,.bks-settings #settingsModal{position:static!important;inset:auto!important;width:100%!important;max-width:none!important;max-height:none!important;height:auto!important;margin:0!important;padding:0!important;overflow:visible!important;border:0!important;box-shadow:none!important;background:transparent!important;pointer-events:auto!important;gap:15px!important}
 .bks-settings #settingsPanel[hidden],.bks-settings #settingsModal[hidden]{display:none!important}
 .bks-settings #settingsModal>div{position:static!important;width:100%!important;max-width:none!important;max-height:none!important;overflow:visible!important;padding:0!important;border:0!important;box-shadow:none!important;background:transparent!important}
@@ -113,7 +113,7 @@ body[data-bks-page=sandbox] #teachingToolbar[data-bks-compact]{height:88px;min-h
 body[data-bks-page=sandbox] #teachingToolbar[data-bks-compact] .bks-board-tools-frame{grid-template-rows:72px}
 body[data-bks-page=sandbox] #teachingToolbar[data-bks-compact] .bks-board-tools-right{flex-wrap:wrap;gap:6px}
 body[data-bks-page=sandbox] .bks-sandbox-settings>.bks-section{border-bottom:0}
-body[data-bks-page=sandbox] .bks-sandbox-settings>.bks-section>h3{display:none}
+body[data-bks-page=sandbox] .bks-sandbox-settings>.bks-section>h3{display:none!important}
 @media(max-width:600px){body[data-bks-page=sandbox] #teachingToolbar[data-bks-compact]{height:128px;min-height:128px;max-height:128px}body[data-bks-page=sandbox] #teachingToolbar[data-bks-compact] .bks-board-tools-frame{grid-template-rows:112px}}
 
 /* sandbox-size-buttons-1793234062356: board-size buttons only beside drawing, retain top settings. */
