@@ -313,6 +313,12 @@
     ctx.restore();
   }
 
+
+  /* omok-characters-1793289644409: read-only native state bridge for character UI. */
+  function characterSnapshot(){var winner=null;if(state.over&&state.winLine&&state.winLine.start){var p=state.winLine.start;winner=state.board[p.y][p.x];}return {source:'native',mode:state.mode,turn:state.turn,humanColor:state.humanColor,playerColor:state.humanColor,aiColor:state.aiColor,thinking:state.aiThinking,over:state.over,winner:winner,moveCount:state.history.length,lastMove:state.history.length?Object.assign({},state.history[state.history.length-1]):null,board:state.board.map(function(r){return r.slice();}),history:state.history.map(function(m){return Object.assign({},m);}),winLine:state.winLine?JSON.parse(JSON.stringify(state.winLine)):null};}
+  function publishCharacters(){try{var detail=characterSnapshot();if(window.BKSOmokReactions)window.BKSOmokReactions.update(detail);window.dispatchEvent(new CustomEvent('bks:omok-state',{detail:detail}));}catch(e){console.warn('[Omok character bridge]',e);}}
+  window.BKSOmokState={version:'omok-characters-1793289644409',read:characterSnapshot};
+
   /* ---------- 상태 표시 ---------- */
   function refreshUI() {
     var stone = document.getElementById('turnStone');
@@ -329,6 +335,7 @@
     }
     count.textContent = state.history.length + '수';
     draw();
+    publishCharacters();
   }
 
   function showResult(msg) {
