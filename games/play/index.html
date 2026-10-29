@@ -4,51 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>🤖 AI 바둑 대국 — 바둑스쿨</title>
-  <link rel="stylesheet" href="style.css?v=20261029-play-ai-v2">
+  <link rel="stylesheet" href="style.css?v=20261029-play-ai-v3">
   <link rel="stylesheet" href="/unified-nav.css?v=sandbox-size-buttons-1793234062356">
   <script src="/unified-nav.js?v=play-ai-v1-1793241000000" defer></script>
 </head>
 <body data-bks-page="play">
 
 <div class="play-app" id="playApp">
-
-  <!-- 🌟 상단 대국 컨트롤 바 🌟 -->
-  <header class="play-control-bar" id="playControlBar">
-    <div class="bar-left">
-      <!-- 바둑판 줄 수 (19/13/9줄) -->
-      <div class="size-selector" id="sizeSelector" role="group" aria-label="바둑판 줄 수">
-        <button type="button" class="size-btn active" data-size="19" title="19줄 정규 바둑판">19줄</button>
-        <button type="button" class="size-btn" data-size="13" title="13줄 중급 바둑판">13줄</button>
-        <button type="button" class="size-btn" data-size="9" title="9줄 입문 바둑판">9줄</button>
-      </div>
-
-      <!-- 내 돌 선택 (흑선공/백후공) -->
-      <div class="color-picker-group" role="group" aria-label="내 돌 선택">
-        <button type="button" class="color-btn active" data-color="1" title="흑돌 (선공)">⚫ 흑</button>
-        <button type="button" class="color-btn" data-color="2" title="백돌 (후공, 덤 6.5집)">⚪ 백</button>
-      </div>
-    </div>
-
-    <!-- AI 봇 / 난이도 선택 -->
-    <div class="bar-center">
-      <div class="bot-picker-group">
-        <span class="bot-picker-label">🤖 상대:</span>
-        <select class="bot-select" id="botSelect" aria-label="AI 상대 난이도 선택">
-          <option value="beginner">🐥 삐약이 (🌱 입문 18급)</option>
-          <option value="intermediate">🐶 바둑이 (🌿 초급 12급)</option>
-          <option value="advanced">🦊 영리한 여우 (🌲 중급 5급)</option>
-          <option value="dan" selected>🐼 지혜로운 판다 (👑 고급 아마 1단)</option>
-          <option value="master">🐯 용맹한 호랑이 (🔥 최강 아마 5단)</option>
-        </select>
-      </div>
-    </div>
-
-    <div class="bar-right">
-      <button type="button" class="btn-new-game" id="btnNewGame" title="새 대국 시작">
-        🔄 새 대국
-      </button>
-    </div>
-  </header>
 
   <!-- 🌟 중앙 메인 대국 스테이지 (놓아보기 캔버스 탑재) 🌟 -->
   <main class="play-stage theme-green" id="playStage">
@@ -148,9 +110,9 @@
 </div>
 
 <!-- 엔진 & AI & 오디오 & 앱 스크립트 -->
-<script src="engine.js?v=20261029-play-ai-v2"></script>
-<script src="ai.js?v=20261029-play-ai-v2"></script>
-<script src="audio.js?v=20261029-play-ai-v2"></script>
-<script src="app.js?v=20261029-play-ai-v2"></script>
+<script src="engine.js?v=20261029-play-ai-v3"></script>
+<script src="ai.js?v=20261029-play-ai-v3"></script>
+<script src="audio.js?v=20261029-play-ai-v3"></script>
+<script src="app.js?v=20261029-play-ai-v3"></script>
 </body>
 </html>
