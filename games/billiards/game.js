@@ -21,6 +21,7 @@
   var aim = { x: 0, y: 0, power: 0 };
   var moving = false;
   var touches = {};
+  var mode = 'three';        /* three: 3구 / four: 4구 */
   var score = 0, shots = 0;
   var best = +(localStorage.getItem('bkBillBest') || 0);
 
@@ -38,11 +39,20 @@
   }
 
   function resetPositions() {
-    balls = [
-      mkBall(240, 240, '#f6f5ef', 'cue'),
-      mkBall(640, 170, '#c0392b', 'red'),
-      mkBall(640, 320, '#e8c33a', 'yellow')
-    ];
+    if (mode === 'four') {
+      balls = [
+        mkBall(230, 240, '#f6f5ef', 'cue'),
+        mkBall(430, 120, '#e8c33a', 'yellow'),
+        mkBall(650, 200, '#c0392b', 'red'),
+        mkBall(650, 345, '#262626', 'black')
+      ];
+    } else {
+      balls = [
+        mkBall(240, 240, '#f6f5ef', 'cue'),
+        mkBall(640, 170, '#c0392b', 'red'),
+        mkBall(640, 320, '#e8c33a', 'yellow')
+      ];
+    }
     cue = balls[0];
     touches = {};
     moving = false;
@@ -125,12 +135,13 @@
 
   function endShot() {
     moving = false;
-    var hitBoth = touches.red && touches.yellow;
+    var need = mode === 'four' ? ['red', 'black'] : ['red', 'yellow'];
+    var hitBoth = need.every(function (k) { return touches[k]; });
     if (hitBoth) {
       score++;
-      msg('득점! (빨강 + 노랑)');
+      msg('득점! (' + (mode === 'four' ? '빨강 + 검정' : '빨강 + 노랑') + ')');
     } else {
-      msg(touches.red || touches.yellow ? '한 쪽만 맞혔습니다 — 다시 시도' : '빗나갔습니다 — 다시 시도');
+      msg((touches.red || touches.yellow || touches.black) ? '한 쪽만 맞혔습니다 — 다시 시도' : '빗나갔습니다 — 다시 시도');
     }
     touches = {};
     updateTurn();
@@ -195,6 +206,7 @@
       var g = ctx.createRadialGradient(b.x - b.r * 0.35, b.y - b.r * 0.4, b.r * 0.15, b.x, b.y, b.r);
       if (b.kind === 'cue') { g.addColorStop(0, '#ffffff'); g.addColorStop(0.7, '#f2f1ea'); g.addColorStop(1, '#d8d6cc'); }
       else if (b.kind === 'red') { g.addColorStop(0, '#e05a48'); g.addColorStop(0.65, '#c0392b'); g.addColorStop(1, '#8e2418'); }
+      else if (b.kind === 'black') { g.addColorStop(0, '#5a5a5a'); g.addColorStop(0.65, '#262626'); g.addColorStop(1, '#0b0b0b'); }
       else { g.addColorStop(0, '#f6dd76'); g.addColorStop(0.65, '#e8c33a'); g.addColorStop(1, '#b8921f'); }
 
       ctx.beginPath();
@@ -280,6 +292,33 @@
 
   cv.addEventListener('pointercancel', function () { dragging = false; });
 
+  var modeSeg = document.getElementById('modeSeg');
+  if (modeSeg) {
+    modeSeg.addEventListener('click', function (e) {
+      var b = e.target.closest('[data-mode]');
+      if (!b || moving) return;
+      mode = b.dataset.mode;
+      Array.prototype.forEach.call(modeSeg.children, function (x) {
+        x.classList.toggle('active', x === b);
+      });
+      newGame();
+      syncModeText();
+      msg(mode === 'four' ? '4구: 빨강과 검정을 모두 맞히면 득점' : '3구: 빨강과 노랑을 모두 맞히면 득점');
+    });
+  }
+
+  function syncModeText() {
+    var ti = document.getElementById('modeTitle');
+    var de = document.getElementById('modeDesc');
+    if (ti) ti.textContent = mode === 'four' ? '당구 4구' : '당구 3구';
+    if (de) {
+      de.innerHTML = mode === 'four'
+        ? '내 공(흰색)으로 <b>빨강과 검정</b>을 모두 맞히면 1점입니다. 노랑은 상대 공입니다.'
+        : '내 공(흰색)으로 빨강·노랑을 <b>모두 맞히면</b> 1점입니다. 공을 드래그해 방향과 세기를 정하세요.';
+    }
+  }
+  window.bkSyncModeText = syncModeText;
+
   document.getElementById('btnNew').addEventListener('click', newGame);
   document.getElementById('btnReset').addEventListener('click', function () {
     if (moving) return;
@@ -296,8 +335,23 @@
 
   window.addEventListener('resize', fitCanvas);
   newGame();
+  syncModeText();
   fitCanvas();
   requestAnimationFrame(loop);
+
+  /* URL_MODE: ?mode=four 로 4구 진입 (검증용) */
+  var _um = /[?&]mode=(three|four)/.exec(location.search);
+  if (_um) {
+    mode = _um[1];
+    var seg = document.getElementById('modeSeg');
+    if (seg) {
+      Array.prototype.forEach.call(seg.children, function (x) {
+        x.classList.toggle('active', x.dataset.mode === mode);
+      });
+    }
+    newGame();
+    syncModeText();
+  }
 
   /* AUTO_TEST: ?auto=1 — 물리를 동기적으로 600스텝 돌려 결과를 title에 남긴다 */
   if (/[?&]auto=1/.test(location.search)) {
@@ -317,7 +371,7 @@
       document.title = 'T|shots=' + shots + '|score=' + score
         + '|seen=' + Object.keys(seen).join(',')
         + '|cue=' + Math.round(cue.x) + ',' + Math.round(cue.y)
-        + '|moving=' + moving;
+        + '|moving=' + moving + '|mode=' + mode + '|balls=' + balls.length;
     }, 400);
   }
 })();

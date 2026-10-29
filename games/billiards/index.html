@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>당구 3구 — 바둑스쿨 Fun</title>
 <link rel="stylesheet" href="/unified-nav.css?v=fun-menu-20261029f">
-<link rel="stylesheet" href="style.css?v=bill-1">
+<link rel="stylesheet" href="style.css?v=bill-2">
 <script src="/unified-nav.js?v=fun-menu-20261029g" defer></script>
 </head>
 <body data-bks-page="billiards">
@@ -16,6 +16,10 @@
       <div class="b-score"><span>득점</span><b id="score">0</b></div>
       <div class="b-score"><span>시도</span><b id="shots">0</b></div>
       <div class="b-score"><span>최고</span><b id="best">0</b></div>
+      <div class="b-modes" id="modeSeg" role="group" aria-label="경기 방식">
+        <button type="button" class="b-mode active" data-mode="three">3구</button>
+        <button type="button" class="b-mode" data-mode="four">4구</button>
+      </div>
       <div class="b-turn" id="turnBar">당신 차례</div>
     </div>
 
@@ -30,8 +34,8 @@
   </section>
 
   <aside class="b-side">
-    <h2 class="b-title">당구 3구</h2>
-    <p class="b-desc">내 공(흰색)으로 빨강·노랑을 <b>모두 맞히면</b> 1점입니다. 공을 드래그해 방향과 세기를 정하세요.</p>
+    <h2 class="b-title" id="modeTitle">당구 3구</h2>
+    <p class="b-desc" id="modeDesc">내 공(흰색)으로 빨강·노랑을 <b>모두 맞히면</b> 1점입니다. 공을 드래그해 방향과 세기를 정하세요.</p>
 
     <div class="b-actions">
       <button type="button" id="btnNew" class="b-btn primary">새 게임</button>
@@ -51,6 +55,6 @@
   </aside>
 </main>
 
-<script src="game.js?v=bill-1"></script>
+<script src="game.js?v=bill-3"></script>
 </body>
 </html>
