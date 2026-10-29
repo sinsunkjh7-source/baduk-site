@@ -387,6 +387,29 @@
       });
       problemGrid.appendChild(btn);
     });
+
+    // 20번 이상 등 현재 활성 문제가 5줄 뷰포트 밖일 경우 자동 스크롤
+    setTimeout(scrollActiveProblemIntoView, 50);
+  }
+
+  function scrollActiveProblemIntoView() {
+    if (!problemGrid) return;
+    var activeBtn = problemGrid.querySelector('.prob-btn.active');
+    if (!activeBtn) return;
+    var gridRect = problemGrid.getBoundingClientRect();
+    var btnRect = activeBtn.getBoundingClientRect();
+
+    if (btnRect.bottom > gridRect.bottom) {
+      problemGrid.scrollBy({
+        top: btnRect.bottom - gridRect.bottom + 4,
+        behavior: 'smooth'
+      });
+    } else if (btnRect.top < gridRect.top) {
+      problemGrid.scrollBy({
+        top: btnRect.top - gridRect.top - 4,
+        behavior: 'smooth'
+      });
+    }
   }
 
 

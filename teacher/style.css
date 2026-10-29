@@ -200,7 +200,8 @@ html, body {
   gap: 6px;
   overflow-y: auto;
   padding-right: 4px;
-  max-height: 220px;
+  max-height: 192px;
+  scroll-behavior: smooth;
 }
 
 /* 안 푼 문제 (기본) */
