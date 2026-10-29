@@ -286,6 +286,7 @@ html, body {
   transition: all .15s;
 }
 .btn-hint:hover { background: #e2e8f0; color: var(--ink); }
+.btn-hint.active { background: #fef3c7; border-color: #f59e0b; color: #92400e; font-weight: 800; }
 .btn-answer { background: var(--green); border-color: var(--green-deep); color: #ffffff; margin-left: auto; font-weight: 800; }
 .btn-answer:hover { background: var(--green-deep); }
 .btn-reset { background: #fff1f2; border-color: #fecdd3; color: #be123c; }

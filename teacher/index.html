@@ -7,7 +7,7 @@
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
 <title>🔒 강사 모드 — 바둑스쿨 교재 사령탑</title>
-<link rel="stylesheet" href="style.css?v=20261029-question-hint-v2">
+<link rel="stylesheet" href="style.css?v=20261029-hint-bottomreset-v3">
 <link rel="stylesheet" href="/unified-nav.css?v=sandbox-size-buttons-1793234062356">
 <script src="/unified-nav.js?v=all-menu-header-1793233800000" defer></script>
 </head>
@@ -86,7 +86,7 @@
           <div class="question-header">
             <span class="q-num" id="qNumBadge">문제 1</span>
             <span class="q-turn" id="qTurnBadge">⚫ 흑선</span>
-            <button type="button" id="btnReset" class="btn-reset">🔄 초기화</button>
+            <button type="button" id="btnHint" class="btn-hint">💡 힌트</button>
             <button type="button" id="btnAnswer" class="btn-answer">👁️ 정답</button>
           </div>
           <p class="question-text" id="questionText">문제를 불러오는 중입니다...</p>
@@ -130,7 +130,7 @@
           <button type="button" class="tool-btn" id="btnNavPrev" title="한 수 무르기(뒤로)">◀</button>
           <button type="button" class="tool-btn" id="btnNavNext" title="한 수 앞으로">▶</button>
           <button type="button" class="tool-btn" id="btnNavLast" title="끝으로">▶|</button>
-          <button type="button" class="tool-btn" id="btnClearBoard" title="놓아본 돌 비우기">🗑️</button>
+          <button type="button" class="tool-btn" id="btnClearBoard" title="문제 처음 상태로 초기화">🔄 초기화</button>
         </div>
         <div class="tool-group assist-group">
           <button type="button" class="tool-btn" id="btnToggleAtari" title="단수 맞은 돌 빨간 링 표시">🚨</button>
@@ -266,6 +266,6 @@
 <div id="teacherToast" class="teacher-toast" hidden></div>
 
 <script src="audio.js?v=20261028-solidwood&t=teacher-panel-v15"></script>
-<script src="app.js?v=20261029-question-hint-v2"></script>
+<script src="app.js?v=20261029-hint-bottomreset-v3"></script>
 </body>
 </html>

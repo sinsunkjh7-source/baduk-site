@@ -539,15 +539,16 @@
     qNumBadge.textContent = '문제 ' + (idx + 1);
     questionText.textContent = (p.question || '알맞은 곳에 돌을 놓아 보세요.').replace(/\r\n/g, '\n');
 
-    // 힌트가 있는 문제만 힌트 박스 표시, 힌트가 없으면 빈 공간으로 숨김
+    // 힌트가 있는 문제는 [💡 힌트] 버튼 활성화, 없으면 버튼 및 박스 모두 숨김(빈 공간)
     var hasHint = !!(p.hint && p.hint.trim() && p.hint.trim() !== '힌트가 없는 문제입니다.');
-    if (hasHint) {
-      hintText.textContent = p.hint.trim();
-      hintBox.hidden = false;
-    } else {
-      hintText.textContent = '';
-      hintBox.hidden = true;
+    var btnHintEl = document.getElementById('btnHint');
+    if (btnHintEl) {
+      btnHintEl.hidden = !hasHint;
+      btnHintEl.classList.remove('active');
     }
+    hintBox.hidden = true;
+    hintText.textContent = hasHint ? p.hint.trim() : '';
+
     var btnAnsEl = document.getElementById('btnAnswer');
     if (btnAnsEl) btnAnsEl.textContent = '👁️ 정답';
     navIndicator.textContent = (idx + 1) + ' / ' + state.currentProblems.length;
@@ -1522,33 +1523,7 @@
     }
   });
 
-  var btnHintEl = document.getElementById('btnHint');
-  if (btnHintEl) {
-    btnHintEl.addEventListener('click', function () {
-      hintBox.hidden = !hintBox.hidden;
-    });
-  }
-
-  document.getElementById('btnAnswer').addEventListener('click', function () {
-    if (state.autoNextTimer) {
-      clearTimeout(state.autoNextTimer);
-      state.autoNextTimer = null;
-    }
-    state.showAnswer = !state.showAnswer;
-    this.textContent = state.showAnswer ? '🙈 숨김' : '👁️ 정답';
-
-    // 정답을 볼 때는 놓아보기 모드를 자동으로 해제하여 잔존 돌과 충돌 방지
-    if (state.showAnswer && state.trialMode) {
-      state.trialMode = false;
-      var btnTrialEl = document.getElementById('btnToggleTrial');
-      if (btnTrialEl) btnTrialEl.classList.remove('active');
-      restoreProblemBoardState();
-      updatePlacementUI();
-    }
-    drawBoard();
-  });
-
-  document.getElementById('btnReset').addEventListener('click', function () {
+  function resetCurrentProblem() {
     if (state.autoNextTimer) {
       clearTimeout(state.autoNextTimer);
       state.autoNextTimer = null;
@@ -1577,8 +1552,45 @@
     updatePlacementUI();
     var btnAnsReset = document.getElementById('btnAnswer');
     if (btnAnsReset) btnAnsReset.textContent = '👁️ 정답';
+
+    hintBox.hidden = true;
+    var btnHintEl = document.getElementById('btnHint');
+    if (btnHintEl) btnHintEl.classList.remove('active');
+
+    drawBoard();
+  }
+
+  var btnHintEl = document.getElementById('btnHint');
+  if (btnHintEl) {
+    btnHintEl.addEventListener('click', function () {
+      hintBox.hidden = !hintBox.hidden;
+      btnHintEl.classList.toggle('active', !hintBox.hidden);
+    });
+  }
+
+  document.getElementById('btnAnswer').addEventListener('click', function () {
+    if (state.autoNextTimer) {
+      clearTimeout(state.autoNextTimer);
+      state.autoNextTimer = null;
+    }
+    state.showAnswer = !state.showAnswer;
+    this.textContent = state.showAnswer ? '🙈 숨김' : '👁️ 정답';
+
+    // 정답을 볼 때는 놓아보기 모드를 자동으로 해제하여 잔존 돌과 충돌 방지
+    if (state.showAnswer && state.trialMode) {
+      state.trialMode = false;
+      var btnTrialEl = document.getElementById('btnToggleTrial');
+      if (btnTrialEl) btnTrialEl.classList.remove('active');
+      restoreProblemBoardState();
+      updatePlacementUI();
+    }
     drawBoard();
   });
+
+  var btnResetEl = document.getElementById('btnReset');
+  if (btnResetEl) {
+    btnResetEl.addEventListener('click', resetCurrentProblem);
+  }
 
   var btnToggleFree = document.getElementById('btnToggleFree');
   if (btnToggleFree) {
@@ -1613,7 +1625,7 @@
     } else if (e.key === 'a' || e.key === 'A') {
       document.getElementById('btnAnswer').click();
     } else if (e.key === 'r' || e.key === 'R') {
-      document.getElementById('btnReset').click();
+      resetCurrentProblem();
     }
   });
 
@@ -1819,25 +1831,7 @@
 
     var btnClearBoard = document.getElementById('btnClearBoard');
     if (btnClearBoard) {
-      btnClearBoard.addEventListener('click', function () {
-        state.board = state.initialBoard.map(function (row) { return row.slice(); });
-        state.trialMoves = [];
-        var p = state.currentProblems[state.currentProblemIndex];
-        var startTurn = getProblemStartingColor(p);
-        if (state.placementMode === 'blackOnly') state.nextTurn = 1;
-        else if (state.placementMode === 'whiteOnly') state.nextTurn = 2;
-        else state.nextTurn = startTurn;
-
-        state.historyStack = [{
-          board: state.board.map(function (row) { return row.slice(); }),
-          nextTurn: state.nextTurn,
-          moves: []
-        }];
-        state.historyIndex = 0;
-        updatePlacementUI();
-        // toast 제거됨
-        drawBoard();
-      });
+      btnClearBoard.addEventListener('click', resetCurrentProblem);
     }
 
     // 4. 시각 보조 도구 (단수, 땀방울, 좌표, 수순 영구 보존)
