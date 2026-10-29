@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>오델로 — 바둑스쿨 Fun</title>
+<link rel="stylesheet" href="/unified-nav.css?v=fun-menu-20261029L">
+<link rel="stylesheet" href="style.css?v=othello-1">
+<script src="/unified-nav.js?v=fun-menu-20261029L" defer></script>
+</head>
+<body data-bks-page="othello">
+
+<main class="o-wrap">
+  <section class="o-board-col">
+    <div class="o-head">
+      <div class="o-score"><span class="o-dot black"></span> 흑 <b id="cntBlack">2</b></div>
+      <div class="o-score"><span class="o-dot white"></span> 백 <b id="cntWhite">2</b></div>
+      <div class="o-turn" id="turnBar">흑 차례</div>
+    </div>
+
+    <div class="o-canvas-box">
+      <canvas id="board" width="640" height="640"></canvas>
+    </div>
+  </section>
+
+  <aside class="o-side">
+    <h2 class="o-title">오델로</h2>
+    <p class="o-desc">상대 돌을 사이에 두고 두면 <b>뒤집힙니다</b>. 마지막에 돌이 많은 쪽이 이깁니다.</p>
+
+    <div class="o-actions">
+      <button type="button" id="btnNew" class="o-btn primary">새 게임</button>
+      <button type="button" id="btnUndo" class="o-btn">무르기</button>
+      <button type="button" id="btnMode" class="o-btn">AI 대전 중</button>
+    </div>
+
+    <details class="o-rules">
+      <summary>규칙 보기</summary>
+      <ul>
+        <li>상대 돌을 가로·세로·대각선으로 감싸면 뒤집힘</li>
+        <li>뒤집을 수 있는 곳에만 놓을 수 있습니다</li>
+        <li>둘 곳이 없으면 자동으로 차례가 넘어갑니다</li>
+      </ul>
+    </details>
+
+    <p class="o-msg" id="msg" hidden></p>
+  </aside>
+</main>
+
+<script src="game.js?v=othello-1"></script>
+</body>
+</html>
