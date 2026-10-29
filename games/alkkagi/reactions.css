@@ -1,5 +1,10 @@
 /* alkkagi-capy-events-1793278813357: gameplay-driven capybara poses, no random cycling. */
-body[data-bks-page=alkkagi] .bks-arena-avatar[data-character=capybara]{border-color:transparent}
+body[data-bks-page=alkkagi] .bks-arena-avatar[data-character]{border-color:transparent}
 body[data-bks-page=alkkagi] .bks-arena-avatar .bks-alk-capy-image{object-fit:contain;object-position:center bottom;width:100%;height:100%;user-select:none;pointer-events:none}
 body[data-bks-page=alkkagi] .bks-arena-player[data-color=black] .bks-alk-capy-image{transform:scaleX(-1)}
 body[data-bks-page=alkkagi] .bks-arena-caption{min-height:15px}
+
+/* alkkagi-bull-model-1793281175679: character swapping does not reset or modify play. */
+body[data-bks-page=alkkagi] .bks-arena-avatar[data-character]{cursor:pointer}
+body[data-bks-page=alkkagi] .bks-arena-avatar[data-character]:focus-visible{outline:2px solid #4a8a3a;outline-offset:3px}
+body[data-bks-page=alkkagi] .bks-character-switch{font:700 11px/1.2 'Malgun Gothic',sans-serif;padding:3px 6px;min-height:24px;border:1px solid #cbdcbd;border-radius:6px;background:#f5faef;color:#36502f;cursor:pointer}
