@@ -401,7 +401,7 @@
 
     if (btnRect.bottom > gridRect.bottom) {
       problemGrid.scrollBy({
-        top: btnRect.bottom - gridRect.bottom + 4,
+        top: btnRect.bottom - gridRect.bottom + 6,
         behavior: 'smooth'
       });
     } else if (btnRect.top < gridRect.top) {

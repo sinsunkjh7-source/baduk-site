@@ -199,8 +199,8 @@ html, body {
   grid-template-columns: repeat(4, 1fr);
   gap: 6px;
   overflow-y: auto;
-  padding-right: 4px;
-  max-height: 192px;
+  padding: 2px 4px 6px 2px;
+  max-height: 198px;
   scroll-behavior: smooth;
 }
 
