@@ -314,6 +314,54 @@
   init();
   fit();
 
+  /* SELFTEST: 규칙 불변식 검사 (?selftest=1) */
+  if (/[?&]selftest=1/.test(location.search)) {
+   try {
+    var b = new Array(64).fill(0);
+    b[27] = 2; b[36] = 2; b[28] = 1; b[35] = 1;
+    var t = 1, ply = 0, errs = [], passes = 0;
+
+    /* 독립 구현으로 합법수·뒤집힘 재계산해 대조 */
+    function flipsIndependent(bb, i, p) {
+      if (bb[i] !== 0) return null;
+      var x = i % 8, y = (i / 8) | 0, out = [];
+      var ds = [[1,0],[-1,0],[0,1],[0,-1],[1,1],[1,-1],[-1,1],[-1,-1]];
+      ds.forEach(function (d) {
+        var cx = x + d[0], cy = y + d[1], line = [];
+        while (cx >= 0 && cx < 8 && cy >= 0 && cy < 8 && bb[cy * 8 + cx] === (p === 1 ? 2 : 1)) {
+          line.push(cy * 8 + cx); cx += d[0]; cy += d[1];
+        }
+        if (line.length && cx >= 0 && cx < 8 && cy >= 0 && cy < 8 && bb[cy * 8 + cx] === p) {
+          out = out.concat(line);
+        }
+      });
+      return out.length ? out.sort(function (a, b) { return a - b; }) : null;
+    }
+
+    while (ply < 300) {
+      var mv = moves(b, t);
+      if (!mv.length) {
+        if (!moves(b, t === 1 ? 2 : 1).length) break;
+        passes++; t = t === 1 ? 2 : 1; continue;
+      }
+      var pick = mv[Math.floor(Math.random() * mv.length)];
+      var ind = flipsIndependent(b, pick.i, t);
+      var mine = pick.flips.slice().sort(function (a, b) { return a - b; });
+      if (!ind || ind.join(',') !== mine.join(',')) errs.push('flip-mismatch@' + ply);
+      b = place(b, pick, t);
+      var total = b.filter(function (v) { return v; }).length;
+      if (total !== 5 + ply) errs.push('count@' + ply);
+      t = t === 1 ? 2 : 1;
+      ply++;
+    }
+
+    document.body.setAttribute('data-selftest', 'ST|plies=' + ply + '|passes=' + passes
+      + '|black=' + b.filter(function (v) { return v === 1; }).length
+      + '|white=' + b.filter(function (v) { return v === 2; }).length
+      + '|errs=' + (errs.length ? errs.slice(0, 2).join(',') : 'none'));
+   } catch (e) { document.body.setAttribute('data-selftest', 'STERR|' + e.name + ':' + e.message); }
+  }
+
   if (/[?&]auto=1/.test(location.search)) {
     setTimeout(function () {
       var mv = legal[0] || moves(board, turn)[0];
