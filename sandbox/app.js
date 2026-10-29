@@ -63,6 +63,11 @@
     dpr: 1
   };
 
+  /* 🌲 천연 비자목(Kaya) 실물 나뭇결 텍스처 프리로딩 */
+  var woodGrainImg = new Image();
+  woodGrainImg.src = 'images/board_wood_grain.png';
+  woodGrainImg.onload = function () { drawBoard(); };
+
   /* 3D 돌 스프라이트 이미지 */
   var stoneSprites = {};
   var spriteUrls = {
@@ -187,31 +192,32 @@
     // 1. 바둑판 스킨 배경
     var boardBorderColor = '#5c300c';
     if (state.boardSkin === 'darkwood') {
-      // 진한 원목 (선명하고 정갈한 세로 정목 결)
-      bCtx.fillStyle = '#deb06c';
-      bCtx.fillRect(0, 0, dispW, dispH);
-
-      bCtx.save();
-      for (var gx = 1; gx < dispW; gx += 2) {
-        var wave = Math.sin(gx * 0.18 + (gx % 5));
-        var grainAlpha = 0.035 + 0.04 * (wave * 0.5 + 0.5);
-        bCtx.strokeStyle = 'rgba(95, 48, 14, ' + grainAlpha + ')';
-        bCtx.lineWidth = 0.75;
-        bCtx.beginPath();
-        bCtx.moveTo(gx, 0);
-        bCtx.lineTo(gx, dispH);
-        bCtx.stroke();
+      // 진한 원목
+      if (woodGrainImg && woodGrainImg.complete && woodGrainImg.naturalWidth > 0) {
+        var pattern = bCtx.createPattern(woodGrainImg, 'repeat');
+        bCtx.fillStyle = pattern;
+        bCtx.fillRect(0, 0, dispW, dispH);
+        bCtx.fillStyle = 'rgba(100, 50, 10, 0.22)';
+        bCtx.fillRect(0, 0, dispW, dispH);
+      } else {
+        bCtx.fillStyle = '#deb06c';
+        bCtx.fillRect(0, 0, dispW, dispH);
       }
-      bCtx.restore();
       boardBorderColor = '#5c300c';
     } else if (state.boardSkin === 'sky') {
       bCtx.fillStyle = '#dbeafe';
       bCtx.fillRect(0, 0, dispW, dispH);
       boardBorderColor = '#2563eb';
     } else {
-      // 밝은 비자목 (wood) - 그라데이션 없는 깔끔한 단색 솔리드 비자목
-      bCtx.fillStyle = '#f2cc84';
-      bCtx.fillRect(0, 0, dispW, dispH);
+      // 밝은 비자목 (wood) - 천연 실물 나뭇결 텍스처
+      if (woodGrainImg && woodGrainImg.complete && woodGrainImg.naturalWidth > 0) {
+        var pattern = bCtx.createPattern(woodGrainImg, 'repeat');
+        bCtx.fillStyle = pattern;
+        bCtx.fillRect(0, 0, dispW, dispH);
+      } else {
+        bCtx.fillStyle = '#f2cc84';
+        bCtx.fillRect(0, 0, dispW, dispH);
+      }
       boardBorderColor = '#8c5828';
     }
 

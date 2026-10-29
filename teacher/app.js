@@ -84,6 +84,15 @@
     stoneSprites[key] = img;
   });
 
+  /* 🌲 천연 비자목(Kaya) 실물 나뭇결 텍스처 프리로딩 */
+  var woodGrainImg = new Image();
+  woodGrainImg.src = 'images/board_wood_grain.png';
+  woodGrainImg.onload = function () {
+    if (document.getElementById('teachingBoard')) {
+      drawBoard();
+    }
+  };
+
   var pinGate = document.getElementById('pinGate');
   var pinInput = document.getElementById('pinInput');
   var pinError = document.getElementById('pinError');
@@ -832,36 +841,35 @@
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     ctx.clearRect(0, 0, dispW, dispH);
 
-    // 🌟 바둑판 스킨 렌더링 (wood: 밝은 비자목, darkwood: 진한 원목 [선명한 세로 나뭇결], sky: 시원한 스카이) 🌟
+    // 🌟 바둑판 스킨 렌더링 (wood: 천연 비자목 실물 나뭇결, darkwood: 진한 원목 나뭇결, sky: 시원한 스카이) 🌟
     var boardBorderColor = '#7c481e';
     if (state.boardSkin === 'darkwood') {
-      // 🌟 [원장님 지침] 1번보다 진한 바둑판 & 어색한 굵은 띠 없이 자연스러운 고운 세로 정목(柾目) 결
-      ctx.fillStyle = '#deb06c';
-      ctx.fillRect(0, 0, dispW, dispH);
-
-      ctx.save();
-      // 자연스럽고 고운 균일 세로 정목 결 (굵은 띠/인위적인 경계선 완전히 제거)
-      for (var gx = 1; gx < dispW; gx += 2) {
-        var wave = Math.sin(gx * 0.18 + (gx % 5));
-        var grainAlpha = 0.035 + 0.04 * (wave * 0.5 + 0.5);
-        ctx.strokeStyle = 'rgba(95, 48, 14, ' + grainAlpha + ')';
-        ctx.lineWidth = 0.75;
-        ctx.beginPath();
-        ctx.moveTo(gx, 0);
-        ctx.lineTo(gx, dispH);
-        ctx.stroke();
+      if (woodGrainImg && woodGrainImg.complete && woodGrainImg.naturalWidth > 0) {
+        var pattern = ctx.createPattern(woodGrainImg, 'repeat');
+        ctx.fillStyle = pattern;
+        ctx.fillRect(0, 0, dispW, dispH);
+        ctx.fillStyle = 'rgba(100, 50, 10, 0.22)';
+        ctx.fillRect(0, 0, dispW, dispH);
+      } else {
+        ctx.fillStyle = '#deb06c';
+        ctx.fillRect(0, 0, dispW, dispH);
       }
-      ctx.restore();
       boardBorderColor = '#5c300c';
     } else if (state.boardSkin === 'sky') {
       ctx.fillStyle = '#dbeafe';
       ctx.fillRect(0, 0, dispW, dispH);
       boardBorderColor = '#2563eb';
     } else {
-      // wood: 밝은 비자목 - 그라데이션 없는 깔끔한 단색 솔리드 비자목
-      ctx.fillStyle = '#f2cc84';
-      ctx.fillRect(0, 0, dispW, dispH);
-      boardBorderColor = '#7c481e';
+      // wood: 천연 비자목(Kaya) 실물 질감 나뭇결
+      if (woodGrainImg && woodGrainImg.complete && woodGrainImg.naturalWidth > 0) {
+        var pattern = ctx.createPattern(woodGrainImg, 'repeat');
+        ctx.fillStyle = pattern;
+        ctx.fillRect(0, 0, dispW, dispH);
+      } else {
+        ctx.fillStyle = '#f2cc84';
+        ctx.fillRect(0, 0, dispW, dispH);
+      }
+      boardBorderColor = '#8c5828';
     }
     canvas.style.borderColor = boardBorderColor;
 

@@ -38,6 +38,11 @@
   };
 
   /* 동물 봇 메타 정보 */
+  /* 🌲 천연 비자목(Kaya) 실물 나뭇결 텍스처 프리로딩 */
+  var woodGrainImg = new Image();
+  woodGrainImg.src = 'images/board_wood_grain.png';
+  woodGrainImg.onload = function () { drawBoard(); };
+
   var BOTS = {
     beginner: { name: '삐약이', title: '🌱 입문 (18급)', avatar: '🐥', desc: '바둑의 첫걸음! 따내기와 단수를 배우는 귀여운 병아리 봇' },
     intermediate: { name: '바둑이', title: '🌿 초급 (12급)', avatar: '🐶', desc: '돌의 연결과 활로를 살피며 씩씩하게 두는 강아지 봇' },
@@ -177,23 +182,29 @@
 
     // 1. 바둑판 바탕 재질
     if (state.boardSkin === 'darkwood') {
-      ctx.fillStyle = '#b88344';
-      ctx.fillRect(0, 0, w, h);
-      ctx.strokeStyle = 'rgba(74, 42, 10, 0.08)';
-      ctx.lineWidth = 1;
-      for (var gi = 0; gi < h; gi += 7) {
-        ctx.beginPath();
-        ctx.moveTo(0, gi);
-        ctx.lineTo(w, gi + 1);
-        ctx.stroke();
+      if (woodGrainImg && woodGrainImg.complete && woodGrainImg.naturalWidth > 0) {
+        var pattern = ctx.createPattern(woodGrainImg, 'repeat');
+        ctx.fillStyle = pattern;
+        ctx.fillRect(0, 0, w, h);
+        ctx.fillStyle = 'rgba(100, 50, 10, 0.22)';
+        ctx.fillRect(0, 0, w, h);
+      } else {
+        ctx.fillStyle = '#b88344';
+        ctx.fillRect(0, 0, w, h);
       }
     } else if (state.boardSkin === 'sky') {
       ctx.fillStyle = '#7dd3fc';
       ctx.fillRect(0, 0, w, h);
     } else {
-      // 밝은 솔리드 비자목 (원장님 시그니처 #f2cc84)
-      ctx.fillStyle = '#f2cc84';
-      ctx.fillRect(0, 0, w, h);
+      // 밝은 천연 비자목 (실물 나뭇결 텍스처)
+      if (woodGrainImg && woodGrainImg.complete && woodGrainImg.naturalWidth > 0) {
+        var pattern = ctx.createPattern(woodGrainImg, 'repeat');
+        ctx.fillStyle = pattern;
+        ctx.fillRect(0, 0, w, h);
+      } else {
+        ctx.fillStyle = '#f2cc84';
+        ctx.fillRect(0, 0, w, h);
+      }
     }
 
     // 외곽 테두리

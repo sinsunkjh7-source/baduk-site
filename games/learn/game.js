@@ -225,6 +225,11 @@
     layout(); draw();
   }
 
+  /* 🌲 천연 비자목(Kaya) 실물 나뭇결 텍스처 프리로딩 */
+  var woodGrainImg = new Image();
+  woodGrainImg.src = 'images/board_wood_grain.png';
+  woodGrainImg.onload = function () { draw(); };
+
   function draw() {
     var s = m.size;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
@@ -232,12 +237,21 @@
 
     if (state.skin === 'green') {
       ctx.fillStyle = '#CBE7AE';
+      ctx.fillRect(0, 0, s, s);
     } else if (state.skin === 'sky') {
       ctx.fillStyle = '#dbeafe';
+      ctx.fillRect(0, 0, s, s);
     } else {
-      ctx.fillStyle = '#f2cc84'; // 밝은 비자목 단색 솔리드
+      // 밝은 천연 비자목 (실물 나뭇결 텍스처)
+      if (woodGrainImg && woodGrainImg.complete && woodGrainImg.naturalWidth > 0) {
+        var pattern = ctx.createPattern(woodGrainImg, 'repeat');
+        ctx.fillStyle = pattern;
+        ctx.fillRect(0, 0, s, s);
+      } else {
+        ctx.fillStyle = '#f2cc84';
+        ctx.fillRect(0, 0, s, s);
+      }
     }
-    ctx.fillRect(0, 0, s, s);
 
     ctx.strokeStyle = 'rgba(110, 74, 30, .85)';
     ctx.lineWidth = Math.max(1, s / 600);
