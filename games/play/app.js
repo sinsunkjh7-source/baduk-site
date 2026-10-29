@@ -406,10 +406,11 @@
 
     ctx.save();
     ctx.beginPath();
-    ctx.arc(cx, cy, radius * 1.15, 0, Math.PI * 2);
-    ctx.strokeStyle = 'rgba(239, 68, 68, 0.9)';
-    ctx.lineWidth = Math.max(2, radius * 0.15);
-    ctx.setLineDash([4, 3]);
+    ctx.arc(cx, cy, radius + 1.2, 0, Math.PI * 2);
+    ctx.strokeStyle = 'rgba(239, 68, 68, 0.72)';
+    ctx.lineWidth = Math.max(1.4, Math.min(2.0, radius * 0.07));
+    ctx.shadowColor = 'rgba(239, 68, 68, 0.25)';
+    ctx.shadowBlur = 2;
     ctx.stroke();
     ctx.restore();
   }

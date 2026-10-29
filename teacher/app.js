@@ -1120,21 +1120,20 @@
           var stoneY = startY + cell * y;
           var isAtari = Boolean(atariStonesMap[x + ',' + y]);
 
-          // 🌟 🚨 단수 링 렌더링 (빨간색 위험 경고 링)
+          drawStone(stoneX, stoneY, stoneRadius, v);
+
+          // 🌟 🚨 단수 링 렌더링 (단수 돌을 감싸는 세련된 경고 링)
           if (isAtari && state.showAtari) {
             ctx.save();
-            ctx.strokeStyle = '#ef4444';
-            ctx.lineWidth = Math.max(2.5, cell * 0.08);
-            ctx.shadowColor = 'rgba(239, 68, 68, 0.6)';
-            ctx.shadowBlur = Math.max(4, cell * 0.15);
+            ctx.strokeStyle = 'rgba(239, 68, 68, 0.72)';
+            ctx.lineWidth = Math.max(1.4, Math.min(2.0, stoneRadius * 0.07));
+            ctx.shadowColor = 'rgba(239, 68, 68, 0.25)';
+            ctx.shadowBlur = 2;
             ctx.beginPath();
-            ctx.arc(stoneX, stoneY, stoneRadius + Math.max(2, cell * 0.06), 0, Math.PI * 2);
+            ctx.arc(stoneX, stoneY, stoneRadius + 1.2, 0, Math.PI * 2);
             ctx.stroke();
             ctx.restore();
           }
-
-          // 돌 본체 렌더링
-          drawStone(stoneX, stoneY, stoneRadius, v);
 
           // 🌟 💦 3D 땀방울 연출 (단수 시 돌 우상단에 맺히는 물방울)
           if (isAtari && state.showSweat && stoneRadius >= 10) {

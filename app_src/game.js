@@ -4030,10 +4030,12 @@ class BadukGameApp {
 
             if (isAtari && this.showAtari) {
               ctx.save();
-              ctx.strokeStyle = '#ef4444';
-              ctx.lineWidth = 3;
+              ctx.strokeStyle = 'rgba(239, 68, 68, 0.72)';
+              ctx.lineWidth = Math.max(1.4, Math.min(2.0, stoneRadius * 0.07));
+              ctx.shadowColor = 'rgba(239, 68, 68, 0.25)';
+              ctx.shadowBlur = 2;
               ctx.beginPath();
-              ctx.arc(sx, sy, stoneRadius + 3, 0, Math.PI * 2);
+              ctx.arc(sx, sy, stoneRadius + 1.2, 0, Math.PI * 2);
               ctx.stroke();
               ctx.restore();
             }

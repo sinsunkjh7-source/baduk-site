@@ -420,12 +420,12 @@
   /* ---------- 단수 빨간 링 표시 ---------- */
   function drawAtariRing(cx, cy, r) {
     bCtx.save();
-    bCtx.strokeStyle = '#ef4444';
-    bCtx.lineWidth = Math.max(2.5, r * 0.18);
-    bCtx.shadowColor = 'rgba(239, 68, 68, 0.8)';
-    bCtx.shadowBlur = 8;
+    bCtx.strokeStyle = 'rgba(239, 68, 68, 0.72)';
+    bCtx.lineWidth = Math.max(1.4, Math.min(2.0, r * 0.07));
+    bCtx.shadowColor = 'rgba(239, 68, 68, 0.25)';
+    bCtx.shadowBlur = 2;
     bCtx.beginPath();
-    bCtx.arc(cx, cy, r * 1.15, 0, Math.PI * 2);
+    bCtx.arc(cx, cy, r + 1.2, 0, Math.PI * 2);
     bCtx.stroke();
     bCtx.restore();
   }
