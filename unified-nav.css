@@ -18,7 +18,7 @@
 .bks-nav-sub[hidden]{display:none!important}.bks-nav-sub a{display:block;padding:10px 12px;border-radius:7px;color:var(--bks-ink)}.bks-nav-sub a:hover{background:#dceecf}.bks-nav-sub a[aria-current=page]{background:#dceecf;color:#244a1b}
 .bks-account-link{font-size:12px!important}.bks-account-first{margin-left:auto}
 .bks-nav-actions{margin-left:auto;display:flex;align-items:center;gap:7px;flex:none}.bks-menu-toggle{display:none}
-.bks-scrim{position:fixed;inset:var(--bks-nav-h) 0 0;background:#17281132;z-index:200004;touch-action:none}.bks-scrim[hidden]{display:none!important}
+.bks-scrim{position:fixed;inset:var(--bks-nav-h) 0 0;background:transparent!important;z-index:200004;touch-action:none}body:has(.bks-nav-links[data-open]) .bks-scrim{background:#17281140!important}.bks-scrim[hidden]{display:none!important}
 .bks-nav:has(.bks-nav-links[data-open]),.bks-nav:has(.bks-nav-sub:not([hidden])){z-index:200006}
 .bks-settings{position:fixed;top:var(--bks-nav-h);right:0;bottom:0;width:380px;max-width:100vw;z-index:200010;background:var(--bks-paper);color:var(--bks-ink);border-left:1px solid var(--bks-border);box-shadow:-8px 0 30px #1b391c26;overflow-y:auto;overscroll-behavior:contain;padding:0 20px 24px;font:14px/1.55 "Malgun Gothic","Apple SD Gothic Neo",sans-serif}
 .bks-settings[hidden]{display:none!important}.bks-settings-head{display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:var(--bks-paper);padding:17px 0 12px;border-bottom:1px solid var(--bks-border);z-index:2}.bks-settings-head h2{margin:0;font-size:21px;color:var(--bks-deep)}

@@ -813,3 +813,11 @@ html, body {
   font-family: 'Pretendard', -apple-system, sans-serif;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
+
+/* 🌟 설정 패널 열릴 때 바둑판과 겹치지 않도록 스테이지 자동 축소 및 여백 확보 🌟 */
+@media (min-width: 1024px) {
+  body.bks-settings-open .teacher-stage {
+    margin-right: 380px !important;
+    transition: margin-right 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+}
