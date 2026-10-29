@@ -1,0 +1,85 @@
+:root{
+  --gnu-bg:#f2f8ec;
+  --gnu-panel:#ffffff;
+  --gnu-ink:#24361d;
+  --gnu-dim:#6b7d62;
+  --gnu-green:#4a8a3a;
+  --gnu-green2:#5fa34c;
+  --gnu-wood:#e8c48c;
+  --gnu-wood2:#d9ab68;
+  --gnu-line:#8a5a2b;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  background:var(--gnu-bg);
+  color:var(--gnu-ink);
+  font-family:"Pretendard","Malgun Gothic",system-ui,sans-serif;
+  padding:calc(var(--bks-nav-h,64px) + 14px) 16px 24px;
+}
+
+.gnu-wrap{
+  max-width:1080px;margin:0 auto;
+  display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:18px;align-items:start;
+}
+
+.gnu-board-col{display:flex;flex-direction:column;gap:12px;min-width:0}
+
+.gnu-turn{
+  display:flex;align-items:center;gap:10px;
+  background:#fff;border-radius:14px;padding:12px 16px;
+  box-shadow:0 2px 10px rgba(36,54,29,.08);font-size:15px;
+}
+.gnu-turn strong{font-weight:900}
+.gnu-hint{margin-left:auto;font-size:13px;color:var(--gnu-dim)}
+
+.dot{width:16px;height:16px;border-radius:50%;display:inline-block;flex:0 0 auto}
+.dot.black{background:radial-gradient(circle at 32% 30%,#4a4a4a,#111)}
+.dot.white{background:radial-gradient(circle at 32% 30%,#fff,#d8d8d8);border:1px solid #cfcfcf}
+
+.gnu-canvas-box{
+  background:#fff;border-radius:18px;padding:10px;
+  box-shadow:0 6px 22px rgba(36,54,29,.10);
+  display:flex;justify-content:center;
+}
+canvas{width:100%;max-width:560px;height:auto;display:block;border-radius:12px;touch-action:manipulation}
+
+.gnu-side{
+  background:#fff;border-radius:18px;padding:18px;
+  box-shadow:0 6px 22px rgba(36,54,29,.10);
+  display:flex;flex-direction:column;gap:12px;
+}
+.gnu-title{font-size:22px;font-weight:900}
+.gnu-desc{font-size:13.5px;line-height:1.6;color:var(--gnu-dim)}
+
+.gnu-score{display:flex;gap:10px}
+.gnu-score>div{
+  flex:1;display:flex;align-items:center;gap:7px;
+  background:#f4f9ee;border-radius:10px;padding:10px 12px;font-size:13.5px;color:#46583c;
+}
+.gnu-score b{font-size:17px;color:var(--gnu-ink)}
+
+.gnu-actions{display:flex;flex-direction:column;gap:8px}
+.gnu-btn{
+  border:1.5px solid #d6e4ca;background:#fff;color:var(--gnu-ink);
+  border-radius:10px;padding:11px 14px;font-family:inherit;font-size:14.5px;font-weight:800;
+  cursor:pointer;transition:.15s;
+}
+.gnu-btn:hover{background:#f1f8e9}
+.gnu-btn.primary{background:var(--gnu-green);border-color:var(--gnu-green);color:#fff}
+.gnu-btn.primary:hover{background:#3f7a31}
+
+.gnu-rules{font-size:13px;color:var(--gnu-dim);background:#f7fbf3;border-radius:10px;padding:10px 12px}
+.gnu-rules summary{cursor:pointer;font-weight:800;color:#3f5a34}
+.gnu-rules ul{margin:8px 0 0 18px;line-height:1.7}
+
+.gnu-msg{
+  background:#eaf5e1;border-left:4px solid var(--gnu-green);
+  padding:10px 12px;border-radius:8px;font-size:13.5px;font-weight:700;color:#2f4a25;
+}
+
+@media (max-width:860px){
+  .gnu-wrap{grid-template-columns:1fr}
+  .gnu-side{order:2}
+  body{padding:calc(var(--bks-nav-h,64px) + 10px) 10px 20px}
+}

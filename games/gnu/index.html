@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>고누 — 바둑스쿨 Fun</title>
+<link rel="stylesheet" href="/unified-nav.css?v=fun-menu-20261029c">
+<link rel="stylesheet" href="style.css?v=gnu-1">
+<script src="/unified-nav.js?v=fun-menu-20261029e" defer></script>
+</head>
+<body data-bks-page="gnu">
+
+<main class="gnu-wrap">
+  <section class="gnu-board-col">
+    <div class="gnu-turn" id="turnBar">
+      <span class="dot black"></span>
+      <strong id="turnText">흑 차례</strong>
+      <span class="gnu-hint" id="hintText">돌을 골라 움직이세요</span>
+    </div>
+
+    <div class="gnu-canvas-box">
+      <canvas id="board" width="560" height="560"></canvas>
+    </div>
+  </section>
+
+  <aside class="gnu-side">
+    <h2 class="gnu-title">고누</h2>
+    <p class="gnu-desc">3×3 우물판에서 상대 돌을 뛰어넘어 잡는 전통 놀이입니다.</p>
+
+    <div class="gnu-score">
+      <div><span class="dot black"></span><b id="cntBlack">3</b> 남음</div>
+      <div><span class="dot white"></span><b id="cntWhite">3</b> 남음</div>
+    </div>
+
+    <div class="gnu-actions">
+      <button type="button" id="btnNew" class="gnu-btn primary">새 게임</button>
+      <button type="button" id="btnUndo" class="gnu-btn">무르기</button>
+      <button type="button" id="btnMode" class="gnu-btn">AI 대전 중</button>
+    </div>
+
+    <details class="gnu-rules">
+      <summary>규칙 보기</summary>
+      <ul>
+        <li>한 칸씩 이동 (가로·세로)</li>
+        <li>상대 돌을 뛰어넘어 그 너머가 비면 잡습니다</li>
+        <li>상대 돌을 다 잡거나 움직일 수 없게 만들면 승리</li>
+      </ul>
+    </details>
+
+    <p class="gnu-msg" id="msg" hidden></p>
+  </aside>
+</main>
+
+<script src="game.js?v=gnu-1"></script>
+</body>
+</html>
