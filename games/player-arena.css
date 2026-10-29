@@ -1,3 +1,8 @@
+/* arena-no-menu-flash-1793268191025: hide legacy menus before JS relocation, not the settings destination. */
+body[data-bks-page=omok]>.wrap>aside.panel,
+body[data-bks-page=alkkagi]>.alkkagi-wrap>.panel-col,
+body[data-bks-page=omok] .turn-bar,
+body[data-bks-page=alkkagi] .bks-game-status{display:none!important}
 /* player-arena-1793237184225: layout adapter, no character artwork yet. */
 body[data-bks-arena=ready]>.wrap,body[data-bks-arena=ready]>.alkkagi-wrap{position:relative!important;padding:12px!important;gap:0!important}
 body[data-bks-arena=ready] .turn-bar,body[data-bks-arena=ready] .bks-game-status{display:none!important}
