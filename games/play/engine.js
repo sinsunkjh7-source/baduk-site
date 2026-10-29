@@ -356,6 +356,11 @@ BadukEngine.prototype.calculateScore = function(komi = 6.5) {
   };
 };
 
-window.BadukEngine = BadukEngine;
+if (typeof window !== 'undefined') {
+  window.BadukEngine = BadukEngine;
+}
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = { BadukEngine };
+}
 
   

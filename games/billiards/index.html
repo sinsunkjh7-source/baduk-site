@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>당구 3구 — 바둑스쿨 Fun</title>
-<link rel="stylesheet" href="/unified-nav.css?v=fun-menu-20261029i">
+<link rel="stylesheet" href="/unified-nav.css?v=fun-menu-20261029j">
 <link rel="stylesheet" href="style.css?v=big-2">
-<script src="/unified-nav.js?v=fun-menu-20261029i" defer></script>
+<script src="/unified-nav.js?v=fun-menu-20261029j" defer></script>
 </head>
 <body data-bks-page="billiards">
 
@@ -16,9 +16,11 @@
       <div class="b-score"><span>득점</span><b id="score">0</b></div>
       <div class="b-score"><span>시도</span><b id="shots">0</b></div>
       <div class="b-score"><span>최고</span><b id="best">0</b></div>
+      <div class="b-score" id="leftWrap" hidden><span>남은 공</span><b id="left">9</b></div>
       <div class="b-modes" id="modeSeg" role="group" aria-label="경기 방식">
         <button type="button" class="b-mode active" data-mode="three">3구</button>
         <button type="button" class="b-mode" data-mode="four">4구</button>
+        <button type="button" class="b-mode" data-mode="pocket">포켓</button>
       </div>
       <div class="b-turn" id="turnBar">당신 차례</div>
     </div>
@@ -48,6 +50,7 @@
         <li>내 공으로 빨강과 노랑을 차례로 맞히면 득점</li>
         <li>쿠션(벽)은 몇 번 맞아도 됩니다</li>
         <li>한 쪽만 맞히면 실패 — 다음 시도</li>
+        <li><b>포켓</b>: 색공을 넣으면 1점, 흰 공은 파울</li>
       </ul>
     </details>
 
