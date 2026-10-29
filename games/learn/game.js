@@ -432,14 +432,76 @@
   }
 
   function drawStone(cx, cy, r, color) {
-    var grad = ctx.createRadialGradient(cx - r * 0.34, cy - r * 0.38, r * 0.1, cx, cy, r);
-    if (color === BLACK) { grad.addColorStop(0, '#6e6e6e'); grad.addColorStop(0.55, '#1c1c1c'); grad.addColorStop(1, '#080808'); }
-    else { grad.addColorStop(0, '#fff'); grad.addColorStop(0.6, '#f4f4f4'); grad.addColorStop(1, '#d2d2d2'); }
-    ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI * 2);
-    ctx.fillStyle = grad;
-    ctx.shadowColor = 'rgba(0,0,0,.38)'; ctx.shadowBlur = r * 0.45; ctx.shadowOffsetY = r * 0.12;
-    ctx.fill();
-    ctx.shadowColor = 'transparent'; ctx.shadowBlur = 0; ctx.shadowOffsetY = 0;
+    var style = getStoneStyle();
+    ctx.save();
+
+    var spriteKey = style + '_' + color;
+    var spriteImg = stoneSprites[spriteKey];
+
+    if (spriteImg && spriteImg.complete && spriteImg.naturalWidth > 0) {
+      ctx.shadowColor = 'rgba(0, 0, 0, 0.45)';
+      ctx.shadowBlur = r * 0.38;
+      ctx.shadowOffsetY = r * 0.14;
+      ctx.drawImage(spriteImg, cx - r, cy - r, r * 2, r * 2);
+    } else {
+      var grad = ctx.createRadialGradient(cx - r * 0.32, cy - r * 0.35, r * 0.08, cx, cy, r);
+      if (style === 'gem') {
+        if (color === BLACK) {
+          grad.addColorStop(0, '#dbeafe');
+          grad.addColorStop(0.2, '#60a5fa');
+          grad.addColorStop(0.5, '#2563eb');
+          grad.addColorStop(0.8, '#1e40af');
+          grad.addColorStop(1, '#0f172a');
+        } else {
+          grad.addColorStop(0, '#ffffff');
+          grad.addColorStop(0.2, '#fdf2f8');
+          grad.addColorStop(0.48, '#fbcfe8');
+          grad.addColorStop(0.8, '#f472b6');
+          grad.addColorStop(1, '#be185d');
+        }
+      } else {
+        if (color === BLACK) {
+          grad.addColorStop(0, '#666666');
+          grad.addColorStop(0.55, '#1e1e1e');
+          grad.addColorStop(1, '#080808');
+        } else {
+          grad.addColorStop(0, '#ffffff');
+          grad.addColorStop(0.6, '#f3f3f3');
+          grad.addColorStop(1, '#d4d4d4');
+        }
+      }
+      ctx.beginPath();
+      ctx.arc(cx, cy, r, 0, Math.PI * 2);
+      ctx.fillStyle = grad;
+      ctx.shadowColor = 'rgba(0, 0, 0, 0.4)';
+      ctx.shadowBlur = r * 0.4;
+      ctx.shadowOffsetY = r * 0.15;
+      ctx.fill();
+    }
+    ctx.restore();
+
+    if (style === 'cute' && r >= 8) {
+      ctx.save();
+      var eyeY = cy - r * 0.06;
+      ctx.fillStyle = '#ffffff';
+      ctx.beginPath();
+      ctx.arc(cx - r * 0.30, eyeY, r * 0.18, 0, Math.PI * 2);
+      ctx.arc(cx + r * 0.30, eyeY, r * 0.18, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.fillStyle = '#111111';
+      ctx.beginPath();
+      ctx.arc(cx - r * 0.28, eyeY, r * 0.10, 0, Math.PI * 2);
+      ctx.arc(cx + r * 0.32, eyeY, r * 0.10, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.fillStyle = '#ffffff';
+      ctx.beginPath();
+      ctx.arc(cx - r * 0.33, eyeY - r * 0.04, r * 0.04, 0, Math.PI * 2);
+      ctx.arc(cx + r * 0.27, eyeY - r * 0.04, r * 0.04, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+    }
   }
 
   /* ---------- 착수 판정 ---------- */

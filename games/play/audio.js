@@ -8,10 +8,10 @@ class BadukAudio {
     this.masterGain = null;
     
     // 🌟 마지막 볼륨/사운드 설정 복원 (기본 100%) 🌟
-    const savedVol = localStorage.getItem('sandbox_audio_volume') || localStorage.getItem('baduk_audio_volume');
+    const savedVol = localStorage.getItem('baduk_audio_volume') || localStorage.getItem('sandbox_audio_volume');
     this.volume = (savedVol !== null) ? parseFloat(savedVol) : 1.0;
 
-    const savedType = localStorage.getItem('sandbox_audio_type') || localStorage.getItem('baduk_audio_type');
+    const savedType = localStorage.getItem('baduk_audio_type') || localStorage.getItem('sandbox_audio_type');
     this.soundType = savedType || 'classic';
 
     const savedEnabled = localStorage.getItem('sandbox_audio_enabled') || localStorage.getItem('baduk_audio_enabled');
@@ -34,7 +34,7 @@ class BadukAudio {
 
   setVolume(val) {
     this.volume = Math.max(0, Math.min(1, val));
-    localStorage.setItem('sandbox_audio_volume', this.volume);
+    localStorage.setItem('sandbox_audio_volume', this.volume); localStorage.setItem('baduk_audio_volume', this.volume);
     if (this.masterGain && this.ctx) {
       this.masterGain.gain.setValueAtTime(this.volume, this.ctx.currentTime);
     }
@@ -42,7 +42,7 @@ class BadukAudio {
 
   setSoundType(type) {
     this.soundType = type;
-    localStorage.setItem('sandbox_audio_type', type);
+    localStorage.setItem('sandbox_audio_type', type); localStorage.setItem('baduk_audio_type', type);
   }
 
   setEnabled(val) {

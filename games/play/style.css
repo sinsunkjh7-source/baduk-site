@@ -455,6 +455,51 @@ body {
 }
 
 /* ---------- 환경설정 슬림 패널 (통합 네비 마운트용) ---------- */
+
+/* 설정 헤더 & 볼륨 슬라이더 */
+.settings-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1.5px solid var(--border-light, #e5e7eb);
+  padding-bottom: 8px;
+  margin-bottom: 12px;
+}
+.settings-title {
+  font-size: 15px;
+  font-weight: 900;
+  color: var(--ink, #1f2937);
+}
+.btn-close-settings {
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: var(--muted, #6b7280);
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+.btn-close-settings:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+.volume-slider-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.volume-slider {
+  flex: 1;
+  accent-color: #10b981;
+  cursor: pointer;
+}
+.volume-val {
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--ink, #1f2937);
+  min-width: 38px;
+  text-align: right;
+}
+
 .settings-panel {
   padding: 6px;
 }

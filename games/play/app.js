@@ -32,7 +32,7 @@
     // 환경설정 (놓아보기 / 강사모드 연동)
     theme: localStorage.getItem('play_theme') || 'green',
     boardSkin: localStorage.getItem('baduk_board_skin') || localStorage.getItem('play_board_skin') || 'wood',
-    stoneStyle: localStorage.getItem('play_stone_style') || 'classic',
+    stoneStyle: localStorage.getItem('baduk_stone_style') || localStorage.getItem('play_stone_style') || 'classic',
     volume: parseFloat(localStorage.getItem('baduk_audio_volume') || '1.0'),
     soundType: localStorage.getItem('baduk_audio_type') || 'classic'
   };
@@ -59,12 +59,12 @@
   /* 3D 바둑알 스프라이트 프리로딩 */
   var stoneSprites = {};
   var spriteUrls = {
-    cat_1: '/images/stone_cat_b.png',
-    cat_2: '/images/stone_cat_w.png',
-    galaxy_1: '/images/stone_galaxy_b.png',
-    galaxy_2: '/images/stone_galaxy_w.png',
-    crystal_1: '/images/stone_crystal_b.png',
-    crystal_2: '/images/stone_crystal_w.png'
+    cat_1: 'images/stone_cat_b.png',
+    cat_2: 'images/stone_cat_w.png',
+    galaxy_1: 'images/stone_galaxy_b.png',
+    galaxy_2: 'images/stone_galaxy_w.png',
+    crystal_1: 'images/stone_crystal_b.png',
+    crystal_2: 'images/stone_crystal_w.png'
   };
   Object.keys(spriteUrls).forEach(function (k) {
     var img = new Image();
@@ -339,75 +339,90 @@
 
     ctx.save();
 
-    // 1. 바둑돌 그림자
-    ctx.beginPath();
-    ctx.arc(cx + radius * 0.12, cy + radius * 0.14, radius * 0.98, 0, Math.PI * 2);
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.28)';
-    ctx.fill();
-
-    // 2. 스프라이트 스킨 (cat, galaxy, crystal)
+    // 1. 3D 고화질 스프라이트 알 (cat, galaxy, crystal)
     var spriteKey = style + '_' + color;
-    if (stoneSprites[spriteKey] && stoneSprites[spriteKey].complete) {
-      var d = radius * 2.1;
-      ctx.drawImage(stoneSprites[spriteKey], cx - d / 2, cy - d / 2, d, d);
+    var spriteImg = stoneSprites[spriteKey];
+
+    if (spriteImg && spriteImg.complete && spriteImg.naturalWidth > 0) {
+      ctx.shadowColor = 'rgba(0, 0, 0, 0.45)';
+      ctx.shadowBlur = radius * 0.38;
+      ctx.shadowOffsetY = radius * 0.14;
+      ctx.drawImage(spriteImg, cx - radius, cy - radius, radius * 2, radius * 2);
     } else {
-      // 클래식 / 보석 / 귀여운 돌
+      var grad = ctx.createRadialGradient(cx - radius * 0.32, cy - radius * 0.35, radius * 0.08, cx, cy, radius);
+
+      if (style === 'gem') {
+        // 영롱한 보석알: 로열 블루 사파이어(흑) & 로즈 핑크(백)
+        if (color === BLACK) {
+          grad.addColorStop(0, '#dbeafe');
+          grad.addColorStop(0.2, '#60a5fa');
+          grad.addColorStop(0.5, '#2563eb');
+          grad.addColorStop(0.8, '#1e40af');
+          grad.addColorStop(1, '#0f172a');
+        } else {
+          grad.addColorStop(0, '#ffffff');
+          grad.addColorStop(0.2, '#fdf2f8');
+          grad.addColorStop(0.48, '#fbcfe8');
+          grad.addColorStop(0.8, '#f472b6');
+          grad.addColorStop(1, '#be185d');
+        }
+      } else {
+        // 전통 명품 바둑알 (Classic): 칠흑 오석 & 백옥 조개
+        if (color === BLACK) {
+          grad.addColorStop(0, '#666666');
+          grad.addColorStop(0.55, '#1e1e1e');
+          grad.addColorStop(1, '#080808');
+        } else {
+          grad.addColorStop(0, '#ffffff');
+          grad.addColorStop(0.6, '#f3f3f3');
+          grad.addColorStop(1, '#d4d4d4');
+        }
+      }
+
       ctx.beginPath();
       ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+      ctx.fillStyle = grad;
+      ctx.shadowColor = 'rgba(0, 0, 0, 0.4)';
+      ctx.shadowBlur = radius * 0.4;
+      ctx.shadowOffsetY = radius * 0.15;
+      ctx.fill();
+    }
+    ctx.restore();
 
-      if (color === BLACK) {
-        var gradB = ctx.createRadialGradient(
-          cx - radius * 0.3, cy - radius * 0.3, radius * 0.05,
-          cx, cy, radius
-        );
-        gradB.addColorStop(0, '#555555');
-        gradB.addColorStop(0.3, '#222222');
-        gradB.addColorStop(1, '#080808');
-        ctx.fillStyle = gradB;
-        ctx.fill();
+    // 2. 앙증맞은 '초롱초롱 눈' (cute)
+    if (style === 'cute' && radius >= 8) {
+      ctx.save();
+      var eyeY = cy - radius * 0.06;
+      ctx.fillStyle = '#ffffff';
+      ctx.beginPath();
+      ctx.arc(cx - radius * 0.30, eyeY, radius * 0.18, 0, Math.PI * 2);
+      ctx.arc(cx + radius * 0.30, eyeY, radius * 0.18, 0, Math.PI * 2);
+      ctx.fill();
 
-        ctx.strokeStyle = '#050505';
-        ctx.lineWidth = 1;
-        ctx.stroke();
+      ctx.fillStyle = '#111111';
+      ctx.beginPath();
+      ctx.arc(cx - radius * 0.28, eyeY, radius * 0.10, 0, Math.PI * 2);
+      ctx.arc(cx + radius * 0.32, eyeY, radius * 0.10, 0, Math.PI * 2);
+      ctx.fill();
 
-        // 윗면 은은한 빛 반사
-        ctx.beginPath();
-        ctx.ellipse(cx - radius * 0.25, cy - radius * 0.25, radius * 0.35, radius * 0.18, -Math.PI / 4, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.2)';
-        ctx.fill();
-      } else {
-        var gradW = ctx.createRadialGradient(
-          cx - radius * 0.3, cy - radius * 0.3, radius * 0.08,
-          cx, cy, radius
-        );
-        gradW.addColorStop(0, '#ffffff');
-        gradW.addColorStop(0.6, '#f4f4f4');
-        gradW.addColorStop(1, '#cfcfcf');
-        ctx.fillStyle = gradW;
-        ctx.fill();
-
-        ctx.strokeStyle = '#999999';
-        ctx.lineWidth = 1;
-        ctx.stroke();
-
-        // 은은한 하이라이트
-        ctx.beginPath();
-        ctx.ellipse(cx - radius * 0.28, cy - radius * 0.28, radius * 0.38, radius * 0.2, -Math.PI / 4, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.65)';
-        ctx.fill();
-      }
+      ctx.fillStyle = '#ffffff';
+      ctx.beginPath();
+      ctx.arc(cx - radius * 0.33, eyeY - radius * 0.04, radius * 0.04, 0, Math.PI * 2);
+      ctx.arc(cx + radius * 0.27, eyeY - radius * 0.04, radius * 0.04, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
     }
 
     // 3. 수순 번호 표시
     if (stepNum !== null) {
+      ctx.save();
       ctx.font = 'bold ' + Math.round(radius * 0.85) + 'px sans-serif';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
       ctx.fillStyle = (color === BLACK) ? '#ffffff' : '#111111';
       ctx.fillText(stepNum, cx, cy);
+      ctx.restore();
     }
-
-    ctx.restore();
   }
 
   /* ---------- 단수 붉은색 경고 링 ---------- */
@@ -944,6 +959,33 @@
   }
 
   /* ---------- 환경설정 이벤트 바인딩 (통합 네비 연동) ---------- */
+  function updateSettingsUI() {
+    // 테마
+    document.querySelectorAll('#optTheme .setting-opt-btn').forEach(function (b) {
+      b.classList.toggle('active', b.dataset.theme === state.theme);
+    });
+    // 바둑판 재질 스킨
+    document.querySelectorAll('#optBoardSkin .setting-opt-btn').forEach(function (b) {
+      b.classList.toggle('active', b.dataset.skin === state.boardSkin);
+    });
+    // 바둑알 디자인
+    document.querySelectorAll('#optStoneStyle .setting-opt-btn').forEach(function (b) {
+      b.classList.toggle('active', b.dataset.stone === state.stoneStyle);
+    });
+    // 착수음 종류
+    document.querySelectorAll('#optSoundType .setting-opt-btn').forEach(function (b) {
+      b.classList.toggle('active', b.dataset.sound === state.soundType);
+    });
+    // 음량 조절
+    var volRange = document.getElementById('volumeSlider') || document.getElementById('volRange');
+    var volVal = document.getElementById('volumeVal');
+    if (volRange) {
+      var v = Math.round(state.volume * 100);
+      volRange.value = v;
+      if (volVal) volVal.textContent = v + '%';
+    }
+  }
+
   function bindSettingsEvents() {
     // 테마
     document.querySelectorAll('#optTheme .setting-opt-btn').forEach(function (btn) {
@@ -952,8 +994,7 @@
         playStage.className = 'play-stage theme-' + theme;
         state.theme = theme;
         localStorage.setItem('play_theme', theme);
-        document.querySelectorAll('#optTheme .setting-opt-btn').forEach(function (b) { b.classList.remove('active'); });
-        btn.classList.add('active');
+        updateSettingsUI();
       });
     });
 
@@ -964,22 +1005,82 @@
         state.boardSkin = skin;
         localStorage.setItem('baduk_board_skin', skin);
         localStorage.setItem('play_board_skin', skin);
-        document.querySelectorAll('#optBoardSkin .setting-opt-btn').forEach(function (b) { b.classList.remove('active'); });
-        btn.classList.add('active');
+        updateSettingsUI();
         drawBoard();
       });
     });
 
-    // 바둑알 디자인
+    // 바둑알 스킨
     document.querySelectorAll('#optStoneStyle .setting-opt-btn').forEach(function (btn) {
       btn.addEventListener('click', function () {
         var st = btn.dataset.stone;
         state.stoneStyle = st;
+        localStorage.setItem('baduk_stone_style', st);
         localStorage.setItem('play_stone_style', st);
-        document.querySelectorAll('#optStoneStyle .setting-opt-btn').forEach(function (b) { b.classList.remove('active'); });
-        btn.classList.add('active');
+        updateSettingsUI();
         drawBoard();
       });
+    });
+
+    // 착수음 사운드 종류
+    document.querySelectorAll('#optSoundType .setting-opt-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var sound = btn.dataset.sound;
+        state.soundType = sound;
+        localStorage.setItem('baduk_audio_type', sound);
+        if (audio && audio.setSoundType) {
+          audio.setSoundType(sound);
+          audio.playPlaceSound(BLACK);
+        }
+        updateSettingsUI();
+      });
+    });
+
+    // 음량 슬라이더
+    var volRange = document.getElementById('volumeSlider') || document.getElementById('volRange');
+    if (volRange) {
+      volRange.addEventListener('input', function () {
+        var v = parseFloat(volRange.value) / 100;
+        state.volume = v;
+        localStorage.setItem('baduk_audio_volume', v);
+        if (audio && audio.setVolume) audio.setVolume(v);
+        var volVal = document.getElementById('volumeVal');
+        if (volVal) volVal.textContent = Math.round(v * 100) + '%';
+      });
+    }
+
+    // 설정 닫기 버튼
+    var btnClose = document.getElementById('btnCloseSettings');
+    if (btnClose) {
+      btnClose.addEventListener('click', function () {
+        var panel = document.getElementById('settingsPanel');
+        if (panel) panel.hidden = true;
+        if (window.BKSUnifiedNav && window.BKSUnifiedNav.closeSettings) {
+          window.BKSUnifiedNav.closeSettings();
+        }
+      });
+    }
+
+    // 다른 탭이나 페이지에서 설정 변경 시 실시간 반영
+    window.addEventListener('storage', function (e) {
+      if (e.key === 'baduk_stone_style' && e.newValue) {
+        state.stoneStyle = e.newValue;
+        updateSettingsUI();
+        drawBoard();
+      } else if (e.key === 'baduk_board_skin' && e.newValue) {
+        state.boardSkin = e.newValue;
+        updateSettingsUI();
+        drawBoard();
+      } else if (e.key === 'baduk_audio_volume' && e.newValue) {
+        var v = parseFloat(e.newValue);
+        state.volume = v;
+        if (audio && audio.setVolume) audio.setVolume(v);
+        updateSettingsUI();
+      } else if (e.key === 'baduk_audio_type' && e.newValue) {
+        state.soundType = e.newValue;
+        if (audio && audio.setSoundType) audio.setSoundType(e.newValue);
+        updateSettingsUI();
+      }
     });
   }
 
@@ -1007,6 +1108,7 @@
     document.getElementById('btnToggleNumbers')?.classList.toggle('active', state.showStepNumbers);
 
     bindEvents();
+    updateSettingsUI();
     layoutBoard();
     updateStatus();
 

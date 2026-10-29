@@ -25,7 +25,7 @@
     // 환경설정
     theme: localStorage.getItem('sandbox_theme') || 'green',
     boardSkin: localStorage.getItem('baduk_board_skin') || localStorage.getItem('sandbox_board_skin') || 'wood',
-    stoneStyle: localStorage.getItem('sandbox_stone_style') || 'classic',
+    stoneStyle: localStorage.getItem('baduk_stone_style') || localStorage.getItem('sandbox_stone_style') || 'classic',
     volume: parseFloat(localStorage.getItem('sandbox_audio_volume') || '1.0'),
     soundType: localStorage.getItem('sandbox_audio_type') || 'classic',
 
@@ -1203,6 +1203,7 @@
         btn.classList.add('active');
         state.stoneStyle = btn.dataset.stone;
         localStorage.setItem('sandbox_stone_style', state.stoneStyle);
+        localStorage.setItem('baduk_stone_style', state.stoneStyle);
         drawBoard();
       });
     });

@@ -50,7 +50,7 @@
       if (saved === 'green') return 'darkwood';
       return saved || 'wood';
     })(),
-    stoneStyle: localStorage.getItem('teacher_stone_style') || 'classic',
+    stoneStyle: localStorage.getItem('baduk_stone_style') || localStorage.getItem('teacher_stone_style') || 'classic',
     soundType: localStorage.getItem('baduk_audio_type') || 'classic',
     volume: parseFloat(localStorage.getItem('baduk_audio_volume') || '1.0'),
 
