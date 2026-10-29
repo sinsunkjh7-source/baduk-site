@@ -568,7 +568,32 @@
     if (state.board[r][c] !== 0) {
       var oldColor = state.board[r][c];
       state.board[r][c] = 0;
-      toast('돌을 제거했습니다.');
+
+      // 히스토리 동기화 (방금 둔 돌이거나 이전 돌 제거 시 히스토리 정리)
+      if (state.historyIndex >= 0 && state.historyIndex < state.history.length) {
+        var lastH = state.history[state.historyIndex];
+        if (lastH.x === c && lastH.y === r) {
+          state.history.splice(state.historyIndex, 1);
+          state.historyIndex--;
+        } else {
+          for (var hi = state.history.length - 1; hi >= 0; hi--) {
+            if (state.history[hi].x === c && state.history[hi].y === r) {
+              state.history.splice(hi, 1);
+              if (state.historyIndex >= hi) state.historyIndex--;
+              break;
+            }
+          }
+        }
+      }
+
+      // 교대 모드에서 돌을 지웠을 때는 지운 돌의 색상으로 차례를 복원
+      if (state.placementMode === 'alternate') {
+        state.currentTurn = oldColor;
+      }
+
+      updatePlacementUI();
+      updateMoveInfo();
+      toast('돌을 제거했습니다. (' + (oldColor === 1 ? '⚫ 흑' : '⚪ 백') + ' 차례 복원)');
       if (window.badukAudio) window.badukAudio.playPlaceSound(oldColor);
       drawBoard();
       return;
@@ -636,13 +661,37 @@
       window.badukAudio.playPlaceSound(playColor);
     }
 
-    // 턴 교대
-    if (state.placementMode === 'alternate') {
-      state.currentTurn = (playColor === 1) ? 2 : 1;
-    }
+    // 턴 교대 (단색 모드에서도 다음 착수를 위해 상대 색상으로 미리 대기)
+    state.currentTurn = (playColor === 1) ? 2 : 1;
 
+    updatePlacementUI();
     updateMoveInfo();
     drawBoard();
+  }
+
+  /* ---------- 착수 모드 UI 및 차례 표시 업데이트 ---------- */
+  function updatePlacementUI() {
+    var altBtn = document.querySelector('.placement-group .tool-btn[data-place-mode="alternate"]');
+    var blackBtn = document.querySelector('.placement-group .tool-btn[data-place-mode="blackOnly"]');
+    var whiteBtn = document.querySelector('.placement-group .tool-btn[data-place-mode="whiteOnly"]');
+
+    if (altBtn) {
+      altBtn.classList.toggle('active', state.placementMode === 'alternate');
+      if (state.placementMode === 'alternate') {
+        var turnName = (state.currentTurn === 1) ? '흑' : '백';
+        altBtn.innerHTML = '⚫⚪ <span style="font-size:11px;font-weight:900;opacity:0.95;background:rgba(0,0,0,0.22);padding:1px 5px;border-radius:4px;margin-left:2px;">' + turnName + '</span>';
+        altBtn.title = '흑·백 교대 착수 (현재: ' + turnName + ' 차례 · 클릭 시 흑/백 전환)';
+      } else {
+        altBtn.innerHTML = '⚫⚪';
+        altBtn.title = '흑·백 교차 착수';
+      }
+    }
+    if (blackBtn) {
+      blackBtn.classList.toggle('active', state.placementMode === 'blackOnly');
+    }
+    if (whiteBtn) {
+      whiteBtn.classList.toggle('active', state.placementMode === 'whiteOnly');
+    }
   }
 
   /* ---------- 수순 정보 배지 업데이트 ---------- */
@@ -682,6 +731,7 @@
       state.currentTurn = 1;
     }
 
+    updatePlacementUI();
     updateMoveInfo();
     drawBoard();
   }
@@ -980,13 +1030,38 @@
     // 7. 착수 모드 선택 (교차, 흑만, 백만)
     document.querySelectorAll('.placement-group .tool-btn').forEach(function (btn) {
       btn.addEventListener('click', function () {
-        document.querySelectorAll('.placement-group .tool-btn').forEach(function (b) { b.classList.remove('active'); });
-        btn.classList.add('active');
-        state.placementMode = btn.dataset.placeMode || 'alternate';
-        if (state.placementMode === 'blackOnly') state.currentTurn = 1;
-        else if (state.placementMode === 'whiteOnly') state.currentTurn = 2;
+        var prevMode = state.placementMode;
+        var newMode = btn.dataset.placeMode || 'alternate';
+
+        if (newMode === 'alternate') {
+          if (prevMode === 'alternate') {
+            // 이미 교대 모드에서 교대 버튼을 다시 클릭하면: 흑/백 차례 직접 토글!
+            state.currentTurn = (state.currentTurn === 1) ? 2 : 1;
+            toast(state.currentTurn === 1 ? '⚫ 흑 차례로 전환되었습니다.' : '⚪ 백 차례로 전환되었습니다.');
+          } else {
+            // 단색 모드에서 교대 모드로 복귀할 때:
+            // 마지막 착수 돌의 반대 차례로 확실하게 설정 (기록 없으면 흑 차례)
+            if (state.history.length > 0 && state.historyIndex >= 0) {
+              var lastH = state.history[state.historyIndex];
+              state.currentTurn = (lastH.color === 1) ? 2 : 1;
+            } else {
+              state.currentTurn = 1;
+            }
+            state.placementMode = 'alternate';
+            toast('⚫⚪ 교대 착수 (' + (state.currentTurn === 1 ? '⚫ 흑' : '⚪ 백') + ' 차례)');
+          }
+        } else if (newMode === 'blackOnly') {
+          state.placementMode = 'blackOnly';
+          state.currentTurn = 1;
+          toast('⚫ 흑돌만 놓기 모드');
+        } else if (newMode === 'whiteOnly') {
+          state.placementMode = 'whiteOnly';
+          state.currentTurn = 2;
+          toast('⚪ 백돌만 놓기 모드');
+        }
+
+        updatePlacementUI();
         updateMoveInfo();
-        toast(state.placementMode === 'blackOnly' ? '⚫ 흑돌만 놓기 모드' : (state.placementMode === 'whiteOnly' ? '⚪ 백돌만 놓기 모드' : '⚫⚪ 교차 착수 모드'));
       });
     });
 
@@ -1027,6 +1102,8 @@
       state.capturedBlack = 0;
       state.capturedWhite = 0;
       state.currentTurn = 1;
+      state.placementMode = 'alternate';
+      updatePlacementUI();
       updateMoveInfo();
       drawBoard();
       toast('바둑판을 깨끗이 비웠습니다.');
@@ -1207,6 +1284,7 @@
     restoreSettings();
     layoutBoard();
     drawBoard();
+    updatePlacementUI();
     updateMoveInfo();
     bindEvents();
   }
