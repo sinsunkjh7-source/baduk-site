@@ -8,3 +8,7 @@ body[data-bks-page=alkkagi] .bks-arena-caption{min-height:15px}
 body[data-bks-page=alkkagi] .bks-arena-avatar[data-character]{cursor:pointer}
 body[data-bks-page=alkkagi] .bks-arena-avatar[data-character]:focus-visible{outline:2px solid #4a8a3a;outline-offset:3px}
 body[data-bks-page=alkkagi] .bks-character-switch{font:700 11px/1.2 'Malgun Gothic',sans-serif;padding:3px 6px;min-height:24px;border:1px solid #cbdcbd;border-radius:6px;background:#f5faef;color:#36502f;cursor:pointer}
+
+/* alkkagi-ai-robot-1793288366523: AI role follows native mode/playerColor, no saved choice overwritten. */
+body[data-bks-page=alkkagi] .bks-arena-avatar[data-automatic=true]{cursor:default}
+body[data-bks-page=alkkagi] .bks-character-switch:disabled{cursor:default;opacity:.78;background:#edf2e7;color:#64765b}
