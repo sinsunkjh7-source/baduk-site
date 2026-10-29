@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="hero-eyes.css?v=hero-expressions-v2-1793146003066">
 <link rel="stylesheet" href="hero-title-glow.css?v=hero-title-glow-1793151494329">
 <link rel="stylesheet" href="/unified-nav.css?v=sandbox-size-buttons-1793234062356">
-<script src="/unified-nav.js?v=all-menu-header-1793226224529" defer></script>
+<script src="/unified-nav.js?v=play-submenu-1793240000000" defer></script>
 </head>
 <body data-bks-page="home">
 <a class="skip-link" href="#page-content">본문으로 바로가기</a>
@@ -25,7 +25,7 @@
   <button class="menu-toggle" type="button" aria-label="전체 메뉴 열기" aria-controls="main-menu" aria-expanded="false"><span></span><span></span><span></span></button>
   <nav id="main-menu" class="main-menu" aria-label="주 메뉴">
    <a href="#learn" data-route="learn">바둑 학습</a>
-   <a href="#play" data-route="play">바둑 대국</a>
+   <div class="dropdown"><button type="button" class="dropdown-toggle" aria-expanded="false" aria-controls="play-menu">바둑 대국<i aria-hidden="true">▾</i></button><div class="dropdown-panel" id="play-menu" hidden><a href="#play-ai" data-route="play-ai">AI 대국</a><a href="#play-normal" data-route="play-normal">일반 대국</a></div></div>
    <a href="sandbox/index.html" data-route="sandbox">놓아보기</a>
    <div class="dropdown"><button type="button" class="dropdown-toggle fun-toggle" aria-expanded="false" aria-controls="fun-menu"><span class="fun-word"><svg class="fun-burst" viewBox="0 0 24 24" aria-hidden="true"><polygon points="12.00,0.60 14.65,6.50 20.91,4.89 17.95,10.64 23.11,14.54 16.77,15.80 16.95,22.27 12.00,18.10 7.05,22.27 7.23,15.80 0.89,14.54 6.05,10.64 3.09,4.89 9.35,6.50" fill="#FFD84D" stroke="#C62828" stroke-width="1.5" stroke-linejoin="round"/></svg><span class="fun-text">Fun</span></span></button><div class="dropdown-panel" id="fun-menu" hidden><a href="#omok">오목</a><a href="#alkkagi">알까기</a></div></div>
    <div class="dropdown"><button type="button" class="dropdown-toggle" aria-expanded="false" aria-controls="story-menu">이야기<i aria-hidden="true">▾</i></button><div class="dropdown-panel" id="story-menu" hidden><a href="#hanja">바둑 한자</a><a href="#idioms">고사성어</a><a href="#proverbs">격언 한마디</a><a href="#character">인성 스토리</a></div></div>
