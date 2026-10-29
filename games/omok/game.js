@@ -84,7 +84,7 @@
   function layout() {
     var box = boardBox.getBoundingClientRect();
     var avail = Math.min(box.width - 20, box.height - 20);
-    avail = Math.max(340, Math.min(avail, 1020));  /* 30% 확대 및 대화면 최적화 */
+    avail = Math.max(120, Math.min(avail, 1020));  /* 30% 확대 및 대화면 최적화 */
     if (window.innerWidth < 360) avail = window.innerWidth - 16;
 
     var dpr = window.devicePixelRatio || 1;

@@ -169,19 +169,29 @@
 
   /* ---------- 크기 ---------- */
   function layout() {
-    var isMobile = window.innerWidth <= 900;
-    var avail;
-    if (isMobile) {
-      /* 모바일/태블릿: 상단 여백을 살려 화면 폭에 맞춘 시원한 30% 확대 */
-      avail = Math.min(window.innerWidth - 24, window.innerHeight * 0.62);
-    } else {
-      /* PC: 여백을 최소화하여 큼직하고 시원한 30% 확대 바둑판 */
-      var col = canvas.parentElement.getBoundingClientRect();
-      avail = Math.min(col.width - 20, col.height - 20);
-      avail = Math.min(avail, 1020);
+    /* Fit the live board container on all screen sizes; gameplay remains unchanged. */
+    var col = canvas.parentElement.getBoundingClientRect();
+    var avail = Math.round(Math.max(120, Math.min(col.width - 20, col.height - 20, 1020)));
+
+    var previousSize = app.displaySize;
+    if (engine && previousSize > 0 && previousSize !== avail) {
+      var ratio = avail / previousSize;
+      var seen = new Set();
+      function scalePoint(point) {
+        if (!point || seen.has(point)) return;
+        seen.add(point);
+        ['x', 'y', 'vx', 'vy', 'radius', 'dx', 'dy'].forEach(function (key) {
+          if (typeof point[key] === 'number') point[key] *= ratio;
+        });
+      }
+      (engine.stones || []).forEach(scalePoint);
+      (engine.customSavedStones || []).forEach(scalePoint);
+      [engine.dragStone, engine.draggedPlacementStone, engine.dragStart, engine.dragCurrent, engine.dragOffset].forEach(scalePoint);
+      if (engine.aiAimPreview) {
+        scalePoint(engine.aiAimPreview.stone);
+        engine.aiAimPreview.length *= ratio;
+      }
     }
-    avail = Math.max(340, Math.round(avail));
-    if (window.innerWidth < 360) avail = window.innerWidth - 16;
 
     app.displaySize = avail;
     app.cellSize = avail / (SIZE + 1);

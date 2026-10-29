@@ -1,0 +1,30 @@
+/* player-arena-1793237184225: layout adapter, no character artwork yet. */
+body[data-bks-arena=ready]>.wrap,body[data-bks-arena=ready]>.alkkagi-wrap{position:relative!important;padding:12px!important;gap:0!important}
+body[data-bks-arena=ready] .turn-bar,body[data-bks-arena=ready] .bks-game-status{display:none!important}
+body[data-bks-arena=ready] .board-area,body[data-bks-arena=ready] .bks-alk-main{height:100%;padding:0;gap:0!important}
+body[data-bks-arena=ready] .board-box,body[data-bks-arena=ready] .board-col{box-shadow:none!important;padding:0!important;min-height:0!important}
+body[data-bks-arena=ready] #board,body[data-bks-arena=ready] #alkkagiBoard{box-shadow:0 6px 22px rgba(52,69,34,.13)}
+body[data-bks-arena=ready] .bks-arena-player{position:absolute;z-index:2;left:var(--arena-player-x,16px);top:50%;transform:translateY(-50%);width:var(--arena-player-width,200px);max-height:calc(100% - 32px);display:flex;flex-direction:column;align-items:stretch;gap:9px;text-align:center;color:#3d5033;font-family:'Malgun Gothic',sans-serif}
+.bks-arena-player-title{display:flex;align-items:center;justify-content:center;gap:9px;min-height:30px}.bks-arena-player-title strong{font-size:19px;font-weight:800}.bks-arena-stone{display:inline-block;width:20px;height:20px;border-radius:50%;background:#283025;border:1px solid #172015;box-shadow:0 2px 4px #26331d18}.bks-arena-player[data-color=white] .bks-arena-stone{background:#fff;border-color:#acbaa2}
+.bks-arena-avatar{width:100%;aspect-ratio:4/5;flex:none;border:1px dashed #bfcdb5;border-radius:18px;background:transparent;position:relative}.bks-arena-avatar>img{width:100%;height:100%;object-fit:contain;object-position:center bottom;display:block}.bks-arena-caption{font-size:11px;color:#829075;letter-spacing:.1px}.bks-arena-meta{display:flex;flex-direction:column;align-items:center;gap:6px;font-size:13px;font-weight:700;min-height:49px}.bks-arena-status{padding:5px 13px;border-radius:20px;background:#edf2e7;color:#78876c}.bks-arena-player[data-active=true] .bks-arena-status{background:#e1efd4;color:#38692c}.bks-arena-count{font-size:12px;color:#6e7e61}
+.bks-arena-actions{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;margin-top:8px}.bks-arena-actions button{flex:1;min-width:70px;max-width:100%;width:auto;min-height:32px;margin:0!important;padding:6px 8px!important;border:1px solid #cbdcbd!important;border-radius:7px!important;background:#f5faef!important;color:#36502f!important;box-shadow:none!important;font:700 12px/1.3 'Malgun Gothic',sans-serif!important;cursor:pointer}.bks-arena-actions button:disabled{opacity:.5;cursor:default}
+body[data-bks-arena=ready] [data-arena-compact]>.board-area,body[data-bks-arena=ready] [data-arena-compact]>.bks-alk-main{padding-bottom:124px!important}
+body[data-bks-arena=ready] [data-arena-compact]>.bks-arena-player{top:auto;bottom:10px;transform:none;left:12px;width:calc(50% - 18px);height:112px;max-height:none;display:grid;grid-template-columns:56px minmax(0,1fr);grid-template-rows:24px 1fr auto;gap:4px 8px;align-content:center;text-align:left}
+body[data-bks-arena=ready] [data-arena-compact]>.bks-arena-player[data-color=black]{left:auto;right:12px}.bks-arena-player-title{flex:none}
+[data-arena-compact] .bks-arena-avatar{grid-column:1;grid-row:1/4;align-self:center;width:56px;height:70px;border-radius:9px}[data-arena-compact] .bks-arena-player-title{grid-column:2;grid-row:1;justify-content:flex-start;gap:6px;min-height:0}[data-arena-compact] .bks-arena-player-title strong{font-size:15px}[data-arena-compact] .bks-arena-stone{width:15px;height:15px}[data-arena-compact] .bks-arena-caption{display:none}[data-arena-compact] .bks-arena-meta{grid-column:2;grid-row:2;align-items:flex-start;gap:3px;min-height:0;font-size:11px}[data-arena-compact] .bks-arena-status{padding:3px 6px}[data-arena-compact] .bks-arena-count{font-size:11px}[data-arena-compact] .bks-arena-actions{grid-column:1/3;grid-row:3;flex-wrap:nowrap;margin:2px 0 0;gap:4px}[data-arena-compact] .bks-arena-actions button{min-width:0;min-height:26px;padding:4px 5px!important;font-size:11px!important}
+@media(max-height:650px) and (min-width:1000px){.bks-arena-avatar{max-height:200px;aspect-ratio:auto}.bks-arena-player{gap:6px!important}}
+
+/* Align both avatar slots, keep actions outside avatar height. */
+.bks-arena-actions{position:absolute;top:100%;left:0;right:0;margin-top:10px}
+body[data-bks-arena=ready] [data-arena-compact]>.board-area,body[data-bks-arena=ready] [data-arena-compact]>.bks-alk-main{padding-bottom:112px!important}
+body[data-bks-arena=ready] [data-arena-compact]>.bks-arena-player{height:100px;grid-template-rows:24px minmax(0,1fr) auto}
+[data-arena-compact] .bks-arena-avatar{grid-row:1/3}
+[data-arena-compact] .bks-arena-actions{position:static;top:auto;left:auto;right:auto;margin-top:2px}
+
+@media(max-height:650px) and (min-width:1000px){body[data-bks-arena=ready] .bks-arena-avatar{height:clamp(80px,calc(100dvh - 270px),200px);max-height:200px;aspect-ratio:auto}}
+
+body[data-bks-arena=ready]:is(.theme-forest,.theme-slate) .bks-arena-player{color:#e0ead7}
+body[data-bks-arena=ready]:is(.theme-forest,.theme-slate) .bks-arena-caption{color:#a9b99e}
+body[data-bks-arena=ready]:is(.theme-forest,.theme-slate) .bks-arena-count{color:#c0ceb6}
+body[data-bks-arena=ready]:is(.theme-forest,.theme-slate) .bks-arena-avatar{border-color:#7f9272}
+body[data-bks-arena=ready]:is(.theme-forest,.theme-slate) .bks-arena-player[data-color=black] .bks-arena-stone{border-color:#a8b79c}
