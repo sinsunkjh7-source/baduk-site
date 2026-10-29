@@ -371,6 +371,49 @@ class BadukAI {
 
     if (legalMoves.length === 0) return null;
 
+    // 0. 🌟 정통 GNU Go 3.9.1 WebAssembly 엔진 연동 🌟
+    // 검증된 세계적 오픈소스 C-엔진이 브라우저에서 서버 없이 100% 로컬 연산 실행
+    if (typeof window !== 'undefined' && window.GNUGoBridge && window.GNUGoBridge.isReady) {
+      const GNUGO_LEVELS = {
+        beginner: 0,       // 입문 (빠른 응수)
+        intermediate: 2,   // 초급
+        advanced: 5,       // 중급
+        dan: 8,            // 아마 1단
+        master: 10         // 아마 5단 (최고 레벨 전수읽기)
+      };
+
+      const handicapPoints = [];
+      if (engine.initialStones && engine.initialStones.length > 0) {
+        for (const s of engine.initialStones) {
+          if (s.color === 1) handicapPoints.push([s.x, s.y]);
+        }
+      } else if (engine.moves.length === 0) {
+        for (let r = 0; r < size; r++) {
+          for (let c = 0; c < size; c++) {
+            if (board[r][c] === 1) handicapPoints.push([c, r]);
+          }
+        }
+      }
+
+      const level = GNUGO_LEVELS[difficulty] !== undefined ? GNUGO_LEVELS[difficulty] : 10;
+      const gnugoMove = window.GNUGoBridge.findBestMove(
+        size,
+        engine.komi !== undefined ? engine.komi : (handicapPoints.length > 0 ? 0.5 : 6.5),
+        handicapPoints,
+        engine.moves,
+        level
+      );
+
+      if (gnugoMove) {
+        if (this.isLegal(board, size, gnugoMove.x, gnugoMove.y, aiColor, koPoint)) {
+          return gnugoMove;
+        }
+      } else if (gnugoMove === null && engine.moves.length > 20) {
+        // GNU Go가 패스(Pass) 판단을 내린 경우
+        return null;
+      }
+    }
+
     const lastMove = (engine.moves && engine.moves.length > 0)
       ? engine.moves[engine.moves.length - 1]
       : null;
