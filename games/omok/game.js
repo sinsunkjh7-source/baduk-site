@@ -530,6 +530,8 @@
     if (!ai) return;
     cancelAI();
     var generation = aiGeneration;
+    // Small variable pause for a readable, human-paced turn; move selection is unchanged.
+    var thinkingDelay = 1200 + Math.floor(Math.random() * 801);
     state.aiThinking = true;
     refreshUI();
 
@@ -558,7 +560,7 @@
       if (wLine) { endGame(state.aiColor, wLine); return; }
       state.turn = state.humanColor;
       refreshUI();
-    }, 220);
+    }, thinkingDelay);
   }
 
   function pickEmpty() {
