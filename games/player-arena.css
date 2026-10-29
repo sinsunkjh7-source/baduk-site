@@ -33,3 +33,9 @@ body[data-bks-arena=ready]:is(.theme-forest,.theme-slate) .bks-arena-caption{col
 body[data-bks-arena=ready]:is(.theme-forest,.theme-slate) .bks-arena-count{color:#c0ceb6}
 body[data-bks-arena=ready]:is(.theme-forest,.theme-slate) .bks-arena-avatar{border-color:#7f9272}
 body[data-bks-arena=ready]:is(.theme-forest,.theme-slate) .bks-arena-player[data-color=black] .bks-arena-stone{border-color:#a8b79c}
+
+/* avatar-square-1793276832428: retain previous avatar height, expand width to 1:1. */
+body[data-bks-arena=ready] .bks-arena-avatar{height:calc(var(--arena-player-width,200px)*1.25);width:auto;aspect-ratio:1/1;align-self:center}
+@media(max-height:650px) and (min-width:1000px){body[data-bks-arena=ready] .bks-arena-avatar{height:clamp(80px,calc(100dvh - 270px),200px);aspect-ratio:1/1}}
+body[data-bks-arena=ready] [data-arena-compact]>.bks-arena-player{grid-template-columns:70px minmax(0,1fr)}
+body[data-bks-arena=ready] [data-arena-compact] .bks-arena-avatar{width:70px;height:70px;aspect-ratio:1/1}
