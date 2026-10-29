@@ -8,19 +8,19 @@
 body{
   background:var(--p-bg);color:var(--p-ink);
   font-family:"Pretendard","Malgun Gothic",system-ui,sans-serif;
-  padding:calc(var(--bks-nav-h,64px) + 14px) 16px 24px;
+  padding:calc(var(--bks-nav-h,64px) + 10px) clamp(10px,2vw,26px) 24px;
   -webkit-tap-highlight-color:transparent;
 }
-.p-wrap{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) 288px;gap:18px;align-items:start}
+.p-wrap{max-width:min(1560px,98vw);margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:18px;align-items:start}
 .p-board-col{display:flex;flex-direction:column;gap:10px;min-width:0}
 
 .p-head{display:flex;gap:8px;align-items:stretch}
 .p-score{
-  flex:1;background:#fff;border-radius:12px;padding:9px 13px;
+  flex:1;background:#fff;border-radius:12px;padding:11px 16px;
   display:flex;justify-content:space-between;align-items:center;
-  box-shadow:0 2px 10px rgba(36,54,29,.08);font-size:12.5px;color:var(--p-dim);
+  box-shadow:0 2px 10px rgba(36,54,29,.08);font-size:13.5px;font-weight:700;color:var(--p-dim);
 }
-.p-score b{font-size:17px;color:var(--p-ink)}
+.p-score b{font-size:20px;color:var(--p-ink)}
 .p-turn{
   display:flex;align-items:center;justify-content:center;
   background:#eaf5e1;border-radius:12px;padding:0 16px;
@@ -28,10 +28,10 @@ body{
 }
 
 .p-canvas-box{background:#fff;border-radius:16px;padding:10px;box-shadow:0 6px 22px rgba(36,54,29,.10)}
-canvas{width:100%;height:auto;display:block;border-radius:10px;touch-action:none}
+canvas{display:block;margin:0 auto;border-radius:10px;touch-action:none;width:auto;max-width:100%;max-height:calc(100dvh - 268px);height:auto}
 
 .p-power{display:flex;align-items:center;gap:10px;background:#fff;border-radius:12px;padding:10px 14px;box-shadow:0 2px 10px rgba(36,54,29,.08)}
-.p-power-label{font-size:12.5px;color:var(--p-dim);font-weight:700}
+.p-power-label{font-size:13.5px;font-weight:700;color:var(--p-dim);font-weight:700}
 .p-power-track{flex:1;height:10px;background:#edf3e6;border-radius:999px;overflow:hidden}
 .p-power-fill{height:100%;width:0%;background:linear-gradient(90deg,#7bbf6a,#e0a838,#d95f3b);transition:width .06s linear}
 

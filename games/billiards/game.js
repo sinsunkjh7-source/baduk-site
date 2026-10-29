@@ -9,7 +9,7 @@
   var W = 960, H = 480;           /* 논리 좌표 */
   var RAIL = 36;                   /* 나무 테두리 두께 */
   var MINX = RAIL, MAXX = W - RAIL, MINY = RAIL, MAXY = H - RAIL;
-  var R = 13;                      /* 공 반지름 */
+  var R = 17;                      /* 공 반지름 */
   var FRICTION = 0.9885;
   var STOP = 0.06;
   var CUSHION = 0.92;

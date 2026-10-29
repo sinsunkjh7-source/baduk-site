@@ -572,3 +572,241 @@ body {
     padding: 4px 8px;
   }
 }
+
+
+/* =========================================================
+   새 대국 옵션 모달 (AI 수준, 접바둑, 판 크기, 돌 선택)
+   ========================================================= */
+.match-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.72);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200020;
+  padding: 16px;
+  animation: modal-fade-in 0.2s ease-out;
+}
+
+.match-modal[hidden] {
+  display: none !important;
+}
+
+@keyframes modal-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.match-card {
+  background: #ffffff;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 580px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.45);
+  border: 1.5px solid rgba(226, 232, 240, 0.9);
+  overflow: hidden;
+  animation: pop-in 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.match-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 24px 14px;
+  border-bottom: 1.5px solid var(--border-light, #f1f5f9);
+  background: #f8fafc;
+}
+
+.match-title {
+  margin: 0;
+  font-size: 19px;
+  font-weight: 900;
+  color: var(--green-deep, #065f46);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-close-match {
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: #64748b;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 8px;
+  transition: all 0.15s;
+}
+
+.btn-close-match:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+.match-body {
+  padding: 20px 24px;
+  overflow-y: auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.match-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.match-section-label {
+  font-size: 13px;
+  font-weight: 800;
+  color: #334155;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.match-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.match-chip {
+  background: #ffffff;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 9px;
+  padding: 7px 13px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.match-chip:hover {
+  border-color: #10b981;
+  color: #065f46;
+  background: #f0fdf4;
+}
+
+.match-chip.active {
+  background: #ecfdf5;
+  border-color: #10b981;
+  color: #047857;
+  font-weight: 800;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.2);
+}
+
+/* AI 동물 봇 카드 그리드 */
+.match-bot-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 8px;
+}
+
+.match-bot-card {
+  background: #ffffff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 10px 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  transition: all 0.15s;
+  text-align: center;
+}
+
+.match-bot-card:hover {
+  border-color: #10b981;
+  transform: translateY(-1px);
+  background: #f0fdf4;
+}
+
+.match-bot-card.active {
+  background: linear-gradient(180deg, #ecfdf5 0%, #d1fae5 100%);
+  border-color: #059669;
+  box-shadow: 0 4px 12px rgba(5, 150, 105, 0.25);
+}
+
+.bot-card-avatar {
+  font-size: 26px;
+  line-height: 1;
+}
+
+.bot-card-info strong {
+  display: block;
+  font-size: 13px;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.bot-card-info small {
+  display: block;
+  font-size: 11px;
+  color: #64748b;
+  font-weight: 700;
+}
+
+.match-footer {
+  padding: 14px 24px;
+  background: #f8fafc;
+  border-top: 1.5px solid var(--border-light, #f1f5f9);
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.btn-start-match {
+  background: linear-gradient(180deg, #10b981 0%, #059669 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  padding: 11px 24px;
+  font-size: 15px;
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(5, 150, 105, 0.35);
+  transition: all 0.15s;
+}
+
+.btn-start-match:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(5, 150, 105, 0.45);
+}
+
+.btn-cancel-match {
+  background: #ffffff;
+  color: #64748b;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 10px;
+  padding: 11px 18px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.btn-cancel-match:hover {
+  background: #f1f5f9;
+}
+
+/* 하단 툴바 새 대국 옵션 버튼 강조 */
+.tool-btn.primary-btn {
+  background: linear-gradient(180deg, #10b981 0%, #059669 100%) !important;
+  color: #ffffff !important;
+  border-color: #047857 !important;
+  font-weight: 900 !important;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3) !important;
+}
+
+.tool-btn.primary-btn:hover {
+  background: linear-gradient(180deg, #059669 0%, #047857 100%) !important;
+}

@@ -10,10 +10,10 @@
 body{
   background:var(--m-bg);color:var(--m-ink);
   font-family:"Pretendard","Malgun Gothic",system-ui,sans-serif;
-  padding:calc(var(--bks-nav-h,64px) + 14px) 16px 24px;
+  padding:calc(var(--bks-nav-h,64px) + 10px) clamp(10px,2vw,26px) 24px;
   -webkit-tap-highlight-color:transparent;
 }
-.m-wrap{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) 288px;gap:18px;align-items:start}
+.m-wrap{max-width:min(1420px,97vw);margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:18px;align-items:start}
 .m-board-col{display:flex;flex-direction:column;gap:12px;min-width:0}
 
 .m-stats{display:flex;gap:10px}

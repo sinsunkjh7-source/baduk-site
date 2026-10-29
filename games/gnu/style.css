@@ -15,11 +15,11 @@ body{
   background:var(--gnu-bg);
   color:var(--gnu-ink);
   font-family:"Pretendard","Malgun Gothic",system-ui,sans-serif;
-  padding:calc(var(--bks-nav-h,64px) + 14px) 16px 24px;
+  padding:calc(var(--bks-nav-h,64px) + 10px) clamp(10px,2vw,26px) 24px;
 }
 
 .gnu-wrap{
-  max-width:1080px;margin:0 auto;
+  max-width:min(1480px,97vw);margin:0 auto;
   display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:18px;align-items:start;
 }
 

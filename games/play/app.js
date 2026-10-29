@@ -13,10 +13,12 @@
   var initialMode = urlParams.get('mode') || 'ai'; // 'ai' | 'pvp'
 
   var state = {
-    mode: initialMode,
+    mode: localStorage.getItem('play_mode') || initialMode, // 'ai' | 'pvp'
     boardSize: parseInt(localStorage.getItem('play_board_size') || '19', 10), // 19 | 13 | 9
     difficulty: localStorage.getItem('play_ai_difficulty') || 'dan', // 'beginner' | 'intermediate' | 'advanced' | 'dan' | 'master'
-    humanColor: BLACK,
+    humanColor: parseInt(localStorage.getItem('play_human_color') || '1', 10), // 1: BLACK, 2: WHITE
+    colorChoice: localStorage.getItem('play_color_choice') || '1', // '1' | '2' | 'random'
+    handicap: parseInt(localStorage.getItem('play_handicap') || '0', 10), // 0: 호선, 1: 정선, 2~9: 접바둑
     currentTurn: BLACK,
     isThinking: false,
     isGameOver: false,
@@ -105,6 +107,32 @@
   }
 
   /* ---------- 화점(호시) 좌표 계산 ---------- */
+  /* ---------- 접바둑 화점 좌표 계산 ---------- */
+  function getHandicapPoints(size, count) {
+    if (count < 2) return [];
+    if (size === 19) {
+      if (count === 2) return [[15, 3], [3, 15]];
+      if (count === 3) return [[15, 3], [3, 15], [15, 15]];
+      if (count === 4) return [[3, 3], [15, 3], [3, 15], [15, 15]];
+      if (count === 5) return [[3, 3], [15, 3], [3, 15], [15, 15], [9, 9]];
+      if (count === 6) return [[3, 3], [15, 3], [3, 15], [15, 15], [3, 9], [15, 9]];
+      if (count === 7) return [[3, 3], [15, 3], [3, 15], [15, 15], [3, 9], [15, 9], [9, 9]];
+      if (count === 8) return [[3, 3], [15, 3], [3, 15], [15, 15], [3, 9], [15, 9], [9, 3], [9, 15]];
+      if (count >= 9) return [[3, 3], [15, 3], [3, 15], [15, 15], [3, 9], [15, 9], [9, 3], [9, 15], [9, 9]];
+    } else if (size === 13) {
+      if (count === 2) return [[9, 3], [3, 9]];
+      if (count === 3) return [[9, 3], [3, 9], [9, 9]];
+      if (count === 4) return [[3, 3], [9, 3], [3, 9], [9, 9]];
+      if (count >= 5) return [[3, 3], [9, 3], [3, 9], [9, 9], [6, 6]];
+    } else if (size === 9) {
+      if (count === 2) return [[6, 2], [2, 6]];
+      if (count === 3) return [[6, 2], [2, 6], [6, 6]];
+      if (count === 4) return [[2, 2], [6, 2], [2, 6], [6, 6]];
+      if (count >= 5) return [[2, 2], [6, 2], [2, 6], [6, 6], [4, 4]];
+    }
+    return [];
+  }
+
   function getStarPoints(size) {
     if (size === 19) {
       return [
@@ -537,8 +565,17 @@
       turnText = (state.currentTurn === BLACK ? '⚫ 흑 차례' : '⚪ 백 차례');
     }
 
+    var ruleText = '';
+    if (state.handicap >= 2) ruleText = state.handicap + '점 접바둑';
+    else if (state.handicap === 1) ruleText = '정선';
+    else ruleText = '호선';
+
+    var myStoneText = (state.mode === 'ai') ? (state.humanColor === BLACK ? '내 돌: 흑⚫' : '내 돌: 백⚪') : '';
+    var oppText = state.mode === 'ai' ? (BOTS[state.difficulty].avatar + ' ' + BOTS[state.difficulty].name) : '👥 2인';
+
     if (moveInfoBadge) {
-      moveInfoBadge.textContent = turnText + ' | ' + moveCount + '수 | 따낸 돌 흑 ' + bCap + ' : 백 ' + wCap;
+      var extra = ' [' + oppText + (myStoneText ? ' · ' + myStoneText : '') + ' · ' + state.boardSize + '줄 ' + ruleText + ']';
+      moveInfoBadge.textContent = turnText + ' | ' + moveCount + '수 | 따낸돌 흑 ' + bCap + ' : 백 ' + wCap + extra;
     }
   }
 
@@ -660,7 +697,7 @@
 
   /* ---------- 계가(집 계산) 실행 ---------- */
   function doCountTerritory(fromPass) {
-    var score = engine.calculateScore(6.5);
+    var score = engine.calculateScore(engine.komi !== undefined ? engine.komi : 6.5);
     engine.lastScore = score;
     state.showingTerritory = true;
     drawBoard();
@@ -793,12 +830,31 @@
   }
 
   /* ---------- 새 대국 시작 (초기화) ---------- */
-  function startNewGame() {
+  function startNewGame(customOpts) {
+    if (customOpts) {
+      if (customOpts.mode) { state.mode = customOpts.mode; localStorage.setItem('play_mode', customOpts.mode); }
+      if (customOpts.difficulty) { state.difficulty = customOpts.difficulty; localStorage.setItem('play_ai_difficulty', customOpts.difficulty); }
+      if (customOpts.boardSize) { state.boardSize = parseInt(customOpts.boardSize, 10); localStorage.setItem('play_board_size', state.boardSize); }
+      if (customOpts.colorChoice) {
+        state.colorChoice = customOpts.colorChoice;
+        localStorage.setItem('play_color_choice', customOpts.colorChoice);
+        if (customOpts.colorChoice === 'random') {
+          state.humanColor = Math.random() < 0.5 ? BLACK : WHITE;
+        } else {
+          state.humanColor = parseInt(customOpts.colorChoice, 10);
+        }
+        localStorage.setItem('play_human_color', state.humanColor);
+      }
+      if (customOpts.handicap !== undefined) {
+        state.handicap = parseInt(customOpts.handicap, 10);
+        localStorage.setItem('play_handicap', state.handicap);
+      }
+    }
+
     state.isGameOver = false;
     state.isThinking = false;
     state.showingTerritory = false;
     state.lastMove = null;
-    state.currentTurn = BLACK;
 
     if (resultModal) { resultModal.setAttribute('hidden', ''); resultModal.style.display = 'none'; }
     if (aiThinkingBadge) aiThinkingBadge.hidden = true;
@@ -807,17 +863,181 @@
     ai = new window.BadukAI(state.boardSize);
     ai.setSize(state.boardSize);
 
+    // 접바둑 화점 흑돌 사전 배치
+    var hPoints = getHandicapPoints(state.boardSize, state.handicap);
+    if (hPoints.length > 0) {
+      hPoints.forEach(function (pt) {
+        engine.board[pt[1]][pt[0]] = BLACK;
+      });
+      // 접바둑의 경우 백이 첫 착수
+      state.currentTurn = WHITE;
+      engine.currentTurn = WHITE;
+      engine.komi = 0.5;
+    } else if (state.handicap === 1) {
+      // 정선 (덤 0.5집)
+      state.currentTurn = BLACK;
+      engine.currentTurn = BLACK;
+      engine.komi = 0.5;
+    } else {
+      // 호선 (덤 6.5집)
+      state.currentTurn = BLACK;
+      engine.currentTurn = BLACK;
+      engine.komi = 6.5;
+    }
+
     layoutBoard();
     updateStatus();
-    toast('새 대국을 시작했습니다!');
 
-    // 내가 백(후공)이면 AI가 흑으로 첫 수 착수
-    if (state.mode === 'ai' && state.humanColor === WHITE) {
+    var ruleName = state.handicap >= 2 ? (state.handicap + '점 접바둑') : (state.handicap === 1 ? '정선(덤 0.5집)' : '호선(덤 6.5집)');
+    var oppName = state.mode === 'ai' ? (BOTS[state.difficulty].avatar + ' ' + BOTS[state.difficulty].name) : '👥 2인 대국';
+    toast('새 대국 시작! (' + oppName + ' · ' + state.boardSize + '줄 ' + ruleName + ')');
+
+    // AI가 먼저 둘 차례이면 AI 착수
+    if (state.mode === 'ai' && state.currentTurn !== state.humanColor) {
       triggerAiMove();
     }
   }
 
-  /* ---------- 이벤트 바인딩 ---------- */
+  /* ---------- 새 대국 설정 모달 제어 ---------- */
+  var pendingMatchOpts = {
+    mode: state.mode,
+    difficulty: state.difficulty,
+    boardSize: state.boardSize,
+    colorChoice: state.colorChoice,
+    handicap: state.handicap
+  };
+
+  function syncMatchModalUI() {
+    pendingMatchOpts.mode = state.mode;
+    pendingMatchOpts.difficulty = state.difficulty;
+    pendingMatchOpts.boardSize = state.boardSize;
+    pendingMatchOpts.colorChoice = state.colorChoice;
+    pendingMatchOpts.handicap = state.handicap;
+
+    // 모드
+    document.querySelectorAll('#matchModeChips .match-chip').forEach(function (btn) {
+      btn.classList.toggle('active', btn.dataset.mode === pendingMatchOpts.mode);
+    });
+    var aiDiffSec = document.getElementById('matchAiDifficultySection');
+    if (aiDiffSec) aiDiffSec.style.display = (pendingMatchOpts.mode === 'ai') ? 'flex' : 'none';
+
+    // AI 난이도
+    document.querySelectorAll('#matchBotGrid .match-bot-card').forEach(function (card) {
+      card.classList.toggle('active', card.dataset.bot === pendingMatchOpts.difficulty);
+    });
+
+    // 판 크기
+    document.querySelectorAll('#matchSizeChips .match-chip').forEach(function (btn) {
+      btn.classList.toggle('active', parseInt(btn.dataset.size, 10) === pendingMatchOpts.boardSize);
+    });
+
+    // 내 돌 선택
+    document.querySelectorAll('#matchColorChips .match-chip').forEach(function (btn) {
+      btn.classList.toggle('active', btn.dataset.color === String(pendingMatchOpts.colorChoice));
+    });
+
+    // 접바둑
+    document.querySelectorAll('#matchHandicapChips .match-chip').forEach(function (btn) {
+      btn.classList.toggle('active', parseInt(btn.dataset.handicap, 10) === pendingMatchOpts.handicap);
+    });
+  }
+
+  function openMatchModal() {
+    var modal = document.getElementById('matchModal');
+    if (modal) {
+      syncMatchModalUI();
+      modal.removeAttribute('hidden');
+      modal.style.display = 'flex';
+    }
+  }
+
+  function closeMatchModal() {
+    var modal = document.getElementById('matchModal');
+    if (modal) {
+      modal.setAttribute('hidden', '');
+      modal.style.display = 'none';
+    }
+  }
+
+  function bindMatchModalEvents() {
+    // 툴바의 새 대국 (옵션) 버튼
+    var btnOpen = document.getElementById('btnOpenMatchModal');
+    if (btnOpen) {
+      btnOpen.addEventListener('click', openMatchModal);
+    }
+
+    // 모달 닫기 버튼들
+    var btnClose = document.getElementById('btnCloseMatchModal');
+    if (btnClose) btnClose.addEventListener('click', closeMatchModal);
+    var btnCancel = document.getElementById('btnCancelMatch');
+    if (btnCancel) btnCancel.addEventListener('click', closeMatchModal);
+
+    // 모드 칩
+    document.querySelectorAll('#matchModeChips .match-chip').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        document.querySelectorAll('#matchModeChips .match-chip').forEach(function (b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        pendingMatchOpts.mode = btn.dataset.mode;
+        var aiDiffSec = document.getElementById('matchAiDifficultySection');
+        if (aiDiffSec) aiDiffSec.style.display = (pendingMatchOpts.mode === 'ai') ? 'flex' : 'none';
+      });
+    });
+
+    // AI 봇 카드
+    document.querySelectorAll('#matchBotGrid .match-bot-card').forEach(function (card) {
+      card.addEventListener('click', function () {
+        document.querySelectorAll('#matchBotGrid .match-bot-card').forEach(function (c) { c.classList.remove('active'); });
+        card.classList.add('active');
+        pendingMatchOpts.difficulty = card.dataset.bot;
+      });
+    });
+
+    // 판 크기
+    document.querySelectorAll('#matchSizeChips .match-chip').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        document.querySelectorAll('#matchSizeChips .match-chip').forEach(function (b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        pendingMatchOpts.boardSize = parseInt(btn.dataset.size, 10);
+      });
+    });
+
+    // 내 돌 선택
+    document.querySelectorAll('#matchColorChips .match-chip').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        document.querySelectorAll('#matchColorChips .match-chip').forEach(function (b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        pendingMatchOpts.colorChoice = btn.dataset.color;
+      });
+    });
+
+    // 치수 및 접바둑
+    document.querySelectorAll('#matchHandicapChips .match-chip').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        document.querySelectorAll('#matchHandicapChips .match-chip').forEach(function (b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        pendingMatchOpts.handicap = parseInt(btn.dataset.handicap, 10);
+      });
+    });
+
+    // 대국 시작 버튼
+    var btnStart = document.getElementById('btnStartCustomMatch');
+    if (btnStart) {
+      btnStart.addEventListener('click', function () {
+        closeMatchModal();
+        startNewGame(pendingMatchOpts);
+      });
+    }
+
+    // 결과 모달의 '한 판 더 두기' 버튼
+    var btnAgain = document.getElementById('btnResultAgain');
+    if (btnAgain) {
+      btnAgain.addEventListener('click', function () {
+        if (resultModal) { resultModal.setAttribute('hidden', ''); resultModal.style.display = 'none'; }
+        openMatchModal();
+      });
+    }
+  }
+
   function bindEvents() {
     // 1. 바둑판 캔버스 클릭
     boardCanvas.addEventListener('click', function (e) {
@@ -1108,6 +1328,7 @@
     document.getElementById('btnToggleNumbers')?.classList.toggle('active', state.showStepNumbers);
 
     bindEvents();
+    bindMatchModalEvents();
     updateSettingsUI();
     layoutBoard();
     updateStatus();

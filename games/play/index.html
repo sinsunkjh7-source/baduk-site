@@ -7,9 +7,9 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
   <title>🤖 AI 바둑 대국 — 바둑스쿨</title>
-  <link rel="stylesheet" href="style.css?v=20261029-play-ai-v6">
-  <link rel="stylesheet" href="/unified-nav.css?v=fun-menu-20261029c">
-  <script src="/unified-nav.js?v=fun-menu-20261029h" defer></script>
+  <link rel="stylesheet" href="style.css?v=big-2">
+  <link rel="stylesheet" href="/unified-nav.css?v=fun-menu-20261029i">
+  <script src="/unified-nav.js?v=fun-menu-20261029i" defer></script>
 </head>
 <body data-bks-page="play">
 
@@ -44,6 +44,7 @@
 
     <!-- 대국 액션 조작 -->
     <div class="tool-group action-group">
+      <button type="button" class="tool-btn primary-btn" id="btnOpenMatchModal" title="새 대국 시작 및 AI 수준/접바둑 옵션 설정">⚔️ 새 대국 (옵션)</button>
       <button type="button" class="tool-btn" id="btnUndo" title="한 수 무르기">↩️ 무르기</button>
       <button type="button" class="tool-btn" id="btnPass" title="착수 넘기기 (한 수 쉬기)">⏭️ 패스</button>
       <button type="button" class="tool-btn" id="btnCount" title="집 계산(계가) 및 승패 확인">🧮 계가하기</button>
@@ -58,7 +59,112 @@
     </div>
   </footer>
 
-  <!-- 🌟 대국 결과 & 계가 모달 (전역 오버레이) 🌟 -->
+    <!-- ⚔️ 새 대국 설정 & 옵션 모달 (AI 수준, 접바둑, 판 크기, 돌 선택) ⚔️ -->
+  <div class="match-modal" id="matchModal" hidden>
+    <div class="match-card">
+      <div class="match-header">
+        <h2 class="match-title">⚔️ 새 대국 설정</h2>
+        <button type="button" class="btn-close-match" id="btnCloseMatchModal" title="닫기">✕</button>
+      </div>
+
+      <div class="match-body">
+        <!-- 1. 대국 방식 (AI vs 2인 대국) -->
+        <div class="match-section">
+          <label class="match-section-label">🎮 대국 방식</label>
+          <div class="match-chips" id="matchModeChips">
+            <button type="button" class="match-chip active" data-mode="ai">🤖 AI와 대국</button>
+            <button type="button" class="match-chip" data-mode="pvp">👥 친구와 둘이서 (2인 맞대국)</button>
+          </div>
+        </div>
+
+        <!-- 2. AI 상대 기력 (난이도) -->
+        <div class="match-section" id="matchAiDifficultySection">
+          <label class="match-section-label">🤖 AI 상대 기력 (5단계 동물 봇)</label>
+          <div class="match-bot-grid" id="matchBotGrid">
+            <button type="button" class="match-bot-card" data-bot="beginner">
+              <span class="bot-card-avatar">🐥</span>
+              <div class="bot-card-info">
+                <strong>삐약이</strong>
+                <small>입문 (18급)</small>
+              </div>
+            </button>
+            <button type="button" class="match-bot-card" data-bot="intermediate">
+              <span class="bot-card-avatar">🐶</span>
+              <div class="bot-card-info">
+                <strong>바둑이</strong>
+                <small>초급 (12급)</small>
+              </div>
+            </button>
+            <button type="button" class="match-bot-card" data-bot="advanced">
+              <span class="bot-card-avatar">🦊</span>
+              <div class="bot-card-info">
+                <strong>영리한 여우</strong>
+                <small>중급 (5급)</small>
+              </div>
+            </button>
+            <button type="button" class="match-bot-card active" data-bot="dan">
+              <span class="bot-card-avatar">🐼</span>
+              <div class="bot-card-info">
+                <strong>지혜로운 판다</strong>
+                <small>고급 (아마 1단)</small>
+              </div>
+            </button>
+            <button type="button" class="match-bot-card" data-bot="master">
+              <span class="bot-card-avatar">🐯</span>
+              <div class="bot-card-info">
+                <strong>용맹한 호랑이</strong>
+                <small>최강 (아마 5단)</small>
+              </div>
+            </button>
+          </div>
+        </div>
+
+        <!-- 3. 바둑판 크기 -->
+        <div class="match-section">
+          <label class="match-section-label">📐 바둑판 크기</label>
+          <div class="match-chips" id="matchSizeChips">
+            <button type="button" class="match-chip active" data-size="19">19줄 (정규 바둑판)</button>
+            <button type="button" class="match-chip" data-size="13">13줄 (중급 바둑판)</button>
+            <button type="button" class="match-chip" data-size="9">9줄 (입문 빠른 바둑판)</button>
+          </div>
+        </div>
+
+        <!-- 4. 내 돌 선택 -->
+        <div class="match-section">
+          <label class="match-section-label">⚫⚪ 내 돌 선택</label>
+          <div class="match-chips" id="matchColorChips">
+            <button type="button" class="match-chip active" data-color="1">⚫ 흑돌 (선공)</button>
+            <button type="button" class="match-chip" data-color="2">⚪ 백돌 (후공)</button>
+            <button type="button" class="match-chip" data-color="random">🎲 돌가리기 (랜덤)</button>
+          </div>
+        </div>
+
+        <!-- 5. 치수 및 접바둑 (핸디캡) -->
+        <div class="match-section">
+          <label class="match-section-label">⭐ 치수 / 접바둑 옵션</label>
+          <div class="match-chips" id="matchHandicapChips">
+            <button type="button" class="match-chip active" data-handicap="0">⚖️ 호선 (맞바둑 · 덤 6.5집)</button>
+            <button type="button" class="match-chip" data-handicap="1">🏳️ 정선 (덤 0.5집)</button>
+            <button type="button" class="match-chip" data-handicap="2">2점 접바둑</button>
+            <button type="button" class="match-chip" data-handicap="3">3점 접바둑</button>
+            <button type="button" class="match-chip" data-handicap="4">4점 접바둑</button>
+            <button type="button" class="match-chip" data-handicap="5">5점 접바둑</button>
+            <button type="button" class="match-chip" data-handicap="6">6점 접바둑</button>
+            <button type="button" class="match-chip" data-handicap="7">7점 접바둑</button>
+            <button type="button" class="match-chip" data-handicap="8">8점 접바둑</button>
+            <button type="button" class="match-chip" data-handicap="9">9점 접바둑</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="match-footer">
+        <button type="button" class="btn-start-match" id="btnStartCustomMatch">🚀 이 설정으로 대국 시작!</button>
+        <button type="button" class="btn-cancel-match" id="btnCancelMatch">✕ 닫기</button>
+      </div>
+    </div>
+  </div>
+
+<!-- 🌟 대국 결과 & 계가 모달 (전역 오버레이) 🌟 -->
   <div class="result-modal" id="resultModal" hidden>
     <div class="result-card">
       <span class="result-badge">🏆</span>
