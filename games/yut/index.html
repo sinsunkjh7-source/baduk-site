@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>윷놀이 — 바둑스쿨 Fun</title>
+<link rel="stylesheet" href="/unified-nav.css?v=fun-menu-20261029k">
+<link rel="stylesheet" href="style.css?v=yut-1">
+<script src="/unified-nav.js?v=fun-menu-20261029k" defer></script>
+</head>
+<body data-bks-page="yut">
+
+<main class="y-wrap">
+  <section class="y-board-col">
+    <div class="y-head">
+      <div class="y-score"><span class="y-dot p1"></span> 나 <b id="p1home">0</b>/4</div>
+      <div class="y-score"><span class="y-dot p2"></span> 상대 <b id="p2home">0</b>/4</div>
+      <div class="y-turn" id="turnBar">내 차례</div>
+    </div>
+
+    <div class="y-canvas-box">
+      <canvas id="board" width="640" height="640"></canvas>
+    </div>
+
+    <div class="y-bottom">
+      <div class="y-sticks" id="sticks" aria-label="윷가락 4개"></div>
+      <button type="button" id="btnThrow" class="y-btn primary">윷 던지기</button>
+      <span class="y-result" id="result">—</span>
+    </div>
+  </section>
+
+  <aside class="y-side">
+    <h2 class="y-title">윷놀이</h2>
+    <p class="y-desc">윷을 던져 말을 움직입니다. 상대 말이 있는 칸에 도착하면 <b>잡고</b> 한 번 더 던집니다.</p>
+
+    <div class="y-actions">
+      <button type="button" id="btnNew" class="y-btn">새 게임</button>
+      <button type="button" id="btnMode" class="y-btn">AI 대전 중</button>
+    </div>
+
+    <details class="y-rules">
+      <summary>규칙 보기</summary>
+      <ul>
+        <li>도1 · 개2 · 걸3 · 윷4 · 모5 (뒤집힌 개수)</li>
+        <li>윷·모가 나오면 한 번 더</li>
+        <li>상대 말을 잡으면 한 번 더</li>
+        <li>말 4개를 모두 완주시키면 승리</li>
+      </ul>
+    </details>
+
+    <p class="y-msg" id="msg" hidden></p>
+  </aside>
+</main>
+
+<script src="game.js?v=yut-1"></script>
+</body>
+</html>
