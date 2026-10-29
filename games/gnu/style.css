@@ -10,15 +10,13 @@
   --gnu-line:#8a5a2b;
 }
 *{box-sizing:border-box;margin:0;padding:0}
+[hidden]{display:none!important}
 html,body{height:100%}
-body{
-  background:var(--gnu-bg);
-  color:var(--gnu-ink);
-  font-family:"Pretendard","Malgun Gothic",system-ui,sans-serif;
-  padding:calc(var(--bks-nav-h,64px) + 10px) clamp(10px,2vw,26px) 24px;
-}
+body{padding:0;background:var(--gnu-bg)}
 
-.gnu-wrap{
+
+
+.gnu-wrap{padding:calc(var(--bks-nav-h,64px) + 10px) clamp(10px,2vw,26px) 24px;
   max-width:min(1480px,97vw);margin:0 auto;
   display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:18px;align-items:start;
 }
@@ -81,5 +79,4 @@ canvas{width:100%;max-width:560px;height:auto;display:block;border-radius:12px;t
 @media (max-width:860px){
   .gnu-wrap{grid-template-columns:1fr}
   .gnu-side{order:2}
-  body{padding:calc(var(--bks-nav-h,64px) + 10px) 10px 20px}
 }
