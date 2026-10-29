@@ -14,7 +14,7 @@
 .bks-nav-links>a,.bks-nav-group>button{display:block;padding:10px 8px;border:0;border-radius:8px;background:transparent;line-height:1.25}
 .bks-nav-links>a:hover,.bks-nav-group>button:hover,.bks-nav-links [aria-current=page],.bks-nav-group>button[data-active]{background:#ffffff24;color:#fff8c6}
 .bks-nav-group{position:relative}
-.bks-nav-sub{position:absolute;top:calc(100% + 10px);left:0;min-width:190px;padding:7px;border:1px solid var(--bks-border);border-radius:12px;background:var(--bks-paper);box-shadow:0 12px 28px #19371326}
+.bks-nav-sub{position:absolute;top:calc(100% + 10px);left:0;min-width:236px;padding:7px;border:1px solid var(--bks-border);border-radius:12px;background:var(--bks-paper);box-shadow:0 12px 28px #19371326}
 .bks-nav-sub[hidden]{display:none!important}.bks-nav-sub a{display:block;padding:10px 12px;border-radius:7px;color:var(--bks-ink)}.bks-nav-sub a:hover{background:#dceecf}.bks-nav-sub a[aria-current=page]{background:#dceecf;color:#244a1b}
 .bks-account-link{font-size:12px!important}.bks-account-first{margin-left:auto}
 .bks-nav-actions{margin-left:auto;display:flex;align-items:center;gap:7px;flex:none}.bks-menu-toggle{display:none}
@@ -125,8 +125,10 @@ body[data-bks-page=sandbox] .bks-bottom-board-size .size-btn.active:hover{backgr
 
 /* Fun 하위 분류 */
 .bks-sub-group{display:block}
-.bks-sub-group+.bks-sub-group{margin-top:6px;padding-top:6px;border-top:1px solid var(--bks-border)}
-.bks-sub-title{display:block;padding:8px 12px 4px;font-size:12.5px;font-weight:900;letter-spacing:.02em;color:#4f6f45}
+.bks-sub-group+.bks-sub-group{margin-top:10px;padding-top:10px;border-top:1px dashed var(--bks-border)}
+.bks-sub-title{display:flex;align-items:center;gap:6px;margin:4px 0 2px;padding:8px 10px;font-size:15px;font-weight:900;letter-spacing:-.01em;color:#244a1b;background:#eef6e6;border-left:4px solid #5c9a4a;border-radius:6px}
 .bks-nav-sub a[data-bks-soon]{color:#93a58c}
 .bks-toast{position:fixed;left:50%;bottom:34px;transform:translateX(-50%) translateY(10px);background:rgba(28,45,25,.95);color:#fff;padding:11px 20px;border-radius:999px;font-size:14px;font-weight:700;z-index:200010;opacity:0;transition:.22s;font-family:inherit;pointer-events:none}
 .bks-toast.-show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+.bks-sub-group .bks-nav-sub a,.bks-sub-group a{display:block;margin-left:6px;padding:9px 12px;font-size:14.5px;font-weight:700}
