@@ -300,131 +300,123 @@
   /* ---------- 🌟 문제 마크 렌더링 (세모 △, 동그라미 ○, 문자 라벨, 네모 □) ---------- */
   function drawProblemMark(cx, cy, cell, mk, stoneColor) {
     ctx.save();
+    var strokeW = Math.max(1.8, Math.min(2.4, cell * 0.045));
+    ctx.lineWidth = strokeW;
+    ctx.lineJoin = 'round';
+    ctx.lineCap = 'round';
+
     if (mk.type === 'triangle') {
-      var triH = cell * 0.28, triW = cell * 0.32;
+      // 🌟 세모(△): 정삼각형 (돌 크기 대비 아담하게 안착, 바깥으로 튀어나가지 않음)
+      var R = cell * 0.16;
+      var topY = cy - R * 1.05;
+      var botY = cy + R * 0.55;
+      var sideX = R * 0.90;
       ctx.beginPath();
-      ctx.moveTo(cx, cy - triH * 0.95);
-      ctx.lineTo(cx + triW, cy + triH * 0.75);
-      ctx.lineTo(cx - triW, cy + triH * 0.75);
+      ctx.moveTo(cx, topY);
+      ctx.lineTo(cx + sideX, botY);
+      ctx.lineTo(cx - sideX, botY);
       ctx.closePath();
-      if (stoneColor === BLACK) {
-        ctx.strokeStyle = '#ffffff'; ctx.lineWidth = Math.max(2.4, cell * 0.08);
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.22)'; ctx.fill(); ctx.stroke();
-      } else if (stoneColor === WHITE) {
-        ctx.strokeStyle = '#18181b'; ctx.lineWidth = Math.max(2.4, cell * 0.08);
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.16)'; ctx.fill(); ctx.stroke();
+
+      if (stoneColor === 1) {
+        // 흑돌 위 세모: 화이트
+        ctx.strokeStyle = '#ffffff';
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.22)';
+        ctx.fill();
+        ctx.stroke();
+      } else if (stoneColor === 2) {
+        // 백돌 위 세모: 다크 차콜
+        ctx.strokeStyle = '#18181b';
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.14)';
+        ctx.fill();
+        ctx.stroke();
       } else {
-        ctx.strokeStyle = '#dc2626'; ctx.lineWidth = Math.max(2.6, cell * 0.09);
-        ctx.fillStyle = 'rgba(239, 68, 68, 0.25)'; ctx.fill(); ctx.stroke();
+        // 빈 교차점 위 세모: 레드
+        ctx.strokeStyle = '#dc2626';
+        ctx.fillStyle = 'rgba(239, 68, 68, 0.20)';
+        ctx.shadowColor = 'rgba(255, 255, 255, 0.8)';
+        ctx.shadowBlur = 3;
+        ctx.fill();
+        ctx.stroke();
       }
     } else if (mk.type === 'circle') {
-      var circleR = cell * 0.24;
+      // 🌟 동그라미(○): 돌 중앙에 쏙 들어가는 단정한 원
+      var circleR = cell * 0.14;
       ctx.beginPath();
       ctx.arc(cx, cy, circleR, 0, Math.PI * 2);
-      if (stoneColor === BLACK) {
-        ctx.strokeStyle = '#ffffff'; ctx.lineWidth = Math.max(2.4, cell * 0.08);
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.20)'; ctx.fill(); ctx.stroke();
-      } else if (stoneColor === WHITE) {
-        ctx.strokeStyle = '#18181b'; ctx.lineWidth = Math.max(2.4, cell * 0.08);
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.16)'; ctx.fill(); ctx.stroke();
+
+      if (stoneColor === 1) {
+        ctx.strokeStyle = '#ffffff';
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.20)';
+        ctx.fill();
+        ctx.stroke();
+      } else if (stoneColor === 2) {
+        ctx.strokeStyle = '#18181b';
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.14)';
+        ctx.fill();
+        ctx.stroke();
       } else {
-        ctx.strokeStyle = '#dc2626'; ctx.lineWidth = Math.max(2.8, cell * 0.095);
-        ctx.fillStyle = 'rgba(239, 68, 68, 0.22)'; ctx.fill(); ctx.stroke();
+        ctx.strokeStyle = '#dc2626';
+        ctx.fillStyle = 'rgba(239, 68, 68, 0.20)';
+        ctx.shadowColor = 'rgba(255, 255, 255, 0.8)';
+        ctx.shadowBlur = 3;
+        ctx.fill();
+        ctx.stroke();
       }
     } else if (mk.type === 'label') {
+      // 🌟 문자 라벨: '가', '나', '1', 'A' 등
       var text = mk.label || '';
-      var fontSize = Math.max(12, Math.round(cell * 0.44));
+      var fontSize = Math.max(11, Math.round(cell * 0.28));
       ctx.font = '900 ' + fontSize + 'px -apple-system, BlinkMacSystemFont, "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif';
-      ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-      if (stoneColor === BLACK) {
-        ctx.fillStyle = '#ffffff'; ctx.fillText(text, cx, cy);
-      } else if (stoneColor === WHITE) {
-        ctx.fillStyle = '#18181b'; ctx.fillText(text, cx, cy);
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+
+      if (stoneColor === 1) {
+        ctx.fillStyle = '#ffffff';
+        ctx.fillText(text, cx, cy);
+      } else if (stoneColor === 2) {
+        ctx.fillStyle = '#18181b';
+        ctx.fillText(text, cx, cy);
       } else {
-        var badgeR = cell * 0.32;
-        ctx.beginPath(); ctx.arc(cx, cy, badgeR, 0, Math.PI * 2);
-        ctx.fillStyle = '#ffffff'; ctx.shadowColor = 'rgba(0,0,0,0.25)'; ctx.shadowBlur = 4; ctx.fill();
-        ctx.strokeStyle = '#cbd5e1'; ctx.lineWidth = 1.5; ctx.stroke();
-        ctx.fillStyle = '#0f172a'; ctx.fillText(text, cx, cy);
+        var badgeR = cell * 0.20;
+        ctx.beginPath();
+        ctx.arc(cx, cy, badgeR, 0, Math.PI * 2);
+        ctx.fillStyle = '#ffffff';
+        ctx.shadowColor = 'rgba(0, 0, 0, 0.2)';
+        ctx.shadowBlur = 3;
+        ctx.fill();
+        ctx.strokeStyle = '#cbd5e1';
+        ctx.lineWidth = 1.2;
+        ctx.stroke();
+
+        ctx.fillStyle = '#0f172a';
+        ctx.fillText(text, cx, cy);
       }
     } else if (mk.type === 'square') {
-      var sqHalf = cell * 0.22;
-      ctx.beginPath(); ctx.rect(cx - sqHalf, cy - sqHalf, sqHalf * 2, sqHalf * 2);
-      if (stoneColor === BLACK) {
-        ctx.strokeStyle = '#ffffff'; ctx.lineWidth = Math.max(2.4, cell * 0.08); ctx.stroke();
-      } else if (stoneColor === WHITE) {
-        ctx.strokeStyle = '#18181b'; ctx.lineWidth = Math.max(2.4, cell * 0.08); ctx.stroke();
+      // 🌟 네모(□): 돌 중앙에 쏙 들어가는 사각형
+      var sqHalf = cell * 0.12;
+      ctx.beginPath();
+      ctx.rect(cx - sqHalf, cy - sqHalf, sqHalf * 2, sqHalf * 2);
+
+      if (stoneColor === 1) {
+        ctx.strokeStyle = '#ffffff';
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.20)';
+        ctx.fill();
+        ctx.stroke();
+      } else if (stoneColor === 2) {
+        ctx.strokeStyle = '#18181b';
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.14)';
+        ctx.fill();
+        ctx.stroke();
       } else {
-        ctx.strokeStyle = '#dc2626'; ctx.lineWidth = Math.max(2.6, cell * 0.09); ctx.stroke();
+        ctx.strokeStyle = '#dc2626';
+        ctx.fillStyle = 'rgba(239, 68, 68, 0.20)';
+        ctx.fill();
+        ctx.stroke();
       }
     }
     ctx.restore();
   }
 
-  /* ---------- 🌟 문제 마크 렌더링 (세모 △, 동그라미 ○, 문자 라벨, 네모 □) ---------- */
-  function drawProblemMark(cx, cy, cell, mk, stoneColor) {
-    ctx.save();
-    if (mk.type === 'triangle') {
-      var triH = cell * 0.28, triW = cell * 0.32;
-      ctx.beginPath();
-      ctx.moveTo(cx, cy - triH * 0.95);
-      ctx.lineTo(cx + triW, cy + triH * 0.75);
-      ctx.lineTo(cx - triW, cy + triH * 0.75);
-      ctx.closePath();
-      if (stoneColor === BLACK) {
-        ctx.strokeStyle = '#ffffff'; ctx.lineWidth = Math.max(2.4, cell * 0.08);
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.22)'; ctx.fill(); ctx.stroke();
-      } else if (stoneColor === WHITE) {
-        ctx.strokeStyle = '#18181b'; ctx.lineWidth = Math.max(2.4, cell * 0.08);
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.16)'; ctx.fill(); ctx.stroke();
-      } else {
-        ctx.strokeStyle = '#dc2626'; ctx.lineWidth = Math.max(2.6, cell * 0.09);
-        ctx.fillStyle = 'rgba(239, 68, 68, 0.25)'; ctx.fill(); ctx.stroke();
-      }
-    } else if (mk.type === 'circle') {
-      var circleR = cell * 0.24;
-      ctx.beginPath();
-      ctx.arc(cx, cy, circleR, 0, Math.PI * 2);
-      if (stoneColor === BLACK) {
-        ctx.strokeStyle = '#ffffff'; ctx.lineWidth = Math.max(2.4, cell * 0.08);
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.20)'; ctx.fill(); ctx.stroke();
-      } else if (stoneColor === WHITE) {
-        ctx.strokeStyle = '#18181b'; ctx.lineWidth = Math.max(2.4, cell * 0.08);
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.16)'; ctx.fill(); ctx.stroke();
-      } else {
-        ctx.strokeStyle = '#dc2626'; ctx.lineWidth = Math.max(2.8, cell * 0.095);
-        ctx.fillStyle = 'rgba(239, 68, 68, 0.22)'; ctx.fill(); ctx.stroke();
-      }
-    } else if (mk.type === 'label') {
-      var text = mk.label || '';
-      var fontSize = Math.max(12, Math.round(cell * 0.44));
-      ctx.font = '900 ' + fontSize + 'px -apple-system, BlinkMacSystemFont, "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif';
-      ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-      if (stoneColor === BLACK) {
-        ctx.fillStyle = '#ffffff'; ctx.fillText(text, cx, cy);
-      } else if (stoneColor === WHITE) {
-        ctx.fillStyle = '#18181b'; ctx.fillText(text, cx, cy);
-      } else {
-        var badgeR = cell * 0.32;
-        ctx.beginPath(); ctx.arc(cx, cy, badgeR, 0, Math.PI * 2);
-        ctx.fillStyle = '#ffffff'; ctx.shadowColor = 'rgba(0,0,0,0.25)'; ctx.shadowBlur = 4; ctx.fill();
-        ctx.strokeStyle = '#cbd5e1'; ctx.lineWidth = 1.5; ctx.stroke();
-        ctx.fillStyle = '#0f172a'; ctx.fillText(text, cx, cy);
-      }
-    } else if (mk.type === 'square') {
-      var sqHalf = cell * 0.22;
-      ctx.beginPath(); ctx.rect(cx - sqHalf, cy - sqHalf, sqHalf * 2, sqHalf * 2);
-      if (stoneColor === BLACK) {
-        ctx.strokeStyle = '#ffffff'; ctx.lineWidth = Math.max(2.4, cell * 0.08); ctx.stroke();
-      } else if (stoneColor === WHITE) {
-        ctx.strokeStyle = '#18181b'; ctx.lineWidth = Math.max(2.4, cell * 0.08); ctx.stroke();
-      } else {
-        ctx.strokeStyle = '#dc2626'; ctx.lineWidth = Math.max(2.6, cell * 0.09); ctx.stroke();
-      }
-    }
-    ctx.restore();
-  }
-
   function drawStone(cx, cy, r, color) {
     var grad = ctx.createRadialGradient(cx - r * 0.34, cy - r * 0.38, r * 0.1, cx, cy, r);
     if (color === BLACK) { grad.addColorStop(0, '#6e6e6e'); grad.addColorStop(0.55, '#1c1c1c'); grad.addColorStop(1, '#080808'); }
