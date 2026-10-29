@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>바둑돌 메모리 — 바둑스쿨 Fun</title>
+<link rel="stylesheet" href="/unified-nav.css?v=fun-menu-20261029e">
+<link rel="stylesheet" href="style.css?v=memory-1">
+<script src="/unified-nav.js?v=fun-menu-20261029f" defer></script>
+</head>
+<body data-bks-page="memory">
+
+<main class="m-wrap">
+  <section class="m-board-col">
+    <div class="m-stats">
+      <div><span>시도</span><b id="moves">0</b></div>
+      <div><span>맞춘 짝</span><b id="pairs">0 / 8</b></div>
+      <div><span>시간</span><b id="time">0초</b></div>
+    </div>
+    <div class="m-grid" id="grid" aria-label="바둑돌 짝 맞추기 판"></div>
+  </section>
+
+  <aside class="m-side">
+    <h2 class="m-title">바둑돌 메모리</h2>
+    <p class="m-desc">뒤집힌 돌을 뒤집어 <b>같은 그림</b>을 찾으세요. 기억력과 집중력이 자랍니다.</p>
+    <div class="m-actions">
+      <button type="button" id="btnNew" class="m-btn primary">새 게임</button>
+      <button type="button" id="btnSize" class="m-btn">4×4 (16장)</button>
+    </div>
+    <p class="m-msg" id="msg" hidden></p>
+  </aside>
+</main>
+
+<script src="game.js?v=memory-1"></script>
+</body>
+</html>

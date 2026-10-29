@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>2048 바둑돌 — 바둑스쿨 Fun</title>
+<link rel="stylesheet" href="/unified-nav.css?v=fun-menu-20261029e">
+<link rel="stylesheet" href="style.css?v=g2048-1">
+<script src="/unified-nav.js?v=fun-menu-20261029f" defer></script>
+</head>
+<body data-bks-page="g2048">
+
+<main class="g-wrap">
+  <section class="g-board-col">
+    <div class="g-head">
+      <div class="g-score"><span>점수</span><b id="score">0</b></div>
+      <div class="g-score best"><span>최고</span><b id="best">0</b></div>
+    </div>
+    <div class="g-grid" id="grid" role="grid" aria-label="2048 바둑돌 판"></div>
+    <p class="g-tip">방향키 또는 스와이프로 움직이세요</p>
+  </section>
+
+  <aside class="g-side">
+    <h2 class="g-title">2048 바둑돌</h2>
+    <p class="g-desc">같은 숫자 돌을 합쳐 <b>2048</b>을 만드세요. 클수록 사고력이 자랍니다.</p>
+    <div class="g-actions">
+      <button type="button" id="btnNew" class="g-btn primary">새 게임</button>
+      <button type="button" id="btnUndo" class="g-btn">무르기</button>
+    </div>
+    <div class="g-legend">
+      <span><i style="background:#f3ead9"></i>2</span>
+      <span><i style="background:#e8d6b6"></i>8</span>
+      <span><i style="background:#7bbf6a"></i>128</span>
+      <span><i style="background:#e0a838"></i>1024</span>
+    </div>
+    <p class="g-msg" id="msg" hidden></p>
+  </aside>
+</main>
+
+<script src="game.js?v=g2048-1"></script>
+</body>
+</html>
