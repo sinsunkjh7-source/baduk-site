@@ -284,4 +284,78 @@ class BadukEngine {
   }
 }
 
+
+BadukEngine.prototype.calculateScore = function(komi = 6.5) {
+  const size = this.size;
+  const board = this.board;
+  const visited = Array(size).fill(null).map(() => Array(size).fill(false));
+  let blackTerritory = 0;
+  let whiteTerritory = 0;
+  let neutralPoints = 0;
+  const territoryMap = Array(size).fill(null).map(() => Array(size).fill(0));
+
+  for (let y = 0; y < size; y++) {
+    for (let x = 0; x < size; x++) {
+      if (board[y][x] === 0 && !visited[y][x]) {
+        const region = [];
+        const queue = [[x, y]];
+        visited[y][x] = true;
+        let touchesBlack = false;
+        let touchesWhite = false;
+
+        while (queue.length > 0) {
+          const [cx, cy] = queue.shift();
+          region.push([cx, cy]);
+          const dirs = [[0, -1], [0, 1], [-1, 0], [1, 0]];
+          for (const [dx, dy] of dirs) {
+            const nx = cx + dx;
+            const ny = cy + dy;
+            if (nx >= 0 && nx < size && ny >= 0 && ny < size) {
+              if (board[ny][nx] === 1) touchesBlack = true;
+              else if (board[ny][nx] === 2) touchesWhite = true;
+              else if (board[ny][nx] === 0 && !visited[ny][nx]) {
+                visited[ny][nx] = true;
+                queue.push([nx, ny]);
+              }
+            }
+          }
+        }
+
+        if (touchesBlack && !touchesWhite) {
+          blackTerritory += region.length;
+          region.forEach(([rx, ry]) => territoryMap[ry][rx] = 1);
+        } else if (touchesWhite && !touchesBlack) {
+          whiteTerritory += region.length;
+          region.forEach(([rx, ry]) => territoryMap[ry][rx] = 2);
+        } else {
+          neutralPoints += region.length;
+        }
+      }
+    }
+  }
+
+  const blackTotal = blackTerritory + this.blackCaptures;
+  const whiteTotal = whiteTerritory + this.whiteCaptures + komi;
+  const diff = Math.abs(blackTotal - whiteTotal);
+  const winner = blackTotal > whiteTotal ? 'black' : 'white';
+  const winnerText = winner === 'black' ? ('흑 ' + diff.toFixed(1) + '집 승') : ('백 ' + diff.toFixed(1) + '집 승');
+
+  return {
+    blackTerritory,
+    whiteTerritory,
+    neutralPoints,
+    blackCaptures: this.blackCaptures,
+    whiteCaptures: this.whiteCaptures,
+    blackTotal,
+    whiteTotal,
+    komi,
+    diff,
+    winner,
+    winnerText,
+    territoryMap
+  };
+};
+
 window.BadukEngine = BadukEngine;
+
+  

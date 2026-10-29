@@ -1,100 +1,156 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>대국 — 바둑스쿨</title>
-<link rel="stylesheet" href="style.css?v=20261028-solidwood&t=3">
-<script src="../../js/site_lock.js?v=20261028-solidwood&t=5"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>🤖 AI 바둑 대국 — 바둑스쿨</title>
+  <link rel="stylesheet" href="style.css?v=20261029-play-ai-v2">
+  <link rel="stylesheet" href="/unified-nav.css?v=sandbox-size-buttons-1793234062356">
+  <script src="/unified-nav.js?v=play-ai-v1-1793241000000" defer></script>
 </head>
-<body>
-<div class="wrap">
+<body data-bks-page="play">
 
-  <main class="board-area">
-    <div class="turn-bar">
-      <span class="turn-stone" id="turnStone"></span>
-      <span class="turn-text" id="turnText">흑 차례</span>
-      <span class="cap-info" id="capInfo">따낸 돌 0 : 0</span>
-      <span class="move-count" id="moveCount">0수</span>
-    </div>
+<div class="play-app" id="playApp">
 
-    <div class="board-box" id="boardBox">
-      <canvas id="board"></canvas>
-      <div class="result" id="result" hidden>
-        <div class="result-card">
-          <p class="result-title" id="resultTitle">흑 승리</p>
-          <p class="result-sub" id="resultSub"></p>
-          <button class="btn primary" id="btnAgain" type="button">다시 두기</button>
-        </div>
+  <!-- 🌟 상단 대국 컨트롤 바 🌟 -->
+  <header class="play-control-bar" id="playControlBar">
+    <div class="bar-left">
+      <!-- 바둑판 줄 수 (19/13/9줄) -->
+      <div class="size-selector" id="sizeSelector" role="group" aria-label="바둑판 줄 수">
+        <button type="button" class="size-btn active" data-size="19" title="19줄 정규 바둑판">19줄</button>
+        <button type="button" class="size-btn" data-size="13" title="13줄 중급 바둑판">13줄</button>
+        <button type="button" class="size-btn" data-size="9" title="9줄 입문 바둑판">9줄</button>
+      </div>
+
+      <!-- 내 돌 선택 (흑선공/백후공) -->
+      <div class="color-picker-group" role="group" aria-label="내 돌 선택">
+        <button type="button" class="color-btn active" data-color="1" title="흑돌 (선공)">⚫ 흑</button>
+        <button type="button" class="color-btn" data-color="2" title="백돌 (후공, 덤 6.5집)">⚪ 백</button>
       </div>
     </div>
+
+    <!-- AI 봇 / 난이도 선택 -->
+    <div class="bar-center">
+      <div class="bot-picker-group">
+        <span class="bot-picker-label">🤖 상대:</span>
+        <select class="bot-select" id="botSelect" aria-label="AI 상대 난이도 선택">
+          <option value="beginner">🐥 삐약이 (🌱 입문 18급)</option>
+          <option value="intermediate">🐶 바둑이 (🌿 초급 12급)</option>
+          <option value="advanced">🦊 영리한 여우 (🌲 중급 5급)</option>
+          <option value="dan" selected>🐼 지혜로운 판다 (👑 고급 아마 1단)</option>
+          <option value="master">🐯 용맹한 호랑이 (🔥 최강 아마 5단)</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="bar-right">
+      <button type="button" class="btn-new-game" id="btnNewGame" title="새 대국 시작">
+        🔄 새 대국
+      </button>
+    </div>
+  </header>
+
+  <!-- 🌟 중앙 메인 대국 스테이지 (놓아보기 캔버스 탑재) 🌟 -->
+  <main class="play-stage theme-green" id="playStage">
+    
+    <!-- AI 생각 중 알림 배지 -->
+    <div class="ai-thinking-badge" id="aiThinkingBadge" hidden>
+      <span class="thinking-spinner">⏳</span>
+      <span id="aiThinkingName">지혜로운 판다</span>이(가) 생각 중입니다...
+    </div>
+
+    <!-- 바둑판 캔버스 컨테이너 -->
+    <div class="board-container" id="boardContainer">
+      <div class="canvas-stack" id="canvasStack">
+        <canvas id="boardCanvas"></canvas>
+      </div>
+    </div>
+
+    <!-- 토스트 메시지 -->
+    <div class="play-toast" id="playToast" hidden></div>
   </main>
 
-  <aside class="panel">
-    <section class="card">
-      <h2>대전 상대</h2>
-      <div class="seg" id="modeSeg">
-        <button class="seg-btn active" data-mode="ai" type="button">AI 대전</button>
-        <button class="seg-btn" data-mode="pvp" type="button">2인 대전</button>
-      </div>
-    </section>
+  <!-- 🌟 하단 조작 툴바 🌟 -->
+  <footer class="play-toolbar" id="playToolbar">
+    <!-- 대국 수순 & 진행 정보 배지 -->
+    <div class="move-info-badge" id="moveInfoBadge">
+      ⚫ 내 차례 (흑) | 0수 | 따낸 돌 흑 0 : 백 0
+    </div>
 
-    <section class="card" id="diffCard">
-      <h2>AI 난이도</h2>
-      <div class="seg col" id="diffSeg">
-        <button class="seg-btn" data-diff="beginner" type="button">🌱 입문</button>
-        <button class="seg-btn" data-diff="intermediate" type="button">🌿 초급</button>
-        <button class="seg-btn" data-diff="advanced" type="button">🔥 중급</button>
-        <button class="seg-btn active" data-diff="dan" type="button">⚔️ 고급</button>
-        <button class="seg-btn" data-diff="master" type="button">👑 최강</button>
-      </div>
-    </section>
+    <!-- 대국 액션 조작 -->
+    <div class="tool-group action-group">
+      <button type="button" class="tool-btn" id="btnUndo" title="한 수 무르기">↩️ 무르기</button>
+      <button type="button" class="tool-btn" id="btnPass" title="착수 넘기기 (한 수 쉬기)">⏭️ 패스</button>
+      <button type="button" class="tool-btn" id="btnCount" title="집 계산(계가) 및 승패 확인">🧮 계가하기</button>
+      <button type="button" class="tool-btn warn" id="btnResign" title="기권 (항복)">🏳️ 기권</button>
+    </div>
 
-    <section class="card" id="colorCard">
-      <h2>내 돌</h2>
-      <div class="seg" id="colorSeg">
-        <button class="seg-btn active" data-color="1" type="button">⚫ 흑 (선공)</button>
-        <button class="seg-btn" data-color="2" type="button">⚪ 백 (후공)</button>
-      </div>
-    </section>
+    <!-- 시각 보조 도구 (단수, 땀방울, 좌표, 수순) -->
+    <div class="tool-group assist-group">
+      <button type="button" class="tool-btn active" id="btnToggleAtari" title="단수 맞은 돌 붉은 링 표시">🚨 단수</button>
+      <button type="button" class="tool-btn active" id="btnToggleSweat" title="단수 돌 3D 땀방울 연출">💦 땀방울</button>
+      <button type="button" class="tool-btn active" id="btnToggleCoords" title="바둑판 좌표 표시">🔤 좌표</button>
+      <button type="button" class="tool-btn" id="btnToggleNumbers" title="착수 수순 번호 표시">🔢 수순</button>
+    </div>
+  </footer>
 
-    <section class="card">
-      <h2>바둑판</h2>
-      <div class="seg" id="sizeSeg">
-        <button class="seg-btn" data-size="9" type="button">9줄</button>
-        <button class="seg-btn" data-size="13" type="button">13줄</button>
-        <button class="seg-btn active" data-size="19" type="button">19줄</button>
+  <!-- 🌟 대국 결과 & 계가 모달 (전역 오버레이) 🌟 -->
+  <div class="result-modal" id="resultModal" hidden>
+    <div class="result-card">
+      <span class="result-badge">🏆</span>
+      <h2 class="result-title" id="resultTitle">대국 결과</h2>
+      <p class="result-desc" id="resultDesc">대국이 종료되었습니다.</p>
+      <div class="result-stats-table" id="resultStatsTable"></div>
+      <div class="result-actions">
+        <button type="button" class="result-btn-again" id="btnResultAgain">한 판 더 두기</button>
+        <button type="button" class="result-btn-close" id="btnResultClose">판 살펴보기</button>
       </div>
-    </section>
+    </div>
+  </div>
 
-    <section class="card">
-      <h2>화면 옵션</h2>
-      <div class="seg" id="skinSeg">
-        <button class="seg-btn active" data-skin="wood" type="button">나무</button>
-        <button class="seg-btn" data-skin="green" type="button">초록</button>
-        <button class="seg-btn" data-skin="sky" type="button">하늘</button>
+  <!-- 🌟 환경설정 패널 (통합 네비 상단 ⚙️ 설정 버튼 마운트용) 🌟 -->
+  <div class="settings-panel" id="settingsPanel" hidden>
+    <!-- 바탕화면 테마 -->
+    <div class="setting-group">
+      <span class="setting-label">🎨 바둑판 바탕</span>
+      <div class="setting-options" id="optTheme">
+        <button type="button" class="setting-opt-btn active" data-theme="green">시그니처 초록</button>
+        <button type="button" class="setting-opt-btn" data-theme="cream">크림화이트</button>
+        <button type="button" class="setting-opt-btn" data-theme="forest">포레스트</button>
+        <button type="button" class="setting-opt-btn" data-theme="slate">모던 슬레이트</button>
       </div>
-      <label class="chk"><input type="checkbox" id="optCoords"> 좌표 표시</label>
-      <label class="chk"><input type="checkbox" id="optNumbers"> 수순 번호</label>
-      <label class="chk"><input type="checkbox" id="optTerritory"> 집(영역) 표시</label>
-      <button class="btn" id="btnCount" type="button">🧮 계가하기</button>
-    </section>
+    </div>
 
-    <section class="card">
-      <h2>조작</h2>
-      <button class="btn" id="btnUndo" type="button">↩️ 무르기</button>
-      <button class="btn" id="btnPass" type="button">⏭️ 패스</button>
-      <button class="btn" id="btnResign" type="button">🏳️ 기권</button>
-      <button class="btn" id="btnRestart" type="button">🔄 새 대국</button>
-    </section>
-  </aside>
+    <!-- 바둑판 스킨 -->
+    <div class="setting-group">
+      <span class="setting-label">🪵 바둑판 재질</span>
+      <div class="setting-options" id="optBoardSkin">
+        <button type="button" class="setting-opt-btn active" data-skin="wood">밝은 비자목</button>
+        <button type="button" class="setting-opt-btn" data-skin="darkwood">진한 원목</button>
+        <button type="button" class="setting-opt-btn" data-skin="sky">시원한 스카이</button>
+      </div>
+    </div>
+
+    <!-- 바둑알 스킨 -->
+    <div class="setting-group">
+      <span class="setting-label">⚪ 바둑알 디자인 (6종)</span>
+      <div class="setting-options" id="optStoneStyle">
+        <button type="button" class="setting-opt-btn active" data-stone="classic">정통 클래식</button>
+        <button type="button" class="setting-opt-btn" data-stone="gem">영롱한 보석</button>
+        <button type="button" class="setting-opt-btn" data-stone="cute">귀여운 눈</button>
+        <button type="button" class="setting-opt-btn" data-stone="cat">3D 고양이</button>
+        <button type="button" class="setting-opt-btn" data-stone="galaxy">우주 은하</button>
+        <button type="button" class="setting-opt-btn" data-stone="crystal">크리스탈 다이아</button>
+      </div>
+    </div>
+  </div>
 
 </div>
-<div class="toast" id="toast" hidden></div>
-<script src="../../js/audio.js?v=20261028-solidwood&t=15"></script>
-<script src="engine.js?v=20261028-solidwood&t=1"></script>
-<script src="ai.js?v=20261028-solidwood&t=1"></script>
-<script src="game.js?v=20261028-solidwood&t=2"></script>
-<script src="../../js/game_home_btn.js?v=20261028-solidwood&t=2"></script>
+
+<!-- 엔진 & AI & 오디오 & 앱 스크립트 -->
+<script src="engine.js?v=20261029-play-ai-v2"></script>
+<script src="ai.js?v=20261029-play-ai-v2"></script>
+<script src="audio.js?v=20261029-play-ai-v2"></script>
+<script src="app.js?v=20261029-play-ai-v2"></script>
 </body>
 </html>
