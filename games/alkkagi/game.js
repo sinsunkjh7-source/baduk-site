@@ -166,6 +166,7 @@
   };
 
   var engine = new AlkkagiEngine(app);
+  if (window.BKSAlkkagiReactions) window.BKSAlkkagiReactions.bind(engine);
 
   /* ---------- 크기 ---------- */
   function layout() {
