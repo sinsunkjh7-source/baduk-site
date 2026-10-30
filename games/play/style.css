@@ -1173,29 +1173,32 @@ body {
   border-radius: 8px;
   background: transparent;
   line-height: 0;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.15s ease-out;
 }
-
+.canvas-stack:not(.is-ready) {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  box-shadow: none !important;
+}
 .canvas-stack.is-ready {
   box-shadow: 0 16px 40px rgba(45, 65, 40, 0.22), 0 3px 10px rgba(0, 0, 0, 0.08);
   opacity: 1;
   visibility: visible;
+  transition: opacity 0.15s ease-out;
 }
 
 #boardCanvas {
   display: block;
   border-radius: 8px;
   cursor: pointer;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.15s ease-out;
 }
-
+#boardCanvas:not(.is-ready) {
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
 #boardCanvas.is-ready {
   opacity: 1;
   visibility: visible;
+  transition: opacity 0.15s ease-out;
 }
 
 /* 🌟 좌우 일체형 대국석 콘솔 (Arena Player Console) 🌟 */

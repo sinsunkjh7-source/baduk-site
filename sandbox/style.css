@@ -284,31 +284,36 @@ body {
   display: inline-block;
   border-radius: 6px;
   background: transparent;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.15s ease-out;
+  line-height: 0;
+}
+.canvas-stack:not(.is-ready) {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  box-shadow: none !important;
 }
 .canvas-stack.is-ready {
   box-shadow: 0 12px 35px rgba(0, 0, 0, 0.28);
   opacity: 1;
   visibility: visible;
+  transition: opacity 0.15s ease-out;
 }
 
 #boardCanvas {
   display: block;
   border-radius: 6px;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.12s ease-out;
+  cursor: pointer;
+}
+#boardCanvas:not(.is-ready) {
+  opacity: 0 !important;
+  visibility: hidden !important;
 }
 #boardCanvas.is-ready {
   opacity: 1;
   visibility: visible;
+  transition: opacity 0.12s ease-out;
 }
 
 #drawingCanvas {
-  opacity: 0;
-  transition: opacity 0.12s ease-out;
   position: absolute;
   top: 0;
   left: 0;
@@ -316,6 +321,10 @@ body {
   border-radius: 6px;
   cursor: default;
   touch-action: none;
+}
+#drawingCanvas:not(.is-ready) {
+  opacity: 0 !important;
+  visibility: hidden !important;
 }
 #drawingCanvas.mode-draw {
   cursor: crosshair;
@@ -326,6 +335,7 @@ body {
 #drawingCanvas.is-ready {
   opacity: 1;
   visibility: visible;
+  transition: opacity 0.12s ease-out;
 }
 
 /* ---------- 하단 바둑 툴바 ---------- */

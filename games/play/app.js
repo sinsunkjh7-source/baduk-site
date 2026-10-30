@@ -49,19 +49,17 @@
   woodGrainImg.src = 'images/board_wood_grain.png';
 
   function revealBoard() {
-    // 🌟 cellSize > 0 && dispW > 0 일 때만 (실제 보드 레이아웃 완료 후에만) 노출!
-    // 300x150 미초기화 캔버스 및 그림자 박스가 단 1프레임도 노출되지 않도록 엄격 차단
     if (metrics.cellSize > 0 && metrics.dispW > 0) {
       if (boardCanvas) {
         boardCanvas.classList.add('is-ready');
-        boardCanvas.style.opacity = '';
-        boardCanvas.style.visibility = '';
+        boardCanvas.style.removeProperty('opacity');
+        boardCanvas.style.removeProperty('visibility');
       }
       var cStack = document.getElementById('canvasStack');
       if (cStack) {
         cStack.classList.add('is-ready');
-        cStack.style.opacity = '';
-        cStack.style.visibility = '';
+        cStack.style.removeProperty('opacity');
+        cStack.style.removeProperty('visibility');
       }
     }
   }

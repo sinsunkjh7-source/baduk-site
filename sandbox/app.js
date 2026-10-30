@@ -70,15 +70,21 @@
 
   function revealSandboxBoard() {
     if (metrics.cellSize > 0 && metrics.dispW > 0) {
-      if (boardCanvas && !boardCanvas.classList.contains('is-ready')) {
+      if (boardCanvas) {
         boardCanvas.classList.add('is-ready');
+        boardCanvas.style.removeProperty('opacity');
+        boardCanvas.style.removeProperty('visibility');
       }
-      if (drawingCanvas && !drawingCanvas.classList.contains('is-ready')) {
+      if (drawingCanvas) {
         drawingCanvas.classList.add('is-ready');
+        drawingCanvas.style.removeProperty('opacity');
+        drawingCanvas.style.removeProperty('visibility');
       }
-      var cStack = document.getElementById('canvasStack');
-      if (cStack && !cStack.classList.contains('is-ready')) {
+      var cStack = document.getElementById('canvasStack') || document.querySelector('.canvas-stack');
+      if (cStack) {
         cStack.classList.add('is-ready');
+        cStack.style.removeProperty('opacity');
+        cStack.style.removeProperty('visibility');
       }
     }
   }
