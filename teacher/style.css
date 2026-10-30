@@ -161,16 +161,16 @@ html, body {
 
 /* 🌟 좌측 사이드바 (화이트 & 그린 악센트) 🌟 */
 .teacher-sidebar {
-  width: 320px;
+  width: 340px;
   background: #ffffff;
-  border-right: 1.5px solid var(--border-light);
+  border-left: 1.5px solid var(--border-light);
   display: flex;
   flex-direction: column;
-  padding: 16px;
-  gap: 14px;
+  padding: 14px 14px 16px 14px;
+  gap: 12px;
   overflow-y: auto;
-  flex: 0 0 320px;
-  box-shadow: 2px 0 10px rgba(47, 74, 36, 0.05);
+  flex: 0 0 340px;
+  box-shadow: -2px 0 12px rgba(47, 74, 36, 0.06);
 }
 .sidebar-section { display: flex; flex-direction: column; gap: 6px; }
 .sidebar-label { font-size: 12px; font-weight: 800; color: var(--muted); text-transform: uppercase; letter-spacing: .5px; }
@@ -340,17 +340,39 @@ html, body {
 /* 🌟 강사용 수업 특수 툴바 (화이트 플레이트 & 그린/골드 버튼) 🌟 */
 .teaching-toolbar {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
   gap: 8px;
-  background: #ffffff;
-  border: 1.5px solid var(--border-medium);
+  background: #f8fbf5;
+  border: 1.5px solid #d4e7cd;
   border-radius: 12px;
-  padding: 6px 14px;
+  padding: 10px 10px;
   margin-top: 6px;
   flex: 0 0 auto;
-  flex-wrap: wrap;
-  box-shadow: 0 3px 12px rgba(47, 74, 36, 0.08);
+  box-shadow: 0 2px 8px rgba(47, 74, 36, 0.05);
+}
+.teaching-toolbar .tool-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+  background: #ffffff;
+  padding: 4px 6px;
+  border-radius: 8px;
+  border: 1px solid var(--border-light);
+  width: 100%;
+}
+.teaching-toolbar .tool-btn {
+  flex: 1;
+  justify-content: center;
+  padding: 6px 4px;
+  font-size: 12px;
+}
+.teaching-toolbar .btn-trial {
+  width: 100%;
+  padding: 7px 10px;
+  font-size: 13.5px;
+  font-weight: 800;
+  border-radius: 8px;
 }
 
 .tool-group {

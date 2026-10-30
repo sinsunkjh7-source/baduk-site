@@ -17,7 +17,7 @@
     currentProblems: [],
     currentProblemIndex: 0,
     boardCols: 10,        // 🌟 원장님 지침: 세로선 10개
-    boardRows: 9,         // 🌟 원장님 지침: 가로선 9개
+    boardRows: 10,        // 🌟 원장님 지침: 가로선 10개 (10x10 규격)
     boardSpec: null,
     board: [],            // 0: 빈칸, 1: 흑, 2: 백
     initialBoard: [],
@@ -627,7 +627,7 @@
 
   /* ---------- 🌟 원 교재 규격 판별 (가로선 9, 세로선 10 / 열린 선) ---------- */
   function detectBoardSpec(p) {
-    if (!p) return { cols: 10, rows: 9, isFull19: false, quadrant: 'BR' };
+    if (!p) return { cols: 10, rows: 10, isFull19: false, quadrant: 'BR' };
     
     var rawSize = p.size ? String(p.size).trim() : '';
     if (rawSize === '1' || rawSize === '2') {
@@ -651,7 +651,7 @@
     }
 
     if (points.length === 0) {
-      return { cols: 10, rows: 9, isFull19: false, quadrant: 'BR' };
+      return { cols: 10, rows: 10, isFull19: false, quadrant: 'BR' };
     }
 
     var minX = Math.min.apply(null, points.map(function(pt){return pt.x;}));
@@ -679,19 +679,19 @@
     // 🌟 원장님 핵심 지침: 기본 세로선 10, 가로선 9 (열린 선 다이어그램)를 유지하되,
     // 정답 착점이 바둑판 밖으로 잘려 풀지 못하는 문제가 없도록 안전 적응형 확장!
     var cols = 10;
-    var rows = 9;
+    var rows = 10;
     if (quadrant === 'BR') {
       cols = Math.max(10, 19 - minX);
-      rows = Math.max(9, 19 - minY);
+      rows = Math.max(10, 19 - minY);
     } else if (quadrant === 'BL') {
       cols = Math.max(10, maxX + 1);
-      rows = Math.max(9, 19 - minY);
+      rows = Math.max(10, 19 - minY);
     } else if (quadrant === 'TL') {
       cols = Math.max(10, maxX + 1);
-      rows = Math.max(9, maxY + 1);
+      rows = Math.max(10, maxY + 1);
     } else if (quadrant === 'TR') {
       cols = Math.max(10, 19 - minX);
-      rows = Math.max(9, maxY + 1);
+      rows = Math.max(10, maxY + 1);
     }
 
     if (cols >= 14 || rows >= 14) {
@@ -914,12 +914,16 @@
         ctx.lineTo(startX - overhang, endY);
         ctx.stroke();
 
-        // 🌟 [원장님 지침 3번] 화점 2개 표시:
-        // ① 우하귀 4선 화점: (cols - 4, rows - 4) = (6, 5)
-        // ② 세로선 10번줄(10선) 변 쪽 화점: (0, 5) -> 하변 4선 라인과 10선의 교차점!
+        // 🌟 [원장님 지침] 화점 및 중앙 천원점 표시 (우하귀 10x10 다이어그램):
+        // ① 우하귀 4선 화점: (cols - 4, rows - 4)
+        // ② 하변 화점: (0, rows - 4) -> 하변 4선 라인과 10선 교차점
+        // ③ 우변 화점: (cols - 4, 0) -> 우변 4선 라인과 10선 교차점
+        // ④ 중앙 천원점(K10): (0, 0) -> 19줄 바둑판의 정중앙 천원점!
         var starPoints = [
-          { x: startX + cell * (cols - 4), y: startY + cell * (rows - 4) }, // 우하귀 4-4
-          { x: startX + cell * 0,          y: startY + cell * (rows - 4) }  // 🌟 세로선 10번줄 변 쪽 화점!
+          { x: startX + cell * (cols - 4), y: startY + cell * (rows - 4) }, // 우하귀 4-4 (화점)
+          { x: startX + cell * 0,          y: startY + cell * (rows - 4) }, // 하변 화점
+          { x: startX + cell * (cols - 4), y: startY + cell * 0 },          // 우변 화점
+          { x: startX + cell * 0,          y: startY + cell * 0 }           // 🌟 중앙 천원점 (10-10)
         ];
         ctx.fillStyle = '#2b1405';
         starPoints.forEach(function (sp) {
@@ -954,7 +958,9 @@
 
         var starPointsBL = [
           { x: startX + cell * 3,          y: startY + cell * (rows - 4) },
-          { x: startX + cell * (cols - 1), y: startY + cell * (rows - 4) } // 10선 변 쪽
+          { x: startX + cell * (cols - 1), y: startY + cell * (rows - 4) },
+          { x: startX + cell * 3,          y: startY + cell * 0 },
+          { x: startX + cell * (cols - 1), y: startY + cell * 0 }
         ];
         ctx.fillStyle = '#2b1405';
         starPointsBL.forEach(function (sp) {
@@ -989,7 +995,9 @@
 
         var starPointsTL = [
           { x: startX + cell * 3,          y: startY + cell * 3 },
-          { x: startX + cell * (cols - 1), y: startY + cell * 3 }
+          { x: startX + cell * (cols - 1), y: startY + cell * 3 },
+          { x: startX + cell * 3,          y: startY + cell * (rows - 1) },
+          { x: startX + cell * (cols - 1), y: startY + cell * (rows - 1) }
         ];
         ctx.fillStyle = '#2b1405';
         starPointsTL.forEach(function (sp) {
@@ -1024,7 +1032,9 @@
 
         var starPointsTR = [
           { x: startX + cell * (cols - 4), y: startY + cell * 3 },
-          { x: startX + cell * 0,          y: startY + cell * 3 }
+          { x: startX + cell * 0,          y: startY + cell * 3 },
+          { x: startX + cell * (cols - 4), y: startY + cell * (rows - 1) },
+          { x: startX + cell * 0,          y: startY + cell * (rows - 1) }
         ];
         ctx.fillStyle = '#2b1405';
         starPointsTR.forEach(function (sp) {

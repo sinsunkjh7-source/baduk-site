@@ -52,7 +52,29 @@
 
   <div class="teacher-body">
     
-    <!-- 좌측 사이드바: 12개 시리즈 및 166권 교재 선택 -->
+    <!-- 좌측 메인 대형 수업 바둑판 영역 -->
+    <main class="teacher-stage">
+      
+
+
+      <!-- 대형 수업 바둑판 캔버스 -->
+      <div class="board-container" id="boardContainer">
+        <canvas id="teachingBoard"></canvas>
+
+        <!-- 🌟 차분하고 품격 있는 바둑판 옆 피드백 카드 (정답 / 오답) 🌟 -->
+        <div id="sideFeedbackCard" class="side-feedback-card" hidden>
+          <div class="feedback-emblem" id="feedbackEmblem"></div>
+          <div class="feedback-text" id="feedbackText">정답입니다</div>
+        </div>
+      </div>
+
+
+
+
+
+    </main>
+
+    <!-- 우측 사이드바: 12개 시리즈 및 166권 교재 선택 -->
     <aside class="teacher-sidebar">
       <div class="sidebar-section">
         <label for="seriesSelect" class="sidebar-label">📚 교육 시리즈 (총 12종)</label>
@@ -81,7 +103,7 @@
           <button type="button" id="btnNextProblem" class="btn-nav primary">다음 문제</button>
         </div>
 
-        <!-- 🌟 문제 지문 및 힌트/정답 박스 (좌측 사이드바 이전문제 버튼 하단) 🌟 -->
+        <!-- 🌟 문제 지문 및 힌트/정답 박스 (우측 사이드바 이전문제 버튼 하단) 🌟 -->
         <section class="question-bar" id="sidebarQuestionBar">
           <div class="question-header">
             <span class="q-num" id="qNumBadge">문제 1</span>
@@ -95,25 +117,8 @@
           </div>
         </section>
       </div>
-    </aside>
 
-    <!-- 중앙 메인 수업용 바둑판 영역 -->
-    <main class="teacher-stage">
-      
-
-
-      <!-- 대형 수업 바둑판 캔버스 -->
-      <div class="board-container" id="boardContainer">
-        <canvas id="teachingBoard"></canvas>
-
-        <!-- 🌟 차분하고 품격 있는 바둑판 옆 피드백 카드 (정답 / 오답) 🌟 -->
-        <div id="sideFeedbackCard" class="side-feedback-card" hidden>
-          <div class="feedback-emblem" id="feedbackEmblem"></div>
-          <div class="feedback-text" id="feedbackText">정답입니다</div>
-        </div>
-      </div>
-
-      <!-- 🌟 강사용 수업 특수 툴바 (놓아보기 / 착수모드 / 무르기 / 단수링 / 땀방울 / 좌표 / 수순) 🌟 -->
+      <!-- 🌟 강사용 수업 특수 툴바 (우측 사이드바 내장형) 🌟 -->
       <div class="teaching-toolbar" id="teachingToolbar">
         <div class="tool-group">
           <button type="button" class="tool-btn btn-trial" id="btnToggleTrial" title="놓아보기 모드 토글">
@@ -139,10 +144,7 @@
           <button type="button" class="tool-btn" id="btnToggleNumbers" title="착수 수순 번호 표시">🔢 수순</button>
         </div>
       </div>
-
-
-
-    </main>
+    </aside>
 
   </div>
 
