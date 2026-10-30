@@ -77,7 +77,7 @@
     var img = new Image();
     img.src = spriteUrls[key];
     img.onload = function () {
-      if (document.getElementById('teachingBoard')) {
+      if (state.authenticated && metrics.cellSize > 0 && document.getElementById('teachingBoard')) {
         drawBoard();
       }
     };
@@ -88,7 +88,7 @@
   var woodGrainImg = new Image();
   woodGrainImg.src = 'images/board_wood_grain.png';
   woodGrainImg.onload = function () {
-    if (document.getElementById('teachingBoard')) {
+    if (state.authenticated && metrics.cellSize > 0 && document.getElementById('teachingBoard')) {
       drawBoard();
     }
   };

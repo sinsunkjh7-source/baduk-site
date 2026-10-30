@@ -27,8 +27,8 @@ html, body {
 }
 
 /* ---------- 비밀번호 게이트 (PIN Modal) ---------- */
-.pin-gate-modal[hidden] { display: none !important; }
-.teacher-app[hidden] { display: none !important; }
+/* 중요한 모달 및 앱 은닉 우선 적용 */
+[hidden], .pin-gate-modal[hidden], .teacher-app[hidden] { display: none !important; }
 
 .pin-gate-modal {
   position: fixed;

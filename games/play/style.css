@@ -615,7 +615,7 @@ body {
   animation: modal-fade-in 0.2s ease-out;
 }
 
-.match-modal[hidden] {
+[hidden], .match-modal[hidden], .result-modal[hidden], .settings-panel[hidden] {
   display: none !important;
 }
 

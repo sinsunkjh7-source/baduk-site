@@ -47,7 +47,7 @@
   /* 🌲 천연 비자목(Kaya) 실물 나뭇결 텍스처 프리로딩 */
   var woodGrainImg = new Image();
   woodGrainImg.src = 'images/board_wood_grain.png';
-  woodGrainImg.onload = function () { drawBoard(); };
+  woodGrainImg.onload = function () { if (metrics.cellSize > 0) drawBoard(); };
 
   var BOTS = {
     beginner: { name: '삐약이', title: '🌱 입문 (18급)', avatar: '🐥', img: '../../images/characters/char_pup_think.png', desc: '바둑의 첫걸음! 따내기와 단수를 배우는 귀여운 병아리 봇' },
@@ -75,7 +75,7 @@
   Object.keys(spriteUrls).forEach(function (k) {
     var img = new Image();
     img.src = spriteUrls[k];
-    img.onload = function () { drawBoard(); };
+    img.onload = function () { if (metrics.cellSize > 0) drawBoard(); };
     stoneSprites[k] = img;
   });
 
