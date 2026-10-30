@@ -20,3 +20,7 @@ body[data-bks-page=omok] .bks-arena-player[data-color=white] .bks-omok-character
 /* omok-bull-go-1793323091025: Go bull terrier faces the board without modifying stored pixels. */
 body[data-bks-page=omok] .bks-arena-player[data-color=black] .bks-omok-character-image[data-model=bullterrier]{transform:none}
 body[data-bks-page=omok] .bks-arena-player[data-color=white] .bks-omok-character-image[data-model=bullterrier]{transform:scaleX(-1)}
+
+/* omok-pets-go-1793324498166: Go hamster/exotic face the board; stored pixels remain unchanged. */
+body[data-bks-page=omok] .bks-arena-player[data-color=black] .bks-omok-character-image:is([data-model=hamster],[data-model=exotic]){transform:none}
+body[data-bks-page=omok] .bks-arena-player[data-color=white] .bks-omok-character-image:is([data-model=hamster],[data-model=exotic]){transform:scaleX(-1)}
