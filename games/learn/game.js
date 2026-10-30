@@ -332,24 +332,18 @@
       ctx.closePath();
 
       if (stoneColor === 1) {
-        // 흑돌 위 세모: 화이트
+        // 흑돌 위 세모: 화이트 (투명)
         ctx.strokeStyle = '#ffffff';
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.22)';
-        ctx.fill();
         ctx.stroke();
       } else if (stoneColor === 2) {
-        // 백돌 위 세모: 다크 차콜
+        // 백돌 위 세모: 다크 차콜 (투명)
         ctx.strokeStyle = '#18181b';
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.14)';
-        ctx.fill();
         ctx.stroke();
       } else {
-        // 빈 교차점 위 세모: 레드
+        // 빈 교차점 위 세모: 레드 (투명)
         ctx.strokeStyle = '#dc2626';
-        ctx.fillStyle = 'rgba(239, 68, 68, 0.20)';
         ctx.shadowColor = 'rgba(255, 255, 255, 0.8)';
         ctx.shadowBlur = 3;
-        ctx.fill();
         ctx.stroke();
       }
     } else if (mk.type === 'circle') {
