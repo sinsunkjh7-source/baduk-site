@@ -800,6 +800,7 @@
     }
 
     updateTimerUI();
+    layoutBoard();
     if (!state.isFreePlacementActive && !state.isGameOver) {
       startTimerInterval();
     }
@@ -868,8 +869,17 @@
   function triggerAiMove() {
     state.isThinking = true;
     var bot = BOTS[state.difficulty];
-    if (aiThinkingName) aiThinkingName.textContent = bot.name + ' (' + bot.title + ')';
-    if (aiThinkingBadge) aiThinkingBadge.hidden = false;
+    if (timerData.active) {
+      if (aiThinkingBadge) aiThinkingBadge.hidden = true;
+      var turnText = document.getElementById('timerTurnText');
+      if (turnText) turnText.textContent = '⏳ ' + bot.name + ' 수읽기 중...';
+    } else {
+      if (aiThinkingName) aiThinkingName.textContent = bot.name + ' (' + bot.title + ')';
+      if (aiThinkingBadge) {
+        aiThinkingBadge.hidden = false;
+        layoutBoard();
+      }
+    }
     updateStatus();
 
     // 자연스러운 대국을 위한 짧은 딜레이

@@ -18,49 +18,52 @@
   <!-- 🌟 중앙 메인 대국 스테이지 (놓아보기 캔버스 탑재) 🌟 -->
   <main class="play-stage theme-green" id="playStage">
     
-    <!-- ⏱️ 제한 시간 & 초읽기 시계 바 (선택 시 활성화) -->
-    <div class="match-timer-bar" id="matchTimerBar" hidden>
-      <div class="timer-card black-timer" id="blackTimerCard">
-        <div class="timer-player-info">
-          <span class="timer-stone">⚫</span>
-          <span class="timer-name" id="timerBlackName">흑</span>
+    <!-- 🌟 상단 대국 정보/시계 바 전용 독립 헤더 (바둑판을 절대 가리지 않음) 🌟 -->
+    <header class="play-stage-top-bar" id="playStageTopBar">
+      <!-- ⏱️ 제한 시간 & 초읽기 시계 바 (선택 시 활성화) -->
+      <div class="match-timer-bar" id="matchTimerBar" hidden>
+        <div class="timer-card black-timer" id="blackTimerCard">
+          <div class="timer-player-info">
+            <span class="timer-stone">⚫</span>
+            <span class="timer-name" id="timerBlackName">흑</span>
+          </div>
+          <div class="timer-digits" id="timerBlackTime">10:00</div>
+          <div class="timer-byo" id="timerBlackByo">초읽기 30초 (3회)</div>
         </div>
-        <div class="timer-digits" id="timerBlackTime">10:00</div>
-        <div class="timer-byo" id="timerBlackByo">초읽기 30초 (3회)</div>
-      </div>
 
-      <div class="timer-turn-pulse" id="timerTurnPulse">
-        <span class="pulse-dot"></span>
-        <span id="timerTurnText">⚫ 흑의 시간</span>
-      </div>
-
-      <div class="timer-card white-timer" id="whiteTimerCard">
-        <div class="timer-player-info">
-          <span class="timer-stone">⚪</span>
-          <span class="timer-name" id="timerWhiteName">백</span>
+        <div class="timer-turn-pulse" id="timerTurnPulse">
+          <span class="pulse-dot"></span>
+          <span id="timerTurnText">⚫ 흑의 시간</span>
         </div>
-        <div class="timer-digits" id="timerWhiteTime">10:00</div>
-        <div class="timer-byo" id="timerWhiteByo">초읽기 30초 (3회)</div>
-      </div>
-    </div>
 
-    <!-- 🎨 프리 접바둑 자유 배치 안내 배너 -->
-    <div class="free-placement-banner" id="freePlacementBanner" hidden>
-      <div class="banner-text">
-        <span class="banner-icon">🎨</span>
-        <span><strong>프리 접바둑 돌 놓기 모드</strong>: 바둑판 빈 곳을 클릭하여 흑돌을 자유롭게 배치하세요. (배치된 돌: <strong id="freePlacedCount">0</strong>개)</span>
+        <div class="timer-card white-timer" id="whiteTimerCard">
+          <div class="timer-player-info">
+            <span class="timer-stone">⚪</span>
+            <span class="timer-name" id="timerWhiteName">백</span>
+          </div>
+          <div class="timer-digits" id="timerWhiteTime">10:00</div>
+          <div class="timer-byo" id="timerWhiteByo">초읽기 30초 (3회)</div>
+        </div>
       </div>
-      <div class="banner-btns">
-        <button type="button" class="btn-banner-finish" id="btnFreePlacementDone">✅ 배치 완료 (대국 시작)</button>
-        <button type="button" class="btn-banner-clear" id="btnFreePlacementReset">🔄 전체 지우기</button>
-      </div>
-    </div>
 
-    <!-- AI 생각 중 알림 배지 -->
-    <div class="ai-thinking-badge" id="aiThinkingBadge" hidden>
-      <span class="thinking-spinner">⏳</span>
-      <span id="aiThinkingName">지혜로운 판다</span>이(가) 생각 중입니다...
-    </div>
+      <!-- 🎨 프리 접바둑 자유 배치 안내 배너 -->
+      <div class="free-placement-banner" id="freePlacementBanner" hidden>
+        <div class="banner-text">
+          <span class="banner-icon">🎨</span>
+          <span><strong>프리 접바둑 돌 놓기 모드</strong>: 바둑판 빈 곳을 클릭하여 흑돌을 자유롭게 배치하세요. (배치된 돌: <strong id="freePlacedCount">0</strong>개)</span>
+        </div>
+        <div class="banner-btns">
+          <button type="button" class="btn-banner-finish" id="btnFreePlacementDone">✅ 배치 완료 (대국 시작)</button>
+          <button type="button" class="btn-banner-clear" id="btnFreePlacementReset">🔄 전체 지우기</button>
+        </div>
+      </div>
+
+      <!-- AI 생각 중 알림 배지 (시계 비활성화 시 독립 표시) -->
+      <div class="ai-thinking-badge" id="aiThinkingBadge" hidden>
+        <span class="thinking-spinner">⏳</span>
+        <span id="aiThinkingName">지혜로운 판다</span> 이(가) 생각 중입니다...
+      </div>
+    </header>
 
     <!-- 바둑판 캔버스 컨테이너 -->
     <div class="board-container" id="boardContainer">
