@@ -12,3 +12,7 @@ body[data-bks-page=omok] .bks-character-switch{font:700 11px/1.2 'Malgun Gothic'
 /* alkkagi-ai-robot-1793288366523: AI role follows native mode/playerColor, no saved choice overwritten. */
 body[data-bks-page=omok] .bks-arena-avatar[data-automatic=true]{cursor:default}
 body[data-bks-page=omok] .bks-character-switch:disabled{cursor:default;opacity:.78;background:#edf2e7;color:#64765b}
+
+/* omok-capy-go-1793321545559: face new capybara placement toward board, without altering pixels. */
+body[data-bks-page=omok] .bks-arena-player[data-color=black] .bks-omok-character-image[data-model=capybara]{transform:none}
+body[data-bks-page=omok] .bks-arena-player[data-color=white] .bks-omok-character-image[data-model=capybara]{transform:scaleX(-1)}
