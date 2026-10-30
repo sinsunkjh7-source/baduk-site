@@ -373,27 +373,21 @@
         ctx.stroke();
       }
     } else if (mk.type === 'circle') {
-      // 🌟 동그라미(○): 돌 중앙에 쏙 들어가는 단정한 원
+      // 🌟 동그라미(○): 돌 중앙에 쏙 들어가는 단정한 원 (내부 투명)
       var circleR = cell * 0.14;
       ctx.beginPath();
       ctx.arc(cx, cy, circleR, 0, Math.PI * 2);
 
       if (stoneColor === 1) {
         ctx.strokeStyle = '#ffffff';
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.20)';
-        ctx.fill();
         ctx.stroke();
       } else if (stoneColor === 2) {
         ctx.strokeStyle = '#18181b';
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.14)';
-        ctx.fill();
         ctx.stroke();
       } else {
         ctx.strokeStyle = '#dc2626';
-        ctx.fillStyle = 'rgba(239, 68, 68, 0.20)';
         ctx.shadowColor = 'rgba(255, 255, 255, 0.8)';
         ctx.shadowBlur = 3;
-        ctx.fill();
         ctx.stroke();
       }
     } else if (mk.type === 'label') {
@@ -426,25 +420,19 @@
         ctx.fillText(text, cx, cy);
       }
     } else if (mk.type === 'square') {
-      // 🌟 네모(□): 돌 중앙에 쏙 들어가는 사각형
+      // 🌟 네모(□): 돌 중앙에 쏙 들어가는 사각형 (내부 투명)
       var sqHalf = cell * 0.12;
       ctx.beginPath();
       ctx.rect(cx - sqHalf, cy - sqHalf, sqHalf * 2, sqHalf * 2);
 
       if (stoneColor === 1) {
         ctx.strokeStyle = '#ffffff';
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.20)';
-        ctx.fill();
         ctx.stroke();
       } else if (stoneColor === 2) {
         ctx.strokeStyle = '#18181b';
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.14)';
-        ctx.fill();
         ctx.stroke();
       } else {
         ctx.strokeStyle = '#dc2626';
-        ctx.fillStyle = 'rgba(239, 68, 68, 0.20)';
-        ctx.fill();
         ctx.stroke();
       }
     }
