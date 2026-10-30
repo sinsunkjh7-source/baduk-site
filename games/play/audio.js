@@ -130,6 +130,38 @@ class BadukAudio {
       osc.stop(t + 0.11);
     } catch (e) {}
   }
+
+  playCountdownBeep(isFinal = false) {
+    if (!this.enabled || this.volume <= 0.01) return;
+    this.init();
+    if (!this.ctx) return;
+
+    try {
+      const t = this.ctx.currentTime;
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
+
+      osc.type = 'sine';
+      if (isFinal) {
+        osc.frequency.setValueAtTime(880, t);
+        osc.frequency.exponentialRampToValueAtTime(440, t + 0.25);
+        gain.gain.setValueAtTime(1.5 * this.volume, t);
+        gain.gain.exponentialRampToValueAtTime(0.001, t + 0.3);
+        osc.connect(gain);
+        gain.connect(this.masterGain);
+        osc.start(t);
+        osc.stop(t + 0.3);
+      } else {
+        osc.frequency.setValueAtTime(520, t);
+        gain.gain.setValueAtTime(0.9 * this.volume, t);
+        gain.gain.exponentialRampToValueAtTime(0.001, t + 0.12);
+        osc.connect(gain);
+        gain.connect(this.masterGain);
+        osc.start(t);
+        osc.stop(t + 0.13);
+      }
+    } catch (e) {}
+  }
 }
 
 window.BadukAudio = BadukAudio;

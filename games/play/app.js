@@ -19,6 +19,9 @@
     humanColor: parseInt(localStorage.getItem('play_human_color') || '1', 10), // 1: BLACK, 2: WHITE
     colorChoice: localStorage.getItem('play_color_choice') || '1', // '1' | '2' | 'random'
     handicap: parseInt(localStorage.getItem('play_handicap') || '0', 10), // 0: 호선, 1: 정선, 2~9: 접바둑
+    timeLimit: localStorage.getItem('play_time_limit') || 'none',
+    freeStones: [],
+    isFreePlacementActive: false,
     currentTurn: BLACK,
     isThinking: false,
     isGameOver: false,
@@ -49,8 +52,8 @@
     beginner: { name: '삐약이', title: '🌱 입문 (18급)', avatar: '🐥', desc: '바둑의 첫걸음! 따내기와 단수를 배우는 귀여운 병아리 봇' },
     intermediate: { name: '바둑이', title: '🌿 초급 (12급)', avatar: '🐶', desc: '돌의 연결과 활로를 살피며 씩씩하게 두는 강아지 봇' },
     advanced: { name: '영리한 여우', title: '🌲 중급 (5급)', avatar: '🦊', desc: '호구와 집 모양의 급소를 노리는 지혜로운 여우 봇' },
-    dan: { name: '지혜로운 판다', title: '👑 고급 (아마 1단)', avatar: '🐼', desc: '정석과 포석을 척척 구사하는 아마 유단자 판다 봇' },
-    master: { name: '용맹한 호랑이', title: '🔥 최강 (아마 5단)', avatar: '🐯', desc: '빈틈없는 수읽기와 강력한 전투력을 지닌 맹호 봇' }
+    dan: { name: '지혜로운 판다', title: '⭐ 상급 (1~2급)', avatar: '🐼', desc: '두터운 정석과 대국적 안목을 지닌 상급자 판다 봇' },
+    master: { name: '용맹한 호랑이', title: '🔥 유단자 (기원 1단 / 타이젬 2~3단)', avatar: '🐯', desc: '강력한 전투력과 정확한 사활 수읽기를 펼치는 맹호 유단자 봇' }
   };
 
   /* 엔진 & 오디오 */
@@ -111,14 +114,31 @@
   function getHandicapPoints(size, count) {
     if (count < 2) return [];
     if (size === 19) {
+      var corners = [[3, 3], [15, 3], [3, 15], [15, 15]];
+      var sides = [[3, 9], [15, 9], [9, 3], [9, 15]];
+      var tengen = [9, 9];
+      var innerCorners = [[6, 6], [12, 6], [6, 12], [12, 12]];
+      var innerCross = [[9, 6], [9, 12], [6, 9], [12, 9]];
+      var outerKnights = [
+        [3, 6], [15, 6], [3, 12], [15, 12],
+        [6, 3], [12, 3], [6, 15], [12, 15]
+      ];
       if (count === 2) return [[15, 3], [3, 15]];
       if (count === 3) return [[15, 3], [3, 15], [15, 15]];
-      if (count === 4) return [[3, 3], [15, 3], [3, 15], [15, 15]];
-      if (count === 5) return [[3, 3], [15, 3], [3, 15], [15, 15], [9, 9]];
-      if (count === 6) return [[3, 3], [15, 3], [3, 15], [15, 15], [3, 9], [15, 9]];
-      if (count === 7) return [[3, 3], [15, 3], [3, 15], [15, 15], [3, 9], [15, 9], [9, 9]];
-      if (count === 8) return [[3, 3], [15, 3], [3, 15], [15, 15], [3, 9], [15, 9], [9, 3], [9, 15]];
-      if (count >= 9) return [[3, 3], [15, 3], [3, 15], [15, 15], [3, 9], [15, 9], [9, 3], [9, 15], [9, 9]];
+      if (count === 4) return corners;
+      if (count === 5) return corners.concat([tengen]);
+      if (count === 6) return corners.concat([[3, 9], [15, 9]]);
+      if (count === 7) return corners.concat([[3, 9], [15, 9], tengen]);
+      if (count === 8) return corners.concat(sides);
+      if (count === 9) return corners.concat(sides, [tengen]);
+      if (count === 10) return corners.concat(sides, [tengen, [9, 6]]);
+      if (count === 12) return corners.concat(sides, innerCorners);
+      if (count === 13) return corners.concat(sides, innerCorners, [tengen]);
+      if (count === 16) return corners.concat(sides, innerCorners, innerCross);
+      if (count === 17) return corners.concat(sides, innerCorners, innerCross, [tengen]);
+      if (count === 25) return corners.concat(sides, innerCorners, innerCross, outerKnights, [tengen]);
+      var allOrdered = corners.concat(sides, [tengen], innerCorners, innerCross, outerKnights);
+      return allOrdered.slice(0, count);
     } else if (size === 13) {
       if (count === 2) return [[9, 3], [3, 9]];
       if (count === 3) return [[9, 3], [3, 9], [9, 9]];
@@ -579,9 +599,231 @@
     }
   }
 
+
+  /* ---------- ⏱️ 제한 시간 & 초읽기 시계 엔진 ---------- */
+  var TIMER_CONFIGS = {
+    'none': null,
+    '10m30s': { mainSeconds: 600, byoSeconds: 30, byoPeriods: 3, label: '10분 + 30초 3회' },
+    '10m_30s': { mainSeconds: 600, byoSeconds: 30, byoPeriods: 3, label: '10분 + 30초 3회' },
+    '20m30s': { mainSeconds: 1200, byoSeconds: 30, byoPeriods: 3, label: '20분 + 30초 3회' },
+    '20m_30s': { mainSeconds: 1200, byoSeconds: 30, byoPeriods: 3, label: '20분 + 30초 3회' },
+    '30m40s': { mainSeconds: 1800, byoSeconds: 40, byoPeriods: 3, label: '30분 + 40초 3회' },
+    '30m_40s': { mainSeconds: 1800, byoSeconds: 40, byoPeriods: 3, label: '30분 + 40초 3회' },
+    '5m20s': { mainSeconds: 300, byoSeconds: 20, byoPeriods: 3, label: '5분 + 20초 3회' },
+    '5m_20s': { mainSeconds: 300, byoSeconds: 20, byoPeriods: 3, label: '5분 + 20초 3회' },
+    '1m10s': { mainSeconds: 60, byoSeconds: 10, byoPeriods: 3, label: '1분 + 10초 3회' },
+    '1m_10s': { mainSeconds: 60, byoSeconds: 10, byoPeriods: 3, label: '1분 + 10초 3회' }
+  };
+
+  var timerData = {
+    active: false,
+    intervalId: null,
+    config: null,
+    black: { main: 0, byo: 0, periods: 0, inByo: false },
+    white: { main: 0, byo: 0, periods: 0, inByo: false }
+  };
+
+  function formatTimerDigits(sec) {
+    var m = Math.floor(sec / 60);
+    var s = sec % 60;
+    return (m < 10 ? '0' : '') + m + ':' + (s < 10 ? '0' : '') + s;
+  }
+
+  function updateTimerUI() {
+    var timerBar = document.getElementById('matchTimerBar');
+    if (!timerBar) return;
+    if (!timerData.active || !timerData.config) {
+      timerBar.hidden = true;
+      return;
+    }
+    timerBar.hidden = false;
+
+    var bCard = document.getElementById('blackTimerCard');
+    var wCard = document.getElementById('whiteTimerCard');
+    var bDigits = document.getElementById('timerBlackTime');
+    var wDigits = document.getElementById('timerWhiteTime');
+    var bByo = document.getElementById('timerBlackByo');
+    var wByo = document.getElementById('timerWhiteByo');
+    var turnText = document.getElementById('timerTurnText');
+
+    if (timerData.black.inByo) {
+      if (bDigits) bDigits.textContent = formatTimerDigits(timerData.black.byo);
+      if (bByo) bByo.textContent = '초읽기 ' + timerData.black.byo + '초 (' + timerData.black.periods + '회)';
+      if (bCard) {
+        bCard.classList.add('in-byo');
+        bCard.classList.toggle('urgent', timerData.black.byo <= 5 && state.currentTurn === BLACK);
+      }
+    } else {
+      if (bDigits) bDigits.textContent = formatTimerDigits(timerData.black.main);
+      if (bByo) bByo.textContent = '초읽기 ' + timerData.config.byoSeconds + '초 (' + timerData.config.byoPeriods + '회)';
+      if (bCard) bCard.classList.remove('in-byo', 'urgent');
+    }
+
+    if (timerData.white.inByo) {
+      if (wDigits) wDigits.textContent = formatTimerDigits(timerData.white.byo);
+      if (wByo) wByo.textContent = '초읽기 ' + timerData.white.byo + '초 (' + timerData.white.periods + '회)';
+      if (wCard) {
+        wCard.classList.add('in-byo');
+        wCard.classList.toggle('urgent', timerData.white.byo <= 5 && state.currentTurn === WHITE);
+      }
+    } else {
+      if (wDigits) wDigits.textContent = formatTimerDigits(timerData.white.main);
+      if (wByo) wByo.textContent = '초읽기 ' + timerData.config.byoSeconds + '초 (' + timerData.config.byoPeriods + '회)';
+      if (wCard) wCard.classList.remove('in-byo', 'urgent');
+    }
+
+    var isBlackTurn = (state.currentTurn === BLACK);
+    if (bCard) bCard.classList.toggle('active-turn', isBlackTurn);
+    if (wCard) wCard.classList.toggle('active-turn', !isBlackTurn);
+
+    if (turnText) {
+      var botName = (state.mode === 'ai') ? BOTS[state.difficulty].name : (isBlackTurn ? '흑' : '백');
+      turnText.textContent = isBlackTurn ? '⚫ 흑의 시간' : ('⚪ ' + botName + '의 시간');
+    }
+  }
+
+  function startTimerInterval() {
+    clearInterval(timerData.intervalId);
+    if (!timerData.active || state.isGameOver || state.isFreePlacementActive) return;
+    timerData.intervalId = setInterval(onTimerTick, 1000);
+  }
+
+  function pauseTimerInterval() {
+    clearInterval(timerData.intervalId);
+    timerData.intervalId = null;
+  }
+
+  function onTimerTick() {
+    if (!timerData.active || state.isGameOver || state.isFreePlacementActive) return;
+
+    var cur = (state.currentTurn === BLACK) ? timerData.black : timerData.white;
+    if (cur.main > 0) {
+      cur.main--;
+      if (cur.main === 0) {
+        cur.inByo = true;
+        cur.byo = timerData.config.byoSeconds;
+        toast((state.currentTurn === BLACK ? '흑' : '백') + ' 기본 시간 종료! 초읽기 시작.');
+      }
+    } else if (cur.inByo) {
+      cur.byo--;
+      if (cur.byo <= 5 && cur.byo > 0) {
+        audio.playCountdownBeep(false);
+      }
+      if (cur.byo <= 0) {
+        cur.periods--;
+        if (cur.periods > 0) {
+          audio.playCountdownBeep(true);
+          toast((state.currentTurn === BLACK ? '흑' : '백') + ' 초읽기 1회 소진! (남은 초읽기: ' + cur.periods + '회)');
+          cur.byo = timerData.config.byoSeconds;
+        } else {
+          audio.playCountdownBeep(true);
+          handleTimeoutGameOver(state.currentTurn);
+          return;
+        }
+      }
+    }
+    updateTimerUI();
+  }
+
+  function onPlayerMovedTimer(color) {
+    if (!timerData.active || !timerData.config) return;
+    var moved = (color === BLACK) ? timerData.black : timerData.white;
+    if (moved.inByo) {
+      moved.byo = timerData.config.byoSeconds;
+    }
+    updateTimerUI();
+  }
+
+  function handleTimeoutGameOver(loserColor) {
+    pauseTimerInterval();
+    state.isGameOver = true;
+    var winnerColor = (loserColor === BLACK) ? WHITE : BLACK;
+    var loserName = (loserColor === BLACK) ? '흑' : '백';
+    var winnerName = (winnerColor === BLACK) ? '흑' : '백';
+    var isUserWin = (state.mode === 'ai') ? (state.humanColor === winnerColor) : true;
+
+    var title = document.getElementById('resultTitle');
+    var desc = document.getElementById('resultDesc');
+    var statsTable = document.getElementById('resultStatsTable');
+
+    if (title) {
+      if (state.mode === 'ai') {
+        title.textContent = isUserWin ? '🎉 승리! (AI 시간패)' : '⏰ 시간패 (제한 시간 초과)';
+      } else {
+        title.textContent = '⏰ ' + winnerName + ' 시간승 (' + loserName + ' 시간초과)!';
+      }
+    }
+    if (desc) {
+      desc.textContent = loserName + '의 제한 시간 및 초읽기가 모두 소진되어 ' + winnerName + '의 시간승으로 대국이 종료되었습니다.';
+    }
+    if (statsTable) {
+      statsTable.innerHTML = `
+        <div class="result-stat-row"><span>진행된 총 수수</span><span>${engine.moves.length}수</span></div>
+        <div class="result-stat-row"><span>따낸 돌 (흑)</span><span>${engine.blackCaptures}개</span></div>
+        <div class="result-stat-row"><span>따낸 돌 (백)</span><span>${engine.whiteCaptures}개</span></div>
+        <div class="result-stat-row"><span>승패 결과</span><span>${winnerName} 시간승</span></div>
+      `;
+    }
+
+    if (resultModal) {
+      resultModal.removeAttribute('hidden');
+      resultModal.style.display = 'flex';
+    }
+    toast('⏰ ' + loserName + ' 시간초과! ' + winnerName + ' 시간승!');
+    updateStatus();
+    updateTimerUI();
+  }
+
+  function initMatchTimer(timeKey) {
+    pauseTimerInterval();
+    if (!timeKey || timeKey === 'none' || !TIMER_CONFIGS[timeKey]) {
+      timerData.active = false;
+      timerData.config = null;
+      updateTimerUI();
+      return;
+    }
+
+    var cfg = TIMER_CONFIGS[timeKey];
+    timerData.active = true;
+    timerData.config = cfg;
+    timerData.black = { main: cfg.mainSeconds, byo: cfg.byoSeconds, periods: cfg.byoPeriods, inByo: false };
+    timerData.white = { main: cfg.mainSeconds, byo: cfg.byoSeconds, periods: cfg.byoPeriods, inByo: false };
+
+    var bName = document.getElementById('timerBlackName');
+    var wName = document.getElementById('timerWhiteName');
+    if (state.mode === 'ai') {
+      if (bName) bName.textContent = (state.humanColor === BLACK) ? '나 (흑)' : BOTS[state.difficulty].name;
+      if (wName) wName.textContent = (state.humanColor === WHITE) ? '나 (백)' : BOTS[state.difficulty].name;
+    } else {
+      if (bName) bName.textContent = '흑';
+      if (wName) wName.textContent = '백';
+    }
+
+    updateTimerUI();
+    if (!state.isFreePlacementActive && !state.isGameOver) {
+      startTimerInterval();
+    }
+  }
+
   /* ---------- 인간 착수 처리 ---------- */
   function handleHumanMove(c, r) {
     if (state.isGameOver || state.isThinking) return;
+
+    // 🎨 프리 접바둑 자유 배치 모드일 때
+    if (state.isFreePlacementActive) {
+      if (engine.board[r][c] === BLACK) {
+        engine.board[r][c] = 0;
+        state.freeStones = state.freeStones.filter(function (pt) { return !(pt.x === c && pt.y === r); });
+      } else {
+        engine.board[r][c] = BLACK;
+        state.freeStones.push({ x: c, y: r });
+      }
+      audio.playPlaceSound(BLACK);
+      var cntEl = document.getElementById('freePlacedCount');
+      if (cntEl) cntEl.textContent = state.freeStones.length;
+      drawBoard();
+      return;
+    }
 
     if (state.mode === 'ai' && state.currentTurn !== state.humanColor) {
       toast('AI가 생각 중입니다. 잠시만 기다려 주세요.');
@@ -608,8 +850,10 @@
     }
 
     state.lastMove = { x: c, y: r };
+    var movedPlayer = state.currentTurn;
     state.currentTurn = (state.currentTurn === BLACK) ? WHITE : BLACK;
     state.showingTerritory = false;
+    onPlayerMovedTimer(movedPlayer);
 
     drawBoard();
     updateStatus();
@@ -664,6 +908,7 @@
 
       state.lastMove = { x: move.x, y: move.y };
       state.currentTurn = (state.currentTurn === BLACK) ? WHITE : BLACK;
+      onPlayerMovedTimer(aiColor);
 
       drawBoard();
       updateStatus();
@@ -684,12 +929,14 @@
     }
 
     state.currentTurn = (aiColor === BLACK) ? WHITE : BLACK;
+    onPlayerMovedTimer(aiColor);
     drawBoard();
     updateStatus();
   }
 
   /* ---------- 양쪽 연속 패스로 인한 대국 종료 및 계가 ---------- */
   function handleDoublePassGameOver() {
+    pauseTimerInterval();
     state.isGameOver = true;
     toast('양 대국자가 연속으로 패스하여 대국이 종료되었습니다!');
     doCountTerritory(true);
@@ -697,6 +944,7 @@
 
   /* ---------- 계가(집 계산) 실행 ---------- */
   function doCountTerritory(fromPass) {
+    pauseTimerInterval();
     var score = engine.calculateScore(engine.komi !== undefined ? engine.komi : 6.5);
     engine.lastScore = score;
     state.showingTerritory = true;
@@ -759,7 +1007,9 @@
       return;
     }
 
+    var passCol = state.currentTurn;
     state.currentTurn = (state.currentTurn === BLACK) ? WHITE : BLACK;
+    onPlayerMovedTimer(passCol);
     drawBoard();
     updateStatus();
 
@@ -807,6 +1057,7 @@
 
     if (!confirm('정말 기권하시겠습니까?')) return;
 
+    pauseTimerInterval();
     state.isGameOver = true;
     var botName = state.mode === 'ai' ? BOTS[state.difficulty].name : '상대';
     toast('기권하여 대국이 종료되었습니다.');
@@ -831,6 +1082,7 @@
 
   /* ---------- 새 대국 시작 (초기화) ---------- */
   function startNewGame(customOpts) {
+    var freePlacementMode = false;
     if (customOpts) {
       if (customOpts.mode) { state.mode = customOpts.mode; localStorage.setItem('play_mode', customOpts.mode); }
       if (customOpts.difficulty) { state.difficulty = customOpts.difficulty; localStorage.setItem('play_ai_difficulty', customOpts.difficulty); }
@@ -845,9 +1097,22 @@
         }
         localStorage.setItem('play_human_color', state.humanColor);
       }
+      if (customOpts.timeLimit !== undefined) {
+        state.timeLimit = customOpts.timeLimit;
+        localStorage.setItem('play_time_limit', customOpts.timeLimit);
+      }
       if (customOpts.handicap !== undefined) {
-        state.handicap = parseInt(customOpts.handicap, 10);
-        localStorage.setItem('play_handicap', state.handicap);
+        if (customOpts.handicap === 'free') {
+          if (customOpts.freeMode === 'custom') {
+            freePlacementMode = true;
+            state.handicap = 'free';
+          } else {
+            state.handicap = customOpts.freeCount || 10;
+          }
+        } else {
+          state.handicap = parseInt(customOpts.handicap, 10);
+        }
+        localStorage.setItem('play_handicap', String(state.handicap));
       }
     }
 
@@ -855,6 +1120,8 @@
     state.isThinking = false;
     state.showingTerritory = false;
     state.lastMove = null;
+    state.freeStones = [];
+    state.isFreePlacementActive = freePlacementMode;
 
     if (resultModal) { resultModal.setAttribute('hidden', ''); resultModal.style.display = 'none'; }
     if (aiThinkingBadge) aiThinkingBadge.hidden = true;
@@ -863,11 +1130,36 @@
     ai = new window.BadukAI(state.boardSize);
     ai.setSize(state.boardSize);
 
-    // 접바둑 화점 흑돌 사전 배치
-    var hPoints = getHandicapPoints(state.boardSize, state.handicap);
+    var freeBanner = document.getElementById('freePlacementBanner');
+
+    if (freePlacementMode) {
+      // 🎨 직접 판에 놓기 모드 활성화
+      if (freeBanner) freeBanner.hidden = false;
+      var cntEl = document.getElementById('freePlacedCount');
+      if (cntEl) cntEl.textContent = '0';
+
+      state.currentTurn = BLACK;
+      engine.currentTurn = BLACK;
+      engine.komi = 0.5;
+
+      layoutBoard();
+      updateStatus();
+      initMatchTimer('none'); // 배치 중에는 시계 정지
+      toast('🎨 바둑판을 클릭해 흑돌을 자유롭게 배치한 후 [배치 완료]를 누르세요.');
+      return;
+    }
+
+    if (freeBanner) freeBanner.hidden = true;
+
+    // 접바둑 화점 바둑돌 초기 배치
+    var hCount = (typeof state.handicap === 'number') ? state.handicap : 0;
+    var hPoints = getHandicapPoints(state.boardSize, hCount);
     if (hPoints.length > 0) {
       hPoints.forEach(function (pt) {
         engine.board[pt[1]][pt[0]] = BLACK;
+      });
+      engine.initialStones = hPoints.map(function (pt) {
+        return { x: pt[0], y: pt[1], color: BLACK };
       });
       // 접바둑의 경우 백이 첫 착수
       state.currentTurn = WHITE;
@@ -887,12 +1179,13 @@
 
     layoutBoard();
     updateStatus();
+    initMatchTimer(state.timeLimit);
 
-    var ruleName = state.handicap >= 2 ? (state.handicap + '점 접바둑') : (state.handicap === 1 ? '정선(덤 0.5집)' : '호선(덤 6.5집)');
+    var ruleName = hCount >= 2 ? (hCount + '점 접바둑') : (state.handicap === 1 ? '정선(덤 0.5집)' : '호선(덤 6.5집)');
     var oppName = state.mode === 'ai' ? (BOTS[state.difficulty].avatar + ' ' + BOTS[state.difficulty].name) : '👥 2인 대국';
     toast('새 대국 시작! (' + oppName + ' · ' + state.boardSize + '줄 ' + ruleName + ')');
 
-    // AI가 먼저 둘 차례이면 AI 착수
+    // AI가 백일 때 접바둑이면 AI 착수
     if (state.mode === 'ai' && state.currentTurn !== state.humanColor) {
       triggerAiMove();
     }
@@ -904,7 +1197,10 @@
     difficulty: state.difficulty,
     boardSize: state.boardSize,
     colorChoice: state.colorChoice,
-    handicap: state.handicap
+    handicap: state.handicap,
+    freeMode: 'preset',
+    freeCount: 10,
+    timeLimit: state.timeLimit
   };
 
   function syncMatchModalUI() {
@@ -913,6 +1209,7 @@
     pendingMatchOpts.boardSize = state.boardSize;
     pendingMatchOpts.colorChoice = state.colorChoice;
     pendingMatchOpts.handicap = state.handicap;
+    pendingMatchOpts.timeLimit = state.timeLimit;
 
     // 모드
     document.querySelectorAll('#matchModeChips .match-chip').forEach(function (btn) {
@@ -936,9 +1233,25 @@
       btn.classList.toggle('active', btn.dataset.color === String(pendingMatchOpts.colorChoice));
     });
 
-    // 접바둑
+    // 치수 / 접바둑
+    var isFreeActive = (pendingMatchOpts.handicap === 'free' || (typeof pendingMatchOpts.handicap === 'number' && pendingMatchOpts.handicap > 9));
     document.querySelectorAll('#matchHandicapChips .match-chip').forEach(function (btn) {
-      btn.classList.toggle('active', parseInt(btn.dataset.handicap, 10) === pendingMatchOpts.handicap);
+      if (btn.dataset.handicap === 'free') {
+        btn.classList.toggle('active', isFreeActive);
+      } else {
+        btn.classList.toggle('active', !isFreeActive && parseInt(btn.dataset.handicap, 10) === pendingMatchOpts.handicap);
+      }
+    });
+
+    // 프리 접바둑 세부 패널
+    var freeSub = document.getElementById('freeHandicapSub');
+    if (freeSub) {
+      freeSub.style.display = isFreeActive ? 'block' : 'none';
+    }
+
+    // 제한 시간 칩
+    document.querySelectorAll('#matchTimeChips .match-chip').forEach(function (btn) {
+      btn.classList.toggle('active', btn.dataset.time === pendingMatchOpts.timeLimit);
     });
   }
 
@@ -1015,9 +1328,131 @@
       btn.addEventListener('click', function () {
         document.querySelectorAll('#matchHandicapChips .match-chip').forEach(function (b) { b.classList.remove('active'); });
         btn.classList.add('active');
-        pendingMatchOpts.handicap = parseInt(btn.dataset.handicap, 10);
+        var freeSub = document.getElementById('freeHandicapSub');
+        if (btn.dataset.handicap === 'free') {
+          pendingMatchOpts.handicap = 'free';
+          if (freeSub) freeSub.style.display = 'block';
+        } else {
+          pendingMatchOpts.handicap = parseInt(btn.dataset.handicap, 10);
+          if (freeSub) freeSub.style.display = 'none';
+        }
       });
     });
+
+    // 프리 접바둑 프리셋 선택
+    document.querySelectorAll('#freePresetChips .free-preset-chip').forEach(function (chip) {
+      chip.addEventListener('click', function () {
+        document.querySelectorAll('#freePresetChips .free-preset-chip').forEach(function (c) { c.classList.remove('active'); });
+        chip.classList.add('active');
+        var preset = chip.dataset.freePreset || chip.dataset.count;
+        if (preset === 'custom') {
+          pendingMatchOpts.freeMode = 'custom';
+        } else {
+          pendingMatchOpts.freeMode = 'preset';
+          var count = parseInt(preset, 10);
+          pendingMatchOpts.freeCount = count;
+          var inp = document.getElementById('inputFreeCount');
+          if (inp) inp.value = count;
+        }
+      });
+    });
+
+    // 프리 접바둑 수량 증감 버튼
+    var btnDec = document.getElementById('btnDecFreeCount');
+    var btnInc = document.getElementById('btnIncFreeCount');
+    var inputFree = document.getElementById('inputFreeCount');
+
+    if (btnDec && inputFree) {
+      btnDec.addEventListener('click', function () {
+        var val = Math.max(2, (parseInt(inputFree.value, 10) || 10) - 1);
+        inputFree.value = val;
+        pendingMatchOpts.freeMode = 'preset';
+        pendingMatchOpts.freeCount = val;
+        document.querySelectorAll('#freePresetChips .free-preset-chip').forEach(function (c) {
+          c.classList.toggle('active', (c.dataset.freePreset === String(val) || c.dataset.count === String(val)));
+        });
+      });
+    }
+
+    if (btnInc && inputFree) {
+      btnInc.addEventListener('click', function () {
+        var val = Math.min(25, (parseInt(inputFree.value, 10) || 10) + 1);
+        inputFree.value = val;
+        pendingMatchOpts.freeMode = 'preset';
+        pendingMatchOpts.freeCount = val;
+        document.querySelectorAll('#freePresetChips .free-preset-chip').forEach(function (c) {
+          c.classList.toggle('active', (c.dataset.freePreset === String(val) || c.dataset.count === String(val)));
+        });
+      });
+    }
+
+    if (inputFree) {
+      inputFree.addEventListener('change', function () {
+        var val = Math.max(2, Math.min(25, parseInt(inputFree.value, 10) || 10));
+        inputFree.value = val;
+        pendingMatchOpts.freeMode = 'preset';
+        pendingMatchOpts.freeCount = val;
+      });
+    }
+
+    // 제한 시간 선택
+    document.querySelectorAll('#matchTimeChips .match-chip').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        document.querySelectorAll('#matchTimeChips .match-chip').forEach(function (b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        pendingMatchOpts.timeLimit = btn.dataset.time;
+      });
+    });
+
+    // 프리 접바둑 판 위 배치 완료 버튼
+    var btnFreeDone = document.getElementById('btnFreePlacementDone');
+    if (btnFreeDone) {
+      btnFreeDone.addEventListener('click', function () {
+        if (!state.isFreePlacementActive) return;
+        if (state.freeStones.length === 0) {
+          toast('돌을 1개 이상 바둑판에 놓아주세요.');
+          return;
+        }
+
+        state.isFreePlacementActive = false;
+        var banner = document.getElementById('freePlacementBanner');
+        if (banner) banner.hidden = true;
+
+        engine.initialStones = state.freeStones.map(function (pt) {
+          return { x: pt.x, y: pt.y, color: BLACK };
+        });
+        state.handicap = state.freeStones.length;
+        state.currentTurn = WHITE;
+        engine.currentTurn = WHITE;
+        engine.komi = 0.5;
+
+        toast('프리 접바둑 (' + state.freeStones.length + '점) 배치가 완료되었습니다! 대국을 시작합니다.');
+        updateStatus();
+        drawBoard();
+
+        initMatchTimer(state.timeLimit);
+
+        if (state.mode === 'ai' && state.currentTurn !== state.humanColor) {
+          triggerAiMove();
+        }
+      });
+    }
+
+    // 프리 접바둑 판 위 배치 전체 지우기 버튼
+    var btnFreeReset = document.getElementById('btnFreePlacementReset');
+    if (btnFreeReset) {
+      btnFreeReset.addEventListener('click', function () {
+        if (!state.isFreePlacementActive) return;
+        state.freeStones.forEach(function (pt) {
+          engine.board[pt.y][pt.x] = 0;
+        });
+        state.freeStones = [];
+        var cntEl = document.getElementById('freePlacedCount');
+        if (cntEl) cntEl.textContent = '0';
+        drawBoard();
+        toast('배치한 바둑돌을 모두 지웠습니다.');
+      });
+    }
 
     // 대국 시작 버튼
     var btnStart = document.getElementById('btnStartCustomMatch');
@@ -1332,6 +1767,7 @@
     updateSettingsUI();
     layoutBoard();
     updateStatus();
+    initMatchTimer(state.timeLimit);
 
     // 백을 선택했을 경우 AI가 먼저 착수
     if (state.mode === 'ai' && state.humanColor === WHITE) {
