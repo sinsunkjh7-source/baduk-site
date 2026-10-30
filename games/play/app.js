@@ -49,18 +49,25 @@
   woodGrainImg.src = 'images/board_wood_grain.png';
 
   function revealBoard() {
-    if (boardCanvas && !boardCanvas.classList.contains('is-ready')) {
-      boardCanvas.classList.add('is-ready');
+    // 🌟 cellSize > 0 && dispW > 0 일 때만 (실제 보드 레이아웃 완료 후에만) 노출!
+    // 300x150 미초기화 캔버스 및 그림자 박스가 단 1프레임도 노출되지 않도록 엄격 차단
+    if (metrics.cellSize > 0 && metrics.dispW > 0) {
+      if (boardCanvas && !boardCanvas.classList.contains('is-ready')) {
+        boardCanvas.classList.add('is-ready');
+      }
+      var cStack = document.getElementById('canvasStack');
+      if (cStack && !cStack.classList.contains('is-ready')) {
+        cStack.classList.add('is-ready');
+      }
     }
   }
 
   woodGrainImg.onload = function () {
     if (metrics.cellSize > 0) {
       drawBoard();
+      revealBoard();
     }
-    revealBoard();
   };
-  setTimeout(revealBoard, 400);
 
   var BOTS = {
     beginner: { name: '삐약이', title: '🌱 입문 (18급)', avatar: '🐥', img: '../../images/characters/char_pup_think.png', desc: '바둑의 첫걸음! 따내기와 단수를 배우는 귀여운 병아리 봇' },

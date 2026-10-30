@@ -282,17 +282,29 @@ body {
 .canvas-stack {
   position: relative;
   display: inline-block;
-  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.28);
   border-radius: 6px;
   background: transparent;
+  opacity: 0;
+  transition: opacity 0.15s ease-out;
+}
+.canvas-stack.is-ready {
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.28);
+  opacity: 1;
 }
 
 #boardCanvas {
   display: block;
   border-radius: 6px;
+  opacity: 0;
+  transition: opacity 0.12s ease-out;
+}
+#boardCanvas.is-ready {
+  opacity: 1;
 }
 
 #drawingCanvas {
+  opacity: 0;
+  transition: opacity 0.12s ease-out;
   position: absolute;
   top: 0;
   left: 0;
@@ -306,6 +318,9 @@ body {
 }
 #drawingCanvas.mode-eraser {
   cursor: cell;
+}
+#drawingCanvas.is-ready {
+  opacity: 1;
 }
 
 /* ---------- 하단 바둑 툴바 ---------- */

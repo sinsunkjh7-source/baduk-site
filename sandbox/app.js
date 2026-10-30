@@ -67,7 +67,28 @@
   /* 🌲 천연 비자목(Kaya) 실물 나뭇결 텍스처 프리로딩 */
   var woodGrainImg = new Image();
   woodGrainImg.src = 'images/board_wood_grain.png';
-  woodGrainImg.onload = function () { drawBoard(); };
+
+  function revealSandboxBoard() {
+    if (metrics.cellSize > 0 && metrics.dispW > 0) {
+      if (boardCanvas && !boardCanvas.classList.contains('is-ready')) {
+        boardCanvas.classList.add('is-ready');
+      }
+      if (drawingCanvas && !drawingCanvas.classList.contains('is-ready')) {
+        drawingCanvas.classList.add('is-ready');
+      }
+      var cStack = document.getElementById('canvasStack');
+      if (cStack && !cStack.classList.contains('is-ready')) {
+        cStack.classList.add('is-ready');
+      }
+    }
+  }
+
+  woodGrainImg.onload = function () {
+    if (metrics.cellSize > 0) {
+      drawBoard();
+      revealSandboxBoard();
+    }
+  };
 
   /* 3D 돌 스프라이트 이미지 */
   var stoneSprites = {};
@@ -321,6 +342,11 @@
         bCtx.stroke();
         bCtx.restore();
       }
+    }
+
+    // 🌟 무늬목 텍스처 렌더링 완료 및 레이아웃 완료 시 노출
+    if (state.boardSkin === 'sky' || (woodGrainImg && woodGrainImg.complete && woodGrainImg.naturalWidth > 0)) {
+      revealSandboxBoard();
     }
   }
 

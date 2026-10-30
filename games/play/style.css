@@ -238,10 +238,15 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.28);
   border-radius: 6px;
   background: transparent;
   line-height: 0;
+  opacity: 0;
+  transition: opacity 0.15s ease-out;
+}
+.canvas-stack.is-ready {
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.28);
+  opacity: 1;
 }
 
 #boardCanvas {

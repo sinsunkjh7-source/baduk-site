@@ -92,7 +92,9 @@
   woodGrainImg.src = 'images/board_wood_grain.png';
 
   function revealTeacherBoard() {
-    if (canvas && !canvas.classList.contains('is-ready')) {
+    // 🌟 cellSize > 0 && displayW > 0 일 때만 (문제 레이아웃 계산 완료 후에만) 노출!
+    // 300x150 기본 캔버스가 단 1프레임도 번쩍이지 않도록 완벽 차단
+    if (metrics.cellSize > 0 && metrics.displayW > 0 && canvas && !canvas.classList.contains('is-ready')) {
       canvas.classList.add('is-ready');
     }
   }
@@ -100,10 +102,9 @@
   woodGrainImg.onload = function () {
     if (state.authenticated && metrics.cellSize > 0 && document.getElementById('teachingBoard')) {
       drawBoard();
+      revealTeacherBoard();
     }
-    revealTeacherBoard();
   };
-  setTimeout(revealTeacherBoard, 400);
 
   var pinGate = document.getElementById('pinGate');
   var pinInput = document.getElementById('pinInput');
