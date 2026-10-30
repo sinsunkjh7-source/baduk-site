@@ -597,6 +597,58 @@
       var extra = ' [' + oppText + (myStoneText ? ' · ' + myStoneText : '') + ' · ' + state.boardSize + '줄 ' + ruleText + ']';
       moveInfoBadge.textContent = turnText + ' | ' + moveCount + '수 | 따낸돌 흑 ' + bCap + ' : 백 ' + wCap + extra;
     }
+
+    // 🌟 아레나 좌우 대국 정보 패널 실시간 동기화 🌟
+    var whiteCapEl = document.getElementById('arenaWhiteCaptures');
+    if (whiteCapEl) whiteCapEl.textContent = wCap + '개';
+
+    var blackCapEl = document.getElementById('arenaBlackCaptures');
+    if (blackCapEl) blackCapEl.textContent = bCap + '개';
+
+    var moveCountEl = document.getElementById('arenaMoveCount');
+    if (moveCountEl) moveCountEl.textContent = moveCount + '수';
+
+    var ruleBadge = document.getElementById('arenaRuleBadge');
+    if (ruleBadge) {
+      ruleBadge.textContent = state.boardSize + '줄 ' + (state.handicap >= 2 ? (state.handicap + '점 접바둑') : (state.handicap === 1 ? '정선 (덤 0.5집)' : '호선 (덤 6.5집)'));
+    }
+
+    var whiteRankBadge = document.getElementById('arenaWhiteRankBadge');
+    if (whiteRankBadge && BOTS[state.difficulty]) {
+      whiteRankBadge.textContent = BOTS[state.difficulty].title;
+    }
+
+    var whiteNameEl = document.getElementById('timerWhiteName');
+    if (whiteNameEl && BOTS[state.difficulty]) {
+      whiteNameEl.textContent = (state.mode === 'ai') ? BOTS[state.difficulty].name : '백';
+    }
+
+    var whiteStatus = document.getElementById('arenaWhiteStatus');
+    var blackStatus = document.getElementById('arenaBlackStatus');
+    if (state.isGameOver) {
+      if (whiteStatus) { whiteStatus.textContent = '대국 종료'; whiteStatus.className = 'arena-turn-status'; }
+      if (blackStatus) { blackStatus.textContent = '대국 종료'; blackStatus.className = 'arena-turn-status'; }
+    } else {
+      var isBlackTurn = (state.currentTurn === BLACK);
+      if (blackStatus) {
+        blackStatus.textContent = isBlackTurn ? '⚫ 내 차례' : '상대 차례';
+        blackStatus.className = 'arena-turn-status' + (isBlackTurn ? ' my-turn' : '');
+      }
+      if (whiteStatus) {
+        if (state.mode === 'ai') {
+          if (state.isThinking) {
+            whiteStatus.textContent = '⏳ 수읽기 생각 중...';
+            whiteStatus.className = 'arena-turn-status thinking';
+          } else {
+            whiteStatus.textContent = isBlackTurn ? '차례 대기 중' : '⚪ 백돌 착수 차례';
+            whiteStatus.className = 'arena-turn-status' + (!isBlackTurn ? ' my-turn' : '');
+          }
+        } else {
+          whiteStatus.textContent = !isBlackTurn ? '⚪ 백 차례' : '차례 대기 중';
+          whiteStatus.className = 'arena-turn-status' + (!isBlackTurn ? ' my-turn' : '');
+        }
+      }
+    }
   }
 
 
@@ -630,13 +682,29 @@
   }
 
   function updateTimerUI() {
-    var timerBar = document.getElementById('matchTimerBar');
-    if (!timerBar) return;
+    var bCard = document.getElementById('blackTimerCard');
+    var wCard = document.getElementById('whiteTimerCard');
+    var bDigits = document.getElementById('timerBlackTime');
+    var wDigits = document.getElementById('timerWhiteTime');
+    var bByo = document.getElementById('timerBlackByo');
+    var wByo = document.getElementById('timerWhiteByo');
+
     if (!timerData.active || !timerData.config) {
-      timerBar.hidden = true;
+      if (bDigits) bDigits.textContent = '무제한';
+      if (wDigits) wDigits.textContent = '무제한';
+      if (bByo) bByo.textContent = '시간 제한 없음';
+      if (wByo) wByo.textContent = '시간 제한 없음';
+      var isBlackTurnNoTimer = (state.currentTurn === BLACK);
+      if (bCard) {
+        bCard.classList.toggle('active-turn', isBlackTurnNoTimer);
+        bCard.classList.remove('in-byo', 'urgent');
+      }
+      if (wCard) {
+        wCard.classList.toggle('active-turn', !isBlackTurnNoTimer);
+        wCard.classList.remove('in-byo', 'urgent');
+      }
       return;
     }
-    timerBar.hidden = false;
 
     var bCard = document.getElementById('blackTimerCard');
     var wCard = document.getElementById('whiteTimerCard');
@@ -1190,6 +1258,7 @@
     layoutBoard();
     updateStatus();
     initMatchTimer(state.timeLimit);
+    initArenaAvatar();
 
     var ruleName = hCount >= 2 ? (hCount + '점 접바둑') : (state.handicap === 1 ? '정선(덤 0.5집)' : '호선(덤 6.5집)');
     var oppName = state.mode === 'ai' ? (BOTS[state.difficulty].avatar + ' ' + BOTS[state.difficulty].name) : '👥 2인 대국';
@@ -1750,6 +1819,38 @@
   }
 
   /* ---------- 초기화 및 실행 ---------- */
+
+  /* ---------- 🎭 아레나 캐릭터 교체 시스템 ---------- */
+  var ARENA_AVATARS = [
+    { name: '불테리어', src: '../alkkagi/bullterrier/01-idle.png' },
+    { name: '바둑로봇', src: '../alkkagi/robot/01-idle.png' },
+    { name: '바둑이', src: '../../images/characters/char_pup_think.png' },
+    { name: '고양이', src: '../../images/characters/char_cat_victory.png' },
+    { name: '호랑이', src: '../../images/characters/char_tiger_cheer.png' },
+    { name: '선비', src: '../../images/characters/mini_wrong_scholar.png' }
+  ];
+  var currentAvatarIdx = parseInt(localStorage.getItem('play_arena_avatar_idx') || '0', 10);
+  if (isNaN(currentAvatarIdx) || currentAvatarIdx < 0 || currentAvatarIdx >= ARENA_AVATARS.length) {
+    currentAvatarIdx = 0;
+  }
+
+  function initArenaAvatar() {
+    var blackImg = document.getElementById('arenaBlackImg');
+    if (blackImg) {
+      blackImg.src = ARENA_AVATARS[currentAvatarIdx].src;
+    }
+    var btnChange = document.getElementById('btnChangeChar');
+    if (btnChange) {
+      btnChange.addEventListener('click', function () {
+        currentAvatarIdx = (currentAvatarIdx + 1) % ARENA_AVATARS.length;
+        var chosen = ARENA_AVATARS[currentAvatarIdx];
+        if (blackImg) blackImg.src = chosen.src;
+        localStorage.setItem('play_arena_avatar_idx', currentAvatarIdx);
+        toast('흑돌 캐릭터가 ' + chosen.name + '(으)로 변경되었습니다!');
+      });
+    }
+  }
+
   function init() {
     // 초기 설정 반영
     if (playStage) {
@@ -1778,6 +1879,7 @@
     layoutBoard();
     updateStatus();
     initMatchTimer(state.timeLimit);
+    initArenaAvatar();
 
     // 백을 선택했을 경우 AI가 먼저 착수
     if (state.mode === 'ai' && state.humanColor === WHITE) {

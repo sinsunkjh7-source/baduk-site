@@ -16,89 +16,125 @@
 <div class="play-app" id="playApp">
 
   <!-- 🌟 중앙 메인 대국 스테이지 (놓아보기 캔버스 탑재) 🌟 -->
+    <!-- 🌟 바둑 대국 아레나 3열 레이아웃 🌟 -->
+  <!-- 👈 좌측 백돌 진영 패널 -->
+  <aside class="arena-side arena-left" id="arenaLeft">
+    <!-- 1. 좌측 상단 백 시계 -->
+    <div class="arena-timer-card white-timer-card" id="whiteTimerCard">
+      <div class="timer-player-info">
+        <span class="timer-stone">⚪</span>
+        <span class="timer-name" id="timerWhiteName">용맹한 호랑이</span>
+      </div>
+      <div class="timer-digits" id="timerWhiteTime">10:00</div>
+      <div class="timer-byo" id="timerWhiteByo">초읽기 30초 (3회)</div>
+    </div>
+
+    <!-- 2. 좌우 캐릭터: 백 캐릭터 -->
+    <div class="arena-char-box" id="arenaWhiteCharBox">
+      <div class="char-header-row">
+        <span class="char-stone-indicator">⚪ 백돌 진영</span>
+        <span class="char-badge-ai">AI 지능</span>
+      </div>
+      <div class="char-img-wrap">
+        <img src="../alkkagi/robot/01-idle.png" alt="백돌 캐릭터" id="arenaWhiteImg" class="arena-char-img">
+      </div>
+    </div>
+
+    <!-- 3. 그 아래 대국 정보: 백 정보 -->
+    <div class="arena-info-card" id="arenaWhiteInfo">
+      <div class="arena-player-badge" id="arenaWhiteRankBadge">🔥 유단자 (기원 1단/타이젬 2~3단)</div>
+      <div class="arena-stat-row">
+        <span>⚪ 백이 따낸 돌</span>
+        <strong id="arenaWhiteCaptures">0개</strong>
+      </div>
+      <div class="arena-turn-status" id="arenaWhiteStatus">차례 대기 중</div>
+    </div>
+  </aside>
+
+  <!-- 🌟 중앙 메인 대국 스테이지 (초대형 바둑판) 🌟 -->
   <main class="play-stage theme-green" id="playStage">
-    
-    <!-- 🌟 상단 대국 정보/시계 바 전용 독립 헤더 (바둑판을 절대 가리지 않음) 🌟 -->
-    <header class="play-stage-top-bar" id="playStageTopBar">
-      <!-- ⏱️ 제한 시간 & 초읽기 시계 바 (선택 시 활성화) -->
-      <div class="match-timer-bar" id="matchTimerBar" hidden>
-        <div class="timer-card black-timer" id="blackTimerCard">
-          <div class="timer-player-info">
-            <span class="timer-stone">⚫</span>
-            <span class="timer-name" id="timerBlackName">흑</span>
-          </div>
-          <div class="timer-digits" id="timerBlackTime">10:00</div>
-          <div class="timer-byo" id="timerBlackByo">초읽기 30초 (3회)</div>
-        </div>
-
-        <div class="timer-turn-pulse" id="timerTurnPulse">
-          <span class="pulse-dot"></span>
-          <span id="timerTurnText">⚫ 흑의 시간</span>
-        </div>
-
-        <div class="timer-card white-timer" id="whiteTimerCard">
-          <div class="timer-player-info">
-            <span class="timer-stone">⚪</span>
-            <span class="timer-name" id="timerWhiteName">백</span>
-          </div>
-          <div class="timer-digits" id="timerWhiteTime">10:00</div>
-          <div class="timer-byo" id="timerWhiteByo">초읽기 30초 (3회)</div>
-        </div>
+    <!-- 🎨 프리 접바둑 자유 배치 안내 배너 (플로팅) -->
+    <div class="free-placement-banner" id="freePlacementBanner" hidden>
+      <div class="banner-text">
+        <span class="banner-icon">🎨</span>
+        <span><strong>프리 접바둑 돌 놓기</strong>: 바둑판을 클릭해 흑돌을 배치하세요. (<strong id="freePlacedCount">0</strong>개)</span>
       </div>
-
-      <!-- 🎨 프리 접바둑 자유 배치 안내 배너 -->
-      <div class="free-placement-banner" id="freePlacementBanner" hidden>
-        <div class="banner-text">
-          <span class="banner-icon">🎨</span>
-          <span><strong>프리 접바둑 돌 놓기 모드</strong>: 바둑판 빈 곳을 클릭하여 흑돌을 자유롭게 배치하세요. (배치된 돌: <strong id="freePlacedCount">0</strong>개)</span>
-        </div>
-        <div class="banner-btns">
-          <button type="button" class="btn-banner-finish" id="btnFreePlacementDone">✅ 배치 완료 (대국 시작)</button>
-          <button type="button" class="btn-banner-clear" id="btnFreePlacementReset">🔄 전체 지우기</button>
-        </div>
+      <div class="banner-btns">
+        <button type="button" class="btn-banner-finish" id="btnFreePlacementDone">✅ 배치 완료</button>
+        <button type="button" class="btn-banner-clear" id="btnFreePlacementReset">🔄 전체 지우기</button>
       </div>
+    </div>
 
-      <!-- AI 생각 중 알림 배지 (시계 비활성화 시 독립 표시) -->
-      <div class="ai-thinking-badge" id="aiThinkingBadge" hidden>
-        <span class="thinking-spinner">⏳</span>
-        <span id="aiThinkingName">지혜로운 판다</span> 이(가) 생각 중입니다...
-      </div>
-    </header>
-
-    <!-- 바둑판 캔버스 컨테이너 -->
+    <!-- 바둑판 메인 컨테이너 (세로 100% 꽉 채움) -->
     <div class="board-container" id="boardContainer">
       <div class="canvas-stack" id="canvasStack">
         <canvas id="boardCanvas"></canvas>
       </div>
     </div>
 
-    <!-- 토스트 메시지 -->
+    <!-- 플로팅 토스트 -->
     <div class="play-toast" id="playToast" hidden></div>
   </main>
 
-  <!-- 🌟 하단 조작 툴바 🌟 -->
-  <footer class="play-toolbar" id="playToolbar">
-    <!-- 대국 수순 & 진행 정보 배지 -->
-    <div class="move-info-badge" id="moveInfoBadge">
-      ⚫ 내 차례 (흑) | 0수 | 따낸 돌 흑 0 : 백 0
+  <!-- 👉 우측 흑돌 진영 & 조작 패널 -->
+  <aside class="arena-side arena-right" id="arenaRight">
+    <!-- 1. 우측 상단 흑 시계 -->
+    <div class="arena-timer-card black-timer-card" id="blackTimerCard">
+      <div class="timer-player-info">
+        <span class="timer-stone">⚫</span>
+        <span class="timer-name" id="timerBlackName">나 (흑)</span>
+      </div>
+      <div class="timer-digits" id="timerBlackTime">10:00</div>
+      <div class="timer-byo" id="timerBlackByo">초읽기 30초 (3회)</div>
     </div>
 
-    <!-- 대국 액션 조작 -->
-    <div class="tool-group action-group">
-      <button type="button" class="tool-btn primary-btn" id="btnOpenMatchModal" title="새 대국 시작 및 AI 수준/접바둑 옵션 설정">⚔️ 새 대국 (옵션)</button>
-      <button type="button" class="tool-btn" id="btnUndo" title="한 수 무르기">↩️ 무르기</button>
-      <button type="button" class="tool-btn" id="btnPass" title="착수 넘기기 (한 수 쉬기)">⏭️ 패스</button>
-      <button type="button" class="tool-btn" id="btnCount" title="집 계산(계가) 및 승패 확인">🧮 계가하기</button>
-      <button type="button" class="tool-btn warn" id="btnResign" title="기권 (항복)">🏳️ 기권</button>
+    <!-- 2. 좌우 캐릭터: 흑 캐릭터 -->
+    <div class="arena-char-box" id="arenaBlackCharBox">
+      <div class="char-header-row">
+        <span class="char-stone-indicator">⚫ 흑돌 진영</span>
+        <button type="button" class="btn-char-change" id="btnChangeChar" title="캐릭터 교체">교체</button>
+      </div>
+      <div class="char-img-wrap">
+        <img src="../alkkagi/bullterrier/01-idle.png" alt="흑돌 캐릭터" id="arenaBlackImg" class="arena-char-img">
+      </div>
     </div>
 
-    <!-- 시각 보조 도구 (단수, 땀방울, 수순) -->
-    <div class="tool-group assist-group">
-      <button type="button" class="tool-btn active" id="btnToggleAtari" title="단수 맞은 돌 붉은 링 표시">🚨 단수</button>
-      <button type="button" class="tool-btn active" id="btnToggleSweat" title="단수 돌 3D 땀방울 연출">💦 땀방울</button>
-      <button type="button" class="tool-btn" id="btnToggleNumbers" title="착수 수순 번호 표시">🔢 수순</button>
+    <!-- 3. 그 아래 대국 정보: 흑/전체 정보 -->
+    <div class="arena-info-card" id="arenaBlackInfo">
+      <div class="arena-turn-status my-turn" id="arenaBlackStatus">내 차례</div>
+      <div class="arena-stat-row">
+        <span>⚫ 흑이 따낸 돌</span>
+        <strong id="arenaBlackCaptures">0개</strong>
+      </div>
+      <div class="arena-stat-row">
+        <span>총 수수</span>
+        <strong id="arenaMoveCount">0수</strong>
+      </div>
+      <div class="arena-rule-badge" id="arenaRuleBadge">19줄 호선 (덤 6.5집)</div>
     </div>
-  </footer>
+
+    <!-- 4. 하단 메뉴바 -->
+    <div class="arena-menu-bar" id="arenaMenuBar">
+      <button type="button" class="tool-btn primary-btn btn-new-game" id="btnOpenMatchModal" title="새 대국 설정">⚔️ 새 대국 (옵션)</button>
+      
+      <div class="menu-btn-row">
+        <button type="button" class="tool-btn" id="btnUndo" title="한 수 무르기">↩️ 무르기</button>
+        <button type="button" class="tool-btn" id="btnPass" title="착수 넘김">⏩ 패스</button>
+      </div>
+
+      <div class="menu-btn-row">
+        <button type="button" class="tool-btn" id="btnCount" title="집 계산(계가)">🧮 계가하기</button>
+        <button type="button" class="tool-btn warn" id="btnResign" title="기권 (불계패)">🏳️ 기권</button>
+      </div>
+
+      <!-- 보조 토글 옵션 -->
+      <div class="assist-toggle-row">
+        <button type="button" class="assist-btn active" id="btnToggleAtari" title="단수 경고">🚨 단수</button>
+        <button type="button" class="assist-btn active" id="btnToggleSweat" title="땀방울 연출">💦 땀방울</button>
+        <button type="button" class="assist-btn" id="btnToggleNumbers" title="수순 번호">🔢 수순</button>
+      </div>
+    </div>
+  </aside>
 
     <!-- ⚔️ 새 대국 설정 & 옵션 모달 (AI 수준, 접바둑, 판 크기, 돌 선택) ⚔️ -->
   <div class="match-modal" id="matchModal" hidden>
