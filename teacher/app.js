@@ -1431,7 +1431,7 @@
     var startX = metrics.startX, startY = metrics.startY;
     var x = Math.round((px - startX) / cell);
     var y = Math.round((py - startY) / cell);
-    var cols = state.currentCols || 19, rows = state.currentRows || 19;
+    var cols = state.boardCols, rows = state.boardRows;
     if (x >= 0 && y >= 0 && x < cols && y < rows) {
       var exactX = startX + cell * x, exactY = startY + cell * y;
       var dist = Math.hypot(px - exactX, py - exactY);
