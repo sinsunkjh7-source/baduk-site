@@ -2,14 +2,14 @@
 
 /* 금빛 발광: 글자 모양 마스크 위에 금색 레이어, 3.2초 호흡 */
 .bks-title-gold{
-  background-color:#FFD75E;
+  background-color:#9FE06B;
   -webkit-mask-image:var(--gold-src);
   mask-image:var(--gold-src);
   -webkit-mask-size:100% 100%;
   mask-size:100% 100%;
   -webkit-mask-repeat:no-repeat;
   mask-repeat:no-repeat;
-  filter:drop-shadow(0 0 9px rgba(255,205,90,.85)) drop-shadow(0 0 20px rgba(255,180,60,.35));
+  filter:drop-shadow(0 0 8px rgba(176,240,140,.55));
   opacity:0;
 }
 

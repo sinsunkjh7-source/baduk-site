@@ -21,13 +21,13 @@
     let visible = true, dead = false, timer = 0, t0 = 0, last = 0, clock = 0;
     const reduce = matchMedia('(prefers-reduced-motion: reduce)');
 
-    /* 2.2초 호흡 곡선 (0 → 0.9 → 0.45 → 0.88 → 0) */
+    /* 2.8초 호흡 곡선 (0 → 0.5 → 0.2 → 0.45 → 0) — 은은한 초록 밝기 변화 */
     function breath(t) {
-      const p = t % 2.2;
-      if (p < 0.40) return 0.9 * (0.5 - 0.5 * Math.cos(Math.PI * p / 0.40));
-      if (p < 1.01) return 0.9 - 0.45 * (0.5 - 0.5 * Math.cos(Math.PI * (p - 0.40) / 0.61));
-      if (p < 1.375) return 0.45 + 0.43 * (0.5 - 0.5 * Math.cos(Math.PI * (p - 1.01) / 0.365));
-      return 0.88 * (0.5 + 0.5 * Math.cos(Math.PI * (p - 1.375) / 0.825));
+      const p = t % 2.8;
+      if (p < 0.6) return 0.5 * (0.5 - 0.5 * Math.cos(Math.PI * p / 0.6));
+      if (p < 1.4) return 0.5 - 0.30 * (0.5 - 0.5 * Math.cos(Math.PI * (p - 0.6) / 0.8));
+      if (p < 1.87) return 0.2 + 0.25 * (0.5 - 0.5 * Math.cos(Math.PI * (p - 1.4) / 0.47));
+      return 0.45 * (0.5 + 0.5 * Math.cos(Math.PI * (p - 1.87) / 0.93));
     }
 
     function tick() {
