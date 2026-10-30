@@ -1,1 +1,4 @@
 .hero-actions .hero-button,.hero-actions .hero-button:hover,.hero-actions .hero-button:active{transform:scale(.8);transform-origin:50% 100%}
+
+/* Keep the existing left/right slots and bottom alignment; learning comes first. */
+@media(min-width:821px){.hero-actions .hero-learn{left:32.5%;top:87.5%;width:16.7%;height:11.15%}.hero-actions .hero-play{left:51.15%;top:87.57%;width:16.7%;height:11.05%}}
