@@ -18,8 +18,26 @@
     el.style.setProperty('--gold-src', 'url("' + new URL('hero-title-mask.png?v=' + V, root).href + '")');
     hero.append(el);
 
-    let visible = true, dead = false;
+    let visible = true, dead = false, timer = 0, t0 = 0, last = 0, clock = 0;
     const reduce = matchMedia('(prefers-reduced-motion: reduce)');
+
+    /* 3.2초 호흡 곡선 (0 → 0.9 → 0.45 → 0.88 → 0) */
+    function breath(t) {
+      const p = t % 3.2;
+      if (p < 0.58) return 0.9 * (0.5 - 0.5 * Math.cos(Math.PI * p / 0.58));
+      if (p < 1.47) return 0.9 - 0.45 * (0.5 - 0.5 * Math.cos(Math.PI * (p - 0.58) / 0.89));
+      if (p < 2.0) return 0.45 + 0.43 * (0.5 - 0.5 * Math.cos(Math.PI * (p - 1.47) / 0.53));
+      return 0.88 * (0.5 + 0.5 * Math.cos(Math.PI * (p - 2.0) / 1.2));
+    }
+
+    function tick() {
+      if (dead) return;
+      const now = performance.now();
+      clock += (now - last) / 1000;
+      last = now;
+      el.style.opacity = breath(clock).toFixed(3);
+      timer = setTimeout(tick, 40);
+    }
 
     function sync() {
       if (dead) return;
@@ -30,8 +48,14 @@
       el.style.height = r.height * 240 / 1320 + 'px';
 
       const paused = document.hidden || !visible || !!(home && home.hidden) || reduce.matches;
-      el.style.animationPlayState = paused ? 'paused' : 'running';
       el.style.visibility = reduce.matches ? 'hidden' : '';
+
+      if (paused) {
+        if (timer) { clearTimeout(timer); timer = 0; }
+      } else if (!timer) {
+        last = performance.now();
+        tick();
+      }
     }
 
     const ro = new ResizeObserver(sync);
@@ -48,6 +72,7 @@
     window.BKSTitleGlow = {
       destroy: function () {
         dead = true;
+        if (timer) { clearTimeout(timer); timer = 0; }
         try { ro.disconnect(); io.disconnect(); mo.disconnect(); } catch (e) {}
         el.remove();
       }

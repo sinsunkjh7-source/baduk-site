@@ -11,12 +11,8 @@
   mask-repeat:no-repeat;
   filter:drop-shadow(0 0 9px rgba(255,205,90,.85)) drop-shadow(0 0 20px rgba(255,180,60,.35));
   opacity:0;
-  animation:bksGoldBreath 3.2s ease-in-out infinite;
 }
 
-@keyframes bksGoldBreath{
-  0%{opacity:0}
-  18%{opacity:.9}
   46%{opacity:.45}
   62%{opacity:.88}
   100%{opacity:0}
