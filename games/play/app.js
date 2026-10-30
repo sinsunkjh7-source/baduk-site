@@ -22,6 +22,7 @@
     timeLimit: localStorage.getItem('play_time_limit') || 'none',
     freeStones: [],
     isFreePlacementActive: false,
+    hoverPos: null,
     currentTurn: BLACK,
     isThinking: false,
     isGameOver: false,
@@ -321,6 +322,16 @@
       }
     }
 
+    // 🌟 6.5. 마우스 호버 시 착수 임시 돌 가이드 (Ghost Stone Preview)
+    if (state.hoverPos && !state.showingTerritory) {
+      var hoverColor = state.isFreePlacementActive ? BLACK :
+                       (state.mode === 'ai' ? state.humanColor : state.currentTurn);
+      ctx.save();
+      ctx.globalAlpha = 0.52; // 반투명 임시 돌 모양
+      drawStone(state.hoverPos.x, state.hoverPos.y, hoverColor, radius, null);
+      ctx.restore();
+    }
+
     // 7. 단수(Atari) 경고 링 및 땀방울
     if (state.showAtari && !state.showingTerritory) {
       var ataris = engine.getAtariGroups();
@@ -462,7 +473,7 @@
     }
 
     // 3. 수순 번호 표시
-    if (stepNum !== null) {
+    if (stepNum !== null && stepNum !== undefined) {
       ctx.save();
       ctx.font = 'bold ' + Math.round(radius * 0.85) + 'px sans-serif';
       ctx.textAlign = 'center';
@@ -1559,6 +1570,7 @@
   function bindEvents() {
     // 1. 바둑판 캔버스 클릭
     boardCanvas.addEventListener('click', function (e) {
+      state.hoverPos = null;
       audio.init(); // 사용자 인터랙션 시 오디오 활성화
       var rect = boardCanvas.getBoundingClientRect();
       var dpr = metrics.dpr;
@@ -1581,6 +1593,61 @@
         if (dist <= cs * 0.48) {
           handleHumanMove(col, row);
         }
+      }
+    });
+
+    // 🌟 1-2. 바둑판 마우스 이동 시 임시 돌 모양 가이드 (Hover Ghost Stone)
+    boardCanvas.addEventListener('mousemove', function (e) {
+      var rect = boardCanvas.getBoundingClientRect();
+      var clickX = e.clientX - rect.left;
+      var clickY = e.clientY - rect.top;
+      var startX = metrics.startX;
+      var startY = metrics.startY;
+      var cs = metrics.cellSize;
+
+      var col = Math.round((clickX - startX) / cs);
+      var row = Math.round((clickY - startY) / cs);
+      var size = state.boardSize;
+
+      if (col >= 0 && col < size && row >= 0 && row < size) {
+        var exactX = startX + col * cs;
+        var exactY = startY + row * cs;
+        var dist = Math.hypot(clickX - exactX, clickY - exactY);
+
+        if (dist <= cs * 0.48 && engine.board[row][col] === 0) {
+          var canHover = true;
+          if (state.isGameOver || state.showingTerritory) {
+            canHover = false;
+          } else if (state.isFreePlacementActive) {
+            canHover = true;
+          } else if (state.mode === 'ai') {
+            var isMyTurn = (state.currentTurn === state.humanColor);
+            if (!isMyTurn || state.isThinking) canHover = false;
+          }
+
+          if (canHover) {
+            if (!state.hoverPos || state.hoverPos.x !== col || state.hoverPos.y !== row) {
+              state.hoverPos = { x: col, y: row };
+              boardCanvas.style.cursor = 'pointer';
+              drawBoard();
+            }
+            return;
+          }
+        }
+      }
+
+      if (state.hoverPos !== null) {
+        state.hoverPos = null;
+        boardCanvas.style.cursor = 'default';
+        drawBoard();
+      }
+    });
+
+    boardCanvas.addEventListener('mouseleave', function () {
+      if (state.hoverPos !== null) {
+        state.hoverPos = null;
+        boardCanvas.style.cursor = 'default';
+        drawBoard();
       }
     });
 

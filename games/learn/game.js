@@ -18,6 +18,7 @@
     stones: [],
     answer: null,
     solved: false,
+    hover: null,
     last: null,
     hintShown: false,
     view: 'books',
@@ -263,6 +264,15 @@
     var r = m.cell * 0.45;
     state.stones.forEach(function (st) { drawStone(pos(st.x), pos(st.y), r, st.color); });
 
+    // 🌟 마우스 호버 시 착수 임시 돌 모양 가이드 (Ghost Stone)
+    if (state.hover && !state.solved) {
+      var hoverColor = (state.answer && state.answer.color) ? state.answer.color : (state.turn || 1);
+      ctx.save();
+      ctx.globalAlpha = 0.52;
+      drawStone(pos(state.hover.x), pos(state.hover.y), r, hoverColor);
+      ctx.restore();
+    }
+
     // 🌟 문제 마크 (세모 △, 동그라미 ○, 문자 라벨, 네모 □) 렌더링
     if (state.marks && state.marks.length > 0) {
       state.marks.forEach(function (mk) {
@@ -498,8 +508,47 @@
     }
   }
 
+  /* ---------- 🌟 마우스 호버 임시 돌 모양 가이드 ---------- */
+  canvas.addEventListener('mousemove', function (e) {
+    if (!state.answer || state.solved) {
+      if (state.hover) { state.hover = null; draw(); }
+      return;
+    }
+    var rect = canvas.getBoundingClientRect();
+    var px = e.clientX - rect.left, py = e.clientY - rect.top;
+    var x = Math.round((px - m.pad) / m.cell);
+    var y = Math.round((py - m.pad) / m.cell);
+    if (x >= 0 && y >= 0 && x < state.size && y < state.size) {
+      var exactX = pos(x), exactY = pos(y);
+      var dist = Math.hypot(px - exactX, py - exactY);
+      var isOccupied = state.stones.some(function (s) { return s.x === x && s.y === y; });
+      if (dist <= m.cell * 0.48 && !isOccupied) {
+        if (!state.hover || state.hover.x !== x || state.hover.y !== y) {
+          state.hover = { x: x, y: y };
+          canvas.style.cursor = 'pointer';
+          draw();
+        }
+        return;
+      }
+    }
+    if (state.hover) {
+      state.hover = null;
+      canvas.style.cursor = 'default';
+      draw();
+    }
+  });
+
+  canvas.addEventListener('mouseleave', function () {
+    if (state.hover) {
+      state.hover = null;
+      canvas.style.cursor = 'default';
+      draw();
+    }
+  });
+
   /* ---------- 착수 판정 ---------- */
   canvas.addEventListener('click', function (e) {
+    state.hover = null;
     if (!state.answer || state.solved) return;
     var rect = canvas.getBoundingClientRect();
     var px = e.clientX - rect.left, py = e.clientY - rect.top;

@@ -1151,6 +1151,17 @@
       }
     }
 
+    // 🌟 5-1. 마우스 호버 시 착수 임시 돌 모양 가이드 (Ghost Stone Preview)
+    if (state.hover && !state.isSolved) {
+      var hColor = (state.currentProblem && state.currentProblem.turn) ? (state.currentProblem.turn === 'W' ? 2 : 1) : 1;
+      var hx = startX + cell * state.hover.x;
+      var hy = startY + cell * state.hover.y;
+      ctx.save();
+      ctx.globalAlpha = 0.52;
+      drawStone(hx, hy, stoneRadius, hColor);
+      ctx.restore();
+    }
+
     // 🌟 5-2. 세모(△), 동그라미(○), 문자 라벨(가/1/A), 네모(□) 마크 렌더링 🌟
     if (state.marks && state.marks.length > 0) {
       state.marks.forEach(function (mk) {
@@ -1385,8 +1396,49 @@
     }
   }
 
+  /* ---------- 🌟 마우스 호버 임시 돌 모양 가이드 ---------- */
+  canvas.addEventListener('mousemove', function (e) {
+    if (!state.currentBook || state.isSolved) {
+      if (state.hover) { state.hover = null; drawBoard(); }
+      return;
+    }
+    var rect = canvas.getBoundingClientRect();
+    var px = e.clientX - rect.left, py = e.clientY - rect.top;
+    var cell = metrics.cellSize;
+    var startX = metrics.startX, startY = metrics.startY;
+    var x = Math.round((px - startX) / cell);
+    var y = Math.round((py - startY) / cell);
+    var cols = state.currentCols || 19, rows = state.currentRows || 19;
+    if (x >= 0 && y >= 0 && x < cols && y < rows) {
+      var exactX = startX + cell * x, exactY = startY + cell * y;
+      var dist = Math.hypot(px - exactX, py - exactY);
+      if (dist <= cell * 0.48 && state.board[y][x] === 0) {
+        if (!state.hover || state.hover.x !== x || state.hover.y !== y) {
+          state.hover = { x: x, y: y };
+          canvas.style.cursor = 'pointer';
+          drawBoard();
+        }
+        return;
+      }
+    }
+    if (state.hover) {
+      state.hover = null;
+      canvas.style.cursor = 'default';
+      drawBoard();
+    }
+  });
+
+  canvas.addEventListener('mouseleave', function () {
+    if (state.hover) {
+      state.hover = null;
+      canvas.style.cursor = 'default';
+      drawBoard();
+    }
+  });
+
   /* ---------- 착수 인터랙션 ---------- */
   canvas.addEventListener('click', function (e) {
+    state.hover = null;
     if (!state.currentBook) return;
     var rect = canvas.getBoundingClientRect();
     var px = e.clientX - rect.left;
