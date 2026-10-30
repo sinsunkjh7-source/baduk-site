@@ -472,14 +472,26 @@
       ctx.restore();
     }
 
-    // 3. 수순 번호 표시
+    // 3. 수순 번호 표시 (흑돌/백돌 모두 선명한 외곽선 처리)
     if (stepNum !== null && stepNum !== undefined) {
       ctx.save();
-      ctx.font = 'bold ' + Math.round(radius * 0.85) + 'px sans-serif';
+      ctx.font = 'bold ' + Math.round(radius * 0.85) + 'px "Fredoka", "Malgun Gothic", sans-serif';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
-      ctx.fillStyle = (color === BLACK) ? '#ffffff' : '#111111';
-      ctx.fillText(stepNum, cx, cy);
+      var numStr = stepNum.toString();
+      if (color === WHITE) {
+        ctx.strokeStyle = '#ffffff';
+        ctx.lineWidth = Math.max(2, Math.round(radius * 0.12));
+        ctx.strokeText(numStr, cx, cy);
+        ctx.fillStyle = '#0f172a';
+        ctx.fillText(numStr, cx, cy);
+      } else {
+        ctx.strokeStyle = '#000000';
+        ctx.lineWidth = Math.max(2, Math.round(radius * 0.10));
+        ctx.strokeText(numStr, cx, cy);
+        ctx.fillStyle = '#ffffff';
+        ctx.fillText(numStr, cx, cy);
+      }
       ctx.restore();
     }
   }

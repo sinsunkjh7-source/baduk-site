@@ -1153,7 +1153,14 @@
 
     // 🌟 5-1. 마우스 호버 시 착수 임시 돌 모양 가이드 (Ghost Stone Preview)
     if (state.hover && !state.isSolved) {
-      var hColor = (state.currentProblem && state.currentProblem.turn) ? (state.currentProblem.turn === 'W' ? 2 : 1) : 1;
+      var hColor = 1;
+      if (state.trialMode) {
+        if (state.placementMode === 'blackOnly') hColor = 1;
+        else if (state.placementMode === 'whiteOnly') hColor = 2;
+        else hColor = state.nextTurn;
+      } else {
+        hColor = (state.currentProblem && state.currentProblem.turn) ? (state.currentProblem.turn === 'W' ? 2 : 1) : 1;
+      }
       var hx = startX + cell * state.hover.x;
       var hy = startY + cell * state.hover.y;
       ctx.save();
@@ -1173,18 +1180,36 @@
     }
 
     // 🌟 [원장님 지침] 수순 번호 표시 (놓아보기로 둔 돌 위에 1, 2, 3...)
-    if (state.showStepNumbers && state.trialMoves.length > 0) {
-      state.trialMoves.forEach(function (tm) {
-        if (state.board[tm.y][tm.x] === tm.color) {
-          var tX = startX + cell * tm.x;
-          var tY = startY + cell * tm.y;
-          ctx.fillStyle = (tm.color === 1) ? '#FFFFFF' : '#000000';
-          ctx.font = 'bold ' + Math.round(cell * 0.46) + 'px "Fredoka", "Malgun Gothic", sans-serif';
-          ctx.textAlign = 'center';
-          ctx.textBaseline = 'middle';
-          ctx.fillText(tm.step, tX, tY);
-        }
-      });
+    // [수순 번호 표시] 놓아보기 및 문제 풀이 착수 돌 위에 1, 2, 3... 선명하게 렌더링
+    if (state.showStepNumbers) {
+      var movesToNumber = state.trialMode ? state.trialMoves : state.playedMoves;
+      if (movesToNumber && movesToNumber.length > 0) {
+        movesToNumber.forEach(function (tm, idx) {
+          if (state.board[tm.y][tm.x] === tm.color) {
+            var tX = startX + cell * tm.x;
+            var tY = startY + cell * tm.y;
+            var numStr = (tm.step || (idx + 1)).toString();
+            ctx.save();
+            ctx.font = 'bold ' + Math.round(cell * 0.46) + 'px "Fredoka", "Malgun Gothic", sans-serif';
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+            if (tm.color === 2) {
+              ctx.strokeStyle = "#ffffff";
+              ctx.lineWidth = Math.max(2, Math.round(cell * 0.06));
+              ctx.strokeText(numStr, tX, tY);
+              ctx.fillStyle = "#0f172a";
+              ctx.fillText(numStr, tX, tY);
+            } else {
+              ctx.strokeStyle = "#000000";
+              ctx.lineWidth = Math.max(2, Math.round(cell * 0.05));
+              ctx.strokeText(numStr, tX, tY);
+              ctx.fillStyle = "#ffffff";
+              ctx.fillText(numStr, tX, tY);
+            }
+            ctx.restore();
+          }
+        });
+      }
     }
 
     // 6. 정답 보기 활성화 시 번호 마커 표시

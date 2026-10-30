@@ -301,10 +301,26 @@
 
     if (state.showNumbers) {
       ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-      ctx.font = 'bold ' + Math.max(8, Math.round(m.cell * 0.38)) + 'px "Malgun Gothic", sans-serif';
+      ctx.font = 'bold ' + Math.max(8, Math.round(m.cell * 0.38)) + 'px "Fredoka", "Malgun Gothic", sans-serif';
       state.stones.forEach(function (st, i) {
-        ctx.fillStyle = (st.color === BLACK) ? '#fff' : '#222';
-        ctx.fillText(String(i + 1), pos(st.x), pos(st.y));
+        var numStr = String(i + 1);
+        var sx = pos(st.x);
+        var sy = pos(st.y);
+        ctx.save();
+        if (st.color === WHITE) {
+          ctx.strokeStyle = '#ffffff';
+          ctx.lineWidth = Math.max(2, Math.round(m.cell * 0.05));
+          ctx.strokeText(numStr, sx, sy);
+          ctx.fillStyle = '#0f172a';
+          ctx.fillText(numStr, sx, sy);
+        } else {
+          ctx.strokeStyle = '#000000';
+          ctx.lineWidth = Math.max(2, Math.round(m.cell * 0.04));
+          ctx.strokeText(numStr, sx, sy);
+          ctx.fillStyle = '#ffffff';
+          ctx.fillText(numStr, sx, sy);
+        }
+        ctx.restore();
       });
     }
 
