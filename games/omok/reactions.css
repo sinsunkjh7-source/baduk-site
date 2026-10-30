@@ -16,3 +16,7 @@ body[data-bks-page=omok] .bks-character-switch:disabled{cursor:default;opacity:.
 /* omok-capy-go-1793321545559: face new capybara placement toward board, without altering pixels. */
 body[data-bks-page=omok] .bks-arena-player[data-color=black] .bks-omok-character-image[data-model=capybara]{transform:none}
 body[data-bks-page=omok] .bks-arena-player[data-color=white] .bks-omok-character-image[data-model=capybara]{transform:scaleX(-1)}
+
+/* omok-bull-go-1793323091025: Go bull terrier faces the board without modifying stored pixels. */
+body[data-bks-page=omok] .bks-arena-player[data-color=black] .bks-omok-character-image[data-model=bullterrier]{transform:none}
+body[data-bks-page=omok] .bks-arena-player[data-color=white] .bks-omok-character-image[data-model=bullterrier]{transform:scaleX(-1)}
