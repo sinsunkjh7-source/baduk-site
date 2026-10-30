@@ -285,21 +285,25 @@ body {
   border-radius: 6px;
   background: transparent;
   opacity: 0;
+  visibility: hidden;
   transition: opacity 0.15s ease-out;
 }
 .canvas-stack.is-ready {
   box-shadow: 0 12px 35px rgba(0, 0, 0, 0.28);
   opacity: 1;
+  visibility: visible;
 }
 
 #boardCanvas {
   display: block;
   border-radius: 6px;
   opacity: 0;
+  visibility: hidden;
   transition: opacity 0.12s ease-out;
 }
 #boardCanvas.is-ready {
   opacity: 1;
+  visibility: visible;
 }
 
 #drawingCanvas {
@@ -321,6 +325,7 @@ body {
 }
 #drawingCanvas.is-ready {
   opacity: 1;
+  visibility: visible;
 }
 
 /* ---------- 하단 바둑 툴바 ---------- */

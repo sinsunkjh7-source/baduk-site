@@ -233,32 +233,7 @@ body {
   margin: 0 auto;
 }
 
-.canvas-stack {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 6px;
-  background: transparent;
-  line-height: 0;
-  opacity: 0;
-  transition: opacity 0.15s ease-out;
-}
-.canvas-stack.is-ready {
-  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.28);
-  opacity: 1;
-}
-
-#boardCanvas {
-  display: block;
-  border-radius: 6px;
-  cursor: pointer;
-  opacity: 0;
-  transition: opacity 0.12s ease-out;
-}
-#boardCanvas.is-ready {
-  opacity: 1;
-}
+/* Canvas stack styles consolidated in Arena layout below */
 
 /* AI 생각 중 펄스 배지 */
 .ai-thinking-badge[hidden] {
@@ -1195,16 +1170,32 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 16px 40px rgba(45, 65, 40, 0.22), 0 3px 10px rgba(0, 0, 0, 0.08);
   border-radius: 8px;
   background: transparent;
   line-height: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.15s ease-out;
+}
+
+.canvas-stack.is-ready {
+  box-shadow: 0 16px 40px rgba(45, 65, 40, 0.22), 0 3px 10px rgba(0, 0, 0, 0.08);
+  opacity: 1;
+  visibility: visible;
 }
 
 #boardCanvas {
   display: block;
   border-radius: 8px;
   cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.15s ease-out;
+}
+
+#boardCanvas.is-ready {
+  opacity: 1;
+  visibility: visible;
 }
 
 /* 🌟 좌우 일체형 대국석 콘솔 (Arena Player Console) 🌟 */
@@ -1614,4 +1605,79 @@ body {
   color: #2563eb;
   border-color: #93c5fd;
   box-shadow: 0 1px 4px rgba(37, 99, 235, 0.2);
+}
+
+/* 🌟 1240px 이하: 노트북 및 태블릿 가로 (바둑판 크기 확보를 위한 사이드바 컴팩트화) 🌟 */
+@media (max-width: 1240px) {
+  .play-app {
+    padding: 8px 14px !important;
+    gap: 14px !important;
+  }
+  .arena-side {
+    width: 200px !important;
+    min-width: 185px !important;
+    max-width: 210px !important;
+    padding: 10px 8px !important;
+    gap: 8px !important;
+  }
+  .arena-char-box {
+    padding: 6px !important;
+  }
+  .arena-char-img {
+    height: 70px !important;
+  }
+  .arena-timer-card {
+    padding: 8px !important;
+  }
+  .timer-digits {
+    font-size: 26px !important;
+  }
+}
+
+/* 🌟 860px 이하: 모바일 및 세로 태블릿 (바둑판을 중앙 전체에 온전히 배치) 🌟 */
+@media (max-width: 860px) {
+  .play-app {
+    flex-direction: column !important;
+    height: auto !important;
+    min-height: calc(100vh - 46px) !important;
+    padding: 6px 8px 24px 8px !important;
+    gap: 8px !important;
+    overflow-y: auto !important;
+  }
+  .arena-side {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    justify-content: space-between !important;
+    padding: 8px 12px !important;
+    border-radius: 14px !important;
+    gap: 8px !important;
+  }
+  .arena-timer-card {
+    flex: 1 1 140px !important;
+    padding: 6px 10px !important;
+  }
+  .arena-char-box {
+    display: none !important;
+  }
+  .arena-engine-card {
+    display: none !important;
+  }
+  .arena-info-card {
+    flex: 1 1 140px !important;
+    padding: 6px 10px !important;
+  }
+  .arena-action-group {
+    width: 100% !important;
+  }
+  .play-stage {
+    width: 100% !important;
+    flex: 0 0 auto !important;
+  }
+  .board-container {
+    width: 100% !important;
+    height: auto !important;
+  }
 }

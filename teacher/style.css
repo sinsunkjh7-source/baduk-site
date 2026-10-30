@@ -333,12 +333,14 @@ html, body {
   cursor: pointer;
   touch-action: manipulation;
   opacity: 0;
+  visibility: hidden;
   transition: opacity 0.15s ease-out, border-color .2s;
 }
 #teachingBoard.is-ready {
   box-shadow: 0 14px 36px rgba(35, 55, 25, 0.35), 0 3px 8px rgba(0, 0, 0, 0.18);
   border: 4px solid #7c481e;
   opacity: 1;
+  visibility: visible;
 }
 
 /* 🌟 강사용 수업 특수 툴바 (화이트 플레이트 & 그린/골드 버튼) 🌟 */

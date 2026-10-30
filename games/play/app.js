@@ -52,12 +52,16 @@
     // 🌟 cellSize > 0 && dispW > 0 일 때만 (실제 보드 레이아웃 완료 후에만) 노출!
     // 300x150 미초기화 캔버스 및 그림자 박스가 단 1프레임도 노출되지 않도록 엄격 차단
     if (metrics.cellSize > 0 && metrics.dispW > 0) {
-      if (boardCanvas && !boardCanvas.classList.contains('is-ready')) {
+      if (boardCanvas) {
         boardCanvas.classList.add('is-ready');
+        boardCanvas.style.opacity = '';
+        boardCanvas.style.visibility = '';
       }
       var cStack = document.getElementById('canvasStack');
-      if (cStack && !cStack.classList.contains('is-ready')) {
+      if (cStack) {
         cStack.classList.add('is-ready');
+        cStack.style.opacity = '';
+        cStack.style.visibility = '';
       }
     }
   }
@@ -203,16 +207,16 @@
     var availW = rect.width;
     var availH = rect.height;
 
-    if (availW <= 0 || availH <= 0) {
+    if (availW <= 0 || availH <= 0 || (window.innerWidth <= 860 && availH < availW * 0.75)) {
       var sRect = playStage.getBoundingClientRect();
-      availW = sRect.width - 20;
-      availH = sRect.height - 20;
+      availW = (sRect && sRect.width > 0) ? (sRect.width - 16) : (window.innerWidth - 24);
+      availH = availW;
     }
 
     // 상하좌우 안전 여백 (그림자 및 테두리 숨통 공간: 12px)
     var safety = 12;
     var sideLen = Math.floor(Math.min(availW - safety, availH - safety));
-    sideLen = Math.max(280, sideLen);
+    sideLen = Math.max(240, Math.min(sideLen, window.innerWidth - 20));
 
     var size = state.boardSize;
     // 좌표가 제거되어 외곽 여백을 약 0.7 셀로 정밀 분배 (비자목 바둑판 황금비율)

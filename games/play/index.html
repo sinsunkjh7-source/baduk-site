@@ -9,9 +9,8 @@
   <meta http-equiv="Expires" content="0">
   <title>🤖 AI 바둑 대국 — 바둑스쿨</title>
   <link rel="preload" as="image" href="images/board_wood_grain.png">
-  <link rel="preload" as="image" href="images/stone_black_3d.png">
-  <link rel="preload" as="image" href="images/stone_white_3d.png">
-  <link rel="stylesheet" href="style.css?v=1793399845">
+
+  <link rel="stylesheet" href="style.css?v=1793401983">
   <link rel="stylesheet" href="/unified-nav.css?v=fun-menu-20261029L">
   <script src="/unified-nav.js?v=fun-menu-20261029L" defer></script>
 </head>
@@ -27,10 +26,10 @@
     <div class="arena-timer-card white-timer-card" id="whiteTimerCard">
       <div class="timer-player-info">
         <span class="timer-stone">⚪</span>
-        <span class="timer-name" id="timerWhiteName">용맹한 호랑이</span>
+        <span class="timer-name" id="timerWhiteName">지혜로운 판다</span>
       </div>
-      <div class="timer-digits" id="timerWhiteTime">10:00</div>
-      <div class="timer-byo" id="timerWhiteByo">초읽기 30초 (3회)</div>
+      <div class="timer-digits" id="timerWhiteTime">무제한</div>
+      <div class="timer-byo" id="timerWhiteByo">시간 제한 없음</div>
     </div>
 
     <!-- 2. 좌우 캐릭터: 백 캐릭터 -->
@@ -40,13 +39,13 @@
         <span class="char-badge-ai">AI 지능</span>
       </div>
       <div class="char-img-wrap">
-        <img src="../alkkagi/robot/01-idle.png" alt="백돌 캐릭터" id="arenaWhiteImg" class="arena-char-img">
+        <img src="../alkkagi/capybara/01-idle.png" alt="백돌 캐릭터" id="arenaWhiteImg" class="arena-char-img">
       </div>
     </div>
 
     <!-- 3. 그 아래 대국 정보: 백 정보 -->
     <div class="arena-info-card" id="arenaWhiteInfo">
-      <div class="arena-player-badge" id="arenaWhiteRankBadge">🔥 유단자 (기원 1단/타이젬 2~3단)</div>
+      <div class="arena-player-badge" id="arenaWhiteRankBadge">⭐ 상급 (1~2급)</div>
       <div class="arena-stat-row">
         <span>⚪ 백이 따낸 돌</span>
         <strong id="arenaWhiteCaptures">0개</strong>
@@ -76,8 +75,8 @@
 
     <!-- 바둑판 메인 컨테이너 (세로 100% 꽉 채움) -->
     <div class="board-container" id="boardContainer">
-      <div class="canvas-stack" id="canvasStack">
-        <canvas id="boardCanvas"></canvas>
+      <div class="canvas-stack" id="canvasStack" style="opacity: 0; visibility: hidden;">
+        <canvas id="boardCanvas" style="opacity: 0; visibility: hidden;"></canvas>
       </div>
     </div>
 
@@ -93,8 +92,8 @@
         <span class="timer-stone">⚫</span>
         <span class="timer-name" id="timerBlackName">나 (흑)</span>
       </div>
-      <div class="timer-digits" id="timerBlackTime">10:00</div>
-      <div class="timer-byo" id="timerBlackByo">초읽기 30초 (3회)</div>
+      <div class="timer-digits" id="timerBlackTime">무제한</div>
+      <div class="timer-byo" id="timerBlackByo">시간 제한 없음</div>
     </div>
 
     <!-- 2. 좌우 캐릭터: 흑 캐릭터 -->
@@ -198,7 +197,7 @@
             <button type="button" class="match-bot-card" data-bot="master">
               <span class="bot-card-avatar">🐯</span>
               <div class="bot-card-info">
-                <strong>용맹한 호랑이</strong>
+                <strong>지혜로운 판다</strong>
                 <small>유단자 (기원 1단/타이젬 2~3단)</small>
               </div>
             </button>
@@ -373,6 +372,6 @@
 <script src="engine.js?v=20261030-gnugo-v1"></script>
 <script src="ai.js?v=20261029-play-ai-v6"></script>
 <script src="audio.js?v=20261029-play-ai-v6"></script>
-<script src="app.js?v=1793399845"></script>
+<script src="app.js?v=1793401983"></script>
 </body>
 </html>
