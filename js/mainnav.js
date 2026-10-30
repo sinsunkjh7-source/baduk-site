@@ -25,7 +25,7 @@
         { key: 'injung', label: '인성 스토리', icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20v-7"/><path d="M12 13c0-4 3-6 7-6 0 4-3 6-7 6z"/><path d="M12 16c0-3-2.5-5-6-5 0 3 2.5 5 6 5z"/></svg>' }
       ]
     },
-    { key: 'teacher', label: '강사 모드', lock: true }
+    { key: 'teacher', label: 'Teaching Zone', lock: true }
   ];
 
   function isTeacher() {
@@ -80,7 +80,7 @@
     el.id = 'bk-gate';
     el.innerHTML =
       '<div class="bk-gate__box">' +
-      '<h3>강사 모드</h3>' +
+      '<h3>Teaching Zone</h3>' +
       '<p>선생님 전용 공간입니다.<br>비밀번호를 입력해주세요.</p>' +
       '<input class="bk-gate__input" type="password" inputmode="numeric" maxlength="12">' +
       '<div class="bk-gate__row">' +
