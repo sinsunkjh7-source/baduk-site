@@ -1,1 +1,59 @@
-(()=>{'use strict';const V='hero-title-glow-1793151494329',root=document.currentScript?.src||location.href;async function boot(){const im=document.querySelector('.hero-art'),hero=im?.parentElement,home=document.getElementById('home-screen');if(!im||!hero)return;window.BKSTitleGlow?.destroy?.();const img=new Image();img.alt='';img.setAttribute('aria-hidden','true');img.draggable=false;img.className='bks-title-glow';try{await new Promise((r,j)=>{img.onload=r;img.onerror=()=>j(Error('Title glow image failed'));img.src=new URL('hero-title-glow.png?v='+V,root).href;});if(!im.complete)await new Promise(r=>im.addEventListener('load',r,{once:true}));hero.append(img);let visible=true,paused=true,dead=false,timer=0,last=0,time=0,opacity=0;const reduce=matchMedia('(prefers-reduced-motion: reduce)');function light(t){const p=t%6;if(p<.8||p>=4.2)return 0;if(p<2.05)return .5-.5*Math.cos(Math.PI*(p-.8)/1.25);if(p<2.75)return 1;return .5+.5*Math.cos(Math.PI*(p-2.75)/1.45);}function tick(){if(dead||paused)return;const now=performance.now();time+=(now-last)/1000;last=now;opacity=light(time);img.style.opacity=opacity;timer=setTimeout(tick,40);}function sync(){if(dead)return;const r=im.getBoundingClientRect();img.style.left=im.offsetLeft+r.width*1000/3344+'px';img.style.top=im.offsetTop+'px';img.style.width=r.width*400/3344+'px';img.style.height=r.height*240/1320+'px';paused=document.hidden||!visible||!!home?.hidden||reduce.matches;if(paused){clearTimeout(timer);timer=0;if(reduce.matches){opacity=0;img.style.opacity=0;}}else if(!timer){last=performance.now();timer=setTimeout(tick,40);}}const ro=new ResizeObserver(sync);ro.observe(im);const io=new IntersectionObserver(e=>{visible=e[0].isIntersecting;sync();},{threshold:0});io.observe(im);const mo=new MutationObserver(sync);if(home)mo.observe(home,{attributes:true,attributeFilter:['hidden','class','style']});document.addEventListener('visibilitychange',sync);reduce.addEventListener('change',sync);sync();window.BKSTitleGlow={version:V,status:()=>({version:V,ready:true,period:6,opacity,time,paused,reduced:reduce.matches,visible,box:[1000,0,400,240],error:''}),destroy(){dead=true;clearTimeout(timer);ro.disconnect();io.disconnect();mo.disconnect();document.removeEventListener('visibilitychange',sync);reduce.removeEventListener('change',sync);img.remove();}};}catch(e){img.remove();window.BKSTitleGlow={version:V,status:()=>({ready:false,error:String(e.message)})};console.warn('[Title glow]',e);}}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();})();
+/* 히어로 '바둑' 글자 금빛 발광 — 글자 모양 마스크에 금색 레이어를 겹쳐 천천히 빛남 */
+(() => {
+  'use strict';
+  const V = 'gold-20261030';
+  const root = (document.currentScript && document.currentScript.src) || location.href;
+
+  async function boot() {
+    const im = document.querySelector('.hero-art');
+    const hero = im && im.parentElement;
+    const home = document.getElementById('home-screen');
+    if (!im || !hero) return;
+
+    if (window.BKSTitleGlow && window.BKSTitleGlow.destroy) window.BKSTitleGlow.destroy();
+
+    const el = document.createElement('div');
+    el.className = 'bks-title-glow bks-title-gold';
+    el.setAttribute('aria-hidden', 'true');
+    el.style.setProperty('--gold-src', 'url("' + new URL('hero-title-mask.png?v=' + V, root).href + '")');
+    hero.append(el);
+
+    let visible = true, dead = false;
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)');
+
+    function sync() {
+      if (dead) return;
+      const r = im.getBoundingClientRect();
+      el.style.left = im.offsetLeft + r.width * 1000 / 3344 + 'px';
+      el.style.top = im.offsetTop + 'px';
+      el.style.width = r.width * 400 / 3344 + 'px';
+      el.style.height = r.height * 240 / 1320 + 'px';
+
+      const paused = document.hidden || !visible || !!(home && home.hidden) || reduce.matches;
+      el.style.animationPlayState = paused ? 'paused' : 'running';
+      el.style.visibility = reduce.matches ? 'hidden' : '';
+    }
+
+    const ro = new ResizeObserver(sync);
+    ro.observe(im);
+
+    const io = new IntersectionObserver(function (e) { visible = e[0].isIntersecting; sync(); }, { threshold: 0 });
+    io.observe(im);
+
+    const mo = new MutationObserver(sync);
+    if (home) mo.observe(home, { attributes: true, attributeFilter: ['hidden', 'class', 'style'] });
+
+    sync();
+
+    window.BKSTitleGlow = {
+      destroy: function () {
+        dead = true;
+        try { ro.disconnect(); io.disconnect(); mo.disconnect(); } catch (e) {}
+        el.remove();
+      }
+    };
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
+  else boot();
+})();

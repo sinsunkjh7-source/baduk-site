@@ -1,1 +1,27 @@
-.bks-title-glow{position:absolute;display:block;max-width:none!important;pointer-events:none!important;user-select:none;z-index:2;opacity:0}@media(prefers-reduced-motion:reduce){.bks-title-glow{opacity:0!important}}
+.bks-title-glow{position:absolute;display:block;max-width:none!important;pointer-events:none!important;user-select:none;z-index:3;opacity:0}
+
+/* 금빛 발광: 글자 모양 마스크 위에 금색 레이어, 3.2초 호흡 */
+.bks-title-gold{
+  background-color:#FFD75E;
+  -webkit-mask-image:var(--gold-src);
+  mask-image:var(--gold-src);
+  -webkit-mask-size:100% 100%;
+  mask-size:100% 100%;
+  -webkit-mask-repeat:no-repeat;
+  mask-repeat:no-repeat;
+  filter:drop-shadow(0 0 9px rgba(255,205,90,.85)) drop-shadow(0 0 20px rgba(255,180,60,.35));
+  opacity:0;
+  animation:bksGoldBreath 3.2s ease-in-out infinite;
+}
+
+@keyframes bksGoldBreath{
+  0%{opacity:0}
+  18%{opacity:.9}
+  46%{opacity:.45}
+  62%{opacity:.88}
+  100%{opacity:0}
+}
+
+@media (prefers-reduced-motion: reduce){
+  .bks-title-gold{animation:none!important;opacity:0!important}
+}
