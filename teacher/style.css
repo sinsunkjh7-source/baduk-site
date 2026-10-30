@@ -334,7 +334,11 @@ html, body {
   border-radius: 8px;
   cursor: pointer;
   touch-action: manipulation;
-  transition: border-color .2s;
+  opacity: 0;
+  transition: opacity 0.12s ease-out, border-color .2s;
+}
+#teachingBoard.is-ready {
+  opacity: 1;
 }
 
 /* 🌟 강사용 수업 특수 툴바 (화이트 플레이트 & 그린/골드 버튼) 🌟 */

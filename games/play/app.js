@@ -47,7 +47,20 @@
   /* 🌲 천연 비자목(Kaya) 실물 나뭇결 텍스처 프리로딩 */
   var woodGrainImg = new Image();
   woodGrainImg.src = 'images/board_wood_grain.png';
-  woodGrainImg.onload = function () { if (metrics.cellSize > 0) drawBoard(); };
+
+  function revealBoard() {
+    if (boardCanvas && !boardCanvas.classList.contains('is-ready')) {
+      boardCanvas.classList.add('is-ready');
+    }
+  }
+
+  woodGrainImg.onload = function () {
+    if (metrics.cellSize > 0) {
+      drawBoard();
+    }
+    revealBoard();
+  };
+  setTimeout(revealBoard, 400);
 
   var BOTS = {
     beginner: { name: '삐약이', title: '🌱 입문 (18급)', avatar: '🐥', img: '../../images/characters/char_pup_think.png', desc: '바둑의 첫걸음! 따내기와 단수를 배우는 귀여운 병아리 봇' },
@@ -348,6 +361,11 @@
     // 8. 마지막 착수 수순 점/링 표시
     if (state.lastMove && !state.showingTerritory) {
       drawLastMoveMarker(state.lastMove.x, state.lastMove.y, radius);
+    }
+
+    // 🌟 무늬목 텍스처 준비 완료 시 바둑판 노출 (무늬목 전 색상 깜빡임 원천 차단)
+    if (state.boardSkin === 'sky' || (woodGrainImg && woodGrainImg.complete && woodGrainImg.naturalWidth > 0)) {
+      revealBoard();
     }
   }
 

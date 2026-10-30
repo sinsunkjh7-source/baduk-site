@@ -7,6 +7,9 @@
   var TEACHER_PASS = '5840';
   var SESSION_KEY = 'bkTeacherOk';
 
+  var metrics = { displayW: 0, displayH: 0, cellSize: 0, startX: 0, startY: 0, dpr: 1 };
+  window.teacherMetrics = metrics;
+
   /* ---------- 상태 ---------- */
   var state = {
     authenticated: false,
@@ -87,11 +90,20 @@
   /* 🌲 천연 비자목(Kaya) 실물 나뭇결 텍스처 프리로딩 */
   var woodGrainImg = new Image();
   woodGrainImg.src = 'images/board_wood_grain.png';
+
+  function revealTeacherBoard() {
+    if (canvas && !canvas.classList.contains('is-ready')) {
+      canvas.classList.add('is-ready');
+    }
+  }
+
   woodGrainImg.onload = function () {
     if (state.authenticated && metrics.cellSize > 0 && document.getElementById('teachingBoard')) {
       drawBoard();
     }
+    revealTeacherBoard();
   };
+  setTimeout(revealTeacherBoard, 400);
 
   var pinGate = document.getElementById('pinGate');
   var pinInput = document.getElementById('pinInput');
@@ -794,8 +806,7 @@
   }
 
   /* ---------- 바둑판 렌더링 (가로선 9 x 세로선 10, 열린 선 다이어그램) ---------- */
-  var metrics = { displayW: 0, displayH: 0, cellSize: 0, startX: 0, startY: 0, dpr: 1 };
-  window.teacherMetrics = metrics;
+  // metrics moved to top
 
   function layoutBoard() {
     var rect = boardContainer.getBoundingClientRect();
@@ -1235,6 +1246,11 @@
         ctx.textBaseline = 'middle';
         ctx.fillText(m.step, cx, cy);
       });
+    }
+
+    // 🌟 무늬목 텍스처 렌더링 완료 시 바둑판 노출 (무늬목 전 색상 깜빡임 원천 차단)
+    if (state.boardSkin === 'sky' || (woodGrainImg && woodGrainImg.complete && woodGrainImg.naturalWidth > 0)) {
+      revealTeacherBoard();
     }
   }
 

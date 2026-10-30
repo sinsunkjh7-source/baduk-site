@@ -248,6 +248,11 @@ body {
   display: block;
   border-radius: 6px;
   cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.12s ease-out;
+}
+#boardCanvas.is-ready {
+  opacity: 1;
 }
 
 /* AI 생각 중 펄스 배지 */
