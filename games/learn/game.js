@@ -275,11 +275,16 @@
 
     // 🌟 문제 마크 (세모 △, 동그라미 ○, 문자 라벨, 네모 □) 렌더링
     if (state.marks && state.marks.length > 0) {
+      var hasMovesPlayed = (state.history && state.history.length > 0) || (state.userMoves && state.userMoves.length > 0) || state.solved;
       state.marks.forEach(function (mk) {
-        var cx = pos(mk.x);
-        var cy = pos(mk.y);
         var st = state.stones.find(function (s) { return s.x === mk.x && s.y === mk.y; });
         var stoneColor = st ? st.color : 0;
+        if (mk.type === 'label') {
+          if (stoneColor !== 0) return;
+          if (hasMovesPlayed) return;
+        }
+        var cx = pos(mk.x);
+        var cy = pos(mk.y);
         drawProblemMark(cx, cy, m.cell, mk, stoneColor);
       });
     }
@@ -391,9 +396,9 @@
         ctx.stroke();
       }
     } else if (mk.type === 'label') {
-      // 🌟 문자 라벨: '가', '나', '1', 'A' 등
+      // 🌟 문자 라벨: '가', '나', '다', '1', 'A' 등 (흰돌 배경 없이 글자만 선명하게 표시)
       var text = mk.label || '';
-      var fontSize = Math.max(11, Math.round(cell * 0.28));
+      var fontSize = Math.max(13, Math.round(cell * 0.40));
       ctx.font = '900 ' + fontSize + 'px -apple-system, BlinkMacSystemFont, "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
@@ -405,16 +410,10 @@
         ctx.fillStyle = '#18181b';
         ctx.fillText(text, cx, cy);
       } else {
-        var badgeR = cell * 0.20;
-        ctx.beginPath();
-        ctx.arc(cx, cy, badgeR, 0, Math.PI * 2);
-        ctx.fillStyle = '#ffffff';
-        ctx.shadowColor = 'rgba(0, 0, 0, 0.2)';
-        ctx.shadowBlur = 3;
-        ctx.fill();
-        ctx.strokeStyle = '#cbd5e1';
-        ctx.lineWidth = 1.2;
-        ctx.stroke();
+        ctx.lineWidth = Math.max(2.5, cell * 0.08);
+        ctx.lineJoin = 'round';
+        ctx.strokeStyle = (state.boardSkin === 'sky') ? 'rgba(219, 234, 254, 0.95)' : 'rgba(247, 238, 220, 0.95)';
+        ctx.strokeText(text, cx, cy);
 
         ctx.fillStyle = '#0f172a';
         ctx.fillText(text, cx, cy);

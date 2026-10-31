@@ -1153,10 +1153,36 @@
 
     // 🌟 5-2. 세모(△), 동그라미(○), 문자 라벨(가/1/A), 네모(□) 마크 렌더링 🌟
     if (state.marks && state.marks.length > 0) {
+      // 🌟 [원장님 지침] 돌이 놓여지면 선택지 글자들(가, 나, 다 등)은 모두 사라짐
+      var isBoardChanged = false;
+      if (state.initialBoard) {
+        for (var r = 0; r < state.boardRows; r++) {
+          for (var c = 0; c < state.boardCols; c++) {
+            if (state.board[r][c] !== state.initialBoard[r][c]) {
+              isBoardChanged = true;
+              break;
+            }
+          }
+          if (isBoardChanged) break;
+        }
+      }
+      var hasMovesPlayed = (state.playedMoves && state.playedMoves.length > 0) ||
+                           (state.trialMoves && state.trialMoves.length > 0) ||
+                           isBoardChanged ||
+                           state.showAnswer;
+
       state.marks.forEach(function (mk) {
+        var stoneColor = state.board[mk.y][mk.x]; // 0: 빈칸, 1: 흑돌, 2: 백돌
+
+        if (mk.type === 'label') {
+          // 1) 해당 자리에 돌이 놓여지면 글자는 사라짐
+          if (stoneColor !== 0) return;
+          // 2) 바둑판에 돌이 놓여지면(풀이/놓아보기/정답보기 진행 시) 선택지 글자들은 모두 사라짐
+          if (hasMovesPlayed) return;
+        }
+
         var mx = startX + cell * mk.x;
         var my = startY + cell * mk.y;
-        var stoneColor = state.board[mk.y][mk.x]; // 0: 빈칸, 1: 흑돌, 2: 백돌
         drawProblemMark(mx, my, cell, mk, stoneColor);
       });
     }
@@ -1269,9 +1295,10 @@
         ctx.stroke();
       }
     } else if (mk.type === 'label') {
-      // 🌟 문자 라벨: '가', '나', '1', 'A' 등
+      // 🌟 문자 라벨: '가', '나', '다', '1', 'A' 등
+      // [원장님 지침] 흰돌 위에 올리는 방식(원형 배지)을 쓰지 말고, 그냥 글자만 선명하게 표시!
       var text = mk.label || '';
-      var fontSize = Math.max(11, Math.round(cell * 0.28));
+      var fontSize = Math.max(13, Math.round(cell * 0.40));
       ctx.font = '900 ' + fontSize + 'px -apple-system, BlinkMacSystemFont, "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
@@ -1283,17 +1310,14 @@
         ctx.fillStyle = '#18181b';
         ctx.fillText(text, cx, cy);
       } else {
-        var badgeR = cell * 0.20;
-        ctx.beginPath();
-        ctx.arc(cx, cy, badgeR, 0, Math.PI * 2);
-        ctx.fillStyle = '#ffffff';
-        ctx.shadowColor = 'rgba(0, 0, 0, 0.2)';
-        ctx.shadowBlur = 3;
-        ctx.fill();
-        ctx.strokeStyle = '#cbd5e1';
-        ctx.lineWidth = 1.2;
-        ctx.stroke();
+        // 🌟 빈 교차점 위: 흰돌 원형 배지 없이 글자만 직접 렌더링
+        // 바둑판 격자선에 글자가 묻히거나 잘리지 않도록 바둑판 톤의 부드러운 클리어링 외곽선 적용
+        ctx.lineWidth = Math.max(2.5, cell * 0.08);
+        ctx.lineJoin = 'round';
+        ctx.strokeStyle = (state.boardSkin === 'sky') ? 'rgba(219, 234, 254, 0.95)' : 'rgba(247, 238, 220, 0.95)';
+        ctx.strokeText(text, cx, cy);
 
+        // 깊고 선명한 잉크 블랙 텍스트
         ctx.fillStyle = '#0f172a';
         ctx.fillText(text, cx, cy);
       }
