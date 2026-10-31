@@ -50,3 +50,5 @@ canvas{display:block;margin:0 auto;border-radius:12px;touch-action:manipulation;
   .y-head{flex-wrap:wrap}
   .y-stick{width:12px;height:36px}
 }
+
+.y-build{font-size:11px;font-weight:700;color:#8a9a80;vertical-align:middle;margin-left:6px}
