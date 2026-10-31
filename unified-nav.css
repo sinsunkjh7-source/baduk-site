@@ -132,3 +132,11 @@ body[data-bks-page=sandbox] .bks-bottom-board-size .size-btn.active:hover{backgr
 .bks-toast.-show{opacity:1;transform:translateX(-50%) translateY(0)}
 
 .bks-sub-group .bks-nav-sub a,.bks-sub-group a{display:block;margin-left:6px;padding:9px 12px;font-size:14.5px;font-weight:700}
+
+/* Header labels and balance: retain the original type, tilt and artwork. */
+.bks-logout:disabled{opacity:.58;cursor:not-allowed}
+@media(min-width:1251px) and (max-width:1750px){.bks-brand small{display:none}}
+@media(min-width:1251px) and (max-width:1599px){.bks-settings-toggle>span,.bks-logout>span{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap}.bks-nav-actions{gap:8px}.bks-nav-inner{gap:12px}.bks-nav-links{gap:6px}.bks-nav-links>a,.bks-nav-group>button{padding-inline:8px}}
+@media(min-width:1600px){.bks-nav-links{grid-template-columns:minmax(8px,1fr) repeat(7,max-content) minmax(8px,1fr) max-content max-content;column-gap:clamp(10px,.8vw,22px)}.bks-nav-links>:nth-child(7){grid-column:8}.bks-nav-links>.bks-account-first{grid-column:10}.bks-nav-links>.bks-account-link:last-child{grid-column:11}}
+@media(max-width:600px){.bks-logout>span,.bks-menu-toggle>span{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap}.bks-menu-toggle{min-width:32px}.bks-nav-actions{gap:5px}}
+@media(max-width:420px){.bks-nav-inner{padding-inline:10px}}
