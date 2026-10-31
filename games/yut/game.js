@@ -780,74 +780,70 @@
   // -------------------------------------------------------------
   // 전통 말판 캔버스 드로잉
   // -------------------------------------------------------------
+  // -------------------------------------------------------------
+  // 전통 말판 캔버스 드로잉 (고급 한옥 대청마루 원목 & 백옥 상감 기법)
+  // -------------------------------------------------------------
   function drawBoard() {
     const dpr = updateCanvasResolution();
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     ctx.clearRect(0, 0, BOARD_SIZE, BOARD_SIZE);
 
-    // 1. 고급 전통 원목 바탕
+    // 1. 고급 전통 느티나무 원목 바탕 (Zelkova Wood Texture)
     const woodGrad = ctx.createLinearGradient(0, 0, BOARD_SIZE, BOARD_SIZE);
-    woodGrad.addColorStop(0, '#f9edd7');
-    woodGrad.addColorStop(0.5, '#ecd8b8');
-    woodGrad.addColorStop(1, '#dfc49c');
+    woodGrad.addColorStop(0, '#fcf5e6');
+    woodGrad.addColorStop(0.35, '#f4dfbe');
+    woodGrad.addColorStop(0.7, '#e8caa0');
+    woodGrad.addColorStop(1, '#d8b27f');
     ctx.fillStyle = woodGrad;
     ctx.beginPath();
-    ctx.roundRect(8, 8, BOARD_SIZE - 16, BOARD_SIZE - 16, 20);
+    ctx.roundRect(8, 8, BOARD_SIZE - 16, BOARD_SIZE - 16, 22);
     ctx.fill();
 
-    // 원목 외곽 프레임 테두리
-    ctx.strokeStyle = '#8c592b';
-    ctx.lineWidth = 3.5;
-    ctx.stroke();
-
-    // 2. 외곽 사각 둘레길 선
-    ctx.strokeStyle = 'rgba(125, 76, 32, 0.55)';
-    ctx.lineWidth = 3;
-    ctx.strokeRect(PAD, PAD, SIDE, SIDE);
-
-    // 3. 대각선 안내선 (X자)
-    ctx.beginPath();
-    ctx.moveTo(PAD, PAD);
-    ctx.lineTo(PAD + SIDE, PAD + SIDE);
-    ctx.moveTo(PAD + SIDE, PAD);
-    ctx.lineTo(PAD, PAD + SIDE);
-    ctx.strokeStyle = 'rgba(125, 76, 32, 0.45)';
-    ctx.lineWidth = 2.5;
-    ctx.stroke();
-
-    // 4. 29개 밭(Station) 그리기
-    NODES.forEach(n => {
-      const isBig = n.isCorner || n.isCenter;
-      const r = isBig ? 13 : 9;
-
-      // 밭 그림자
+    // 천연 나뭇결 곡선 (Organic Wood Grain Striations)
+    ctx.save();
+    ctx.strokeStyle = 'rgba(120, 75, 25, 0.04)';
+    for (let i = 0; i < 9; i++) {
+      const yBase = 60 + i * 65;
+      ctx.lineWidth = 3 + (i % 3) * 1.5;
       ctx.beginPath();
-      ctx.arc(n.x + 1, n.y + 2, r, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(90, 50, 20, 0.18)';
-      ctx.fill();
-
-      // 밭 본체 (전통 징/원형 음영)
-      ctx.beginPath();
-      ctx.arc(n.x, n.y, r, 0, Math.PI * 2);
-      ctx.fillStyle = isBig ? '#fdf8ef' : '#f5ebd9';
-      ctx.fill();
-      ctx.lineWidth = isBig ? 2.8 : 2;
-      ctx.strokeStyle = isBig ? '#87491d' : '#ab7240';
+      ctx.moveTo(10, yBase);
+      ctx.bezierCurveTo(
+        BOARD_SIZE * 0.35, yBase - 25 + (i % 2) * 20,
+        BOARD_SIZE * 0.65, yBase + 35 - (i % 3) * 15,
+        BOARD_SIZE - 10, yBase + 10
+      );
       ctx.stroke();
+    }
+    ctx.restore();
 
-      // 코너 및 중앙 특수 표식
-      if (isBig) {
-        ctx.beginPath();
-        ctx.arc(n.x, n.y, r * 0.45, 0, Math.PI * 2);
-        ctx.fillStyle = n.isCenter ? '#b91c1c' : '#a16207';
-        ctx.fill();
-      }
-    });
+    // 2. 다크 월넛 외곽 몰딩 프레임 & 황금 상감선
+    ctx.save();
+    ctx.strokeStyle = '#48240a';
+    ctx.lineWidth = 14;
+    ctx.beginPath();
+    ctx.roundRect(15, 15, BOARD_SIZE - 30, BOARD_SIZE - 30, 18);
+    ctx.stroke();
 
-    // 5. '출발' 및 코너 텍스트 라벨
+    ctx.strokeStyle = '#d4a34b';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.roundRect(24, 24, BOARD_SIZE - 48, BOARD_SIZE - 48, 14);
+    ctx.stroke();
+    ctx.restore();
+
+    // 3. 4개 모서리 전통 놋쇠 장석 (Antique Brass Corner Brackets)
+    drawCornerBrackets();
+
+    // 4. 둘레길 & 대각선 (3중 상감 음각 홈 라인)
+    drawBoardPaths();
+
+    // 5. 29개 밭 (백옥 구슬 & 황동 림, 중앙 단청 루비 젬)
+    drawBoardStations();
+
+    // 6. 명칭 붓글씨 라벨 (출발, 앞모, 뒷모, 찌모, 방)
     drawStationLabels();
 
-    // 6. 착수 가능한 목적지 하이라이트 (이동 단계 시)
+    // 7. 착수 가능한 목적지 하이라이트 (이동 단계 시)
     if (phase === 'move' && handQueue[selectedHandIdx] && (!vsAI || turn === 0)) {
       const curSteps = handQueue[selectedHandIdx].steps;
       players[turn].pieces.forEach(p => {
@@ -860,39 +856,233 @@
       });
     }
 
-    // 7. 말(Stones) 그리기
+    // 8. 판 위에 놓인 말들 렌더링
     drawBoardPieces();
+  }
+
+  function drawCornerBrackets() {
+    function drawBracket(cx, cy, rotAngle) {
+      ctx.save();
+      ctx.translate(cx, cy);
+      ctx.rotate(rotAngle);
+      
+      // L자형 놋쇠 판
+      ctx.fillStyle = '#b8862d';
+      ctx.beginPath();
+      ctx.moveTo(0, 0);
+      ctx.lineTo(34, 0);
+      ctx.lineTo(34, 10);
+      ctx.lineTo(10, 10);
+      ctx.lineTo(10, 34);
+      ctx.lineTo(0, 34);
+      ctx.closePath();
+      ctx.fill();
+      ctx.strokeStyle = '#6e470c';
+      ctx.lineWidth = 1.4;
+      ctx.stroke();
+
+      // 놋쇠 리벳 못 (3개)
+      [[6, 6], [24, 5], [5, 24]].forEach(([rx, ry]) => {
+        ctx.beginPath();
+        ctx.arc(rx, ry, 2.2, 0, Math.PI * 2);
+        ctx.fillStyle = '#fef08a';
+        ctx.fill();
+        ctx.strokeStyle = '#5c3805';
+        ctx.lineWidth = 0.8;
+        ctx.stroke();
+      });
+
+      ctx.restore();
+    }
+
+    drawBracket(25, 25, 0);
+    drawBracket(BOARD_SIZE - 25, 25, Math.PI / 2);
+    drawBracket(BOARD_SIZE - 25, BOARD_SIZE - 25, Math.PI);
+    drawBracket(25, BOARD_SIZE - 25, -Math.PI / 2);
+  }
+
+  function drawBoardPaths() {
+    // 1. 깊은 음각 홈 그림자
+    ctx.strokeStyle = 'rgba(70, 35, 12, 0.45)';
+    ctx.lineWidth = 5.5;
+    ctx.strokeRect(PAD, PAD, SIDE, SIDE);
+    ctx.beginPath();
+    ctx.moveTo(PAD, PAD); ctx.lineTo(PAD + SIDE, PAD + SIDE);
+    ctx.moveTo(PAD + SIDE, PAD); ctx.lineTo(PAD, PAD + SIDE);
+    ctx.stroke();
+
+    // 2. 상감 원목 채움선
+    ctx.strokeStyle = '#8d5526';
+    ctx.lineWidth = 3.2;
+    ctx.strokeRect(PAD, PAD, SIDE, SIDE);
+    ctx.beginPath();
+    ctx.moveTo(PAD, PAD); ctx.lineTo(PAD + SIDE, PAD + SIDE);
+    ctx.moveTo(PAD + SIDE, PAD); ctx.lineTo(PAD, PAD + SIDE);
+    ctx.stroke();
+
+    // 3. 미세 상감 하이라이트선
+    ctx.strokeStyle = 'rgba(255, 245, 220, 0.55)';
+    ctx.lineWidth = 1.2;
+    ctx.strokeRect(PAD, PAD, SIDE, SIDE);
+    ctx.beginPath();
+    ctx.moveTo(PAD, PAD); ctx.lineTo(PAD + SIDE, PAD + SIDE);
+    ctx.moveTo(PAD + SIDE, PAD); ctx.lineTo(PAD, PAD + SIDE);
+    ctx.stroke();
+  }
+
+  function drawBoardStations() {
+    NODES.forEach(n => {
+      const isBig = n.isCorner || n.isCenter;
+      const isCenter = n.isCenter;
+
+      if (isCenter) {
+        // 중앙 '방' (Center Hub - 21px 3중 단청 링)
+        const r = 21;
+        // 황금빛 방사형 후광
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, r + 7, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(245, 158, 11, 0.22)';
+        ctx.fill();
+
+        // 놋쇠 외곽 림
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, r, 0, Math.PI * 2);
+        ctx.fillStyle = '#b8862d';
+        ctx.fill();
+        ctx.strokeStyle = '#5a3407';
+        ctx.lineWidth = 2.2;
+        ctx.stroke();
+
+        // 단청 루비 보석 젬 (Royal Dancheong Crimson)
+        const gemGrad = ctx.createRadialGradient(n.x - 5, n.y - 6, 2, n.x, n.y, r * 0.75);
+        gemGrad.addColorStop(0, '#fca5a5');
+        gemGrad.addColorStop(0.45, '#dc2626');
+        gemGrad.addColorStop(1, '#7f1d1d');
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, r * 0.72, 0, Math.PI * 2);
+        ctx.fillStyle = gemGrad;
+        ctx.fill();
+        ctx.strokeStyle = '#ffffff';
+        ctx.lineWidth = 1.2;
+        ctx.stroke();
+
+        // 중앙 백옥 심
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, 3, 0, Math.PI * 2);
+        ctx.fillStyle = '#ffffff';
+        ctx.fill();
+      } else if (isBig) {
+        // 4대 거점 (참먹이 0, 앞모 5, 뒷모 10, 찌모 15 - 17px 황금 앰버 젬)
+        const r = 17;
+        // 그림자
+        ctx.beginPath();
+        ctx.arc(n.x + 1.5, n.y + 2.5, r, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(60, 30, 10, 0.28)';
+        ctx.fill();
+
+        // 외곽 놋쇠 링
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, r, 0, Math.PI * 2);
+        ctx.fillStyle = '#b3822a';
+        ctx.fill();
+        ctx.strokeStyle = '#633c09';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+
+        // 황금 앰버 보석 젬
+        const gemGrad = ctx.createRadialGradient(n.x - 4, n.y - 5, 1.5, n.x, n.y, r * 0.7);
+        gemGrad.addColorStop(0, '#fef08a');
+        gemGrad.addColorStop(0.5, '#d97706');
+        gemGrad.addColorStop(1, '#78350f');
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, r * 0.68, 0, Math.PI * 2);
+        ctx.fillStyle = gemGrad;
+        ctx.fill();
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.9)';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+      } else {
+        // 일반 밭 24개 (13.5px 백옥 구슬)
+        const r = 13.5;
+        // 그림자
+        ctx.beginPath();
+        ctx.arc(n.x + 1.2, n.y + 2, r, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(60, 30, 10, 0.22)';
+        ctx.fill();
+
+        // 놋쇠 테두리 링
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, r, 0, Math.PI * 2);
+        ctx.fillStyle = '#9c6a32';
+        ctx.fill();
+        ctx.strokeStyle = '#58330d';
+        ctx.lineWidth = 1.8;
+        ctx.stroke();
+
+        // 백옥 구슬 (White Jade Pearl)
+        const jadeGrad = ctx.createRadialGradient(n.x - 3.5, n.y - 4, 1.5, n.x, n.y, r * 0.75);
+        jadeGrad.addColorStop(0, '#ffffff');
+        jadeGrad.addColorStop(0.35, '#faf1e0');
+        jadeGrad.addColorStop(0.8, '#ebd6b5');
+        jadeGrad.addColorStop(1, '#caa77d');
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, r * 0.74, 0, Math.PI * 2);
+        ctx.fillStyle = jadeGrad;
+        ctx.fill();
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.75)';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+      }
+    });
   }
 
   function drawStationLabels() {
     ctx.save();
-    ctx.font = '900 13px "Pretendard", "Malgun Gothic", sans-serif';
+    ctx.font = '900 13px "Gowun Batang", "Batang", "Nanum Myeongjo", serif';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
+    ctx.shadowColor = 'rgba(255, 255, 255, 0.95)';
+    ctx.shadowBlur = 3;
+    ctx.shadowOffsetY = 1;
 
-    // 우하귀: 출발 / 참먹이
+    // 우하귀: 출발 · 완주
     const n0 = NODES[0];
     ctx.fillStyle = '#1e3a8a';
-    ctx.fillText('출발 · 완주', n0.x - 38, n0.y + 28);
+    ctx.fillText('출발 · 완주 (참먹이)', n0.x - 38, n0.y + 24);
 
-    // 우상귀: 앞모
+    // 우상귀: 앞모 (안쪽으로 배치)
     const n5 = NODES[5];
-    ctx.fillStyle = '#854d0e';
-    ctx.fillText('앞모', n5.x + 30, n5.y - 14);
+    ctx.fillStyle = '#78350f';
+    ctx.fillText('앞모', n5.x - 26, n5.y - 14);
 
-    // 좌상귀: 뒷모
+    // 좌상귀: 뒷모 (안쪽으로 배치)
     const n10 = NODES[10];
-    ctx.fillText('뒷모', n10.x - 30, n10.y - 14);
+    ctx.fillText('뒷모', n10.x + 26, n10.y - 14);
 
-    // 좌하귀: 찌모
+    // 좌하귀: 찌모 (안쪽으로 배치)
     const n15 = NODES[15];
-    ctx.fillText('찌모', n15.x - 30, n15.y + 24);
+    ctx.fillText('찌모', n15.x + 26, n15.y + 20);
 
     // 중앙: 방
     const n22 = NODES[22];
     ctx.fillStyle = '#991b1b';
-    ctx.fillText('방', n22.x, n22.y - 24);
+    ctx.font = '900 14px "Gowun Batang", "Batang", serif';
+    ctx.fillText('중앙 (방)', n22.x, n22.y - 28);
 
+    ctx.restore();
+  }
+
+  function drawHighlightNode(node) {
+    ctx.save();
+    ctx.beginPath();
+    ctx.arc(node.x, node.y, 20, 0, Math.PI * 2);
+    ctx.strokeStyle = '#f59e0b';
+    ctx.lineWidth = 3.5;
+    ctx.setLineDash([5, 4]);
+    ctx.stroke();
+
+    ctx.fillStyle = 'rgba(245, 158, 11, 0.24)';
+    ctx.fill();
     ctx.restore();
   }
 

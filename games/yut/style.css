@@ -202,9 +202,12 @@ canvas#yutBoard {
   width: min(100%, 640px);
   height: auto;
   aspect-ratio: 1 / 1;
-  border-radius: 14px;
+  border-radius: 20px;
   touch-action: none;
   cursor: default;
+  box-shadow: 
+    0 10px 28px rgba(60, 30, 10, 0.25),
+    0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 /* 윷 던지기 & 트레이 */
@@ -218,85 +221,228 @@ canvas#yutBoard {
   gap: 14px;
 }
 
-/* 멍석 (Mat) */
+/* 전통 멍석 (Mat) - 짚풀 직조 텍스처 & 가죽 땋은 테두리 */
 .yut-mat {
-  background: radial-gradient(circle, #f3eedc 0%, #e2d3b5 100%);
-  border: 3px solid #bba37d;
-  border-radius: 14px;
-  padding: 16px;
+  position: relative;
+  background: 
+    radial-gradient(ellipse at center, rgba(255, 250, 240, 0.7) 0%, rgba(215, 190, 150, 0.45) 100%),
+    repeating-linear-gradient(45deg, #dfcca6 0px, #dfcca6 3px, #cfb78d 3px, #cfb78d 6px),
+    repeating-linear-gradient(-45deg, #d6bf96 0px, #d6bf96 3px, #c5ab7e 3px, #c5ab7e 6px);
+  border: 4px solid #8e683b;
+  border-radius: 18px;
+  padding: 22px 20px 16px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 86px;
-  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.1);
+  gap: 14px;
+  min-height: 144px;
+  box-shadow: 
+    inset 0 3px 12px rgba(90, 60, 25, 0.3),
+    0 4px 14px rgba(0, 0, 0, 0.08);
 }
 
 .stick-box {
   display: flex;
-  gap: 20px;
-  perspective: 700px;
+  gap: 26px;
+  perspective: 900px;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 10px;
 }
 
+/* 윷가락 3D 모델링 (36px × 108px의 묵직한 전통 목각) */
 .yut-stick {
-  width: 28px;
-  height: 74px;
+  width: 36px;
+  height: 108px;
   position: relative;
-  transform-style: preserve-3d;
-  transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: transform 0.4s ease;
+  filter: drop-shadow(0 6px 10px rgba(70, 40, 15, 0.35));
 }
 
 .stick-inner {
   width: 100%;
   height: 100%;
   position: relative;
-  transform-style: preserve-3d;
 }
 
-/* 배 (Belly - 평평한 안쪽, 흰색/아이보리) */
+/* 배 (Belly - 평평한 안쪽 면: 밝은 아이보리 목재 + 대패질 평면 질감) */
 .stick-belly {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to right, #fbf7ee 0%, #f4e8cf 100%);
-  border: 2px solid #b59f77;
-  border-radius: 10px;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+  background: 
+    repeating-linear-gradient(to bottom, transparent 0px, transparent 16px, rgba(180, 140, 90, 0.07) 16px, rgba(180, 140, 90, 0.07) 17px),
+    linear-gradient(135deg, #ffffff 0%, #fbf5e7 40%, #f0e1c2 100%);
+  border: 2.5px solid #be9f70;
+  border-radius: 12px;
+  box-shadow: 
+    inset 0 1px 4px rgba(255, 255, 255, 0.95),
+    inset 0 -2px 5px rgba(150, 110, 60, 0.2);
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  backface-visibility: hidden;
 }
 
+/* 배 장식 (중앙 잔잔한 전통 인두 홈) */
+.stick-belly::before {
+  content: "";
+  width: 14px;
+  height: 3px;
+  background: rgba(160, 110, 60, 0.28);
+  border-radius: 2px;
+  margin-bottom: 8px;
+}
+.stick-belly::after {
+  content: "";
+  width: 14px;
+  height: 3px;
+  background: rgba(160, 110, 60, 0.28);
+  border-radius: 2px;
+  margin-top: 8px;
+}
+
+/* 빽도 윷가락 (Stick 0) 배의 ✕ 표식 - 선명한 붉은색 전각 도장 각인 */
 .mark-x {
   color: #dc2626;
-  font-size: 15px;
+  font-size: 24px;
   font-weight: 900;
+  line-height: 1;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.8), 0 0 3px rgba(180, 30, 30, 0.35);
+  font-family: system-ui, sans-serif;
 }
 
-/* 등 (Back - 둥글고 짙은 나무 껍질) */
+/* 등 (Back - 둥근 반원통: 짙은 흑갈색 원통형 하이라이트 + 2줄 나이테 홈) */
 .stick-back {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to right, #5c381c 0%, #87542c 50%, #442812 100%);
-  border: 2px solid #361f0d;
-  border-radius: 10px;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
-  transform: rotateY(180deg);
-  backface-visibility: hidden;
+  background: linear-gradient(
+    90deg,
+    #1b0b03 0%,
+    #361807 12%,
+    #58290f 26%,
+    #82431d 42%,
+    #ba6d36 50%,
+    #82431d 58%,
+    #58290f 74%,
+    #361807 88%,
+    #1b0b03 100%
+  );
+  border: 2px solid #240e04;
+  border-radius: 14px;
+  box-shadow: 
+    inset 0 2px 4px rgba(255, 200, 150, 0.3),
+    inset 0 -2px 5px rgba(0, 0, 0, 0.7);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 16px 0;
 }
 
-/* 뒤집힌 상태 (등이 보임) */
-.yut-stick.flipped {
-  transform: rotateY(180deg);
+/* 등에 새겨진 전통 나이테 홈 띠 2개 */
+.stick-back::before,
+.stick-back::after {
+  content: "";
+  width: 84%;
+  height: 3.5px;
+  background: #150702;
+  border-bottom: 1px solid rgba(255, 200, 140, 0.35);
+  border-top: 1px solid rgba(0, 0, 0, 0.9);
+  border-radius: 2px;
 }
 
-/* 굴러가는 애니메이션 */
-.stick-box.tumbling .yut-stick {
-  animation: stick-tumble 0.5s ease-in-out;
+/* 기본 상태 (배가 위로 보임) */
+.yut-stick .stick-belly {
+  display: flex;
+}
+.yut-stick .stick-back {
+  display: none;
 }
 
-@keyframes stick-tumble {
-  0% { transform: translateY(-40px) rotateX(180deg) rotateZ(20deg) scale(1.15); }
-  50% { transform: translateY(-20px) rotateX(360deg) rotateZ(-15deg); }
+/* 뒤집힌 상태 (등이 위로 보임) */
+.yut-stick.flipped .stick-belly {
+  display: none;
+}
+.yut-stick.flipped .stick-back {
+  display: flex;
+}
+
+/* 윷가락 상태 안내 캡션 (멍석 하단) */
+.mat-legend {
+  display: flex;
+  gap: 20px;
+  font-size: 12.5px;
+  font-weight: 800;
+  color: #6a4928;
+  background: rgba(255, 255, 255, 0.65);
+  padding: 4px 14px;
+  border-radius: 20px;
+  border: 1px solid rgba(142, 104, 59, 0.25);
+}
+
+.mat-legend span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.legend-icon {
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.legend-icon.belly {
+  background: #fbf5e7;
+  border: 1.5px solid #be9f70;
+}
+
+.legend-icon.back {
+  background: #58290f;
+  border: 1.5px solid #240e04;
+}
+
+/* 공중제비 덤블링 애니메이션 (제각기 다른 축과 딜레이) */
+.stick-box.tumbling .yut-stick:nth-child(1) {
+  animation: stick-tumble-1 0.55s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.stick-box.tumbling .yut-stick:nth-child(2) {
+  animation: stick-tumble-2 0.55s 0.04s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.stick-box.tumbling .yut-stick:nth-child(3) {
+  animation: stick-tumble-3 0.55s 0.08s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.stick-box.tumbling .yut-stick:nth-child(4) {
+  animation: stick-tumble-4 0.55s 0.12s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+@keyframes stick-tumble-1 {
+  0% { transform: translateY(-75px) rotateX(180deg) rotateZ(28deg) scale(1.2); }
+  60% { transform: translateY(-12px) rotateX(360deg) rotateZ(-8deg) scale(1.05); }
+  85% { transform: translateY(-4px) rotateX(360deg) rotateZ(2deg); }
+  100% { transform: translateY(0) rotateX(0deg) rotateZ(0deg); }
+}
+
+@keyframes stick-tumble-2 {
+  0% { transform: translateY(-80px) rotateX(200deg) rotateZ(-24deg) scale(1.22); }
+  60% { transform: translateY(-14px) rotateX(360deg) rotateZ(8deg) scale(1.05); }
+  85% { transform: translateY(-5px) rotateX(360deg) rotateZ(-2deg); }
+  100% { transform: translateY(0) rotateX(0deg) rotateZ(0deg); }
+}
+
+@keyframes stick-tumble-3 {
+  0% { transform: translateY(-72px) rotateX(190deg) rotateZ(18deg) scale(1.18); }
+  60% { transform: translateY(-10px) rotateX(360deg) rotateZ(-6deg) scale(1.04); }
+  85% { transform: translateY(-3px) rotateX(360deg) rotateZ(1deg); }
+  100% { transform: translateY(0) rotateX(0deg) rotateZ(0deg); }
+}
+
+@keyframes stick-tumble-4 {
+  0% { transform: translateY(-85px) rotateX(210deg) rotateZ(-32deg) scale(1.25); }
+  60% { transform: translateY(-16px) rotateX(360deg) rotateZ(10deg) scale(1.06); }
+  85% { transform: translateY(-6px) rotateX(360deg) rotateZ(-3deg); }
   100% { transform: translateY(0) rotateX(0deg) rotateZ(0deg); }
 }
 
