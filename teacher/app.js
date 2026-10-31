@@ -108,10 +108,7 @@
     }
   };
 
-  var pinGate = document.getElementById('pinGate');
-  var pinInput = document.getElementById('pinInput');
-  var pinError = document.getElementById('pinError');
-  var teacherApp = document.getElementById('teacherApp');
+        var teacherApp = document.getElementById('teacherApp');
   
   var seriesSelect = document.getElementById('seriesSelect');
   var bookSelect = document.getElementById('bookSelect');
@@ -213,46 +210,7 @@
   window.showSideFeedback = showSideFeedback;
 
 
-  /* ---------- 비밀번호 인증 ---------- */
-  function checkAuth() {
-    var ok = sessionStorage.getItem(SESSION_KEY) === '1' || localStorage.getItem(SESSION_KEY) === '1';
-    if (ok) {
-      state.authenticated = true;
-      pinGate.hidden = true;
-      teacherApp.hidden = false;
-      initCatalog();
-    } else {
-      pinGate.hidden = false;
-      teacherApp.hidden = true;
-      setTimeout(function () { pinInput.focus(); }, 100);
-    }
-  }
-
-  function submitPin() {
-    if (pinInput.value.trim() === TEACHER_PASS) {
-      sessionStorage.setItem(SESSION_KEY, '1');
-      localStorage.setItem(SESSION_KEY, '1');
-      state.authenticated = true;
-      pinGate.hidden = true;
-      teacherApp.hidden = false;
-      initCatalog();
-    } else {
-      pinError.hidden = false;
-      pinInput.value = '';
-      pinInput.focus();
-    }
-  }
-
-  function lockOut() {
-    sessionStorage.removeItem(SESSION_KEY);
-    localStorage.removeItem(SESSION_KEY);
-    state.authenticated = false;
-    pinGate.hidden = false;
-    teacherApp.hidden = true;
-    pinInput.value = '';
-    pinError.hidden = true;
-  }
-
+  /* ---------- 강사모드 진입 (회원 계정 연동 전 다이렉트 진입) ---------- */
   /* ---------- 카탈로그 및 교재 로드 ---------- */
   function initCatalog() {
     fetch('data/catalog.json?v=teacher-catalog-v16')
@@ -1758,12 +1716,7 @@
   });
 
   /* ---------- 버튼 이벤트 바인딩 ---------- */
-  document.getElementById('btnPinSubmit').addEventListener('click', submitPin);
-  pinInput.addEventListener('keydown', function (e) {
-    if (e.key === 'Enter') submitPin();
-  });
-
-  seriesSelect.addEventListener('change', function () { onSeriesChange(false); });
+    seriesSelect.addEventListener('change', function () { onSeriesChange(false); });
   bookSelect.addEventListener('change', function () { loadBook(bookSelect.value, false); });
   chapterSelect.addEventListener('change', function () { onChapterChange(false); });
 
@@ -1863,9 +1816,7 @@
     }
   });
 
-  document.getElementById('btnLockOut').addEventListener('click', lockOut);
-
-  // 키보드 단축키 (좌우 화살표: 문제 이동, A: 정답, R: 초기화)
+    // 키보드 단축키 (좌우 화살표: 문제 이동, A: 정답, R: 초기화)
   window.addEventListener('keydown', function (e) {
     if (!state.authenticated) return;
     if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT') return;
@@ -2283,5 +2234,5 @@
 
   initSettingsModal();
   initTeachingToolbar();
-  checkAuth();
+  initCatalog();
 })();

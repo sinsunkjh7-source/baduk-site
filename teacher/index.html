@@ -7,39 +7,22 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<title>🔒 Teaching Zone — 바둑스쿨 교재 사령탑</title>
+<title>🎓 Teaching Zone — 바둑스쿨 교재 사령탑</title>
 <link rel="preload" as="image" href="images/board_wood_grain.png">
 
-<link rel="stylesheet" href="style.css?v=1793402637">
+<link rel="stylesheet" href="style.css?v=1793419809">
 <link rel="stylesheet" href="/unified-nav.css?v=fun-menu-20261029L-characters-omok-pets-go-1793324498166">
 <script src="/unified-nav.js?v=fun-menu-20261029L" defer></script>
 </head>
 <body data-bks-page="teacher">
 
-<!-- 비밀번호 잠금 화면 -->
-<div id="pinGate" class="pin-gate-modal">
-  <div class="pin-gate-card">
-    <div class="pin-gate-icon">🔒</div>
-    <h2>Teaching Zone</h2>
-    <p>학원 현장 수업용 166권 교재 라이브러리입니다.<br>선생님 전용 패스워드 4자리를 입력해 주세요.</p>
-    <div class="pin-input-wrap">
-      <input type="password" id="pinInput" inputmode="numeric" maxlength="8" placeholder="선생님 비밀번호 4자리" autofocus>
-    </div>
-    <div class="pin-gate-actions">
-      <a href="/#home" class="btn-secondary">홈으로 나가기</a>
-      <button type="button" id="btnPinSubmit" class="btn-primary">들어가기</button>
-    </div>
-    <p id="pinError" class="pin-error" hidden>비밀번호가 올바르지 않습니다.</p>
-  </div>
-</div>
-
 <!-- 메인 강사 모드 레이아웃 -->
-<div id="teacherApp" class="teacher-app" hidden>
+<div id="teacherApp" class="teacher-app">
   
   <!-- 상단 강사 헤더바 -->
   <header class="teacher-header">
     <div class="header-left">
-      <span class="badge-teacher">🔒 Teaching Zone</span>
+      <span class="badge-teacher">🎓 Teaching Zone</span>
       <h1 id="currentBookTitle">교재를 선택해 주세요</h1>
       <span id="currentChapterTitle" class="chapter-title-tag"></span>
     </div>
@@ -48,7 +31,6 @@
           <span>⚙️</span> 환경설정
         </button>
       <button type="button" id="btnFullscreen" class="btn-tool" title="빔프로젝터/대형화면용 전체화면">⛶ 전체화면</button>
-      <button type="button" id="btnLockOut" class="btn-tool danger">🔒 잠그고 나가기</button>
       <a href="/#home" class="btn-tool home">← 홈으로</a>
     </div>
   </header>
@@ -271,6 +253,6 @@
 <div id="teacherToast" class="teacher-toast" hidden></div>
 
 <script src="audio.js?v=20261028-solidwood&t=teacher-panel-v15"></script>
-<script src="app.js?v=1793402637"></script>
+<script src="app.js?v=1793419809"></script>
 </body>
 </html>
