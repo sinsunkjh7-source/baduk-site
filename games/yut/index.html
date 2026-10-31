@@ -3,55 +3,110 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>윷놀이 — 바둑스쿨 Fun</title>
+<title>전통 윷놀이 — JH 바둑스쿨 EduFun</title>
 <link rel="stylesheet" href="/unified-nav.css?v=header-align-20261031">
-<link rel="stylesheet" href="style.css?v=yut-2">
+<link rel="stylesheet" href="style.css?v=yut-new-1">
 <script src="/unified-nav.js?v=header-align-20261031" defer></script>
 </head>
 <body data-bks-page="yut">
 
-<main class="y-wrap">
-  <section class="y-board-col">
-    <div class="y-head">
-      <div class="y-score"><span class="y-dot p1"></span> 나 <b id="p1home">0</b>/4</div>
-      <div class="y-score"><span class="y-dot p2"></span> 상대 <b id="p2home">0</b>/4</div>
-      <div class="y-turn" id="turnBar">내 차례</div>
+<main class="yut-layout">
+  <!-- 상단 상태바 & 대기석 -->
+  <section class="yut-top-panel">
+    <!-- 플레이어 1 (나, 청팀) -->
+    <div class="player-card p1-card active" id="p1Card">
+      <div class="player-header">
+        <span class="player-badge blue">청팀 (나)</span>
+        <span class="goal-count"><b id="p1Goals">0</b> / 4 완주</span>
+      </div>
+      <div class="home-tray" id="p1HomeTray" title="대기 중인 말 (클릭하여 출전)">
+        <!-- 1~4번 대기 말 -->
+      </div>
     </div>
 
-    <div class="y-canvas-box">
-      <canvas id="board" width="640" height="640"></canvas>
+    <!-- 턴 알림 & 진행 상태 메시지 -->
+    <div class="turn-center-banner" id="turnBanner">
+      <div class="turn-title" id="turnTitle">청팀 차례</div>
+      <div class="turn-sub" id="turnSub">윷을 던져주세요!</div>
     </div>
 
-    <div class="y-bottom">
-      <div class="y-sticks" id="sticks" aria-label="윷가락 4개"></div>
-      <button type="button" id="btnThrow" class="y-btn primary">윷 던지기</button>
-      <span class="y-result" id="result">—</span>
+    <!-- 플레이어 2 (상대 / AI, 홍팀) -->
+    <div class="player-card p2-card" id="p2Card">
+      <div class="player-header">
+        <span class="player-badge red" id="p2BadgeTitle">홍팀 (AI)</span>
+        <span class="goal-count"><b id="p2Goals">0</b> / 4 완주</span>
+      </div>
+      <div class="home-tray" id="p2HomeTray" title="대기 중인 말">
+        <!-- 1~4번 대기 말 -->
+      </div>
     </div>
   </section>
 
-  <aside class="y-side">
-    <h2 class="y-title">윷놀이 <span class="y-build">build 4</span></h2>
-    <p class="y-desc">윷을 던져 말을 움직입니다. 상대 말이 있는 칸에 도착하면 <b>잡고</b> 한 번 더 던집니다.</p>
+  <!-- 메인 게임 영역 (윷판 + 윷 던지기 트레이) -->
+  <div class="yut-main-content">
+    <section class="board-column">
+      <div class="board-wrapper">
+        <canvas id="yutBoard" width="680" height="680"></canvas>
+      </div>
 
-    <div class="y-actions">
-      <button type="button" id="btnNew" class="y-btn">새 게임</button>
-      <button type="button" id="btnMode" class="y-btn">AI 대전 중</button>
-    </div>
+      <!-- 윷 던지기 & 획득한 패 트레이 -->
+      <div class="yut-throw-zone">
+        <!-- 3D 윷가락 4개 멍석 -->
+        <div class="yut-mat">
+          <div class="stick-box" id="sticksContainer">
+            <div class="yut-stick" id="stick0"><div class="stick-inner"><div class="stick-belly"><span class="mark-x">✕</span></div><div class="stick-back"></div></div></div>
+            <div class="yut-stick" id="stick1"><div class="stick-inner"><div class="stick-belly"></div><div class="stick-back"></div></div></div>
+            <div class="yut-stick" id="stick2"><div class="stick-inner"><div class="stick-belly"></div><div class="stick-back"></div></div></div>
+            <div class="yut-stick" id="stick3"><div class="stick-inner"><div class="stick-belly"></div><div class="stick-back"></div></div></div>
+          </div>
+        </div>
 
-    <details class="y-rules">
-      <summary>규칙 보기</summary>
-      <ul>
-        <li>도1 · 개2 · 걸3 · 윷4 · 모5 (뒤집힌 개수)</li>
-        <li>윷·모가 나오면 한 번 더</li>
-        <li>상대 말을 잡으면 한 번 더</li>
-        <li>말 4개를 모두 완주시키면 승리</li>
-      </ul>
-    </details>
+        <!-- 윷 던지기 버튼 & 나온 패 목록 -->
+        <div class="throw-controls">
+          <button type="button" class="btn-throw" id="btnThrow">
+            <span class="throw-icon">🎲</span>
+            <span class="throw-txt">윷 던지기</span>
+          </button>
+          
+          <div class="hand-container" id="handContainer">
+            <span class="hand-label">보유한 패:</span>
+            <div class="hand-chips" id="handChips">
+              <!-- 던져서 나온 패들이 칩 형태로 표시됨 (도, 개, 걸, 윷, 모 등) -->
+              <span class="empty-hand">윷을 던지세요</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <p class="y-msg" id="msg" hidden></p>
-  </aside>
+    <!-- 사이드 메뉴 패널 -->
+    <aside class="sidebar-column">
+      <div class="panel-box">
+        <h2 class="panel-title">전통 윷놀이</h2>
+        <p class="panel-intro">우리 민족 고유의 말판 지혜 대결! 지름길을 노리고, 말을 업고, 상대 말을 잡아 역전하세요.</p>
+
+        <div class="game-control-buttons">
+          <button type="button" class="side-btn primary" id="btnNewGame">🔄 새 게임</button>
+          <button type="button" class="side-btn" id="btnToggleMode">🤖 대전 모드: AI 대전</button>
+          <button type="button" class="side-btn" id="btnToggleSound">🔊 소리 켜짐</button>
+        </div>
+
+        <div class="guide-box">
+          <h3 class="guide-title">📜 윷놀이 정통 룰 안내</h3>
+          <ul class="guide-list">
+            <li><b>도·개·걸·윷·모</b>: 배가 나온 개수에 따라 1·2·3·4·5칸 이동</li>
+            <li><b>뒷도(빽도, ✕)</b>: 뒤로 1칸 후진 (출발 대기 시 참먹이 직행!)</li>
+            <li><b>한 번 더!</b>: 윷(4)이나 모(5)가 나오면 한 번 더 던집니다.</li>
+            <li><b>잡기</b>: 상대 말을 밟으면 잡아서 대기석으로 보내고 <b>한 번 더</b> 던집니다.</li>
+            <li><b>업기</b>: 내 말끼리 만나면 업혀서 함께 움직이고 동시에 골인합니다.</li>
+            <li><b>지름길</b>: 우상귀(앞모), 좌상귀(뒷모), 중앙(방)에 멈추면 빠른 대각선 코스로 직행합니다.</li>
+          </ul>
+        </div>
+      </div>
+    </aside>
+  </div>
 </main>
 
-<script src="game.js?v=yut-4"></script>
+<script src="game.js?v=yut-clean-20261031"></script>
 </body>
 </html>

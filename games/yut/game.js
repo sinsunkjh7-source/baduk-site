@@ -1,368 +1,1087 @@
-/* 윷놀이 — 바둑스쿨 Fun
-   판: 29밭 (외곽 20 + 대각선 8 + 중앙 1) · 지름길 이동 */
+/**
+ * 전통 윷놀이 정통 엔진 (JH 바둑스쿨 EduFun)
+ * 29밭 DAG 경로 그래프 · 연속 던지기(윷/모) 큐 · 말 업기 · 빽도 · 지름길 분기 · 스마트 AI
+ */
 (function () {
   'use strict';
 
-  var cv = document.getElementById('board');
-  var ctx = cv.getContext('2d');
-  var DPR = Math.min(window.devicePixelRatio || 1, 2);
+  // 캔버스 및 렌더링 설정
+  const canvas = document.getElementById('yutBoard');
+  const ctx = canvas.getContext('2d');
+  const DPR = Math.min(window.devicePixelRatio || 1, 2);
 
-  var W = 640, H = 640, PAD = 70, SIDE = W - PAD * 2;
-  var PIECE_R = 17;
+  const BOARD_SIZE = 680;
+  const PAD = 75;
+  const SIDE = BOARD_SIZE - PAD * 2; // 530px
+  const PIECE_RADIUS = 19;
 
-  var START = 15, CENTER = 20;   /* 출발: 우하귀 */
-  var NAMES = { 1: '도', 2: '개', 3: '걸', 4: '윷', 5: '모' };
-  var CORNERS = { 0: 27, 5: 21, 10: 23, 15: 25 };
-  var IN_NEXT = { 21: 22, 22: CENTER, 23: 24, 24: CENTER, 25: 26, 26: CENTER, 27: 28, 28: CENTER };
-  var OUT_NEXT = { 26: 25, 25: 15, 28: 27, 27: 0, 22: 21, 21: 5, 24: 23, 23: 10 };
-  var CENTER_OUT = { 22: 26, 24: 28, 26: 22, 28: 24 };
+  // 29개 밭(Station) 좌표 정의
+  // 0: 참먹이(우하귀), 1~4: 우변, 5: 앞모(우상귀), 6~9: 상변, 10: 뒷모(좌상귀),
+  // 11~14: 좌변, 15: 찌모(좌하귀), 16~19: 하변,
+  // 20~21: 대각선(5->22), 22: 중앙 방, 23~24: 대각선(10->22),
+  // 25~26: 대각선(22->0), 27~28: 대각선(22->15)
+  const NODES = [];
 
-  var nodes = [];
-  var players = [
-    { id: 0, name: '나', color: '#2f6fb7', pieces: [], done: 0 },
-    { id: 1, name: '상대', color: '#c0392b', pieces: [], done: 0 }
-  ];
-  var turn = 0, phase = 'throw', pending = 0, vsAI = true, over = false;
-  var moving = false, selected = -1;
-
-  var el = {
-    p1: document.getElementById('p1home'),
-    p2: document.getElementById('p2home'),
-    turn: document.getElementById('turnBar'),
-    sticks: document.getElementById('sticks'),
-    btn: document.getElementById('btnThrow'),
-    result: document.getElementById('result'),
-    msg: document.getElementById('msg'),
-    modeBtn: document.getElementById('btnMode')
-  };
-
-  /* ---------- 판 (29밭) ---------- */
-  function buildNodes() {
-    nodes = [];
-    var ring = [
-      [PAD, PAD + SIDE], [PAD, PAD + SIDE * 0.8], [PAD, PAD + SIDE * 0.6], [PAD, PAD + SIDE * 0.4], [PAD, PAD + SIDE * 0.2],
-      [PAD, PAD],
-      [PAD + SIDE * 0.2, PAD], [PAD + SIDE * 0.4, PAD], [PAD + SIDE * 0.6, PAD], [PAD + SIDE * 0.8, PAD],
-      [PAD + SIDE, PAD],
-      [PAD + SIDE, PAD + SIDE * 0.2], [PAD + SIDE, PAD + SIDE * 0.4], [PAD + SIDE, PAD + SIDE * 0.6], [PAD + SIDE, PAD + SIDE * 0.8],
-      [PAD + SIDE, PAD + SIDE],
-      [PAD + SIDE * 0.8, PAD + SIDE], [PAD + SIDE * 0.6, PAD + SIDE], [PAD + SIDE * 0.4, PAD + SIDE], [PAD + SIDE * 0.2, PAD + SIDE]
-    ];
-    ring.forEach(function (p) { nodes.push({ x: p[0], y: p[1] }); });
-
-    nodes.push({ x: PAD + SIDE / 2, y: PAD + SIDE / 2 });   /* 20 중앙 */
-
-    function arm(ci) {
-      var c = ring[ci], mx = PAD + SIDE / 2, my = PAD + SIDE / 2;
-      nodes.push({ x: c[0] + (mx - c[0]) / 3, y: c[1] + (my - c[1]) / 3 });
-      nodes.push({ x: c[0] + (mx - c[0]) * 2 / 3, y: c[1] + (my - c[1]) * 2 / 3 });
+  function initBoardNodes() {
+    NODES.length = 0;
+    // 1. 외곽 20개 노드 (시계 반대 방향)
+    // 0: 우하귀 (출발/참먹이)
+    NODES[0] = { id: 0, x: PAD + SIDE, y: PAD + SIDE, name: '참먹이 (출발/도착)', isCorner: true };
+    // 1~4: 우변 (북쪽으로 전진)
+    for (let i = 1; i <= 4; i++) {
+      NODES[i] = { id: i, x: PAD + SIDE, y: PAD + SIDE - (SIDE / 5) * i, name: ['도', '개', '걸', '윷'][i - 1], isCorner: false };
     }
-    arm(5); arm(10); arm(15); arm(0);
-  }
-
-  function nodePos(i) { return nodes[i] || nodes[0]; }
-
-  /* ---------- 경로 ---------- */
-  function makePiece(pid, n) {
-    return { owner: pid, idx: n, pos: START, enterFrom: null, goingOut: false, skipDiag: false, finished: false };
-  }
-
-  function nextNode(p) {
-    if (p.pos === CENTER) {
-      p.goingOut = true;
-      var ex = CENTER_OUT[p.enterFrom];
-      return ex === undefined ? 0 : ex;
+    // 5: 우상귀 (앞모)
+    NODES[5] = { id: 5, x: PAD + SIDE, y: PAD, name: '앞모 (우상귀)', isCorner: true };
+    // 6~9: 상변 (서쪽으로 전진)
+    for (let i = 1; i <= 4; i++) {
+      NODES[5 + i] = { id: 5 + i, x: PAD + SIDE - (SIDE / 5) * i, y: PAD, name: `상변 ${i}`, isCorner: false };
     }
-    if (p.goingOut && OUT_NEXT[p.pos] !== undefined) {
-      var o = OUT_NEXT[p.pos];
-      if (o === 0 || o === 5 || o === 10 || o === 15) { p.goingOut = false; p.skipDiag = true; }
-      return o;
+    // 10: 좌상귀 (뒷모)
+    NODES[10] = { id: 10, x: PAD, y: PAD, name: '뒷모 (좌상귀)', isCorner: true };
+    // 11~14: 좌변 (남쪽으로 전진)
+    for (let i = 1; i <= 4; i++) {
+      NODES[10 + i] = { id: 10 + i, x: PAD, y: PAD + (SIDE / 5) * i, name: `좌변 ${i}`, isCorner: false };
     }
-    if (IN_NEXT[p.pos] !== undefined) {
-      var n = IN_NEXT[p.pos];
-      if (n === CENTER) p.enterFrom = p.pos;
-      return n;
+    // 15: 좌하귀 (찌모)
+    NODES[15] = { id: 15, x: PAD, y: PAD + SIDE, name: '찌모 (좌하귀)', isCorner: true };
+    // 16~19: 하변 (동쪽으로 전진)
+    for (let i = 1; i <= 4; i++) {
+      NODES[15 + i] = { id: 15 + i, x: PAD + (SIDE / 5) * i, y: PAD + SIDE, name: `하변 ${i}`, isCorner: false };
     }
-    if (CORNERS[p.pos] !== undefined) {
-      if (p.skipDiag) { p.skipDiag = false; return (p.pos + 1) % 20; }
-      return CORNERS[p.pos];
-    }
-    return (p.pos + 1) % 20;
+
+    // 2. 대각선 노드들
+    const CX = PAD + SIDE / 2;
+    const CY = PAD + SIDE / 2;
+    // 22: 중앙 방
+    NODES[22] = { id: 22, x: CX, y: CY, name: '중앙 방', isCenter: true };
+
+    // 20, 21: 우상귀(5) -> 중앙(22)
+    NODES[20] = { id: 20, x: NODES[5].x + (CX - NODES[5].x) / 3, y: NODES[5].y + (CY - NODES[5].y) / 3, name: '앞모 대각 1' };
+    NODES[21] = { id: 21, x: NODES[5].x + ((CX - NODES[5].x) * 2) / 3, y: NODES[5].y + ((CY - NODES[5].y) * 2) / 3, name: '앞모 대각 2' };
+
+    // 23, 24: 좌상귀(10) -> 중앙(22)
+    NODES[23] = { id: 23, x: NODES[10].x + (CX - NODES[10].x) / 3, y: NODES[10].y + (CY - NODES[10].y) / 3, name: '뒷모 대각 1' };
+    NODES[24] = { id: 24, x: NODES[10].x + ((CX - NODES[10].x) * 2) / 3, y: NODES[10].y + ((CY - NODES[10].y) * 2) / 3, name: '뒷모 대각 2' };
+
+    // 25, 26: 중앙(22) -> 우하귀 참먹이(0) 빠른 탈출로
+    NODES[25] = { id: 25, x: CX + (NODES[0].x - CX) / 3, y: CY + (NODES[0].y - CY) / 3, name: '출구 대각 1' };
+    NODES[26] = { id: 26, x: CX + ((NODES[0].x - CX) * 2) / 3, y: CY + ((NODES[0].y - CY) * 2) / 3, name: '출구 대각 2' };
+
+    // 27, 28: 중앙(22) -> 좌하귀(15) 통과로
+    NODES[27] = { id: 27, x: CX + (NODES[15].x - CX) / 3, y: CY + (NODES[15].y - CY) / 3, name: '좌하 대각 1' };
+    NODES[28] = { id: 28, x: CX + ((NODES[15].x - CX) * 2) / 3, y: CY + ((NODES[15].y - CY) * 2) / 3, name: '좌하 대각 2' };
   }
 
-  /* ---------- 게임 ---------- */
-  function newGame() {
-    players.forEach(function (pl) {
-      pl.pieces = [0, 1, 2, 3].map(function (n) { return makePiece(pl.id, n); });
-      pl.done = 0;
-    });
-    turn = 0; phase = 'throw'; pending = 0; over = false; selected = -1; moving = false;
-    el.sticks.innerHTML = '';
-    for (var i = 0; i < 4; i++) {
-      var s = document.createElement('span');
-      s.className = 'y-stick';
-      el.sticks.appendChild(s);
-    }
-    el.result.textContent = '—';
-    msg('');
-    update(); draw();
-  }
+  initBoardNodes();
 
-  function msg(t) { el.msg.hidden = !t; el.msg.textContent = t || ''; }
-  function finished(pl) { return pl.pieces.filter(function (p) { return p.finished; }).length; }
+  // Web Audio 효과음 합성 엔진
+  const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  let soundEnabled = true;
 
-  function update() {
-    el.p1.textContent = finished(players[0]);
-    el.p2.textContent = finished(players[1]);
-    el.turn.textContent = over ? '게임 종료'
-      : (vsAI && turn === 1 ? '상대(AI) 차례' : (turn === 0 ? '내 차례' : '상대 차례'));
-    el.btn.disabled = over || moving || phase !== 'throw' || (vsAI && turn === 1);
-  }
+  function playSound(type) {
+    if (!soundEnabled || !audioCtx) return;
+    try {
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+      const now = audioCtx.currentTime;
 
-  function rollSticks() {
-    var backs = 0, sticks = el.sticks.children;
-    for (var i = 0; i < 4; i++) {
-      var back = Math.random() < 0.5;
-      if (back) backs++;
-      sticks[i].classList.toggle('back', back);
-    }
-    var steps = (4 - backs) === 0 ? 5 : (4 - backs);
-    el.result.textContent = NAMES[steps] + ' (' + steps + ')';
-    return steps;
-  }
-
-  function movable(pl) { return pl.pieces.filter(function (p) { return !p.finished; }); }
-
-  function throwYut() {
-    if (over || moving || phase !== 'throw') return;
-    var steps = rollSticks();
-    pending = steps; phase = 'move'; selected = -1;
-    update(); draw();
-    msg(NAMES[steps] + '! 움직일 말을 고르세요');
-    if (vsAI && turn === 1) setTimeout(aiPick, 520);
-  }
-
-  function walk(p, steps, cb) {
-    var left = steps;
-    moving = true; update(); draw();
-    (function step() {
-      if (left <= 0) { moving = false; draw(); cb(); return; }
-
-      var nx = nextNode(p);
-      if (nx === START && p.pos !== START) {
-        p.pos = START; p.finished = true; p.exitQueue = null;
-        left--; draw();
-        setTimeout(function () { moving = false; cb(); }, 140);
-        return;
-      }
-      p.pos = nx; left--;
-      draw();
-      setTimeout(step, 110);
-    })();
-  }
-
-  function movePiece(pl, piece, steps) {
-    walk(piece, steps, function () {
-      var captured = false;
-      if (!piece.finished) {
-        players[1 - pl.id].pieces.forEach(function (o) {
-          if (!o.finished && o.pos === piece.pos) { o.pos = START; o.exitQueue = null; captured = true; }
+      if (type === 'throw') {
+        // 윷가락 나무 부딪히는 소리
+        for (let i = 0; i < 4; i++) {
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(220 + Math.random() * 200, now + i * 0.04);
+          gain.gain.setValueAtTime(0.2, now + i * 0.04);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + i * 0.04 + 0.12);
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+          osc.start(now + i * 0.04);
+          osc.stop(now + i * 0.04 + 0.12);
+        }
+      } else if (type === 'step') {
+        // 말 착수음 (퐁!)
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(440, now);
+        osc.frequency.exponentialRampToValueAtTime(220, now + 0.08);
+        gain.gain.setValueAtTime(0.3, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.08);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start(now);
+        osc.stop(now + 0.08);
+      } else if (type === 'catch') {
+        // 말 잡았을 때 (팡!)
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(320, now);
+        osc.frequency.linearRampToValueAtTime(640, now + 0.18);
+        gain.gain.setValueAtTime(0.35, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start(now);
+        osc.stop(now + 0.25);
+      } else if (type === 'carry') {
+        // 업기 (뾰로롱!)
+        [523, 659, 784].forEach((freq, idx) => {
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.frequency.setValueAtTime(freq, now + idx * 0.06);
+          gain.gain.setValueAtTime(0.2, now + idx * 0.06);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.06 + 0.12);
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+          osc.start(now + idx * 0.06);
+          osc.stop(now + idx * 0.06 + 0.12);
+        });
+      } else if (type === 'goal') {
+        // 완주 골인 차임
+        [523, 659, 784, 1046].forEach((freq, idx) => {
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.frequency.setValueAtTime(freq, now + idx * 0.08);
+          gain.gain.setValueAtTime(0.25, now + idx * 0.08);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.08 + 0.2);
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+          osc.start(now + idx * 0.08);
+          osc.stop(now + idx * 0.08 + 0.2);
         });
       }
+    } catch (e) {
+      // Audio not permitted yet
+    }
+  }
 
-      if (finished(pl) === 4) {
-        over = true; msg(pl.id === 0 ? '내가 이겼습니다!' : '상대(AI) 승리');
-        phase = 'throw'; update(); draw(); return;
+  // -------------------------------------------------------------
+  // 게임 상태 머신 (State Machine)
+  // -------------------------------------------------------------
+  const YUT_NAMES = {
+    '-1': '뒷도(빽도)',
+    1: '도',
+    2: '개',
+    3: '걸',
+    4: '윷',
+    5: '모'
+  };
+
+  let vsAI = true;
+  let turn = 0; // 0: 청팀 (나), 1: 홍팀 (상대/AI)
+  let phase = 'throw'; // 'throw' | 'move'
+  let isThrowing = false;
+  let isMoving = false;
+  let gameOver = false;
+
+  // 던져서 나온 패들 큐 (예: [{name:'윷', steps:4}, {name:'개', steps:2}])
+  let handQueue = [];
+  let selectedHandIdx = 0; // 현재 선택된 패 인덱스
+  let selectedPieceId = null; // 선택된 말 ID
+
+  // 각 플레이어별 4개의 말 (Pieces)
+  // pos: -1 (대기석), 0~28 (판 위 밭 번호), null (완주/골인)
+  // route: 'outer' | 'diag_ur_to_center' | 'diag_ul_to_center' | 'diag_center_to_exit' | 'diag_center_to_ll'
+  // stacked: 함께 업힌 말 id 배열
+  const players = [
+    {
+      id: 0,
+      name: '청팀 (나)',
+      color: '#2563eb',
+      pieces: [
+        { id: 'p0_1', owner: 0, label: '1', pos: -1, route: 'outer', stacked: [], finished: false },
+        { id: 'p0_2', owner: 0, label: '2', pos: -1, route: 'outer', stacked: [], finished: false },
+        { id: 'p0_3', owner: 0, label: '3', pos: -1, route: 'outer', stacked: [], finished: false },
+        { id: 'p0_4', owner: 0, label: '4', pos: -1, route: 'outer', stacked: [], finished: false }
+      ]
+    },
+    {
+      id: 1,
+      name: '홍팀 (AI)',
+      color: '#dc2626',
+      pieces: [
+        { id: 'p1_1', owner: 1, label: '1', pos: -1, route: 'outer', stacked: [], finished: false },
+        { id: 'p1_2', owner: 1, label: '2', pos: -1, route: 'outer', stacked: [], finished: false },
+        { id: 'p1_3', owner: 1, label: '3', pos: -1, route: 'outer', stacked: [], finished: false },
+        { id: 'p1_4', owner: 1, label: '4', pos: -1, route: 'outer', stacked: [], finished: false }
+      ]
+    }
+  ];
+
+  // DOM 요소 캐시
+  const dom = {
+    p1Card: document.getElementById('p1Card'),
+    p2Card: document.getElementById('p2Card'),
+    p1Goals: document.getElementById('p1Goals'),
+    p2Goals: document.getElementById('p2Goals'),
+    p1HomeTray: document.getElementById('p1HomeTray'),
+    p2HomeTray: document.getElementById('p2HomeTray'),
+    turnBanner: document.getElementById('turnBanner'),
+    turnTitle: document.getElementById('turnTitle'),
+    turnSub: document.getElementById('turnSub'),
+    p2BadgeTitle: document.getElementById('p2BadgeTitle'),
+    btnThrow: document.getElementById('btnThrow'),
+    handChips: document.getElementById('handChips'),
+    sticksContainer: document.getElementById('sticksContainer'),
+    stickElements: [
+      document.getElementById('stick0'),
+      document.getElementById('stick1'),
+      document.getElementById('stick2'),
+      document.getElementById('stick3')
+    ],
+    btnNewGame: document.getElementById('btnNewGame'),
+    btnToggleMode: document.getElementById('btnToggleMode'),
+    btnToggleSound: document.getElementById('btnToggleSound')
+  };
+
+  // -------------------------------------------------------------
+  // 윷놀이 이동 경로(Graph) 계산기
+  // -------------------------------------------------------------
+  function getNextStep(pos, route) {
+    // 1보 전진 시 (next_pos, next_route, is_finish)
+    if (pos === -1) {
+      return { pos: 1, route: 'outer', finished: false };
+    }
+
+    if (route === 'outer') {
+      if (pos === 19) return { pos: 0, route: 'outer', finished: false };
+      if (pos === 0) return { pos: null, route: null, finished: true }; // 0을 넘어가면 골인
+      return { pos: pos + 1, route: 'outer', finished: false };
+    }
+
+    if (route === 'diag_ur_to_center') {
+      if (pos === 5) return { pos: 20, route: 'diag_ur_to_center', finished: false };
+      if (pos === 20) return { pos: 21, route: 'diag_ur_to_center', finished: false };
+      if (pos === 21) return { pos: 22, route: 'diag_ur_to_center', finished: false };
+      if (pos === 22) return { pos: 27, route: 'diag_center_to_ll', finished: false }; // 22 통과 시 좌하귀행
+    }
+
+    if (route === 'diag_center_to_ll') {
+      if (pos === 27) return { pos: 28, route: 'diag_center_to_ll', finished: false };
+      if (pos === 28) return { pos: 15, route: 'outer', finished: false }; // 15번 외곽 합류
+    }
+
+    if (route === 'diag_ul_to_center') {
+      if (pos === 10) return { pos: 23, route: 'diag_ul_to_center', finished: false };
+      if (pos === 23) return { pos: 24, route: 'diag_ul_to_center', finished: false };
+      if (pos === 24) return { pos: 22, route: 'diag_center_to_exit', finished: false };
+      if (pos === 22) return { pos: 25, route: 'diag_center_to_exit', finished: false };
+    }
+
+    if (route === 'diag_center_to_exit') {
+      if (pos === 22) return { pos: 25, route: 'diag_center_to_exit', finished: false };
+      if (pos === 25) return { pos: 26, route: 'diag_center_to_exit', finished: false };
+      if (pos === 26) return { pos: 0, route: 'outer', finished: false };
+      if (pos === 0) return { pos: null, route: null, finished: true };
+    }
+
+    return { pos: null, route: null, finished: true };
+  }
+
+  function simulateMove(startPos, startRoute, steps) {
+    if (steps === -1) {
+      // 빽도 (뒷도)
+      if (startPos === -1) {
+        // 대기석 빽도 -> 참먹이(0번) 진입! (다음 턴 1보 골인 가능)
+        return { pos: 0, route: 'outer', finished: false };
       }
+      if (startRoute === 'outer') {
+        if (startPos === 1) return { pos: 0, route: 'outer', finished: false };
+        if (startPos === 0) return { pos: 19, route: 'outer', finished: false };
+        return { pos: startPos - 1, route: 'outer', finished: false };
+      }
+      if (startRoute === 'diag_ur_to_center') {
+        if (startPos === 20) return { pos: 5, route: 'outer', finished: false };
+        if (startPos === 21) return { pos: 20, route: 'diag_ur_to_center', finished: false };
+        if (startPos === 22) return { pos: 21, route: 'diag_ur_to_center', finished: false };
+      }
+      if (startRoute === 'diag_ul_to_center') {
+        if (startPos === 23) return { pos: 10, route: 'outer', finished: false };
+        if (startPos === 24) return { pos: 23, route: 'diag_ul_to_center', finished: false };
+        if (startPos === 22) return { pos: 24, route: 'diag_ul_to_center', finished: false };
+      }
+      if (startRoute === 'diag_center_to_exit') {
+        if (startPos === 25) return { pos: 22, route: 'diag_center_to_exit', finished: false };
+        if (startPos === 26) return { pos: 25, route: 'diag_center_to_exit', finished: false };
+        if (startPos === 0) return { pos: 26, route: 'diag_center_to_exit', finished: false };
+      }
+      if (startRoute === 'diag_center_to_ll') {
+        if (startPos === 27) return { pos: 22, route: 'diag_ur_to_center', finished: false };
+        if (startPos === 28) return { pos: 27, route: 'diag_center_to_ll', finished: false };
+        if (startPos === 15) return { pos: 28, route: 'diag_center_to_ll', finished: false };
+      }
+      return { pos: startPos, route: startRoute, finished: false };
+    }
 
-      var extra = captured || steps === 4 || steps === 5;
-      if (extra) {
-        phase = 'throw';
-        msg(captured ? '잡았습니다! 한 번 더' : NAMES[steps] + '! 한 번 더');
-        if (vsAI && pl.id === 1) setTimeout(throwYut, 550);
+    let curPos = startPos;
+    let curRoute = startRoute;
+    let finished = false;
+
+    for (let s = 0; s < steps; s++) {
+      if (finished) break;
+      const res = getNextStep(curPos, curRoute);
+      curPos = res.pos;
+      curRoute = res.route;
+      finished = res.finished;
+    }
+
+    // 도착 지점이 모서리나 중앙일 때 분기 활성화
+    if (!finished) {
+      if (curPos === 5) curRoute = 'diag_ur_to_center';
+      else if (curPos === 10) curRoute = 'diag_ul_to_center';
+      else if (curPos === 22) curRoute = 'diag_center_to_exit'; // 중앙에 멈추면 빠른 출구길로 전환!
+    }
+
+    return { pos: curPos, route: curRoute, finished };
+  }
+
+  // -------------------------------------------------------------
+  // 윷 던지기 로직 (확률 모델 & 애니메이션)
+  // -------------------------------------------------------------
+  function rollYut() {
+    // 실제 윷가락의 둥근 등과 평평한 배 확률 반영: 평평한 배가 나올 확률 약 58%
+    const bellyProb = 0.58;
+    const flips = [
+      Math.random() < bellyProb, // 0번 윷: 뒷도(X) 표식
+      Math.random() < bellyProb,
+      Math.random() < bellyProb,
+      Math.random() < bellyProb
+    ];
+
+    const bellyCount = flips.filter(b => b).length;
+    let name = '';
+    let steps = 0;
+    let isBonus = false;
+
+    if (bellyCount === 1) {
+      if (flips[0]) {
+        name = '뒷도(빽도)';
+        steps = -1;
       } else {
-        turn = 1 - turn; phase = 'throw'; msg('');
-        if (vsAI && turn === 1) setTimeout(throwYut, 550);
+        name = '도';
+        steps = 1;
       }
-      update(); draw();
+    } else if (bellyCount === 2) {
+      name = '개';
+      steps = 2;
+    } else if (bellyCount === 3) {
+      name = '걸';
+      steps = 3;
+    } else if (bellyCount === 4) {
+      name = '윷';
+      steps = 4;
+      isBonus = true; // 한 번 더!
+    } else if (bellyCount === 0) {
+      name = '모';
+      steps = 5;
+      isBonus = true; // 한 번 더!
+    }
+
+    return { flips, name, steps, isBonus };
+  }
+
+  function throwYutAction() {
+    if (gameOver || isThrowing || isMoving || phase !== 'throw') return;
+    if (vsAI && turn === 1) return; // AI 턴 동안 사용자 클릭 방지
+
+    executeThrow();
+  }
+
+  function executeThrow() {
+    isThrowing = true;
+    dom.btnThrow.disabled = true;
+    playSound('throw');
+
+    // 윷가락 구르기 애니메이션 시작
+    dom.sticksContainer.classList.add('tumbling');
+
+    const result = rollYut();
+
+    setTimeout(() => {
+      dom.sticksContainer.classList.remove('tumbling');
+      // 윷가락 면 뒤집기 상태 적용
+      result.flips.forEach((isBelly, i) => {
+        dom.stickElements[i].classList.toggle('flipped', !isBelly); // 등에 닿으면 flipped
+      });
+
+      // 던진 패 큐에 추가
+      handQueue.push({
+        name: result.name,
+        steps: result.steps,
+        isBonus: result.isBonus
+      });
+
+      isThrowing = false;
+      renderHandChips();
+
+      if (result.isBonus) {
+        // 윷이나 모: 한 번 더 던지기!
+        setBanner(`${result.name}!`, '한 번 더 던질 수 있습니다! 🎲', '#f59e0b');
+        phase = 'throw';
+        updateUI();
+        if (vsAI && turn === 1) {
+          setTimeout(aiTurn, 700);
+        }
+      } else {
+        // 일반 패: 이동 단계로 전환
+        phase = 'move';
+        selectedHandIdx = 0;
+        setBanner(
+          `${result.name}!`,
+          turn === 0 ? '이동할 말과 패를 선택하세요' : '상대가 이동할 말을 고르고 있습니다',
+          turn === 0 ? '#2563eb' : '#dc2626'
+        );
+        updateUI();
+        if (vsAI && turn === 1) {
+          setTimeout(aiMove, 650);
+        }
+      }
+    }, 450);
+  }
+
+  // -------------------------------------------------------------
+  // 말 이동 및 규칙 (잡기, 업기, 완주)
+  // -------------------------------------------------------------
+  function selectHandChip(idx) {
+    if (phase !== 'move' || isMoving || (vsAI && turn === 1)) return;
+    selectedHandIdx = idx;
+    renderHandChips();
+    drawBoard();
+  }
+
+  function selectPiece(piece) {
+    if (gameOver || isMoving || phase !== 'move') return;
+    if (turn !== piece.owner) return;
+    if (piece.finished) return;
+
+    if (handQueue.length === 0) return;
+    const currentHand = handQueue[selectedHandIdx];
+    if (!currentHand) return;
+
+    movePiece(piece, currentHand.steps, selectedHandIdx);
+  }
+
+  function movePiece(piece, steps, handIdx) {
+    isMoving = true;
+    dom.btnThrow.disabled = true;
+
+    // 경로 시뮬레이션
+    const target = simulateMove(piece.pos, piece.route, steps);
+
+    // 1보씩 걷는 애니메이션
+    const animPath = [];
+    if (steps === -1) {
+      animPath.push(target.pos);
+    } else {
+      let tempPos = piece.pos;
+      let tempRoute = piece.route;
+      for (let s = 0; s < steps; s++) {
+        const stepRes = getNextStep(tempPos, tempRoute);
+        tempPos = stepRes.pos;
+        tempRoute = stepRes.route;
+        animPath.push(tempPos);
+        if (stepRes.finished) break;
+      }
+    }
+
+    let stepIdx = 0;
+    function walkStep() {
+      if (stepIdx < animPath.length) {
+        piece.pos = animPath[stepIdx];
+        playSound('step');
+        drawBoard();
+        stepIdx++;
+        setTimeout(walkStep, 130);
+      } else {
+        // 최종 착지 처리
+        finishMove(piece, target, handIdx);
+      }
+    }
+
+    walkStep();
+  }
+
+  function finishMove(piece, target, handIdx) {
+    piece.pos = target.pos;
+    piece.route = target.route;
+    piece.finished = target.finished;
+
+    // 업힌 말들도 동일하게 상태 갱신
+    if (piece.stacked && piece.stacked.length > 0) {
+      piece.stacked.forEach(stkId => {
+        const stkPiece = players[piece.owner].pieces.find(p => p.id === stkId);
+        if (stkPiece) {
+          stkPiece.pos = target.pos;
+          stkPiece.route = target.route;
+          stkPiece.finished = target.finished;
+        }
+      });
+    }
+
+    // 패 소모
+    handQueue.splice(handIdx, 1);
+    selectedHandIdx = Math.max(0, Math.min(selectedHandIdx, handQueue.length - 1));
+
+    let gotBonusThrow = false;
+
+    if (piece.finished) {
+      playSound('goal');
+      const count = 1 + (piece.stacked ? piece.stacked.length : 0);
+      setBanner('골인!', `${piece.owner === 0 ? '청팀' : '홍팀'} 말이 완주했습니다! 🏆`, '#16a34a');
+    } else {
+      // 1. 잡기 체크 (상대 말 확인)
+      const enemy = players[1 - piece.owner];
+      const captured = enemy.pieces.filter(ep => !ep.finished && ep.pos === piece.pos);
+
+      if (captured.length > 0) {
+        playSound('catch');
+        captured.forEach(ep => {
+          ep.pos = -1;
+          ep.route = 'outer';
+          ep.stacked = [];
+        });
+        gotBonusThrow = true;
+        setBanner('잡았다!', `상대 말을 잡아 한 번 더 던집니다! 💥`, '#ea580c');
+      } else {
+        // 2. 업기 체크 (내 다른 말 확인)
+        const myTeam = players[piece.owner];
+        const friends = myTeam.pieces.filter(fp => fp.id !== piece.id && !fp.finished && fp.pos === piece.pos);
+
+        if (friends.length > 0) {
+          playSound('carry');
+          friends.forEach(fp => {
+            if (!piece.stacked.includes(fp.id)) piece.stacked.push(fp.id);
+            // 업힌 말의 stacked도 병합
+            fp.stacked.forEach(subId => {
+              if (subId !== piece.id && !piece.stacked.includes(subId)) piece.stacked.push(subId);
+            });
+            fp.stacked = [];
+          });
+          setBanner('업기 성공!', `말이 합체되어 함께 달립니다! 🤝`, '#f59e0b');
+        }
+      }
+    }
+
+    // 승리 조건 체크 (4말 모두 완주)
+    const p1Done = players[0].pieces.filter(p => p.finished).length;
+    const p2Done = players[1].pieces.filter(p => p.finished).length;
+
+    dom.p1Goals.textContent = p1Done;
+    dom.p2Goals.textContent = p2Done;
+
+    if (p1Done >= 4 || p2Done >= 4) {
+      gameOver = true;
+      isMoving = false;
+      const winner = p1Done >= 4 ? players[0] : players[1];
+      setBanner('🎉 승리!', `${winner.name}이 4말을 모두 완주하여 승리했습니다!`, '#16a34a');
+      updateUI();
+      drawBoard();
+      return;
+    }
+
+    isMoving = false;
+
+    // 보너스 던지기 발생 시 phase를 throw로 유지
+    if (gotBonusThrow) {
+      phase = 'throw';
+      updateUI();
+      renderHandChips();
+      drawBoard();
+      if (vsAI && turn === 1) {
+        setTimeout(aiTurn, 750);
+      }
+      return;
+    }
+
+    // 보유한 패가 남아있는지 확인
+    if (handQueue.length > 0) {
+      phase = 'move';
+      updateUI();
+      renderHandChips();
+      drawBoard();
+      if (vsAI && turn === 1) {
+        setTimeout(aiMove, 650);
+      }
+    } else {
+      // 턴 종료 -> 다음 플레이어
+      turn = 1 - turn;
+      phase = 'throw';
+      setBanner(
+        turn === 0 ? '청팀 차례' : `${vsAI ? '홍팀(AI)' : '홍팀'} 차례`,
+        '윷을 던져주세요!',
+        turn === 0 ? '#2563eb' : '#dc2626'
+      );
+      updateUI();
+      renderHandChips();
+      drawBoard();
+      if (vsAI && turn === 1) {
+        setTimeout(aiTurn, 750);
+      }
+    }
+  }
+
+  // -------------------------------------------------------------
+  // 스마트 AI 엔진
+  // -------------------------------------------------------------
+  function aiTurn() {
+    if (gameOver || turn !== 1 || phase !== 'throw') return;
+    executeThrow();
+  }
+
+  function aiMove() {
+    if (gameOver || turn !== 1 || phase !== 'move') return;
+    if (handQueue.length === 0) return;
+
+    const availableHands = handQueue.map((h, idx) => ({ ...h, idx }));
+    const myPieces = players[1].pieces.filter(p => !p.finished);
+
+    let bestChoice = null;
+    let maxScore = -9999;
+
+    availableHands.forEach(hand => {
+      myPieces.forEach(piece => {
+        const sim = simulateMove(piece.pos, piece.route, hand.steps);
+        let score = 0;
+
+        // 1. 완주 점수 (최우선)
+        if (sim.finished) {
+          score += 1000 + (piece.stacked ? piece.stacked.length * 500 : 0);
+        } else {
+          // 2. 상대 말 잡기 (엄청난 이득 + 한 번 더 던지기)
+          const enemyOnLanding = players[0].pieces.filter(ep => !ep.finished && ep.pos === sim.pos);
+          if (enemyOnLanding.length > 0) {
+            score += 800 + enemyOnLanding.length * 300;
+          }
+
+          // 3. 지름길 진입 (우상귀 5, 좌상귀 10, 중앙 방 22)
+          if (sim.pos === 22) score += 400;
+          else if (sim.pos === 5 || sim.pos === 10) score += 300;
+
+          // 4. 내 말 업기
+          const friendsOnLanding = players[1].pieces.filter(fp => fp.id !== piece.id && !fp.finished && fp.pos === sim.pos);
+          if (friendsOnLanding.length > 0) {
+            score += 250;
+          }
+
+          // 5. 전진 진척도 점수
+          score += (sim.pos >= 0 ? sim.pos : 0) * 5;
+
+          // 6. 대기석에서 새 말 출전 권장
+          if (piece.pos === -1 && hand.steps > 0) {
+            score += 150;
+          }
+        }
+
+        if (score > maxScore) {
+          maxScore = score;
+          bestChoice = { piece, handIdx: hand.idx, steps: hand.steps };
+        }
+      });
+    });
+
+    if (bestChoice) {
+      selectedHandIdx = bestChoice.handIdx;
+      movePiece(bestChoice.piece, bestChoice.steps, bestChoice.handIdx);
+    } else {
+      // 움직일 수 있는 말이 없을 때
+      handQueue.length = 0;
+      turn = 0;
+      phase = 'throw';
+      setBanner('청팀 차례', '윷을 던져주세요!', '#2563eb');
+      updateUI();
+      renderHandChips();
+      drawBoard();
+    }
+  }
+
+  // -------------------------------------------------------------
+  // UI 갱신 및 렌더링
+  // -------------------------------------------------------------
+  function setBanner(title, sub, color) {
+    dom.turnTitle.textContent = title;
+    dom.turnSub.textContent = sub;
+    if (color) dom.turnTitle.style.color = color;
+  }
+
+  function updateUI() {
+    dom.p1Card.classList.toggle('active', turn === 0 && !gameOver);
+    dom.p2Card.classList.toggle('active', turn === 1 && !gameOver);
+
+    dom.btnThrow.disabled = gameOver || isThrowing || isMoving || phase !== 'throw' || (vsAI && turn === 1);
+
+    renderHomeTrays();
+  }
+
+  function renderHandChips() {
+    dom.handChips.innerHTML = '';
+    if (handQueue.length === 0) {
+      const empty = document.createElement('span');
+      empty.className = 'empty-hand';
+      empty.textContent = phase === 'throw' ? '윷을 던져주세요' : '패를 모두 사용했습니다';
+      dom.handChips.appendChild(empty);
+      return;
+    }
+
+    handQueue.forEach((item, idx) => {
+      const chip = document.createElement('button');
+      chip.type = 'button';
+      chip.className = `yut-chip ${idx === selectedHandIdx ? 'active' : ''}`;
+      chip.innerHTML = `<span>${item.name}</span><small>(${item.steps > 0 ? '+' + item.steps : item.steps})</small>`;
+      chip.addEventListener('click', () => selectHandChip(idx));
+      dom.handChips.appendChild(chip);
     });
   }
 
-  function aiPick() {
-    var pl = players[1], opts = movable(pl);
-    if (!opts.length) { phase = 'throw'; turn = 0; update(); return; }
-    var best = opts[0], bestScore = -1;
-    opts.forEach(function (pc) {
-      var sim = { pos: pc.pos, exitQueue: pc.exitQueue ? pc.exitQueue.slice() : null };
-      for (var i = 0; i < pending; i++) sim.pos = nextNode(sim);
-      var sc = sim.pos === START ? 100 : 0;
-      players[0].pieces.forEach(function (o) { if (!o.finished && o.pos === sim.pos) sc += 50; });
-      if (sc > bestScore) { bestScore = sc; best = pc; }
+  function renderHomeTrays() {
+    // 플레이어 1 대기석
+    dom.p1HomeTray.innerHTML = '';
+    players[0].pieces.forEach(p => {
+      if (p.pos === -1 && !p.finished) {
+        const el = document.createElement('div');
+        el.className = `waiting-piece blue ${turn === 0 && phase === 'move' ? 'selectable' : ''}`;
+        el.textContent = p.label;
+        el.title = `청팀 ${p.label}번 말 (클릭하여 출전)`;
+        el.addEventListener('click', () => selectPiece(p));
+        dom.p1HomeTray.appendChild(el);
+      }
     });
-    movePiece(pl, best, pending);
+
+    // 플레이어 2 대기석
+    dom.p2HomeTray.innerHTML = '';
+    players[1].pieces.forEach(p => {
+      if (p.pos === -1 && !p.finished) {
+        const el = document.createElement('div');
+        el.className = `waiting-piece red ${turn === 1 && !vsAI && phase === 'move' ? 'selectable' : ''}`;
+        el.textContent = p.label;
+        el.title = `홍팀 ${p.label}번 말`;
+        if (!vsAI) el.addEventListener('click', () => selectPiece(p));
+        dom.p2HomeTray.appendChild(el);
+      }
+    });
   }
 
-  /* ---------- 그리기 ---------- */
-  function draw() {
+  // -------------------------------------------------------------
+  // 전통 말판 캔버스 드로잉
+  // -------------------------------------------------------------
+  function drawBoard() {
     ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
-    ctx.clearRect(0, 0, W, H);
+    ctx.clearRect(0, 0, BOARD_SIZE, BOARD_SIZE);
 
-    var g = ctx.createLinearGradient(0, 0, W, H);
-    g.addColorStop(0, '#f7edd9'); g.addColorStop(0.5, '#f0e0c2'); g.addColorStop(1, '#e6d0a8');
-    ctx.fillStyle = g;
-    roundRect(ctx, 6, 6, W - 12, H - 12, 22); ctx.fill();
+    // 1. 고급 전통 원목 바탕
+    const woodGrad = ctx.createLinearGradient(0, 0, BOARD_SIZE, BOARD_SIZE);
+    woodGrad.addColorStop(0, '#f9edd7');
+    woodGrad.addColorStop(0.5, '#ecd8b8');
+    woodGrad.addColorStop(1, '#dfc49c');
+    ctx.fillStyle = woodGrad;
+    ctx.beginPath();
+    ctx.roundRect(8, 8, BOARD_SIZE - 16, BOARD_SIZE - 16, 20);
+    ctx.fill();
 
-    ctx.strokeStyle = 'rgba(122,79,36,.55)';
+    // 원목 외곽 프레임 테두리
+    ctx.strokeStyle = '#8c592b';
+    ctx.lineWidth = 3.5;
+    ctx.stroke();
+
+    // 2. 외곽 사각 둘레길 선
+    ctx.strokeStyle = 'rgba(125, 76, 32, 0.55)';
     ctx.lineWidth = 3;
     ctx.strokeRect(PAD, PAD, SIDE, SIDE);
 
+    // 3. 대각선 안내선 (X자)
     ctx.beginPath();
-    ctx.moveTo(PAD, PAD); ctx.lineTo(PAD + SIDE, PAD + SIDE);
-    ctx.moveTo(PAD + SIDE, PAD); ctx.lineTo(PAD, PAD + SIDE);
-    ctx.strokeStyle = 'rgba(122,79,36,.45)';
+    ctx.moveTo(PAD, PAD);
+    ctx.lineTo(PAD + SIDE, PAD + SIDE);
+    ctx.moveTo(PAD + SIDE, PAD);
+    ctx.lineTo(PAD, PAD + SIDE);
+    ctx.strokeStyle = 'rgba(125, 76, 32, 0.45)';
     ctx.lineWidth = 2.5;
     ctx.stroke();
 
-    nodes.forEach(function (n, i) {
-      var isCorner = (i === 0 || i === 5 || i === 10 || i === 15);
-      var isDiag = i > CENTER;
+    // 4. 29개 밭(Station) 그리기
+    NODES.forEach(n => {
+      const isBig = n.isCorner || n.isCenter;
+      const r = isBig ? 13 : 9;
+
+      // 밭 그림자
       ctx.beginPath();
-      ctx.arc(n.x, n.y, isCorner || i === CENTER ? 7 : (isDiag ? 5.2 : 5.6), 0, 6.283);
-      ctx.fillStyle = i === CENTER ? 'rgba(122,79,36,.85)' : 'rgba(122,79,36,.7)';
+      ctx.arc(n.x + 1, n.y + 2, r, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(90, 50, 20, 0.18)';
       ctx.fill();
+
+      // 밭 본체 (전통 징/원형 음영)
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, r, 0, Math.PI * 2);
+      ctx.fillStyle = isBig ? '#fdf8ef' : '#f5ebd9';
+      ctx.fill();
+      ctx.lineWidth = isBig ? 2.8 : 2;
+      ctx.strokeStyle = isBig ? '#87491d' : '#ab7240';
+      ctx.stroke();
+
+      // 코너 및 중앙 특수 표식
+      if (isBig) {
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, r * 0.45, 0, Math.PI * 2);
+        ctx.fillStyle = n.isCenter ? '#b91c1c' : '#a16207';
+        ctx.fill();
+      }
     });
 
-    [0, 1].forEach(function (pid) {
-      var pl = players[pid], groups = {};
-      pl.pieces.forEach(function (p) {
-        if (p.finished) return;
-        (groups[p.pos] = groups[p.pos] || []).push(p);
+    // 5. '출발' 및 코너 텍스트 라벨
+    drawStationLabels();
+
+    // 6. 착수 가능한 목적지 하이라이트 (이동 단계 시)
+    if (phase === 'move' && handQueue[selectedHandIdx] && (!vsAI || turn === 0)) {
+      const curSteps = handQueue[selectedHandIdx].steps;
+      players[turn].pieces.forEach(p => {
+        if (!p.finished) {
+          const sim = simulateMove(p.pos, p.route, curSteps);
+          if (sim.pos !== null && NODES[sim.pos]) {
+            drawHighlightNode(NODES[sim.pos]);
+          }
+        }
       });
-      Object.keys(groups).forEach(function (key) {
-        var list = groups[key];
-        list.forEach(function (p, k) {
-          var pt = pieceAt(+key, k, list.length, pid);
-          drawStone(pt.x, pt.y, pid, pid === turn && selected === p.idx);
-        });
-      });
-    });
-    drawStartMark();
+    }
+
+    // 7. 말(Stones) 그리기
+    drawBoardPieces();
   }
 
-  function drawStartMark() {
-    var sp = nodePos(START);
+  function drawStationLabels() {
     ctx.save();
-    ctx.font = '800 12px "Pretendard","Malgun Gothic",sans-serif';
+    ctx.font = '900 13px "Pretendard", "Malgun Gothic", sans-serif';
     ctx.textAlign = 'center';
-    ctx.lineJoin = 'round';
-    ctx.strokeStyle = 'rgba(255,255,255,.95)';
-    ctx.lineWidth = 3.5;
-    ctx.strokeText('출발', sp.x - 34, sp.y - 26);
-    ctx.fillStyle = '#3f7a33';
-    ctx.fillText('출발', sp.x - 34, sp.y - 26);
+    ctx.textBaseline = 'middle';
+
+    // 우하귀: 출발 / 참먹이
+    const n0 = NODES[0];
+    ctx.fillStyle = '#1e3a8a';
+    ctx.fillText('출발 · 완주', n0.x - 38, n0.y + 28);
+
+    // 우상귀: 앞모
+    const n5 = NODES[5];
+    ctx.fillStyle = '#854d0e';
+    ctx.fillText('앞모', n5.x + 30, n5.y - 14);
+
+    // 좌상귀: 뒷모
+    const n10 = NODES[10];
+    ctx.fillText('뒷모', n10.x - 30, n10.y - 14);
+
+    // 좌하귀: 찌모
+    const n15 = NODES[15];
+    ctx.fillText('찌모', n15.x - 30, n15.y + 24);
+
+    // 중앙: 방
+    const n22 = NODES[22];
+    ctx.fillStyle = '#991b1b';
+    ctx.fillText('방', n22.x, n22.y - 24);
+
     ctx.restore();
   }
 
-  function pieceAt(pos, k, total, pid) {
-    var n = nodePos(pos);
-    var side = pid === 0 ? -1 : 1;
-    var ang = -Math.PI / 2 + (k / Math.max(total, 1)) * Math.PI * 2;
-    var r = total > 1 ? PIECE_R * 0.8 : 0;
-    return {
-      x: n.x + side * (total > 1 ? PIECE_R * 0.5 : PIECE_R * 0.6) + Math.cos(ang) * r,
-      y: n.y + Math.sin(ang) * r
-    };
-  }
-
-  function drawStone(x, y, pid, sel) {
-    var R = PIECE_R;
+  function drawHighlightNode(node) {
+    ctx.save();
     ctx.beginPath();
-    ctx.ellipse(x + 1.5, y + 3, R * 0.95, R * 0.82, 0, 0, 6.283);
-    ctx.fillStyle = 'rgba(60,40,20,.22)';
-    ctx.fill();
-
-    var rg = ctx.createRadialGradient(x - R * 0.35, y - R * 0.4, R * 0.15, x, y, R);
-    if (pid === 0) { rg.addColorStop(0, '#8fc0ee'); rg.addColorStop(0.6, '#2f6fb7'); rg.addColorStop(1, '#1d4a7d'); }
-    else { rg.addColorStop(0, '#f0938a'); rg.addColorStop(0.6, '#c0392b'); rg.addColorStop(1, '#8a2a1f'); }
-
-    ctx.beginPath();
-    ctx.arc(x, y, R, 0, 6.283);
-    ctx.fillStyle = rg;
-    ctx.fill();
-    ctx.lineWidth = sel ? 3 : 1.5;
-    ctx.strokeStyle = sel ? '#ffd257' : 'rgba(255,255,255,.55)';
+    ctx.arc(node.x, node.y, 18, 0, Math.PI * 2);
+    ctx.strokeStyle = '#f59e0b';
+    ctx.lineWidth = 3.5;
+    ctx.setLineDash([5, 4]);
     ctx.stroke();
+
+    ctx.fillStyle = 'rgba(245, 158, 11, 0.22)';
+    ctx.fill();
+    ctx.restore();
   }
 
-  function roundRect(c, x, y, w, h, r) {
-    c.beginPath();
-    c.moveTo(x + r, y);
-    c.arcTo(x + w, y, x + w, y + h, r);
-    c.arcTo(x + w, y + h, x, y + h, r);
-    c.arcTo(x, y + h, x, y, r);
-    c.arcTo(x, y, x + w, y, r);
-    c.closePath();
-  }
+  function drawBoardPieces() {
+    // 밭별로 어떤 말들이 올라와 있는지 그룹화
+    const stationGroups = {};
 
-  /* ---------- 입력 ---------- */
-  cv.addEventListener('click', function (e) {
-    if (over || moving || phase !== 'move' || (vsAI && turn === 1)) return;
-    var r = cv.getBoundingClientRect();
-    var px = (e.clientX - r.left) * (W / r.width);
-    var py = (e.clientY - r.top) * (H / r.height);
-
-    var pl = players[turn], best = null, bd = 1e9, groups = {};
-    pl.pieces.forEach(function (p) { if (!p.finished) (groups[p.pos] = groups[p.pos] || []).push(p); });
-
-    Object.keys(groups).forEach(function (key) {
-      var list = groups[key];
-      list.forEach(function (p, k) {
-        var pt = pieceAt(+key, k, list.length, turn);
-        var d = Math.hypot(px - pt.x, py - pt.y);
-        if (d < bd) { bd = d; best = p; }
+    players.forEach(pl => {
+      pl.pieces.forEach(p => {
+        if (!p.finished && p.pos >= 0 && p.pos <= 28) {
+          stationGroups[p.pos] = stationGroups[p.pos] || [];
+          stationGroups[p.pos].push(p);
+        }
       });
     });
 
-    if (best && bd < PIECE_R * 2.4) {
-      selected = best.idx; draw();
-      setTimeout(function () { movePiece(pl, best, pending); }, 100);
-    }
-  });
+    Object.keys(stationGroups).forEach(stationId => {
+      const list = stationGroups[stationId];
+      const node = NODES[stationId];
+      if (!node) return;
 
-  el.btn.addEventListener('click', throwYut);
-  document.getElementById('btnNew').addEventListener('click', newGame);
-  el.modeBtn.addEventListener('click', function () {
-    vsAI = !vsAI;
-    el.modeBtn.textContent = vsAI ? 'AI 대전 중' : '2인 대전 중';
-    newGame();
-    msg(vsAI ? 'AI와 대전합니다 (나는 파랑)' : '한 기기에서 2인 대전');
-  });
+      list.forEach((p, idx) => {
+        // 여러 말이 겹쳐있을 때 오프셋 분산
+        const total = list.length;
+        let offsetX = 0;
+        let offsetY = 0;
+        if (total > 1) {
+          const angle = (idx / total) * Math.PI * 2;
+          offsetX = Math.cos(angle) * 11;
+          offsetY = Math.sin(angle) * 11;
+        }
 
-  function fit() {
-    cv.width = Math.round(W * DPR);
-    cv.height = Math.round(H * DPR);
-    draw();
+        drawSinglePiece(node.x + offsetX, node.y + offsetY, p);
+      });
+    });
   }
 
-  window.addEventListener('resize', fit);
-  buildNodes();
-  newGame();
-  fit();
+  function drawSinglePiece(x, y, piece) {
+    const isP1 = piece.owner === 0;
+    const isTurn = piece.owner === turn;
+    const isSelectable = phase === 'move' && isTurn && (!vsAI || turn === 0);
 
-  if (/[?&]selftest=1/.test(location.search)) {
-    try {
-      var p = makePiece(0, 0);
-      var path = [p.pos];
-      for (var i = 0; i < 40; i++) {
-        var nx = nextNode(p);
-        path.push(nx);
-        if (nx === START) break;
-        p.pos = nx;
+    ctx.save();
+
+    // 말 그림자
+    ctx.beginPath();
+    ctx.ellipse(x + 1.5, y + 3, PIECE_RADIUS, PIECE_RADIUS * 0.85, 0, 0, Math.PI * 2);
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.25)';
+    ctx.fill();
+
+    // 3D 구체 그라데이션
+    const grad = ctx.createRadialGradient(
+      x - PIECE_RADIUS * 0.35,
+      y - PIECE_RADIUS * 0.4,
+      PIECE_RADIUS * 0.15,
+      x,
+      y,
+      PIECE_RADIUS
+    );
+
+    if (isP1) {
+      grad.addColorStop(0, '#93c5fd');
+      grad.addColorStop(0.55, '#2563eb');
+      grad.addColorStop(1, '#1e40af');
+    } else {
+      grad.addColorStop(0, '#fca5a5');
+      grad.addColorStop(0.55, '#dc2626');
+      grad.addColorStop(1, '#991b1b');
+    }
+
+    ctx.beginPath();
+    ctx.arc(x, y, PIECE_RADIUS, 0, Math.PI * 2);
+    ctx.fillStyle = grad;
+    ctx.fill();
+
+    // 테두리
+    ctx.lineWidth = isSelectable ? 3 : 1.8;
+    ctx.strokeStyle = isSelectable ? '#f59e0b' : 'rgba(255, 255, 255, 0.7)';
+    ctx.stroke();
+
+    // 말 번호 라벨 (1, 2, 3, 4)
+    ctx.font = '900 13.5px "Pretendard", "Malgun Gothic", sans-serif';
+    ctx.fillStyle = '#ffffff';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(piece.label, x, y);
+
+    // 업기 배지 (x2, x3, x4)
+    if (piece.stacked && piece.stacked.length > 0) {
+      const stackCount = 1 + piece.stacked.length;
+      ctx.beginPath();
+      ctx.arc(x + 11, y - 11, 8.5, 0, Math.PI * 2);
+      ctx.fillStyle = '#f59e0b';
+      ctx.fill();
+      ctx.strokeStyle = '#ffffff';
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+
+      ctx.font = '900 10px sans-serif';
+      ctx.fillStyle = '#ffffff';
+      ctx.fillText(`×${stackCount}`, x + 11, y - 11);
+    }
+
+    ctx.restore();
+  }
+
+  // -------------------------------------------------------------
+  // 캔버스 클릭 이벤트 핸들러
+  // -------------------------------------------------------------
+  canvas.addEventListener('click', e => {
+    if (gameOver || isMoving || phase !== 'move') return;
+    if (vsAI && turn === 1) return;
+
+    const rect = canvas.getBoundingClientRect();
+    const clickX = (e.clientX - rect.left) * (BOARD_SIZE / rect.width);
+    const clickY = (e.clientY - rect.top) * (BOARD_SIZE / rect.height);
+
+    // 내 말 중에서 클릭된 말 찾기
+    let clickedPiece = null;
+    let minDistance = 9999;
+
+    players[turn].pieces.forEach(p => {
+      if (!p.finished && p.pos >= 0 && p.pos <= 28) {
+        const node = NODES[p.pos];
+        if (node) {
+          const dist = Math.hypot(clickX - node.x, clickY - node.y);
+          if (dist < minDistance && dist <= PIECE_RADIUS * 2) {
+            minDistance = dist;
+            clickedPiece = p;
+          }
+        }
       }
-      document.body.setAttribute('data-yut',
-        'nodes=' + nodes.length + '|path=' + path.join('>'));
-    } catch (e) {
-      document.body.setAttribute('data-yut', 'ERR ' + e.message);
+    });
+
+    if (clickedPiece) {
+      selectPiece(clickedPiece);
     }
+  });
+
+  // -------------------------------------------------------------
+  // 게임 초기화 (새 게임)
+  // -------------------------------------------------------------
+  function startNewGame() {
+    turn = 0;
+    phase = 'throw';
+    isThrowing = false;
+    isMoving = false;
+    gameOver = false;
+    handQueue = [];
+    selectedHandIdx = 0;
+    selectedPieceId = null;
+
+    players.forEach(pl => {
+      pl.pieces.forEach(p => {
+        p.pos = -1;
+        p.route = 'outer';
+        p.stacked = [];
+        p.finished = false;
+      });
+    });
+
+    dom.p1Goals.textContent = '0';
+    dom.p2Goals.textContent = '0';
+
+    // 윷가락 초기화 (배가 보이게)
+    dom.stickElements.forEach(el => el.classList.remove('flipped'));
+
+    setBanner('청팀 차례', '윷을 던져주세요! 🎲', '#2563eb');
+    updateUI();
+    renderHandChips();
+    drawBoard();
   }
+
+  // -------------------------------------------------------------
+  // 이벤트 리스너 바인딩
+  // -------------------------------------------------------------
+  dom.btnThrow.addEventListener('click', throwYutAction);
+  dom.btnNewGame.addEventListener('click', startNewGame);
+
+  dom.btnToggleMode.addEventListener('click', () => {
+    vsAI = !vsAI;
+    dom.btnToggleMode.textContent = vsAI ? '🤖 대전 모드: AI 대전' : '👥 대전 모드: 2인 대전';
+    dom.p2BadgeTitle.textContent = vsAI ? '홍팀 (AI)' : '홍팀 (2P)';
+    startNewGame();
+  });
+
+  dom.btnToggleSound.addEventListener('click', () => {
+    soundEnabled = !soundEnabled;
+    dom.btnToggleSound.textContent = soundEnabled ? '🔊 소리 켜짐' : '🔇 소리 꺼짐';
+  });
+
+  // 초기 실행
+  startNewGame();
 })();
