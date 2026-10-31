@@ -8,7 +8,16 @@
   // 캔버스 및 렌더링 설정
   const canvas = document.getElementById('yutBoard');
   const ctx = canvas.getContext('2d');
-  const DPR = Math.min(window.devicePixelRatio || 1, 2);
+  function updateCanvasResolution() {
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const targetW = Math.round(BOARD_SIZE * dpr);
+    const targetH = Math.round(BOARD_SIZE * dpr);
+    if (canvas.width !== targetW || canvas.height !== targetH) {
+      canvas.width = targetW;
+      canvas.height = targetH;
+    }
+    return dpr;
+  }
 
   const BOARD_SIZE = 680;
   const PAD = 75;
@@ -766,7 +775,8 @@
   // 전통 말판 캔버스 드로잉
   // -------------------------------------------------------------
   function drawBoard() {
-    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    const dpr = updateCanvasResolution();
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     ctx.clearRect(0, 0, BOARD_SIZE, BOARD_SIZE);
 
     // 1. 고급 전통 원목 바탕
