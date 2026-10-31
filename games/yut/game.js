@@ -936,12 +936,12 @@
       const isCenter = n.isCenter;
 
       if (isCenter) {
-        // 중앙 '방' (Center Hub - 21px 3중 단청 링)
+        // 중앙 '방' (Center Hub - 21px 품격 있는 황실 앰버 골드 원석)
         const r = 21;
-        // 황금빛 방사형 후광
+        // 황동 외곽 후광
         ctx.beginPath();
-        ctx.arc(n.x, n.y, r + 7, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(245, 158, 11, 0.22)';
+        ctx.arc(n.x, n.y, r + 5, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(180, 130, 40, 0.16)';
         ctx.fill();
 
         // 놋쇠 외곽 림
@@ -953,22 +953,23 @@
         ctx.lineWidth = 2.2;
         ctx.stroke();
 
-        // 단청 루비 보석 젬 (Royal Dancheong Crimson)
+        // 은은하고 깊이 있는 황실 앰버 원석 젬 (빨간색 완전 제거 -> 고급 황금 앰버)
         const gemGrad = ctx.createRadialGradient(n.x - 5, n.y - 6, 2, n.x, n.y, r * 0.75);
-        gemGrad.addColorStop(0, '#fca5a5');
-        gemGrad.addColorStop(0.45, '#dc2626');
-        gemGrad.addColorStop(1, '#7f1d1d');
+        gemGrad.addColorStop(0, '#fffbeb');
+        gemGrad.addColorStop(0.35, '#f59e0b');
+        gemGrad.addColorStop(0.7, '#b45309');
+        gemGrad.addColorStop(1, '#6b2d07');
         ctx.beginPath();
         ctx.arc(n.x, n.y, r * 0.72, 0, Math.PI * 2);
         ctx.fillStyle = gemGrad;
         ctx.fill();
-        ctx.strokeStyle = '#ffffff';
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.9)';
         ctx.lineWidth = 1.2;
         ctx.stroke();
 
         // 중앙 백옥 심
         ctx.beginPath();
-        ctx.arc(n.x, n.y, 3, 0, Math.PI * 2);
+        ctx.arc(n.x, n.y, 3.5, 0, Math.PI * 2);
         ctx.fillStyle = '#ffffff';
         ctx.fill();
       } else if (isBig) {
@@ -1065,7 +1066,7 @@
 
     // 중앙: 방
     const n22 = NODES[22];
-    ctx.fillStyle = '#991b1b';
+    ctx.fillStyle = '#78350f';
     ctx.font = '900 14px "Gowun Batang", "Batang", serif';
     ctx.fillText('중앙 (방)', n22.x, n22.y - 28);
 
