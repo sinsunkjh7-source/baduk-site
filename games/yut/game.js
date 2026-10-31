@@ -9,7 +9,7 @@
   const canvas = document.getElementById('yutBoard');
   const ctx = canvas.getContext('2d');
   function updateCanvasResolution() {
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const dpr = Math.max(window.devicePixelRatio || 1, 2);
     const targetW = Math.round(BOARD_SIZE * dpr);
     const targetH = Math.round(BOARD_SIZE * dpr);
     if (canvas.width !== targetW || canvas.height !== targetH) {

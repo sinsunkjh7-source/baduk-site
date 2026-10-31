@@ -253,7 +253,7 @@ body {
   gap: 10px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
   width: 100%;
-  max-width: 440px;
+  max-width: min(calc(100vh - 242px), calc(100vw - 430px), 740px);
   text-align: center;
 }
 
@@ -287,8 +287,8 @@ body {
 canvas#yutBoard {
   display: block;
   width: 100%;
-  max-width: min(440px, calc(100vh - 255px));
-  max-height: calc(100vh - 255px);
+  max-width: min(calc(100vh - 242px), calc(100vw - 430px), 740px);
+  max-height: calc(100vh - 242px);
   aspect-ratio: 1 / 1;
   border-radius: 16px;
   touch-action: none;
@@ -308,7 +308,7 @@ canvas#yutBoard {
   flex-direction: column;
   gap: 6px;
   width: 100%;
-  max-width: 440px;
+  max-width: min(calc(100vh - 242px), calc(100vw - 430px), 740px);
 }
 
 /* 전통 멍석 */
