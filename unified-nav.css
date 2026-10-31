@@ -134,9 +134,17 @@ body[data-bks-page=sandbox] .bks-bottom-board-size .size-btn.active:hover{backgr
 .bks-sub-group .bks-nav-sub a,.bks-sub-group a{display:block;margin-left:6px;padding:9px 12px;font-size:14.5px;font-weight:700}
 
 /* Header labels and balance: retain the original type, tilt and artwork. */
-.bks-logout:disabled{opacity:.58;cursor:not-allowed}
+.bks-logout:disabled{opacity:1;cursor:default}
 @media(min-width:1251px) and (max-width:1750px){.bks-brand small{display:none}}
-@media(min-width:1251px) and (max-width:1599px){.bks-settings-toggle>span,.bks-logout>span{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap}.bks-nav-actions{gap:8px}.bks-nav-inner{gap:12px}.bks-nav-links{gap:6px}.bks-nav-links>a,.bks-nav-group>button{padding-inline:8px}}
+@media(min-width:1251px) and (max-width:1599px){.bks-settings-toggle>span{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap}.bks-nav-actions{gap:8px}.bks-nav-inner{gap:12px}.bks-nav-links{gap:6px}.bks-nav-links>a,.bks-nav-group>button{padding-inline:8px}}
 @media(min-width:1600px){.bks-nav-links{grid-template-columns:minmax(8px,1fr) repeat(7,max-content) minmax(8px,1fr) max-content max-content;column-gap:clamp(10px,.8vw,22px)}.bks-nav-links>:nth-child(7){grid-column:8}.bks-nav-links>.bks-account-first{grid-column:10}.bks-nav-links>.bks-account-link:last-child{grid-column:11}}
-@media(max-width:600px){.bks-logout>span,.bks-menu-toggle>span{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap}.bks-menu-toggle{min-width:32px}.bks-nav-actions{gap:5px}}
+@media(max-width:600px){.bks-menu-toggle>span{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap}.bks-menu-toggle{min-width:32px}.bks-nav-actions{gap:5px}}
 @media(max-width:420px){.bks-nav-inner{padding-inline:10px}}
+
+/* Keep the burst above Fun, and logout beside login with matching contrast. */
+.bks-nav .fun-prefix{position:relative;z-index:1}.bks-nav .fun-core{position:relative;display:inline-block}
+.bks-nav-links>.bks-logout{display:block;padding:10px 10px;border:0;border-radius:8px;background:transparent;color:#fff;font-size:15px!important;font-weight:700!important;line-height:1.25;opacity:1}
+.bks-nav-links>.bks-logout:hover{background:#ffffff24;color:#fff8c6}
+@media(min-width:1251px) and (max-width:1599px){.bks-nav-links>.bks-logout{padding-inline:8px}}
+@media(min-width:1600px){.bks-nav-links{grid-template-columns:minmax(8px,1fr) repeat(7,max-content) minmax(8px,1fr) repeat(3,max-content)}.bks-nav-links>.bks-login{grid-column:11}.bks-nav-links>.bks-account-link.bks-logout{grid-column:12}}
+@media(max-width:1250px){.bks-nav-links>.bks-logout{width:100%;text-align:left;padding:12px;color:var(--bks-ink)}}
