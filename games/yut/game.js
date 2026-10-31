@@ -460,6 +460,14 @@
     drawBoard();
   }
 
+  // 업힌 말 그룹 조회 헬퍼 (동일 위치의 아군 말 묶음)
+  function getPieceGroup(piece) {
+    if (!piece || piece.finished || piece.pos === -1) return [piece];
+    const myTeam = players[piece.owner];
+    const group = myTeam.pieces.filter(p => !p.finished && p.pos === piece.pos);
+    return group.length > 0 ? group : [piece];
+  }
+
   function selectPiece(piece) {
     if (gameOver || isMoving || phase !== 'move') return;
     if (turn !== piece.owner) return;
@@ -476,10 +484,13 @@
     isMoving = true;
     dom.btnThrow.disabled = true;
 
-    // 경로 시뮬레이션
+    // 이 말과 같은 자리에 업혀있는 모든 아군 말을 한 묶음으로 취득
+    const group = getPieceGroup(piece);
+
+    // 경로 시뮬레이션 (리더 기준)
     const target = simulateMove(piece.pos, piece.route, steps);
 
-    // 1보씩 걷는 애니메이션
+    // 1보씩 걷는 애니메이션 경로 계산
     const animPath = [];
     if (steps === -1) {
       animPath.push(target.pos);
@@ -498,36 +509,34 @@
     let stepIdx = 0;
     function walkStep() {
       if (stepIdx < animPath.length) {
-        piece.pos = animPath[stepIdx];
+        const curPos = animPath[stepIdx];
+        // 업힌 모든 말이 동시에 발을 맞춰 이동!
+        group.forEach(gp => {
+          gp.pos = curPos;
+        });
         playSound('step');
         drawBoard();
         stepIdx++;
         setTimeout(walkStep, 130);
       } else {
         // 최종 착지 처리
-        finishMove(piece, target, handIdx);
+        finishMove(group, target, handIdx);
       }
     }
 
     walkStep();
   }
 
-  function finishMove(piece, target, handIdx) {
-    piece.pos = target.pos;
-    piece.route = target.route;
-    piece.finished = target.finished;
+  function finishMove(group, target, handIdx) {
+    const leadPiece = group[0];
+    const owner = leadPiece.owner;
 
-    // 업힌 말들도 동일하게 상태 갱신
-    if (piece.stacked && piece.stacked.length > 0) {
-      piece.stacked.forEach(stkId => {
-        const stkPiece = players[piece.owner].pieces.find(p => p.id === stkId);
-        if (stkPiece) {
-          stkPiece.pos = target.pos;
-          stkPiece.route = target.route;
-          stkPiece.finished = target.finished;
-        }
-      });
-    }
+    // 그룹 내 모든 말의 최종 상태 갱신
+    group.forEach(gp => {
+      gp.pos = target.pos;
+      gp.route = target.route;
+      gp.finished = target.finished;
+    });
 
     // 패 소모
     handQueue.splice(handIdx, 1);
@@ -535,41 +544,38 @@
 
     let gotBonusThrow = false;
 
-    if (piece.finished) {
+    if (target.finished) {
       playSound('goal');
-      const count = 1 + (piece.stacked ? piece.stacked.length : 0);
-      setBanner('골인!', `${piece.owner === 0 ? '청팀' : '홍팀'} 말이 완주했습니다! 🏆`, '#16a34a');
+      group.forEach(gp => {
+        gp.pos = null;
+        gp.stacked = [];
+      });
+      setBanner('골인!', `${owner === 0 ? '청팀' : '홍팀'} 말 ${group.length}개가 동시에 완주했습니다! 🏆`, '#16a34a');
     } else {
       // 1. 잡기 체크 (상대 말 확인)
-      const enemy = players[1 - piece.owner];
-      const captured = enemy.pieces.filter(ep => !ep.finished && ep.pos === piece.pos);
+      const enemy = players[1 - owner];
+      const captured = enemy.pieces.filter(ep => !ep.finished && ep.pos === target.pos);
 
       if (captured.length > 0) {
         playSound('catch');
+        const capturedCount = captured.length;
         captured.forEach(ep => {
           ep.pos = -1;
           ep.route = 'outer';
           ep.stacked = [];
         });
         gotBonusThrow = true;
-        setBanner('잡았다!', `상대 말을 잡아 한 번 더 던집니다! 💥`, '#ea580c');
+        setBanner('잡았다!', `상대 말 ${capturedCount}개를 잡아 한 번 더 던집니다! 💥`, '#ea580c');
       } else {
-        // 2. 업기 체크 (내 다른 말 확인)
-        const myTeam = players[piece.owner];
-        const friends = myTeam.pieces.filter(fp => fp.id !== piece.id && !fp.finished && fp.pos === piece.pos);
-
-        if (friends.length > 0) {
+        // 2. 업기 체크 & 상태 동기화
+        const friendlyAtStation = players[owner].pieces.filter(fp => !fp.finished && fp.pos === target.pos);
+        if (friendlyAtStation.length > 1) {
           playSound('carry');
-          friends.forEach(fp => {
-            if (!piece.stacked.includes(fp.id)) piece.stacked.push(fp.id);
-            // 업힌 말의 stacked도 병합
-            fp.stacked.forEach(subId => {
-              if (subId !== piece.id && !piece.stacked.includes(subId)) piece.stacked.push(subId);
-            });
-            fp.stacked = [];
-          });
-          setBanner('업기 성공!', `말이 합체되어 함께 달립니다! 🤝`, '#f59e0b');
+          setBanner('업기 성공!', `말 ${friendlyAtStation.length}개가 합체되어 함께 달립니다! 🤝`, '#f59e0b');
         }
+        friendlyAtStation.forEach(fp => {
+          fp.stacked = friendlyAtStation.filter(other => other.id !== fp.id).map(other => other.id);
+        });
       }
     }
 
@@ -921,37 +927,48 @@
       const list = stationGroups[stationId];
       const node = NODES[stationId];
       if (!node) return;
-
-      list.forEach((p, idx) => {
-        // 여러 말이 겹쳐있을 때 오프셋 분산
-        const total = list.length;
-        let offsetX = 0;
-        let offsetY = 0;
-        if (total > 1) {
-          const angle = (idx / total) * Math.PI * 2;
-          offsetX = Math.cos(angle) * 11;
-          offsetY = Math.sin(angle) * 11;
-        }
-
-        drawSinglePiece(node.x + offsetX, node.y + offsetY, p);
-      });
+      drawPieceStack(node.x, node.y, list);
     });
   }
 
-  function drawSinglePiece(x, y, piece) {
-    const isP1 = piece.owner === 0;
-    const isTurn = piece.owner === turn;
+  function drawPieceStack(x, y, pieces) {
+    if (!pieces || pieces.length === 0) return;
+    const leadPiece = pieces[0];
+    const isP1 = leadPiece.owner === 0;
+    const isTurn = leadPiece.owner === turn;
     const isSelectable = phase === 'move' && isTurn && (!vsAI || turn === 0);
+    const count = pieces.length;
 
     ctx.save();
 
-    // 말 그림자
+    // 1. 다중 말인 경우 3D 겹침 칩 디스크 렌더링
+    if (count > 1) {
+      for (let layer = Math.min(count - 1, 3); layer >= 1; layer--) {
+        const offY = layer * 3.5;
+        const offX = layer * 1.5;
+
+        ctx.beginPath();
+        ctx.ellipse(x + offX, y + offY + 2, PIECE_RADIUS, PIECE_RADIUS * 0.85, 0, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.2)';
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.arc(x + offX, y + offY, PIECE_RADIUS, 0, Math.PI * 2);
+        ctx.fillStyle = isP1 ? '#1d4ed8' : '#b91c1c';
+        ctx.fill();
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.4)';
+        ctx.lineWidth = 1.2;
+        ctx.stroke();
+      }
+    }
+
+    // 2. 말 그림자
     ctx.beginPath();
     ctx.ellipse(x + 1.5, y + 3, PIECE_RADIUS, PIECE_RADIUS * 0.85, 0, 0, Math.PI * 2);
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.25)';
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.28)';
     ctx.fill();
 
-    // 3D 구체 그라데이션
+    // 3. 최상단 말 3D 구체 그라데이션
     const grad = ctx.createRadialGradient(
       x - PIECE_RADIUS * 0.35,
       y - PIECE_RADIUS * 0.4,
@@ -976,32 +993,38 @@
     ctx.fillStyle = grad;
     ctx.fill();
 
-    // 테두리
-    ctx.lineWidth = isSelectable ? 3 : 1.8;
-    ctx.strokeStyle = isSelectable ? '#f59e0b' : 'rgba(255, 255, 255, 0.7)';
+    // 4. 선택 가능 시 황금 테두리 하이라이트
+    ctx.lineWidth = isSelectable ? 3.5 : 1.8;
+    ctx.strokeStyle = isSelectable ? '#f59e0b' : 'rgba(255, 255, 255, 0.75)';
     ctx.stroke();
 
-    // 말 번호 라벨 (1, 2, 3, 4)
-    ctx.font = '900 13.5px "Pretendard", "Malgun Gothic", sans-serif';
+    // 5. 말 번호 라벨 (1개면 '1', 2개면 '1·2', 3개면 '1·2·3')
+    const labelStr = pieces.map(p => p.label).join('·');
+    let fontSize = 13.5;
+    if (count === 2) fontSize = 11;
+    else if (count >= 3) fontSize = 9;
+
+    ctx.font = `900 ${fontSize}px "Pretendard", "Malgun Gothic", sans-serif`;
     ctx.fillStyle = '#ffffff';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    ctx.fillText(piece.label, x, y);
+    ctx.fillText(labelStr, x, y);
 
-    // 업기 배지 (x2, x3, x4)
-    if (piece.stacked && piece.stacked.length > 0) {
-      const stackCount = 1 + piece.stacked.length;
+    // 6. 업기 배지 (×2, ×3, ×4)
+    if (count > 1) {
       ctx.beginPath();
-      ctx.arc(x + 11, y - 11, 8.5, 0, Math.PI * 2);
+      ctx.arc(x + 12, y - 12, 9.5, 0, Math.PI * 2);
       ctx.fillStyle = '#f59e0b';
       ctx.fill();
       ctx.strokeStyle = '#ffffff';
-      ctx.lineWidth = 1.5;
+      ctx.lineWidth = 1.8;
       ctx.stroke();
 
-      ctx.font = '900 10px sans-serif';
+      ctx.font = '900 11px sans-serif';
       ctx.fillStyle = '#ffffff';
-      ctx.fillText(`×${stackCount}`, x + 11, y - 11);
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(`×${count}`, x + 12, y - 12);
     }
 
     ctx.restore();
@@ -1091,6 +1114,17 @@
     soundEnabled = !soundEnabled;
     dom.btnToggleSound.textContent = soundEnabled ? '🔊 소리 켜짐' : '🔇 소리 꺼짐';
   });
+
+  // 테스트/디버그 인터페이스 노출
+  window.__yut = {
+    players,
+    getHandQueue: () => handQueue,
+    setHandQueue: q => { handQueue.length = 0; q.forEach(item => handQueue.push(item)); },
+    movePiece,
+    drawBoard,
+    selectPiece,
+    startNewGame
+  };
 
   // 초기 실행
   startNewGame();
