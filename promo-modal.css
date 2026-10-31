@@ -2,3 +2,9 @@
 
 /* Soft separation and consistent focus: keep the approved layout and palette. */
 .learning-cards .bks-promo-card{border:1.5px solid #adbf99;background:#fffef8;box-shadow:0 3px 8px #37522f14,0 10px 22px #37522f13;transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease}.learning-cards .bks-promo-cover{border-bottom:1px solid #c0ceb0}.learning-cards .bks-promo-card .card-copy{background:#fffef9}.learning-cards .bks-promo-card:hover{border-color:#7f9c69;box-shadow:0 6px 14px #37522f1c,0 15px 28px #37522f1c}.learning-cards .bks-promo-card:focus-visible{outline:3px solid #8ca870;outline-offset:4px;border-color:#6c8b57}.bks-promo-label{color:#5f7650;border:1px solid #c6d3b9;background:#fffef4f2;box-shadow:0 1px 3px #4a603317}.bks-promo-dialog{border-color:#9eb38b}.bks-promo-bar{border-bottom-color:#bac9aa}.bks-promo-actions button,.bks-promo-actions a{border-color:#b8c8a7;color:#61794e}.bks-promo-actions button:hover,.bks-promo-actions a:hover{background:#edf3e6;border-color:#90a87b}@media(prefers-reduced-motion:reduce){.learning-cards .bks-promo-card{transition:none}}
+
+/* Paint the SVG viewport too: its divider can leave subpixel letterboxing at the sides. */
+.learning-cards [data-bks-promo="thinking"] .bks-promo-cover{background:#edead9}
+.learning-cards [data-bks-promo="universe"] .bks-promo-cover{background:#1c4032}
+.learning-cards [data-bks-promo="heart"] .bks-promo-cover{background:#eee3d5}
+.learning-cards [data-bks-promo="world"] .bks-promo-cover{background:#e2ecd7}
