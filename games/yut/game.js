@@ -10,7 +10,7 @@
   var W = 640, H = 640, PAD = 70, SIDE = W - PAD * 2;
   var PIECE_R = 17;
 
-  var START = 0, CENTER = 20;
+  var START = 15, CENTER = 20;   /* 출발: 우하귀 */
   var NAMES = { 1: '도', 2: '개', 3: '걸', 4: '윷', 5: '모' };
   var CORNERS = { 0: 27, 5: 21, 10: 23, 15: 25 };
   var IN_NEXT = { 21: 22, 22: CENTER, 23: 24, 24: CENTER, 25: 26, 26: CENTER, 27: 28, 28: CENTER };
@@ -246,6 +246,21 @@
         });
       });
     });
+    drawStartMark();
+  }
+
+  function drawStartMark() {
+    var sp = nodePos(START);
+    ctx.save();
+    ctx.font = '800 12px "Pretendard","Malgun Gothic",sans-serif';
+    ctx.textAlign = 'center';
+    ctx.lineJoin = 'round';
+    ctx.strokeStyle = 'rgba(255,255,255,.95)';
+    ctx.lineWidth = 3.5;
+    ctx.strokeText('출발', sp.x - 34, sp.y - 26);
+    ctx.fillStyle = '#3f7a33';
+    ctx.fillText('출발', sp.x - 34, sp.y - 26);
+    ctx.restore();
   }
 
   function pieceAt(pos, k, total, pid) {
