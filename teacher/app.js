@@ -778,17 +778,22 @@
     var cols = state.boardCols; // 세로선 10
     var rows = state.boardRows; // 가로선 9
 
-    // 셀 크기 최적화: 여백을 최소화하여 화면 높이와 너비를 가득 채움 (대폭 확장)
-    var cell = Math.min((availW - 6) / (cols + 0.85), (availH - 6) / (rows + 0.85));
+    // 셀 크기 최적화: 1선 가장자리에 돌이 놓여도 좌표가 돌에 가려지지 않도록 외곽 마진 넉넉히 확보
+    var marginPad = (state.coordMode !== 'none') ? 1.05 : 0.85;
+    var cell = Math.min((availW - 6) / (cols + marginPad), (availH - 6) / (rows + marginPad));
     cell = Math.max(32, Math.min(cell, 150));
 
-    var dispW = Math.round((cols + 0.85) * cell);
-    var dispH = Math.round((rows + 0.85) * cell);
+    // 시작 마진(상/좌)과 끝 마진(하/우) - 우측·하단 좌표가 완전 가장자리에 안전하게 안착되도록 여백 배분
+    var startMargin = (state.coordMode === 'left-top' || state.coordMode === 'all-four') ? Math.round(cell * 0.95) : Math.round(cell * 0.72);
+    var endMargin = (state.coordMode === 'right-bottom' || state.coordMode === 'all-four') ? Math.round(cell * 1.05) : Math.round(cell * 0.72);
+
+    var dispW = Math.round(startMargin + cell * (cols - 1) + endMargin);
+    var dispH = Math.round(startMargin + cell * (rows - 1) + endMargin);
 
     var dpr = window.devicePixelRatio || 1;
     metrics.cellSize = cell;
-    metrics.startX = cell * 0.80;
-    metrics.startY = cell * 0.80;
+    metrics.startX = startMargin;
+    metrics.startY = startMargin;
     metrics.displayW = dispW;
     metrics.displayH = dispH;
     metrics.dpr = dpr;
@@ -1048,41 +1053,41 @@
 
     // 🌟 [원장님 지침] 바둑판 좌표 회전 표시 (우측하변 -> 좌상 -> 전체 -> 숨김)
     if (state.coordMode !== 'none') {
-      var coordTextColor = (state.boardSkin === 'darkwood') ? '#4a2608' : ((state.boardSkin === 'sky') ? '#1e3a8a' : '#6d4218');
+      var coordTextColor = (state.boardSkin === 'darkwood') ? '#2e1503' : ((state.boardSkin === 'sky') ? '#1e3a8a' : '#5c3311');
       ctx.fillStyle = coordTextColor;
-      ctx.font = 'bold ' + Math.max(10, Math.round(cell * 0.28)) + 'px sans-serif';
+      ctx.font = 'bold ' + Math.max(11, Math.round(cell * 0.28)) + 'px -apple-system, BlinkMacSystemFont, "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
 
       var colLabels = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T'];
 
-      // 1) 상단 가로 좌표 (좌·상 또는 전체 모드)
+      // 1) 상단 가로 좌표 (좌·상 또는 전체 모드) - 외곽 가장자리 쪽 배치
       if (state.coordMode === 'left-top' || state.coordMode === 'all-four') {
-        var topCoordY = Math.max(10, Math.round((startY - overhang) * 0.52));
+        var topCoordY = Math.round(startY - cell * 0.65);
         for (var cc = 0; cc < cols; cc++) {
           ctx.fillText(colLabels[cc] || (cc + 1), startX + cell * cc, topCoordY);
         }
       }
 
-      // 2) 하단 가로 좌표 (우·하 또는 전체 모드)
+      // 2) 하단 가로 좌표 (우·하 또는 전체 모드) - 🌟 1선 돌에 절대 가려지지 않도록 완전 바깥 가장자리 쪽으로 배치!
       if (state.coordMode === 'right-bottom' || state.coordMode === 'all-four') {
-        var bottomCoordY = startY + cell * (rows - 1) + Math.round(cell * 0.42);
+        var bottomCoordY = Math.round(endY + cell * 0.72);
         for (var cc = 0; cc < cols; cc++) {
           ctx.fillText(colLabels[cc] || (cc + 1), startX + cell * cc, bottomCoordY);
         }
       }
 
-      // 3) 좌측 세로 좌표 (좌·상 또는 전체 모드)
+      // 3) 좌측 세로 좌표 (좌·상 또는 전체 모드) - 외곽 가장자리 쪽 배치
       if (state.coordMode === 'left-top' || state.coordMode === 'all-four') {
-        var leftCoordX = Math.max(10, Math.round((startX - overhang) * 0.52));
+        var leftCoordX = Math.round(startX - cell * 0.65);
         for (var rr = 0; rr < rows; rr++) {
           ctx.fillText(rows - rr, leftCoordX, startY + cell * rr);
         }
       }
 
-      // 4) 우측 세로 좌표 (우·하 또는 전체 모드)
+      // 4) 우측 세로 좌표 (우·하 또는 전체 모드) - 🌟 1선 돌에 절대 가려지지 않도록 완전 바깥 가장자리 쪽으로 배치!
       if (state.coordMode === 'right-bottom' || state.coordMode === 'all-four') {
-        var rightCoordX = startX + cell * (cols - 1) + Math.round(cell * 0.42);
+        var rightCoordX = Math.round(endX + cell * 0.72);
         for (var rr = 0; rr < rows; rr++) {
           ctx.fillText(rows - rr, rightCoordX, startY + cell * rr);
         }

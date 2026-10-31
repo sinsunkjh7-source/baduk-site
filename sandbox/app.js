@@ -375,10 +375,11 @@
       var colLetter = COL_LABELS[i] || (i + 1);
       var rowNum = size - i; // 아래가 1, 위가 size
 
-      if (showBottom) bCtx.fillText(colLetter, x, startY + (size - 1) * cell + cell * 0.52);
-      if (showTop) bCtx.fillText(colLetter, x, startY - cell * 0.52);
-      if (showLeft) bCtx.fillText(rowNum.toString(), startX - cell * 0.52, y);
-      if (showRight) bCtx.fillText(rowNum.toString(), startX + (size - 1) * cell + cell * 0.52, y);
+      // 🌟 [원장님 지침] 1선에 돌이 놓여도 가려지지 않도록 완전 외곽 가장자리 쪽에 안착
+      if (showBottom) bCtx.fillText(colLetter, x, startY + (size - 1) * cell + cell * 0.68);
+      if (showTop) bCtx.fillText(colLetter, x, startY - cell * 0.68);
+      if (showLeft) bCtx.fillText(rowNum.toString(), startX - cell * 0.68, y);
+      if (showRight) bCtx.fillText(rowNum.toString(), startX + (size - 1) * cell + cell * 0.68, y);
     }
     bCtx.restore();
   }
