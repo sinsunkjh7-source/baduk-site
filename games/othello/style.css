@@ -1,52 +1,388 @@
-:root{
-  --o-bg:#f2f8ec;
-  --o-ink:#24361d;
-  --o-dim:#6b7d62;
-  --o-green:#4a8a3a;
-  --o-board:#3f8f52;
-  --o-line:#2c6b3c;
-}
-*{box-sizing:border-box;margin:0;padding:0}
-[hidden]{display:none!important}
-body{background:var(--o-bg);color:var(--o-ink);font-family:"Pretendard","Malgun Gothic",system-ui,sans-serif;padding:0}
-
-.o-wrap{padding:calc(var(--bks-nav-h,64px) + 10px) clamp(10px,2vw,26px) 24px;max-width:min(1500px,98vw);margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:18px;align-items:start}
-.o-board-col{display:flex;flex-direction:column;gap:10px;min-width:0}
-
-.o-head{display:flex;gap:8px;align-items:stretch}
-.o-score{flex:1;background:#fff;border-radius:12px;padding:11px 16px;display:flex;align-items:center;gap:8px;box-shadow:0 2px 10px rgba(36,54,29,.08);font-size:13.5px;font-weight:700;color:var(--o-dim)}
-.o-score b{font-size:20px;color:var(--o-ink)}
-.o-dot{width:15px;height:15px;border-radius:50%;display:inline-block}
-.o-dot.black{background:radial-gradient(circle at 32% 30%,#555,#111)}
-.o-dot.white{background:radial-gradient(circle at 32% 30%,#fff,#d5d5d5);border:1px solid #c9c9c9}
-.o-turn{display:flex;align-items:center;justify-content:center;background:#eaf5e1;border-radius:12px;padding:0 16px;font-size:13.5px;font-weight:800;color:#2f4a25;white-space:nowrap}
-
-.o-canvas-box{background:#fff;border-radius:16px;padding:10px;box-shadow:0 6px 22px rgba(36,54,29,.10);display:flex;justify-content:center}
-canvas{display:block;margin:0 auto;border-radius:12px;touch-action:manipulation;width:min(100%, 720px, calc(100dvh - 250px));height:auto}
-
-.o-side{background:#fff;border-radius:18px;padding:18px;box-shadow:0 6px 22px rgba(36,54,29,.10);display:flex;flex-direction:column;gap:12px}
-.o-title{font-size:22px;font-weight:900}
-.o-desc{font-size:13.5px;line-height:1.6;color:var(--o-dim)}
-.o-actions{display:flex;flex-direction:column;gap:8px}
-.o-btn{border:1.5px solid #d6e4ca;background:#fff;border-radius:10px;padding:11px 14px;font-family:inherit;font-size:14.5px;font-weight:800;cursor:pointer}
-.o-btn:hover{background:#f1f8e9}
-.o-btn.primary{background:var(--o-green);border-color:var(--o-green);color:#fff}
-.o-rules{font-size:13px;color:var(--o-dim);background:#f7fbf3;border-radius:10px;padding:10px 12px}
-.o-rules summary{cursor:pointer;font-weight:800;color:#3f5a34}
-.o-rules ul{margin:8px 0 0 18px;line-height:1.7}
-.o-msg{background:#eaf5e1;border-left:4px solid var(--o-green);padding:10px 12px;border-radius:8px;font-size:13.5px;font-weight:700;color:#2f4a25}
-
-@media (max-width:860px){
-  .o-wrap{grid-template-columns:1fr}
-  .o-side{order:2}
-  .o-head{flex-wrap:wrap}
+:root {
+  --o-bg: #f4f8f1;
+  --o-ink: #1e293b;
+  --o-dim: #64748b;
+  --o-green: #2e7d32;
+  --o-board: #3f8f52;
+  --o-line: #2c6b3c;
 }
 
-.o-field{display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:800;color:#4f6f45}
-.o-field select{
-  appearance:none;border:1.5px solid #d6e4ca;border-radius:10px;
-  padding:10px 12px;font-family:inherit;font-size:14px;font-weight:700;color:#24361d;
-  background:#fff url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8'><path d='M1 1l5 5 5-5' stroke='%236b7d62' stroke-width='2' fill='none'/></svg>") no-repeat right 12px center;
-  cursor:pointer;
+* { box-sizing: border-box; margin: 0; padding: 0; }
+[hidden] { display: none !important; }
+
+body {
+  background: var(--o-bg);
+  background-image: radial-gradient(circle at 50% 20%, #f6faf2 0%, #e8f2e3 100%);
+  color: var(--o-ink);
+  font-family: "Pretendard", "Malgun Gothic", system-ui, -apple-system, sans-serif;
+  padding: 0;
+  min-height: 100vh;
 }
-.o-field select:focus{outline:none;border-color:#4a8a3a}
+
+.othello-layout {
+  padding: calc(var(--bks-nav-h, 64px) + 10px) 16px 20px;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+/* 3단 대국장 (Arena) 레이아웃: 좌측 흑(210px) | 중앙 대형 오델로판(중심) | 우측 백 & 메뉴(230px) */
+.othello-arena-container {
+  display: grid;
+  grid-template-columns: 210px minmax(0, 1fr) 230px;
+  gap: 20px;
+  align-items: start;
+}
+
+/* 플레이어 컬럼 */
+.arena-player-col {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.arena-player-col.left {
+  margin-top: 48px; /* 우측 메뉴들과 대칭 높이 정렬 */
+}
+
+/* 플레이어 정보 카드 */
+.player-card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 14px;
+  border: 1.8px solid #e2e8f0;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.22s ease;
+}
+
+.player-card.active {
+  border-color: #2e7d32;
+  box-shadow: 0 6px 20px rgba(46, 125, 50, 0.2);
+  transform: translateY(-2px);
+}
+
+.player-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.player-badge {
+  padding: 3px 9px;
+  border-radius: 6px;
+  font-size: 11.5px;
+  font-weight: 800;
+  letter-spacing: -0.3px;
+}
+
+.player-badge.black {
+  background: #0f172a;
+  color: #ffffff;
+}
+
+.player-badge.white {
+  background: #f8fafc;
+  color: #0f172a;
+  border: 1px solid #cbd5e1;
+}
+
+.player-score {
+  font-size: 13px;
+  font-weight: 700;
+  color: #475569;
+}
+
+.player-score b {
+  font-size: 20px;
+  font-weight: 900;
+  color: #0f172a;
+  margin-right: 2px;
+}
+
+/* 3D 돌 비주얼 */
+.stone-visual-box {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 2px 0;
+}
+
+.stone-3d {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.32);
+}
+
+.stone-3d.black {
+  background: radial-gradient(circle at 35% 30%, #52525b 0%, #18181b 60%, #09090b 100%);
+  border: 1px solid #3f3f46;
+}
+
+.stone-3d.white {
+  background: radial-gradient(circle at 35% 30%, #ffffff 0%, #f4f4f5 55%, #d4d4d8 100%);
+  border: 1px solid #e4e4e7;
+}
+
+.player-name {
+  font-size: 14.5px;
+  font-weight: 800;
+  color: #1e293b;
+}
+
+.turn-indicator-pill {
+  padding: 3px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 800;
+  background: #f1f5f9;
+  color: #64748b;
+  transition: all 0.2s ease;
+}
+
+.player-card.active .turn-indicator-pill {
+  background: #2e7d32;
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(46, 125, 50, 0.35);
+}
+
+/* ============================================================== */
+/* 중앙 메인 컬럼 (화면 중심 대형 오델로판) */
+/* ============================================================== */
+.arena-center-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+/* 턴 중앙 배너 */
+.turn-center-banner {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 6px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  max-width: min(calc(100vh - 170px), calc(100vw - 490px), 760px);
+  text-align: center;
+}
+
+.turn-title {
+  font-size: 16px;
+  font-weight: 900;
+  color: #1b4d24;
+}
+
+.turn-sub {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #64748b;
+}
+
+/* 대형 오델로판 래퍼 (크기 대폭 확대 및 화면 중앙) */
+.board-wrapper {
+  background: radial-gradient(circle at 50% 50%, #ffffff 0%, #edf5e8 100%);
+  border: 1px solid rgba(44, 107, 60, 0.25);
+  border-radius: 22px;
+  padding: 8px;
+  box-shadow: 
+    0 12px 36px rgba(30, 60, 25, 0.16),
+    0 2px 8px rgba(0, 0, 0, 0.04);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: min(calc(100vh - 165px), calc(100vw - 480px), 760px);
+  max-width: 100%;
+  aspect-ratio: 1 / 1;
+}
+
+canvas#board {
+  display: block;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 16px;
+  touch-action: manipulation;
+  cursor: pointer;
+  box-shadow: 
+    0 8px 26px rgba(20, 50, 30, 0.32),
+    0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.o-msg {
+  background: #eaf5e1;
+  border-left: 4px solid var(--o-green);
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #2f4a25;
+  width: 100%;
+  max-width: min(calc(100vh - 170px), calc(100vw - 490px), 760px);
+  text-align: center;
+}
+
+/* ============================================================== */
+/* 우측 컬럼: 조작 버튼 & 설정 & 규칙 */
+/* ============================================================== */
+.game-control-buttons.vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.side-btn {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 9px;
+  padding: 8px 10px;
+  font-size: 12.5px;
+  font-weight: 800;
+  color: #334155;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.side-btn:hover {
+  background: #f8fafc;
+  border-color: #94a3b8;
+  transform: translateY(-1px);
+}
+
+.side-btn.primary {
+  background: #1e293b;
+  color: #ffffff;
+  border-color: #1e293b;
+}
+
+.side-btn.primary:hover {
+  background: #334155;
+}
+
+.side-btn.highlight {
+  background: #f0fdf4;
+  border-color: #86efac;
+  color: #166534;
+}
+
+.side-btn.highlight.guide-off {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+  color: #64748b;
+  font-weight: 700;
+}
+
+.side-btn.mode-active {
+  background: #eff6ff;
+  border-color: #93c5fd;
+  color: #1e40af;
+}
+
+/* 설정 박스 */
+.settings-box {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 10px 12px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.o-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 800;
+  color: #4f6f45;
+}
+
+.o-field select {
+  appearance: none;
+  border: 1.5px solid #d6e4ca;
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  color: #24361d;
+  background: #fff url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8'><path d='M1 1l5 5 5-5' stroke='%236b7d62' stroke-width='2' fill='none'/></svg>") no-repeat right 10px center;
+  cursor: pointer;
+}
+
+.o-field select:focus {
+  outline: none;
+  border-color: #4a8a3a;
+}
+
+/* 우측 정통 룰 안내 박스 */
+.guide-box {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 10px 12px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.guide-title {
+  font-size: 13px;
+  font-weight: 800;
+  color: #1e293b;
+  margin-bottom: 6px;
+}
+
+.guide-list {
+  padding-left: 16px;
+  font-size: 11.5px;
+  line-height: 1.55;
+  color: #475569;
+}
+
+.guide-list li {
+  margin-bottom: 4px;
+}
+
+/* ============================================================== */
+/* 반응형 (태블릿 / 모바일) */
+/* ============================================================== */
+@media (max-width: 920px) {
+  .othello-arena-container {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .arena-player-col.left {
+    margin-top: 0;
+    order: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .player-card {
+    flex: 1;
+  }
+  .arena-center-col {
+    order: 2;
+  }
+  .arena-player-col.right {
+    order: 3;
+  }
+  canvas#board {
+    max-width: min(calc(100vw - 32px), 540px);
+  }
+}

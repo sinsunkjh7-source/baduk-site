@@ -26,11 +26,20 @@
   var history = [], legal = [], lastMove = -1, thinking = false;
   var hover = -1, previewMode = 'off', depth = 4, hintMove = -1;
   var anim = null, dirty = true;
+  var showGuide = true; // 착수 가능 자리 가이드 표시 여부 (기본: 켜짐)
 
   var el = {
     cb: document.getElementById('cntBlack'),
     cw: document.getElementById('cntWhite'),
     turn: document.getElementById('turnBar'),
+    turnSub: document.getElementById('turnSub'),
+    p1Card: document.getElementById('p1Card'),
+    p2Card: document.getElementById('p2Card'),
+    p1Name: document.getElementById('p1Name'),
+    p2Name: document.getElementById('p2Name'),
+    p1Status: document.getElementById('p1Status'),
+    p2Status: document.getElementById('p2Status'),
+    btnGuide: document.getElementById('btnToggleGuide'),
     msg: document.getElementById('msg'),
     mode: document.getElementById('btnMode'),
     level: document.getElementById('selLevel'),
@@ -151,9 +160,42 @@
   }
 
   function update() {
-    el.cb.textContent = cnt(board, BLACK);
-    el.cw.textContent = cnt(board, WHITE);
-    el.turn.textContent = over ? '게임 종료' : (turn === BLACK ? '흑 차례' : '백 차례');
+    var bCnt = cnt(board, BLACK);
+    var wCnt = cnt(board, WHITE);
+    if (el.cb) el.cb.textContent = bCnt;
+    if (el.cw) el.cw.textContent = wCnt;
+    if (el.turn) el.turn.textContent = over ? '게임 종료' : (turn === BLACK ? '흑 차례' : '백 차례');
+
+    if (el.turnSub) {
+      if (over) {
+        el.turnSub.textContent = bCnt === wCnt ? '무승부로 끝났습니다' : (bCnt > wCnt ? '흑돌이 승리했습니다! 🎉' : '백돌이 승리했습니다! 🎉');
+      } else if (turn === BLACK) {
+        el.turnSub.textContent = '돌을 뒤집을 자리를 선택하세요';
+      } else {
+        el.turnSub.textContent = vsAI ? 'AI가 최적의 수를 계산하고 있습니다...' : '백돌(2P)을 놓을 차례입니다';
+      }
+    }
+
+    if (el.p1Card && el.p2Card) {
+      el.p1Card.classList.toggle('active', turn === BLACK && !over);
+      el.p2Card.classList.toggle('active', turn === WHITE && !over);
+    }
+    if (el.p1Status && el.p2Status) {
+      el.p1Status.textContent = over ? '종료' : (turn === BLACK ? '착수 중' : '대기');
+      el.p2Status.textContent = over ? '종료' : (turn === WHITE ? '착수 중' : '대기');
+    }
+    if (el.p1Name && el.p2Name) {
+      el.p1Name.textContent = vsAI ? '나 (흑돌)' : '1P (흑돌)';
+      el.p2Name.textContent = vsAI ? '상대 (AI)' : '2P (백돌)';
+    }
+    if (el.mode) {
+      el.mode.innerHTML = vsAI ? '🤖 대전: <b>AI 대전</b>' : '👥 대전: <b>2인 대전</b>';
+      el.mode.classList.toggle('mode-active', !vsAI);
+    }
+    if (el.btnGuide) {
+      el.btnGuide.innerHTML = showGuide ? '💡 착수 가이드: <b>켜짐</b>' : '💡 착수 가이드: <b>꺼짐</b>';
+      el.btnGuide.classList.toggle('guide-off', !showGuide);
+    }
   }
 
   function afterMove() {
@@ -202,6 +244,11 @@
   }
 
   /* ---------- 그리기 ---------- */
+  function redraw() {
+    dirty = true;
+    requestAnimationFrame(function () { draw(performance.now()); });
+  }
+
   function tick() {
     var now = performance.now();
     if (anim && now - anim.start > 420) anim = null;
@@ -226,14 +273,19 @@
       ctx.beginPath(); ctx.moveTo(0, i * CELL); ctx.lineTo(640, i * CELL); ctx.stroke();
     }
 
-    /* 둘 수 있는 자리 */
-    legal.forEach(function (m) {
-      var x = (m.i % N) * CELL + CELL / 2, y = ((m.i / N) | 0) * CELL + CELL / 2;
-      ctx.beginPath();
-      ctx.arc(x, y, CELL * 0.12, 0, 6.283);
-      ctx.fillStyle = 'rgba(255,255,255,.34)';
-      ctx.fill();
-    });
+    /* 둘 수 있는 자리 (착수 가이드) */
+    if (showGuide && (!vsAI || turn === BLACK)) {
+      legal.forEach(function (m) {
+        var x = (m.i % N) * CELL + CELL / 2, y = ((m.i / N) | 0) * CELL + CELL / 2;
+        ctx.beginPath();
+        ctx.arc(x, y, CELL * 0.13, 0, 6.283);
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.42)';
+        ctx.fill();
+        ctx.strokeStyle = 'rgba(0, 0, 0, 0.15)';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+      });
+    }
 
     /* 힌트 */
     if (hintMove >= 0) {
@@ -359,10 +411,10 @@
 
   cv.addEventListener('pointermove', function (e) {
     var i = cellFromEvent(e);
-    if (i !== hover) { hover = i; dirty = true; }
+    if (i !== hover) { hover = i; redraw(); }
   });
 
-  cv.addEventListener('pointerleave', function () { hover = -1; dirty = true; });
+  cv.addEventListener('pointerleave', function () { hover = -1; redraw(); });
 
   cv.addEventListener('click', function (e) {
     if (over || thinking || anim) return;
@@ -395,12 +447,19 @@
     setTimeout(function () { hintMove = -1; dirty = true; }, 2400);
   });
 
-  el.mode.addEventListener('click', function (e) {
+  el.mode.addEventListener('click', function () {
     vsAI = !vsAI;
-    e.currentTarget.textContent = vsAI ? 'AI 대전 중' : '2인 대전 중';
     init();
-    msg(vsAI ? 'AI와 대전합니다 (나는 흑)' : '한 기기에서 2인 대전');
+    msg(vsAI ? 'AI와 대전합니다 (흑돌: 나, 백돌: AI)' : '한 기기에서 번갈아 두는 2인 대전 모드');
   });
+
+  if (el.btnGuide) {
+    el.btnGuide.addEventListener('click', function () {
+      showGuide = !showGuide;
+      redraw();
+      update();
+    });
+  }
 
   el.level.addEventListener('change', function () { depth = +this.value; });
   el.preview.addEventListener('change', function () { previewMode = this.value; dirty = true; });
