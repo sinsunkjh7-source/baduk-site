@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>미니 동물장기 — JH 바둑스쿨 EduFun</title>
+<link rel="stylesheet" href="/unified-nav.css?v=20261101-animal-v1">
+<link rel="stylesheet" href="style.css?v=20261101-animal-v1">
+<script src="/unified-nav.js?v=20261101-animal-v1" defer></script>
+<script src="audio.js?v=20261101-animal-v1" defer></script>
+<script src="rules.js?v=20261101-animal-v1" defer></script>
+<script src="ai.js?v=20261101-animal-v1" defer></script>
+<script src="game.js?v=20261101-animal-v1" defer></script>
+</head>
+<body data-bks-page="animal-janggi">
+
+<main class="animal-layout">
+  <!-- 3단 대국장: 좌측 플레이어 1 | 중앙 대형 판 & 하단 컨트롤 | 우측 플레이어 2 -->
+  <div class="animal-arena-container">
+
+    <!-- 좌측 컬럼: 플레이어 1 (나, 초록 숲팀) 카드 & 잡은 동물 우리 -->
+    <aside class="arena-player-col left">
+      <div class="player-card p1-card active" id="p1Card">
+        <div class="player-header">
+          <span class="player-badge forest">🌲 숲(내 진영)</span>
+          <span class="turn-indicator-pill">내 차례</span>
+        </div>
+        <div class="avatar-wrapper">
+          <img src="/games/alkkagi/capybara/01-idle.png" alt="카피바라">
+        </div>
+        <div class="player-name">나 (카피바라)</div>
+
+        <!-- 잡은 동물 벤치 (내 우리) -->
+        <div class="captured-box">
+          <span class="captured-label">🐾 잡은 동물 (내 우리)</span>
+          <div class="captured-tray" id="p1CapturedTray">
+            <span class="empty-tray">잡은 동물 없음</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- 중앙 메인 컬럼: 턴 배너 & 3x4 대형 동물장기판 & 하단 분리 컨트롤 -->
+    <section class="arena-center-col">
+      <div class="turn-center-banner p1" id="turnBanner">
+        <div class="turn-title" id="turnTitle">내 차례 — 초록(숲)</div>
+        <div class="turn-sub" id="turnSub">동물을 선택해 이동하거나 잡은 동물을 소환하세요</div>
+      </div>
+
+      <!-- 정중앙 대형 보드판 -->
+      <div class="board-wrapper">
+        <canvas id="animalBoard" width="600" height="800"></canvas>
+      </div>
+
+      <!-- 판 아래 명확하게 구별된 하단 컨트롤 카드 -->
+      <div class="bottom-controls-zone">
+        <div class="bottom-btn-row">
+          <button type="button" class="side-btn primary" id="btnNewGame">🔄 새 게임</button>
+          <button type="button" class="side-btn guide-btn active" id="btnGuideToggle">💡 이동 길잡이: <b>켜짐</b></button>
+          <button type="button" class="side-btn" id="btnUndo">🔙 무르기</button>
+        </div>
+        <div class="bottom-btn-row">
+          <button type="button" class="side-btn" id="btnToggleMode">🤖 AI 대전</button>
+          <button type="button" class="side-btn" id="btnDifficulty">🎯 난이도: 보통 (중급)</button>
+          <button type="button" class="side-btn" id="btnToggleSound">🔊 소리 켜짐</button>
+          <button type="button" class="side-btn" id="btnShowRules">❓ 규칙 보기</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 우측 컬럼: 플레이어 2 (AI 상대, 하늘팀) 카드 & 잡은 동물 우리 -->
+    <aside class="arena-player-col right">
+      <div class="player-card p2-card" id="p2Card">
+        <div class="player-header">
+          <span class="player-badge sky">☁️ 하늘(상대 진영)</span>
+          <span class="turn-indicator-pill">대기 중</span>
+        </div>
+        <div class="avatar-wrapper">
+          <img src="/games/alkkagi/robot-clean-01-idle.v1.png" alt="AI 로봇">
+        </div>
+        <div class="player-name" id="p2Name">상대 (AI 로봇)</div>
+
+        <!-- 잡은 동물 벤치 (상대 우리) -->
+        <div class="captured-box">
+          <span class="captured-label">🐾 잡은 동물 (상대 우리)</span>
+          <div class="captured-tray" id="p2CapturedTray">
+            <span class="empty-tray">잡은 동물 없음</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+  </div>
+</main>
+
+<!-- 게임 결과 모달 -->
+<div class="bks-modal-overlay" id="resultModal" hidden>
+  <div class="bks-modal-card">
+    <h2 id="resultTitle">🎉 게임 종료!</h2>
+    <p id="resultDesc">결과 내용이 여기에 표시됩니다.</p>
+    <button type="button" class="side-btn primary" id="btnModalNewGame" style="padding: 12px 20px; font-size: 15px;">🔄 한 판 더 하기</button>
+  </div>
+</div>
+
+<!-- 규칙 설명 모달 -->
+<div class="bks-modal-overlay" id="rulesModal" hidden>
+  <div class="bks-modal-card">
+    <h2>🦁 미니 동물장기 규칙</h2>
+    <div class="rules-grid">
+      <div class="rule-item">
+        <b>🦁 사자 (왕)</b>
+        전후좌우 및 대각선 모든 8방향으로 1칸 이동. 사자가 잡히면 패배!
+      </div>
+      <div class="rule-item">
+        <b>🦒 기린</b>
+        상하좌우 십자 4방향으로 1칸 이동.
+      </div>
+      <div class="rule-item">
+        <b>🐘 코끼리</b>
+        대각선 4방향으로 1칸 이동.
+      </div>
+      <div class="rule-item">
+        <b>🐥 병아리 & 🐓 닭</b>
+        병아리는 앞으로 1칸 이동. 상대 최후방 도착 시 닭(6방향)으로 진화!
+      </div>
+      <div class="rule-item" style="grid-column: span 2;">
+        <b>🐾 재소환 (Drop)</b>
+        잡은 동물은 내 차례에 빈칸 어디든 다시 내려놓을 수 있습니다! (단, 병아리는 적진 최후방에 소환 불가)
+      </div>
+      <div class="rule-item" style="grid-column: span 2;">
+        <b>👑 트라이 (Try) 승리</b>
+        내 사자가 상대 진영(최후방 행)에 무사히 들어가고, 다음 턴에 잡히지 않으면 트라이로 즉시 승리합니다!
+      </div>
+    </div>
+    <button type="button" class="side-btn primary" id="btnCloseRules" style="padding: 10px 20px;">닫기</button>
+  </div>
+</div>
+
+</body>
+</html>

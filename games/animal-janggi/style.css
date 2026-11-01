@@ -1,0 +1,450 @@
+/**
+ * style.css - 미니 동물장기 전용 스타일시트
+ * 대형 정중앙 판, 좌우 플레이어 대칭, 하단 독립 컨트롤 존
+ */
+:root {
+  --aj-bg: #f8fafc;
+  --aj-ink: #0f172a;
+  --aj-forest: #16a34a;
+  --aj-sky: #0284c7;
+  --aj-wood-frame: #b45309;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+[hidden] { display: none !important; }
+
+body {
+  background: var(--aj-bg);
+  background-image: radial-gradient(circle at 50% 15%, #f0fdf4 0%, #f1f5f9 60%, #e2e8f0 100%);
+  color: var(--aj-ink);
+  font-family: "Pretendard", "Malgun Gothic", system-ui, -apple-system, sans-serif;
+  min-height: 100vh;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+.animal-layout {
+  padding: 8px 16px 16px;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+/* ============================================================== */
+/* 3단 대국장: 좌측 나(210px) | 중앙 대형 판 & 하단 메뉴 | 우측 상대(210px) */
+/* ============================================================== */
+.animal-arena-container {
+  display: grid;
+  grid-template-columns: 210px minmax(0, 1fr) 210px;
+  gap: 20px;
+  align-items: start;
+}
+
+/* 좌/우 플레이어 컬럼: 수평 높이 완전 일치 (0px offset) */
+.arena-player-col {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.arena-player-col.left,
+.arena-player-col.right {
+  margin-top: 38px;
+}
+
+/* 플레이어 카드 */
+.player-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 16px 14px;
+  border: 1.8px solid #e2e8f0;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.player-card.active.p1-card {
+  border-color: #16a34a;
+  box-shadow: 0 0 0 1.5px #16a34a, 0 6px 20px rgba(22, 163, 74, 0.22);
+}
+
+.player-card.active.p2-card {
+  border-color: #0284c7;
+  box-shadow: 0 0 0 1.5px #0284c7, 0 6px 20px rgba(2, 132, 199, 0.22);
+}
+
+.player-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.player-badge {
+  padding: 3px 10px;
+  border-radius: 6px;
+  font-size: 11.5px;
+  font-weight: 800;
+  letter-spacing: -0.3px;
+}
+
+.player-badge.forest {
+  background: #15803d;
+  color: #ffffff;
+}
+
+.player-badge.sky {
+  background: #0284c7;
+  color: #ffffff;
+}
+
+.avatar-wrapper {
+  width: 82px;
+  height: 82px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #f8fafc;
+  border: 3px solid #e2e8f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.avatar-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.player-name {
+  font-size: 15px;
+  font-weight: 800;
+  color: #1e293b;
+}
+
+.turn-indicator-pill {
+  padding: 4px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 800;
+  background: #f1f5f9;
+  color: #64748b;
+  transition: all 0.2s ease;
+}
+
+.player-card.active.p1-card .turn-indicator-pill {
+  background: #16a34a;
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(22, 163, 74, 0.35);
+}
+
+.player-card.active.p2-card .turn-indicator-pill {
+  background: #0284c7;
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(2, 132, 199, 0.35);
+}
+
+/* 잡은 동물 (동물 우리) 벤치 */
+.captured-box {
+  width: 100%;
+  background: #fafaf9;
+  border: 1.5px solid #e7e5e4;
+  border-radius: 12px;
+  padding: 10px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.captured-label {
+  font-size: 12px;
+  font-weight: 800;
+  color: #78716c;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.captured-tray {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px;
+  min-height: 52px;
+}
+
+.empty-tray {
+  grid-column: span 2;
+  font-size: 11.5px;
+  color: #a8a29e;
+  text-align: center;
+  padding: 14px 0;
+  font-weight: 600;
+}
+
+.captured-piece-btn {
+  background: #fef3c7;
+  border: 2px solid #f59e0b;
+  border-radius: 8px;
+  padding: 6px 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.captured-piece-btn:hover {
+  transform: translateY(-2px);
+  background: #fde68a;
+  box-shadow: 0 4px 10px rgba(245, 158, 11, 0.25);
+}
+
+.captured-piece-btn.selected {
+  background: #fef08a;
+  border-color: #dc2626;
+  box-shadow: 0 0 0 2px #dc2626, 0 4px 12px rgba(220, 38, 38, 0.3);
+  transform: translateY(-3px);
+}
+
+.cap-emoji {
+  font-size: 22px;
+  line-height: 1;
+}
+
+.cap-name {
+  font-size: 11px;
+  font-weight: 800;
+  color: #78350f;
+}
+
+/* ============================================================== */
+/* 중앙 메인 컬럼 (화면 중심 대형 동물장기판 + 하단 조작 컨트롤) */
+/* ============================================================== */
+.arena-center-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  min-width: 0;
+}
+
+/* 턴 중앙 배너 */
+.turn-center-banner {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 8px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  max-width: min(calc((100vh - 250px) * 0.75 + 140px), calc(100vw - 470px), 520px);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.turn-title {
+  font-size: 15px;
+  font-weight: 900;
+  color: #1e293b;
+}
+
+.turn-sub {
+  font-size: 12px;
+  font-weight: 600;
+  color: #64748b;
+}
+
+.turn-center-banner.p1 {
+  border-left: 4.5px solid #16a34a;
+}
+
+.turn-center-banner.p2 {
+  border-left: 4.5px solid #0284c7;
+}
+
+/* 대형 동물장기판 래퍼 (3:4 비율, 화면 중앙 최대 크기 & 하단 메뉴 완벽 공존) */
+.board-wrapper {
+  background: #78350f;
+  border: 4px solid #b45309;
+  border-radius: 20px;
+  padding: 6px;
+  box-shadow: 
+    0 12px 34px rgba(120, 53, 15, 0.2),
+    0 2px 8px rgba(0, 0, 0, 0.06);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: min(calc((100vh - 250px) * 0.75), calc(100vw - 470px), 405px);
+  height: min(calc(100vh - 250px), 540px);
+  aspect-ratio: 3 / 4;
+}
+
+canvas#animalBoard {
+  display: block;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 3 / 4;
+  border-radius: 14px;
+  touch-action: manipulation;
+  cursor: pointer;
+}
+
+/* ============================================================== */
+/* 하단 컨트롤 존: 보드 바로 아래 위치한 독립된 가로형 메뉴 카드 */
+/* ============================================================== */
+.bottom-controls-zone {
+  width: 100%;
+  max-width: min(calc((100vh - 250px) * 0.75 + 140px), calc(100vw - 470px), 520px);
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 8px 12px;
+  border: 1.5px solid #e2e8f0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.bottom-btn-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 6px;
+}
+
+/* 공통 버튼 */
+.side-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border-radius: 9px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #334155;
+  background: #f8fafc;
+  border: 1.5px solid #cbd5e1;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  white-space: nowrap;
+}
+
+.side-btn:hover {
+  background: #f1f5f9;
+  border-color: #94a3b8;
+  transform: translateY(-1px);
+}
+
+.side-btn.primary {
+  background: #1e293b;
+  color: #ffffff;
+  border-color: #0f172a;
+}
+
+.side-btn.primary:hover {
+  background: #334155;
+  box-shadow: 0 3px 10px rgba(30, 41, 59, 0.25);
+}
+
+.side-btn.guide-btn {
+  background: #f0fdf4;
+  color: #166534;
+  border-color: #86efac;
+}
+
+.side-btn.guide-btn.active {
+  background: #dcfce7;
+  border-color: #22c55e;
+}
+
+/* ============================================================== */
+/* 모달 레이아웃 (결과 및 규칙 설명) */
+/* ============================================================== */
+.bks-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 16px;
+}
+
+.bks-modal-card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 24px 28px;
+  max-width: 520px;
+  width: 100%;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  text-align: center;
+  animation: modalPop 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes modalPop {
+  from { opacity: 0; transform: scale(0.92); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.bks-modal-card h2 {
+  font-size: 22px;
+  font-weight: 900;
+  color: #0f172a;
+}
+
+.bks-modal-card p {
+  font-size: 14.5px;
+  color: #475569;
+  line-height: 1.6;
+}
+
+.rules-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  text-align: left;
+  margin: 8px 0;
+}
+
+.rule-item {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 13px;
+  line-height: 1.45;
+  color: #334155;
+}
+
+.rule-item b {
+  color: #0f172a;
+  display: block;
+  margin-bottom: 2px;
+}
+
+/* 반응형 */
+@media (max-width: 900px) {
+  .animal-arena-container {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .arena-player-col.left,
+  .arena-player-col.right {
+    margin-top: 0;
+  }
+  .board-wrapper {
+    width: min(calc(100vw - 32px), 420px);
+  }
+}
