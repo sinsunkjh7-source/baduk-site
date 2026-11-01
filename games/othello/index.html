@@ -5,13 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>오델로(리버시) — JH 바둑스쿨 Fun</title>
 <link rel="stylesheet" href="/unified-nav.css?v=header-align-20261031">
-<link rel="stylesheet" href="style.css?v=othello-arena-v1">
+<link rel="stylesheet" href="style.css?v=othello-bottom-v2">
 <script src="/unified-nav.js?v=header-align-20261031" defer></script>
 </head>
 <body data-bks-page="othello">
 
 <main class="othello-layout">
-  <!-- 3단 대국장(Arena) 구조: 좌측 흑(Player 1) | 중앙 대형 오델로판 (화면 중심) | 우측 백(Player 2) + 메뉴 -->
+  <!-- 3단 대국장: 좌측 흑(Player 1) | 중앙 대형 오델로판 & 하단 메뉴 | 우측 백(Player 2, 좌측과 높이 일치) -->
   <div class="othello-arena-container">
 
     <!-- 좌측 컬럼: 플레이어 1 (흑돌, 선공) -->
@@ -29,7 +29,7 @@
       </div>
     </aside>
 
-    <!-- 중앙 메인 컬럼: 턴 알림 배너 + 정중앙 대형 오델로판 -->
+    <!-- 중앙 메인 컬럼: 턴 알림 배너 + 정중앙 대형 오델로판 + 하단 조작 컨트롤 -->
     <section class="arena-center-col">
       <div class="turn-center-banner" id="turnBanner">
         <div class="turn-title" id="turnBar">흑 차례</div>
@@ -41,9 +41,53 @@
       </div>
 
       <p class="o-msg" id="msg" hidden></p>
+
+      <!-- 사용자 요청: 아래쪽으로 위치시킨 조작 메뉴 & 설정 & 룰 -->
+      <div class="bottom-controls-zone">
+        <!-- 주요 조작 버튼 가로 바 -->
+        <div class="game-control-buttons horizontal">
+          <button type="button" id="btnNew" class="side-btn primary">🔄 새 게임</button>
+          <button type="button" id="btnMode" class="side-btn">🤖 대전: AI 대전</button>
+          <button type="button" id="btnToggleGuide" class="side-btn highlight">💡 착수 가이드: <b>켜짐</b></button>
+          <button type="button" id="btnUndo" class="side-btn">↩️ 무르기</button>
+          <button type="button" id="btnHint" class="side-btn">🔍 힌트 보기</button>
+        </div>
+
+        <!-- 하단 보조 설정 및 정통 룰 그리드 -->
+        <div class="bottom-sub-grid">
+          <div class="settings-box horizontal">
+            <label class="o-field inline">
+              <span>🤖 AI 난이도</span>
+              <select id="selLevel">
+                <option value="2">쉬움 (초급)</option>
+                <option value="4" selected>보통 (중급)</option>
+                <option value="6">어려움 (고급)</option>
+              </select>
+            </label>
+            <label class="o-field inline">
+              <span>👁️ 착수 미리보기</span>
+              <select id="selPreview">
+                <option value="off" selected>끄기</option>
+                <option value="stones">뒤집힐 돌 표시</option>
+                <option value="result">뒤집힐 개수(+N)</option>
+              </select>
+            </label>
+          </div>
+
+          <details class="guide-box compact">
+            <summary class="guide-title">📜 오델로 정통 룰 펼쳐보기</summary>
+            <ul class="guide-list">
+              <li>상대 돌을 가로·세로·대각선으로 감싸면 내 돌로 <b>뒤집힙니다</b>.</li>
+              <li>상대 돌을 1개 이상 뒤집을 수 있는 자리에만 둘 수 있습니다.</li>
+              <li>둘 곳이 없으면 자동으로 <b>패스(Pass)</b>됩니다.</li>
+              <li>판이 가득 차거나 양쪽 모두 둘 곳이 없으면 돌이 많은 쪽이 승리!</li>
+            </ul>
+          </details>
+        </div>
+      </div>
     </section>
 
-    <!-- 우측 컬럼: 플레이어 2 (백돌, AI/2P) + 조작 메뉴 & 룰 안내 -->
+    <!-- 우측 컬럼: 플레이어 2 (백돌, AI/2P) - 좌측 흑 구역과 완전히 동일한 위치 정렬 -->
     <aside class="arena-player-col right">
       <div class="player-card white-card" id="p2Card">
         <div class="player-header">
@@ -56,51 +100,11 @@
         <div class="player-name" id="p2Name">상대 (AI)</div>
         <div class="turn-indicator-pill" id="p2Status">대기 중</div>
       </div>
-
-      <!-- 우측 통합 조작 버튼 -->
-      <div class="game-control-buttons vertical">
-        <button type="button" id="btnNew" class="side-btn primary">🔄 새 게임</button>
-        <button type="button" id="btnMode" class="side-btn">🤖 대전: AI 대전</button>
-        <button type="button" id="btnToggleGuide" class="side-btn highlight">💡 착수 가이드: <b>켜짐</b></button>
-        <button type="button" id="btnUndo" class="side-btn">↩️ 무르기</button>
-        <button type="button" id="btnHint" class="side-btn">🔍 힌트 보기</button>
-      </div>
-
-      <!-- 설정 패널 -->
-      <div class="settings-box">
-        <label class="o-field">
-          <span>🤖 AI 난이도</span>
-          <select id="selLevel">
-            <option value="2">쉬움 (초급)</option>
-            <option value="4" selected>보통 (중급)</option>
-            <option value="6">어려움 (고급)</option>
-          </select>
-        </label>
-        <label class="o-field">
-          <span>👁️ 착수 미리보기</span>
-          <select id="selPreview">
-            <option value="off" selected>끄기</option>
-            <option value="stones">뒤집힐 돌 표시</option>
-            <option value="result">뒤집힐 개수(+N)</option>
-          </select>
-        </label>
-      </div>
-
-      <!-- 정통 룰 안내 -->
-      <div class="guide-box">
-        <h3 class="guide-title">📜 오델로 정통 룰</h3>
-        <ul class="guide-list">
-          <li>상대 돌을 가로·세로·대각선으로 감싸면 내 돌로 <b>뒤집힙니다</b>.</li>
-          <li>상대 돌을 1개 이상 뒤집을 수 있는 자리에만 둘 수 있습니다.</li>
-          <li>둘 곳이 없으면 자동으로 <b>패스(Pass)</b>됩니다.</li>
-          <li>판이 가득 차거나 양쪽 모두 둘 곳이 없으면 돌이 많은 쪽이 승리!</li>
-        </ul>
-      </div>
     </aside>
 
   </div>
 </main>
 
-<script src="game.js?v=othello-arena-v1"></script>
+<script src="game.js?v=othello-bottom-v2"></script>
 </body>
 </html>

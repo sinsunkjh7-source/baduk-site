@@ -20,48 +20,48 @@ body {
 }
 
 .othello-layout {
-  padding: calc(var(--bks-nav-h, 64px) + 10px) 16px 20px;
+  padding: calc(var(--bks-nav-h, 64px) + 10px) 16px 24px;
   max-width: 1440px;
   margin: 0 auto;
 }
 
-/* 3단 대국장 (Arena) 레이아웃: 좌측 흑(210px) | 중앙 대형 오델로판(중심) | 우측 백 & 메뉴(230px) */
+/* 3단 대국장: 좌측 흑(210px) | 중앙 대형 판 & 하단 메뉴(중심) | 우측 백(210px, 좌측과 완벽 대칭) */
 .othello-arena-container {
   display: grid;
-  grid-template-columns: 210px minmax(0, 1fr) 230px;
+  grid-template-columns: 210px minmax(0, 1fr) 210px;
   gap: 20px;
   align-items: start;
 }
 
-/* 플레이어 컬럼 */
+/* 좌/우 플레이어 컬럼: 완벽한 높이 일치 */
 .arena-player-col {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-.arena-player-col.left {
-  margin-top: 48px; /* 우측 메뉴들과 대칭 높이 정렬 */
+.arena-player-col.left,
+.arena-player-col.right {
+  margin-top: 48px; /* 중앙 턴 배너 아래 보드판 높이와 완벽하게 일치 */
 }
 
-/* 플레이어 정보 카드 */
+/* 플레이어 카드 */
 .player-card {
   background: #ffffff;
   border-radius: 14px;
-  padding: 14px;
+  padding: 16px 14px;
   border: 1.8px solid #e2e8f0;
   box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   transition: all 0.22s ease;
 }
 
 .player-card.active {
   border-color: #2e7d32;
-  box-shadow: 0 6px 20px rgba(46, 125, 50, 0.2);
-  transform: translateY(-2px);
+  box-shadow: 0 0 0 1.5px #2e7d32, 0 6px 22px rgba(46, 125, 50, 0.22);
 }
 
 .player-header {
@@ -105,19 +105,19 @@ body {
 
 /* 3D 돌 비주얼 */
 .stone-visual-box {
-  width: 60px;
-  height: 60px;
+  width: 64px;
+  height: 64px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 2px 0;
+  margin: 4px 0;
 }
 
 .stone-3d {
-  width: 52px;
-  height: 52px;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.32);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
 }
 
 .stone-3d.black {
@@ -131,13 +131,13 @@ body {
 }
 
 .player-name {
-  font-size: 14.5px;
+  font-size: 15px;
   font-weight: 800;
   color: #1e293b;
 }
 
 .turn-indicator-pill {
-  padding: 3px 12px;
+  padding: 4px 14px;
   border-radius: 20px;
   font-size: 12px;
   font-weight: 800;
@@ -153,7 +153,7 @@ body {
 }
 
 /* ============================================================== */
-/* 중앙 메인 컬럼 (화면 중심 대형 오델로판) */
+/* 중앙 메인 컬럼 (화면 중심 대형 오델로판 + 하단 조작 컨트롤) */
 /* ============================================================== */
 .arena-center-col {
   display: flex;
@@ -175,7 +175,7 @@ body {
   gap: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   width: 100%;
-  max-width: min(calc(100vh - 170px), calc(100vw - 490px), 760px);
+  max-width: min(calc(100vh - 265px), calc(100vw - 480px), 690px);
   text-align: center;
 }
 
@@ -191,19 +191,19 @@ body {
   color: #64748b;
 }
 
-/* 대형 오델로판 래퍼 (크기 대폭 확대 및 화면 중앙) */
+/* 대형 오델로판 래퍼 (화면 중앙 정밀 배치) */
 .board-wrapper {
   background: radial-gradient(circle at 50% 50%, #ffffff 0%, #edf5e8 100%);
   border: 1px solid rgba(44, 107, 60, 0.25);
-  border-radius: 22px;
+  border-radius: 20px;
   padding: 8px;
   box-shadow: 
-    0 12px 36px rgba(30, 60, 25, 0.16),
+    0 10px 32px rgba(30, 60, 25, 0.15),
     0 2px 8px rgba(0, 0, 0, 0.04);
   display: flex;
   justify-content: center;
   align-items: center;
-  width: min(calc(100vh - 165px), calc(100vw - 480px), 760px);
+  width: min(calc(100vh - 265px), calc(100vw - 480px), 690px);
   max-width: 100%;
   aspect-ratio: 1 / 1;
 }
@@ -213,11 +213,11 @@ canvas#board {
   width: 100%;
   height: 100%;
   aspect-ratio: 1 / 1;
-  border-radius: 16px;
+  border-radius: 15px;
   touch-action: manipulation;
   cursor: pointer;
   box-shadow: 
-    0 8px 26px rgba(20, 50, 30, 0.32),
+    0 8px 24px rgba(20, 50, 30, 0.3),
     0 2px 6px rgba(0, 0, 0, 0.08);
 }
 
@@ -230,24 +230,36 @@ canvas#board {
   font-weight: 700;
   color: #2f4a25;
   width: 100%;
-  max-width: min(calc(100vh - 170px), calc(100vw - 490px), 760px);
+  max-width: min(calc(100vh - 265px), calc(100vw - 480px), 690px);
   text-align: center;
 }
 
 /* ============================================================== */
-/* 우측 컬럼: 조작 버튼 & 설정 & 규칙 */
+/* 하단 조작 영역 (사용자 요청: 아래쪽으로 위치시킨 메뉴/설정/룰) */
 /* ============================================================== */
-.game-control-buttons.vertical {
+.bottom-controls-zone {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
+  width: 100%;
+  max-width: min(calc(100vh - 265px), calc(100vw - 480px), 690px);
+  margin-top: 4px;
+}
+
+/* 주요 조작 버튼 가로 한 줄 배치 */
+.game-control-buttons.horizontal {
+  display: flex;
+  gap: 8px;
+  width: 100%;
 }
 
 .side-btn {
+  flex: 1;
+  min-width: 0;
   background: #ffffff;
   border: 1px solid #cbd5e1;
   border-radius: 9px;
-  padding: 8px 10px;
+  padding: 9px 4px;
   font-size: 12.5px;
   font-weight: 800;
   color: #334155;
@@ -292,23 +304,32 @@ canvas#board {
   color: #1e40af;
 }
 
-/* 설정 박스 */
-.settings-box {
-  background: #ffffff;
-  border-radius: 12px;
-  padding: 10px 12px;
-  border: 1px solid #e2e8f0;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-  display: flex;
-  flex-direction: column;
+/* 하단 서브 그리드 (설정 박스 + 정통 룰) */
+.bottom-sub-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 8px;
+  width: 100%;
 }
 
-.o-field {
+.settings-box.horizontal {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 8px 12px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.o-field.inline {
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  font-size: 12px;
+  gap: 3px;
+  flex: 1;
+  font-size: 11.5px;
   font-weight: 800;
   color: #4f6f45;
 }
@@ -317,12 +338,12 @@ canvas#board {
   appearance: none;
   border: 1.5px solid #d6e4ca;
   border-radius: 8px;
-  padding: 6px 10px;
+  padding: 5px 8px;
   font-family: inherit;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 700;
   color: #24361d;
-  background: #fff url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8'><path d='M1 1l5 5 5-5' stroke='%236b7d62' stroke-width='2' fill='none'/></svg>") no-repeat right 10px center;
+  background: #fff url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6'><path d='M1 1l4 4 4-4' stroke='%236b7d62' stroke-width='1.5' fill='none'/></svg>") no-repeat right 8px center;
   cursor: pointer;
 }
 
@@ -331,31 +352,32 @@ canvas#board {
   border-color: #4a8a3a;
 }
 
-/* 우측 정통 룰 안내 박스 */
-.guide-box {
+/* 룰 접이식 박스 */
+.guide-box.compact {
   background: #ffffff;
   border-radius: 12px;
-  padding: 10px 12px;
+  padding: 8px 12px;
   border: 1px solid #e2e8f0;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.guide-title {
-  font-size: 13px;
+.guide-box summary.guide-title {
+  font-size: 12px;
   font-weight: 800;
   color: #1e293b;
-  margin-bottom: 6px;
+  cursor: pointer;
+  outline: none;
 }
 
-.guide-list {
-  padding-left: 16px;
-  font-size: 11.5px;
-  line-height: 1.55;
+.guide-box .guide-list {
+  padding-left: 14px;
+  font-size: 11px;
+  line-height: 1.5;
   color: #475569;
-}
-
-.guide-list li {
-  margin-bottom: 4px;
+  margin-top: 6px;
 }
 
 /* ============================================================== */
@@ -366,23 +388,26 @@ canvas#board {
     grid-template-columns: 1fr;
     gap: 12px;
   }
-  .arena-player-col.left {
+  .arena-player-col.left,
+  .arena-player-col.right {
     margin-top: 0;
+  }
+  .arena-player-col.left {
     order: 1;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-  }
-  .player-card {
-    flex: 1;
-  }
-  .arena-center-col {
-    order: 2;
   }
   .arena-player-col.right {
+    order: 2;
+  }
+  .arena-center-col {
     order: 3;
   }
+  .game-control-buttons.horizontal {
+    flex-wrap: wrap;
+  }
+  .bottom-sub-grid {
+    grid-template-columns: 1fr;
+  }
   canvas#board {
-    max-width: min(calc(100vw - 32px), 540px);
+    max-width: min(calc(100vw - 32px), 520px);
   }
 }
