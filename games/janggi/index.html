@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>정통 장기 — JH 바둑스쿨 EduFun</title>
+<link rel="stylesheet" href="/unified-nav.css?v=20261101-janggi-v1">
+<link rel="stylesheet" href="style.css?v=20261101-janggi-v1">
+<script src="/unified-nav.js?v=20261101-janggi-v1" defer></script>
+<script src="rules.js?v=20261101-janggi-v1" defer></script>
+<script src="ai.js?v=20261101-janggi-v1" defer></script>
+<script src="audio.js?v=20261101-janggi-v1" defer></script>
+<script src="game.js?v=20261101-janggi-v1" defer></script>
+</head>
+<body data-bks-page="janggi">
+
+<main class="janggi-layout">
+  <!-- 3단 대국장: 좌측 사용자(초) | 중앙 정통 장기판 | 우측 상대(한) -->
+  <div class="janggi-arena-container">
+
+    <!-- 좌측 컬럼: 플레이어 1 (나, 초 楚) & 핵심 조작 -->
+    <aside class="arena-player-col left">
+      <div class="player-card p1-card active" id="p1Card">
+        <div class="player-header">
+          <span class="player-badge blue">초(楚) · 청팀</span>
+          <span class="player-score" id="p1Score">72점</span>
+        </div>
+        <div class="avatar-wrapper">
+          <img src="/games/omok/capybara-go/01-meditation.png" alt="카피바라">
+        </div>
+        <div class="player-name">나 (카피바라)</div>
+        
+        <div class="captured-box">
+          <span class="captured-label">잡은 한(漢) 기물</span>
+          <div class="captured-tray" id="p1CapturedTray">
+            <span class="empty-tray">잡은 기물 없음</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="game-control-buttons">
+        <button type="button" class="side-btn primary" id="btnNewGame">🔄 새 대국</button>
+        <button type="button" class="side-btn warn" id="btnPass">🏳️ 한수 쉼</button>
+        <button type="button" class="side-btn" id="btnUndo">🔙 무르기</button>
+        <button type="button" class="side-btn" id="btnToggleMode">🤖 모드: AI 대전</button>
+      </div>
+    </aside>
+
+    <!-- 중앙 메인 컬럼: 턴 배너 & 정통 9x10 장기판 -->
+    <section class="arena-center-col">
+      <div class="turn-center-banner cho" id="turnBanner">
+        <div class="turn-title" id="turnTitle">초(楚) 차례 — 청팀</div>
+        <div class="turn-sub" id="turnSub">기물을 클릭하여 이동하세요</div>
+      </div>
+
+      <div class="board-wrapper">
+        <canvas id="janggiBoard" width="680" height="760"></canvas>
+      </div>
+    </section>
+
+    <!-- 우측 컬럼: 플레이어 2 (AI/상대, 한 漢) & 편의 옵션 -->
+    <aside class="arena-player-col right">
+      <div class="player-card p2-card" id="p2Card">
+        <div class="player-header">
+          <span class="player-badge red">한(漢) · 홍팀</span>
+          <span class="player-score" id="p2Score">73.5점</span>
+        </div>
+        <div class="avatar-wrapper">
+          <img src="/games/alkkagi/robot/01-idle.png" alt="AI 로봇">
+        </div>
+        <div class="player-name" id="p2Name">상대 (AI 로봇)</div>
+
+        <div class="captured-box">
+          <span class="captured-label">잡은 초(楚) 기물</span>
+          <div class="captured-tray" id="p2CapturedTray">
+            <span class="empty-tray">잡은 기물 없음</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="game-control-buttons">
+        <!-- 사용자가 요청한 핵심 옵션: 이동 길잡이(이동 경로 가이드) ON/OFF -->
+        <button type="button" class="side-btn primary active" id="btnGuideToggle" title="이동 가능한 위치를 보드에 표시합니다">💡 이동 길잡이: <b>켜짐</b></button>
+        <button type="button" class="side-btn" id="btnDifficulty">🎯 난이도: 중급 (보통)</button>
+        <button type="button" class="side-btn" id="btnToggleSound">🔊 소리 켜짐</button>
+      </div>
+    </aside>
+
+  </div>
+</main>
+
+<!-- 상차림 선택 모달 -->
+<div class="bks-modal-overlay" id="setupModal" hidden>
+  <div class="bks-modal-card">
+    <h2>🎯 정통 장기 대국 설정</h2>
+    <p>기물의 초기 위치(상차림)를 선택하고 대국을 시작하세요.</p>
+
+    <div class="formation-box">
+      <div class="formation-group">
+        <span class="formation-group-title">초(楚, 청팀) 상차림</span>
+        <div class="formation-options">
+          <label class="formation-label">
+            <input type="radio" name="choFormation" value="SMMS" checked>
+            <span>상마마상 (귀마)</span>
+          </label>
+          <label class="formation-label">
+            <input type="radio" name="choFormation" value="MSMS">
+            <span>마상마상 (왼마)</span>
+          </label>
+          <label class="formation-label">
+            <input type="radio" name="choFormation" value="SMSM">
+            <span>상마상마 (오른마)</span>
+          </label>
+          <label class="formation-label">
+            <input type="radio" name="choFormation" value="MSSM">
+            <span>마상상마 (안상)</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="formation-group">
+        <span class="formation-group-title">한(漢, 홍팀) 상차림</span>
+        <div class="formation-options">
+          <label class="formation-label">
+            <input type="radio" name="hanFormation" value="SMMS" checked>
+            <span>상마마상 (귀마)</span>
+          </label>
+          <label class="formation-label">
+            <input type="radio" name="hanFormation" value="MSMS">
+            <span>마상마상 (왼마)</span>
+          </label>
+          <label class="formation-label">
+            <input type="radio" name="hanFormation" value="SMSM">
+            <span>상마상마 (오른마)</span>
+          </label>
+          <label class="formation-label">
+            <input type="radio" name="hanFormation" value="MSSM">
+            <span>마상상마 (안상)</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <button type="button" class="btn-modal-action" id="btnStartMatch">대국 시작하기</button>
+  </div>
+</div>
+
+<!-- 게임 종료 모달 -->
+<div class="bks-modal-overlay" id="gameOverModal" hidden>
+  <div class="bks-modal-card">
+    <h2 id="gameOverTitle">대국 종료</h2>
+    <p id="gameOverDesc">승부가 결정되었습니다.</p>
+    <p id="gameOverScore" style="font-weight: 800; color: #1b5e20; font-size: 15.5px;"></p>
+    <button type="button" class="btn-modal-action" id="btnPlayAgain">새 대국 시작하기</button>
+  </div>
+</div>
+
+</body>
+</html>
