@@ -67,9 +67,10 @@ body[data-bks-page=omok] .bks-arena-count {
 }
 
 /* omok-align-heights-and-actions: match visual head height of robot and separate action buttons */
-body[data-bks-page=omok] .bks-arena-avatar .bks-omok-character-image[data-model=robot] {
-  transform: scale(1.20);
-  transform-origin: center bottom;
+body[data-bks-page=omok] .bks-arena-avatar .bks-omok-character-image {
+  transform: none;
+  object-fit: contain;
+  object-position: center bottom;
 }
 
 body[data-bks-page=omok] .bks-arena-actions {
