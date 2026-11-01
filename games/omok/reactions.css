@@ -24,3 +24,53 @@ body[data-bks-page=omok] .bks-arena-player[data-color=white] .bks-omok-character
 /* omok-pets-go-1793324498166: Go hamster/exotic face the board; stored pixels remain unchanged. */
 body[data-bks-page=omok] .bks-arena-player[data-color=black] .bks-omok-character-image:is([data-model=hamster],[data-model=exotic]){transform:none}
 body[data-bks-page=omok] .bks-arena-player[data-color=white] .bks-omok-character-image:is([data-model=hamster],[data-model=exotic]){transform:scaleX(-1)}
+
+/* omok-character-scale-20pct: 20% larger character avatars and typography */
+body[data-bks-page=omok] .bks-arena-player {
+  gap: 11px;
+}
+body[data-bks-page=omok] .bks-arena-player-title {
+  gap: 10px;
+  min-height: 36px;
+}
+body[data-bks-page=omok] .bks-arena-player-title strong {
+  font-size: 23px;
+}
+body[data-bks-page=omok] .bks-arena-stone {
+  width: 24px;
+  height: 24px;
+}
+body[data-bks-page=omok] .bks-character-switch {
+  font: 700 13px/1.2 'Malgun Gothic',sans-serif;
+  padding: 4px 8px;
+  min-height: 28px;
+  border-radius: 7px;
+}
+body[data-bks-page=omok] .bks-arena-avatar {
+  max-height: calc(100vh - 380px);
+}
+body[data-bks-page=omok] .bks-arena-caption {
+  font-size: 13.5px;
+  min-height: 18px;
+  letter-spacing: 0;
+}
+body[data-bks-page=omok] .bks-arena-meta {
+  gap: 8px;
+}
+body[data-bks-page=omok] .bks-arena-status {
+  font-size: 15.5px;
+  padding: 6px 16px;
+  border-radius: 22px;
+}
+body[data-bks-page=omok] .bks-arena-count {
+  font-size: 14.5px;
+}
+body[data-bks-page=omok] .bks-arena-actions {
+  gap: 8px;
+}
+body[data-bks-page=omok] .bks-arena-actions button {
+  font: 700 14px/1.3 'Malgun Gothic',sans-serif !important;
+  min-height: 38px !important;
+  padding: 7px 12px !important;
+  border-radius: 8px !important;
+}
