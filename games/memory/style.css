@@ -11,14 +11,31 @@
 body{padding:0;background:var(--m-bg)}
 
 
-.m-wrap{position:relative;height:100dvh;margin-top:calc(var(--bks-nav-h,64px) * -1);padding:0}
+.m-wrap{
+  --mem-board:min(816px, calc(100dvh - var(--bks-nav-h,64px) - 150px), 60vw);
+  position:relative;height:100dvh;margin-top:calc(var(--bks-nav-h,64px) * -1);padding:0
+}
 
-/* 판을 화면 정중앙에 고정 (사이드 패널은 오른쪽에 띄움) */
+/* 데스크톱: 판은 화면 정중앙, 패널은 판 오른쪽에 붙임 */
 .m-board-col{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
   display:flex;flex-direction:column;align-items:center;gap:10px;margin-top:-28px;width:auto;height:auto}
-.m-board-col .m-grid{width:min(816px, calc(100dvh - var(--bks-nav-h,64px) - 150px), 62vw)}
+.m-board-col .m-grid{width:var(--mem-board)}
 .m-board-col .m-stats{width:100%}
-.m-side{position:absolute;right:max(16px, 4vw);top:50%;transform:translateY(-50%);width:330px;max-width:34vw}
+.m-side{position:absolute;top:50%;transform:translateY(-50%);
+  left:calc(50% + (var(--mem-board) / 2) + 14px);right:auto;
+  width:min(330px, calc(50vw - (var(--mem-board) / 2) - 34px));
+  max-height:calc(100dvh - var(--bks-nav-h,64px) - 40px);overflow:auto}
+
+/* 모바일·태블릿: 세로 배치 (겹침 없음) */
+@media (max-width:1080px){
+  .m-wrap{--mem-board:min(560px, 92vw);height:auto;margin-top:0;
+    padding:calc(var(--bks-nav-h,64px) + 10px) 12px 20px;
+    display:flex;flex-direction:column;align-items:center;gap:14px}
+  .m-board-col{position:static;transform:none;margin:0;width:var(--mem-board);max-width:92vw}
+  .m-board-col .m-grid{width:100%}
+  .m-side{position:static;transform:none;left:auto;width:var(--mem-board);max-width:92vw;
+    max-height:none;overflow:visible}
+}
 .m-board-col{display:flex;flex-direction:column;gap:12px;min-width:0;align-items:stretch}
 
 .m-stats{display:flex;gap:10px}
