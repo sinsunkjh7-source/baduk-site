@@ -615,178 +615,185 @@ canvas#yutBoard {
 }
 
 /* ============================================================== */
-/* 극적인 3D 윷 던지기 & 시간차 착지(Staggered Landing) 동기화 물리 애니메이션 */
+/* 극적인 3D 윷 던지기 & 여유롭고 긴장감 넘치는 체공(Long Hang Time) 물리 애니메이션 */
 /* ============================================================== */
 
-/* 1번 윷가락 (체공 0.75s) */
+/* 1번 윷가락 (체공 1.20s) */
 .yut-stick.flying-1 {
-  animation: arc-fly-1 0.75s cubic-bezier(0.25, 0.9, 0.35, 1) forwards;
+  animation: arc-fly-1 1.20s cubic-bezier(0.24, 0.88, 0.32, 1) forwards;
   z-index: 10;
 }
 .yut-stick.flying-1::after {
-  animation: shadow-fly-1 0.75s cubic-bezier(0.25, 0.9, 0.35, 1) forwards;
+  animation: shadow-fly-1 1.20s cubic-bezier(0.24, 0.88, 0.32, 1) forwards;
 }
 .yut-stick.flying-1.spin-belly .stick-inner {
-  animation: spin-belly-1 0.75s cubic-bezier(0.25, 0.9, 0.35, 1) forwards;
+  animation: spin-belly-1 1.20s cubic-bezier(0.24, 0.88, 0.32, 1) forwards;
 }
 .yut-stick.flying-1.spin-back .stick-inner {
-  animation: spin-back-1 0.75s cubic-bezier(0.25, 0.9, 0.35, 1) forwards;
+  animation: spin-back-1 1.20s cubic-bezier(0.24, 0.88, 0.32, 1) forwards;
 }
 
 @keyframes arc-fly-1 {
   0% { transform: translateY(0) rotateZ(0deg) scale(1); }
-  35% { transform: translateY(-46px) rotateZ(16deg) scale(1.15); }
-  75% { transform: translateY(-16px) rotateZ(-6deg) scale(1.06); }
-  90% { transform: translateY(0) rotateZ(2deg) scale(1.0); }
-  95% { transform: translateY(-3px) rotateZ(-1deg); }
+  32% { transform: translateY(-56px) rotateZ(18deg) scale(1.18); }
+  72% { transform: translateY(-16px) rotateZ(-6deg) scale(1.06); }
+  88% { transform: translateY(0) rotateZ(3deg) scale(1.0); }
+  94% { transform: translateY(-4px) rotateZ(-1deg); }
   100% { transform: translateY(0) rotateZ(0deg); }
 }
 
 @keyframes shadow-fly-1 {
   0% { transform: scale(1); opacity: 0.6; }
-  35% { transform: scale(1.6) translateY(12px); opacity: 0.15; filter: blur(3px); }
-  90% { transform: scale(1); opacity: 0.6; filter: blur(0); }
+  32% { transform: scale(1.7) translateY(14px); opacity: 0.15; filter: blur(3px); }
+  88% { transform: scale(1); opacity: 0.6; filter: blur(0); }
   100% { transform: scale(1); opacity: 0.6; }
 }
 
 @keyframes spin-belly-1 {
   0% { transform: rotateX(0deg) rotateY(0deg); }
-  50% { transform: rotateX(360deg) rotateY(180deg); }
+  45% { transform: rotateX(360deg) rotateY(180deg); }
+  88% { transform: rotateX(720deg) rotateY(360deg); }
   100% { transform: rotateX(720deg) rotateY(360deg); } /* = rotateY(0deg) Belly */
 }
 @keyframes spin-back-1 {
   0% { transform: rotateX(0deg) rotateY(0deg); }
-  50% { transform: rotateX(360deg) rotateY(180deg); }
+  45% { transform: rotateX(360deg) rotateY(180deg); }
+  88% { transform: rotateX(720deg) rotateY(540deg); }
   100% { transform: rotateX(720deg) rotateY(540deg); } /* = rotateY(180deg) Back */
 }
 
-/* 2번 윷가락 (체공 1.0s) */
+/* 2번 윷가락 (체공 1.60s) */
 .yut-stick.flying-2 {
-  animation: arc-fly-2 1.0s cubic-bezier(0.22, 0.9, 0.32, 1) forwards;
+  animation: arc-fly-2 1.60s cubic-bezier(0.22, 0.88, 0.3, 1) forwards;
   z-index: 11;
 }
 .yut-stick.flying-2::after {
-  animation: shadow-fly-2 1.0s cubic-bezier(0.22, 0.9, 0.32, 1) forwards;
+  animation: shadow-fly-2 1.60s cubic-bezier(0.22, 0.88, 0.3, 1) forwards;
 }
 .yut-stick.flying-2.spin-belly .stick-inner {
-  animation: spin-belly-2 1.0s cubic-bezier(0.22, 0.9, 0.32, 1) forwards;
+  animation: spin-belly-2 1.60s cubic-bezier(0.22, 0.88, 0.3, 1) forwards;
 }
 .yut-stick.flying-2.spin-back .stick-inner {
-  animation: spin-back-2 1.0s cubic-bezier(0.22, 0.9, 0.32, 1) forwards;
+  animation: spin-back-2 1.60s cubic-bezier(0.22, 0.88, 0.3, 1) forwards;
 }
 
 @keyframes arc-fly-2 {
   0% { transform: translateY(0) rotateZ(0deg) scale(1); }
-  35% { transform: translateY(-54px) rotateZ(-18deg) scale(1.18); }
-  75% { transform: translateY(-18px) rotateZ(8deg) scale(1.07); }
-  90% { transform: translateY(0) rotateZ(-3deg) scale(1.0); }
-  95% { transform: translateY(-4px) rotateZ(1deg); }
+  32% { transform: translateY(-66px) rotateZ(-20deg) scale(1.22); }
+  72% { transform: translateY(-18px) rotateZ(8deg) scale(1.07); }
+  88% { transform: translateY(0) rotateZ(-3deg) scale(1.0); }
+  94% { transform: translateY(-5px) rotateZ(1deg); }
   100% { transform: translateY(0) rotateZ(0deg); }
 }
 
 @keyframes shadow-fly-2 {
   0% { transform: scale(1); opacity: 0.6; }
-  35% { transform: scale(1.7) translateY(14px); opacity: 0.15; filter: blur(3px); }
-  90% { transform: scale(1); opacity: 0.6; filter: blur(0); }
+  32% { transform: scale(1.8) translateY(16px); opacity: 0.12; filter: blur(4px); }
+  88% { transform: scale(1); opacity: 0.6; filter: blur(0); }
   100% { transform: scale(1); opacity: 0.6; }
 }
 
 @keyframes spin-belly-2 {
   0% { transform: rotateX(0deg) rotateY(0deg); }
-  50% { transform: rotateX(-360deg) rotateY(-180deg); }
+  45% { transform: rotateX(-360deg) rotateY(-180deg); }
+  88% { transform: rotateX(-720deg) rotateY(-360deg); }
   100% { transform: rotateX(-720deg) rotateY(-360deg); } /* = rotateY(0deg) Belly */
 }
 @keyframes spin-back-2 {
   0% { transform: rotateX(0deg) rotateY(0deg); }
-  50% { transform: rotateX(-360deg) rotateY(-180deg); }
+  45% { transform: rotateX(-360deg) rotateY(-180deg); }
+  88% { transform: rotateX(-720deg) rotateY(-540deg); }
   100% { transform: rotateX(-720deg) rotateY(-540deg); } /* = rotateY(180deg) Back */
 }
 
-/* 3번 윷가락 (체공 1.25s) */
+/* 3번 윷가락 (체공 2.00s) */
 .yut-stick.flying-3 {
-  animation: arc-fly-3 1.25s cubic-bezier(0.2, 0.88, 0.3, 1) forwards;
+  animation: arc-fly-3 2.00s cubic-bezier(0.2, 0.86, 0.28, 1) forwards;
   z-index: 12;
 }
 .yut-stick.flying-3::after {
-  animation: shadow-fly-3 1.25s cubic-bezier(0.2, 0.88, 0.3, 1) forwards;
+  animation: shadow-fly-3 2.00s cubic-bezier(0.2, 0.86, 0.28, 1) forwards;
 }
 .yut-stick.flying-3.spin-belly .stick-inner {
-  animation: spin-belly-3 1.25s cubic-bezier(0.2, 0.88, 0.3, 1) forwards;
+  animation: spin-belly-3 2.00s cubic-bezier(0.2, 0.86, 0.28, 1) forwards;
 }
 .yut-stick.flying-3.spin-back .stick-inner {
-  animation: spin-back-3 1.25s cubic-bezier(0.2, 0.88, 0.3, 1) forwards;
+  animation: spin-back-3 2.00s cubic-bezier(0.2, 0.86, 0.28, 1) forwards;
 }
 
 @keyframes arc-fly-3 {
   0% { transform: translateY(0) rotateZ(0deg) scale(1); }
-  35% { transform: translateY(-50px) rotateZ(20deg) scale(1.16); }
-  75% { transform: translateY(-16px) rotateZ(-8deg) scale(1.06); }
-  90% { transform: translateY(0) rotateZ(3deg) scale(1.0); }
-  95% { transform: translateY(-3px) rotateZ(-1deg); }
+  32% { transform: translateY(-62px) rotateZ(22deg) scale(1.2); }
+  72% { transform: translateY(-16px) rotateZ(-8deg) scale(1.07); }
+  88% { transform: translateY(0) rotateZ(4deg) scale(1.0); }
+  94% { transform: translateY(-4px) rotateZ(-1deg); }
   100% { transform: translateY(0) rotateZ(0deg); }
 }
 
 @keyframes shadow-fly-3 {
   0% { transform: scale(1); opacity: 0.6; }
-  35% { transform: scale(1.6) translateY(12px); opacity: 0.15; filter: blur(3px); }
-  90% { transform: scale(1); opacity: 0.6; filter: blur(0); }
+  32% { transform: scale(1.75) translateY(15px); opacity: 0.14; filter: blur(3.5px); }
+  88% { transform: scale(1); opacity: 0.6; filter: blur(0); }
   100% { transform: scale(1); opacity: 0.6; }
 }
 
 @keyframes spin-belly-3 {
   0% { transform: rotateX(0deg) rotateY(0deg); }
-  50% { transform: rotateX(360deg) rotateY(180deg); }
+  45% { transform: rotateX(360deg) rotateY(180deg); }
+  88% { transform: rotateX(720deg) rotateY(360deg); }
   100% { transform: rotateX(720deg) rotateY(360deg); } /* = rotateY(0deg) Belly */
 }
 @keyframes spin-back-3 {
   0% { transform: rotateX(0deg) rotateY(0deg); }
-  50% { transform: rotateX(360deg) rotateY(180deg); }
+  45% { transform: rotateX(360deg) rotateY(180deg); }
+  88% { transform: rotateX(720deg) rotateY(540deg); }
   100% { transform: rotateX(720deg) rotateY(540deg); } /* = rotateY(180deg) Back */
 }
 
-/* 0번 윷가락 (뒷도 ✕: 체공 및 지면 흔들림 1.70s) */
+/* 0번 윷가락 (뒷도 ✕: 2.60s! 최고조 긴장감 체공 및 지면 흔들림) */
 .yut-stick.flying-0 {
-  animation: arc-fly-0 1.70s cubic-bezier(0.18, 0.85, 0.28, 1) forwards;
+  animation: arc-fly-0 2.60s cubic-bezier(0.18, 0.85, 0.28, 1) forwards;
   z-index: 15;
 }
 .yut-stick.flying-0::after {
-  animation: shadow-fly-0 1.70s cubic-bezier(0.18, 0.85, 0.28, 1) forwards;
+  animation: shadow-fly-0 2.60s cubic-bezier(0.18, 0.85, 0.28, 1) forwards;
 }
 .yut-stick.flying-0.spin-belly .stick-inner {
-  animation: spin-belly-0 1.70s cubic-bezier(0.18, 0.85, 0.28, 1) forwards;
+  animation: spin-belly-0 2.60s cubic-bezier(0.18, 0.85, 0.28, 1) forwards;
 }
 .yut-stick.flying-0.spin-back .stick-inner {
-  animation: spin-back-0 1.70s cubic-bezier(0.18, 0.85, 0.28, 1) forwards;
+  animation: spin-back-0 2.60s cubic-bezier(0.18, 0.85, 0.28, 1) forwards;
 }
 
 @keyframes arc-fly-0 {
   0% { transform: translateY(0) rotateZ(0deg) scale(1); }
-  30% { transform: translateY(-58px) rotateZ(-24deg) scale(1.2); }
-  65% { transform: translateY(-20px) rotateZ(14deg) scale(1.08); }
-  78% { transform: translateY(0) rotateZ(22deg) scale(1.02); } /* 1.33s: 모서리 첫 착지 */
-  84% { transform: translateY(-2px) rotateZ(-16deg); }          /* 1.43s: 좌우 흔들림 */
-  90% { transform: translateY(-1px) rotateZ(10deg); }           /* 1.53s */
-  95% { transform: translateY(-0.5px) rotateZ(-4deg); }         /* 1.62s */
-  100% { transform: translateY(0) rotateZ(0deg); }              /* 1.70s: 완전 안착 */
+  30% { transform: translateY(-72px) rotateZ(-26deg) scale(1.24); }
+  60% { transform: translateY(-24px) rotateZ(16deg) scale(1.1); }
+  74% { transform: translateY(0) rotateZ(24deg) scale(1.02); } /* 1.92s: 지면 모서리 첫 충돌 */
+  80% { transform: translateY(-3px) rotateZ(-19deg); }          /* 2.08s: 기우뚱 좌우 흔들림 */
+  86% { transform: translateY(-1.5px) rotateZ(13deg); }         /* 2.24s */
+  92% { transform: translateY(-0.8px) rotateZ(-7deg); }         /* 2.39s */
+  96% { transform: translateY(-0.3px) rotateZ(3deg); }          /* 2.50s */
+  100% { transform: translateY(0) rotateZ(0deg); }              /* 2.60s: 완전 안착 */
 }
 
 @keyframes shadow-fly-0 {
   0% { transform: scale(1); opacity: 0.6; }
-  30% { transform: scale(1.7) translateY(14px); opacity: 0.15; filter: blur(3px); }
-  78% { transform: scale(1.05); opacity: 0.55; filter: blur(1px); }
+  30% { transform: scale(1.85) translateY(18px); opacity: 0.1; filter: blur(4px); }
+  74% { transform: scale(1.05); opacity: 0.55; filter: blur(1px); }
   100% { transform: scale(1); opacity: 0.6; filter: blur(0); }
 }
 
 @keyframes spin-belly-0 {
   0% { transform: rotateX(0deg) rotateY(0deg); }
-  40% { transform: rotateX(-360deg) rotateY(-180deg); }
-  78% { transform: rotateX(-720deg) rotateY(-360deg); } /* 착지 시점에 이미 배(0deg) */
+  38% { transform: rotateX(-360deg) rotateY(-180deg); }
+  74% { transform: rotateX(-720deg) rotateY(-360deg); } /* 지면 도착 시 이미 배(0deg) */
   100% { transform: rotateX(-720deg) rotateY(-360deg); } /* = rotateY(0deg) Belly */
 }
 @keyframes spin-back-0 {
   0% { transform: rotateX(0deg) rotateY(0deg); }
-  40% { transform: rotateX(-360deg) rotateY(-180deg); }
-  78% { transform: rotateX(-720deg) rotateY(-540deg); } /* 착지 시점에 이미 등(180deg) */
+  38% { transform: rotateX(-360deg) rotateY(-180deg); }
+  74% { transform: rotateX(-720deg) rotateY(-540deg); } /* 지면 도착 시 이미 등(180deg) */
   100% { transform: rotateX(-720deg) rotateY(-540deg); } /* = rotateY(180deg) Back */
 }
 

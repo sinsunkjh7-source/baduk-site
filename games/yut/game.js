@@ -496,52 +496,56 @@
     });
     void dom.sticksContainer.offsetWidth; // 강제 리플로우
 
-    // 4. 각 윷가락의 결과(배/등)에 맞추어 3D 비행 및 실시간 회전 시작
-    // Stick 1: 0.75s 착지
+    // 4. 각 윷가락의 결과(배/등)에 맞추어 3D 여유로운 체공 비행 및 실시간 회전 시작
+    // Stick 1: 1.20s 체공 착지
     dom.stickElements[1].classList.add('flying-1', result.flips[1] ? 'spin-belly' : 'spin-back');
-    // Stick 2: 1.00s 착지
+    // Stick 2: 1.60s 체공 착지
     dom.stickElements[2].classList.add('flying-2', result.flips[2] ? 'spin-belly' : 'spin-back');
-    // Stick 3: 1.25s 착지
+    // Stick 3: 2.00s 체공 착지
     dom.stickElements[3].classList.add('flying-3', result.flips[3] ? 'spin-belly' : 'spin-back');
-    // Stick 0 (뒷도 ✕): 1.33s 착지 후 지면에서 좌우 기우뚱 흔들림 -> 1.70s 최종 안착
+    // Stick 0 (뒷도 ✕): 1.92s 지면 착지 후 기우뚱 흔들림 -> 2.60s 최종 안착
     dom.stickElements[0].classList.add('flying-0', result.flips[0] ? 'spin-belly' : 'spin-back');
 
     // 5. 시각적 착지 타이밍과 100% 동기화된 사운드 효과
-    // Stick 1 착지 (750ms)
+    // Stick 1 착지 (1050ms)
     setTimeout(() => {
       playSound('land');
-    }, 750);
+    }, 1050);
 
-    // Stick 2 착지 (1000ms)
+    // Stick 2 착지 (1400ms)
     setTimeout(() => {
       playSound('land');
-    }, 1000);
+    }, 1400);
 
-    // Stick 3 착지 (1250ms)
+    // Stick 3 착지 (1760ms)
     setTimeout(() => {
       playSound('land');
-    }, 1250);
+    }, 1760);
 
-    // Stick 0 첫 지면 충돌 (1330ms) & 모서리 흔들림
+    // Stick 0 첫 지면 충돌 (1920ms) & 모서리 흔들림
     setTimeout(() => {
       playSound('land');
       playSound('teeter');
-    }, 1330);
+    }, 1920);
 
     setTimeout(() => {
       playSound('teeter');
-    }, 1450);
+    }, 2080);
 
     setTimeout(() => {
       playSound('teeter');
-    }, 1580);
+    }, 2240);
 
-    // Stick 0 최종 정지 (1700ms)
+    setTimeout(() => {
+      playSound('teeter');
+    }, 2400);
+
+    // Stick 0 최종 정지 (2600ms)
     setTimeout(() => {
       playSound('land');
-    }, 1700);
+    }, 2600);
 
-    // 6. 모든 윷가락이 멍석에 완전히 멈춘 후 (1780ms) -> 결과 정확히 판정 & 배지 공개!
+    // 6. 모든 윷가락이 멍석에 완전히 멈춘 후 (2680ms) -> 결과 정확히 판정 & 배지 공개!
     setTimeout(() => {
       // 윷가락 클래스를 최종 고정 상태로 완벽 일치화 (플리커 없음)
       result.flips.forEach((isBelly, i) => {
@@ -576,7 +580,7 @@
         );
       }
 
-      // 7. 배지 충분히 감상 후 (~800ms 뒤인 2580ms 시점) 이동 또는 추가 턴 진행
+      // 7. 배지 충분히 감상 후 (~870ms 뒤인 3550ms 시점) 이동 또는 추가 턴 진행
       setTimeout(() => {
         hideResultBadge();
         isThrowing = false;
@@ -595,9 +599,9 @@
             setTimeout(aiMove, 600);
           }
         }
-      }, 800);
+      }, 870);
 
-    }, 1780);
+    }, 2680);
   }
 
   // -------------------------------------------------------------
