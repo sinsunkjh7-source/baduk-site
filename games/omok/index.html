@@ -88,6 +88,9 @@ body[data-bks-page="omok"] .wrap[data-arena-compact] .bks-arena-count { font-siz
 
 @media(max-height:900px){body[data-bks-page="omok"] .wrap:not([data-arena-compact]) .bks-arena-actions{margin-top:64px !important;}}
 @media(max-height:650px){body[data-bks-page="omok"] .wrap:not([data-arena-compact]) .bks-arena-actions{margin-top:36px !important;}}
+
+/* AI robot faces the board for either color; placement stone follows native color. */
+body[data-bks-page="omok"] .bks-arena-player[data-color="black"] .bks-omok-character-image[data-model="robot"] { transform:scaleX(-1) !important; }
 </style>
 </head>
 <body data-bks-page="omok">
@@ -227,7 +230,7 @@ body[data-bks-page="omok"] .wrap[data-arena-compact] .bks-arena-count { font-siz
 <div class="toast" id="toast" hidden></div>
 <script src="audio.js?v=20261028-solidwood&t=static-20261027v4"></script>
 <script src="ai.js?v=20261028-solidwood&t=static-20261027v4"></script>
-<script src="reactions.robot-go.v2.js?v=20261101-calm"></script>
+<script src="reactions.robot-go.v3.js?v=20261101-auto-place"></script>
 <script src="game.js?v=omok-ai-pace-1793290754355"></script>
 </body>
 </html>
