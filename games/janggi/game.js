@@ -88,6 +88,55 @@
     openSetupModal();
   }
 
+  function updatePlayerCards() {
+    const p1Card = document.getElementById('p1Card');
+    const p2Card = document.getElementById('p2Card');
+    const p1Badge = p1Card?.querySelector('.player-badge');
+    const p2Badge = p2Card?.querySelector('.player-badge');
+    const p1Name = p1Card?.querySelector('.player-name');
+    const p2Name = document.getElementById('p2Name');
+    const p1Img = p1Card?.querySelector('.avatar-wrapper img');
+    const p2Img = p2Card?.querySelector('.avatar-wrapper img');
+
+    if (mode === 'ai') {
+      if (playerSide === CHO) {
+        if (p1Badge) { p1Badge.className = 'player-badge blue'; p1Badge.textContent = '초(楚) · 청팀'; }
+        if (p1Name) p1Name.textContent = '나 (카피바라)';
+        if (p1Img) p1Img.src = '/games/omok/capybara-go/01-meditation.png';
+
+        if (p2Badge) { p2Badge.className = 'player-badge red'; p2Badge.textContent = '한(漢) · 홍팀'; }
+        if (p2Name) p2Name.textContent = '상대 (AI 로봇)';
+        if (p2Img) p2Img.src = '/games/alkkagi/robot/01-idle.png';
+      } else {
+        if (p1Badge) { p1Badge.className = 'player-badge blue'; p1Badge.textContent = '초(楚) · AI 로봇'; }
+        if (p1Name) p1Name.textContent = '상대 (AI 로봇)';
+        if (p1Img) p1Img.src = '/games/alkkagi/robot/01-idle.png';
+
+        if (p2Badge) { p2Badge.className = 'player-badge red'; p2Badge.textContent = '한(漢) · 나'; }
+        if (p2Name) p2Name.textContent = '나 (카피바라)';
+        if (p2Img) p2Img.src = '/games/omok/capybara-go/01-meditation.png';
+      }
+    } else {
+      // 2-player mode
+      if (p1Badge) { p1Badge.className = 'player-badge blue'; p1Badge.textContent = '초(楚) · 선공'; }
+      if (p1Name) p1Name.textContent = '플레이어 1';
+      if (p1Img) p1Img.src = '/games/omok/capybara-go/01-meditation.png';
+
+      if (p2Badge) { p2Badge.className = 'player-badge red'; p2Badge.textContent = '한(漢) · 후공'; }
+      if (p2Name) p2Name.textContent = '플레이어 2';
+      if (p2Img) p2Img.src = '/games/omok/capybara-go/05-think-1.png';
+    }
+
+    if (btnToggleMode) {
+      btnToggleMode.textContent = mode === 'ai' ? '🤖 모드: AI 대전' : '👥 모드: 2인 대전';
+    }
+    if (btnDifficulty) {
+      btnDifficulty.style.display = mode === 'ai' ? 'inline-flex' : 'none';
+      const names = { easy: '초급 (쉬움)', medium: '중급 (보통)', hard: '고급 (정밀)' };
+      btnDifficulty.textContent = '🎯 난이도: ' + (names[aiDifficulty] || '중급 (보통)');
+    }
+  }
+
   function startNewGame() {
     board = new JanggiBoard(choFormation, hanFormation);
     selectedPos = null;
@@ -96,8 +145,14 @@
     isAiThinking = false;
     gameOver = false;
 
+    updatePlayerCards();
     updateUI();
     render();
+
+    // If AI plays CHO, trigger AI opening move
+    if (mode === 'ai' && playerSide === HAN) {
+      checkPostMove();
+    }
   }
 
   function bindEvents() {
@@ -716,7 +771,26 @@
     if (!setupModal) return;
     setupModal.hidden = false;
 
-    // Reset radio buttons to current
+    // Sync match mode
+    const modeRadios = document.querySelectorAll('input[name="matchMode"]');
+    modeRadios.forEach(r => r.checked = (r.value === mode));
+
+    const aiOptions = document.getElementById('aiOptionsGroup');
+    const updateAiOptionsVisibility = () => {
+      const currentMode = document.querySelector('input[name="matchMode"]:checked')?.value || 'ai';
+      if (aiOptions) aiOptions.style.display = (currentMode === 'ai') ? 'block' : 'none';
+    };
+    modeRadios.forEach(r => r.onchange = updateAiOptionsVisibility);
+    updateAiOptionsVisibility();
+
+    // Sync player color & difficulty
+    const colorRadios = document.querySelectorAll('input[name="playerColor"]');
+    colorRadios.forEach(r => r.checked = (+r.value === playerSide));
+
+    const diffRadios = document.querySelectorAll('input[name="modalDifficulty"]');
+    diffRadios.forEach(r => r.checked = (r.value === aiDifficulty));
+
+    // Sync formations
     const choRadios = document.querySelectorAll('input[name="choFormation"]');
     choRadios.forEach(r => r.checked = (r.value === choFormation));
 
@@ -726,10 +800,16 @@
     const btnStart = document.getElementById('btnStartMatch');
     if (btnStart) {
       btnStart.onclick = () => {
-        const selCho = document.querySelector('input[name="choFormation"]:checked')?.value || 'SMMS';
-        const selHan = document.querySelector('input[name="hanFormation"]:checked')?.value || 'SMMS';
-        choFormation = selCho;
-        hanFormation = selHan;
+        mode = document.querySelector('input[name="matchMode"]:checked')?.value || 'ai';
+        if (mode === 'ai') {
+          playerSide = parseInt(document.querySelector('input[name="playerColor"]:checked')?.value || '1', 10);
+          aiSide = (playerSide === CHO) ? HAN : CHO;
+          aiDifficulty = document.querySelector('input[name="modalDifficulty"]:checked')?.value || 'medium';
+          ai.setLevel(aiDifficulty);
+        }
+        choFormation = document.querySelector('input[name="choFormation"]:checked')?.value || 'SMMS';
+        hanFormation = document.querySelector('input[name="hanFormation"]:checked')?.value || 'SMMS';
+
         setupModal.hidden = true;
         startNewGame();
       };

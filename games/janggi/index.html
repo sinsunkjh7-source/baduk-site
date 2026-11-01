@@ -89,13 +89,78 @@
   </div>
 </main>
 
-<!-- 상차림 선택 모달 -->
+<!-- 대국 설정 모달 -->
 <div class="bks-modal-overlay" id="setupModal" hidden>
   <div class="bks-modal-card">
     <h2>🎯 정통 장기 대국 설정</h2>
-    <p>기물의 초기 위치(상차림)를 선택하고 대국을 시작하세요.</p>
+    <p>대전 방식과 상차림을 선택하고 대국을 시작하세요.</p>
 
     <div class="formation-box">
+      <!-- 1. 대전 상대 선택 -->
+      <div class="formation-group">
+        <span class="formation-group-title">대전 상대</span>
+        <div class="mode-select-grid">
+          <label class="mode-select-card">
+            <input type="radio" name="matchMode" value="ai" checked>
+            <div class="mode-card-content">
+              <span class="mode-card-icon">🤖</span>
+              <div class="mode-card-info">
+                <strong>AI 대전</strong>
+                <small>인공지능과 대결</small>
+              </div>
+            </div>
+          </label>
+          <label class="mode-select-card">
+            <input type="radio" name="matchMode" value="pvp">
+            <div class="mode-card-content">
+              <span class="mode-card-icon">👥</span>
+              <div class="mode-card-info">
+                <strong>2인 대전</strong>
+                <small>친구·가족과 번갈아 대국</small>
+              </div>
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <!-- 2. AI 대전 옵션 -->
+      <div class="formation-group" id="aiOptionsGroup">
+        <span class="formation-group-title">내 진영 및 AI 난이도</span>
+        <div class="ai-config-grid">
+          <div class="config-subcol">
+            <span class="config-subtitle">내 진영 선택</span>
+            <div class="pill-options">
+              <label class="pill-label">
+                <input type="radio" name="playerColor" value="1" checked>
+                <span>초(楚) · 선공</span>
+              </label>
+              <label class="pill-label">
+                <input type="radio" name="playerColor" value="2">
+                <span>한(漢) · 덤 1.5점</span>
+              </label>
+            </div>
+          </div>
+          <div class="config-subcol">
+            <span class="config-subtitle">AI 난이도</span>
+            <div class="pill-options">
+              <label class="pill-label">
+                <input type="radio" name="modalDifficulty" value="easy">
+                <span>초급 (쉬움)</span>
+              </label>
+              <label class="pill-label">
+                <input type="radio" name="modalDifficulty" value="medium" checked>
+                <span>중급 (보통)</span>
+              </label>
+              <label class="pill-label">
+                <input type="radio" name="modalDifficulty" value="hard">
+                <span>고급 (정밀)</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. 상차림 선택 -->
       <div class="formation-group">
         <span class="formation-group-title">초(楚, 청팀) 상차림</span>
         <div class="formation-options">
