@@ -105,10 +105,11 @@ body {
 }
 
 .avatar-wrapper {
+  position: relative;
   width: 82px;
   height: 82px;
   border-radius: 50%;
-  overflow: hidden;
+  overflow: visible; /* 말풍선 표시용 */
   background: #f8fafc;
   border: 3px solid #e2e8f0;
   display: flex;
@@ -119,7 +120,58 @@ body {
 .avatar-wrapper img {
   width: 100%;
   height: 100%;
+  border-radius: 50%;
   object-fit: cover;
+}
+
+/* 마스코트 만화풍 말풍선 */
+.mascot-bubble {
+  position: absolute;
+  top: -14px;
+  right: -24px;
+  background: #ffffff;
+  border: 2px solid #0f172a;
+  border-radius: 12px;
+  padding: 4px 10px;
+  font-size: 13px;
+  font-weight: 900;
+  color: #0f172a;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.16);
+  animation: bubblePop 0.22s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  z-index: 20;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.mascot-bubble::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 14px;
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid #0f172a;
+}
+
+@keyframes bubblePop {
+  0% { transform: scale(0.4) translateY(8px); opacity: 0; }
+  100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+/* 타격감 화면 흔들림 애니메이션 */
+@keyframes boardShake {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  20% { transform: translate(-5px, 4px) rotate(-0.5deg); }
+  40% { transform: translate(5px, -4px) rotate(0.5deg); }
+  60% { transform: translate(-3px, 2px) rotate(-0.3deg); }
+  80% { transform: translate(3px, -1px) rotate(0.2deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+.board-wrapper.screen-shake {
+  animation: boardShake 0.26s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
 }
 
 .player-name {
