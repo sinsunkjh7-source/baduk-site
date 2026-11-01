@@ -18,7 +18,7 @@
   <!-- 3단 대국장: 좌측 사용자(초) | 중앙 정통 장기판 | 우측 상대(한) -->
   <div class="janggi-arena-container">
 
-    <!-- 좌측 컬럼: 플레이어 1 (나, 초 楚) & 핵심 조작 -->
+    <!-- 좌측 컬럼: 플레이어 1 (나, 초 楚) 카드 전용 -->
     <aside class="arena-player-col left">
       <div class="player-card p1-card active" id="p1Card">
         <div class="player-header">
@@ -37,13 +37,6 @@
           </div>
         </div>
       </div>
-
-      <div class="game-control-buttons">
-        <button type="button" class="side-btn primary" id="btnNewGame">🔄 새 대국</button>
-        <button type="button" class="side-btn warn" id="btnPass">🏳️ 한수 쉼</button>
-        <button type="button" class="side-btn" id="btnUndo">🔙 무르기</button>
-        <button type="button" class="side-btn" id="btnToggleMode">🤖 모드: AI 대전</button>
-      </div>
     </aside>
 
     <!-- 중앙 메인 컬럼: 턴 배너 & 정통 9x10 장기판 -->
@@ -58,7 +51,7 @@
       </div>
     </section>
 
-    <!-- 우측 컬럼: 플레이어 2 (AI/상대, 한 漢) & 편의 옵션 -->
+    <!-- 우측 컬럼: 플레이어 2 (AI/상대, 한 漢) & 메뉴 통합 패널 -->
     <aside class="arena-player-col right">
       <div class="player-card p2-card" id="p2Card">
         <div class="player-header">
@@ -78,10 +71,22 @@
         </div>
       </div>
 
-      <div class="game-control-buttons">
-        <!-- 사용자가 요청한 핵심 옵션: 이동 길잡이(이동 경로 가이드) ON/OFF -->
+      <!-- 메뉴들을 한곳에 깔끔하게 모은 통합 컨트롤 패널 -->
+      <div class="unified-control-panel">
+        <span class="control-group-title">🎮 대국 조작</span>
+        <div class="control-btn-grid">
+          <button type="button" class="side-btn primary" id="btnNewGame">🔄 새 대국</button>
+          <button type="button" class="side-btn warn" id="btnPass">🏳️ 한수 쉼</button>
+        </div>
+        <button type="button" class="side-btn" id="btnUndo">🔙 무르기</button>
+
+        <span class="control-group-title" style="margin-top: 4px;">⚙️ 대국 설정</span>
+        <!-- 사용자가 요청한 핵심 옵션: 이동 길잡이 ON/OFF -->
         <button type="button" class="side-btn primary active" id="btnGuideToggle" title="이동 가능한 위치를 보드에 표시합니다">💡 이동 길잡이: <b>켜짐</b></button>
-        <button type="button" class="side-btn" id="btnDifficulty">🎯 난이도: 중급 (보통)</button>
+        <div class="control-btn-grid">
+          <button type="button" class="side-btn" id="btnToggleMode">🤖 AI 대전</button>
+          <button type="button" class="side-btn" id="btnDifficulty">🎯 난이도: 보통</button>
+        </div>
         <button type="button" class="side-btn" id="btnToggleSound">🔊 소리 켜짐</button>
       </div>
     </aside>
