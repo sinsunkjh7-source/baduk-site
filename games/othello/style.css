@@ -20,7 +20,7 @@ body {
 }
 
 .othello-layout {
-  padding: calc(var(--bks-nav-h, 64px) + 10px) 16px 24px;
+  padding: 8px 16px 16px;
   max-width: 1440px;
   margin: 0 auto;
 }
@@ -42,7 +42,7 @@ body {
 
 .arena-player-col.left,
 .arena-player-col.right {
-  margin-top: 48px; /* 중앙 턴 배너 아래 보드판 높이와 완벽하게 일치 */
+  margin-top: 38px; /* 보드판 상단 높이와 완벽하게 수평 일치 */
 }
 
 /* 플레이어 카드 */
@@ -175,7 +175,7 @@ body {
   gap: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   width: 100%;
-  max-width: min(calc(100vh - 265px), calc(100vw - 480px), 690px);
+  max-width: min(calc(100vh - 200px), calc(100vw - 470px), 760px);
   text-align: center;
 }
 
@@ -191,19 +191,19 @@ body {
   color: #64748b;
 }
 
-/* 대형 오델로판 래퍼 (화면 중앙 정밀 배치) */
+/* 대형 오델로판 래퍼 (화면 중앙 최대 크기 대폭 확대) */
 .board-wrapper {
   background: radial-gradient(circle at 50% 50%, #ffffff 0%, #edf5e8 100%);
-  border: 1px solid rgba(44, 107, 60, 0.25);
-  border-radius: 20px;
+  border: 1.5px solid rgba(44, 107, 60, 0.28);
+  border-radius: 22px;
   padding: 8px;
   box-shadow: 
-    0 10px 32px rgba(30, 60, 25, 0.15),
+    0 12px 36px rgba(30, 60, 25, 0.16),
     0 2px 8px rgba(0, 0, 0, 0.04);
   display: flex;
   justify-content: center;
   align-items: center;
-  width: min(calc(100vh - 265px), calc(100vw - 480px), 690px);
+  width: min(calc(100vh - 200px), calc(100vw - 470px), 760px);
   max-width: 100%;
   aspect-ratio: 1 / 1;
 }
@@ -230,7 +230,7 @@ canvas#board {
   font-weight: 700;
   color: #2f4a25;
   width: 100%;
-  max-width: min(calc(100vh - 265px), calc(100vw - 480px), 690px);
+  max-width: min(calc(100vh - 200px), calc(100vw - 470px), 760px);
   text-align: center;
 }
 
@@ -240,9 +240,9 @@ canvas#board {
 .bottom-controls-zone {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
   width: 100%;
-  max-width: min(calc(100vh - 265px), calc(100vw - 480px), 690px);
+  max-width: min(calc(100vh - 200px), calc(100vw - 470px), 760px);
   margin-top: 4px;
 }
 
