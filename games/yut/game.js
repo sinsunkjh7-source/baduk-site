@@ -230,6 +230,7 @@
     turnBanner: document.getElementById('turnBanner'),
     turnTitle: document.getElementById('turnTitle'),
     turnSub: document.getElementById('turnSub'),
+    p1BadgeTitle: document.getElementById('p1BadgeTitle'),
     p2BadgeTitle: document.getElementById('p2BadgeTitle'),
     btnThrow: document.getElementById('btnThrow'),
     handChips: document.getElementById('handChips'),
@@ -1282,7 +1283,13 @@
     // 윷가락 초기화 (배가 보이게)
     dom.stickElements.forEach(el => el.classList.remove('flipped'));
 
-    setBanner('청팀 차례', '윷을 던져주세요! 🎲', '#2563eb');
+    if (dom.p1BadgeTitle) dom.p1BadgeTitle.textContent = vsAI ? '청팀 (나)' : '청팀 (1P)';
+    if (dom.p2BadgeTitle) dom.p2BadgeTitle.textContent = vsAI ? '홍팀 (AI)' : '홍팀 (2P)';
+    if (dom.btnToggleMode) {
+      dom.btnToggleMode.innerHTML = vsAI ? '🤖 대전 모드: <b>AI 대전</b>' : '👥 대전 모드: <b>2인 대전</b>';
+      dom.btnToggleMode.classList.toggle('mode-active', !vsAI);
+    }
+    setBanner(vsAI ? '청팀 (나) 차례' : '청팀 (1P) 차례', '윷을 던져주세요! 🎲', '#2563eb');
     updateUI();
     renderHandChips();
     drawBoard();
@@ -1296,8 +1303,10 @@
 
   dom.btnToggleMode.addEventListener('click', () => {
     vsAI = !vsAI;
-    dom.btnToggleMode.textContent = vsAI ? '🤖 대전 모드: AI 대전' : '👥 대전 모드: 2인 대전';
-    dom.p2BadgeTitle.textContent = vsAI ? '홍팀 (AI)' : '홍팀 (2P)';
+    dom.btnToggleMode.innerHTML = vsAI ? '🤖 대전 모드: <b>AI 대전</b>' : '👥 대전 모드: <b>2인 대전</b>';
+    dom.btnToggleMode.classList.toggle('mode-active', !vsAI);
+    if (dom.p1BadgeTitle) dom.p1BadgeTitle.textContent = vsAI ? '청팀 (나)' : '청팀 (1P)';
+    if (dom.p2BadgeTitle) dom.p2BadgeTitle.textContent = vsAI ? '홍팀 (AI)' : '홍팀 (2P)';
     startNewGame();
   });
 

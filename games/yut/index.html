@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>전통 윷놀이 — JH 바둑스쿨 EduFun</title>
 <link rel="stylesheet" href="/unified-nav.css?v=header-align-20261031">
-<link rel="stylesheet" href="style.css?v=yut-arena-v6">
+<link rel="stylesheet" href="style.css?v=yut-align-v7">
 <script src="/unified-nav.js?v=header-align-20261031" defer></script>
 </head>
 <body data-bks-page="yut">
@@ -14,23 +14,17 @@
   <!-- 3단 대국장(Arena) 구조: 좌측 사용자1 | 중앙 대형 보드판 & 윷마당 | 우측 사용자2 -->
   <div class="yut-arena-container">
 
-    <!-- 좌측 컬럼: 플레이어 1 (나, 청팀) + 게임 설정/조작 -->
+    <!-- 좌측 컬럼: 플레이어 1 (청팀) 카드 전용 -->
     <aside class="arena-player-col left">
       <div class="player-card p1-card active" id="p1Card">
         <div class="player-header">
-          <span class="player-badge blue">청팀 (나)</span>
+          <span class="player-badge blue" id="p1BadgeTitle">청팀 (나)</span>
           <span class="goal-count"><b id="p1Goals">0</b> / 4 완주</span>
         </div>
         <div class="home-tray-label">출전 대기석</div>
         <div class="home-tray" id="p1HomeTray" title="대기 중인 말 (클릭하여 출전)">
           <!-- 1~4번 대기 말 -->
         </div>
-      </div>
-
-      <div class="game-control-buttons vertical">
-        <button type="button" class="side-btn primary" id="btnNewGame">🔄 새 게임</button>
-        <button type="button" class="side-btn" id="btnToggleMode">🤖 대전: AI 대전</button>
-        <button type="button" class="side-btn" id="btnToggleSound">🔊 소리 켜짐</button>
       </div>
     </aside>
 
@@ -80,7 +74,7 @@
       </div>
     </section>
 
-    <!-- 우측 컬럼: 플레이어 2 (홍팀 - 상대/AI) + 정통 룰 안내 -->
+    <!-- 우측 컬럼: 플레이어 2 (홍팀) + 정통 룰 안내 + 조작 메뉴 (규칙 밑으로 이동) -->
     <aside class="arena-player-col right">
       <div class="player-card p2-card" id="p2Card">
         <div class="player-header">
@@ -104,11 +98,18 @@
           <li><b>지름길</b>: 우상귀(앞모), 좌상귀(뒷모), 중앙(방) 빠른 코스</li>
         </ul>
       </div>
+
+      <!-- 좌측에서 우측 규칙 밑으로 이동된 메뉴 조작 버튼들 -->
+      <div class="game-control-buttons vertical">
+        <button type="button" class="side-btn primary" id="btnNewGame">🔄 새 게임</button>
+        <button type="button" class="side-btn" id="btnToggleMode">🤖 대전: AI 대전</button>
+        <button type="button" class="side-btn" id="btnToggleSound">🔊 소리 켜짐</button>
+      </div>
     </aside>
 
   </div>
 </main>
 
-<script src="game.js?v=yut-arena-v6"></script>
+<script src="game.js?v=yut-align-v7"></script>
 </body>
 </html>

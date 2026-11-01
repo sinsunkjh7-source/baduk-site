@@ -46,15 +46,16 @@ body {
   display: grid;
   grid-template-columns: 215px minmax(0, 1fr) 215px;
   gap: 16px;
-  align-items: center;
+  align-items: start;
   width: 100%;
 }
 
-/* 좌/우측 플레이어 컬럼 */
+/* 좌/우측 플레이어 컬럼 (보드 상단 및 좌우 청팀/홍팀 카드 높이 완벽 수평 일치) */
 .arena-player-col {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  margin-top: 46px;
 }
 
 .player-card {
