@@ -484,61 +484,72 @@
     dom.btnThrow.disabled = true;
     hideResultBadge();
 
-    // 1. 공중으로 힘차게 던져지는 목재 파열음
+    // 1. 공중으로 힘차게 던져지는 다중 목재 파열음
     playSound('throw');
 
-    // 2. 패 결과 미리 결정
+    // 2. 패 결과 미리 산출
     const result = rollYut();
 
-    // 3. 이전 비행 클래스 제거 및 강제 리플로우
+    // 3. 기존 애니메이션 및 상태 클래스 초기화
     dom.stickElements.forEach(el => {
-      el.classList.remove('flying-0', 'flying-1', 'flying-2', 'flying-3');
+      el.classList.remove('flying-0', 'flying-1', 'flying-2', 'flying-3', 'spin-belly', 'spin-back');
     });
-    void dom.sticksContainer.offsetWidth;
+    void dom.sticksContainer.offsetWidth; // 강제 리플로우
 
-    // 4. 4개의 윷가락이 각기 다른 높이와 궤적으로 공중으로 솟구침!
-    dom.stickElements[1].classList.add('flying-1');
-    dom.stickElements[2].classList.add('flying-2');
-    dom.stickElements[3].classList.add('flying-3');
-    dom.stickElements[0].classList.add('flying-0');
+    // 4. 각 윷가락의 결과(배/등)에 맞추어 3D 비행 및 실시간 회전 시작
+    // Stick 1: 0.75s 착지
+    dom.stickElements[1].classList.add('flying-1', result.flips[1] ? 'spin-belly' : 'spin-back');
+    // Stick 2: 1.00s 착지
+    dom.stickElements[2].classList.add('flying-2', result.flips[2] ? 'spin-belly' : 'spin-back');
+    // Stick 3: 1.25s 착지
+    dom.stickElements[3].classList.add('flying-3', result.flips[3] ? 'spin-belly' : 'spin-back');
+    // Stick 0 (뒷도 ✕): 1.33s 착지 후 지면에서 좌우 기우뚱 흔들림 -> 1.70s 최종 안착
+    dom.stickElements[0].classList.add('flying-0', result.flips[0] ? 'spin-belly' : 'spin-back');
 
-    // 5. 시간차 착지 스케줄링 (Staggered Landing)
-    // [1번 윷가락 착지: ~800ms]
+    // 5. 시각적 착지 타이밍과 100% 동기화된 사운드 효과
+    // Stick 1 착지 (750ms)
     setTimeout(() => {
       playSound('land');
-      dom.stickElements[1].classList.toggle('flipped', !result.flips[1]);
-    }, 780);
+    }, 750);
 
-    // [2번 윷가락 착지: ~1050ms]
+    // Stick 2 착지 (1000ms)
     setTimeout(() => {
       playSound('land');
-      dom.stickElements[2].classList.toggle('flipped', !result.flips[2]);
-    }, 1040);
+    }, 1000);
 
-    // [3번 윷가락 착지: ~1280ms]
+    // Stick 3 착지 (1250ms)
     setTimeout(() => {
       playSound('land');
-      dom.stickElements[3].classList.toggle('flipped', !result.flips[3]);
-    }, 1260);
+    }, 1250);
 
-    // [0번 윷가락 (뒷도 ✕): 1450ms 착지 후 모서리로 달그락 흔들림(Wobble) -> 1750ms 완전 안착]
+    // Stick 0 첫 지면 충돌 (1330ms) & 모서리 흔들림
     setTimeout(() => {
       playSound('land');
+      playSound('teeter');
+    }, 1330);
+
+    setTimeout(() => {
       playSound('teeter');
     }, 1450);
 
     setTimeout(() => {
       playSound('teeter');
-    }, 1620);
+    }, 1580);
 
+    // Stick 0 최종 정지 (1700ms)
     setTimeout(() => {
-      // 0번 윷 최종 안착!
       playSound('land');
-      dom.stickElements[0].classList.toggle('flipped', !result.flips[0]);
-    }, 1750);
+    }, 1700);
 
-    // 6. 모든 윷가락이 멈추는 순간 (1850ms) - 극적 결과 배지 & 효과음 발동!
+    // 6. 모든 윷가락이 멍석에 완전히 멈춘 후 (1780ms) -> 결과 정확히 판정 & 배지 공개!
     setTimeout(() => {
+      // 윷가락 클래스를 최종 고정 상태로 완벽 일치화 (플리커 없음)
+      result.flips.forEach((isBelly, i) => {
+        dom.stickElements[i].classList.remove('flying-0', 'flying-1', 'flying-2', 'flying-3', 'spin-belly', 'spin-back');
+        dom.stickElements[i].classList.toggle('flipped', !isBelly);
+      });
+
+      // 결과 배지 팝업
       showResultBadge(result);
 
       if (result.isBonus) {
@@ -565,13 +576,9 @@
         );
       }
 
-      // 7. 배지 충분히 감상 후(~850ms) 다음 단계로 자연스럽게 전환
+      // 7. 배지 충분히 감상 후 (~800ms 뒤인 2580ms 시점) 이동 또는 추가 턴 진행
       setTimeout(() => {
         hideResultBadge();
-        dom.stickElements.forEach(el => {
-          el.classList.remove('flying-0', 'flying-1', 'flying-2', 'flying-3');
-        });
-
         isThrowing = false;
 
         if (result.isBonus) {
@@ -588,9 +595,9 @@
             setTimeout(aiMove, 600);
           }
         }
-      }, 850);
+      }, 800);
 
-    }, 1850);
+    }, 1780);
   }
 
   // -------------------------------------------------------------
