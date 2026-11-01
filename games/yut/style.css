@@ -316,57 +316,187 @@ canvas#yutBoard {
 .yut-mat {
   position: relative;
   background: 
-    radial-gradient(ellipse at center, rgba(255, 250, 240, 0.7) 0%, rgba(215, 190, 150, 0.45) 100%),
+    radial-gradient(ellipse at center, rgba(255, 250, 240, 0.75) 0%, rgba(215, 190, 150, 0.48) 100%),
     repeating-linear-gradient(45deg, #dfcca6 0px, #dfcca6 3px, #cfb78d 3px, #cfb78d 6px),
     repeating-linear-gradient(-45deg, #d6bf96 0px, #d6bf96 3px, #c5ab7e 3px, #c5ab7e 6px);
   border: 2.5px solid #8e683b;
-  border-radius: 10px;
-  padding: 5px 8px 3px;
+  border-radius: 12px;
+  padding: 8px 12px 6px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  min-height: 64px;
+  min-height: 74px;
   box-shadow: 
-    inset 0 2px 8px rgba(90, 60, 25, 0.22),
-    0 2px 8px rgba(0, 0, 0, 0.05);
+    inset 0 2px 10px rgba(90, 60, 25, 0.25),
+    0 4px 12px rgba(0, 0, 0, 0.08);
+  overflow: visible;
+}
+
+/* 극적 결과 팝업 배지 (멍석 중앙 상단에 우아하고 입체적으로 부유) */
+.yut-result-pop {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.3);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 6px 20px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(12px);
+  border: 2px solid #e2e8f0;
+  box-shadow: 
+    0 12px 30px rgba(0, 0, 0, 0.22),
+    0 0 20px rgba(245, 158, 11, 0.35);
+  transition: all 0.32s cubic-bezier(0.34, 1.56, 0.64, 1);
+  white-space: nowrap;
+}
+
+.yut-result-pop.show {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.yut-result-pop .result-main-txt {
+  font-size: 26px;
+  font-weight: 900;
+  letter-spacing: -0.5px;
+  line-height: 1;
+  background: linear-gradient(135deg, #1e293b, #0f172a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.yut-result-pop .result-sub-badge {
+  font-size: 13px;
+  font-weight: 800;
+  padding: 3px 10px;
+  border-radius: 14px;
+  color: #ffffff;
+  background: #2563eb;
+  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.35);
+}
+
+/* 윷 / 모 대박 보너스 스타일 */
+.yut-result-pop.bonus {
+  border-color: #f59e0b;
+  box-shadow: 
+    0 14px 36px rgba(180, 83, 9, 0.38),
+    0 0 30px rgba(245, 158, 11, 0.7);
+  animation: bonus-pop-glow 0.8s infinite alternate ease-in-out;
+}
+
+.yut-result-pop.bonus .result-main-txt {
+  background: linear-gradient(135deg, #b45309, #d97706, #f59e0b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.yut-result-pop.bonus .result-sub-badge {
+  background: linear-gradient(135deg, #d97706, #f59e0b);
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(217, 119, 6, 0.4);
+}
+
+/* 뒷도(빽도) 스타일 */
+.yut-result-pop.backdo {
+  border-color: #ef4444;
+  box-shadow: 
+    0 14px 34px rgba(220, 38, 38, 0.32),
+    0 0 24px rgba(239, 68, 68, 0.5);
+}
+
+.yut-result-pop.backdo .result-main-txt {
+  background: linear-gradient(135deg, #991b1b, #dc2626);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.yut-result-pop.backdo .result-sub-badge {
+  background: #dc2626;
+  box-shadow: 0 2px 6px rgba(220, 38, 38, 0.4);
+}
+
+@keyframes bonus-pop-glow {
+  0% { transform: translate(-50%, -50%) scale(1); filter: drop-shadow(0 0 5px #f59e0b); }
+  100% { transform: translate(-50%, -50%) scale(1.05); filter: drop-shadow(0 0 14px #fbbf24); }
 }
 
 .stick-box {
   display: flex;
-  gap: 16px;
-  perspective: 900px;
+  gap: 18px;
+  perspective: 1000px;
+  transform-style: preserve-3d;
   align-items: center;
   justify-content: center;
-  padding: 2px;
+  padding: 4px;
   flex: 1;
+  position: relative;
 }
 
-/* 윷가락 (28px × 72px의 날렵하고 정교한 크기) */
+/* 윷가락 (날렵하고 정교한 3D 비례: 26px × 60px) */
 .yut-stick {
-  width: 24px;
-  height: 56px;
+  width: 26px;
+  height: 60px;
   position: relative;
-  transition: transform 0.4s ease;
-  filter: drop-shadow(0 4px 6px rgba(70, 40, 15, 0.3));
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+/* 바닥 현실적인 그림자 */
+.yut-stick::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 2px;
+  right: 2px;
+  height: 8px;
+  background: radial-gradient(ellipse at center, rgba(60, 30, 10, 0.5) 0%, rgba(60, 30, 10, 0) 72%);
+  border-radius: 50%;
+  pointer-events: none;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.yut-stick.flying-0::after,
+.yut-stick.flying-1::after,
+.yut-stick.flying-2::after,
+.yut-stick.flying-3::after {
+  animation: stick-shadow-fly 1.8s ease-out forwards;
+}
+
+@keyframes stick-shadow-fly {
+  0% { transform: scale(1); opacity: 0.6; }
+  30% { transform: scale(1.7) translateY(12px); opacity: 0.15; filter: blur(3px); }
+  75% { transform: scale(1.1); opacity: 0.5; filter: blur(1px); }
+  100% { transform: scale(1); opacity: 0.6; filter: blur(0); }
 }
 
 .stick-inner {
   width: 100%;
   height: 100%;
   position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.45s cubic-bezier(0.2, 0.9, 0.3, 1.2);
 }
 
 /* 배 (Belly - 평평한 안쪽 면: 밝은 아이보리 목재) */
 .stick-belly {
   position: absolute;
   inset: 0;
+  backface-visibility: hidden;
+  transform: rotateY(0deg);
   background: 
-    repeating-linear-gradient(to bottom, transparent 0px, transparent 14px, rgba(180, 140, 90, 0.07) 14px, rgba(180, 140, 90, 0.07) 15px),
+    repeating-linear-gradient(to bottom, transparent 0px, transparent 14px, rgba(180, 140, 90, 0.08) 14px, rgba(180, 140, 90, 0.08) 15px),
     linear-gradient(135deg, #ffffff 0%, #fbf5e7 40%, #f0e1c2 100%);
   border: 1.8px solid #be9f70;
   border-radius: 9px;
   box-shadow: 
-    inset 0 1px 3px rgba(255, 255, 255, 0.95),
+    inset 0 1.5px 3px rgba(255, 255, 255, 0.95),
     inset 0 -1.5px 3px rgba(150, 110, 60, 0.16);
   display: flex;
   flex-direction: column;
@@ -393,10 +523,10 @@ canvas#yutBoard {
 
 .mark-x {
   color: #dc2626;
-  font-size: 18px;
+  font-size: 19px;
   font-weight: 900;
   line-height: 1;
-  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.8), 0 0 3px rgba(180, 30, 30, 0.35);
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.8), 0 0 4px rgba(180, 30, 30, 0.35);
   font-family: system-ui, sans-serif;
 }
 
@@ -404,6 +534,8 @@ canvas#yutBoard {
 .stick-back {
   position: absolute;
   inset: 0;
+  backface-visibility: hidden;
+  transform: rotateY(180deg);
   background: linear-gradient(
     90deg,
     #1b0b03 0%,
@@ -439,19 +571,9 @@ canvas#yutBoard {
   border-radius: 2px;
 }
 
-/* 윷가락 면 전환 */
-.yut-stick .stick-belly {
-  display: flex;
-}
-.yut-stick .stick-back {
-  display: none;
-}
-
-.yut-stick.flipped .stick-belly {
-  display: none;
-}
-.yut-stick.flipped .stick-back {
-  display: flex;
+/* 3D 회전: 등(Back)일 때 180도 부드럽게 회전 */
+.yut-stick.flipped .stick-inner {
+  transform: rotateY(180deg);
 }
 
 /* 윷가락 상태 안내 캡션 (멍석 우측) */
@@ -462,10 +584,10 @@ canvas#yutBoard {
   font-size: 11px;
   font-weight: 800;
   color: #6a4928;
-  background: rgba(255, 255, 255, 0.7);
-  padding: 4px 8px;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 5px 9px;
   border-radius: 8px;
-  border: 1px solid rgba(142, 104, 59, 0.25);
+  border: 1px solid rgba(142, 104, 59, 0.28);
   flex-shrink: 0;
 }
 
@@ -492,42 +614,72 @@ canvas#yutBoard {
   border: 1px solid #240e04;
 }
 
-/* 텀블링 애니메이션 */
-.stick-box.tumbling .yut-stick:nth-child(1) {
-  animation: stick-tumble-1 0.52s cubic-bezier(0.25, 1, 0.5, 1);
-}
-.stick-box.tumbling .yut-stick:nth-child(2) {
-  animation: stick-tumble-2 0.52s 0.04s cubic-bezier(0.25, 1, 0.5, 1);
-}
-.stick-box.tumbling .yut-stick:nth-child(3) {
-  animation: stick-tumble-3 0.52s 0.08s cubic-bezier(0.25, 1, 0.5, 1);
-}
-.stick-box.tumbling .yut-stick:nth-child(4) {
-  animation: stick-tumble-4 0.52s 0.12s cubic-bezier(0.25, 1, 0.5, 1);
+/* ============================================================== */
+/* 극적인 3D 윷 던지기 & 시간차 착지(Staggered Landing) 애니메이션 */
+/* ============================================================== */
+
+/* 1번 윷가락 (빠른 착지: ~0.8s) */
+.yut-stick.flying-1 {
+  animation: stick-fly-1 0.8s cubic-bezier(0.25, 0.9, 0.35, 1) forwards;
+  z-index: 10;
 }
 
-@keyframes stick-tumble-1 {
-  0% { transform: translateY(-45px) rotateX(180deg) rotateZ(28deg) scale(1.15); }
-  60% { transform: translateY(-6px) rotateX(360deg) rotateZ(-8deg); }
-  100% { transform: translateY(0) rotateX(0deg) rotateZ(0deg); }
+@keyframes stick-fly-1 {
+  0% { transform: translateY(0) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(1); }
+  25% { transform: translateY(-48px) rotateX(360deg) rotateY(140deg) rotateZ(18deg) scale(1.15); }
+  55% { transform: translateY(-24px) rotateX(600deg) rotateY(240deg) rotateZ(-10deg) scale(1.08); }
+  82% { transform: translateY(0) rotateX(720deg) rotateY(360deg) rotateZ(3deg) scale(1.0); }
+  90% { transform: translateY(-4px) rotateX(720deg) rotateY(360deg) rotateZ(-1deg); }
+  100% { transform: translateY(0) rotateX(720deg) rotateY(360deg) rotateZ(0deg); }
 }
 
-@keyframes stick-tumble-2 {
-  0% { transform: translateY(-50px) rotateX(200deg) rotateZ(-24deg) scale(1.18); }
-  60% { transform: translateY(-8px) rotateX(360deg) rotateZ(8deg); }
-  100% { transform: translateY(0) rotateX(0deg) rotateZ(0deg); }
+/* 2번 윷가락 (중간 착지: ~1.05s) */
+.yut-stick.flying-2 {
+  animation: stick-fly-2 1.05s cubic-bezier(0.22, 0.9, 0.32, 1) forwards;
+  z-index: 11;
 }
 
-@keyframes stick-tumble-3 {
-  0% { transform: translateY(-42px) rotateX(190deg) rotateZ(18deg) scale(1.14); }
-  60% { transform: translateY(-5px) rotateX(360deg) rotateZ(-6deg); }
-  100% { transform: translateY(0) rotateX(0deg) rotateZ(0deg); }
+@keyframes stick-fly-2 {
+  0% { transform: translateY(0) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(1); }
+  30% { transform: translateY(-56px) rotateX(-460deg) rotateY(-180deg) rotateZ(-22deg) scale(1.18); }
+  65% { transform: translateY(-26px) rotateX(-780deg) rotateY(-300deg) rotateZ(12deg) scale(1.07); }
+  85% { transform: translateY(0) rotateX(-900deg) rotateY(-360deg) rotateZ(-4deg) scale(1.0); }
+  92% { transform: translateY(-5px) rotateX(-900deg) rotateY(-360deg) rotateZ(2deg); }
+  100% { transform: translateY(0) rotateX(-900deg) rotateY(-360deg) rotateZ(0deg); }
 }
 
-@keyframes stick-tumble-4 {
-  0% { transform: translateY(-55px) rotateX(210deg) rotateZ(-32deg) scale(1.2); }
-  60% { transform: translateY(-9px) rotateX(360deg) rotateZ(10deg); }
-  100% { transform: translateY(0) rotateX(0deg) rotateZ(0deg); }
+/* 3번 윷가락 (높은 체공 착지: ~1.28s) */
+.yut-stick.flying-3 {
+  animation: stick-fly-3 1.28s cubic-bezier(0.2, 0.88, 0.3, 1) forwards;
+  z-index: 12;
+}
+
+@keyframes stick-fly-3 {
+  0% { transform: translateY(0) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(1); }
+  32% { transform: translateY(-52px) rotateX(540deg) rotateY(200deg) rotateZ(24deg) scale(1.16); }
+  68% { transform: translateY(-22px) rotateX(920deg) rotateY(320deg) rotateZ(-12deg) scale(1.06); }
+  86% { transform: translateY(0) rotateX(1080deg) rotateY(360deg) rotateZ(4deg); }
+  93% { transform: translateY(-4px) rotateX(1080deg) rotateY(360deg) rotateZ(-2deg); }
+  100% { transform: translateY(0) rotateX(1080deg) rotateY(360deg) rotateZ(0deg); }
+}
+
+/* 0번 윷가락 (✕ 표시 뒷도 윷: 최고조 긴장감! 마지막 착지 & 흔들림 Wobble: ~1.75s) */
+.yut-stick.flying-0 {
+  animation: stick-fly-0 1.75s cubic-bezier(0.18, 0.85, 0.28, 1) forwards;
+  z-index: 15;
+}
+
+@keyframes stick-fly-0 {
+  0% { transform: translateY(0) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(1); }
+  28% { transform: translateY(-62px) rotateX(-580deg) rotateY(-240deg) rotateZ(-30deg) scale(1.22); }
+  58% { transform: translateY(-28px) rotateX(-960deg) rotateY(-420deg) rotateZ(18deg) scale(1.09); }
+  75% { transform: translateY(0) rotateX(-1080deg) rotateY(-540deg) rotateZ(22deg) scale(1.02); }
+  /* 모서리로 착지 후 좌우 흔들흔들(Wobble) 긴장감 연출 */
+  81% { transform: translateY(-2.5px) rotateX(-1080deg) rotateY(-540deg) rotateZ(-17deg); }
+  87% { transform: translateY(-1.2px) rotateX(-1080deg) rotateY(-540deg) rotateZ(11deg); }
+  92% { transform: translateY(-0.6px) rotateX(-1080deg) rotateY(-540deg) rotateZ(-6deg); }
+  96% { transform: translateY(-0.2px) rotateX(-1080deg) rotateY(-540deg) rotateZ(2deg); }
+  100% { transform: translateY(0) rotateX(-1080deg) rotateY(-540deg) rotateZ(0deg); }
 }
 
 /* 던지기 조작 컨트롤 */

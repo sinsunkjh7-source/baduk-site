@@ -95,19 +95,73 @@
       const now = audioCtx.currentTime;
 
       if (type === 'throw') {
-        // 윷가락 나무 부딪히는 소리
-        for (let i = 0; i < 4; i++) {
+        // 공중으로 힘차게 던져지는 다중 목재 파열음
+        for (let i = 0; i < 5; i++) {
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.type = i % 2 === 0 ? 'triangle' : 'sine';
+          osc.frequency.setValueAtTime(320 + Math.random() * 260, now + i * 0.025);
+          osc.frequency.exponentialRampToValueAtTime(140, now + i * 0.025 + 0.08);
+          gain.gain.setValueAtTime(0.24, now + i * 0.025);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + i * 0.025 + 0.08);
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+          osc.start(now + i * 0.025);
+          osc.stop(now + i * 0.025 + 0.08);
+        }
+      } else if (type === 'land') {
+        // 단단한 박달나무 윷가락이 멍석에 부딪히는 명쾌한 타격음 (착! 탁!)
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'triangle';
+        const baseFreq = 340 + Math.random() * 120;
+        osc.frequency.setValueAtTime(baseFreq, now);
+        osc.frequency.exponentialRampToValueAtTime(baseFreq * 0.45, now + 0.07);
+        gain.gain.setValueAtTime(0.35, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.07);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start(now);
+        osc.stop(now + 0.07);
+      } else if (type === 'teeter') {
+        // 모서리로 착지 후 달그락거리는 부드러운 목재 마찰음
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(260 + Math.random() * 90, now);
+        gain.gain.setValueAtTime(0.14, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.05);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start(now);
+        osc.stop(now + 0.05);
+      } else if (type === 'bonus') {
+        // 윷 / 모 대박 당첨! 전통 5음계 승리 팡파르 (솔-라-도-레-미-솔)
+        [392, 440, 523, 587, 659, 784].forEach((freq, idx) => {
           const osc = audioCtx.createOscillator();
           const gain = audioCtx.createGain();
           osc.type = 'triangle';
-          osc.frequency.setValueAtTime(220 + Math.random() * 200, now + i * 0.04);
-          gain.gain.setValueAtTime(0.2, now + i * 0.04);
-          gain.gain.exponentialRampToValueAtTime(0.001, now + i * 0.04 + 0.12);
+          osc.frequency.setValueAtTime(freq, now + idx * 0.07);
+          gain.gain.setValueAtTime(0.24, now + idx * 0.07);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.07 + 0.22);
           osc.connect(gain);
           gain.connect(audioCtx.destination);
-          osc.start(now + i * 0.04);
-          osc.stop(now + i * 0.04 + 0.12);
-        }
+          osc.start(now + idx * 0.07);
+          osc.stop(now + idx * 0.07 + 0.22);
+        });
+      } else if (type === 'backdo') {
+        // 뒷도(빽도) 반전 효과음 (미끄러지는 재미있는 사운드)
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(460, now);
+        osc.frequency.exponentialRampToValueAtTime(200, now + 0.26);
+        gain.gain.setValueAtTime(0.22, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.26);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start(now);
+        osc.stop(now + 0.26);
       } else if (type === 'step') {
         // 말 착수음 (퐁!)
         const osc = audioCtx.createOscillator();
@@ -232,6 +286,7 @@
     turnSub: document.getElementById('turnSub'),
     p1BadgeTitle: document.getElementById('p1BadgeTitle'),
     p2BadgeTitle: document.getElementById('p2BadgeTitle'),
+    yutResultPop: document.getElementById('yutResultPop'),
     btnThrow: document.getElementById('btnThrow'),
     handChips: document.getElementById('handChips'),
     sticksContainer: document.getElementById('sticksContainer'),
@@ -392,6 +447,30 @@
     return { flips, name, steps, isBonus };
   }
 
+  function showResultBadge(result) {
+    if (!dom.yutResultPop) return;
+    let subText = `+${result.steps}칸 전진`;
+    let mainClass = '';
+    if (result.name === '뒷도(빽도)' || result.steps === -1) {
+      mainClass = 'backdo';
+      subText = '뒤로 1칸 (빽도!) ⚠️';
+    } else if (result.isBonus) {
+      mainClass = 'bonus';
+      subText = `+${result.steps}칸 전진 · 한 번 더! 🎉`;
+    }
+    dom.yutResultPop.className = `yut-result-pop show ${mainClass}`;
+    dom.yutResultPop.innerHTML = `
+      <span class="result-main-txt">${result.name}</span>
+      <span class="result-sub-badge">${subText}</span>
+    `;
+  }
+
+  function hideResultBadge() {
+    if (!dom.yutResultPop) return;
+    dom.yutResultPop.className = 'yut-result-pop';
+    dom.yutResultPop.innerHTML = '';
+  }
+
   function throwYutAction() {
     if (gameOver || isThrowing || isMoving || phase !== 'throw') return;
     if (vsAI && turn === 1) return; // AI 턴 동안 사용자 클릭 방지
@@ -400,55 +479,118 @@
   }
 
   function executeThrow() {
+    if (isThrowing) return;
     isThrowing = true;
     dom.btnThrow.disabled = true;
+    hideResultBadge();
+
+    // 1. 공중으로 힘차게 던져지는 목재 파열음
     playSound('throw');
 
-    // 윷가락 구르기 애니메이션 시작
-    dom.sticksContainer.classList.add('tumbling');
-
+    // 2. 패 결과 미리 결정
     const result = rollYut();
 
-    setTimeout(() => {
-      dom.sticksContainer.classList.remove('tumbling');
-      // 윷가락 면 뒤집기 상태 적용
-      result.flips.forEach((isBelly, i) => {
-        dom.stickElements[i].classList.toggle('flipped', !isBelly); // 등에 닿으면 flipped
-      });
+    // 3. 이전 비행 클래스 제거 및 강제 리플로우
+    dom.stickElements.forEach(el => {
+      el.classList.remove('flying-0', 'flying-1', 'flying-2', 'flying-3');
+    });
+    void dom.sticksContainer.offsetWidth;
 
-      // 던진 패 큐에 추가
+    // 4. 4개의 윷가락이 각기 다른 높이와 궤적으로 공중으로 솟구침!
+    dom.stickElements[1].classList.add('flying-1');
+    dom.stickElements[2].classList.add('flying-2');
+    dom.stickElements[3].classList.add('flying-3');
+    dom.stickElements[0].classList.add('flying-0');
+
+    // 5. 시간차 착지 스케줄링 (Staggered Landing)
+    // [1번 윷가락 착지: ~800ms]
+    setTimeout(() => {
+      playSound('land');
+      dom.stickElements[1].classList.toggle('flipped', !result.flips[1]);
+    }, 780);
+
+    // [2번 윷가락 착지: ~1050ms]
+    setTimeout(() => {
+      playSound('land');
+      dom.stickElements[2].classList.toggle('flipped', !result.flips[2]);
+    }, 1040);
+
+    // [3번 윷가락 착지: ~1280ms]
+    setTimeout(() => {
+      playSound('land');
+      dom.stickElements[3].classList.toggle('flipped', !result.flips[3]);
+    }, 1260);
+
+    // [0번 윷가락 (뒷도 ✕): 1450ms 착지 후 모서리로 달그락 흔들림(Wobble) -> 1750ms 완전 안착]
+    setTimeout(() => {
+      playSound('land');
+      playSound('teeter');
+    }, 1450);
+
+    setTimeout(() => {
+      playSound('teeter');
+    }, 1620);
+
+    setTimeout(() => {
+      // 0번 윷 최종 안착!
+      playSound('land');
+      dom.stickElements[0].classList.toggle('flipped', !result.flips[0]);
+    }, 1750);
+
+    // 6. 모든 윷가락이 멈추는 순간 (1850ms) - 극적 결과 배지 & 효과음 발동!
+    setTimeout(() => {
+      showResultBadge(result);
+
+      if (result.isBonus) {
+        playSound('bonus');
+      } else if (result.steps === -1) {
+        playSound('backdo');
+      }
+
+      // 보유 패 큐에 추가
       handQueue.push({
         name: result.name,
         steps: result.steps,
         isBonus: result.isBonus
       });
-
-      isThrowing = false;
       renderHandChips();
 
       if (result.isBonus) {
-        // 윷이나 모: 한 번 더 던지기!
         setBanner(`${result.name}!`, '한 번 더 던질 수 있습니다! 🎲', '#f59e0b');
-        phase = 'throw';
-        updateUI();
-        if (vsAI && turn === 1) {
-          setTimeout(aiTurn, 700);
-        }
       } else {
-        // 일반 패: 이동 단계로 전환
-        phase = 'move';
-        selectedHandIdx = 0;
         setBanner(
           `${result.name}!`,
           turn === 0 ? '이동할 말과 패를 선택하세요' : '상대가 이동할 말을 고르고 있습니다',
           turn === 0 ? '#2563eb' : '#dc2626'
         );
-        updateUI();
-        if (vsAI && turn === 1) {
-          setTimeout(aiMove, 650);
-        }
       }
-    }, 450);
+
+      // 7. 배지 충분히 감상 후(~850ms) 다음 단계로 자연스럽게 전환
+      setTimeout(() => {
+        hideResultBadge();
+        dom.stickElements.forEach(el => {
+          el.classList.remove('flying-0', 'flying-1', 'flying-2', 'flying-3');
+        });
+
+        isThrowing = false;
+
+        if (result.isBonus) {
+          phase = 'throw';
+          updateUI();
+          if (vsAI && turn === 1) {
+            setTimeout(aiTurn, 650);
+          }
+        } else {
+          phase = 'move';
+          selectedHandIdx = 0;
+          updateUI();
+          if (vsAI && turn === 1) {
+            setTimeout(aiMove, 600);
+          }
+        }
+      }, 850);
+
+    }, 1850);
   }
 
   // -------------------------------------------------------------
@@ -1281,7 +1423,8 @@
     dom.p2Goals.textContent = '0';
 
     // 윷가락 초기화 (배가 보이게)
-    dom.stickElements.forEach(el => el.classList.remove('flipped'));
+    hideResultBadge();
+    dom.stickElements.forEach(el => el.classList.remove('flipped', 'flying-0', 'flying-1', 'flying-2', 'flying-3'));
 
     if (dom.p1BadgeTitle) dom.p1BadgeTitle.textContent = vsAI ? '청팀 (나)' : '청팀 (1P)';
     if (dom.p2BadgeTitle) dom.p2BadgeTitle.textContent = vsAI ? '홍팀 (AI)' : '홍팀 (2P)';
