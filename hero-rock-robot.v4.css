@@ -1,0 +1,8 @@
+/* Original robot pixels, approved size and anchor retained. Only the two-eye overlay blinks. */
+.hero>.bks-rock-robot{position:absolute;left:84.48%;top:45.45%;width:4.934%;aspect-ratio:282 / 370;pointer-events:none;z-index:6;line-height:0;contain:layout style}
+.bks-rock-robot>img{display:block;width:100%;height:100%;object-fit:contain;transform-origin:50% 100%;animation:bks-rock-robot-greet 2s ease-in-out infinite;animation-play-state:paused;will-change:transform}
+.bks-rock-robot>.bks-rock-robot__eyes{position:absolute;inset:0;opacity:0;animation:bks-rock-robot-greet 2s ease-in-out infinite,bks-rock-robot-eyes 2.8s ease-in-out infinite;animation-play-state:paused}
+.bks-rock-robot.is-visible>img{animation-play-state:running}
+@keyframes bks-rock-robot-greet{0%,100%{transform:skewX(-2deg)}50%{transform:skewX(2deg)}}
+@keyframes bks-rock-robot-eyes{0%,68%,92%,100%{opacity:0}76%,84%{opacity:1}}
+@media(prefers-reduced-motion:reduce){.bks-rock-robot>img{animation:none;will-change:auto}.bks-rock-robot>.bks-rock-robot__eyes{display:none}}
