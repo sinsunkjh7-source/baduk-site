@@ -125,6 +125,7 @@
         let label = '1코스';
         if (courseId === 'fury') label = '2코스';
         if (courseId === 'space') label = '3코스';
+        if (courseId === 'wood') label = '4코스';
         badge.textContent = `선택됨: ${label}`;
       }
 
@@ -133,6 +134,7 @@
         let hudText = '🌊 1코스 호수';
         if (courseId === 'fury') hudText = '⚡ 2코스 99m 퓨리';
         if (courseId === 'space') hudText = '🌌 3코스 은하 심우주';
+        if (courseId === 'wood') hudText = '🪵 4코스 숲속 우든';
         hudCourseTag.textContent = hudText;
       }
 
@@ -206,6 +208,15 @@
       if (btnLaunch3) {
         btnLaunch3.onclick = () => {
           this.selectCourse('space');
+          this.startGame();
+        };
+      }
+
+      // 4코스 (깊은 숲속 목재 우든 코스터) 탑승 전용 버튼
+      const btnLaunch4 = document.getElementById('btnLaunchCourse4');
+      if (btnLaunch4) {
+        btnLaunch4.onclick = () => {
+          this.selectCourse('wood');
           this.startGame();
         };
       }

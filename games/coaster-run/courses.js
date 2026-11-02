@@ -184,6 +184,64 @@
           correct: { x: 2, y: 2 }
         }
       ]
+    },
+    wood: {
+      id: 'wood',
+      engineType: 'video',
+      title: '🪵 제4코스: 깊은 숲속 우든 런',
+      theme: '나무 레일의 덜컹거리는 야생 진동 & 숲속 터널 급강하 (InvadR)',
+      videoSrc: 'assets/coaster_real_wood.mp4',
+      gates: [
+        {
+          id: 0,
+          time: 41.5,
+          solved: false,
+          gateName: '제1관문: 숲속 정상 목재 터널 급강하',
+          mission: '단수에 걸린 백돌을 따내고 덜컹거리는 나무 터널로 돌진하라!',
+          hint: '백돌의 마지막 남은 활로 1곳을 찾아 클릭하세요.',
+          gateActionName: '🪵 나무 레일 진동 & 숲속 어두운 터널 수직 다이브!',
+          boardSize: 5,
+          stones: [
+            { x: 2, y: 2, color: 'w' },
+            { x: 1, y: 2, color: 'b' }, { x: 2, y: 1, color: 'b' }, { x: 3, y: 2, color: 'b' },
+            { x: 0, y: 2, color: 'b' }, { x: 4, y: 2, color: 'b' }
+          ],
+          correct: { x: 2, y: 3 }
+        },
+        {
+          id: 1,
+          time: 60.2,
+          solved: false,
+          gateName: '제2관문: 나무 기둥 숲 에어타임 언덕',
+          mission: '독립된 두 집을 만드는 급소에 착수하여 나무 기둥 숲을 뚫어라!',
+          hint: '가운데 급소에 두어 완벽한 두 집을 완성하세요.',
+          gateActionName: '🌀 솟구치는 에어타임 & 나무 구조물 사이 폭풍 질주!',
+          boardSize: 5,
+          stones: [
+            { x: 1, y: 1, color: 'b' }, { x: 2, y: 1, color: 'b' }, { x: 3, y: 1, color: 'b' },
+            { x: 1, y: 3, color: 'b' }, { x: 2, y: 3, color: 'b' }, { x: 3, y: 3, color: 'b' },
+            { x: 0, y: 2, color: 'b' }, { x: 4, y: 2, color: 'b' },
+            { x: 2, y: 0, color: 'w' }, { x: 2, y: 4, color: 'w' }
+          ],
+          correct: { x: 2, y: 2 }
+        },
+        {
+          id: 2,
+          time: 78.0,
+          solved: false,
+          gateName: '제3관문: 파이널 우든 뱅킹 턴',
+          mission: '먹여치기 한 수로 백의 수를 줄이고 최종 결승선으로 골인하라!',
+          hint: '상대의 호구 속에 과감히 내 돌을 하나 희생시키세요.',
+          gateActionName: '🚀 나무 레일 최고속 질주 & 최종 완주 성공!',
+          boardSize: 5,
+          stones: [
+            { x: 2, y: 1, color: 'w' }, { x: 1, y: 2, color: 'w' }, { x: 3, y: 2, color: 'w' },
+            { x: 0, y: 2, color: 'b' }, { x: 4, y: 2, color: 'b' },
+            { x: 1, y: 1, color: 'b' }, { x: 3, y: 1, color: 'b' }, { x: 2, y: 0, color: 'b' }
+          ],
+          correct: { x: 2, y: 2 }
+        }
+      ]
     }
   };
 

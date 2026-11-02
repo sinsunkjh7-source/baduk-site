@@ -601,7 +601,7 @@ canvas#goCanvas {
 
 .course-card-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 8px;
   width: 100%;
 }
@@ -651,6 +651,12 @@ canvas#goCanvas {
   background: rgba(168, 85, 247, 0.25);
   color: #c084fc;
   border-color: #c084fc;
+}
+
+.course-tag.green {
+  background: rgba(22, 163, 74, 0.25);
+  color: #4ade80;
+  border-color: #4ade80;
 }
 
 .course-info {
@@ -740,6 +746,11 @@ canvas#goCanvas {
 .btn-course3-start {
   background: linear-gradient(135deg, #7c3aed 0%, #ec4899 100%);
   box-shadow: 0 8px 24px rgba(168, 85, 247, 0.45);
+}
+
+.btn-course4-start {
+  background: linear-gradient(135deg, #15803d 0%, #16a34a 50%, #b45309 100%);
+  box-shadow: 0 8px 24px rgba(22, 163, 74, 0.45);
 }
 
 .btn-launch:hover {
