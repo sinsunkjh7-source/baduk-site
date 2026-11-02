@@ -7,9 +7,11 @@
   var ctx = cv.getContext('2d');
   var RS = 1;   /* 렌더 배율: 화면 폭에 맞춰 1~2.5배로 그린다 */
 
-  var W = 960, H = 480, RAIL = 36;
+  var W = 960, H = 516, RAIL = 36;
   var MINX = RAIL, MAXX = W - RAIL, MINY = RAIL, MAXY = H - RAIL;
-  var R = 10.5, POCKET_R = 22;   /* 실제 비율: 플레이필드 888px ≒ 2540mm, 공 지름 61.5mm → R≈10.5px */
+  var FL = 888;                        /* 플레이필드 길이(px) = W - 2*RAIL */
+  var R = +(FL * (61.5 / 2840) / 2).toFixed(2);   /* 캐럼 규격: 지름 61.5mm / 2840mm */
+  var POCKET_R = 0;
   var FRICTION = 0.9885, STOP = 0.06, CUSHION = 0.92, MAX_POWER = 26;
 
   var POCKET_COLORS = ['#f2c53d', '#2e6fb7', '#c0392b', '#7d3fa8', '#e07b2a', '#2f8f5b', '#8e2418', '#1d1d1d', '#e6d34a'];
@@ -54,6 +56,14 @@
   }
 
   function setup() {
+    /* 모드별 실제 규격 비율 */
+    if (mode === 'pocket') {
+      R = +(FL * (57.15 / 2540) / 2).toFixed(2);   /* 풀 규격: 지름 57.15mm / 2540mm */
+      POCKET_R = +(R * 2.1).toFixed(2);            /* 코너 포켓 ≈ 공 2개 폭 */
+    } else {
+      R = +(FL * (61.5 / 2840) / 2).toFixed(2);    /* 캐럼 규격 */
+      POCKET_R = 0;
+    }
     balls = []; pockets = []; over = false;
     cue = mkBall(230, H / 2, '#f6f5ef', 'cue', 0);
     balls.push(cue);
