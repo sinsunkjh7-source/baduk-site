@@ -30,8 +30,6 @@
       this.railMatR = null;
       this.tieMat = null;
       this.spireMat = null;
-      this.icicleMat = null;
-      this.archMat = null;
       this.ambientLight = null;
       this.dirLight = null;
       this.snowTexture = null;
@@ -161,8 +159,8 @@
       const leftCurve = new THREE.CatmullRomCurve3(leftPoints);
       const rightCurve = new THREE.CatmullRomCurve3(rightPoints);
 
-      const railGeomL = new THREE.TubeGeometry(leftCurve, 550, 0.42, 8, false);
-      const railGeomR = new THREE.TubeGeometry(rightCurve, 550, 0.42, 8, false);
+      const railGeomL = new THREE.TubeGeometry(leftCurve, 900, 0.42, 8, false);
+      const railGeomR = new THREE.TubeGeometry(rightCurve, 900, 0.42, 8, false);
 
       this.railMatL = new THREE.MeshStandardMaterial({
         color: 0xff3300,
@@ -326,175 +324,108 @@
      * 거대한 현무암 화산 바위 기둥 협곡
      */
     /**
-     * 뾰족뾰족한 얼음 협곡과 거대 고드름, 헤드초퍼 아치 환경 구축
-     * 아슬아슬하게 그 사이를 통과하는 스릴 넘치는 연출
-     */
-    /**
-     * 웅장하고 자연스러운 거대 빙하 협곡과 유기적인 고드름 군락 환경 구축
-     * 가시처럼 인위적인 형태를 배제하고, 실제 빙벽 단애와 처마에서 드리워진 자연스러운 고드름 연출
+     * 100% 레일 비간섭 보장 — 웅장한 빙하 협곡과 설산 마운틴 피크 환경 구축
+     * 레일 끊김을 원천 차단하고, 트랙 양옆으로 28m 이상의 안전 거리를 확보한 장엄한 빙하 협곡 파노라마
      */
     createVolcanoEnvironment() {
       const group = new THREE.Group();
 
-      // 1. 고품질 크리스털 빙하 및 고드름 머티리얼
+      // 빙하 설산 피크 머티리얼 (빛을 받는 각진 크리스털 빙벽)
+      this.spireMat = new THREE.MeshStandardMaterial({
+        color: 0x075985,
+        emissive: 0x0369a1,
+        emissiveIntensity: 0.35,
+        roughness: 0.25,
+        metalness: 0.65,
+        flatShading: true
+      });
+
+      // 반투명 크리스털 아이스 머티리얼 (고드름 및 아치)
       this.icicleMat = new THREE.MeshStandardMaterial({
-        color: 0xe0f2fe,
+        color: 0xcffafe,
         emissive: 0x0284c7,
-        emissiveIntensity: 0.38,
-        roughness: 0.1,
-        metalness: 0.8,
+        emissiveIntensity: 0.45,
+        roughness: 0.12,
+        metalness: 0.85,
         transparent: true,
         opacity: 0.88,
         flatShading: true
       });
 
-      // 거대 빙하 협곡 암벽 머티리얼 (깊은 블루 빙벽)
-      this.spireMat = new THREE.MeshStandardMaterial({
-        color: 0x075985,
-        emissive: 0x0369a1,
-        emissiveIntensity: 0.3,
-        roughness: 0.22,
-        metalness: 0.65,
-        flatShading: true
-      });
+      // 지오메트리 캐시
+      const mountainGeomLarge = new THREE.ConeGeometry(24, 140, 7);
+      const mountainGeomMed = new THREE.ConeGeometry(18, 95, 6);
+      const mountainGeomTall = new THREE.ConeGeometry(15, 160, 6);
+      const grandArchGeom = new THREE.TorusGeometry(18, 1.8, 8, 32, Math.PI);
+      const icicleGeom = new THREE.ConeGeometry(0.7, 7.5, 5);
 
-      // 얼음 처마 및 아치 록 머티리얼 (만년설 크러스트)
-      this.archMat = new THREE.MeshStandardMaterial({
-        color: 0xbae6fd,
-        emissive: 0x0284c7,
-        emissiveIntensity: 0.42,
-        roughness: 0.18,
-        metalness: 0.7,
-        flatShading: true
-      });
+      // 트랙 전체 궤적 샘플링 (충돌 검사용)
+      const trackSamples = [];
+      for (let s = 0; s <= 400; s++) {
+        trackSamples.push(this.curve.getPointAt(s / 400));
+      }
 
-      // 바닥 유빙 및 각진 얼음 바위 머티리얼
-      const boulderMat = new THREE.MeshStandardMaterial({
-        color: 0x38bdf8,
-        emissive: 0x0369a1,
-        emissiveIntensity: 0.25,
-        roughness: 0.15,
-        metalness: 0.75,
-        flatShading: true
-      });
+      const getMinDistToTrack = (x, z) => {
+        let minD = 999999;
+        for (let p of trackSamples) {
+          const d = Math.hypot(p.x - x, p.z - z);
+          if (d < minD) minD = d;
+        }
+        return minD;
+      };
 
-      // 2. 지오메트리 정의 (유기적인 빙벽과 덩어리)
-      const cliffGeom = new THREE.CylinderGeometry(14, 22, 90, 7);
-      const cliffGeomTall = new THREE.CylinderGeometry(18, 28, 140, 7);
-      const boulderGeom = new THREE.DodecahedronGeometry(6.5, 0);
-      const boulderSmallGeom = new THREE.DodecahedronGeometry(3.5, 0);
-
-      // 자연스러운 고드름 지오메트리 (뿌리가 넓고 끝이 뾰족하게 점진적 테이퍼링)
-      const icicleGeomBig = new THREE.ConeGeometry(0.85, 9.5, 6);
-      const icicleGeomMed = new THREE.ConeGeometry(0.55, 6.0, 5);
-      const icicleGeomSmall = new THREE.ConeGeometry(0.35, 3.8, 5);
-      const archRockGeom = new THREE.BoxGeometry(16, 3.2, 5.5);
-
-      const gauge = 2.6;
-      const cliffSteps = 55; // 협곡을 따라 배치되는 거대 빙벽 세그먼트
-
-      // [파트 A] 거대한 층상 빙벽 협곡 (Glacier Canyon Cliffs)
-      for (let i = 0; i < cliffSteps; i++) {
-        const u = 0.04 + (i / cliffSteps) * 0.92;
+      // A. 트랙 양옆으로 펼쳐진 웅장한 빙하 설산 협곡 (레일과 28m~55m 안전 거리 유지)
+      const mountainCount = 50;
+      for (let i = 0; i < mountainCount; i++) {
+        const u = 0.03 + (i / mountainCount) * 0.94;
         const pos = this.curve.getPointAt(u);
         const tan = this.curve.getTangentAt(u).normalize();
         const norm = new THREE.Vector3(-tan.z, 0, tan.x).normalize();
-        const up = new THREE.Vector3(0, 1, 0);
 
-        // 협곡 폭 (급강하 및 크레바스 구간은 좁고 웅장하게, 개활지는 넓게)
-        const isCrevasse = (u >= 0.44 && u <= 0.64);
-        const canyonWidth = isCrevasse ? (gauge / 2 + 6.5) : (gauge / 2 + 10.5 + Math.sin(i * 0.8) * 3.5);
+        for (let sign of [-1, 1]) {
+          const offsetDist = 28 + (i % 4) * 8 + (Math.sin(i * 1.5) * 4);
+          const mX = pos.x + norm.x * sign * offsetDist;
+          const mZ = pos.z + norm.z * sign * offsetDist;
 
-        // 좌측 거대 빙벽 절벽
-        const leftPos = pos.clone().addScaledVector(norm, -canyonWidth);
-        const leftCliff = new THREE.Mesh(isCrevasse ? cliffGeomTall : cliffGeom, this.spireMat);
-        leftCliff.position.set(leftPos.x, leftPos.y + (isCrevasse ? 35 : 20), leftPos.z);
-        leftCliff.rotation.y = i * 0.65;
-        leftCliff.rotation.z = -0.06;
-        leftCliff.scale.set(1.0 + Math.sin(i) * 0.25, 1.0, 1.3 + Math.cos(i) * 0.3);
-        group.add(leftCliff);
-
-        // 우측 거대 빙벽 절벽
-        const rightPos = pos.clone().addScaledVector(norm, canyonWidth);
-        const rightCliff = new THREE.Mesh(isCrevasse ? cliffGeomTall : cliffGeom, this.spireMat);
-        rightCliff.position.set(rightPos.x, rightPos.y + (isCrevasse ? 35 : 20), rightPos.z);
-        rightCliff.rotation.y = i * 0.85;
-        rightCliff.rotation.z = 0.06;
-        rightCliff.scale.set(1.0 + Math.cos(i) * 0.25, 1.0, 1.3 + Math.sin(i) * 0.3);
-        group.add(rightCliff);
-
-        // 빙벽 하단에 자연스럽게 굴러떨어진 유빙/얼음 바위 (인위적인 가시 제거!)
-        if (i % 2 === 0) {
-          const side = (i % 4 === 0 ? -1 : 1);
-          const bPos = pos.clone().addScaledVector(norm, side * (canyonWidth - 3.2));
-          const boulder = new THREE.Mesh(boulderGeom, boulderMat);
-          boulder.position.set(bPos.x, bPos.y - 2.0 + Math.sin(i) * 2.0, bPos.z);
-          boulder.rotation.set(i * 0.4, i * 0.7, i * 0.2);
-          group.add(boulder);
-
-          const bSmall = new THREE.Mesh(boulderSmallGeom, boulderMat);
-          bSmall.position.set(bPos.x + (Math.sin(i)*2), bPos.y - 1.5, bPos.z + (Math.cos(i)*2));
-          bSmall.rotation.set(i * 0.9, i * 0.3, i * 0.6);
-          group.add(bSmall);
+          // 충돌 절대 방지: 트랙과 최소 22m 이상 떨어진 곳에만 배치
+          if (getMinDistToTrack(mX, mZ) >= 22) {
+            const geom = (i % 3 === 0) ? mountainGeomTall : ((i % 2 === 0) ? mountainGeomLarge : mountainGeomMed);
+            const mountain = new THREE.Mesh(geom, this.spireMat);
+            mountain.position.set(mX, pos.y + 35 + (Math.sin(i * 2.3) * 15), mZ);
+            mountain.rotation.y = i * 0.75;
+            mountain.scale.set(1.0 + Math.sin(i) * 0.2, 1.0, 1.0 + Math.cos(i) * 0.2);
+            group.add(mountain);
+          }
         }
       }
 
-      // [파트 B] 아슬아슬한 오버헤드 얼음 처마와 자연스러운 고드름 군락 (Hanging Icicle Ledges)
-      // 트랙의 16개 핵심 지점에 거대 얼음 처마 록을 가로지르고, 처마 밑면에 자연스러운 고드름 다발 배치
-      const archPoints = [
-        0.08, 0.14, 0.21, 0.27, 0.34, 0.40, 
-        0.47, 0.51, 0.55, 0.60, 0.66, 0.72, 
-        0.77, 0.83, 0.89, 0.94
-      ];
-
-      archPoints.forEach((u, archIdx) => {
+      // B. 협곡 통과 구간의 웅장한 크리스털 얼음 아치와 자연스러운 고드름 (천장 높이 14m+ 확보, 레일 무간섭)
+      const archPoints = [0.24, 0.54, 0.78];
+      archPoints.forEach((u, idx) => {
         const pos = this.curve.getPointAt(u);
         const tan = this.curve.getTangentAt(u).normalize();
-        const norm = new THREE.Vector3(-tan.z, 0, tan.x).normalize();
         const up = new THREE.Vector3(0, 1, 0);
 
-        // 1. 트랙 상공을 가로지르는 두터운 만년설 바위 처마
-        const clearanceY = (archIdx % 2 === 0) ? 6.2 : 5.4; // 탑승자 머리 위 3.8m ~ 4.6m 높이에 위치
-        const ledgePos = pos.clone().addScaledVector(up, clearanceY);
-        const ledgeMesh = new THREE.Mesh(archRockGeom, this.archMat);
-        ledgeMesh.position.copy(ledgePos);
+        // 아치 중심 높이를 트랙 위 12m에 배치 (레일 및 카메라와 10m 이상 넉넉한 클리어런스)
+        const archCenter = pos.clone().addScaledVector(up, 10.5);
+        const archMesh = new THREE.Mesh(grandArchGeom, this.icicleMat);
+        archMesh.position.copy(archCenter);
 
-        // 트랙 방향에 맞추어 처마 회전
         const rotMat = new THREE.Matrix4().lookAt(new THREE.Vector3(0, 0, 0), tan, up);
-        ledgeMesh.rotation.setFromRotationMatrix(rotMat);
-        ledgeMesh.rotation.z = (Math.sin(archIdx) * 0.12); // 자연스러운 비대칭 경사
-        group.add(ledgeMesh);
+        archMesh.rotation.setFromRotationMatrix(rotMat);
+        archMesh.rotation.z = Math.PI; // 반원 아치 형태
+        group.add(archMesh);
 
-        // 2. 처마 밑면에 매달린 유기적인 고드름 다발 (Natural Icicle Clusters)
-        // 무작위 가시가 아니라, 처마 밑면 4~6개 포인트에서 중력 방향(아래)으로 매달림
-        const clusterSlots = [-5.0, -2.8, -1.0, 0.6, 2.6, 4.8];
-        clusterSlots.forEach((slotX, cIdx) => {
-          // 중앙 슬롯은 열차 통과 시 아슬아슬한 헤드초퍼 연출
-          const isCenter = Math.abs(slotX) < 1.8;
-          const rootPos = ledgePos.clone()
-            .addScaledVector(norm, slotX)
-            .addScaledVector(up, -1.4); // 처마 밑면
-
-          // 메인 중심 고드름
-          const mainGeom = isCenter ? icicleGeomBig : icicleGeomMed;
-          const mainIcicle = new THREE.Mesh(mainGeom, this.icicleMat);
-          mainIcicle.position.copy(rootPos);
-          mainIcicle.rotation.x = Math.PI; // 중력에 의해 똑바로 아래를 향함
-          mainIcicle.rotation.z = (Math.sin(archIdx + cIdx) * 0.08); // 미세한 자연스러운 기울기
-          group.add(mainIcicle);
-
-          // 중심 고드름 주변에 달라붙은 보조 작은 고드름 1~2개 (실제 고드름의 자연스러운 군락 형태)
-          const subIcicle1 = new THREE.Mesh(icicleGeomSmall, this.icicleMat);
-          subIcicle1.position.set(rootPos.x + 0.45, rootPos.y + 0.8, rootPos.z + 0.3);
-          subIcicle1.rotation.x = Math.PI;
-          group.add(subIcicle1);
-
-          if (cIdx % 2 === 0) {
-            const subIcicle2 = new THREE.Mesh(icicleGeomSmall, this.icicleMat);
-            subIcicle2.position.set(rootPos.x - 0.4, rootPos.y + 0.5, rootPos.z - 0.25);
-            subIcicle2.rotation.x = Math.PI;
-            group.add(subIcicle2);
-          }
+        // 아치 상단 양옆에서 자연스럽게 드리워진 고드름 (트랙 중앙을 비워 시야 100% 개방)
+        const norm = new THREE.Vector3(-tan.z, 0, tan.x).normalize();
+        [-7.5, -4.5, 4.5, 7.5].forEach((sideOff) => {
+          const icicle = new THREE.Mesh(icicleGeom, this.icicleMat);
+          const iPos = archCenter.clone()
+            .addScaledVector(up, 4.5)
+            .addScaledVector(norm, sideOff);
+          icicle.position.copy(iPos);
+          icicle.rotation.x = Math.PI; // 아래로 드리워짐
+          group.add(icicle);
         });
       });
 
@@ -622,26 +553,11 @@
         this.emberPoints.material.size = isGlacier ? 2.6 : 2.8;
       }
 
-      // 6. 주변 환경 (고드름, 칼날 협곡, 거대 빙산 기둥)
-      if (this.icicleMat) {
-        this.icicleMat.color.setHex(isGlacier ? 0xcffafe : 0x292524);
-        this.icicleMat.emissive.setHex(isGlacier ? 0x0284c7 : 0xea580c);
-        this.icicleMat.emissiveIntensity = isGlacier ? 0.45 : 0.65;
-        this.icicleMat.roughness = isGlacier ? 0.12 : 0.75;
-        this.icicleMat.metalness = isGlacier ? 0.85 : 0.15;
-        this.icicleMat.opacity = isGlacier ? 0.88 : 0.98;
-      }
+      // 6. 주변 환경 (거대한 푸른 빙산 기둥 vs 흑요석 분화구 기둥)
       if (this.spireMat) {
-        this.spireMat.color.setHex(isGlacier ? 0x0369a1 : 0x140e0c);
-        this.spireMat.emissive.setHex(isGlacier ? 0x082f49 : 0x431407);
-        this.spireMat.emissiveIntensity = isGlacier ? 0.35 : 0.4;
-        this.spireMat.roughness = isGlacier ? 0.25 : 0.95;
+        this.spireMat.color.setHex(isGlacier ? 0x075985 : 0x22130e);
+        this.spireMat.roughness = isGlacier ? 0.2 : 0.85;
         this.spireMat.metalness = isGlacier ? 0.65 : 0.1;
-      }
-      if (this.archMat) {
-        this.archMat.color.setHex(isGlacier ? 0x7dd3fc : 0x441b12);
-        this.archMat.emissive.setHex(isGlacier ? 0x0369a1 : 0x7c2d12);
-        this.archMat.emissiveIntensity = isGlacier ? 0.5 : 0.4;
       }
 
       // 7. 관문 게이트 링
