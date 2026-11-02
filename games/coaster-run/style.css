@@ -905,29 +905,3 @@ canvas#goCanvas {
   color: #94a3b8;
   margin: 0;
 }
-
-/* 1인칭 카트 콕핏 & 손잡이 오버레이 */
-.cockpit-overlay {
-  position: absolute !important;
-  bottom: 0 !important;
-  left: 50% !important;
-  transform: translateX(-50%) !important;
-  width: 100% !important;
-  max-width: 980px !important;
-  pointer-events: none !important;
-  z-index: 25 !important;
-  display: flex !important;
-  justify-content: center !important;
-  align-items: flex-end !important;
-  filter: drop-shadow(0 -8px 25px rgba(0, 0, 0, 0.85));
-}
-
-#cockpitHandsImg {
-  width: 100%;
-  max-height: 270px;
-  object-fit: contain;
-  object-position: bottom center;
-  display: block;
-  pointer-events: none;
-  user-select: none;
-}

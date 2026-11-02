@@ -2,11 +2,11 @@
  * magmaEngine.js - 다이내믹 3D 마그마 화산 롤러코스터 엔진 (Three.js WebGL)
  * 
  * 주요 특징:
- * 1. 콕핏 & 손잡이를 쥔 두 손 3D 렌더링 (직접 탑승한 1인칭 체감 극대화)
- * 2. 155m 최고 정점 절벽 앞 아찔한 시야각 (아래가 안 보이는 블라인드 낭떠러지)
- * 3. 정답 해결 시 절벽 아래로 쿵- 숙여지며 145m 수직 90도 240km/h 급강하 다이브
- * 4. 원형 글로우 불꽃/불티 파티클 (Canvas Radial Gradient)
- * 5. 물리 기반 중력 가속도 & 실시간 레일 마찰음 + 바람 굉음 연동
+ * 1. 원형 글로우 불꽃/불티 파티클 (Canvas Radial Gradient)
+ * 2. 150m 정상 등반 -> 145m 수직 90도 급강하 -> 45도 급격한 뱅킹 턴 -> 에어타임 언덕
+ * 3. 물리 기반 중력 가속도 & 게이트 앞 강력한 에어 브레이크 & 정답 시 210km/h 급발진
+ * 4. 속도 연동 FOV 다이내믹 줌아웃 (65 -> 88도) & 화면 진동
+ * 5. Web Audio 실시간 레일 마찰음 + 바람 굉음 연동
  */
 (function(window) {
   'use strict';
@@ -25,7 +25,6 @@
       this.lavaMesh = null;
       this.speedStreakGroup = null;
       this.gatePortals = [];
-      this.cockpitGroup = null;
 
       // 주행 상태
       this.isPlaying = false;
@@ -36,20 +35,19 @@
 
       // 주행 진행도 (t: 0.0 ~ 1.0)
       this.t = 0.0;
-      this.baseSpeed = 0.00065;
+      this.baseSpeed = 0.00065; // 고속 베이스
       this.currentSpeedFactor = 1.0;
       this.targetSpeedFactor = 1.0;
       this.currentSpeedKm = 0;
       this.currentFOV = 68;
-      this.tipOverPitch = 0; // 정점 통과 시 절벽 틸트다운 오프셋
 
-      // 5개 관문 위치 (정점 및 급경사 직전)
+      // 5개 관문 위치 (t 지점)
       this.gatePoints = [
-        { id: 0, t: 0.16, solved: false }, // 제1관문: 155m 분화구 최고 정점 절벽 앞
-        { id: 1, t: 0.35, solved: false }, // 제2관문: 115m 에어타임 언덕 정점 앞
-        { id: 2, t: 0.54, solved: false }, // 제3관문: 흑요석 동굴 S자 뱅킹 진입 직전
-        { id: 3, t: 0.72, solved: false }, // 제4관문: 125m 간헐천 수직 솟구침 직전
-        { id: 4, t: 0.88, solved: false }  // 제5관문: 화산 360도 나선 급강하 헬릭스 직전
+        { id: 0, t: 0.16, solved: false },
+        { id: 1, t: 0.35, solved: false },
+        { id: 2, t: 0.54, solved: false },
+        { id: 3, t: 0.72, solved: false },
+        { id: 4, t: 0.88, solved: false }
       ];
 
       this.initThree();
@@ -90,7 +88,6 @@
       this.createSpeedStreaks();
       this.createVolcanoEnvironment();
       this.createGatePortals();
-      this.createCockpit();
 
       window.addEventListener('resize', () => this.onResize());
 
@@ -108,43 +105,23 @@
     }
 
     /**
-     * 1인칭 카트 콕핏 & 손잡이를 꽉 쥔 두 손 3D 렌더링
-     */
-    createCockpit() {
-      this.cockpitGroup = new THREE.Group();
-      this.cockpitGroup.name = 'cockpitGroup';
-
-      // 조명 효과: 코스터 전방 헤드라이트 & 용암 반사광 (트랙을 다이내믹하게 비춤)
-      const headLight = new THREE.PointLight(0xfff5ea, 2.4, 5.0);
-      headLight.position.set(0, 0.2, -0.3);
-      this.cockpitGroup.add(headLight);
-
-      const bounceLight = new THREE.PointLight(0xff5500, 3.0, 4.0);
-      bounceLight.position.set(0, -0.6, -0.5);
-      this.cockpitGroup.add(bounceLight);
-
-      this.camera.add(this.cockpitGroup);
-      this.scene.add(this.camera);
-    }
-
-    /**
-     * 다이내믹 롤러코스터 트랙 설계 (극적인 고저차, 정점 블라인드 낭떠러지, 45도 뱅킹)
+     * 다이내믹 롤러코스터 트랙 설계 (극적인 고저차, 급강하, 45도 뱅킹 턴)
      */
     createDynamicTrack() {
       const points = [
         new THREE.Vector3(0, 15, 0),         // 0. 출발역
-        new THREE.Vector3(0, 85, -120),      // 1. 화산 리프트 등반 1차
-        new THREE.Vector3(10, 155, -280),    // 2. ⭐ 분화구 155m 아득한 정상 정점 (제1관문: 아래가 안 보이는 블라인드 절벽)
+        new THREE.Vector3(0, 80, -120),      // 1. 화산 리프트 등반 1차
+        new THREE.Vector3(10, 155, -280),    // 2. 분화구 155m 아득한 정상 정점 (제1관문)
         new THREE.Vector3(0, 12, -450),      // 3. 💥 143m 수직 90도 절벽 급강하 다이브! (바닥으로 추락)
         new THREE.Vector3(-150, 6, -640),    // 4. 용암 수면 초저공 질주 & 급격한 좌 45도 뱅킹 턴!
-        new THREE.Vector3(-80, 115, -830),   // 5. ⭐ 솟구치는 에어타임 카멜백 언덕 정점 (제2관문)
+        new THREE.Vector3(-80, 115, -830),   // 5. 솟구치는 에어타임 카멜백 언덕 정점 (제2관문)
         new THREE.Vector3(20, 8, -1010),     // 6. 지하 동굴 입구로 급강하
-        new THREE.Vector3(120, -28, -1190),  // 7. ⭐ 흑요석 지하 동굴 심연 S자 뱅킹 진입로 (제3관문)
-        new THREE.Vector3(60, 20, -1370),    // 8. 동굴 탈출 급상승
-        new THREE.Vector3(-30, 125, -1550),  // 9. ⭐ 125m 간헐천 수직 솟구침 직전 (제4관문)
+        new THREE.Vector3(120, -28, -1190),  // 7. 흑요석 지하 동굴 심연 S자 뱅킹 (제3관문)
+        new THREE.Vector3(60, 20, -1370),    // 8. 동굴 탈출 상승
+        new THREE.Vector3(-30, 125, -1550),  // 9. 간헐천 상공 125m 수직 솟구침 (제4관문)
         new THREE.Vector3(-140, 35, -1740),  // 10. 화산 외벽 360도 나선 급강하 헬릭스
-        new THREE.Vector3(-40, 50, -1920),   // 11. ⭐ 화산 폭발 분화구 입구 (제5관문)
-        new THREE.Vector3(0, 15, -2120),     // 12. 최종 초광속 240km/h 탈출 직선로
+        new THREE.Vector3(-40, 50, -1920),   // 11. 화산 폭발 분화구 입구 (제5관문)
+        new THREE.Vector3(0, 15, -2120),     // 12. 최종 초광속 210km/h 탈출 직선로
         new THREE.Vector3(0, 10, -2280)      // 13. 피니시 골인
       ];
 
@@ -232,7 +209,7 @@
     }
 
     /**
-     * 원형 글로우 불꽃 파티클 텍스처 생성
+     * 원형 글로우 불꽃 파티클 텍스처 생성 (자연스러운 둥근 불티)
      */
     createSparkTexture() {
       const canvas = document.createElement('canvas');
@@ -305,7 +282,7 @@
     }
 
     /**
-     * 광선 스트릭
+     * 초고속 질주 시 주변으로 폭풍처럼 스쳐 지나가는 광선 스트릭
      */
     createSpeedStreaks() {
       this.speedStreakGroup = new THREE.Group();
@@ -333,7 +310,7 @@
     }
 
     /**
-     * 현무암 화산 바위 기둥 협곡
+     * 거대한 현무암 화산 바위 기둥 협곡
      */
     createVolcanoEnvironment() {
       const pillarGeom = new THREE.CylinderGeometry(14, 22, 280, 6);
@@ -357,7 +334,7 @@
     }
 
     /**
-     * 5개 관문 마그마 스타게이트 포털
+     * 5개 관문 마그마 발광 스타게이트 포털
      */
     createGatePortals() {
       this.gatePortals = [];
@@ -402,8 +379,8 @@
       this.currentGateIndex = -1;
       this.currentSpeedFactor = 0.8;
       this.targetSpeedFactor = 1.0;
-      this.tipOverPitch = 0.0;
 
+      // 오디오 컨텍스트 깨우기 & 주행 사운드 시작
       if (window.CoasterAudio) {
         window.CoasterAudio.resume();
         window.CoasterAudio.startRideAudio();
@@ -418,7 +395,6 @@
       this.t = 0.0;
       this.isGlidingSlow = false;
       this.isBooster = false;
-      this.tipOverPitch = 0.0;
       this.currentSpeedFactor = 0.8;
       this.targetSpeedFactor = 1.0;
       if (this.speedStreakGroup) this.speedStreakGroup.visible = false;
@@ -429,45 +405,33 @@
       this.updateCamera(0.001);
     }
 
-    /**
-     * ⭐ 정답 해결 시 절벽 아래 틸트다운 & 240km/h 2단계 폭풍 다이브 연출 ⭐
-     */
     triggerBooster() {
       this.isBooster = true;
       this.isGlidingSlow = false;
+      this.targetSpeedFactor = 2.4; // 210km/h 초고속 발진!
 
-      // 1단계: 0.35초간 코스터 머리가 낭떠러지 아래로 쿵-! 숙여짐 (아래 절벽이 눈앞에 꽉 참!)
-      this.tipOverPitch = -0.45; // 아래로 45도 급격히 시선 숙임
-      if (this.options.onShake) this.options.onShake(1.2);
+      if (this.speedStreakGroup) {
+        this.speedStreakGroup.visible = true;
+        this.speedStreakGroup.children.forEach(m => {
+          m.material.opacity = 0.85;
+        });
+      }
+
+      if (this.options.onShake) this.options.onShake(1.6);
+      if (window.CoasterAudio) {
+        window.CoasterAudio.playBoosterLaunch();
+      }
 
       setTimeout(() => {
-        // 2단계: 콰아아앙-!! 마그마 부스터 240km/h 폭발 발진!
-        this.tipOverPitch = 0.0;
-        this.targetSpeedFactor = 2.6; // 240km/h!
-
-        if (this.speedStreakGroup) {
-          this.speedStreakGroup.visible = true;
-          this.speedStreakGroup.children.forEach(m => {
-            m.material.opacity = 0.88;
-          });
-        }
-
-        if (this.options.onShake) this.options.onShake(2.0);
-        if (window.CoasterAudio) {
-          window.CoasterAudio.playBoosterLaunch();
-        }
-
-        setTimeout(() => {
-          if (!this.isGlidingSlow) {
-            this.targetSpeedFactor = 1.35; // 145km/h 순항
-            if (this.speedStreakGroup) {
-              this.speedStreakGroup.children.forEach(m => {
-                m.material.opacity = 0.15;
-              });
-            }
+        if (!this.isGlidingSlow) {
+          this.targetSpeedFactor = 1.25; // 135km/h 순항
+          if (this.speedStreakGroup) {
+            this.speedStreakGroup.children.forEach(m => {
+              m.material.opacity = 0.15;
+            });
           }
-        }, 3600);
-      }, 350);
+        }
+      }, 3500);
     }
 
     resumeAfterSolve() {
@@ -497,7 +461,7 @@
     }
 
     triggerWrong() {
-      if (this.options.onShake) this.options.onShake(1.4);
+      if (this.options.onShake) this.options.onShake(1.2);
     }
 
     getSpeedKm() {
@@ -506,9 +470,9 @@
 
     getSpeedMode() {
       if (this.isEmergencyStopped) return '비상 정차';
-      if (this.isGlidingSlow) return '⚠️ 절벽 정점 서행 중';
-      if (this.isBooster) return '🔥 240km/h 마그마 다이브!';
-      if (this.t < 0.14) return '🧗 155m 정상 등반 중';
+      if (this.isGlidingSlow) return '관문 제동 서행';
+      if (this.isBooster) return '🔥 210km/h 마그마 부스터!';
+      if (this.t < 0.12) return '🧗 리프트 정상 등반 중';
       return '⚡ 초고속 급강하 질주';
     }
 
@@ -530,40 +494,25 @@
         this.emberPoints.geometry.attributes.position.needsUpdate = true;
       }
 
-      // 콕핏 미세 진동 (속도에 따른 차체 및 손잡이 떨림)
-      if (!this.cockpitOverlayEl) {
-        this.cockpitOverlayEl = document.getElementById('cockpitOverlay');
-      }
-      if (this.cockpitOverlayEl) {
-        if (this.isPlaying && !this.isEmergencyStopped) {
-          const speedNorm = Math.min(1.5, this.currentSpeedKm / 180);
-          const shakeX = (Math.random() - 0.5) * (speedNorm * 3.2);
-          const shakeY = (Math.random() - 0.5) * (speedNorm * 2.2) + Math.sin(Date.now() * 0.02) * (speedNorm * 2.0);
-          this.cockpitOverlayEl.style.transform = `translateX(calc(-50% + ${shakeX.toFixed(1)}px)) translateY(${shakeY.toFixed(1)}px)`;
-        } else {
-          this.cockpitOverlayEl.style.transform = 'translateX(-50%) translateY(0)';
-        }
-      }
-
       if (this.isPlaying && !this.isEmergencyStopped) {
         // 물리 기반 경사도 가속도 계산: 내리막길이면 가속, 오르막길이면 감속
         let slopeBoost = 1.0;
         if (this.curve && !this.isGlidingSlow) {
           const p1 = this.curve.getPointAt(this.t);
           const p2 = this.curve.getPointAt(Math.min(0.999, this.t + 0.01));
-          const dy = p2.y - p1.y;
-          if (dy < -0.35) {
-            slopeBoost = 1.65; // 💥 급강하 시 폭발적 240km/h 가속!
-          } else if (dy > 0.35) {
-            slopeBoost = 0.75; // 급상승 시 묵직한 감속
+          const dy = p2.y - p1.y; // 음수면 급강하, 양수면 상승
+          if (dy < -0.4) {
+            slopeBoost = 1.55; // 💥 급강하 시 폭발적 가속!
+          } else if (dy > 0.4) {
+            slopeBoost = 0.8; // 급상승 시 묵직한 감속
           }
         }
 
-        // 초기 리프트 힐 구간(t < 0.14)은 체인 등반
-        if (this.t < 0.14 && !this.isGlidingSlow && !this.isBooster) {
+        // 초기 리프트 힐 구간(t < 0.12)은 체인 등반
+        if (this.t < 0.12 && !this.isGlidingSlow && !this.isBooster) {
           this.targetSpeedFactor = 0.55; // 45km/h 등반
         } else if (!this.isGlidingSlow && !this.isBooster) {
-          this.targetSpeedFactor = 1.4 * slopeBoost; // 140~195km/h
+          this.targetSpeedFactor = 1.35 * slopeBoost; // 130~175km/h
         }
 
         this.currentSpeedFactor += (this.targetSpeedFactor - this.currentSpeedFactor) * 0.09;
@@ -581,7 +530,7 @@
         // 오디오 실시간 속도 연동
         if (window.CoasterAudio) {
           window.CoasterAudio.setRideSpeed(this.currentSpeedKm);
-          if (this.t > 0.14) {
+          if (this.t > 0.12) {
             window.CoasterAudio.stopLiftHill();
           }
         }
@@ -597,11 +546,11 @@
         const gate = this.gatePoints[i];
         if (!gate.solved) {
           const dist = gate.t - this.t;
-          // 정점 직전 접근 시 강력한 브레이킹 (끼이익-!)
+          // 게이트 30m 전 접근 시 강력한 브레이킹 (끼이익-!)
           if (dist > 0 && dist <= 0.022 && !this.isGlidingSlow) {
             this.currentGateIndex = i;
             this.isGlidingSlow = true;
-            this.targetSpeedFactor = 0.10; // 12km/h 초저속 서행 (정점 절벽에 멈춰 섬)
+            this.targetSpeedFactor = 0.12; // 15km/h 초저속 서행
             if (this.speedStreakGroup) this.speedStreakGroup.visible = false;
 
             if (window.CoasterAudio) {
@@ -614,7 +563,7 @@
         }
       }
 
-      // km/h 속도 계산 (12km/h ~ 246km/h)
+      // km/h 속도 계산 (15km/h ~ 210km/h)
       const km = Math.round(105 * this.currentSpeedFactor);
       this.currentSpeedKm = km;
       if (this.options.onSpeedChange) {
@@ -624,10 +573,9 @@
 
     /**
      * 실감나는 롤러코스터 카메라 연출:
-     * 1. 정상 정점 시야각: 수평을 유지해 아래 트랙이 보이지 않고 허공 낭떠러지만 아찔하게 보임!
-     * 2. 정답 해결 시: tipOverPitch로 낭떠러지 아래를 향해 푹 꺾이며 145m 수직 다이브
-     * 3. 곡선 회전 시: 최대 35도~45도 과감한 차체 뱅킹 롤링
-     * 4. 고속 질주 시: FOV 88도까지 다이내믹 줌아웃 (시야 왜곡 스피드감)
+     * 1. 급강하 시 피치 아래로 급격히 꺾임
+     * 2. 곡선 회전 시 최대 35도~45도 과감한 차체 뱅킹 롤링
+     * 3. 고속 질주 시 FOV 85도까지 다이내믹 줌아웃 (속도감 왜곡)
      */
     updateCamera(t) {
       if (!this.curve || !this.camera) return;
@@ -643,18 +591,16 @@
       this.camera.lookAt(lookAhead.x, lookAhead.y + 1.3, lookAhead.z);
 
       // 커브 회전률에 따른 다이내믹 롤링 뱅킹 (최대 35도)
+      const binormal = new THREE.Vector3(-tan.z, 0, tan.x).normalize();
       const tanNext = this.curve.getTangentAt(lookAheadT).normalize();
-      const curveDelta = tanNext.x - tan.x;
+      const curveDelta = tanNext.x - tan.x; // 좌우 회전량
+
+      // 과감한 뱅킹 기울기 적용!
       const targetRoll = -curveDelta * 2.8;
       this.camera.rotation.z += targetRoll;
 
-      // 정점 다이브 틸트다운 (절벽 아래 꺾임 연출)
-      if (this.tipOverPitch) {
-        this.camera.rotation.x += this.tipOverPitch;
-      }
-
-      // 속도 연동 FOV 다이내믹 왜곡: 저속 66도 -> 240km/h 시 86도
-      const targetFOV = 66 + Math.min(22, this.currentSpeedFactor * 9.5);
+      // 속도 연동 FOV 다이내믹 왜곡: 저속 66도 -> 210km/h 시 86도
+      const targetFOV = 66 + Math.min(22, this.currentSpeedFactor * 10);
       this.currentFOV += (targetFOV - this.currentFOV) * 0.1;
       this.camera.fov = this.currentFOV;
       this.camera.updateProjectionMatrix();
