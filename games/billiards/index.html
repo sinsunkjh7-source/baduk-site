@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>당구 3구 — 바둑스쿨 Fun</title>
 <link rel="stylesheet" href="/unified-nav.css?v=header-align-20261031">
-<link rel="stylesheet" href="style.css?v=bill-4">
+<link rel="stylesheet" href="style.css?v=bill-6">
 <script src="/unified-nav.js?v=header-align-20261031" defer></script>
 </head>
 <body data-bks-page="billiards">
@@ -28,16 +28,14 @@
     <div class="b-canvas-box">
       <canvas id="table" width="960" height="480"></canvas>
     </div>
+  </section>
 
+  <aside class="b-side">
     <div class="b-power">
       <span class="b-power-label">세기</span>
       <input type="range" id="powerRange" min="0" max="100" step="1" value="0" aria-label="샷 세기">
       <output id="powerVal">0%</output>
       <div class="b-power-track" aria-hidden="true"><div class="b-power-fill" id="powerFill"></div></div>
-    </div>
-  </section>
-
-  <aside class="b-side">
     <h2 class="b-title" id="modeTitle">당구 3구</h2>
     <p class="b-desc" id="modeDesc">내 공(흰색)으로 빨강·노랑을 <b>모두 맞히면</b> 1점입니다. 공을 드래그해 방향과 세기를 정하세요.</p>
 
@@ -60,6 +58,6 @@
   </aside>
 </main>
 
-<script src="game.js?v=bill-6"></script>
+<script src="game.js?v=bill-7"></script>
 </body>
 </html>
