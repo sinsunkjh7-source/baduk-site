@@ -301,8 +301,8 @@
     if (!wrapper || !canvas) return;
 
     const rect = wrapper.getBoundingClientRect();
-    const maxW = Math.min(rect.width, 760);
-    const maxH = Math.min(window.innerHeight - 200, 840);
+    const maxW = Math.min(rect.width, 980);
+    const maxH = Math.max(420, Math.min(window.innerHeight - rect.top - 28, 1020));
     const scale = Math.min(maxW / 680, maxH / 760);
 
     const displayW = Math.max(340, Math.floor(680 * scale));

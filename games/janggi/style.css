@@ -624,3 +624,19 @@ html, body {
   padding:12px 14px;font-family:inherit;font-size:15px;font-weight:800;cursor:pointer;
 }
 .btn-modal-cancel:hover{background:#f4f9ee}
+
+/* ---------- 대국장 확대 (janggi-bigger) ---------- */
+.janggi-arena-container{max-width:min(1720px,96vw);gap:26px;align-items:flex-start}
+.arena-player-col{flex:0 0 320px}
+.arena-center-col{max-width:none}
+.player-card{padding:22px 18px;border-radius:20px}
+.player-card .player-name{font-size:16.5px}
+.player-card .player-score{font-size:15px}
+.player-card .avatar-wrapper{width:92px;height:92px}
+.player-card .player-name{white-space:nowrap}
+.control-btn{padding:10px 12px;font-size:14px;min-height:46px}
+.side-btn{padding:13px 14px;font-size:15px}
+@media (max-width:980px){
+  .arena-player-col{flex:0 0 auto}
+  .player-card{padding:16px 14px}
+}
