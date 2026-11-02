@@ -9,7 +9,7 @@
 
   var W = 960, H = 480, RAIL = 36;
   var MINX = RAIL, MAXX = W - RAIL, MINY = RAIL, MAXY = H - RAIL;
-  var R = 16, POCKET_R = 27;
+  var R = 10.5, POCKET_R = 22;   /* 실제 비율: 플레이필드 888px ≒ 2540mm, 공 지름 61.5mm → R≈10.5px */
   var FRICTION = 0.9885, STOP = 0.06, CUSHION = 0.92, MAX_POWER = 26;
 
   var POCKET_COLORS = ['#f2c53d', '#2e6fb7', '#c0392b', '#7d3fa8', '#e07b2a', '#2f8f5b', '#8e2418', '#1d1d1d', '#e6d34a'];
@@ -480,13 +480,6 @@
       ctx.fill();
       ctx.restore();
 
-      /* 가장자리 어둡게 */
-      ctx.beginPath();
-      ctx.arc(b.x, b.y, b.r - 0.5, 0, 6.283);
-      ctx.lineWidth = 1.4;
-      ctx.strokeStyle = 'rgba(0,0,0,.22)';
-      ctx.stroke();
-
       /* 스펙큘러 하이라이트 (작고 밝은 반사점) */
       var sp = ctx.createRadialGradient(
         b.x - b.r * 0.42, b.y - b.r * 0.46, 0,
@@ -500,19 +493,7 @@
       ctx.fillStyle = sp;
       ctx.fill();
 
-      /* 림 라이트 (왼쪽 위 테두리) */
-      ctx.beginPath();
-      ctx.arc(b.x, b.y, b.r - 1.1, Math.PI * 1.02, Math.PI * 1.60);
-      ctx.lineWidth = 1.7;
-      ctx.strokeStyle = 'rgba(255,255,255,.55)';
-      ctx.stroke();
 
-      /* 바닥 반사 (아래 테두리) */
-      ctx.beginPath();
-      ctx.arc(b.x, b.y, b.r - 1.1, Math.PI * 0.18, Math.PI * 0.62);
-      ctx.lineWidth = 1.4;
-      ctx.strokeStyle = 'rgba(255,255,255,.18)';
-      ctx.stroke();
 
       if (b.kind === 'object') {
         /* 흰 숫자 원 */
