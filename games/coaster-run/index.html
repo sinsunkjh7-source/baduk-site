@@ -4,52 +4,131 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>바둑 롤러코스터 런 — JH 바둑스쿨 EduFun</title>
-<link rel="stylesheet" href="/unified-nav.css?v=20261102-coaster-v1">
-<link rel="stylesheet" href="style.css?v=20261102-coaster-v1">
-<script src="/unified-nav.js?v=20261102-coaster-v1" defer></script>
+<link rel="stylesheet" href="/unified-nav.css?v=20261102-coaster-v2">
+<link rel="stylesheet" href="style.css?v=20261102-coaster-v2">
+<script src="/unified-nav.js?v=20261102-coaster-v2" defer></script>
 <script src="three.min.js"></script>
-<script src="audio.js?v=20261102-coaster-v1"></script>
-<script src="problems.js?v=20261102-coaster-v1"></script>
-<script src="coaster3d.js?v=20261102-coaster-v1"></script>
-<script src="game.js?v=20261102-coaster-v1"></script>
+<script src="audio.js?v=20261102-coaster-v2"></script>
+<script src="problems.js?v=20261102-coaster-v2"></script>
+<script src="coaster3d.js?v=20261102-coaster-v2"></script>
+<script src="game.js?v=20261102-coaster-v2"></script>
 </head>
 <body data-bks-page="coaster-run">
 
-<!-- 3D 롤러코스터 뷰포트 (Three.js 렌더링 캔버스) -->
+<!-- 3D 롤러코스터 뷰포트 (Three.js 캔버스) -->
 <div id="coasterViewport"></div>
 
 <!-- 콕핏 HUD 오버레이 -->
 <div class="hud-overlay" id="hudOverlay">
   <!-- 상단 HUD 바 -->
   <div class="hud-top-bar">
-    <div class="hud-panel">
+    <div class="hud-panel hud-speed-panel">
       <span class="speed-gauge">⚡ 속도</span>
       <span class="speed-value" id="speedValue">0 km/h</span>
+      <span class="speed-mode-tag" id="speedModeTag">대기 중</span>
     </div>
 
-    <!-- 관문 배너 (게이트 정지 시 표시) -->
+    <!-- 중앙 게이트 주행 정보 배너 -->
     <div class="gate-banner" id="gateBanner" hidden>
       <div class="gate-title" id="gateTitle">제1관문: 낭떠러지 급강하 게이트</div>
       <div class="gate-mission" id="gateMission">단수에 걸린 백돌을 따내고 롤러코스터 부스터를 점화하라!</div>
       <div class="gate-hint" id="gateHint">💡 힌트: 백돌의 마지막 남은 활로를 찾아 클릭하세요.</div>
     </div>
 
-    <div class="hud-panel">
-      <span class="lives-gauge">배터리</span>
+    <div class="hud-panel hud-status-panel">
+      <span class="lives-gauge">🔋 배터리</span>
       <span class="lives-display" id="livesDisplay">❤️❤️❤️</span>
-      <button type="button" class="btn-sub" id="btnToggleSound" style="padding: 4px 10px; font-size: 12px; margin-left: 8px;">🔊 소리</button>
+      <button type="button" class="btn-hud" id="btnToggleSound">🔊 소리</button>
+      <button type="button" class="btn-hud btn-hud-settings" id="btnOpenSettings">⚙️ 설정</button>
     </div>
   </div>
 </div>
 
-<!-- 홀로그램 바둑판 관문 모달 (게이트 앞에서 팝업) -->
+<!-- 홀로그램 콕핏 윈드실드 바둑판 (2안: 자연스러운 서행 중 HUD 투영) -->
 <div class="board-modal-overlay" id="boardModal" hidden>
   <div class="board-modal-card">
-    <div class="board-header">
-      <span class="board-tag">🔒 홀로그램 바둑 게이트</span>
-      <span class="board-prompt">정답 착수 지점을 클릭하세요!</span>
+    <div class="windshield-top-row">
+      <div class="board-tag" id="hudGateTag">🔒 제1관문 게이트</div>
+      <div class="timer-badge" id="hudTimerBadge">
+        <span class="timer-icon">⏱️</span>
+        <span class="timer-number" id="timerNumber">10.0초</span>
+      </div>
     </div>
+
+    <!-- 다이내믹 네온 카운트다운 타이머 바 -->
+    <div class="timer-bar-track">
+      <div class="timer-bar-fill" id="timerBarFill"></div>
+    </div>
+
+    <div class="board-prompt-row">
+      <span class="board-prompt" id="hudBoardPrompt">정답 착수 지점을 클릭하세요!</span>
+    </div>
+
+    <!-- 5x5 홀로그램 캔버스 바둑판 -->
     <canvas id="goCanvas" width="380" height="380"></canvas>
+
+    <div class="board-footer-guide" id="hudFooterGuide">
+      🚀 제한 시간 내 정답 시 <b>140km/h 초고속 부스터</b> 점화! (시간 초과 시 일반 순항)
+    </div>
+  </div>
+</div>
+
+<!-- 주행 설정 모달 (제한시간 & 비상 정차 탈락 조건) -->
+<div class="fullscreen-modal" id="settingsModal" hidden>
+  <div class="intro-card settings-card">
+    <div class="settings-header">
+      <h2>⚙️ 롤러코스터 주행 & 미션 설정</h2>
+      <button type="button" class="btn-close-modal" id="btnCloseSettings">✕</button>
+    </div>
+    <p class="settings-sub">
+      문제 제한 시간과 비상 정차(탈락) 조건을 원하는 난이도로 맞추세요.
+    </p>
+
+    <!-- 옵션 1: 문제 제한 시간 -->
+    <div class="setting-group">
+      <label class="setting-label">⏱️ 문제당 제한 시간</label>
+      <div class="setting-pill-grid" id="timeLimitGrid">
+        <button type="button" class="setting-pill" data-time="5">
+          <span class="pill-title">⚡ 5초</span>
+          <span class="pill-desc">익스트림 스피드</span>
+        </button>
+        <button type="button" class="setting-pill active" data-time="10">
+          <span class="pill-title">⏱️ 10초</span>
+          <span class="pill-desc">표준 스릴 (추천)</span>
+        </button>
+        <button type="button" class="setting-pill" data-time="20">
+          <span class="pill-title">🧘 20초</span>
+          <span class="pill-desc">여유 모드</span>
+        </button>
+        <button type="button" class="setting-pill" data-time="0">
+          <span class="pill-title">♾️ 무제한</span>
+          <span class="pill-desc">연습 모드</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- 옵션 2: 비상 정차 탈락 조건 -->
+    <div class="setting-group">
+      <label class="setting-label">🚨 비상 정차 탈락 조건</label>
+      <div class="setting-pill-grid" id="failureLimitGrid">
+        <button type="button" class="setting-pill" data-fail="1">
+          <span class="pill-title">💀 1회 즉시탈락</span>
+          <span class="pill-desc">원스트라이크 아웃</span>
+        </button>
+        <button type="button" class="setting-pill active" data-fail="3">
+          <span class="pill-title">🔋 3회 기회</span>
+          <span class="pill-desc">기본 표준 모드</span>
+        </button>
+        <button type="button" class="setting-pill" data-fail="0">
+          <span class="pill-title">♾️ 무제한 완주</span>
+          <span class="pill-desc">정차 없이 자유 주행</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="settings-actions">
+      <button type="button" class="btn-launch" id="btnApplySettings">✅ 설정 저장 & 완료</button>
+    </div>
   </div>
 </div>
 
@@ -58,12 +137,20 @@
   <div class="intro-card">
     <h1>
       🎢 바둑 롤러코스터 런
-      <span>(Baduk Coaster Run)</span>
+      <span>(Baduk Coaster Run — 2안 서행 주행 모드)</span>
     </h1>
     <p>
       바둑 문제를 풀면 <b>초고속 롤러코스터 부스터</b>가 점화됩니다!<br>
-      낭떠러지 급강하와 360도 연속 회전 루프를 시원하게 돌파해 보세요.
+      관문에 접근하면 열차가 <b>자연스럽게 서행(10km/h)</b>하며,<br>
+      정답을 맞히거나 시간이 지나도 끊김 없이 질주가 계속됩니다.
     </p>
+
+    <!-- 현재 설정 요약 배너 -->
+    <div class="current-config-pill" id="startConfigSummary">
+      <span>⏱️ 제한시간: <b>10초</b></span>
+      <span class="sep">|</span>
+      <span>🔋 비상정차: <b>3회 기회</b></span>
+    </div>
 
     <div class="coaster-feature-list">
       <li>🎢 <b>제1관문</b>: 낭떠러지 90도 수직 급강하 (활로와 단수)</li>
@@ -71,7 +158,10 @@
       <li>🚀 <b>제3관문</b>: 초공간 워프 은하 터널 (먹여치기/촉촉수)</li>
     </div>
 
-    <button type="button" class="btn-launch" id="btnStart">🚀 롤러코스터 탑승 & 출발!</button>
+    <div class="start-btn-group">
+      <button type="button" class="btn-sub" id="btnStartSettings">⚙️ 주행 설정 변경</button>
+      <button type="button" class="btn-launch" id="btnStart">🚀 롤러코스터 출발!</button>
+    </div>
   </div>
 </div>
 
@@ -80,29 +170,32 @@
   <div class="intro-card">
     <h1 style="color: var(--neon-gold);">
       🏆 롤러코스터 완주 성공!
-      <span style="color: #22c55e;">전 관문 돌파 완료!</span>
+      <span style="color: #22c55e;">은하 코스 전 관문 돌파!</span>
     </h1>
     <p>
-      모든 바둑 사활 관문을 완벽하게 통과하고<br>
-      은하 롤러코스터를 멋지게 완주했습니다!
+      바둑 사활 문제를 멋지게 해결하고<br>
+      은하 롤러코스터의 모든 코스를 완주했습니다!
     </p>
-    <div style="font-size: 26px; font-weight: 900; color: #ffffff;" id="finalScore">300점</div>
+    <div style="font-size: 28px; font-weight: 900; color: #ffffff;" id="finalScore">300점</div>
     <button type="button" class="btn-launch" id="btnRestart">🔄 한 번 더 타기!</button>
   </div>
 </div>
 
-<!-- 실패 게임오버 모달 -->
+<!-- 실패 비상 정차 모달 -->
 <div class="fullscreen-modal" id="gameOverModal" hidden>
   <div class="intro-card">
     <h1 style="color: var(--neon-rose);">
-      ⚠️ 열차 비상 정지!
-      <span style="color: #94a3b8;">배터리가 모두 소진되었습니다.</span>
+      🚨 열차 비상 정차!
+      <span style="color: #94a3b8;">배터리 한계 도달 (정차 완료)</span>
     </h1>
     <p>
-      여러 번 오답으로 인해 롤러코스터 엔진이 정지했습니다.<br>
-      정비 후 다시 도전해 보세요!
+      설정된 오답/시간초과 횟수를 초과하여<br>
+      안전을 위해 열차가 트랙에서 비상 정차했습니다.
     </p>
-    <button type="button" class="btn-launch" id="btnRetry">🔧 재정비 후 다시 타기</button>
+    <div class="start-btn-group">
+      <button type="button" class="btn-sub" id="btnGameOverSettings">⚙️ 설정 변경</button>
+      <button type="button" class="btn-launch" id="btnRetry">🔧 재정비 후 다시 타기</button>
+    </div>
   </div>
 </div>
 

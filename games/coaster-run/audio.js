@@ -232,6 +232,49 @@
       osc.stop(now + 0.32);
     },
 
+    // 6-1. 카운트다운 째깍 비프음
+    playTick: (isUrgent = false) => {
+      if (!isSoundEnabled) return;
+      const ctx = getCtx();
+      if (!ctx) return;
+      const now = ctx.currentTime;
+
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(isUrgent ? 950 : 680, now);
+
+      gain.gain.setValueAtTime(isUrgent ? 0.3 : 0.15, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + (isUrgent ? 0.08 : 0.04));
+
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start(now);
+      osc.stop(now + 0.09);
+    },
+
+    // 6-2. 시간초과/노부스터 관문 통과 쉬익~ 바람음
+    playPassSwoosh: () => {
+      if (!isSoundEnabled) return;
+      const ctx = getCtx();
+      if (!ctx) return;
+      const now = ctx.currentTime;
+
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(320, now);
+      osc.frequency.exponentialRampToValueAtTime(180, now + 0.45);
+
+      gain.gain.setValueAtTime(0.28, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.5);
+
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start(now);
+      osc.stop(now + 0.52);
+    },
+
     // 7. 골인 승리 팡파르
     playVictory: () => {
       if (!isSoundEnabled) return;
