@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>바둑 롤러코스터 런 — JH 바둑스쿨 EduFun</title>
+<link rel="stylesheet" href="/unified-nav.css?v=20261102-coaster-v1">
+<link rel="stylesheet" href="style.css?v=20261102-coaster-v1">
+<script src="/unified-nav.js?v=20261102-coaster-v1" defer></script>
+<script src="three.min.js"></script>
+<script src="audio.js?v=20261102-coaster-v1"></script>
+<script src="problems.js?v=20261102-coaster-v1"></script>
+<script src="coaster3d.js?v=20261102-coaster-v1"></script>
+<script src="game.js?v=20261102-coaster-v1"></script>
+</head>
+<body data-bks-page="coaster-run">
+
+<!-- 3D 롤러코스터 뷰포트 (Three.js 렌더링 캔버스) -->
+<div id="coasterViewport"></div>
+
+<!-- 콕핏 HUD 오버레이 -->
+<div class="hud-overlay" id="hudOverlay">
+  <!-- 상단 HUD 바 -->
+  <div class="hud-top-bar">
+    <div class="hud-panel">
+      <span class="speed-gauge">⚡ 속도</span>
+      <span class="speed-value" id="speedValue">0 km/h</span>
+    </div>
+
+    <!-- 관문 배너 (게이트 정지 시 표시) -->
+    <div class="gate-banner" id="gateBanner" hidden>
+      <div class="gate-title" id="gateTitle">제1관문: 낭떠러지 급강하 게이트</div>
+      <div class="gate-mission" id="gateMission">단수에 걸린 백돌을 따내고 롤러코스터 부스터를 점화하라!</div>
+      <div class="gate-hint" id="gateHint">💡 힌트: 백돌의 마지막 남은 활로를 찾아 클릭하세요.</div>
+    </div>
+
+    <div class="hud-panel">
+      <span class="lives-gauge">배터리</span>
+      <span class="lives-display" id="livesDisplay">❤️❤️❤️</span>
+      <button type="button" class="btn-sub" id="btnToggleSound" style="padding: 4px 10px; font-size: 12px; margin-left: 8px;">🔊 소리</button>
+    </div>
+  </div>
+</div>
+
+<!-- 홀로그램 바둑판 관문 모달 (게이트 앞에서 팝업) -->
+<div class="board-modal-overlay" id="boardModal" hidden>
+  <div class="board-modal-card">
+    <div class="board-header">
+      <span class="board-tag">🔒 홀로그램 바둑 게이트</span>
+      <span class="board-prompt">정답 착수 지점을 클릭하세요!</span>
+    </div>
+    <canvas id="goCanvas" width="380" height="380"></canvas>
+  </div>
+</div>
+
+<!-- 스타트 인트로 스크린 -->
+<div class="fullscreen-modal" id="startScreen">
+  <div class="intro-card">
+    <h1>
+      🎢 바둑 롤러코스터 런
+      <span>(Baduk Coaster Run)</span>
+    </h1>
+    <p>
+      바둑 문제를 풀면 <b>초고속 롤러코스터 부스터</b>가 점화됩니다!<br>
+      낭떠러지 급강하와 360도 연속 회전 루프를 시원하게 돌파해 보세요.
+    </p>
+
+    <div class="coaster-feature-list">
+      <li>🎢 <b>제1관문</b>: 낭떠러지 90도 수직 급강하 (활로와 단수)</li>
+      <li>🌀 <b>제2관문</b>: 360도 연속 롤러코스터 회전 루프 (두 집 만들기)</li>
+      <li>🚀 <b>제3관문</b>: 초공간 워프 은하 터널 (먹여치기/촉촉수)</li>
+    </div>
+
+    <button type="button" class="btn-launch" id="btnStart">🚀 롤러코스터 탑승 & 출발!</button>
+  </div>
+</div>
+
+<!-- 승리 완주 모달 -->
+<div class="fullscreen-modal" id="victoryModal" hidden>
+  <div class="intro-card">
+    <h1 style="color: var(--neon-gold);">
+      🏆 롤러코스터 완주 성공!
+      <span style="color: #22c55e;">전 관문 돌파 완료!</span>
+    </h1>
+    <p>
+      모든 바둑 사활 관문을 완벽하게 통과하고<br>
+      은하 롤러코스터를 멋지게 완주했습니다!
+    </p>
+    <div style="font-size: 26px; font-weight: 900; color: #ffffff;" id="finalScore">300점</div>
+    <button type="button" class="btn-launch" id="btnRestart">🔄 한 번 더 타기!</button>
+  </div>
+</div>
+
+<!-- 실패 게임오버 모달 -->
+<div class="fullscreen-modal" id="gameOverModal" hidden>
+  <div class="intro-card">
+    <h1 style="color: var(--neon-rose);">
+      ⚠️ 열차 비상 정지!
+      <span style="color: #94a3b8;">배터리가 모두 소진되었습니다.</span>
+    </h1>
+    <p>
+      여러 번 오답으로 인해 롤러코스터 엔진이 정지했습니다.<br>
+      정비 후 다시 도전해 보세요!
+    </p>
+    <button type="button" class="btn-launch" id="btnRetry">🔧 재정비 후 다시 타기</button>
+  </div>
+</div>
+
+</body>
+</html>
