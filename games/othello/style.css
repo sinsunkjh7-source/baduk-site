@@ -411,3 +411,18 @@ canvas#board {
     max-width: min(calc(100vw - 32px), 520px);
   }
 }
+
+/* ---------- 판·플레이어 박스 확대 (othello-bigger) ---------- */
+.othello-layout{max-width:min(1900px,98vw)}
+.othello-arena-container{grid-template-columns:320px minmax(0,1fr) 320px;gap:20px}
+.othello-arena-container .board-wrapper{width:100%}
+.othello-arena-container canvas{width:100%;height:auto;max-width:min(calc(100vw - 32px), 840px, calc(100dvh - 210px))}
+.player-card{padding:22px 18px;min-height:260px}
+.player-card .player-name{font-size:17px}
+.player-card .player-badge{font-size:13px}
+.player-card .player-score{font-size:15px}
+@media (max-width:980px){
+  .othello-arena-container{grid-template-columns:1fr}
+  .othello-arena-container canvas{width:100%;height:auto;max-width:min(calc(100vw - 24px), 92vw, 560px)}
+  .player-card{min-height:auto;padding:14px 12px}
+}
