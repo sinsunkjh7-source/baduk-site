@@ -7,7 +7,7 @@
 <meta name="description" content="아이들이 바둑으로 자라나는 곳, JH 바둑스쿨. 새 디자인과 메뉴를 먼저 공개합니다. 회원·학습·대국 기능은 준비 중입니다.">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self'; style-src 'self'; script-src 'self'; font-src 'self'; connect-src 'none'; frame-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <link rel="icon" type="image/png" sizes="32x32" href="brand-favicon-32.png?v=brand-book-green-1793179962732">
-<link rel="apple-touch-icon" sizes="180x180" href="brand-apple-icon.png?v=brand-book-green-1793179962732"><link rel="stylesheet" href="styles.css?v=static-68a173ca45abc653"><script src="deployment-mode.js?v=teacher-nav-1793094931579" defer></script><script src="shell.js?v=header-edufun-20261031" defer></script>
+<link rel="apple-touch-icon" sizes="180x180" href="brand-apple-icon.png?v=brand-book-green-1793179962732"><link rel="stylesheet" href="styles.css?v=learn-coaster-20261102-1793591600"><script src="deployment-mode.js?v=teacher-nav-1793094931579" defer></script><script src="shell.js?v=learn-coaster-20261102-1793591600" defer></script>
 <meta name="theme-color" content="#fff9ee"><meta name="bks-release" content="static-68a173ca45abc653"><link rel="canonical" href="https://badukschool.com/"><link rel="manifest" href="manifest.webmanifest?v=brand-book-green-1793179962732">
 <link rel="stylesheet" href="home-motion.css?v=home-motion-v5-1793104477523"><script src="home-motion.js.water-unified-v1.js" defer></script>
 <link rel="stylesheet" href="sign-logo.css?v=hero-logo-angle-1793148421874">
@@ -188,6 +188,24 @@
    </div>
   </div>
  </section>
+ <script>
+  (function() {
+    function checkLearn() {
+      var h = (location.hash || '').split('?')[0];
+      if (h === '#learn') {
+        var ls = document.getElementById('learn-screen');
+        var hs = document.getElementById('home-screen');
+        var es = document.getElementById('empty-screen');
+        if (ls) ls.hidden = false;
+        if (hs) hs.hidden = true;
+        if (es) es.hidden = true;
+      }
+    }
+    window.addEventListener('DOMContentLoaded', checkLearn);
+    window.addEventListener('hashchange', checkLearn);
+    checkLearn();
+  })();
+ </script>
  <section id="empty-screen" class="empty-screen" aria-labelledby="empty-title" hidden>
   <div class="empty-inner"><a class="back-link" href="#home">← 홈으로</a><p class="page-label">JH 바둑스쿨 · 아이들의 성장 놀이터</p><div class="empty-heading"><img id="empty-icon" src="assets/stat_2.png?v=static-68a173ca45abc653" alt="" width="400" height="400"><div><h1 id="empty-title"></h1><p id="empty-description"></p></div></div><div class="empty-state"><div class="empty-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5h6.2a2 2 0 0 1 2 2V19a2.2 2.2 0 0 0-2.2-2.2H4zm16 0h-6.2a2 2 0 0 0-2 2V19a2.2 2.2 0 0 1 2.2-2.2H20z" fill="currentColor"/></svg></div><h2>이곳은 아직 비어 있어요</h2><p>지금은 디자인과 메뉴 구조만 준비한 단계입니다.<br>기존 기능은 연결하지 않았으며, 이 자리에 새 기능을 하나씩 만들 예정입니다.</p><a class="return-button" href="#home">홈 화면으로 돌아가기</a></div></div>
  </section>
