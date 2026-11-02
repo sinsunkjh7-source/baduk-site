@@ -1,3 +1,21 @@
+
+/* 레이아웃: 판=화면 정중앙 / 패널=오른쪽 남는 공간의 중앙 */
+.g-wrap{
+  --g-size:min(816px, calc(100dvh - var(--bks-nav-h,64px) - 170px), 54vw);
+  min-height:calc(100dvh - var(--bks-nav-h,64px));
+  display:grid;grid-template-columns:1fr auto 1fr;align-items:center;
+  padding:0 clamp(8px,1.5vw,20px);
+}
+.g-board-col{grid-column:2;width:var(--g-size);display:flex;flex-direction:column;gap:10px;margin-top:-26px;min-width:0}
+.g-board-col .g-grid{width:100%}
+.g-side{grid-column:3;justify-self:center;width:min(320px,96%);align-self:center}
+
+@media (max-width:1080px){
+  .g-wrap{--g-size:min(560px,92vw);display:flex;flex-direction:column;align-items:center;
+    min-height:0;padding:calc(var(--bks-nav-h,64px) + 10px) 12px 20px;gap:14px}
+  .g-board-col{width:var(--g-size);margin-top:0}
+  .g-side{width:var(--g-size);max-width:92vw}
+}
 :root{
   --g-bg:#f2f8ec;
   --g-panel:#fff;
@@ -12,8 +30,8 @@
 body{padding:0;background:var(--g-bg)}
 
 
-.g-wrap{padding:calc(var(--bks-nav-h,64px) + 10px) clamp(10px,2vw,26px) 24px;max-width:min(1420px,97vw);margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:18px;align-items:start}
-.g-board-col{display:flex;flex-direction:column;gap:12px;min-width:0}
+
+
 
 .g-head{display:flex;gap:10px}
 .g-score{
@@ -66,6 +84,4 @@ body{padding:0;background:var(--g-bg)}
 .g-msg{background:#eaf5e1;border-left:4px solid var(--g-green);padding:10px 12px;border-radius:8px;font-size:13.5px;font-weight:700;color:#2f4a25}
 
 @media (max-width:820px){
-  .g-wrap{grid-template-columns:1fr}
-  .g-side{order:2}
 }
