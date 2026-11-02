@@ -58,8 +58,7 @@
       if (this.boardModal) this.boardModal.hidden = true;
       if (this.gateBanner) this.gateBanner.hidden = true;
 
-      // 실사 비디오 롤러코스터 엔진 인스턴스 생성 (1, 2코스)
-      // 100% 순수 3D WebGL 모드 (실사 비디오 엔진 제거)
+      // 100% 순수 3D WebGL 모드 (빙하 / 마그마 / 우주)
       this.videoEl = null;
       this.videoCoaster = null;
 
@@ -103,14 +102,14 @@
       this.coaster = this.magmaCoaster;
 
       // 코스 데이터 초기화
-      this.currentCourseId = 'magma';
-      this.currentCourse = window.COASTER_COURSES?.magma || null;
+      this.currentCourseId = 'glacier';
+      this.currentCourse = window.COASTER_COURSES?.glacier || null;
 
       this.initEvents();
       this.initSettingsEvents();
       this.initGoBoardEvents();
       this.updateConfigSummary();
-      if (this.currentCourse) this.selectCourse('magma');
+      if (this.currentCourse) this.selectCourse('glacier');
     }
 
     selectCourse(courseId) {
@@ -119,21 +118,25 @@
       this.currentCourseId = courseId;
       this.currentCourse = course;
 
-      // 엔진 모드 전환: 3코스(우주 3D), 5코스(마그마 3D), 1/2/4코스(영상)
-      if (course.engineType === 'magma' && this.magmaCoaster) {
-        if (this.videoEl) this.videoEl.style.display = 'none';
+      // 100% 순수 3D WebGL 엔진 모드 전환: 1코스(글래시어), 2코스(마그마), 3코스(우주)
+      if (courseId === 'glacier' && this.magmaCoaster) {
         if (this.spaceCanvas) this.spaceCanvas.style.display = 'none';
         if (this.magmaCanvas) this.magmaCanvas.style.display = 'block';
+        this.magmaCoaster.setTheme('glacier');
         this.coaster = this.magmaCoaster;
-      } else if (course.engineType === 'space' && this.spaceCoaster) {
-        if (this.videoEl) this.videoEl.style.display = 'none';
+      } else if (courseId === 'magma' && this.magmaCoaster) {
+        if (this.spaceCanvas) this.spaceCanvas.style.display = 'none';
+        if (this.magmaCanvas) this.magmaCanvas.style.display = 'block';
+        this.magmaCoaster.setTheme('magma');
+        this.coaster = this.magmaCoaster;
+      } else if (courseId === 'space' && this.spaceCoaster) {
         if (this.magmaCanvas) this.magmaCanvas.style.display = 'none';
         if (this.spaceCanvas) this.spaceCanvas.style.display = 'block';
         this.coaster = this.spaceCoaster;
-      } else {
-        if (this.videoEl) this.videoEl.style.display = 'block';
+      } else if (this.magmaCoaster) {
         if (this.spaceCanvas) this.spaceCanvas.style.display = 'none';
-        if (this.magmaCanvas) this.magmaCanvas.style.display = 'none';
+        if (this.magmaCanvas) this.magmaCanvas.style.display = 'block';
+        this.magmaCoaster.setTheme('glacier');
         this.coaster = this.magmaCoaster;
       }
 
@@ -146,38 +149,33 @@
       const badge = document.getElementById('currentCourseBadge');
       if (badge) {
         let label = '1코스';
-        if (courseId === 'fury') label = '2코스';
+        if (courseId === 'glacier') label = '1코스';
+        if (courseId === 'magma') label = '2코스';
         if (courseId === 'space') label = '3코스';
-        if (courseId === 'wood') label = '4코스';
-        if (courseId === 'magma') label = '5코스';
         badge.textContent = `선택됨: ${label}`;
       }
 
       const hudCourseTag = document.getElementById('hudCourseTag');
       if (hudCourseTag) {
-        let hudText = '🌊 1코스 호수';
-        if (courseId === 'fury') hudText = '⚡ 2코스 99m 퓨리';
-        if (courseId === 'space') hudText = '🌌 3코스 은하 심우주';
-        if (courseId === 'wood') hudText = '🪵 4코스 숲속 우든';
-        if (courseId === 'magma') hudText = '🔥 5코스 마그마 화산';
+        let hudText = '❄️ 1코스 글래시어';
+        if (courseId === 'glacier') hudText = '❄️ 1코스 글래시어';
+        if (courseId === 'magma') hudText = '🔥 2코스 마그마';
+        if (courseId === 'space') hudText = '🌌 3코스 심우주';
         hudCourseTag.textContent = hudText;
       }
 
       if (this.btnStart) {
-        let btnTheme = 'linear-gradient(135deg, #0284c7 0%, #06b6d4 100%)';
-        let btnShadow = 'rgba(6, 182, 212, 0.5)';
-        if (courseId === 'fury') {
-          btnTheme = 'linear-gradient(135deg, #d97706 0%, #f59e0b 100%)';
-          btnShadow = 'rgba(245, 158, 11, 0.5)';
-        } else if (courseId === 'space') {
-          btnTheme = 'linear-gradient(135deg, #7c3aed 0%, #ec4899 100%)';
-          btnShadow = 'rgba(168, 85, 247, 0.5)';
-        } else if (courseId === 'wood') {
-          btnTheme = 'linear-gradient(135deg, #15803d 0%, #16a34a 50%, #b45309 100%)';
-          btnShadow = 'rgba(22, 163, 74, 0.5)';
+        let btnTheme = 'linear-gradient(135deg, #0284c7 0%, #38bdf8 100%)';
+        let btnShadow = 'rgba(56, 189, 248, 0.6)';
+        if (courseId === 'glacier') {
+          btnTheme = 'linear-gradient(135deg, #0284c7 0%, #38bdf8 100%)';
+          btnShadow = 'rgba(56, 189, 248, 0.6)';
         } else if (courseId === 'magma') {
           btnTheme = 'linear-gradient(135deg, #c2410c 0%, #ea580c 50%, #f97316 100%)';
           btnShadow = 'rgba(249, 115, 22, 0.6)';
+        } else if (courseId === 'space') {
+          btnTheme = 'linear-gradient(135deg, #7c3aed 0%, #ec4899 100%)';
+          btnShadow = 'rgba(168, 85, 247, 0.5)';
         }
         this.btnStart.style.background = btnTheme;
         this.btnStart.style.boxShadow = `0 10px 30px ${btnShadow}`;
@@ -234,46 +232,27 @@
         this.btnStart.addEventListener('touchend', handleStart, { passive: false });
       }
 
-      // 1코스 / 2코스 즉시 탑승 전용 버튼
-      const btnLaunch1 = document.getElementById('btnLaunchCourse1');
-      if (btnLaunch1) {
-        btnLaunch1.onclick = () => {
-          this.selectCourse('mako');
+      // 순수 3D 코스 탑승 버튼
+      const btnLaunchGlacier = document.getElementById('btnLaunchCourseGlacier');
+      if (btnLaunchGlacier) {
+        btnLaunchGlacier.onclick = () => {
+          this.selectCourse('glacier');
           this.startGame();
         };
       }
 
-      const btnLaunch2 = document.getElementById('btnLaunchCourse2');
-      if (btnLaunch2) {
-        btnLaunch2.onclick = () => {
-          this.selectCourse('fury');
-          this.startGame();
-        };
-      }
-
-      // 3코스 (은하계 심우주) 탑승 전용 버튼
-      const btnLaunch3 = document.getElementById('btnLaunchCourse3');
-      if (btnLaunch3) {
-        btnLaunch3.onclick = () => {
-          this.selectCourse('space');
-          this.startGame();
-        };
-      }
-
-      // 4코스 (깊은 숲속 목재 우든 코스터) 탑승 전용 버튼
-      const btnLaunch4 = document.getElementById('btnLaunchCourse4');
-      if (btnLaunch4) {
-        btnLaunch4.onclick = () => {
-          this.selectCourse('wood');
-          this.startGame();
-        };
-      }
-
-      // 5코스 (마그마 화산 런) 탑승 전용 버튼
-      const btnLaunch5 = document.getElementById('btnLaunchCourse5');
-      if (btnLaunch5) {
-        btnLaunch5.onclick = () => {
+      const btnLaunchMagma = document.getElementById('btnLaunchCourseMagma');
+      if (btnLaunchMagma) {
+        btnLaunchMagma.onclick = () => {
           this.selectCourse('magma');
+          this.startGame();
+        };
+      }
+
+      const btnLaunchSpace = document.getElementById('btnLaunchCourseSpace');
+      if (btnLaunchSpace) {
+        btnLaunchSpace.onclick = () => {
+          this.selectCourse('space');
           this.startGame();
         };
       }
@@ -386,7 +365,7 @@
       this.score = 0;
       this.updateHUD();
 
-      // 1안 실사 영상 시동
+      // 3D 롤러코스터 시동
       this.coaster.startRide();
 
       // 사운드 시동 & 오디오 컨텍스트 활성화
@@ -508,7 +487,7 @@
       }
     }
 
-    // 5x5 바둑판 렌더링
+    // ⭐ 투명 홀로그램 5x5 바둑판 렌더링 (뒤쪽 155m 설산 & 낙하 트랙이 비쳐 보임) ⭐
     renderGoBoard(problem, userStones = []) {
       const ctx = this.goCtx;
       const size = 380;
@@ -518,20 +497,24 @@
       const padding = 45;
       const cellSize = (size - padding * 2) / (gridCount - 1);
 
-      // 1. 네온 윈드실드 HUD 바둑판 배경 (은은한 투명감)
-      const grad = ctx.createRadialGradient(size / 2, size / 2, 20, size / 2, size / 2, size / 2);
-      grad.addColorStop(0, 'rgba(30, 41, 59, 0.94)');
-      grad.addColorStop(1, 'rgba(15, 23, 42, 0.98)');
-      ctx.fillStyle = grad;
+      // 1. 투명 홀로그램 사이버 글래스 배경 (투과율 75%+)
+      ctx.fillStyle = 'rgba(6, 18, 38, 0.22)';
       ctx.fillRect(0, 0, size, size);
 
-      // 테두리 네온 글로우
-      ctx.strokeStyle = '#38bdf8';
-      ctx.lineWidth = 3.0;
+      // 외곽 홀로그램 네온 테두리
+      ctx.save();
+      ctx.strokeStyle = 'rgba(56, 189, 248, 0.85)';
+      ctx.shadowColor = '#38bdf8';
+      ctx.shadowBlur = 10;
+      ctx.lineWidth = 2.2;
       ctx.strokeRect(6, 6, size - 12, size - 12);
+      ctx.restore();
 
-      // 2. 격자선
-      ctx.strokeStyle = '#475569';
+      // 2. 형광 사이언 네온 격자선
+      ctx.save();
+      ctx.strokeStyle = 'rgba(125, 211, 252, 0.85)';
+      ctx.shadowColor = 'rgba(56, 189, 248, 0.65)';
+      ctx.shadowBlur = 6;
       ctx.lineWidth = 2.0;
 
       for (let i = 0; i < gridCount; i++) {
@@ -550,12 +533,15 @@
         ctx.stroke();
       }
 
-      // 화점 (중앙 1개)
+      // 화점 (중앙 1개: 네온 사이언 펄스)
       const mid = padding + 2 * cellSize;
       ctx.fillStyle = '#38bdf8';
+      ctx.shadowColor = '#38bdf8';
+      ctx.shadowBlur = 10;
       ctx.beginPath();
-      ctx.arc(mid, mid, 4.5, 0, Math.PI * 2);
+      ctx.arc(mid, mid, 5.0, 0, Math.PI * 2);
       ctx.fill();
+      ctx.restore();
 
       // 3. 문제 기본 돌
       problem.stones.forEach(s => {
@@ -574,28 +560,43 @@
 
     drawStone(ctx, cx, cy, color, radius, isNew = false) {
       ctx.save();
-      ctx.shadowColor = color === 'b' ? 'rgba(56, 189, 248, 0.7)' : 'rgba(255, 255, 255, 0.8)';
-      ctx.shadowBlur = isNew ? 18 : 8;
-
-      const grad = ctx.createRadialGradient(cx - radius * 0.3, cy - radius * 0.3, radius * 0.1, cx, cy, radius);
       if (color === 'b') {
-        grad.addColorStop(0, '#475569');
-        grad.addColorStop(0.7, '#0f172a');
-        grad.addColorStop(1, '#020617');
+        // 투명 흑돌: 짙은 흑요석/사파이어 크리스털 볼 + 사이언 네온 링
+        ctx.shadowColor = isNew ? '#38bdf8' : 'rgba(56, 189, 248, 0.85)';
+        ctx.shadowBlur = isNew ? 22 : 12;
+
+        const grad = ctx.createRadialGradient(cx - radius * 0.3, cy - radius * 0.3, radius * 0.08, cx, cy, radius);
+        grad.addColorStop(0, 'rgba(56, 189, 248, 0.7)');
+        grad.addColorStop(0.35, 'rgba(15, 23, 42, 0.92)');
+        grad.addColorStop(1, 'rgba(2, 6, 23, 0.95)');
+
+        ctx.fillStyle = grad;
+        ctx.beginPath();
+        ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.lineWidth = 1.8;
+        ctx.strokeStyle = '#38bdf8';
+        ctx.stroke();
       } else {
+        // 백돌: 광채를 발하는 프로즌 다이아몬드 크리스털 볼
+        ctx.shadowColor = isNew ? '#ffffff' : 'rgba(224, 242, 254, 0.9)';
+        ctx.shadowBlur = isNew ? 24 : 14;
+
+        const grad = ctx.createRadialGradient(cx - radius * 0.3, cy - radius * 0.3, radius * 0.08, cx, cy, radius);
         grad.addColorStop(0, '#ffffff');
-        grad.addColorStop(0.7, '#e2e8f0');
-        grad.addColorStop(1, '#94a3b8');
+        grad.addColorStop(0.4, 'rgba(240, 249, 255, 0.95)');
+        grad.addColorStop(1, 'rgba(186, 230, 253, 0.85)');
+
+        ctx.fillStyle = grad;
+        ctx.beginPath();
+        ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.lineWidth = 1.8;
+        ctx.strokeStyle = '#ffffff';
+        ctx.stroke();
       }
-
-      ctx.fillStyle = grad;
-      ctx.beginPath();
-      ctx.arc(cx, cy, radius, 0, Math.PI * 2);
-      ctx.fill();
-
-      ctx.lineWidth = 1.8;
-      ctx.strokeStyle = color === 'b' ? '#38bdf8' : '#ffffff';
-      ctx.stroke();
       ctx.restore();
     }
 
@@ -765,9 +766,9 @@
               this.speedModeTag.textContent = '⚡ 급강하 부스터';
               this.speedModeTag.className = 'speed-mode-tag plunging';
             } else if (speedKm <= 20) {
-              this.speedModeTag.textContent = '🐌 서행 주행 (실사)';
+              this.speedModeTag.textContent = '❄️ 칼날 능선 서행';
               this.speedModeTag.className = 'speed-mode-tag gliding';
-            } else if (this.coaster.video && this.coaster.video.currentTime < 34.0) {
+            } else if (false) {
               this.speedModeTag.textContent = '🧗 리프트 등반';
               this.speedModeTag.className = 'speed-mode-tag';
             } else {

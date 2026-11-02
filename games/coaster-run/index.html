@@ -8,21 +8,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>바둑 롤러코스터 런 — JH 바둑스쿨 EduFun</title>
 <link rel="stylesheet" href="/unified-nav.css?v=20261102-coaster-v5">
-<link rel="stylesheet" href="style.css?v=20261103-sidehud-v1">
+<link rel="stylesheet" href="style.css?v=20261103-glacier-holo-v2">
 <script src="/unified-nav.js?v=20261102-coaster-v6" defer></script>
 <script src="audio.js?v=20261102-coaster-v6"></script>
 <script src="three.min.js"></script>
 <script src="problems.js?v=20261102-coaster-v6"></script>
-<script src="courses.js?v=20261103-sidehud-v1"></script>
+<script src="courses.js?v=20261103-glacier-holo-v2"></script>
 <script src="spaceEngine.js?v=20261102-coaster-v7"></script>
-<script src="magmaEngine.js?v=20261103-sidehud-v1"></script>
-<script src="game.js?v=20261103-sidehud-v1"></script>
+<script src="magmaEngine.js?v=20261103-glacier-holo-v2"></script>
+<script src="game.js?v=20261103-glacier-holo-v2"></script>
 </head>
 <body data-bks-page="coaster-run">
 
-<!-- 롤러코스터 뷰포트 (1,2,4코스: 실사 4K 영상 / 3,5코스: WebGL 3D 엔진) -->
+<!-- 100% 순수 3D WebGL 롤러코스터 뷰포트 (빙하 / 마그마 / 우주) -->
 <div id="coasterViewport">
-
   <canvas id="spaceCanvas" style="display: none; position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1;"></canvas>
   <canvas id="magmaCanvas" style="display: none; position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1;"></canvas>
   <div class="video-vignette-overlay"></div>
@@ -37,13 +36,13 @@
       <span class="speed-gauge">⚡ 속도</span>
       <span class="speed-value" id="speedValue">0 km/h</span>
       <span class="speed-mode-tag" id="speedModeTag">대기 중</span>
-      <span class="hud-course-tag" id="hudCourseTag">🌊 1코스 호수</span>
+      <span class="hud-course-tag" id="hudCourseTag">❄️ 1코스 글래시어</span>
     </div>
 
     <!-- 중앙 게이트 주행 정보 배너 -->
     <div class="gate-banner" id="gateBanner" hidden>
-      <div class="gate-title" id="gateTitle">제1관문: 낭떠러지 급강하 게이트</div>
-      <div class="gate-mission" id="gateMission">단수에 걸린 백돌을 따내고 롤러코스터 부스터를 점화하라!</div>
+      <div class="gate-title" id="gateTitle">제1관문: 155m 설산 정상 칼날 능선! 백돌 따내기</div>
+      <div class="gate-mission" id="gateMission">천길 빙벽 아래로 다이브하기 전 백돌을 따내고 240km/h 부스터를 점화하라!</div>
       <div class="gate-hint" id="gateHint">💡 힌트: 백돌의 마지막 남은 활로를 찾아 클릭하세요.</div>
     </div>
 
@@ -56,14 +55,14 @@
   </div>
 </div>
 
-<!-- 홀로그램 콕핏 윈드실드 바둑판 (2안: 자연스러운 서행 중 HUD 투영) -->
+<!-- 중앙 투명 홀로그램 바둑판 (트랙과 155m 급강하 시야가 그대로 투과됨) -->
 <div class="board-modal-overlay" id="boardModal" hidden>
   <div class="board-modal-card">
     <div class="windshield-top-row">
-      <div class="board-tag" id="hudGateTag">🔒 제1관문 게이트</div>
+      <div class="board-tag" id="hudGateTag">❄️ 제1관문 게이트</div>
       <div class="timer-badge" id="hudTimerBadge">
         <span class="timer-icon">⏱️</span>
-        <span class="timer-number" id="timerNumber">10.0초</span>
+        <span class="timer-number" id="timerNumber">20.0초</span>
       </div>
     </div>
 
@@ -76,11 +75,11 @@
       <span class="board-prompt" id="hudBoardPrompt">정답 착수 지점을 클릭하세요!</span>
     </div>
 
-    <!-- 5x5 홀로그램 캔버스 바둑판 -->
+    <!-- 5x5 투명 홀로그램 캔버스 바둑판 -->
     <canvas id="goCanvas" width="380" height="380"></canvas>
 
     <div class="board-footer-guide" id="hudFooterGuide">
-      🚀 제한 시간 내 정답 시 <b>140km/h 초고속 부스터</b> 점화! (시간 초과 시 일반 순항)
+      🚀 제한 시간 내 정답 시 <b>240km/h 초고속 수직 다이브</b> 점화! (시간 초과 시 일반 순항)
     </div>
   </div>
 </div>
@@ -104,13 +103,13 @@
           <span class="pill-title">⚡ 5초</span>
           <span class="pill-desc">익스트림 스피드</span>
         </button>
-        <button type="button" class="setting-pill active" data-time="10">
+        <button type="button" class="setting-pill" data-time="10">
           <span class="pill-title">⏱️ 10초</span>
-          <span class="pill-desc">표준 스릴 (추천)</span>
+          <span class="pill-desc">표준 스릴</span>
         </button>
-        <button type="button" class="setting-pill" data-time="20">
+        <button type="button" class="setting-pill active" data-time="20">
           <span class="pill-title">🧘 20초</span>
-          <span class="pill-desc">여유 모드</span>
+          <span class="pill-desc">여유 모드 (추천)</span>
         </button>
         <button type="button" class="setting-pill" data-time="0">
           <span class="pill-title">♾️ 무제한</span>
@@ -144,7 +143,7 @@
   </div>
 </div>
 
-<!-- 스타트 인트로 스크린 -->
+<!-- 스타트 인트로 스크린 (100% 3D 코스 전용 메뉴) -->
 <div class="fullscreen-modal" id="startScreen">
   <div class="intro-card">
     <div class="intro-title-wrap">
@@ -154,66 +153,52 @@
 
     <!-- 현재 설정 요약 배너 -->
     <div class="current-config-pill" id="startConfigSummary">
-      <span>⏱️ 제한시간: <b>10초</b></span>
+      <span>⏱️ 제한시간: <b>20초</b></span>
       <span class="sep">|</span>
       <span>🔋 비상정차: <b>3회 기회</b></span>
     </div>
 
-    <!-- ⭐ 테마 코스 선택 카드 그리드 ⭐ -->
+    <!-- ⭐ 순수 3D 테마 코스 선택 카드 그리드 ⭐ -->
     <div class="course-selector-box">
       <div class="course-selector-header">
-        <span class="course-selector-title">🎢 테마 코스 선택</span>
+        <span class="course-selector-title">🎢 3D 테마 코스 선택</span>
         <span class="course-selector-badge" id="currentCourseBadge">선택됨: 1코스</span>
       </div>
       <div class="course-card-grid" id="courseCardGrid">
-        <button type="button" class="course-card" data-course="mako" style="opacity: 0.65;">
-          <div class="course-tag">1코스</div>
+        <button type="button" class="course-card active" data-course="glacier">
+          <div class="course-tag cyan">1코스</div>
           <div class="course-info">
-            <div class="course-title">🌊 에메랄드 호수 런</div>
-            <div class="course-desc">맑은 호수 & 61m 낭떠러지 급강하</div>
+            <div class="course-title">❄️ 프로즌 글래시어 런</div>
+            <div class="course-desc">만년설 빙하 & 155m 설산 수직 다이브 (3D)</div>
           </div>
         </button>
-        <button type="button" class="course-card" data-course="fury" style="opacity: 0.65;">
-          <div class="course-tag gold">2코스</div>
+        <button type="button" class="course-card" data-course="magma">
+          <div class="course-tag flame">2코스</div>
           <div class="course-info">
-            <div class="course-title">⚡ 99m 스카이 기가 런</div>
-            <div class="course-desc">세계 1위 기가코스터 & 터널 질주</div>
+            <div class="course-title">🔥 마그마 화산 런</div>
+            <div class="course-desc">용암 바다 & 155m 분화구 정점 다이브 (3D)</div>
           </div>
         </button>
         <button type="button" class="course-card" data-course="space">
           <div class="course-tag purple">3코스</div>
           <div class="course-info">
             <div class="course-title">🌌 은하계 심우주 런</div>
-            <div class="course-desc">암흑 우주 & 토성 고리 워프 질주</div>
-          </div>
-        </button>
-        <button type="button" class="course-card" data-course="wood" style="opacity: 0.65;">
-          <div class="course-tag green">4코스</div>
-          <div class="course-info">
-            <div class="course-title">🪵 깊은 숲속 우든 런</div>
-            <div class="course-desc">나무 레일 진동 & 터널 급강하</div>
-          </div>
-        </button>
-        <button type="button" class="course-card active" data-course="magma">
-          <div class="course-tag flame">5코스</div>
-          <div class="course-info">
-            <div class="course-title">🔥 마그마 화산 런</div>
-            <div class="course-desc">용암 바다 & 불꽃 3D 다이내믹 런</div>
+            <div class="course-desc">칠흑 암흑 우주 & 토성 고리 워프 질주 (3D)</div>
           </div>
         </button>
       </div>
     </div>
 
     <div class="coaster-feature-list" id="courseFeatureList">
-      <li>🎢 <b>제1관문</b>: 높이 61m 정상 정점 ➔ 73도 수직 급강하 (활로와 단수)</li>
-      <li>🌀 <b>제2관문</b>: 제2 에어타임 언덕 ➔ 호수 질주 (두 집 만들기)</li>
-      <li>🚀 <b>제3관문</b>: 고속 뱅킹 턴 ➔ 결승 골인 (먹여치기/촉촉수)</li>
+      <li>❄️ <b>제1관문</b> : 155m 설산 정상 칼날 능선! 천길 빙벽 앞 백돌 따내기</li>
+      <li>❄️ <b>제2관문</b> : 115m 빙산 카멜백 언덕 정점 백돌 따내기</li>
+      <li>❄️ <b>제3관문</b> : 푸른 얼음 동굴 S자 뱅킹 진입로 백돌 따내기</li>
+      <li>❄️ <b>제4관문</b> : 125m 고드름 타워 솟구침 직전! 백 2점 따내기</li>
+      <li>❄️ <b>제5관문</b> : 블리자드 대탈출 최종 360도 나선 급강하 따내기</li>
     </div>
 
     <!-- 메인 탑승 출발 버튼 -->
-    <button type="button" class="btn-launch btn-main-launch" id="btnStart">🚀 선택한 코스 탑승 출발!</button>
-
-    
+    <button type="button" class="btn-launch btn-main-launch" id="btnStart">🚀 ❄️ 프로즌 글래시어 런 탑승 출발!</button>
     <button type="button" class="btn-sub" id="btnStartSettings" style="margin-top: -6px;">⚙️ 주행 설정 변경</button>
   </div>
 </div>
@@ -227,7 +212,7 @@
     </h1>
     <p>
       바둑 사활 문제를 멋지게 해결하고<br>
-      하이퍼 롤러코스터 코스를 완벽하게 완주했습니다!
+      3D 롤러코스터 전 코스를 완벽하게 완주했습니다!
     </p>
     <div style="font-size: 28px; font-weight: 900; color: #ffffff;" id="finalScore">300점</div>
     <button type="button" class="btn-launch" id="btnRestart">🔄 한 번 더 타기!</button>
