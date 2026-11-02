@@ -604,8 +604,10 @@
         if (this.gameState !== 'GATE') return;
 
         const rect = this.goCanvas.getBoundingClientRect();
-        const clickX = e.clientX - rect.left;
-        const clickY = e.clientY - rect.top;
+        const scaleX = (this.goCanvas.width || 380) / rect.width;
+        const scaleY = (this.goCanvas.height || 380) / rect.height;
+        const clickX = (e.clientX - rect.left) * scaleX;
+        const clickY = (e.clientY - rect.top) * scaleY;
 
         const problem = (this.currentCourse && this.currentCourse.gates) ?
           this.currentCourse.gates[this.currentProblemIndex] : COASTER_PROBLEMS[this.currentProblemIndex];
