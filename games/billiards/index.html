@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>당구 3구 — 바둑스쿨 Fun</title>
 <link rel="stylesheet" href="/unified-nav.css?v=header-align-20261031">
-<link rel="stylesheet" href="style.css?v=bill-3">
+<link rel="stylesheet" href="style.css?v=bill-4">
 <script src="/unified-nav.js?v=header-align-20261031" defer></script>
 </head>
 <body data-bks-page="billiards">
@@ -31,7 +31,9 @@
 
     <div class="b-power">
       <span class="b-power-label">세기</span>
-      <div class="b-power-track"><div class="b-power-fill" id="powerFill"></div></div>
+      <input type="range" id="powerRange" min="0" max="100" step="1" value="0" aria-label="샷 세기">
+      <output id="powerVal">0%</output>
+      <div class="b-power-track" aria-hidden="true"><div class="b-power-fill" id="powerFill"></div></div>
     </div>
   </section>
 
@@ -58,6 +60,6 @@
   </aside>
 </main>
 
-<script src="game.js?v=bill-5"></script>
+<script src="game.js?v=bill-6"></script>
 </body>
 </html>

@@ -5,7 +5,7 @@
 
   var cv = document.getElementById('table');
   var ctx = cv.getContext('2d');
-  var DPR = Math.min(window.devicePixelRatio || 1, 2);
+  var RS = 1;   /* 렌더 배율: 화면 폭에 맞춰 1~2.5배로 그린다 */
 
   var W = 960, H = 480, RAIL = 36;
   var MINX = RAIL, MAXX = W - RAIL, MINY = RAIL, MAXY = H - RAIL;
@@ -28,6 +28,8 @@
     best: document.getElementById('best'),
     turn: document.getElementById('turnBar'),
     power: document.getElementById('powerFill'),
+    range: document.getElementById('powerRange'),
+    powerVal: document.getElementById('powerVal'),
     msg: document.getElementById('msg'),
     title: document.getElementById('modeTitle'),
     desc: document.getElementById('modeDesc'),
@@ -78,7 +80,7 @@
     touches = {};
     moving = false;
     aim.power = 0;
-    if (el.power) el.power.style.width = '0%';
+    syncPowerUI();
     syncText();
     updateStats();
     draw();
@@ -88,6 +90,21 @@
     score = 0; shots = 0;
     msg('');
     setup();
+  }
+
+  function syncPowerUI() {
+    var pct = Math.round(aim.power * 100);
+    if (el.power) el.power.style.width = pct + '%';
+    if (el.range && +el.range.value !== pct) el.range.value = String(pct);
+    if (el.powerVal) el.powerVal.textContent = pct + '%';
+  }
+
+  function fitCanvas() {
+    var dw = cv.clientWidth || W;
+    RS = Math.max(1, Math.min(2.5, dw / W));
+    cv.width = Math.round(W * RS);
+    cv.height = Math.round(H * RS);
+    draw();
   }
 
   function msg(t) { el.msg.hidden = !t; el.msg.textContent = t || ''; }
@@ -219,7 +236,7 @@
 
   /* ---------- 그리기 ---------- */
   function draw() {
-    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    ctx.setTransform(RS, 0, 0, RS, 0, 0);
     ctx.clearRect(0, 0, W, H);
 
     /* 외곽 그림자 */
@@ -328,22 +345,75 @@
       });
     }
 
-    if (dragging && aim.power > 0) {
-      var len = 40 + aim.power * 260;
+    /* ---------- 조준 예측 + 큐대 ---------- */
+    if (dragging || aim.power > 0) {
+      var dir = { x: aim.x || 1, y: aim.y || 0 };
+      var hit = raycastCue(dir);
+      var hitLen = Math.min(hit.t, 900);
+      var hx = cue.x + dir.x * hitLen, hy = cue.y + dir.y * hitLen;
+
+      /* 진행선 */
       ctx.save();
-      ctx.setLineDash([10, 9]);
-      ctx.lineWidth = 2.5;
-      ctx.strokeStyle = 'rgba(255,255,255,.75)';
+      ctx.setLineDash([9, 8]);
+      ctx.lineWidth = 2;
+      ctx.strokeStyle = 'rgba(255,255,255,' + (0.35 + aim.power * 0.45) + ')';
       ctx.beginPath();
-      ctx.moveTo(cue.x, cue.y);
-      ctx.lineTo(cue.x + aim.x * len, cue.y + aim.y * len);
+      ctx.moveTo(cue.x + dir.x * (R + 2), cue.y + dir.y * (R + 2));
+      ctx.lineTo(hx, hy);
       ctx.stroke();
       ctx.restore();
 
+      /* 컨택트 지점 고스트 볼 */
       ctx.beginPath();
-      ctx.arc(cue.x, cue.y, cue.r + 5 + aim.power * 8, 0, 6.283);
-      ctx.strokeStyle = 'rgba(255,235,150,' + (0.35 + aim.power * 0.5) + ')';
-      ctx.lineWidth = 3;
+      ctx.arc(hx, hy, R, 0, 6.283);
+      ctx.setLineDash([4, 5]);
+      ctx.lineWidth = 1.6;
+      ctx.strokeStyle = 'rgba(255,255,255,.75)';
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      /* 맞은 공이 날아갈 방향 */
+      if (hit.ball) {
+        var bx = hit.ball.x - hx, by = hit.ball.y - hy;
+        var bl = Math.hypot(bx, by) || 1;
+        bx /= bl; by /= bl;
+        var alen = 74 + aim.power * 70;
+        arrow(hx + bx * R, hy + by * R, hx + bx * (R + alen), hy + by * (R + alen), 'rgba(255,232,140,.95)');
+
+        /* 접선(수직) 방향 미세 표시 */
+        ctx.save();
+        ctx.globalAlpha = 0.45;
+        ctx.strokeStyle = 'rgba(180,240,255,.9)';
+        ctx.lineWidth = 1.4;
+        ctx.beginPath();
+        ctx.moveTo(hx - by * 26, hy + bx * 26);
+        ctx.lineTo(hx + by * 26, hy - bx * 26);
+        ctx.stroke();
+        ctx.restore();
+      }
+
+      /* 큐대 */
+      var back = R + 10 + aim.power * 54;
+      var sx = cue.x - dir.x * back, sy = cue.y - dir.y * back;
+      var ex = sx - dir.x * 168, ey = sy - dir.y * 168;
+      var cg = ctx.createLinearGradient(sx, sy, ex, ey);
+      cg.addColorStop(0, '#f3e2c0');
+      cg.addColorStop(0.12, '#d8b678');
+      cg.addColorStop(0.6, '#a97a44');
+      cg.addColorStop(1, '#6d4826');
+      ctx.beginPath();
+      ctx.lineCap = 'round';
+      ctx.lineWidth = 7;
+      ctx.strokeStyle = cg;
+      ctx.moveTo(sx, sy);
+      ctx.lineTo(ex, ey);
+      ctx.stroke();
+      /* 팁 */
+      ctx.beginPath();
+      ctx.lineWidth = 7;
+      ctx.strokeStyle = '#2f6fb7';
+      ctx.moveTo(sx, sy);
+      ctx.lineTo(sx - dir.x * 8, sy - dir.y * 8);
       ctx.stroke();
     }
 
@@ -417,6 +487,33 @@
       ctx.strokeStyle = 'rgba(0,0,0,.22)';
       ctx.stroke();
 
+      /* 스펙큘러 하이라이트 (작고 밝은 반사점) */
+      var sp = ctx.createRadialGradient(
+        b.x - b.r * 0.42, b.y - b.r * 0.46, 0,
+        b.x - b.r * 0.42, b.y - b.r * 0.46, b.r * 0.34
+      );
+      sp.addColorStop(0, 'rgba(255,255,255,1)');
+      sp.addColorStop(0.42, 'rgba(255,255,255,.72)');
+      sp.addColorStop(1, 'rgba(255,255,255,0)');
+      ctx.beginPath();
+      ctx.ellipse(b.x - b.r * 0.40, b.y - b.r * 0.44, b.r * 0.30, b.r * 0.24, -0.5, 0, 6.283);
+      ctx.fillStyle = sp;
+      ctx.fill();
+
+      /* 림 라이트 (왼쪽 위 테두리) */
+      ctx.beginPath();
+      ctx.arc(b.x, b.y, b.r - 1.1, Math.PI * 1.02, Math.PI * 1.60);
+      ctx.lineWidth = 1.7;
+      ctx.strokeStyle = 'rgba(255,255,255,.55)';
+      ctx.stroke();
+
+      /* 바닥 반사 (아래 테두리) */
+      ctx.beginPath();
+      ctx.arc(b.x, b.y, b.r - 1.1, Math.PI * 0.18, Math.PI * 0.62);
+      ctx.lineWidth = 1.4;
+      ctx.strokeStyle = 'rgba(255,255,255,.18)';
+      ctx.stroke();
+
       if (b.kind === 'object') {
         /* 흰 숫자 원 */
         var nc = ctx.createRadialGradient(b.x - b.r * 0.15, b.y - b.r * 0.2, 1, b.x, b.y, b.r * 0.56);
@@ -437,6 +534,44 @@
         ctx.fillText(String(b.num), b.x, b.y + 0.5);
       }
     });
+  }
+
+  function arrow(x1, y1, x2, y2, color) {
+    ctx.save();
+    ctx.strokeStyle = color;
+    ctx.fillStyle = color;
+    ctx.lineWidth = 2.4;
+    ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke();
+    var a = Math.atan2(y2 - y1, x2 - x1);
+    ctx.beginPath();
+    ctx.moveTo(x2, y2);
+    ctx.lineTo(x2 - Math.cos(a - 0.4) * 10, y2 - Math.sin(a - 0.4) * 10);
+    ctx.lineTo(x2 - Math.cos(a + 0.4) * 10, y2 - Math.sin(a + 0.4) * 10);
+    ctx.closePath(); ctx.fill();
+    ctx.restore();
+  }
+
+  function raycastCue(dir) {
+    var best = { t: 1e9, ball: null };
+    var i, b, ox, oy, bq, c, disc, t;
+
+    for (i = 0; i < balls.length; i++) {
+      b = balls[i];
+      if (!b.alive || b === cue) continue;
+      ox = cue.x - b.x; oy = cue.y - b.y;
+      bq = ox * dir.x + oy * dir.y;
+      c = ox * ox + oy * oy - (2 * R) * (2 * R);
+      disc = bq * bq - c;
+      if (disc < 0) continue;
+      t = -bq - Math.sqrt(disc);
+      if (t > 0.5 && t < best.t) best = { t: t, ball: b };
+    }
+
+    var tx = dir.x > 0 ? (MAXX - R - cue.x) / dir.x : dir.x < 0 ? (MINX + R - cue.x) / dir.x : 1e9;
+    var ty = dir.y > 0 ? (MAXY - R - cue.y) / dir.y : dir.y < 0 ? (MINY + R - cue.y) / dir.y : 1e9;
+    var tw = Math.max(0, Math.min(tx, ty));
+    if (tw > 0.5 && tw < best.t) best = { t: tw, ball: null };
+    return best;
   }
 
   function diamond(x, y) {
@@ -480,14 +615,14 @@
     var dx = p.x - cue.x, dy = p.y - cue.y, d = Math.hypot(dx, dy) || 1;
     aim.x = dx / d; aim.y = dy / d;
     aim.power = Math.min(1, d / 240);
-    if (el.power) el.power.style.width = Math.round(aim.power * 100) + '%';
+    syncPowerUI();
     draw();
   });
 
   cv.addEventListener('pointerup', function () {
     if (!dragging) return;
     dragging = false;
-    if (aim.power < 0.06) { aim.power = 0; if (el.power) el.power.style.width = '0%'; draw(); return; }
+    if (aim.power < 0.06) { aim.power = 0; syncPowerUI(); draw(); return; }
 
     shots++;
     touches = {};
@@ -496,7 +631,7 @@
     moving = true;
     updateStats();
     aim.power = 0;
-    if (el.power) el.power.style.width = '0%';
+    syncPowerUI();
     draw();
   });
 
@@ -524,13 +659,30 @@
     setup(); msg('공 위치를 초기화했습니다');
   });
 
-  function fit() {
-    cv.width = Math.round(W * DPR);
-    cv.height = Math.round(H * DPR);
-    draw();
+  window.addEventListener('resize', fitCanvas);
+
+  /* 세기 슬라이더 (정밀 조정) */
+  if (el.range) {
+    el.range.addEventListener('input', function () {
+      if (moving || over) { el.range.value = String(Math.round(aim.power * 100)); return; }
+      aim.power = Math.max(0, Math.min(1, (+el.range.value) / 100));
+      syncPowerUI();
+      draw();
+    });
   }
 
-  window.addEventListener('resize', fit);
+  /* 키보드 미세 조정: ←→ 방향, ↑↓ 세기 */
+  window.addEventListener('keydown', function (e) {
+    if (moving || over) return;
+    var k = e.key;
+    if (k === 'ArrowUp' || k === 'ArrowDown' || k === '+' || k === '-') {
+      e.preventDefault();
+      var step = e.shiftKey ? 0.1 : 0.01;
+      aim.power = Math.max(0, Math.min(1, aim.power + (k === 'ArrowUp' || k === '+' ? step : -step)));
+      syncPowerUI();
+      draw();
+    }
+  });
 
   var um = /[?&]mode=(three|four|pocket)/.exec(location.search);
   if (um) {
@@ -541,7 +693,7 @@
   }
 
   newGame();
-  fit();
+  fitCanvas();
   requestAnimationFrame(loop);
 
   if (/[?&]auto=1/.test(location.search)) {
