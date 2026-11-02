@@ -222,15 +222,80 @@
     ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
     ctx.clearRect(0, 0, W, H);
 
-    var wood = ctx.createLinearGradient(0, 0, 0, H);
-    wood.addColorStop(0, '#8a5a33'); wood.addColorStop(0.5, '#6b4526'); wood.addColorStop(1, '#7d5230');
-    ctx.fillStyle = wood;
-    roundRect(ctx, 0, 0, W, H, 18); ctx.fill();
+    /* 외곽 그림자 */
+    ctx.save();
+    ctx.shadowColor = 'rgba(0,0,0,.35)';
+    ctx.shadowBlur = 18;
+    ctx.shadowOffsetY = 6;
+    roundRect(ctx, 0, 0, W, H, 20);
+    ctx.fillStyle = '#3a2413';
+    ctx.fill();
+    ctx.restore();
 
-    var felt = ctx.createRadialGradient(W / 2, H / 2, 60, W / 2, H / 2, Math.max(W, H) * 0.7);
-    felt.addColorStop(0, '#35905b'); felt.addColorStop(1, '#20643d');
+    /* 나무 레일 — 결이 보이도록 다중 그라디언트 */
+    var wood = ctx.createLinearGradient(0, 0, 0, H);
+    wood.addColorStop(0, '#a9744a');
+    wood.addColorStop(0.18, '#8b5a34');
+    wood.addColorStop(0.5, '#71452a');
+    wood.addColorStop(0.82, '#5e3a22');
+    wood.addColorStop(1, '#7b4d2c');
+    roundRect(ctx, 0, 0, W, H, 20);
+    ctx.fillStyle = wood;
+    ctx.fill();
+
+    /* 나무 결 */
+    ctx.save();
+    roundRect(ctx, 0, 0, W, H, 20); ctx.clip();
+    for (var gw = 0; gw < 26; gw++) {
+      var gy = (gw / 26) * H + Math.sin(gw) * 2;
+      ctx.strokeStyle = 'rgba(60,32,14,' + (0.05 + (gw % 3) * 0.02) + ')';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      for (var gx = 0; gx <= W; gx += 24) {
+        var yy = gy + Math.sin((gx / W) * 6 + gw) * 2.5;
+        if (gx === 0) ctx.moveTo(gx, yy); else ctx.lineTo(gx, yy);
+      }
+      ctx.stroke();
+    }
+    /* 상단 하이라이트 */
+    var sheen = ctx.createLinearGradient(0, 0, 0, RAIL * 1.1);
+    sheen.addColorStop(0, 'rgba(255,225,180,.30)');
+    sheen.addColorStop(1, 'rgba(255,225,180,0)');
+    roundRect(ctx, 0, 0, W, RAIL + 4, 18);
+    ctx.fillStyle = sheen; ctx.fill();
+    ctx.restore();
+
+    /* 펠트 바닥 */
+    var felt = ctx.createRadialGradient(W * 0.42, H * 0.34, 30, W / 2, H / 2, Math.max(W, H) * 0.78);
+    felt.addColorStop(0, '#3aa066');
+    felt.addColorStop(0.55, '#2c8152');
+    felt.addColorStop(1, '#1b5334');
+    roundRect(ctx, RAIL, RAIL, W - RAIL * 2, H - RAIL * 2, 8);
     ctx.fillStyle = felt;
-    roundRect(ctx, RAIL, RAIL, W - RAIL * 2, H - RAIL * 2, 10); ctx.fill();
+    ctx.fill();
+
+    /* 펠트 안쪽 그림자(레일이 눌린 느낌) */
+    ctx.save();
+    roundRect(ctx, RAIL, RAIL, W - RAIL * 2, H - RAIL * 2, 8);
+    ctx.clip();
+    ctx.lineWidth = 16;
+    ctx.strokeStyle = 'rgba(0,0,0,.20)';
+    roundRect(ctx, RAIL, RAIL, W - RAIL * 2, H - RAIL * 2, 8);
+    ctx.stroke();
+    ctx.lineWidth = 6;
+    ctx.strokeStyle = 'rgba(0,0,0,.12)';
+    ctx.stroke();
+    ctx.restore();
+
+    /* 레일 안쪽 베벨 */
+    ctx.lineWidth = 2;
+    ctx.strokeStyle = 'rgba(255,255,255,.16)';
+    roundRect(ctx, RAIL - 1.5, RAIL - 1.5, W - RAIL * 2 + 3, H - RAIL * 2 + 3, 9);
+    ctx.stroke();
+    ctx.lineWidth = 1;
+    ctx.strokeStyle = 'rgba(0,0,0,.35)';
+    roundRect(ctx, RAIL + 1, RAIL + 1, W - RAIL * 2 - 2, H - RAIL * 2 - 2, 8);
+    ctx.stroke();
 
     ctx.fillStyle = 'rgba(255,255,255,.42)';
     for (var i = 1; i <= 7; i++) {
@@ -244,12 +309,21 @@
 
     if (mode === 'pocket') {
       pockets.forEach(function (p) {
+        var pg = ctx.createRadialGradient(p.x, p.y - POCKET_R * 0.3, POCKET_R * 0.1, p.x, p.y, POCKET_R * 1.25);
+        pg.addColorStop(0, '#000000');
+        pg.addColorStop(0.62, '#0a0f0b');
+        pg.addColorStop(1, '#1b2a1e');
         ctx.beginPath();
-        ctx.arc(p.x, p.y, POCKET_R, 0, 6.283);
-        ctx.fillStyle = '#0e1410';
+        ctx.arc(p.x, p.y, POCKET_R * 1.06, 0, 6.283);
+        ctx.fillStyle = pg;
         ctx.fill();
         ctx.lineWidth = 3;
-        ctx.strokeStyle = 'rgba(255,255,255,.14)';
+        ctx.strokeStyle = 'rgba(255,255,255,.10)';
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.arc(p.x, p.y - POCKET_R * 0.28, POCKET_R * 0.72, Math.PI * 1.08, Math.PI * 1.92);
+        ctx.strokeStyle = 'rgba(255,255,255,.18)';
+        ctx.lineWidth = 2;
         ctx.stroke();
       });
     }
@@ -276,33 +350,88 @@
     balls.forEach(function (b) {
       if (!b.alive) return;
 
+      /* 바닥 접촉 그림자 */
+      var sh = ctx.createRadialGradient(b.x + b.r * 0.12, b.y + b.r * 0.42, b.r * 0.15, b.x + b.r * 0.12, b.y + b.r * 0.42, b.r * 1.25);
+      sh.addColorStop(0, 'rgba(0,0,0,.40)');
+      sh.addColorStop(0.55, 'rgba(0,0,0,.16)');
+      sh.addColorStop(1, 'rgba(0,0,0,0)');
       ctx.beginPath();
-      ctx.ellipse(b.x + 2, b.y + 4, b.r * 0.98, b.r * 0.86, 0, 0, 6.283);
-      ctx.fillStyle = 'rgba(0,0,0,.25)';
+      ctx.ellipse(b.x + b.r * 0.12, b.y + b.r * 0.42, b.r * 1.18, b.r * 0.92, 0, 0, 6.283);
+      ctx.fillStyle = sh;
       ctx.fill();
 
-      var g = ctx.createRadialGradient(b.x - b.r * 0.35, b.y - b.r * 0.4, b.r * 0.15, b.x, b.y, b.r);
-      if (b.kind === 'cue') { g.addColorStop(0, '#ffffff'); g.addColorStop(0.7, '#f2f1ea'); g.addColorStop(1, '#d8d6cc'); }
-      else if (b.kind === 'red') { g.addColorStop(0, '#e05a48'); g.addColorStop(0.65, '#c0392b'); g.addColorStop(1, '#8e2418'); }
-      else if (b.kind === 'black') { g.addColorStop(0, '#5a5a5a'); g.addColorStop(0.65, '#262626'); g.addColorStop(1, '#0b0b0b'); }
-      else if (b.kind === 'yellow') { g.addColorStop(0, '#f6dd76'); g.addColorStop(0.65, '#e8c33a'); g.addColorStop(1, '#b8921f'); }
-      else { g.addColorStop(0, '#ffffff77'); g.addColorStop(0.3, b.color); g.addColorStop(1, '#00000055'); }
+      /* 구 본체 */
+      var g = ctx.createRadialGradient(b.x - b.r * 0.38, b.y - b.r * 0.45, b.r * 0.06, b.x, b.y, b.r * 1.02);
+      if (b.kind === 'cue') {
+        g.addColorStop(0, '#ffffff'); g.addColorStop(0.45, '#f7f5ec');
+        g.addColorStop(0.82, '#ddd9cc'); g.addColorStop(1, '#b9b4a4');
+      } else if (b.kind === 'red') {
+        g.addColorStop(0, '#ff8f78'); g.addColorStop(0.42, '#e0452f');
+        g.addColorStop(0.82, '#a8271a'); g.addColorStop(1, '#6d150c');
+      } else if (b.kind === 'black') {
+        g.addColorStop(0, '#7d7d7d'); g.addColorStop(0.45, '#2b2b2b');
+        g.addColorStop(0.85, '#111111'); g.addColorStop(1, '#000000');
+      } else if (b.kind === 'yellow') {
+        g.addColorStop(0, '#fff3b0'); g.addColorStop(0.42, '#f0cd45');
+        g.addColorStop(0.82, '#bf9518'); g.addColorStop(1, '#8a6a0c');
+      } else {
+        g.addColorStop(0, '#ffffff');
+        g.addColorStop(0.34, b.color);
+        g.addColorStop(0.85, 'rgba(0,0,0,.35)');
+        g.addColorStop(1, 'rgba(0,0,0,.55)');
+      }
 
       ctx.beginPath();
       ctx.arc(b.x, b.y, b.r, 0, 6.283);
       ctx.fillStyle = g;
       ctx.fill();
-      ctx.lineWidth = 1;
-      ctx.strokeStyle = 'rgba(0,0,0,.12)';
+
+      /* 아래쪽 반사광 */
+      var bl = ctx.createRadialGradient(b.x + b.r * 0.22, b.y + b.r * 0.55, b.r * 0.05, b.x + b.r * 0.22, b.y + b.r * 0.55, b.r * 0.85);
+      bl.addColorStop(0, 'rgba(255,255,255,.22)');
+      bl.addColorStop(1, 'rgba(255,255,255,0)');
+      ctx.beginPath();
+      ctx.arc(b.x, b.y, b.r, 0, 6.283);
+      ctx.fillStyle = bl;
+      ctx.fill();
+
+      /* 하이라이트(반사) */
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(b.x, b.y, b.r * 0.96, 0, 6.283);
+      ctx.clip();
+      var hl = ctx.createRadialGradient(b.x - b.r * 0.36, b.y - b.r * 0.44, 0, b.x - b.r * 0.36, b.y - b.r * 0.44, b.r * 0.42);
+      hl.addColorStop(0, 'rgba(255,255,255,.95)');
+      hl.addColorStop(0.55, 'rgba(255,255,255,.35)');
+      hl.addColorStop(1, 'rgba(255,255,255,0)');
+      ctx.beginPath();
+      ctx.ellipse(b.x - b.r * 0.34, b.y - b.r * 0.42, b.r * 0.30, b.r * 0.22, -0.6, 0, 6.283);
+      ctx.fillStyle = hl;
+      ctx.fill();
+      ctx.restore();
+
+      /* 가장자리 어둡게 */
+      ctx.beginPath();
+      ctx.arc(b.x, b.y, b.r - 0.5, 0, 6.283);
+      ctx.lineWidth = 1.4;
+      ctx.strokeStyle = 'rgba(0,0,0,.22)';
       ctx.stroke();
 
       if (b.kind === 'object') {
+        /* 흰 숫자 원 */
+        var nc = ctx.createRadialGradient(b.x - b.r * 0.15, b.y - b.r * 0.2, 1, b.x, b.y, b.r * 0.56);
+        nc.addColorStop(0, '#ffffff');
+        nc.addColorStop(0.8, '#f7f3e6');
+        nc.addColorStop(1, '#ded7c4');
         ctx.beginPath();
         ctx.arc(b.x, b.y, b.r * 0.52, 0, 6.283);
-        ctx.fillStyle = '#fffaf0';
+        ctx.fillStyle = nc;
         ctx.fill();
-        ctx.fillStyle = '#22301a';
-        ctx.font = '700 ' + Math.round(b.r * 0.95) + 'px "Pretendard","Malgun Gothic",sans-serif';
+        ctx.lineWidth = 0.8;
+        ctx.strokeStyle = 'rgba(0,0,0,.15)';
+        ctx.stroke();
+        ctx.fillStyle = '#1d2a14';
+        ctx.font = '800 ' + Math.round(b.r * 0.92) + 'px "Pretendard","Malgun Gothic",sans-serif';
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
         ctx.fillText(String(b.num), b.x, b.y + 0.5);

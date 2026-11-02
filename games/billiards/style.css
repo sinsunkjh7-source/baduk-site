@@ -71,13 +71,13 @@ canvas{display:block;margin:0 auto;border-radius:10px;touch-action:none;width:au
 .b-board-col{width:100%;display:flex;flex-direction:column;align-items:center;gap:8px}
 .b-table-box{display:flex;justify-content:center;width:100%}
 #table{
-  width:min(92vw, calc((100dvh - var(--bks-nav-h,64px) - 330px) * 2));
+  width:min(92vw, calc((100dvh - var(--bks-nav-h,64px) - 280px) * 2));
   max-width:none;max-height:none;height:auto;
 }
 .b-side{
   display:flex;flex-direction:row;align-items:center;justify-content:center;
   flex-wrap:wrap;gap:14px;order:0;
-  width:min(92vw, calc((100dvh - var(--bks-nav-h,64px) - 330px) * 2));
+  width:min(92vw, calc((100dvh - var(--bks-nav-h,64px) - 280px) * 2));
   padding:12px 18px;border-radius:14px;
 }
 .b-side .b-title{font-size:16.5px;margin:0;white-space:nowrap}
@@ -90,4 +90,17 @@ canvas{display:block;margin:0 auto;border-radius:10px;touch-action:none;width:au
   .b-side{flex-direction:column;align-items:stretch;gap:8px;width:min(96vw,560px)}
   .b-side .b-actions{display:flex;gap:8px}
   #table{width:96vw}
+}
+
+/* 상단 바 컴팩트 (b-head-compact) : 당구대 공간 확보 */
+.b-head{gap:6px;margin-bottom:2px}
+.b-head .b-score{padding:5px 10px;border-radius:9px;font-size:11.5px;gap:5px}
+.b-head .b-score b{font-size:15px}
+.b-head .b-modes{gap:4px;padding:3px}
+.b-head .b-mode{padding:6px 11px;font-size:12.5px;border-radius:8px}
+.b-head .b-turn{padding:5px 12px;font-size:12.5px;border-radius:9px}
+@media (max-width:760px){
+  .b-head .b-score{padding:4px 8px;font-size:10.5px}
+  .b-head .b-score b{font-size:13px}
+  .b-head .b-mode{padding:5px 9px;font-size:11.5px}
 }
