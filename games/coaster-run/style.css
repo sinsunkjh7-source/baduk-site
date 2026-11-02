@@ -927,3 +927,8 @@ canvas#goCanvas {
   color: #94a3b8;
   margin: 0;
 }
+
+/* 사이드 HUD 문제 패널 활성화 시 상단 중복 배너 숨김 -> 전방 155m 절벽 시야 100% 완전 개방 */
+body:has(#boardModal:not([hidden])) #gateBanner {
+  display: none !important;
+}
