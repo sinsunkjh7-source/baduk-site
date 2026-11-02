@@ -60,3 +60,34 @@ canvas{display:block;margin:0 auto;border-radius:10px;touch-action:none;width:au
 .b-modes{display:flex;background:#fff;border-radius:12px;padding:4px;gap:4px;box-shadow:0 2px 10px rgba(36,54,29,.08)}
 .b-mode{border:0;background:transparent;border-radius:9px;padding:8px 14px;font-family:inherit;font-size:13.5px;font-weight:800;color:#6b7d62;cursor:pointer}
 .b-mode.active{background:#4a8a3a;color:#fff}
+
+/* ---------- 당구대 중앙·확대 + 하단 가로 메뉴 (billiards-bottom-bar) ---------- */
+.b-wrap{
+  display:flex;flex-direction:column;align-items:center;gap:10px;
+  max-width:min(1900px,98vw);margin:0 auto;
+  padding:calc(var(--bks-nav-h,64px) + 8px) clamp(8px,1.5vw,20px) 16px;
+  min-height:calc(100dvh - var(--bks-nav-h,64px));
+}
+.b-board-col{width:100%;display:flex;flex-direction:column;align-items:center;gap:8px}
+.b-table-box{display:flex;justify-content:center;width:100%}
+#table{
+  width:min(92vw, calc((100dvh - var(--bks-nav-h,64px) - 330px) * 2));
+  max-width:none;max-height:none;height:auto;
+}
+.b-side{
+  display:flex;flex-direction:row;align-items:center;justify-content:center;
+  flex-wrap:wrap;gap:14px;order:0;
+  width:min(92vw, calc((100dvh - var(--bks-nav-h,64px) - 330px) * 2));
+  padding:12px 18px;border-radius:14px;
+}
+.b-side .b-title{font-size:16.5px;margin:0;white-space:nowrap}
+.b-side .b-desc{font-size:12.5px;line-height:1.55;margin:0;max-width:520px;color:#5e7057}
+.b-side .b-actions{flex-direction:row;gap:8px}
+.b-side .b-btn{padding:10px 16px;font-size:14px}
+.b-side .b-rules{font-size:12px;min-width:150px}
+.b-side .b-msg{margin:0;font-size:12.5px}
+@media (max-width:960px){
+  .b-side{flex-direction:column;align-items:stretch;gap:8px;width:min(96vw,560px)}
+  .b-side .b-actions{display:flex;gap:8px}
+  #table{width:96vw}
+}
