@@ -59,11 +59,9 @@
       if (this.gateBanner) this.gateBanner.hidden = true;
 
       // 실사 비디오 롤러코스터 엔진 인스턴스 생성 (1, 2코스)
-      this.videoEl = document.getElementById('coasterVideo');
-      this.videoCoaster = new VideoCoasterEngine(this.videoEl, {
-        onGateReached: (gateIndex) => this.onGateReached(gateIndex),
-        onFinish: () => this.handleVictory()
-      });
+      // 100% 순수 3D WebGL 모드 (실사 비디오 엔진 제거)
+      this.videoEl = null;
+      this.videoCoaster = null;
 
       // WebGL 3D 은하계 우주 롤러코스터 엔진 인스턴스 생성 (3코스)
       this.spaceCanvas = document.getElementById('spaceCanvas');
@@ -102,17 +100,17 @@
       }
 
       // 현재 활성화된 엔진 (기본: 비디오 엔진)
-      this.coaster = this.videoCoaster;
+      this.coaster = this.magmaCoaster;
 
       // 코스 데이터 초기화
-      this.currentCourseId = 'mako';
-      this.currentCourse = window.COASTER_COURSES?.mako || null;
+      this.currentCourseId = 'magma';
+      this.currentCourse = window.COASTER_COURSES?.magma || null;
 
       this.initEvents();
       this.initSettingsEvents();
       this.initGoBoardEvents();
       this.updateConfigSummary();
-      if (this.currentCourse) this.selectCourse('mako');
+      if (this.currentCourse) this.selectCourse('magma');
     }
 
     selectCourse(courseId) {
@@ -136,7 +134,7 @@
         if (this.videoEl) this.videoEl.style.display = 'block';
         if (this.spaceCanvas) this.spaceCanvas.style.display = 'none';
         if (this.magmaCanvas) this.magmaCanvas.style.display = 'none';
-        this.coaster = this.videoCoaster;
+        this.coaster = this.magmaCoaster;
       }
 
       this.coaster.setCourse(course);

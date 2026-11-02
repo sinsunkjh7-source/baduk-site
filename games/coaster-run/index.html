@@ -8,25 +8,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>바둑 롤러코스터 런 — JH 바둑스쿨 EduFun</title>
 <link rel="stylesheet" href="/unified-nav.css?v=20261102-coaster-v5">
-<link rel="stylesheet" href="style.css?v=20261102-crest-v10">
+<link rel="stylesheet" href="style.css?v=20261102-pure3d-v2">
 <script src="/unified-nav.js?v=20261102-coaster-v6" defer></script>
 <script src="audio.js?v=20261102-coaster-v6"></script>
 <script src="three.min.js"></script>
 <script src="problems.js?v=20261102-coaster-v6"></script>
-<script src="courses.js?v=20261102-crest-v10"></script>
-<script src="videoEngine.js?v=20261102-coaster-v6"></script>
+<script src="courses.js?v=20261102-pure3d-v2"></script>
 <script src="spaceEngine.js?v=20261102-coaster-v7"></script>
-<script src="magmaEngine.js?v=20261102-crest-v10"></script>
-<script src="game.js?v=20261102-crest-v10"></script>
+<script src="magmaEngine.js?v=20261102-pure3d-v2"></script>
+<script src="game.js?v=20261102-pure3d-v2"></script>
 </head>
 <body data-bks-page="coaster-run">
 
 <!-- 롤러코스터 뷰포트 (1,2,4코스: 실사 4K 영상 / 3,5코스: WebGL 3D 엔진) -->
 <div id="coasterViewport">
-  <video id="coasterVideo" playsinline preload="auto" muted>
-    <source src="assets/coaster_real_mako.mp4" type="video/mp4">
-    <source src="assets/coaster_real_mako_480p.webm" type="video/webm">
-  </video>
+
   <canvas id="spaceCanvas" style="display: none; position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1;"></canvas>
   <canvas id="magmaCanvas" style="display: none; position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1;"></canvas>
   <div class="video-vignette-overlay"></div>
@@ -153,7 +149,7 @@
   <div class="intro-card">
     <div class="intro-title-wrap">
       <h1>🎢 바둑 롤러코스터 런</h1>
-      <p class="intro-sub">3D 엔진 & 1080p 코스터를 타고 문제를 풀어 180km/h 부스터 점화!</p>
+      <p class="intro-sub">순수 3D WebGL 엔진으로 구현된 익스트림 코스터를 타고 문제를 풀어라!</p>
     </div>
 
     <!-- 현재 설정 요약 배너 -->
@@ -170,14 +166,14 @@
         <span class="course-selector-badge" id="currentCourseBadge">선택됨: 1코스</span>
       </div>
       <div class="course-card-grid" id="courseCardGrid">
-        <button type="button" class="course-card active" data-course="mako">
+        <button type="button" class="course-card" data-course="mako" style="opacity: 0.65;">
           <div class="course-tag">1코스</div>
           <div class="course-info">
             <div class="course-title">🌊 에메랄드 호수 런</div>
             <div class="course-desc">맑은 호수 & 61m 낭떠러지 급강하</div>
           </div>
         </button>
-        <button type="button" class="course-card" data-course="fury">
+        <button type="button" class="course-card" data-course="fury" style="opacity: 0.65;">
           <div class="course-tag gold">2코스</div>
           <div class="course-info">
             <div class="course-title">⚡ 99m 스카이 기가 런</div>
@@ -191,14 +187,14 @@
             <div class="course-desc">암흑 우주 & 토성 고리 워프 질주</div>
           </div>
         </button>
-        <button type="button" class="course-card" data-course="wood">
+        <button type="button" class="course-card" data-course="wood" style="opacity: 0.65;">
           <div class="course-tag green">4코스</div>
           <div class="course-info">
             <div class="course-title">🪵 깊은 숲속 우든 런</div>
             <div class="course-desc">나무 레일 진동 & 터널 급강하</div>
           </div>
         </button>
-        <button type="button" class="course-card" data-course="magma">
+        <button type="button" class="course-card active" data-course="magma">
           <div class="course-tag flame">5코스</div>
           <div class="course-info">
             <div class="course-title">🔥 마그마 화산 런</div>
