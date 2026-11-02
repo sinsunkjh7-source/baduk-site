@@ -30,6 +30,8 @@
       this.railMatR = null;
       this.tieMat = null;
       this.spireMat = null;
+      this.icicleMat = null;
+      this.archMat = null;
       this.ambientLight = null;
       this.dirLight = null;
       this.snowTexture = null;
@@ -323,30 +325,138 @@
     /**
      * 거대한 현무암 화산 바위 기둥 협곡
      */
+    /**
+     * 뾰족뾰족한 얼음 협곡과 거대 고드름, 헤드초퍼 아치 환경 구축
+     * 아슬아슬하게 그 사이를 통과하는 스릴 넘치는 연출
+     */
     createVolcanoEnvironment() {
-      const pillarGeom = new THREE.CylinderGeometry(14, 22, 280, 6);
-      const pillarMat = new THREE.MeshStandardMaterial({
-        color: 0x140e0c,
-        roughness: 0.95,
-        metalness: 0.1
+      const group = new THREE.Group();
+
+      // 머티리얼 정의
+      this.icicleMat = new THREE.MeshStandardMaterial({
+        color: 0xcffafe,
+        emissive: 0x0284c7,
+        emissiveIntensity: 0.45,
+        roughness: 0.12,
+        metalness: 0.85,
+        transparent: true,
+        opacity: 0.88
       });
 
-      const group = new THREE.Group();
-      for (let i = 0; i < 45; i++) {
-        const p = new THREE.Mesh(pillarGeom, pillarMat);
-        const z = -100 - i * 50;
-        const side = (i % 2 === 0 ? 1 : -1) * (45 + Math.random() * 80);
-        p.position.set(side, 30 + Math.random() * 40, z);
-        p.rotation.y = Math.random() * Math.PI;
-        p.rotation.z = (Math.random() - 0.5) * 0.25;
-        group.add(p);
+      this.spireMat = new THREE.MeshStandardMaterial({
+        color: 0x0369a1,
+        emissive: 0x082f49,
+        emissiveIntensity: 0.35,
+        roughness: 0.25,
+        metalness: 0.65
+      });
+
+      this.archMat = new THREE.MeshStandardMaterial({
+        color: 0x7dd3fc,
+        emissive: 0x0369a1,
+        emissiveIntensity: 0.5,
+        roughness: 0.15,
+        metalness: 0.75
+      });
+
+      // 지오메트리 캐시
+      const icicleGeomSmall = new THREE.ConeGeometry(0.55, 5.5, 5);
+      const icicleGeomMedium = new THREE.ConeGeometry(0.85, 8.5, 5);
+      const icicleGeomLarge = new THREE.ConeGeometry(1.3, 13.0, 6);
+      const spikeGeom = new THREE.ConeGeometry(2.4, 28.0, 5);
+      const giantSpireGeom = new THREE.ConeGeometry(6.5, 75.0, 6);
+      const archGeom = new THREE.TorusGeometry(7.5, 0.9, 8, 24, Math.PI);
+
+      const gauge = 2.6;
+      const sampleCount = 150;
+
+      for (let i = 0; i < sampleCount; i++) {
+        const u = 0.03 + (i / sampleCount) * 0.94;
+        const pos = this.curve.getPointAt(u);
+        const tan = this.curve.getTangentAt(u).normalize();
+        const norm = new THREE.Vector3(-tan.z, 0, tan.x).normalize();
+        const up = new THREE.Vector3(0, 1, 0);
+
+        // A. 양옆 뾰족뾰족한 얼음 협곡 침봉 (Spikes & Stalagmites) - 아슬아슬하게 통과!
+        // 왼쪽 칼날 얼음 바위
+        const leftDist = gauge / 2 + 2.3 + (Math.sin(i * 1.7) * 0.8 + 0.8);
+        const leftPos = pos.clone().addScaledVector(norm, -leftDist);
+        const leftSpike = new THREE.Mesh(spikeGeom, this.icicleMat);
+        leftSpike.position.set(leftPos.x, leftPos.y + 7 + (Math.sin(i * 3.1) * 4), leftPos.z);
+        leftSpike.rotation.z = -0.15 + (Math.sin(i * 0.9) * 0.12);
+        leftSpike.rotation.y = i * 0.7;
+        group.add(leftSpike);
+
+        // 오른쪽 칼날 얼음 바위
+        const rightDist = gauge / 2 + 2.3 + (Math.cos(i * 1.7) * 0.8 + 0.8);
+        const rightPos = pos.clone().addScaledVector(norm, rightDist);
+        const rightSpike = new THREE.Mesh(spikeGeom, this.icicleMat);
+        rightSpike.position.set(rightPos.x, rightPos.y + 7 + (Math.cos(i * 2.7) * 4), rightPos.z);
+        rightSpike.rotation.z = 0.15 - (Math.cos(i * 0.9) * 0.12);
+        rightSpike.rotation.y = i * 1.1;
+        group.add(rightSpike);
+
+        // B. 외곽 거대 빙산 절벽 기둥 (웅장한 협곡 배경)
+        if (i % 3 === 0) {
+          const side = (i % 2 === 0 ? 1 : -1);
+          const cliffDist = gauge / 2 + 12 + (Math.random() * 18);
+          const cliffPos = pos.clone().addScaledVector(norm, side * cliffDist);
+          const giantSpire = new THREE.Mesh(giantSpireGeom, this.spireMat);
+          giantSpire.position.set(cliffPos.x, cliffPos.y + 25 + Math.random() * 20, cliffPos.z);
+          giantSpire.rotation.y = Math.random() * Math.PI;
+          group.add(giantSpire);
+        }
+
+        // C. ⭐ 머리 위를 아슬아슬하게 스쳐가는 오버헤드 고드름 아치 (Head-Choppers) ⭐
+        if (i % 7 === 0) {
+          const archCenter = pos.clone().addScaledVector(up, 4.8);
+          const archMesh = new THREE.Mesh(archGeom, this.archMat);
+          archMesh.position.copy(archCenter);
+          
+          const rotMatrix = new THREE.Matrix4().lookAt(
+            new THREE.Vector3(0, 0, 0),
+            tan,
+            up
+          );
+          archMesh.rotation.setFromRotationMatrix(rotMatrix);
+          archMesh.rotation.z = Math.PI;
+          group.add(archMesh);
+
+          // 아치 천장에서 트랙 정중앙과 양옆으로 날카롭게 뻗어내린 고드름들!
+          const icicleOffsets = [-1.4, -0.6, 0.0, 0.6, 1.4];
+          icicleOffsets.forEach((off, idx) => {
+            const geom = (idx === 2) ? icicleGeomMedium : icicleGeomSmall;
+            const icicle = new THREE.Mesh(geom, this.icicleMat);
+            const hangPos = pos.clone()
+              .addScaledVector(up, 5.8 - Math.abs(off) * 0.6)
+              .addScaledVector(norm, off * 1.3);
+            icicle.position.copy(hangPos);
+            icicle.rotation.x = Math.PI; // 뾰족한 끝이 정확히 트랙 아래(플레이어 머리 쪽)를 향함
+            icicle.rotation.z = (Math.random() - 0.5) * 0.15;
+            group.add(icicle);
+          });
+        }
+
+        // D. ⭐ 제3관문 지하 빙하 크레바스 계곡 (u: 0.46 ~ 0.62) 밀집 고드름 터널 ⭐
+        if (u >= 0.46 && u <= 0.62) {
+          for (let k = 0; k < 2; k++) {
+            const hangIcicle = new THREE.Mesh(icicleGeomLarge, this.icicleMat);
+            const lateral = (k === 0 ? -1 : 1) * (1.2 + Math.random() * 2.0);
+            const hangPos = pos.clone()
+              .addScaledVector(up, 7.5 + Math.random() * 3.0)
+              .addScaledVector(norm, lateral);
+            hangIcicle.position.copy(hangPos);
+            hangIcicle.rotation.x = Math.PI;
+            hangIcicle.rotation.z = (Math.random() - 0.5) * 0.2;
+            group.add(hangIcicle);
+          }
+        }
       }
+
       this.scene.add(group);
+      this.environmentGroup = group;
     }
 
-    /**
-     * 5개 관문 마그마 발광 스타게이트 포털
-     */
     createGatePortals() {
       this.gatePortals = [];
       const ringGeom = new THREE.TorusGeometry(8.5, 0.7, 16, 48);
@@ -467,11 +577,26 @@
         this.emberPoints.material.size = isGlacier ? 2.6 : 2.8;
       }
 
-      // 6. 주변 환경 (거대한 푸른 빙산 기둥 vs 흑요석 분화구 기둥)
+      // 6. 주변 환경 (고드름, 칼날 협곡, 거대 빙산 기둥)
+      if (this.icicleMat) {
+        this.icicleMat.color.setHex(isGlacier ? 0xcffafe : 0x292524);
+        this.icicleMat.emissive.setHex(isGlacier ? 0x0284c7 : 0xea580c);
+        this.icicleMat.emissiveIntensity = isGlacier ? 0.45 : 0.65;
+        this.icicleMat.roughness = isGlacier ? 0.12 : 0.75;
+        this.icicleMat.metalness = isGlacier ? 0.85 : 0.15;
+        this.icicleMat.opacity = isGlacier ? 0.88 : 0.98;
+      }
       if (this.spireMat) {
-        this.spireMat.color.setHex(isGlacier ? 0x075985 : 0x22130e);
-        this.spireMat.roughness = isGlacier ? 0.2 : 0.85;
+        this.spireMat.color.setHex(isGlacier ? 0x0369a1 : 0x140e0c);
+        this.spireMat.emissive.setHex(isGlacier ? 0x082f49 : 0x431407);
+        this.spireMat.emissiveIntensity = isGlacier ? 0.35 : 0.4;
+        this.spireMat.roughness = isGlacier ? 0.25 : 0.95;
         this.spireMat.metalness = isGlacier ? 0.65 : 0.1;
+      }
+      if (this.archMat) {
+        this.archMat.color.setHex(isGlacier ? 0x7dd3fc : 0x441b12);
+        this.archMat.emissive.setHex(isGlacier ? 0x0369a1 : 0x7c2d12);
+        this.archMat.emissiveIntensity = isGlacier ? 0.5 : 0.4;
       }
 
       // 7. 관문 게이트 링
