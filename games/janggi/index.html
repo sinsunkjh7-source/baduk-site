@@ -5,12 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>정통 장기 — JH 바둑스쿨 EduFun</title>
 <link rel="stylesheet" href="/unified-nav.css?v=20261101-janggi-v1">
-<link rel="stylesheet" href="style.css?v=20261101-janggi-v2">
+<link rel="stylesheet" href="style.css?v=20261101-janggi-v3">
 <script src="/unified-nav.js?v=20261101-janggi-v1" defer></script>
 <script src="rules.js?v=20261101-janggi-v1" defer></script>
 <script src="ai.js?v=20261101-janggi-v1" defer></script>
 <script src="audio.js?v=20261101-janggi-v1" defer></script>
-<script src="game.js?v=20261101-janggi-v2" defer></script>
+<script src="game.js?v=20261101-janggi-v3" defer></script>
 </head>
 <body data-bks-page="janggi">
 
@@ -97,6 +97,7 @@
 <!-- 대국 설정 모달 -->
 <div class="bks-modal-overlay" id="setupModal" hidden>
   <div class="bks-modal-card">
+    <button type="button" class="modal-close" id="btnCloseSetup" aria-label="설정 닫기">✕</button>
     <h2>🎯 정통 장기 대국 설정</h2>
     <p>대전 방식과 상차림을 선택하고 대국을 시작하세요.</p>
 
@@ -211,7 +212,10 @@
       </div>
     </div>
 
-    <button type="button" class="btn-modal-action" id="btnStartMatch">대국 시작하기</button>
+    <div class="modal-actions">
+      <button type="button" class="btn-modal-action" id="btnStartMatch">대국 시작하기</button>
+      <button type="button" class="btn-modal-cancel" id="btnCancelSetup">닫기</button>
+    </div>
   </div>
 </div>
 

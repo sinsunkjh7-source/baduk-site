@@ -231,6 +231,23 @@
       btnNewGame.addEventListener('click', openSetupModal);
     }
 
+    // 설정 모달 닫기 (X 버튼 / 닫기 버튼 / 바깥 클릭 / ESC)
+    function closeSetupModal() {
+      if (setupModal) setupModal.hidden = true;
+    }
+    ['btnCloseSetup', 'btnCancelSetup'].forEach(function (id) {
+      const b = document.getElementById(id);
+      if (b) b.addEventListener('click', closeSetupModal);
+    });
+    if (setupModal) {
+      setupModal.addEventListener('click', function (e) {
+        if (e.target === setupModal) closeSetupModal();
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && !setupModal.hidden) closeSetupModal();
+      });
+    }
+
     // Mode toggle
     if (btnToggleMode) {
       btnToggleMode.addEventListener('click', () => {

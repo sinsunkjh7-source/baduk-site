@@ -609,3 +609,18 @@ html, body {
   .board-wrapper{max-width:96vw;margin:0 auto}
   #janggiBoard{width:96vw;height:auto}
 }
+
+/* 설정 모달 닫기 버튼 */
+.bks-modal-card{position:relative}
+.modal-close{
+  position:absolute;top:12px;right:12px;width:36px;height:36px;
+  border:0;border-radius:50%;background:#eef3e8;color:#42553a;
+  font-size:16px;font-weight:800;line-height:1;cursor:pointer;z-index:2;
+}
+.modal-close:hover{background:#e0ebd6}
+.modal-actions{display:flex;flex-direction:column;gap:8px;margin-top:6px}
+.btn-modal-cancel{
+  border:1.5px solid #d6e4ca;background:#fff;color:#42553a;border-radius:12px;
+  padding:12px 14px;font-family:inherit;font-size:15px;font-weight:800;cursor:pointer;
+}
+.btn-modal-cancel:hover{background:#f4f9ee}
