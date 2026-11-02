@@ -601,8 +601,8 @@ canvas#goCanvas {
 
 .course-card-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
   width: 100%;
 }
 
@@ -610,10 +610,10 @@ canvas#goCanvas {
   background: rgba(30, 41, 59, 0.7);
   border: 1.5px solid rgba(148, 163, 184, 0.3);
   border-radius: 12px;
-  padding: 10px 12px;
+  padding: 10px 10px;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   text-align: left;
   cursor: pointer;
   transition: all 0.15s ease;
@@ -645,6 +645,12 @@ canvas#goCanvas {
   background: rgba(245, 158, 11, 0.2);
   color: #fbbf24;
   border-color: #fbbf24;
+}
+
+.course-tag.purple {
+  background: rgba(168, 85, 247, 0.25);
+  color: #c084fc;
+  border-color: #c084fc;
 }
 
 .course-info {
@@ -697,8 +703,9 @@ canvas#goCanvas {
 
 .start-btn-group {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   width: 100%;
   justify-content: center;
 }
@@ -708,8 +715,8 @@ canvas#goCanvas {
   color: #ffffff;
   border: none;
   border-radius: 14px;
-  padding: 14px 32px;
-  font-size: 17px;
+  padding: 13px 22px;
+  font-size: 15.5px;
   font-weight: 900;
   cursor: pointer;
   box-shadow: 0 8px 24px rgba(6, 182, 212, 0.45);
@@ -718,6 +725,21 @@ canvas#goCanvas {
   user-select: none;
   position: relative;
   z-index: 60;
+}
+
+.btn-course1-start {
+  background: linear-gradient(135deg, #0284c7 0%, #06b6d4 100%);
+  box-shadow: 0 8px 24px rgba(6, 182, 212, 0.45);
+}
+
+.btn-course2-start {
+  background: linear-gradient(135deg, #d97706 0%, #f59e0b 100%);
+  box-shadow: 0 8px 24px rgba(245, 158, 11, 0.45);
+}
+
+.btn-course3-start {
+  background: linear-gradient(135deg, #7c3aed 0%, #ec4899 100%);
+  box-shadow: 0 8px 24px rgba(168, 85, 247, 0.45);
 }
 
 .btn-launch:hover {

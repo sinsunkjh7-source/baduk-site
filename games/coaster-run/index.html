@@ -8,19 +8,22 @@
 <link rel="stylesheet" href="style.css?v=20261102-coaster-v5">
 <script src="/unified-nav.js?v=20261102-coaster-v6" defer></script>
 <script src="audio.js?v=20261102-coaster-v6"></script>
+<script src="three.min.js"></script>
 <script src="problems.js?v=20261102-coaster-v6"></script>
-<script src="courses.js?v=20261102-coaster-v6"></script>
+<script src="courses.js?v=20261102-coaster-v7"></script>
 <script src="videoEngine.js?v=20261102-coaster-v6"></script>
-<script src="game.js?v=20261102-coaster-v6"></script>
+<script src="spaceEngine.js?v=20261102-coaster-v7"></script>
+<script src="game.js?v=20261102-coaster-v7"></script>
 </head>
 <body data-bks-page="coaster-run">
 
-<!-- 1안: 실사 4K 롤러코스터 영상 뷰포트 (MP4 Faststart + WebM 폴백) -->
+<!-- 롤러코스터 뷰포트 (1,2코스: 실사 4K 영상 / 3코스: WebGL 3D 우주 엔진) -->
 <div id="coasterViewport">
   <video id="coasterVideo" playsinline preload="auto" muted>
     <source src="assets/coaster_real_mako.mp4" type="video/mp4">
     <source src="assets/coaster_real_mako_480p.webm" type="video/webm">
   </video>
+  <canvas id="spaceCanvas" style="display: none; position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1;"></canvas>
   <div class="video-vignette-overlay"></div>
   <div class="speed-motion-blur" id="speedMotionBlur"></div>
 </div>
@@ -181,6 +184,13 @@
             <div class="course-desc">세계 1위 기가코스터 & 터널 질주</div>
           </div>
         </button>
+        <button type="button" class="course-card" data-course="space">
+          <div class="course-tag purple">3코스</div>
+          <div class="course-info">
+            <div class="course-title">🌌 은하계 심우주 런</div>
+            <div class="course-desc">암흑 우주 & 토성 고리 워프 질주</div>
+          </div>
+        </button>
       </div>
     </div>
 
@@ -192,7 +202,8 @@
 
     <div class="start-btn-group">
       <button type="button" class="btn-launch btn-course1-start" id="btnLaunchCourse1">🌊 1코스 탑승 (호수 낭떠러지)</button>
-      <button type="button" class="btn-launch btn-course2-start" id="btnLaunchCourse2">⚡ 2코스 탑승 (99m 초고층 퓨리)</button>
+      <button type="button" class="btn-launch btn-course2-start" id="btnLaunchCourse2">⚡ 2코스 탑승 (99m 기가 퓨리)</button>
+      <button type="button" class="btn-launch btn-course3-start" id="btnLaunchCourse3">🌌 3코스 탑승 (은하계 심우주)</button>
     </div>
     <button type="button" class="btn-sub" id="btnStartSettings" style="margin-top: -6px;">⚙️ 주행 설정 변경</button>
   </div>

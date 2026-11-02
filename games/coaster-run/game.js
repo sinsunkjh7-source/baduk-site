@@ -51,12 +51,33 @@
       this.settingsModal = document.getElementById('settingsModal');
       this.startConfigSummary = document.getElementById('startConfigSummary');
 
-      // 실사 비디오 롤러코스터 엔진 인스턴스 생성 (1안)
+      // 실사 비디오 롤러코스터 엔진 인스턴스 생성 (1, 2코스)
       this.videoEl = document.getElementById('coasterVideo');
-      this.coaster = new VideoCoasterEngine(this.videoEl, {
+      this.videoCoaster = new VideoCoasterEngine(this.videoEl, {
         onGateReached: (gateIndex) => this.onGateReached(gateIndex),
         onFinish: () => this.handleVictory()
       });
+
+      // WebGL 3D 은하계 우주 롤러코스터 엔진 인스턴스 생성 (3코스)
+      this.spaceCanvas = document.getElementById('spaceCanvas');
+      if (window.SpaceCoasterEngine && this.spaceCanvas) {
+        this.spaceCoaster = new SpaceCoasterEngine(this.spaceCanvas, {
+          onGate: (gate, gateIndex) => this.onGateReached(gateIndex),
+          onFinish: () => this.handleVictory(),
+          onShake: (intensity) => {
+            const viewport = document.getElementById('coasterViewport');
+            if (viewport) {
+              viewport.style.transform = `translate(${(Math.random()-0.5)*12*intensity}px, ${(Math.random()-0.5)*12*intensity}px)`;
+              setTimeout(() => { viewport.style.transform = ''; }, 200);
+            }
+          }
+        });
+      } else {
+        this.spaceCoaster = null;
+      }
+
+      // 현재 활성화된 엔진 (기본: 비디오 엔진)
+      this.coaster = this.videoCoaster;
 
       // 코스 데이터 초기화
       this.currentCourseId = 'mako';
@@ -74,6 +95,18 @@
       if (!course) return;
       this.currentCourseId = courseId;
       this.currentCourse = course;
+
+      // 엔진 모드 전환: 3코스는 우주 3D WebGL 엔진, 1/2코스는 고화질 실사 영상 엔진
+      if (course.engineType === 'space' && this.spaceCoaster) {
+        if (this.videoEl) this.videoEl.style.display = 'none';
+        if (this.spaceCanvas) this.spaceCanvas.style.display = 'block';
+        this.coaster = this.spaceCoaster;
+      } else {
+        if (this.videoEl) this.videoEl.style.display = 'block';
+        if (this.spaceCanvas) this.spaceCanvas.style.display = 'none';
+        this.coaster = this.videoCoaster;
+      }
+
       this.coaster.setCourse(course);
 
       document.querySelectorAll('#courseCardGrid .course-card').forEach(card => {
@@ -82,12 +115,18 @@
 
       const badge = document.getElementById('currentCourseBadge');
       if (badge) {
-        badge.textContent = `선택됨: ${courseId === 'mako' ? '1코스' : '2코스'}`;
+        let label = '1코스';
+        if (courseId === 'fury') label = '2코스';
+        if (courseId === 'space') label = '3코스';
+        badge.textContent = `선택됨: ${label}`;
       }
 
       const hudCourseTag = document.getElementById('hudCourseTag');
       if (hudCourseTag) {
-        hudCourseTag.textContent = courseId === 'mako' ? '🌊 1코스 호수' : '⚡ 2코스 99m 퓨리';
+        let hudText = '🌊 1코스 호수';
+        if (courseId === 'fury') hudText = '⚡ 2코스 99m 퓨리';
+        if (courseId === 'space') hudText = '🌌 3코스 은하 심우주';
+        hudCourseTag.textContent = hudText;
       }
 
       const featureList = document.getElementById('courseFeatureList');
@@ -151,6 +190,15 @@
       if (btnLaunch2) {
         btnLaunch2.onclick = () => {
           this.selectCourse('fury');
+          this.startGame();
+        };
+      }
+
+      // 3코스 (은하계 심우주) 탑승 전용 버튼
+      const btnLaunch3 = document.getElementById('btnLaunchCourse3');
+      if (btnLaunch3) {
+        btnLaunch3.onclick = () => {
+          this.selectCourse('space');
           this.startGame();
         };
       }

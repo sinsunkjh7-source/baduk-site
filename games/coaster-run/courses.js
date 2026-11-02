@@ -124,6 +124,66 @@
           correct: { x: 2, y: 2 }
         }
       ]
+    },
+    space: {
+      id: 'space',
+      engineType: 'space',
+      title: '🌌 제3코스: 은하계 심우주 런',
+      theme: '칠흑 같은 우주 & 토성의 고리와 성운 (CGI 3D 네온 트론)',
+      gates: [
+        {
+          id: 0,
+          t: 0.22,
+          time: 25.0,
+          solved: false,
+          gateName: '제1관문: 토성의 고리 웜홀 스타게이트',
+          mission: '단수에 걸린 백돌을 따내고 워프 드라이브를 가동하라!',
+          hint: '백돌의 마지막 숨구멍 1곳을 찾아 클릭하세요.',
+          gateActionName: '⚡ 워프 드라이브 점화 & 토성 고리 초광속 돌파!',
+          boardSize: 5,
+          stones: [
+            { x: 2, y: 2, color: 'w' },
+            { x: 1, y: 2, color: 'b' }, { x: 2, y: 1, color: 'b' }, { x: 3, y: 2, color: 'b' },
+            { x: 0, y: 2, color: 'b' }, { x: 4, y: 2, color: 'b' }
+          ],
+          correct: { x: 2, y: 3 }
+        },
+        {
+          id: 1,
+          t: 0.52,
+          time: 48.0,
+          solved: false,
+          gateName: '제2관문: 오리온 성운 코스믹 게이트',
+          mission: '흑 대마를 살리는 독립된 두 집을 만들고 성운을 관통하라!',
+          hint: '가운데 급소에 착수하여 두 집을 완성하세요.',
+          gateActionName: '🌀 플라즈마 부스터 200km/h & 성운 심연 관통!',
+          boardSize: 5,
+          stones: [
+            { x: 1, y: 1, color: 'b' }, { x: 2, y: 1, color: 'b' }, { x: 3, y: 1, color: 'b' },
+            { x: 1, y: 3, color: 'b' }, { x: 2, y: 3, color: 'b' }, { x: 3, y: 3, color: 'b' },
+            { x: 0, y: 2, color: 'b' }, { x: 4, y: 2, color: 'b' },
+            { x: 2, y: 0, color: 'w' }, { x: 2, y: 4, color: 'w' }
+          ],
+          correct: { x: 2, y: 2 }
+        },
+        {
+          id: 2,
+          t: 0.82,
+          time: 75.0,
+          solved: false,
+          gateName: '제3관문: 블랙홀 탈출 초광속 관문',
+          mission: '먹여치기 한 수로 블랙홀 중력권을 탈출하여 은하계로 귀환하라!',
+          hint: '상대 진영 속에 내 돌을 하나 희생(먹여치기)시켜 백을 단수로 만드세요.',
+          gateActionName: '🚀 광속 돌파 & 은하계 대탈출 성공!',
+          boardSize: 5,
+          stones: [
+            { x: 2, y: 1, color: 'w' }, { x: 1, y: 2, color: 'w' }, { x: 3, y: 2, color: 'w' },
+            { x: 0, y: 2, color: 'b' }, { x: 4, y: 2, color: 'b' },
+            { x: 1, y: 1, color: 'b' }, { x: 3, y: 1, color: 'b' }, { x: 2, y: 0, color: 'b' }
+          ],
+          correct: { x: 2, y: 2 }
+        }
+      ]
     }
   };
 
