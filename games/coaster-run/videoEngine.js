@@ -54,15 +54,18 @@
       this.currentGateIndex = -1;
       this.gatePoints.forEach(g => g.solved = false);
 
-      // 리프트 등반은 살짝 빠르게(1.3x) 진행하여 지루함 제거
-      this.video.currentTime = 5.0; // 정거장 출발 직후부터 시작
+      // 리프트 등반은 쾌속(1.4x)으로 진행
       this.targetPlaybackRate = 1.35;
       this.video.playbackRate = 1.35;
 
+      // 영상 재생 시작 (버퍼링 없이 즉시 재생)
       const playPromise = this.video.play();
       if (playPromise !== undefined) {
         playPromise.catch(err => {
           console.warn('비디오 재생 대기:', err);
+          // 브라우저 정책으로 소리 포함 재생이 차단된 경우 음소거로 즉시 재생 보장
+          this.video.muted = true;
+          this.video.play().catch(e => console.error('비디오 강제 재생 실패:', e));
         });
       }
     }

@@ -4,19 +4,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>바둑 롤러코스터 런 — JH 바둑스쿨 EduFun</title>
-<link rel="stylesheet" href="/unified-nav.css?v=20261102-coaster-v4">
-<link rel="stylesheet" href="style.css?v=20261102-coaster-v4">
-<script src="/unified-nav.js?v=20261102-coaster-v4" defer></script>
-<script src="audio.js?v=20261102-coaster-v4"></script>
-<script src="problems.js?v=20261102-coaster-v4"></script>
-<script src="videoEngine.js?v=20261102-coaster-v4"></script>
-<script src="game.js?v=20261102-coaster-v4"></script>
+<link rel="stylesheet" href="/unified-nav.css?v=20261102-coaster-v5">
+<link rel="stylesheet" href="style.css?v=20261102-coaster-v5">
+<script src="/unified-nav.js?v=20261102-coaster-v5" defer></script>
+<script src="audio.js?v=20261102-coaster-v5"></script>
+<script src="problems.js?v=20261102-coaster-v5"></script>
+<script src="videoEngine.js?v=20261102-coaster-v5"></script>
+<script src="game.js?v=20261102-coaster-v5"></script>
 </head>
 <body data-bks-page="coaster-run">
 
-<!-- 1안: 실사 4K 롤러코스터 영상 뷰포트 -->
+<!-- 1안: 실사 4K 롤러코스터 영상 뷰포트 (MP4 Faststart + WebM 폴백) -->
 <div id="coasterViewport">
   <video id="coasterVideo" playsinline preload="auto" muted>
+    <source src="assets/coaster_real_mako.mp4" type="video/mp4">
     <source src="assets/coaster_real_mako_480p.webm" type="video/webm">
   </video>
   <div class="video-vignette-overlay"></div>

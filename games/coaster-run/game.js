@@ -89,21 +89,49 @@
     }
 
     initEvents() {
-      this.btnStart?.addEventListener('click', () => this.startGame());
-      document.getElementById('btnRestart')?.addEventListener('click', () => this.restartGame());
-      document.getElementById('btnRetry')?.addEventListener('click', () => this.restartGame());
-      document.getElementById('btnStartSettings')?.addEventListener('click', () => this.openSettings());
-      document.getElementById('btnOpenSettings')?.addEventListener('click', () => this.openSettings());
-      document.getElementById('btnGameOverSettings')?.addEventListener('click', () => {
-        this.gameOverModal.hidden = true;
-        this.openSettings();
-      });
+      const handleStart = (e) => {
+        if (e) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+        console.log('[CoasterGame] 출발 버튼 활성화 & 실행!');
+        this.startGame();
+      };
 
-      document.getElementById('btnToggleSound')?.addEventListener('click', () => {
-        const enabled = CoasterAudio.toggleSound();
-        const btn = document.getElementById('btnToggleSound');
-        if (btn) btn.textContent = enabled ? '🔊 소리' : '🔇 음소거';
-      });
+      if (this.btnStart) {
+        this.btnStart.onclick = handleStart;
+        this.btnStart.addEventListener('click', handleStart);
+        this.btnStart.addEventListener('touchend', handleStart, { passive: false });
+      }
+
+      const restartHandler = () => this.restartGame();
+      const btnRestart = document.getElementById('btnRestart');
+      if (btnRestart) btnRestart.onclick = restartHandler;
+
+      const btnRetry = document.getElementById('btnRetry');
+      if (btnRetry) btnRetry.onclick = restartHandler;
+
+      const btnStartSettings = document.getElementById('btnStartSettings');
+      if (btnStartSettings) btnStartSettings.onclick = () => this.openSettings();
+
+      const btnOpenSettings = document.getElementById('btnOpenSettings');
+      if (btnOpenSettings) btnOpenSettings.onclick = () => this.openSettings();
+
+      const btnGameOverSettings = document.getElementById('btnGameOverSettings');
+      if (btnGameOverSettings) {
+        btnGameOverSettings.onclick = () => {
+          this.gameOverModal.hidden = true;
+          this.openSettings();
+        };
+      }
+
+      const btnSound = document.getElementById('btnToggleSound');
+      if (btnSound) {
+        btnSound.onclick = () => {
+          const enabled = CoasterAudio.toggleSound();
+          btnSound.textContent = enabled ? '🔊 소리' : '🔇 음소거';
+        };
+      }
     }
 
     // 설정 모달 인터랙션
