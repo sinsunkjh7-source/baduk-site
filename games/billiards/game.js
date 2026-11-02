@@ -9,7 +9,7 @@
 
   var W = 960, H = 480, RAIL = 36;
   var MINX = RAIL, MAXX = W - RAIL, MINY = RAIL, MAXY = H - RAIL;
-  var R = 15, POCKET_R = 26;
+  var R = 19, POCKET_R = 30;
   var FRICTION = 0.9885, STOP = 0.06, CUSHION = 0.92, MAX_POWER = 26;
 
   var POCKET_COLORS = ['#f2c53d', '#2e6fb7', '#c0392b', '#7d3fa8', '#e07b2a', '#2f8f5b', '#8e2418', '#1d1d1d', '#e6d34a'];
