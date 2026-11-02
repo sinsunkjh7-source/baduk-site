@@ -13,17 +13,19 @@
 <script src="courses.js?v=20261102-coaster-v7"></script>
 <script src="videoEngine.js?v=20261102-coaster-v6"></script>
 <script src="spaceEngine.js?v=20261102-coaster-v7"></script>
-<script src="game.js?v=20261102-coaster-v7"></script>
+<script src="magmaEngine.js?v=20261102-coaster-v8"></script>
+<script src="game.js?v=20261102-coaster-v8"></script>
 </head>
 <body data-bks-page="coaster-run">
 
-<!-- 롤러코스터 뷰포트 (1,2코스: 실사 4K 영상 / 3코스: WebGL 3D 우주 엔진) -->
+<!-- 롤러코스터 뷰포트 (1,2,4코스: 실사 4K 영상 / 3,5코스: WebGL 3D 엔진) -->
 <div id="coasterViewport">
   <video id="coasterVideo" playsinline preload="auto" muted>
     <source src="assets/coaster_real_mako.mp4" type="video/mp4">
     <source src="assets/coaster_real_mako_480p.webm" type="video/webm">
   </video>
   <canvas id="spaceCanvas" style="display: none; position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1;"></canvas>
+  <canvas id="magmaCanvas" style="display: none; position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1;"></canvas>
   <div class="video-vignette-overlay"></div>
   <div class="speed-motion-blur" id="speedMotionBlur"></div>
 </div>
@@ -146,15 +148,10 @@
 <!-- 스타트 인트로 스크린 -->
 <div class="fullscreen-modal" id="startScreen">
   <div class="intro-card">
-    <h1>
-      🎢 바둑 롤러코스터 런
-      <span>(Real Hypercoaster 1080p — 1안 실사 엔진)</span>
-    </h1>
-    <p>
-      실제 <b>세계 최고 수준의 하이퍼코스터 POV 실사 영상</b>과 함께<br>
-      바둑 문제를 풀며 시원한 낭떠러지 급강하와 스피드를 즐기세요!<br>
-      정상에 오르면 <b>자연스럽게 서행(10km/h)</b>하며 문제가 나타납니다.
-    </p>
+    <div class="intro-title-wrap">
+      <h1>🎢 바둑 롤러코스터 런</h1>
+      <p class="intro-sub">3D 엔진 & 1080p 코스터를 타고 문제를 풀어 180km/h 부스터 점화!</p>
+    </div>
 
     <!-- 현재 설정 요약 배너 -->
     <div class="current-config-pill" id="startConfigSummary">
@@ -198,6 +195,13 @@
             <div class="course-desc">나무 레일 진동 & 터널 급강하</div>
           </div>
         </button>
+        <button type="button" class="course-card" data-course="magma">
+          <div class="course-tag flame">5코스</div>
+          <div class="course-info">
+            <div class="course-title">🔥 마그마 화산 런</div>
+            <div class="course-desc">용암 바다 & 불꽃 3D 다이내믹 런</div>
+          </div>
+        </button>
       </div>
     </div>
 
@@ -207,12 +211,10 @@
       <li>🚀 <b>제3관문</b>: 고속 뱅킹 턴 ➔ 결승 골인 (먹여치기/촉촉수)</li>
     </div>
 
-    <div class="start-btn-group">
-      <button type="button" class="btn-launch btn-course1-start" id="btnLaunchCourse1">🌊 1코스 탑승 (호수 낭떠러지)</button>
-      <button type="button" class="btn-launch btn-course2-start" id="btnLaunchCourse2">⚡ 2코스 탑승 (99m 기가 퓨리)</button>
-      <button type="button" class="btn-launch btn-course3-start" id="btnLaunchCourse3">🌌 3코스 탑승 (은하계 심우주)</button>
-      <button type="button" class="btn-launch btn-course4-start" id="btnLaunchCourse4">🪵 4코스 탑승 (숲속 목재 코스터)</button>
-    </div>
+    <!-- 메인 탑승 출발 버튼 -->
+    <button type="button" class="btn-launch btn-main-launch" id="btnStart">🚀 선택한 코스 탑승 출발!</button>
+
+    
     <button type="button" class="btn-sub" id="btnStartSettings" style="margin-top: -6px;">⚙️ 주행 설정 변경</button>
   </div>
 </div>

@@ -83,6 +83,24 @@
         this.spaceCoaster = null;
       }
 
+      // WebGL 3D 마그마 화산 롤러코스터 엔진 인스턴스 생성 (5코스)
+      this.magmaCanvas = document.getElementById('magmaCanvas');
+      if (window.MagmaCoasterEngine && this.magmaCanvas) {
+        this.magmaCoaster = new MagmaCoasterEngine(this.magmaCanvas, {
+          onGate: (gate, gateIndex) => this.onGateReached(gateIndex),
+          onFinish: () => this.handleVictory(),
+          onShake: (intensity) => {
+            const viewport = document.getElementById('coasterViewport');
+            if (viewport) {
+              viewport.style.transform = `translate(${(Math.random()-0.5)*15*intensity}px, ${(Math.random()-0.5)*15*intensity}px)`;
+              setTimeout(() => { viewport.style.transform = ''; }, 200);
+            }
+          }
+        });
+      } else {
+        this.magmaCoaster = null;
+      }
+
       // 현재 활성화된 엔진 (기본: 비디오 엔진)
       this.coaster = this.videoCoaster;
 
@@ -103,14 +121,21 @@
       this.currentCourseId = courseId;
       this.currentCourse = course;
 
-      // 엔진 모드 전환: 3코스는 우주 3D WebGL 엔진, 1/2코스는 고화질 실사 영상 엔진
-      if (course.engineType === 'space' && this.spaceCoaster) {
+      // 엔진 모드 전환: 3코스(우주 3D), 5코스(마그마 3D), 1/2/4코스(영상)
+      if (course.engineType === 'magma' && this.magmaCoaster) {
         if (this.videoEl) this.videoEl.style.display = 'none';
+        if (this.spaceCanvas) this.spaceCanvas.style.display = 'none';
+        if (this.magmaCanvas) this.magmaCanvas.style.display = 'block';
+        this.coaster = this.magmaCoaster;
+      } else if (course.engineType === 'space' && this.spaceCoaster) {
+        if (this.videoEl) this.videoEl.style.display = 'none';
+        if (this.magmaCanvas) this.magmaCanvas.style.display = 'none';
         if (this.spaceCanvas) this.spaceCanvas.style.display = 'block';
         this.coaster = this.spaceCoaster;
       } else {
         if (this.videoEl) this.videoEl.style.display = 'block';
         if (this.spaceCanvas) this.spaceCanvas.style.display = 'none';
+        if (this.magmaCanvas) this.magmaCanvas.style.display = 'none';
         this.coaster = this.videoCoaster;
       }
 
@@ -126,6 +151,7 @@
         if (courseId === 'fury') label = '2코스';
         if (courseId === 'space') label = '3코스';
         if (courseId === 'wood') label = '4코스';
+        if (courseId === 'magma') label = '5코스';
         badge.textContent = `선택됨: ${label}`;
       }
 
@@ -135,7 +161,30 @@
         if (courseId === 'fury') hudText = '⚡ 2코스 99m 퓨리';
         if (courseId === 'space') hudText = '🌌 3코스 은하 심우주';
         if (courseId === 'wood') hudText = '🪵 4코스 숲속 우든';
+        if (courseId === 'magma') hudText = '🔥 5코스 마그마 화산';
         hudCourseTag.textContent = hudText;
+      }
+
+      if (this.btnStart) {
+        let btnTheme = 'linear-gradient(135deg, #0284c7 0%, #06b6d4 100%)';
+        let btnShadow = 'rgba(6, 182, 212, 0.5)';
+        if (courseId === 'fury') {
+          btnTheme = 'linear-gradient(135deg, #d97706 0%, #f59e0b 100%)';
+          btnShadow = 'rgba(245, 158, 11, 0.5)';
+        } else if (courseId === 'space') {
+          btnTheme = 'linear-gradient(135deg, #7c3aed 0%, #ec4899 100%)';
+          btnShadow = 'rgba(168, 85, 247, 0.5)';
+        } else if (courseId === 'wood') {
+          btnTheme = 'linear-gradient(135deg, #15803d 0%, #16a34a 50%, #b45309 100%)';
+          btnShadow = 'rgba(22, 163, 74, 0.5)';
+        } else if (courseId === 'magma') {
+          btnTheme = 'linear-gradient(135deg, #c2410c 0%, #ea580c 50%, #f97316 100%)';
+          btnShadow = 'rgba(249, 115, 22, 0.6)';
+        }
+        this.btnStart.style.background = btnTheme;
+        this.btnStart.style.boxShadow = `0 10px 30px ${btnShadow}`;
+        const cleanTitle = course.title.replace(/제\d코스:\s*/, '');
+        this.btnStart.innerHTML = `🚀 <b>${cleanTitle}</b> 탑승 출발!`;
       }
 
       const featureList = document.getElementById('courseFeatureList');
@@ -221,6 +270,15 @@
         };
       }
 
+      // 5코스 (마그마 화산 런) 탑승 전용 버튼
+      const btnLaunch5 = document.getElementById('btnLaunchCourse5');
+      if (btnLaunch5) {
+        btnLaunch5.onclick = () => {
+          this.selectCourse('magma');
+          this.startGame();
+        };
+      }
+
       const restartHandler = () => this.restartGame();
       const btnRestart = document.getElementById('btnRestart');
       if (btnRestart) btnRestart.onclick = restartHandler;
@@ -254,7 +312,12 @@
       document.querySelectorAll('#courseCardGrid .course-card').forEach(card => {
         card.onclick = () => {
           const cid = card.getAttribute('data-course');
-          this.selectCourse(cid);
+          if (this.currentCourseId === cid) {
+            // 이미 선택된 카드를 다시 누르면 바로 출발!
+            this.startGame();
+          } else {
+            this.selectCourse(cid);
+          }
         };
       });
     }

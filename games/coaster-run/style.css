@@ -508,28 +508,32 @@ canvas#goCanvas {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px;
+  padding: 68px 16px 16px 16px;
+  overflow-y: auto;
 }
 
 .intro-card {
   background: #0f172a;
   border: 2px solid var(--neon-cyan);
-  border-radius: 24px;
-  padding: 32px 36px;
-  max-width: 540px;
+  border-radius: 20px;
+  padding: 12px 20px;
+  max-width: 580px;
+  max-height: calc(100vh - 80px);
+  overflow-y: auto;
   text-align: center;
   box-shadow: 0 20px 60px rgba(6, 182, 212, 0.35);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
+  gap: 8px;
 }
 
 .intro-card h1 {
-  font-size: 26px;
+  font-size: 20px;
   font-weight: 900;
   color: #ffffff;
-  line-height: 1.3;
+  line-height: 1.2;
+  margin-bottom: 2px;
 }
 
 .intro-card h1 span {
@@ -601,7 +605,7 @@ canvas#goCanvas {
 
 .course-card-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
   gap: 8px;
   width: 100%;
 }
@@ -657,6 +661,13 @@ canvas#goCanvas {
   background: rgba(22, 163, 74, 0.25);
   color: #4ade80;
   border-color: #4ade80;
+}
+
+.course-tag.flame {
+  background: rgba(234, 88, 12, 0.28);
+  color: #fb923c;
+  border-color: #ea580c;
+  box-shadow: 0 0 8px rgba(234, 88, 12, 0.4);
 }
 
 .course-info {
@@ -753,6 +764,11 @@ canvas#goCanvas {
   box-shadow: 0 8px 24px rgba(22, 163, 74, 0.45);
 }
 
+.btn-course5-start {
+  background: linear-gradient(135deg, #b91c1c 0%, #ea580c 50%, #f59e0b 100%);
+  box-shadow: 0 8px 24px rgba(234, 88, 12, 0.55);
+}
+
 .btn-launch:hover {
   transform: translateY(-2px) scale(1.03);
   box-shadow: 0 12px 32px rgba(6, 182, 212, 0.65);
@@ -800,4 +816,92 @@ canvas#goCanvas {
   .setting-pill-grid {
     grid-template-columns: 1fr;
   }
+}
+/* 메인 단일 출발 버튼 & 퀵 런치 바 */
+.btn-main-launch {
+  width: 100%;
+  padding: 14px 28px;
+  font-size: 17px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #0284c7 0%, #06b6d4 100%);
+  box-shadow: 0 10px 30px rgba(6, 182, 212, 0.5);
+  letter-spacing: 0.5px;
+}
+.btn-main-launch:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 36px rgba(6, 182, 212, 0.7);
+}
+
+.quick-course-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  width: 100%;
+  padding: 6px 10px;
+  background: rgba(15, 23, 42, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+.quick-label {
+  font-size: 11.5px;
+  color: #94a3b8;
+  font-weight: 700;
+  margin-right: 4px;
+}
+
+.pill-launch {
+  background: rgba(30, 41, 59, 0.9);
+  color: #cbd5e1;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  padding: 5px 10px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.pill-launch:hover {
+  background: #0284c7;
+  color: #ffffff;
+  border-color: #38bdf8;
+  transform: translateY(-1px);
+}
+.pill-launch.purple:hover {
+  background: #7c3aed;
+  border-color: #c084fc;
+}
+.pill-launch.green:hover {
+  background: #16a34a;
+  border-color: #4ade80;
+}
+.pill-launch.flame {
+  border-color: rgba(249, 115, 22, 0.4);
+  color: #fdba74;
+}
+.pill-launch.flame:hover {
+  background: linear-gradient(135deg, #ea580c 0%, #f97316 100%);
+  color: #ffffff;
+  border-color: #fb923c;
+  box-shadow: 0 4px 14px rgba(249, 115, 22, 0.5);
+}
+
+.intro-title-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  align-items: center;
+}
+.intro-title-wrap h1 {
+  font-size: 20px;
+  font-weight: 900;
+  color: #ffffff;
+  margin: 0;
+}
+.intro-sub {
+  font-size: 12px;
+  color: #94a3b8;
+  margin: 0;
 }
