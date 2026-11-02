@@ -541,6 +541,116 @@ canvas#goCanvas {
   color: #64748b;
 }
 
+/* 테마 코스 선택 박스 */
+.course-selector-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  border-radius: 16px;
+  padding: 12px 14px;
+}
+
+.course-selector-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.course-selector-title {
+  font-size: 13.5px;
+  font-weight: 800;
+  color: #cbd5e1;
+}
+
+.course-selector-badge {
+  font-size: 11.5px;
+  font-weight: 800;
+  background: rgba(56, 189, 248, 0.2);
+  color: var(--neon-cyan);
+  border-radius: 6px;
+  padding: 2px 8px;
+}
+
+.course-card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  width: 100%;
+}
+
+.course-card {
+  background: rgba(30, 41, 59, 0.7);
+  border: 1.5px solid rgba(148, 163, 184, 0.3);
+  border-radius: 12px;
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.course-card:hover {
+  background: rgba(51, 65, 85, 0.8);
+  border-color: rgba(56, 189, 248, 0.6);
+}
+
+.course-card.active {
+  background: rgba(2, 132, 199, 0.28);
+  border-color: var(--neon-cyan);
+  box-shadow: 0 0 16px rgba(56, 189, 248, 0.45);
+}
+
+.course-tag {
+  font-size: 11px;
+  font-weight: 900;
+  background: rgba(56, 189, 248, 0.2);
+  color: var(--neon-cyan);
+  border: 1px solid var(--neon-cyan);
+  border-radius: 6px;
+  padding: 3px 6px;
+  flex-shrink: 0;
+}
+
+.course-tag.gold {
+  background: rgba(245, 158, 11, 0.2);
+  color: #fbbf24;
+  border-color: #fbbf24;
+}
+
+.course-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  overflow: hidden;
+}
+
+.course-title {
+  font-size: 13.5px;
+  font-weight: 800;
+  color: #ffffff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.course-card.active .course-title {
+  color: var(--neon-cyan);
+}
+
+.course-desc {
+  font-size: 11px;
+  color: #94a3b8;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .coaster-feature-list {
   display: flex;
   flex-direction: column;

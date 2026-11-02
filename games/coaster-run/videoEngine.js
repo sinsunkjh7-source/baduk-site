@@ -48,6 +48,19 @@
       this.updateLoop();
     }
 
+    setCourse(course) {
+      if (!course) return;
+      this.currentCourse = course;
+      this.gatePoints = course.gates.map(g => ({ ...g, solved: false }));
+      
+      const currentSrc = this.video.currentSrc || this.video.src || '';
+      if (!currentSrc.includes(course.videoSrc)) {
+        this.video.src = course.videoSrc;
+        this.video.load();
+      }
+      this.resetRide();
+    }
+
     startRide() {
       this.isEmergencyStopped = false;
       this.isGlidingSlow = false;
@@ -103,8 +116,9 @@
         }
       }
 
-      // 2. 게이트 통과 후 완주 체크 (105초 이후)
-      if (curTime >= 105.0 && this.gatePoints.every(g => g.solved)) {
+      // 2. 게이트 통과 후 완주 체크
+      const finishTime = (this.currentCourse && this.currentCourse.id === 'fury') ? 85.0 : 105.0;
+      if (curTime >= finishTime && this.gatePoints.every(g => g.solved)) {
         if (this.options.onFinish) {
           this.options.onFinish();
         }

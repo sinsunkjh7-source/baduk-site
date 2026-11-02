@@ -58,10 +58,39 @@
         onFinish: () => this.handleVictory()
       });
 
+      // 코스 데이터 초기화
+      this.currentCourseId = 'mako';
+      this.currentCourse = window.COASTER_COURSES?.mako || null;
+
       this.initEvents();
       this.initSettingsEvents();
       this.initGoBoardEvents();
       this.updateConfigSummary();
+      if (this.currentCourse) this.selectCourse('mako');
+    }
+
+    selectCourse(courseId) {
+      const course = window.COASTER_COURSES?.[courseId];
+      if (!course) return;
+      this.currentCourseId = courseId;
+      this.currentCourse = course;
+      this.coaster.setCourse(course);
+
+      document.querySelectorAll('#courseCardGrid .course-card').forEach(card => {
+        card.classList.toggle('active', card.getAttribute('data-course') === courseId);
+      });
+
+      const badge = document.getElementById('currentCourseBadge');
+      if (badge) {
+        badge.textContent = `선택됨: ${courseId === 'mako' ? '1코스' : '2코스'}`;
+      }
+
+      const featureList = document.getElementById('courseFeatureList');
+      if (featureList && course.gates) {
+        featureList.innerHTML = course.gates.map((g, idx) => `
+          <li>🎢 <b>${g.gateName.split(':')[0]}</b>: ${g.gateName.split(':')[1] || g.gateName}</li>
+        `).join('');
+      }
     }
 
     loadSettings() {
@@ -132,6 +161,14 @@
           btnSound.textContent = enabled ? '🔊 소리' : '🔇 음소거';
         };
       }
+
+      // 테마 코스 선택 카드 클릭 이벤트
+      document.querySelectorAll('#courseCardGrid .course-card').forEach(card => {
+        card.onclick = () => {
+          const cid = card.getAttribute('data-course');
+          this.selectCourse(cid);
+        };
+      });
     }
 
     // 설정 모달 인터랙션
@@ -225,7 +262,7 @@
       this.updateHUD();
     }
 
-    // 게이트 도달 시 (3D 엔진에서 슬로우 글라이딩 진입 콜백)
+    // 게이트 도달 시 (슬로우 글라이딩 진입 콜백)
     onGateReached(gateIndex) {
       this.gameState = 'GATE';
       this.currentProblemIndex = gateIndex;
@@ -233,7 +270,8 @@
       CoasterAudio.stopLiftHill();
       CoasterAudio.playBrakeScreech();
 
-      const problem = COASTER_PROBLEMS[gateIndex];
+      const problem = (this.currentCourse && this.currentCourse.gates) ?
+        this.currentCourse.gates[gateIndex] : COASTER_PROBLEMS[gateIndex];
       if (!problem) return;
 
       // 상단 관문 배너 갱신
@@ -245,7 +283,7 @@
       // 윈드실드 HUD 바둑판 정보 갱신
       this.hudGateTag.textContent = `🔒 ${problem.gateName.split(':')[0]}`;
       this.hudBoardPrompt.textContent = problem.mission;
-      this.hudFooterGuide.innerHTML = `🚀 제한 시간 내 정답 시 <b>140km/h 초고속 부스터</b> 점화! (시간 초과 시 일반 순항)`;
+      this.hudFooterGuide.innerHTML = `🚀 제한 시간 내 정답 시 <b>150km/h 초고속 부스터</b> 점화! (시간 초과 시 일반 순항)`;
 
       // 바둑판 팝업 표시 및 렌더링
       this.boardModal.hidden = false;
@@ -416,7 +454,8 @@
         const clickX = e.clientX - rect.left;
         const clickY = e.clientY - rect.top;
 
-        const problem = COASTER_PROBLEMS[this.currentProblemIndex];
+        const problem = (this.currentCourse && this.currentCourse.gates) ?
+          this.currentCourse.gates[this.currentProblemIndex] : COASTER_PROBLEMS[this.currentProblemIndex];
         const padding = 45;
         const cellSize = (380 - padding * 2) / (problem.boardSize - 1);
 
@@ -477,7 +516,8 @@
       CoasterAudio.playPassSwoosh();
       this.coaster.triggerWrong();
 
-      const problem = COASTER_PROBLEMS[this.currentProblemIndex];
+      const problem = (this.currentCourse && this.currentCourse.gates) ?
+        this.currentCourse.gates[this.currentProblemIndex] : COASTER_PROBLEMS[this.currentProblemIndex];
 
       if (this.failureLimit > 0) {
         this.lives--;

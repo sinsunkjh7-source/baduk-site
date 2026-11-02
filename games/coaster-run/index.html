@@ -6,11 +6,12 @@
 <title>바둑 롤러코스터 런 — JH 바둑스쿨 EduFun</title>
 <link rel="stylesheet" href="/unified-nav.css?v=20261102-coaster-v5">
 <link rel="stylesheet" href="style.css?v=20261102-coaster-v5">
-<script src="/unified-nav.js?v=20261102-coaster-v5" defer></script>
-<script src="audio.js?v=20261102-coaster-v5"></script>
-<script src="problems.js?v=20261102-coaster-v5"></script>
-<script src="videoEngine.js?v=20261102-coaster-v5"></script>
-<script src="game.js?v=20261102-coaster-v5"></script>
+<script src="/unified-nav.js?v=20261102-coaster-v6" defer></script>
+<script src="audio.js?v=20261102-coaster-v6"></script>
+<script src="problems.js?v=20261102-coaster-v6"></script>
+<script src="courses.js?v=20261102-coaster-v6"></script>
+<script src="videoEngine.js?v=20261102-coaster-v6"></script>
+<script src="game.js?v=20261102-coaster-v6"></script>
 </head>
 <body data-bks-page="coaster-run">
 
@@ -158,7 +159,31 @@
       <span>🔋 비상정차: <b>3회 기회</b></span>
     </div>
 
-    <div class="coaster-feature-list">
+    <!-- ⭐ 테마 코스 선택 카드 그리드 ⭐ -->
+    <div class="course-selector-box">
+      <div class="course-selector-header">
+        <span class="course-selector-title">🎢 테마 코스 선택</span>
+        <span class="course-selector-badge" id="currentCourseBadge">선택됨: 1코스</span>
+      </div>
+      <div class="course-card-grid" id="courseCardGrid">
+        <button type="button" class="course-card active" data-course="mako">
+          <div class="course-tag">1코스</div>
+          <div class="course-info">
+            <div class="course-title">🌊 에메랄드 호수 런</div>
+            <div class="course-desc">맑은 호수 & 61m 낭떠러지 급강하</div>
+          </div>
+        </button>
+        <button type="button" class="course-card" data-course="fury">
+          <div class="course-tag gold">2코스</div>
+          <div class="course-info">
+            <div class="course-title">⚡ 99m 스카이 기가 런</div>
+            <div class="course-desc">세계 1위 기가코스터 & 터널 질주</div>
+          </div>
+        </button>
+      </div>
+    </div>
+
+    <div class="coaster-feature-list" id="courseFeatureList">
       <li>🎢 <b>제1관문</b>: 높이 61m 정상 정점 ➔ 73도 수직 급강하 (활로와 단수)</li>
       <li>🌀 <b>제2관문</b>: 제2 에어타임 언덕 ➔ 호수 질주 (두 집 만들기)</li>
       <li>🚀 <b>제3관문</b>: 고속 뱅킹 턴 ➔ 결승 골인 (먹여치기/촉촉수)</li>
