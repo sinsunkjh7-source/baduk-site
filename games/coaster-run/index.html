@@ -28,6 +28,77 @@
   <canvas id="magmaCanvas" style="display: none; position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1;"></canvas>
   <div class="video-vignette-overlay"></div>
   <div class="speed-motion-blur" id="speedMotionBlur"></div>
+    <!-- 1인칭 롤러코스터 카트 콕핏 & 손잡이를 쥔 두 손 오버레이 -->
+    <div class="cockpit-overlay" id="cockpitOverlay">
+      <svg viewBox="0 0 1000 220" width="100%" height="100%" preserveAspectRatio="none">
+        <defs>
+          <linearGradient id="barGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#94a3b8"/>
+            <stop offset="30%" stop-color="#475569"/>
+            <stop offset="70%" stop-color="#1e293b"/>
+            <stop offset="100%" stop-color="#0f172a"/>
+          </linearGradient>
+          <linearGradient id="hoodGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#1f1815"/>
+            <stop offset="40%" stop-color="#120c0a"/>
+            <stop offset="100%" stop-color="#0a0605"/>
+          </linearGradient>
+          <linearGradient id="stripeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#ff3300"/>
+            <stop offset="50%" stop-color="#ff7700"/>
+            <stop offset="100%" stop-color="#ff3300"/>
+          </linearGradient>
+          <linearGradient id="gloveGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#334155"/>
+            <stop offset="60%" stop-color="#1e293b"/>
+            <stop offset="100%" stop-color="#0f172a"/>
+          </linearGradient>
+          <linearGradient id="orangeGuard" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#fb923c"/>
+            <stop offset="100%" stop-color="#c2410c"/>
+          </linearGradient>
+        </defs>
+
+        <!-- 카트 전면 보닛 -->
+        <polygon points="120,220 220,110 780,110 880,220" fill="url(#hoodGrad)" stroke="#33221b" stroke-width="2"/>
+        <!-- 보닛 오렌지 발광 스트라이프 -->
+        <polygon points="215,110 230,103 770,103 785,110" fill="url(#stripeGrad)" opacity="0.95"/>
+
+        <!-- 강철 안전 손잡이 바 지지대 -->
+        <rect x="230" y="85" width="28" height="120" rx="6" fill="#1e293b" stroke="#334155" stroke-width="2"/>
+        <rect x="742" y="85" width="28" height="120" rx="6" fill="#1e293b" stroke="#334155" stroke-width="2"/>
+
+        <!-- 가로 안전 손잡이 바 -->
+        <rect x="180" y="70" width="640" height="34" rx="17" fill="url(#barGrad)" stroke="#64748b" stroke-width="2"/>
+        <line x1="200" y1="78" x2="800" y2="78" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" opacity="0.45"/>
+
+        <!-- 왼손 (손잡이를 꽉 쥐고 있음) -->
+        <g id="leftHand">
+          <polygon points="230,220 290,220 335,100 295,95" fill="url(#gloveGrad)"/>
+          <rect x="290" y="105" width="45" height="14" rx="5" fill="url(#orangeGuard)"/>
+          <rect x="292" y="60" width="48" height="42" rx="14" fill="url(#gloveGrad)" stroke="#0f172a" stroke-width="2"/>
+          <rect x="296" y="64" width="40" height="15" rx="5" fill="url(#orangeGuard)"/>
+          <ellipse cx="288" cy="74" rx="8" ry="14" transform="rotate(-25 288 74)" fill="url(#gloveGrad)" stroke="#0f172a" stroke-width="1.5"/>
+          <path d="M 296,98 C 296,110 336,110 336,98 Z" fill="#1e293b"/>
+          <line x1="306" y1="80" x2="306" y2="100" stroke="#0f172a" stroke-width="2"/>
+          <line x1="316" y1="80" x2="316" y2="100" stroke="#0f172a" stroke-width="2"/>
+          <line x1="326" y1="80" x2="326" y2="100" stroke="#0f172a" stroke-width="2"/>
+        </g>
+
+        <!-- 오른손 (손잡이를 꽉 쥐고 있음) -->
+        <g id="rightHand">
+          <polygon points="770,220 710,220 665,100 705,95" fill="url(#gloveGrad)"/>
+          <rect x="665" y="105" width="45" height="14" rx="5" fill="url(#orangeGuard)"/>
+          <rect x="660" y="60" width="48" height="42" rx="14" fill="url(#gloveGrad)" stroke="#0f172a" stroke-width="2"/>
+          <rect x="664" y="64" width="40" height="15" rx="5" fill="url(#orangeGuard)"/>
+          <ellipse cx="712" cy="74" rx="8" ry="14" transform="rotate(25 712 74)" fill="url(#gloveGrad)" stroke="#0f172a" stroke-width="1.5"/>
+          <path d="M 664,98 C 664,110 704,110 704,98 Z" fill="#1e293b"/>
+          <line x1="674" y1="80" x2="674" y2="100" stroke="#0f172a" stroke-width="2"/>
+          <line x1="684" y1="80" x2="684" y2="100" stroke="#0f172a" stroke-width="2"/>
+          <line x1="694" y1="80" x2="694" y2="100" stroke="#0f172a" stroke-width="2"/>
+        </g>
+      </svg>
+    </div>
 </div>
 
 <!-- 콕핏 HUD 오버레이 -->
