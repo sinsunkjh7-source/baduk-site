@@ -1,90 +1,87 @@
 /**
- * magmaEngine.js - Three.js 실시간 3D 마그마 화산 런 엔진
+ * magmaEngine.js - 다이내믹 3D 마그마 화산 롤러코스터 엔진 (Three.js WebGL)
  * 
- * - 붉게 타오르는 화산 내부 앰비언트 & 끓어오르는 용암 바다 (Lava Sea)
- * - 공중으로 솟구치는 3,000개 화산재 & 불꽃 파티클 (Ember Spark Particles)
- * - 흑요석 암벽 기둥 & 화산 동굴 아치
- * - 불타는 오렌지 & 마그마 레드 발광 트윈 레일
- * - 다이내믹 뱅킹 카메라 (롤러코스터 경사에 따른 자연스러운 틸트 & 롤)
- * - 5개 관문 (돌 따내기 5문제) & 정답 시 180km/h 플라즈마 부스터 가동
+ * 주요 특징:
+ * 1. 원형 글로우 불꽃/불티 파티클 (Canvas Radial Gradient)
+ * 2. 150m 정상 등반 -> 145m 수직 90도 급강하 -> 45도 급격한 뱅킹 턴 -> 에어타임 언덕
+ * 3. 물리 기반 중력 가속도 & 게이트 앞 강력한 에어 브레이크 & 정답 시 210km/h 급발진
+ * 4. 속도 연동 FOV 다이내믹 줌아웃 (65 -> 88도) & 화면 진동
+ * 5. Web Audio 실시간 레일 마찰음 + 바람 굉음 연동
  */
 (function(window) {
   'use strict';
 
   class MagmaCoasterEngine {
-    constructor(canvasElement, options = {}) {
-      this.canvas = canvasElement;
+    constructor(canvas, options = {}) {
+      this.canvas = canvas;
       this.options = options;
 
       this.scene = null;
       this.camera = null;
       this.renderer = null;
-
-      // 궤도 및 모션
       this.curve = null;
-      this.t = 0.0;
-      this.baseSpeed = 0.00030; // 5개 관문을 즐기기 적절한 순항 속도
-      this.currentSpeedFactor = 1.0;
-      this.targetSpeedFactor = 1.0;
-
-      // 상태 플래그
-      this.isPlaying = false;
-      this.isGlidingSlow = false;
-      this.isEmergencyStopped = false;
-      this.isBooster = false;
-      this.currentGateIndex = -1;
-      this.currentSpeedKm = 0;
-
-      // 5개 관문 체크포인트 (t: 0.0 ~ 1.0)
-      this.gatePoints = [
-        { t: 0.16, solved: false, id: 0, name: "제1관문: 분화구 정상 용암 다이브" },
-        { t: 0.35, solved: false, id: 1, name: "제2관문: 끓어오르는 용암 호수 위" },
-        { t: 0.54, solved: false, id: 2, name: "제3관문: 흑요석 동굴 지하 터널" },
-        { t: 0.72, solved: false, id: 3, name: "제4관문: 솟구치는 마그마 간헐천" },
-        { t: 0.88, solved: false, id: 4, name: "제5관문: 화산 대폭발 탈출로" }
-      ];
-
-      // 3D 오브젝트
+      this.trackMesh = null;
       this.emberPoints = null;
       this.lavaMesh = null;
-      this.rockPillars = [];
+      this.speedStreakGroup = null;
       this.gatePortals = [];
-      this.speedStreaks = null;
+
+      // 주행 상태
+      this.isPlaying = false;
+      this.isEmergencyStopped = false;
+      this.isGlidingSlow = false;
+      this.isBooster = false;
+      this.currentGateIndex = -1;
+
+      // 주행 진행도 (t: 0.0 ~ 1.0)
+      this.t = 0.0;
+      this.baseSpeed = 0.00065; // 고속 베이스
+      this.currentSpeedFactor = 1.0;
+      this.targetSpeedFactor = 1.0;
+      this.currentSpeedKm = 0;
+      this.currentFOV = 68;
+
+      // 5개 관문 위치 (t 지점)
+      this.gatePoints = [
+        { id: 0, t: 0.16, solved: false },
+        { id: 1, t: 0.35, solved: false },
+        { id: 2, t: 0.54, solved: false },
+        { id: 3, t: 0.72, solved: false },
+        { id: 4, t: 0.88, solved: false }
+      ];
 
       this.initThree();
     }
 
     initThree() {
-      if (!window.THREE || !this.canvas) return;
+      if (!this.canvas || !window.THREE) return;
 
       const width = this.canvas.clientWidth || window.innerWidth;
       const height = this.canvas.clientHeight || window.innerHeight;
 
-      // 1. 씬 & 카메라
       this.scene = new THREE.Scene();
-      this.scene.background = new THREE.Color(0x140303); // 칠흑 같은 화산 내부 암흑
-      this.scene.fog = new THREE.FogExp2(0x1a0505, 0.0014); // 붉은 화산 안개
+      this.scene.background = new THREE.Color(0x0a0302);
+      this.scene.fog = new THREE.FogExp2(0x180502, 0.0016);
 
-      this.camera = new THREE.PerspectiveCamera(74, width / height, 0.5, 3000);
+      this.camera = new THREE.PerspectiveCamera(68, width / height, 0.1, 3500);
+      this.camera.position.set(0, 15, 0);
 
-      // 2. 렌더러
       this.renderer = new THREE.WebGLRenderer({
         canvas: this.canvas,
         antialias: true,
-        powerPreference: "high-performance"
+        powerPreference: 'high-performance'
       });
       this.renderer.setSize(width, height);
-      this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+      this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-      // 3. 조명 (화산 붉은빛 & 오렌지빛)
-      const ambientLight = new THREE.AmbientLight(0x441111, 1.2);
-      this.scene.add(ambientLight);
+      // 조명
+      const ambient = new THREE.AmbientLight(0xff4411, 0.85);
+      this.scene.add(ambient);
 
-      const lavaSun = new THREE.DirectionalLight(0xff4400, 2.0);
-      lavaSun.position.set(200, 300, 100);
-      this.scene.add(lavaSun);
+      const dirLight = new THREE.DirectionalLight(0xffaa33, 1.2);
+      dirLight.position.set(100, 300, 100);
+      this.scene.add(dirLight);
 
-      // 4. 구성 요소 생성
       this.createDynamicTrack();
       this.createLavaSea();
       this.createEmbers();
@@ -108,108 +105,137 @@
     }
 
     /**
-     * 다이내믹 롤러코스터 궤도 생성 (급강하 다이브, 에어타임, S자 뱅킹)
+     * 다이내믹 롤러코스터 트랙 설계 (극적인 고저차, 급강하, 45도 뱅킹 턴)
      */
     createDynamicTrack() {
       const points = [
-        new THREE.Vector3(0, 10, 0),         // 0. 출발역
-        new THREE.Vector3(0, 60, -140),      // 1. 화산 리프트 등반
-        new THREE.Vector3(20, 110, -280),    // 2. 분화구 정상 정점 (제1관문 전)
-        new THREE.Vector3(0, 15, -450),      // 3. 95m 수직 용암 다이브! (바닥으로 급강하)
-        new THREE.Vector3(-80, 5, -600),     // 4. 용암 수면 저공 질주
-        new THREE.Vector3(-140, 45, -760),   // 5. 솟구치는 에어타임 언덕 (제2관문 전)
-        new THREE.Vector3(-60, 10, -920),    // 6. 용암 호수 횡단
-        new THREE.Vector3(50, -15, -1080),   // 7. 지하 현무암 동굴 진입로 (제3관문 전)
-        new THREE.Vector3(120, -20, -1260),  // 8. 동굴 내부 S자 뱅킹
-        new THREE.Vector3(80, 30, -1440),    // 9. 동굴 탈출 솟구침 (제4관문 전)
-        new THREE.Vector3(-30, 70, -1620),   // 10. 간헐천 상공 고공 선회
-        new THREE.Vector3(-100, 40, -1800),  // 11. 화산벽 나선 하강 (제5관문 전)
-        new THREE.Vector3(0, 10, -2000),     // 12. 최종 초고속 탈출 직선로
-        new THREE.Vector3(0, 5, -2150)       // 13. 피니시 골인
+        new THREE.Vector3(0, 15, 0),         // 0. 출발역
+        new THREE.Vector3(0, 80, -120),      // 1. 화산 리프트 등반 1차
+        new THREE.Vector3(10, 155, -280),    // 2. 분화구 155m 아득한 정상 정점 (제1관문)
+        new THREE.Vector3(0, 12, -450),      // 3. 💥 143m 수직 90도 절벽 급강하 다이브! (바닥으로 추락)
+        new THREE.Vector3(-150, 6, -640),    // 4. 용암 수면 초저공 질주 & 급격한 좌 45도 뱅킹 턴!
+        new THREE.Vector3(-80, 115, -830),   // 5. 솟구치는 에어타임 카멜백 언덕 정점 (제2관문)
+        new THREE.Vector3(20, 8, -1010),     // 6. 지하 동굴 입구로 급강하
+        new THREE.Vector3(120, -28, -1190),  // 7. 흑요석 지하 동굴 심연 S자 뱅킹 (제3관문)
+        new THREE.Vector3(60, 20, -1370),    // 8. 동굴 탈출 상승
+        new THREE.Vector3(-30, 125, -1550),  // 9. 간헐천 상공 125m 수직 솟구침 (제4관문)
+        new THREE.Vector3(-140, 35, -1740),  // 10. 화산 외벽 360도 나선 급강하 헬릭스
+        new THREE.Vector3(-40, 50, -1920),   // 11. 화산 폭발 분화구 입구 (제5관문)
+        new THREE.Vector3(0, 15, -2120),     // 12. 최종 초광속 210km/h 탈출 직선로
+        new THREE.Vector3(0, 10, -2280)      // 13. 피니시 골인
       ];
 
       this.curve = new THREE.CatmullRomCurve3(points);
       this.curve.curveType = 'catmullrom';
-      this.curve.tension = 0.5;
+      this.curve.tension = 0.52;
 
       // 듀얼 발광 네온 레일 (오렌지 & 마그마 레드)
-      const segments = 450;
+      const segments = 550;
       const leftPoints = [];
       const rightPoints = [];
-      const gauge = 2.4;
+      const gauge = 2.6;
 
       for (let i = 0; i <= segments; i++) {
         const u = i / segments;
         const pos = this.curve.getPointAt(u);
-        const tangent = this.curve.getTangentAt(u).normalize();
-        const normal = new THREE.Vector3(0, 1, 0);
-        const binormal = new THREE.Vector3().crossVectors(tangent, normal).normalize();
+        const tan = this.curve.getTangentAt(u).normalize();
+        const norm = new THREE.Vector3(-tan.z, 0, tan.x).normalize();
 
-        leftPoints.push(new THREE.Vector3().copy(pos).addScaledVector(binormal, -gauge / 2));
-        rightPoints.push(new THREE.Vector3().copy(pos).addScaledVector(binormal, gauge / 2));
+        leftPoints.push(pos.clone().addScaledVector(norm, -gauge / 2));
+        rightPoints.push(pos.clone().addScaledVector(norm, gauge / 2));
       }
 
-      // 좌측 불꽃 오렌지 레일
-      const leftGeom = new THREE.TubeGeometry(new THREE.CatmullRomCurve3(leftPoints), 320, 0.3, 8, false);
-      const leftMat = new THREE.MeshStandardMaterial({
-        color: 0xff6600,
-        emissive: 0xff3300,
-        roughness: 0.2,
-        metalness: 0.7
+      const leftCurve = new THREE.CatmullRomCurve3(leftPoints);
+      const rightCurve = new THREE.CatmullRomCurve3(rightPoints);
+
+      const railGeomL = new THREE.TubeGeometry(leftCurve, 550, 0.42, 8, false);
+      const railGeomR = new THREE.TubeGeometry(rightCurve, 550, 0.42, 8, false);
+
+      const railMatL = new THREE.MeshStandardMaterial({
+        color: 0xff3300,
+        emissive: 0xff2200,
+        emissiveIntensity: 0.9,
+        roughness: 0.25,
+        metalness: 0.8
       });
-      this.scene.add(new THREE.Mesh(leftGeom, leftMat));
 
-      // 우측 마그마 레드 레일
-      const rightGeom = new THREE.TubeGeometry(new THREE.CatmullRomCurve3(rightPoints), 320, 0.3, 8, false);
-      const rightMat = new THREE.MeshStandardMaterial({
-        color: 0xff1100,
-        emissive: 0xcc0000,
-        roughness: 0.2,
-        metalness: 0.7
+      const railMatR = new THREE.MeshStandardMaterial({
+        color: 0xff7700,
+        emissive: 0xff5500,
+        emissiveIntensity: 0.9,
+        roughness: 0.25,
+        metalness: 0.8
       });
-      this.scene.add(new THREE.Mesh(rightGeom, rightMat));
 
-      // 침목 (슬리퍼)
-      const sleeperCount = 220;
-      const sleeperGeom = new THREE.BoxGeometry(gauge + 0.6, 0.25, 0.45);
-      const sleeperMat = new THREE.MeshStandardMaterial({ color: 0x221111, roughness: 0.5 });
-      const instancedSleepers = new THREE.InstancedMesh(sleeperGeom, sleeperMat, sleeperCount);
-      const dummy = new THREE.Object3D();
+      this.scene.add(new THREE.Mesh(railGeomL, railMatL));
+      this.scene.add(new THREE.Mesh(railGeomR, railMatR));
 
-      for (let i = 0; i < sleeperCount; i++) {
-        const u = i / sleeperCount;
+      // 레일 침목(Ties)
+      const tieGeom = new THREE.BoxGeometry(3.6, 0.25, 0.5);
+      const tieMat = new THREE.MeshStandardMaterial({ color: 0x1a0f0d, roughness: 0.9 });
+      const tieGroup = new THREE.Group();
+
+      for (let i = 0; i < 400; i++) {
+        const u = i / 400;
         const pos = this.curve.getPointAt(u);
-        const tangent = this.curve.getTangentAt(u).normalize();
-        const normal = new THREE.Vector3(0, 1, 0);
+        const tan = this.curve.getTangentAt(u).normalize();
+        const norm = new THREE.Vector3(-tan.z, 0, tan.x).normalize();
 
-        dummy.position.copy(pos).addScaledVector(normal, -0.15);
-        dummy.matrix.lookAt(pos, new THREE.Vector3().copy(pos).add(tangent), normal);
-        dummy.updateMatrix();
-        instancedSleepers.setMatrixAt(i, dummy.matrix);
+        const tie = new THREE.Mesh(tieGeom, tieMat);
+        tie.position.copy(pos);
+        tie.position.y -= 0.15;
+        tie.lookAt(pos.clone().add(tan));
+        tieGroup.add(tie);
       }
-      this.scene.add(instancedSleepers);
+      this.scene.add(tieGroup);
     }
 
     /**
-     * 끓어오르는 용암 바다 (Lava Sea)
+     * 끓어오르는 용암 바다
      */
     createLavaSea() {
-      const lavaGeom = new THREE.PlaneGeometry(3000, 3000, 32, 32);
-      lavaGeom.rotateX(-Math.PI / 2);
-      const lavaMat = new THREE.MeshStandardMaterial({
-        color: 0x991100,
-        emissive: 0xff3300,
+      const geom = new THREE.PlaneGeometry(2800, 3200, 32, 32);
+      const mat = new THREE.MeshStandardMaterial({
+        color: 0xcc2200,
+        emissive: 0xee3300,
         emissiveIntensity: 0.85,
         roughness: 0.3,
         metalness: 0.1
       });
-      this.lavaMesh = new THREE.Mesh(lavaGeom, lavaMat);
-      this.lavaMesh.position.set(0, -35, -1000);
+      this.lavaMesh = new THREE.Mesh(geom, mat);
+      this.lavaMesh.rotation.x = -Math.PI / 2;
+      this.lavaMesh.position.set(0, -35, -1100);
       this.scene.add(this.lavaMesh);
     }
 
     /**
-     * 공중으로 솟구치는 3,500개의 화산재 & 불꽃 파티클 (Embers)
+     * 원형 글로우 불꽃 파티클 텍스처 생성 (자연스러운 둥근 불티)
+     */
+    createSparkTexture() {
+      const canvas = document.createElement('canvas');
+      canvas.width = 64;
+      canvas.height = 64;
+      const ctx = canvas.getContext('2d');
+
+      const grad = ctx.createRadialGradient(32, 32, 0, 32, 32, 32);
+      grad.addColorStop(0.0, 'rgba(255, 255, 255, 1.0)');
+      grad.addColorStop(0.18, 'rgba(255, 210, 80, 0.95)');
+      grad.addColorStop(0.45, 'rgba(255, 80, 10, 0.7)');
+      grad.addColorStop(0.75, 'rgba(200, 20, 0, 0.25)');
+      grad.addColorStop(1.0, 'rgba(0, 0, 0, 0.0)');
+
+      ctx.fillStyle = grad;
+      ctx.beginPath();
+      ctx.arc(32, 32, 32, 0, Math.PI * 2);
+      ctx.fill();
+
+      const tex = new THREE.CanvasTexture(canvas);
+      tex.needsUpdate = true;
+      return tex;
+    }
+
+    /**
+     * 3,500개의 원형 발광 불꽃/불티 파티클 시스템
      */
     createEmbers() {
       const count = 3500;
@@ -218,16 +244,17 @@
       const colors = new Float32Array(count * 3);
 
       const colorList = [
-        new THREE.Color(0xffaa00), // 밝은 주황
-        new THREE.Color(0xff3300), // 불타는 빨강
-        new THREE.Color(0xffdd66), // 황금 불꽃
-        new THREE.Color(0xaa2200)  // 진한 용암
+        new THREE.Color(0xffaa00),
+        new THREE.Color(0xff3300),
+        new THREE.Color(0xffdd66),
+        new THREE.Color(0xff6600),
+        new THREE.Color(0xff2200)
       ];
 
       for (let i = 0; i < count; i++) {
-        positions[i * 3] = (Math.random() - 0.5) * 600;
-        positions[i * 3 + 1] = -30 + Math.random() * 200;
-        positions[i * 3 + 2] = -Math.random() * 2200;
+        positions[i * 3] = (Math.random() - 0.5) * 700;
+        positions[i * 3 + 1] = -30 + Math.random() * 240;
+        positions[i * 3 + 2] = -Math.random() * 2400;
 
         const c = colorList[Math.floor(Math.random() * colorList.length)];
         colors[i * 3] = c.r;
@@ -238,11 +265,16 @@
       geom.setAttribute('position', new THREE.BufferAttribute(positions, 3));
       geom.setAttribute('color', new THREE.BufferAttribute(colors, 3));
 
+      const sparkTex = this.createSparkTexture();
+
       const mat = new THREE.PointsMaterial({
-        size: 3.8,
+        size: 7.0,
+        map: sparkTex,
         vertexColors: true,
         transparent: true,
-        opacity: 0.9
+        opacity: 0.95,
+        blending: THREE.AdditiveBlending,
+        depthWrite: false
       });
 
       this.emberPoints = new THREE.Points(geom, mat);
@@ -250,193 +282,186 @@
     }
 
     /**
-     * 부스터 가속 시 나타나는 초고속 불꽃 스트릭 (Speed Streaks)
+     * 초고속 질주 시 주변으로 폭풍처럼 스쳐 지나가는 광선 스트릭
      */
     createSpeedStreaks() {
-      const streakCount = 350;
-      const positions = new Float32Array(streakCount * 6);
+      this.speedStreakGroup = new THREE.Group();
+      const streakCount = 120;
+      const streakGeom = new THREE.CylinderGeometry(0.08, 0.08, 32, 4);
+      const streakMat = new THREE.MeshBasicMaterial({
+        color: 0xff9900,
+        transparent: true,
+        opacity: 0.0
+      });
 
       for (let i = 0; i < streakCount; i++) {
-        const x = (Math.random() - 0.5) * 60;
-        const y = (Math.random() - 0.5) * 45;
-        const z = -Math.random() * 160;
-
-        positions[i * 6] = x;
-        positions[i * 6 + 1] = y;
-        positions[i * 6 + 2] = z;
-
-        positions[i * 6 + 3] = x;
-        positions[i * 6 + 4] = y;
-        positions[i * 6 + 5] = z - 28;
+        const m = new THREE.Mesh(streakGeom, streakMat.clone());
+        m.position.set(
+          (Math.random() - 0.5) * 50,
+          (Math.random() - 0.5) * 35,
+          -Math.random() * 120
+        );
+        m.rotation.x = Math.PI / 2;
+        this.speedStreakGroup.add(m);
       }
 
-      const geom = new THREE.BufferGeometry();
-      geom.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-
-      const mat = new THREE.LineBasicMaterial({
-        color: 0xff5500,
-        transparent: true,
-        opacity: 0.0,
-        linewidth: 2.2
-      });
-
-      this.speedStreaks = new THREE.LineSegments(geom, mat);
-      this.scene.add(this.speedStreaks);
+      this.speedStreakGroup.visible = false;
+      this.scene.add(this.speedStreakGroup);
     }
 
     /**
-     * 흑요석 암벽 기둥 및 화산 동굴 아치
+     * 거대한 현무암 화산 바위 기둥 협곡
      */
     createVolcanoEnvironment() {
-      const pillarCount = 45;
-      const pillarGeom = new THREE.CylinderGeometry(8, 16, 220, 7);
+      const pillarGeom = new THREE.CylinderGeometry(14, 22, 280, 6);
       const pillarMat = new THREE.MeshStandardMaterial({
-        color: 0x180f0f,
-        roughness: 0.85
+        color: 0x140e0c,
+        roughness: 0.95,
+        metalness: 0.1
       });
 
-      for (let i = 0; i < pillarCount; i++) {
-        const pillar = new THREE.Mesh(pillarGeom, pillarMat);
-        const u = i / pillarCount;
-        const trackPos = this.curve.getPointAt(u);
-
-        const offsetX = (Math.random() > 0.5 ? 1 : -1) * (35 + Math.random() * 60);
-        pillar.position.set(trackPos.x + offsetX, trackPos.y - 40, trackPos.z + (Math.random() - 0.5) * 40);
-        pillar.rotation.z = (Math.random() - 0.5) * 0.25;
-        this.scene.add(pillar);
+      const group = new THREE.Group();
+      for (let i = 0; i < 45; i++) {
+        const p = new THREE.Mesh(pillarGeom, pillarMat);
+        const z = -100 - i * 50;
+        const side = (i % 2 === 0 ? 1 : -1) * (45 + Math.random() * 80);
+        p.position.set(side, 30 + Math.random() * 40, z);
+        p.rotation.y = Math.random() * Math.PI;
+        p.rotation.z = (Math.random() - 0.5) * 0.25;
+        group.add(p);
       }
+      this.scene.add(group);
     }
 
     /**
-     * 5개의 불타는 마그마 스타게이트 관문 링 (Gate Portals)
+     * 5개 관문 마그마 발광 스타게이트 포털
      */
     createGatePortals() {
-      const portalTs = [0.16, 0.35, 0.54, 0.72, 0.88];
-      const portalColors = [0xff4400, 0xff7700, 0xff0044, 0xffaa00, 0xff2200];
+      this.gatePortals = [];
+      const ringGeom = new THREE.TorusGeometry(8.5, 0.7, 16, 48);
+      const ringMat = new THREE.MeshStandardMaterial({
+        color: 0xff4400,
+        emissive: 0xff6600,
+        emissiveIntensity: 1.5,
+        roughness: 0.2,
+        metalness: 0.8
+      });
 
-      portalTs.forEach((tVal, idx) => {
-        const group = new THREE.Group();
-        const pos = this.curve.getPointAt(tVal);
-        const tangent = this.curve.getTangentAt(tVal).normalize();
+      this.gatePoints.forEach((gp, idx) => {
+        const pos = this.curve.getPointAt(gp.t);
+        const tan = this.curve.getTangentAt(gp.t).normalize();
 
-        group.position.copy(pos);
-        group.lookAt(new THREE.Vector3().copy(pos).add(tangent));
+        const ring = new THREE.Mesh(ringGeom, ringMat.clone());
+        ring.position.copy(pos);
+        ring.lookAt(pos.clone().add(tan));
 
-        // 외곽 타오르는 링
-        const torusGeom = new THREE.TorusGeometry(9.5, 0.8, 16, 40);
-        const torusMat = new THREE.MeshStandardMaterial({
-          color: portalColors[idx],
-          emissive: portalColors[idx],
-          roughness: 0.2
-        });
-        const ringMesh = new THREE.Mesh(torusGeom, torusMat);
-        group.add(ringMesh);
-
-        // 내부 용암 포털 평면
-        const discGeom = new THREE.CircleGeometry(8.8, 32);
-        const discMat = new THREE.MeshBasicMaterial({
-          color: 0x551100,
-          transparent: true,
-          opacity: 0.38,
-          side: THREE.DoubleSide
-        });
-        const discMesh = new THREE.Mesh(discGeom, discMat);
-        group.add(discMesh);
-
-        this.scene.add(group);
-        this.gatePortals.push({ group, ring: ringMesh, disc: discMesh });
+        this.scene.add(ring);
+        this.gatePortals.push({ gate: gp, ring, index: idx });
       });
     }
 
-    // ==========================================
-    // 주행 제어 API (호환 인터페이스)
-    // ==========================================
-
     setCourse(course) {
-      this.currentCourse = course;
-      const portalTs = [0.16, 0.35, 0.54, 0.72, 0.88];
-      this.gatePoints = course.gates.map((g, i) => ({
-        ...g,
-        t: portalTs[i] || (0.16 + i * 0.18),
-        solved: false
-      }));
-      this.resetRide();
+      if (course && course.gates) {
+        this.gatePoints = course.gates.map((g, idx) => ({
+          id: g.id || idx,
+          t: g.t !== undefined ? g.t : (0.16 + idx * 0.18),
+          solved: false
+        }));
+      }
     }
 
     startRide() {
+      this.t = 0.0;
       this.isPlaying = true;
       this.isEmergencyStopped = false;
       this.isGlidingSlow = false;
       this.isBooster = false;
       this.currentGateIndex = -1;
-      this.gatePoints.forEach(g => g.solved = false);
+      this.currentSpeedFactor = 0.8;
+      this.targetSpeedFactor = 1.0;
 
-      // 상승 구간 쾌속 (1.35x)
-      this.targetSpeedFactor = 1.35;
-      this.currentSpeedFactor = 1.35;
+      // 오디오 컨텍스트 깨우기 & 주행 사운드 시작
+      if (window.CoasterAudio) {
+        window.CoasterAudio.resume();
+        window.CoasterAudio.startRideAudio();
+        window.CoasterAudio.startLiftHill();
+      }
+
+      this.gatePoints.forEach(g => g.solved = false);
     }
 
     resetRide() {
       this.isPlaying = false;
-      this.t = 0.01;
-      this.targetSpeedFactor = 1.0;
-      this.currentSpeedFactor = 1.0;
+      this.t = 0.0;
       this.isGlidingSlow = false;
-      this.isEmergencyStopped = false;
       this.isBooster = false;
-      this.currentGateIndex = -1;
-      this.gatePoints.forEach(g => g.solved = false);
-      this.updateCamera(this.t);
+      this.currentSpeedFactor = 0.8;
+      this.targetSpeedFactor = 1.0;
+      if (this.speedStreakGroup) this.speedStreakGroup.visible = false;
+      if (window.CoasterAudio) {
+        window.CoasterAudio.stopWind();
+        window.CoasterAudio.stopLiftHill();
+      }
+      this.updateCamera(0.001);
     }
 
-    triggerBooster(factor = 1.95) {
+    triggerBooster() {
+      this.isBooster = true;
+      this.isGlidingSlow = false;
+      this.targetSpeedFactor = 2.4; // 210km/h 초고속 발진!
+
+      if (this.speedStreakGroup) {
+        this.speedStreakGroup.visible = true;
+        this.speedStreakGroup.children.forEach(m => {
+          m.material.opacity = 0.85;
+        });
+      }
+
+      if (this.options.onShake) this.options.onShake(1.6);
+      if (window.CoasterAudio) {
+        window.CoasterAudio.playBoosterLaunch();
+      }
+
+      setTimeout(() => {
+        if (!this.isGlidingSlow) {
+          this.targetSpeedFactor = 1.25; // 135km/h 순항
+          if (this.speedStreakGroup) {
+            this.speedStreakGroup.children.forEach(m => {
+              m.material.opacity = 0.15;
+            });
+          }
+        }
+      }, 3500);
+    }
+
+    resumeAfterSolve() {
+      if (this.currentGateIndex >= 0 && this.gatePoints[this.currentGateIndex]) {
+        this.gatePoints[this.currentGateIndex].solved = true;
+      }
+      this.triggerBooster();
+    }
+
+    triggerTimeoutPass() {
       if (this.currentGateIndex >= 0 && this.gatePoints[this.currentGateIndex]) {
         this.gatePoints[this.currentGateIndex].solved = true;
       }
       this.isGlidingSlow = false;
-      this.isBooster = true;
-      this.targetSpeedFactor = factor;
-
-      // 스트릭 라인 활성화 & FOV 시네마틱 줌
-      if (this.speedStreaks) this.speedStreaks.material.opacity = 0.9;
-      if (this.camera) this.camera.fov = 92;
-
-      if (this.options.onShake) this.options.onShake(1.6);
-
-      setTimeout(() => {
-        if (!this.isEmergencyStopped) {
-          this.targetSpeedFactor = 1.25;
-          this.isBooster = false;
-          if (this.speedStreaks) this.speedStreaks.material.opacity = 0.0;
-          if (this.camera) this.camera.fov = 74;
-        }
-      }, 4200);
-    }
-
-    resumeAfterSolve(isBoost = true) {
-      if (isBoost) {
-        this.triggerBooster(1.95);
-      } else {
-        this.triggerTimeoutPass();
-      }
-    }
-
-    triggerTimeoutPass() {
-      this.isGlidingSlow = false;
-      this.targetSpeedFactor = 1.05;
-      if (this.camera) this.camera.fov = 74;
+      this.targetSpeedFactor = 1.0;
     }
 
     emergencyStop() {
       this.isEmergencyStopped = true;
       this.targetSpeedFactor = 0.0;
       this.currentSpeedFactor = 0.0;
-      this.isBooster = false;
-      if (this.speedStreaks) this.speedStreaks.material.opacity = 0.0;
+      if (window.CoasterAudio) {
+        window.CoasterAudio.playBrakeScreech();
+        window.CoasterAudio.stopWind();
+        window.CoasterAudio.stopLiftHill();
+      }
     }
 
     triggerWrong() {
-      if (this.options.onShake) this.options.onShake(1.3);
+      if (this.options.onShake) this.options.onShake(1.2);
     }
 
     getSpeedKm() {
@@ -445,45 +470,70 @@
 
     getSpeedMode() {
       if (this.isEmergencyStopped) return '비상 정차';
-      if (this.isGlidingSlow) return '초저속 서행 (10 km/h)';
-      if (this.isBooster) return '🔥 마그마 부스터 (180 km/h)';
-      return '화산 순항 질주';
+      if (this.isGlidingSlow) return '관문 제동 서행';
+      if (this.isBooster) return '🔥 210km/h 마그마 부스터!';
+      if (this.t < 0.12) return '🧗 리프트 정상 등반 중';
+      return '⚡ 초고속 급강하 질주';
     }
-
-    // ==========================================
-    // 렌더 & 물리 갱신 루프
-    // ==========================================
 
     animate() {
       requestAnimationFrame(this.animate);
 
       // 관문 링 회전
       this.gatePortals.forEach(p => {
-        if (p.ring) p.ring.rotation.z += 0.025;
+        if (p.ring) p.ring.rotation.z += 0.03;
       });
 
-      // 불꽃 파티클 상승
+      // 원형 불꽃 파티클 상승
       if (this.emberPoints) {
         const positions = this.emberPoints.geometry.attributes.position.array;
         for (let i = 1; i < positions.length; i += 3) {
-          positions[i] += 0.45;
-          if (positions[i] > 180) positions[i] = -30;
+          positions[i] += 0.55;
+          if (positions[i] > 220) positions[i] = -30;
         }
         this.emberPoints.geometry.attributes.position.needsUpdate = true;
       }
 
       if (this.isPlaying && !this.isEmergencyStopped) {
-        this.currentSpeedFactor += (this.targetSpeedFactor - this.currentSpeedFactor) * 0.08;
+        // 물리 기반 경사도 가속도 계산: 내리막길이면 가속, 오르막길이면 감속
+        let slopeBoost = 1.0;
+        if (this.curve && !this.isGlidingSlow) {
+          const p1 = this.curve.getPointAt(this.t);
+          const p2 = this.curve.getPointAt(Math.min(0.999, this.t + 0.01));
+          const dy = p2.y - p1.y; // 음수면 급강하, 양수면 상승
+          if (dy < -0.4) {
+            slopeBoost = 1.55; // 💥 급강하 시 폭발적 가속!
+          } else if (dy > 0.4) {
+            slopeBoost = 0.8; // 급상승 시 묵직한 감속
+          }
+        }
+
+        // 초기 리프트 힐 구간(t < 0.12)은 체인 등반
+        if (this.t < 0.12 && !this.isGlidingSlow && !this.isBooster) {
+          this.targetSpeedFactor = 0.55; // 45km/h 등반
+        } else if (!this.isGlidingSlow && !this.isBooster) {
+          this.targetSpeedFactor = 1.35 * slopeBoost; // 130~175km/h
+        }
+
+        this.currentSpeedFactor += (this.targetSpeedFactor - this.currentSpeedFactor) * 0.09;
         this.t += this.baseSpeed * this.currentSpeedFactor;
 
-        if (this.t >= 0.99) {
-          this.t = 0.99;
+        if (this.t >= 0.995) {
+          this.t = 0.995;
           this.isPlaying = false;
           if (this.options.onFinish) this.options.onFinish();
         }
 
         this.checkGates();
         this.updateCamera(this.t);
+
+        // 오디오 실시간 속도 연동
+        if (window.CoasterAudio) {
+          window.CoasterAudio.setRideSpeed(this.currentSpeedKm);
+          if (this.t > 0.12) {
+            window.CoasterAudio.stopLiftHill();
+          }
+        }
       }
 
       if (this.renderer && this.scene && this.camera) {
@@ -496,46 +546,69 @@
         const gate = this.gatePoints[i];
         if (!gate.solved) {
           const dist = gate.t - this.t;
-          if (dist > 0 && dist <= 0.016 && !this.isGlidingSlow) {
+          // 게이트 30m 전 접근 시 강력한 브레이킹 (끼이익-!)
+          if (dist > 0 && dist <= 0.022 && !this.isGlidingSlow) {
             this.currentGateIndex = i;
             this.isGlidingSlow = true;
-            this.targetSpeedFactor = 0.12; // 10 km/h 초저속 서행
+            this.targetSpeedFactor = 0.12; // 15km/h 초저속 서행
+            if (this.speedStreakGroup) this.speedStreakGroup.visible = false;
+
+            if (window.CoasterAudio) {
+              window.CoasterAudio.playBrakeScreech();
+            }
+
             if (this.options.onGate) this.options.onGate(gate, i);
             break;
           }
         }
       }
 
-      const km = Math.round(92 * this.currentSpeedFactor);
+      // km/h 속도 계산 (15km/h ~ 210km/h)
+      const km = Math.round(105 * this.currentSpeedFactor);
       this.currentSpeedKm = km;
       if (this.options.onSpeedChange) {
-        this.options.onSpeedChange(km, this.isGlidingSlow ? '초저속 서행' : (this.isBooster ? '마그마 부스터!' : '순항 주행'));
+        this.options.onSpeedChange(km, this.getSpeedMode());
       }
     }
 
+    /**
+     * 실감나는 롤러코스터 카메라 연출:
+     * 1. 급강하 시 피치 아래로 급격히 꺾임
+     * 2. 곡선 회전 시 최대 35도~45도 과감한 차체 뱅킹 롤링
+     * 3. 고속 질주 시 FOV 85도까지 다이내믹 줌아웃 (속도감 왜곡)
+     */
     updateCamera(t) {
       if (!this.curve || !this.camera) return;
 
-      const pos = this.curve.getPointAt(Math.min(0.999, Math.max(0.001, t)));
-      const lookAhead = this.curve.getPointAt(Math.min(0.999, t + 0.014));
-      const tangent = this.curve.getTangentAt(Math.min(0.999, t)).normalize();
+      const clampedT = Math.min(0.998, Math.max(0.001, t));
+      const pos = this.curve.getPointAt(clampedT);
+      const lookAheadT = Math.min(0.999, clampedT + 0.016);
+      const lookAhead = this.curve.getPointAt(lookAheadT);
+      const tan = this.curve.getTangentAt(clampedT).normalize();
 
-      // 카메라는 탑승자 시점 (트랙 위 1.3m)
-      const camPos = new THREE.Vector3().copy(pos).add(new THREE.Vector3(0, 1.3, 0));
-      this.camera.position.copy(camPos);
+      // 카메라를 레일 중앙 바로 위 탑승객 눈높이에 위치 (y + 1.6m)
+      this.camera.position.set(pos.x, pos.y + 1.6, pos.z);
+      this.camera.lookAt(lookAhead.x, lookAhead.y + 1.3, lookAhead.z);
 
-      // 다이내믹 뱅킹 (좌우 커브 시 카메라가 자연스럽게 기울어짐)
-      const normal = new THREE.Vector3(0, 1, 0);
-      const binormal = new THREE.Vector3().crossVectors(tangent, normal).normalize();
-      const targetLook = new THREE.Vector3().copy(lookAhead).add(new THREE.Vector3(0, 1.1, 0));
-      
-      this.camera.lookAt(targetLook);
-      // 살짝의 자연스러운 뱅킹 (최대 12도)
-      this.camera.rotation.z += binormal.x * 0.15;
+      // 커브 회전률에 따른 다이내믹 롤링 뱅킹 (최대 35도)
+      const binormal = new THREE.Vector3(-tan.z, 0, tan.x).normalize();
+      const tanNext = this.curve.getTangentAt(lookAheadT).normalize();
+      const curveDelta = tanNext.x - tan.x; // 좌우 회전량
 
-      if (this.speedStreaks) {
-        this.speedStreaks.position.copy(camPos);
-        this.speedStreaks.quaternion.copy(this.camera.quaternion);
+      // 과감한 뱅킹 기울기 적용!
+      const targetRoll = -curveDelta * 2.8;
+      this.camera.rotation.z += targetRoll;
+
+      // 속도 연동 FOV 다이내믹 왜곡: 저속 66도 -> 210km/h 시 86도
+      const targetFOV = 66 + Math.min(22, this.currentSpeedFactor * 10);
+      this.currentFOV += (targetFOV - this.currentFOV) * 0.1;
+      this.camera.fov = this.currentFOV;
+      this.camera.updateProjectionMatrix();
+
+      // 스피드 스트릭을 카메라 앞에 동기화
+      if (this.speedStreakGroup && this.speedStreakGroup.visible) {
+        this.speedStreakGroup.position.copy(this.camera.position);
+        this.speedStreakGroup.quaternion.copy(this.camera.quaternion);
       }
     }
   }

@@ -1,6 +1,7 @@
 /**
- * audio.js - 롤러코스터 사운드 & 바둑 타격음 Web Audio 엔진
- * 리프트 체인 소리, 바람 질주음, 급제동 끼익, 부스터 폭발, 바둑 착수음
+ * audio.js - 롤러코스터 고화질 입체 사운드 Web Audio 엔진
+ * 리프트 래칫 소리, 속도 연동 레일 굉음 + 맞바람 소리, 브레이크 마찰음,
+ * 부스터 폭발음, 바둑 착수 타격음
  */
 (function(window) {
   'use strict';
@@ -11,7 +12,9 @@
   function getCtx() {
     if (!audioCtx) {
       const AudioContext = window.AudioContext || window.webkitAudioContext;
-      if (AudioContext) audioCtx = new AudioContext();
+      if (AudioContext) {
+        audioCtx = new AudioContext();
+      }
     }
     if (audioCtx && audioCtx.state === 'suspended') {
       audioCtx.resume();
@@ -19,21 +22,37 @@
     return audioCtx;
   }
 
-  // 바람 지속음용 노이즈 노드 참조
+  // 레일 진동음 & 바람 소리용 노드
   let windSource = null;
   let windGain = null;
   let windFilter = null;
+
+  let railSource = null;
+  let railGain = null;
+  let railFilter = null;
+
   let liftTimer = null;
 
   const CoasterAudio = {
     isEnabled: () => isSoundEnabled,
+
+    resume: () => {
+      const ctx = getCtx();
+      if (ctx && ctx.state === 'suspended') {
+        ctx.resume();
+      }
+    },
+
     toggleSound: () => {
       isSoundEnabled = !isSoundEnabled;
-      if (!isSoundEnabled) CoasterAudio.stopWind();
+      if (!isSoundEnabled) {
+        CoasterAudio.stopWind();
+        CoasterAudio.stopLiftHill();
+      }
       return isSoundEnabled;
     },
 
-    // 1. 리프트 체인 등반 소리 (카르륵... 카르륵... 금속 래칫)
+    // 1. 리프트 체인 등반 래칫 소리 (카르륵... 카르륵...)
     startLiftHill: () => {
       if (!isSoundEnabled) return;
       CoasterAudio.stopLiftHill();
@@ -45,21 +64,21 @@
 
         const osc = ctx.createOscillator();
         const gain = ctx.createGain();
-        osc.type = 'square';
-        osc.frequency.setValueAtTime(480, now);
-        osc.frequency.exponentialRampToValueAtTime(120, now + 0.04);
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(320, now);
+        osc.frequency.exponentialRampToValueAtTime(80, now + 0.05);
 
-        gain.gain.setValueAtTime(0.25, now);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.045);
+        gain.gain.setValueAtTime(0.4, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.055);
 
         osc.connect(gain);
         gain.connect(ctx.destination);
         osc.start(now);
-        osc.stop(now + 0.05);
+        osc.stop(now + 0.06);
       };
 
       click();
-      liftTimer = setInterval(click, 180);
+      liftTimer = setInterval(click, 140);
     },
 
     stopLiftHill: () => {
@@ -69,48 +88,93 @@
       }
     },
 
-    // 2. 고속 질주 바람 소리 (속도에 따른 다이내믹 화이트 노이즈)
-    startWind: () => {
+    // 2. 롤러코스터 질주 바람음 + 육중한 레일 마찰 굉음 (속도 실시간 연동)
+    startRideAudio: () => {
       if (!isSoundEnabled) return;
       const ctx = getCtx();
-      if (!ctx || windSource) return;
+      if (!ctx) return;
 
-      // 2초 화이트 노이즈 버퍼 생성 후 루프
-      const bufferSize = ctx.sampleRate * 2;
-      const noiseBuffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
-      const output = noiseBuffer.getChannelData(0);
-      for (let i = 0; i < bufferSize; i++) {
-        output[i] = Math.random() * 2 - 1;
+      // 바람 화이트 노이즈 생성
+      if (!windSource) {
+        const bufferSize = ctx.sampleRate * 2;
+        const noiseBuffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+        const output = noiseBuffer.getChannelData(0);
+        for (let i = 0; i < bufferSize; i++) {
+          output[i] = Math.random() * 2 - 1;
+        }
+
+        windSource = ctx.createBufferSource();
+        windSource.buffer = noiseBuffer;
+        windSource.loop = true;
+
+        windFilter = ctx.createBiquadFilter();
+        windFilter.type = 'bandpass';
+        windFilter.frequency.setValueAtTime(600, ctx.currentTime);
+        windFilter.Q.setValueAtTime(1.5, ctx.currentTime);
+
+        windGain = ctx.createGain();
+        windGain.gain.setValueAtTime(0.02, ctx.currentTime);
+
+        windSource.connect(windFilter);
+        windFilter.connect(windGain);
+        windGain.connect(ctx.destination);
+        windSource.start();
       }
 
-      windSource = ctx.createBufferSource();
-      windSource.buffer = noiseBuffer;
-      windSource.loop = true;
+      // 레일 저음 진동 (핑크 노이즈 느낌의 저역 필터)
+      if (!railSource) {
+        const bufferSize = ctx.sampleRate * 2;
+        const railBuffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+        const rOut = railBuffer.getChannelData(0);
+        let b0 = 0, b1 = 0, b2 = 0;
+        for (let i = 0; i < bufferSize; i++) {
+          const white = Math.random() * 2 - 1;
+          b0 = 0.99886 * b0 + white * 0.0555179;
+          b1 = 0.99332 * b1 + white * 0.0750759;
+          b2 = 0.96900 * b2 + white * 0.1538520;
+          rOut[i] = (b0 + b1 + b2 + white * 0.5362) * 0.25;
+        }
 
-      windFilter = ctx.createBiquadFilter();
-      windFilter.type = 'lowpass';
-      windFilter.frequency.setValueAtTime(400, ctx.currentTime);
+        railSource = ctx.createBufferSource();
+        railSource.buffer = railBuffer;
+        railSource.loop = true;
 
-      windGain = ctx.createGain();
-      windGain.gain.setValueAtTime(0.01, ctx.currentTime);
+        railFilter = ctx.createBiquadFilter();
+        railFilter.type = 'lowpass';
+        railFilter.frequency.setValueAtTime(180, ctx.currentTime);
 
-      windSource.connect(windFilter);
-      windFilter.connect(windGain);
-      windGain.connect(ctx.destination);
-      windSource.start();
+        railGain = ctx.createGain();
+        railGain.gain.setValueAtTime(0.04, ctx.currentTime);
+
+        railSource.connect(railFilter);
+        railFilter.connect(railGain);
+        railGain.connect(ctx.destination);
+        railSource.start();
+      }
     },
 
-    setWindSpeed: (speedRatio) => { // 0.0 ~ 1.0
-      if (!windGain || !windFilter) return;
+    // 속도(0 ~ 200km/h)에 따른 사운드 볼륨 & 피치 실시간 모듈레이션
+    setRideSpeed: (speedKm) => {
+      if (!isSoundEnabled) return;
       const ctx = getCtx();
       if (!ctx) return;
       const now = ctx.currentTime;
 
-      const targetGain = Math.min(Math.max(speedRatio * 0.45, 0.01), 0.5);
-      const targetFreq = 300 + speedRatio * 1800; // 300Hz ~ 2100Hz
+      const norm = Math.min(1.0, Math.max(0.05, speedKm / 180)); // 0.05 ~ 1.0
 
-      windGain.gain.setTargetAtTime(targetGain, now, 0.1);
-      windFilter.frequency.setTargetAtTime(targetFreq, now, 0.1);
+      if (windGain && windFilter) {
+        const targetWindVol = 0.02 + norm * 0.38; // 고속 시 바람 볼륨 급상승
+        const targetWindFreq = 300 + norm * 1800; // 300Hz ~ 2100Hz
+        windGain.gain.setTargetAtTime(targetWindVol, now, 0.08);
+        windFilter.frequency.setTargetAtTime(targetWindFreq, now, 0.08);
+      }
+
+      if (railGain && railFilter) {
+        const targetRailVol = 0.03 + norm * 0.32; // 레일 덜컹거리는 굉음
+        const targetRailFreq = 120 + norm * 350; // 120Hz ~ 470Hz
+        railGain.gain.setTargetAtTime(targetRailVol, now, 0.08);
+        railFilter.frequency.setTargetAtTime(targetRailFreq, now, 0.08);
+      }
     },
 
     stopWind: () => {
@@ -120,71 +184,100 @@
         windGain = null;
         windFilter = null;
       }
+      if (railSource) {
+        try { railSource.stop(); } catch(e){}
+        railSource = null;
+        railGain = null;
+        railFilter = null;
+      }
     },
 
-    // 3. 비상 브레이크 끼이익-! 소리
+    // 3. 브레이크 마찰음 (게이트 앞 감속 시 끼이익-! + 공기압 취익-!)
     playBrakeScreech: () => {
       if (!isSoundEnabled) return;
       const ctx = getCtx();
       if (!ctx) return;
       const now = ctx.currentTime;
 
+      // 날카로운 금속 마찰음
       const osc = ctx.createOscillator();
       const gain = ctx.createGain();
       osc.type = 'sawtooth';
-      osc.frequency.setValueAtTime(1400, now);
-      osc.frequency.linearRampToValueAtTime(900, now + 0.35);
+      osc.frequency.setValueAtTime(1600, now);
+      osc.frequency.linearRampToValueAtTime(600, now + 0.45);
 
-      gain.gain.setValueAtTime(0.28, now);
-      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.38);
+      gain.gain.setValueAtTime(0.35, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.48);
 
       osc.connect(gain);
       gain.connect(ctx.destination);
       osc.start(now);
-      osc.stop(now + 0.4);
+      osc.stop(now + 0.5);
+
+      // 에어 브레이크 취익-! 사운드
+      const noise = ctx.createBufferSource();
+      const bSize = ctx.sampleRate * 0.5;
+      const b = ctx.createBuffer(1, bSize, ctx.sampleRate);
+      const d = b.getChannelData(0);
+      for (let i = 0; i < bSize; i++) d[i] = Math.random() * 2 - 1;
+      noise.buffer = b;
+
+      const f = ctx.createBiquadFilter();
+      f.type = 'highpass';
+      f.frequency.setValueAtTime(1200, now);
+
+      const g = ctx.createGain();
+      g.gain.setValueAtTime(0.3, now);
+      g.gain.exponentialRampToValueAtTime(0.001, now + 0.45);
+
+      noise.connect(f);
+      f.connect(g);
+      g.connect(ctx.destination);
+      noise.start(now);
+      noise.stop(now + 0.5);
     },
 
-    // 4. 로켓 부스터 점화 & 게이트 파괴 폭발 (정답 시 폭풍 질주)
+    // 4. 로켓/마그마 부스터 점화 & 대폭발 굉음 (정답 시 폭풍 질주)
     playBoosterLaunch: () => {
       if (!isSoundEnabled) return;
       const ctx = getCtx();
       if (!ctx) return;
       const now = ctx.currentTime;
 
-      // 묵직한 폭발음
+      // 묵직한 서브우퍼 폭발음 (쾅-!)
       const osc = ctx.createOscillator();
       const gain = ctx.createGain();
       osc.type = 'triangle';
-      osc.frequency.setValueAtTime(180, now);
-      osc.frequency.exponentialRampToValueAtTime(35, now + 0.35);
-      gain.gain.setValueAtTime(0.65, now);
-      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.4);
+      osc.frequency.setValueAtTime(240, now);
+      osc.frequency.exponentialRampToValueAtTime(25, now + 0.5);
+      gain.gain.setValueAtTime(0.85, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.55);
 
       osc.connect(gain);
       gain.connect(ctx.destination);
       osc.start(now);
-      osc.stop(now + 0.4);
+      osc.stop(now + 0.55);
 
-      // 상승 로켓 굉음
+      // 로켓 화염 분사 굉음 (콰아아아앙-!)
       const rocket = ctx.createOscillator();
       const rGain = ctx.createGain();
       rocket.type = 'sawtooth';
-      rocket.frequency.setValueAtTime(220, now + 0.05);
-      rocket.frequency.exponentialRampToValueAtTime(880, now + 0.5);
+      rocket.frequency.setValueAtTime(180, now + 0.05);
+      rocket.frequency.exponentialRampToValueAtTime(1200, now + 0.6);
 
       const filter = ctx.createBiquadFilter();
       filter.type = 'lowpass';
-      filter.frequency.setValueAtTime(800, now + 0.05);
-      filter.frequency.linearRampToValueAtTime(2200, now + 0.5);
+      filter.frequency.setValueAtTime(600, now + 0.05);
+      filter.frequency.linearRampToValueAtTime(2800, now + 0.6);
 
-      rGain.gain.setValueAtTime(0.35, now + 0.05);
-      rGain.gain.exponentialRampToValueAtTime(0.001, now + 0.55);
+      rGain.gain.setValueAtTime(0.5, now + 0.05);
+      rGain.gain.exponentialRampToValueAtTime(0.001, now + 0.65);
 
       rocket.connect(filter);
       filter.connect(rGain);
       rGain.connect(ctx.destination);
       rocket.start(now + 0.05);
-      rocket.stop(now + 0.55);
+      rocket.stop(now + 0.65);
     },
 
     // 5. 바둑 착수음 (명쾌한 나무 타격 "탁!")
@@ -197,10 +290,10 @@
       const osc = ctx.createOscillator();
       const gain = ctx.createGain();
       osc.type = 'triangle';
-      osc.frequency.setValueAtTime(540, now);
-      osc.frequency.exponentialRampToValueAtTime(120, now + 0.07);
+      osc.frequency.setValueAtTime(580, now);
+      osc.frequency.exponentialRampToValueAtTime(110, now + 0.07);
 
-      gain.gain.setValueAtTime(0.45, now);
+      gain.gain.setValueAtTime(0.55, now);
       gain.gain.exponentialRampToValueAtTime(0.001, now + 0.075);
 
       osc.connect(gain);
@@ -209,7 +302,7 @@
       osc.stop(now + 0.08);
     },
 
-    // 6. 오답 경보 & 스파크 찌릿
+    // 6. 오답 경보 & 비상 탈락
     playWrongAlarm: () => {
       if (!isSoundEnabled) return;
       const ctx = getCtx();
@@ -219,20 +312,20 @@
       const osc = ctx.createOscillator();
       const gain = ctx.createGain();
       osc.type = 'sawtooth';
-      osc.frequency.setValueAtTime(180, now);
-      osc.frequency.setValueAtTime(140, now + 0.1);
-      osc.frequency.setValueAtTime(100, now + 0.2);
+      osc.frequency.setValueAtTime(220, now);
+      osc.frequency.setValueAtTime(160, now + 0.12);
+      osc.frequency.setValueAtTime(110, now + 0.24);
 
-      gain.gain.setValueAtTime(0.35, now);
-      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
+      gain.gain.setValueAtTime(0.4, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
 
       osc.connect(gain);
       gain.connect(ctx.destination);
       osc.start(now);
-      osc.stop(now + 0.32);
+      osc.stop(now + 0.36);
     },
 
-    // 6-1. 카운트다운 째깍 비프음
+    // 7. 카운트다운 째깍 비프음
     playTick: (isUrgent = false) => {
       if (!isSoundEnabled) return;
       const ctx = getCtx();
@@ -244,7 +337,7 @@
       osc.type = 'sine';
       osc.frequency.setValueAtTime(isUrgent ? 950 : 680, now);
 
-      gain.gain.setValueAtTime(isUrgent ? 0.3 : 0.15, now);
+      gain.gain.setValueAtTime(isUrgent ? 0.35 : 0.18, now);
       gain.gain.exponentialRampToValueAtTime(0.001, now + (isUrgent ? 0.08 : 0.04));
 
       osc.connect(gain);
@@ -253,29 +346,7 @@
       osc.stop(now + 0.09);
     },
 
-    // 6-2. 시간초과/노부스터 관문 통과 쉬익~ 바람음
-    playPassSwoosh: () => {
-      if (!isSoundEnabled) return;
-      const ctx = getCtx();
-      if (!ctx) return;
-      const now = ctx.currentTime;
-
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
-      osc.type = 'sine';
-      osc.frequency.setValueAtTime(320, now);
-      osc.frequency.exponentialRampToValueAtTime(180, now + 0.45);
-
-      gain.gain.setValueAtTime(0.28, now);
-      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.5);
-
-      osc.connect(gain);
-      gain.connect(ctx.destination);
-      osc.start(now);
-      osc.stop(now + 0.52);
-    },
-
-    // 7. 골인 승리 팡파르
+    // 8. 골인 승리 팡파르
     playVictory: () => {
       if (!isSoundEnabled) return;
       const ctx = getCtx();
@@ -291,7 +362,7 @@
         osc.type = 'triangle';
         osc.frequency.setValueAtTime(f, t);
 
-        gain.gain.setValueAtTime(0.35, t);
+        gain.gain.setValueAtTime(0.4, t);
         gain.gain.exponentialRampToValueAtTime(0.001, t + 0.35);
 
         osc.connect(gain);

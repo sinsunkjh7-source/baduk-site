@@ -225,6 +225,7 @@
           e.preventDefault();
           e.stopPropagation();
         }
+        if (window.CoasterAudio) window.CoasterAudio.resume();
         console.log('[CoasterGame] 출발 버튼 활성화 & 실행!');
         this.startGame();
       };
@@ -390,9 +391,12 @@
       // 1안 실사 영상 시동
       this.coaster.startRide();
 
-      // 사운드 시동
-      CoasterAudio.startWind();
-      CoasterAudio.startLiftHill();
+      // 사운드 시동 & 오디오 컨텍스트 활성화
+      if (window.CoasterAudio) {
+        window.CoasterAudio.resume();
+        window.CoasterAudio.startRideAudio();
+        window.CoasterAudio.startLiftHill();
+      }
 
       // 속도계 HUD 루프 시작
       this.startSpeedometer();
@@ -752,6 +756,9 @@
         if (this.gameState === 'RIDING') {
           const speedKm = this.coaster.currentSpeedKm || 0;
           if (this.speedValue) this.speedValue.textContent = `${speedKm} km/h`;
+          if (window.CoasterAudio) {
+            window.CoasterAudio.setRideSpeed(speedKm);
+          }
 
           if (this.speedModeTag) {
             if (speedKm >= 120) {
