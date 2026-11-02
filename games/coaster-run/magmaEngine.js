@@ -329,129 +329,174 @@
      * 뾰족뾰족한 얼음 협곡과 거대 고드름, 헤드초퍼 아치 환경 구축
      * 아슬아슬하게 그 사이를 통과하는 스릴 넘치는 연출
      */
+    /**
+     * 웅장하고 자연스러운 거대 빙하 협곡과 유기적인 고드름 군락 환경 구축
+     * 가시처럼 인위적인 형태를 배제하고, 실제 빙벽 단애와 처마에서 드리워진 자연스러운 고드름 연출
+     */
     createVolcanoEnvironment() {
       const group = new THREE.Group();
 
-      // 머티리얼 정의
+      // 1. 고품질 크리스털 빙하 및 고드름 머티리얼
       this.icicleMat = new THREE.MeshStandardMaterial({
-        color: 0xcffafe,
+        color: 0xe0f2fe,
         emissive: 0x0284c7,
-        emissiveIntensity: 0.45,
-        roughness: 0.12,
-        metalness: 0.85,
+        emissiveIntensity: 0.38,
+        roughness: 0.1,
+        metalness: 0.8,
         transparent: true,
-        opacity: 0.88
+        opacity: 0.88,
+        flatShading: true
       });
 
+      // 거대 빙하 협곡 암벽 머티리얼 (깊은 블루 빙벽)
       this.spireMat = new THREE.MeshStandardMaterial({
-        color: 0x0369a1,
-        emissive: 0x082f49,
-        emissiveIntensity: 0.35,
-        roughness: 0.25,
-        metalness: 0.65
-      });
-
-      this.archMat = new THREE.MeshStandardMaterial({
-        color: 0x7dd3fc,
+        color: 0x075985,
         emissive: 0x0369a1,
-        emissiveIntensity: 0.5,
-        roughness: 0.15,
-        metalness: 0.75
+        emissiveIntensity: 0.3,
+        roughness: 0.22,
+        metalness: 0.65,
+        flatShading: true
       });
 
-      // 지오메트리 캐시
-      const icicleGeomSmall = new THREE.ConeGeometry(0.55, 5.5, 5);
-      const icicleGeomMedium = new THREE.ConeGeometry(0.85, 8.5, 5);
-      const icicleGeomLarge = new THREE.ConeGeometry(1.3, 13.0, 6);
-      const spikeGeom = new THREE.ConeGeometry(2.4, 28.0, 5);
-      const giantSpireGeom = new THREE.ConeGeometry(6.5, 75.0, 6);
-      const archGeom = new THREE.TorusGeometry(7.5, 0.9, 8, 24, Math.PI);
+      // 얼음 처마 및 아치 록 머티리얼 (만년설 크러스트)
+      this.archMat = new THREE.MeshStandardMaterial({
+        color: 0xbae6fd,
+        emissive: 0x0284c7,
+        emissiveIntensity: 0.42,
+        roughness: 0.18,
+        metalness: 0.7,
+        flatShading: true
+      });
+
+      // 바닥 유빙 및 각진 얼음 바위 머티리얼
+      const boulderMat = new THREE.MeshStandardMaterial({
+        color: 0x38bdf8,
+        emissive: 0x0369a1,
+        emissiveIntensity: 0.25,
+        roughness: 0.15,
+        metalness: 0.75,
+        flatShading: true
+      });
+
+      // 2. 지오메트리 정의 (유기적인 빙벽과 덩어리)
+      const cliffGeom = new THREE.CylinderGeometry(14, 22, 90, 7);
+      const cliffGeomTall = new THREE.CylinderGeometry(18, 28, 140, 7);
+      const boulderGeom = new THREE.DodecahedronGeometry(6.5, 0);
+      const boulderSmallGeom = new THREE.DodecahedronGeometry(3.5, 0);
+
+      // 자연스러운 고드름 지오메트리 (뿌리가 넓고 끝이 뾰족하게 점진적 테이퍼링)
+      const icicleGeomBig = new THREE.ConeGeometry(0.85, 9.5, 6);
+      const icicleGeomMed = new THREE.ConeGeometry(0.55, 6.0, 5);
+      const icicleGeomSmall = new THREE.ConeGeometry(0.35, 3.8, 5);
+      const archRockGeom = new THREE.BoxGeometry(16, 3.2, 5.5);
 
       const gauge = 2.6;
-      const sampleCount = 150;
+      const cliffSteps = 55; // 협곡을 따라 배치되는 거대 빙벽 세그먼트
 
-      for (let i = 0; i < sampleCount; i++) {
-        const u = 0.03 + (i / sampleCount) * 0.94;
+      // [파트 A] 거대한 층상 빙벽 협곡 (Glacier Canyon Cliffs)
+      for (let i = 0; i < cliffSteps; i++) {
+        const u = 0.04 + (i / cliffSteps) * 0.92;
         const pos = this.curve.getPointAt(u);
         const tan = this.curve.getTangentAt(u).normalize();
         const norm = new THREE.Vector3(-tan.z, 0, tan.x).normalize();
         const up = new THREE.Vector3(0, 1, 0);
 
-        // A. 양옆 뾰족뾰족한 얼음 협곡 침봉 (Spikes & Stalagmites) - 아슬아슬하게 통과!
-        // 왼쪽 칼날 얼음 바위
-        const leftDist = gauge / 2 + 2.3 + (Math.sin(i * 1.7) * 0.8 + 0.8);
-        const leftPos = pos.clone().addScaledVector(norm, -leftDist);
-        const leftSpike = new THREE.Mesh(spikeGeom, this.icicleMat);
-        leftSpike.position.set(leftPos.x, leftPos.y + 7 + (Math.sin(i * 3.1) * 4), leftPos.z);
-        leftSpike.rotation.z = -0.15 + (Math.sin(i * 0.9) * 0.12);
-        leftSpike.rotation.y = i * 0.7;
-        group.add(leftSpike);
+        // 협곡 폭 (급강하 및 크레바스 구간은 좁고 웅장하게, 개활지는 넓게)
+        const isCrevasse = (u >= 0.44 && u <= 0.64);
+        const canyonWidth = isCrevasse ? (gauge / 2 + 6.5) : (gauge / 2 + 10.5 + Math.sin(i * 0.8) * 3.5);
 
-        // 오른쪽 칼날 얼음 바위
-        const rightDist = gauge / 2 + 2.3 + (Math.cos(i * 1.7) * 0.8 + 0.8);
-        const rightPos = pos.clone().addScaledVector(norm, rightDist);
-        const rightSpike = new THREE.Mesh(spikeGeom, this.icicleMat);
-        rightSpike.position.set(rightPos.x, rightPos.y + 7 + (Math.cos(i * 2.7) * 4), rightPos.z);
-        rightSpike.rotation.z = 0.15 - (Math.cos(i * 0.9) * 0.12);
-        rightSpike.rotation.y = i * 1.1;
-        group.add(rightSpike);
+        // 좌측 거대 빙벽 절벽
+        const leftPos = pos.clone().addScaledVector(norm, -canyonWidth);
+        const leftCliff = new THREE.Mesh(isCrevasse ? cliffGeomTall : cliffGeom, this.spireMat);
+        leftCliff.position.set(leftPos.x, leftPos.y + (isCrevasse ? 35 : 20), leftPos.z);
+        leftCliff.rotation.y = i * 0.65;
+        leftCliff.rotation.z = -0.06;
+        leftCliff.scale.set(1.0 + Math.sin(i) * 0.25, 1.0, 1.3 + Math.cos(i) * 0.3);
+        group.add(leftCliff);
 
-        // B. 외곽 거대 빙산 절벽 기둥 (웅장한 협곡 배경)
-        if (i % 3 === 0) {
-          const side = (i % 2 === 0 ? 1 : -1);
-          const cliffDist = gauge / 2 + 12 + (Math.random() * 18);
-          const cliffPos = pos.clone().addScaledVector(norm, side * cliffDist);
-          const giantSpire = new THREE.Mesh(giantSpireGeom, this.spireMat);
-          giantSpire.position.set(cliffPos.x, cliffPos.y + 25 + Math.random() * 20, cliffPos.z);
-          giantSpire.rotation.y = Math.random() * Math.PI;
-          group.add(giantSpire);
-        }
+        // 우측 거대 빙벽 절벽
+        const rightPos = pos.clone().addScaledVector(norm, canyonWidth);
+        const rightCliff = new THREE.Mesh(isCrevasse ? cliffGeomTall : cliffGeom, this.spireMat);
+        rightCliff.position.set(rightPos.x, rightPos.y + (isCrevasse ? 35 : 20), rightPos.z);
+        rightCliff.rotation.y = i * 0.85;
+        rightCliff.rotation.z = 0.06;
+        rightCliff.scale.set(1.0 + Math.cos(i) * 0.25, 1.0, 1.3 + Math.sin(i) * 0.3);
+        group.add(rightCliff);
 
-        // C. ⭐ 머리 위를 아슬아슬하게 스쳐가는 오버헤드 고드름 아치 (Head-Choppers) ⭐
-        if (i % 7 === 0) {
-          const archCenter = pos.clone().addScaledVector(up, 4.8);
-          const archMesh = new THREE.Mesh(archGeom, this.archMat);
-          archMesh.position.copy(archCenter);
-          
-          const rotMatrix = new THREE.Matrix4().lookAt(
-            new THREE.Vector3(0, 0, 0),
-            tan,
-            up
-          );
-          archMesh.rotation.setFromRotationMatrix(rotMatrix);
-          archMesh.rotation.z = Math.PI;
-          group.add(archMesh);
+        // 빙벽 하단에 자연스럽게 굴러떨어진 유빙/얼음 바위 (인위적인 가시 제거!)
+        if (i % 2 === 0) {
+          const side = (i % 4 === 0 ? -1 : 1);
+          const bPos = pos.clone().addScaledVector(norm, side * (canyonWidth - 3.2));
+          const boulder = new THREE.Mesh(boulderGeom, boulderMat);
+          boulder.position.set(bPos.x, bPos.y - 2.0 + Math.sin(i) * 2.0, bPos.z);
+          boulder.rotation.set(i * 0.4, i * 0.7, i * 0.2);
+          group.add(boulder);
 
-          // 아치 천장에서 트랙 정중앙과 양옆으로 날카롭게 뻗어내린 고드름들!
-          const icicleOffsets = [-1.4, -0.6, 0.0, 0.6, 1.4];
-          icicleOffsets.forEach((off, idx) => {
-            const geom = (idx === 2) ? icicleGeomMedium : icicleGeomSmall;
-            const icicle = new THREE.Mesh(geom, this.icicleMat);
-            const hangPos = pos.clone()
-              .addScaledVector(up, 5.8 - Math.abs(off) * 0.6)
-              .addScaledVector(norm, off * 1.3);
-            icicle.position.copy(hangPos);
-            icicle.rotation.x = Math.PI; // 뾰족한 끝이 정확히 트랙 아래(플레이어 머리 쪽)를 향함
-            icicle.rotation.z = (Math.random() - 0.5) * 0.15;
-            group.add(icicle);
-          });
-        }
-
-        // D. ⭐ 제3관문 지하 빙하 크레바스 계곡 (u: 0.46 ~ 0.62) 밀집 고드름 터널 ⭐
-        if (u >= 0.46 && u <= 0.62) {
-          for (let k = 0; k < 2; k++) {
-            const hangIcicle = new THREE.Mesh(icicleGeomLarge, this.icicleMat);
-            const lateral = (k === 0 ? -1 : 1) * (1.2 + Math.random() * 2.0);
-            const hangPos = pos.clone()
-              .addScaledVector(up, 7.5 + Math.random() * 3.0)
-              .addScaledVector(norm, lateral);
-            hangIcicle.position.copy(hangPos);
-            hangIcicle.rotation.x = Math.PI;
-            hangIcicle.rotation.z = (Math.random() - 0.5) * 0.2;
-            group.add(hangIcicle);
-          }
+          const bSmall = new THREE.Mesh(boulderSmallGeom, boulderMat);
+          bSmall.position.set(bPos.x + (Math.sin(i)*2), bPos.y - 1.5, bPos.z + (Math.cos(i)*2));
+          bSmall.rotation.set(i * 0.9, i * 0.3, i * 0.6);
+          group.add(bSmall);
         }
       }
+
+      // [파트 B] 아슬아슬한 오버헤드 얼음 처마와 자연스러운 고드름 군락 (Hanging Icicle Ledges)
+      // 트랙의 16개 핵심 지점에 거대 얼음 처마 록을 가로지르고, 처마 밑면에 자연스러운 고드름 다발 배치
+      const archPoints = [
+        0.08, 0.14, 0.21, 0.27, 0.34, 0.40, 
+        0.47, 0.51, 0.55, 0.60, 0.66, 0.72, 
+        0.77, 0.83, 0.89, 0.94
+      ];
+
+      archPoints.forEach((u, archIdx) => {
+        const pos = this.curve.getPointAt(u);
+        const tan = this.curve.getTangentAt(u).normalize();
+        const norm = new THREE.Vector3(-tan.z, 0, tan.x).normalize();
+        const up = new THREE.Vector3(0, 1, 0);
+
+        // 1. 트랙 상공을 가로지르는 두터운 만년설 바위 처마
+        const clearanceY = (archIdx % 2 === 0) ? 6.2 : 5.4; // 탑승자 머리 위 3.8m ~ 4.6m 높이에 위치
+        const ledgePos = pos.clone().addScaledVector(up, clearanceY);
+        const ledgeMesh = new THREE.Mesh(archRockGeom, this.archMat);
+        ledgeMesh.position.copy(ledgePos);
+
+        // 트랙 방향에 맞추어 처마 회전
+        const rotMat = new THREE.Matrix4().lookAt(new THREE.Vector3(0, 0, 0), tan, up);
+        ledgeMesh.rotation.setFromRotationMatrix(rotMat);
+        ledgeMesh.rotation.z = (Math.sin(archIdx) * 0.12); // 자연스러운 비대칭 경사
+        group.add(ledgeMesh);
+
+        // 2. 처마 밑면에 매달린 유기적인 고드름 다발 (Natural Icicle Clusters)
+        // 무작위 가시가 아니라, 처마 밑면 4~6개 포인트에서 중력 방향(아래)으로 매달림
+        const clusterSlots = [-5.0, -2.8, -1.0, 0.6, 2.6, 4.8];
+        clusterSlots.forEach((slotX, cIdx) => {
+          // 중앙 슬롯은 열차 통과 시 아슬아슬한 헤드초퍼 연출
+          const isCenter = Math.abs(slotX) < 1.8;
+          const rootPos = ledgePos.clone()
+            .addScaledVector(norm, slotX)
+            .addScaledVector(up, -1.4); // 처마 밑면
+
+          // 메인 중심 고드름
+          const mainGeom = isCenter ? icicleGeomBig : icicleGeomMed;
+          const mainIcicle = new THREE.Mesh(mainGeom, this.icicleMat);
+          mainIcicle.position.copy(rootPos);
+          mainIcicle.rotation.x = Math.PI; // 중력에 의해 똑바로 아래를 향함
+          mainIcicle.rotation.z = (Math.sin(archIdx + cIdx) * 0.08); // 미세한 자연스러운 기울기
+          group.add(mainIcicle);
+
+          // 중심 고드름 주변에 달라붙은 보조 작은 고드름 1~2개 (실제 고드름의 자연스러운 군락 형태)
+          const subIcicle1 = new THREE.Mesh(icicleGeomSmall, this.icicleMat);
+          subIcicle1.position.set(rootPos.x + 0.45, rootPos.y + 0.8, rootPos.z + 0.3);
+          subIcicle1.rotation.x = Math.PI;
+          group.add(subIcicle1);
+
+          if (cIdx % 2 === 0) {
+            const subIcicle2 = new THREE.Mesh(icicleGeomSmall, this.icicleMat);
+            subIcicle2.position.set(rootPos.x - 0.4, rootPos.y + 0.5, rootPos.z - 0.25);
+            subIcicle2.rotation.x = Math.PI;
+            group.add(subIcicle2);
+          }
+        });
+      });
 
       this.scene.add(group);
       this.environmentGroup = group;
