@@ -5,16 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>바둑 롤러코스터 런 — JH 바둑스쿨 EduFun</title>
 <link rel="stylesheet" href="/unified-nav.css?v=20261102-coaster-v5">
-<link rel="stylesheet" href="style.css?v=20261102-coaster-v5">
+<link rel="stylesheet" href="style.css?v=20261102-hands-v2">
 <script src="/unified-nav.js?v=20261102-coaster-v6" defer></script>
 <script src="audio.js?v=20261102-coaster-v6"></script>
 <script src="three.min.js"></script>
 <script src="problems.js?v=20261102-coaster-v6"></script>
-<script src="courses.js?v=20261102-coaster-v7"></script>
+<script src="courses.js?v=20261102-hands-v2"></script>
 <script src="videoEngine.js?v=20261102-coaster-v6"></script>
 <script src="spaceEngine.js?v=20261102-coaster-v7"></script>
-<script src="magmaEngine.js?v=20261102-coaster-v8"></script>
-<script src="game.js?v=20261102-coaster-v8"></script>
+<script src="magmaEngine.js?v=20261102-hands-v2"></script>
+<script src="game.js?v=20261102-hands-v2"></script>
 </head>
 <body data-bks-page="coaster-run">
 
@@ -28,77 +28,118 @@
   <canvas id="magmaCanvas" style="display: none; position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1;"></canvas>
   <div class="video-vignette-overlay"></div>
   <div class="speed-motion-blur" id="speedMotionBlur"></div>
-    <!-- 1인칭 롤러코스터 카트 콕핏 & 손잡이를 쥔 두 손 오버레이 -->
-    <div class="cockpit-overlay" id="cockpitOverlay">
-      <svg viewBox="0 0 1000 220" width="100%" height="100%" preserveAspectRatio="none">
+<!-- 1인칭 롤러코스터 카트 콕핏 & 손잡이를 쥔 두 손 오버레이 -->
+    <div class="cockpit-overlay" id="cockpitOverlay" style="position: absolute !important; bottom: 0 !important; left: 0 !important; width: 100% !important; height: 210px !important; pointer-events: none !important; z-index: 25 !important; display: flex !important; justify-content: center !important; align-items: flex-end !important; filter: drop-shadow(0 -8px 24px rgba(0,0,0,0.9));">
+      <svg viewBox="0 0 1000 240" width="100%" height="100%" preserveAspectRatio="none">
         <defs>
           <linearGradient id="barGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stop-color="#94a3b8"/>
-            <stop offset="30%" stop-color="#475569"/>
-            <stop offset="70%" stop-color="#1e293b"/>
+            <stop offset="0%" stop-color="#cbd5e1"/>
+            <stop offset="25%" stop-color="#64748b"/>
+            <stop offset="65%" stop-color="#334155"/>
             <stop offset="100%" stop-color="#0f172a"/>
           </linearGradient>
           <linearGradient id="hoodGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stop-color="#1f1815"/>
-            <stop offset="40%" stop-color="#120c0a"/>
-            <stop offset="100%" stop-color="#0a0605"/>
+            <stop offset="0%" stop-color="#261b17"/>
+            <stop offset="50%" stop-color="#140d0b"/>
+            <stop offset="100%" stop-color="#0a0504"/>
           </linearGradient>
-          <linearGradient id="stripeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stop-color="#ff3300"/>
-            <stop offset="50%" stop-color="#ff7700"/>
-            <stop offset="100%" stop-color="#ff3300"/>
+          <linearGradient id="magmaStripe" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#ea580c"/>
+            <stop offset="50%" stop-color="#fb923c"/>
+            <stop offset="100%" stop-color="#ea580c"/>
           </linearGradient>
-          <linearGradient id="gloveGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stop-color="#334155"/>
+          <linearGradient id="gloveSuit" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#3b4858"/>
             <stop offset="60%" stop-color="#1e293b"/>
             <stop offset="100%" stop-color="#0f172a"/>
           </linearGradient>
-          <linearGradient id="orangeGuard" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stop-color="#fb923c"/>
+          <linearGradient id="armorGlow" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#fdba74"/>
+            <stop offset="40%" stop-color="#f97316"/>
             <stop offset="100%" stop-color="#c2410c"/>
+          </linearGradient>
+          <linearGradient id="gripTexture" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#1e293b"/>
+            <stop offset="100%" stop-color="#090d16"/>
           </linearGradient>
         </defs>
 
-        <!-- 카트 전면 보닛 -->
-        <polygon points="120,220 220,110 780,110 880,220" fill="url(#hoodGrad)" stroke="#33221b" stroke-width="2"/>
-        <!-- 보닛 오렌지 발광 스트라이프 -->
-        <polygon points="215,110 230,103 770,103 785,110" fill="url(#stripeGrad)" opacity="0.95"/>
+        <!-- 1. 카트 전면 보닛 차체 -->
+        <polygon points="100,240 200,125 800,125 900,240" fill="url(#hoodGrad)" stroke="#451a03" stroke-width="2.5"/>
+        <!-- 보닛 중앙 발광 오렌지 스트라이프 -->
+        <polygon points="195,125 210,118 790,118 805,125" fill="url(#magmaStripe)" opacity="0.95"/>
+        <line x1="210" y1="118" x2="790" y2="118" stroke="#ffedd5" stroke-width="1.5" opacity="0.8"/>
 
-        <!-- 강철 안전 손잡이 바 지지대 -->
-        <rect x="230" y="85" width="28" height="120" rx="6" fill="#1e293b" stroke="#334155" stroke-width="2"/>
-        <rect x="742" y="85" width="28" height="120" rx="6" fill="#1e293b" stroke="#334155" stroke-width="2"/>
+        <!-- 2. 강철 안전 손잡이 랩바 (Lap Bar) -->
+        <!-- 좌우 수직 지지대 -->
+        <rect x="215" y="90" width="32" height="150" rx="8" fill="#1e293b" stroke="#475569" stroke-width="2.5"/>
+        <rect x="753" y="90" width="32" height="150" rx="8" fill="#1e293b" stroke="#475569" stroke-width="2.5"/>
 
-        <!-- 가로 안전 손잡이 바 -->
-        <rect x="180" y="70" width="640" height="34" rx="17" fill="url(#barGrad)" stroke="#64748b" stroke-width="2"/>
-        <line x1="200" y1="78" x2="800" y2="78" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" opacity="0.45"/>
+        <!-- 가로 강철 메인 바 -->
+        <rect x="160" y="72" width="680" height="40" rx="20" fill="url(#barGrad)" stroke="#94a3b8" stroke-width="2.5"/>
+        <!-- 바 상단 금속 반사광 하이라이트 -->
+        <line x1="180" y1="81" x2="820" y2="81" stroke="#ffffff" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
 
-        <!-- 왼손 (손잡이를 꽉 쥐고 있음) -->
+        <!-- 양손 위치 고무 그립 패드 -->
+        <rect x="260" y="70" width="115" height="44" rx="10" fill="url(#gripTexture)" stroke="#334155" stroke-width="1.5"/>
+        <rect x="625" y="70" width="115" height="44" rx="10" fill="url(#gripTexture)" stroke="#334155" stroke-width="1.5"/>
+
+        <!-- 3. 왼손 (손잡이를 단단히 쥐고 있는 탐사 장갑) -->
         <g id="leftHand">
-          <polygon points="230,220 290,220 335,100 295,95" fill="url(#gloveGrad)"/>
-          <rect x="290" y="105" width="45" height="14" rx="5" fill="url(#orangeGuard)"/>
-          <rect x="292" y="60" width="48" height="42" rx="14" fill="url(#gloveGrad)" stroke="#0f172a" stroke-width="2"/>
-          <rect x="296" y="64" width="40" height="15" rx="5" fill="url(#orangeGuard)"/>
-          <ellipse cx="288" cy="74" rx="8" ry="14" transform="rotate(-25 288 74)" fill="url(#gloveGrad)" stroke="#0f172a" stroke-width="1.5"/>
-          <path d="M 296,98 C 296,110 336,110 336,98 Z" fill="#1e293b"/>
-          <line x1="306" y1="80" x2="306" y2="100" stroke="#0f172a" stroke-width="2"/>
-          <line x1="316" y1="80" x2="316" y2="100" stroke="#0f172a" stroke-width="2"/>
-          <line x1="326" y1="80" x2="326" y2="100" stroke="#0f172a" stroke-width="2"/>
+          <!-- 팔뚝 소매 (화면 좌측 하단에서 올라옴) -->
+          <polygon points="210,240 280,240 335,115 285,110" fill="url(#gloveSuit)"/>
+          <line x1="245" y1="240" x2="305" y2="112" stroke="#ea580c" stroke-width="3.5" opacity="0.85"/>
+          <!-- 손목 안전 버클 밴드 -->
+          <rect x="282" y="118" width="55" height="18" rx="6" fill="url(#armorGlow)" stroke="#7c2d12" stroke-width="1.5"/>
+
+          <!-- 바를 쥐고 있는 주먹 (Fist) -->
+          <rect x="284" y="58" width="62" height="52" rx="16" fill="url(#gloveSuit)" stroke="#0f172a" stroke-width="2.5"/>
+          <!-- 4개 너클 관절 보호 아머 플레이트 -->
+          <rect x="288" y="62" width="54" height="20" rx="6" fill="url(#armorGlow)" stroke="#7c2d12" stroke-width="1.5"/>
+          <line x1="301" y1="64" x2="301" y2="80" stroke="#7c2d12" stroke-width="1.5"/>
+          <line x1="315" y1="64" x2="315" y2="80" stroke="#7c2d12" stroke-width="1.5"/>
+          <line x1="329" y1="64" x2="329" y2="80" stroke="#7c2d12" stroke-width="1.5"/>
+
+          <!-- 엄지손가락 (바 위를 감싸 누름) -->
+          <ellipse cx="278" cy="76" rx="11" ry="19" transform="rotate(-28 278 76)" fill="url(#gloveSuit)" stroke="#0f172a" stroke-width="2"/>
+          <ellipse cx="278" cy="73" rx="7" ry="12" transform="rotate(-28 278 73)" fill="url(#armorGlow)" opacity="0.9"/>
+
+          <!-- 4개 손가락 (바 아래를 완전히 감싸 쥠) -->
+          <path d="M 288,106 C 288,122 342,122 342,106 Z" fill="#1e293b" stroke="#0f172a" stroke-width="2"/>
+          <line x1="301" y1="88" x2="301" y2="114" stroke="#0f172a" stroke-width="2.5"/>
+          <line x1="315" y1="88" x2="315" y2="114" stroke="#0f172a" stroke-width="2.5"/>
+          <line x1="329" y1="88" x2="329" y2="114" stroke="#0f172a" stroke-width="2.5"/>
         </g>
 
-        <!-- 오른손 (손잡이를 꽉 쥐고 있음) -->
+        <!-- 4. 오른손 (손잡이를 단단히 쥐고 있는 탐사 장갑) -->
         <g id="rightHand">
-          <polygon points="770,220 710,220 665,100 705,95" fill="url(#gloveGrad)"/>
-          <rect x="665" y="105" width="45" height="14" rx="5" fill="url(#orangeGuard)"/>
-          <rect x="660" y="60" width="48" height="42" rx="14" fill="url(#gloveGrad)" stroke="#0f172a" stroke-width="2"/>
-          <rect x="664" y="64" width="40" height="15" rx="5" fill="url(#orangeGuard)"/>
-          <ellipse cx="712" cy="74" rx="8" ry="14" transform="rotate(25 712 74)" fill="url(#gloveGrad)" stroke="#0f172a" stroke-width="1.5"/>
-          <path d="M 664,98 C 664,110 704,110 704,98 Z" fill="#1e293b"/>
-          <line x1="674" y1="80" x2="674" y2="100" stroke="#0f172a" stroke-width="2"/>
-          <line x1="684" y1="80" x2="684" y2="100" stroke="#0f172a" stroke-width="2"/>
-          <line x1="694" y1="80" x2="694" y2="100" stroke="#0f172a" stroke-width="2"/>
+          <!-- 팔뚝 소매 (화면 우측 하단에서 올라옴) -->
+          <polygon points="790,240 720,240 665,115 715,110" fill="url(#gloveSuit)"/>
+          <line x1="755" y1="240" x2="695" y2="112" stroke="#ea580c" stroke-width="3.5" opacity="0.85"/>
+          <!-- 손목 안전 버클 밴드 -->
+          <rect x="663" y="118" width="55" height="18" rx="6" fill="url(#armorGlow)" stroke="#7c2d12" stroke-width="1.5"/>
+
+          <!-- 바를 쥐고 있는 주먹 (Fist) -->
+          <rect x="654" y="58" width="62" height="52" rx="16" fill="url(#gloveSuit)" stroke="#0f172a" stroke-width="2.5"/>
+          <!-- 4개 너클 관절 보호 아머 플레이트 -->
+          <rect x="658" y="62" width="54" height="20" rx="6" fill="url(#armorGlow)" stroke="#7c2d12" stroke-width="1.5"/>
+          <line x1="671" y1="64" x2="671" y2="80" stroke="#7c2d12" stroke-width="1.5"/>
+          <line x1="685" y1="64" x2="685" y2="80" stroke="#7c2d12" stroke-width="1.5"/>
+          <line x1="699" y1="64" x2="699" y2="80" stroke="#7c2d12" stroke-width="1.5"/>
+
+          <!-- 엄지손가락 (바 위를 감싸 누름) -->
+          <ellipse cx="722" cy="76" rx="11" ry="19" transform="rotate(28 722 76)" fill="url(#gloveSuit)" stroke="#0f172a" stroke-width="2"/>
+          <ellipse cx="722" cy="73" rx="7" ry="12" transform="rotate(28 722 73)" fill="url(#armorGlow)" opacity="0.9"/>
+
+          <!-- 4개 손가락 (바 아래를 완전히 감싸 쥠) -->
+          <path d="M 658,106 C 658,122 712,122 712,106 Z" fill="#1e293b" stroke="#0f172a" stroke-width="2"/>
+          <line x1="671" y1="88" x2="671" y2="114" stroke="#0f172a" stroke-width="2.5"/>
+          <line x1="685" y1="88" x2="685" y2="114" stroke="#0f172a" stroke-width="2.5"/>
+          <line x1="699" y1="88" x2="699" y2="114" stroke="#0f172a" stroke-width="2.5"/>
         </g>
       </svg>
     </div>
+    
 </div>
 
 <!-- 콕핏 HUD 오버레이 -->
