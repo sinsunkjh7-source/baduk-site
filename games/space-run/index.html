@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>우주 항해 — 바둑스쿨 Fun</title>
+<link rel="stylesheet" href="/unified-nav.css?v=header-align-20261031">
+<link rel="stylesheet" href="style.css?v=space-1">
+<script src="/unified-nav.js?v=header-align-20261031" defer></script>
+</head>
+<body data-bks-page="space">
+
+<div id="stage" aria-label="우주 항해 3D 화면">
+  <canvas id="gl"></canvas>
+
+  <!-- 조종석 프레임 -->
+  <div class="cockpit" aria-hidden="true">
+    <span class="cockpit-strut left"></span>
+    <span class="cockpit-strut right"></span>
+    <span class="cockpit-dash"></span>
+    <span class="reticle"></span>
+  </div>
+
+  <!-- HUD -->
+  <div class="hud">
+    <div class="hud-left">
+      <div class="chip"><span class="k">속도</span><b id="speed">0</b><span class="u">km/s</span></div>
+      <div class="chip"><span class="k">거리</span><b id="dist">0</b><span class="u">km</span></div>
+    </div>
+    <div class="hud-right">
+      <div class="chip"><span class="k">기록</span><b id="best">0</b><span class="u">km</span></div>
+      <div class="shield" id="shieldBox">
+        <i class="seg"></i><i class="seg"></i><i class="seg"></i>
+      </div>
+    </div>
+  </div>
+
+  <div class="alert" id="alert" hidden>⚠ 운석 접근</div>
+
+  <!-- 시작 / 종료 -->
+  <div class="panel" id="startPanel">
+    <h1>우주 항해</h1>
+    <p>운석 사이를 아슬아슬하게 지나가며 항로를 지켜라.</p>
+    <ul>
+      <li>드래그(모바일) · 마우스(PC) · 방향키 / WASD 로 회피</li>
+      <li>부딪히면 실드가 줄고, 3번 맞으면 임무 종료</li>
+      <li>속도가 오를수록 점수가 빠르게 쌓인다</li>
+    </ul>
+    <button type="button" id="btnStart" class="btn primary">출발</button>
+  </div>
+
+  <div class="panel over" id="overPanel" hidden>
+    <h2>임무 종료</h2>
+    <p class="result"><b id="finalDist">0</b> km 항해</p>
+    <p class="sub" id="recordText"></p>
+    <button type="button" id="btnRetry" class="btn primary">다시 출발</button>
+  </div>
+
+  <div class="flash" id="flash" aria-hidden="true"></div>
+</div>
+
+<script src="/games/coaster-run/three.min.js?v=three-shared"></script>
+<script src="game.js?v=space-1"></script>
+</body>
+</html>
