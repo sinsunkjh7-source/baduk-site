@@ -309,6 +309,10 @@
     const displayH = Math.max(380, Math.floor(760 * scale));
 
     canvas.style.width = displayW + 'px';
+
+    // 차례 박스 폭을 판 폭에 맞춘다
+    const bannerEl = document.getElementById('turnBanner');
+    if (bannerEl) bannerEl.style.width = displayW + 'px';
     canvas.style.height = displayH + 'px';
 
     // Internal resolution (Retina crisp 2x)
