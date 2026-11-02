@@ -194,7 +194,7 @@
       gates: [
         {
           id: 0,
-          t: 0.16,
+          t: 0.115,
           time: 20.0,
           solved: false,
           gateName: '제1관문: 분화구 정상 백돌 따내기',
@@ -212,7 +212,7 @@
         },
         {
           id: 1,
-          t: 0.35,
+          t: 0.370,
           time: 42.0,
           solved: false,
           gateName: '제2관문: 용암 호수 상단 백돌 따내기',
@@ -246,7 +246,7 @@
         },
         {
           id: 3,
-          t: 0.72,
+          t: 0.700,
           time: 86.0,
           solved: false,
           gateName: '제4관문: 뭉친 백 2점 한 번에 따내기',
@@ -264,7 +264,7 @@
         },
         {
           id: 4,
-          t: 0.88,
+          t: 0.855,
           time: 108.0,
           solved: false,
           gateName: '제5관문: 화산 대폭발 최종 탈출 따내기',

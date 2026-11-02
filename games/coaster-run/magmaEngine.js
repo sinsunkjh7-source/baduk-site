@@ -43,11 +43,11 @@
 
       // 5개 관문 위치 (t 지점)
       this.gatePoints = [
-        { id: 0, t: 0.16, solved: false },
-        { id: 1, t: 0.35, solved: false },
-        { id: 2, t: 0.54, solved: false },
-        { id: 3, t: 0.72, solved: false },
-        { id: 4, t: 0.88, solved: false }
+        { id: 0, t: 0.115, solved: false }, // 제1관문: 155m 분화구 최고 정점 (143m 수직 낙하 직전 칼날 능선!)
+        { id: 1, t: 0.370, solved: false }, // 제2관문: 115m 에어타임 카멜백 언덕 정점
+        { id: 2, t: 0.540, solved: false }, // 제3관문: 흑요석 동굴 지하 트렌치 평탄 구간
+        { id: 3, t: 0.700, solved: false }, // 제4관문: 125m 간헐천 타워 정점
+        { id: 4, t: 0.855, solved: false }  // 제5관문: 화산 외벽 마지막 언덕 정점
       ];
 
       this.initThree();
@@ -509,7 +509,7 @@
         }
 
         // 초기 리프트 힐 구간(t < 0.12)은 체인 등반
-        if (this.t < 0.12 && !this.isGlidingSlow && !this.isBooster) {
+        if (this.t < 0.105 && !this.isGlidingSlow && !this.isBooster) {
           this.targetSpeedFactor = 0.55; // 45km/h 등반
         } else if (!this.isGlidingSlow && !this.isBooster) {
           this.targetSpeedFactor = 1.35 * slopeBoost; // 130~175km/h
@@ -530,7 +530,7 @@
         // 오디오 실시간 속도 연동
         if (window.CoasterAudio) {
           window.CoasterAudio.setRideSpeed(this.currentSpeedKm);
-          if (this.t > 0.12) {
+          if (this.t > 0.105) {
             window.CoasterAudio.stopLiftHill();
           }
         }
@@ -547,7 +547,7 @@
         if (!gate.solved) {
           const dist = gate.t - this.t;
           // 게이트 30m 전 접근 시 강력한 브레이킹 (끼이익-!)
-          if (dist > 0 && dist <= 0.022 && !this.isGlidingSlow) {
+          if (dist > 0 && dist <= 0.014 && !this.isGlidingSlow) {
             this.currentGateIndex = i;
             this.isGlidingSlow = true;
             this.targetSpeedFactor = 0.12; // 15km/h 초저속 서행
