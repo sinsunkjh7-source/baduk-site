@@ -1,21 +1,31 @@
 
-/* ---------- 레이아웃 : 판+패널 한 덩어리로 화면 중앙 ---------- */
+/* 레이아웃: 판=화면 정중앙 / 패널=오른쪽 남는 공간의 중앙 */
 .m-wrap{
-  --mem-board:min(816px, calc(100dvh - var(--bks-nav-h,64px) - 150px), 56vw);
+  --mem-board:min(816px, calc(100dvh - var(--bks-nav-h,64px) - 160px), 54vw);
   min-height:calc(100dvh - var(--bks-nav-h,64px));
-  display:flex;justify-content:center;align-items:center;gap:18px;
-  padding:18px clamp(10px,2vw,28px);
+  display:grid;
+  grid-template-columns:1fr auto 1fr;
+  align-items:center;
+  padding:0 clamp(8px,1.5vw,20px);
 }
-.m-board-col{flex:0 0 auto;width:var(--mem-board);display:flex;flex-direction:column;gap:10px;min-width:0}
+.m-board-col{grid-column:2;width:var(--mem-board);display:flex;flex-direction:column;gap:10px;margin-top:-28px}
 .m-board-col .m-grid{width:100%}
-.m-side{flex:0 0 320px;width:320px;align-self:center}
+.m-side{grid-column:3;justify-self:center;width:min(320px,96%);align-self:center}
+
+/* 태블릿·모바일: 세로 배치 */
+@media (max-width:1080px){
+  .m-wrap{--mem-board:min(560px,92vw);display:flex;flex-direction:column;align-items:center;
+    min-height:0;padding:calc(var(--bks-nav-h,64px) + 10px) 12px 20px;gap:14px}
+  .m-board-col{width:var(--mem-board);margin-top:0}
+  .m-side{width:var(--mem-board);max-width:92vw}
+}
+
+
+
+
+
 
 /* 태블릿·모바일 : 세로 배치 */
-@media (max-width:1080px){
-  .m-wrap{--mem-board:min(560px,92vw);flex-direction:column;gap:14px;align-items:center;
-    min-height:0;padding:calc(var(--bks-nav-h,64px) + 10px) 12px 20px}
-  .m-board-col,.m-side{flex:0 0 auto;width:var(--mem-board);max-width:92vw}
-}
 :root{
   --m-bg:#f2f8ec;
   --m-ink:#24361d;
