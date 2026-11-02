@@ -51,3 +51,182 @@
 @media(max-width:820px){.mobile-account-link{display:flex!important}.auth-screen{padding:24px 16px 34px}.auth-card{padding:26px 22px}.auth-card h1{font-size:25px}.auth-card input{font-size:16px}.mg-access{padding:38px 20px}.mg-access h1{font-size:24px}}
 
 .auth-preview fieldset{border:0;margin:0;padding:0;display:grid;gap:17px}.auth-preview input:disabled{background:#f6f8f1;color:#899a7b}
+
+/* ===================================================
+   바둑 학습 네모 메뉴 카드 그리드 (learn-card-grid)
+   =================================================== */
+.learn-card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px;
+  margin-top: 8px;
+  width: 100%;
+}
+
+.learn-card {
+  background: #ffffff;
+  border: 1.5px solid #d8e6c8;
+  border-radius: 20px;
+  padding: 26px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 16px rgba(46, 75, 40, 0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+.learn-card:hover:not(.disabled) {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(46, 75, 40, 0.12);
+  border-color: #759567;
+}
+
+/* 롤러코스터 런 하이라이트 메인 카드 */
+.learn-card-featured {
+  grid-column: span 2;
+  background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%);
+  border: 2px solid #0284c7;
+  box-shadow: 0 8px 26px rgba(2, 132, 199, 0.14);
+}
+
+.learn-card-featured:hover {
+  transform: translateY(-5px);
+  border-color: #0369a1;
+  box-shadow: 0 16px 36px rgba(2, 132, 199, 0.24);
+}
+
+.card-badge-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.badge-hot {
+  font-size: 11.5px;
+  font-weight: 800;
+  background: #ef4444;
+  color: #ffffff;
+  border-radius: 6px;
+  padding: 3px 8px;
+}
+
+.badge-tech {
+  font-size: 11.5px;
+  font-weight: 800;
+  background: rgba(2, 132, 199, 0.12);
+  color: #0284c7;
+  border: 1px solid rgba(2, 132, 199, 0.3);
+  border-radius: 6px;
+  padding: 2px 8px;
+}
+
+.badge-level {
+  font-size: 11.5px;
+  font-weight: 700;
+  background: #f1f5f9;
+  color: #475569;
+  border-radius: 6px;
+  padding: 3px 8px;
+}
+
+.badge-soon {
+  font-size: 11.5px;
+  font-weight: 700;
+  background: #fef3c7;
+  color: #d97706;
+  border-radius: 6px;
+  padding: 2px 8px;
+}
+
+.card-icon-title {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.card-emoji {
+  font-size: 38px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.card-title {
+  font-size: 21px;
+  font-weight: 800;
+  color: #1e293b;
+  margin: 0 0 4px 0;
+}
+
+.card-subtitle {
+  font-size: 13.5px;
+  color: #64748b;
+  margin: 0;
+  font-weight: 600;
+}
+
+.card-desc {
+  font-size: 14px;
+  color: #475569;
+  line-height: 1.6;
+  margin: 0;
+  flex-grow: 1;
+}
+
+.card-course-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.card-course-tags span {
+  font-size: 12px;
+  font-weight: 700;
+  background: #e0f2fe;
+  color: #0369a1;
+  border-radius: 6px;
+  padding: 4px 10px;
+}
+
+.card-btn-action {
+  margin-top: 6px;
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  font-size: 14.5px;
+  font-weight: 800;
+  color: #0284c7;
+  transition: transform 0.15s ease;
+}
+
+.learn-card-featured .card-btn-action {
+  background: linear-gradient(135deg, #0284c7 0%, #06b6d4 100%);
+  color: #ffffff;
+  padding: 9px 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 14px rgba(6, 182, 212, 0.35);
+}
+
+.learn-card-featured:hover .card-btn-action {
+  transform: translateX(4px);
+}
+
+.card-btn-action.disabled {
+  color: #94a3b8;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .learn-card-grid {
+    grid-template-columns: 1fr;
+  }
+  .learn-card-featured {
+    grid-column: span 1;
+  }
+}
