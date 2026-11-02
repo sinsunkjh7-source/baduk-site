@@ -90,7 +90,7 @@
       this.createSpeedStreaks();
       this.createVolcanoEnvironment();
       this.createGatePortals();
-      // this.createCockpit();
+      this.createCockpit();
 
       window.addEventListener('resize', () => this.onResize());
 
@@ -124,7 +124,7 @@
       this.cockpitGroup.add(bounceLight);
 
       this.camera.add(this.cockpitGroup);
-    } this.scene.add(this.camera);
+      this.scene.add(this.camera);
     }
 
     /**
