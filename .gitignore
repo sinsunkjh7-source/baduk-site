@@ -1,3 +1,7 @@
 scratch/
 *.pyc
 __pycache__/
+
+# Large video assets (>100MB)
+games/coaster-run/assets/*1080p*.webm
+

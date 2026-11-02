@@ -51,9 +51,11 @@
       this.settingsModal = document.getElementById('settingsModal');
       this.startConfigSummary = document.getElementById('startConfigSummary');
 
-      // 3D 롤러코스터 인스턴스 생성
-      this.coaster = new Coaster3D(this.viewportEl, {
-        onGateReached: (gateIndex) => this.onGateReached(gateIndex)
+      // 실사 비디오 롤러코스터 엔진 인스턴스 생성 (1안)
+      this.videoEl = document.getElementById('coasterVideo');
+      this.coaster = new VideoCoasterEngine(this.videoEl, {
+        onGateReached: (gateIndex) => this.onGateReached(gateIndex),
+        onFinish: () => this.handleVictory()
       });
 
       this.initEvents();
@@ -168,6 +170,9 @@
       this.currentProblemIndex = 0;
       this.score = 0;
       this.updateHUD();
+
+      // 1안 실사 영상 시동
+      this.coaster.startRide();
 
       // 사운드 시동
       CoasterAudio.startWind();
@@ -526,24 +531,26 @@
     startSpeedometer() {
       const updateSpeed = () => {
         if (this.gameState === 'RIDING') {
-          const speedKm = Math.round((this.coaster.currentSpeed / 0.0024) * 140);
+          const speedKm = this.coaster.currentSpeedKm || 0;
           if (this.speedValue) this.speedValue.textContent = `${speedKm} km/h`;
 
           if (this.speedModeTag) {
             if (speedKm >= 120) {
               this.speedModeTag.textContent = '⚡ 급강하 부스터';
               this.speedModeTag.className = 'speed-mode-tag plunging';
-            } else if (speedKm <= 15) {
-              this.speedModeTag.textContent = '🐌 서행 주행 (2안)';
+            } else if (speedKm <= 20) {
+              this.speedModeTag.textContent = '🐌 서행 주행 (실사)';
               this.speedModeTag.className = 'speed-mode-tag gliding';
+            } else if (this.coaster.video && this.coaster.video.currentTime < 34.0) {
+              this.speedModeTag.textContent = '🧗 리프트 등반';
+              this.speedModeTag.className = 'speed-mode-tag';
             } else {
               this.speedModeTag.textContent = '🚀 질주 순항';
               this.speedModeTag.className = 'speed-mode-tag';
             }
           }
         } else if (this.gameState === 'GATE') {
-          // 2안: 멈추지 않고 10km/h로 계속 움직이는 서행 주행 표시!
-          const speedKm = Math.max(8, Math.round((this.coaster.currentSpeed / 0.0024) * 140));
+          const speedKm = Math.max(8, this.coaster.currentSpeedKm || 10);
           if (this.speedValue) this.speedValue.textContent = `${speedKm} km/h`;
           if (this.speedModeTag) {
             this.speedModeTag.textContent = '🐌 문제 구간 서행';

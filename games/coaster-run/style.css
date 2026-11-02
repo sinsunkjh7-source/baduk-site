@@ -24,13 +24,42 @@ body {
   user-select: none;
 }
 
-/* 3D 롤러코스터 뷰포트 (전체화면) */
+/* 실사 롤러코스터 비디오 뷰포트 (전체화면 커버) */
 #coasterViewport {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   z-index: 1;
+  background: #000000;
+  overflow: hidden;
+}
+
+#coasterVideo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
+  transition: transform 0.05s ease-out;
+}
+
+.video-vignette-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, transparent 40%, rgba(6, 9, 25, 0.45) 90%),
+              linear-gradient(180deg, rgba(6, 9, 25, 0.3) 0%, transparent 20%, transparent 80%, rgba(6, 9, 25, 0.5) 100%);
+  pointer-events: none;
+}
+
+.speed-motion-blur {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, transparent 30%, rgba(56, 189, 248, 0.25) 85%);
+  box-shadow: inset 0 0 100px rgba(56, 189, 248, 0.5);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
 }
 
 /* 콕핏 HUD 오버레이 */
