@@ -114,7 +114,7 @@
       this.cockpitGroup = new THREE.Group();
       this.cockpitGroup.name = 'cockpitGroup';
 
-      // 콕핏 전용 헤드라이트 & 용암 반사광
+      // 조명 효과: 코스터 전방 헤드라이트 & 용암 반사광 (트랙을 다이내믹하게 비춤)
       const headLight = new THREE.PointLight(0xfff5ea, 2.4, 5.0);
       headLight.position.set(0, 0.2, -0.3);
       this.cockpitGroup.add(headLight);
@@ -123,127 +123,8 @@
       bounceLight.position.set(0, -0.6, -0.5);
       this.cockpitGroup.add(bounceLight);
 
-      // 1. 코스터 카트 전면 보닛
-      const hoodGeom = new THREE.BoxGeometry(2.0, 0.35, 0.9);
-      const hoodMat = new THREE.MeshStandardMaterial({
-        color: 0x221a16,
-        roughness: 0.3,
-        metalness: 0.85
-      });
-      const hood = new THREE.Mesh(hoodGeom, hoodMat);
-      hood.position.set(0, -0.55, -1.05);
-      hood.rotation.x = -0.36;
-      this.cockpitGroup.add(hood);
-
-      // 보닛 오렌지 발광 스트라이프
-      const stripeGeom = new THREE.BoxGeometry(1.8, 0.035, 0.05);
-      const stripeMat = new THREE.MeshStandardMaterial({
-        color: 0xff5500,
-        emissive: 0xff6600,
-        emissiveIntensity: 1.8
-      });
-      const stripe = new THREE.Mesh(stripeGeom, stripeMat);
-      stripe.position.set(0, -0.44, -0.92);
-      stripe.rotation.x = -0.36;
-      this.cockpitGroup.add(stripe);
-
-      // 2. 강철 안전 손잡이 바 (Lap Bar)
-      const barMat = new THREE.MeshStandardMaterial({
-        color: 0x94a3b8,
-        roughness: 0.2,
-        metalness: 0.95
-      });
-      const barGeom = new THREE.CylinderGeometry(0.038, 0.038, 1.15, 20);
-      const bar = new THREE.Mesh(barGeom, barMat);
-      bar.rotation.z = Math.PI / 2;
-      bar.position.set(0, -0.26, -0.68);
-      this.cockpitGroup.add(bar);
-
-      // 고무 그립 슬리브
-      const gripMat = new THREE.MeshStandardMaterial({
-        color: 0x0f172a,
-        roughness: 0.9,
-        metalness: 0.1
-      });
-      const gripL = new THREE.Mesh(new THREE.CylinderGeometry(0.043, 0.043, 0.22, 16), gripMat);
-      gripL.rotation.z = Math.PI / 2;
-      gripL.position.set(-0.28, -0.26, -0.68);
-      this.cockpitGroup.add(gripL);
-      const gripR = new THREE.Mesh(new THREE.CylinderGeometry(0.043, 0.043, 0.22, 16), gripMat);
-      gripR.rotation.z = Math.PI / 2;
-      gripR.position.set(0.28, -0.26, -0.68);
-      this.cockpitGroup.add(gripR);
-
-      // 3. 두 손 (장갑 낀 손으로 손잡이를 꽉 쥐고 있음)
-      const gloveMat = new THREE.MeshStandardMaterial({
-        color: 0x334155,
-        roughness: 0.65,
-        metalness: 0.2
-      });
-      const armorMat = new THREE.MeshStandardMaterial({
-        color: 0xea580c,
-        roughness: 0.35,
-        metalness: 0.5
-      });
-
-      const buildHand = (isLeft) => {
-        const group = new THREE.Group();
-        const sign = isLeft ? -1 : 1;
-
-        // 팔뚝 소매
-        const armGeom = new THREE.CylinderGeometry(0.052, 0.075, 0.42, 14);
-        const arm = new THREE.Mesh(armGeom, gloveMat);
-        arm.position.set(sign * 0.07, -0.20, 0.16);
-        arm.rotation.x = 0.55;
-        arm.rotation.z = -sign * 0.28;
-        group.add(arm);
-
-        // 손목 커프 밴드
-        const cuffGeom = new THREE.TorusGeometry(0.060, 0.012, 8, 16);
-        const cuff = new THREE.Mesh(cuffGeom, armorMat);
-        cuff.position.set(sign * 0.035, -0.08, 0.07);
-        cuff.rotation.x = 0.55;
-        cuff.rotation.z = -sign * 0.28;
-        group.add(cuff);
-
-        // 손잡이를 감싼 주먹
-        const fistGeom = new THREE.BoxGeometry(0.12, 0.08, 0.10);
-        const fist = new THREE.Mesh(fistGeom, gloveMat);
-        fist.position.set(0, 0.012, -0.005);
-        group.add(fist);
-
-        // 오렌지 너클 아머 가드
-        const guardGeom = new THREE.BoxGeometry(0.11, 0.025, 0.085);
-        const guard = new THREE.Mesh(guardGeom, armorMat);
-        guard.position.set(0, 0.052, -0.005);
-        group.add(guard);
-
-        // 엄지손가락 (바 위에 얹음)
-        const thumbGeom = new THREE.CylinderGeometry(0.019, 0.021, 0.085, 8);
-        const thumb = new THREE.Mesh(thumbGeom, gloveMat);
-        thumb.position.set(-sign * 0.050, 0.038, 0.012);
-        thumb.rotation.z = sign * 0.72;
-        thumb.rotation.x = -0.22;
-        group.add(thumb);
-
-        // 바 아래를 감싸 쥔 4개 손가락
-        for (let i = 0; i < 4; i++) {
-          const fingerGeom = new THREE.CylinderGeometry(0.013, 0.013, 0.08, 8);
-          const finger = new THREE.Mesh(fingerGeom, gloveMat);
-          finger.position.set((i - 1.5) * 0.026, -0.028, -0.040);
-          finger.rotation.x = 1.6;
-          group.add(finger);
-        }
-
-        group.position.set(sign * 0.28, -0.26, -0.68);
-        return group;
-      };
-
-      this.cockpitGroup.add(buildHand(true));
-      this.cockpitGroup.add(buildHand(false));
-
       this.camera.add(this.cockpitGroup);
-      this.scene.add(this.camera);
+    } this.scene.add(this.camera);
     }
 
     /**
@@ -650,11 +531,18 @@
       }
 
       // 콕핏 미세 진동 (속도에 따른 차체 및 손잡이 떨림)
-      if (this.cockpitGroup && this.isPlaying && !this.isEmergencyStopped) {
-        const speedNorm = this.currentSpeedKm / 200;
-        const now = Date.now() * 0.025;
-        this.cockpitGroup.position.y = Math.sin(now) * (0.005 + speedNorm * 0.012);
-        this.cockpitGroup.position.x = (Math.random() - 0.5) * (0.003 + speedNorm * 0.008);
+      if (!this.cockpitOverlayEl) {
+        this.cockpitOverlayEl = document.getElementById('cockpitOverlay');
+      }
+      if (this.cockpitOverlayEl) {
+        if (this.isPlaying && !this.isEmergencyStopped) {
+          const speedNorm = Math.min(1.5, this.currentSpeedKm / 180);
+          const shakeX = (Math.random() - 0.5) * (speedNorm * 3.2);
+          const shakeY = (Math.random() - 0.5) * (speedNorm * 2.2) + Math.sin(Date.now() * 0.02) * (speedNorm * 2.0);
+          this.cockpitOverlayEl.style.transform = `translateX(calc(-50% + ${shakeX.toFixed(1)}px)) translateY(${shakeY.toFixed(1)}px)`;
+        } else {
+          this.cockpitOverlayEl.style.transform = 'translateX(-50%) translateY(0)';
+        }
       }
 
       if (this.isPlaying && !this.isEmergencyStopped) {
