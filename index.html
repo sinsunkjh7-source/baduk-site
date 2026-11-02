@@ -28,10 +28,10 @@
   <a class="brand" href="#home" aria-label="JH 바둑스쿨 홈"><img src="assets/baduk_logo_final.png?v=static-68a173ca45abc653" alt="JH 바둑스쿨" width="1887" height="492"><span class="brand-domain">badukschool.com</span></a>
   <button class="menu-toggle" type="button" aria-label="전체 메뉴 열기" aria-controls="main-menu" aria-expanded="false"><span></span><span></span><span></span></button>
   <nav id="main-menu" class="main-menu" aria-label="주 메뉴">
-   <a href="#learn" data-route="learn">바둑 학습</a>
+   <div class="dropdown"><button type="button" class="dropdown-toggle" aria-expanded="false" aria-controls="learn-menu">바둑 학습<i aria-hidden="true">▾</i></button><div class="dropdown-panel" id="learn-menu" hidden><a href="games/coaster-run/index.html" style="font-weight:700; color:#0284c7;">🎢 3D 사활 롤러코스터</a><a href="#learn" data-route="learn">📚 바둑 학습 강좌 목록</a></div></div>
    <div class="dropdown"><button type="button" class="dropdown-toggle" aria-expanded="false" aria-controls="play-menu">바둑 대국<i aria-hidden="true">▾</i></button><div class="dropdown-panel" id="play-menu" hidden><a href="#play-ai" data-route="play-ai">AI 대국</a><a href="#play-normal" data-route="play-normal">일반 대국</a></div></div>
    <a href="sandbox/index.html" data-route="sandbox">놓아보기</a>
-   <div class="dropdown"><button type="button" class="dropdown-toggle fun-toggle" aria-expanded="false" aria-controls="fun-menu"><span class="fun-word"><svg class="fun-burst" viewBox="0 0 24 24" aria-hidden="true"><polygon points="12.00,0.60 14.65,6.50 20.91,4.89 17.95,10.64 23.11,14.54 16.77,15.80 16.95,22.27 12.00,18.10 7.05,22.27 7.23,15.80 0.89,14.54 6.05,10.64 3.09,4.89 9.35,6.50" fill="#FFD84D" stroke="#C62828" stroke-width="1.5" stroke-linejoin="round"/></svg><span class="fun-text">Fun</span></span></button><div class="dropdown-panel" id="fun-menu" hidden><a href="games/coaster-run/index.html" style="font-weight:700; color:#0284c7;">🎢 바둑 롤러코스터 (3D 우주 런)</a><a href="#omok">오목</a><a href="#alkkagi">알까기</a></div></div>
+   <div class="dropdown"><button type="button" class="dropdown-toggle fun-toggle" aria-expanded="false" aria-controls="fun-menu"><span class="fun-word"><svg class="fun-burst" viewBox="0 0 24 24" aria-hidden="true"><polygon points="12.00,0.60 14.65,6.50 20.91,4.89 17.95,10.64 23.11,14.54 16.77,15.80 16.95,22.27 12.00,18.10 7.05,22.27 7.23,15.80 0.89,14.54 6.05,10.64 3.09,4.89 9.35,6.50" fill="#FFD84D" stroke="#C62828" stroke-width="1.5" stroke-linejoin="round"/></svg><span class="fun-text">Fun</span></span></button><div class="dropdown-panel" id="fun-menu" hidden><a href="#omok">오목</a><a href="#alkkagi">알까기</a></div></div>
    <div class="dropdown"><button type="button" class="dropdown-toggle" aria-expanded="false" aria-controls="story-menu">이야기<i aria-hidden="true">▾</i></button><div class="dropdown-panel" id="story-menu" hidden><a href="#hanja">바둑 한자</a><a href="#idioms">고사성어</a><a href="#proverbs">격언 한마디</a><a href="#character">인성 스토리</a></div></div>
    
    <a class="teacher-link" href="#teacher" data-route="teacher">Teaching Zone</a>
@@ -77,14 +77,14 @@
     <!-- 1. 바둑 롤러코스터 런 (100% 순수 3D WebGL 엔진) -->
     <a href="games/coaster-run/index.html" class="learn-card learn-card-featured" aria-label="바둑 롤러코스터 런 탑승하기">
      <div class="card-badge-row">
-      <span class="badge-hot">🔥 10×10 대형 홀로그램 사활</span>
-      <span class="badge-tech">🌌 1분 은하계 심우주 런</span>
+      <span class="badge-hot">🔥 실전 사활 집중 훈련</span>
+      <span class="badge-tech">10×10 대형 홀로그램</span>
      </div>
      <div class="card-icon-title">
       <span class="card-emoji">🎢</span>
       <div>
-       <h2 class="card-title">바둑 롤러코스터 런</h2>
-       <p class="card-subtitle">10×10 홀로그램 사활 & 심우주 1분 익스트림</p>
+       <h2 class="card-title">바둑 사활 롤러코스터</h2>
+       <p class="card-subtitle">10×10 실전 사활 & 행마 스피드 훈련</p>
       </div>
      </div>
      <p class="card-desc">
