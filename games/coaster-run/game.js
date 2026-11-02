@@ -85,6 +85,11 @@
         badge.textContent = `선택됨: ${courseId === 'mako' ? '1코스' : '2코스'}`;
       }
 
+      const hudCourseTag = document.getElementById('hudCourseTag');
+      if (hudCourseTag) {
+        hudCourseTag.textContent = courseId === 'mako' ? '🌊 1코스 호수' : '⚡ 2코스 99m 퓨리';
+      }
+
       const featureList = document.getElementById('courseFeatureList');
       if (featureList && course.gates) {
         featureList.innerHTML = course.gates.map((g, idx) => `
@@ -131,6 +136,23 @@
         this.btnStart.onclick = handleStart;
         this.btnStart.addEventListener('click', handleStart);
         this.btnStart.addEventListener('touchend', handleStart, { passive: false });
+      }
+
+      // 1코스 / 2코스 즉시 탑승 전용 버튼
+      const btnLaunch1 = document.getElementById('btnLaunchCourse1');
+      if (btnLaunch1) {
+        btnLaunch1.onclick = () => {
+          this.selectCourse('mako');
+          this.startGame();
+        };
+      }
+
+      const btnLaunch2 = document.getElementById('btnLaunchCourse2');
+      if (btnLaunch2) {
+        btnLaunch2.onclick = () => {
+          this.selectCourse('fury');
+          this.startGame();
+        };
       }
 
       const restartHandler = () => this.restartGame();
