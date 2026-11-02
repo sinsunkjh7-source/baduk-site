@@ -602,3 +602,10 @@ html, body {
   font-size: 12.5px;
   min-height: 38px;
 }
+
+/* 모바일: 판이 화면 폭을 넘지 않게 (auto-fit-board) */
+#janggiBoard{max-width:100%;height:auto}
+@media (max-width:900px){
+  .board-wrapper{max-width:96vw;margin:0 auto}
+  #janggiBoard{width:96vw;height:auto}
+}

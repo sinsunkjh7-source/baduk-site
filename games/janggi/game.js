@@ -84,8 +84,8 @@
     // Bind event listeners
     bindEvents();
 
-    // Start with Formation Modal
-    openSetupModal();
+    // 바로 대국 화면을 보여주고, 대전 설정은 '새 대국' 버튼에서 연다
+    startNewGame();
   }
 
   function updatePlayerCards() {
