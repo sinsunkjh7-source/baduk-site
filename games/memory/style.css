@@ -1,3 +1,21 @@
+
+/* ---------- 레이아웃 : 판+패널 한 덩어리로 화면 중앙 ---------- */
+.m-wrap{
+  --mem-board:min(816px, calc(100dvh - var(--bks-nav-h,64px) - 150px), 56vw);
+  min-height:calc(100dvh - var(--bks-nav-h,64px));
+  display:flex;justify-content:center;align-items:center;gap:18px;
+  padding:18px clamp(10px,2vw,28px);
+}
+.m-board-col{flex:0 0 auto;width:var(--mem-board);display:flex;flex-direction:column;gap:10px;min-width:0}
+.m-board-col .m-grid{width:100%}
+.m-side{flex:0 0 320px;width:320px;align-self:center}
+
+/* 태블릿·모바일 : 세로 배치 */
+@media (max-width:1080px){
+  .m-wrap{--mem-board:min(560px,92vw);flex-direction:column;gap:14px;align-items:center;
+    min-height:0;padding:calc(var(--bks-nav-h,64px) + 10px) 12px 20px}
+  .m-board-col,.m-side{flex:0 0 auto;width:var(--mem-board);max-width:92vw}
+}
 :root{
   --m-bg:#f2f8ec;
   --m-ink:#24361d;
@@ -11,32 +29,16 @@
 body{padding:0;background:var(--m-bg)}
 
 
-.m-wrap{
-  --mem-board:min(816px, calc(100dvh - var(--bks-nav-h,64px) - 150px), 60vw);
-  position:relative;height:100dvh;margin-top:calc(var(--bks-nav-h,64px) * -1);padding:0
-}
+
 
 /* 데스크톱: 판은 화면 정중앙, 패널은 판 오른쪽에 붙임 */
-.m-board-col{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
-  display:flex;flex-direction:column;align-items:center;gap:10px;margin-top:-28px;width:auto;height:auto}
-.m-board-col .m-grid{width:var(--mem-board)}
-.m-board-col .m-stats{width:100%}
-.m-side{position:absolute;top:50%;transform:translateY(-50%);
-  left:calc(50% + (var(--mem-board) / 2) + 14px);right:auto;
-  width:min(330px, calc(50vw - (var(--mem-board) / 2) - 34px));
-  max-height:calc(100dvh - var(--bks-nav-h,64px) - 40px);overflow:auto}
+
+
+
+
 
 /* 모바일·태블릿: 세로 배치 (겹침 없음) */
-@media (max-width:1080px){
-  .m-wrap{--mem-board:min(560px, 92vw);height:auto;margin-top:0;
-    padding:calc(var(--bks-nav-h,64px) + 10px) 12px 20px;
-    display:flex;flex-direction:column;align-items:center;gap:14px}
-  .m-board-col{position:static;transform:none;margin:0;width:var(--mem-board);max-width:92vw}
-  .m-board-col .m-grid{width:100%}
-  .m-side{position:static;transform:none;left:auto;width:var(--mem-board);max-width:92vw;
-    max-height:none;overflow:visible}
-}
-.m-board-col{display:flex;flex-direction:column;gap:12px;min-width:0;align-items:stretch}
+
 
 .m-stats{display:flex;gap:10px}
 .m-stats>div{
@@ -87,6 +89,4 @@ body{padding:0;background:var(--m-bg)}
 .m-msg{background:#eaf5e1;border-left:4px solid var(--m-green);padding:10px 12px;border-radius:8px;font-size:13.5px;font-weight:700;color:#2f4a25}
 
 @media (max-width:820px){
-  .m-wrap{grid-template-columns:1fr}
-  .m-side{order:2}
 }
