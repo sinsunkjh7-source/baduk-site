@@ -209,62 +209,120 @@
     space: {
       id: 'space',
       engineType: 'space',
-      title: '🌌 제3코스: 은하계 심우주 런',
-      theme: '칠흑 암흑 우주 & 토성 고리 워프 질주 (3D)',
+      title: '🌌 제1코스: 은하계 심우주 런 (1분 익스트림)',
+      theme: '불타는 항성 초근접 다이브 & 스칠 듯한 운석 슬라롬 (10×10 대형 홀로그램)',
       gates: [
         {
           id: 0,
-          t: 0.22,
+          t: 0.15,
           time: 25.0,
           solved: false,
-          gateName: '제1관문: 성운 입구 백돌 따내기',
-          mission: '성운 진입로를 가로막는 백돌을 따내 워프 부스터를 점화하라!',
-          hint: '백돌의 마지막 숨구멍(위쪽)을 클릭하세요.',
-          gateActionName: '🌌 성운 웜홀 초광속 워프 점화!',
-          boardSize: 5,
+          gateName: '제1관문: 토성 고리 조망 정점! 행마 A·B 선택',
+          mission: '토성 얼음 고리로 210km/h 급강하하기 직전! 실전 행마 급소(A)를 찔러 워프 부스터를 점화하라!',
+          hint: '백돌의 머리를 막아 퇴로를 차단하는 A(왼쪽 아래)를 클릭하세요.',
+          gateActionName: '🪐 토성 얼음 고리 관통 210km/h 초광속 다이브!',
+          boardSize: 10,
           stones: [
-            { x: 2, y: 2, color: 'w' },
-            { x: 1, y: 2, color: 'b' },
-            { x: 3, y: 2, color: 'b' },
-            { x: 2, y: 3, color: 'b' }
+            { x: 6, y: 4, color: 'b' },
+            { x: 5, y: 6, color: 'b' },
+            { x: 5, y: 7, color: 'w' },
+            { x: 7, y: 6, color: 'w' }
           ],
-          correct: { x: 2, y: 1 }
+          labels: [
+            { x: 4, y: 7, text: 'A' },
+            { x: 3, y: 6, text: 'B' }
+          ],
+          correct: { x: 4, y: 7 }
         },
         {
           id: 1,
-          t: 0.52,
-          time: 55.0,
+          t: 0.31,
+          time: 25.0,
           solved: false,
-          gateName: '제2관문: 토성 고리 외곽 백돌 따내기',
-          mission: '얼음 파편을 뚫고 궤도에 갇힌 백돌을 신속히 따내라!',
-          hint: '오른쪽 빈자리 활로를 클릭하세요.',
-          gateActionName: '🪐 토성 고리 초저공 뱅킹 질주!',
-          boardSize: 5,
+          gateName: '제2관문: 소행성대 운석 슬라롬! 귀의 두 집 만들기',
+          mission: '거대 운석이 스칠 듯이 쏟아진다! 귀에서 완벽한 독립된 두 집을 완성하여 회피 궤도를 열어라!',
+          hint: '귀의 급소 (1, 1) 빈칸을 찾아 완벽한 두 집을 만드세요.',
+          gateActionName: '☄️ 거대 암석 운석 회피 180km/h 고속 슬라롬!',
+          boardSize: 10,
           stones: [
-            { x: 1, y: 2, color: 'w' },
-            { x: 0, y: 2, color: 'b' },
-            { x: 1, y: 1, color: 'b' },
-            { x: 1, y: 3, color: 'b' }
+            { x: 0, y: 1, color: 'b' }, { x: 0, y: 2, color: 'b' },
+            { x: 1, y: 2, color: 'b' }, { x: 2, y: 2, color: 'b' },
+            { x: 2, y: 1, color: 'b' }, { x: 2, y: 0, color: 'b' },
+            { x: 0, y: 3, color: 'w' }, { x: 1, y: 3, color: 'w' },
+            { x: 2, y: 3, color: 'w' }, { x: 3, y: 2, color: 'w' },
+            { x: 3, y: 1, color: 'w' }, { x: 3, y: 0, color: 'w' }
           ],
-          correct: { x: 2, y: 2 }
+          correct: { x: 1, y: 1 }
         },
         {
           id: 2,
-          t: 0.82,
-          time: 85.0,
+          t: 0.48,
+          time: 25.0,
           solved: false,
-          gateName: '제3관문: 블랙홀 탈출 최종 백 2점 따내기',
-          mission: '중력장에 빨려 들어가는 뭉친 백 2점을 한 방에 따내고 탈출하라!',
-          hint: '백 2점의 마지막 공통 숨구멍을 찌르세요.',
-          gateActionName: '⚡ 초광속 하이퍼드라이브 최종 탈출!',
-          boardSize: 5,
+          gateName: '제3관문: 불타는 항성 코로나 초근접! 촉촉수 단수',
+          mission: '태양 코로나 충돌 직전 250km/h 다이브! 백돌의 연결을 끊는 끼움수로 연단수를 몰아라!',
+          hint: '백돌의 연결을 가르는 급소 빈칸을 찌르세요.',
+          gateActionName: '☀️ 250km/h 태양 중력 슬링샷 70도 급선회 탈출!',
+          boardSize: 10,
           stones: [
-            { x: 2, y: 2, color: 'w' }, { x: 3, y: 2, color: 'w' },
-            { x: 1, y: 2, color: 'b' }, { x: 4, y: 2, color: 'b' },
-            { x: 2, y: 1, color: 'b' }, { x: 3, y: 1, color: 'b' },
-            { x: 2, y: 3, color: 'b' }
+            { x: 4, y: 4, color: 'w' }, { x: 5, y: 4, color: 'w' }, { x: 5, y: 5, color: 'w' },
+            { x: 3, y: 4, color: 'b' }, { x: 4, y: 3, color: 'b' }, { x: 5, y: 3, color: 'b' },
+            { x: 6, y: 4, color: 'b' }, { x: 6, y: 5, color: 'b' }, { x: 5, y: 6, color: 'b' }
           ],
-          correct: { x: 3, y: 3 }
+          correct: { x: 4, y: 5 }
+        },
+        {
+          id: 3,
+          t: 0.65,
+          time: 25.0,
+          solved: false,
+          gateName: '제4관문: 오리온 자색 성운 360도 헬릭스! 환격의 덫',
+          mission: '자색 가스 구름 속 코르크스크류 헬릭스 진입! 돌을 희생해 백 3점을 통째로 잡는 환격을 걸어라!',
+          hint: '호구 안쪽으로 과감히 먹여치는 급소를 클릭하세요.',
+          gateActionName: '🌀 360도 성운 나선 코르크스크류 고속 급강하!',
+          boardSize: 10,
+          stones: [
+            { x: 3, y: 2, color: 'w' }, { x: 4, y: 2, color: 'w' }, { x: 5, y: 2, color: 'w' },
+            { x: 2, y: 2, color: 'b' }, { x: 3, y: 1, color: 'b' }, { x: 4, y: 1, color: 'b' },
+            { x: 5, y: 1, color: 'b' }, { x: 6, y: 2, color: 'b' }, { x: 5, y: 3, color: 'b' },
+            { x: 3, y: 3, color: 'b' }
+          ],
+          correct: { x: 4, y: 3 }
+        },
+        {
+          id: 4,
+          t: 0.82,
+          time: 25.0,
+          solved: false,
+          gateName: '제5관문: 유성우 회피 에어타임 언덕! 장문 포위망',
+          mission: '돌진하는 거대 유성을 피해 솟구친다! 도망치려는 백돌의 머리 위에 그물을 씌워라!',
+          hint: '백돌의 탈출로를 완전히 덮는 장문의 맥점을 클릭하세요.',
+          gateActionName: '⚡ 유성우 돌파 하이퍼드라이브 충전 가속!',
+          boardSize: 10,
+          stones: [
+            { x: 4, y: 5, color: 'w' },
+            { x: 3, y: 4, color: 'b' }, { x: 3, y: 5, color: 'b' }, { x: 5, y: 6, color: 'b' }
+          ],
+          correct: { x: 5, y: 4 }
+        },
+        {
+          id: 5,
+          t: 0.94,
+          time: 25.0,
+          solved: false,
+          gateName: '제6관문: 초광속 웜홀 결승 관문! 치중 사활 결정타',
+          mission: '마지막 웜홀 게이트 개방! 백 대마의 한 집을 옥집으로 만드는 결정적 치중타를 날려라!',
+          hint: '백 대마의 중심 안형을 파괴하는 치중점 (7, 6)을 찌르세요.',
+          gateActionName: '🚀 300km/h 초광속 하이퍼스페이스 최종 웜홀 탈출!',
+          boardSize: 10,
+          stones: [
+            { x: 5, y: 5, color: 'w' }, { x: 6, y: 5, color: 'w' }, { x: 7, y: 5, color: 'w' }, { x: 8, y: 5, color: 'w' },
+            { x: 5, y: 7, color: 'w' }, { x: 6, y: 7, color: 'w' }, { x: 7, y: 7, color: 'w' }, { x: 8, y: 7, color: 'w' },
+            { x: 4, y: 6, color: 'b' }, { x: 5, y: 4, color: 'b' }, { x: 6, y: 4, color: 'b' }, { x: 7, y: 4, color: 'b' },
+            { x: 8, y: 4, color: 'b' }, { x: 9, y: 6, color: 'b' }, { x: 5, y: 8, color: 'b' }, { x: 6, y: 8, color: 'b' },
+            { x: 7, y: 8, color: 'b' }, { x: 8, y: 8, color: 'b' }
+          ],
+          correct: { x: 7, y: 6 }
         }
       ]
     }

@@ -102,14 +102,14 @@
       this.coaster = this.magmaCoaster;
 
       // 코스 데이터 초기화
-      this.currentCourseId = 'glacier';
-      this.currentCourse = window.COASTER_COURSES?.glacier || null;
+      this.currentCourseId = 'space';
+      this.currentCourse = window.COASTER_COURSES?.space || null;
 
       this.initEvents();
       this.initSettingsEvents();
       this.initGoBoardEvents();
       this.updateConfigSummary();
-      if (this.currentCourse) this.selectCourse('glacier');
+      if (this.currentCourse) this.selectCourse('space');
     }
 
     selectCourse(courseId) {
@@ -487,14 +487,14 @@
       }
     }
 
-    // ⭐ 투명 홀로그램 5x5 바둑판 렌더링 (뒤쪽 155m 설산 & 낙하 트랙이 비쳐 보임) ⭐
+    // ⭐ 투명 홀로그램 대형 10x10 / 5x5 바둑판 렌더링 (뒤쪽 우주 & 항성 & 운석 트랙이 비쳐 보임) ⭐
     renderGoBoard(problem, userStones = []) {
       const ctx = this.goCtx;
-      const size = 380;
+      const size = this.goCanvas.width || 440;
       ctx.clearRect(0, 0, size, size);
 
-      const gridCount = problem.boardSize; // 5
-      const padding = 45;
+      const gridCount = problem.boardSize || 10;
+      const padding = (gridCount >= 10) ? 26 : 45;
       const cellSize = (size - padding * 2) / (gridCount - 1);
 
       // 1. 투명 홀로그램 사이버 글래스 배경 (투과율 75%+)
@@ -515,7 +515,7 @@
       ctx.strokeStyle = 'rgba(125, 211, 252, 0.85)';
       ctx.shadowColor = 'rgba(56, 189, 248, 0.65)';
       ctx.shadowBlur = 6;
-      ctx.lineWidth = 2.0;
+      ctx.lineWidth = (gridCount >= 10) ? 1.6 : 2.0;
 
       for (let i = 0; i < gridCount; i++) {
         const pos = padding + i * cellSize;
@@ -533,29 +533,76 @@
         ctx.stroke();
       }
 
-      // 화점 (중앙 1개: 네온 사이언 펄스)
-      const mid = padding + 2 * cellSize;
+      // 화점 (10x10인 경우: (0,0), (6,0), (0,6), (6,6) 4개, 5x5인 경우 중앙 1개)
       ctx.fillStyle = '#38bdf8';
       ctx.shadowColor = '#38bdf8';
       ctx.shadowBlur = 10;
-      ctx.beginPath();
-      ctx.arc(mid, mid, 5.0, 0, Math.PI * 2);
-      ctx.fill();
+
+      if (gridCount === 10) {
+        const starPoints = [
+          { x: 0, y: 0 },
+          { x: 6, y: 0 },
+          { x: 0, y: 6 },
+          { x: 6, y: 6 }
+        ];
+        starPoints.forEach(sp => {
+          const px = padding + sp.x * cellSize;
+          const py = padding + sp.y * cellSize;
+          ctx.beginPath();
+          ctx.arc(px, py, 3.8, 0, Math.PI * 2);
+          ctx.fill();
+        });
+      } else {
+        const mid = padding + Math.floor(gridCount / 2) * cellSize;
+        ctx.beginPath();
+        ctx.arc(mid, mid, 5.0, 0, Math.PI * 2);
+        ctx.fill();
+      }
       ctx.restore();
 
       // 3. 문제 기본 돌
+      const stoneRadius = cellSize * 0.44;
       problem.stones.forEach(s => {
         const cx = padding + s.x * cellSize;
         const cy = padding + s.y * cellSize;
-        this.drawStone(ctx, cx, cy, s.color, cellSize * 0.44);
+        this.drawStone(ctx, cx, cy, s.color, stoneRadius);
       });
 
       // 4. 유저 착수 돌
       userStones.forEach(s => {
         const cx = padding + s.x * cellSize;
         const cy = padding + s.y * cellSize;
-        this.drawStone(ctx, cx, cy, s.color, cellSize * 0.44, true);
+        this.drawStone(ctx, cx, cy, s.color, stoneRadius, true);
       });
+
+      // 5. 보기 라벨 (A, B 등)
+      if (problem.labels && problem.labels.length > 0) {
+        problem.labels.forEach(lbl => {
+          const lx = padding + lbl.x * cellSize;
+          const ly = padding + lbl.y * cellSize;
+
+          ctx.save();
+          // 라운드 뱃지 배경 (글자가 격자선 위에서 명확하게 보이도록)
+          ctx.fillStyle = 'rgba(15, 23, 42, 0.82)';
+          ctx.beginPath();
+          ctx.arc(lx, ly, stoneRadius * 0.75, 0, Math.PI * 2);
+          ctx.fill();
+
+          ctx.strokeStyle = '#fde047';
+          ctx.lineWidth = 1.8;
+          ctx.shadowColor = '#eab308';
+          ctx.shadowBlur = 8;
+          ctx.stroke();
+
+          // A / B 텍스트
+          ctx.fillStyle = '#fef08a';
+          ctx.font = `bold ${Math.round(stoneRadius * 0.95)}px "Pretendard", "Segoe UI", sans-serif`;
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          ctx.fillText(lbl.text, lx, ly);
+          ctx.restore();
+        });
+      }
     }
 
     drawStone(ctx, cx, cy, color, radius, isNew = false) {
@@ -605,20 +652,24 @@
         if (this.gameState !== 'GATE') return;
 
         const rect = this.goCanvas.getBoundingClientRect();
-        const scaleX = (this.goCanvas.width || 380) / rect.width;
-        const scaleY = (this.goCanvas.height || 380) / rect.height;
+        const canvasW = this.goCanvas.width || 440;
+        const canvasH = this.goCanvas.height || 440;
+        const scaleX = canvasW / rect.width;
+        const scaleY = canvasH / rect.height;
         const clickX = (e.clientX - rect.left) * scaleX;
         const clickY = (e.clientY - rect.top) * scaleY;
 
         const problem = (this.currentCourse && this.currentCourse.gates) ?
           this.currentCourse.gates[this.currentProblemIndex] : COASTER_PROBLEMS[this.currentProblemIndex];
-        const padding = 45;
-        const cellSize = (380 - padding * 2) / (problem.boardSize - 1);
+
+        const gridCount = problem.boardSize || 10;
+        const padding = (gridCount >= 10) ? 26 : 45;
+        const cellSize = (canvasW - padding * 2) / (gridCount - 1);
 
         const gridX = Math.round((clickX - padding) / cellSize);
         const gridY = Math.round((clickY - padding) / cellSize);
 
-        if (gridX < 0 || gridX >= problem.boardSize || gridY < 0 || gridY >= problem.boardSize) return;
+        if (gridX < 0 || gridX >= gridCount || gridY < 0 || gridY >= gridCount) return;
 
         const occupied = problem.stones.some(s => s.x === gridX && s.y === gridY);
         if (occupied) return;

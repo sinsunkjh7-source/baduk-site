@@ -263,7 +263,7 @@ body {
   align-items: center;
   gap: 10px;
   animation: hudScaleHoloIn 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-  max-width: 410px;
+  max-width: 490px;
   width: auto;
   backdrop-filter: blur(2px); /* 155m 설산 빙벽과 트랙이 시원하게 비쳐 보임 */
 }
@@ -388,12 +388,14 @@ body {
 
 canvas#goCanvas {
   display: block;
-  border-radius: 14px;
+  border-radius: 16px;
   cursor: crosshair;
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.6);
-  width: 340px;
-  height: 340px;
-  max-width: 100%;
+  box-shadow: 0 6px 28px rgba(0, 0, 0, 0.65), 0 0 15px rgba(56, 189, 248, 0.25);
+  width: 420px;
+  height: 420px;
+  max-width: 90vw;
+  max-height: 52vh;
+  aspect-ratio: 1 / 1;
 }
 
 .board-footer-guide {

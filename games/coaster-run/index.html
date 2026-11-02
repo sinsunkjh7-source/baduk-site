@@ -76,7 +76,7 @@
     </div>
 
     <!-- 5x5 투명 홀로그램 캔버스 바둑판 -->
-    <canvas id="goCanvas" width="380" height="380"></canvas>
+    <canvas id="goCanvas" width="440" height="440"></canvas>
 
     <div class="board-footer-guide" id="hudFooterGuide">
       🚀 제한 시간 내 정답 시 <b>240km/h 초고속 수직 다이브</b> 점화! (시간 초과 시 일반 순항)
@@ -162,10 +162,10 @@
     <div class="course-selector-box">
       <div class="course-selector-header">
         <span class="course-selector-title">🎢 3D 테마 코스 선택</span>
-        <span class="course-selector-badge" id="currentCourseBadge">선택됨: 1코스</span>
+        <span class="course-selector-badge" id="currentCourseBadge">선택됨: 3코스 (우주)</span>
       </div>
       <div class="course-card-grid" id="courseCardGrid">
-        <button type="button" class="course-card active" data-course="glacier">
+        <button type="button" class="course-card" data-course="glacier">
           <div class="course-tag cyan">1코스</div>
           <div class="course-info">
             <div class="course-title">❄️ 프로즌 글래시어 런</div>
@@ -179,7 +179,7 @@
             <div class="course-desc">용암 바다 & 155m 분화구 정점 다이브 (3D)</div>
           </div>
         </button>
-        <button type="button" class="course-card" data-course="space">
+        <button type="button" class="course-card active" data-course="space">
           <div class="course-tag purple">3코스</div>
           <div class="course-info">
             <div class="course-title">🌌 은하계 심우주 런</div>
@@ -190,15 +190,16 @@
     </div>
 
     <div class="coaster-feature-list" id="courseFeatureList">
-      <li>❄️ <b>제1관문</b> : 155m 설산 정상 칼날 능선! 천길 빙벽 앞 백돌 따내기</li>
-      <li>❄️ <b>제2관문</b> : 115m 빙산 카멜백 언덕 정점 백돌 따내기</li>
-      <li>❄️ <b>제3관문</b> : 푸른 얼음 동굴 S자 뱅킹 진입로 백돌 따내기</li>
-      <li>❄️ <b>제4관문</b> : 125m 고드름 타워 솟구침 직전! 백 2점 따내기</li>
-      <li>❄️ <b>제5관문</b> : 블리자드 대탈출 최종 360도 나선 급강하 따내기</li>
+      <li>🌌 <b>제1관문</b> : 토성 고리 조망 정점! 실전 행마 A·B 선택</li>
+      <li>☄️ <b>제2관문</b> : 소행성대 운석 슬라롬! 귀의 두 집 만들기</li>
+      <li>☀️ <b>제3관문</b> : 불타는 항성 코로나 초근접! 촉촉수 단수</li>
+      <li>🌀 <b>제4관문</b> : 오리온 자색 성운 360도 헬릭스! 환격의 덫</li>
+      <li>⚡ <b>제5관문</b> : 유성우 회피 에어타임 언덕! 장문 포위망</li>
+      <li>🚀 <b>제6관문</b> : 초광속 웜홀 결승 관문! 치중 사활 결정타</li>
     </div>
 
     <!-- 메인 탑승 출발 버튼 -->
-    <button type="button" class="btn-launch btn-main-launch" id="btnStart">🚀 ❄️ 프로즌 글래시어 런 탑승 출발!</button>
+    <button type="button" class="btn-launch btn-main-launch" id="btnStart" style="background: linear-gradient(135deg, #7c3aed 0%, #ec4899 100%); box-shadow: 0 10px 30px rgba(168, 85, 247, 0.5);">🚀 🌌 은하계 심우주 런 탑승 출발!</button>
     <button type="button" class="btn-sub" id="btnStartSettings" style="margin-top: -6px;">⚙️ 주행 설정 변경</button>
   </div>
 </div>
