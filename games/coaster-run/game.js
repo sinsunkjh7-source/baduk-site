@@ -51,6 +51,13 @@
       this.settingsModal = document.getElementById('settingsModal');
       this.startConfigSummary = document.getElementById('startConfigSummary');
 
+      // 초기 진입 시 모달 상태 확실하게 정리 (스타트 화면 표시, 완주/오버 모달 숨김)
+      if (this.startScreen) this.startScreen.hidden = false;
+      if (this.victoryModal) this.victoryModal.hidden = true;
+      if (this.gameOverModal) this.gameOverModal.hidden = true;
+      if (this.boardModal) this.boardModal.hidden = true;
+      if (this.gateBanner) this.gateBanner.hidden = true;
+
       // 실사 비디오 롤러코스터 엔진 인스턴스 생성 (1, 2코스)
       this.videoEl = document.getElementById('coasterVideo');
       this.videoCoaster = new VideoCoasterEngine(this.videoEl, {
