@@ -46,7 +46,8 @@
   var p1Score = 0, p2Score = 0, turnP = 0, TARGET = 5;
   var mt = /[?&]target=(\d+)/.exec(location.search); if (mt) TARGET = Math.max(1, parseInt(mt[1], 10));
   var cushionCount = 0, hitList = [], pottedThisShot = 0, foulThisShot = false, lastCushion = 0;
-  var spin = { x: 0, y: 0 };   /* 당점: x=-1(좌)~1(우), y=-1(하)~1(상) */
+  var spin = { x: 0, y: 0 };
+  var lastAim = { x: 1, y: 0, power: 0 }, spinZone = false;   /* 당점: x=-1(좌)~1(우), y=-1(하)~1(상) */
   if (/[?&]spin=top/.test(location.search)) spin.y = 1;
   if (/[?&]spin=bottom/.test(location.search)) spin.y = -1;
   if (/[?&]spin=left/.test(location.search)) spin.x = -1;
@@ -733,15 +734,38 @@
     return e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom;
   }
 
+  var SPIN_ZONE_K = 3.2;   /* 공 반지름 × 이 배수 안쪽 = 당점 조정 */
+
   window.addEventListener('pointermove', function (e) {
     if (floatDrag) { setSpinFromEvent(e, spinFloat); return; }
-    if (dragging) moveSpinFloat();
     if (!dragging) return;
-    if (inFloat(e)) return;
     var p = toWorld(e);
-    var dx = p.x - cue.x, dy = p.y - cue.y, d = Math.hypot(dx, dy) || 1;
+    var dx = p.x - cue.x, dy = p.y - cue.y;
+    var d = Math.hypot(dx, dy) || 0.0001;
+    var zone = R * SPIN_ZONE_K;
+
+    if (d < zone) {
+      /* 공 위로 되돌리면 당점 조정 (조준·세기는 마지막 값 유지) */
+      var nx = dx / zone, ny = dy / zone;
+      var len = Math.hypot(nx, ny);
+      if (len > 1) { nx /= len; ny /= len; }
+      spin.x = +nx.toFixed(3);
+      spin.y = +(-ny).toFixed(3);
+      spinZone = true;
+      if (spinCv) spinCv.setAttribute('aria-valuetext', spin.x + ',' + spin.y);
+      spinFloat.classList.add('is-spin-mode');
+      showSpinFloat();
+      paintSpinBall(spinCv); paintSpinBall(spinFloat);
+      draw();
+      return;
+    }
+
+    spinZone = false;
+    if (spinFloat) spinFloat.classList.remove('is-spin-mode');
+    hideSpinFloat();
     aim.x = dx / d; aim.y = dy / d;
     aim.power = Math.min(1, d / 240);
+    lastAim = { x: aim.x, y: aim.y, power: aim.power };
     syncPowerUI();
     draw();
   });
@@ -750,14 +774,18 @@
     if (floatDrag) { floatDrag = false; paintSpinBall(); draw(); return; }
     if (!dragging) return;
     dragging = false;
+    spinZone = false;
     if (spinPad) spinPad.classList.remove('is-aiming');
+    if (spinFloat) spinFloat.classList.remove('is-spin-mode');
     hideSpinFloat();
-    if (aim.power < 0.06) { aim.power = 0; syncPowerUI(); draw(); return; }
+    var shotPower = lastAim.power;
+    if (shotPower < 0.06) { aim.power = 0; syncPowerUI(); draw(); return; }
 
     shots++;
     beginShot();
-    cue.vx = aim.x * MAX_POWER * aim.power;
-    cue.vy = aim.y * MAX_POWER * aim.power;
+    cue.vx = lastAim.x * MAX_POWER * shotPower;
+    cue.vy = lastAim.y * MAX_POWER * shotPower;
+    aim.x = lastAim.x; aim.y = lastAim.y;
     moving = true;
     updateStats();
     aim.power = 0;
@@ -782,12 +810,14 @@
   function moveSpinFloat() {
     if (!spinFloat || spinFloat.hidden) return;
     var r = cv.getBoundingClientRect();
-    var size = spinFloat.offsetWidth || 132, pad = 14;
-    /* 당구대 오른쪽 아래 모서리 안쪽에 고정 — 조준선을 가리지 않음 */
-    var x = r.right - size - pad;
-    var y = r.bottom - size - pad;
+    var size = spinFloat.offsetWidth || 132, pad = 10;
+    /* 공 위쪽에 확대경처럼 띄워 조준선을 가리지 않게 */
+    var sx = r.left + (cue.x / W) * r.width;
+    var sy = r.top + (cue.y / H) * r.height;
+    var x = sx - size / 2, y = sy - size - 18;
+    if (y < pad) y = sy + 18;
     if (x < pad) x = pad;
-    if (y + size > window.innerHeight - pad) y = window.innerHeight - size - pad;
+    if (x + size > window.innerWidth - pad) x = window.innerWidth - size - pad;
     spinFloat.style.left = Math.round(x) + 'px';
     spinFloat.style.top = Math.round(y) + 'px';
     paintSpinBall(spinFloat);

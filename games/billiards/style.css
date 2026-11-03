@@ -252,3 +252,5 @@ canvas{display:block;margin:0 auto;border-radius:10px;touch-action:none;width:au
 @media (max-width:960px){
   .b-spin-float{width:96px;height:96px}
 }
+
+.b-spin-float.is-spin-mode{box-shadow:0 0 0 3px rgba(122,178,96,.55),0 8px 24px rgba(20,32,16,.3)}
