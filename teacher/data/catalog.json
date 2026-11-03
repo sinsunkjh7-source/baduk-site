@@ -1228,8 +1228,8 @@
       {
         "code": "tech_ladder",
         "title": "🪜 축 완전정복 마스터",
-        "chapterCount": 31,
-        "totalProblems": 594,
+        "chapterCount": 30,
+        "totalProblems": 595,
         "chapters": [
           {
             "code": "ladder_ch_001",
@@ -1278,111 +1278,106 @@
           },
           {
             "code": "ladder_ch_010",
+            "title": "2단계 | 2-2. 아군 돌 쪽으로 몰기 (방향 제어) (10제)",
+            "problemCount": 10
+          },
+          {
+            "code": "ladder_ch_011",
             "title": "2단계 | 2-1. 어느 쪽으로 몰까? (방향 선택) [1/2부] (25제)",
             "problemCount": 25
           },
           {
-            "code": "ladder_ch_011",
-            "title": "2단계 | 2-1. 어느 쪽으로 몰까? (방향 선택) [2/2부] (25제)",
-            "problemCount": 25
-          },
-          {
             "code": "ladder_ch_012",
-            "title": "2단계 | 2-2. 아군 돌 쪽으로 몰기 (방향 제어) (0제)",
-            "problemCount": 0
+            "title": "2단계 | 2-1. 어느 쪽으로 몰까? (방향 선택) [2/2부] (15제)",
+            "problemCount": 15
           },
           {
             "code": "ladder_ch_013",
-            "title": "2단계 | 2-3. 사전 연계축 (단수치고 축 / 끊고 축) [1/3부] (25제)",
-            "problemCount": 25
-          },
-          {
-            "code": "ladder_ch_014",
-            "title": "2단계 | 2-3. 사전 연계축 (단수치고 축 / 끊고 축) [2/3부] (25제)",
-            "problemCount": 25
-          },
-          {
-            "code": "ladder_ch_015",
-            "title": "2단계 | 2-3. 사전 연계축 (단수치고 축 / 끊고 축) [3/3부] (12제)",
-            "problemCount": 12
-          },
-          {
-            "code": "ladder_ch_016",
             "title": "2단계 | 2-4. 축과 장문의 선택 (축이 안 될 때 장문) [1/3부] (25제)",
             "problemCount": 25
           },
           {
-            "code": "ladder_ch_017",
+            "code": "ladder_ch_014",
             "title": "2단계 | 2-4. 축과 장문의 선택 (축이 안 될 때 장문) [2/3부] (25제)",
             "problemCount": 25
           },
           {
-            "code": "ladder_ch_018",
+            "code": "ladder_ch_015",
             "title": "2단계 | 2-4. 축과 장문의 선택 (축이 안 될 때 장문) [3/3부] (24제)",
             "problemCount": 24
           },
           {
+            "code": "ladder_ch_016",
+            "title": "2단계 | 2-3. 사전 연계축 (단수치고 축 / 끊고 축) [1/3부] (25제)",
+            "problemCount": 25
+          },
+          {
+            "code": "ladder_ch_017",
+            "title": "2단계 | 2-3. 사전 연계축 (단수치고 축 / 끊고 축) [2/3부] (25제)",
+            "problemCount": 25
+          },
+          {
+            "code": "ladder_ch_018",
+            "title": "2단계 | 2-3. 사전 연계축 (단수치고 축 / 끊고 축) [3/3부] (12제)",
+            "problemCount": 12
+          },
+          {
             "code": "ladder_ch_019",
-            "title": "3단계 | 3-1. 원거리 축머리 궤적 판별 (유불리 계산) [1/3부] (25제)",
+            "title": "3단계 | 3-2. 축머리 꺾어 피하기 (우회 변형 축) [1/2부] (25제)",
             "problemCount": 25
           },
           {
             "code": "ladder_ch_020",
-            "title": "3단계 | 3-1. 원거리 축머리 궤적 판별 (유불리 계산) [2/3부] (25제)",
-            "problemCount": 25
+            "title": "3단계 | 3-2. 축머리 꺾어 피하기 (우회 변형 축) [2/2부] (6제)",
+            "problemCount": 6
           },
           {
             "code": "ladder_ch_021",
-            "title": "3단계 | 3-1. 원거리 축머리 궤적 판별 (유불리 계산) [3/3부] (3제)",
-            "problemCount": 3
+            "title": "3단계 | 3-1. 원거리 축머리 궤적 판별 (유불리 계산) (23제)",
+            "problemCount": 23
           },
           {
             "code": "ladder_ch_022",
-            "title": "3단계 | 3-2. 축머리 꺾어 피하기 (우회 변형 축) (0제)",
-            "problemCount": 0
-          },
-          {
-            "code": "ladder_ch_023",
             "title": "3단계 | 3-3. 역단수와 자충의 함정 극복 [1/2부] (25제)",
             "problemCount": 25
           },
           {
-            "code": "ladder_ch_024",
+            "code": "ladder_ch_023",
             "title": "3단계 | 3-3. 역단수와 자충의 함정 극복 [2/2부] (16제)",
             "problemCount": 16
           },
           {
-            "code": "ladder_ch_025",
+            "code": "ladder_ch_024",
             "title": "4단계 | 4-1. 빈축 (자충으로 몰아잡는 특수 축) [1/4부] (25제)",
             "problemCount": 25
           },
           {
-            "code": "ladder_ch_026",
+            "code": "ladder_ch_025",
             "title": "4단계 | 4-1. 빈축 (자충으로 몰아잡는 특수 축) [2/4부] (25제)",
             "problemCount": 25
           },
           {
-            "code": "ladder_ch_027",
+            "code": "ladder_ch_026",
             "title": "4단계 | 4-1. 빈축 (자충으로 몰아잡는 특수 축) [3/4부] (25제)",
             "problemCount": 25
           },
           {
-            "code": "ladder_ch_028",
+            "code": "ladder_ch_027",
             "title": "4단계 | 4-1. 빈축 (자충으로 몰아잡는 특수 축) [4/4부] (18제)",
             "problemCount": 18
           },
           {
-            "code": "ladder_ch_029",
+            "code": "ladder_ch_028",
             "title": "4단계 | 4-2. 사석 희생 및 회돌이 축 묘수 [1/2부] (25제)",
             "problemCount": 25
           },
           {
-            "code": "ladder_ch_030",
+            "code": "ladder_ch_029",
             "title": "4단계 | 4-2. 사석 희생 및 회돌이 축 묘수 [2/2부] (2제)",
             "problemCount": 2
           },
           {
-            "code": "ladder_ch_031",
+            "code": "ladder_ch_030",
             "title": "4단계 | 4-3. 전판 관통 장거리 대각선 축 (4제)",
             "problemCount": 4
           }
