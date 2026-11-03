@@ -1334,360 +1334,43 @@
       {
         "code": "tech_snapback",
         "title": "🪃 환격 되따내기 마스터",
-        "chapterCount": 44,
-        "totalProblems": 1059,
+        "chapterCount": 7,
+        "totalProblems": 514,
         "chapters": [
           {
-            "code": "tech_snapback_u01",
-            "chapterCode": "tech_snapback_u01",
-            "title": "1단계 [기초/입문: 30급~21급] 1부 (25제)",
-            "chapter": "1단계 [기초/입문: 30급~21급] 1부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
+            "code": "snapback_ch_01",
+            "title": "1단원. 환격의 기본 원리와 먹여치기 (1선과 중앙의 환격) (206제)",
+            "problemCount": 206
           },
           {
-            "code": "tech_snapback_u02",
-            "chapterCode": "tech_snapback_u02",
-            "title": "1단계 [기초/입문: 30급~21급] 2부 (25제)",
-            "chapter": "1단계 [기초/입문: 30급~21급] 2부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
+            "code": "snapback_ch_02",
+            "title": "2단원. 급소에 끼워서 만드는 환격 (끼움의 맥) (70제)",
+            "problemCount": 70
           },
           {
-            "code": "tech_snapback_u03",
-            "chapterCode": "tech_snapback_u03",
-            "title": "1단계 [기초/입문: 30급~21급] 3부 (25제)",
-            "chapter": "1단계 [기초/입문: 30급~21급] 3부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
+            "code": "snapback_ch_03",
+            "title": "3단원. 양쪽을 노리는 양환격의 묘수 (양환격) (43제)",
+            "problemCount": 43
           },
           {
-            "code": "tech_snapback_u04",
-            "chapterCode": "tech_snapback_u04",
-            "title": "1단계 [기초/입문: 30급~21급] 4부 (25제)",
-            "chapter": "1단계 [기초/입문: 30급~21급] 4부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
+            "code": "snapback_ch_04",
+            "title": "4단원. 사전 연계 환격 (단수치고 환격) (77제)",
+            "problemCount": 77
           },
           {
-            "code": "tech_snapback_u05",
-            "chapterCode": "tech_snapback_u05",
-            "title": "1단계 [기초/입문: 30급~21급] 5부 (25제)",
-            "chapter": "1단계 [기초/입문: 30급~21급] 5부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
+            "code": "snapback_ch_05",
+            "title": "5단원. 두 번 먹여치는 연속 환격의 묘수 (26제)",
+            "problemCount": 26
           },
           {
-            "code": "tech_snapback_u06",
-            "chapterCode": "tech_snapback_u06",
-            "title": "1단계 [기초/입문: 30급~21급] 6부 (25제)",
-            "chapter": "1단계 [기초/입문: 30급~21급] 6부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
+            "code": "snapback_ch_06",
+            "title": "6단원. 수상전을 뒤집는 환격 (활로 싸움) (26제)",
+            "problemCount": 26
           },
           {
-            "code": "tech_snapback_u07",
-            "chapterCode": "tech_snapback_u07",
-            "title": "1단계 [기초/입문: 30급~21급] 7부 (25제)",
-            "chapter": "1단계 [기초/입문: 30급~21급] 7부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_snapback_u08",
-            "chapterCode": "tech_snapback_u08",
-            "title": "1단계 [기초/입문: 30급~21급] 8부 (25제)",
-            "chapter": "1단계 [기초/입문: 30급~21급] 8부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_snapback_u09",
-            "chapterCode": "tech_snapback_u09",
-            "title": "1단계 [기초/입문: 30급~21급] 9부 (25제)",
-            "chapter": "1단계 [기초/입문: 30급~21급] 9부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_snapback_u10",
-            "chapterCode": "tech_snapback_u10",
-            "title": "1단계 [기초/입문: 30급~21급] 10부 (25제)",
-            "chapter": "1단계 [기초/입문: 30급~21급] 10부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_snapback_u11",
-            "chapterCode": "tech_snapback_u11",
-            "title": "1단계 [기초/입문: 30급~21급] 11부 (25제)",
-            "chapter": "1단계 [기초/입문: 30급~21급] 11부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_snapback_u12",
-            "chapterCode": "tech_snapback_u12",
-            "title": "1단계 [기초/입문: 30급~21급] 12부 (25제)",
-            "chapter": "1단계 [기초/입문: 30급~21급] 12부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_snapback_u13",
-            "chapterCode": "tech_snapback_u13",
-            "title": "1단계 [기초/입문: 30급~21급] 13부 (25제)",
-            "chapter": "1단계 [기초/입문: 30급~21급] 13부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_snapback_u14",
-            "chapterCode": "tech_snapback_u14",
-            "title": "1단계 [기초/입문: 30급~21급] 14부 (25제)",
-            "chapter": "1단계 [기초/입문: 30급~21급] 14부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_snapback_u15",
-            "chapterCode": "tech_snapback_u15",
-            "title": "1단계 [기초/입문: 30급~21급] 15부 (25제)",
-            "chapter": "1단계 [기초/입문: 30급~21급] 15부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_snapback_u16",
-            "chapterCode": "tech_snapback_u16",
-            "title": "1단계 [기초/입문: 30급~21급] 16부 (25제)",
-            "chapter": "1단계 [기초/입문: 30급~21급] 16부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_snapback_u17",
-            "chapterCode": "tech_snapback_u17",
-            "title": "1단계 [기초/입문: 30급~21급] 17부 (22제)",
-            "chapter": "1단계 [기초/입문: 30급~21급] 17부 (22제)",
-            "problemCount": 22,
-            "problemsCount": 22
-          },
-          {
-            "code": "tech_snapback_u18",
-            "chapterCode": "tech_snapback_u18",
-            "title": "2단계 [초급: 20급~15급] 1부 (25제)",
-            "chapter": "2단계 [초급: 20급~15급] 1부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_snapback_u19",
-            "chapterCode": "tech_snapback_u19",
-            "title": "2단계 [초급: 20급~15급] 2부 (25제)",
-            "chapter": "2단계 [초급: 20급~15급] 2부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_snapback_u20",
-            "chapterCode": "tech_snapback_u20",
-            "title": "2단계 [초급: 20급~15급] 3부 (25제)",
-            "chapter": "2단계 [초급: 20급~15급] 3부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_snapback_u21",
-            "chapterCode": "tech_snapback_u21",
-            "title": "2단계 [초급: 20급~15급] 4부 (25제)",
-            "chapter": "2단계 [초급: 20급~15급] 4부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_snapback_u22",
-            "chapterCode": "tech_snapback_u22",
-            "title": "2단계 [초급: 20급~15급] 5부 (25제)",
-            "chapter": "2단계 [초급: 20급~15급] 5부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_snapback_u23",
-            "chapterCode": "tech_snapback_u23",
-            "title": "2단계 [초급: 20급~15급] 6부 (25제)",
-            "chapter": "2단계 [초급: 20급~15급] 6부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_snapback_u24",
-            "chapterCode": "tech_snapback_u24",
-            "title": "2단계 [초급: 20급~15급] 7부 (25제)",
-            "chapter": "2단계 [초급: 20급~15급] 7부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_snapback_u25",
-            "chapterCode": "tech_snapback_u25",
-            "title": "2단계 [초급: 20급~15급] 8부 (25제)",
-            "chapter": "2단계 [초급: 20급~15급] 8부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_snapback_u26",
-            "chapterCode": "tech_snapback_u26",
-            "title": "2단계 [초급: 20급~15급] 9부 (15제)",
-            "chapter": "2단계 [초급: 20급~15급] 9부 (15제)",
-            "problemCount": 15,
-            "problemsCount": 15
-          },
-          {
-            "code": "tech_snapback_u27",
-            "chapterCode": "tech_snapback_u27",
-            "title": "3단계 [중급: 14급~9급] 1부 (25제)",
-            "chapter": "3단계 [중급: 14급~9급] 1부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_snapback_u28",
-            "chapterCode": "tech_snapback_u28",
-            "title": "3단계 [중급: 14급~9급] 2부 (25제)",
-            "chapter": "3단계 [중급: 14급~9급] 2부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_snapback_u29",
-            "chapterCode": "tech_snapback_u29",
-            "title": "3단계 [중급: 14급~9급] 3부 (25제)",
-            "chapter": "3단계 [중급: 14급~9급] 3부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_snapback_u30",
-            "chapterCode": "tech_snapback_u30",
-            "title": "3단계 [중급: 14급~9급] 4부 (25제)",
-            "chapter": "3단계 [중급: 14급~9급] 4부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_snapback_u31",
-            "chapterCode": "tech_snapback_u31",
-            "title": "3단계 [중급: 14급~9급] 5부 (25제)",
-            "chapter": "3단계 [중급: 14급~9급] 5부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_snapback_u32",
-            "chapterCode": "tech_snapback_u32",
-            "title": "3단계 [중급: 14급~9급] 6부 (25제)",
-            "chapter": "3단계 [중급: 14급~9급] 6부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_snapback_u33",
-            "chapterCode": "tech_snapback_u33",
-            "title": "3단계 [중급: 14급~9급] 7부 (25제)",
-            "chapter": "3단계 [중급: 14급~9급] 7부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_snapback_u34",
-            "chapterCode": "tech_snapback_u34",
-            "title": "3단계 [중급: 14급~9급] 8부 (25제)",
-            "chapter": "3단계 [중급: 14급~9급] 8부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_snapback_u35",
-            "chapterCode": "tech_snapback_u35",
-            "title": "3단계 [중급: 14급~9급] 9부 (25제)",
-            "chapter": "3단계 [중급: 14급~9급] 9부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_snapback_u36",
-            "chapterCode": "tech_snapback_u36",
-            "title": "3단계 [중급: 14급~9급] 10부 (25제)",
-            "chapter": "3단계 [중급: 14급~9급] 10부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_snapback_u37",
-            "chapterCode": "tech_snapback_u37",
-            "title": "3단계 [중급: 14급~9급] 11부 (14제)",
-            "chapter": "3단계 [중급: 14급~9급] 11부 (14제)",
-            "problemCount": 14,
-            "problemsCount": 14
-          },
-          {
-            "code": "tech_snapback_u38",
-            "chapterCode": "tech_snapback_u38",
-            "title": "4단계 [고급/유단자: 8급~유단자] 1부 (25제)",
-            "chapter": "4단계 [고급/유단자: 8급~유단자] 1부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_snapback_u39",
-            "chapterCode": "tech_snapback_u39",
-            "title": "4단계 [고급/유단자: 8급~유단자] 2부 (25제)",
-            "chapter": "4단계 [고급/유단자: 8급~유단자] 2부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_snapback_u40",
-            "chapterCode": "tech_snapback_u40",
-            "title": "4단계 [고급/유단자: 8급~유단자] 3부 (25제)",
-            "chapter": "4단계 [고급/유단자: 8급~유단자] 3부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_snapback_u41",
-            "chapterCode": "tech_snapback_u41",
-            "title": "4단계 [고급/유단자: 8급~유단자] 4부 (25제)",
-            "chapter": "4단계 [고급/유단자: 8급~유단자] 4부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_snapback_u42",
-            "chapterCode": "tech_snapback_u42",
-            "title": "4단계 [고급/유단자: 8급~유단자] 5부 (25제)",
-            "chapter": "4단계 [고급/유단자: 8급~유단자] 5부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_snapback_u43",
-            "chapterCode": "tech_snapback_u43",
-            "title": "4단계 [고급/유단자: 8급~유단자] 6부 (25제)",
-            "chapter": "4단계 [고급/유단자: 8급~유단자] 6부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_snapback_u44",
-            "chapterCode": "tech_snapback_u44",
-            "title": "4단계 [고급/유단자: 8급~유단자] 7부 (8제)",
-            "chapter": "4단계 [고급/유단자: 8급~유단자] 7부 (8제)",
-            "problemCount": 8,
-            "problemsCount": 8
+            "code": "snapback_ch_07",
+            "title": "7단원. 사활과 실전 맥점 환격 (사활·끊음·끝내기 종합) (66제)",
+            "problemCount": 66
           }
         ]
       },
