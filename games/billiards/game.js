@@ -37,11 +37,21 @@
   var dragging = false, aim = { x: 0, y: 0, power: 0 }, moving = false;
   var touches = {};
   var score = 0, shots = 0;
+  /* 2인 교대 · 목표 점수 */
+  var p1Score = 0, p2Score = 0, turnP = 0, TARGET = 5;
+  var mt = /[?&]target=(\d+)/.exec(location.search); if (mt) TARGET = Math.max(1, parseInt(mt[1], 10));
+  var cushionCount = 0, hitList = [], pottedThisShot = 0, foulThisShot = false, lastCushion = 0;
   var best = +(localStorage.getItem('bkBillBest') || 0);
   var over = false;
 
   var el = {
     score: document.getElementById('score'),
+    p1: document.getElementById('p1'),
+    p2: document.getElementById('p2'),
+    target: document.getElementById('target'),
+    panel: document.getElementById('resultPanel'),
+    rTitle: document.getElementById('resultTitle'),
+    rDesc: document.getElementById('resultDesc'),
     shots: document.getElementById('shots'),
     best: document.getElementById('best'),
     turn: document.getElementById('turnBar'),
@@ -106,7 +116,8 @@
   }
 
   function newGame() {
-    score = 0; shots = 0;
+    score = 0; shots = 0; p1Score = 0; p2Score = 0; turnP = 0; over = false;
+    if (el.panel) el.panel.hidden = true;
     msg('');
     setup();
   }
@@ -126,6 +137,16 @@
     draw();
   }
 
+  function addPoint(n) {
+    if (turnP === 0) p1Score = Math.max(0, p1Score + n);
+    else p2Score = Math.max(0, p2Score + n);
+    score = turnP === 0 ? p1Score : p2Score;
+  }
+
+  function beginShot() {
+    cushionCount = 0; hitList = []; pottedThisShot = 0; foulThisShot = false; touches = {};
+  }
+
   function msg(t) { el.msg.hidden = !t; el.msg.textContent = t || ''; }
 
   function syncText() {
@@ -133,10 +154,10 @@
     if (el.title) el.title.textContent = t;
     if (el.desc) {
       el.desc.innerHTML = mode === 'three'
-        ? '내 공(흰색)으로 빨강·노랑을 <b>모두 맞히면</b> 1점입니다.'
+        ? '<b>3쿠션</b> · 흰 공으로 빨강·노랑을 모두 맞히고, <b>두 번째 공에 닿기 전 쿠션 3회 이상</b>이면 1점.'
         : mode === 'four'
-          ? '내 공(흰색)으로 <b>빨강과 검정</b>을 모두 맞히면 1점입니다. 노랑은 상대 공입니다.'
-          : '색공을 포켓에 넣으면 1점. <b>흰 공을 넣으면 파울</b>(–1점)입니다.';
+          ? '<b>4구</b> · 흰 공으로 <b>빨강과 검정</b>을 모두 맞히면 1점. 노랑은 상대 공입니다.'
+          : '<b>포켓</b> · 색공을 넣으면 1점(계속 칩니다). <b>흰 공을 넣으면 –1점</b>이고 차례가 넘어갑니다.';
     }
     if (el.leftWrap) el.leftWrap.hidden = mode !== 'pocket';
   }
@@ -146,12 +167,23 @@
   }
 
   function updateStats() {
-    if (el.score) el.score.textContent = score;
+    score = turnP === 0 ? p1Score : p2Score;
+    if (el.p1) el.p1.textContent = p1Score;
+    if (el.p2) el.p2.textContent = p2Score;
+    if (el.target) el.target.textContent = TARGET;
     if (el.shots) el.shots.textContent = shots;
-    if (score > best) { best = score; localStorage.setItem('bkBillBest', String(best)); }
-    if (el.best) el.best.textContent = best;
     if (el.left) el.left.textContent = String(objectLeft());
-    if (el.turn) el.turn.textContent = moving ? '공이 움직이는 중…' : (over ? '게임 종료' : '당신 차례');
+    if (el.turn) {
+      el.turn.textContent = moving ? '공이 움직이는 중…'
+        : over ? '게임 종료'
+        : (turnP === 0 ? '1P 차례' : '2P 차례');
+    }
+    var pc = document.querySelectorAll('.b-score');
+    for (var i = 0; i < pc.length; i++) {
+      pc[i].classList.toggle('active-turn',
+        (pc[i].classList.contains('p1') && turnP === 0 && !over) ||
+        (pc[i].classList.contains('p2') && turnP === 1 && !over));
+    }
   }
 
   /* ---------- 물리 ---------- */
@@ -167,10 +199,12 @@
       if (Math.abs(b.vx) < STOP) b.vx = 0;
       if (Math.abs(b.vy) < STOP) b.vy = 0;
 
-      if (b.x - b.r < MINX) { b.x = MINX + b.r; b.vx = -b.vx * CUSHION; }
-      if (b.x + b.r > MAXX) { b.x = MAXX - b.r; b.vx = -b.vx * CUSHION; }
-      if (b.y - b.r < MINY) { b.y = MINY + b.r; b.vy = -b.vy * CUSHION; }
-      if (b.y + b.r > MAXY) { b.y = MAXY - b.r; b.vy = -b.vy * CUSHION; }
+      var bounced = false;
+      if (b.x - b.r < MINX) { b.x = MINX + b.r; b.vx = -b.vx * CUSHION; bounced = true; }
+      if (b.x + b.r > MAXX) { b.x = MAXX - b.r; b.vx = -b.vx * CUSHION; bounced = true; }
+      if (b.y - b.r < MINY) { b.y = MINY + b.r; b.vy = -b.vy * CUSHION; bounced = true; }
+      if (b.y + b.r > MAXY) { b.y = MAXY - b.r; b.vy = -b.vy * CUSHION; bounced = true; }
+      if (bounced && b.kind === 'cue' && hitList.length < 2) cushionCount++;
 
       if (b.vx || b.vy) active = true;
     }
@@ -197,8 +231,8 @@
         A.vx += imp * nx; A.vy += imp * ny;
         B.vx -= imp * nx; B.vy -= imp * ny;
 
-        if (A.kind === 'cue' && B.kind !== 'cue') touches[B.kind] = true;
-        if (B.kind === 'cue' && A.kind !== 'cue') touches[A.kind] = true;
+        if (A.kind === 'cue' && B.kind !== 'cue') { touches[B.kind] = true; if (B.kind !== 'object') hitList.push(B.kind); }
+        if (B.kind === 'cue' && A.kind !== 'cue') { touches[A.kind] = true; if (A.kind !== 'object') hitList.push(A.kind); }
       }
     }
 
@@ -210,13 +244,15 @@
           if (Math.hypot(bb.x - pockets[pi].x, bb.y - pockets[pi].y) < POCKET_R * 0.8) {
             bb.alive = false; bb.vx = bb.vy = 0;
             if (bb.kind === 'cue') {
-              score = Math.max(0, score - 1);
+              addPoint(-1);
+              foulThisShot = true;
               msg('파울! 흰 공을 넣었습니다 (–1점)');
               setTimeout(function () {
                 cue.x = 230; cue.y = H / 2; cue.vx = cue.vy = 0; cue.alive = true;
               }, 450);
             } else {
-              score++;
+              addPoint(1);
+              pottedThisShot++;
               msg('득점! (' + score + '점)');
             }
             updateStats();
@@ -230,27 +266,76 @@
     return active;
   }
 
+  /* 순수 규칙 판정 — 합성 입력으로 검증 가능 */
+  function judgeShot(m, touches, cushions) {
+    if (m === 'pocket') return { scored: touches.potted > 0 && !touches.foul };
+    var need = (m === 'four') ? ['red', 'black'] : ['red', 'yellow'];
+    var both = need.every(function (k) { return !!touches[k]; });
+    if (m === 'three') return { scored: both && cushions >= 3 };
+    return { scored: both };
+  }
+
+  function finishGame(winner) {
+    over = true;
+    if (el.rTitle) {
+      el.rTitle.textContent = winner === 'draw' ? '무승부'
+        : (winner === 0 ? '1P 승리!' : '2P 승리!');
+    }
+    if (el.rDesc) {
+      el.rDesc.textContent = '1P ' + p1Score + ' : ' + p2Score + ' 2P · 목표 ' + TARGET + '점';
+    }
+    if (el.panel) el.panel.hidden = false;
+    updateStats();
+  }
+
+  function checkWin() {
+    if (over) return true;
+    if (p1Score >= TARGET) { finishGame(0); return true; }
+    if (p2Score >= TARGET) { finishGame(1); return true; }
+    if (mode === 'pocket' && objectLeft() === 0) {
+      finishGame(p1Score === p2Score ? 'draw' : (p1Score > p2Score ? 0 : 1));
+      return true;
+    }
+    return false;
+  }
+
   function endShot() {
     moving = false;
+    lastCushion = cushionCount;
+    var scored = false, note = '';
 
     if (mode === 'pocket') {
-      if (objectLeft() === 0 && !over) {
-        over = true;
-        msg('클리어! ' + shots + '번 시도 · ' + score + '점');
-      }
+      scored = pottedThisShot > 0 && !foulThisShot;
+      if (foulThisShot) note = '파울 — 차례가 넘어갑니다';
+      else if (pottedThisShot > 0) note = '득점! (' + pottedThisShot + '개) · 계속 칩니다';
+      else note = '실패 — 차례가 넘어갑니다';
     } else {
       var need = mode === 'four' ? ['red', 'black'] : ['red', 'yellow'];
       var hitBoth = need.every(function (k) { return touches[k]; });
-      if (hitBoth) {
-        score++;
-        msg('득점! (' + (mode === 'four' ? '빨강 + 검정' : '빨강 + 노랑') + ')');
+      if (mode === 'three') {
+        scored = judgeShot(mode, touches, cushionCount).scored;
+        note = !hitBoth ? '실패 — 두 공을 모두 맞혀야 합니다'
+          : (scored ? '득점! (3쿠션 성공) · 계속 칩니다'
+                    : '쿠션 부족 (' + cushionCount + '/3) — 무득점');
       } else {
-        msg((touches.red || touches.yellow || touches.black) ? '한 쪽만 맞혔습니다 — 다시 시도' : '빗나갔습니다 — 다시 시도');
+        scored = hitBoth;
+        note = hitBoth ? '득점! (빨강 + 검정) · 계속 칩니다'
+                       : '실패 — 두 공을 모두 맞혀야 합니다';
       }
-      touches = {};
+      if (scored) addPoint(1);
     }
 
+    msg(note);
     updateStats();
+    if (checkWin()) return;
+
+    if (!scored) {
+      turnP = 1 - turnP;
+      updateStats();
+    }
+
+    touches = {}; hitList = []; cushionCount = 0;
+    pottedThisShot = 0; foulThisShot = false;
   }
 
   /* ---------- 그리기 ---------- */
@@ -625,7 +710,7 @@
     if (aim.power < 0.06) { aim.power = 0; syncPowerUI(); draw(); return; }
 
     shots++;
-    touches = {};
+    beginShot();
     cue.vx = aim.x * MAX_POWER * aim.power;
     cue.vy = aim.y * MAX_POWER * aim.power;
     moving = true;
@@ -636,6 +721,13 @@
   });
 
   cv.addEventListener('pointercancel', function () { dragging = false; });
+
+  var btnAgain = document.getElementById('btnAgain');
+  var btnCloseResult = document.getElementById('btnCloseResult');
+  if (btnAgain) btnAgain.addEventListener('click', function () { newGame(); });
+  if (btnCloseResult) btnCloseResult.addEventListener('click', function () {
+    if (el.panel) el.panel.hidden = true;
+  });
 
   var modeSeg = document.getElementById('modeSeg');
   if (modeSeg) {
@@ -698,6 +790,27 @@
   fitCanvas();
   requestAnimationFrame(loop);
 
+  if (/[?&]rulecheck=1/.test(location.search)) {
+    var cases = [
+      ['three', { red: 1, yellow: 1 }, 3, true],
+      ['three', { red: 1, yellow: 1 }, 2, false],
+      ['three', { red: 1 }, 3, false],
+      ['four', { red: 1, black: 1 }, 0, true],
+      ['four', { red: 1 }, 0, false],
+      ['pocket', { potted: 1, foul: false }, 0, true],
+      ['pocket', { potted: 1, foul: true }, 0, false],
+      ['pocket', { potted: 0, foul: false }, 0, false]
+    ];
+    var okAll = true, log = [];
+    for (var ci = 0; ci < cases.length; ci++) {
+      var c = cases[ci];
+      var got = judgeShot(c[0], c[1], c[2]).scored;
+      if (got !== c[3]) okAll = false;
+      log.push(c[0] + ':' + (got ? 'O' : 'X'));
+    }
+    document.body.setAttribute('data-rulecheck', (okAll ? 'PASS' : 'FAIL') + '|' + log.join(','));
+  }
+
   if (/[?&]spec=1/.test(location.search)) {
     setTimeout(function () {
       var fh = H - RAIL * 2;
@@ -715,11 +828,18 @@
 
   if (/[?&]auto=1/.test(location.search)) {
     setTimeout(function () {
-      var target = balls[1];
-      var dx = target.x - cue.x, dy = target.y - cue.y, d = Math.hypot(dx, dy) || 1;
-      cue.vx = dx / d * MAX_POWER * 0.9;
-      cue.vy = dy / d * MAX_POWER * 0.9;
-      moving = true; shots++; touches = {};
+      var ma = /[?&]angle=(-?\d+(?:\.\d+)?)/.exec(location.search);
+      if (ma) {
+        var ang = parseFloat(ma[1]) * Math.PI / 180;
+        cue.vx = Math.cos(ang) * MAX_POWER * 0.9;
+        cue.vy = Math.sin(ang) * MAX_POWER * 0.9;
+      } else {
+        var target = balls[1];
+        var dx = target.x - cue.x, dy = target.y - cue.y, d = Math.hypot(dx, dy) || 1;
+        cue.vx = dx / d * MAX_POWER * 0.9;
+        cue.vy = dy / d * MAX_POWER * 0.9;
+      }
+      moving = true; shots++; beginShot();
       var seen = {};
       for (var i = 0; i < 900; i++) {
         step();
@@ -728,7 +848,9 @@
       var msg2 = 'T|mode=' + mode + '|shots=' + shots + '|score=' + score
         + '|balls=' + balls.length + '|left=' + objectLeft()
         + '|seen=' + Object.keys(seen).join(',') + '|pockets=' + pockets.length
-        + '|moved=' + (Math.round(cue.x) + ',' + Math.round(cue.y));
+        + '|moved=' + (Math.round(cue.x) + ',' + Math.round(cue.y))
+        + '|p1=' + p1Score + '|p2=' + p2Score + '|turn=' + turnP
+        + '|cushion=' + cushionCount + '|lastCushion=' + lastCushion + '|over=' + over;
       document.body.setAttribute('data-auto', msg2);
     }, 400);
   }
