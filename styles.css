@@ -87,6 +87,7 @@
 
 /* 롤러코스터 런 하이라이트 메인 카드 */
 .learn-card-featured {
+  grid-column: span 2;
   background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%);
   border: 2px solid #0284c7;
   box-shadow: 0 8px 26px rgba(2, 132, 199, 0.14);
