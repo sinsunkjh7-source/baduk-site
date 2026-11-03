@@ -283,6 +283,9 @@
           if (stoneColor !== 0) return;
           if (hasMovesPlayed) return;
         }
+        if (mk.type === 'triangle' || mk.type === 'circle' || mk.type === 'square') {
+          if (stoneColor === 0) return;
+        }
         var cx = pos(mk.x);
         var cy = pos(mk.y);
         drawProblemMark(cx, cy, m.cell, mk, stoneColor);
@@ -371,11 +374,7 @@
         ctx.strokeStyle = '#18181b';
         ctx.stroke();
       } else {
-        // 빈 교차점 위 세모: 레드 (투명)
-        ctx.strokeStyle = '#dc2626';
-        ctx.shadowColor = 'rgba(255, 255, 255, 0.8)';
-        ctx.shadowBlur = 3;
-        ctx.stroke();
+        return;
       }
     } else if (mk.type === 'circle') {
       // 🌟 동그라미(○): 돌 중앙에 쏙 들어가는 단정한 원 (내부 투명)
@@ -390,10 +389,7 @@
         ctx.strokeStyle = '#18181b';
         ctx.stroke();
       } else {
-        ctx.strokeStyle = '#dc2626';
-        ctx.shadowColor = 'rgba(255, 255, 255, 0.8)';
-        ctx.shadowBlur = 3;
-        ctx.stroke();
+        return;
       }
     } else if (mk.type === 'label') {
       // 🌟 문자 라벨: '가', '나', '다', '1', 'A' 등 (흰돌 배경 없이 글자만 선명하게 표시)

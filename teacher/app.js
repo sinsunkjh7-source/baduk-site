@@ -213,7 +213,7 @@
   /* ---------- 강사모드 진입 (회원 계정 연동 전 다이렉트 진입) ---------- */
   /* ---------- 카탈로그 및 교재 로드 ---------- */
   function initCatalog() {
-    fetch('data/catalog.json?v=20261103-ladder-12clean-1793702481')
+    fetch('data/catalog.json?v=20261103-ladder-12clean-1793705587')
       .then(function (res) { return res.json(); })
       .then(function (cat) {
         state.catalog = cat;
@@ -279,7 +279,7 @@
 
   function loadBook(code, isRestoring) {
     localStorage.setItem('teacher_last_book', code);
-    fetch('data/books/book_' + code + '.json?v=20261103-ladder-12clean-1793702481')
+    fetch('data/books/book_' + code + '.json?v=20261103-ladder-12clean-1793705587')
       .then(function (res) { return res.json(); })
       .then(function (bookData) {
         state.currentBook = bookData;
@@ -1138,23 +1138,7 @@
       }
     }
 
-    // 🌟 5-1. 마우스 호버 시 착수 임시 돌 모양 가이드 (Ghost Stone Preview)
-    if (state.hover && !state.isSolved) {
-      var hColor = 1;
-      if (state.trialMode) {
-        if (state.placementMode === 'blackOnly') hColor = 1;
-        else if (state.placementMode === 'whiteOnly') hColor = 2;
-        else hColor = state.nextTurn;
-      } else {
-        hColor = (state.currentProblem && state.currentProblem.turn) ? (state.currentProblem.turn === 'W' ? 2 : 1) : 1;
-      }
-      var hx = startX + cell * state.hover.x;
-      var hy = startY + cell * state.hover.y;
-      ctx.save();
-      ctx.globalAlpha = 0.52;
-      drawStone(hx, hy, stoneRadius, hColor);
-      ctx.restore();
-    }
+    // 🌟 [원장님 지침] 마우스 호버 시 흐린 돌 프리뷰(Ghost Stone) 제거 (티칭 존)
 
     // 🌟 5-2. 세모(△), 동그라미(○), 문자 라벨(가/1/A), 네모(□) 마크 렌더링 🌟
     if (state.marks && state.marks.length > 0) {
@@ -1184,6 +1168,14 @@
           if (stoneColor !== 0) return;
           // 2) 바둑판에 돌이 놓여지면(풀이/놓아보기/정답보기 진행 시) 선택지 글자들은 모두 사라짐
           if (hasMovesPlayed) return;
+        }
+
+        // 🌟 [원장님 지침] 세모(△), 동그라미(○), 네모(□) 표시 돌을 따내고 나면 마크가 빈 교차점에 남지 않도록 제거
+        if (mk.type === 'triangle' || mk.type === 'circle' || mk.type === 'square') {
+          // 1) 돌이 따내어져 빈 교차점이 되었으면 마크를 그리지 않음
+          if (stoneColor === 0) return;
+          // 2) 원래 표시되어 있던 돌이 따내어지고 다른 색 돌이 놓였을 때도 마크를 그리지 않음
+          if (state.initialBoard && state.initialBoard[mk.y][mk.x] !== 0 && state.board[mk.y][mk.x] !== state.initialBoard[mk.y][mk.x]) return;
         }
 
         var mx = startX + cell * mk.x;
@@ -1275,11 +1267,8 @@
         ctx.strokeStyle = '#18181b';
         ctx.stroke();
       } else {
-        // 빈 교차점 위 세모: 레드 (투명)
-        ctx.strokeStyle = '#dc2626';
-        ctx.shadowColor = 'rgba(255, 255, 255, 0.8)';
-        ctx.shadowBlur = 3;
-        ctx.stroke();
+        // 빈 교차점: 따냄 후 잔상 방지를 위해 그리지 않음
+        return;
       }
     } else if (mk.type === 'circle') {
       // 🌟 동그라미(○): 돌 중앙에 쏙 들어가는 단정한 원 (내부 투명)
@@ -1294,10 +1283,8 @@
         ctx.strokeStyle = '#18181b';
         ctx.stroke();
       } else {
-        ctx.strokeStyle = '#dc2626';
-        ctx.shadowColor = 'rgba(255, 255, 255, 0.8)';
-        ctx.shadowBlur = 3;
-        ctx.stroke();
+        // 빈 교차점: 따냄 후 잔상 방지를 위해 그리지 않음
+        return;
       }
     } else if (mk.type === 'label') {
       // 🌟 문자 라벨: '가', '나', '다', '1', 'A' 등
@@ -1339,8 +1326,8 @@
         ctx.strokeStyle = '#18181b';
         ctx.stroke();
       } else {
-        ctx.strokeStyle = '#dc2626';
-        ctx.stroke();
+        // 빈 교차점: 따냄 후 잔상 방지를 위해 그리지 않음
+        return;
       }
     }
     ctx.restore();
@@ -1425,10 +1412,10 @@
     }
   }
 
-  /* ---------- 🌟 마우스 호버 임시 돌 모양 가이드 ---------- */
+  /* ---------- 🌟 마우스 커서 포인터 처리 (흐린 돌 표시 제거) ---------- */
   canvas.addEventListener('mousemove', function (e) {
     if (!state.currentBook || state.isSolved) {
-      if (state.hover) { state.hover = null; drawBoard(); }
+      canvas.style.cursor = 'default';
       return;
     }
     var rect = canvas.getBoundingClientRect();
@@ -1442,27 +1429,15 @@
       var exactX = startX + cell * x, exactY = startY + cell * y;
       var dist = Math.hypot(px - exactX, py - exactY);
       if (dist <= cell * 0.48 && state.board[y][x] === 0) {
-        if (!state.hover || state.hover.x !== x || state.hover.y !== y) {
-          state.hover = { x: x, y: y };
-          canvas.style.cursor = 'pointer';
-          drawBoard();
-        }
+        canvas.style.cursor = 'pointer';
         return;
       }
     }
-    if (state.hover) {
-      state.hover = null;
-      canvas.style.cursor = 'default';
-      drawBoard();
-    }
+    canvas.style.cursor = 'default';
   });
 
   canvas.addEventListener('mouseleave', function () {
-    if (state.hover) {
-      state.hover = null;
-      canvas.style.cursor = 'default';
-      drawBoard();
-    }
+    canvas.style.cursor = 'default';
   });
 
   /* ---------- 착수 인터랙션 ---------- */
