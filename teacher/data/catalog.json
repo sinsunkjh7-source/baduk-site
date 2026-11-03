@@ -1228,68 +1228,58 @@
       {
         "code": "tech_ladder",
         "title": "🪜 축 완전정복 마스터",
-        "chapterCount": 12,
-        "totalProblems": 131,
+        "chapterCount": 10,
+        "totalProblems": 295,
         "chapters": [
           {
             "code": "ladder_ch_01",
-            "title": "【1단계】 1단원. 축의 기본 원리와 지그재그 몰기 (15제)",
-            "problemCount": 15
+            "title": "【1단계】 1단원. 축의 기본 원리와 지그재그 몰기 (35제)",
+            "problemCount": 35
           },
           {
             "code": "ladder_ch_02",
-            "title": "【1단계】 2단원. 도망가는 머리 막기 (첫수 급소) (6제)",
-            "problemCount": 6
+            "title": "【1단계】 2단원. 도망가는 머리 막기 (첫수 급소) (29제)",
+            "problemCount": 29
           },
           {
             "code": "ladder_ch_03",
-            "title": "【2단계】 3단원. 어느 쪽으로 몰까? (방향 선택) (10제)",
-            "problemCount": 10
+            "title": "【2단계】 3단원. 어느 쪽으로 몰까? (방향 선택) (34제)",
+            "problemCount": 34
           },
           {
             "code": "ladder_ch_04",
-            "title": "【2단계】 4단원. 아군 돌 쪽으로 몰기 (방향 제어) (10제)",
-            "problemCount": 10
+            "title": "【2단계】 4단원. 아군 돌 방향으로 몰기 (방향 제어) (9제)",
+            "problemCount": 9
           },
           {
             "code": "ladder_ch_05",
-            "title": "【2단계】 5단원. 사전 연계축 (단수치고 축 / 끊고 축) (12제)",
-            "problemCount": 12
+            "title": "【2단계】 5단원. 사전 연계축 ①: 단수치고 축 (63제)",
+            "problemCount": 63
           },
           {
             "code": "ladder_ch_06",
-            "title": "【2단계】 6단원. 축과 장문의 선택 (축이 안 될 때 장문) (12제)",
-            "problemCount": 12
+            "title": "【2단계】 6단원. 사전 연계축 ②: 끊으면서 축 (17제)",
+            "problemCount": 17
           },
           {
             "code": "ladder_ch_07",
-            "title": "【3단계】 7단원. 원거리 축머리 궤적 판별 (유불리 계산) (12제)",
-            "problemCount": 12
+            "title": "【3단계】 7단원. 원거리 축머리 궤적 판별 (5제)",
+            "problemCount": 5
           },
           {
             "code": "ladder_ch_08",
-            "title": "【3단계】 8단원. 축머리 꺾어 피하기 (우회 변형 축) (12제)",
-            "problemCount": 12
+            "title": "【3단계】 8단원. 축머리 꺾어 피하기 (우회 변형 축) (28제)",
+            "problemCount": 28
           },
           {
             "code": "ladder_ch_09",
-            "title": "【3단계】 9단원. 역단수와 자충의 함정 극복 (12제)",
-            "problemCount": 12
+            "title": "【4단계】 9단원. 빈축 (도망칠 수 없는 자충 축) (50제)",
+            "problemCount": 50
           },
           {
             "code": "ladder_ch_10",
-            "title": "【4단계】 10단원. 빈축 (도망칠 수 없는 자충 축) (15제)",
-            "problemCount": 15
-          },
-          {
-            "code": "ladder_ch_11",
-            "title": "【4단계】 11단원. 사석 희생 및 회돌이 축 묘수 (10제)",
-            "problemCount": 10
-          },
-          {
-            "code": "ladder_ch_12",
-            "title": "【4단계】 12단원. 전판 관통 장거리 대각선 축 (5제)",
-            "problemCount": 5
+            "title": "【4단계】 10단원. 사석 희생 및 회돌이 축 묘수 (25제)",
+            "problemCount": 25
           }
         ]
       },
