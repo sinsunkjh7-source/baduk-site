@@ -232,3 +232,23 @@ canvas{display:block;margin:0 auto;border-radius:10px;touch-action:none;width:au
 @media (max-width:960px){
   .b-spin{border-right:0;padding:0;margin:0 0 4px;width:100%}
 }
+
+/* 당점 다이얼 (b-spin-dial) */
+.b-spin{display:flex;align-items:center;gap:10px;padding:0 14px 0 2px;margin-right:6px;border-right:1px solid #e3ebd9}
+.b-spin-ball{width:88px;height:88px;border-radius:50%;cursor:crosshair;touch-action:none;
+  box-shadow:0 3px 10px rgba(36,54,29,.16);transition:transform .15s ease,box-shadow .15s ease;display:block}
+.b-spin.is-aiming .b-spin-ball{transform:scale(1.08);box-shadow:0 0 0 4px rgba(122,178,96,.35),0 4px 14px rgba(36,54,29,.22)}
+.b-spin.is-aiming .b-spin-label{color:#3f7a33}
+@media (max-width:960px){
+  .b-spin{border-right:0;padding:0;margin:0 0 4px;width:100%}
+  .b-spin-ball{width:76px;height:76px}
+}
+
+/* 조준 중 떠 있는 당점 공 (b-spin-float) */
+.b-spin-float{position:fixed;width:132px;height:132px;border-radius:50%;z-index:9997;
+  pointer-events:none;box-shadow:0 8px 24px rgba(20,32,16,.28);background:transparent}
+.b-spin-float[hidden]{display:none!important}
+
+@media (max-width:960px){
+  .b-spin-float{width:96px;height:96px}
+}

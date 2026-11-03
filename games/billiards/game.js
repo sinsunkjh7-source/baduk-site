@@ -721,11 +721,23 @@
     var p = toWorld(e);
     if (Math.hypot(p.x - cue.x, p.y - cue.y) > R * 3.4) return;
     dragging = true;
-    cv.setPointerCapture(e.pointerId);
+    if (spinPad) spinPad.classList.add('is-aiming');
+    showSpinFloat();
   });
 
-  cv.addEventListener('pointermove', function (e) {
+  var floatDrag = false;
+
+  function inFloat(e) {
+    if (!spinFloat || spinFloat.hidden) return false;
+    var r = spinFloat.getBoundingClientRect();
+    return e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom;
+  }
+
+  window.addEventListener('pointermove', function (e) {
+    if (floatDrag) { setSpinFromEvent(e, spinFloat); return; }
+    if (dragging) moveSpinFloat();
     if (!dragging) return;
+    if (inFloat(e)) return;
     var p = toWorld(e);
     var dx = p.x - cue.x, dy = p.y - cue.y, d = Math.hypot(dx, dy) || 1;
     aim.x = dx / d; aim.y = dy / d;
@@ -734,9 +746,12 @@
     draw();
   });
 
-  cv.addEventListener('pointerup', function () {
+  window.addEventListener('pointerup', function (e) {
+    if (floatDrag) { floatDrag = false; paintSpinBall(); draw(); return; }
     if (!dragging) return;
     dragging = false;
+    if (spinPad) spinPad.classList.remove('is-aiming');
+    hideSpinFloat();
     if (aim.power < 0.06) { aim.power = 0; syncPowerUI(); draw(); return; }
 
     shots++;
@@ -750,20 +765,112 @@
     draw();
   });
 
-  cv.addEventListener('pointercancel', function () { dragging = false; });
+  cv.addEventListener('pointercancel', function () { dragging = false; if (spinPad) spinPad.classList.remove('is-aiming'); hideSpinFloat(); });
 
-  var spinGrid = document.getElementById('spinGrid');
-  if (spinGrid) {
-    spinGrid.addEventListener('click', function (ev) {
-      var b = ev.target.closest('.b-spin-dot');
-      if (!b) return;
-      spin.x = parseFloat(b.dataset.sx) || 0;
-      spin.y = parseFloat(b.dataset.sy) || 0;
-      [].forEach.call(spinGrid.children, function (d) {
-        d.classList.toggle('is-on', d === b);
-      });
-      draw();
+  function showSpinFloat() {
+    if (!spinFloat) return;
+    spinFloat.hidden = false;
+    paintSpinBall(spinFloat);
+    moveSpinFloat();
+  }
+
+  function hideSpinFloat() {
+    if (!spinFloat) return;
+    spinFloat.hidden = true;
+  }
+
+  function moveSpinFloat() {
+    if (!spinFloat || spinFloat.hidden) return;
+    var r = cv.getBoundingClientRect();
+    var size = spinFloat.offsetWidth || 132, pad = 14;
+    /* 당구대 오른쪽 아래 모서리 안쪽에 고정 — 조준선을 가리지 않음 */
+    var x = r.right - size - pad;
+    var y = r.bottom - size - pad;
+    if (x < pad) x = pad;
+    if (y + size > window.innerHeight - pad) y = window.innerHeight - size - pad;
+    spinFloat.style.left = Math.round(x) + 'px';
+    spinFloat.style.top = Math.round(y) + 'px';
+    paintSpinBall(spinFloat);
+  }
+
+  /* ---------- 당점 다이얼 (공 그림 위 클릭/드래그) ---------- */
+  var spinCv = document.getElementById('spinBall');
+  var spinPad = document.getElementById('spinPad');
+  var spinFloat = document.getElementById('spinFloat');
+  var SCOPE = 0.82;   /* 공 반지름 대비 유효 범위 */
+
+  function paintSpinBall(target) {
+    var cvx = target || spinCv;
+    if (!cvx) return;
+    var c = cvx.getContext('2d');
+    var S = cvx.width, R2 = S / 2 - 6;
+    c.clearRect(0, 0, S, S);
+
+    /* 공 본체 */
+    var g = c.createRadialGradient(S * 0.38, S * 0.34, R2 * 0.15, S * 0.5, S * 0.5, R2 * 1.05);
+    g.addColorStop(0, '#ffffff');
+    g.addColorStop(0.55, '#f4f6ef');
+    g.addColorStop(1, '#cfd8c6');
+    c.beginPath(); c.arc(S / 2, S / 2, R2, 0, 6.283); c.fillStyle = g; c.fill();
+
+    /* 십자선 */
+    c.strokeStyle = 'rgba(90,110,80,.28)';
+    c.lineWidth = 1.2;
+    c.beginPath();
+    c.moveTo(S / 2, S / 2 - R2 * 0.88); c.lineTo(S / 2, S / 2 + R2 * 0.88);
+    c.moveTo(S / 2 - R2 * 0.88, S / 2); c.lineTo(S / 2 + R2 * 0.88, S / 2);
+    c.stroke();
+
+    /* 유효 범위 링 */
+    c.beginPath(); c.arc(S / 2, S / 2, R2 * SCOPE, 0, 6.283);
+    c.strokeStyle = 'rgba(74,138,58,.22)'; c.lineWidth = 1.5; c.stroke();
+
+    /* 선택된 당점 */
+    var px = S / 2 + spin.x * R2 * SCOPE;
+    var py = S / 2 - spin.y * R2 * SCOPE;
+    c.beginPath(); c.arc(px, py, R2 * 0.115, 0, 6.283);
+    c.fillStyle = '#3f7a33'; c.fill();
+    c.strokeStyle = 'rgba(255,255,255,.85)'; c.lineWidth = 2; c.stroke();
+  }
+
+  function setSpinFromEvent(ev, source) {
+    var ref = source || spinCv;
+    if (!ref) return;
+    var r = ref.getBoundingClientRect();
+    var R2 = r.width / 2 - (6 / ref.width) * r.width;
+    var nx = (ev.clientX - r.left - r.width / 2) / (R2 * SCOPE);
+    var ny = (ev.clientY - r.top - r.height / 2) / (R2 * SCOPE);
+    var len = Math.hypot(nx, ny);
+    if (len > 1) { nx /= len; ny /= len; }
+    spin.x = +nx.toFixed(3);
+    spin.y = +(-ny).toFixed(3);
+    spinCv.setAttribute('aria-valuetext', spin.x + ',' + spin.y);
+    paintSpinBall();
+    paintSpinBall(spinFloat);
+    draw();
+  }
+
+  if (spinCv) {
+    var spinDrag = false;
+    spinCv.addEventListener('pointerdown', function (ev) {
+      spinDrag = true; spinCv.setPointerCapture(ev.pointerId); setSpinFromEvent(ev);
     });
+    spinCv.addEventListener('pointermove', function (ev) { if (spinDrag) setSpinFromEvent(ev); });
+    spinCv.addEventListener('pointerup', function () { spinDrag = false; });
+    spinCv.addEventListener('pointercancel', function () { spinDrag = false; });
+    if (spinFloat) {
+      spinFloat.style.pointerEvents = 'auto';
+      spinFloat.addEventListener('pointerdown', function (ev) {
+        ev.stopPropagation();
+        floatDrag = true;
+        setSpinFromEvent(ev, spinFloat);
+      });
+    }
+
+    spinCv.addEventListener('dblclick', function () {
+      spin.x = 0; spin.y = 0; paintSpinBall(); draw();
+    });
+    paintSpinBall();
   }
 
   var btnAgain = document.getElementById('btnAgain');

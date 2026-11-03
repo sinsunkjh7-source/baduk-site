@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>당구 3구 — 바둑스쿨 Fun</title>
 <link rel="stylesheet" href="/unified-nav.css?v=20261103-nav-v11">
-<link rel="stylesheet" href="style.css?v=bill-14">
+<link rel="stylesheet" href="style.css?v=bill-17">
 <script src="/unified-nav.js?v=20261103-nav-v11" defer></script>
 </head>
 <body data-bks-page="billiards">
@@ -44,17 +44,10 @@
 
     <div class="b-spin" id="spinPad">
       <span class="b-spin-label">당점</span>
-      <div class="b-spin-grid" id="spinGrid">
-        <button type="button" class="b-spin-dot" data-sx="-1" data-sy="1" aria-label="좌상"></button>
-        <button type="button" class="b-spin-dot" data-sx="0" data-sy="1" aria-label="상"></button>
-        <button type="button" class="b-spin-dot" data-sx="1" data-sy="1" aria-label="우상"></button>
-        <button type="button" class="b-spin-dot" data-sx="-1" data-sy="0" aria-label="좌"></button>
-        <button type="button" class="b-spin-dot center is-on" data-sx="0" data-sy="0" aria-label="중앙"></button>
-        <button type="button" class="b-spin-dot" data-sx="1" data-sy="0" aria-label="우"></button>
-        <button type="button" class="b-spin-dot" data-sx="-1" data-sy="-1" aria-label="좌하"></button>
-        <button type="button" class="b-spin-dot" data-sx="0" data-sy="-1" aria-label="하"></button>
-        <button type="button" class="b-spin-dot" data-sx="1" data-sy="-1" aria-label="우하"></button>
-      </div>
+      <canvas class="b-spin-float" id="spinFloat" width="176" height="176" hidden aria-hidden="true"></canvas>
+      <canvas class="b-spin-ball" id="spinBall" width="176" height="176"
+              role="slider" aria-label="당점 선택 (공 위를 클릭)" tabindex="0"></canvas>
+    </div>
     </div>
 
     <h2 class="b-title" id="modeTitle">당구 3구</h2>
@@ -89,7 +82,7 @@
   </div>
 </main>
 
-<script src="game.js?v=bill-16"></script>
+<script src="game.js?v=bill-19"></script>
 
 </body>
 </html>
