@@ -245,7 +245,7 @@ canvas{display:block;margin:0 auto;border-radius:10px;touch-action:none;width:au
 }
 
 /* 조준 중 떠 있는 당점 공 (b-spin-float) */
-.b-spin-float{position:fixed;width:132px;height:132px;border-radius:50%;z-index:9997;
+.b-spin-float{position:fixed;width:140px;height:140px;border-radius:50%;z-index:9997;
   pointer-events:none;box-shadow:0 8px 24px rgba(20,32,16,.28);background:transparent}
 .b-spin-float[hidden]{display:none!important}
 
