@@ -1285,337 +1285,49 @@
       },
       {
         "code": "tech_net",
-        "title": "🕸️ 장문 그물 포위 마스터",
-        "chapterCount": 41,
-        "totalProblems": 989,
+        "title": "🕸️ 장문 완전정복 마스터",
+        "chapterCount": 8,
+        "totalProblems": 648,
         "chapters": [
           {
-            "code": "tech_net_u01",
-            "chapterCode": "tech_net_u01",
-            "title": "1단계 [기초/입문: 30급~21급] 1부 (25제)",
-            "chapter": "1단계 [기초/입문: 30급~21급] 1부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
+            "code": "net_ch_01",
+            "title": "1단원. 장문의 기본 원리와 그물 씌우기 (활로 2~3개 봉쇄) (212제)",
+            "problemCount": 212
           },
           {
-            "code": "tech_net_u02",
-            "chapterCode": "tech_net_u02",
-            "title": "1단계 [기초/입문: 30급~21급] 2부 (25제)",
-            "chapter": "1단계 [기초/입문: 30급~21급] 2부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
+            "code": "net_ch_02",
+            "title": "2단원. 한 칸으로 씌우는 장문 (한 칸 행마 응용) (62제)",
+            "problemCount": 62
           },
           {
-            "code": "tech_net_u03",
-            "chapterCode": "tech_net_u03",
-            "title": "1단계 [기초/입문: 30급~21급] 3부 (25제)",
-            "chapter": "1단계 [기초/입문: 30급~21급] 3부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
+            "code": "net_ch_03",
+            "title": "3단원. 젖혀서 막는 장문 (2선과 변의 젖힘) (42제)",
+            "problemCount": 42
           },
           {
-            "code": "tech_net_u04",
-            "chapterCode": "tech_net_u04",
-            "title": "1단계 [기초/입문: 30급~21급] 4부 (25제)",
-            "chapter": "1단계 [기초/입문: 30급~21급] 4부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
+            "code": "net_ch_04",
+            "title": "4단원. 마늘모(입구자)와 날일자 장문 (43제)",
+            "problemCount": 43
           },
           {
-            "code": "tech_net_u05",
-            "chapterCode": "tech_net_u05",
-            "title": "1단계 [기초/입문: 30급~21급] 5부 (25제)",
-            "chapter": "1단계 [기초/입문: 30급~21급] 5부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
+            "code": "net_ch_05",
+            "title": "5단원. 사전 연계 장문 (단수치고 장문) (106제)",
+            "problemCount": 106
           },
           {
-            "code": "tech_net_u06",
-            "chapterCode": "tech_net_u06",
-            "title": "1단계 [기초/입문: 30급~21급] 6부 (25제)",
-            "chapter": "1단계 [기초/입문: 30급~21급] 6부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
+            "code": "net_ch_06",
+            "title": "6단원. 축이 안 될 때의 장문 (축머리 극복과 선택) (72제)",
+            "problemCount": 72
           },
           {
-            "code": "tech_net_u07",
-            "chapterCode": "tech_net_u07",
-            "title": "1단계 [기초/입문: 30급~21급] 7부 (25제)",
-            "chapter": "1단계 [기초/입문: 30급~21급] 7부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
+            "code": "net_ch_07",
+            "title": "7단원. 사석 희생 및 회돌이 장문 묘수 (34제)",
+            "problemCount": 34
           },
           {
-            "code": "tech_net_u08",
-            "chapterCode": "tech_net_u08",
-            "title": "1단계 [기초/입문: 30급~21급] 8부 (25제)",
-            "chapter": "1단계 [기초/입문: 30급~21급] 8부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_net_u09",
-            "chapterCode": "tech_net_u09",
-            "title": "1단계 [기초/입문: 30급~21급] 9부 (25제)",
-            "chapter": "1단계 [기초/입문: 30급~21급] 9부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_net_u10",
-            "chapterCode": "tech_net_u10",
-            "title": "1단계 [기초/입문: 30급~21급] 10부 (25제)",
-            "chapter": "1단계 [기초/입문: 30급~21급] 10부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_net_u11",
-            "chapterCode": "tech_net_u11",
-            "title": "1단계 [기초/입문: 30급~21급] 11부 (25제)",
-            "chapter": "1단계 [기초/입문: 30급~21급] 11부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_net_u12",
-            "chapterCode": "tech_net_u12",
-            "title": "1단계 [기초/입문: 30급~21급] 12부 (25제)",
-            "chapter": "1단계 [기초/입문: 30급~21급] 12부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_net_u13",
-            "chapterCode": "tech_net_u13",
-            "title": "1단계 [기초/입문: 30급~21급] 13부 (14제)",
-            "chapter": "1단계 [기초/입문: 30급~21급] 13부 (14제)",
-            "problemCount": 14,
-            "problemsCount": 14
-          },
-          {
-            "code": "tech_net_u14",
-            "chapterCode": "tech_net_u14",
-            "title": "2단계 [초급: 20급~15급] 1부 (25제)",
-            "chapter": "2단계 [초급: 20급~15급] 1부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_net_u15",
-            "chapterCode": "tech_net_u15",
-            "title": "2단계 [초급: 20급~15급] 2부 (25제)",
-            "chapter": "2단계 [초급: 20급~15급] 2부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_net_u16",
-            "chapterCode": "tech_net_u16",
-            "title": "2단계 [초급: 20급~15급] 3부 (25제)",
-            "chapter": "2단계 [초급: 20급~15급] 3부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_net_u17",
-            "chapterCode": "tech_net_u17",
-            "title": "2단계 [초급: 20급~15급] 4부 (25제)",
-            "chapter": "2단계 [초급: 20급~15급] 4부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_net_u18",
-            "chapterCode": "tech_net_u18",
-            "title": "2단계 [초급: 20급~15급] 5부 (25제)",
-            "chapter": "2단계 [초급: 20급~15급] 5부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_net_u19",
-            "chapterCode": "tech_net_u19",
-            "title": "2단계 [초급: 20급~15급] 6부 (25제)",
-            "chapter": "2단계 [초급: 20급~15급] 6부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_net_u20",
-            "chapterCode": "tech_net_u20",
-            "title": "2단계 [초급: 20급~15급] 7부 (25제)",
-            "chapter": "2단계 [초급: 20급~15급] 7부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_net_u21",
-            "chapterCode": "tech_net_u21",
-            "title": "2단계 [초급: 20급~15급] 8부 (25제)",
-            "chapter": "2단계 [초급: 20급~15급] 8부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_net_u22",
-            "chapterCode": "tech_net_u22",
-            "title": "2단계 [초급: 20급~15급] 9부 (25제)",
-            "chapter": "2단계 [초급: 20급~15급] 9부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_net_u23",
-            "chapterCode": "tech_net_u23",
-            "title": "2단계 [초급: 20급~15급] 10부 (25제)",
-            "chapter": "2단계 [초급: 20급~15급] 10부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_net_u24",
-            "chapterCode": "tech_net_u24",
-            "title": "2단계 [초급: 20급~15급] 11부 (25제)",
-            "chapter": "2단계 [초급: 20급~15급] 11부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_net_u25",
-            "chapterCode": "tech_net_u25",
-            "title": "2단계 [초급: 20급~15급] 12부 (25제)",
-            "chapter": "2단계 [초급: 20급~15급] 12부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_net_u26",
-            "chapterCode": "tech_net_u26",
-            "title": "2단계 [초급: 20급~15급] 13부 (25제)",
-            "chapter": "2단계 [초급: 20급~15급] 13부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_net_u27",
-            "chapterCode": "tech_net_u27",
-            "title": "2단계 [초급: 20급~15급] 14부 (25제)",
-            "chapter": "2단계 [초급: 20급~15급] 14부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_net_u28",
-            "chapterCode": "tech_net_u28",
-            "title": "2단계 [초급: 20급~15급] 15부 (25제)",
-            "chapter": "2단계 [초급: 20급~15급] 15부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_net_u29",
-            "chapterCode": "tech_net_u29",
-            "title": "2단계 [초급: 20급~15급] 16부 (25제)",
-            "chapter": "2단계 [초급: 20급~15급] 16부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_net_u30",
-            "chapterCode": "tech_net_u30",
-            "title": "2단계 [초급: 20급~15급] 17부 (19제)",
-            "chapter": "2단계 [초급: 20급~15급] 17부 (19제)",
-            "problemCount": 19,
-            "problemsCount": 19
-          },
-          {
-            "code": "tech_net_u31",
-            "chapterCode": "tech_net_u31",
-            "title": "3단계 [중급: 14급~9급] 1부 (25제)",
-            "chapter": "3단계 [중급: 14급~9급] 1부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_net_u32",
-            "chapterCode": "tech_net_u32",
-            "title": "3단계 [중급: 14급~9급] 2부 (25제)",
-            "chapter": "3단계 [중급: 14급~9급] 2부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_net_u33",
-            "chapterCode": "tech_net_u33",
-            "title": "3단계 [중급: 14급~9급] 3부 (25제)",
-            "chapter": "3단계 [중급: 14급~9급] 3부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_net_u34",
-            "chapterCode": "tech_net_u34",
-            "title": "3단계 [중급: 14급~9급] 4부 (25제)",
-            "chapter": "3단계 [중급: 14급~9급] 4부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_net_u35",
-            "chapterCode": "tech_net_u35",
-            "title": "3단계 [중급: 14급~9급] 5부 (25제)",
-            "chapter": "3단계 [중급: 14급~9급] 5부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_net_u36",
-            "chapterCode": "tech_net_u36",
-            "title": "3단계 [중급: 14급~9급] 6부 (25제)",
-            "chapter": "3단계 [중급: 14급~9급] 6부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_net_u37",
-            "chapterCode": "tech_net_u37",
-            "title": "3단계 [중급: 14급~9급] 7부 (10제)",
-            "chapter": "3단계 [중급: 14급~9급] 7부 (10제)",
-            "problemCount": 10,
-            "problemsCount": 10
-          },
-          {
-            "code": "tech_net_u38",
-            "chapterCode": "tech_net_u38",
-            "title": "4단계 [고급/유단자: 8급~유단자] 1부 (25제)",
-            "chapter": "4단계 [고급/유단자: 8급~유단자] 1부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_net_u39",
-            "chapterCode": "tech_net_u39",
-            "title": "4단계 [고급/유단자: 8급~유단자] 2부 (25제)",
-            "chapter": "4단계 [고급/유단자: 8급~유단자] 2부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_net_u40",
-            "chapterCode": "tech_net_u40",
-            "title": "4단계 [고급/유단자: 8급~유단자] 3부 (25제)",
-            "chapter": "4단계 [고급/유단자: 8급~유단자] 3부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_net_u41",
-            "chapterCode": "tech_net_u41",
-            "title": "4단계 [고급/유단자: 8급~유단자] 4부 (21제)",
-            "chapter": "4단계 [고급/유단자: 8급~유단자] 4부 (21제)",
-            "problemCount": 21,
-            "problemsCount": 21
+            "code": "net_ch_08",
+            "title": "8단원. 수상전을 결정짓는 장문과 실전 종합 맥점 (77제)",
+            "problemCount": 77
           }
         ]
       },
