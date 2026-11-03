@@ -1377,352 +1377,38 @@
       {
         "code": "tech_yeon_atari",
         "title": "⚡ 촉촉수 / 연단수 연속 몰아치기",
-        "chapterCount": 43,
-        "totalProblems": 1001,
+        "chapterCount": 6,
+        "totalProblems": 547,
         "chapters": [
           {
-            "code": "tech_yeon_atari_u01",
-            "chapterCode": "tech_yeon_atari_u01",
-            "title": "1단계 [기초/입문: 30급~21급] 1부 (25제)",
-            "chapter": "1단계 [기초/입문: 30급~21급] 1부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
+            "code": "yeon_atari_ch_01",
+            "title": "1단원. 이어도 소용없는 돌 (1선과 중앙의 기본 촉촉수) (130제)",
+            "problemCount": 130
           },
           {
-            "code": "tech_yeon_atari_u02",
-            "chapterCode": "tech_yeon_atari_u02",
-            "title": "1단계 [기초/입문: 30급~21급] 2부 (25제)",
-            "chapter": "1단계 [기초/입문: 30급~21급] 2부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
+            "code": "yeon_atari_ch_02",
+            "title": "2단원. 쉴 새 없는 몰아치기 (단수치고 또 단수 / 끊기) (135제)",
+            "problemCount": 135
           },
           {
-            "code": "tech_yeon_atari_u03",
-            "chapterCode": "tech_yeon_atari_u03",
-            "title": "1단계 [기초/입문: 30급~21급] 3부 (25제)",
-            "chapter": "1단계 [기초/입문: 30급~21급] 3부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
+            "code": "yeon_atari_ch_03",
+            "title": "3단원. 먹여치며 모양 무너뜨리기 (먹여치고 연단수) (103제)",
+            "problemCount": 103
           },
           {
-            "code": "tech_yeon_atari_u04",
-            "chapterCode": "tech_yeon_atari_u04",
-            "title": "1단계 [기초/입문: 30급~21급] 4부 (25제)",
-            "chapter": "1단계 [기초/입문: 30급~21급] 4부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
+            "code": "yeon_atari_ch_04",
+            "title": "4단원. 수상전을 역전시키는 촉촉수 (상대 수 줄이기) (46제)",
+            "problemCount": 46
           },
           {
-            "code": "tech_yeon_atari_u05",
-            "chapterCode": "tech_yeon_atari_u05",
-            "title": "1단계 [기초/입문: 30급~21급] 5부 (25제)",
-            "chapter": "1단계 [기초/입문: 30급~21급] 5부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
+            "code": "yeon_atari_ch_05",
+            "title": "5단원. 사석 희생과 회돌이 촉촉수 (자충 유도) (25제)",
+            "problemCount": 25
           },
           {
-            "code": "tech_yeon_atari_u06",
-            "chapterCode": "tech_yeon_atari_u06",
-            "title": "1단계 [기초/입문: 30급~21급] 6부 (25제)",
-            "chapter": "1단계 [기초/입문: 30급~21급] 6부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_yeon_atari_u07",
-            "chapterCode": "tech_yeon_atari_u07",
-            "title": "1단계 [기초/입문: 30급~21급] 7부 (25제)",
-            "chapter": "1단계 [기초/입문: 30급~21급] 7부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_yeon_atari_u08",
-            "chapterCode": "tech_yeon_atari_u08",
-            "title": "1단계 [기초/입문: 30급~21급] 8부 (25제)",
-            "chapter": "1단계 [기초/입문: 30급~21급] 8부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_yeon_atari_u09",
-            "chapterCode": "tech_yeon_atari_u09",
-            "title": "1단계 [기초/입문: 30급~21급] 9부 (25제)",
-            "chapter": "1단계 [기초/입문: 30급~21급] 9부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_yeon_atari_u10",
-            "chapterCode": "tech_yeon_atari_u10",
-            "title": "1단계 [기초/입문: 30급~21급] 10부 (25제)",
-            "chapter": "1단계 [기초/입문: 30급~21급] 10부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_yeon_atari_u11",
-            "chapterCode": "tech_yeon_atari_u11",
-            "title": "1단계 [기초/입문: 30급~21급] 11부 (25제)",
-            "chapter": "1단계 [기초/입문: 30급~21급] 11부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_yeon_atari_u12",
-            "chapterCode": "tech_yeon_atari_u12",
-            "title": "1단계 [기초/입문: 30급~21급] 12부 (25제)",
-            "chapter": "1단계 [기초/입문: 30급~21급] 12부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_yeon_atari_u13",
-            "chapterCode": "tech_yeon_atari_u13",
-            "title": "1단계 [기초/입문: 30급~21급] 13부 (25제)",
-            "chapter": "1단계 [기초/입문: 30급~21급] 13부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_yeon_atari_u14",
-            "chapterCode": "tech_yeon_atari_u14",
-            "title": "1단계 [기초/입문: 30급~21급] 14부 (25제)",
-            "chapter": "1단계 [기초/입문: 30급~21급] 14부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_yeon_atari_u15",
-            "chapterCode": "tech_yeon_atari_u15",
-            "title": "1단계 [기초/입문: 30급~21급] 15부 (25제)",
-            "chapter": "1단계 [기초/입문: 30급~21급] 15부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_yeon_atari_u16",
-            "chapterCode": "tech_yeon_atari_u16",
-            "title": "1단계 [기초/입문: 30급~21급] 16부 (25제)",
-            "chapter": "1단계 [기초/입문: 30급~21급] 16부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_yeon_atari_u17",
-            "chapterCode": "tech_yeon_atari_u17",
-            "title": "1단계 [기초/입문: 30급~21급] 17부 (1제)",
-            "chapter": "1단계 [기초/입문: 30급~21급] 17부 (1제)",
-            "problemCount": 1,
-            "problemsCount": 1
-          },
-          {
-            "code": "tech_yeon_atari_u18",
-            "chapterCode": "tech_yeon_atari_u18",
-            "title": "2단계 [초급: 20급~15급] 1부 (25제)",
-            "chapter": "2단계 [초급: 20급~15급] 1부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_yeon_atari_u19",
-            "chapterCode": "tech_yeon_atari_u19",
-            "title": "2단계 [초급: 20급~15급] 2부 (25제)",
-            "chapter": "2단계 [초급: 20급~15급] 2부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_yeon_atari_u20",
-            "chapterCode": "tech_yeon_atari_u20",
-            "title": "2단계 [초급: 20급~15급] 3부 (25제)",
-            "chapter": "2단계 [초급: 20급~15급] 3부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_yeon_atari_u21",
-            "chapterCode": "tech_yeon_atari_u21",
-            "title": "2단계 [초급: 20급~15급] 4부 (25제)",
-            "chapter": "2단계 [초급: 20급~15급] 4부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_yeon_atari_u22",
-            "chapterCode": "tech_yeon_atari_u22",
-            "title": "2단계 [초급: 20급~15급] 5부 (25제)",
-            "chapter": "2단계 [초급: 20급~15급] 5부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_yeon_atari_u23",
-            "chapterCode": "tech_yeon_atari_u23",
-            "title": "2단계 [초급: 20급~15급] 6부 (25제)",
-            "chapter": "2단계 [초급: 20급~15급] 6부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_yeon_atari_u24",
-            "chapterCode": "tech_yeon_atari_u24",
-            "title": "2단계 [초급: 20급~15급] 7부 (25제)",
-            "chapter": "2단계 [초급: 20급~15급] 7부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_yeon_atari_u25",
-            "chapterCode": "tech_yeon_atari_u25",
-            "title": "2단계 [초급: 20급~15급] 8부 (25제)",
-            "chapter": "2단계 [초급: 20급~15급] 8부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_yeon_atari_u26",
-            "chapterCode": "tech_yeon_atari_u26",
-            "title": "2단계 [초급: 20급~15급] 9부 (25제)",
-            "chapter": "2단계 [초급: 20급~15급] 9부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_yeon_atari_u27",
-            "chapterCode": "tech_yeon_atari_u27",
-            "title": "2단계 [초급: 20급~15급] 10부 (25제)",
-            "chapter": "2단계 [초급: 20급~15급] 10부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_yeon_atari_u28",
-            "chapterCode": "tech_yeon_atari_u28",
-            "title": "2단계 [초급: 20급~15급] 11부 (25제)",
-            "chapter": "2단계 [초급: 20급~15급] 11부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_yeon_atari_u29",
-            "chapterCode": "tech_yeon_atari_u29",
-            "title": "2단계 [초급: 20급~15급] 12부 (25제)",
-            "chapter": "2단계 [초급: 20급~15급] 12부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_yeon_atari_u30",
-            "chapterCode": "tech_yeon_atari_u30",
-            "title": "2단계 [초급: 20급~15급] 13부 (25제)",
-            "chapter": "2단계 [초급: 20급~15급] 13부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_yeon_atari_u31",
-            "chapterCode": "tech_yeon_atari_u31",
-            "title": "2단계 [초급: 20급~15급] 14부 (25제)",
-            "chapter": "2단계 [초급: 20급~15급] 14부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_yeon_atari_u32",
-            "chapterCode": "tech_yeon_atari_u32",
-            "title": "2단계 [초급: 20급~15급] 15부 (25제)",
-            "chapter": "2단계 [초급: 20급~15급] 15부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_yeon_atari_u33",
-            "chapterCode": "tech_yeon_atari_u33",
-            "title": "2단계 [초급: 20급~15급] 16부 (25제)",
-            "chapter": "2단계 [초급: 20급~15급] 16부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_yeon_atari_u34",
-            "chapterCode": "tech_yeon_atari_u34",
-            "title": "2단계 [초급: 20급~15급] 17부 (25제)",
-            "chapter": "2단계 [초급: 20급~15급] 17부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_yeon_atari_u35",
-            "chapterCode": "tech_yeon_atari_u35",
-            "title": "2단계 [초급: 20급~15급] 18부 (8제)",
-            "chapter": "2단계 [초급: 20급~15급] 18부 (8제)",
-            "problemCount": 8,
-            "problemsCount": 8
-          },
-          {
-            "code": "tech_yeon_atari_u36",
-            "chapterCode": "tech_yeon_atari_u36",
-            "title": "3단계 [중급: 14급~9급] 1부 (25제)",
-            "chapter": "3단계 [중급: 14급~9급] 1부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_yeon_atari_u37",
-            "chapterCode": "tech_yeon_atari_u37",
-            "title": "3단계 [중급: 14급~9급] 2부 (25제)",
-            "chapter": "3단계 [중급: 14급~9급] 2부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_yeon_atari_u38",
-            "chapterCode": "tech_yeon_atari_u38",
-            "title": "3단계 [중급: 14급~9급] 3부 (25제)",
-            "chapter": "3단계 [중급: 14급~9급] 3부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_yeon_atari_u39",
-            "chapterCode": "tech_yeon_atari_u39",
-            "title": "3단계 [중급: 14급~9급] 4부 (25제)",
-            "chapter": "3단계 [중급: 14급~9급] 4부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_yeon_atari_u40",
-            "chapterCode": "tech_yeon_atari_u40",
-            "title": "3단계 [중급: 14급~9급] 5부 (25제)",
-            "chapter": "3단계 [중급: 14급~9급] 5부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_yeon_atari_u41",
-            "chapterCode": "tech_yeon_atari_u41",
-            "title": "3단계 [중급: 14급~9급] 6부 (9제)",
-            "chapter": "3단계 [중급: 14급~9급] 6부 (9제)",
-            "problemCount": 9,
-            "problemsCount": 9
-          },
-          {
-            "code": "tech_yeon_atari_u42",
-            "chapterCode": "tech_yeon_atari_u42",
-            "title": "4단계 [고급/유단자: 8급~유단자] 1부 (25제)",
-            "chapter": "4단계 [고급/유단자: 8급~유단자] 1부 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_yeon_atari_u43",
-            "chapterCode": "tech_yeon_atari_u43",
-            "title": "4단계 [고급/유단자: 8급~유단자] 2부 (8제)",
-            "chapter": "4단계 [고급/유단자: 8급~유단자] 2부 (8제)",
-            "problemCount": 8,
-            "problemsCount": 8
+            "code": "yeon_atari_ch_06",
+            "title": "6단원. 위험한 아군을 살려내는 반격의 촉촉수 (사활과 탈출의 맥) (108제)",
+            "problemCount": 108
           }
         ]
       },
