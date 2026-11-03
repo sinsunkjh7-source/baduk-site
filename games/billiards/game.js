@@ -725,9 +725,11 @@
         step();
         Object.keys(touches).forEach(function (k) { seen[k] = true; });
       }
-      document.title = 'T|mode=' + mode + '|shots=' + shots + '|score=' + score
+      var msg2 = 'T|mode=' + mode + '|shots=' + shots + '|score=' + score
         + '|balls=' + balls.length + '|left=' + objectLeft()
-        + '|seen=' + Object.keys(seen).join(',') + '|pockets=' + pockets.length;
+        + '|seen=' + Object.keys(seen).join(',') + '|pockets=' + pockets.length
+        + '|moved=' + (Math.round(cue.x) + ',' + Math.round(cue.y));
+      document.body.setAttribute('data-auto', msg2);
     }, 400);
   }
 })();
