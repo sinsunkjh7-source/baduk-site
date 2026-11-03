@@ -9,9 +9,25 @@
 
   var W = 960, H = 516, RAIL = 36;
   var MINX = RAIL, MAXX = W - RAIL, MINY = RAIL, MAXY = H - RAIL;
-  var FL = 888;                        /* 플레이필드 길이(px) = W - 2*RAIL */
-  var R = +(FL * (61.5 / 2840) / 2).toFixed(2);   /* 캐럼 규격: 지름 61.5mm / 2840mm */
-  var POCKET_R = 0;
+  var FL = W - RAIL * 2;
+  var R = 9.5, POCKET_R = 0;
+
+  /* 공식 규격 (플레이필드 2:1 고정) */
+  var SPEC = {
+    carom: { rail: 135 / 2840, ball: 61.5 / 2840 },   /* UMB 캐럼 2840×1420, 공 61.5mm, 레일 135mm */
+    pool:  { rail: 150 / 2540, ball: 57.15 / 2540 }   /* 9ft 풀 2540×1270, 공 57.15mm, 레일 150mm */
+  };
+
+  /* 모드에 맞춰 레일 폭·판 높이·공 크기를 규격 비율로 재계산 */
+  function applySpec() {
+    var sp = (mode === 'pocket') ? SPEC.pool : SPEC.carom;
+    RAIL = +(W * sp.rail / (1 + 2 * sp.rail)).toFixed(2);   /* 레일/필드 비율 유지 */
+    FL = +(W - RAIL * 2).toFixed(2);
+    H = +(FL / 2 + RAIL * 2).toFixed(1);                    /* 필드 2:1 유지 */
+    MINX = RAIL; MAXX = W - RAIL; MINY = RAIL; MAXY = H - RAIL;
+    R = +(FL * sp.ball / 2).toFixed(2);
+    POCKET_R = (mode === 'pocket') ? +(FL * sp.ball * 2.1).toFixed(2) : 0;
+  }
   var FRICTION = 0.9885, STOP = 0.06, CUSHION = 0.92, MAX_POWER = 26;
 
   var POCKET_COLORS = ['#f2c53d', '#2e6fb7', '#c0392b', '#7d3fa8', '#e07b2a', '#2f8f5b', '#8e2418', '#1d1d1d', '#e6d34a'];
@@ -44,7 +60,7 @@
   }
 
   function buildPockets() {
-    var off = 8;
+    var off = 2;
     pockets = [
       { x: MINX + off, y: MINY + off },
       { x: W / 2, y: MINY + off * 0.35 },
@@ -56,14 +72,7 @@
   }
 
   function setup() {
-    /* 모드별 실제 규격 비율 */
-    if (mode === 'pocket') {
-      R = +(FL * (57.15 / 2540) / 2).toFixed(2);   /* 풀 규격: 지름 57.15mm / 2540mm */
-      POCKET_R = +(R * 2.1).toFixed(2);            /* 코너 포켓 ≈ 공 2개 폭 */
-    } else {
-      R = +(FL * (61.5 / 2840) / 2).toFixed(2);    /* 캐럼 규격 */
-      POCKET_R = 0;
-    }
+    applySpec();
     balls = []; pockets = []; over = false;
     cue = mkBall(230, H / 2, '#f6f5ef', 'cue', 0);
     balls.push(cue);
@@ -336,12 +345,12 @@
 
     if (mode === 'pocket') {
       pockets.forEach(function (p) {
-        var pg = ctx.createRadialGradient(p.x, p.y - POCKET_R * 0.3, POCKET_R * 0.1, p.x, p.y, POCKET_R * 1.25);
+        var pg = ctx.createRadialGradient(p.x, p.y - POCKET_R * 0.28, POCKET_R * 0.1, p.x, p.y, POCKET_R * 1.05);
         pg.addColorStop(0, '#000000');
         pg.addColorStop(0.62, '#0a0f0b');
         pg.addColorStop(1, '#1b2a1e');
         ctx.beginPath();
-        ctx.arc(p.x, p.y, POCKET_R * 1.06, 0, 6.283);
+        ctx.arc(p.x, p.y, POCKET_R * 0.9, 0, 6.283);
         ctx.fillStyle = pg;
         ctx.fill();
         ctx.lineWidth = 3;
@@ -634,6 +643,8 @@
       var b = e.target.closest('[data-mode]');
       if (!b || moving) return;
       mode = b.dataset.mode;
+      applySpec();
+      if (typeof fitCanvas === 'function') fitCanvas();
       Array.prototype.forEach.call(modeSeg.children, function (x) {
         x.classList.toggle('active', x === b);
       });
@@ -686,6 +697,21 @@
   newGame();
   fitCanvas();
   requestAnimationFrame(loop);
+
+  if (/[?&]spec=1/.test(location.search)) {
+    setTimeout(function () {
+      var fh = H - RAIL * 2;
+      document.body.setAttribute('data-spec',
+        'mode=' + mode +
+        '|canvas=' + W + 'x' + H.toFixed(1) +
+        '|felt=' + FL.toFixed(1) + 'x' + fh.toFixed(1) +
+        '|feltRatio=' + (FL / fh).toFixed(3) +
+        '|railPct=' + (RAIL / FL * 100).toFixed(2) +
+        '|ballD=' + (R * 2).toFixed(2) +
+        '|ballRatio=1/' + (FL / (R * 2)).toFixed(1) +
+        '|pocket=' + POCKET_R);
+    }, 900);
+  }
 
   if (/[?&]auto=1/.test(location.search)) {
     setTimeout(function () {
