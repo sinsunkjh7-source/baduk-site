@@ -13,6 +13,7 @@
   var R = 9.5, POCKET_R = 0;
 
   /* 공식 규격 (플레이필드 2:1 고정) */
+  var FOLLOW_K = 2.6, SIDE_K = 1.1;   /* 당점 효과 세기 */
   var BALL_SCALE = 1.3;   /* 보기용 배율: 규격 1/46.2 → 1/35.6 (화면에서 작아 보여 보정) */
   var bs = /[?&]ballscale=(\d+(?:\.\d+)?)/.exec(location.search);
   if (bs) BALL_SCALE = Math.max(1, parseFloat(bs[1]));
@@ -45,6 +46,11 @@
   var p1Score = 0, p2Score = 0, turnP = 0, TARGET = 5;
   var mt = /[?&]target=(\d+)/.exec(location.search); if (mt) TARGET = Math.max(1, parseInt(mt[1], 10));
   var cushionCount = 0, hitList = [], pottedThisShot = 0, foulThisShot = false, lastCushion = 0;
+  var spin = { x: 0, y: 0 };   /* 당점: x=-1(좌)~1(우), y=-1(하)~1(상) */
+  if (/[?&]spin=top/.test(location.search)) spin.y = 1;
+  if (/[?&]spin=bottom/.test(location.search)) spin.y = -1;
+  if (/[?&]spin=left/.test(location.search)) spin.x = -1;
+  if (/[?&]spin=right/.test(location.search)) spin.x = 1;
   var best = +(localStorage.getItem('bkBillBest') || 0);
   var over = false;
 
@@ -204,10 +210,10 @@
       if (Math.abs(b.vy) < STOP) b.vy = 0;
 
       var bounced = false;
-      if (b.x - b.r < MINX) { b.x = MINX + b.r; b.vx = -b.vx * CUSHION; bounced = true; }
-      if (b.x + b.r > MAXX) { b.x = MAXX - b.r; b.vx = -b.vx * CUSHION; bounced = true; }
-      if (b.y - b.r < MINY) { b.y = MINY + b.r; b.vy = -b.vy * CUSHION; bounced = true; }
-      if (b.y + b.r > MAXY) { b.y = MAXY - b.r; b.vy = -b.vy * CUSHION; bounced = true; }
+      if (b.x - b.r < MINX) { b.x = MINX + b.r; b.vx = -b.vx * CUSHION; if (b.kind === 'cue') b.vy += spin.x * SIDE_K * (b.vx > 0 ? 1 : -1); bounced = true; }
+      if (b.x + b.r > MAXX) { b.x = MAXX - b.r; b.vx = -b.vx * CUSHION; if (b.kind === 'cue') b.vy += spin.x * SIDE_K * (b.vx > 0 ? 1 : -1); bounced = true; }
+      if (b.y - b.r < MINY) { b.y = MINY + b.r; b.vy = -b.vy * CUSHION; if (b.kind === 'cue') b.vx -= spin.x * SIDE_K * (b.vy > 0 ? 1 : -1); bounced = true; }
+      if (b.y + b.r > MAXY) { b.y = MAXY - b.r; b.vy = -b.vy * CUSHION; if (b.kind === 'cue') b.vx -= spin.x * SIDE_K * (b.vy > 0 ? 1 : -1); bounced = true; }
       if (bounced && b.kind === 'cue' && hitList.length < 2) cushionCount++;
 
       if (b.vx || b.vy) active = true;
@@ -234,6 +240,16 @@
         var imp = vn * 0.98;
         A.vx += imp * nx; A.vy += imp * ny;
         B.vx -= imp * nx; B.vy -= imp * ny;
+
+        /* 당점(상·하) → 밀어치기/끌어치기 */
+        if (A.kind === 'cue' && B.kind !== 'cue' && Math.abs(spin.y) > 0.1) {
+          A.vx += nx * spin.y * FOLLOW_K; A.vy += ny * spin.y * FOLLOW_K;
+          spin.y *= 0.55;
+        }
+        if (B.kind === 'cue' && A.kind !== 'cue' && Math.abs(spin.y) > 0.1) {
+          B.vx -= nx * spin.y * FOLLOW_K; B.vy -= ny * spin.y * FOLLOW_K;
+          spin.y *= 0.55;
+        }
 
         if (A.kind === 'cue' && B.kind !== 'cue') { touches[B.kind] = true; if (B.kind !== 'object') hitList.push(B.kind); }
         if (B.kind === 'cue' && A.kind !== 'cue') { touches[A.kind] = true; if (A.kind !== 'object') hitList.push(A.kind); }
@@ -340,6 +356,15 @@
 
     touches = {}; hitList = []; cushionCount = 0;
     pottedThisShot = 0; foulThisShot = false;
+  }
+
+  function drawSpinDot() {
+    if (!cue || !cue.alive) return;
+    var ox = spin.x * cue.r * 0.52, oy = -spin.y * cue.r * 0.52;
+    ctx.beginPath();
+    ctx.arc(cue.x + ox, cue.y + oy, Math.max(1.4, cue.r * 0.16), 0, 6.283);
+    ctx.fillStyle = 'rgba(40,52,34,.55)';
+    ctx.fill();
   }
 
   /* ---------- 그리기 ---------- */
@@ -623,6 +648,7 @@
         ctx.fillText(String(b.num), b.x, b.y + 0.5);
       }
     });
+      drawSpinDot();
   }
 
   function arrow(x1, y1, x2, y2, color) {
@@ -725,6 +751,20 @@
   });
 
   cv.addEventListener('pointercancel', function () { dragging = false; });
+
+  var spinGrid = document.getElementById('spinGrid');
+  if (spinGrid) {
+    spinGrid.addEventListener('click', function (ev) {
+      var b = ev.target.closest('.b-spin-dot');
+      if (!b) return;
+      spin.x = parseFloat(b.dataset.sx) || 0;
+      spin.y = parseFloat(b.dataset.sy) || 0;
+      [].forEach.call(spinGrid.children, function (d) {
+        d.classList.toggle('is-on', d === b);
+      });
+      draw();
+    });
+  }
 
   var btnAgain = document.getElementById('btnAgain');
   var btnCloseResult = document.getElementById('btnCloseResult');
@@ -845,8 +885,14 @@
       }
       moving = true; shots++; beginShot();
       var seen = {};
+      var d0 = Math.hypot(cue.vx, cue.vy) || 1, dx0 = cue.vx / d0, dy0 = cue.vy / d0;
+      var afterDot = null;
       for (var i = 0; i < 900; i++) {
+        var hadTouch = Object.keys(touches).length > 0;
         step();
+        if (!hadTouch && Object.keys(touches).length > 0 && afterDot === null) {
+          afterDot = cue.vx * dx0 + cue.vy * dy0;
+        }
         Object.keys(touches).forEach(function (k) { seen[k] = true; });
       }
       var msg2 = 'T|mode=' + mode + '|shots=' + shots + '|score=' + score
@@ -854,6 +900,8 @@
         + '|seen=' + Object.keys(seen).join(',') + '|pockets=' + pockets.length
         + '|moved=' + (Math.round(cue.x) + ',' + Math.round(cue.y))
         + '|p1=' + p1Score + '|p2=' + p2Score + '|turn=' + turnP
+        + '|afterDot=' + (afterDot === null ? 'na' : afterDot.toFixed(2))
+        + '|spin=' + spin.x + ',' + spin.y
         + '|cushion=' + cushionCount + '|lastCushion=' + lastCushion + '|over=' + over;
       document.body.setAttribute('data-auto', msg2);
     }, 400);

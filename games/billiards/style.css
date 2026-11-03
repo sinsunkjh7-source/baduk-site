@@ -220,3 +220,15 @@ canvas{display:block;margin:0 auto;border-radius:10px;touch-action:none;width:au
   .b-side .b-desc{flex:0 0 100%;order:6;text-align:center;margin:0}
   .b-side .b-rules{order:7}
 }
+
+/* 당점 선택 (b-spin) */
+.b-spin{display:flex;align-items:center;gap:10px;padding:0 14px 0 2px;margin-right:6px;border-right:1px solid #e3ebd9}
+.b-spin-label{font-size:12.5px;font-weight:800;color:#4f6f45;white-space:nowrap}
+.b-spin-grid{display:grid;grid-template-columns:repeat(3,18px);grid-template-rows:repeat(3,18px);gap:3px;background:#f2f8ec;border-radius:9px;padding:5px}
+.b-spin-dot{border:1px solid #cfdcc4;background:#fff;border-radius:50%;width:18px;height:18px;padding:0;cursor:pointer;position:relative}
+.b-spin-dot:hover{border-color:#8fc47c}
+.b-spin-dot.is-on{background:#4a8a3a;border-color:#3f7a33;box-shadow:0 0 0 2px rgba(122,178,96,.28)}
+.b-spin-dot.center{border-width:2px}
+@media (max-width:960px){
+  .b-spin{border-right:0;padding:0;margin:0 0 4px;width:100%}
+}
