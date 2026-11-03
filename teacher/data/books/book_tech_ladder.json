@@ -10,7 +10,7 @@
       "code": "ladder_ch_01",
       "chapterCode": "ladder_01",
       "title": "【1단계】 1단원. 축의 기본 원리와 지그재그 몰기 (15제)",
-      "chapter": "1단원. 축의 기본 원리와 지그재그 몰기",
+      "chapter": "【1단계】 1단원. 축의 기본 원리와 지그재그 몰기 (15제)",
       "problemCount": 15,
       "problemsCount": 15,
       "problems": [
@@ -320,7 +320,7 @@
       "code": "ladder_ch_02",
       "chapterCode": "ladder_02",
       "title": "【1단계】 2단원. 도망가는 머리 막기 (첫수 급소) (6제)",
-      "chapter": "2단원. 도망가는 머리 막기 (첫수 급소)",
+      "chapter": "【1단계】 2단원. 도망가는 머리 막기 (첫수 급소) (6제)",
       "problemCount": 6,
       "problemsCount": 6,
       "problems": [
@@ -450,7 +450,7 @@
       "code": "ladder_ch_03",
       "chapterCode": "ladder_03",
       "title": "【2단계】 3단원. 어느 쪽으로 몰까? (방향 선택) (10제)",
-      "chapter": "3단원. 어느 쪽으로 몰까? (방향 선택)",
+      "chapter": "【2단계】 3단원. 어느 쪽으로 몰까? (방향 선택) (10제)",
       "problemCount": 10,
       "problemsCount": 10,
       "problems": [
@@ -660,7 +660,7 @@
       "code": "ladder_ch_04",
       "chapterCode": "ladder_04",
       "title": "【2단계】 4단원. 아군 돌 쪽으로 몰기 (방향 제어) (10제)",
-      "chapter": "4단원. 아군 돌 쪽으로 몰기 (방향 제어)",
+      "chapter": "【2단계】 4단원. 아군 돌 쪽으로 몰기 (방향 제어) (10제)",
       "problemCount": 10,
       "problemsCount": 10,
       "problems": [
@@ -870,7 +870,7 @@
       "code": "ladder_ch_05",
       "chapterCode": "ladder_05",
       "title": "【2단계】 5단원. 사전 연계축 (단수치고 축 / 끊고 축) (12제)",
-      "chapter": "5단원. 사전 연계축 (단수치고 축 / 끊고 축)",
+      "chapter": "【2단계】 5단원. 사전 연계축 (단수치고 축 / 끊고 축) (12제)",
       "problemCount": 12,
       "problemsCount": 12,
       "problems": [
@@ -1120,7 +1120,7 @@
       "code": "ladder_ch_06",
       "chapterCode": "ladder_06",
       "title": "【2단계】 6단원. 축과 장문의 선택 (축이 안 될 때 장문) (12제)",
-      "chapter": "6단원. 축과 장문의 선택 (축이 안 될 때 장문)",
+      "chapter": "【2단계】 6단원. 축과 장문의 선택 (축이 안 될 때 장문) (12제)",
       "problemCount": 12,
       "problemsCount": 12,
       "problems": [
@@ -1370,7 +1370,7 @@
       "code": "ladder_ch_07",
       "chapterCode": "ladder_07",
       "title": "【3단계】 7단원. 원거리 축머리 궤적 판별 (유불리 계산) (12제)",
-      "chapter": "7단원. 원거리 축머리 궤적 판별 (유불리 계산)",
+      "chapter": "【3단계】 7단원. 원거리 축머리 궤적 판별 (유불리 계산) (12제)",
       "problemCount": 12,
       "problemsCount": 12,
       "problems": [
@@ -1620,7 +1620,7 @@
       "code": "ladder_ch_08",
       "chapterCode": "ladder_08",
       "title": "【3단계】 8단원. 축머리 꺾어 피하기 (우회 변형 축) (12제)",
-      "chapter": "8단원. 축머리 꺾어 피하기 (우회 변형 축)",
+      "chapter": "【3단계】 8단원. 축머리 꺾어 피하기 (우회 변형 축) (12제)",
       "problemCount": 12,
       "problemsCount": 12,
       "problems": [
@@ -1870,7 +1870,7 @@
       "code": "ladder_ch_09",
       "chapterCode": "ladder_09",
       "title": "【3단계】 9단원. 역단수와 자충의 함정 극복 (12제)",
-      "chapter": "9단원. 역단수와 자충의 함정 극복",
+      "chapter": "【3단계】 9단원. 역단수와 자충의 함정 극복 (12제)",
       "problemCount": 12,
       "problemsCount": 12,
       "problems": [
@@ -2120,7 +2120,7 @@
       "code": "ladder_ch_10",
       "chapterCode": "ladder_10",
       "title": "【4단계】 10단원. 빈축 (도망칠 수 없는 자충 축) (15제)",
-      "chapter": "10단원. 빈축 (도망칠 수 없는 자충 축)",
+      "chapter": "【4단계】 10단원. 빈축 (도망칠 수 없는 자충 축) (15제)",
       "problemCount": 15,
       "problemsCount": 15,
       "problems": [
@@ -2430,7 +2430,7 @@
       "code": "ladder_ch_11",
       "chapterCode": "ladder_11",
       "title": "【4단계】 11단원. 사석 희생 및 회돌이 축 묘수 (10제)",
-      "chapter": "11단원. 사석 희생 및 회돌이 축 묘수",
+      "chapter": "【4단계】 11단원. 사석 희생 및 회돌이 축 묘수 (10제)",
       "problemCount": 10,
       "problemsCount": 10,
       "problems": [
@@ -2640,7 +2640,7 @@
       "code": "ladder_ch_12",
       "chapterCode": "ladder_12",
       "title": "【4단계】 12단원. 전판 관통 장거리 대각선 축 (5제)",
-      "chapter": "12단원. 전판 관통 장거리 대각선 축",
+      "chapter": "【4단계】 12단원. 전판 관통 장거리 대각선 축 (5제)",
       "problemCount": 5,
       "problemsCount": 5,
       "problems": [
