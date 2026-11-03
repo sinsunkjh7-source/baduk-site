@@ -13,6 +13,10 @@
   var R = 9.5, POCKET_R = 0;
 
   /* 공식 규격 (플레이필드 2:1 고정) */
+  var BALL_SCALE = 1.3;   /* 보기용 배율: 규격 1/46.2 → 1/35.6 (화면에서 작아 보여 보정) */
+  var bs = /[?&]ballscale=(\d+(?:\.\d+)?)/.exec(location.search);
+  if (bs) BALL_SCALE = Math.max(1, parseFloat(bs[1]));
+
   var SPEC = {
     carom: { rail: 135 / 2840, ball: 61.5 / 2840 },   /* UMB 캐럼 2840×1420, 공 61.5mm, 레일 135mm */
     pool:  { rail: 150 / 2540, ball: 57.15 / 2540 }   /* 9ft 풀 2540×1270, 공 57.15mm, 레일 150mm */
@@ -25,7 +29,7 @@
     FL = +(W - RAIL * 2).toFixed(2);
     H = +(FL / 2 + RAIL * 2).toFixed(1);                    /* 필드 2:1 유지 */
     MINX = RAIL; MAXX = W - RAIL; MINY = RAIL; MAXY = H - RAIL;
-    R = +(FL * sp.ball / 2).toFixed(2);
+    R = +(FL * sp.ball / 2 * BALL_SCALE).toFixed(2);
     POCKET_R = (mode === 'pocket') ? +(FL * sp.ball * 2.1).toFixed(2) : 0;
   }
   var FRICTION = 0.9885, STOP = 0.06, CUSHION = 0.92, MAX_POWER = 26;

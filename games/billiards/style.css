@@ -213,3 +213,10 @@ canvas{display:block;margin:0 auto;border-radius:10px;touch-action:none;width:au
 @media (min-width:961px) and (min-height:841px){
   #table,.b-side{width:min(92vw, calc((100dvh - var(--bks-nav-h,64px) - 250px) * 1.78))}
 }
+
+/* 하단 바 두 줄 정렬 (b-bar-rows) */
+@media (min-width:961px){
+  .b-side{justify-content:center;row-gap:6px}
+  .b-side .b-desc{flex:0 0 100%;order:6;text-align:center;margin:0}
+  .b-side .b-rules{order:7}
+}
