@@ -118,7 +118,7 @@
       this.currentCourseId = courseId;
       this.currentCourse = course;
 
-      // 100% 순수 3D WebGL 엔진 모드 전환: 1코스(글래시어), 2코스(마그마), 3코스(우주), 4코스(포레스트)
+      // 100% 순수 3D WebGL 엔진 모드 전환: 1코스(글래시어), 2코스(마그마), 3코스(원조 우주런), 4코스(1분 사활 우주런)
       if (courseId === 'glacier' && this.magmaCoaster) {
         if (this.spaceCanvas) this.spaceCanvas.style.display = 'none';
         if (this.magmaCanvas) this.magmaCanvas.style.display = 'block';
@@ -129,12 +129,7 @@
         if (this.magmaCanvas) this.magmaCanvas.style.display = 'block';
         this.magmaCoaster.setTheme('magma');
         this.coaster = this.magmaCoaster;
-      } else if (courseId === 'forest' && this.magmaCoaster) {
-        if (this.spaceCanvas) this.spaceCanvas.style.display = 'none';
-        if (this.magmaCanvas) this.magmaCanvas.style.display = 'block';
-        this.magmaCoaster.setTheme('forest');
-        this.coaster = this.magmaCoaster;
-      } else if (courseId === 'space' && this.spaceCoaster) {
+      } else if ((courseId === 'space' || courseId === 'space_epic') && this.spaceCoaster) {
         if (this.magmaCanvas) this.magmaCanvas.style.display = 'none';
         if (this.spaceCanvas) this.spaceCanvas.style.display = 'block';
         this.coaster = this.spaceCoaster;
@@ -157,7 +152,7 @@
         if (courseId === 'glacier') label = '1코스';
         if (courseId === 'magma') label = '2코스';
         if (courseId === 'space') label = '3코스';
-        if (courseId === 'forest') label = '4코스';
+        if (courseId === 'space_epic') label = '4코스';
         badge.textContent = `선택됨: ${label}`;
       }
 
@@ -167,7 +162,7 @@
         if (courseId === 'glacier') hudText = '❄️ 1코스 글래시어';
         if (courseId === 'magma') hudText = '🔥 2코스 마그마';
         if (courseId === 'space') hudText = '🌌 3코스 심우주';
-        if (courseId === 'forest') hudText = '🌲 4코스 포레스트';
+        if (courseId === 'space_epic') hudText = '🚀 4코스 1분 사활';
         hudCourseTag.textContent = hudText;
       }
 
@@ -183,9 +178,9 @@
         } else if (courseId === 'space') {
           btnTheme = 'linear-gradient(135deg, #7c3aed 0%, #ec4899 100%)';
           btnShadow = 'rgba(168, 85, 247, 0.5)';
-        } else if (courseId === 'forest') {
-          btnTheme = 'linear-gradient(135deg, #059669 0%, #10b981 50%, #34d399 100%)';
-          btnShadow = 'rgba(16, 185, 129, 0.6)';
+        } else if (courseId === 'space_epic') {
+          btnTheme = 'linear-gradient(135deg, #f59e0b 0%, #ec4899 50%, #8b5cf6 100%)';
+          btnShadow = 'rgba(245, 158, 11, 0.6)';
         }
         this.btnStart.style.background = btnTheme;
         this.btnStart.style.boxShadow = `0 10px 30px ${btnShadow}`;

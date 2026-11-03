@@ -493,12 +493,11 @@
     }
 
     /**
-     * 실시간 테마 스위칭 (글래시어 ❄️ / 마그마 🔥 / 포레스트 🌲)
+     * 실시간 테마 스위칭 (글래시어 빙하 ❄️ vs 마그마 화산 🔥)
      */
     setTheme(themeName = 'glacier') {
       this.currentTheme = themeName;
       const isGlacier = (themeName === 'glacier');
-      const isForest = (themeName === 'forest');
 
       if (!this.scene) return;
 
@@ -506,93 +505,66 @@
       if (isGlacier) {
         this.scene.background = new THREE.Color(0x030a16);
         this.scene.fog = new THREE.FogExp2(0x06182c, 0.0015);
-      } else if (isForest) {
-        this.scene.background = new THREE.Color(0x02170d);
-        this.scene.fog = new THREE.FogExp2(0x042416, 0.0015);
       } else {
         this.scene.background = new THREE.Color(0x0a0302);
         this.scene.fog = new THREE.FogExp2(0x180502, 0.0016);
       }
 
-      // 2. 조명
+      // 2. 조명 (프로즌 쿨톤 vs 마그마 웜톤)
       if (this.ambientLight) {
-        let ambColor = 0xff4411, ambInt = 0.85;
-        if (isGlacier) { ambColor = 0xa5f3fc; ambInt = 1.0; }
-        else if (isForest) { ambColor = 0xa7f3d0; ambInt = 0.95; }
-        this.ambientLight.color.setHex(ambColor);
-        this.ambientLight.intensity = ambInt;
+        this.ambientLight.color.setHex(isGlacier ? 0xa5f3fc : 0xff4411);
+        this.ambientLight.intensity = isGlacier ? 1.0 : 0.85;
       }
       if (this.dirLight) {
-        let dirColor = 0xffaa33, dirInt = 1.2;
-        if (isGlacier) { dirColor = 0xe0f2fe; dirInt = 1.35; }
-        else if (isForest) { dirColor = 0xd1fae5; dirInt = 1.3; }
-        this.dirLight.color.setHex(dirColor);
-        this.dirLight.intensity = dirInt;
+        this.dirLight.color.setHex(isGlacier ? 0xe0f2fe : 0xffaa33);
+        this.dirLight.intensity = isGlacier ? 1.35 : 1.2;
       }
 
-      // 3. 레일 재질
+      // 3. 레일 재질 (크리스탈 아이스 vs 불타는 붉은 쇠)
       if (this.railMatL) {
-        let col = 0xff3300, em = 0xff2200, emInt = 0.9;
-        if (isGlacier) { col = 0x7dd3fc; em = 0x0284c7; emInt = 1.3; }
-        else if (isForest) { col = 0x10b981; em = 0x059669; emInt = 1.25; }
-        this.railMatL.color.setHex(col);
-        this.railMatL.emissive.setHex(em);
-        this.railMatL.emissiveIntensity = emInt;
+        this.railMatL.color.setHex(isGlacier ? 0x7dd3fc : 0xff3300);
+        this.railMatL.emissive.setHex(isGlacier ? 0x0284c7 : 0xff2200);
+        this.railMatL.emissiveIntensity = isGlacier ? 1.3 : 0.9;
       }
       if (this.railMatR) {
-        let col = 0xff7700, em = 0xff5500, emInt = 0.9;
-        if (isGlacier) { col = 0x38bdf8; em = 0x0369a1; emInt = 1.3; }
-        else if (isForest) { col = 0x34d399; em = 0x047857; emInt = 1.25; }
-        this.railMatR.color.setHex(col);
-        this.railMatR.emissive.setHex(em);
-        this.railMatR.emissiveIntensity = emInt;
+        this.railMatR.color.setHex(isGlacier ? 0x38bdf8 : 0xff7700);
+        this.railMatR.emissive.setHex(isGlacier ? 0x0369a1 : 0xff5500);
+        this.railMatR.emissiveIntensity = isGlacier ? 1.3 : 0.9;
       }
       if (this.tieMat) {
-        this.tieMat.color.setHex(isGlacier ? 0x0f172a : (isForest ? 0x1c1917 : 0x1e1512));
+        this.tieMat.color.setHex(isGlacier ? 0x0f172a : 0x1e1512);
       }
 
-      // 4. 바닥
+      // 4. 바닥 (극지방 빙하 해저 vs 펄펄 끓는 용암 바다)
       if (this.lavaMesh && this.lavaMesh.material) {
-        let col = 0xcc2200, em = 0xee3300, emInt = 0.85, rough = 0.3, met = 0.1;
-        if (isGlacier) { col = 0x0284c7; em = 0x0369a1; emInt = 0.75; rough = 0.15; met = 0.4; }
-        else if (isForest) { col = 0x064e3b; em = 0x047857; emInt = 0.75; rough = 0.35; met = 0.2; }
-        this.lavaMesh.material.color.setHex(col);
-        this.lavaMesh.material.emissive.setHex(em);
-        this.lavaMesh.material.emissiveIntensity = emInt;
-        this.lavaMesh.material.roughness = rough;
-        this.lavaMesh.material.metalness = met;
+        this.lavaMesh.material.color.setHex(isGlacier ? 0x0284c7 : 0xcc2200);
+        this.lavaMesh.material.emissive.setHex(isGlacier ? 0x0369a1 : 0xee3300);
+        this.lavaMesh.material.emissiveIntensity = isGlacier ? 0.75 : 0.85;
+        this.lavaMesh.material.roughness = isGlacier ? 0.15 : 0.3;
+        this.lavaMesh.material.metalness = isGlacier ? 0.4 : 0.1;
       }
 
-      // 5. 파티클
+      // 5. 파티클 (흩날리는 원형 눈송이 vs 타오르는 원형 불티)
       if (this.emberPoints && this.emberPoints.material) {
         if (!this.snowTexture) this.snowTexture = this.createSnowTexture();
         if (!this.fireTexture) this.fireTexture = this.createSparkTexture();
         this.emberPoints.material.map = isGlacier ? this.snowTexture : this.fireTexture;
-        let pCol = 0xffaa44, pSize = 2.8;
-        if (isGlacier) { pCol = 0xf0f9ff; pSize = 2.6; }
-        else if (isForest) { pCol = 0xa7f3d0; pSize = 2.6; }
-        this.emberPoints.material.color.setHex(pCol);
-        this.emberPoints.material.size = pSize;
+        this.emberPoints.material.color.setHex(isGlacier ? 0xf0f9ff : 0xffaa44);
+        this.emberPoints.material.size = isGlacier ? 2.6 : 2.8;
       }
 
-      // 6. 주변 환경
+      // 6. 주변 환경 (거대한 푸른 빙산 기둥 vs 흑요석 분화구 기둥)
       if (this.spireMat) {
-        let spCol = 0x22130e, spRough = 0.85, spMet = 0.1;
-        if (isGlacier) { spCol = 0x075985; spRough = 0.2; spMet = 0.65; }
-        else if (isForest) { spCol = 0x14532d; spRough = 0.8; spMet = 0.15; }
-        this.spireMat.color.setHex(spCol);
-        this.spireMat.roughness = spRough;
-        this.spireMat.metalness = spMet;
+        this.spireMat.color.setHex(isGlacier ? 0x075985 : 0x22130e);
+        this.spireMat.roughness = isGlacier ? 0.2 : 0.85;
+        this.spireMat.metalness = isGlacier ? 0.65 : 0.1;
       }
 
       // 7. 관문 게이트 링
       this.gatePortals.forEach(portal => {
         if (portal && portal.material) {
-          let gCol = 0xffaa00, gEm = 0xff6600;
-          if (isGlacier) { gCol = 0x38bdf8; gEm = 0x0ea5e9; }
-          else if (isForest) { gCol = 0x10b981; gEm = 0x34d399; }
-          portal.material.color.setHex(gCol);
-          portal.material.emissive.setHex(gEm);
+          portal.material.color.setHex(isGlacier ? 0x38bdf8 : 0xffaa00);
+          portal.material.emissive.setHex(isGlacier ? 0x0ea5e9 : 0xff6600);
         }
       });
     }
