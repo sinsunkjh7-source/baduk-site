@@ -46,20 +46,20 @@
       <li>부딪히면 실드가 줄고, 3번 맞으면 임무 종료</li>
       <li>속도가 오를수록 점수가 빠르게 쌓인다</li>
     </ul>
-    <button type="button" id="btnStart" class="btn primary">출발</button>
+    <button type="button" id="btnStart" class="btn primary" onclick="if(window.__spaceStart) window.__spaceStart();">출발</button>
   </div>
 
   <div class="panel over" id="overPanel" hidden>
     <h2>임무 종료</h2>
     <p class="result"><b id="finalDist">0</b> km 항해</p>
     <p class="sub" id="recordText"></p>
-    <button type="button" id="btnRetry" class="btn primary">다시 출발</button>
+    <button type="button" id="btnRetry" class="btn primary" onclick="if(window.__spaceStart) window.__spaceStart();">다시 출발</button>
   </div>
 
   <div class="flash" id="flash" aria-hidden="true"></div>
 </div>
 
 <script src="/games/coaster-run/three.min.js?v=three-shared"></script>
-<script src="game.js?v=space-1"></script>
+<script src="game.js?v=20261103-fix-v3"></script>
 </body>
 </html>

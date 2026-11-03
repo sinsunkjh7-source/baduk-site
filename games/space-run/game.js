@@ -213,6 +213,7 @@
   }
 
   /* ---------- 게임 진행 ---------- */
+  window.__spaceStart = start;
   function start() {
     state.running = true; state.dead = false;
     state.speed = 42; state.dist = 0; state.shield = 3;
