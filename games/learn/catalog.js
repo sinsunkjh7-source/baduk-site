@@ -1228,120 +1228,88 @@ window.CATALOG_DATA = [
       {
         "code": "tech_ladder",
         "title": "🪜 축 완전정복 마스터",
-        "chapterCount": 14,
-        "totalProblems": 610,
+        "chapterCount": 10,
+        "totalProblems": 459,
         "chapters": [
           {
-            "code": "ladder_ch_01",
-            "chapterCode": "ladder_ch_01",
-            "title": "1단원. 축의 기본 원리와 모는 방법 (축-따라놓기 & 모는 방법) (43제)",
-            "chapter": "1단원. 축의 기본 원리와 모는 방법 (축-따라놓기 & 모는 방법) (43제)",
-            "problemCount": 43,
-            "problemsCount": 43
+            "code": "tech_ladder_ch01",
+            "chapterCode": "tech_ladder_ch01",
+            "title": "1단원. 축의 기초와 첫 단수 방향 (어느 쪽으로 단수쳐서 몰까?) (74제)",
+            "chapter": "1단원. 축의 기초와 첫 단수 방향 (어느 쪽으로 단수쳐서 몰까?) (74제)",
+            "problemCount": 74,
+            "problemsCount": 74
           },
           {
-            "code": "ladder_ch_02",
-            "chapterCode": "ladder_ch_02",
-            "title": "2단원. 축으로 잡기 기초 (입문 기본 축) (37제)",
-            "chapter": "2단원. 축으로 잡기 기초 (입문 기본 축) (37제)",
-            "problemCount": 37,
-            "problemsCount": 37
+            "code": "tech_ladder_ch02",
+            "chapterCode": "tech_ladder_ch02",
+            "title": "2단원. 방향 선택 후 축으로 몰기 (올바른 방향으로 연속 단수) (23제)",
+            "chapter": "2단원. 방향 선택 후 축으로 몰기 (올바른 방향으로 연속 단수) (23제)",
+            "problemCount": 23,
+            "problemsCount": 23
           },
           {
-            "code": "ladder_ch_03",
-            "chapterCode": "ladder_ch_03",
-            "title": "3단원. 축을 모는 방향 (어느 쪽으로 몰까?) (49제)",
-            "chapter": "3단원. 축을 모는 방향 (어느 쪽으로 몰까?) (49제)",
-            "problemCount": 49,
-            "problemsCount": 49
+            "code": "tech_ladder_ch03",
+            "chapterCode": "tech_ladder_ch03",
+            "title": "3단원. 기본 축 몰아 잡기 (3수~5수 단거리 지그재그 단수) (61제)",
+            "chapter": "3단원. 기본 축 몰아 잡기 (3수~5수 단거리 지그재그 단수) (61제)",
+            "problemCount": 61,
+            "problemsCount": 61
           },
           {
-            "code": "ladder_ch_04",
-            "chapterCode": "ladder_ch_04",
-            "title": "4단원. 우리 편 방향으로 몰기 (아군 돌 활용) (36제)",
-            "chapter": "4단원. 우리 편 방향으로 몰기 (아군 돌 활용) (36제)",
-            "problemCount": 36,
-            "problemsCount": 36
+            "code": "tech_ladder_ch04",
+            "chapterCode": "tech_ladder_ch04",
+            "title": "4단원. 장거리 축 따라놓기와 끝까지 몰기 (7수~11수 장거리 축) (41제)",
+            "chapter": "4단원. 장거리 축 따라놓기와 끝까지 몰기 (7수~11수 장거리 축) (41제)",
+            "problemCount": 41,
+            "problemsCount": 41
           },
           {
-            "code": "ladder_ch_05",
-            "chapterCode": "ladder_ch_05",
-            "title": "5단원. 실전 축 포획 훈련 ① (초급 축 집중 훈련) (70제)",
-            "chapter": "5단원. 실전 축 포획 훈련 ① (초급 축 집중 훈련) (70제)",
-            "problemCount": 70,
-            "problemsCount": 70
+            "code": "tech_ladder_ch05",
+            "chapterCode": "tech_ladder_ch05",
+            "title": "5단원. 단수치고 축 (먼저 단수로 몰아넣은 뒤 축으로 잡기) (72제)",
+            "chapter": "5단원. 단수치고 축 (먼저 단수로 몰아넣은 뒤 축으로 잡기) (72제)",
+            "problemCount": 72,
+            "problemsCount": 72
           },
           {
-            "code": "ladder_ch_06",
-            "chapterCode": "ladder_ch_06",
-            "title": "6단원. 실전 축 포획 훈련 ② (중급 축 집중 훈련) (39제)",
-            "chapter": "6단원. 실전 축 포획 훈련 ② (중급 축 집중 훈련) (39제)",
-            "problemCount": 39,
-            "problemsCount": 39
+            "code": "tech_ladder_ch06",
+            "chapterCode": "tech_ladder_ch06",
+            "title": "6단원. 끊으면서 축 (상대 연결을 끊으며 축으로 몰기) (26제)",
+            "chapter": "6단원. 끊으면서 축 (상대 연결을 끊으며 축으로 몰기) (26제)",
+            "problemCount": 26,
+            "problemsCount": 26
           },
           {
-            "code": "ladder_ch_07",
-            "chapterCode": "ladder_ch_07",
-            "title": "7단원. 끊으면서 축 (절단과 축 연계) (52제)",
-            "chapter": "7단원. 끊으면서 축 (절단과 축 연계) (52제)",
-            "problemCount": 52,
-            "problemsCount": 52
+            "code": "tech_ladder_ch07",
+            "chapterCode": "tech_ladder_ch07",
+            "title": "7단원. 축머리의 원리와 축머리 피하기 (축머리 판별과 우회 몰기) (47제)",
+            "chapter": "7단원. 축머리의 원리와 축머리 피하기 (축머리 판별과 우회 몰기) (47제)",
+            "problemCount": 47,
+            "problemsCount": 47
           },
           {
-            "code": "ladder_ch_08",
-            "chapterCode": "ladder_ch_08",
-            "title": "8단원. 단수치고 축 (단수 친 후 축 몰기) (46제)",
-            "chapter": "8단원. 단수치고 축 (단수 친 후 축 몰기) (46제)",
-            "problemCount": 46,
-            "problemsCount": 46
+            "code": "tech_ladder_ch08",
+            "chapterCode": "tech_ladder_ch08",
+            "title": "8단원. 축과 장문의 선택 (장문이 안 될 때 축으로 잡기) (41제)",
+            "chapter": "8단원. 축과 장문의 선택 (장문이 안 될 때 축으로 잡기) (41제)",
+            "problemCount": 41,
+            "problemsCount": 41
           },
           {
-            "code": "ladder_ch_09",
-            "chapterCode": "ladder_ch_09",
-            "title": "9단원. 축머리와 축머리 피해서 몰기 ① (31제)",
-            "chapter": "9단원. 축머리와 축머리 피해서 몰기 ① (31제)",
-            "problemCount": 31,
-            "problemsCount": 31
+            "code": "tech_ladder_ch09",
+            "chapterCode": "tech_ladder_ch09",
+            "title": "9단원. 회돌이 축 (돌려치기로 뭉치게 만든 뒤 축으로 잡기) (18제)",
+            "chapter": "9단원. 회돌이 축 (돌려치기로 뭉치게 만든 뒤 축으로 잡기) (18제)",
+            "problemCount": 18,
+            "problemsCount": 18
           },
           {
-            "code": "ladder_ch_10",
-            "chapterCode": "ladder_ch_10",
-            "title": "10단원. 축머리 판별과 피하기 ② (실전 축머리 응용) (31제)",
-            "chapter": "10단원. 축머리 판별과 피하기 ② (실전 축머리 응용) (31제)",
-            "problemCount": 31,
-            "problemsCount": 31
-          },
-          {
-            "code": "ladder_ch_11",
-            "chapterCode": "ladder_ch_11",
-            "title": "11단원. 축과 장문의 선택 ① (어느 것으로 잡을까?) (50제)",
-            "chapter": "11단원. 축과 장문의 선택 ① (어느 것으로 잡을까?) (50제)",
-            "problemCount": 50,
-            "problemsCount": 50
-          },
-          {
-            "code": "ladder_ch_12",
-            "chapterCode": "ladder_ch_12",
-            "title": "12단원. 축과 장문의 선택 ② (실전 축·장문 판별) (32제)",
-            "chapter": "12단원. 축과 장문의 선택 ② (실전 축·장문 판별) (32제)",
-            "problemCount": 32,
-            "problemsCount": 32
-          },
-          {
-            "code": "ladder_ch_13",
-            "chapterCode": "ladder_ch_13",
-            "title": "13단원. 회돌이 연계 축과 장문 (고급 수순) (25제)",
-            "chapter": "13단원. 회돌이 연계 축과 장문 (고급 수순) (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "ladder_ch_14",
-            "chapterCode": "ladder_ch_14",
-            "title": "14단원. 빈축 완전정복 (특수 고급 축) (69제)",
-            "chapter": "14단원. 빈축 완전정복 (특수 고급 축) (69제)",
-            "problemCount": 69,
-            "problemsCount": 69
+            "code": "tech_ladder_ch10",
+            "chapterCode": "tech_ladder_ch10",
+            "title": "10단원. 빈축 완전정복 (축이 불리할 때 단수쳐서 활용하는 맥점) (56제)",
+            "chapter": "10단원. 빈축 완전정복 (축이 불리할 때 단수쳐서 활용하는 맥점) (56제)",
+            "problemCount": 56,
+            "problemsCount": 56
           }
         ]
       },
