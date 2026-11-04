@@ -2044,112 +2044,88 @@ window.CATALOG_DATA = [
       {
         "code": "tech_yeon_atari",
         "title": "⚡ 촉촉수 / 연단수 연속 몰아치기",
-        "chapterCount": 43,
-        "totalProblems": 524,
+        "chapterCount": 10,
+        "totalProblems": 634,
         "chapters": [
           {
-            "code": "chok_ch_01",
-            "chapterCode": "chok_ch_01",
-            "title": "1단원. 1선 촉촉수의 기본 원리 (1선에 이어도 단수 ①) (19제)",
-            "chapter": "1단원. 1선 촉촉수의 기본 원리 (1선에 이어도 단수 ①) (19제)",
-            "problemCount": 19,
-            "problemsCount": 19
-          },
-          {
-            "code": "chok_ch_02",
-            "chapterCode": "chok_ch_02",
-            "title": "2단원. 1선 촉촉수 집중 훈련 (1선에 이어도 단수 ②) (23제)",
-            "chapter": "2단원. 1선 촉촉수 집중 훈련 (1선에 이어도 단수 ②) (23제)",
-            "problemCount": 23,
-            "problemsCount": 23
-          },
-          {
-            "code": "chok_ch_03",
-            "chapterCode": "chok_ch_03",
-            "title": "3단원. 1선 퇴로 차단 촉촉수 (1선의 촉촉수) (18제)",
-            "chapter": "3단원. 1선 퇴로 차단 촉촉수 (1선의 촉촉수) (18제)",
-            "problemCount": 18,
-            "problemsCount": 18
-          },
-          {
-            "code": "chok_ch_04",
-            "chapterCode": "chok_ch_04",
-            "title": "4단원. 중앙의 촉촉수 & 착수금지 연계 (32제)",
-            "chapter": "4단원. 중앙의 촉촉수 & 착수금지 연계 (32제)",
-            "problemCount": 32,
-            "problemsCount": 32
-          },
-          {
-            "code": "chok_ch_05",
-            "chapterCode": "chok_ch_05",
-            "title": "5단원. 연속 단수로 몰아가기 (단수치고 단수) (50제)",
-            "chapter": "5단원. 연속 단수로 몰아가기 (단수치고 단수) (50제)",
-            "problemCount": 50,
-            "problemsCount": 50
-          },
-          {
-            "code": "chok_ch_06",
-            "chapterCode": "chok_ch_06",
-            "title": "6단원. 다각도 연단수 포획 (알파·파워씽크 엄선) (53제)",
-            "chapter": "6단원. 다각도 연단수 포획 (알파·파워씽크 엄선) (53제)",
-            "problemCount": 53,
-            "problemsCount": 53
-          },
-          {
-            "code": "chok_ch_07",
-            "chapterCode": "chok_ch_07",
-            "title": "7단원. 단수치고 끊기 (양단수 및 절단 연계) (24제)",
-            "chapter": "7단원. 단수치고 끊기 (양단수 및 절단 연계) (24제)",
-            "problemCount": 24,
-            "problemsCount": 24
-          },
-          {
-            "code": "chok_ch_08",
-            "chapterCode": "chok_ch_08",
-            "title": "8단원. 수상전 연계 촉촉수 (상대 활로 줄이기) (46제)",
-            "chapter": "8단원. 수상전 연계 촉촉수 (상대 활로 줄이기) (46제)",
-            "problemCount": 46,
-            "problemsCount": 46
-          },
-          {
-            "code": "chok_ch_09",
-            "chapterCode": "chok_ch_09",
-            "title": "9단원. 먹여치고 단수 (호구 속 희생타 연계) (42제)",
-            "chapter": "9단원. 먹여치고 단수 (호구 속 희생타 연계) (42제)",
-            "problemCount": 42,
-            "problemsCount": 42
-          },
-          {
-            "code": "chok_ch_10",
-            "chapterCode": "chok_ch_10",
-            "title": "10단원. 1선·중앙 먹여치기와 회돌이 촉촉수 (77제)",
-            "chapter": "10단원. 1선·중앙 먹여치기와 회돌이 촉촉수 (77제)",
-            "problemCount": 77,
-            "problemsCount": 77
-          },
-          {
-            "code": "chok_ch_11",
-            "chapterCode": "chok_ch_11",
-            "title": "11단원. 실전 촉촉수 종합 응용 (포획 종합문제) (45제)",
-            "chapter": "11단원. 실전 촉촉수 종합 응용 (포획 종합문제) (45제)",
+            "code": "tech_yeon_atari_ch01",
+            "chapterCode": "tech_yeon_atari_ch01",
+            "title": "1단원. 1선에 이어도 단수 기초 (밖에서 1선으로 몰아 잡기) (45제)",
+            "chapter": "1단원. 1선에 이어도 단수 기초 (밖에서 1선으로 몰아 잡기) (45제)",
             "problemCount": 45,
             "problemsCount": 45
           },
           {
-            "code": "chok_ch_12",
-            "chapterCode": "chok_ch_12",
-            "title": "12단원. 실전 사활 연계 ① (촉촉수로 내 돌 살리기 기초) (44제)",
-            "chapter": "12단원. 실전 사활 연계 ① (촉촉수로 내 돌 살리기 기초) (44제)",
-            "problemCount": 44,
-            "problemsCount": 44
+            "code": "tech_yeon_atari_ch02",
+            "chapterCode": "tech_yeon_atari_ch02",
+            "title": "2단원. 1선의 촉촉수 급소 (1선에 직접 단수쳐서 잡기) (12제)",
+            "chapter": "2단원. 1선의 촉촉수 급소 (1선에 직접 단수쳐서 잡기) (12제)",
+            "problemCount": 12,
+            "problemsCount": 12
           },
           {
-            "code": "chok_ch_13",
-            "chapterCode": "chok_ch_13",
-            "title": "13단원. 실전 사활 연계 ② (먹여침과 자충을 찌르는 역습 살리기) (51제)",
-            "chapter": "13단원. 실전 사활 연계 ② (먹여침과 자충을 찌르는 역습 살리기) (51제)",
-            "problemCount": 51,
-            "problemsCount": 51
+            "code": "tech_yeon_atari_ch03",
+            "chapterCode": "tech_yeon_atari_ch03",
+            "title": "3단원. 중앙에 이어도 단수 (호구·빈삼각 속에 가두어 잡기) (30제)",
+            "chapter": "3단원. 중앙에 이어도 단수 (호구·빈삼각 속에 가두어 잡기) (30제)",
+            "problemCount": 30,
+            "problemsCount": 30
+          },
+          {
+            "code": "tech_yeon_atari_ch04",
+            "chapterCode": "tech_yeon_atari_ch04",
+            "title": "4단원. 단수치고 또 단수 (연속 단수로 몰아 잡기) (96제)",
+            "chapter": "4단원. 단수치고 또 단수 (연속 단수로 몰아 잡기) (96제)",
+            "problemCount": 96,
+            "problemsCount": 96
+          },
+          {
+            "code": "tech_yeon_atari_ch05",
+            "chapterCode": "tech_yeon_atari_ch05",
+            "title": "5단원. 단수치고 끊기 (이으면 뒤를 끊어 잡기) (24제)",
+            "chapter": "5단원. 단수치고 끊기 (이으면 뒤를 끊어 잡기) (24제)",
+            "problemCount": 24,
+            "problemsCount": 24
+          },
+          {
+            "code": "tech_yeon_atari_ch06",
+            "chapterCode": "tech_yeon_atari_ch06",
+            "title": "6단원. 1선에서 먹여치고 촉촉수 (1선 희생타로 몰아 잡기) (104제)",
+            "chapter": "6단원. 1선에서 먹여치고 촉촉수 (1선 희생타로 몰아 잡기) (104제)",
+            "problemCount": 104,
+            "problemsCount": 104
+          },
+          {
+            "code": "tech_yeon_atari_ch07",
+            "chapterCode": "tech_yeon_atari_ch07",
+            "title": "7단원. 중앙·호구에 먹여치고 촉촉수 (호구 급소에 먹여쳐 잡기) (82제)",
+            "chapter": "7단원. 중앙·호구에 먹여치고 촉촉수 (호구 급소에 먹여쳐 잡기) (82제)",
+            "problemCount": 82,
+            "problemsCount": 82
+          },
+          {
+            "code": "tech_yeon_atari_ch08",
+            "chapterCode": "tech_yeon_atari_ch08",
+            "title": "8단원. 수상전 촉촉수 (촉촉수로 상대 활로 줄여 잡기) (45제)",
+            "chapter": "8단원. 수상전 촉촉수 (촉촉수로 상대 활로 줄여 잡기) (45제)",
+            "problemCount": 45,
+            "problemsCount": 45
+          },
+          {
+            "code": "tech_yeon_atari_ch09",
+            "chapterCode": "tech_yeon_atari_ch09",
+            "title": "9단원. 사활 촉촉수 (촉촉수로 상대 약점 공략해 내 돌 살리기) (98제)",
+            "chapter": "9단원. 사활 촉촉수 (촉촉수로 상대 약점 공략해 내 돌 살리기) (98제)",
+            "problemCount": 98,
+            "problemsCount": 98
+          },
+          {
+            "code": "tech_yeon_atari_ch10",
+            "chapterCode": "tech_yeon_atari_ch10",
+            "title": "10단원. 회돌이 촉촉수 (돌려치기로 뭉치게 만들어 잡기) (98제)",
+            "chapter": "10단원. 회돌이 촉촉수 (돌려치기로 뭉치게 만들어 잡기) (98제)",
+            "problemCount": 98,
+            "problemsCount": 98
           }
         ]
       },
