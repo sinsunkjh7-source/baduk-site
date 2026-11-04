@@ -10,7 +10,7 @@
 <title>🎓 Teaching Zone — 바둑스쿨 교재 사령탑</title>
 <link rel="preload" as="image" href="images/board_wood_grain.png">
 
-<link rel="stylesheet" href="style.css?v=1793427625">
+<link rel="stylesheet" href="style.css?v=20261104-ed-v100">
 <link rel="stylesheet" href="/unified-nav.css?v=20261103-nav-v11">
 <script src="/unified-nav.js?v=20261103-nav-v11" defer></script>
 </head>
@@ -80,8 +80,8 @@
       <!-- 🌟 사이드바 최상단 모드 전환 탭 🌟 -->
       <div class="sidebar-section mode-switch-section">
         <div class="mode-switch-group">
-          <button type="button" id="btnModeTeaching" class="mode-switch-btn active">🎓 수업 모드</button>
-          <button type="button" id="btnModeEditor" class="mode-switch-btn">🛠️ 문제 편집실</button>
+          <button type="button" id="btnModeTeaching" class="mode-switch-btn active" onclick="if(window.switchTeacherEditorMode) window.switchTeacherEditorMode(false);">🎓 수업 모드</button>
+          <button type="button" id="btnModeEditor" class="mode-switch-btn" onclick="if(window.switchTeacherEditorMode) window.switchTeacherEditorMode(true);">🛠️ 문제 편집실</button>
         </div>
       </div>
 
@@ -287,6 +287,6 @@
 <div id="teacherToast" class="teacher-toast" hidden></div>
 
 <script src="audio.js?v=20261028-solidwood&t=teacher-panel-v15"></script>
-<script src="app.js?v=tech-chok-clean-1793796888"></script>
+<script src="app.js?v=20261104-ed-v100"></script>
 </body>
 </html>

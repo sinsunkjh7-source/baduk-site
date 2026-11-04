@@ -12,7 +12,7 @@
 
   /* ---------- 상태 ---------- */
   var state = {
-    authenticated: false,
+    authenticated: true,
     catalog: [],
     currentSeriesIndex: 0,
     currentBook: null,
@@ -2286,6 +2286,7 @@ if (typeof onEditorProblemLoaded === 'function') onEditorProblemLoaded(idx);
     });
   }
 
+  window.switchTeacherEditorMode = switchMode;
   function switchMode(toEditor) {
     var btnTeaching = document.getElementById('btnModeTeaching');
     var btnEditor = document.getElementById('btnModeEditor');
@@ -2318,16 +2319,34 @@ if (typeof onEditorProblemLoaded === 'function') onEditorProblemLoaded(idx);
       if (chTitleEl) chTitleEl.textContent = '씽크탱크 ➔ 논리바둑 ➔ 알파바둑 (난이도 순)';
 
       if (editorState.problems.length === 0) {
-        fetch('data/chokchoksu_100.json?v=' + Date.now())
-          .then(function(res) { return res.json(); })
-          .then(function(data) {
-            editorState.problems = data;
-            renderCandidateCards();
-            selectProblem(0);
-          })
-          .catch(function(err) {
-            console.error('Failed to load chokchoksu_100.json:', err);
-          });
+        var candidateUrls = [
+          'data/chokchoksu_100.json?v=' + Date.now(),
+          '/teacher/data/chokchoksu_100.json?v=' + Date.now(),
+          './data/chokchoksu_100.json?v=' + Date.now()
+        ];
+        var fetchIdx = 0;
+        function tryNextFetch() {
+          if (fetchIdx >= candidateUrls.length) {
+            console.error('All URLs failed for chokchoksu_100.json');
+            return;
+          }
+          var url = candidateUrls[fetchIdx++];
+          fetch(url)
+            .then(function(res) {
+              if (!res.ok) throw new Error('HTTP ' + res.status);
+              return res.json();
+            })
+            .then(function(data) {
+              editorState.problems = data;
+              renderCandidateCards();
+              selectProblem(0);
+            })
+            .catch(function(err) {
+              console.warn('Failed loading ' + url + ':', err);
+              tryNextFetch();
+            });
+        }
+        tryNextFetch();
       } else {
         renderCandidateCards();
         selectProblem(editorState.currentIndex || 0);
