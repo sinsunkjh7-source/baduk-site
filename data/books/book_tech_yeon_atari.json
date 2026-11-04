@@ -4,350 +4,14 @@
   "title": "⚡ 촉촉수 / 연단수 연속 몰아치기",
   "bookCode": "tech_yeon_atari",
   "chapterCount": 8,
-  "totalProblems": 553,
+  "totalProblems": 537,
   "chapters": [
     {
       "code": "yeon_ch_01",
-      "title": "1단원. 촉촉수의 기본 원리와 직관 포획 (입문 촉촉수) (60제)",
-      "chapter": "1단원. 촉촉수의 기본 원리와 직관 포획 (입문 촉촉수) (60제)",
-      "problemCount": 60,
+      "title": "1단원. 촉촉수의 기본 원리와 직관 포획 (입문 촉촉수) (44제)",
+      "chapter": "1단원. 촉촉수의 기본 원리와 직관 포획 (입문 촉촉수) (44제)",
+      "problemCount": 44,
       "problems": [
-        {
-          "code": "40729",
-          "type": "5",
-          "question": "흑1로 둘 수 있으면 ○표, 둘 수 없으면 X표를 하세요.",
-          "hint": "",
-          "data": ";B[po];B[pp];B[pq];B[op];B[qp];L[pp:1]",
-          "answer1": "",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "○|Χ",
-          "answer": "1",
-          "auto": "false",
-          "size": "4",
-          "start": "NO",
-          "source_book": "파워씽크 1",
-          "source_chapter": "5. 착수금지. 연단수(촉촉수)-1",
-          "source_p_num": 1,
-          "name": "yeon-1-1"
-        },
-        {
-          "code": "40731",
-          "type": "5",
-          "question": "흑1로 둘 수 있으면 ○표, 둘 수 없으면 X표를 하세요.",
-          "hint": "",
-          "data": ";W[pp];W[oo];W[pn];W[qo];B[po];L[po:1]",
-          "answer1": "",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "○|Χ",
-          "answer": "2",
-          "auto": "false",
-          "size": "4",
-          "start": "NO",
-          "source_book": "파워씽크 1",
-          "source_chapter": "5. 착수금지. 연단수(촉촉수)-1",
-          "source_p_num": 2,
-          "name": "yeon-1-2"
-        },
-        {
-          "code": "40733",
-          "type": "5",
-          "question": "흑1로 둘 수 있으면 ○표, 둘 수 없으면 X표를 하세요.",
-          "hint": "",
-          "data": ";W[qp];W[po];W[oo];W[np];W[oq];W[pq];B[op];L[op:1]",
-          "answer1": "",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "○|Χ",
-          "answer": "1",
-          "auto": "false",
-          "size": "4",
-          "start": "NO",
-          "source_book": "파워씽크 1",
-          "source_chapter": "5. 착수금지. 연단수(촉촉수)-1",
-          "source_p_num": 3,
-          "name": "yeon-1-3"
-        },
-        {
-          "code": "40736",
-          "type": "5",
-          "question": "흑1로 둘 수 있으면 ○표, 둘 수 없으면 X표를 하세요.",
-          "hint": "",
-          "data": ";W[qp];W[po];W[oo];W[np];W[oq];W[pq];B[op];B[pp];L[pp:1]",
-          "answer1": "",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "○|Χ",
-          "answer": "2",
-          "auto": "false",
-          "size": "4",
-          "start": "NO",
-          "source_book": "파워씽크 1",
-          "source_chapter": "5. 착수금지. 연단수(촉촉수)-1",
-          "source_p_num": 4,
-          "name": "yeon-1-4"
-        },
-        {
-          "code": "40738",
-          "type": "5",
-          "question": "흑1로 둘 수 있으면 ○표, 둘 수 없으면 X표를 하세요.",
-          "hint": "",
-          "data": ";W[qp];W[po];W[oo];W[np];W[oq];W[pq];B[op];B[pp];L[op:1];B[no];B[on];B[pn];B[qo]",
-          "answer1": "",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "○|Χ",
-          "answer": "1",
-          "auto": "false",
-          "size": "4",
-          "start": "NO",
-          "source_book": "파워씽크 1",
-          "source_chapter": "5. 착수금지. 연단수(촉촉수)-1",
-          "source_p_num": 5,
-          "name": "yeon-1-5"
-        },
-        {
-          "code": "40739",
-          "type": "5",
-          "question": "흑1로 둘 수 있으면 ○표, 둘 수 없으면 X표를 하세요.",
-          "hint": "",
-          "data": ";W[qp];W[po];W[oo];W[np];W[oq];W[pq];B[op];B[pp];L[op:1];B[pn];B[on];B[qo]",
-          "answer1": "",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "○|Χ",
-          "answer": "2",
-          "auto": "false",
-          "size": "4",
-          "start": "NO",
-          "source_book": "파워씽크 1",
-          "source_chapter": "5. 착수금지. 연단수(촉촉수)-1",
-          "source_p_num": 6,
-          "name": "yeon-1-6"
-        },
-        {
-          "code": "40740",
-          "type": "5",
-          "question": "흑1로 둘 수 있으면 ○표, 둘 수 없으면 X표를 하세요.",
-          "hint": "",
-          "data": ";W[op];W[oo];W[np];W[nn];W[mo];B[on];B[po];B[pp];B[oq];B[nq];B[no];B[mp];L[no:1]",
-          "answer1": "",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "○|Χ",
-          "answer": "1",
-          "auto": "false",
-          "size": "4",
-          "start": "NO",
-          "source_book": "파워씽크 1",
-          "source_chapter": "5. 착수금지. 연단수(촉촉수)-1",
-          "source_p_num": 7,
-          "name": "yeon-1-7"
-        },
-        {
-          "code": "40741",
-          "type": "5",
-          "question": "흑1로 둘 수 있으면 ○표, 둘 수 없으면 X표를 하세요.",
-          "hint": "",
-          "data": ";W[op];W[oo];W[np];W[nn];W[mo];B[on];B[po];B[pp];B[oq];B[nq];B[no];L[no:1]",
-          "answer1": "",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "○|Χ",
-          "answer": "2",
-          "auto": "false",
-          "size": "4",
-          "start": "NO",
-          "source_book": "파워씽크 1",
-          "source_chapter": "5. 착수금지. 연단수(촉촉수)-1",
-          "source_p_num": 8,
-          "name": "yeon-1-8"
-        },
-        {
-          "code": "40742",
-          "type": "5",
-          "question": "흑1로 둘 수 있으면 ○표, 둘 수 없으면 X표를 하세요.",
-          "hint": "",
-          "data": ";W[rs];W[rr];W[sr];B[ss];L[ss:1];B[qs];B[qr];B[rq];B[sq];W[qq];W[rp]",
-          "answer1": "",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "○|Χ",
-          "answer": "1",
-          "auto": "false",
-          "size": "4",
-          "start": "NO",
-          "source_book": "파워씽크 1",
-          "source_chapter": "5. 착수금지. 연단수(촉촉수)-1",
-          "source_p_num": 9,
-          "name": "yeon-1-9"
-        },
-        {
-          "code": "40744",
-          "type": "5",
-          "question": "흑1로 둘 수 있으면 ○표, 둘 수 없으면 X표를 하세요.",
-          "hint": "",
-          "data": ";W[rs];W[rr];W[sr];B[ss];L[ss:1]",
-          "answer1": "",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "○|Χ",
-          "answer": "2",
-          "auto": "false",
-          "size": "4",
-          "start": "NO",
-          "source_book": "파워씽크 1",
-          "source_chapter": "5. 착수금지. 연단수(촉촉수)-1",
-          "source_p_num": 10,
-          "name": "yeon-1-10"
-        },
-        {
-          "code": "40746",
-          "type": "5",
-          "question": "흑1로 둘 수 있으면 ○표, 둘 수 없으면 X표를 하세요.",
-          "hint": "",
-          "data": ";B[mp];B[nq];B[oq];B[pp];B[oo];B[no];W[np];W[op];W[po];W[pq];W[qp];L[pp:1]",
-          "answer1": "",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "○|Χ",
-          "answer": "1",
-          "auto": "false",
-          "size": "4",
-          "start": "NO",
-          "source_book": "파워씽크 1",
-          "source_chapter": "5. 착수금지. 연단수(촉촉수)-1",
-          "source_p_num": 11,
-          "name": "yeon-1-11"
-        },
-        {
-          "code": "40750",
-          "type": "5",
-          "question": "흑1로 둘 수 있으면 ○표, 둘 수 없으면 X표를 하세요.",
-          "hint": "",
-          "data": ";B[pp];B[op];B[no];B[on];B[pn];W[po];W[oo];W[nn];W[mo];W[np];L[no:1]",
-          "answer1": "",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "○|Χ",
-          "answer": "2",
-          "auto": "false",
-          "size": "4",
-          "start": "NO",
-          "source_book": "파워씽크 1",
-          "source_chapter": "5. 착수금지. 연단수(촉촉수)-1",
-          "source_p_num": 12,
-          "name": "yeon-1-12"
-        },
-        {
-          "code": "40752",
-          "type": "5",
-          "question": "흑1로 둘 수 있으면 ○표, 둘 수 없으면 X표를 하세요.",
-          "hint": "",
-          "data": ";B[qq];B[rq];B[rr];B[rs];B[ps];B[pr];B[or];W[qr];W[qs];W[pq];W[oq];W[nr];W[os];L[ps:1]",
-          "answer1": "",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "○|Χ",
-          "answer": "1",
-          "auto": "false",
-          "size": "4",
-          "start": "NO",
-          "source_book": "파워씽크 1",
-          "source_chapter": "5. 착수금지. 연단수(촉촉수)-1",
-          "source_p_num": 13,
-          "name": "yeon-1-13"
-        },
-        {
-          "code": "40753",
-          "type": "5",
-          "question": "흑1로 둘 수 있으면 ○표, 둘 수 없으면 X표를 하세요.",
-          "hint": "",
-          "data": ";W[sr];W[rr];W[rs];W[qr];W[pr];W[ps];B[or];B[os];B[pq];B[qq];B[rq];B[sq];B[qs];L[qs:1]",
-          "answer1": "",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "○|Χ",
-          "answer": "2",
-          "auto": "false",
-          "size": "4",
-          "start": "NO",
-          "source_book": "파워씽크 1",
-          "source_chapter": "5. 착수금지. 연단수(촉촉수)-1",
-          "source_p_num": 14,
-          "name": "yeon-1-14"
-        },
-        {
-          "code": "40755",
-          "type": "5",
-          "question": "흑1로 둘 수 있으면 ○표, 둘 수 없으면 X표를 하세요.",
-          "hint": "",
-          "data": ";B[pr];B[ps];B[oq];B[nq];B[mq];B[lr];B[ls];B[ns];W[ms];W[mr];W[or];W[nr];W[os];W[pq];W[op];W[mp];W[lq];L[ns:1]",
-          "answer1": "",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "○|Χ",
-          "answer": "1",
-          "auto": "false",
-          "size": "4",
-          "start": "NO",
-          "source_book": "파워씽크 1",
-          "source_chapter": "5. 착수금지. 연단수(촉촉수)-1",
-          "source_p_num": 15,
-          "name": "yeon-1-15"
-        },
-        {
-          "code": "40757",
-          "type": "5",
-          "question": "흑1로 둘 수 있으면 ○표, 둘 수 없으면 X표를 하세요.",
-          "hint": "",
-          "data": ";W[kr];W[ks];W[lq];W[mq];W[nq];W[or];W[os];B[lr];B[ls];B[ms];B[mr];B[nr];B[ns];L[ms:1]",
-          "answer1": "",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "○|Χ",
-          "answer": "2",
-          "auto": "false",
-          "size": "4",
-          "start": "NO",
-          "source_book": "파워씽크 1",
-          "source_chapter": "5. 착수금지. 연단수(촉촉수)-1",
-          "source_p_num": 16,
-          "name": "yeon-1-16"
-        },
         {
           "code": "40759",
           "type": "3",
@@ -367,7 +31,7 @@
           "source_book": "파워씽크 1",
           "source_chapter": "5. 착수금지. 연단수(촉촉수)-2",
           "source_p_num": 1,
-          "name": "yeon-1-17"
+          "name": "yeon-1-1"
         },
         {
           "code": "40760",
@@ -388,7 +52,7 @@
           "source_book": "파워씽크 1",
           "source_chapter": "5. 착수금지. 연단수(촉촉수)-2",
           "source_p_num": 2,
-          "name": "yeon-1-18"
+          "name": "yeon-1-2"
         },
         {
           "code": "40761",
@@ -409,7 +73,7 @@
           "source_book": "파워씽크 1",
           "source_chapter": "5. 착수금지. 연단수(촉촉수)-2",
           "source_p_num": 3,
-          "name": "yeon-1-19"
+          "name": "yeon-1-3"
         },
         {
           "code": "40764",
@@ -430,7 +94,7 @@
           "source_book": "파워씽크 1",
           "source_chapter": "5. 착수금지. 연단수(촉촉수)-2",
           "source_p_num": 4,
-          "name": "yeon-1-20"
+          "name": "yeon-1-4"
         },
         {
           "code": "40766",
@@ -451,7 +115,7 @@
           "source_book": "파워씽크 1",
           "source_chapter": "5. 착수금지. 연단수(촉촉수)-2",
           "source_p_num": 5,
-          "name": "yeon-1-21"
+          "name": "yeon-1-5"
         },
         {
           "code": "40767",
@@ -472,7 +136,7 @@
           "source_book": "파워씽크 1",
           "source_chapter": "5. 착수금지. 연단수(촉촉수)-2",
           "source_p_num": 6,
-          "name": "yeon-1-22"
+          "name": "yeon-1-6"
         },
         {
           "code": "40768",
@@ -493,7 +157,7 @@
           "source_book": "파워씽크 1",
           "source_chapter": "5. 착수금지. 연단수(촉촉수)-2",
           "source_p_num": 7,
-          "name": "yeon-1-23"
+          "name": "yeon-1-7"
         },
         {
           "code": "40769",
@@ -514,7 +178,7 @@
           "source_book": "파워씽크 1",
           "source_chapter": "5. 착수금지. 연단수(촉촉수)-2",
           "source_p_num": 8,
-          "name": "yeon-1-24"
+          "name": "yeon-1-8"
         },
         {
           "code": "40770",
@@ -535,7 +199,7 @@
           "source_book": "파워씽크 1",
           "source_chapter": "5. 착수금지. 연단수(촉촉수)-2",
           "source_p_num": 9,
-          "name": "yeon-1-25"
+          "name": "yeon-1-9"
         },
         {
           "code": "40772",
@@ -556,7 +220,7 @@
           "source_book": "파워씽크 1",
           "source_chapter": "5. 착수금지. 연단수(촉촉수)-2",
           "source_p_num": 10,
-          "name": "yeon-1-26"
+          "name": "yeon-1-10"
         },
         {
           "code": "40773",
@@ -577,7 +241,7 @@
           "source_book": "파워씽크 1",
           "source_chapter": "5. 착수금지. 연단수(촉촉수)-2",
           "source_p_num": 11,
-          "name": "yeon-1-27"
+          "name": "yeon-1-11"
         },
         {
           "code": "40774",
@@ -598,7 +262,7 @@
           "source_book": "파워씽크 1",
           "source_chapter": "5. 착수금지. 연단수(촉촉수)-2",
           "source_p_num": 12,
-          "name": "yeon-1-28"
+          "name": "yeon-1-12"
         },
         {
           "code": "40775",
@@ -619,7 +283,7 @@
           "source_book": "파워씽크 1",
           "source_chapter": "5. 착수금지. 연단수(촉촉수)-2",
           "source_p_num": 13,
-          "name": "yeon-1-29"
+          "name": "yeon-1-13"
         },
         {
           "code": "40776",
@@ -640,7 +304,7 @@
           "source_book": "파워씽크 1",
           "source_chapter": "5. 착수금지. 연단수(촉촉수)-2",
           "source_p_num": 14,
-          "name": "yeon-1-30"
+          "name": "yeon-1-14"
         },
         {
           "code": "40777",
@@ -661,7 +325,7 @@
           "source_book": "파워씽크 1",
           "source_chapter": "5. 착수금지. 연단수(촉촉수)-2",
           "source_p_num": 15,
-          "name": "yeon-1-31"
+          "name": "yeon-1-15"
         },
         {
           "code": "40778",
@@ -682,7 +346,7 @@
           "source_book": "파워씽크 1",
           "source_chapter": "5. 착수금지. 연단수(촉촉수)-2",
           "source_p_num": 16,
-          "name": "yeon-1-32"
+          "name": "yeon-1-16"
         },
         {
           "code": "40779",
@@ -703,7 +367,7 @@
           "source_book": "파워씽크 1",
           "source_chapter": "5. 착수금지. 연단수(촉촉수)-2",
           "source_p_num": 17,
-          "name": "yeon-1-33"
+          "name": "yeon-1-17"
         },
         {
           "code": "40780",
@@ -724,7 +388,7 @@
           "source_book": "파워씽크 1",
           "source_chapter": "5. 착수금지. 연단수(촉촉수)-2",
           "source_p_num": 18,
-          "name": "yeon-1-34"
+          "name": "yeon-1-18"
         },
         {
           "code": "40781",
@@ -745,7 +409,7 @@
           "source_book": "파워씽크 1",
           "source_chapter": "5. 착수금지. 연단수(촉촉수)-2",
           "source_p_num": 19,
-          "name": "yeon-1-35"
+          "name": "yeon-1-19"
         },
         {
           "code": "40782",
@@ -766,7 +430,7 @@
           "source_book": "파워씽크 1",
           "source_chapter": "5. 착수금지. 연단수(촉촉수)-2",
           "source_p_num": 20,
-          "name": "yeon-1-36"
+          "name": "yeon-1-20"
         },
         {
           "code": "41698",
@@ -787,7 +451,7 @@
           "source_book": "알파바둑 5",
           "source_chapter": "16. 연단수(촉촉수)",
           "source_p_num": 1,
-          "name": "yeon-1-37"
+          "name": "yeon-1-21"
         },
         {
           "code": "41699",
@@ -808,7 +472,7 @@
           "source_book": "알파바둑 5",
           "source_chapter": "16. 연단수(촉촉수)",
           "source_p_num": 2,
-          "name": "yeon-1-38"
+          "name": "yeon-1-22"
         },
         {
           "code": "41700",
@@ -829,7 +493,7 @@
           "source_book": "알파바둑 5",
           "source_chapter": "16. 연단수(촉촉수)",
           "source_p_num": 3,
-          "name": "yeon-1-39"
+          "name": "yeon-1-23"
         },
         {
           "code": "41701",
@@ -850,7 +514,7 @@
           "source_book": "알파바둑 5",
           "source_chapter": "16. 연단수(촉촉수)",
           "source_p_num": 4,
-          "name": "yeon-1-40"
+          "name": "yeon-1-24"
         },
         {
           "code": "41702",
@@ -871,7 +535,7 @@
           "source_book": "알파바둑 5",
           "source_chapter": "16. 연단수(촉촉수)",
           "source_p_num": 5,
-          "name": "yeon-1-41"
+          "name": "yeon-1-25"
         },
         {
           "code": "41703",
@@ -892,7 +556,7 @@
           "source_book": "알파바둑 5",
           "source_chapter": "16. 연단수(촉촉수)",
           "source_p_num": 6,
-          "name": "yeon-1-42"
+          "name": "yeon-1-26"
         },
         {
           "code": "41704",
@@ -913,7 +577,7 @@
           "source_book": "알파바둑 5",
           "source_chapter": "16. 연단수(촉촉수)",
           "source_p_num": 7,
-          "name": "yeon-1-43"
+          "name": "yeon-1-27"
         },
         {
           "code": "41705",
@@ -934,7 +598,7 @@
           "source_book": "알파바둑 5",
           "source_chapter": "16. 연단수(촉촉수)",
           "source_p_num": 8,
-          "name": "yeon-1-44"
+          "name": "yeon-1-28"
         },
         {
           "code": "41706",
@@ -955,7 +619,7 @@
           "source_book": "알파바둑 5",
           "source_chapter": "16. 연단수(촉촉수)",
           "source_p_num": 9,
-          "name": "yeon-1-45"
+          "name": "yeon-1-29"
         },
         {
           "code": "41707",
@@ -976,7 +640,7 @@
           "source_book": "알파바둑 5",
           "source_chapter": "16. 연단수(촉촉수)",
           "source_p_num": 10,
-          "name": "yeon-1-46"
+          "name": "yeon-1-30"
         },
         {
           "code": "41708",
@@ -997,7 +661,7 @@
           "source_book": "알파바둑 5",
           "source_chapter": "16. 연단수(촉촉수)",
           "source_p_num": 11,
-          "name": "yeon-1-47"
+          "name": "yeon-1-31"
         },
         {
           "code": "41709",
@@ -1018,7 +682,7 @@
           "source_book": "알파바둑 5",
           "source_chapter": "16. 연단수(촉촉수)",
           "source_p_num": 12,
-          "name": "yeon-1-48"
+          "name": "yeon-1-32"
         },
         {
           "code": "41710",
@@ -1039,7 +703,7 @@
           "source_book": "알파바둑 5",
           "source_chapter": "16. 연단수(촉촉수)",
           "source_p_num": 13,
-          "name": "yeon-1-49"
+          "name": "yeon-1-33"
         },
         {
           "code": "41711",
@@ -1060,7 +724,7 @@
           "source_book": "알파바둑 5",
           "source_chapter": "16. 연단수(촉촉수)",
           "source_p_num": 14,
-          "name": "yeon-1-50"
+          "name": "yeon-1-34"
         },
         {
           "code": "41712",
@@ -1081,7 +745,7 @@
           "source_book": "알파바둑 5",
           "source_chapter": "16. 연단수(촉촉수)",
           "source_p_num": 15,
-          "name": "yeon-1-51"
+          "name": "yeon-1-35"
         },
         {
           "code": "41713",
@@ -1102,7 +766,7 @@
           "source_book": "알파바둑 5",
           "source_chapter": "16. 연단수(촉촉수)",
           "source_p_num": 16,
-          "name": "yeon-1-52"
+          "name": "yeon-1-36"
         },
         {
           "code": "41714",
@@ -1123,7 +787,7 @@
           "source_book": "알파바둑 5",
           "source_chapter": "16. 연단수(촉촉수)",
           "source_p_num": 17,
-          "name": "yeon-1-53"
+          "name": "yeon-1-37"
         },
         {
           "code": "41715",
@@ -1144,7 +808,7 @@
           "source_book": "알파바둑 5",
           "source_chapter": "16. 연단수(촉촉수)",
           "source_p_num": 18,
-          "name": "yeon-1-54"
+          "name": "yeon-1-38"
         },
         {
           "code": "41716",
@@ -1165,7 +829,7 @@
           "source_book": "알파바둑 5",
           "source_chapter": "16. 연단수(촉촉수)",
           "source_p_num": 19,
-          "name": "yeon-1-55"
+          "name": "yeon-1-39"
         },
         {
           "code": "41717",
@@ -1186,7 +850,7 @@
           "source_book": "알파바둑 5",
           "source_chapter": "16. 연단수(촉촉수)",
           "source_p_num": 20,
-          "name": "yeon-1-56"
+          "name": "yeon-1-40"
         },
         {
           "code": "41718",
@@ -1207,7 +871,7 @@
           "source_book": "알파바둑 5",
           "source_chapter": "16. 연단수(촉촉수)",
           "source_p_num": 21,
-          "name": "yeon-1-57"
+          "name": "yeon-1-41"
         },
         {
           "code": "41719",
@@ -1228,7 +892,7 @@
           "source_book": "알파바둑 5",
           "source_chapter": "16. 연단수(촉촉수)",
           "source_p_num": 22,
-          "name": "yeon-1-58"
+          "name": "yeon-1-42"
         },
         {
           "code": "41720",
@@ -1249,7 +913,7 @@
           "source_book": "알파바둑 5",
           "source_chapter": "16. 연단수(촉촉수)",
           "source_p_num": 23,
-          "name": "yeon-1-59"
+          "name": "yeon-1-43"
         },
         {
           "code": "41721",
@@ -1270,7 +934,7 @@
           "source_book": "알파바둑 5",
           "source_chapter": "16. 연단수(촉촉수)",
           "source_p_num": 24,
-          "name": "yeon-1-60"
+          "name": "yeon-1-44"
         }
       ]
     },

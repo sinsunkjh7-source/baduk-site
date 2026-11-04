@@ -1229,12 +1229,12 @@
         "code": "tech_ladder",
         "title": "🪜 축 완전정복 마스터",
         "chapterCount": 10,
-        "totalProblems": 610,
+        "totalProblems": 599,
         "chapters": [
           {
             "code": "ladder_ch_01",
-            "title": "1단원. 축의 기초 원리와 직관 포획 (입문 기본 축) (53제)",
-            "problemCount": 53
+            "title": "1단원. 축의 기초 원리와 직관 포획 (입문 기본 축) (44제)",
+            "problemCount": 44
           },
           {
             "code": "ladder_ch_02",
@@ -1263,8 +1263,8 @@
           },
           {
             "code": "ladder_ch_07",
-            "title": "7단원. 축머리와 축머리 피해서 몰기 (41제)",
-            "problemCount": 41
+            "title": "7단원. 축머리와 축머리 피해서 몰기 (39제)",
+            "problemCount": 39
           },
           {
             "code": "ladder_ch_08",
@@ -1403,12 +1403,12 @@
         "code": "tech_yeon_atari",
         "title": "⚡ 촉촉수 / 연단수 연속 몰아치기",
         "chapterCount": 8,
-        "totalProblems": 553,
+        "totalProblems": 537,
         "chapters": [
           {
             "code": "yeon_ch_01",
-            "title": "1단원. 촉촉수의 기본 원리와 직관 포획 (입문 촉촉수) (60제)",
-            "problemCount": 60
+            "title": "1단원. 촉촉수의 기본 원리와 직관 포획 (입문 촉촉수) (44제)",
+            "problemCount": 44
           },
           {
             "code": "yeon_ch_02",
