@@ -10,7 +10,7 @@
 <title>🎓 Teaching Zone — 바둑스쿨 교재 사령탑</title>
 <link rel="preload" as="image" href="images/board_wood_grain.png">
 
-<link rel="stylesheet" href="style.css?v=20261104-ed-v100">
+<link rel="stylesheet" href="style.css?v=1793427625">
 <link rel="stylesheet" href="/unified-nav.css?v=20261103-nav-v11">
 <script src="/unified-nav.js?v=20261103-nav-v11" defer></script>
 </head>
@@ -36,23 +36,7 @@
   </header>
 
   <div class="teacher-body">
-    <!-- 🌟 [문제 편집실] 좌측 후보 문제 목록 패널 🌟 -->
-    <aside id="editorCandidatePanel" class="editor-candidate-panel" style="display: none;">
-      <div class="editor-panel-header">
-        <div class="editor-panel-title">
-          <span>🛠️ 촉촉수 100제 검수 목록</span>
-          <span class="count-pill" id="editorCountPill">100제</span>
-        </div>
-        <div class="editor-filter-tabs">
-          <button type="button" class="ed-filter-btn active" data-filter="all">전체(100)</button>
-          <button type="button" class="ed-filter-btn" data-filter="think">씽크(38)</button>
-          <button type="button" class="ed-filter-btn" data-filter="logic">논리(38)</button>
-          <button type="button" class="ed-filter-btn" data-filter="alpha">알파(24)</button>
-        </div>
-      </div>
-      <div class="editor-candidate-scroll" id="editorCandidateList"></div>
-    </aside>
-
+    
     <!-- 좌측 메인 대형 수업 바둑판 영역 -->
     <main class="teacher-stage">
       
@@ -77,15 +61,6 @@
 
     <!-- 우측 사이드바: 12개 시리즈 및 166권 교재 선택 -->
     <aside class="teacher-sidebar">
-      <!-- 🌟 사이드바 최상단 모드 전환 탭 🌟 -->
-      <div class="sidebar-section mode-switch-section">
-        <div class="mode-switch-group">
-          <button type="button" id="btnModeTeaching" class="mode-switch-btn active" onclick="if(window.switchTeacherEditorMode) window.switchTeacherEditorMode(false);">🎓 수업 모드</button>
-          <button type="button" id="btnModeEditor" class="mode-switch-btn" onclick="if(window.switchTeacherEditorMode) window.switchTeacherEditorMode(true);">🛠️ 문제 편집실</button>
-        </div>
-      </div>
-
-      <div id="teacherStandardSelects">
       <div class="sidebar-section">
         <label for="seriesSelect" class="sidebar-label">📚 교육 시리즈 (총 12종)</label>
         <select id="seriesSelect" class="form-select"></select>
@@ -99,15 +74,6 @@
       <div class="sidebar-section">
         <label for="chapterSelect" class="sidebar-label">📑 단원 (챕터)</label>
         <select id="chapterSelect" class="form-select"></select>
-      </div>
-      </div>
-
-      <!-- 🛠️ 편집실 전용 정보 박스 🛠️ -->
-      <div id="editorInfoSection" style="display: none;">
-        <div class="sidebar-section">
-          <span class="sidebar-label">🔍 검토 대상 상세 정보</span>
-          <div class="editor-info-card" id="editorInfoCard"></div>
-        </div>
       </div>
 
       <div class="sidebar-section problem-list-section">
@@ -287,6 +253,6 @@
 <div id="teacherToast" class="teacher-toast" hidden></div>
 
 <script src="audio.js?v=20261028-solidwood&t=teacher-panel-v15"></script>
-<script src="app.js?v=20261104-ed-v100"></script>
+<script src="app.js?v=tech-chok-clean-1793796888"></script>
 </body>
 </html>
