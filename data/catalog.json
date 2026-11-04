@@ -1402,47 +1402,37 @@
       {
         "code": "tech_yeon_atari",
         "title": "⚡ 촉촉수 / 연단수 연속 몰아치기",
-        "chapterCount": 8,
-        "totalProblems": 541,
+        "chapterCount": 6,
+        "totalProblems": 604,
         "chapters": [
           {
             "code": "yeon_ch_01",
-            "title": "1단원. 촉촉수의 기본 원리와 직관 포획 (입문 촉촉수) (44제)",
-            "problemCount": 44
+            "title": "1단원. 기본 원리와 직관 포획 (이어도 단수 & 단수치고 잡기) (162제)",
+            "problemCount": 162
           },
           {
             "code": "yeon_ch_02",
-            "title": "2단원. 초·중급 연단수 포획 (파워씽크 엄선) (31제)",
-            "problemCount": 31
+            "title": "2단원. 퇴로 차단과 연속 단수 (1선의 촉촉수 & 연속 몰아치기) (122제)",
+            "problemCount": 122
           },
           {
             "code": "yeon_ch_03",
-            "title": "3단원. 1선 촉촉수의 기본 원리 (1선에 이어도 단수) (65제)",
-            "problemCount": 65
+            "title": "3단원. 절단 및 사전 공작 연계 (단수치고 끊기 & 촉촉수 종합) (72제)",
+            "problemCount": 72
           },
           {
             "code": "yeon_ch_04",
-            "title": "4단원. 1선 퇴로 차단과 연속 단수 (단수치고 단수) (70제)",
-            "problemCount": 70
-          },
-          {
-            "code": "yeon_ch_05",
-            "title": "5단원. 단수치고 끊기 (양단수 및 절단 연계) (71제)",
-            "problemCount": 71
-          },
-          {
-            "code": "yeon_ch_06",
-            "title": "6단원. 먹여치고 촉촉수 (희생타 연계) (78제)",
+            "title": "4단원. 먹여치기와 촉촉수 (희생타를 이용한 몰아떨구기) (78제)",
             "problemCount": 78
           },
           {
-            "code": "yeon_ch_07",
-            "title": "7단원. 수상전 연계 촉촉수 (상대 활로 줄이기) (58제)",
-            "problemCount": 58
+            "code": "yeon_ch_05",
+            "title": "5단원. 수상전 연계 촉촉수 (상대 활로 급격히 줄이기) (46제)",
+            "problemCount": 46
           },
           {
-            "code": "yeon_ch_08",
-            "title": "8단원. 회돌이 및 실전 사활 연계 촉촉수 (124제)",
+            "code": "yeon_ch_06",
+            "title": "6단원. 회돌이 및 사활 연계 촉촉수 (내 돌 살리기 & 고급 수순) (124제)",
             "problemCount": 124
           }
         ]
