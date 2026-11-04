@@ -1,4 +1,4 @@
-window.BOOK_TECH_LADDER = {
+window.BOOK_DATA_tech_ladder = {
   "series": "핵심 기법 심층 마스터관",
   "code": "tech_ladder",
   "bookCode": "tech_ladder",
@@ -8371,5 +8371,6 @@ window.BOOK_TECH_LADDER = {
     }
   ]
 };
+window.BOOK_TECH_LADDER = window.BOOK_DATA_tech_ladder;
 window.BOOK_DATA = window.BOOK_DATA || {};
-window.BOOK_DATA['tech_ladder'] = window.BOOK_TECH_LADDER;
+window.BOOK_DATA['tech_ladder'] = window.BOOK_DATA_tech_ladder;

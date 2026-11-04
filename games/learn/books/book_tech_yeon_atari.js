@@ -1,4 +1,4 @@
-window.BOOK_TECH_YEON_ATARI = {
+window.BOOK_DATA_tech_yeon_atari = {
   "series": "핵심 기법 심층 마스터관",
   "code": "tech_yeon_atari",
   "bookCode": "tech_yeon_atari",
@@ -11521,5 +11521,6 @@ window.BOOK_TECH_YEON_ATARI = {
     }
   ]
 };
+window.BOOK_TECH_YEON_ATARI = window.BOOK_DATA_tech_yeon_atari;
 window.BOOK_DATA = window.BOOK_DATA || {};
-window.BOOK_DATA['tech_yeon_atari'] = window.BOOK_TECH_YEON_ATARI;
+window.BOOK_DATA['tech_yeon_atari'] = window.BOOK_DATA_tech_yeon_atari;
