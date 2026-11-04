@@ -1228,77 +1228,57 @@
       {
         "code": "tech_ladder",
         "title": "🪜 축 완전정복 마스터",
-        "chapterCount": 14,
+        "chapterCount": 10,
         "totalProblems": 610,
         "chapters": [
           {
             "code": "ladder_ch_01",
-            "title": "1단원. 축의 기본 원리와 모는 방법 (축-따라놓기 & 모는 방법) (43제)",
-            "problemCount": 43
+            "title": "1단원. 축의 기초 원리와 직관 포획 (입문 기본 축) (53제)",
+            "problemCount": 53
           },
           {
             "code": "ladder_ch_02",
-            "title": "2단원. 축으로 잡기 기초 (입문 기본 축) (37제)",
-            "problemCount": 37
+            "title": "2단원. 초급 축 집중 포획 (도망가는 머리 막기) (72제)",
+            "problemCount": 72
           },
           {
             "code": "ladder_ch_03",
-            "title": "3단원. 축을 모는 방향 (어느 쪽으로 몰까?) (49제)",
-            "problemCount": 49
+            "title": "3단원. 축을 모는 방향 (어느 쪽으로 몰까?) (67제)",
+            "problemCount": 67
           },
           {
             "code": "ladder_ch_04",
-            "title": "4단원. 우리 편 방향으로 몰기 (아군 돌 활용) (36제)",
-            "problemCount": 36
+            "title": "4단원. 실전 축 포획 훈련 (중급 축 집중) (62제)",
+            "problemCount": 62
           },
           {
             "code": "ladder_ch_05",
-            "title": "5단원. 실전 축 포획 훈련 ① (초급 축 집중 훈련) (70제)",
-            "problemCount": 70
+            "title": "5단원. 단수치고 축 (단수 친 후 축 몰기) (47제)",
+            "problemCount": 47
           },
           {
             "code": "ladder_ch_06",
-            "title": "6단원. 실전 축 포획 훈련 ② (중급 축 집중 훈련) (39제)",
-            "problemCount": 39
+            "title": "6단원. 끊으면서 축 (절단과 축 연계) (51제)",
+            "problemCount": 51
           },
           {
             "code": "ladder_ch_07",
-            "title": "7단원. 끊으면서 축 (절단과 축 연계) (52제)",
-            "problemCount": 52
+            "title": "7단원. 축머리와 축머리 피해서 몰기 (41제)",
+            "problemCount": 41
           },
           {
             "code": "ladder_ch_08",
-            "title": "8단원. 단수치고 축 (단수 친 후 축 몰기) (46제)",
-            "problemCount": 46
+            "title": "8단원. 축과 장문의 선택 (어느 것으로 잡을까?) (82제)",
+            "problemCount": 82
           },
           {
             "code": "ladder_ch_09",
-            "title": "9단원. 축머리와 축머리 피해서 몰기 ① (31제)",
-            "problemCount": 31
+            "title": "9단원. 축 따라놓기와 회돌이 심층 수순 (66제)",
+            "problemCount": 66
           },
           {
             "code": "ladder_ch_10",
-            "title": "10단원. 축머리 판별과 피하기 ② (실전 축머리 응용) (31제)",
-            "problemCount": 31
-          },
-          {
-            "code": "ladder_ch_11",
-            "title": "11단원. 축과 장문의 선택 ① (어느 것으로 잡을까?) (50제)",
-            "problemCount": 50
-          },
-          {
-            "code": "ladder_ch_12",
-            "title": "12단원. 축과 장문의 선택 ② (실전 축·장문 판별) (32제)",
-            "problemCount": 32
-          },
-          {
-            "code": "ladder_ch_13",
-            "title": "13단원. 회돌이 연계 축과 장문 (고급 수순) (25제)",
-            "problemCount": 25
-          },
-          {
-            "code": "ladder_ch_14",
-            "title": "14단원. 빈축 완전정복 (특수 고급 축) (69제)",
+            "title": "10단원. 빈축 완전정복 (특수 고급 축) (69제)",
             "problemCount": 69
           }
         ]
@@ -1306,229 +1286,164 @@
       {
         "code": "tech_net",
         "title": "🕸️ 장문 완전정복 마스터",
-        "chapterCount": 15,
+        "chapterCount": 11,
         "totalProblems": 717,
         "chapters": [
           {
             "code": "net_ch_01",
-            "title": "1단원. 장문의 기본 원리와 그물 포위 (입문 기본 장문) (48제)",
-            "problemCount": 48
+            "title": "1단원. 장문의 기본 원리와 직관 포획 (입문 기본 장문) (69제)",
+            "problemCount": 69
           },
           {
             "code": "net_ch_02",
-            "title": "2단원. 활로 수에 따른 장문 (활로가 두 개·세 개일 때) (48제)",
-            "problemCount": 48
+            "title": "2단원. 초급 장문 집중 훈련 (그물 씌우기) (71제)",
+            "problemCount": 71
           },
           {
             "code": "net_ch_03",
-            "title": "3단원. 포위망 좁히기와 퇴로 차단 (초급 실전 장문) (49제)",
-            "problemCount": 49
+            "title": "3단원. 활로 수에 따른 장문 (활로가 두 개·세 개일 때) (51제)",
+            "problemCount": 51
           },
           {
             "code": "net_ch_04",
-            "title": "4단원. 도망가는 길 차단하기 (기초 발전 장문) (56제)",
-            "problemCount": 56
+            "title": "4단원. 포위망 좁히기와 실전 장문 포획 (90제)",
+            "problemCount": 90
           },
           {
             "code": "net_ch_05",
-            "title": "5단원. 실전 장문 포획 훈련 ① (초급 집중 훈련) (35제)",
-            "problemCount": 35
+            "title": "5단원. 한 칸 응용 장문 (한 칸 뛰기로 씌우기) (74제)",
+            "problemCount": 74
           },
           {
             "code": "net_ch_06",
-            "title": "6단원. 실전 장문 포획 훈련 ② (중급 집중 훈련) (45제)",
-            "problemCount": 45
+            "title": "6단원. 젖혀서 장문 (젖힘과 봉쇄의 맥) (47제)",
+            "problemCount": 47
           },
           {
             "code": "net_ch_07",
-            "title": "7단원. 한 칸 응용 장문 (한 칸 뛰기로 씌우기) (74제)",
+            "title": "7단원. 단수치고 장문 (사전 단수 공작) (74제)",
             "problemCount": 74
           },
           {
             "code": "net_ch_08",
-            "title": "8단원. 젖혀서 장문 (젖힘과 봉쇄의 맥) (47제)",
-            "problemCount": 47
-          },
-          {
-            "code": "net_ch_09",
-            "title": "9단원. 단수치고 장문 (사전 단수 공작) (74제)",
-            "problemCount": 74
-          },
-          {
-            "code": "net_ch_10",
-            "title": "10단원. 입구자(마늘모) & 날일자 장문 (행마 응용 봉쇄) (43제)",
+            "title": "8단원. 입구자(마늘모) & 날일자 장문 (행마 응용 봉쇄) (43제)",
             "problemCount": 43
           },
           {
+            "code": "net_ch_09",
+            "title": "9단원. 축과 장문의 선택 (어느 것으로 잡을까?) (80제)",
+            "problemCount": 80
+          },
+          {
+            "code": "net_ch_10",
+            "title": "10단원. 수상전 및 맥점 장문 (68제)",
+            "problemCount": 68
+          },
+          {
             "code": "net_ch_11",
-            "title": "11단원. 축과 장문의 선택 ① (어느 것으로 잡을까?) (48제)",
-            "problemCount": 48
-          },
-          {
-            "code": "net_ch_12",
-            "title": "12단원. 축과 장문의 선택 ② (실전 축·장문 판별) (32제)",
-            "problemCount": 32
-          },
-          {
-            "code": "net_ch_13",
-            "title": "13단원. 회돌이 연계 축과 장문 (고급 수순) (25제)",
-            "problemCount": 25
-          },
-          {
-            "code": "net_ch_14",
-            "title": "14단원. 수상전 연계 장문 (상대 활로 조이기) (26제)",
-            "problemCount": 26
-          },
-          {
-            "code": "net_ch_15",
-            "title": "15단원. 장문의 맥 (실전 고급 묘수) (67제)",
-            "problemCount": 67
+            "title": "11단원. 회돌이 연계 및 고급 실전 장문 (50제)",
+            "problemCount": 50
           }
         ]
       },
       {
         "code": "tech_snapback",
         "title": "🪃 환격 되따내기 마스터",
-        "chapterCount": 13,
+        "chapterCount": 9,
         "totalProblems": 627,
         "chapters": [
           {
             "code": "snap_ch_01",
-            "title": "1단원. 환격의 기본 원리와 되따내기 (입문 기본 환격) (67제)",
-            "problemCount": 67
+            "title": "1단원. 환격의 기본 원리와 직관 포획 (입문 기본 환격) (66제)",
+            "problemCount": 66
           },
           {
             "code": "snap_ch_02",
-            "title": "2단원. 1선과 중앙에서의 환격 (위치별 환격 포획) (67제)",
-            "problemCount": 67
+            "title": "2단원. 1선과 중앙에서의 환격 (위치별 환격 포획) (90제)",
+            "problemCount": 90
           },
           {
             "code": "snap_ch_03",
-            "title": "3단원. 먹여치기와 환격 (호구 속 희생타 연계) (54제)",
-            "problemCount": 54
+            "title": "3단원. 먹여치기와 환격 (호구 속 희생타 연계) (62제)",
+            "problemCount": 62
           },
           {
             "code": "snap_ch_04",
-            "title": "4단원. 실전 환격 포획 훈련 ① (초급 발전 환격) (54제)",
-            "problemCount": 54
+            "title": "4단원. 실전 환격 포획 훈련 (중급 환격 집중) (81제)",
+            "problemCount": 81
           },
           {
             "code": "snap_ch_05",
-            "title": "5단원. 실전 환격 포획 훈련 ② (중급 환격 집중) (57제)",
-            "problemCount": 57
-          },
-          {
-            "code": "snap_ch_06",
-            "title": "6단원. 끼워서 환격 & 잡는 수 환격 (52제)",
+            "title": "5단원. 끼워서 환격 & 잡는 수 환격 (52제)",
             "problemCount": 52
           },
           {
+            "code": "snap_ch_06",
+            "title": "6단원. 선수 및 단수치고 환격 (사전 수순 공작) (80제)",
+            "problemCount": 80
+          },
+          {
             "code": "snap_ch_07",
-            "title": "7단원. 실전 환격 응용 마스터 (파워씽크 엄선) (28제)",
-            "problemCount": 28
+            "title": "7단원. 양환격 완전정복 (양쪽 되따내기 마스터) (48제)",
+            "problemCount": 48
           },
           {
             "code": "snap_ch_08",
-            "title": "8단원. 선수 및 단수치고 환격 (사전 수순 공작) (52제)",
+            "title": "8단원. 두 번 먹여치는 환격 & 끊음 환격 (52제)",
             "problemCount": 52
           },
           {
             "code": "snap_ch_09",
-            "title": "9단원. 양환격 완전정복 (양쪽 되따내기 마스터) (48제)",
-            "problemCount": 48
-          },
-          {
-            "code": "snap_ch_10",
-            "title": "10단원. 두 번 먹여치는 환격 & 끊음 환격 (52제)",
-            "problemCount": 52
-          },
-          {
-            "code": "snap_ch_11",
-            "title": "11단원. 수상전 연계 환격 (상대 활로 줄이기) (26제)",
-            "problemCount": 26
-          },
-          {
-            "code": "snap_ch_12",
-            "title": "12단원. 실전 사활 연계 환격 (환격으로 잡기와 살기) (52제)",
-            "problemCount": 52
-          },
-          {
-            "code": "snap_ch_13",
-            "title": "13단원. 환격 끝내기 (끝내기 맥점) (18제)",
-            "problemCount": 18
+            "title": "9단원. 실전 사활·수상전·끝내기 연계 환격 (96제)",
+            "problemCount": 96
           }
         ]
       },
       {
         "code": "tech_yeon_atari",
         "title": "⚡ 촉촉수 / 연단수 연속 몰아치기",
-        "chapterCount": 13,
-        "totalProblems": 524,
+        "chapterCount": 8,
+        "totalProblems": 553,
         "chapters": [
           {
-            "code": "chok_ch_01",
-            "title": "1단원. 1선 촉촉수의 기본 원리 (1선에 이어도 단수 ①) (19제)",
-            "problemCount": 19
+            "code": "yeon_ch_01",
+            "title": "1단원. 촉촉수의 기본 원리와 직관 포획 (입문 촉촉수) (60제)",
+            "problemCount": 60
           },
           {
-            "code": "chok_ch_02",
-            "title": "2단원. 1선 촉촉수 집중 훈련 (1선에 이어도 단수 ②) (23제)",
-            "problemCount": 23
+            "code": "yeon_ch_02",
+            "title": "2단원. 초·중급 연단수 포획 (파워씽크 엄선) (31제)",
+            "problemCount": 31
           },
           {
-            "code": "chok_ch_03",
-            "title": "3단원. 1선 퇴로 차단 촉촉수 (1선의 촉촉수) (18제)",
-            "problemCount": 18
+            "code": "yeon_ch_03",
+            "title": "3단원. 1선 촉촉수의 기본 원리 (1선에 이어도 단수) (65제)",
+            "problemCount": 65
           },
           {
-            "code": "chok_ch_04",
-            "title": "4단원. 중앙의 촉촉수 & 착수금지 연계 (32제)",
-            "problemCount": 32
+            "code": "yeon_ch_04",
+            "title": "4단원. 1선 퇴로 차단과 연속 단수 (단수치고 단수) (70제)",
+            "problemCount": 70
           },
           {
-            "code": "chok_ch_05",
-            "title": "5단원. 연속 단수로 몰아가기 (단수치고 단수) (50제)",
-            "problemCount": 50
+            "code": "yeon_ch_05",
+            "title": "5단원. 단수치고 끊기 (양단수 및 절단 연계) (71제)",
+            "problemCount": 71
           },
           {
-            "code": "chok_ch_06",
-            "title": "6단원. 다각도 연단수 포획 (알파·파워씽크 엄선) (53제)",
-            "problemCount": 53
+            "code": "yeon_ch_06",
+            "title": "6단원. 먹여치고 촉촉수 (희생타 연계) (78제)",
+            "problemCount": 78
           },
           {
-            "code": "chok_ch_07",
-            "title": "7단원. 단수치고 끊기 (양단수 및 절단 연계) (24제)",
-            "problemCount": 24
+            "code": "yeon_ch_07",
+            "title": "7단원. 수상전 연계 촉촉수 (상대 활로 줄이기) (58제)",
+            "problemCount": 58
           },
           {
-            "code": "chok_ch_08",
-            "title": "8단원. 수상전 연계 촉촉수 (상대 활로 줄이기) (46제)",
-            "problemCount": 46
-          },
-          {
-            "code": "chok_ch_09",
-            "title": "9단원. 먹여치고 단수 (호구 속 희생타 연계) (42제)",
-            "problemCount": 42
-          },
-          {
-            "code": "chok_ch_10",
-            "title": "10단원. 1선·중앙 먹여치기와 회돌이 촉촉수 (77제)",
-            "problemCount": 77
-          },
-          {
-            "code": "chok_ch_11",
-            "title": "11단원. 실전 촉촉수 종합 응용 (포획 종합문제) (45제)",
-            "problemCount": 45
-          },
-          {
-            "code": "chok_ch_12",
-            "title": "12단원. 실전 사활 연계 ① (촉촉수로 내 돌 살리기 기초) (44제)",
-            "problemCount": 44
-          },
-          {
-            "code": "chok_ch_13",
-            "title": "13단원. 실전 사활 연계 ② (먹여침과 자충을 찌르는 역습 살리기) (51제)",
-            "problemCount": 51
+            "code": "yeon_ch_08",
+            "title": "8단원. 회돌이 및 실전 사활 연계 촉촉수 (120제)",
+            "problemCount": 120
           }
         ]
       },
@@ -5617,44 +5532,44 @@
       },
       {
         "code": "tech_throw_in",
-        "title": "🌀 먹여치기 & 회돌이 사석 전술",
+        "title": "🌀 먹여치기 사석 전술 마스터",
         "chapterCount": 7,
-        "totalProblems": 522,
+        "totalProblems": 527,
         "chapters": [
           {
-            "code": "throw_in_ch_01",
-            "title": "1단원. 먹여치기의 기본 원리 (호구와 1선에 먹여쳐 자충 만들기) (119제)",
-            "problemCount": 119
+            "code": "throw_ch_01",
+            "title": "1단원. 호구와 1선 먹여치기 기초 (입문 기본 먹여치기) (63제)",
+            "problemCount": 63
           },
           {
-            "code": "throw_in_ch_02",
-            "title": "2단원. 회돌이로 포도송이 만들기 (우직삼각/빈삼각 유도) (71제)",
-            "problemCount": 71
+            "code": "throw_ch_02",
+            "title": "2단원. 먹여치고 잡기 기초 포획 (초급 먹여치기) (68제)",
+            "problemCount": 68
           },
           {
-            "code": "throw_in_ch_03",
-            "title": "3단원. 수상전을 역전시키는 먹여치기 (상대 수 줄이기) (77제)",
+            "code": "throw_ch_03",
+            "title": "3단원. 먹여쳐서 활로 줄이기 (파워씽크 수상전) (52제)",
+            "problemCount": 52
+          },
+          {
+            "code": "throw_ch_04",
+            "title": "4단원. 촉촉수 연계 먹여치기 (중앙과 1선) (77제)",
             "problemCount": 77
           },
           {
-            "code": "throw_in_ch_04",
-            "title": "4단원. 회돌이로 수 줄이기와 연계 포획 (84제)",
-            "problemCount": 84
+            "code": "throw_ch_05",
+            "title": "5단원. 수상전의 급소 먹여치기 (98제)",
+            "problemCount": 98
           },
           {
-            "code": "throw_in_ch_05",
-            "title": "5단원. 두 번 연속 먹여치는 고급 사석 묘수 (25제)",
-            "problemCount": 25
+            "code": "throw_ch_06",
+            "title": "6단원. 유가무가 및 사활 먹여치기 (76제)",
+            "problemCount": 76
           },
           {
-            "code": "throw_in_ch_06",
-            "title": "6단원. 사석을 버려 아군을 연결하고 이득 보는 맥 (사석 활용) (80제)",
-            "problemCount": 80
-          },
-          {
-            "code": "throw_in_ch_07",
-            "title": "7단원. 사활을 결정짓는 먹여치기 (옥집 파호와 궁도 파괴) (66제)",
-            "problemCount": 66
+            "code": "throw_ch_07",
+            "title": "7단원. 두 번 먹여치기 및 고급 실전 먹여치기 (93제)",
+            "problemCount": 93
           }
         ]
       },
