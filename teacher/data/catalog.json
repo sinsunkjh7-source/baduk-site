@@ -1316,63 +1316,80 @@
       {
         "code": "tech_net",
         "title": "🕸️ 장문 완전정복 마스터",
-        "chapterCount": 11,
-        "totalProblems": 717,
+        "chapterCount": 9,
+        "totalProblems": 598,
         "chapters": [
           {
-            "code": "net_ch_01",
-            "title": "1단원. 장문의 기본 원리와 직관 포획 (입문 기본 장문) (69제)",
-            "problemCount": 69
+            "code": "tech_net_ch01",
+            "chapterCode": "tech_net_ch01",
+            "title": "1단원. 장문의 기초 원리 (활로가 2개인 돌 그물로 가두기) (151제)",
+            "chapter": "1단원. 장문의 기초 원리 (활로가 2개인 돌 그물로 가두기) (151제)",
+            "problemCount": 151,
+            "problemsCount": 151
           },
           {
-            "code": "net_ch_02",
-            "title": "2단원. 초급 장문 집중 훈련 (그물 씌우기) (71제)",
-            "problemCount": 71
+            "code": "tech_net_ch02",
+            "chapterCode": "tech_net_ch02",
+            "title": "2단원. 활로 3개 장문과 실전 기본 장문 (넓은 그물망으로 포위하기) (94제)",
+            "chapter": "2단원. 활로 3개 장문과 실전 기본 장문 (넓은 그물망으로 포위하기) (94제)",
+            "problemCount": 94,
+            "problemsCount": 94
           },
           {
-            "code": "net_ch_03",
-            "title": "3단원. 활로 수에 따른 장문 (활로가 두 개·세 개일 때) (51제)",
-            "problemCount": 51
+            "code": "tech_net_ch03",
+            "chapterCode": "tech_net_ch03",
+            "title": "3단원. 한 칸 응용 장문 (한 칸 뛰어 퇴로 차단하기) (74제)",
+            "chapter": "3단원. 한 칸 응용 장문 (한 칸 뛰어 퇴로 차단하기) (74제)",
+            "problemCount": 74,
+            "problemsCount": 74
           },
           {
-            "code": "net_ch_04",
-            "title": "4단원. 포위망 좁히기와 실전 장문 포획 (90제)",
-            "problemCount": 90
+            "code": "tech_net_ch04",
+            "chapterCode": "tech_net_ch04",
+            "title": "4단원. 젖혀서 장문 (돌의 진로를 젖혀 막아 가두기) (47제)",
+            "chapter": "4단원. 젖혀서 장문 (돌의 진로를 젖혀 막아 가두기) (47제)",
+            "problemCount": 47,
+            "problemsCount": 47
           },
           {
-            "code": "net_ch_05",
-            "title": "5단원. 한 칸 응용 장문 (한 칸 뛰기로 씌우기) (74제)",
-            "problemCount": 74
+            "code": "tech_net_ch05",
+            "chapterCode": "tech_net_ch05",
+            "title": "5단원. 단수치고 장문 (단수로 몰아넣은 뒤 그물로 가두기) (62제)",
+            "chapter": "5단원. 단수치고 장문 (단수로 몰아넣은 뒤 그물로 가두기) (62제)",
+            "problemCount": 62,
+            "problemsCount": 62
           },
           {
-            "code": "net_ch_06",
-            "title": "6단원. 젖혀서 장문 (젖힘과 봉쇄의 맥) (47제)",
-            "problemCount": 47
+            "code": "tech_net_ch06",
+            "chapterCode": "tech_net_ch06",
+            "title": "6단원. 입구자(마늘모)·날일자 장문 (비대칭 급소로 봉쇄하기) (43제)",
+            "chapter": "6단원. 입구자(마늘모)·날일자 장문 (비대칭 급소로 봉쇄하기) (43제)",
+            "problemCount": 43,
+            "problemsCount": 43
           },
           {
-            "code": "net_ch_07",
-            "title": "7단원. 단수치고 장문 (사전 단수 공작) (74제)",
-            "problemCount": 74
+            "code": "tech_net_ch07",
+            "chapterCode": "tech_net_ch07",
+            "title": "7단원. 축과 장문의 선택 (축이 안 될 때 장문으로 포획하기) (31제)",
+            "chapter": "7단원. 축과 장문의 선택 (축이 안 될 때 장문으로 포획하기) (31제)",
+            "problemCount": 31,
+            "problemsCount": 31
           },
           {
-            "code": "net_ch_08",
-            "title": "8단원. 입구자(마늘모) & 날일자 장문 (행마 응용 봉쇄) (43제)",
-            "problemCount": 43
+            "code": "tech_net_ch08",
+            "chapterCode": "tech_net_ch08",
+            "title": "8단원. 수상전 장문 (장문으로 가두어 수상전 이기기) (26제)",
+            "chapter": "8단원. 수상전 장문 (장문으로 가두어 수상전 이기기) (26제)",
+            "problemCount": 26,
+            "problemsCount": 26
           },
           {
-            "code": "net_ch_09",
-            "title": "9단원. 축과 장문의 선택 (어느 것으로 잡을까?) (80제)",
-            "problemCount": 80
-          },
-          {
-            "code": "net_ch_10",
-            "title": "10단원. 수상전 및 맥점 장문 (68제)",
-            "problemCount": 68
-          },
-          {
-            "code": "net_ch_11",
-            "title": "11단원. 회돌이 연계 및 고급 실전 장문 (50제)",
-            "problemCount": 50
+            "code": "tech_net_ch09",
+            "chapterCode": "tech_net_ch09",
+            "title": "9단원. 장문의 맥과 고급 응용 (회돌이 장문과 맥점 포획) (70제)",
+            "chapter": "9단원. 장문의 맥과 고급 응용 (회돌이 장문과 맥점 포획) (70제)",
+            "problemCount": 70,
+            "problemsCount": 70
           }
         ]
       },
