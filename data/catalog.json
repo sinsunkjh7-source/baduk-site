@@ -1389,43 +1389,73 @@
       {
         "code": "tech_snapback",
         "title": "🪃 환격 되따내기 마스터",
-        "chapterCount": 7,
-        "totalProblems": 514,
+        "chapterCount": 13,
+        "totalProblems": 627,
         "chapters": [
           {
-            "code": "snapback_ch_01",
-            "title": "1단원. 환격의 기본 원리와 먹여치기 (1선과 중앙의 환격) (206제)",
-            "problemCount": 206
+            "code": "snap_ch_01",
+            "title": "1단원. 환격의 기본 원리와 되따내기 (입문 기본 환격) (67제)",
+            "problemCount": 67
           },
           {
-            "code": "snapback_ch_02",
-            "title": "2단원. 급소에 끼워서 만드는 환격 (끼움의 맥) (70제)",
-            "problemCount": 70
+            "code": "snap_ch_02",
+            "title": "2단원. 1선과 중앙에서의 환격 (위치별 환격 포획) (67제)",
+            "problemCount": 67
           },
           {
-            "code": "snapback_ch_03",
-            "title": "3단원. 양쪽을 노리는 양환격의 묘수 (양환격) (43제)",
-            "problemCount": 43
+            "code": "snap_ch_03",
+            "title": "3단원. 먹여치기와 환격 (호구 속 희생타 연계) (54제)",
+            "problemCount": 54
           },
           {
-            "code": "snapback_ch_04",
-            "title": "4단원. 사전 연계 환격 (단수치고 환격) (77제)",
-            "problemCount": 77
+            "code": "snap_ch_04",
+            "title": "4단원. 실전 환격 포획 훈련 ① (초급 발전 환격) (54제)",
+            "problemCount": 54
           },
           {
-            "code": "snapback_ch_05",
-            "title": "5단원. 두 번 먹여치는 연속 환격의 묘수 (26제)",
+            "code": "snap_ch_05",
+            "title": "5단원. 실전 환격 포획 훈련 ② (중급 환격 집중) (57제)",
+            "problemCount": 57
+          },
+          {
+            "code": "snap_ch_06",
+            "title": "6단원. 끼워서 환격 & 잡는 수 환격 (52제)",
+            "problemCount": 52
+          },
+          {
+            "code": "snap_ch_07",
+            "title": "7단원. 실전 환격 응용 마스터 (파워씽크 엄선) (28제)",
+            "problemCount": 28
+          },
+          {
+            "code": "snap_ch_08",
+            "title": "8단원. 선수 및 단수치고 환격 (사전 수순 공작) (52제)",
+            "problemCount": 52
+          },
+          {
+            "code": "snap_ch_09",
+            "title": "9단원. 양환격 완전정복 (양쪽 되따내기 마스터) (48제)",
+            "problemCount": 48
+          },
+          {
+            "code": "snap_ch_10",
+            "title": "10단원. 두 번 먹여치는 환격 & 끊음 환격 (52제)",
+            "problemCount": 52
+          },
+          {
+            "code": "snap_ch_11",
+            "title": "11단원. 수상전 연계 환격 (상대 활로 줄이기) (26제)",
             "problemCount": 26
           },
           {
-            "code": "snapback_ch_06",
-            "title": "6단원. 수상전을 뒤집는 환격 (활로 싸움) (26제)",
-            "problemCount": 26
+            "code": "snap_ch_12",
+            "title": "12단원. 실전 사활 연계 환격 (환격으로 잡기와 살기) (52제)",
+            "problemCount": 52
           },
           {
-            "code": "snapback_ch_07",
-            "title": "7단원. 사활과 실전 맥점 환격 (사활·끊음·끝내기 종합) (66제)",
-            "problemCount": 66
+            "code": "snap_ch_13",
+            "title": "13단원. 환격 끝내기 (끝내기 맥점) (18제)",
+            "problemCount": 18
           }
         ]
       },
