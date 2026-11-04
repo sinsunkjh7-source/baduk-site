@@ -1403,7 +1403,7 @@
         "code": "tech_yeon_atari",
         "title": "⚡ 촉촉수 / 연단수 연속 몰아치기",
         "chapterCount": 8,
-        "totalProblems": 537,
+        "totalProblems": 541,
         "chapters": [
           {
             "code": "yeon_ch_01",
@@ -1442,8 +1442,8 @@
           },
           {
             "code": "yeon_ch_08",
-            "title": "8단원. 회돌이 및 실전 사활 연계 촉촉수 (120제)",
-            "problemCount": 120
+            "title": "8단원. 회돌이 및 실전 사활 연계 촉촉수 (124제)",
+            "problemCount": 124
           }
         ]
       },

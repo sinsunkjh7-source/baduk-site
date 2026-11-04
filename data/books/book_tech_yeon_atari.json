@@ -4,7 +4,7 @@
   "title": "⚡ 촉촉수 / 연단수 연속 몰아치기",
   "bookCode": "tech_yeon_atari",
   "chapterCount": 8,
-  "totalProblems": 537,
+  "totalProblems": 541,
   "chapters": [
     {
       "code": "yeon_ch_01",
@@ -8821,9 +8821,9 @@
     },
     {
       "code": "yeon_ch_08",
-      "title": "8단원. 회돌이 및 실전 사활 연계 촉촉수 (120제)",
-      "chapter": "8단원. 회돌이 및 실전 사활 연계 촉촉수 (120제)",
-      "problemCount": 120,
+      "title": "8단원. 회돌이 및 실전 사활 연계 촉촉수 (124제)",
+      "chapter": "8단원. 회돌이 및 실전 사활 연계 촉촉수 (124제)",
+      "problemCount": 124,
       "problems": [
         {
           "code": "17747",
@@ -9792,12 +9792,12 @@
           "name": "yeon-8-46"
         },
         {
-          "code": "26777",
+          "code": "16444",
           "type": "3",
-          "question": "5. 돌이 달아나는 방법\r\n흑이 둘 차례입니다. 흑의 돌이 달아나는 방법을 찾아보세요. (1수 표시)",
-          "hint": "봉쇄 당하기 전에...",
-          "data": ";W[dd];W[dc];W[fe];W[jd];B[fc];B[hd]",
-          "answer1": ";B[hf]",
+          "question": "10. 사는 수-촉촉수\r\n흑이 둘 차례입니다. 흑을 살려보세요. (3수 표시)\r\n\r\n",
+          "hint": "촉촉수를 이용하여 살립니다.",
+          "data": ";W[ss];W[rr];W[sq];W[rp];W[ro];W[qo];W[po];W[oo];W[np];W[nq];W[ns];W[nr];B[os];B[or];B[oq];B[pp];B[qp];B[qq];B[rq];B[qr]",
+          "answer1": ";B[qs];W[sp];B[pr]",
           "answer2": "",
           "answer3": "",
           "answer4": "",
@@ -9805,20 +9805,20 @@
           "sample": "",
           "answer": "",
           "auto": "false",
-          "size": "6",
+          "size": "4",
           "start": "BA",
-          "source_book": "행마와 맥 2",
-          "source_chapter": "5. 돌이 달아나는 방법",
+          "source_book": "논리바둑 9",
+          "source_chapter": "10. 사는 수-촉촉수",
           "source_p_num": 1,
           "name": "yeon-8-47"
         },
         {
-          "code": "26778",
+          "code": "16445",
           "type": "3",
-          "question": "5. 돌이 달아나는 방법\r\n흑이 둘 차례입니다. 흑의 돌이 달아나는 방법을 찾아보세요. (1수 표시)",
-          "hint": "기본적인 행마법.",
-          "data": ";B[pp];B[qn];B[lq];W[nq];W[no];W[jq]",
-          "answer1": ";B[lo]",
+          "question": "10. 사는 수-촉촉수\r\n흑이 둘 차례입니다. 흑을 살려보세요. (3수 표시)\r\n\r\n",
+          "hint": "촉촉수를 이용하여 살립니다.",
+          "data": ";W[ss];W[rr];W[sq];W[rp];W[ro];W[qo];W[po];W[oo];W[np];W[nq];W[nr];W[ns];B[pp];B[qp];B[qq];B[rq];B[qr];B[pr];B[or];B[oq]",
+          "answer1": ";B[qs];W[sp];B[os]",
           "answer2": "",
           "answer3": "",
           "answer4": "",
@@ -9828,18 +9828,18 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "source_book": "행마와 맥 2",
-          "source_chapter": "5. 돌이 달아나는 방법",
+          "source_book": "논리바둑 9",
+          "source_chapter": "10. 사는 수-촉촉수",
           "source_p_num": 2,
           "name": "yeon-8-48"
         },
         {
-          "code": "26779",
+          "code": "16446",
           "type": "3",
-          "question": "5. 돌이 달아나는 방법\r\n흑이 둘 차례입니다. 흑의 돌이 달아나는 방법을 찾아보세요. (1수 표시)",
-          "hint": "흑 넉점의 중앙 진출 행마법은?",
-          "data": ";W[dc];W[ce];W[fc];W[gc];W[kc];W[jd];W[je];W[jf];B[mc];B[ic];B[id];B[ie];B[gd];B[cj]",
-          "answer1": ";B[hg]",
+          "question": "10. 사는 수-촉촉수\r\n흑이 둘 차례입니다. 흑을 살려보세요. (3수 표시)\r\n\r\n",
+          "hint": "촉촉수를 이용하여 살립니다.",
+          "data": ";W[ss];W[rr];W[sq];W[sp];W[rp];W[qo];W[po];W[oo];W[np];W[nq];W[nr];W[ns];B[qr];B[qq];B[rq];B[qp];B[pp];B[op];B[oq];B[or];B[os]",
+          "answer1": ";B[qs];W[ro];B[pr]",
           "answer2": "",
           "answer3": "",
           "answer4": "",
@@ -9847,20 +9847,20 @@
           "sample": "",
           "answer": "",
           "auto": "false",
-          "size": "1",
+          "size": "4",
           "start": "BA",
-          "source_book": "행마와 맥 2",
-          "source_chapter": "5. 돌이 달아나는 방법",
+          "source_book": "논리바둑 9",
+          "source_chapter": "10. 사는 수-촉촉수",
           "source_p_num": 3,
           "name": "yeon-8-49"
         },
         {
-          "code": "26780",
+          "code": "16447",
           "type": "3",
-          "question": "5. 돌이 달아나는 방법\r\n흑이 둘 차례입니다. 흑의 돌이 달아나는 방법을 찾아보세요. (1수 표시)",
-          "hint": "흑 한점을 움직이는 방법은?",
-          "data": ";W[qp];W[op];W[oq];W[kp];B[mq]",
-          "answer1": ";B[mo]",
+          "question": "10. 사는 수-촉촉수\r\n흑이 둘 차례입니다. 흑을 살려보세요. (3수 표시)\r\n\r\n",
+          "hint": "촉촉수를 이용하여 살립니다.",
+          "data": ";W[ss];W[rr];W[sq];W[rp];W[rn];W[qo];W[po];W[oo];W[np];W[nq];W[nr];W[lr];B[op];B[pp];B[qp];B[qq];B[rq];B[qr];B[pr];B[or];B[os]",
+          "answer1": ";B[qs];W[sp];B[oq]",
           "answer2": "",
           "answer3": "",
           "answer4": "",
@@ -9870,18 +9870,18 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "source_book": "행마와 맥 2",
-          "source_chapter": "5. 돌이 달아나는 방법",
+          "source_book": "논리바둑 9",
+          "source_chapter": "10. 사는 수-촉촉수",
           "source_p_num": 4,
           "name": "yeon-8-50"
         },
         {
-          "code": "26781",
+          "code": "16448",
           "type": "3",
-          "question": "5. 돌이 달아나는 방법\r\n흑이 둘 차례입니다. 흑의 돌이 달아나는 방법을 찾아보세요. (3수 표시)",
-          "hint": "기본적인 달아나는 수는?",
-          "data": ";W[cd];W[ed];W[ic];W[id];B[gc];B[hd];L[id:1]",
-          "answer1": ";B[hf];W[ie];B[ff]",
+          "question": "10. 사는 수-촉촉수\r\n흑이 둘 차례입니다. 흑을 살려보세요. (3수 표시)",
+          "hint": "촉촉수를 이용하여 살립니다.",
+          "data": ";W[ss];W[rs];W[rr];W[sq];W[rn];W[rp];W[qo];W[po];W[oo];W[np];W[nq];W[nr];W[ns];B[qs];B[qr];B[qp];B[pp];B[op];B[oq];B[or];B[os]",
+          "answer1": ";B[qq];W[rq];B[pr]",
           "answer2": "",
           "answer3": "",
           "answer4": "",
@@ -9889,20 +9889,20 @@
           "sample": "",
           "answer": "",
           "auto": "false",
-          "size": "6",
+          "size": "4",
           "start": "BA",
-          "source_book": "행마와 맥 2",
-          "source_chapter": "5. 돌이 달아나는 방법",
+          "source_book": "논리바둑 9",
+          "source_chapter": "10. 사는 수-촉촉수",
           "source_p_num": 5,
           "name": "yeon-8-51"
         },
         {
-          "code": "26782",
+          "code": "16449",
           "type": "3",
-          "question": "5. 돌이 달아나는 방법\r\n흑이 둘 차례입니다. 흑의 돌이 달아나는 방법을 찾아보세요. (3수 표시)",
-          "hint": "수습하는 행마를 묻는다.",
-          "data": ";W[qp];W[oq];W[np];W[mp];W[lp];W[mm];W[nm];W[om];W[pl];W[qk];B[qn];B[on];B[oo];B[mn];B[mo]",
-          "answer1": ";B[kn];W[lm];B[ko]",
+          "question": "10. 사는 수-촉촉수\r\n흑이 둘 차례입니다. 흑을 살려보세요. (3수 표시)\r\n\r\n",
+          "hint": "촉촉수를 이용하여 살립니다.",
+          "data": ";B[rs];B[sq];B[rq];B[qq];B[pq];B[oq];B[nq];B[nr];W[pr];W[or];W[ps];W[ns];W[mr];W[mq];W[mp];W[np];W[op];W[pp];W[qp];W[rp];W[sp]",
+          "answer1": ";B[qr];W[ms];B[sr]",
           "answer2": "",
           "answer3": "",
           "answer4": "",
@@ -9912,18 +9912,18 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "source_book": "행마와 맥 2",
-          "source_chapter": "5. 돌이 달아나는 방법",
+          "source_book": "논리바둑 9",
+          "source_chapter": "10. 사는 수-촉촉수",
           "source_p_num": 6,
           "name": "yeon-8-52"
         },
         {
-          "code": "26783",
+          "code": "16450",
           "type": "3",
-          "question": "5. 돌이 달아나는 방법\r\n흑이 둘 차례입니다. 흑의 돌이 달아나는 방법을 찾아보세요. (1수 표시)",
-          "hint": "모양을 갖추는 급소는?",
-          "data": ";W[cc];W[dc];W[cd];W[ce];W[cg];W[dg];W[hc];B[ec];B[eb];B[dd];B[de];B[df]",
-          "answer1": ";B[fe]",
+          "question": "10. 사는 수-촉촉수\r\n흑이 둘 차례입니다. 흑을 살려보세요. (3수 표시)\r\n\r\n",
+          "hint": "촉촉수를 이용하여 살립니다.",
+          "data": ";B[rr];B[rq];B[sp];B[rp];B[qq];B[pq];B[oq];W[qs];W[qr];W[pr];W[os];W[nr];W[nq];W[np];W[op];W[pp];W[qp];W[ro];W[so]",
+          "answer1": ";B[rs];W[or];B[sr]",
           "answer2": "",
           "answer3": "",
           "answer4": "",
@@ -9931,62 +9931,62 @@
           "sample": "",
           "answer": "",
           "auto": "false",
-          "size": "6",
+          "size": "4",
           "start": "BA",
-          "source_book": "행마와 맥 2",
-          "source_chapter": "5. 돌이 달아나는 방법",
+          "source_book": "논리바둑 9",
+          "source_chapter": "10. 사는 수-촉촉수",
           "source_p_num": 7,
           "name": "yeon-8-53"
         },
         {
-          "code": "26784",
+          "code": "16451",
           "type": "3",
-          "question": "5. 돌이 달아나는 방법\r\n흑이 둘 차례입니다. 흑의 돌이 달아나는 방법을 찾아보세요. (1수 표시)",
-          "hint": "흑이 달아나는 방법은?",
-          "data": ";W[pq];W[qo];W[no];W[lo];W[jq];W[iq];B[hq];B[hp];B[nq];B[lq]",
-          "answer1": ";B[kp]",
-          "answer2": "",
+          "question": "10. 사는 수-촉촉수\r\n흑이 둘 차례입니다. 흑을 살려보세요. (3수 표시)\r\n\r\n",
+          "hint": "촉촉수를 이용하여 살립니다.",
+          "data": ";B[sr];B[rp];B[rq];B[qq];B[pq];B[oq];B[or];W[qs];W[qr];W[pr];W[os];W[nr];W[nq];W[np];W[op];W[pp];W[qp];W[ro];W[so]",
+          "answer1": ";B[rs];W[ns];B[sp]",
+          "answer2": ";B[rs];W[ns];B[rr];W[ps];B[sp]",
           "answer3": "",
           "answer4": "",
           "answer5": "",
           "sample": "",
           "answer": "",
           "auto": "false",
-          "size": "2",
+          "size": "4",
           "start": "BA",
-          "source_book": "행마와 맥 2",
-          "source_chapter": "5. 돌이 달아나는 방법",
+          "source_book": "논리바둑 9",
+          "source_chapter": "10. 사는 수-촉촉수",
           "source_p_num": 8,
           "name": "yeon-8-54"
         },
         {
-          "code": "26785",
+          "code": "16452",
           "type": "3",
-          "question": "5. 돌이 달아나는 방법\r\n흑이 둘 차례입니다. 흑의 돌이 달아나는 방법을 찾아보세요. (1수 표시)",
-          "hint": "백1로 흑 한점이 협공을 당한 장면입니다. 흑의 다음 수는 어디일까요?",
-          "data": ";B[cd];B[cg];B[hd];W[ec];W[ef];W[jd];L[jd:1]",
-          "answer1": ";B[hf]",
-          "answer2": ";B[gf]",
+          "question": "10. 사는 수-촉촉수\r\n흑이 둘 차례입니다. 흑을 살려보세요. (3수 표시)\r\n\r\n",
+          "hint": "촉촉수를 이용하여 살립니다.",
+          "data": ";B[rr];B[rq];B[rp];B[sp];B[qq];B[pq];B[oq];B[nq];B[nr];W[or];W[pr];W[ps];W[qs];W[ns];W[mr];W[mq];W[mp];W[np];W[op];W[pp];W[qp];W[ro];W[so]",
+          "answer1": ";B[rs];W[ms];B[sr]",
+          "answer2": "",
           "answer3": "",
           "answer4": "",
           "answer5": "",
           "sample": "",
           "answer": "",
           "auto": "false",
-          "size": "6",
+          "size": "4",
           "start": "BA",
-          "source_book": "행마와 맥 2",
-          "source_chapter": "5. 돌이 달아나는 방법",
+          "source_book": "논리바둑 9",
+          "source_chapter": "10. 사는 수-촉촉수",
           "source_p_num": 9,
           "name": "yeon-8-55"
         },
         {
-          "code": "26786",
+          "code": "16453",
           "type": "3",
-          "question": "5. 돌이 달아나는 방법\r\n흑이 둘 차례입니다. 흑의 돌이 달아나는 방법을 찾아보세요. (1수 표시)",
-          "hint": "흑이 중앙으로 달아나는 다음 행마는?",
-          "data": ";W[qq];W[oo];W[nq];W[mq];W[iq];W[gp];B[lp];B[mp]",
-          "answer1": ";B[lm]",
+          "question": "10. 사는 수-촉촉수\r\n흑이 둘 차례입니다. 흑을 살려보세요. (3수 표시)\r\n\r\n",
+          "hint": "촉촉수를 이용하여 살립니다.",
+          "data": ";B[rr];B[rq];B[rp];B[sp];B[qq];B[pq];B[oq];B[nq];B[nr];W[qr];W[pr];W[or];W[ps];W[ns];W[mr];W[mq];W[mp];W[np];W[op];W[pp];W[qp];W[ro];W[so]",
+          "answer1": ";B[rs];W[ms];B[sr]",
           "answer2": "",
           "answer3": "",
           "answer4": "",
@@ -9994,20 +9994,20 @@
           "sample": "",
           "answer": "",
           "auto": "false",
-          "size": "2",
+          "size": "4",
           "start": "BA",
-          "source_book": "행마와 맥 2",
-          "source_chapter": "5. 돌이 달아나는 방법",
+          "source_book": "논리바둑 9",
+          "source_chapter": "10. 사는 수-촉촉수",
           "source_p_num": 10,
           "name": "yeon-8-56"
         },
         {
-          "code": "26787",
+          "code": "16454",
           "type": "3",
-          "question": "5. 돌이 달아나는 방법\r\n흑이 둘 차례입니다. 흑의 돌이 달아나는 방법을 찾아보세요. (1수 표시)",
-          "hint": "이런 모양에서 중앙으로 탈출하는 행마는?",
-          "data": ";W[cd];W[ec];W[ed];W[ef];W[ie];W[ke];W[kc];B[ic];B[gc];B[ge]",
-          "answer1": ";B[gg]",
+          "question": "10. 사는 수-촉촉수\r\n흑이 둘 차례입니다. 흑을 살려보세요. (3수 표시)\r\n\r\n",
+          "hint": "촉촉수를 이용하여 살립니다.",
+          "data": ";B[sp];B[sr];B[rr];B[rq];B[qq];B[pq];B[oq];B[nq];B[nr];W[or];W[pr];W[ps];W[qs];W[ns];W[mr];W[mq];W[mp];W[np];W[op];W[pp];W[qp];W[ro];W[so]",
+          "answer1": ";B[rs];W[ms];B[rp]",
           "answer2": "",
           "answer3": "",
           "answer4": "",
@@ -10015,20 +10015,20 @@
           "sample": "",
           "answer": "",
           "auto": "false",
-          "size": "1",
+          "size": "4",
           "start": "BA",
-          "source_book": "행마와 맥 2",
-          "source_chapter": "5. 돌이 달아나는 방법",
+          "source_book": "논리바둑 9",
+          "source_chapter": "10. 사는 수-촉촉수",
           "source_p_num": 11,
           "name": "yeon-8-57"
         },
         {
-          "code": "26788",
+          "code": "16455",
           "type": "3",
-          "question": "5. 돌이 달아나는 방법\r\n흑이 둘 차례입니다. 흑의 돌이 달아나는 방법을 찾아보세요. (1수 표시)",
-          "hint": "백1로 양협공을 당했을 경우 안에서만 살려고 하는 생각은 낙제입니다.",
-          "data": ";B[pp];W[np];W[pm];L[pm:1]",
-          "answer1": ";B[oo]",
+          "question": "10. 사는 수-촉촉수\r\n흑이 둘 차례입니다. 흑을 살려보세요. (3수 표시)\r\n\r\n",
+          "hint": "촉촉수를 이용하여 살립니다.",
+          "data": ";W[ss];W[rr];W[sq];W[sp];W[rp];W[rn];W[qo];W[po];W[op];W[np];W[nq];W[nr];W[ns];B[ro];B[pp];B[qp];B[qq];B[qr];B[rq];B[oq];B[or];B[os]",
+          "answer1": ";B[qs];W[so];B[pr]",
           "answer2": "",
           "answer3": "",
           "answer4": "",
@@ -10038,18 +10038,18 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "source_book": "행마와 맥 2",
-          "source_chapter": "5. 돌이 달아나는 방법",
+          "source_book": "논리바둑 9",
+          "source_chapter": "10. 사는 수-촉촉수",
           "source_p_num": 12,
           "name": "yeon-8-58"
         },
         {
-          "code": "26789",
+          "code": "16456",
           "type": "3",
-          "question": "5. 돌이 달아나는 방법\r\n흑이 둘 차례입니다. 흑의 돌이 달아나는 방법을 찾아보세요. (1수 표시)",
-          "hint": "흑이 탈출하는 방법은?",
-          "data": ";B[cf];B[ci];B[he];B[hg];B[je];B[jd];B[jc];W[dd];W[fd];W[hc];W[gf];W[hf];W[kf];W[le];W[lc]",
-          "answer1": ";B[jg]",
+          "question": "10. 사는 수-촉촉수\r\n흑이 둘 차례입니다. 흑을 살려보세요. (3수 표시)\r\n\r\n",
+          "hint": "촉촉수를 이용하여 살립니다.",
+          "data": ";B[rs];B[qr];B[qq];B[rp];B[qp];B[pp];B[oq];B[or];B[os];W[ns];W[nr];W[nq];W[np];W[oo];W[po];W[qo];W[ro];W[sp];W[rq];W[rr];W[sr]",
+          "answer1": ";B[qs];W[so];B[pr]",
           "answer2": "",
           "answer3": "",
           "answer4": "",
@@ -10057,20 +10057,20 @@
           "sample": "",
           "answer": "",
           "auto": "false",
-          "size": "1",
+          "size": "4",
           "start": "BA",
-          "source_book": "행마와 맥 2",
-          "source_chapter": "5. 돌이 달아나는 방법",
+          "source_book": "논리바둑 9",
+          "source_chapter": "10. 사는 수-촉촉수",
           "source_p_num": 13,
           "name": "yeon-8-59"
         },
         {
-          "code": "26790",
+          "code": "16457",
           "type": "3",
-          "question": "5. 돌이 달아나는 방법\r\n흑이 둘 차례입니다. 흑의 돌이 달아나는 방법을 찾아보세요. (1수 표시)",
-          "hint": "흑의 다음 행마는?",
-          "data": ";B[pp];B[pq];W[np];W[nn];W[pn];W[ql]",
-          "answer1": ";B[nr]",
+          "question": "10. 사는 수-촉촉수\r\n흑이 둘 차례입니다. 흑을 살려보세요. (3수 표시)\r\n\r\n",
+          "hint": "촉촉수를 이용하여 살립니다.",
+          "data": ";B[qr];B[pr];B[rq];B[qq];B[pq];B[oq];B[nq];B[nr];B[ns];W[ss];W[rr];W[sq];W[rp];W[qp];W[pp];W[op];W[np];W[mp];W[mq];W[mr];W[kr]",
+          "answer1": ";B[qs];W[sp];B[os]",
           "answer2": "",
           "answer3": "",
           "answer4": "",
@@ -10080,18 +10080,18 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "source_book": "행마와 맥 2",
-          "source_chapter": "5. 돌이 달아나는 방법",
+          "source_book": "논리바둑 9",
+          "source_chapter": "10. 사는 수-촉촉수",
           "source_p_num": 14,
           "name": "yeon-8-60"
         },
         {
-          "code": "26791",
+          "code": "16458",
           "type": "3",
-          "question": "5. 돌이 달아나는 방법\r\n흑이 둘 차례입니다. 흑의 돌이 달아나는 방법을 찾아보세요. (1수 표시)",
-          "hint": "백1로 두었을 때 흑이 어떻게 두어야 할까요? 적극적인 생각이 중요합니다.",
-          "data": ";W[dd];W[df];W[gf];W[jd];B[gd];B[fe];L[df:1]",
-          "answer1": ";B[ff]",
+          "question": "10. 사는 수-촉촉수\r\n흑이 둘 차례입니다. 흑을 살려보세요. (3수 표시)\r\n\r\n",
+          "hint": "촉촉수를 이용하여 살립니다.",
+          "data": ";W[rs];W[qs];W[qr];W[pr];W[os];W[nr];W[nq];W[np];W[op];W[pp];W[pn];W[qn];W[rn];W[sn];B[so];B[ro];B[qo];B[qp];B[qq];B[pq];B[oq];B[or];B[rq];B[rr]",
+          "answer1": ";B[sr];W[ns];B[sp]",
           "answer2": "",
           "answer3": "",
           "answer4": "",
@@ -10099,20 +10099,20 @@
           "sample": "",
           "answer": "",
           "auto": "false",
-          "size": "6",
+          "size": "4",
           "start": "BA",
-          "source_book": "행마와 맥 2",
-          "source_chapter": "5. 돌이 달아나는 방법",
+          "source_book": "논리바둑 9",
+          "source_chapter": "10. 사는 수-촉촉수",
           "source_p_num": 15,
           "name": "yeon-8-61"
         },
         {
-          "code": "26792",
+          "code": "16459",
           "type": "3",
-          "question": "5. 돌이 달아나는 방법\r\n흑이 둘 차례입니다. 흑의 돌이 달아나는 방법을 찾아보세요. (1수 표시)",
-          "hint": "날렵한 행마가 요구되는군요.",
-          "data": ";W[qr];W[pq];W[qp];W[pn];W[kq];W[ko];B[mq];B[oq];B[pr];B[oo];L[pn:1]",
-          "answer1": ";B[nm]",
+          "question": "10. 사는 수-촉촉수\r\n흑이 둘 차례입니다. 흑을 살려보세요. (3수 표시)\r\n\r\n",
+          "hint": "촉촉수를 이용하여 살립니다.",
+          "data": ";B[qs];B[sq];B[rq];B[qq];B[pq];B[oq];B[nq];B[mq];B[mr];W[nr];W[or];W[os];W[ms];W[lr];W[lq];W[mp];W[np];W[op];W[pp];W[qp];W[rp];W[sp];W[sr]",
+          "answer1": ";B[pr];W[ls];B[rr]",
           "answer2": "",
           "answer3": "",
           "answer4": "",
@@ -10122,81 +10122,18 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "source_book": "행마와 맥 2",
-          "source_chapter": "5. 돌이 달아나는 방법",
+          "source_book": "논리바둑 9",
+          "source_chapter": "10. 사는 수-촉촉수",
           "source_p_num": 16,
           "name": "yeon-8-62"
         },
         {
-          "code": "26793",
+          "code": "16460",
           "type": "3",
-          "question": "5. 돌이 달아나는 방법\r\n흑이 둘 차례입니다. 흑의 돌이 달아나는 방법을 찾아보세요. (1수 표시)",
-          "hint": "추격을 받을 때에는 모양을 갖추면서...",
-          "data": ";W[dd];W[fc];W[hc];W[hd];W[ke];W[me];W[mc];W[lb];B[kc];B[ic];B[id]",
-          "answer1": ";B[if]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "",
-          "answer": "",
-          "auto": "false",
-          "size": "1",
-          "start": "BA",
-          "source_book": "행마와 맥 2",
-          "source_chapter": "5. 돌이 달아나는 방법",
-          "source_p_num": 17,
-          "name": "yeon-8-63"
-        },
-        {
-          "code": "26794",
-          "type": "3",
-          "question": "5. 돌이 달아나는 방법\r\n흑이 둘 차례입니다. 흑의 돌이 달아나는 방법을 찾아보세요. (3수 표시)",
-          "hint": "공격을 받으면서도 모양을 생각해야 합니다.",
-          "data": ";B[pp];B[qn];B[lq];B[lp];W[nq];W[mp];W[lo];W[jq]",
-          "answer1": ";B[jp];W[iq];B[ko]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "",
-          "answer": "",
-          "auto": "false",
-          "size": "2",
-          "start": "BA",
-          "source_book": "행마와 맥 2",
-          "source_chapter": "5. 돌이 달아나는 방법",
-          "source_p_num": 18,
-          "name": "yeon-8-64"
-        },
-        {
-          "code": "26795",
-          "type": "3",
-          "question": "5. 돌이 달아나는 방법\r\n흑이 둘 차례입니다. 흑의 돌이 달아나는 방법을 찾아보세요. (1수 표시)",
-          "hint": "중앙으로 달아나는 방법은?",
-          "data": ";W[dd];W[df];W[hf];W[he];W[ie];W[jd];B[hd];B[gd];B[ge];B[jf];B[lf];B[ld]",
-          "answer1": ";B[fg]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "",
-          "answer": "",
-          "auto": "false",
-          "size": "1",
-          "start": "BA",
-          "source_book": "행마와 맥 2",
-          "source_chapter": "5. 돌이 달아나는 방법",
-          "source_p_num": 19,
-          "name": "yeon-8-65"
-        },
-        {
-          "code": "26796",
-          "type": "3",
-          "question": "5. 돌이 달아나는 방법\r\n흑이 둘 차례입니다. 흑의 돌이 달아나는 방법을 찾아보세요. (1수 표시)",
-          "hint": "이럴 때에는 평범한 격언이 좋습니다.",
-          "data": ";W[pq];W[qo];W[lq];W[lo];B[jq];B[nq];B[no]",
-          "answer1": ";B[nm]",
+          "question": "10. 사는 수-촉촉수\r\n흑이 둘 차례입니다. 흑을 살려보세요. (3수 표시)\r\n\r\n",
+          "hint": "촉촉수를 이용하여 살립니다.",
+          "data": ";B[qr];B[pr];B[sq];B[rq];B[qq];B[pq];B[oq];B[nq];B[mq];B[mr];W[sr];W[ss];W[os];W[nr];W[ms];W[lr];W[lq];W[mp];W[np];W[op];W[pp];W[qp];W[rp];W[sp]",
+          "answer1": ";B[ps];W[ls];B[rs]",
           "answer2": "",
           "answer3": "",
           "answer4": "",
@@ -10206,18 +10143,81 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "source_book": "행마와 맥 2",
-          "source_chapter": "5. 돌이 달아나는 방법",
+          "source_book": "논리바둑 9",
+          "source_chapter": "10. 사는 수-촉촉수",
+          "source_p_num": 17,
+          "name": "yeon-8-63"
+        },
+        {
+          "code": "16461",
+          "type": "3",
+          "question": "10. 사는 수-촉촉수\r\n흑이 둘 차례입니다. 흑을 살려보세요. (3수 표시)\r\n\r\n",
+          "hint": "촉촉수를 이용하여 살립니다.",
+          "data": ";B[sq];B[rr];B[qp];B[qq];B[pq];B[oq];B[or];W[qs];W[pr];W[os];W[nr];W[nq];W[np];W[op];W[pp];W[qo];W[ro]",
+          "answer1": ";B[rs];W[ns];B[rp]",
+          "answer2": "",
+          "answer3": "",
+          "answer4": "",
+          "answer5": "",
+          "sample": "",
+          "answer": "",
+          "auto": "false",
+          "size": "4",
+          "start": "BA",
+          "source_book": "논리바둑 9",
+          "source_chapter": "10. 사는 수-촉촉수",
+          "source_p_num": 18,
+          "name": "yeon-8-64"
+        },
+        {
+          "code": "16462",
+          "type": "3",
+          "question": "10. 사는 수-촉촉수\r\n흑이 둘 차례입니다. 흑을 살려보세요. (3수 표시)\r\n\r\n",
+          "hint": "촉촉수를 이용하여 살립니다.",
+          "data": ";W[ss];W[rr];W[sq];W[rp];W[qp];W[pp];W[op];W[np];W[mp];W[mq];W[mr];W[ms];B[os];B[nr];B[nq];B[oq];B[pq];B[qq];B[rq];B[qr]",
+          "answer1": ";B[qs];W[sp];B[pr]",
+          "answer2": "",
+          "answer3": "",
+          "answer4": "",
+          "answer5": "",
+          "sample": "",
+          "answer": "",
+          "auto": "false",
+          "size": "4",
+          "start": "BA",
+          "source_book": "논리바둑 9",
+          "source_chapter": "10. 사는 수-촉촉수",
+          "source_p_num": 19,
+          "name": "yeon-8-65"
+        },
+        {
+          "code": "16463",
+          "type": "3",
+          "question": "10. 사는 수-촉촉수\r\n흑이 둘 차례입니다. 흑을 살려보세요. (3수 표시)\r\n\r\n",
+          "hint": "촉촉수를 이용하여 살립니다.",
+          "data": ";W[ss];W[rr];W[sq];W[rp];W[ro];W[qo];W[po];W[oo];W[np];W[nq];W[nr];B[qp];B[pp];B[op];B[oq];B[or];B[pr];B[qr];B[qs];B[rs]",
+          "answer1": ";B[qq];W[rq];B[os]",
+          "answer2": "",
+          "answer3": "",
+          "answer4": "",
+          "answer5": "",
+          "sample": "",
+          "answer": "",
+          "auto": "false",
+          "size": "4",
+          "start": "BA",
+          "source_book": "논리바둑 9",
+          "source_chapter": "10. 사는 수-촉촉수",
           "source_p_num": 20,
           "name": "yeon-8-66"
         },
         {
-          "code": "26797",
+          "code": "16464",
           "type": "3",
-          "question": "5. 돌이 달아나는 방법\r\n흑이 둘 차례입니다. 흑의 돌이 달아나는 방법을 찾아보세요. (1수 표시)",
-          "hint": "흑의 탈출 수단은?",
-          "data": ";W[dd];W[fd];W[df];W[eg];W[hg];W[jd];W[jc];B[he];B[hc];B[cf];B[dg];B[dh];B[di]",
-          "answer1": ";B[if]",
+          "question": "10. 사는 수-촉촉수\r\n흑이 둘 차례입니다. 흑을 살려보세요. (3수 표시)\r\n\r\n",
+          "hint": "촉촉수를 이용하여 살립니다.",
+          "data": ";B[qr];B[sq];B[rq];B[qq];B[pq];B[oq];B[nq];W[or];W[pr];W[ps];W[qs];W[ns];W[mr];W[mq];W[np];W[op];W[pp];W[qp];W[rp];W[rn]",
+          "answer1": ";B[rs];W[nr];B[sr]",
           "answer2": "",
           "answer3": "",
           "answer4": "",
@@ -10225,20 +10225,20 @@
           "sample": "",
           "answer": "",
           "auto": "false",
-          "size": "6",
+          "size": "4",
           "start": "BA",
-          "source_book": "행마와 맥 2",
-          "source_chapter": "5. 돌이 달아나는 방법",
+          "source_book": "논리바둑 9",
+          "source_chapter": "10. 사는 수-촉촉수",
           "source_p_num": 21,
           "name": "yeon-8-67"
         },
         {
-          "code": "26798",
+          "code": "16465",
           "type": "3",
-          "question": "5. 돌이 달아나는 방법\r\n흑이 둘 차례입니다. 흑의 돌이 달아나는 방법을 찾아보세요. (3수 표시)",
-          "hint": "흑의 수습 방법은?",
-          "data": ";W[qr];W[qq];W[pq];W[or];W[ps];W[nq];W[np];W[mq];W[lq];W[kr];W[jq];W[iq];W[oo];W[pn];W[rn];B[oq];B[op];B[pp];B[qp];B[ro];B[nr];B[mr];B[no];B[nn];B[mn];B[mp];B[lp];B[kp];B[jp];B[pj]",
-          "answer1": ";B[qn];W[qm];B[on]",
+          "question": "10. 사는 수-촉촉수\r\n흑이 둘 차례입니다. 흑을 살려보세요. (3수 표시)\r\n\r\n",
+          "hint": "촉촉수를 이용하여 살립니다.",
+          "data": ";B[sr];B[sp];B[rp];B[qp];B[qq];B[pq];B[oq];B[or];W[pr];W[qr];W[qs];W[os];W[nr];W[nq];W[np];W[op];W[po];W[qo];W[ro];W[so]",
+          "answer1": ";B[rr];W[ns];B[rs]",
           "answer2": "",
           "answer3": "",
           "answer4": "",
@@ -10246,12 +10246,96 @@
           "sample": "",
           "answer": "",
           "auto": "false",
-          "size": "2",
+          "size": "4",
           "start": "BA",
-          "source_book": "행마와 맥 2",
-          "source_chapter": "5. 돌이 달아나는 방법",
+          "source_book": "논리바둑 9",
+          "source_chapter": "10. 사는 수-촉촉수",
           "source_p_num": 22,
           "name": "yeon-8-68"
+        },
+        {
+          "code": "16466",
+          "type": "3",
+          "question": "10. 사는 수-촉촉수\r\n흑이 둘 차례입니다. 흑을 살려보세요. (3수 표시)\r\n\r\n",
+          "hint": "촉촉수를 이용하여 살립니다.",
+          "data": ";W[ss];W[rr];W[sq];W[sp];W[rp];W[rn];W[qo];W[po];W[op];W[np];W[mp];W[nr];W[mr];B[ro];B[pp];B[qp];B[qq];B[rq];B[qr];B[pr];B[or];B[oq];B[ns]",
+          "answer1": ";B[qs];W[so];B[os]",
+          "answer2": "",
+          "answer3": "",
+          "answer4": "",
+          "answer5": "",
+          "sample": "",
+          "answer": "",
+          "auto": "false",
+          "size": "4",
+          "start": "BA",
+          "source_book": "논리바둑 9",
+          "source_chapter": "10. 사는 수-촉촉수",
+          "source_p_num": 23,
+          "name": "yeon-8-69"
+        },
+        {
+          "code": "16467",
+          "type": "3",
+          "question": "10. 사는 수-촉촉수\r\n흑이 둘 차례입니다. 흑을 살려보세요. (3수 표시)\r\n\r\n",
+          "hint": "촉촉수를 이용하여 살립니다.",
+          "data": ";W[ss];W[rs];W[rr];W[sq];W[rp];W[qp];W[pp];W[op];W[np];W[mq];W[lq];W[lr];W[ls];B[mr];B[os];B[or];B[nq];B[oq];B[pq];B[qq];B[rq]",
+          "answer1": ";B[qr];W[sp];B[qs];W[sr];B[ms]",
+          "answer2": ";B[qr];W[sp];B[ms]",
+          "answer3": "",
+          "answer4": "",
+          "answer5": "",
+          "sample": "",
+          "answer": "",
+          "auto": "false",
+          "size": "4",
+          "start": "BA",
+          "source_book": "논리바둑 9",
+          "source_chapter": "10. 사는 수-촉촉수",
+          "source_p_num": 24,
+          "name": "yeon-8-70"
+        },
+        {
+          "code": "16468",
+          "type": "3",
+          "question": "10. 사는 수-촉촉수\r\n흑이 둘 차례입니다. 흑을 살려보세요. (3수 표시)\r\n\r\n",
+          "hint": "촉촉수를 이용하여 살립니다.",
+          "data": ";W[ss];W[sr];W[rr];W[rq];W[sp];W[ro];W[qo];W[pp];W[op];W[np];W[mp];W[mq];W[mr];W[ms];B[os];B[nr];B[nq];B[oq];B[pq];B[qr];B[qq];B[qp];B[rp]",
+          "answer1": ";B[qs];W[so];B[pr]",
+          "answer2": "",
+          "answer3": "",
+          "answer4": "",
+          "answer5": "",
+          "sample": "",
+          "answer": "",
+          "auto": "false",
+          "size": "4",
+          "start": "BA",
+          "source_book": "논리바둑 9",
+          "source_chapter": "10. 사는 수-촉촉수",
+          "source_p_num": 25,
+          "name": "yeon-8-71"
+        },
+        {
+          "code": "16469",
+          "type": "3",
+          "question": "10. 사는 수-촉촉수\r\n흑이 둘 차례입니다. 흑을 살려보세요. (3수 표시)\r\n\r\n",
+          "hint": "촉촉수를 이용하여 살립니다.",
+          "data": ";B[ss];B[rs];B[qs];B[ps];B[qr];B[qq];B[or];B[oq];B[op];B[po];B[qo];W[rq];W[rr];W[sr];W[sp];W[ro];W[qn];W[pn];W[on];W[no];W[np];W[nq];W[nr];W[ns]",
+          "answer1": ";B[qp];W[rp];B[pq]",
+          "answer2": "",
+          "answer3": "",
+          "answer4": "",
+          "answer5": "",
+          "sample": "",
+          "answer": "",
+          "auto": "false",
+          "size": "4",
+          "start": "BA",
+          "source_book": "논리바둑 9",
+          "source_chapter": "10. 사는 수-촉촉수",
+          "source_p_num": 26,
+          "name": "yeon-8-72"
         },
         {
           "code": "18282",
@@ -10272,7 +10356,7 @@
           "source_book": "논리바둑 14",
           "source_chapter": "9. 사는 수-먹여치고 촉촉수",
           "source_p_num": 1,
-          "name": "yeon-8-69"
+          "name": "yeon-8-73"
         },
         {
           "code": "18283",
@@ -10293,7 +10377,7 @@
           "source_book": "논리바둑 14",
           "source_chapter": "9. 사는 수-먹여치고 촉촉수",
           "source_p_num": 2,
-          "name": "yeon-8-70"
+          "name": "yeon-8-74"
         },
         {
           "code": "18284",
@@ -10314,7 +10398,7 @@
           "source_book": "논리바둑 14",
           "source_chapter": "9. 사는 수-먹여치고 촉촉수",
           "source_p_num": 3,
-          "name": "yeon-8-71"
+          "name": "yeon-8-75"
         },
         {
           "code": "18285",
@@ -10335,7 +10419,7 @@
           "source_book": "논리바둑 14",
           "source_chapter": "9. 사는 수-먹여치고 촉촉수",
           "source_p_num": 4,
-          "name": "yeon-8-72"
+          "name": "yeon-8-76"
         },
         {
           "code": "18286",
@@ -10356,7 +10440,7 @@
           "source_book": "논리바둑 14",
           "source_chapter": "9. 사는 수-먹여치고 촉촉수",
           "source_p_num": 5,
-          "name": "yeon-8-73"
+          "name": "yeon-8-77"
         },
         {
           "code": "18287",
@@ -10377,7 +10461,7 @@
           "source_book": "논리바둑 14",
           "source_chapter": "9. 사는 수-먹여치고 촉촉수",
           "source_p_num": 6,
-          "name": "yeon-8-74"
+          "name": "yeon-8-78"
         },
         {
           "code": "18288",
@@ -10398,7 +10482,7 @@
           "source_book": "논리바둑 14",
           "source_chapter": "9. 사는 수-먹여치고 촉촉수",
           "source_p_num": 7,
-          "name": "yeon-8-75"
+          "name": "yeon-8-79"
         },
         {
           "code": "18289",
@@ -10419,7 +10503,7 @@
           "source_book": "논리바둑 14",
           "source_chapter": "9. 사는 수-먹여치고 촉촉수",
           "source_p_num": 8,
-          "name": "yeon-8-76"
+          "name": "yeon-8-80"
         },
         {
           "code": "18290",
@@ -10440,7 +10524,7 @@
           "source_book": "논리바둑 14",
           "source_chapter": "9. 사는 수-먹여치고 촉촉수",
           "source_p_num": 9,
-          "name": "yeon-8-77"
+          "name": "yeon-8-81"
         },
         {
           "code": "18291",
@@ -10461,7 +10545,7 @@
           "source_book": "논리바둑 14",
           "source_chapter": "9. 사는 수-먹여치고 촉촉수",
           "source_p_num": 10,
-          "name": "yeon-8-78"
+          "name": "yeon-8-82"
         },
         {
           "code": "18292",
@@ -10482,7 +10566,7 @@
           "source_book": "논리바둑 14",
           "source_chapter": "9. 사는 수-먹여치고 촉촉수",
           "source_p_num": 11,
-          "name": "yeon-8-79"
+          "name": "yeon-8-83"
         },
         {
           "code": "18293",
@@ -10503,7 +10587,7 @@
           "source_book": "논리바둑 14",
           "source_chapter": "9. 사는 수-먹여치고 촉촉수",
           "source_p_num": 12,
-          "name": "yeon-8-80"
+          "name": "yeon-8-84"
         },
         {
           "code": "18294",
@@ -10524,7 +10608,7 @@
           "source_book": "논리바둑 14",
           "source_chapter": "9. 사는 수-먹여치고 촉촉수",
           "source_p_num": 13,
-          "name": "yeon-8-81"
+          "name": "yeon-8-85"
         },
         {
           "code": "18295",
@@ -10545,7 +10629,7 @@
           "source_book": "논리바둑 14",
           "source_chapter": "9. 사는 수-먹여치고 촉촉수",
           "source_p_num": 14,
-          "name": "yeon-8-82"
+          "name": "yeon-8-86"
         },
         {
           "code": "18296",
@@ -10566,7 +10650,7 @@
           "source_book": "논리바둑 14",
           "source_chapter": "9. 사는 수-먹여치고 촉촉수",
           "source_p_num": 15,
-          "name": "yeon-8-83"
+          "name": "yeon-8-87"
         },
         {
           "code": "18297",
@@ -10587,7 +10671,7 @@
           "source_book": "논리바둑 14",
           "source_chapter": "9. 사는 수-먹여치고 촉촉수",
           "source_p_num": 16,
-          "name": "yeon-8-84"
+          "name": "yeon-8-88"
         },
         {
           "code": "18298",
@@ -10608,7 +10692,7 @@
           "source_book": "논리바둑 14",
           "source_chapter": "9. 사는 수-먹여치고 촉촉수",
           "source_p_num": 17,
-          "name": "yeon-8-85"
+          "name": "yeon-8-89"
         },
         {
           "code": "18299",
@@ -10629,7 +10713,7 @@
           "source_book": "논리바둑 14",
           "source_chapter": "9. 사는 수-먹여치고 촉촉수",
           "source_p_num": 18,
-          "name": "yeon-8-86"
+          "name": "yeon-8-90"
         },
         {
           "code": "18300",
@@ -10650,7 +10734,7 @@
           "source_book": "논리바둑 14",
           "source_chapter": "9. 사는 수-먹여치고 촉촉수",
           "source_p_num": 19,
-          "name": "yeon-8-87"
+          "name": "yeon-8-91"
         },
         {
           "code": "18301",
@@ -10671,7 +10755,7 @@
           "source_book": "논리바둑 14",
           "source_chapter": "9. 사는 수-먹여치고 촉촉수",
           "source_p_num": 20,
-          "name": "yeon-8-88"
+          "name": "yeon-8-92"
         },
         {
           "code": "18302",
@@ -10692,7 +10776,7 @@
           "source_book": "논리바둑 14",
           "source_chapter": "9. 사는 수-먹여치고 촉촉수",
           "source_p_num": 21,
-          "name": "yeon-8-89"
+          "name": "yeon-8-93"
         },
         {
           "code": "18303",
@@ -10713,7 +10797,7 @@
           "source_book": "논리바둑 14",
           "source_chapter": "9. 사는 수-먹여치고 촉촉수",
           "source_p_num": 22,
-          "name": "yeon-8-90"
+          "name": "yeon-8-94"
         },
         {
           "code": "18304",
@@ -10734,7 +10818,7 @@
           "source_book": "논리바둑 14",
           "source_chapter": "9. 사는 수-먹여치고 촉촉수",
           "source_p_num": 23,
-          "name": "yeon-8-91"
+          "name": "yeon-8-95"
         },
         {
           "code": "18305",
@@ -10755,7 +10839,7 @@
           "source_book": "논리바둑 14",
           "source_chapter": "9. 사는 수-먹여치고 촉촉수",
           "source_p_num": 24,
-          "name": "yeon-8-92"
+          "name": "yeon-8-96"
         },
         {
           "code": "18306",
@@ -10776,7 +10860,7 @@
           "source_book": "논리바둑 14",
           "source_chapter": "9. 사는 수-먹여치고 촉촉수",
           "source_p_num": 25,
-          "name": "yeon-8-93"
+          "name": "yeon-8-97"
         },
         {
           "code": "18307",
@@ -10797,7 +10881,7 @@
           "source_book": "논리바둑 14",
           "source_chapter": "9. 사는 수-먹여치고 촉촉수",
           "source_p_num": 26,
-          "name": "yeon-8-94"
+          "name": "yeon-8-98"
         },
         {
           "code": "29463",
@@ -10818,7 +10902,7 @@
           "source_book": "논리바둑 21",
           "source_chapter": "10. 사는 수-촉촉수",
           "source_p_num": 1,
-          "name": "yeon-8-95"
+          "name": "yeon-8-99"
         },
         {
           "code": "29464",
@@ -10839,7 +10923,7 @@
           "source_book": "논리바둑 21",
           "source_chapter": "10. 사는 수-촉촉수",
           "source_p_num": 2,
-          "name": "yeon-8-96"
+          "name": "yeon-8-100"
         },
         {
           "code": "29465",
@@ -10860,7 +10944,7 @@
           "source_book": "논리바둑 21",
           "source_chapter": "10. 사는 수-촉촉수",
           "source_p_num": 3,
-          "name": "yeon-8-97"
+          "name": "yeon-8-101"
         },
         {
           "code": "29466",
@@ -10881,7 +10965,7 @@
           "source_book": "논리바둑 21",
           "source_chapter": "10. 사는 수-촉촉수",
           "source_p_num": 4,
-          "name": "yeon-8-98"
+          "name": "yeon-8-102"
         },
         {
           "code": "29467",
@@ -10902,7 +10986,7 @@
           "source_book": "논리바둑 21",
           "source_chapter": "10. 사는 수-촉촉수",
           "source_p_num": 5,
-          "name": "yeon-8-99"
+          "name": "yeon-8-103"
         },
         {
           "code": "29468",
@@ -10923,7 +11007,7 @@
           "source_book": "논리바둑 21",
           "source_chapter": "10. 사는 수-촉촉수",
           "source_p_num": 6,
-          "name": "yeon-8-100"
+          "name": "yeon-8-104"
         },
         {
           "code": "29469",
@@ -10944,7 +11028,7 @@
           "source_book": "논리바둑 21",
           "source_chapter": "10. 사는 수-촉촉수",
           "source_p_num": 7,
-          "name": "yeon-8-101"
+          "name": "yeon-8-105"
         },
         {
           "code": "29470",
@@ -10965,7 +11049,7 @@
           "source_book": "논리바둑 21",
           "source_chapter": "10. 사는 수-촉촉수",
           "source_p_num": 8,
-          "name": "yeon-8-102"
+          "name": "yeon-8-106"
         },
         {
           "code": "29472",
@@ -10986,7 +11070,7 @@
           "source_book": "논리바둑 21",
           "source_chapter": "10. 사는 수-촉촉수",
           "source_p_num": 10,
-          "name": "yeon-8-103"
+          "name": "yeon-8-107"
         },
         {
           "code": "29474",
@@ -11007,7 +11091,7 @@
           "source_book": "논리바둑 21",
           "source_chapter": "10. 사는 수-촉촉수",
           "source_p_num": 11,
-          "name": "yeon-8-104"
+          "name": "yeon-8-108"
         },
         {
           "code": "29476",
@@ -11028,7 +11112,7 @@
           "source_book": "논리바둑 21",
           "source_chapter": "10. 사는 수-촉촉수",
           "source_p_num": 12,
-          "name": "yeon-8-105"
+          "name": "yeon-8-109"
         },
         {
           "code": "29478",
@@ -11049,7 +11133,7 @@
           "source_book": "논리바둑 21",
           "source_chapter": "10. 사는 수-촉촉수",
           "source_p_num": 14,
-          "name": "yeon-8-106"
+          "name": "yeon-8-110"
         },
         {
           "code": "29480",
@@ -11070,7 +11154,7 @@
           "source_book": "논리바둑 21",
           "source_chapter": "10. 사는 수-촉촉수",
           "source_p_num": 15,
-          "name": "yeon-8-107"
+          "name": "yeon-8-111"
         },
         {
           "code": "29482",
@@ -11091,7 +11175,7 @@
           "source_book": "논리바둑 21",
           "source_chapter": "10. 사는 수-촉촉수",
           "source_p_num": 17,
-          "name": "yeon-8-108"
+          "name": "yeon-8-112"
         },
         {
           "code": "29484",
@@ -11112,7 +11196,7 @@
           "source_book": "논리바둑 21",
           "source_chapter": "10. 사는 수-촉촉수",
           "source_p_num": 18,
-          "name": "yeon-8-109"
+          "name": "yeon-8-113"
         },
         {
           "code": "29486",
@@ -11133,7 +11217,7 @@
           "source_book": "논리바둑 21",
           "source_chapter": "10. 사는 수-촉촉수",
           "source_p_num": 20,
-          "name": "yeon-8-110"
+          "name": "yeon-8-114"
         },
         {
           "code": "29488",
@@ -11154,7 +11238,7 @@
           "source_book": "논리바둑 21",
           "source_chapter": "10. 사는 수-촉촉수",
           "source_p_num": 22,
-          "name": "yeon-8-111"
+          "name": "yeon-8-115"
         },
         {
           "code": "29490",
@@ -11175,7 +11259,7 @@
           "source_book": "논리바둑 21",
           "source_chapter": "10. 사는 수-촉촉수",
           "source_p_num": 24,
-          "name": "yeon-8-112"
+          "name": "yeon-8-116"
         },
         {
           "code": "29492",
@@ -11196,7 +11280,7 @@
           "source_book": "논리바둑 21",
           "source_chapter": "10. 사는 수-촉촉수",
           "source_p_num": 25,
-          "name": "yeon-8-113"
+          "name": "yeon-8-117"
         },
         {
           "code": "29493",
@@ -11217,7 +11301,7 @@
           "source_book": "논리바둑 21",
           "source_chapter": "10. 사는 수-촉촉수",
           "source_p_num": 26,
-          "name": "yeon-8-114"
+          "name": "yeon-8-118"
         },
         {
           "code": "29495",
@@ -11238,7 +11322,7 @@
           "source_book": "논리바둑 21",
           "source_chapter": "10. 사는 수-촉촉수",
           "source_p_num": 27,
-          "name": "yeon-8-115"
+          "name": "yeon-8-119"
         },
         {
           "code": "29496",
@@ -11259,7 +11343,7 @@
           "source_book": "논리바둑 21",
           "source_chapter": "10. 사는 수-촉촉수",
           "source_p_num": 28,
-          "name": "yeon-8-116"
+          "name": "yeon-8-120"
         },
         {
           "code": "29498",
@@ -11280,7 +11364,7 @@
           "source_book": "논리바둑 21",
           "source_chapter": "10. 사는 수-촉촉수",
           "source_p_num": 30,
-          "name": "yeon-8-117"
+          "name": "yeon-8-121"
         },
         {
           "code": "29499",
@@ -11301,7 +11385,7 @@
           "source_book": "논리바둑 21",
           "source_chapter": "10. 사는 수-촉촉수",
           "source_p_num": 31,
-          "name": "yeon-8-118"
+          "name": "yeon-8-122"
         },
         {
           "code": "29500",
@@ -11322,7 +11406,7 @@
           "source_book": "논리바둑 21",
           "source_chapter": "10. 사는 수-촉촉수",
           "source_p_num": 32,
-          "name": "yeon-8-119"
+          "name": "yeon-8-123"
         },
         {
           "code": "29501",
@@ -11343,7 +11427,7 @@
           "source_book": "논리바둑 21",
           "source_chapter": "10. 사는 수-촉촉수",
           "source_p_num": 33,
-          "name": "yeon-8-120"
+          "name": "yeon-8-124"
         }
       ]
     }
