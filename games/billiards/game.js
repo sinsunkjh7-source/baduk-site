@@ -13,7 +13,7 @@
   var R = 9.5, POCKET_R = 0;
 
   /* 공식 규격 (플레이필드 2:1 고정) */
-  var FOLLOW_K = 2.6, SIDE_K = 1.1;   /* 당점 효과 세기 */
+  var FOLLOW_K = 3.0, SIDE_K = 1.15, THROW_K = 0.85, SPIN_DECAY_F = 0.995, SPIN_DECAY_S = 0.992, DEFLECT_K = 0.045;
   var BALL_SCALE = 1.3;   /* 보기용 배율: 규격 1/46.2 → 1/35.6 (화면에서 작아 보여 보정) */
   var bs = /[?&]ballscale=(\d+(?:\.\d+)?)/.exec(location.search);
   if (bs) BALL_SCALE = Math.max(1, parseFloat(bs[1]));
@@ -77,7 +77,7 @@
   };
 
   function mkBall(x, y, color, kind, num) {
-    return { x: x, y: y, vx: 0, vy: 0, color: color, kind: kind, num: num || 0, r: R, alive: true };
+    return { x: x, y: y, vx: 0, vy: 0, color: color, kind: kind, num: num || 0, r: R, alive: true, spinF: 0, spinS: 0 };
   }
 
   function buildPockets() {
@@ -198,23 +198,34 @@
   }
 
   /* ---------- 물리 ---------- */
+  var SUB = 4, FR_SUB = Math.pow(FRICTION, 1 / SUB);
+  var SPIN_DECAY_F_SUB = Math.pow(SPIN_DECAY_F, 1 / SUB), SPIN_DECAY_S_SUB = Math.pow(SPIN_DECAY_S, 1 / SUB);
+
   function step() {
+    var any = false;
+    for (var sub = 0; sub < SUB; sub++) { if (stepOnce()) any = true; }
+    return any;
+  }
+
+  function stepOnce() {
     var active = false;
 
     for (var i = 0; i < balls.length; i++) {
       var b = balls[i];
       if (!b.alive) continue;
 
-      b.x += b.vx; b.y += b.vy;
-      b.vx *= FRICTION; b.vy *= FRICTION;
+      b.x += b.vx / SUB; b.y += b.vy / SUB;
+      b.vx *= FR_SUB; b.vy *= FR_SUB;
+      if (b.spinF) { b.spinF *= SPIN_DECAY_F_SUB; if (Math.abs(b.spinF) < 0.01) b.spinF = 0; }
+      if (b.spinS) { b.spinS *= SPIN_DECAY_S_SUB; if (Math.abs(b.spinS) < 0.01) b.spinS = 0; }
       if (Math.abs(b.vx) < STOP) b.vx = 0;
       if (Math.abs(b.vy) < STOP) b.vy = 0;
 
       var bounced = false;
-      if (b.x - b.r < MINX) { b.x = MINX + b.r; b.vx = -b.vx * CUSHION; if (b.kind === 'cue') b.vy += spin.x * SIDE_K * (b.vx > 0 ? 1 : -1); bounced = true; }
-      if (b.x + b.r > MAXX) { b.x = MAXX - b.r; b.vx = -b.vx * CUSHION; if (b.kind === 'cue') b.vy += spin.x * SIDE_K * (b.vx > 0 ? 1 : -1); bounced = true; }
-      if (b.y - b.r < MINY) { b.y = MINY + b.r; b.vy = -b.vy * CUSHION; if (b.kind === 'cue') b.vx -= spin.x * SIDE_K * (b.vy > 0 ? 1 : -1); bounced = true; }
-      if (b.y + b.r > MAXY) { b.y = MAXY - b.r; b.vy = -b.vy * CUSHION; if (b.kind === 'cue') b.vx -= spin.x * SIDE_K * (b.vy > 0 ? 1 : -1); bounced = true; }
+      if (b.x - b.r < MINX) { b.x = MINX + b.r; b.vx = -b.vx * CUSHION; if (b.kind === 'cue') { b.vy += b.spinS * SIDE_K * (b.vx > 0 ? 1 : -1); b.spinS *= 0.72; } bounced = true; }
+      if (b.x + b.r > MAXX) { b.x = MAXX - b.r; b.vx = -b.vx * CUSHION; if (b.kind === 'cue') { b.vy += b.spinS * SIDE_K * (b.vx > 0 ? 1 : -1); b.spinS *= 0.72; } bounced = true; }
+      if (b.y - b.r < MINY) { b.y = MINY + b.r; b.vy = -b.vy * CUSHION; if (b.kind === 'cue') { b.vx -= b.spinS * SIDE_K * (b.vy > 0 ? 1 : -1); b.spinS *= 0.72; } bounced = true; }
+      if (b.y + b.r > MAXY) { b.y = MAXY - b.r; b.vy = -b.vy * CUSHION; if (b.kind === 'cue') { b.vx -= b.spinS * SIDE_K * (b.vy > 0 ? 1 : -1); b.spinS *= 0.72; } bounced = true; }
       if (bounced && b.kind === 'cue' && hitList.length < 2) cushionCount++;
 
       if (b.vx || b.vy) active = true;
@@ -242,14 +253,31 @@
         A.vx += imp * nx; A.vy += imp * ny;
         B.vx -= imp * nx; B.vy -= imp * ny;
 
-        /* 당점(상·하) → 밀어치기/끌어치기 */
-        if (A.kind === 'cue' && B.kind !== 'cue' && Math.abs(spin.y) > 0.1) {
-          A.vx += nx * spin.y * FOLLOW_K; A.vy += ny * spin.y * FOLLOW_K;
-          spin.y *= 0.55;
+        /* --- 당점 물리: 팔로우·드로 + 스로우(상대 공 옆 밀림) --- */
+        var tx = -ny, ty = nx;
+        if (A.kind === 'cue' && B.kind !== 'cue') {
+          if (Math.abs(A.spinF) > 0.02) {
+            A.vx += nx * A.spinF * FOLLOW_K;
+            A.vy += ny * A.spinF * FOLLOW_K;
+            A.spinF *= 0.42;
+          }
+          if (Math.abs(A.spinS) > 0.02) {
+            B.vx += tx * A.spinS * THROW_K;
+            B.vy += ty * A.spinS * THROW_K;
+            A.spinS *= 0.55;
+          }
         }
-        if (B.kind === 'cue' && A.kind !== 'cue' && Math.abs(spin.y) > 0.1) {
-          B.vx -= nx * spin.y * FOLLOW_K; B.vy -= ny * spin.y * FOLLOW_K;
-          spin.y *= 0.55;
+        if (B.kind === 'cue' && A.kind !== 'cue') {
+          if (Math.abs(B.spinF) > 0.02) {
+            B.vx -= nx * B.spinF * FOLLOW_K;
+            B.vy -= ny * B.spinF * FOLLOW_K;
+            B.spinF *= 0.42;
+          }
+          if (Math.abs(B.spinS) > 0.02) {
+            A.vx -= tx * B.spinS * THROW_K;
+            A.vy -= ty * B.spinS * THROW_K;
+            B.spinS *= 0.55;
+          }
         }
 
         if (A.kind === 'cue' && B.kind !== 'cue') { touches[B.kind] = true; if (B.kind !== 'object') hitList.push(B.kind); }
@@ -776,8 +804,12 @@
 
     shots++;
     beginShot();
-    cue.vx = lastAim.x * MAX_POWER * shotPower;
-    cue.vy = lastAim.y * MAX_POWER * shotPower;
+    var defl = spin.x * DEFLECT_K;
+    var dxA = lastAim.x * Math.cos(defl) - lastAim.y * Math.sin(defl);
+    var dyA = lastAim.x * Math.sin(defl) + lastAim.y * Math.cos(defl);
+    cue.spinF = spin.y; cue.spinS = spin.x;
+    cue.vx = dxA * MAX_POWER * shotPower;
+    cue.vy = dyA * MAX_POWER * shotPower;
     aim.x = lastAim.x; aim.y = lastAim.y;
     moving = true;
     updateStats();
@@ -964,6 +996,65 @@
   fitCanvas();
   requestAnimationFrame(loop);
 
+  if (/[?&]spintest=1/.test(location.search)) {
+    setTimeout(function () {
+      function shoot(sf, ss, angleDeg) {
+        newGame();
+        var a = (angleDeg || 0) * Math.PI / 180;
+        cue.x = W * 0.32; cue.y = H / 2;
+        cue.vx = 0; cue.vy = 0; cue.spinF = sf; cue.spinS = ss;
+        var idx = 0;
+        balls.forEach(function (b) {
+          if (b.kind === 'cue') return;
+          idx++;
+          if (idx === 1) { b.x = cue.x + 300; b.y = cue.y; }
+          else { b.x = cue.x - 150; b.y = cue.y + 160 * idx; }
+          b.vx = 0; b.vy = 0; b.alive = true; b.spinF = 0; b.spinS = 0;
+        });
+        var ox = cue.x, oy = cue.y;
+        var objY0 = balls[1].y, objX0 = balls[1].x;
+        moving = true; beginShot();
+        cue.vx = Math.cos(a) * MAX_POWER * 0.8;
+        cue.vy = Math.sin(a) * MAX_POWER * 0.8;
+        /* 첫 접촉 직후 속도로 판정 (팔로우/드로·스로우) */
+        var steps = 0;
+        while (Object.keys(touches).length === 0 && steps < 800) { step(); steps++; }
+        var cv = +(cue.vx * Math.cos(-a) - cue.vy * Math.sin(-a)).toFixed(2);  /* 조준축 성분 */
+        var throwV = +(balls[1].vy * Math.cos(-a) - balls[1].vx * Math.sin(-a)).toFixed(2);
+        return { cueAlong: cv, objAcross: throwV, hitAfter: steps };
+      }
+      function cushionTest(ss) {
+        newGame();
+        cue.x = W * 0.5; cue.y = H / 2; cue.vx = MAX_POWER * 0.7; cue.vy = -MAX_POWER * 0.25;
+        cue.spinF = 0; cue.spinS = ss;
+        balls.forEach(function (b) { if (b.kind !== 'cue') { b.x = -999; b.alive = false; } });
+        moving = true; beginShot();
+        var bounced = false, ang = 0;
+        for (var i = 0; i < 400; i++) {
+          step();
+          if (!bounced && cue.vy > 0) { bounced = true; ang = Math.atan2(cue.vy, cue.vx) * 180 / Math.PI; break; }
+        }
+        return +ang.toFixed(1);
+      }
+
+      try {
+        var res = {
+          center: shoot(0, 0),
+          top: shoot(1, 0),
+          bottom: shoot(-1, 0),
+          right: shoot(0, 1),
+          left: shoot(0, -1),
+          cushionPlain: cushionTest(0),
+          cushionRight: cushionTest(1),
+          cushionLeft: cushionTest(-1)
+        };
+        document.body.setAttribute('data-spintest', JSON.stringify(res));
+      } catch (err) {
+        document.body.setAttribute('data-spintest', 'ERR ' + err.message);
+      }
+    }, 700);
+  }
+
   if (/[?&]rulecheck=1/.test(location.search)) {
     var cases = [
       ['three', { red: 1, yellow: 1 }, 3, true],
@@ -1005,11 +1096,13 @@
       var ma = /[?&]angle=(-?\d+(?:\.\d+)?)/.exec(location.search);
       if (ma) {
         var ang = parseFloat(ma[1]) * Math.PI / 180;
+        cue.spinF = spin.y; cue.spinS = spin.x;
         cue.vx = Math.cos(ang) * MAX_POWER * 0.9;
         cue.vy = Math.sin(ang) * MAX_POWER * 0.9;
       } else {
         var target = balls[1];
         var dx = target.x - cue.x, dy = target.y - cue.y, d = Math.hypot(dx, dy) || 1;
+        cue.spinF = spin.y; cue.spinS = spin.x;
         cue.vx = dx / d * MAX_POWER * 0.9;
         cue.vy = dy / d * MAX_POWER * 0.9;
       }
