@@ -1234,80 +1234,80 @@
           {
             "code": "tech_ladder_ch01",
             "chapterCode": "tech_ladder_ch01",
-            "title": "1단원. 축의 기초와 첫 단수 방향 (어느 쪽으로 단수쳐서 몰까?) (74제)",
-            "chapter": "1단원. 축의 기초와 첫 단수 방향 (어느 쪽으로 단수쳐서 몰까?) (74제)",
+            "title": "1단원. 축의 기초와 방향 선택 (74제)",
+            "chapter": "1단원. 축의 기초와 방향 선택 (74제)",
             "problemCount": 74,
             "problemsCount": 74
           },
           {
             "code": "tech_ladder_ch02",
             "chapterCode": "tech_ladder_ch02",
-            "title": "2단원. 방향 선택 후 축으로 몰기 (올바른 방향으로 연속 단수) (23제)",
-            "chapter": "2단원. 방향 선택 후 축으로 몰기 (올바른 방향으로 연속 단수) (23제)",
+            "title": "2단원. 어느 쪽으로 몰까? (23제)",
+            "chapter": "2단원. 어느 쪽으로 몰까? (23제)",
             "problemCount": 23,
             "problemsCount": 23
           },
           {
             "code": "tech_ladder_ch03",
             "chapterCode": "tech_ladder_ch03",
-            "title": "3단원. 기본 축 몰아 잡기 (3수~5수 단거리 지그재그 단수) (61제)",
-            "chapter": "3단원. 기본 축 몰아 잡기 (3수~5수 단거리 지그재그 단수) (61제)",
+            "title": "3단원. 기본 축 몰아 잡기 (61제)",
+            "chapter": "3단원. 기본 축 몰아 잡기 (61제)",
             "problemCount": 61,
             "problemsCount": 61
           },
           {
             "code": "tech_ladder_ch04",
             "chapterCode": "tech_ladder_ch04",
-            "title": "4단원. 장거리 축 따라놓기와 끝까지 몰기 (7수~11수 장거리 축) (41제)",
-            "chapter": "4단원. 장거리 축 따라놓기와 끝까지 몰기 (7수~11수 장거리 축) (41제)",
+            "title": "4단원. 축 따라놓기와 끝까지 몰기 (41제)",
+            "chapter": "4단원. 축 따라놓기와 끝까지 몰기 (41제)",
             "problemCount": 41,
             "problemsCount": 41
           },
           {
             "code": "tech_ladder_ch05",
             "chapterCode": "tech_ladder_ch05",
-            "title": "5단원. 단수치고 축 (먼저 단수로 몰아넣은 뒤 축으로 잡기) (72제)",
-            "chapter": "5단원. 단수치고 축 (먼저 단수로 몰아넣은 뒤 축으로 잡기) (72제)",
+            "title": "5단원. 단수치고 축 (72제)",
+            "chapter": "5단원. 단수치고 축 (72제)",
             "problemCount": 72,
             "problemsCount": 72
           },
           {
             "code": "tech_ladder_ch06",
             "chapterCode": "tech_ladder_ch06",
-            "title": "6단원. 끊으면서 축 (상대 연결을 끊으며 축으로 몰기) (26제)",
-            "chapter": "6단원. 끊으면서 축 (상대 연결을 끊으며 축으로 몰기) (26제)",
+            "title": "6단원. 끊으면서 축 (26제)",
+            "chapter": "6단원. 끊으면서 축 (26제)",
             "problemCount": 26,
             "problemsCount": 26
           },
           {
             "code": "tech_ladder_ch07",
             "chapterCode": "tech_ladder_ch07",
-            "title": "7단원. 축머리의 원리와 축머리 피하기 (축머리 판별과 우회 몰기) (47제)",
-            "chapter": "7단원. 축머리의 원리와 축머리 피하기 (축머리 판별과 우회 몰기) (47제)",
+            "title": "7단원. 축머리 피하기 (47제)",
+            "chapter": "7단원. 축머리 피하기 (47제)",
             "problemCount": 47,
             "problemsCount": 47
           },
           {
             "code": "tech_ladder_ch08",
             "chapterCode": "tech_ladder_ch08",
-            "title": "8단원. 축과 장문의 선택 (장문이 안 될 때 축으로 잡기) (41제)",
-            "chapter": "8단원. 축과 장문의 선택 (장문이 안 될 때 축으로 잡기) (41제)",
+            "title": "8단원. 축과 장문 (41제)",
+            "chapter": "8단원. 축과 장문 (41제)",
             "problemCount": 41,
             "problemsCount": 41
           },
           {
             "code": "tech_ladder_ch09",
             "chapterCode": "tech_ladder_ch09",
-            "title": "9단원. 회돌이 축 (돌려치기로 뭉치게 만든 뒤 축으로 잡기) (18제)",
-            "chapter": "9단원. 회돌이 축 (돌려치기로 뭉치게 만든 뒤 축으로 잡기) (18제)",
+            "title": "9단원. 회돌이 축 (18제)",
+            "chapter": "9단원. 회돌이 축 (18제)",
             "problemCount": 18,
             "problemsCount": 18
           },
           {
             "code": "tech_ladder_ch10",
             "chapterCode": "tech_ladder_ch10",
-            "title": "10단원. 빈축 완전정복 (축이 불리할 때 단수쳐서 활용하는 맥점) (56제)",
-            "chapter": "10단원. 빈축 완전정복 (축이 불리할 때 단수쳐서 활용하는 맥점) (56제)",
+            "title": "10단원. 빈축 (56제)",
+            "chapter": "10단원. 빈축 (56제)",
             "problemCount": 56,
             "problemsCount": 56
           }
@@ -1322,72 +1322,72 @@
           {
             "code": "tech_net_ch01",
             "chapterCode": "tech_net_ch01",
-            "title": "1단원. 장문의 기초 원리 (활로가 2개인 돌 그물로 가두기) (151제)",
-            "chapter": "1단원. 장문의 기초 원리 (활로가 2개인 돌 그물로 가두기) (151제)",
+            "title": "1단원. 장문 - 활로가 두 개일 때 (151제)",
+            "chapter": "1단원. 장문 - 활로가 두 개일 때 (151제)",
             "problemCount": 151,
             "problemsCount": 151
           },
           {
             "code": "tech_net_ch02",
             "chapterCode": "tech_net_ch02",
-            "title": "2단원. 활로 3개 장문과 실전 기본 장문 (넓은 그물망으로 포위하기) (94제)",
-            "chapter": "2단원. 활로 3개 장문과 실전 기본 장문 (넓은 그물망으로 포위하기) (94제)",
+            "title": "2단원. 장문 - 활로가 세 개일 때 (94제)",
+            "chapter": "2단원. 장문 - 활로가 세 개일 때 (94제)",
             "problemCount": 94,
             "problemsCount": 94
           },
           {
             "code": "tech_net_ch03",
             "chapterCode": "tech_net_ch03",
-            "title": "3단원. 한 칸 응용 장문 (한 칸 뛰어 퇴로 차단하기) (74제)",
-            "chapter": "3단원. 한 칸 응용 장문 (한 칸 뛰어 퇴로 차단하기) (74제)",
+            "title": "3단원. 한 칸 응용 장문 (74제)",
+            "chapter": "3단원. 한 칸 응용 장문 (74제)",
             "problemCount": 74,
             "problemsCount": 74
           },
           {
             "code": "tech_net_ch04",
             "chapterCode": "tech_net_ch04",
-            "title": "4단원. 젖혀서 장문 (돌의 진로를 젖혀 막아 가두기) (47제)",
-            "chapter": "4단원. 젖혀서 장문 (돌의 진로를 젖혀 막아 가두기) (47제)",
+            "title": "4단원. 젖혀서 장문 (47제)",
+            "chapter": "4단원. 젖혀서 장문 (47제)",
             "problemCount": 47,
             "problemsCount": 47
           },
           {
             "code": "tech_net_ch05",
             "chapterCode": "tech_net_ch05",
-            "title": "5단원. 단수치고 장문 (단수로 몰아넣은 뒤 그물로 가두기) (62제)",
-            "chapter": "5단원. 단수치고 장문 (단수로 몰아넣은 뒤 그물로 가두기) (62제)",
+            "title": "5단원. 단수치고 장문 (62제)",
+            "chapter": "5단원. 단수치고 장문 (62제)",
             "problemCount": 62,
             "problemsCount": 62
           },
           {
             "code": "tech_net_ch06",
             "chapterCode": "tech_net_ch06",
-            "title": "6단원. 입구자(마늘모)·날일자 장문 (비대칭 급소로 봉쇄하기) (43제)",
-            "chapter": "6단원. 입구자(마늘모)·날일자 장문 (비대칭 급소로 봉쇄하기) (43제)",
+            "title": "6단원. 입구자·날일자 장문 (43제)",
+            "chapter": "6단원. 입구자·날일자 장문 (43제)",
             "problemCount": 43,
             "problemsCount": 43
           },
           {
             "code": "tech_net_ch07",
             "chapterCode": "tech_net_ch07",
-            "title": "7단원. 축과 장문의 선택 (축이 안 될 때 장문으로 포획하기) (31제)",
-            "chapter": "7단원. 축과 장문의 선택 (축이 안 될 때 장문으로 포획하기) (31제)",
+            "title": "7단원. 축과 장문 (31제)",
+            "chapter": "7단원. 축과 장문 (31제)",
             "problemCount": 31,
             "problemsCount": 31
           },
           {
             "code": "tech_net_ch08",
             "chapterCode": "tech_net_ch08",
-            "title": "8단원. 수상전 장문 (장문으로 가두어 수상전 이기기) (26제)",
-            "chapter": "8단원. 수상전 장문 (장문으로 가두어 수상전 이기기) (26제)",
+            "title": "8단원. 수상전 장문 (26제)",
+            "chapter": "8단원. 수상전 장문 (26제)",
             "problemCount": 26,
             "problemsCount": 26
           },
           {
             "code": "tech_net_ch09",
             "chapterCode": "tech_net_ch09",
-            "title": "9단원. 장문의 맥과 고급 응용 (회돌이 장문과 맥점 포획) (70제)",
-            "chapter": "9단원. 장문의 맥과 고급 응용 (회돌이 장문과 맥점 포획) (70제)",
+            "title": "9단원. 장문의 맥 (70제)",
+            "chapter": "9단원. 장문의 맥 (70제)",
             "problemCount": 70,
             "problemsCount": 70
           }
@@ -1455,80 +1455,80 @@
           {
             "code": "tech_yeon_atari_ch01",
             "chapterCode": "tech_yeon_atari_ch01",
-            "title": "1단원. 1선에 이어도 단수 기초 (밖에서 1선으로 몰아 잡기) (45제)",
-            "chapter": "1단원. 1선에 이어도 단수 기초 (밖에서 1선으로 몰아 잡기) (45제)",
+            "title": "1단원. 1선에 이어도 단수 (45제)",
+            "chapter": "1단원. 1선에 이어도 단수 (45제)",
             "problemCount": 45,
             "problemsCount": 45
           },
           {
             "code": "tech_yeon_atari_ch02",
             "chapterCode": "tech_yeon_atari_ch02",
-            "title": "2단원. 1선의 촉촉수 급소 (1선에 직접 단수쳐서 잡기) (12제)",
-            "chapter": "2단원. 1선의 촉촉수 급소 (1선에 직접 단수쳐서 잡기) (12제)",
+            "title": "2단원. 1선의 촉촉수 (12제)",
+            "chapter": "2단원. 1선의 촉촉수 (12제)",
             "problemCount": 12,
             "problemsCount": 12
           },
           {
             "code": "tech_yeon_atari_ch03",
             "chapterCode": "tech_yeon_atari_ch03",
-            "title": "3단원. 중앙에 이어도 단수 (호구·빈삼각 속에 가두어 잡기) (30제)",
-            "chapter": "3단원. 중앙에 이어도 단수 (호구·빈삼각 속에 가두어 잡기) (30제)",
+            "title": "3단원. 중앙에 이어도 단수 (30제)",
+            "chapter": "3단원. 중앙에 이어도 단수 (30제)",
             "problemCount": 30,
             "problemsCount": 30
           },
           {
             "code": "tech_yeon_atari_ch04",
             "chapterCode": "tech_yeon_atari_ch04",
-            "title": "4단원. 단수치고 또 단수 (연속 단수로 몰아 잡기) (96제)",
-            "chapter": "4단원. 단수치고 또 단수 (연속 단수로 몰아 잡기) (96제)",
+            "title": "4단원. 단수치고 단수 (96제)",
+            "chapter": "4단원. 단수치고 단수 (96제)",
             "problemCount": 96,
             "problemsCount": 96
           },
           {
             "code": "tech_yeon_atari_ch05",
             "chapterCode": "tech_yeon_atari_ch05",
-            "title": "5단원. 단수치고 끊기 (이으면 뒤를 끊어 잡기) (24제)",
-            "chapter": "5단원. 단수치고 끊기 (이으면 뒤를 끊어 잡기) (24제)",
+            "title": "5단원. 단수치고 끊기 (24제)",
+            "chapter": "5단원. 단수치고 끊기 (24제)",
             "problemCount": 24,
             "problemsCount": 24
           },
           {
             "code": "tech_yeon_atari_ch06",
             "chapterCode": "tech_yeon_atari_ch06",
-            "title": "6단원. 1선에서 먹여치고 촉촉수 (1선 희생타로 몰아 잡기) (104제)",
-            "chapter": "6단원. 1선에서 먹여치고 촉촉수 (1선 희생타로 몰아 잡기) (104제)",
+            "title": "6단원. 1선에서 먹여치고 촉촉수 (104제)",
+            "chapter": "6단원. 1선에서 먹여치고 촉촉수 (104제)",
             "problemCount": 104,
             "problemsCount": 104
           },
           {
             "code": "tech_yeon_atari_ch07",
             "chapterCode": "tech_yeon_atari_ch07",
-            "title": "7단원. 중앙·호구에 먹여치고 촉촉수 (호구 급소에 먹여쳐 잡기) (82제)",
-            "chapter": "7단원. 중앙·호구에 먹여치고 촉촉수 (호구 급소에 먹여쳐 잡기) (82제)",
+            "title": "7단원. 중앙에서 먹여치고 촉촉수 (82제)",
+            "chapter": "7단원. 중앙에서 먹여치고 촉촉수 (82제)",
             "problemCount": 82,
             "problemsCount": 82
           },
           {
             "code": "tech_yeon_atari_ch08",
             "chapterCode": "tech_yeon_atari_ch08",
-            "title": "8단원. 수상전 촉촉수 (촉촉수로 상대 활로 줄여 잡기) (45제)",
-            "chapter": "8단원. 수상전 촉촉수 (촉촉수로 상대 활로 줄여 잡기) (45제)",
+            "title": "8단원. 수상전 촉촉수 (45제)",
+            "chapter": "8단원. 수상전 촉촉수 (45제)",
             "problemCount": 45,
             "problemsCount": 45
           },
           {
             "code": "tech_yeon_atari_ch09",
             "chapterCode": "tech_yeon_atari_ch09",
-            "title": "9단원. 사활 촉촉수 (촉촉수로 상대 약점 공략해 내 돌 살리기) (98제)",
-            "chapter": "9단원. 사활 촉촉수 (촉촉수로 상대 약점 공략해 내 돌 살리기) (98제)",
+            "title": "9단원. 사활 촉촉수 (98제)",
+            "chapter": "9단원. 사활 촉촉수 (98제)",
             "problemCount": 98,
             "problemsCount": 98
           },
           {
             "code": "tech_yeon_atari_ch10",
             "chapterCode": "tech_yeon_atari_ch10",
-            "title": "10단원. 회돌이 촉촉수 (돌려치기로 뭉치게 만들어 잡기) (98제)",
-            "chapter": "10단원. 회돌이 촉촉수 (돌려치기로 뭉치게 만들어 잡기) (98제)",
+            "title": "10단원. 회돌이 촉촉수 (98제)",
+            "chapter": "10단원. 회돌이 촉촉수 (98제)",
             "problemCount": 98,
             "problemsCount": 98
           }
