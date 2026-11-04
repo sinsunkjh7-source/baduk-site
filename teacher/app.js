@@ -213,7 +213,7 @@
   /* ---------- 강사모드 진입 (회원 계정 연동 전 다이렉트 진입) ---------- */
   /* ---------- 카탈로그 및 교재 로드 ---------- */
   function initCatalog() {
-    fetch('data/catalog.json?v=20261103-ladder-12clean-1793713444')
+    fetch('data/catalog.json?v=net-pure-audit-1793791246')
       .then(function (res) { return res.json(); })
       .then(function (cat) {
         state.catalog = cat;
@@ -279,7 +279,7 @@
 
   function loadBook(code, isRestoring) {
     localStorage.setItem('teacher_last_book', code);
-    fetch('data/books/book_' + code + '.json?v=20261103-ladder-12clean-1793713444')
+    fetch('data/books/book_' + code + '.json?v=net-pure-audit-1793791246')
       .then(function (res) { return res.json(); })
       .then(function (bookData) {
         state.currentBook = bookData;
