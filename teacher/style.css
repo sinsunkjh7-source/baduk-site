@@ -160,6 +160,93 @@ html, body {
 }
 
 /* 🌟 좌측 사이드바 (화이트 & 그린 악센트) 🌟 */
+/* 🌟 사이드바 위치 및 바둑판 화면 정중앙 고정 레이아웃 🌟 */
+.sidebar-spacer {
+  width: 340px;
+  flex: 0 0 340px;
+  pointer-events: none;
+  visibility: hidden;
+  order: 1;
+}
+
+.teacher-stage {
+  order: 2;
+  flex: 1;
+  min-width: 0;
+}
+
+.teacher-sidebar {
+  order: 3;
+}
+
+/* 사이드바 좌측 배치 모드 */
+.teacher-body.sidebar-left .teacher-sidebar {
+  order: 1;
+  border-left: none;
+  border-right: 1.5px solid var(--border-light);
+  box-shadow: 2px 0 12px rgba(47, 74, 36, 0.06);
+}
+.teacher-body.sidebar-left .teacher-stage {
+  order: 2;
+}
+.teacher-body.sidebar-left .sidebar-spacer {
+  order: 3;
+}
+
+/* 화면 너비가 1280px 이하일 때는 바둑판 크기를 우선하여 스페이서 숨김 */
+@media (max-width: 1280px) {
+  .sidebar-spacer {
+    display: none !important;
+  }
+}
+
+/* 🌟 사이드바 위치 (좌/우) 빠른 전환 컨트롤 바 🌟 */
+.sidebar-pos-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 10px;
+  background: #f8fafc;
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  margin-bottom: 2px;
+}
+.sidebar-pos-label {
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--muted);
+  letter-spacing: .3px;
+  user-select: none;
+}
+.sidebar-pos-toggle {
+  display: inline-flex;
+  background: #e2e8f0;
+  padding: 2px;
+  border-radius: 6px;
+  gap: 2px;
+}
+.btn-pos-switch {
+  border: none;
+  background: transparent;
+  padding: 4px 11px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #64748b;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all .15s ease;
+  line-height: 1.2;
+}
+.btn-pos-switch:hover {
+  color: #0f172a;
+}
+.btn-pos-switch.active {
+  background: var(--green);
+  color: #ffffff;
+  font-weight: 800;
+  box-shadow: 0 1px 3px rgba(74, 138, 58, 0.3);
+}
+
 .teacher-sidebar {
   width: 340px;
   background: #ffffff;

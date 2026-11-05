@@ -35,9 +35,12 @@
     </div>
   </header>
 
-  <div class="teacher-body">
+  <div class="teacher-body" id="teacherBody">
     
-    <!-- 좌측 메인 대형 수업 바둑판 영역 -->
+    <!-- 대칭용 빈 더미 공간 (바둑판이 모니터 화면 정가운데에 고정되도록 사이드바와 균형 유지) -->
+    <div class="sidebar-spacer" id="sidebarSpacer" aria-hidden="true"></div>
+
+    <!-- 메인 대형 수업 바둑판 영역 (화면 정중앙 고정) -->
     <main class="teacher-stage">
       
 
@@ -59,8 +62,17 @@
 
     </main>
 
-    <!-- 우측 사이드바: 12개 시리즈 및 166권 교재 선택 -->
-    <aside class="teacher-sidebar">
+    <!-- 사이드바: 12개 시리즈 및 166권 교재 선택 -->
+    <aside class="teacher-sidebar" id="teacherSidebar">
+      <!-- 🌟 사이드바 위치 (좌/우) 빠른 전환 바 🌟 -->
+      <div class="sidebar-pos-bar">
+        <span class="sidebar-pos-label">📌 메뉴 위치</span>
+        <div class="sidebar-pos-toggle" role="group" aria-label="메뉴판 위치">
+          <button type="button" id="btnPosLeft" class="btn-pos-switch" title="메뉴판을 바둑판 왼쪽으로 이동">◀ 왼쪽</button>
+          <button type="button" id="btnPosRight" class="btn-pos-switch active" title="메뉴판을 바둑판 오른쪽으로 이동">오른쪽 ▶</button>
+        </div>
+      </div>
+
       <div class="sidebar-section">
         <label for="seriesSelect" class="sidebar-label">📚 교육 시리즈 (총 12종)</label>
         <select id="seriesSelect" class="form-select"></select>
@@ -285,7 +297,20 @@
         </div>
       </section>
 
-      <!-- 4. 음량 & 착수음 -->
+      <!-- 4. 메뉴판 위치 -->
+      <section class="settings-sec">
+        <h3>📌 메뉴판 위치</h3>
+        <div class="settings-options" data-setting="sidebarPos">
+          <button type="button" class="opt-card" data-val="left">
+            <span>◀ 바둑판 왼쪽</span>
+          </button>
+          <button type="button" class="opt-card active" data-val="right">
+            <span>바둑판 오른쪽 ▶</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- 5. 음량 & 착수음 -->
       <section class="settings-sec">
         <h3>🔊 음량 및 착수 효과음</h3>
         <div class="volume-slider-box">

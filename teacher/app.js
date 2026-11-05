@@ -437,6 +437,7 @@
 
   /* ---------- 🌟 활로 & 단수 판별 엔진 🌟 ---------- */
   function getStoneGroups(board, cols, rows) {
+    if (!board || !board.length || !board[0]) return [];
     var visited = Array.from({ length: rows }, function () { return new Array(cols).fill(false); });
     var groups = [];
 
@@ -846,6 +847,7 @@
   }
 
   function drawBoard() {
+    if (!state.board || !state.board.length || !state.board[0]) return;
     var cell = metrics.cellSize;
     var cols = state.boardCols; // 세로선 10개
     var rows = state.boardRows; // 가로선 9개
@@ -2238,6 +2240,10 @@
             window.badukAudio.setSoundType(val);
             window.badukAudio.playStone(); // 미리듣기
           }
+        } else if (settingType === 'sidebarPos') {
+          if (sidebarPosController) {
+            sidebarPosController.setPosition(val);
+          }
         }
       });
     });
@@ -2274,6 +2280,10 @@
       });
       document.querySelectorAll('[data-setting="soundType"] .opt-card').forEach(function (c) {
         c.classList.toggle('active', c.dataset.val === state.soundType);
+      });
+      var curSidebarPos = localStorage.getItem('teacher_sidebar_pos') || 'right';
+      document.querySelectorAll('[data-setting="sidebarPos"] .opt-card').forEach(function (c) {
+        c.classList.toggle('active', c.dataset.val === curSidebarPos);
       });
       if (volRange) {
         var v = Math.round((window.badukAudio ? window.badukAudio.volume : state.volume) * 100);
@@ -2849,6 +2859,69 @@
     }
   }
 
+  /* ---------- 🌟 사이드바 위치 (좌/우) 및 바둑판 화면 정중앙 고정 제어 🌟 ---------- */
+  function initSidebarPosition() {
+    var body = document.getElementById('teacherBody') || document.querySelector('.teacher-body');
+    var btnLeft = document.getElementById('btnPosLeft');
+    var btnRight = document.getElementById('btnPosRight');
+
+    var currentPos = localStorage.getItem('teacher_sidebar_pos') || 'right';
+
+    function setPosition(pos) {
+      if (pos !== 'left' && pos !== 'right') pos = 'right';
+      currentPos = pos;
+      try {
+        localStorage.setItem('teacher_sidebar_pos', pos);
+      } catch (e) {}
+
+      if (body) {
+        if (pos === 'left') {
+          body.classList.add('sidebar-left');
+        } else {
+          body.classList.remove('sidebar-left');
+        }
+      }
+
+      if (btnLeft && btnRight) {
+        btnLeft.classList.toggle('active', pos === 'left');
+        btnRight.classList.toggle('active', pos === 'right');
+      }
+
+      // 모달 내 옵션 동기화
+      document.querySelectorAll('[data-setting="sidebarPos"] .opt-card').forEach(function (c) {
+        c.classList.toggle('active', c.dataset.val === pos);
+      });
+
+      // 바둑판 레이아웃 재계산 및 렌더링 즉시 반영
+      if (typeof layoutBoard === 'function') {
+        layoutBoard();
+        if (state && Array.isArray(state.board) && state.board.length > 0 && state.board[0] && typeof drawBoard === 'function') {
+          drawBoard();
+        }
+      }
+    }
+
+    if (btnLeft) {
+      btnLeft.addEventListener('click', function () {
+        setPosition('left');
+      });
+    }
+    if (btnRight) {
+      btnRight.addEventListener('click', function () {
+        setPosition('right');
+      });
+    }
+
+    // 초기 로딩 시 저장된 위치 적용
+    setPosition(currentPos);
+
+    return {
+      setPosition: setPosition,
+      getPosition: function () { return currentPos; }
+    };
+  }
+
+  var sidebarPosController = initSidebarPosition();
   initSettingsModal();
   initTeachingToolbar();
   initProblemEditor();
