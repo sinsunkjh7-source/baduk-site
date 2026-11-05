@@ -11,10 +11,11 @@
   /* ---------- 대국 및 환경 상태 ---------- */
   var urlParams = new URLSearchParams(window.location.search);
   var isLiveParam = urlParams.get('mode') === 'live' || Boolean(urlParams.get('room'));
-  var initialMode = isLiveParam ? 'live' : (urlParams.get('mode') || 'ai'); // 'ai' | 'pvp' | 'live'
+  var modeFromUrl = urlParams.get('mode');
+  var initialMode = isLiveParam ? 'live' : (modeFromUrl || localStorage.getItem('play_mode') || 'ai');
 
   var state = {
-    mode: isLiveParam ? 'live' : (localStorage.getItem('play_mode') || initialMode),
+    mode: isLiveParam ? 'live' : (modeFromUrl || localStorage.getItem('play_mode') || 'ai'),
     boardSize: parseInt(urlParams.get('boardSize') || localStorage.getItem('play_board_size') || '19', 10), // 19 | 13 | 9
     difficulty: localStorage.getItem('play_ai_difficulty') || 'dan', // 'beginner' | 'intermediate' | 'advanced' | 'dan' | 'master'
     humanColor: parseInt(localStorage.getItem('play_human_color') || '1', 10), // 1: BLACK, 2: WHITE
@@ -2016,14 +2017,17 @@
     initMatchTimer(state.timeLimit);
     initArenaAvatar();
 
-    // 초기 치수(접바둑) 배치 실행
-    if (state.handicap && state.handicap > 0) {
-      startNewGame({ handicap: state.handicap, boardSize: state.boardSize, mode: state.mode });
-    }
-
-    // 백을 선택했을 경우 AI가 먼저 착수
-    if (state.mode === 'ai' && state.humanColor === WHITE) {
-      triggerAiMove();
+    // 🌟 [원장님 지침] AI 대국 및 일반 대국 진입 시 옵션 설정 모달 자동 표시!
+    if (!isLiveParam) {
+      openMatchModal();
+    } else {
+      // 실시간 P2P 대국인 경우에만 초기 치수 배치 실행
+      if (state.handicap && state.handicap > 0) {
+        startNewGame({ handicap: state.handicap, boardSize: state.boardSize, mode: state.mode });
+      }
+      if (state.mode === 'ai' && state.humanColor === WHITE) {
+        triggerAiMove();
+      }
     }
   }
 
