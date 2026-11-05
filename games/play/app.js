@@ -19,7 +19,7 @@
     difficulty: localStorage.getItem('play_ai_difficulty') || 'dan', // 'beginner' | 'intermediate' | 'advanced' | 'dan' | 'master'
     humanColor: parseInt(localStorage.getItem('play_human_color') || '1', 10), // 1: BLACK, 2: WHITE
     colorChoice: localStorage.getItem('play_color_choice') || '1', // '1' | '2' | 'random'
-    handicap: parseInt(localStorage.getItem('play_handicap') || '0', 10), // 0: 호선, 1: 정선, 2~9: 접바둑
+    handicap: parseInt(urlParams.get('handicap') || localStorage.getItem('play_handicap') || '0', 10), // 0: 호선, 1: 정선, 2~9: 접바둑
     timeLimit: localStorage.getItem('play_time_limit') || 'none',
     freeStones: [],
     isFreePlacementActive: false,
@@ -2012,6 +2012,11 @@
     initMatchTimer(state.timeLimit);
     initArenaAvatar();
 
+    // 초기 치수(접바둑) 배치 실행
+    if (state.handicap && state.handicap > 0) {
+      startNewGame({ handicap: state.handicap, boardSize: state.boardSize, mode: state.mode });
+    }
+
     // 백을 선택했을 경우 AI가 먼저 착수
     if (state.mode === 'ai' && state.humanColor === WHITE) {
       triggerAiMove();
@@ -2069,6 +2074,10 @@
     }
   };
 
-  window.PlayApp = { state: state, engine: engine, handleHumanMove: handleHumanMove };
+  window.PlayApp = {
+    state: state,
+    get engine() { return engine; },
+    handleHumanMove: handleHumanMove
+  };
 
 })();

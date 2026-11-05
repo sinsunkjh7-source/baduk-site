@@ -351,6 +351,7 @@
           setTimeout(function () {
             window.location.href = '/games/play/index.html?mode=live&room=' + encodeURIComponent(data.roomCode) +
               '&boardSize=' + (data.boardSize || 19) +
+              '&handicap=' + (data.handicap || 0) +
               '&p1=' + encodeURIComponent(data.from.name) +
               '&p2=' + encodeURIComponent(myProfile.name);
           }, 800);
@@ -375,6 +376,7 @@
         setTimeout(function () {
           window.location.href = '/games/play/index.html?mode=live&room=' + encodeURIComponent(data.roomCode) +
             '&host=1&boardSize=' + (data.boardSize || 19) +
+            '&handicap=' + (data.handicap || 0) +
             '&p1=' + encodeURIComponent(myProfile.name) +
             '&p2=' + encodeURIComponent(data.fromName || '상대방');
         }, 800);
@@ -395,6 +397,7 @@
         fromName: myProfile.name,
         roomCode: reqData.roomCode,
         boardSize: reqData.boardSize,
+        handicap: reqData.handicap || 0,
         accept: accept,
         reason: reason || ''
       };
@@ -668,6 +671,7 @@
 
       setTimeout(function () {
         window.location.href = '/games/play/index.html?mode=live&room=' + rCode + '&host=1&boardSize=' + bSize +
+          '&handicap=' + (challengeOptions.handicap || 0) +
           '&p1=' + encodeURIComponent(myProfile.name) + '&p2=' + encodeURIComponent(target.name);
       }, 1000);
     }, 2500);
