@@ -1,0 +1,7141 @@
+{
+  "기초 규칙과 활로/단수": {
+    "씽크탱크": [
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 1",
+        "chapter": "1. 돌의 활로",
+        "problems": 24
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 1",
+        "chapter": "2. 돌 따내기1",
+        "problems": 20
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 1",
+        "chapter": "5. 서로 단수",
+        "problems": 24
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 1",
+        "chapter": " 8. 1선 방향으로 단수치기",
+        "problems": 24
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 1",
+        "chapter": "9. 우리 편 쪽으로 단수치기",
+        "problems": 24
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 1",
+        "chapter": "10. 끊으면서 단수치기",
+        "problems": 24
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 1",
+        "chapter": "12. 집",
+        "problems": 20
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 2",
+        "chapter": "2. 착수금지",
+        "problems": 20
+      }
+    ],
+    "파워씽크": [
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 1",
+        "chapter": "4. 단수치는 요령-1",
+        "problems": 12
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 1",
+        "chapter": "4. 단수치는 요령-2",
+        "problems": 12
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 1",
+        "chapter": "4. 단수치는 요령-3",
+        "problems": 16
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 5",
+        "chapter": "1. 강한 돌과 약한 돌-1",
+        "problems": 12
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 5",
+        "chapter": "1. 강한 돌과 약한 돌-2",
+        "problems": 16
+      }
+    ],
+    "논리바둑": [
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 1",
+        "chapter": "1. 활로와 단수",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 1",
+        "chapter": "2. 따내기",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 1",
+        "chapter": "4. 서로단수",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 1",
+        "chapter": "7. 강한 돌과 약한 돌",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 1",
+        "chapter": "9. 1선 방향으로 단수치기",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 1",
+        "chapter": "10. 끊으면서 단수치기",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 1",
+        "chapter": "11. 우리 편 방향으로 단수치기",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 1",
+        "chapter": "13. 단수치기 종합문제",
+        "problems": 24
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 1",
+        "chapter": "14. 착수금지1",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 1",
+        "chapter": "15. 착수금지2 ",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 4",
+        "chapter": "1. 활로-달아나는 곳 막기",
+        "problems": 26
+      }
+    ],
+    "알파바둑": [
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 1",
+        "chapter": "1. 활로 막기 ",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 1",
+        "chapter": "4. 착수금지",
+        "problems": 19
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 1",
+        "chapter": "6. 우리 편 방향으로 몰기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 1",
+        "chapter": "11. 단수의 원리",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 1",
+        "chapter": "19. 1선 방향으로 몰기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 2",
+        "chapter": "4. 강한 돌, 약한 돌",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 2",
+        "chapter": "9. 서로 단수",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 2",
+        "chapter": "10. 단수피하기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 2",
+        "chapter": "13. 단수(올바른 방향)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 2",
+        "chapter": "16. 단수 찾기",
+        "problems": 10
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 3",
+        "chapter": "7. 단수치는 요령",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 4",
+        "chapter": "10. 활로 줄이는 요령",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 5",
+        "chapter": "15. 되단수",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알바바둑 12",
+        "chapter": "8. 단수치고 돌파",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 19",
+        "chapter": "12. 단수의 방향",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 19",
+        "chapter": "13. 단수 안치기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 21",
+        "chapter": "08. 가짜 활로",
+        "problems": 24
+      }
+    ]
+  },
+  "사활": {
+    "씽크탱크": [
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 1",
+        "chapter": "3. 돌 살리기1",
+        "problems": 20
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 1",
+        "chapter": "4. 돌 따내기2, 돌 살리기2",
+        "problems": 20
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 2",
+        "chapter": "8. 살리기-한 집 더 만들기",
+        "problems": 24
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 2",
+        "chapter": "9. 잡기-한 집 없애기",
+        "problems": 24
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 3",
+        "chapter": "1. 단수치는 방향-자충 조심",
+        "problems": 24
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 3",
+        "chapter": "11. 살리기-3궁 집 나누기",
+        "problems": 32
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 3",
+        "chapter": "12. 잡기-3궁 급소에 두기",
+        "problems": 32
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 4",
+        "chapter": "5. 한 집 모양-옥집 만들기",
+        "problems": 20
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 4",
+        "chapter": "6. 상대의 집-옥집 만들기",
+        "problems": 20
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 4",
+        "chapter": "7. 1선의 집-옥집 만들기",
+        "problems": 20
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 4",
+        "chapter": "8. 옥집 만들어서 잡기",
+        "problems": 32
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 4",
+        "chapter": "9. 옥집 조심해서 살리기",
+        "problems": 32
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 5",
+        "chapter": "8. 옥집 만들기",
+        "problems": 32
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 5",
+        "chapter": "9. 잡기-옥집 만들어서",
+        "problems": 32
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 5",
+        "chapter": "10. 살리기-옥집 조심",
+        "problems": 32
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 5",
+        "chapter": "11. 빅",
+        "problems": 20
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 6",
+        "chapter": "6. 사활-따내도 옥집",
+        "problems": 36
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 6",
+        "chapter": "7. 4궁, 5궁 사활-잡기",
+        "problems": 24
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 6",
+        "chapter": "8. 4궁, 5궁 사활-살리기",
+        "problems": 24
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 6",
+        "chapter": "9. 급소에 두어 살리기",
+        "problems": 24
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 6",
+        "chapter": "10. 급소에 치중해서 잡기",
+        "problems": 24
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 6",
+        "chapter": "11. 옥집과 공배",
+        "problems": 20
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 7",
+        "chapter": "6. 잡기-먹여처서 옥집 만들기",
+        "problems": 24
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 7",
+        "chapter": "7. 살리기-한 집 더 만들기",
+        "problems": 28
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 7",
+        "chapter": "8. 빅",
+        "problems": 20
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 7",
+        "chapter": "11. 단수친 후 잡기",
+        "problems": 28
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 7",
+        "chapter": "12. 단수친 후 살리기",
+        "problems": 24
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 8",
+        "chapter": "7. 궁도사활-살리기",
+        "problems": 20
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 8",
+        "chapter": "8. 궁도사활-잡기",
+        "problems": 20
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 9",
+        "chapter": "6. 착수금지를 이용해 살리기",
+        "problems": 16
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 9",
+        "chapter": "7. 사활-자충 이용",
+        "problems": 24
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 10",
+        "chapter": "1. 연결-자충 이용",
+        "problems": 16
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 10",
+        "chapter": "3. 중요한 돌-잡기",
+        "problems": 24
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 10",
+        "chapter": "4. 중요한 돌-살리기 ",
+        "problems": 24
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 10",
+        "chapter": "6. 살리기-한 집 만드는 급소",
+        "problems": 20
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 10",
+        "chapter": "7. 잡기-두 점으로 키워서 옥집 만들기",
+        "problems": 36
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 11",
+        "chapter": "5. 직4궁, 곡4궁",
+        "problems": 20
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 12",
+        "chapter": "2. 끊음-건너 붙임, 자충 이용",
+        "problems": 12
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 12",
+        "chapter": "6. 선수하고 잡기",
+        "problems": 28
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 12",
+        "chapter": "7. 맞보기로 살리기",
+        "problems": 24
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 12",
+        "chapter": "10. 집 안의 빅",
+        "problems": 20
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 13",
+        "chapter": "1. 6궁 사활-잡기, 살리기",
+        "problems": 24
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 13",
+        "chapter": "2. 4사6활 (四死六活)",
+        "problems": 28
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 13",
+        "chapter": "3. 6사8활 (六死八活)",
+        "problems": 12
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 13",
+        "chapter": "5. 귀곡사",
+        "problems": 24
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 13",
+        "chapter": "6. 후절수",
+        "problems": 24
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 14",
+        "chapter": "4. 3선의 사활-4사6활(四死六活)",
+        "problems": 8
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 14",
+        "chapter": "5. 6궁 사활-잡기",
+        "problems": 36
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 14",
+        "chapter": "6. 6궁 사활-살리기",
+        "problems": 24
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 14",
+        "chapter": "7. 2선의 끝내기-끊어잡기, 젖힌 후 잇기",
+        "problems": 28
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 15",
+        "chapter": "3. 자충의 수",
+        "problems": 24
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 15",
+        "chapter": "6. 두 점으로 키워서 옥집 만들기",
+        "problems": 24
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 15",
+        "chapter": "10. 끝내기-빅",
+        "problems": 12
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 16",
+        "chapter": "4. 옥집의 맥-젖혀 옥집, 자충 옥집",
+        "problems": 28
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 16",
+        "chapter": "8. 끝내기-자충 이용",
+        "problems": 28
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 16",
+        "chapter": "9. 끝내기-치중",
+        "problems": 28
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 18",
+        "chapter": "2. 알아두면 좋은 사활-잡기",
+        "problems": 20
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 18",
+        "chapter": "3. 알아두면 좋은 사활-살리기",
+        "problems": 20
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 18",
+        "chapter": "5. 알아두면 좋은 사활-빅",
+        "problems": 20
+      }
+    ],
+    "파워씽크": [
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 1",
+        "chapter": "1. 활로. 따내기와 살리기-1",
+        "problems": 11
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 1",
+        "chapter": "1. 활로. 따내기와 살리기-2",
+        "problems": 12
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 1",
+        "chapter": "1. 활로. 따내기와 살리기-3",
+        "problems": 12
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 1",
+        "chapter": "1. 활로. 따내기와 살리기-4",
+        "problems": 12
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 1",
+        "chapter": "1. 활로. 따내기와 살리기-5",
+        "problems": 17
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 2",
+        "chapter": "4. 사활-1",
+        "problems": 24
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 2",
+        "chapter": "4. 사활-2",
+        "problems": 20
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 3",
+        "chapter": "4. 4궁 사활-1",
+        "problems": 16
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 3",
+        "chapter": "4. 4궁 사활-2",
+        "problems": 20
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 3",
+        "chapter": "5. 빅",
+        "problems": 24
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 3",
+        "chapter": "6. 진짜집과 가짜집(옥집)-1",
+        "problems": 12
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 3",
+        "chapter": "6. 진짜집과 가짜집(옥집)-2",
+        "problems": 28
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 3",
+        "chapter": "6. 진짜집과 가짜집(옥집)-3",
+        "problems": 24
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 3",
+        "chapter": "7. 아생연후살타",
+        "problems": 20
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 4",
+        "chapter": "5. 옥집 사활 - 살리기, 잡기",
+        "problems": 28
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 4",
+        "chapter": "6. 5궁, 6궁 사활",
+        "problems": 28
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 5",
+        "chapter": "5. 4궁 사활-잡기, 살리기-1",
+        "problems": 28
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 5",
+        "chapter": "5. 4궁 사활-잡기, 살리기-2",
+        "problems": 32
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 5",
+        "chapter": "6. 살릴 수 있는 돌, 살릴 수 없는 돌-1",
+        "problems": 12
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 5",
+        "chapter": "6. 살릴 수 있는 돌, 살릴 수 없는 돌-2",
+        "problems": 24
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 6",
+        "chapter": "4. 옥집 사활-1",
+        "problems": 20
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 6",
+        "chapter": "4. 옥집 사활-2",
+        "problems": 16
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 6",
+        "chapter": "5. 급소 사활",
+        "problems": 28
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 6",
+        "chapter": "6. 잡을 수 있는 돌, 잡을 수 없는 돌",
+        "problems": 20
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 7",
+        "chapter": "5. 3궁 사활-1",
+        "problems": 24
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 7",
+        "chapter": "5. 3궁 사활-2",
+        "problems": 16
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 7",
+        "chapter": "6. 빅",
+        "problems": 16
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 8",
+        "chapter": "6. 사활-1",
+        "problems": 20
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 8",
+        "chapter": "6. 사활-2",
+        "problems": 16
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 9",
+        "chapter": "4. 사활-1",
+        "problems": 16
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 9",
+        "chapter": "4. 사활-2",
+        "problems": 12
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 10",
+        "chapter": "5. 선치궁 후궁도",
+        "problems": 28
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 11",
+        "chapter": "5. 사활1",
+        "problems": 48
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 11",
+        "chapter": "6. 사활2",
+        "problems": 40
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 12",
+        "chapter": "4. 사활 I",
+        "problems": 36
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 12",
+        "chapter": "5. 사활 II",
+        "problems": 28
+      }
+    ],
+    "논리바둑": [
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 1",
+        "chapter": "3. 살리기",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 2",
+        "chapter": "11. 독립된 두 집 만들기",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 2",
+        "chapter": "12. 사는 수-막아서 두 집 내기",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 2",
+        "chapter": "13. 사는 수-급소에 두어 두 집 내기",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 2",
+        "chapter": "14. 잡는 수-밀어서 두 집 없애기",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 2",
+        "chapter": "15. 잡는 수-급소에 두어 두 집 없애기",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 3",
+        "chapter": "11. 사는 수-따내면서 두 집 내기",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 3",
+        "chapter": "12. 사는 수-살리면서 두 집 내기",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 3",
+        "chapter": "13. 잡는 수-따내면서 두 집 없애기",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 3",
+        "chapter": "14. 잡는 수-살리면서 두 집 없애기",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 3",
+        "chapter": "15. 끝내기-완전한 집 만들기",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 4",
+        "chapter": "8. 옥집-단수쳐서 옥집만들기",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 4",
+        "chapter": "9. 옥집-찝어서 옥집만들기",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 4",
+        "chapter": "10. 옥집 종합문제",
+        "problems": 24
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 4",
+        "chapter": "11. 사는 수-살아있는 돌 찾기",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 4",
+        "chapter": "12. 사는 수-진짜 집 만들어 살기",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 4",
+        "chapter": "13. 잡는 수-단수쳐서 두 집 없애기",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 4",
+        "chapter": "14. 잡는 수-찝어서 두 집 없애기",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 5",
+        "chapter": "6. 빅",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 5",
+        "chapter": "7. 빅-끊으면서 빅",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 5",
+        "chapter": "11. 사는 수-4궁",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 5",
+        "chapter": "12. 사는 수-5궁",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 5",
+        "chapter": "13. 잡는 수-4궁",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 5",
+        "chapter": "14. 잡는 수-5궁",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 6",
+        "chapter": "10. 사는 수-따내도 옥집",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 6",
+        "chapter": "12. 잡는 수-키워서 옥집",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 6",
+        "chapter": "13. 사는 수 잡는 수 종합문제",
+        "problems": 24
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 7",
+        "chapter": "13. 사는 수 잡는 수 종합문제",
+        "problems": 24
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 8",
+        "chapter": "9. 사는 수-착수금지",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 8",
+        "chapter": "10. 사는 수-단수치고 살기",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 8",
+        "chapter": "12. 잡는 수-1선에 붙임",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 8",
+        "chapter": "13. 사는 수 잡는 수 종합문제",
+        "problems": 24
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 9",
+        "chapter": "1. 연결-자충",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 9",
+        "chapter": "3. 끊음-자충",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 9",
+        "chapter": "6. 빅-집 없애기",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 9",
+        "chapter": "9. 사는 수-매화6궁",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 9",
+        "chapter": "11. 잡는 수-자충",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 9",
+        "chapter": "12. 잡는 수-매화6궁",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 9",
+        "chapter": "13. 사는 수 잡는 수 종합문제",
+        "problems": 24
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 10",
+        "chapter": "6. 빅-집 만들기",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 10",
+        "chapter": "9. 사는 수-빅",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 10",
+        "chapter": "10. 사는 수-귀는 4사6생, 변은 6사8생",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 10",
+        "chapter": "11. 잡는 수-귀는 4사6생, 변은 6사8생",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 10",
+        "chapter": "12. 잡는 수-1선 눈목자로 잡기",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 10",
+        "chapter": "13. 사는 수 잡는 수 종합문제",
+        "problems": 24
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 10",
+        "chapter": "14. 끝내기-끊어잡기",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 11",
+        "chapter": "9. 사는 수-집 만드는 방향",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 11",
+        "chapter": "10. 사는 수-옥집 조심해서 살기",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 11",
+        "chapter": "11. 잡는 수-집 없애는 방향",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 11",
+        "chapter": "13. 사는 수 / 잡는 수 종합문제",
+        "problems": 24
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 12",
+        "chapter": "12. 잡는 수-되 따내서 잡기",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 12",
+        "chapter": "13. 사는 수 / 잡는 수 종합문제",
+        "problems": 24
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 13",
+        "chapter": "9. 사는 수-맞보기 이용",
+        "problems": 30
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 13",
+        "chapter": "10. 사는 수-약점이용",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 13",
+        "chapter": "11. 잡는 수-1선 입구자",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 13",
+        "chapter": "12. 잡는 수-2의 2로 단수쳐서 잡기",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 13",
+        "chapter": "13. 사는 수 잡는 수 종합문제",
+        "problems": 25
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 14",
+        "chapter": "5. 후절수",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 14",
+        "chapter": "6. 요석 잡기",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 14",
+        "chapter": "7. 요석 살리기",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 14",
+        "chapter": "10. 사는 수-후절수",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 14",
+        "chapter": "11. 잡는 수-약점 지켜서 잡기",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 14",
+        "chapter": "12. 잡는 수-후절수",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 14",
+        "chapter": "13. 사는 수 잡는 수 종합문제",
+        "problems": 24
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 15",
+        "chapter": "12. 사는 수-석점의 중앙이 급소",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 16",
+        "chapter": "11. 사는 수-한 칸 뛰어 살리기",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 16",
+        "chapter": "12. 잡는 수-껴붙여서 잡기",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 16",
+        "chapter": "13. 사는 수 잡는 수 종합문제",
+        "problems": 24
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 17",
+        "chapter": "9. 사는 수-산 모양, 죽은 모양 구분하기",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 17",
+        "chapter": "10. 사는 수-좌우동형은 중앙이 급소",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 17",
+        "chapter": "11. 잡는 수-1선 입구자2",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 17",
+        "chapter": "12. 잡는 수-1선 젖힘",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 17",
+        "chapter": "13. 사는 수 잡는 수 종합문제",
+        "problems": 24
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 17",
+        "chapter": "14. 끝내기-자충을 이용한 끝내기",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 18",
+        "chapter": "9. 사는 수-늦춰 받기",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 18",
+        "chapter": "10. 사는 수-1선의 급소",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 18",
+        "chapter": "11. 잡는 수-오궁도화 만들기",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 18",
+        "chapter": "12. 잡는 수-치중하고 옥집만들기",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 18",
+        "chapter": "13. 사는 수 잡는 수 종합문제",
+        "problems": 24
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 19",
+        "chapter": "5. 요석 잡기",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 19",
+        "chapter": "6. 요석 살리기",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 19",
+        "chapter": "9. 사는 수-1선 호구",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 19",
+        "chapter": "10. 사는 수-2의 1이 급소",
+        "problems": 27
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 19",
+        "chapter": "12. 잡는 수-판6궁",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 19",
+        "chapter": "13. 사는 수 잡는 수 종합문제",
+        "problems": 24
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 20",
+        "chapter": "11. 사는 수-모양의 급소",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 20",
+        "chapter": "12. 잡는 수-귀곡사",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 20",
+        "chapter": "13. 사는 수 잡는 수 종합문제",
+        "problems": 24
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 21",
+        "chapter": "9. 사는 수-착수금지",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 21",
+        "chapter": "12. 잡는 수-두 점으로 키워서 잡기",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 21",
+        "chapter": "13. 사는 수 잡는 수 종합문제",
+        "problems": 25
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 22",
+        "chapter": "1. 수읽기-살리기",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 22",
+        "chapter": "2. 수읽기-잡기",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 22",
+        "chapter": "3. 후절수",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 22",
+        "chapter": "9. 사는 수-선수하고 살기",
+        "problems": 32
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 22",
+        "chapter": "10. 사는 수-궁도 사활",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 22",
+        "chapter": "11. 잡는 수-선수하고 잡기",
+        "problems": 27
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 22",
+        "chapter": "12. 잡는 수-궁도사활",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 22",
+        "chapter": "13. 사는 수 잡는 수 종합문제",
+        "problems": 24
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 23",
+        "chapter": "1. 돌을 잡는 수법1",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 23",
+        "chapter": "2. 돌을 잡는 수법2",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 23",
+        "chapter": "3. 양자충",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 23",
+        "chapter": "7. 사는 수-집모양의 급소",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 23",
+        "chapter": "8. 잡는 수-집모양의 급소",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 23",
+        "chapter": "9. 사는 수-귀의 기본 사활",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 23",
+        "chapter": "10. 잡는 수-귀의 기본 사활",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 23",
+        "chapter": "11. 사는 수 잡는 수 종합문제",
+        "problems": 24
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 23",
+        "chapter": "14. 끝내기-치중",
+        "problems": 27
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 24",
+        "chapter": "4. 사는 수-집모양의 급소",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 24",
+        "chapter": "5. 잡는 수-집모양의 급소",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 24",
+        "chapter": "8. 사는 수 잡는 수 종합문제",
+        "problems": 24
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 24",
+        "chapter": "15. 포석-열린 집 지키기",
+        "problems": 5
+      }
+    ],
+    "알파바둑": [
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 1",
+        "chapter": "2. 잡기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 1",
+        "chapter": "12. 집과 막기",
+        "problems": 19
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 1",
+        "chapter": "13. 사활(살기)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 1",
+        "chapter": "14. 사활(잡기)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 1",
+        "chapter": "18. 자충 단수",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 1",
+        "chapter": "20. 끊어 잡기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 2",
+        "chapter": "11. 사활(살기)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 2",
+        "chapter": "12. 사활(잡기)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 3",
+        "chapter": "9. 돌 살리기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 3",
+        "chapter": "10. 잡기와 나가기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 3",
+        "chapter": "11. 끊어 잡기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 3",
+        "chapter": "12. 사활",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 3",
+        "chapter": "13. 사활(4집 산 모양)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 3",
+        "chapter": "15. 2선 끊어 잡기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 3",
+        "chapter": "18. 옥집",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 3",
+        "chapter": "19. 집 넓히기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 4",
+        "chapter": "11. 사활(따낸 후 사활)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 4",
+        "chapter": "12. 빅",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 4",
+        "chapter": "13. 단수치고 잡기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 4",
+        "chapter": "14. 끊고 2선 돌 잡기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 4",
+        "chapter": "16. 잡기와 나가기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 4",
+        "chapter": "17. 집 넓히기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 5",
+        "chapter": "11. 사활(한 집 만들기와 없애기)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 5",
+        "chapter": "12. 사활(옥집)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 5",
+        "chapter": "13. 4집 사활",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 5",
+        "chapter": "17. 먹여치고 잡기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 5",
+        "chapter": "18. 집 넓히기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 6",
+        "chapter": "8. 중요한 돌 살리기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 6",
+        "chapter": "10. 사활(살기)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 6",
+        "chapter": "11. 사활(잡기)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 6",
+        "chapter": "12. 사활(옥집, 가짜집)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 6",
+        "chapter": "13. 사활(한 집 되는 곳이 급소)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 6",
+        "chapter": "17. 먹여치고 잡기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 6",
+        "chapter": "18. 집 줄이기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 7",
+        "chapter": "10. 사활(잡고 죽는 모양)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 7",
+        "chapter": "11. 사활(집 줄이고 잡기)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 7",
+        "chapter": "13. 단수치고 잡기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 7",
+        "chapter": "17. 집 줄이기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 7",
+        "chapter": "18. 집 지키기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 8",
+        "chapter": "1. 집 넓히기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 8",
+        "chapter": "10. 사활(착수금지 이용)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 9",
+        "chapter": "9. 사활(옥집)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 9",
+        "chapter": "10. 사활(집 줄이고 급소 치중)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 9",
+        "chapter": "11. 사활(자충 이용)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 9",
+        "chapter": "12. 단수 친 후 잡기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 10",
+        "chapter": "6. 사활(옥집 피하기)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 10",
+        "chapter": "7. 사활(돌을 잡고 죽는 모양)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 10",
+        "chapter": "8. 사활(한 집 만드는 급소)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 10",
+        "chapter": "9. 사활(빅)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 11",
+        "chapter": "8. 사활(집 넓히고 살기)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 11",
+        "chapter": "9. 사활(나쁜 젖힘)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 11",
+        "chapter": "11. 사활(선수하고 살기)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 11",
+        "chapter": "12. 2선 돌 잡기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알바바둑 12",
+        "chapter": "9. 사활(옥집)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알바바둑 12",
+        "chapter": "10. 사활(궁도)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알바바둑 12",
+        "chapter": "11. 사활(빅)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알바바둑 12",
+        "chapter": "12. 사활(집 줄이고 잡기)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알바바둑 12",
+        "chapter": "13. 사활(진짜 집 만들기)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알바바둑 13",
+        "chapter": "01. 집 넓히기(중앙으로 한 칸 뛰기)",
+        "problems": 20
+      },
+      {
+        "series": "알파바둑",
+        "book": "알바바둑 13",
+        "chapter": "09. 사활(맞보기)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알바바둑 13",
+        "chapter": "10. 사활(끼워서 집 줄이기)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알바바둑 13",
+        "chapter": "11. 사활(자충)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알바바둑 13",
+        "chapter": "12. 사활(착수금지 이용)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 14",
+        "chapter": "11. 사활(세 점으로 키워 잡기)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 14",
+        "chapter": "12. 사활(빅)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 14",
+        "chapter": "13. 사활(매화육궁)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 15",
+        "chapter": "05. 잡기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 15",
+        "chapter": "11. 사활(4사(死)6생(生))",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 15",
+        "chapter": "12. 사활(6사(死)8생(生))",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 15",
+        "chapter": "13. 사활(한 집 만들기와 없애기)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 16",
+        "chapter": "10. 사활(번개 모양)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 16",
+        "chapter": "11. 사활(6집)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 16",
+        "chapter": "12. 사활(후절수)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 16",
+        "chapter": "13. 사활(급소 공격)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 17",
+        "chapter": "05. 잡기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 17",
+        "chapter": "10. 사활(주변 돌 이용하기)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 17",
+        "chapter": "11. 사활(상대방 약점 이용하기)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 17",
+        "chapter": "12. 사활(귀곡사)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 18",
+        "chapter": "05. 잡기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 18",
+        "chapter": "10. 사활(집 넓히기)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 18",
+        "chapter": "11. 사활(급소)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 19",
+        "chapter": "09. 사활(변)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 19",
+        "chapter": "10. 사활(좌우동형은 중앙이 급소)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 20",
+        "chapter": "10. 사활(한 집 만들기와 없애기)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 20",
+        "chapter": "11. 사활(후절수)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 20",
+        "chapter": "12. 사활(2의 1이 급소)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 21",
+        "chapter": "10. 사활(한 집 만들기와 없애기)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 21",
+        "chapter": "11.  사활(자충)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 22",
+        "chapter": "04. 잡기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 22",
+        "chapter": "13. 사활(바깥 공략)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 23",
+        "chapter": "03. 잡기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 23",
+        "chapter": "04. 잡기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 23",
+        "chapter": "11. 사활(한 집 만들기와 없애기)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 23",
+        "chapter": "12. 사활(빅)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 24",
+        "chapter": "01. 돌의 안정",
+        "problems": 18
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 24",
+        "chapter": "02. 집 모양 넓히기",
+        "problems": 15
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 24",
+        "chapter": "03. 근거 빼앗기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 24",
+        "chapter": "05. 잡기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 24",
+        "chapter": "10. 사활(약점 이용하여 살기)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 24",
+        "chapter": "11. 사활(1선 입구자)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 24",
+        "chapter": "12. 사활(귀의 사활)",
+        "problems": 24
+      }
+    ]
+  },
+  "연결과 끊기": {
+    "씽크탱크": [
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 1",
+        "chapter": "6. 연결",
+        "problems": 28
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 1",
+        "chapter": "7. 끊음",
+        "problems": 28
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 2",
+        "chapter": "1. 따내면서 연결",
+        "problems": 24
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 3",
+        "chapter": "2. 입구자(마늘모) 연결, 호구 연결",
+        "problems": 20
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 3",
+        "chapter": "3. 뚫어서 끊음",
+        "problems": 24
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 4",
+        "chapter": "1. 1선, 2선 연결",
+        "problems": 24
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 4",
+        "chapter": "2. 1선, 2선 끊음",
+        "problems": 28
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 6",
+        "chapter": "1. 젖혀서 연결",
+        "problems": 24
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 6",
+        "chapter": "2. 맞보기 끊음",
+        "problems": 16
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 7",
+        "chapter": "9. 단점-찾기",
+        "problems": 24
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 7",
+        "chapter": "10. 단점-지키기",
+        "problems": 24
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 8",
+        "chapter": "1. 1선, 양호구 연결",
+        "problems": 16
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 8",
+        "chapter": "2. 끊음",
+        "problems": 16
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 9",
+        "chapter": "1. 쌍립 연결",
+        "problems": 24
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 10",
+        "chapter": "2. 끊음-1선, 2선 빠짐",
+        "problems": 12
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 11",
+        "chapter": " 1. 맞보기를 이용한 연결",
+        "problems": 20
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 11",
+        "chapter": "2. 끊음-쌍립의 급소",
+        "problems": 20
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 11",
+        "chapter": "8. 맥-쌍립의 급소",
+        "problems": 16
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 12",
+        "chapter": "1. 연결-사석 이용, 1선 입구자(마늘모)",
+        "problems": 16
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 16",
+        "chapter": "10. 단점 찾기",
+        "problems": 24
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 16",
+        "chapter": "11. 단점 지키기",
+        "problems": 24
+      }
+    ],
+    "파워씽크": [
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 1",
+        "chapter": "3. 연결과 끊음-1",
+        "problems": 20
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 1",
+        "chapter": "3. 연결과 끊음-2",
+        "problems": 16
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 2",
+        "chapter": "1. 연결과 끊음-1",
+        "problems": 24
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 2",
+        "chapter": "1. 연결과 끊음-2",
+        "problems": 28
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 3",
+        "chapter": "1. 연결과 끊음-1",
+        "problems": 24
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 3",
+        "chapter": "1. 연결과 끊음-2",
+        "problems": 20
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 4",
+        "chapter": "1. 연결과 끊음-1",
+        "problems": 24
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 4",
+        "chapter": "1. 연결과 끊음-2",
+        "problems": 24
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 4",
+        "chapter": "1. 연결과 끊음-3",
+        "problems": 20
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 6",
+        "chapter": "1. 연결과 끊음-1",
+        "problems": 28
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 6",
+        "chapter": "1. 연결과 끊음-2",
+        "problems": 16
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 7",
+        "chapter": "1. 연결과 끊음-1",
+        "problems": 24
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 7",
+        "chapter": "1. 연결과 끊음-2",
+        "problems": 24
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 8",
+        "chapter": "1. 연결과 끊음(맞보기-1",
+        "problems": 20
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 8",
+        "chapter": "1. 연결과 끊음(맞보기-2",
+        "problems": 24
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 9",
+        "chapter": "1. 연결과 끊음-1",
+        "problems": 12
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 9",
+        "chapter": "1. 연결과 끊음-2",
+        "problems": 20
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 10",
+        "chapter": "1. 연결과 끊음-1",
+        "problems": 16
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 10",
+        "chapter": "1. 연결과 끊음-2",
+        "problems": 16
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 10",
+        "chapter": "1. 연결과 끊음-3",
+        "problems": 12
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 12",
+        "chapter": "6. 단점",
+        "problems": 28
+      }
+    ],
+    "논리바둑": [
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 1",
+        "chapter": "5. 돌의 연결",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 1",
+        "chapter": "6. 돌의 끊음",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 1",
+        "chapter": "8. 연결과 끊음 종합문제",
+        "problems": 24
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 2",
+        "chapter": "1. 연결-따내면서 연결",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 2",
+        "chapter": "2. 끊음-뚫어서 끊음",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 2",
+        "chapter": "3. 연결과 끊음 종합문제",
+        "problems": 24
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 3",
+        "chapter": "1. 연결-들여다 본 곳을 연결",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 3",
+        "chapter": "2. 끊음-들여다 본 곳을 끊음",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 3",
+        "chapter": "3. 연결과 끊음 종합문제",
+        "problems": 24
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 4",
+        "chapter": "3. 연결-입구자(마늘모) 연결",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 4",
+        "chapter": "4. 연결-호구연결",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 4",
+        "chapter": "5. 연결 종합문제",
+        "problems": 24
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 5",
+        "chapter": "1. 연결-1선에서 연결",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 5",
+        "chapter": "2. 연결-2선에서 연결",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 6",
+        "chapter": "1. 끊기-막기",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 7",
+        "chapter": "1. 연결-양호구 연결",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 7",
+        "chapter": "2. 끊음-단수치고 끊음",
+        "problems": 28
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 8",
+        "chapter": "1. 연결-쌍립 연결",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 8",
+        "chapter": "3. 끊음-맞보기 끊음",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 8",
+        "chapter": "5. 연결과 끊음 종합문제",
+        "problems": 24
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 9",
+        "chapter": "2. 연결-찝음",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 9",
+        "chapter": "4. 끊음-젖힘",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 9",
+        "chapter": "5. 연결과 끊음 종합문제",
+        "problems": 24
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 10",
+        "chapter": "1. 연결-1선 입구자",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 10",
+        "chapter": "2. 연결-단수치고 연결",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 10",
+        "chapter": "3. 끊음-단수치면서 끊기",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 10",
+        "chapter": "4. 끊음-끊을 수 있는 곳",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 10",
+        "chapter": "5. 연결과 끊음 종합문제",
+        "problems": 24
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 11",
+        "chapter": "1. 연결-사석이용",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 11",
+        "chapter": "2. 끊음-끊는 방향",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 13",
+        "chapter": "1. 끊음-건너붙임",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 13",
+        "chapter": "2. 끊음-끼움",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 15",
+        "chapter": "1. 연결-효율적인 연결",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 15",
+        "chapter": "2. 끊음-끊는 수",
+        "problems": 27
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 15",
+        "chapter": "7. 맥-쌍립의 급소",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 15",
+        "chapter": "9. 약점 찾기",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 15",
+        "chapter": "10. 약점 지키기",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 15",
+        "chapter": "11. 약점 종합문제",
+        "problems": 24
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 19",
+        "chapter": "1. 격언-호구자리는 급소",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 20",
+        "chapter": "1. 연결복습1",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 20",
+        "chapter": "2. 연결복습2",
+        "problems": 27
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 20",
+        "chapter": "3. 끊음복습1",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 20",
+        "chapter": "4. 끊음복습2",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 20",
+        "chapter": "5. 단점 찾기",
+        "problems": 28
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 20",
+        "chapter": "6. 단점 지키기",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 20",
+        "chapter": "7. 단점 종합문제",
+        "problems": 25
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 21",
+        "chapter": "1. 연결-맞보기 연결",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 21",
+        "chapter": "2. 끊기-쌍립의 급소",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 22",
+        "chapter": "7. 맥-쌍립의 급소",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 23",
+        "chapter": "13. 날일자 행마 건너붙여 끊기",
+        "problems": 26
+      }
+    ],
+    "알파바둑": [
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 1",
+        "chapter": "9. 연결",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 1",
+        "chapter": "10. 끊기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 2",
+        "chapter": "2. 호구 연결",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 2",
+        "chapter": "3. 호구 젖히기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 2",
+        "chapter": "17. 연결(뻗기)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 2",
+        "chapter": "19. 끊을 수 있는 곳, 없는 곳",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 3",
+        "chapter": "17. 약점 찾기",
+        "problems": 16
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 4",
+        "chapter": "2. 뻗으면 연결해라",
+        "problems": 22
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 4",
+        "chapter": "7. 연결(호구와 쌍립)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 4",
+        "chapter": "18. 1선 젖혀 잇기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 4",
+        "chapter": "19. 약점 찾기",
+        "problems": 16
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 5",
+        "chapter": "7. 연결(쌍립과 입구자)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 5",
+        "chapter": "8. 끊기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 5",
+        "chapter": "19. 2선 젖혀 잇기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 6",
+        "chapter": "5. 연결(호구, 양호구)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 6",
+        "chapter": "7. 연결(반대쪽 연결하기)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 7",
+        "chapter": "3. 끼워 잇기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 7",
+        "chapter": "7. 연결(1선 연결)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 7",
+        "chapter": "8. 끊기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 7",
+        "chapter": "12. 호구되는 곳이 급소",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 7",
+        "chapter": "15. 쌍립되는 곳이 급소",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 8",
+        "chapter": "7. 끊기(젖히기와 뻗기)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 8",
+        "chapter": "13. 단수치고 연결",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 9",
+        "chapter": "6. 연결",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 9",
+        "chapter": "7. 끊기(쌍립되는 곳이 급소)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 10",
+        "chapter": "4. 연결(죽은 돌 이용)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 11",
+        "chapter": "5. 연결",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 11",
+        "chapter": "6. 끊기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 11",
+        "chapter": "14. 연결(날일자)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알바바둑 12",
+        "chapter": "4. 건너 붙여 끊기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알바바둑 12",
+        "chapter": "5. 연결",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알바바둑 12",
+        "chapter": "14. 연결(좋은 방법으로 지키기)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알바바둑 13",
+        "chapter": "03. 껴 붙어 연결",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알바바둑 13",
+        "chapter": "04. 끊기(끼워 끊기, 찝어 끊기)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 14",
+        "chapter": "05. 연결(뻗기와 젖히기)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 14",
+        "chapter": "06. 끊기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 14",
+        "chapter": "14. 연결(1선 눈목자 연결)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 15",
+        "chapter": "06. 연결",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 15",
+        "chapter": "07. 끊기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 16",
+        "chapter": "04. 연결",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 17",
+        "chapter": "06. 연결",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 17",
+        "chapter": "07. 끊기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 18",
+        "chapter": "06. 연결",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 18",
+        "chapter": "07. 끊기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 18",
+        "chapter": "13. 끊기 대응 1",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 18",
+        "chapter": "14. 끊기 대응 2",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 19",
+        "chapter": "06. 단점 지키기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 20",
+        "chapter": "07. 연결",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 20",
+        "chapter": "08. 끊기 대응",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 21",
+        "chapter": "06. 접근전(끊기 대응)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 21",
+        "chapter": "07. 연결(한 칸 연결)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 22",
+        "chapter": "06. 연결",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 22",
+        "chapter": "07. 잡고 싶은 반대쪽 끊기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 23",
+        "chapter": "05. 연결",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 23",
+        "chapter": "06. 끊기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 23",
+        "chapter": "07. 끊기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 23",
+        "chapter": "14. 약점 이용",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 24",
+        "chapter": "06. 연결",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 24",
+        "chapter": "07. 끊기",
+        "problems": 24
+      }
+    ]
+  },
+  "양단수": {
+    "씽크탱크": [
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 1",
+        "chapter": "11. 양단수",
+        "problems": 24
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 3",
+        "chapter": "4. 양단수 피하기",
+        "problems": 24
+      }
+    ],
+    "파워씽크": [
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 1",
+        "chapter": "2. 서로단수. 양단수-1",
+        "problems": 24
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 1",
+        "chapter": "2. 서로단수. 양단수-2",
+        "problems": 24
+      }
+    ],
+    "논리바둑": [
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 1",
+        "chapter": "12. 양단수",
+        "problems": 26
+      }
+    ],
+    "알파바둑": [
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 2",
+        "chapter": "8. 양단수",
+        "problems": 19
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 3",
+        "chapter": "3. 양단수",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 4",
+        "chapter": "3. 양단수",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 5",
+        "chapter": "3. 양단수",
+        "problems": 19
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 6",
+        "chapter": "6. 단수치고 양단수",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 8",
+        "chapter": "14. 단수치고 양단수",
+        "problems": 24
+      }
+    ]
+  },
+  "촉촉수": {
+    "씽크탱크": [
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 2",
+        "chapter": "3. 촉촉수-1선에 이어도 단수",
+        "problems": 40
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 3",
+        "chapter": "5. 1선의 촉촉수",
+        "problems": 40
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 4",
+        "chapter": "3. 촉촉수-단수치고 단수",
+        "problems": 36
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 4",
+        "chapter": "4. 수상전-촉촉수로 수 줄이기",
+        "problems": 20
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 5",
+        "chapter": "1. 촉촉수-단수치고 끊기",
+        "problems": 48
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 7",
+        "chapter": "1. 촉촉수",
+        "problems": 32
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 12",
+        "chapter": "5. 촉촉수를 이용해 살리기",
+        "problems": 20
+      }
+    ],
+    "파워씽크": [
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 1",
+        "chapter": "5. 착수금지. 연단수(촉촉수)-1",
+        "problems": 16
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 1",
+        "chapter": "5. 착수금지. 연단수(촉촉수)-2",
+        "problems": 20
+      }
+    ],
+    "논리바둑": [
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 2",
+        "chapter": "4. 촉촉수-1선에 이어도 단수",
+        "problems": 40
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 2",
+        "chapter": "5. 촉촉수-중앙에 이어도 단수",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 4",
+        "chapter": "7. 수상전-촉촉수를 이용하여 수 줄이기",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 5",
+        "chapter": "8. 촉촉수-단수치고 단수",
+        "problems": 27
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 5",
+        "chapter": "9. 촉촉수-먹여치고 단수",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 5",
+        "chapter": "10. 촉촉수 종합문제",
+        "problems": 24
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 9",
+        "chapter": "10. 사는 수-촉촉수",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 14",
+        "chapter": "9. 사는 수-먹여치고 촉촉수",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 21",
+        "chapter": "10. 사는 수-촉촉수",
+        "problems": 39
+      }
+    ],
+    "알파바둑": [
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 5",
+        "chapter": "16. 연단수(촉촉수)",
+        "problems": 24
+      }
+    ]
+  },
+  "축": {
+    "씽크탱크": [
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 2",
+        "chapter": "4. 축",
+        "problems": 24
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 3",
+        "chapter": "6. 축-어느 쪽으로 몰까?",
+        "problems": 24
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 6",
+        "chapter": "3. 축머리 피해서 몰기",
+        "problems": 20
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 8",
+        "chapter": "3. 단수친 후 축",
+        "problems": 24
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 9",
+        "chapter": "2. 축, 장문 어느 것으로 잡을까?",
+        "problems": 24
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 12",
+        "chapter": "9. 빈축",
+        "problems": 20
+      }
+    ],
+    "파워씽크": [
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 1",
+        "chapter": "6. 축",
+        "problems": 28
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 3",
+        "chapter": "2. 축을 모는 방향",
+        "problems": 28
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 4",
+        "chapter": "4. 축, 장문, 환격, 연단수(촉촉수)-1",
+        "problems": 24
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 4",
+        "chapter": "4. 축, 장문, 환격, 연단수(촉촉수)-2",
+        "problems": 27
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 5",
+        "chapter": "4. 축, 장문, 환격, 연단수(촉촉수)-1",
+        "problems": 24
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 5",
+        "chapter": "4. 축, 장문, 환격, 연단수(촉촉수)-2",
+        "problems": 28
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 9",
+        "chapter": "5. 빈축과 장문-1",
+        "problems": 16
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 9",
+        "chapter": "5. 빈축과 장문-2",
+        "problems": 12
+      }
+    ],
+    "논리바둑": [
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 2",
+        "chapter": "6. 축-따라놓기",
+        "problems": 17
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 2",
+        "chapter": "7. 축-모는 방법",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 7",
+        "chapter": "3. 축-끊으면서 축",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 7",
+        "chapter": "4. 축-단수치고 축",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 7",
+        "chapter": "6. 축과 장문",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 12",
+        "chapter": "8. 축-빈축",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 13",
+        "chapter": "4. 회돌이-축과 장문",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 14",
+        "chapter": "8. 축-축머리 피하기",
+        "problems": 26
+      }
+    ],
+    "알파바둑": [
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 1",
+        "chapter": "17. 축",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 2",
+        "chapter": "5. 축(축 머리)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 3",
+        "chapter": "4. 축(우리 편 방향으로 몰기)",
+        "problems": 21
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 4",
+        "chapter": "4. 축",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 5",
+        "chapter": "4. 축",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 6",
+        "chapter": "3. 단수치고 축",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 7",
+        "chapter": "4. 축",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 8",
+        "chapter": "4. 축",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 9",
+        "chapter": "4. 축과 장문",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 11",
+        "chapter": "4. 빈축",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 20",
+        "chapter": "04. 축머리",
+        "problems": 7
+      }
+    ]
+  },
+  "장문": {
+    "씽크탱크": [
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 2",
+        "chapter": "5. 장문",
+        "problems": 24
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 3",
+        "chapter": "7. 장문",
+        "problems": 28
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 5",
+        "chapter": "3. 한 칸 응용 장문",
+        "problems": 24
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 6",
+        "chapter": "4. 젖혀서 장문",
+        "problems": 24
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 7",
+        "chapter": "2. 입구자(마늘모) 장문",
+        "problems": 20
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 8",
+        "chapter": "4. 단수친 후 장문",
+        "problems": 24
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 10",
+        "chapter": "9. 장문의 맥",
+        "problems": 12
+      }
+    ],
+    "파워씽크": [
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 2",
+        "chapter": "2. 장문과 환격-1",
+        "problems": 24
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 2",
+        "chapter": "2. 장문과 환격-2",
+        "problems": 20
+      }
+    ],
+    "논리바둑": [
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 3",
+        "chapter": "4. 장문-활로가 두 개일 때",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 3",
+        "chapter": "5. 장문-활로가 세 개일 때",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 6",
+        "chapter": "7. 장문-한 칸 응용",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 6",
+        "chapter": "8. 장문-젖힘",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 7",
+        "chapter": " 5. 장문-단수치고 장문",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 14",
+        "chapter": "3. 수상전-장문",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 16",
+        "chapter": "2. 장문-맥",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 21",
+        "chapter": "3. 장문",
+        "problems": 26
+      }
+    ],
+    "알파바둑": [
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 2",
+        "chapter": "6. 장문",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 3",
+        "chapter": "5. 장문",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 4",
+        "chapter": "5. 장문",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 5",
+        "chapter": "5. 장문",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 6",
+        "chapter": "4. 장문(한 칸 뛰기)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 7",
+        "chapter": "5. 장문",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 7",
+        "chapter": "14. 단수치고 장문",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 8",
+        "chapter": "5. 장문",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 19",
+        "chapter": "11. 날일자 장문과 봉쇄",
+        "problems": 23
+      }
+    ]
+  },
+  "환격": {
+    "씽크탱크": [
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 2",
+        "chapter": "6. 환격",
+        "problems": 24
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 3",
+        "chapter": "8. 1선의 환격",
+        "problems": 20
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 5",
+        "chapter": "2. 환격",
+        "problems": 20
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 7",
+        "chapter": "3. 환격",
+        "problems": 20
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 12",
+        "chapter": "4. 환격을 이용해 잡기",
+        "problems": 28
+      }
+    ],
+    "파워씽크": [
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 9",
+        "chapter": "6. 환격과 연단수-1",
+        "problems": 24
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 9",
+        "chapter": "6. 환격과 연단수-2",
+        "problems": 12
+      }
+    ],
+    "논리바둑": [
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 3",
+        "chapter": "6. 환격-1선에서 환격",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 3",
+        "chapter": "7. 환격-중앙에서 환격",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 8",
+        "chapter": "6. 환격-끼워서 환격",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 8",
+        "chapter": "  11. 잡는 수 환격",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 12",
+        "chapter": "6. 환격-선수",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 12",
+        "chapter": "7. 환격-단수치고 환격",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 15",
+        "chapter": "13. 잡는 수-양환격",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 16",
+        "chapter": "9. 환격-두 번 먹여쳐서 환격",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 17",
+        "chapter": "2. 수상전-환격",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 18",
+        "chapter": "5. 끊음-환격",
+        "problems": 26
+      }
+    ],
+    "알파바둑": [
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 2",
+        "chapter": "7. 환격",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 3",
+        "chapter": "6. 환격(먹여치기)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 4",
+        "chapter": "6. 환격",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 5",
+        "chapter": "6. 환격",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 7",
+        "chapter": "6. 환격",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 8",
+        "chapter": "6. 환격",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 9",
+        "chapter": "5. 양 환격",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 10",
+        "chapter": "15. 끝내기(환격 끝내기)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 14",
+        "chapter": "10. 사활(환격)",
+        "problems": 24
+      }
+    ]
+  },
+  "수상전": {
+    "씽크탱크": [
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 2",
+        "chapter": "7. 수상전",
+        "problems": 20
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 3",
+        "chapter": "9. 수상전-바깥부터 수 줄이기",
+        "problems": 24
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 3",
+        "chapter": "10. 수상전-단수쳐서 수 줄이기",
+        "problems": 20
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 5",
+        "chapter": "4. 뒤부터 잇고 수 줄이기",
+        "problems": 24
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 6",
+        "chapter": "5. 수상전-1선 내림",
+        "problems": 24
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 7",
+        "chapter": "5. 중요한 돌부터 수 줄이기",
+        "problems": 24
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 8",
+        "chapter": "5. 수상전-자충 이용",
+        "problems": 16
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 9",
+        "chapter": "5. 수상전-1선 입구자(마늘모)",
+        "problems": 16
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 10",
+        "chapter": "5. 수상전-수를 줄이는 방향",
+        "problems": 28
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 11",
+        "chapter": "3. 수상전-치중",
+        "problems": 28
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 11",
+        "chapter": "4. 수상전-유가무가",
+        "problems": 24
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 13",
+        "chapter": "4. 수상전-수 줄임",
+        "problems": 36
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 14",
+        "chapter": "2. 수상전-키움",
+        "problems": 12
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 14",
+        "chapter": "3. 수상전-치중",
+        "problems": 28
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 15",
+        "chapter": "1. 수상전-연결의 맥",
+        "problems": 24
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 15",
+        "chapter": "2. 수상전-1선의 수",
+        "problems": 16
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 15",
+        "chapter": "4. 수상전-유가무가",
+        "problems": 28
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 16",
+        "chapter": "1. 수상전-수 계산1",
+        "problems": 12
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 16",
+        "chapter": "2. 수상전-수 계산2",
+        "problems": 12
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 16",
+        "chapter": "3. 수상전과 손빼기",
+        "problems": 16
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 17",
+        "chapter": "1. 수상전-수 계산",
+        "problems": 12
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 17",
+        "chapter": "2. 궁도(집)수상전-궁도 수 계산법",
+        "problems": 28
+      }
+    ],
+    "파워씽크": [
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 2",
+        "chapter": "3. 수상전-1",
+        "problems": 16
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 2",
+        "chapter": "3. 수상전-2",
+        "problems": 20
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 3",
+        "chapter": "3. 수상전",
+        "problems": 28
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 6",
+        "chapter": "3. 수상전-1",
+        "problems": 24
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 6",
+        "chapter": "3. 수상전-2",
+        "problems": 24
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 6",
+        "chapter": "3. 수상전-3",
+        "problems": 12
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 7",
+        "chapter": "3. 수상전-1",
+        "problems": 24
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 7",
+        "chapter": "3. 수상전-2",
+        "problems": 20
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 8",
+        "chapter": "3. 수상전-1",
+        "problems": 18
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 8",
+        "chapter": "3. 수상전-2",
+        "problems": 18
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 10",
+        "chapter": "3. 수상전-1",
+        "problems": 16
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 10",
+        "chapter": "3. 수상전-2",
+        "problems": 20
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 10",
+        "chapter": "4. 유가무가-1",
+        "problems": 12
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 10",
+        "chapter": "4. 유가무가-2",
+        "problems": 19
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 11",
+        "chapter": "4. 수상전 - 요석(중요한 돌)",
+        "problems": 20
+      }
+    ],
+    "논리바둑": [
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 1",
+        "chapter": "16. 수상전-활로의 개수 세기",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 2",
+        "chapter": "8. 수상전-같은 활로 줄이기",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 2",
+        "chapter": "9. 수상전-활로를 줄이는 방향",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 2",
+        "chapter": "10. 수상전 종합문제",
+        "problems": 24
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 3",
+        "chapter": "8. 수상전-2궁, 3궁 수 줄이기",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 3",
+        "chapter": "9. 수상전-안쪽에서 수 줄이기",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 3",
+        "chapter": "10. 수상전 종합문제",
+        "problems": 24
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 4",
+        "chapter": "6. 수상전-중요한 돌부터 수 줄이기",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 5",
+        "chapter": "3. 수상전-연결",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 5",
+        "chapter": "4. 수상전-끊음",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 5",
+        "chapter": "5. 수상전 종합문제",
+        "problems": 24
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 6",
+        "chapter": "4. 수상전-뒤에서 잇기",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 6",
+        "chapter": "5. 수상전-1선 내림",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 6",
+        "chapter": "6. 수상전 종합문제",
+        "problems": 24
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 7",
+        "chapter": "7. 수상전-1선 마늘모",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 7",
+        "chapter": "8. 수상전-붙임",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 7",
+        "chapter": "9. 수상전 종합문제",
+        "problems": 24
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 8",
+        "chapter": "8. 수상전-단수쳐서 수 줄이기",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 9",
+        "chapter": "7. 수상전-궁도 수 계산",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 9",
+        "chapter": "8. 수상전-궁도 수상전",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 10",
+        "chapter": "7. 수상전-수 늘리기",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 10",
+        "chapter": "8. 수상전-자충",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 11",
+        "chapter": "3. 수상전-유가무가(뒤에서 막기)",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 11",
+        "chapter": "4. 수상전-유가무가(집 만들기)",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 11",
+        "chapter": "5. 수상전-치중",
+        "problems": 27
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 11",
+        "chapter": "6. 수상전-키움",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 11",
+        "chapter": "7. 수상전 종합문제",
+        "problems": 24
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 11",
+        "chapter": "12. 잡는 수-유가무가",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 12",
+        "chapter": "1. 수상전-유가무가(단수치기)",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 12",
+        "chapter": "2. 수상전-유가무가(찝기)",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 12",
+        "chapter": "4. 수상전-유가무가(키움)",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 12",
+        "chapter": "5. 수상전 종합문제",
+        "problems": 24
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 13",
+        "chapter": "6. 수상전-젖힘",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 13",
+        "chapter": "8. 수상전 종합문제",
+        "problems": 24
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 14",
+        "chapter": "1. 수상전-끼움",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 14",
+        "chapter": "2. 수상전-수상전과 빅",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 14",
+        "chapter": "4. 수상전 종합문제",
+        "problems": 24
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 15",
+        "chapter": "3. 수상전-이음",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 15",
+        "chapter": "5. 수상전-돌려치기",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 15",
+        "chapter": "6. 수상전 종합문제",
+        "problems": 24
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 16",
+        "chapter": "4. 수상전-살아감",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 16",
+        "chapter": "5. 수상전-1선의 수",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 16",
+        "chapter": "6. 수상전 -귀삼수",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 16",
+        "chapter": "7. 수상전-응수와 손뺌",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 16",
+        "chapter": "8. 수상전 종합문제",
+        "problems": 24
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 17",
+        "chapter": "1. 수상전-단수치고 잡기",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 17",
+        "chapter": "3. 수상전-찝음",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 17",
+        "chapter": "4. 수상전 종합문제",
+        "problems": 24
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 18",
+        "chapter": "1. 수상전-귀의 특수성1",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 18",
+        "chapter": "2. 수상전-귀의 특수성2",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 18",
+        "chapter": "4. 수상전 종합문제",
+        "problems": 24
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 19",
+        "chapter": "2. 수상전-궁도수상전(5, 6궁)",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 19",
+        "chapter": "3. 수상전-응수와 손뺌",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 19",
+        "chapter": "4. 수상전 종합문제",
+        "problems": 24
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 21",
+        "chapter": "4. 수상전-수를 줄이는 방향",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 21",
+        "chapter": "6. 수상전 종합문제",
+        "problems": 24
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 22",
+        "chapter": "4. 수상전-수늘림",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 22",
+        "chapter": "5. 수상전-1선 내림",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 22",
+        "chapter": "6. 수상전 종합문제",
+        "problems": 24
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 23",
+        "chapter": "4. 수상전-키움",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 23",
+        "chapter": "5. 수상전-조이기",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 23",
+        "chapter": "6. 수상전 종합문제",
+        "problems": 24
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 24",
+        "chapter": "1. 수상전-수상전의 급소",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 24",
+        "chapter": "3. 수상전 종합문제",
+        "problems": 24
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 24",
+        "chapter": "9. 수상전-복습문제1",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 24",
+        "chapter": "10. 수상전-복습문제2",
+        "problems": 26
+      }
+    ],
+    "알파바둑": [
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 2",
+        "chapter": "14. 수상전(활로 수계산)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 2",
+        "chapter": "15. 수상전(자충 조심)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 4",
+        "chapter": "9. 수상전",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 5",
+        "chapter": "9. 수상전(나의 수 늘리면서 상대방 수 줄이기)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 5",
+        "chapter": "10. 수상전(중요한 돌 단수치기)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 6",
+        "chapter": "9. 수상전(뻗기)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 7",
+        "chapter": "9. 수상전(자충 조심)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 8",
+        "chapter": "8. 수상전(수 계산)",
+        "problems": 23
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 8",
+        "chapter": "9. 수상전(1선 젖히기)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 9",
+        "chapter": "8. 수상전(뻗기)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 10",
+        "chapter": "5. 수상전(수 늘리기)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 10",
+        "chapter": "10. 수상전(수 계산)",
+        "problems": 18
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 11",
+        "chapter": "7. 수상전",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알바바둑 12",
+        "chapter": "6. 수상전(먹여치는 곳이 급소)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알바바둑 13",
+        "chapter": "07. 수상전(1선 젖히기)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 14",
+        "chapter": "08. 수상전(끼움)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 14",
+        "chapter": "09. 수상전(수 계산)",
+        "problems": 22
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 15",
+        "chapter": "08. 수상전(1선 젖히기)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 15",
+        "chapter": "09. 수상전(중요한 돌 공격하기)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 16",
+        "chapter": "08. 수상전(유가무가)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 16",
+        "chapter": "09. 수상전(수 늘리기)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 17",
+        "chapter": "08. 수상전(1선 입구자)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 17",
+        "chapter": "09. 수상전(궁도)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 18",
+        "chapter": "08. 수상전(수계산)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 19",
+        "chapter": "08. 수상전(상대방 수 줄이기)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 20",
+        "chapter": "06. 귀삼수",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 20",
+        "chapter": "09. 수상전(수계산)",
+        "problems": 20
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 22",
+        "chapter": "08. 수상전(1선 맥)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 22",
+        "chapter": "09. 수상전(옥집 만들어 수 줄이기)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 22",
+        "chapter": "10. 수상전(수 늘리기)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 23",
+        "chapter": "09. 수상전(5집 모양의 수 계산)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 23",
+        "chapter": "10. 수상전",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 24",
+        "chapter": "08. 수상전(자충 유도)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 24",
+        "chapter": "09. 수상전(대궁소궁)",
+        "problems": 24
+      }
+    ]
+  },
+  "포석과 정석": {
+    "씽크탱크": [
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 2",
+        "chapter": "10. 효과적으로 집 짓는 곳",
+        "problems": 5
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 2",
+        "chapter": "11. 몇 선에 두어야 할까?",
+        "problems": 11
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 2",
+        "chapter": "12. 줄바둑과 띄어두기",
+        "problems": 6
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 8",
+        "chapter": "11. 포석-굳힘, 걸침",
+        "problems": 22
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 8",
+        "chapter": "12. 화점 정석",
+        "problems": 8
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 9",
+        "chapter": "3. 포석-잘된 굳힘과 잘못된 굳힘",
+        "problems": 16
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 9",
+        "chapter": "4. 포석-잘된 걸침과 잘못된 걸침",
+        "problems": 12
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 9",
+        "chapter": "11. 포석-일립이전, 이립삼전",
+        "problems": 10
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 9",
+        "chapter": "12. 화점 정석",
+        "problems": 16
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 10",
+        "chapter": "12. 포석-변으로 넓게 벌리기",
+        "problems": 10
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 11",
+        "chapter": " 10. 포석 1",
+        "problems": 14
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 11",
+        "chapter": "11. 포석 2",
+        "problems": 10
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 11",
+        "chapter": "12. 화점 정석",
+        "problems": 12
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 12",
+        "chapter": "12. 포석",
+        "problems": 14
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 13",
+        "chapter": "12. 화점정석",
+        "problems": 8
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 14",
+        "chapter": "12. 화점정석",
+        "problems": 12
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 15",
+        "chapter": "12. 소목정석",
+        "problems": 12
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 16",
+        "chapter": "12. 소목정석",
+        "problems": 12
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 17",
+        "chapter": "11. 삼삼정석",
+        "problems": 12
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 17",
+        "chapter": "12. 고목정석",
+        "problems": 12
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 18",
+        "chapter": "11. 포석-날개와 양날개",
+        "problems": 7
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 18",
+        "chapter": "12. 고목정석",
+        "problems": 12
+      }
+    ],
+    "파워씽크": [
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 1",
+        "chapter": "7. 귀, 변, 중앙과 바둑 두는 순서",
+        "problems": 4
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 2",
+        "chapter": "6. 포석",
+        "problems": 5
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 4",
+        "chapter": "2. 벌림(일립이전, 이립삼전)",
+        "problems": 26
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 5",
+        "chapter": "2. 갈라치기",
+        "problems": 14
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 5",
+        "chapter": "3. 포석-굳힘과 걸침",
+        "problems": 12
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 5",
+        "chapter": "8. 귀의 이름, 화점정석-1",
+        "problems": 12
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 5",
+        "chapter": "8. 귀의 이름, 화점정석-2",
+        "problems": 20
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 6",
+        "chapter": "2. 굳힘과 걸침",
+        "problems": 20
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 6",
+        "chapter": "8. 화점정석",
+        "problems": 32
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 7",
+        "chapter": "2. 벌림과 다가서기",
+        "problems": 26
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 7",
+        "chapter": "8. 협공과 화점정석-1",
+        "problems": 8
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 7",
+        "chapter": "8. 협공과 화점정석-2",
+        "problems": 20
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 8",
+        "chapter": "8. 소목정석",
+        "problems": 20
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 9",
+        "chapter": "2. 포석",
+        "problems": 20
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 9",
+        "chapter": "8. 화점 협공정석",
+        "problems": 12
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 10",
+        "chapter": "2. 포석-1",
+        "problems": 14
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 10",
+        "chapter": "2. 포석-2",
+        "problems": 21
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 10",
+        "chapter": "8. 화점 협공정석-1",
+        "problems": 12
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 10",
+        "chapter": "8. 화점 협공정석-2",
+        "problems": 16
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 11",
+        "chapter": "1. 포석1 - 큰 곳 벌림",
+        "problems": 19
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 11",
+        "chapter": "2. 포석2 - 큰 곳 벌림",
+        "problems": 20
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 11",
+        "chapter": "8. 외목정석",
+        "problems": 16
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 12",
+        "chapter": "1. 포석 - 급한 곳",
+        "problems": 13
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 12",
+        "chapter": "8. 고목정석, 3*3정석",
+        "problems": 16
+      }
+    ],
+    "논리바둑": [
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 2",
+        "chapter": "16. 포석-줄바둑과 띄어두기",
+        "problems": 5
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 3",
+        "chapter": "16. 포석-3선과 4선에 먼저 두기",
+        "problems": 5
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 4",
+        "chapter": "16. 포석-1립2전, 2립3전",
+        "problems": 5
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 5",
+        "chapter": "16. 포석-소목, 고목, 외목, 삼.삼",
+        "problems": 5
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 6",
+        "chapter": "15. 포석-굳힘과 걸침",
+        "problems": 5
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 6",
+        "chapter": "16. 정석-화점정석",
+        "problems": 6
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 7",
+        "chapter": "15. 포석-붙이면 젖히고 젖히면 뻗어라",
+        "problems": 15
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 7",
+        "chapter": "16. 정석-화점정석",
+        "problems": 8
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 8",
+        "chapter": "15. 포석-변으로 넓게 벌리기",
+        "problems": 5
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 8",
+        "chapter": "16. 정석-화점정석",
+        "problems": 6
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 9",
+        "chapter": "15. 포석-갈라치기",
+        "problems": 5
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 9",
+        "chapter": "16. 정석-화점정석",
+        "problems": 6
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 10",
+        "chapter": "15. 포석-다가서기",
+        "problems": 5
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 10",
+        "chapter": "16. 정석-화점정석",
+        "problems": 5
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 11",
+        "chapter": "15. 포석-걸침의 방향",
+        "problems": 5
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 11",
+        "chapter": "16. 정석-화점정석",
+        "problems": 5
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 12",
+        "chapter": "15. 포석-벌림의 방향",
+        "problems": 5
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 12",
+        "chapter": "16. 정석-화점정석",
+        "problems": 6
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 13",
+        "chapter": "15. 포석-큰 곳과 급한 곳",
+        "problems": 5
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 13",
+        "chapter": "16. 정석-화점정석",
+        "problems": 6
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 14",
+        "chapter": "15. 포석-고저장단",
+        "problems": 5
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 14",
+        "chapter": "16. 정석-화점정석",
+        "problems": 8
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 15",
+        "chapter": "15. 포석-침투와 삭감",
+        "problems": 5
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 15",
+        "chapter": "16. 정석-화점정석",
+        "problems": 6
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 16",
+        "chapter": "15. 포석-실리와 세력",
+        "problems": 5
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 16",
+        "chapter": "16. 정석-화점정석",
+        "problems": 8
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 17",
+        "chapter": "15. 포석-어깨집기",
+        "problems": 5
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 17",
+        "chapter": "16. 정석-화점정석",
+        "problems": 8
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 18",
+        "chapter": "6. 격언-3선의 돌은 키워버려라",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 18",
+        "chapter": "15. 포석-마주 보는 중앙이 큰 곳",
+        "problems": 5
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 18",
+        "chapter": "16. 정석-화점정석",
+        "problems": 8
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 19",
+        "chapter": "15. 포석-대세점 찾기",
+        "problems": 5
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 19",
+        "chapter": "16. 정석-화점정석",
+        "problems": 8
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 20",
+        "chapter": "8. 격언-중앙으로 한 칸 뜀에 악수없다.",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 20",
+        "chapter": "15. 포석-응수타진",
+        "problems": 5
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 20",
+        "chapter": "16. 정석-화점정석",
+        "problems": 8
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 21",
+        "chapter": "15. 포석-노림이 있는 벌림",
+        "problems": 5
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 21",
+        "chapter": "16. 정석-화점정석",
+        "problems": 8
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 22",
+        "chapter": "15. 포석-상대가 있을 때의 벌림",
+        "problems": 5
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 22",
+        "chapter": "16. 정석-화점정석",
+        "problems": 8
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 23",
+        "chapter": "15. 포석-공격하는 방법",
+        "problems": 5
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 23",
+        "chapter": "16. 정석-화점정석",
+        "problems": 8
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 24",
+        "chapter": "16. 정석-화점정석",
+        "problems": 6
+      }
+    ],
+    "알파바둑": [
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 2",
+        "chapter": "18. 귀와 변",
+        "problems": 10
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 3",
+        "chapter": "1. 귀, 변 두기",
+        "problems": 16
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 3",
+        "chapter": "2. 포석선(3선과 4선)",
+        "problems": 12
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 5",
+        "chapter": "1. 귀 지키기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 5",
+        "chapter": "2. 싸움 걸기(걸침)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 6",
+        "chapter": "1. 걸침과 응수",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 6",
+        "chapter": "2. 좋은 포석, 나쁜 포석",
+        "problems": 18
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 7",
+        "chapter": "1. 일립이전, 이립삼전",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 7",
+        "chapter": "2. 화점 정석",
+        "problems": 18
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 8",
+        "chapter": "2. 소목 정석",
+        "problems": 15
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 8",
+        "chapter": "18. 집(날일자 들어가기와 한 칸 막기)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 9",
+        "chapter": "1. 일립이전, 이립삼전",
+        "problems": 20
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 9",
+        "chapter": "2. 화점 정석(삼삼 침입)",
+        "problems": 20
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 9",
+        "chapter": "13.  들어가기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 11",
+        "chapter": "1. 적당한 간격 만들기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 11",
+        "chapter": "2. 삼삼 정석",
+        "problems": 20
+      },
+      {
+        "series": "알파바둑",
+        "book": "알바바둑 12",
+        "chapter": "1. 포석(변 두기, 굳힘, 걸침)",
+        "problems": 16
+      },
+      {
+        "series": "알파바둑",
+        "book": "알바바둑 12",
+        "chapter": "2. 일립이전, 이립삼전",
+        "problems": 16
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 14",
+        "chapter": "02. 포석 종합",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 15",
+        "chapter": "01. 협공",
+        "problems": 20
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 15",
+        "chapter": "02. 갈라치기",
+        "problems": 18
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 15",
+        "chapter": "03. 3선과 4선",
+        "problems": 18
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 16",
+        "chapter": "01. 귀 지키기",
+        "problems": 20
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 16",
+        "chapter": "03. 3선 돌 키워 버리기",
+        "problems": 22
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 17",
+        "chapter": "01. 양 날개 포석",
+        "problems": 16
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 17",
+        "chapter": "02.  큰 곳과 급한 곳",
+        "problems": 14
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 18",
+        "chapter": "01. 근거 확보하기",
+        "problems": 20
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 18",
+        "chapter": "03. 3선을 계속 밀지마라",
+        "problems": 21
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 19",
+        "chapter": "01. 협공",
+        "problems": 20
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 20",
+        "chapter": "01. 포석",
+        "problems": 14
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 20",
+        "chapter": "02. 3선과 4선",
+        "problems": 18
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 21",
+        "chapter": "01. 포석의 요처",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 21",
+        "chapter": "02. 적절한 간격 만들기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 22",
+        "chapter": "01. 포석의 요처",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 22",
+        "chapter": "02. 침투와 삭감",
+        "problems": 12
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 23",
+        "chapter": "01. 넓힐 때와 좁힐 때",
+        "problems": 18
+      }
+    ]
+  },
+  "끝내기": {
+    "씽크탱크": [
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 4",
+        "chapter": "10. 공배",
+        "problems": 20
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 4",
+        "chapter": "11. 끝내기-집 완성하기",
+        "problems": 24
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 4",
+        "chapter": "12. 집 계산",
+        "problems": 16
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 6",
+        "chapter": "12. 끝내기",
+        "problems": 20
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 8",
+        "chapter": "9. 끝내기",
+        "problems": 28
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 9",
+        "chapter": "8. 끝내기-1선 막은 후 잇기",
+        "problems": 24
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 10",
+        "chapter": "10. 끝내기",
+        "problems": 20
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 13",
+        "chapter": "11. 끝내기-2선의 입구자(마늘모)",
+        "problems": 24
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 14",
+        "chapter": "8. 끝내기-2선으로 한 칸 뛰어 들어가기",
+        "problems": 28
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 14",
+        "chapter": "9. 끝내기-끊기",
+        "problems": 24
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 14",
+        "chapter": "10. 끝내기-눈목자 달리기",
+        "problems": 28
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 15",
+        "chapter": "8. 끝내기-단점을 이용한 끝내기",
+        "problems": 30
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 15",
+        "chapter": "9. 끝내기-1선으로 한 칸 뛰어 들어가기",
+        "problems": 13
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 15",
+        "chapter": "11.  끝내기-늦춰 받기",
+        "problems": 12
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 16",
+        "chapter": "6. 끝내기-1선으로 한 칸 뛰어 붙이기",
+        "problems": 28
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 16",
+        "chapter": "7. 끝내기-껴붙이기",
+        "problems": 24
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 17",
+        "chapter": " 6. 끝내기-역끝내기",
+        "problems": 20
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 17",
+        "chapter": "7. 끝내기-1선의 입구자(마늘모)",
+        "problems": 8
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 17",
+        "chapter": "9. 끝내기-양쪽의 단점 지키기",
+        "problems": 12
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 17",
+        "chapter": "10. 끝내기-사석활용",
+        "problems": 12
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 18",
+        "chapter": "6. 끝내기-젖히는 수의 크기 계산",
+        "problems": 20
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 18",
+        "chapter": "7. 끝내기-따내는 수의 크기 계산",
+        "problems": 16
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 18",
+        "chapter": " 8. 끝내기-잇는 수의 크기 계산",
+        "problems": 8
+      }
+    ],
+    "파워씽크": [
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 2",
+        "chapter": "7. 공배와 끝내기-1",
+        "problems": 8
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 2",
+        "chapter": "7. 공배와 끝내기-2",
+        "problems": 20
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 2",
+        "chapter": "8. 집계산(계가)-1",
+        "problems": 12
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 2",
+        "chapter": "8. 집계산(계가)-2",
+        "problems": 24
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 3",
+        "chapter": "8. 끝내기",
+        "problems": 28
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 4",
+        "chapter": "8. 끝내기",
+        "problems": 16
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 5",
+        "chapter": "7. 끝내기",
+        "problems": 20
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 6",
+        "chapter": "7. 끝내기",
+        "problems": 20
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 7",
+        "chapter": "7. 끝내기",
+        "problems": 24
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 9",
+        "chapter": "7. 끝내기",
+        "problems": 20
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 10",
+        "chapter": "7. 끝내기",
+        "problems": 20
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 11",
+        "chapter": "7. 끝내기",
+        "problems": 28
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 12",
+        "chapter": "7. 끝내기",
+        "problems": 28
+      }
+    ],
+    "논리바둑": [
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 4",
+        "chapter": "15. 끝내기-집 부수기",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 5",
+        "chapter": "15. 끝내기-공배",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 6",
+        "chapter": "14. 끝내기-수의 크기",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 7",
+        "chapter": "14. 끝내기-1선 젖혀 잇기",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 8",
+        "chapter": "14. 끝내기-2선 젖혀잇기",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 9",
+        "chapter": "14. 끝내기-2선 마늘모",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 11",
+        "chapter": " 14. 끝내기-한 칸 뜀",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 12",
+        "chapter": "14. 끝내기-선수 끝내기",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 13",
+        "chapter": "14. 끝내기-역끝내기",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 14",
+        "chapter": "14. 끝내기-늦춰 받기",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 15",
+        "chapter": "14. 끝내기-눈목자달리기",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 16",
+        "chapter": "14. 끝내기-양선수끝내기",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 18",
+        "chapter": "14. 끝내기-1선 입구자1",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 19",
+        "chapter": "14. 끝내기-1선 입구자2",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 20",
+        "chapter": "14. 끝내기-사석을 이용한 끝내기",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 21",
+        "chapter": "14. 끝내기-1선 한 칸 뛰기",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 22",
+        "chapter": "14. 끝내기-껴붙이기",
+        "problems": 26
+      }
+    ],
+    "알파바둑": [
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 2",
+        "chapter": "20. 집(막고 집 계산)",
+        "problems": 26
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 3",
+        "chapter": "20. 집과 공배",
+        "problems": 19
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 4",
+        "chapter": "20. 계가",
+        "problems": 10
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 5",
+        "chapter": "20. 계가",
+        "problems": 10
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 6",
+        "chapter": "19. 반집과 공배",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 6",
+        "chapter": "20. 크기(1점 따내면 2집)",
+        "problems": 18
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 7",
+        "chapter": "19. 크기",
+        "problems": 6
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 7",
+        "chapter": "20. 끝내기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 8",
+        "chapter": "20. 크기",
+        "problems": 12
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 9",
+        "chapter": "16. 선수 끝내기(1선 젖혀 잇기)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 10",
+        "chapter": "16. 크기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 11",
+        "chapter": "15. 끝내기(비마, 눈목자)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 11",
+        "chapter": "16. 끝내기(막기 조심)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알바바둑 12",
+        "chapter": "15. 끝내기(2선 끝내기)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알바바둑 12",
+        "chapter": "16. 크기",
+        "problems": 14
+      },
+      {
+        "series": "알파바둑",
+        "book": "알바바둑 13",
+        "chapter": "15. 끝내기(선수)",
+        "problems": 14
+      },
+      {
+        "series": "알파바둑",
+        "book": "알바바둑 13",
+        "chapter": "16. 크기",
+        "problems": 14
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 14",
+        "chapter": "15. 끝내기(1선)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 14",
+        "chapter": "16. 크기",
+        "problems": 4
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 15",
+        "chapter": "15. 끝내기(껴 붙이기)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 15",
+        "chapter": "16. 크기(역 끝내기)",
+        "problems": 14
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 16",
+        "chapter": "15. 끝내기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 16",
+        "chapter": "16. 크기",
+        "problems": 14
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 17",
+        "chapter": "15. 끝내기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 17",
+        "chapter": "16. 크기",
+        "problems": 14
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 18",
+        "chapter": "15. 끝내기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 18",
+        "chapter": "16. 크기",
+        "problems": 14
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 19",
+        "chapter": "15. 끝내기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 19",
+        "chapter": "16. 크기",
+        "problems": 14
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 20",
+        "chapter": "15. 끝내기(선수)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 20",
+        "chapter": "16. 크기",
+        "problems": 11
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 21",
+        "chapter": "15. 끝내기(껴 붙이기)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 21",
+        "chapter": "16. 크기",
+        "problems": 9
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 22",
+        "chapter": "15. 끝내기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 22",
+        "chapter": "16. 크기",
+        "problems": 10
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 23",
+        "chapter": "15. 끝내기(1선 끝내기)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 23",
+        "chapter": "16. 크기",
+        "problems": 10
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 24",
+        "chapter": "15. 끝내기(눈목자 끝내기 대응)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 24",
+        "chapter": "16. 크기(눈목자 끝내기의 크기)",
+        "problems": 10
+      }
+    ]
+  },
+  "먹여치기": {
+    "씽크탱크": [
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 5",
+        "chapter": "5. 호구에 먹여치기",
+        "problems": 24
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 5",
+        "chapter": "6. 1선에 먹여치기",
+        "problems": 20
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 7",
+        "chapter": "4. 먹여치기",
+        "problems": 20
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 8",
+        "chapter": "6. 먹여쳐서 수 줄이기",
+        "problems": 28
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 10",
+        "chapter": "8. 회돌이",
+        "problems": 24
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 12",
+        "chapter": "3. 회돌이를 이용해 수 줄이기",
+        "problems": 24
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 15",
+        "chapter": "5. 먹여쳐서 옥집 만들기-잡기",
+        "problems": 28
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 16",
+        "chapter": "5. 옥집의 맥-먹여쳐서 옥집, 찝어서 옥집",
+        "problems": 28
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 17",
+        "chapter": "8. 끝내기-되따내기",
+        "problems": 28
+      }
+    ],
+    "파워씽크": [
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 12",
+        "chapter": "3. 수상전 - 회돌이",
+        "problems": 20
+      }
+    ],
+    "논리바둑": [
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 6",
+        "chapter": "2. 촉촉수-중앙에서 먹여치기",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 6",
+        "chapter": "3. 촉촉수-1선에서 먹여치기",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 6",
+        "chapter": "9. 사는 수-먹여치기 조심",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 6",
+        "chapter": "11. 잡는 수-먹여쳐서 옥집",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 8",
+        "chapter": "7. 수상전-먹여치기",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 12",
+        "chapter": "3. 수상전-유가무가(먹여치기)",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 13",
+        "chapter": "3. 회돌이-촉촉수",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 13",
+        "chapter": "7. 수상전-회돌이",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 18",
+        "chapter": "3. 수상전-두 번 먹여치기",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 21",
+        "chapter": "5. 수상전-먹여치기",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 21",
+        "chapter": "11. 잡는 수-먹여쳐서 옥집",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 24",
+        "chapter": "14. 끝내기-되따내기",
+        "problems": 26
+      }
+    ],
+    "알파바둑": [
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 8",
+        "chapter": "11. 사활(먹여쳐서 잡기)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 8",
+        "chapter": "15. 회돌이",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 10",
+        "chapter": "12. 먹여치기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 11",
+        "chapter": "13. 나쁜 모양 만들기(회돌이)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알바바둑 13",
+        "chapter": "08. 수상전(먹여치기)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 15",
+        "chapter": "10. 사활(먹여치기)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 20",
+        "chapter": "14. 회돌이",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 21",
+        "chapter": "12. 사활(먹여치기)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 22",
+        "chapter": "11. 사활(먹여치기)",
+        "problems": 24
+      }
+    ]
+  },
+  "맥점과 행마": {
+    "씽크탱크": [
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 5",
+        "chapter": "7. 좋은 모양, 나쁜 모양",
+        "problems": 16
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 8",
+        "chapter": "10. 기본행마",
+        "problems": 16
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 9",
+        "chapter": "9. 맥-붙임",
+        "problems": 16
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 9",
+        "chapter": "10. 행마의 격언",
+        "problems": 16
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 10",
+        "chapter": "11. 행마의 격언",
+        "problems": 16
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 11",
+        "chapter": "9. 행마의 격언",
+        "problems": 12
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 12",
+        "chapter": "8. 끼우는 맥",
+        "problems": 20
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 12",
+        "chapter": "11. 행마의 격언-종합",
+        "problems": 28
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 13",
+        "chapter": "7. 붙임의 맥",
+        "problems": 24
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 13",
+        "chapter": "8. 젖힘의 맥",
+        "problems": 24
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 13",
+        "chapter": "9. 끼움의 맥",
+        "problems": 24
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 13",
+        "chapter": "10. 찝음의 맥",
+        "problems": 24
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 18",
+        "chapter": "9. 행마의 격언1",
+        "problems": 20
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 18",
+        "chapter": "10. 행마의 격언2 ",
+        "problems": 12
+      }
+    ],
+    "파워씽크": [
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 4",
+        "chapter": "3. 행마",
+        "problems": 32
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 4",
+        "chapter": "7. 막기와 달아나기",
+        "problems": 20
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 8",
+        "chapter": "2. 행마의 격언-1",
+        "problems": 24
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 8",
+        "chapter": "2. 행마의 격언-2",
+        "problems": 28
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 9",
+        "chapter": "3. 행마의 격언-1",
+        "problems": 16
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 9",
+        "chapter": "3. 행마의 격언-2",
+        "problems": 12
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 9",
+        "chapter": "3. 행마의 격언-3",
+        "problems": 16
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 11",
+        "chapter": "3. 행마의 격언",
+        "problems": 24
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 12",
+        "chapter": "2. 행마의 격언",
+        "problems": 25
+      }
+    ],
+    "논리바둑": [
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 4",
+        "chapter": "2. 활로-달아나기",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 15",
+        "chapter": "8. 맥-끼움",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 16",
+        "chapter": "1. 행마의 모양과 특징",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 16",
+        "chapter": "10. 맥-이단 젖힘",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 17",
+        "chapter": "5. 단수치고 탈출",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 17",
+        "chapter": "6. 두 점 머리는 두들겨라",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 17",
+        "chapter": "7. 무리수 응징하기1",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 17",
+        "chapter": "8. 무리수 응징하기2",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 18",
+        "chapter": "7. 봉쇄법1",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 18",
+        "chapter": "8. 봉쇄법2",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 20",
+        "chapter": "9. 행마-건너 붙임",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 21",
+        "chapter": "7. 맥-붙임",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 21",
+        "chapter": "8. 맥-젖힘",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 22",
+        "chapter": "8. 맥-끼움",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 23",
+        "chapter": "12. 한 칸 행마, 날일자 행마",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 24",
+        "chapter": "11. 봉쇄",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 24",
+        "chapter": "12. 행마-기본행마",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 24",
+        "chapter": "13. 행마-행마의 급소",
+        "problems": 26
+      }
+    ],
+    "알파바둑": [
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 1",
+        "chapter": "3. 도망가기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 1",
+        "chapter": "5. 잡으며 도망가기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 1",
+        "chapter": "7. 상대방 돌이 없는 방향으로 도망가기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 1",
+        "chapter": "15. 젖히기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 1",
+        "chapter": "16. 두 점 머리 막기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 2",
+        "chapter": "1. 붙이면 젖혀라",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 3",
+        "chapter": "8. 좋은 모양, 나쁜 모양",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 3",
+        "chapter": "14. 단수치며 탈출",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 3",
+        "chapter": "16. 젖히면 뻗어라",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 4",
+        "chapter": "1. 붙여가기와 뛰어가기",
+        "problems": 19
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 4",
+        "chapter": "8. 빈삼각의 급소",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 4",
+        "chapter": "15. 빈삼각 피하며 젖히기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 5",
+        "chapter": "14. 좋은 모양",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 6",
+        "chapter": "14. 앞서가기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 6",
+        "chapter": "15. 좋은 모양, 나쁜 모양",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 6",
+        "chapter": "16. 단수치고 탈출",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 7",
+        "chapter": "16. 한 칸 뛰기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 8",
+        "chapter": "3. 끊으면 뻗어라",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 8",
+        "chapter": "16. 빈삼각 피하기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 8",
+        "chapter": "17. 좋은 모양, 나쁜 모양",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 8",
+        "chapter": "19. 손 빼기",
+        "problems": 16
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 9",
+        "chapter": "3. 우리 편 방향으로 뻗기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 9",
+        "chapter": "14.  배 붙이기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 9",
+        "chapter": "15. 2선 한 칸 뛰기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 10",
+        "chapter": "1. 날일자 행마",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 10",
+        "chapter": "2. 젖히기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 10",
+        "chapter": "3. 1선으로 도망가기",
+        "problems": 23
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 10",
+        "chapter": "11. 봉쇄",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 10",
+        "chapter": "13. 나쁜 모양 만들기(들여다 보기)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 10",
+        "chapter": "14. 한 칸 뛰어 탈출",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 11",
+        "chapter": "3. 접근전",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알바바둑 12",
+        "chapter": "3. 2선 달리기",
+        "problems": 20
+      },
+      {
+        "series": "알파바둑",
+        "book": "알바바둑 13",
+        "chapter": "02. 접근전",
+        "problems": 16
+      },
+      {
+        "series": "알파바둑",
+        "book": "알바바둑 13",
+        "chapter": "05. 나쁜 모양 만들기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알바바둑 13",
+        "chapter": "13. 뭉친 모양 만들기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알바바둑 13",
+        "chapter": "14. 버림돌",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 14",
+        "chapter": "01. 날일자 응수하기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 14",
+        "chapter": "03. 이단젖힘",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 14",
+        "chapter": "04. 봉쇄하기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 15",
+        "chapter": "04. 봉쇄하기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 15",
+        "chapter": "14. 모양의 급소 지키기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 16",
+        "chapter": "02. 서로 한 칸 되는 급소",
+        "problems": 22
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 16",
+        "chapter": "05. 이득 보기",
+        "problems": 23
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 16",
+        "chapter": "06. 모양의 급소 공격하기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 16",
+        "chapter": "07. 맞보기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 16",
+        "chapter": "14. 뻗기와 젖힘",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 17",
+        "chapter": "03. 기본 행마",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 17",
+        "chapter": "04. 접근전",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 17",
+        "chapter": "14. 앞서 가기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 18",
+        "chapter": "02. 모자 씌우기와 날일자 응수",
+        "problems": 21
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 18",
+        "chapter": "04. 날일자 행마",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 19",
+        "chapter": "02. 두 점 머리 두들기기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 19",
+        "chapter": "03. 접근전",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 19",
+        "chapter": "04. 들여다보기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 19",
+        "chapter": "05. 기역자 행마 이후",
+        "problems": 16
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 19",
+        "chapter": "07. 급소 젖히기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 20",
+        "chapter": "03. 급소 대응",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 20",
+        "chapter": "05. 탈출",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 21",
+        "chapter": "03. 행마의 요령",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 21",
+        "chapter": "04. 버림 돌 이용하기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 21",
+        "chapter": "05. 이득보기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 21",
+        "chapter": "13. 손 뺀 곳 두기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 22",
+        "chapter": "03. 기대기 행마",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 22",
+        "chapter": "05. 2선 날일자 대응",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 22",
+        "chapter": "14. 밀어서 맞보기",
+        "problems": 14
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 23",
+        "chapter": "02. 모양의 급소",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 23",
+        "chapter": "08. 2선 붙여 안정",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 24",
+        "chapter": "04. 늦추어 막기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 24",
+        "chapter": "13. 봉쇄하기",
+        "problems": 24
+      }
+    ]
+  },
+  "패": {
+    "씽크탱크": [
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 5",
+        "chapter": "12. 패",
+        "problems": 24
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 11",
+        "chapter": "6. 패 사활",
+        "problems": 20
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 14",
+        "chapter": "1. 패의 선택",
+        "problems": 12
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 14",
+        "chapter": "11. 2선-패망선",
+        "problems": 2
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 15",
+        "chapter": "7. 사활-패",
+        "problems": 24
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 18",
+        "chapter": "4. 알아두면 좋은 패사활",
+        "problems": 20
+      }
+    ],
+    "파워씽크": [
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 1",
+        "chapter": "8. 집과 바둑의 승패",
+        "problems": 16
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 2",
+        "chapter": "5. 패",
+        "problems": 24
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 8",
+        "chapter": "4. 패 수상전-1",
+        "problems": 20
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 8",
+        "chapter": "4. 패 수상전-2",
+        "problems": 16
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 8",
+        "chapter": "7. 패사활-1",
+        "problems": 20
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 8",
+        "chapter": "7. 패사활-2",
+        "problems": 16
+      }
+    ],
+    "논리바둑": [
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 7",
+        "chapter": "10. 패",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 7",
+        "chapter": "11. 사는 수-패",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 7",
+        "chapter": "12. 잡는 수-패",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 8",
+        "chapter": "2. 연결-패 연결",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 8",
+        "chapter": "4. 끊음-패 끊음",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 11",
+        "chapter": "8. 패-팻감",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 12",
+        "chapter": "9. 사는 수-패 조심",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 12",
+        "chapter": "10. 사는 수-패",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 12",
+        "chapter": "11. 잡는 수-패",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 13",
+        "chapter": "5. 수상전-패",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 15",
+        "chapter": "4. 수상전-패 조심",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 19",
+        "chapter": "11. 잡는 수-젖혀서 패",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 20",
+        "chapter": "10. 팻감 계산하기",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 24",
+        "chapter": "2. 수상전-패 수상전",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 24",
+        "chapter": "6. 사는 수-패",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 24",
+        "chapter": "7. 잡는 수-패",
+        "problems": 26
+      }
+    ],
+    "알파바둑": [
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 1",
+        "chapter": "8. 패",
+        "problems": 18
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 8",
+        "chapter": "12. 2선은 패망선",
+        "problems": 19
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 11",
+        "chapter": "10. 사활(패)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알바바둑 12",
+        "chapter": "7. 수상전(패)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알바바둑 13",
+        "chapter": "06. 패 이기기",
+        "problems": 10
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 14",
+        "chapter": "07. 패 버티기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 17",
+        "chapter": "13. 사활(패)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 18",
+        "chapter": "09. 수상전(선패, 후패)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 18",
+        "chapter": "12. 사활(패)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 19",
+        "chapter": "14. 패감",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 20",
+        "chapter": "13. 패감",
+        "problems": 18
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 21",
+        "chapter": "09. 수상전(패)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 21",
+        "chapter": "14. 패감",
+        "problems": 11
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 22",
+        "chapter": "12. 사활(패)",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 23",
+        "chapter": "13. 패 이용하기",
+        "problems": 24
+      },
+      {
+        "series": "알파바둑",
+        "book": "알파바둑 24",
+        "chapter": "14. 패(늘어진 패)",
+        "problems": 20
+      }
+    ]
+  },
+  "수읽기와 실전": {
+    "씽크탱크": [
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 11",
+        "chapter": "7. 잘못 둔 수 혼내주기",
+        "problems": 24
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 17",
+        "chapter": "3. 수읽기1",
+        "problems": 20
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 17",
+        "chapter": "4. 수읽기2",
+        "problems": 32
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 17",
+        "chapter": "5. 수읽기3",
+        "problems": 24
+      },
+      {
+        "series": "씽크탱크",
+        "book": "씽크탱크 18",
+        "chapter": "1. 5수 읽기",
+        "problems": 8
+      }
+    ],
+    "파워씽크": [
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 7",
+        "chapter": "4. 3수 읽기",
+        "problems": 13
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 8",
+        "chapter": "5. 3수 읽기",
+        "problems": 10
+      },
+      {
+        "series": "파워씽크",
+        "book": "파워씽크 10",
+        "chapter": "6. 3수읽기",
+        "problems": 13
+      }
+    ],
+    "논리바둑": [
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 16",
+        "chapter": "3. 수순의 묘",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 19",
+        "chapter": "7. 수순의 묘",
+        "problems": 26
+      },
+      {
+        "series": "논리바둑",
+        "book": "논리바둑 19",
+        "chapter": "8. 응수법",
+        "problems": 26
+      }
+    ],
+    "알파바둑": []
+  }
+}

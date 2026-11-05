@@ -215,7 +215,7 @@
   /* ---------- 강사모드 진입 (회원 계정 연동 전 다이렉트 진입) ---------- */
   /* ---------- 카탈로그 및 교재 로드 ---------- */
   function initCatalog() {
-    fetch('data/catalog.json?v=v20261105-sahwal1book')
+    fetch('data/catalog.json?v=v20261105-susang1book')
       .then(function (res) { return res.json(); })
       .then(function (cat) {
         state.catalog = cat;
@@ -299,7 +299,7 @@
         console.warn('Custom book parse error:', e);
       }
     }
-    fetch('data/books/book_' + code + '.json?v=v20261105-sahwal1book')
+    fetch('data/books/book_' + code + '.json?v=v20261105-susang1book')
       .then(function (res) { return res.json(); })
       .then(function (bookData) {
         bookData.bookCode = code;
