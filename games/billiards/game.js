@@ -167,7 +167,7 @@
     if (el.title) el.title.textContent = t;
     if (el.desc) {
       el.desc.innerHTML = mode === 'three'
-        ? '<b>3쿠션</b> · 흰 공으로 빨강·노랑을 모두 맞히고, <b>두 번째 공에 닿기 전 쿠션 3회 이상</b>이면 1점.'
+        ? '<b>3쿠션</b> · 흰 공으로 빨강·노랑을 모두 맞히고, <b>두 번째 공에 닿기 전 쿠션 3회 이상</b>이면 1점. 기울기를 올리면 사이드 회전으로 <b>곡선(마세)</b>이 걸립니다.'
         : mode === 'four'
           ? '<b>4구</b> · 흰 공으로 <b>빨강과 검정</b>을 모두 맞히면 1점. 노랑은 상대 공입니다.'
           : '<b>포켓</b> · 색공을 넣으면 1점(계속 칩니다). <b>흰 공을 넣으면 –1점</b>이고 차례가 넘어갑니다.';
@@ -1031,9 +1031,8 @@
         cue.vx = MAX_POWER * 0.7 * Math.cos(e);
         cue.vy = 0;
         var y0 = cue.y;
-        var dbg = [];
-        for (var i = 0; i < 45; i++) { step(); if (i < 3) dbg.push(+cue.masse.toFixed(3) + '/' + +cue.vy.toFixed(2)); }
-        return +(cue.y - y0).toFixed(2) + ' [' + dbg.join(' ') + ']';
+        for (var i = 0; i < 45; i++) step();
+        return +(cue.y - y0).toFixed(1);
       }
       document.body.setAttribute('data-masse', JSON.stringify({
         flat: run(0, 1), e30: run(30, 1), e45: run(45, 1), e60: run(60, 1), noSpin45: run(45, 0)
