@@ -1611,7 +1611,7 @@
         "code": "tech_connection",
         "title": "🛡️ 행마와 맥 완전정복 마스터",
         "chapterCount": 24,
-        "totalProblems": 5898,
+        "totalProblems": 5915,
         "chapters": [
           {
             "code": "tech_connection_ch01",
@@ -1640,8 +1640,8 @@
           },
           {
             "code": "tech_connection_ch06",
-            "title": "6단원. 효율적인 연결과 실전 연결 (256제)",
-            "problemCount": 256
+            "title": "6단원. 효율적인 연결과 실전 연결 (268제)",
+            "problemCount": 268
           },
           {
             "code": "tech_connection_ch07",
@@ -1675,8 +1675,8 @@
           },
           {
             "code": "tech_connection_ch13",
-            "title": "13단원. 붙이면 젖히고 젖히면 뻗어라·두 점 머리 (294제)",
-            "problemCount": 294
+            "title": "13단원. 붙이면 젖히고 젖히면 뻗어라·두 점 머리·2선 패망선 (299제)",
+            "problemCount": 299
           },
           {
             "code": "tech_connection_ch14",
@@ -1735,7 +1735,7 @@
           }
         ],
         "book": "🛡️ 행마와 맥 완전정복 마스터",
-        "problemCount": 5898
+        "problemCount": 5915
       },
       {
         "code": "tech_race_outer",
@@ -1840,8 +1840,8 @@
       {
         "code": "tech_eye_house",
         "title": "👁️ 사활 완전정복 마스터",
-        "chapterCount": 26,
-        "totalProblems": 4202,
+        "chapterCount": 27,
+        "totalProblems": 4662,
         "chapters": [
           {
             "code": "tech_eye_house_ch01",
@@ -1894,10 +1894,10 @@
           {
             "code": "tech_eye_house_ch07",
             "chapterCode": "tech_eye_house_ch07",
-            "title": "7단원. 따내도 옥집과 키워 죽이기 (155제)",
-            "chapter": "7단원. 따내도 옥집과 키워 죽이기 (155제)",
-            "problemCount": 155,
-            "problemsCount": 155
+            "title": "7단원. 따내도 옥집과 키워 죽이기 (181제)",
+            "chapter": "7단원. 따내도 옥집과 키워 죽이기 (181제)",
+            "problemCount": 181,
+            "problemsCount": 181
           },
           {
             "code": "tech_eye_house_ch08",
@@ -1950,10 +1950,10 @@
           {
             "code": "tech_eye_house_ch14",
             "chapterCode": "tech_eye_house_ch14",
-            "title": "14단원. 귀는 4사6생·변은 6사8생 (101제)",
-            "chapter": "14단원. 귀는 4사6생·변은 6사8생 (101제)",
-            "problemCount": 101,
-            "problemsCount": 101
+            "title": "14단원. 귀는 4사6생·변은 6사8생 (117제)",
+            "chapter": "14단원. 귀는 4사6생·변은 6사8생 (117제)",
+            "problemCount": 117,
+            "problemsCount": 117
           },
           {
             "code": "tech_eye_house_ch15",
@@ -1990,10 +1990,10 @@
           {
             "code": "tech_eye_house_ch19",
             "chapterCode": "tech_eye_house_ch19",
-            "title": "19단원. 급소에 두어 살리기와 치중하여 잡기 (242제)",
-            "chapter": "19단원. 급소에 두어 살리기와 치중하여 잡기 (242제)",
-            "problemCount": 242,
-            "problemsCount": 242
+            "title": "19단원. 급소에 두어 살리기와 치중하여 잡기 (241제)",
+            "chapter": "19단원. 급소에 두어 살리기와 치중하여 잡기 (241제)",
+            "problemCount": 241,
+            "problemsCount": 241
           },
           {
             "code": "tech_eye_house_ch20",
@@ -2050,6 +2050,14 @@
             "chapter": "26단원. 귀의 기본 사활과 귀곡사 (159제)",
             "problemCount": 159,
             "problemsCount": 159
+          },
+          {
+            "code": "tech_eye_house_ch27",
+            "chapterCode": "tech_eye_house_ch27",
+            "title": "27단원. 사는 수와 잡는 수 종합 사활 (419제)",
+            "chapter": "27단원. 사는 수와 잡는 수 종합 사활 (419제)",
+            "problemCount": 419,
+            "problemsCount": 419
           }
         ],
         "book": "👁️ 사활 완전정복 마스터"
@@ -2175,7 +2183,7 @@
         "code": "tech_endgame",
         "title": "🏁 끝내기 완전정복 마스터",
         "chapterCount": 13,
-        "totalProblems": 1573,
+        "totalProblems": 1577,
         "chapters": [
           {
             "code": "tech_endgame_ch01",
@@ -2239,12 +2247,12 @@
           },
           {
             "code": "tech_endgame_ch13",
-            "title": "13단원. 큰 곳 찾기와 최선의 실전 끝내기 (109제)",
-            "problemCount": 109
+            "title": "13단원. 큰 곳 찾기와 최선의 실전 끝내기 (113제)",
+            "problemCount": 113
           }
         ],
         "book": "🏁 끝내기 완전정복 마스터",
-        "problemCount": 1573
+        "problemCount": 1577
       },
       {
         "code": "tech_fuseki",

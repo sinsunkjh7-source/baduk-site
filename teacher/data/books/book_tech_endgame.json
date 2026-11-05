@@ -5,7 +5,7 @@
   "book": "🏁 끝내기 완전정복 마스터",
   "title": "🏁 끝내기 완전정복 마스터",
   "chapterCount": 13,
-  "totalProblems": 1573,
+  "totalProblems": 1577,
   "chapters": [
     {
       "code": "tech_endgame_ch01",
@@ -26482,10 +26482,10 @@
     {
       "code": "tech_endgame_ch13",
       "chapterCode": "tech_endgame_ch13",
-      "title": "13단원. 큰 곳 찾기와 최선의 실전 끝내기 (109제)",
-      "chapter": "13단원. 큰 곳 찾기와 최선의 실전 끝내기 (109제)",
-      "problemCount": 109,
-      "problemsCount": 109,
+      "title": "13단원. 큰 곳 찾기와 최선의 실전 끝내기 (113제)",
+      "chapter": "13단원. 큰 곳 찾기와 최선의 실전 끝내기 (113제)",
+      "problemCount": 113,
+      "problemsCount": 113,
       "problems": [
         {
           "code": "26996",
@@ -28288,6 +28288,24 @@
           "no": 100
         },
         {
+          "code": "47446",
+          "type": "3",
+          "question": "백△로 둔 장면입니다. 최선의 끝내기를 해보세요. (9수 표시)",
+          "hint": "",
+          "data": ";B[ja];B[ka];B[ia];B[hb];B[gc];B[fd];B[ee];B[df];B[cg];B[bh];B[ch];B[dh];B[eh];B[fh];B[gh];B[hh];B[ih];B[jh];B[kh];B[lh];B[mh];B[nh];B[oh];B[ph];B[qh];B[rh];B[qg];B[pf];B[oe];B[nd];B[lb];B[mc];B[ei];B[ej];B[ek];B[el];B[em];B[en];B[eo];B[ep];B[fp];B[gp];B[hp];B[ip];B[jo];B[jq];B[kp];B[lp];B[mp];B[np];B[op];B[oo];B[on];B[om];B[ol];B[ok];B[oj];B[oi];W[ri];W[qi];W[pi];W[pj];W[pk];W[pl];W[pm];W[pn];W[pp];W[po];W[pq];W[oq];W[nq];W[mq];W[lq];W[kq];W[jr];W[iq];W[hq];W[gq];W[fq];W[eq];W[dq];W[dp];W[do];W[dn];W[dm];W[dl];W[dk];W[dj];W[di];W[ci];W[bi];T[jr]",
+          "answer1": ";B[ai];W[aj];B[ah];W[bj];B[si];W[sj];B[sh];W[rj];B[jp]",
+          "answer2": ";B[si];W[sj];B[sh];W[rj];B[ai];W[aj];B[ah];W[bj];B[jp]",
+          "answer3": "",
+          "answer4": "",
+          "answer5": "",
+          "sample": "O|X||",
+          "answer": "1",
+          "auto": "false",
+          "size": "1",
+          "start": "BA",
+          "no": 101
+        },
+        {
           "code": "46849",
           "type": "3",
           "question": "백△로 둔 장면입니다. 최선의 끝내기를 해보세요. (7수 표시)",
@@ -28303,7 +28321,25 @@
           "auto": "false",
           "size": "1",
           "start": "BA",
-          "no": 101
+          "no": 102
+        },
+        {
+          "code": "47447",
+          "type": "3",
+          "question": "백△로 둔 장면입니다. 최선의 끝내기를 해보세요. (9수 표시)",
+          "hint": "",
+          "data": ";B[jq];B[jr];B[js];B[kq];B[lq];B[mq];B[iq];B[hq];B[hr];B[hs];B[gp];B[fo];B[en];B[dm];B[cl];B[cm];B[dn];B[eo];B[fp];B[fs];B[dk];B[ek];B[fk];B[gk];B[hk];B[ik];B[jk];B[kk];B[lk];B[mk];B[lr];B[nr];B[np];B[oo];B[pn];B[qm];B[ql];B[pk];B[ok];B[nk];B[pm];B[on];B[no];B[mp];B[lj];B[li];B[lh];B[lg];B[lf];B[le];B[ld];B[lc];B[lb];B[mc];B[nd];B[oe];B[pf];B[of];B[nf];B[mf];W[jj];W[ij];W[hj];W[gj];W[fj];W[ej];W[dj];W[cj];W[ck];W[bl];W[bm];W[cn];W[co];W[do];W[ep];W[eq];W[er];W[es];W[fq];W[gq];W[gr];W[ks];W[ms];W[mr];W[nq];W[oq];W[or];W[op];W[po];W[qo];W[qn];W[rm];W[rl];W[qk];W[qj];W[pj];W[oj];W[nj];W[mi];W[mh];W[ng];W[og];W[pg];W[qf];W[pe];W[od];W[nc];W[nb];W[mb];W[kb];W[kc];W[kd];W[ke];W[kf];W[kg];W[kh];W[ki];W[pc];W[qd];W[dd];W[cc];T[kb]",
+          "answer1": ";B[ka];W[ja];B[la];W[jb];B[ls];W[ns];B[ma];W[na];B[gs]",
+          "answer2": "",
+          "answer3": "",
+          "answer4": "",
+          "answer5": "",
+          "sample": "O|X||",
+          "answer": "1",
+          "auto": "false",
+          "size": "1",
+          "start": "BA",
+          "no": 103
         },
         {
           "code": "48205",
@@ -28321,7 +28357,43 @@
           "auto": "false",
           "size": "1",
           "start": "BA",
-          "no": 102
+          "no": 104
+        },
+        {
+          "code": "47853",
+          "type": "3",
+          "question": "백△로 둔 장면입니다. 흑, 백간 최선의 끝내기를 해보세요. (9수 표시)",
+          "hint": "",
+          "data": ";B[js];B[jr];B[kr];B[ir];B[iq];B[kq];B[hp];B[gp];B[go];B[fo];B[fn];B[en];B[em];B[dm];B[dl];B[ck];B[bk];B[bj];B[bi];B[bh];B[bg];B[cg];B[cf];B[df];B[de];B[ee];B[ed];B[fe];B[ff];B[gf];B[gg];B[hg];B[hh];B[ci];B[di];B[ei];B[fi];B[gi];B[hi];B[ii];B[ji];B[ki];B[li];B[mi];B[mi];B[ni];B[oi];B[pi];B[qi];B[ri];B[rj];B[rk];B[qk];B[rh];B[rg];B[qg];B[qf];B[pf];B[pe];B[oe];B[od];B[ne];B[nf];B[mf];B[mg];B[lg];B[lh];B[pl];B[pm];B[om];B[on];B[nn];B[no];B[mo];B[mp];B[lp];B[mk];B[gk];B[jg];W[is];W[hs];W[hr];W[gq];W[fp];W[ep];W[eo];W[dn];W[co];W[cm];W[bl];W[ak];W[aj];W[ai];W[ah];W[ag];W[bf];W[be];W[ce];W[dd];W[dc];W[ec];W[fd];W[gd];W[ge];W[hf];W[if];W[jf];W[kf];W[lf];W[ig];W[ih];W[kg];W[kh];W[me];W[md];W[nd];W[oc];W[pc];W[pd];W[qe];W[re];W[rf];W[sg];W[sh];W[si];W[sj];W[sk];W[rl];W[qm];W[pn];W[oo];W[np];W[mq];W[lr];W[ls];W[ks];W[op];W[qo];T[ls]",
+          "answer1": ";B[hq];W[fr];B[lq];W[nr];B[cl];W[bm];B[ql];W[rm];B[jh]",
+          "answer2": "",
+          "answer3": "",
+          "answer4": "",
+          "answer5": "",
+          "sample": "4집|5집||",
+          "answer": "2",
+          "auto": "false",
+          "size": "1",
+          "start": "BA",
+          "no": 105
+        },
+        {
+          "code": "47852",
+          "type": "3",
+          "question": "백△로 둔 장면입니다. 흑, 백간 최선의 끝내기를 해보세요. (9수 표시)",
+          "hint": "",
+          "data": ";B[qr];B[qq];B[qp];B[qo];B[qn];B[pn];B[on];B[oo];B[oo];B[op];B[oq];B[or];B[qm];B[ql];B[qk];B[pj];B[oi];B[oh];B[ph];B[qh];B[qg];B[rg];B[jh];B[kh];B[lh];B[mh];B[nh];B[ih];B[hh];B[gh];B[fh];B[hg];B[hf];B[he];B[hd];B[hc];B[gc];B[fc];B[ec];B[dc];B[cc];B[gb];B[fb];B[ga];B[ea];B[cd];B[dd];B[de];B[ce];B[ee];B[fe];B[ff];B[fg];B[ei];B[ej];B[dj];B[ck];B[cl];B[cm];B[cn];B[co];B[cp];B[cq];B[cr];B[er];B[eq];B[ep];B[eo];B[en];B[dn];B[fn];B[gn];B[hn];B[in];B[kn];B[ln];B[mn];B[nn];B[jn];W[da];W[db];W[cb];W[bb];W[eb];W[bc];W[bd];W[be];W[cf];W[df];W[eg];W[eh];W[di];W[ci];W[cj];W[bk];W[bl];W[bm];W[bn];W[bo];W[bp];W[bq];W[br];W[dq];W[dp];W[do];W[cs];W[ds];W[es];W[fr];W[fq];W[fp];W[fo];W[go];W[ho];W[io];W[ko];W[lo];W[mo];W[no];W[np];W[nq];W[nr];W[pp];W[pq];W[os];W[ps];W[qs];W[rr];W[rq];W[rp];W[ro];W[rn];W[rm];W[rl];W[rk];W[qj];W[qi];W[pi];W[ri];W[rh];W[sg];W[sf];W[qf];W[qe];W[pg];W[og];W[pd];W[ng];W[mg];W[lg];W[kg];W[jg];W[if];W[ie];W[id];W[ic];W[ib];W[hb];T[ib]",
+          "answer1": ";B[ha];W[ia];B[rf];W[re];B[jo];W[jp];B[dr];W[pr];B[fa]",
+          "answer2": "",
+          "answer3": "",
+          "answer4": "",
+          "answer5": "",
+          "sample": "4집|5집||",
+          "answer": "2",
+          "auto": "false",
+          "size": "1",
+          "start": "BA",
+          "no": 106
         },
         {
           "code": "46851",
@@ -28339,7 +28411,7 @@
           "auto": "false",
           "size": "1",
           "start": "BA",
-          "no": 103
+          "no": 107
         },
         {
           "code": "49990",
@@ -28357,7 +28429,7 @@
           "auto": "false",
           "size": "1",
           "start": "BA",
-          "no": 104
+          "no": 108
         },
         {
           "code": "49989",
@@ -28375,7 +28447,7 @@
           "auto": "false",
           "size": "1",
           "start": "BA",
-          "no": 105
+          "no": 109
         },
         {
           "code": "46852",
@@ -28393,7 +28465,7 @@
           "auto": "false",
           "size": "1",
           "start": "BA",
-          "no": 106
+          "no": 110
         },
         {
           "code": "49988",
@@ -28411,7 +28483,7 @@
           "auto": "false",
           "size": "1",
           "start": "BA",
-          "no": 107
+          "no": 111
         },
         {
           "code": "46850",
@@ -28429,7 +28501,7 @@
           "auto": "false",
           "size": "1",
           "start": "BA",
-          "no": 108
+          "no": 112
         },
         {
           "code": "48206",
@@ -28447,7 +28519,7 @@
           "auto": "false",
           "size": "1",
           "start": "BA",
-          "no": 109
+          "no": 113
         }
       ]
     }

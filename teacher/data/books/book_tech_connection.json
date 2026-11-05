@@ -5,7 +5,7 @@
   "book": "🛡️ 행마와 맥 완전정복 마스터",
   "title": "🛡️ 행마와 맥 완전정복 마스터",
   "chapterCount": 24,
-  "totalProblems": 5898,
+  "totalProblems": 5915,
   "chapters": [
     {
       "code": "tech_connection_ch01",
@@ -18744,10 +18744,10 @@
     {
       "code": "tech_connection_ch06",
       "chapterCode": "tech_connection_ch06",
-      "title": "6단원. 효율적인 연결과 실전 연결 (256제)",
-      "chapter": "6단원. 효율적인 연결과 실전 연결 (256제)",
-      "problemCount": 256,
-      "problemsCount": 256,
+      "title": "6단원. 효율적인 연결과 실전 연결 (268제)",
+      "chapter": "6단원. 효율적인 연결과 실전 연결 (268제)",
+      "problemCount": 268,
+      "problemsCount": 268,
       "problems": [
         {
           "code": "44852",
@@ -18768,6 +18768,24 @@
           "no": 1
         },
         {
+          "code": "42271",
+          "type": "1",
+          "question": "백△로 둔 장면입니다. 흑의 약점을 좋은 모양으로 지켜보세요.",
+          "hint": "",
+          "data": ";B[pq];B[pp];B[oo];B[on];W[po];W[qo];W[qp];W[qq];W[lq];T[lq]",
+          "answer1": ";B[nq]",
+          "answer2": "",
+          "answer3": "",
+          "answer4": "",
+          "answer5": "",
+          "sample": "○|Χ",
+          "answer": "1",
+          "auto": "false",
+          "size": "4",
+          "start": "BK",
+          "no": 2
+        },
+        {
           "code": "44849",
           "type": "3",
           "question": "가 ~ 다 가운데 흑의 단점을 연결하는 가장 좋은 수에 두세요.",
@@ -18783,7 +18801,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 2
+          "no": 3
         },
         {
           "code": "18476",
@@ -18801,7 +18819,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 3
+          "no": 4
         },
         {
           "code": "41597",
@@ -18819,7 +18837,7 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "no": 4
+          "no": 5
         },
         {
           "code": "47534",
@@ -18837,7 +18855,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 5
+          "no": 6
         },
         {
           "code": "41609",
@@ -18855,7 +18873,43 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "no": 6
+          "no": 7
+        },
+        {
+          "code": "42276",
+          "type": "1",
+          "question": "백△로 둔 장면입니다. 흑의 약점을 좋은 모양으로 지켜보세요.",
+          "hint": "",
+          "data": ";B[pp];B[po];B[on];B[om];B[pm];B[qm];W[pn];W[qn];W[qo];W[qp];W[qq];W[pq];T[pq]",
+          "answer1": ";B[np]",
+          "answer2": "",
+          "answer3": "",
+          "answer4": "",
+          "answer5": "",
+          "sample": "○|Χ",
+          "answer": "1",
+          "auto": "false",
+          "size": "4",
+          "start": "BK",
+          "no": 8
+        },
+        {
+          "code": "42273",
+          "type": "1",
+          "question": "백△로 둔 장면입니다. 흑의 약점을 좋은 모양으로 지켜보세요.",
+          "hint": "",
+          "data": ";B[qp];B[pp];B[oo];B[no];W[qq];W[pq];W[op];W[np];W[mp];W[ql];T[ql]",
+          "answer1": ";B[qn]",
+          "answer2": "",
+          "answer3": "",
+          "answer4": "",
+          "answer5": "",
+          "sample": "○|Χ",
+          "answer": "1",
+          "auto": "false",
+          "size": "4",
+          "start": "BK",
+          "no": 9
         },
         {
           "code": "18475",
@@ -18873,7 +18927,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 7
+          "no": 10
         },
         {
           "code": "18473",
@@ -18891,7 +18945,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 8
+          "no": 11
         },
         {
           "code": "20343",
@@ -18909,7 +18963,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 9
+          "no": 12
         },
         {
           "code": "49431",
@@ -18927,7 +18981,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 10
+          "no": 13
         },
         {
           "code": "18470",
@@ -18945,7 +18999,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 11
+          "no": 14
         },
         {
           "code": "18472",
@@ -18963,7 +19017,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 12
+          "no": 15
         },
         {
           "code": "18467",
@@ -18981,7 +19035,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 13
+          "no": 16
         },
         {
           "code": "46991",
@@ -18999,7 +19053,25 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 14
+          "no": 17
+        },
+        {
+          "code": "42274",
+          "type": "1",
+          "question": "백△로 둔 장면입니다. 흑의 약점을 좋은 모양으로 지켜보세요.",
+          "hint": "",
+          "data": ";B[pp];B[po];B[oq];B[or];W[pq];W[qq];W[qp];W[qo];W[qn];W[lq];T[lq];T[lq]",
+          "answer1": ";B[no]",
+          "answer2": "",
+          "answer3": "",
+          "answer4": "",
+          "answer5": "",
+          "sample": "○|Χ",
+          "answer": "1",
+          "auto": "false",
+          "size": "4",
+          "start": "BK",
+          "no": 18
         },
         {
           "code": "49429",
@@ -19017,7 +19089,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 15
+          "no": 19
         },
         {
           "code": "20369",
@@ -19035,7 +19107,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 16
+          "no": 20
         },
         {
           "code": "47061",
@@ -19053,7 +19125,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 17
+          "no": 21
         },
         {
           "code": "49435",
@@ -19071,7 +19143,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 18
+          "no": 22
         },
         {
           "code": "18474",
@@ -19089,7 +19161,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 19
+          "no": 23
         },
         {
           "code": "20327",
@@ -19107,7 +19179,25 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 20
+          "no": 24
+        },
+        {
+          "code": "42270",
+          "type": "1",
+          "question": "백△로 둔 장면입니다. 좋은 모양으로 연결하여 보세요.",
+          "hint": "",
+          "data": ";B[qp];B[pp];B[op];B[nq];B[mq];B[mp];W[np];W[no];W[oo];W[po];W[qo];W[rp];W[qq];T[qq]",
+          "answer1": ";B[pr]",
+          "answer2": "",
+          "answer3": "",
+          "answer4": "",
+          "answer5": "",
+          "sample": "○|Χ",
+          "answer": "1",
+          "auto": "false",
+          "size": "4",
+          "start": "BK",
+          "no": 25
         },
         {
           "code": "41592",
@@ -19125,7 +19215,7 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "no": 21
+          "no": 26
         },
         {
           "code": "20354",
@@ -19143,7 +19233,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 22
+          "no": 27
         },
         {
           "code": "46988",
@@ -19161,7 +19251,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 23
+          "no": 28
         },
         {
           "code": "18455",
@@ -19179,7 +19269,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 24
+          "no": 29
         },
         {
           "code": "18479",
@@ -19197,7 +19287,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 25
+          "no": 30
         },
         {
           "code": "41605",
@@ -19215,7 +19305,7 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "no": 26
+          "no": 31
         },
         {
           "code": "18469",
@@ -19233,7 +19323,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 27
+          "no": 32
         },
         {
           "code": "44863",
@@ -19251,7 +19341,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 28
+          "no": 33
         },
         {
           "code": "47521",
@@ -19269,7 +19359,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 29
+          "no": 34
         },
         {
           "code": "18457",
@@ -19287,7 +19377,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 30
+          "no": 35
         },
         {
           "code": "44864",
@@ -19305,7 +19395,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 31
+          "no": 36
         },
         {
           "code": "18456",
@@ -19323,7 +19413,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 32
+          "no": 37
         },
         {
           "code": "20370",
@@ -19341,7 +19431,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 33
+          "no": 38
         },
         {
           "code": "46990",
@@ -19359,7 +19449,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 34
+          "no": 39
         },
         {
           "code": "47974",
@@ -19377,7 +19467,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 35
+          "no": 40
         },
         {
           "code": "18465",
@@ -19395,7 +19485,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 36
+          "no": 41
         },
         {
           "code": "18466",
@@ -19413,7 +19503,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 37
+          "no": 42
         },
         {
           "code": "18477",
@@ -19431,7 +19521,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 38
+          "no": 43
         },
         {
           "code": "20340",
@@ -19449,7 +19539,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 39
+          "no": 44
         },
         {
           "code": "20336",
@@ -19467,7 +19557,43 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 40
+          "no": 45
+        },
+        {
+          "code": "42269",
+          "type": "1",
+          "question": "백△로 둔 장면입니다. 좋은 모양으로 연결하여 보세요.",
+          "hint": "",
+          "data": ";B[qo];B[po];B[op];B[np];B[mp];W[qp];W[pp];W[oq];W[nq];W[mq];W[lp];W[lo];T[lo]",
+          "answer1": ";B[nn]",
+          "answer2": "",
+          "answer3": "",
+          "answer4": "",
+          "answer5": "",
+          "sample": "○|Χ",
+          "answer": "1",
+          "auto": "false",
+          "size": "4",
+          "start": "BK",
+          "no": 46
+        },
+        {
+          "code": "42268",
+          "type": "1",
+          "question": "백△로 둔 장면입니다. 좋은 모양으로 연결하여 보세요.",
+          "hint": "",
+          "data": ";B[qp];B[pp];B[op];B[no];B[mo];W[np];W[oq];W[pq];W[qq];W[rp];W[qo];T[qo]",
+          "answer1": ";B[pn]",
+          "answer2": "",
+          "answer3": "",
+          "answer4": "",
+          "answer5": "",
+          "sample": "○|Χ",
+          "answer": "1",
+          "auto": "false",
+          "size": "4",
+          "start": "BK",
+          "no": 47
         },
         {
           "code": "41607",
@@ -19485,7 +19611,7 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "no": 41
+          "no": 48
         },
         {
           "code": "47057",
@@ -19503,7 +19629,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 42
+          "no": 49
         },
         {
           "code": "18478",
@@ -19521,7 +19647,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 43
+          "no": 50
         },
         {
           "code": "41604",
@@ -19539,7 +19665,7 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "no": 44
+          "no": 51
         },
         {
           "code": "44865",
@@ -19557,7 +19683,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 45
+          "no": 52
         },
         {
           "code": "47515",
@@ -19575,7 +19701,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 46
+          "no": 53
         },
         {
           "code": "20342",
@@ -19593,7 +19719,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 47
+          "no": 54
         },
         {
           "code": "20363",
@@ -19611,7 +19737,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 48
+          "no": 55
         },
         {
           "code": "41593",
@@ -19629,7 +19755,7 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "no": 49
+          "no": 56
         },
         {
           "code": "41594",
@@ -19647,7 +19773,7 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "no": 50
+          "no": 57
         },
         {
           "code": "44647",
@@ -19665,7 +19791,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 51
+          "no": 58
         },
         {
           "code": "47533",
@@ -19683,7 +19809,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 52
+          "no": 59
         },
         {
           "code": "46985",
@@ -19701,7 +19827,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 53
+          "no": 60
         },
         {
           "code": "47968",
@@ -19719,7 +19845,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 54
+          "no": 61
         },
         {
           "code": "44860",
@@ -19737,7 +19863,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 55
+          "no": 62
         },
         {
           "code": "18462",
@@ -19755,7 +19881,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 56
+          "no": 63
         },
         {
           "code": "44853",
@@ -19773,7 +19899,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 57
+          "no": 64
         },
         {
           "code": "47517",
@@ -19791,7 +19917,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 58
+          "no": 65
         },
         {
           "code": "18468",
@@ -19809,7 +19935,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 59
+          "no": 66
         },
         {
           "code": "20344",
@@ -19827,7 +19953,25 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 60
+          "no": 67
+        },
+        {
+          "code": "42275",
+          "type": "1",
+          "question": "백△로 둔 장면입니다. 흑의 약점을 좋은 모양으로 지켜보세요.",
+          "hint": "",
+          "data": ";B[pq];B[pp];B[qo];B[qn];W[qq];W[qp];W[ro];W[rn];W[qm];B[lp];T[qm]",
+          "answer1": ";B[on]",
+          "answer2": "",
+          "answer3": "",
+          "answer4": "",
+          "answer5": "",
+          "sample": "○|Χ",
+          "answer": "1",
+          "auto": "false",
+          "size": "4",
+          "start": "BK",
+          "no": 68
         },
         {
           "code": "20355",
@@ -19845,7 +19989,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 61
+          "no": 69
         },
         {
           "code": "46983",
@@ -19863,7 +20007,25 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 62
+          "no": 70
+        },
+        {
+          "code": "42267",
+          "type": "1",
+          "question": "백△로 둔 장면입니다. 좋은 모양으로 연결하여 보세요.",
+          "hint": "",
+          "data": ";B[pr];B[qr];B[qq];B[qp];B[po];B[pn];W[pp];W[pq];W[or];W[nq];W[oo];W[on];W[pm];W[qm];T[qm]",
+          "answer1": ";B[rn]",
+          "answer2": "",
+          "answer3": "",
+          "answer4": "",
+          "answer5": "",
+          "sample": "○|Χ",
+          "answer": "1",
+          "auto": "false",
+          "size": "4",
+          "start": "BK",
+          "no": 71
         },
         {
           "code": "47967",
@@ -19881,7 +20043,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 63
+          "no": 72
         },
         {
           "code": "46984",
@@ -19899,7 +20061,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 64
+          "no": 73
         },
         {
           "code": "49439",
@@ -19917,7 +20079,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 65
+          "no": 74
         },
         {
           "code": "44645",
@@ -19935,7 +20097,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 66
+          "no": 75
         },
         {
           "code": "44646",
@@ -19953,7 +20115,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 67
+          "no": 76
         },
         {
           "code": "20332",
@@ -19971,7 +20133,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 68
+          "no": 77
         },
         {
           "code": "18459",
@@ -19989,7 +20151,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 69
+          "no": 78
         },
         {
           "code": "44851",
@@ -20007,7 +20169,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 70
+          "no": 79
         },
         {
           "code": "47977",
@@ -20025,7 +20187,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 71
+          "no": 80
         },
         {
           "code": "18458",
@@ -20043,7 +20205,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 72
+          "no": 81
         },
         {
           "code": "20335",
@@ -20061,7 +20223,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 73
+          "no": 82
         },
         {
           "code": "47525",
@@ -20079,7 +20241,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 74
+          "no": 83
         },
         {
           "code": "20347",
@@ -20097,7 +20259,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 75
+          "no": 84
         },
         {
           "code": "49432",
@@ -20115,7 +20277,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 76
+          "no": 85
         },
         {
           "code": "47964",
@@ -20133,7 +20295,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 77
+          "no": 86
         },
         {
           "code": "47962",
@@ -20151,7 +20313,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 78
+          "no": 87
         },
         {
           "code": "20325",
@@ -20169,7 +20331,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 79
+          "no": 88
         },
         {
           "code": "47056",
@@ -20187,7 +20349,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 80
+          "no": 89
         },
         {
           "code": "47520",
@@ -20205,7 +20367,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 81
+          "no": 90
         },
         {
           "code": "20339",
@@ -20223,7 +20385,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 82
+          "no": 91
         },
         {
           "code": "20350",
@@ -20241,7 +20403,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 83
+          "no": 92
         },
         {
           "code": "47519",
@@ -20259,7 +20421,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 84
+          "no": 93
         },
         {
           "code": "47516",
@@ -20277,7 +20439,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 85
+          "no": 94
         },
         {
           "code": "20333",
@@ -20295,7 +20457,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 86
+          "no": 95
         },
         {
           "code": "41606",
@@ -20313,7 +20475,7 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "no": 87
+          "no": 96
         },
         {
           "code": "50452",
@@ -20331,7 +20493,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 88
+          "no": 97
         },
         {
           "code": "18460",
@@ -20349,7 +20511,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 89
+          "no": 98
         },
         {
           "code": "47969",
@@ -20367,7 +20529,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 90
+          "no": 99
         },
         {
           "code": "47522",
@@ -20385,7 +20547,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 91
+          "no": 100
         },
         {
           "code": "20353",
@@ -20403,7 +20565,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 92
+          "no": 101
         },
         {
           "code": "44862",
@@ -20421,7 +20583,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 93
+          "no": 102
         },
         {
           "code": "41608",
@@ -20439,7 +20601,7 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "no": 94
+          "no": 103
         },
         {
           "code": "47978",
@@ -20457,7 +20619,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 95
+          "no": 104
         },
         {
           "code": "20334",
@@ -20475,7 +20637,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 96
+          "no": 105
         },
         {
           "code": "44644",
@@ -20493,7 +20655,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 97
+          "no": 106
         },
         {
           "code": "47975",
@@ -20511,7 +20673,25 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 98
+          "no": 107
+        },
+        {
+          "code": "42266",
+          "type": "1",
+          "question": "백△로 둔 장면입니다. 좋은 모양으로 연결하여 보세요.",
+          "hint": "",
+          "data": ";B[oq];B[or];B[pp];B[po];B[pn];B[lq];W[pr];W[pq];W[qp];W[qo];W[qn];W[pm];W[on];T[on]",
+          "answer1": ";B[no]",
+          "answer2": "",
+          "answer3": "",
+          "answer4": "",
+          "answer5": "",
+          "sample": "○|Χ",
+          "answer": "1",
+          "auto": "false",
+          "size": "4",
+          "start": "BK",
+          "no": 108
         },
         {
           "code": "18463",
@@ -20529,7 +20709,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 99
+          "no": 109
         },
         {
           "code": "18471",
@@ -20547,7 +20727,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 100
+          "no": 110
         },
         {
           "code": "50114",
@@ -20565,7 +20745,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 101
+          "no": 111
         },
         {
           "code": "47532",
@@ -20583,7 +20763,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 102
+          "no": 112
         },
         {
           "code": "20328",
@@ -20601,7 +20781,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 103
+          "no": 113
         },
         {
           "code": "20338",
@@ -20619,7 +20799,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 104
+          "no": 114
         },
         {
           "code": "20375",
@@ -20637,7 +20817,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 105
+          "no": 115
         },
         {
           "code": "44850",
@@ -20655,7 +20835,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 106
+          "no": 116
         },
         {
           "code": "47957",
@@ -20673,7 +20853,25 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 107
+          "no": 117
+        },
+        {
+          "code": "42272",
+          "type": "1",
+          "question": "백△로 둔 장면입니다. 흑의 약점을 좋은 모양으로 지켜보세요.",
+          "hint": "",
+          "data": ";B[or];B[oq];B[pq];B[qp];B[qo];B[qn];B[lq];W[pr];W[qr];W[qq];W[rp];W[ro];W[rn];W[qm];W[om];T[qm]",
+          "answer1": ";B[oo]",
+          "answer2": "",
+          "answer3": "",
+          "answer4": "",
+          "answer5": "",
+          "sample": "○|Χ",
+          "answer": "1",
+          "auto": "false",
+          "size": "4",
+          "start": "BK",
+          "no": 118
         },
         {
           "code": "20337",
@@ -20691,7 +20889,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 108
+          "no": 119
         },
         {
           "code": "47514",
@@ -20709,7 +20907,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 109
+          "no": 120
         },
         {
           "code": "47523",
@@ -20727,7 +20925,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 110
+          "no": 121
         },
         {
           "code": "47059",
@@ -20745,7 +20943,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 111
+          "no": 122
         },
         {
           "code": "47956",
@@ -20763,7 +20961,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 112
+          "no": 123
         },
         {
           "code": "50113",
@@ -20781,7 +20979,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 113
+          "no": 124
         },
         {
           "code": "20326",
@@ -20799,7 +20997,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 114
+          "no": 125
         },
         {
           "code": "41596",
@@ -20817,7 +21015,7 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "no": 115
+          "no": 126
         },
         {
           "code": "47527",
@@ -20835,7 +21033,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 116
+          "no": 127
         },
         {
           "code": "50121",
@@ -20853,7 +21051,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 117
+          "no": 128
         },
         {
           "code": "20358",
@@ -20871,7 +21069,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 118
+          "no": 129
         },
         {
           "code": "20359",
@@ -20889,7 +21087,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 119
+          "no": 130
         },
         {
           "code": "47965",
@@ -20907,7 +21105,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 120
+          "no": 131
         },
         {
           "code": "20371",
@@ -20925,7 +21123,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 121
+          "no": 132
         },
         {
           "code": "47531",
@@ -20943,7 +21141,25 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 122
+          "no": 133
+        },
+        {
+          "code": "42265",
+          "type": "1",
+          "question": "백△로 둔 장면입니다. 좋은 모양으로 연결하여 보세요.",
+          "hint": "",
+          "data": ";B[qp];B[qo];B[ro];B[pq];B[oq];B[nq];B[ql];W[rp];W[rq];W[qq];W[pr];W[or];W[nr];W[mq];W[np];T[np]",
+          "answer1": ";B[oo]",
+          "answer2": "",
+          "answer3": "",
+          "answer4": "",
+          "answer5": "",
+          "sample": "○|Χ",
+          "answer": "1",
+          "auto": "false",
+          "size": "4",
+          "start": "BK",
+          "no": 134
         },
         {
           "code": "47518",
@@ -20961,7 +21177,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 123
+          "no": 135
         },
         {
           "code": "50120",
@@ -20979,7 +21195,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 124
+          "no": 136
         },
         {
           "code": "18480",
@@ -20997,7 +21213,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 125
+          "no": 137
         },
         {
           "code": "46987",
@@ -21015,7 +21231,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 126
+          "no": 138
         },
         {
           "code": "47963",
@@ -21033,7 +21249,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 127
+          "no": 139
         },
         {
           "code": "50118",
@@ -21051,7 +21267,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 128
+          "no": 140
         },
         {
           "code": "44635",
@@ -21069,7 +21285,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 129
+          "no": 141
         },
         {
           "code": "41595",
@@ -21087,7 +21303,7 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "no": 130
+          "no": 142
         },
         {
           "code": "47976",
@@ -21105,7 +21321,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 131
+          "no": 143
         },
         {
           "code": "20329",
@@ -21123,7 +21339,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 132
+          "no": 144
         },
         {
           "code": "44613",
@@ -21141,7 +21357,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 133
+          "no": 145
         },
         {
           "code": "47530",
@@ -21159,7 +21375,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 134
+          "no": 146
         },
         {
           "code": "47537",
@@ -21177,7 +21393,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 135
+          "no": 147
         },
         {
           "code": "20360",
@@ -21195,7 +21411,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 136
+          "no": 148
         },
         {
           "code": "50115",
@@ -21213,7 +21429,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 137
+          "no": 149
         },
         {
           "code": "47966",
@@ -21231,7 +21447,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 138
+          "no": 150
         },
         {
           "code": "47055",
@@ -21249,7 +21465,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 139
+          "no": 151
         },
         {
           "code": "44643",
@@ -21267,7 +21483,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 140
+          "no": 152
         },
         {
           "code": "18461",
@@ -21285,7 +21501,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 141
+          "no": 153
         },
         {
           "code": "49434",
@@ -21303,7 +21519,7 @@
           "auto": "false",
           "size": "2",
           "start": "BA",
-          "no": 142
+          "no": 154
         },
         {
           "code": "47529",
@@ -21321,7 +21537,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 143
+          "no": 155
         },
         {
           "code": "47958",
@@ -21339,7 +21555,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 144
+          "no": 156
         },
         {
           "code": "20341",
@@ -21357,7 +21573,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 145
+          "no": 157
         },
         {
           "code": "44617",
@@ -21375,7 +21591,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 146
+          "no": 158
         },
         {
           "code": "20352",
@@ -21393,7 +21609,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 147
+          "no": 159
         },
         {
           "code": "20374",
@@ -21411,7 +21627,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 148
+          "no": 160
         },
         {
           "code": "46989",
@@ -21429,7 +21645,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 149
+          "no": 161
         },
         {
           "code": "46992",
@@ -21447,7 +21663,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 150
+          "no": 162
         },
         {
           "code": "44615",
@@ -21465,7 +21681,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 151
+          "no": 163
         },
         {
           "code": "44641",
@@ -21483,7 +21699,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 152
+          "no": 164
         },
         {
           "code": "20356",
@@ -21501,7 +21717,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 153
+          "no": 165
         },
         {
           "code": "20365",
@@ -21519,7 +21735,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 154
+          "no": 166
         },
         {
           "code": "20351",
@@ -21537,7 +21753,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 155
+          "no": 167
         },
         {
           "code": "49430",
@@ -21555,7 +21771,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 156
+          "no": 168
         },
         {
           "code": "47526",
@@ -21573,7 +21789,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 157
+          "no": 169
         },
         {
           "code": "20376",
@@ -21591,7 +21807,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 158
+          "no": 170
         },
         {
           "code": "47060",
@@ -21609,7 +21825,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 159
+          "no": 171
         },
         {
           "code": "47970",
@@ -21627,7 +21843,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 160
+          "no": 172
         },
         {
           "code": "47979",
@@ -21645,7 +21861,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 161
+          "no": 173
         },
         {
           "code": "20366",
@@ -21663,7 +21879,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 162
+          "no": 174
         },
         {
           "code": "50449",
@@ -21681,7 +21897,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 163
+          "no": 175
         },
         {
           "code": "50122",
@@ -21699,7 +21915,7 @@
           "auto": "false",
           "size": "2",
           "start": "BA",
-          "no": 164
+          "no": 176
         },
         {
           "code": "44861",
@@ -21717,7 +21933,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 165
+          "no": 177
         },
         {
           "code": "47524",
@@ -21735,7 +21951,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 166
+          "no": 178
         },
         {
           "code": "20330",
@@ -21753,7 +21969,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 167
+          "no": 179
         },
         {
           "code": "50451",
@@ -21771,7 +21987,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 168
+          "no": 180
         },
         {
           "code": "20367",
@@ -21789,7 +22005,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 169
+          "no": 181
         },
         {
           "code": "20373",
@@ -21807,7 +22023,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 170
+          "no": 182
         },
         {
           "code": "20362",
@@ -21825,7 +22041,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 171
+          "no": 183
         },
         {
           "code": "44616",
@@ -21843,7 +22059,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 172
+          "no": 184
         },
         {
           "code": "50104",
@@ -21861,7 +22077,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 173
+          "no": 185
         },
         {
           "code": "50112",
@@ -21879,7 +22095,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 174
+          "no": 186
         },
         {
           "code": "46982",
@@ -21897,7 +22113,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 175
+          "no": 187
         },
         {
           "code": "50102",
@@ -21915,7 +22131,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 176
+          "no": 188
         },
         {
           "code": "50116",
@@ -21933,7 +22149,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 177
+          "no": 189
         },
         {
           "code": "44614",
@@ -21951,7 +22167,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 178
+          "no": 190
         },
         {
           "code": "20348",
@@ -21969,7 +22185,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 179
+          "no": 191
         },
         {
           "code": "50119",
@@ -21987,7 +22203,7 @@
           "auto": "false",
           "size": "2",
           "start": "BA",
-          "no": 180
+          "no": 192
         },
         {
           "code": "50111",
@@ -22005,7 +22221,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 181
+          "no": 193
         },
         {
           "code": "47536",
@@ -22023,7 +22239,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 182
+          "no": 194
         },
         {
           "code": "20357",
@@ -22041,7 +22257,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 183
+          "no": 195
         },
         {
           "code": "47971",
@@ -22059,7 +22275,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 184
+          "no": 196
         },
         {
           "code": "44642",
@@ -22077,7 +22293,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 185
+          "no": 197
         },
         {
           "code": "50446",
@@ -22095,7 +22311,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 186
+          "no": 198
         },
         {
           "code": "47528",
@@ -22113,7 +22329,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 187
+          "no": 199
         },
         {
           "code": "20331",
@@ -22131,7 +22347,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 188
+          "no": 200
         },
         {
           "code": "50441",
@@ -22149,7 +22365,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 189
+          "no": 201
         },
         {
           "code": "49440",
@@ -22167,7 +22383,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 190
+          "no": 202
         },
         {
           "code": "44612",
@@ -22185,7 +22401,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 191
+          "no": 203
         },
         {
           "code": "47959",
@@ -22203,7 +22419,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 192
+          "no": 204
         },
         {
           "code": "47535",
@@ -22221,7 +22437,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 193
+          "no": 205
         },
         {
           "code": "49433",
@@ -22239,7 +22455,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 194
+          "no": 206
         },
         {
           "code": "20372",
@@ -22257,7 +22473,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 195
+          "no": 207
         },
         {
           "code": "50825",
@@ -22275,7 +22491,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 196
+          "no": 208
         },
         {
           "code": "50117",
@@ -22293,7 +22509,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 197
+          "no": 209
         },
         {
           "code": "20345",
@@ -22311,7 +22527,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 198
+          "no": 210
         },
         {
           "code": "49437",
@@ -22329,7 +22545,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 199
+          "no": 211
         },
         {
           "code": "50448",
@@ -22347,7 +22563,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 200
+          "no": 212
         },
         {
           "code": "49438",
@@ -22365,7 +22581,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 201
+          "no": 213
         },
         {
           "code": "20349",
@@ -22383,7 +22599,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 202
+          "no": 214
         },
         {
           "code": "44640",
@@ -22401,7 +22617,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 203
+          "no": 215
         },
         {
           "code": "50099",
@@ -22419,7 +22635,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 204
+          "no": 216
         },
         {
           "code": "20346",
@@ -22437,7 +22653,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 205
+          "no": 217
         },
         {
           "code": "50827",
@@ -22455,7 +22671,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 206
+          "no": 218
         },
         {
           "code": "50444",
@@ -22473,7 +22689,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 207
+          "no": 219
         },
         {
           "code": "50103",
@@ -22491,7 +22707,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 208
+          "no": 220
         },
         {
           "code": "49421",
@@ -22509,7 +22725,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 209
+          "no": 221
         },
         {
           "code": "49422",
@@ -22527,7 +22743,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 210
+          "no": 222
         },
         {
           "code": "44611",
@@ -22545,7 +22761,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 211
+          "no": 223
         },
         {
           "code": "47960",
@@ -22563,7 +22779,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 212
+          "no": 224
         },
         {
           "code": "47961",
@@ -22581,7 +22797,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 213
+          "no": 225
         },
         {
           "code": "49417",
@@ -22599,7 +22815,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 214
+          "no": 226
         },
         {
           "code": "49418",
@@ -22617,7 +22833,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 215
+          "no": 227
         },
         {
           "code": "50445",
@@ -22635,7 +22851,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 216
+          "no": 228
         },
         {
           "code": "20377",
@@ -22653,7 +22869,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 217
+          "no": 229
         },
         {
           "code": "50108",
@@ -22671,7 +22887,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 218
+          "no": 230
         },
         {
           "code": "50100",
@@ -22689,7 +22905,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 219
+          "no": 231
         },
         {
           "code": "50447",
@@ -22707,7 +22923,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 220
+          "no": 232
         },
         {
           "code": "44639",
@@ -22725,7 +22941,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 221
+          "no": 233
         },
         {
           "code": "44609",
@@ -22743,7 +22959,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 222
+          "no": 234
         },
         {
           "code": "20361",
@@ -22761,7 +22977,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 223
+          "no": 235
         },
         {
           "code": "47972",
@@ -22779,7 +22995,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 224
+          "no": 236
         },
         {
           "code": "50443",
@@ -22797,7 +23013,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 225
+          "no": 237
         },
         {
           "code": "50824",
@@ -22815,7 +23031,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 226
+          "no": 238
         },
         {
           "code": "44637",
@@ -22833,7 +23049,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 227
+          "no": 239
         },
         {
           "code": "44638",
@@ -22851,7 +23067,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 228
+          "no": 240
         },
         {
           "code": "50105",
@@ -22869,7 +23085,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 229
+          "no": 241
         },
         {
           "code": "50109",
@@ -22887,7 +23103,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 230
+          "no": 242
         },
         {
           "code": "47973",
@@ -22905,7 +23121,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 231
+          "no": 243
         },
         {
           "code": "44608",
@@ -22923,7 +23139,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 232
+          "no": 244
         },
         {
           "code": "50822",
@@ -22941,7 +23157,7 @@
           "auto": "false",
           "size": "2",
           "start": "BA",
-          "no": 233
+          "no": 245
         },
         {
           "code": "44636",
@@ -22959,7 +23175,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 234
+          "no": 246
         },
         {
           "code": "50450",
@@ -22977,7 +23193,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 235
+          "no": 247
         },
         {
           "code": "50823",
@@ -22995,7 +23211,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 236
+          "no": 248
         },
         {
           "code": "50106",
@@ -23013,7 +23229,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 237
+          "no": 249
         },
         {
           "code": "50442",
@@ -23031,7 +23247,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 238
+          "no": 250
         },
         {
           "code": "49423",
@@ -23049,7 +23265,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 239
+          "no": 251
         },
         {
           "code": "49424",
@@ -23067,7 +23283,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 240
+          "no": 252
         },
         {
           "code": "50110",
@@ -23085,7 +23301,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 241
+          "no": 253
         },
         {
           "code": "50101",
@@ -23103,7 +23319,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 242
+          "no": 254
         },
         {
           "code": "49427",
@@ -23121,7 +23337,7 @@
           "auto": "false",
           "size": "2",
           "start": "BA",
-          "no": 243
+          "no": 255
         },
         {
           "code": "49428",
@@ -23139,7 +23355,7 @@
           "auto": "false",
           "size": "2",
           "start": "BA",
-          "no": 244
+          "no": 256
         },
         {
           "code": "50821",
@@ -23157,7 +23373,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 245
+          "no": 257
         },
         {
           "code": "50820",
@@ -23175,7 +23391,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 246
+          "no": 258
         },
         {
           "code": "49419",
@@ -23193,7 +23409,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 247
+          "no": 259
         },
         {
           "code": "49420",
@@ -23211,7 +23427,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 248
+          "no": 260
         },
         {
           "code": "50831",
@@ -23229,7 +23445,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 249
+          "no": 261
         },
         {
           "code": "49425",
@@ -23247,7 +23463,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 250
+          "no": 262
         },
         {
           "code": "49426",
@@ -23265,7 +23481,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 251
+          "no": 263
         },
         {
           "code": "50830",
@@ -23283,7 +23499,7 @@
           "auto": "false",
           "size": "2",
           "start": "BA",
-          "no": 252
+          "no": 264
         },
         {
           "code": "50828",
@@ -23301,7 +23517,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 253
+          "no": 265
         },
         {
           "code": "50107",
@@ -23319,7 +23535,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 254
+          "no": 266
         },
         {
           "code": "50829",
@@ -23337,7 +23553,7 @@
           "auto": "false",
           "size": "2",
           "start": "BA",
-          "no": 255
+          "no": 267
         },
         {
           "code": "50826",
@@ -23355,7 +23571,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 256
+          "no": 268
         }
       ]
     },
@@ -57478,10 +57694,10 @@
     {
       "code": "tech_connection_ch13",
       "chapterCode": "tech_connection_ch13",
-      "title": "13단원. 붙이면 젖히고 젖히면 뻗어라·두 점 머리 (294제)",
-      "chapter": "13단원. 붙이면 젖히고 젖히면 뻗어라·두 점 머리 (294제)",
-      "problemCount": 294,
-      "problemsCount": 294,
+      "title": "13단원. 붙이면 젖히고 젖히면 뻗어라·두 점 머리·2선 패망선 (299제)",
+      "chapter": "13단원. 붙이면 젖히고 젖히면 뻗어라·두 점 머리·2선 패망선 (299제)",
+      "problemCount": 299,
+      "problemsCount": 299,
       "problems": [
         {
           "code": "39080",
@@ -60130,6 +60346,24 @@
           "no": 147
         },
         {
+          "code": "42139",
+          "type": "1",
+          "question": "백 1로 두었습니다. 흑은 어디에 두어야 할까요?",
+          "hint": "",
+          "data": ";B[qq];B[pq];B[or];B[nr];W[mr];W[nq];W[oq];W[pp];W[qp];L[mr:1]",
+          "answer1": ";B[mq]",
+          "answer2": "",
+          "answer3": "",
+          "answer4": "",
+          "answer5": "",
+          "sample": "흑|백",
+          "answer": "7,,,,|14, 16, 18,14 16 18,141618,,",
+          "auto": "false",
+          "size": "4",
+          "start": "BK",
+          "no": 148
+        },
+        {
           "code": "43196",
           "type": "3",
           "question": "백△로 붙인 장면입니다. 중앙으로 젖힘 해 보세요.",
@@ -60145,7 +60379,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 148
+          "no": 149
         },
         {
           "code": "4077",
@@ -60163,7 +60397,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 149
+          "no": 150
         },
         {
           "code": "19344",
@@ -60181,7 +60415,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 150
+          "no": 151
         },
         {
           "code": "39142",
@@ -60199,7 +60433,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 151
+          "no": 152
         },
         {
           "code": "19350",
@@ -60217,7 +60451,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 152
+          "no": 153
         },
         {
           "code": "42401",
@@ -60235,7 +60469,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 153
+          "no": 154
         },
         {
           "code": "48808",
@@ -60253,7 +60487,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 154
+          "no": 155
         },
         {
           "code": "47782",
@@ -60271,7 +60505,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 155
+          "no": 156
         },
         {
           "code": "27151",
@@ -60289,7 +60523,7 @@
           "auto": "false",
           "size": "2",
           "start": "BA",
-          "no": 156
+          "no": 157
         },
         {
           "code": "27083",
@@ -60307,7 +60541,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 157
+          "no": 158
         },
         {
           "code": "4063",
@@ -60325,7 +60559,25 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 158
+          "no": 159
+        },
+        {
+          "code": "42143",
+          "type": "1",
+          "question": "백 1로 두었습니다. 흑은 어디에 두어야 할까요?",
+          "hint": "",
+          "data": ";B[ro];B[rn];B[qm];B[ql];B[pl];W[pm];W[om];W[qn];W[qo];W[rp];L[rp:1]",
+          "answer1": ";B[qp]",
+          "answer2": "",
+          "answer3": "",
+          "answer4": "",
+          "answer5": "",
+          "sample": "흑|백",
+          "answer": "7,,,,|14, 16, 18,14 16 18,141618,,",
+          "auto": "false",
+          "size": "4",
+          "start": "BK",
+          "no": 160
         },
         {
           "code": "39144",
@@ -60343,7 +60595,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 159
+          "no": 161
         },
         {
           "code": "48267",
@@ -60361,7 +60613,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 160
+          "no": 162
         },
         {
           "code": "43194",
@@ -60379,7 +60631,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 161
+          "no": 163
         },
         {
           "code": "19351",
@@ -60397,7 +60649,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 162
+          "no": 164
         },
         {
           "code": "4080",
@@ -60415,7 +60667,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 163
+          "no": 165
         },
         {
           "code": "48811",
@@ -60433,7 +60685,25 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 164
+          "no": 166
+        },
+        {
+          "code": "42140",
+          "type": "1",
+          "question": "백 1로 두었습니다. 흑은 어디에 두어야 할까요?",
+          "hint": "",
+          "data": ";B[qq];B[pq];B[or];B[nr];B[mr];W[mq];W[nq];W[oq];W[pp];W[qp];W[lr];L[lr:1]",
+          "answer1": ";B[lq]",
+          "answer2": "",
+          "answer3": "",
+          "answer4": "",
+          "answer5": "",
+          "sample": "흑|백",
+          "answer": "7,,,,|14, 16, 18,14 16 18,141618,,",
+          "auto": "false",
+          "size": "4",
+          "start": "BK",
+          "no": 167
         },
         {
           "code": "42400",
@@ -60451,7 +60721,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 165
+          "no": 168
         },
         {
           "code": "47807",
@@ -60469,7 +60739,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 166
+          "no": 169
         },
         {
           "code": "48263",
@@ -60487,7 +60757,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 167
+          "no": 170
         },
         {
           "code": "48264",
@@ -60505,7 +60775,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 168
+          "no": 171
         },
         {
           "code": "19356",
@@ -60523,7 +60793,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 169
+          "no": 172
         },
         {
           "code": "41880",
@@ -60541,7 +60811,7 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "no": 170
+          "no": 173
         },
         {
           "code": "42394",
@@ -60559,7 +60829,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 171
+          "no": 174
         },
         {
           "code": "42396",
@@ -60577,7 +60847,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 172
+          "no": 175
         },
         {
           "code": "48597",
@@ -60595,7 +60865,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 173
+          "no": 176
         },
         {
           "code": "48810",
@@ -60613,7 +60883,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 174
+          "no": 177
         },
         {
           "code": "42144",
@@ -60631,7 +60901,7 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "no": 175
+          "no": 178
         },
         {
           "code": "27148",
@@ -60649,7 +60919,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 176
+          "no": 179
         },
         {
           "code": "42408",
@@ -60667,7 +60937,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 177
+          "no": 180
         },
         {
           "code": "48594",
@@ -60685,7 +60955,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 178
+          "no": 181
         },
         {
           "code": "48595",
@@ -60703,7 +60973,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 179
+          "no": 182
         },
         {
           "code": "48612",
@@ -60721,7 +60991,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 180
+          "no": 183
         },
         {
           "code": "48615",
@@ -60739,7 +61009,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 181
+          "no": 184
         },
         {
           "code": "48252",
@@ -60757,7 +61027,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 182
+          "no": 185
         },
         {
           "code": "48816",
@@ -60775,7 +61045,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 183
+          "no": 186
         },
         {
           "code": "47808",
@@ -60793,7 +61063,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 184
+          "no": 187
         },
         {
           "code": "4071",
@@ -60811,7 +61081,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 185
+          "no": 188
         },
         {
           "code": "47809",
@@ -60829,7 +61099,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 186
+          "no": 189
         },
         {
           "code": "41872",
@@ -60847,7 +61117,7 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "no": 187
+          "no": 190
         },
         {
           "code": "48598",
@@ -60865,7 +61135,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 188
+          "no": 191
         },
         {
           "code": "47800",
@@ -60883,7 +61153,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 189
+          "no": 192
         },
         {
           "code": "47806",
@@ -60901,7 +61171,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 190
+          "no": 193
         },
         {
           "code": "19345",
@@ -60919,7 +61189,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 191
+          "no": 194
         },
         {
           "code": "27085",
@@ -60937,7 +61207,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 192
+          "no": 195
         },
         {
           "code": "19354",
@@ -60955,7 +61225,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 193
+          "no": 196
         },
         {
           "code": "48614",
@@ -60973,7 +61243,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 194
+          "no": 197
         },
         {
           "code": "19358",
@@ -60991,7 +61261,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 195
+          "no": 198
         },
         {
           "code": "42404",
@@ -61009,7 +61279,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 196
+          "no": 199
         },
         {
           "code": "48815",
@@ -61027,7 +61297,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 197
+          "no": 200
         },
         {
           "code": "38971",
@@ -61045,7 +61315,7 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "no": 198
+          "no": 201
         },
         {
           "code": "27076",
@@ -61063,7 +61333,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 199
+          "no": 202
         },
         {
           "code": "47802",
@@ -61081,7 +61351,25 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 200
+          "no": 203
+        },
+        {
+          "code": "5636",
+          "type": "3",
+          "question": "11. 2선-패망선\r\n백1의 경우, 흑은 A, B 중 어디에 두어야 할까요?\r\n\r\n",
+          "hint": "포석에서 2선을 기는 것은 매우 좋지 않습니다.",
+          "data": ";W[pq];W[pp];W[qo];W[qn];W[qm];B[qq];B[qp];B[ro];B[rn];B[cp];B[eq];L[qm:1];L[pr:A];L[rm:B]",
+          "answer1": ";B[pr]",
+          "answer2": "",
+          "answer3": "",
+          "answer4": "",
+          "answer5": "",
+          "sample": "A|B||",
+          "answer": "1",
+          "auto": "false",
+          "size": "2",
+          "start": "BA",
+          "no": 204
         },
         {
           "code": "48817",
@@ -61099,7 +61387,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 201
+          "no": 205
         },
         {
           "code": "27075",
@@ -61117,7 +61405,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 202
+          "no": 206
         },
         {
           "code": "47801",
@@ -61135,7 +61423,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 203
+          "no": 207
         },
         {
           "code": "19355",
@@ -61153,7 +61441,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 204
+          "no": 208
         },
         {
           "code": "48609",
@@ -61171,7 +61459,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 205
+          "no": 209
         },
         {
           "code": "48854",
@@ -61189,7 +61477,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 206
+          "no": 210
         },
         {
           "code": "48855",
@@ -61207,7 +61495,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 207
+          "no": 211
         },
         {
           "code": "48606",
@@ -61225,7 +61513,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 208
+          "no": 212
         },
         {
           "code": "48607",
@@ -61243,7 +61531,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 209
+          "no": 213
         },
         {
           "code": "43195",
@@ -61261,7 +61549,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 210
+          "no": 214
         },
         {
           "code": "48610",
@@ -61279,7 +61567,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 211
+          "no": 215
         },
         {
           "code": "48813",
@@ -61297,7 +61585,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 212
+          "no": 216
         },
         {
           "code": "47780",
@@ -61315,7 +61603,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 213
+          "no": 217
         },
         {
           "code": "27084",
@@ -61333,7 +61621,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 214
+          "no": 218
         },
         {
           "code": "39147",
@@ -61351,7 +61639,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 215
+          "no": 219
         },
         {
           "code": "48617",
@@ -61369,7 +61657,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 216
+          "no": 220
         },
         {
           "code": "47803",
@@ -61387,7 +61675,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 217
+          "no": 221
         },
         {
           "code": "41873",
@@ -61405,7 +61693,7 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "no": 218
+          "no": 222
         },
         {
           "code": "48255",
@@ -61423,7 +61711,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 219
+          "no": 223
         },
         {
           "code": "48605",
@@ -61441,7 +61729,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 220
+          "no": 224
         },
         {
           "code": "19342",
@@ -61459,7 +61747,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 221
+          "no": 225
         },
         {
           "code": "41885",
@@ -61477,7 +61765,7 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "no": 222
+          "no": 226
         },
         {
           "code": "27124",
@@ -61495,7 +61783,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 223
+          "no": 227
         },
         {
           "code": "27126",
@@ -61513,7 +61801,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 224
+          "no": 228
         },
         {
           "code": "41883",
@@ -61531,7 +61819,7 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "no": 225
+          "no": 229
         },
         {
           "code": "4073",
@@ -61549,7 +61837,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 226
+          "no": 230
         },
         {
           "code": "27128",
@@ -61567,7 +61855,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 227
+          "no": 231
         },
         {
           "code": "47805",
@@ -61585,7 +61873,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 228
+          "no": 232
         },
         {
           "code": "4079",
@@ -61603,7 +61891,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 229
+          "no": 233
         },
         {
           "code": "47804",
@@ -61621,7 +61909,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 230
+          "no": 234
         },
         {
           "code": "48601",
@@ -61639,7 +61927,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 231
+          "no": 235
         },
         {
           "code": "48842",
@@ -61657,7 +61945,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 232
+          "no": 236
         },
         {
           "code": "48843",
@@ -61675,7 +61963,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 233
+          "no": 237
         },
         {
           "code": "48603",
@@ -61693,7 +61981,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 234
+          "no": 238
         },
         {
           "code": "19352",
@@ -61711,7 +61999,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 235
+          "no": 239
         },
         {
           "code": "48600",
@@ -61729,7 +62017,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 236
+          "no": 240
         },
         {
           "code": "48269",
@@ -61747,7 +62035,7 @@
           "auto": "false",
           "size": "2",
           "start": "BA",
-          "no": 237
+          "no": 241
         },
         {
           "code": "48604",
@@ -61765,7 +62053,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 238
+          "no": 242
         },
         {
           "code": "48850",
@@ -61783,7 +62071,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 239
+          "no": 243
         },
         {
           "code": "48851",
@@ -61801,7 +62089,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 240
+          "no": 244
         },
         {
           "code": "48596",
@@ -61819,7 +62107,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 241
+          "no": 245
         },
         {
           "code": "27149",
@@ -61837,7 +62125,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 242
+          "no": 246
         },
         {
           "code": "4067",
@@ -61855,7 +62143,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 243
+          "no": 247
         },
         {
           "code": "27155",
@@ -61873,7 +62161,7 @@
           "auto": "false",
           "size": "2",
           "start": "BA",
-          "no": 244
+          "no": 248
         },
         {
           "code": "27125",
@@ -61891,7 +62179,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 245
+          "no": 249
         },
         {
           "code": "4086",
@@ -61909,7 +62197,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 246
+          "no": 250
         },
         {
           "code": "27144",
@@ -61927,7 +62215,7 @@
           "auto": "false",
           "size": "2",
           "start": "BA",
-          "no": 247
+          "no": 251
         },
         {
           "code": "27129",
@@ -61945,7 +62233,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 248
+          "no": 252
         },
         {
           "code": "27141",
@@ -61963,7 +62251,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 249
+          "no": 253
         },
         {
           "code": "4064",
@@ -61981,7 +62269,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 250
+          "no": 254
         },
         {
           "code": "41884",
@@ -61999,7 +62287,7 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "no": 251
+          "no": 255
         },
         {
           "code": "48608",
@@ -62017,7 +62305,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 252
+          "no": 256
         },
         {
           "code": "27140",
@@ -62035,7 +62323,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 253
+          "no": 257
         },
         {
           "code": "4062",
@@ -62053,7 +62341,25 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 254
+          "no": 258
+        },
+        {
+          "code": "5637",
+          "type": "3",
+          "question": "11. 2선-패망선\r\n백1의 경우, 흑은 A, B 중 어디에 두어야 할까요?\r\n\r\n",
+          "hint": "포석에서 2선을 기는 것은 매우 좋지 않습니다.",
+          "data": ";W[pq];W[pp];W[or];W[qo];W[qn];W[qm];W[jq];B[cp];B[eq];B[pr];B[qr];B[qq];B[qp];B[ro];B[rn];L[jq:1];L[oq:A];L[rm:B]",
+          "answer1": ";B[oq]",
+          "answer2": "",
+          "answer3": "",
+          "answer4": "",
+          "answer5": "",
+          "sample": "A|B||",
+          "answer": "1",
+          "auto": "false",
+          "size": "2",
+          "start": "BA",
+          "no": 259
         },
         {
           "code": "48616",
@@ -62071,7 +62377,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 255
+          "no": 260
         },
         {
           "code": "27152",
@@ -62089,7 +62395,7 @@
           "auto": "false",
           "size": "2",
           "start": "BA",
-          "no": 256
+          "no": 261
         },
         {
           "code": "27135",
@@ -62107,7 +62413,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 257
+          "no": 262
         },
         {
           "code": "27127",
@@ -62125,7 +62431,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 258
+          "no": 263
         },
         {
           "code": "48846",
@@ -62143,7 +62449,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 259
+          "no": 264
         },
         {
           "code": "48847",
@@ -62161,7 +62467,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 260
+          "no": 265
         },
         {
           "code": "27130",
@@ -62179,7 +62485,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 261
+          "no": 266
         },
         {
           "code": "48602",
@@ -62197,7 +62503,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 262
+          "no": 267
         },
         {
           "code": "27154",
@@ -62215,7 +62521,7 @@
           "auto": "false",
           "size": "2",
           "start": "BA",
-          "no": 263
+          "no": 268
         },
         {
           "code": "4075",
@@ -62233,7 +62539,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 264
+          "no": 269
         },
         {
           "code": "27131",
@@ -62251,7 +62557,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 265
+          "no": 270
         },
         {
           "code": "48270",
@@ -62269,7 +62575,7 @@
           "auto": "false",
           "size": "2",
           "start": "BA",
-          "no": 266
+          "no": 271
         },
         {
           "code": "16062",
@@ -62287,7 +62593,7 @@
           "auto": "false",
           "size": "1",
           "start": "BA",
-          "no": 267
+          "no": 272
         },
         {
           "code": "27138",
@@ -62305,7 +62611,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 268
+          "no": 273
         },
         {
           "code": "27145",
@@ -62323,7 +62629,7 @@
           "auto": "false",
           "size": "2",
           "start": "BA",
-          "no": 269
+          "no": 274
         },
         {
           "code": "27146",
@@ -62341,7 +62647,7 @@
           "auto": "false",
           "size": "2",
           "start": "BA",
-          "no": 270
+          "no": 275
         },
         {
           "code": "27134",
@@ -62359,7 +62665,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 271
+          "no": 276
         },
         {
           "code": "27153",
@@ -62377,7 +62683,7 @@
           "auto": "false",
           "size": "2",
           "start": "BA",
-          "no": 272
+          "no": 277
         },
         {
           "code": "27133",
@@ -62395,7 +62701,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 273
+          "no": 278
         },
         {
           "code": "48857",
@@ -62413,7 +62719,7 @@
           "auto": "false",
           "size": "2",
           "start": "BA",
-          "no": 274
+          "no": 279
         },
         {
           "code": "16064",
@@ -62431,7 +62737,7 @@
           "auto": "false",
           "size": "1",
           "start": "BA",
-          "no": 275
+          "no": 280
         },
         {
           "code": "4066",
@@ -62449,7 +62755,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 276
+          "no": 281
         },
         {
           "code": "4081",
@@ -62467,7 +62773,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 277
+          "no": 282
         },
         {
           "code": "48845",
@@ -62485,7 +62791,7 @@
           "auto": "false",
           "size": "2",
           "start": "BA",
-          "no": 278
+          "no": 283
         },
         {
           "code": "48856",
@@ -62503,7 +62809,7 @@
           "auto": "false",
           "size": "2",
           "start": "BA",
-          "no": 279
+          "no": 284
         },
         {
           "code": "48853",
@@ -62521,7 +62827,7 @@
           "auto": "false",
           "size": "2",
           "start": "BA",
-          "no": 280
+          "no": 285
         },
         {
           "code": "48271",
@@ -62539,7 +62845,7 @@
           "auto": "false",
           "size": "2",
           "start": "BA",
-          "no": 281
+          "no": 286
         },
         {
           "code": "27139",
@@ -62557,7 +62863,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 282
+          "no": 287
         },
         {
           "code": "48844",
@@ -62575,7 +62881,7 @@
           "auto": "false",
           "size": "2",
           "start": "BA",
-          "no": 283
+          "no": 288
         },
         {
           "code": "27137",
@@ -62593,7 +62899,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 284
+          "no": 289
         },
         {
           "code": "16063",
@@ -62611,7 +62917,7 @@
           "auto": "false",
           "size": "1",
           "start": "BA",
-          "no": 285
+          "no": 290
         },
         {
           "code": "27147",
@@ -62629,7 +62935,7 @@
           "auto": "false",
           "size": "2",
           "start": "BA",
-          "no": 286
+          "no": 291
         },
         {
           "code": "48852",
@@ -62647,7 +62953,7 @@
           "auto": "false",
           "size": "2",
           "start": "BA",
-          "no": 287
+          "no": 292
         },
         {
           "code": "27132",
@@ -62665,7 +62971,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 288
+          "no": 293
         },
         {
           "code": "27136",
@@ -62683,7 +62989,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 289
+          "no": 294
         },
         {
           "code": "48849",
@@ -62701,7 +63007,7 @@
           "auto": "false",
           "size": "2",
           "start": "BA",
-          "no": 290
+          "no": 295
         },
         {
           "code": "4074",
@@ -62719,7 +63025,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 291
+          "no": 296
         },
         {
           "code": "27142",
@@ -62737,7 +63043,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 292
+          "no": 297
         },
         {
           "code": "48848",
@@ -62755,7 +63061,7 @@
           "auto": "false",
           "size": "2",
           "start": "BA",
-          "no": 293
+          "no": 298
         },
         {
           "code": "27143",
@@ -62773,7 +63079,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 294
+          "no": 299
         }
       ]
     },
