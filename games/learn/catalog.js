@@ -1218,52 +1218,6 @@ window.CATALOG_DATA = [
             "problemsCount": 20
           }
         ]
-      },
-      {
-        "code": "tech_joseki",
-        "bookCode": "tech_joseki",
-        "title": "📐 정석 완전정복 마스터",
-        "book": "📐 정석 완전정복 마스터",
-        "chapterCount": 7,
-        "totalProblems": 199,
-        "problemCount": 199,
-        "chapters": [
-          {
-            "code": "tech_joseki_ch01",
-            "title": "1단원. 화점정석 — 날일자 걸침에 날일자·한칸 받기 (32제)",
-            "problemCount": 32
-          },
-          {
-            "code": "tech_joseki_ch02",
-            "title": "2단원. 화점정석 — 날일자 걸침에 붙임·젖힘 정석 (26제)",
-            "problemCount": 26
-          },
-          {
-            "code": "tech_joseki_ch03",
-            "title": "3단원. 화점정석 — 한칸·두칸 협공 정석 (29제)",
-            "problemCount": 29
-          },
-          {
-            "code": "tech_joseki_ch04",
-            "title": "4단원. 화점정석 — 날일자 받기 후 침입·응수 (22제)",
-            "problemCount": 22
-          },
-          {
-            "code": "tech_joseki_ch05",
-            "title": "5단원. 화점정석 — 삼삼 침입 정석 (32제)",
-            "problemCount": 32
-          },
-          {
-            "code": "tech_joseki_ch06",
-            "title": "6단원. 소목정석 — 한칸 걸침에 밑붙임·날일자 받기 (24제)",
-            "problemCount": 24
-          },
-          {
-            "code": "tech_joseki_ch07",
-            "title": "7단원. 삼삼정석과 고목정석 (34제)",
-            "problemCount": 34
-          }
-        ]
       }
     ]
   },
@@ -1271,6 +1225,94 @@ window.CATALOG_DATA = [
     "title": "🎯 15대 핵심 기법 심층 마스터관 (기초부터 고급까지)",
     "bookCount": 15,
     "books": [
+      {
+        "code": "tech_yeon_atari",
+        "title": "⚡ 촉촉수 / 연단수 연속 몰아치기",
+        "chapterCount": 10,
+        "totalProblems": 634,
+        "chapters": [
+          {
+            "code": "tech_yeon_atari_ch01",
+            "chapterCode": "tech_yeon_atari_ch01",
+            "title": "1단원. 1선에 이어도 단수 기초 (밖에서 1선으로 몰아 잡기) (45제)",
+            "chapter": "1단원. 1선에 이어도 단수 기초 (밖에서 1선으로 몰아 잡기) (45제)",
+            "problemCount": 45,
+            "problemsCount": 45
+          },
+          {
+            "code": "tech_yeon_atari_ch02",
+            "chapterCode": "tech_yeon_atari_ch02",
+            "title": "2단원. 1선의 촉촉수 급소 (1선에 직접 단수쳐서 잡기) (12제)",
+            "chapter": "2단원. 1선의 촉촉수 급소 (1선에 직접 단수쳐서 잡기) (12제)",
+            "problemCount": 12,
+            "problemsCount": 12
+          },
+          {
+            "code": "tech_yeon_atari_ch03",
+            "chapterCode": "tech_yeon_atari_ch03",
+            "title": "3단원. 중앙에 이어도 단수 (호구·빈삼각 속에 가두어 잡기) (30제)",
+            "chapter": "3단원. 중앙에 이어도 단수 (호구·빈삼각 속에 가두어 잡기) (30제)",
+            "problemCount": 30,
+            "problemsCount": 30
+          },
+          {
+            "code": "tech_yeon_atari_ch04",
+            "chapterCode": "tech_yeon_atari_ch04",
+            "title": "4단원. 단수치고 또 단수 (연속 단수로 몰아 잡기) (96제)",
+            "chapter": "4단원. 단수치고 또 단수 (연속 단수로 몰아 잡기) (96제)",
+            "problemCount": 96,
+            "problemsCount": 96
+          },
+          {
+            "code": "tech_yeon_atari_ch05",
+            "chapterCode": "tech_yeon_atari_ch05",
+            "title": "5단원. 단수치고 끊기 (이으면 뒤를 끊어 잡기) (24제)",
+            "chapter": "5단원. 단수치고 끊기 (이으면 뒤를 끊어 잡기) (24제)",
+            "problemCount": 24,
+            "problemsCount": 24
+          },
+          {
+            "code": "tech_yeon_atari_ch06",
+            "chapterCode": "tech_yeon_atari_ch06",
+            "title": "6단원. 1선에서 먹여치고 촉촉수 (1선 희생타로 몰아 잡기) (104제)",
+            "chapter": "6단원. 1선에서 먹여치고 촉촉수 (1선 희생타로 몰아 잡기) (104제)",
+            "problemCount": 104,
+            "problemsCount": 104
+          },
+          {
+            "code": "tech_yeon_atari_ch07",
+            "chapterCode": "tech_yeon_atari_ch07",
+            "title": "7단원. 중앙·호구에 먹여치고 촉촉수 (호구 급소에 먹여쳐 잡기) (82제)",
+            "chapter": "7단원. 중앙·호구에 먹여치고 촉촉수 (호구 급소에 먹여쳐 잡기) (82제)",
+            "problemCount": 82,
+            "problemsCount": 82
+          },
+          {
+            "code": "tech_yeon_atari_ch08",
+            "chapterCode": "tech_yeon_atari_ch08",
+            "title": "8단원. 수상전 촉촉수 (촉촉수로 상대 활로 줄여 잡기) (45제)",
+            "chapter": "8단원. 수상전 촉촉수 (촉촉수로 상대 활로 줄여 잡기) (45제)",
+            "problemCount": 45,
+            "problemsCount": 45
+          },
+          {
+            "code": "tech_yeon_atari_ch09",
+            "chapterCode": "tech_yeon_atari_ch09",
+            "title": "9단원. 사활 촉촉수 (촉촉수로 상대 약점 공략해 내 돌 살리기) (98제)",
+            "chapter": "9단원. 사활 촉촉수 (촉촉수로 상대 약점 공략해 내 돌 살리기) (98제)",
+            "problemCount": 98,
+            "problemsCount": 98
+          },
+          {
+            "code": "tech_yeon_atari_ch10",
+            "chapterCode": "tech_yeon_atari_ch10",
+            "title": "10단원. 회돌이 촉촉수 (돌려치기로 뭉치게 만들어 잡기) (98제)",
+            "chapter": "10단원. 회돌이 촉촉수 (돌려치기로 뭉치게 만들어 잡기) (98제)",
+            "problemCount": 98,
+            "problemsCount": 98
+          }
+        ]
+      },
       {
         "code": "tech_ladder",
         "title": "🪜 축 완전정복 마스터",
@@ -1520,322 +1562,121 @@ window.CATALOG_DATA = [
         ]
       },
       {
-        "code": "tech_yeon_atari",
-        "title": "⚡ 촉촉수 / 연단수 연속 몰아치기",
-        "chapterCount": 10,
-        "totalProblems": 634,
+        "code": "tech_throw_in",
+        "title": "🌀 먹여치기 & 회돌이 사석 전술",
+        "chapterCount": 8,
+        "totalProblems": 653,
         "chapters": [
           {
-            "code": "tech_yeon_atari_ch01",
-            "chapterCode": "tech_yeon_atari_ch01",
-            "title": "1단원. 1선에 이어도 단수 기초 (밖에서 1선으로 몰아 잡기) (45제)",
-            "chapter": "1단원. 1선에 이어도 단수 기초 (밖에서 1선으로 몰아 잡기) (45제)",
-            "problemCount": 45,
-            "problemsCount": 45
+            "code": "tech_throw_in_ch01",
+            "chapterCode": "tech_throw_in_ch01",
+            "title": "1단원. 1선에 먹여치기 (110제)",
+            "chapter": "1단원. 1선에 먹여치기 (110제)",
+            "problemCount": 110,
+            "problemsCount": 110
           },
           {
-            "code": "tech_yeon_atari_ch02",
-            "chapterCode": "tech_yeon_atari_ch02",
-            "title": "2단원. 1선의 촉촉수 급소 (1선에 직접 단수쳐서 잡기) (12제)",
-            "chapter": "2단원. 1선의 촉촉수 급소 (1선에 직접 단수쳐서 잡기) (12제)",
-            "problemCount": 12,
-            "problemsCount": 12
-          },
-          {
-            "code": "tech_yeon_atari_ch03",
-            "chapterCode": "tech_yeon_atari_ch03",
-            "title": "3단원. 중앙에 이어도 단수 (호구·빈삼각 속에 가두어 잡기) (30제)",
-            "chapter": "3단원. 중앙에 이어도 단수 (호구·빈삼각 속에 가두어 잡기) (30제)",
-            "problemCount": 30,
-            "problemsCount": 30
-          },
-          {
-            "code": "tech_yeon_atari_ch04",
-            "chapterCode": "tech_yeon_atari_ch04",
-            "title": "4단원. 단수치고 또 단수 (연속 단수로 몰아 잡기) (96제)",
-            "chapter": "4단원. 단수치고 또 단수 (연속 단수로 몰아 잡기) (96제)",
+            "code": "tech_throw_in_ch02",
+            "chapterCode": "tech_throw_in_ch02",
+            "title": "2단원. 호구·중앙에 먹여치기 (96제)",
+            "chapter": "2단원. 호구·중앙에 먹여치기 (96제)",
             "problemCount": 96,
             "problemsCount": 96
           },
           {
-            "code": "tech_yeon_atari_ch05",
-            "chapterCode": "tech_yeon_atari_ch05",
-            "title": "5단원. 단수치고 끊기 (이으면 뒤를 끊어 잡기) (24제)",
-            "chapter": "5단원. 단수치고 끊기 (이으면 뒤를 끊어 잡기) (24제)",
-            "problemCount": 24,
-            "problemsCount": 24
+            "code": "tech_throw_in_ch03",
+            "chapterCode": "tech_throw_in_ch03",
+            "title": "3단원. 먹여쳐서 옥집 만들기 (116제)",
+            "chapter": "3단원. 먹여쳐서 옥집 만들기 (116제)",
+            "problemCount": 116,
+            "problemsCount": 116
           },
           {
-            "code": "tech_yeon_atari_ch06",
-            "chapterCode": "tech_yeon_atari_ch06",
-            "title": "6단원. 1선에서 먹여치고 촉촉수 (1선 희생타로 몰아 잡기) (104제)",
-            "chapter": "6단원. 1선에서 먹여치고 촉촉수 (1선 희생타로 몰아 잡기) (104제)",
-            "problemCount": 104,
-            "problemsCount": 104
+            "code": "tech_throw_in_ch04",
+            "chapterCode": "tech_throw_in_ch04",
+            "title": "4단원. 두 점으로 키워서 옥집 만들기 (83제)",
+            "chapter": "4단원. 두 점으로 키워서 옥집 만들기 (83제)",
+            "problemCount": 83,
+            "problemsCount": 83
           },
           {
-            "code": "tech_yeon_atari_ch07",
-            "chapterCode": "tech_yeon_atari_ch07",
-            "title": "7단원. 중앙·호구에 먹여치고 촉촉수 (호구 급소에 먹여쳐 잡기) (82제)",
-            "chapter": "7단원. 중앙·호구에 먹여치고 촉촉수 (호구 급소에 먹여쳐 잡기) (82제)",
-            "problemCount": 82,
-            "problemsCount": 82
+            "code": "tech_throw_in_ch05",
+            "chapterCode": "tech_throw_in_ch05",
+            "title": "5단원. 수상전 먹여치기 (80제)",
+            "chapter": "5단원. 수상전 먹여치기 (80제)",
+            "problemCount": 80,
+            "problemsCount": 80
           },
           {
-            "code": "tech_yeon_atari_ch08",
-            "chapterCode": "tech_yeon_atari_ch08",
-            "title": "8단원. 수상전 촉촉수 (촉촉수로 상대 활로 줄여 잡기) (45제)",
-            "chapter": "8단원. 수상전 촉촉수 (촉촉수로 상대 활로 줄여 잡기) (45제)",
-            "problemCount": 45,
-            "problemsCount": 45
+            "code": "tech_throw_in_ch06",
+            "chapterCode": "tech_throw_in_ch06",
+            "title": "6단원. 유가무가 먹여치기 (26제)",
+            "chapter": "6단원. 유가무가 먹여치기 (26제)",
+            "problemCount": 26,
+            "problemsCount": 26
           },
           {
-            "code": "tech_yeon_atari_ch09",
-            "chapterCode": "tech_yeon_atari_ch09",
-            "title": "9단원. 사활 촉촉수 (촉촉수로 상대 약점 공략해 내 돌 살리기) (98제)",
-            "chapter": "9단원. 사활 촉촉수 (촉촉수로 상대 약점 공략해 내 돌 살리기) (98제)",
-            "problemCount": 98,
-            "problemsCount": 98
+            "code": "tech_throw_in_ch07",
+            "chapterCode": "tech_throw_in_ch07",
+            "title": "7단원. 사활 먹여치기 (110제)",
+            "chapter": "7단원. 사활 먹여치기 (110제)",
+            "problemCount": 110,
+            "problemsCount": 110
           },
           {
-            "code": "tech_yeon_atari_ch10",
-            "chapterCode": "tech_yeon_atari_ch10",
-            "title": "10단원. 회돌이 촉촉수 (돌려치기로 뭉치게 만들어 잡기) (98제)",
-            "chapter": "10단원. 회돌이 촉촉수 (돌려치기로 뭉치게 만들어 잡기) (98제)",
-            "problemCount": 98,
-            "problemsCount": 98
+            "code": "tech_throw_in_ch08",
+            "chapterCode": "tech_throw_in_ch08",
+            "title": "8단원. 두 번 먹여치기 (32제)",
+            "chapter": "8단원. 두 번 먹여치기 (32제)",
+            "problemCount": 32,
+            "problemsCount": 32
           }
         ]
       },
       {
-        "code": "tech_connection",
-        "title": "🛡️ 행마와 맥 완전정복 마스터",
-        "chapterCount": 24,
-        "totalProblems": 5915,
+        "code": "tech_ko",
+        "title": "♾️ 패 완전정복 마스터",
+        "chapterCount": 7,
+        "totalProblems": 697,
         "chapters": [
           {
-            "code": "tech_connection_ch01",
-            "title": "1단원. 돌의 기본 연결과 따내면서 연결 (193제)",
-            "problemCount": 193
+            "code": "tech_ko_ch01",
+            "title": "1단원. 패의 기본 원리와 패 따내기 (57제)",
+            "problemCount": 57
           },
           {
-            "code": "tech_connection_ch02",
-            "title": "2단원. 입구자·한칸·날일자·눈목자 연결 (106제)",
-            "problemCount": 106
+            "code": "tech_ko_ch02",
+            "title": "2단원. 패를 만들어 살리기 (137제)",
+            "problemCount": 137
           },
           {
-            "code": "tech_connection_ch03",
-            "title": "3단원. 호구·양호구·쌍립 연결 (215제)",
-            "problemCount": 215
+            "code": "tech_ko_ch03",
+            "title": "3단원. 패를 만들어 잡기 (207제)",
+            "problemCount": 207
           },
           {
-            "code": "tech_connection_ch04",
-            "title": "4단원. 1선·2선 연결과 넘어가는 맥 (224제)",
-            "problemCount": 224
+            "code": "tech_ko_ch04",
+            "title": "4단원. 패 조심 — 패를 주지 않고 살거나 잡기 (52제)",
+            "problemCount": 52
           },
           {
-            "code": "tech_connection_ch05",
-            "title": "5단원. 단수·자충·찝음·사석을 이용한 연결 (300제)",
-            "problemCount": 300
+            "code": "tech_ko_ch05",
+            "title": "5단원. 수상전에서의 패와 선패·후패·늘어진 패 (124제)",
+            "problemCount": 124
           },
           {
-            "code": "tech_connection_ch06",
-            "title": "6단원. 효율적인 연결과 실전 연결 (268제)",
-            "problemCount": 268
+            "code": "tech_ko_ch06",
+            "title": "6단원. 패를 이용한 연결과 끊음·패 활용 (70제)",
+            "problemCount": 70
           },
           {
-            "code": "tech_connection_ch07",
-            "title": "7단원. 돌의 기본 끊음과 뚫어서 끊음 (402제)",
-            "problemCount": 402
-          },
-          {
-            "code": "tech_connection_ch08",
-            "title": "8단원. 단수·자충·맞보기를 이용한 끊음 (323제)",
-            "problemCount": 323
-          },
-          {
-            "code": "tech_connection_ch09",
-            "title": "9단원. 건너붙임·끼움·쌍립의 급소로 끊기 (233제)",
-            "problemCount": 233
-          },
-          {
-            "code": "tech_connection_ch10",
-            "title": "10단원. 실전 끊기와 끊기 대응 (279제)",
-            "problemCount": 279
-          },
-          {
-            "code": "tech_connection_ch11",
-            "title": "11단원. 단점과 약점 찾기·지키기 (310제)",
-            "problemCount": 310
-          },
-          {
-            "code": "tech_connection_ch12",
-            "title": "12단원. 한칸·날일자·입구자 기본 행마 (345제)",
-            "problemCount": 345
-          },
-          {
-            "code": "tech_connection_ch13",
-            "title": "13단원. 붙이면 젖히고 젖히면 뻗어라·두 점 머리·2선 패망선 (299제)",
-            "problemCount": 299
-          },
-          {
-            "code": "tech_connection_ch14",
-            "title": "14단원. 빈삼각 피하기와 나쁜 모양 만들기 (120제)",
-            "problemCount": 120
-          },
-          {
-            "code": "tech_connection_ch15",
-            "title": "15단원. 활로와 탈출·앞서가기 (320제)",
-            "problemCount": 320
-          },
-          {
-            "code": "tech_connection_ch16",
-            "title": "16단원. 봉쇄하기와 무리수 응징 (276제)",
-            "problemCount": 276
-          },
-          {
-            "code": "tech_connection_ch17",
-            "title": "17단원. 붙임과 건너붙임의 맥 (108제)",
-            "problemCount": 108
-          },
-          {
-            "code": "tech_connection_ch18",
-            "title": "18단원. 젖힘과 이단젖힘의 맥 (117제)",
-            "problemCount": 117
-          },
-          {
-            "code": "tech_connection_ch19",
-            "title": "19단원. 끼움과 찝음의 맥 (122제)",
-            "problemCount": 122
-          },
-          {
-            "code": "tech_connection_ch20",
-            "title": "20단원. 쌍립·호구·모양의 급소 (206제)",
-            "problemCount": 206
-          },
-          {
-            "code": "tech_connection_ch21",
-            "title": "21단원. 중요한 돌·요석 잡기와 살리기 (176제)",
-            "problemCount": 176
-          },
-          {
-            "code": "tech_connection_ch22",
-            "title": "22단원. 사석작전·키워버리기와 회돌이 (213제)",
-            "problemCount": 213
-          },
-          {
-            "code": "tech_connection_ch23",
-            "title": "23단원. 수순의 묘와 맞보기·양자충·후절수 (301제)",
-            "problemCount": 301
-          },
-          {
-            "code": "tech_connection_ch24",
-            "title": "24단원. 돌을 잡는 맥과 실전 수읽기 (459제)",
-            "problemCount": 459
+            "code": "tech_ko_ch07",
+            "title": "7단원. 팻감 찾기와 팻감 쓰고 패 따내기 (50제)",
+            "problemCount": 50
           }
         ],
-        "book": "🛡️ 행마와 맥 완전정복 마스터",
-        "problemCount": 5915
-      },
-      {
-        "code": "tech_race_outer",
-        "title": "⏱️ 수상전 완전정복 마스터",
-        "chapterCount": 18,
-        "totalProblems": 2829,
-        "chapters": [
-          {
-            "code": "tech_race_outer_ch01",
-            "title": "1단원. 바깥부터 수 줄이기 (216제)",
-            "problemCount": 216
-          },
-          {
-            "code": "tech_race_outer_ch02",
-            "title": "2단원. 수를 줄이는 방향과 안쪽에서 수 줄이기 (176제)",
-            "problemCount": 176
-          },
-          {
-            "code": "tech_race_outer_ch03",
-            "title": "3단원. 중요한 돌부터 수 줄이기 (93제)",
-            "problemCount": 93
-          },
-          {
-            "code": "tech_race_outer_ch04",
-            "title": "4단원. 단수쳐서 수 줄이기와 조이기 (152제)",
-            "problemCount": 152
-          },
-          {
-            "code": "tech_race_outer_ch05",
-            "title": "5단원. 뒤부터 잇고 수 줄이기와 자충 수상전 (150제)",
-            "problemCount": 150
-          },
-          {
-            "code": "tech_race_outer_ch06",
-            "title": "6단원. 나의 수 늘리기와 뻗기 (176제)",
-            "problemCount": 176
-          },
-          {
-            "code": "tech_race_outer_ch07",
-            "title": "7단원. 연결과 끊음을 이용한 수상전 (164제)",
-            "problemCount": 164
-          },
-          {
-            "code": "tech_race_outer_ch08",
-            "title": "8단원. 1선 내림과 1선 젖히기 수상전 (194제)",
-            "problemCount": 194
-          },
-          {
-            "code": "tech_race_outer_ch09",
-            "title": "9단원. 1선 마늘모와 1선의 맥 수상전 (144제)",
-            "problemCount": 144
-          },
-          {
-            "code": "tech_race_outer_ch10",
-            "title": "10단원. 붙임·끼움·찝음 수상전 (131제)",
-            "problemCount": 131
-          },
-          {
-            "code": "tech_race_outer_ch11",
-            "title": "11단원. 먹여치기와 회돌이 수상전 (228제)",
-            "problemCount": 228
-          },
-          {
-            "code": "tech_race_outer_ch12",
-            "title": "12단원. 촉촉수·장문·환격 수상전 (116제)",
-            "problemCount": 116
-          },
-          {
-            "code": "tech_race_outer_ch13",
-            "title": "13단원. 치중과 키움·수상전의 급소 (217제)",
-            "problemCount": 217
-          },
-          {
-            "code": "tech_race_outer_ch14",
-            "title": "14단원. 유가무가와 집 만들어 잡기 (163제)",
-            "problemCount": 163
-          },
-          {
-            "code": "tech_race_outer_ch15",
-            "title": "15단원. 단수·찝기·먹여치기·키움 유가무가 (128제)",
-            "problemCount": 128
-          },
-          {
-            "code": "tech_race_outer_ch16",
-            "title": "16단원. 귀삼수와 귀의 특수성·대궁소궁 (170제)",
-            "problemCount": 170
-          },
-          {
-            "code": "tech_race_outer_ch17",
-            "title": "17단원. 패 수상전과 패 피하기 (160제)",
-            "problemCount": 160
-          },
-          {
-            "code": "tech_race_outer_ch18",
-            "title": "18단원. 수상전 종합 (51제)",
-            "problemCount": 51
-          }
-        ],
-        "book": "⏱️ 수상전 완전정복 마스터",
-        "problemCount": 2829
+        "book": "♾️ 패 완전정복 마스터",
+        "problemCount": 697
       },
       {
         "code": "tech_eye_house",
@@ -2063,121 +1904,234 @@ window.CATALOG_DATA = [
         "book": "👁️ 사활 완전정복 마스터"
       },
       {
-        "code": "tech_throw_in",
-        "title": "🌀 먹여치기 & 회돌이 사석 전술",
-        "chapterCount": 8,
-        "totalProblems": 653,
+        "code": "tech_race_outer",
+        "title": "⏱️ 수상전 완전정복 마스터",
+        "chapterCount": 18,
+        "totalProblems": 2829,
         "chapters": [
           {
-            "code": "tech_throw_in_ch01",
-            "chapterCode": "tech_throw_in_ch01",
-            "title": "1단원. 1선에 먹여치기 (110제)",
-            "chapter": "1단원. 1선에 먹여치기 (110제)",
-            "problemCount": 110,
-            "problemsCount": 110
+            "code": "tech_race_outer_ch01",
+            "title": "1단원. 바깥부터 수 줄이기 (216제)",
+            "problemCount": 216
           },
           {
-            "code": "tech_throw_in_ch02",
-            "chapterCode": "tech_throw_in_ch02",
-            "title": "2단원. 호구·중앙에 먹여치기 (96제)",
-            "chapter": "2단원. 호구·중앙에 먹여치기 (96제)",
-            "problemCount": 96,
-            "problemsCount": 96
+            "code": "tech_race_outer_ch02",
+            "title": "2단원. 수를 줄이는 방향과 안쪽에서 수 줄이기 (176제)",
+            "problemCount": 176
           },
           {
-            "code": "tech_throw_in_ch03",
-            "chapterCode": "tech_throw_in_ch03",
-            "title": "3단원. 먹여쳐서 옥집 만들기 (116제)",
-            "chapter": "3단원. 먹여쳐서 옥집 만들기 (116제)",
-            "problemCount": 116,
-            "problemsCount": 116
+            "code": "tech_race_outer_ch03",
+            "title": "3단원. 중요한 돌부터 수 줄이기 (93제)",
+            "problemCount": 93
           },
           {
-            "code": "tech_throw_in_ch04",
-            "chapterCode": "tech_throw_in_ch04",
-            "title": "4단원. 두 점으로 키워서 옥집 만들기 (83제)",
-            "chapter": "4단원. 두 점으로 키워서 옥집 만들기 (83제)",
-            "problemCount": 83,
-            "problemsCount": 83
+            "code": "tech_race_outer_ch04",
+            "title": "4단원. 단수쳐서 수 줄이기와 조이기 (152제)",
+            "problemCount": 152
           },
           {
-            "code": "tech_throw_in_ch05",
-            "chapterCode": "tech_throw_in_ch05",
-            "title": "5단원. 수상전 먹여치기 (80제)",
-            "chapter": "5단원. 수상전 먹여치기 (80제)",
-            "problemCount": 80,
-            "problemsCount": 80
+            "code": "tech_race_outer_ch05",
+            "title": "5단원. 뒤부터 잇고 수 줄이기와 자충 수상전 (150제)",
+            "problemCount": 150
           },
           {
-            "code": "tech_throw_in_ch06",
-            "chapterCode": "tech_throw_in_ch06",
-            "title": "6단원. 유가무가 먹여치기 (26제)",
-            "chapter": "6단원. 유가무가 먹여치기 (26제)",
-            "problemCount": 26,
-            "problemsCount": 26
+            "code": "tech_race_outer_ch06",
+            "title": "6단원. 나의 수 늘리기와 뻗기 (176제)",
+            "problemCount": 176
           },
           {
-            "code": "tech_throw_in_ch07",
-            "chapterCode": "tech_throw_in_ch07",
-            "title": "7단원. 사활 먹여치기 (110제)",
-            "chapter": "7단원. 사활 먹여치기 (110제)",
-            "problemCount": 110,
-            "problemsCount": 110
+            "code": "tech_race_outer_ch07",
+            "title": "7단원. 연결과 끊음을 이용한 수상전 (164제)",
+            "problemCount": 164
           },
           {
-            "code": "tech_throw_in_ch08",
-            "chapterCode": "tech_throw_in_ch08",
-            "title": "8단원. 두 번 먹여치기 (32제)",
-            "chapter": "8단원. 두 번 먹여치기 (32제)",
-            "problemCount": 32,
-            "problemsCount": 32
-          }
-        ]
-      },
-      {
-        "code": "tech_ko",
-        "title": "♾️ 패 완전정복 마스터",
-        "chapterCount": 7,
-        "totalProblems": 697,
-        "chapters": [
-          {
-            "code": "tech_ko_ch01",
-            "title": "1단원. 패의 기본 원리와 패 따내기 (57제)",
-            "problemCount": 57
+            "code": "tech_race_outer_ch08",
+            "title": "8단원. 1선 내림과 1선 젖히기 수상전 (194제)",
+            "problemCount": 194
           },
           {
-            "code": "tech_ko_ch02",
-            "title": "2단원. 패를 만들어 살리기 (137제)",
-            "problemCount": 137
+            "code": "tech_race_outer_ch09",
+            "title": "9단원. 1선 마늘모와 1선의 맥 수상전 (144제)",
+            "problemCount": 144
           },
           {
-            "code": "tech_ko_ch03",
-            "title": "3단원. 패를 만들어 잡기 (207제)",
-            "problemCount": 207
+            "code": "tech_race_outer_ch10",
+            "title": "10단원. 붙임·끼움·찝음 수상전 (131제)",
+            "problemCount": 131
           },
           {
-            "code": "tech_ko_ch04",
-            "title": "4단원. 패 조심 — 패를 주지 않고 살거나 잡기 (52제)",
-            "problemCount": 52
+            "code": "tech_race_outer_ch11",
+            "title": "11단원. 먹여치기와 회돌이 수상전 (228제)",
+            "problemCount": 228
           },
           {
-            "code": "tech_ko_ch05",
-            "title": "5단원. 수상전에서의 패와 선패·후패·늘어진 패 (124제)",
-            "problemCount": 124
+            "code": "tech_race_outer_ch12",
+            "title": "12단원. 촉촉수·장문·환격 수상전 (116제)",
+            "problemCount": 116
           },
           {
-            "code": "tech_ko_ch06",
-            "title": "6단원. 패를 이용한 연결과 끊음·패 활용 (70제)",
-            "problemCount": 70
+            "code": "tech_race_outer_ch13",
+            "title": "13단원. 치중과 키움·수상전의 급소 (217제)",
+            "problemCount": 217
           },
           {
-            "code": "tech_ko_ch07",
-            "title": "7단원. 팻감 찾기와 팻감 쓰고 패 따내기 (50제)",
-            "problemCount": 50
+            "code": "tech_race_outer_ch14",
+            "title": "14단원. 유가무가와 집 만들어 잡기 (163제)",
+            "problemCount": 163
+          },
+          {
+            "code": "tech_race_outer_ch15",
+            "title": "15단원. 단수·찝기·먹여치기·키움 유가무가 (128제)",
+            "problemCount": 128
+          },
+          {
+            "code": "tech_race_outer_ch16",
+            "title": "16단원. 귀삼수와 귀의 특수성·대궁소궁 (170제)",
+            "problemCount": 170
+          },
+          {
+            "code": "tech_race_outer_ch17",
+            "title": "17단원. 패 수상전과 패 피하기 (160제)",
+            "problemCount": 160
+          },
+          {
+            "code": "tech_race_outer_ch18",
+            "title": "18단원. 수상전 종합 (51제)",
+            "problemCount": 51
           }
         ],
-        "book": "♾️ 패 완전정복 마스터",
-        "problemCount": 697
+        "book": "⏱️ 수상전 완전정복 마스터",
+        "problemCount": 2829
+      },
+      {
+        "code": "tech_connection",
+        "title": "🛡️ 행마와 맥 완전정복 마스터",
+        "chapterCount": 24,
+        "totalProblems": 5915,
+        "chapters": [
+          {
+            "code": "tech_connection_ch01",
+            "title": "1단원. 돌의 기본 연결과 따내면서 연결 (193제)",
+            "problemCount": 193
+          },
+          {
+            "code": "tech_connection_ch02",
+            "title": "2단원. 입구자·한칸·날일자·눈목자 연결 (106제)",
+            "problemCount": 106
+          },
+          {
+            "code": "tech_connection_ch03",
+            "title": "3단원. 호구·양호구·쌍립 연결 (215제)",
+            "problemCount": 215
+          },
+          {
+            "code": "tech_connection_ch04",
+            "title": "4단원. 1선·2선 연결과 넘어가는 맥 (224제)",
+            "problemCount": 224
+          },
+          {
+            "code": "tech_connection_ch05",
+            "title": "5단원. 단수·자충·찝음·사석을 이용한 연결 (300제)",
+            "problemCount": 300
+          },
+          {
+            "code": "tech_connection_ch06",
+            "title": "6단원. 효율적인 연결과 실전 연결 (268제)",
+            "problemCount": 268
+          },
+          {
+            "code": "tech_connection_ch07",
+            "title": "7단원. 돌의 기본 끊음과 뚫어서 끊음 (402제)",
+            "problemCount": 402
+          },
+          {
+            "code": "tech_connection_ch08",
+            "title": "8단원. 단수·자충·맞보기를 이용한 끊음 (323제)",
+            "problemCount": 323
+          },
+          {
+            "code": "tech_connection_ch09",
+            "title": "9단원. 건너붙임·끼움·쌍립의 급소로 끊기 (233제)",
+            "problemCount": 233
+          },
+          {
+            "code": "tech_connection_ch10",
+            "title": "10단원. 실전 끊기와 끊기 대응 (279제)",
+            "problemCount": 279
+          },
+          {
+            "code": "tech_connection_ch11",
+            "title": "11단원. 단점과 약점 찾기·지키기 (310제)",
+            "problemCount": 310
+          },
+          {
+            "code": "tech_connection_ch12",
+            "title": "12단원. 한칸·날일자·입구자 기본 행마 (345제)",
+            "problemCount": 345
+          },
+          {
+            "code": "tech_connection_ch13",
+            "title": "13단원. 붙이면 젖히고 젖히면 뻗어라·두 점 머리·2선 패망선 (299제)",
+            "problemCount": 299
+          },
+          {
+            "code": "tech_connection_ch14",
+            "title": "14단원. 빈삼각 피하기와 나쁜 모양 만들기 (120제)",
+            "problemCount": 120
+          },
+          {
+            "code": "tech_connection_ch15",
+            "title": "15단원. 활로와 탈출·앞서가기 (320제)",
+            "problemCount": 320
+          },
+          {
+            "code": "tech_connection_ch16",
+            "title": "16단원. 봉쇄하기와 무리수 응징 (276제)",
+            "problemCount": 276
+          },
+          {
+            "code": "tech_connection_ch17",
+            "title": "17단원. 붙임과 건너붙임의 맥 (108제)",
+            "problemCount": 108
+          },
+          {
+            "code": "tech_connection_ch18",
+            "title": "18단원. 젖힘과 이단젖힘의 맥 (117제)",
+            "problemCount": 117
+          },
+          {
+            "code": "tech_connection_ch19",
+            "title": "19단원. 끼움과 찝음의 맥 (122제)",
+            "problemCount": 122
+          },
+          {
+            "code": "tech_connection_ch20",
+            "title": "20단원. 쌍립·호구·모양의 급소 (206제)",
+            "problemCount": 206
+          },
+          {
+            "code": "tech_connection_ch21",
+            "title": "21단원. 중요한 돌·요석 잡기와 살리기 (176제)",
+            "problemCount": 176
+          },
+          {
+            "code": "tech_connection_ch22",
+            "title": "22단원. 사석작전·키워버리기와 회돌이 (213제)",
+            "problemCount": 213
+          },
+          {
+            "code": "tech_connection_ch23",
+            "title": "23단원. 수순의 묘와 맞보기·양자충·후절수 (301제)",
+            "problemCount": 301
+          },
+          {
+            "code": "tech_connection_ch24",
+            "title": "24단원. 돌을 잡는 맥과 실전 수읽기 (459제)",
+            "problemCount": 459
+          }
+        ],
+        "book": "🛡️ 행마와 맥 완전정복 마스터",
+        "problemCount": 5915
       },
       {
         "code": "tech_endgame",
@@ -14385,3 +14339,4 @@ window.CATALOG_DATA = [
     ]
   }
 ];
+window.BADUK_CATALOG = window.CATALOG_DATA;
