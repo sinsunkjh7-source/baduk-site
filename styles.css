@@ -242,11 +242,43 @@
   width: 100%;
 }
 
-/* .learn-card-featured-play normalized */
+.play-card-grid .learn-card {
+  min-width: 0;
+  cursor: pointer;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  border-radius: 20px;
+}
 
+/* 🌟 1. AI 대국 (코랄 / 로즈 레드 테마) 🌟 */
+.play-card-grid > :nth-child(1),
+.play-card-grid .play-card-ai {
+  border: 1.5px solid #fca5a5;
+  background: linear-gradient(135deg, #ffffff 0%, #fff1f2 100%);
+}
 
+/* 🌟 2. 일반 대국 (인디고 / 바이올렛 테마) 🌟 */
+.play-card-grid > :nth-child(2),
+.play-card-grid .play-card-pvp {
+  border: 1.5px solid #c7d2fe;
+  background: linear-gradient(135deg, #ffffff 0%, #f5f3ff 100%);
+}
 
+/* 🌟 3. 실시간 1:1 대국 (스카이블루 / 시안 테마) 🌟 */
+.play-card-grid > :nth-child(3),
+.play-card-grid .play-card-live {
+  border: 1.5px solid #93c5fd;
+  background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%);
+}
 
+/* 🌟 [원장님 요청] 대국 카드 선택 시(마우스 오버 / 클릭 선택 / 포커스) 밝고 굵은 녹색 라인 🌟 */
+.play-card-grid .learn-card:hover,
+.play-card-grid .learn-card:focus-visible,
+.play-card-grid .learn-card.selected {
+  border: 2.5px solid #16a34a !important;
+  box-shadow: 0 0 0 1.5px #22c55e, 0 14px 32px rgba(22, 163, 74, 0.22) !important;
+  transform: translateY(-5px) !important;
+}
 
 @media (max-width: 1024px) {
   .play-card-grid {
