@@ -116,19 +116,19 @@
                 <button type="button" id="btnPedToggleTurn" class="ped-btn-mini" title="흑선/백선 전환">흑↔백선</button>
               </div>
               <div class="ped-tool-row">
-                <button type="button" class="ped-tool-btn" data-edit-tool="black" title="바둑판 클릭 시 흑돌 추가/제거">⚫ 흑돌</button>
-                <button type="button" class="ped-tool-btn" data-edit-tool="white" title="바둑판 클릭 시 백돌 추가/제거">⚪ 백돌</button>
-                <button type="button" class="ped-tool-btn" data-edit-tool="erase" title="바둑판 클릭 시 돌/표시 지우기">❌ 지우개</button>
-                <button type="button" class="ped-tool-btn" data-edit-tool="triangle" title="바둑판 클릭 시 △ 표시 추가/제거">△ 표시</button>
-                <button type="button" class="ped-tool-btn" data-edit-tool="answer" title="바둑판 클릭으로 정답 수순 새로 입력">🎯 정답수순</button>
+                <button type="button" class="ped-tool-btn" data-edit-tool="black" title="바둑판 클릭 시 흑돌 추가/제거">⚫흑돌</button>
+                <button type="button" class="ped-tool-btn" data-edit-tool="white" title="바둑판 클릭 시 백돌 추가/제거">⚪백돌</button>
+                <button type="button" class="ped-tool-btn" data-edit-tool="erase" title="바둑판 클릭 시 돌/표시 지우기">❌지움</button>
+                <button type="button" class="ped-tool-btn" data-edit-tool="triangle" title="바둑판 클릭 시 △ 표시 추가/제거">△표시</button>
+                <button type="button" class="ped-tool-btn" data-edit-tool="answer" title="바둑판 클릭으로 정답 수순 새로 입력">🎯정답</button>
               </div>
               <div class="ped-sub-row">
                 <button type="button" class="ped-mini-act" data-shift-dir="up" title="모든 돌 위로 1칸 이동">↑</button>
                 <button type="button" class="ped-mini-act" data-shift-dir="down" title="모든 돌 아래로 1칸 이동">↓</button>
                 <button type="button" class="ped-mini-act" data-shift-dir="left" title="모든 돌 왼쪽으로 1칸 이동">←</button>
                 <button type="button" class="ped-mini-act" data-shift-dir="right" title="모든 돌 오른쪽으로 1칸 이동">→</button>
-                <button type="button" class="ped-mini-act" id="btnPedDiagFlip" title="귀 대각선 대칭 회전">🔄 대칭</button>
-                <button type="button" class="ped-mini-act" id="btnPedColorSwap" title="흑백 돌 색상 맞바꾸기">☯ 흑백전환</button>
+                <button type="button" class="ped-mini-act" id="btnPedDiagFlip" title="귀 대각선 대칭 회전">🔄대칭</button>
+                <button type="button" class="ped-mini-act" id="btnPedColorSwap" title="흑백 돌 색상 맞바꾸기">☯흑백</button>
                 <button type="button" class="ped-mini-act danger-soft" id="btnPedClearAns" title="정답 수순 비우고 새로 찍기">정답비움</button>
               </div>
             </div>
@@ -136,12 +136,12 @@
             <!-- 2. 단원 내 문제 위치(번호) 이동 및 문제 제거 -->
             <div class="ped-group">
               <span class="ped-label">🔢 문제 순서 변경 · 제거</span>
-              <div class="ped-action-row">
-                <button type="button" id="btnPedMovePrev" class="ped-act-btn" title="번호 앞으로 한 칸 이동">◀ 앞으로</button>
-                <button type="button" id="btnPedMoveNext" class="ped-act-btn" title="번호 뒤로 한 칸 이동">뒤로 ▶</button>
+              <div class="ped-action-row ped-order-row">
+                <button type="button" id="btnPedMovePrev" class="ped-act-btn" title="번호 앞으로 한 칸 이동">◀앞</button>
+                <button type="button" id="btnPedMoveNext" class="ped-act-btn" title="번호 뒤로 한 칸 이동">뒤▶</button>
                 <input type="number" id="pedTargetNumInput" class="ped-num-input" min="1" placeholder="번호" title="이동할 문제 번호 입력" />
-                <button type="button" id="btnPedJumpMove" class="ped-act-btn" title="입력한 번호 위치로 문제 이동">번 이동</button>
-                <button type="button" id="btnPedDeleteProb" class="ped-act-btn danger" title="현재 문제를 이 단원에서 삭제">🗑️ 문제 삭제</button>
+                <button type="button" id="btnPedJumpMove" class="ped-act-btn" title="입력한 번호 위치로 문제 이동">이동</button>
+                <button type="button" id="btnPedDeleteProb" class="ped-act-btn danger" title="현재 문제를 이 단원에서 삭제">🗑️삭제</button>
               </div>
             </div>
 

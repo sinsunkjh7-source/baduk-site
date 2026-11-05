@@ -890,13 +890,26 @@ html, body {
 
 
 /* ---------- 🌟 문제별 접이식 간편 편집 메뉴 (🛠️ 편집 ▾) 🌟 ---------- */
+.sidebar-section .question-header {
+  gap: 4px !important;
+  flex-wrap: wrap !important;
+}
+.sidebar-section .question-header .q-num,
+.sidebar-section .question-header .q-turn {
+  font-size: 11px !important;
+  padding: 4px 6px !important;
+}
+.sidebar-section .question-header .btn-hint,
+.sidebar-section .question-header .btn-answer,
 .sidebar-section .question-header .btn-prob-edit {
-  padding: 4px 8px;
-  font-size: 11.5px;
+  padding: 4px 6px !important;
+  font-size: 11px !important;
   font-weight: 800;
   border-radius: 6px;
   white-space: nowrap;
   cursor: pointer;
+}
+.sidebar-section .question-header .btn-prob-edit {
   background: #f1f5f9;
   border: 1px solid #cbd5e1;
   color: #334155;
@@ -918,12 +931,14 @@ html, body {
   display: none !important;
 }
 .prob-edit-drawer {
-  margin-top: 10px;
-  padding-top: 10px;
+  margin-top: 8px;
+  padding-top: 8px;
   border-top: 1.5px dashed #cbd5e1;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
+  width: 100%;
+  box-sizing: border-box;
   animation: pedFadeIn 0.16s ease-out;
 }
 @keyframes pedFadeIn {
@@ -938,24 +953,28 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 6px;
-  padding: 6px 9px;
+  gap: 4px;
+  padding: 5px 8px;
   border-radius: 7px;
   background: #ecfdf5;
   border: 1.5px solid #10b981;
   color: #065f46;
-  font-size: 11.5px;
+  font-size: 11px;
   font-weight: 800;
+  box-sizing: border-box;
 }
 
 .ped-group {
   background: #f8fafc;
   border: 1px solid #e2e8f0;
   border-radius: 8px;
-  padding: 7px 8px;
+  padding: 6px 7px;
   display: flex;
   flex-direction: column;
   gap: 5px;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 .ped-group-header {
   display: flex;
@@ -967,17 +986,18 @@ html, body {
   font-size: 11px;
   font-weight: 800;
   color: #475569;
-  letter-spacing: -0.2px;
+  letter-spacing: -0.3px;
 }
 .ped-btn-mini {
-  padding: 2px 7px;
-  font-size: 10.5px;
+  padding: 2px 6px;
+  font-size: 10px;
   font-weight: 800;
   border-radius: 5px;
   border: 1px solid #cbd5e1;
   background: #ffffff;
   color: #334155;
   cursor: pointer;
+  flex-shrink: 0;
 }
 .ped-btn-mini:hover {
   background: #f1f5f9;
@@ -986,20 +1006,25 @@ html, body {
 
 .ped-tool-row {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 4px;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 3px;
+  width: 100%;
 }
 .ped-tool-btn {
-  padding: 5px 2px;
-  font-size: 11px;
+  min-width: 0;
+  padding: 5px 1px;
+  font-size: 10.5px;
   font-weight: 800;
+  letter-spacing: -0.4px;
   border-radius: 6px;
-  border: 1.5px solid #cbd5e1;
+  border: 1px solid #cbd5e1;
   background: #ffffff;
   color: #1e293b;
   cursor: pointer;
   text-align: center;
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   transition: all 0.12s;
 }
 .ped-tool-btn:hover {
@@ -1010,21 +1035,21 @@ html, body {
   background: #059669;
   border-color: #047857;
   color: #ffffff;
-  box-shadow: 0 2px 6px rgba(5, 150, 105, 0.35);
+  box-shadow: 0 1px 4px rgba(5, 150, 105, 0.35);
 }
 
 .ped-sub-row {
-  display: flex;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr) 1.35fr 1.35fr 1.6fr;
   gap: 3px;
-  flex-wrap: wrap;
+  width: 100%;
 }
 .ped-mini-act {
-  flex: 1;
-  min-width: 26px;
-  padding: 4px 4px;
-  font-size: 10.5px;
+  min-width: 0;
+  padding: 4px 1px;
+  font-size: 10px;
   font-weight: 800;
+  letter-spacing: -0.4px;
   border-radius: 5px;
   border: 1px solid #cbd5e1;
   background: #ffffff;
@@ -1032,6 +1057,7 @@ html, body {
   cursor: pointer;
   white-space: nowrap;
   text-align: center;
+  overflow: hidden;
 }
 .ped-mini-act:hover {
   background: #e2e8f0;
@@ -1051,18 +1077,29 @@ html, body {
   align-items: center;
   gap: 4px;
   width: 100%;
+  box-sizing: border-box;
+}
+.ped-action-row.ped-order-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 42px 1fr 1.25fr;
+  gap: 3px;
+  width: 100%;
 }
 .ped-act-btn {
-  padding: 5px 7px;
-  font-size: 11px;
+  min-width: 0;
+  padding: 5px 4px;
+  font-size: 10.5px;
   font-weight: 800;
+  letter-spacing: -0.3px;
   border-radius: 6px;
   border: 1px solid #cbd5e1;
   background: #ffffff;
   color: #1e293b;
   cursor: pointer;
   white-space: nowrap;
+  text-align: center;
   transition: all 0.12s;
+  flex-shrink: 0;
 }
 .ped-act-btn:hover {
   background: #e2e8f0;
@@ -1071,6 +1108,7 @@ html, body {
   background: var(--green);
   border-color: var(--green-deep);
   color: #ffffff;
+  padding: 5px 8px;
 }
 .ped-act-btn.primary:hover {
   background: var(--green-deep);
@@ -1079,7 +1117,7 @@ html, body {
   background: #fff1f2;
   border-color: #fda4af;
   color: #be123c;
-  margin-left: auto;
+  margin-left: 0;
 }
 .ped-act-btn.danger:hover {
   background: #e11d48;
@@ -1088,9 +1126,11 @@ html, body {
 }
 
 .ped-num-input {
-  width: 48px;
-  padding: 4px 5px;
-  font-size: 11.5px;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  padding: 4px 2px;
+  font-size: 11px;
   font-weight: 800;
   border: 1px solid #cbd5e1;
   border-radius: 6px;
@@ -1100,8 +1140,8 @@ html, body {
 .ped-select {
   flex: 1;
   min-width: 0;
-  padding: 5px 6px;
-  font-size: 11.5px;
+  padding: 5px 5px;
+  font-size: 11px;
   font-weight: 700;
   border: 1px solid #cbd5e1;
   border-radius: 6px;
@@ -1111,8 +1151,8 @@ html, body {
 .ped-text-input {
   flex: 1;
   min-width: 0;
-  padding: 5px 7px;
-  font-size: 11.5px;
+  padding: 5px 6px;
+  font-size: 11px;
   font-weight: 700;
   border: 1px solid #cbd5e1;
   border-radius: 6px;
@@ -1124,11 +1164,12 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 6px;
+  gap: 4px;
   padding-top: 2px;
+  flex-wrap: wrap;
 }
 .ped-save-badge {
-  font-size: 10.5px;
+  font-size: 10px;
   font-weight: 800;
   color: #059669;
   margin-right: auto;
@@ -1136,8 +1177,8 @@ html, body {
 .ped-link-btn {
   background: transparent;
   border: none;
-  padding: 2px 4px;
-  font-size: 10.5px;
+  padding: 2px 3px;
+  font-size: 10px;
   font-weight: 800;
   color: #2563eb;
   cursor: pointer;

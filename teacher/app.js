@@ -2567,7 +2567,7 @@
         var opt = document.createElement('option');
         opt.value = idx;
         var cnt = (ch.problems || []).length;
-        var chName = ch.chapter || ch.title || ('제 ' + (idx + 1) + '단원');
+        var chName = (ch.chapter || ch.title || ('제 ' + (idx + 1) + '단원')).replace(/\s*\(\d+제\)\s*$/, '');
         opt.textContent = chName + ' (' + cnt + '제)' + (idx === state.currentChapterIndex ? ' [현재]' : '');
         chSelect.appendChild(opt);
       });
@@ -2590,7 +2590,7 @@
     Array.from(chapterSelect.options).forEach(function (opt, idx) {
       var ch = state.currentBook.chapters[idx];
       if (ch) {
-        var baseName = (ch.chapter || ch.title || ('제 ' + (idx + 1) + '단원'));
+        var baseName = (ch.chapter || ch.title || ('제 ' + (idx + 1) + '단원')).replace(/\s*\(\d+제\)\s*$/, '');
         opt.textContent = baseName + ' (' + (ch.problems ? ch.problems.length : 0) + '제)';
       }
     });
