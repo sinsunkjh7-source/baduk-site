@@ -770,10 +770,10 @@ body {
   padding: 16px 24px;
   background: #f8fafc;
   border-top: 1.5px solid var(--border-light, #f1f5f9);
-  display: flex;
+  display: flex !important;
   gap: 12px;
-  justify-content: center;
-  align-items: center;
+  justify-content: center !important;
+  align-items: center !important;
   position: relative;
 }
 
