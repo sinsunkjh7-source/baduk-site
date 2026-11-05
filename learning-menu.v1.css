@@ -1,1 +1,121 @@
-#learn-screen .learning-menu-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}#learn-screen .learning-menu-card{min-width:0;min-height:282px}#learn-screen .learning-menu-icon{display:inline-flex;width:44px;height:44px;flex:0 0 44px;align-items:center;justify-content:center}#learn-screen .learning-menu-icon svg{width:44px;height:44px;display:block}#learn-screen .learning-menu-card .card-title{word-break:keep-all}#learn-screen .learning-menu-card .card-btn-action{margin-top:auto;padding-top:8px}#learn-screen .learning-menu-card[aria-disabled="true"]:hover{transform:none}#learn-screen .learning-adventure-card{border-color:#91c6cd;background:linear-gradient(135deg,#fff,#f1fbfc)}#learn-screen .learning-adventure-content{margin-top:22px;border:1.5px solid #d8e6c8;border-radius:16px;background:#fff;overflow:hidden}#learn-screen .learning-adventure-content>summary{padding:18px 22px;cursor:pointer;color:#375b38;font-size:15px;font-weight:700}#learn-screen .learning-adventure-content[open]>summary{border-bottom:1px solid #e4eddc}#learn-screen .learning-adventure-content>.learn-card-grid{padding:22px;margin:0}#learn-screen .learning-menu-card:focus-visible,#learn-screen .learning-adventure-content>summary:focus-visible{outline:3px solid #679b51;outline-offset:4px}@media(max-width:700px){#learn-screen .learning-menu-grid{grid-template-columns:1fr}#learn-screen .learning-menu-card{min-height:0}#learn-screen .learning-adventure-content>.learn-card-grid{padding:14px}}
+/* ===================================================
+   바둑 학습 4대 메뉴 카드 레이아웃 & 테마 스타일
+   =================================================== */
+#learn-screen .learning-menu-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+
+#learn-screen .learning-menu-card {
+  min-width: 0;
+  min-height: 282px;
+  cursor: pointer;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  border-radius: 20px;
+}
+
+#learn-screen .learning-menu-icon {
+  display: inline-flex;
+  width: 44px;
+  height: 44px;
+  flex: 0 0 44px;
+  align-items: center;
+  justify-content: center;
+}
+
+#learn-screen .learning-menu-icon svg {
+  width: 44px;
+  height: 44px;
+  display: block;
+}
+
+#learn-screen .learning-menu-card .card-title {
+  word-break: keep-all;
+}
+
+#learn-screen .learning-menu-card .card-btn-action {
+  margin-top: auto;
+  padding-top: 8px;
+}
+
+/* 🌟 1. 바둑 입문 & 첫걸음 (초록 새싹 테마) 🌟 */
+#learn-screen .learning-menu-grid > :nth-child(1),
+#learn-screen .learning-intro-card {
+  border: 1.5px solid #a3d99b;
+  background: linear-gradient(135deg, #ffffff 0%, #f0fdf4 100%);
+}
+
+/* 🌟 2. 단계별 학습관 (스카이블루 테마) 🌟 */
+#learn-screen .learning-menu-grid > :nth-child(2),
+#learn-screen .learning-stage-card {
+  border: 1.5px solid #9ecbf0;
+  background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%);
+}
+
+/* 🌟 3. 기법 & 분야별 마스터관 (퍼플 바이올렛 테마) 🌟 */
+#learn-screen .learning-menu-grid > :nth-child(3),
+#learn-screen .learning-tech-card {
+  border: 1.5px solid #cbb7f0;
+  background: linear-gradient(135deg, #ffffff 0%, #faf5ff 100%);
+}
+
+/* 🌟 4. 롤러코스터 어드벤처 (시안 민트 테마) 🌟 */
+#learn-screen .learning-menu-grid > :nth-child(4),
+#learn-screen .learning-adventure-card {
+  border: 1.5px solid #91c6cd;
+  background: linear-gradient(135deg, #ffffff 0%, #f1fbfc 100%);
+}
+
+/* 🌟 [원장님 요청] 선택 시(마우스 오버 / 클릭 선택 / 포커스) 밝고 굵은 녹색 라인 🌟 */
+#learn-screen .learning-menu-card:hover,
+#learn-screen .learning-menu-card:focus-visible,
+#learn-screen .learning-menu-card.selected {
+  border: 2.5px solid #16a34a !important;
+  box-shadow: 0 0 0 1.5px #22c55e, 0 14px 32px rgba(22, 163, 74, 0.22) !important;
+  transform: translateY(-5px) !important;
+}
+
+/* 하단 기존 체험 모아보기 아코디언 */
+#learn-screen .learning-adventure-content {
+  margin-top: 22px;
+  border: 1.5px solid #d8e6c8;
+  border-radius: 16px;
+  background: #fff;
+  overflow: hidden;
+}
+
+#learn-screen .learning-adventure-content > summary {
+  padding: 18px 22px;
+  cursor: pointer;
+  color: #375b38;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+#learn-screen .learning-adventure-content[open] > summary {
+  border-bottom: 1px solid #e4eddc;
+}
+
+#learn-screen .learning-adventure-content > .learn-card-grid {
+  padding: 22px;
+  margin: 0;
+}
+
+#learn-screen .learning-menu-card:focus-visible,
+#learn-screen .learning-adventure-content > summary:focus-visible {
+  outline: 3px solid #679b51;
+  outline-offset: 4px;
+}
+
+@media (max-width: 700px) {
+  #learn-screen .learning-menu-grid {
+    grid-template-columns: 1fr;
+  }
+  #learn-screen .learning-menu-card {
+    min-height: 0;
+  }
+  #learn-screen .learning-adventure-content > .learn-card-grid {
+    padding: 14px;
+  }
+}
