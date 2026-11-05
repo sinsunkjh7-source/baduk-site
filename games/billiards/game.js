@@ -34,7 +34,7 @@
     R = +(FL * sp.ball / 2 * BALL_SCALE).toFixed(2);
     POCKET_R = (mode === 'pocket') ? +(FL * sp.ball * 2.1).toFixed(2) : 0;
   }
-  var FRICTION = 0.9885, STOP = 0.06, CUSHION = 0.92, MAX_POWER = 26;
+  var FRICTION = 0.9854, STOP = 0.06, CUSHION = 0.92, MAX_POWER = 38;
 
   var POCKET_COLORS = ['#f2c53d', '#2e6fb7', '#c0392b', '#7d3fa8', '#e07b2a', '#2f8f5b', '#8e2418', '#1d1d1d', '#e6d34a'];
 
@@ -800,7 +800,7 @@
     var dx = p.x - cue.x, dy = p.y - cue.y;
     var d = Math.hypot(dx, dy) || 1;
     aim.x = dx / d; aim.y = dy / d;
-    aim.power = Math.min(1, Math.max(0, (d - R * 2) / 240));
+    aim.power = Math.min(1, Math.max(0, (d - R * 2) / 170));
     lastAim = { x: aim.x, y: aim.y, power: aim.power };
     syncPowerUI();
     draw();
