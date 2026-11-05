@@ -106,12 +106,15 @@
         </div>
 
         <!-- 빠른 대국 조작 버튼 2개 -->
-        <div class="users-action-row">
+        <div class="users-action-row" style="grid-template-columns: 1fr 1fr 1fr; gap: 8px;">
           <button type="button" class="btn-lounge-action auto" id="btnAutoMatch" title="나와 실력이 비슷한 친구와 자동 매칭">
-            <span>🎲</span> 자동 맞춤 대국
+            <span>🎲</span> 자동 맞춤
           </button>
           <button type="button" class="btn-lounge-action create" id="btnCreateRoom" title="새로운 대국방 개설하기">
-            <span>🏠</span> 대국방 만들기
+            <span>🏠</span> 방 만들기
+          </button>
+          <button type="button" class="btn-lounge-action join-code" id="btnJoinByCode" title="전달받은 방 코드로 즉시 입장">
+            <span>🔑</span> 코드 입장
           </button>
         </div>
       </div>
@@ -270,6 +273,55 @@
     <div class="incoming-actions">
       <button type="button" class="btn-reject" id="btnRejectIncoming">✕ 거절하기</button>
       <button type="button" class="btn-accept" id="btnAcceptIncoming">🟢 대국 수락! (입장)</button>
+    </div>
+  </div>
+</div>
+
+<!-- =========================================================
+     🌟 대국방 개설 완료 & 초대 링크 팝업 🌟
+     ========================================================= -->
+<div class="lounge-modal-overlay" id="roomCreatedModal" hidden>
+  <div class="lounge-modal-box" style="text-align:center;max-width:460px;padding:28px 24px;">
+    <div style="font-size:3rem;margin-bottom:8px;">🏠</div>
+    <h3 style="font-size:1.3rem;font-weight:800;color:#1e293b;">대국방이 개설되었습니다!</h3>
+    <p style="font-size:0.88rem;color:#64748b;margin-top:4px;">학생 또는 대국 상대에게 아래 방 코드나 링크를 전달하세요.</p>
+
+    <div style="background:#f0fdf4;border:2px dashed #22c55e;border-radius:14px;padding:16px;margin:20px 0;">
+      <span style="font-size:0.78rem;color:#15803d;font-weight:700;">6자리 방 코드</span>
+      <div id="createdRoomCodeDisplay" style="font-size:2rem;font-weight:900;color:#166534;letter-spacing:2px;margin:4px 0;">JH-7281</div>
+      <small style="color:#64748b;font-size:0.75rem;">상대방이 대기실에서 위 코드를 입력해도 바로 입장할 수 있습니다.</small>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      <button type="button" class="btn-submit-action" id="btnCopyCreatedRoomLink" style="background:#16a34a;padding:12px;font-size:0.95rem;border-radius:10px;">
+        📋 카카오톡 / 문자 초대 링크 복사
+      </button>
+      <button type="button" class="btn-submit-action" id="btnEnterCreatedRoom" style="background:#1e293b;padding:12px;font-size:0.95rem;border-radius:10px;">
+        🚪 대국실로 먼저 입장하기
+      </button>
+      <button type="button" class="btn-cancel" id="btnCloseCreatedModal" style="padding:8px;font-size:0.85rem;">
+        닫기
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- =========================================================
+     🌟 방 코드 직접 입력 입장 팝업 🌟
+     ========================================================= -->
+<div class="lounge-modal-overlay" id="joinByCodeModal" hidden>
+  <div class="lounge-modal-box" style="text-align:center;max-width:420px;padding:28px 24px;">
+    <div style="font-size:3rem;margin-bottom:8px;">🔑</div>
+    <h3 style="font-size:1.25rem;font-weight:800;color:#1e293b;">대국방 코드 입력</h3>
+    <p style="font-size:0.85rem;color:#64748b;margin-top:4px;">선생님 또는 친구에게 전달받은 방 코드를 입력하세요.</p>
+
+    <div style="margin:20px 0;">
+      <input type="text" id="inputRoomCode" placeholder="예: JH-7281" style="width:100%;text-align:center;font-size:1.5rem;font-weight:800;letter-spacing:2px;padding:10px;border:2px solid #22c55e;border-radius:12px;outline:none;text-transform:uppercase;">
+    </div>
+
+    <div style="display:flex;gap:10px;justify-content:center;">
+      <button type="button" class="btn-cancel" id="btnCancelJoinCode" style="flex:1;padding:12px;border-radius:10px;">취소</button>
+      <button type="button" class="btn-submit-action" id="btnSubmitJoinCode" style="flex:1.5;padding:12px;background:#0284c7;border-radius:10px;">🟢 입장하기</button>
     </div>
   </div>
 </div>

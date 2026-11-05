@@ -10,11 +10,12 @@
 
   /* ---------- 대국 및 환경 상태 ---------- */
   var urlParams = new URLSearchParams(window.location.search);
-  var initialMode = urlParams.get('mode') || 'ai'; // 'ai' | 'pvp'
+  var isLiveParam = urlParams.get('mode') === 'live' || Boolean(urlParams.get('room'));
+  var initialMode = isLiveParam ? 'live' : (urlParams.get('mode') || 'ai'); // 'ai' | 'pvp' | 'live'
 
   var state = {
-    mode: localStorage.getItem('play_mode') || initialMode, // 'ai' | 'pvp'
-    boardSize: parseInt(localStorage.getItem('play_board_size') || '19', 10), // 19 | 13 | 9
+    mode: isLiveParam ? 'live' : (localStorage.getItem('play_mode') || initialMode),
+    boardSize: parseInt(urlParams.get('boardSize') || localStorage.getItem('play_board_size') || '19', 10), // 19 | 13 | 9
     difficulty: localStorage.getItem('play_ai_difficulty') || 'dan', // 'beginner' | 'intermediate' | 'advanced' | 'dan' | 'master'
     humanColor: parseInt(localStorage.getItem('play_human_color') || '1', 10), // 1: BLACK, 2: WHITE
     colorChoice: localStorage.getItem('play_color_choice') || '1', // '1' | '2' | 'random'
@@ -953,6 +954,13 @@
       return;
     }
 
+    if (state.mode === 'live' && window.LiveP2P) {
+      if (!window.LiveP2P.canMove(state.currentTurn)) {
+        toast('상대방이 둘 차례입니다. 잠시만 기다려 주세요.');
+        return;
+      }
+    }
+
     var res = engine.playMove(c, r, state.currentTurn);
     if (!res.success) {
       if (res.reason === 'SUICIDE') {
@@ -977,6 +985,10 @@
     state.currentTurn = (state.currentTurn === BLACK) ? WHITE : BLACK;
     state.showingTerritory = false;
     onPlayerMovedTimer(movedPlayer);
+
+    if (state.mode === 'live' && window.LiveP2P) {
+      window.LiveP2P.broadcastMove(c, r, movedPlayer);
+    }
 
     drawBoard();
     updateStatus();
@@ -1140,6 +1152,9 @@
     }
 
     var passCol = state.currentTurn;
+    if (state.mode === 'live' && window.LiveP2P) {
+      window.LiveP2P.broadcastPass(passCol);
+    }
     state.currentTurn = (state.currentTurn === BLACK) ? WHITE : BLACK;
     onPlayerMovedTimer(passCol);
     drawBoard();
@@ -1191,6 +1206,9 @@
 
     pauseTimerInterval();
     state.isGameOver = true;
+    if (state.mode === 'live' && window.LiveP2P) {
+      window.LiveP2P.broadcastResign(state.currentTurn);
+    }
     var botName = state.mode === 'ai' ? BOTS[state.difficulty].name : '상대';
     toast('기권하여 대국이 종료되었습니다.');
 
@@ -1662,6 +1680,8 @@
           } else if (state.mode === 'ai') {
             var isMyTurn = (state.currentTurn === state.humanColor);
             if (!isMyTurn || state.isThinking) canHover = false;
+          } else if (state.mode === 'live') {
+            if (window.LiveP2P && !window.LiveP2P.canMove(state.currentTurn)) canHover = false;
           }
 
           if (canHover) {
@@ -2003,4 +2023,52 @@
   } else {
     init();
   }
+
+  // 🌟 실시간 P2P 원격 착수 수신 브릿지 🌟
+  window.LiveBridge = {
+    applyRemoteMove: function (c, r, color) {
+      var res = engine.playMove(c, r, color);
+      if (res.success) {
+        audio.playPlaceSound(color);
+        if (res.captures.length > 0) {
+          audio.playCaptureSound();
+          toast(res.captures.length + '개의 돌을 따냈습니다!');
+        }
+        state.lastMove = { x: c, y: r };
+        var movedPlayer = color;
+        state.currentTurn = (color === BLACK) ? WHITE : BLACK;
+        state.showingTerritory = false;
+        onPlayerMovedTimer(movedPlayer);
+        drawBoard();
+        updateStatus();
+      }
+    },
+    applyRemotePass: function (color) {
+      var pRes = engine.pass(color);
+      toast('상대방이 한 수를 쉬었습니다 (패스).');
+      var moves = engine.moves;
+      if (moves.length >= 2 && moves[moves.length - 1].isPass && moves[moves.length - 2].isPass) {
+        handleDoublePassGameOver();
+        return;
+      }
+      state.currentTurn = (color === BLACK) ? WHITE : BLACK;
+      onPlayerMovedTimer(color);
+      drawBoard();
+      updateStatus();
+    },
+    applyRemoteResign: function (color) {
+      pauseTimerInterval();
+      state.isGameOver = true;
+      toast('상대방이 기권하여 대국이 종료되었습니다.');
+      var title = document.getElementById('resultTitle');
+      var desc = document.getElementById('resultDesc');
+      if (title) title.textContent = '🎉 승리! (상대 기권)';
+      if (desc) desc.textContent = '상대방이 기권하여 불계승을 거두었습니다!';
+      var modal = document.getElementById('resultModal');
+      if (modal) modal.hidden = false;
+    }
+  };
+
+  window.PlayApp = { state: state, engine: engine, handleHumanMove: handleHumanMove };
+
 })();

@@ -1231,3 +1231,13 @@ body {
   0% { transform: translate(-50%, 15px); opacity: 0; }
   100% { transform: translate(-50%, 0); opacity: 1; }
 }
+
+.btn-lounge-action.join-code {
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+  color: #ffffff;
+}
+
+.btn-lounge-action.join-code:hover {
+  background: #075985;
+  transform: translateY(-1px);
+}

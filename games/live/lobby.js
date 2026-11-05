@@ -381,7 +381,8 @@
       showToast('🎉 [' + targetName + ']님이 대국 신청을 수락했습니다! 대국실로 입장합니다...', 2500);
 
       setTimeout(function () {
-        window.location.href = '/games/play/index.html?mode=pvp&boardSize=' + bSize + '&p1=' + encodeURIComponent(myProfile.name) + '&p2=' + encodeURIComponent(targetName);
+        var rCode = 'JH-' + Math.floor(1000 + Math.random() * 9000);
+        window.location.href = '/games/play/index.html?mode=live&room=' + rCode + '&host=1&boardSize=' + bSize + '&p1=' + encodeURIComponent(myProfile.name) + '&p2=' + encodeURIComponent(targetName);
       }, 1500);
     }, 2800);
   }
@@ -410,7 +411,8 @@
         modal.hidden = true;
         showToast('🟢 대국을 수락했습니다! 대국실로 입장합니다...', 2000);
         setTimeout(function () {
-          window.location.href = '/games/play/index.html?mode=pvp&boardSize=19&p1=' + encodeURIComponent(challenger.name) + '&p2=' + encodeURIComponent(myProfile.name);
+          var rCode = 'JH-' + Math.floor(1000 + Math.random() * 9000);
+          window.location.href = '/games/play/index.html?mode=live&room=' + rCode + '&boardSize=19&p1=' + encodeURIComponent(challenger.name) + '&p2=' + encodeURIComponent(myProfile.name);
         }, 1200);
       };
     }
@@ -436,29 +438,117 @@
         playChime();
         showToast('🎯 매칭 성공! [' + opponent.name + '] 친구와 연결되었습니다!', 2000);
         setTimeout(function () {
-          window.location.href = '/games/play/index.html?mode=pvp&boardSize=19&p1=' + encodeURIComponent(myProfile.name) + '&p2=' + encodeURIComponent(opponent.name);
+          var rCode = 'JH-' + Math.floor(1000 + Math.random() * 9000);
+          window.location.href = '/games/play/index.html?mode=live&room=' + rCode + '&host=1&boardSize=19&p1=' + encodeURIComponent(myProfile.name) + '&p2=' + encodeURIComponent(opponent.name);
         }, 1200);
       }
     }, 1800);
   }
 
-  // --- 새 대국방 만들기 ---
+  // --- 새 대국방 개설 모달 띄우기 ---
+  var currentCreatedRoomCode = null;
+
   function createNewRoom() {
-    playClick();
+    playChime();
+    currentCreatedRoomCode = 'JH-' + Math.floor(1000 + Math.random() * 9000);
+
+    var modal = document.getElementById('roomCreatedModal');
+    var codeDisplay = document.getElementById('createdRoomCodeDisplay');
+    if (codeDisplay) codeDisplay.textContent = currentCreatedRoomCode;
+    if (modal) modal.hidden = false;
+
+    // 대국실 리스트에도 방 카드 추가
     var newRoomId = roomsData.length + 1;
-    var newRoom = {
+    roomsData.unshift({
       id: newRoomId,
-      type: '친선대국',
+      type: '친선대국 (' + currentCreatedRoomCode + ')',
       boardSize: 19,
       status: 'waiting',
       pBlack: { name: myProfile.name, level: myProfile.level },
       pWhite: null,
-      timeRule: '10분'
-    };
-
-    roomsData.unshift(newRoom);
+      timeRule: '10분',
+      liveCode: currentCreatedRoomCode
+    });
     renderRooms();
-    showToast('🏠 ' + newRoomId + '번 새 대국방을 개설했습니다! 상대방이 입장할 때까지 대기합니다.');
+  }
+
+  function initCreatedRoomModal() {
+    var modal = document.getElementById('roomCreatedModal');
+    var btnCopy = document.getElementById('btnCopyCreatedRoomLink');
+    var btnEnter = document.getElementById('btnEnterCreatedRoom');
+    var btnClose = document.getElementById('btnCloseCreatedModal');
+
+    if (btnCopy) {
+      btnCopy.onclick = function () {
+        var inviteUrl = window.location.origin + '/games/play/index.html?mode=live&room=' + encodeURIComponent(currentCreatedRoomCode) + '&boardSize=19';
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(inviteUrl).then(function () {
+            showToast('📋 초대 링크가 복사되었습니다! 카톡이나 문자로 보내세요.');
+          }).catch(function () {
+            prompt('초대 링크 복사:', inviteUrl);
+          });
+        } else {
+          prompt('초대 링크 복사:', inviteUrl);
+        }
+      };
+    }
+
+    if (btnEnter) {
+      btnEnter.onclick = function () {
+        playClick();
+        window.location.href = '/games/play/index.html?mode=live&room=' + encodeURIComponent(currentCreatedRoomCode) + '&host=1&boardSize=19&p1=' + encodeURIComponent(myProfile.name);
+      };
+    }
+
+    if (btnClose) {
+      btnClose.onclick = function () {
+        playClick();
+        if (modal) modal.hidden = true;
+      };
+    }
+  }
+
+  // --- 방 코드로 입장하기 모달 ---
+  function initJoinByCodeModal() {
+    var btnOpen = document.getElementById('btnJoinByCode');
+    var modal = document.getElementById('joinByCodeModal');
+    var input = document.getElementById('inputRoomCode');
+    var btnCancel = document.getElementById('btnCancelJoinCode');
+    var btnSubmit = document.getElementById('btnSubmitJoinCode');
+
+    if (btnOpen) {
+      btnOpen.onclick = function () {
+        playClick();
+        if (input) input.value = '';
+        if (modal) modal.hidden = false;
+        setTimeout(function () { if (input) input.focus(); }, 150);
+      };
+    }
+
+    if (btnCancel) {
+      btnCancel.onclick = function () {
+        playClick();
+        if (modal) modal.hidden = true;
+      };
+    }
+
+    if (btnSubmit) {
+      btnSubmit.onclick = function () {
+        var val = (input ? input.value : '').trim().toUpperCase();
+        if (!val) {
+          showToast('방 코드를 입력해주세요!');
+          return;
+        }
+        if (!val.startsWith('JH-')) {
+          val = 'JH-' + val;
+        }
+        playChime();
+        showToast('🔑 ' + val + ' 대국방으로 입장합니다...');
+        setTimeout(function () {
+          window.location.href = '/games/play/index.html?mode=live&room=' + encodeURIComponent(val) + '&p2=' + encodeURIComponent(myProfile.name);
+        }, 800);
+      };
+    }
   }
 
   // --- HTML Escape 헬퍼 ---
@@ -562,6 +652,8 @@
 
     // 9. 빠른 액션 버튼: 자동 맞춤 대국 & 대국방 만들기
     var btnAutoMatch = document.getElementById('btnAutoMatch');
+    initCreatedRoomModal();
+    initJoinByCodeModal();
     var btnCreateRoom = document.getElementById('btnCreateRoom');
 
     if (btnAutoMatch) btnAutoMatch.addEventListener('click', startAutoMatch);
