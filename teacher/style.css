@@ -967,6 +967,31 @@ html, body {
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
+/* 🌟 착수금지: 눈에 띄면서도 품격 있는 앰버/골드 경고 스타일 🌟 */
+.side-feedback-card.illegal {
+  border: 1.5px solid rgba(245, 158, 11, 0.75);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45), 0 0 26px rgba(245, 158, 11, 0.25);
+}
+.side-feedback-card.illegal .feedback-emblem {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #fbbf24, #d97706 70%, #78350f);
+  box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.4), 0 5px 14px rgba(217, 119, 6, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+}
+.side-feedback-card.illegal .feedback-text {
+  color: #fef3c7;
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  font-family: 'Pretendard', -apple-system, sans-serif;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
 /* 🌟 설정 패널 열릴 때 바둑판과 겹치지 않도록 스테이지 자동 축소 및 여백 확보 🌟 */
 @media (min-width: 1024px) {
   body.bks-settings-open .teacher-stage {

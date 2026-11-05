@@ -144,7 +144,7 @@
   function toast(msg) {
     if (!msg) return;
     // 🌟 [원장님 지침] 정답, 오답 외의 모든 안내 팝업 문구 원천 차단
-    if (msg.indexOf('정답') === -1 && msg.indexOf('오답') === -1) {
+    if (msg.indexOf('정답') === -1 && msg.indexOf('오답') === -1 && msg.indexOf('착수금지') === -1 && msg.indexOf('금지') === -1) {
       return;
     }
     var el = document.getElementById('teacherToast');
@@ -164,7 +164,7 @@
     if (!card || !emblem || !text) return;
 
     clearTimeout(sideFeedbackTimer);
-    card.classList.remove('correct', 'wrong', 'show');
+    card.classList.remove('correct', 'wrong', 'illegal', 'show');
 
     // 🌟 바둑판 오른쪽 여백의 '정중앙'에 위치 계산 🌟
     if (canvas && boardContainer) {
@@ -191,6 +191,10 @@
       card.classList.add('correct');
       emblem.innerHTML = '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>';
       text.textContent = '정답입니다';
+    } else if (type === 'illegal') {
+      card.classList.add('illegal');
+      emblem.innerHTML = '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line></svg>';
+      text.textContent = '착수금지';
     } else {
       card.classList.add('wrong');
       emblem.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>';
@@ -201,7 +205,7 @@
     void card.offsetWidth;
     card.classList.add('show');
 
-    var duration = type === 'correct' ? 1400 : 1200;
+    var duration = type === 'correct' ? 1400 : (type === 'illegal' ? 1400 : 1200);
     sideFeedbackTimer = setTimeout(function () {
       card.classList.remove('show');
       setTimeout(function () {
@@ -1568,7 +1572,8 @@
       if (selfSuicide && capturedCount === 0) {
         state.board[gy][gx] = 0; // 착수 취소
         sfx('playDdang');
-        // toast 제거됨
+        showSideFeedback('illegal');
+        toast('🚫 착수금지점(자충수)에는 둘 수 없습니다!');
         return;
       }
 
@@ -1617,6 +1622,35 @@
     var p = state.currentProblems[state.currentProblemIndex];
     var myColor = getProblemStartingColor(p);
     var oppColor = myColor === 1 ? 2 : 1;
+
+    // 🌟 착수금지점(자충수) 검사: 상대 돌을 따낼 수 없는데 자신의 활로가 0이 되는 곳 🌟
+    state.board[gy][gx] = myColor;
+    var testGroups = getStoneGroups(state.board, state.boardCols, state.boardRows);
+    var wouldCapture = false;
+    var isSuicide = false;
+
+    testGroups.forEach(function (g) {
+      if (g.color === oppColor && g.liberties === 0) {
+        wouldCapture = true;
+      }
+    });
+
+    testGroups.forEach(function (g) {
+      if (g.color === myColor && g.liberties === 0) {
+        if (g.stones.some(function (s) { return s.x === gx && s.y === gy; })) {
+          isSuicide = true;
+        }
+      }
+    });
+
+    state.board[gy][gx] = 0; // 원복
+
+    if (isSuicide && !wouldCapture) {
+      sfx('playDdang');
+      showSideFeedback('illegal');
+      toast('🚫 착수금지점(자충수)에는 둘 수 없습니다!');
+      return;
+    }
 
     // 🌟 [원장님 원칙] 활로 막기 등 정답 착점 다중 수순 및 순서 무관(Order-Independent) 판정! 🌟
     var matchingBranches = [];
