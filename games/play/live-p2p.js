@@ -183,7 +183,12 @@
       });
 
       peer.on('error', function (err) {
-        console.error('[LiveP2P] Peer error:', err);
+        console.error('[LiveP2P] Peer error:', err.type, err);
+        if (err.type === 'peer-unavailable') {
+          console.log('[LiveP2P] Host peer not ready yet, retrying connect in 1.5s...');
+          setTimeout(connectToHost, 1500);
+          return;
+        }
         if (err.type === 'unavailable-id') {
           // 이미 방이 열려있는 경우 (내가 게스트로 들어온 상황)
           console.log('[LiveP2P] Room ID already taken, connecting as guest...');
@@ -194,9 +199,9 @@
           peer.on('open', function () {
             connectToHost();
           });
-        } else {
-          showToast('⚠️ 네트워크 연결 오류: ' + (err.message || err.type));
+          return;
         }
+        showToast('⚠️ 네트워크 연결 오류: ' + (err.message || err.type));
       });
 
     } catch (e) {
@@ -204,17 +209,27 @@
     }
   }
 
+  var connectRetryTimer = null;
   function connectToHost() {
-    if (!peer) return;
+    if (!peer || isConnected) return;
     console.log('[LiveP2P] Connecting to host peer:', targetPeerId);
     var conn = peer.connect(targetPeerId, { reliable: true });
     setupConnection(conn);
+
+    clearTimeout(connectRetryTimer);
+    connectRetryTimer = setTimeout(function () {
+      if (!isConnected) {
+        console.log('[LiveP2P] Auto-retrying connection to host...');
+        connectToHost();
+      }
+    }, 2800);
   }
 
   function setupConnection(conn) {
     activeConn = conn;
 
     conn.on('open', function () {
+      clearTimeout(connectRetryTimer);
       isConnected = true;
       console.log('[LiveP2P] DataChannel connected successfully!');
 
