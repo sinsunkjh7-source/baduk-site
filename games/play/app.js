@@ -19,7 +19,7 @@
     boardSize: parseInt(urlParams.get('boardSize') || localStorage.getItem('play_board_size') || '19', 10), // 19 | 13 | 9
     difficulty: localStorage.getItem('play_ai_difficulty') || 'dan', // 'beginner' | 'intermediate' | 'advanced' | 'dan' | 'master'
     humanColor: parseInt(localStorage.getItem('play_human_color') || '1', 10), // 1: BLACK, 2: WHITE
-    colorChoice: localStorage.getItem('play_color_choice') || '1', // '1' | '2' | 'random'
+    colorChoice: localStorage.getItem('play_color_choice') || 'random', // '1' | '2' | 'random'
     handicap: parseInt(urlParams.get('handicap') || localStorage.getItem('play_handicap') || '0', 10), // 0: 호선, 1: 정선, 2~9: 접바둑
     timeLimit: urlParams.get('timeLimit') || urlParams.get('time') || localStorage.getItem('play_time_limit') || 'none',
     freeStones: [],
