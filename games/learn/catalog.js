@@ -4275,9 +4275,9 @@ window.CATALOG_DATA = [
       },
       {
         "code": "tech_eye_house",
-        "title": "👁️ 사활: 두 눈 만들기 & 옥집 파호 마스터",
-        "chapterCount": 8,
-        "totalProblems": 1359,
+        "title": "👁️ 사활 완전정복 마스터",
+        "chapterCount": 26,
+        "totalProblems": 4202,
         "chapters": [
           {
             "code": "tech_eye_house_ch01",
@@ -4342,171 +4342,153 @@ window.CATALOG_DATA = [
             "chapter": "8단원. 젖혀 옥집·자충 옥집과 치중 옥집 (53제)",
             "problemCount": 53,
             "problemsCount": 53
-          }
-        ],
-        "book": "👁️ 사활: 두 눈 만들기 & 옥집 파호 마스터"
-      },
-      {
-        "code": "tech_gungdo",
-        "title": "🏯 사활: 궁도 (3궁~6궁) 삶과 죽음",
-        "chapterCount": 8,
-        "totalProblems": 1023,
-        "chapters": [
-          {
-            "code": "tech_gungdo_ch01",
-            "chapterCode": "tech_gungdo_ch01",
-            "title": "1단원. 3궁 사활 (61제)",
-            "chapter": "1단원. 3궁 사활 (61제)",
-            "problemCount": 61,
-            "problemsCount": 61
           },
           {
-            "code": "tech_gungdo_ch02",
-            "chapterCode": "tech_gungdo_ch02",
-            "title": "2단원. 직사궁·곡사궁·방사궁 4궁 사활 (128제)",
-            "chapter": "2단원. 직사궁·곡사궁·방사궁 4궁 사활 (128제)",
-            "problemCount": 128,
-            "problemsCount": 128
+            "code": "tech_eye_house_ch09",
+            "chapterCode": "tech_eye_house_ch09",
+            "title": "9단원. 3궁 사활 (54제)",
+            "chapter": "9단원. 3궁 사활 (54제)",
+            "problemCount": 54,
+            "problemsCount": 54
           },
           {
-            "code": "tech_gungdo_ch03",
-            "chapterCode": "tech_gungdo_ch03",
-            "title": "3단원. 4궁·5궁 사활 (155제)",
-            "chapter": "3단원. 4궁·5궁 사활 (155제)",
-            "problemCount": 155,
-            "problemsCount": 155
+            "code": "tech_eye_house_ch10",
+            "chapterCode": "tech_eye_house_ch10",
+            "title": "10단원. 직사궁·곡사궁·방사궁 4궁 사활 (125제)",
+            "chapter": "10단원. 직사궁·곡사궁·방사궁 4궁 사활 (125제)",
+            "problemCount": 125,
+            "problemsCount": 125
           },
           {
-            "code": "tech_gungdo_ch04",
-            "chapterCode": "tech_gungdo_ch04",
-            "title": "4단원. 오궁도화와 매화육궁 (95제)",
-            "chapter": "4단원. 오궁도화와 매화육궁 (95제)",
+            "code": "tech_eye_house_ch11",
+            "chapterCode": "tech_eye_house_ch11",
+            "title": "11단원. 4궁·5궁 사활 (153제)",
+            "chapter": "11단원. 4궁·5궁 사활 (153제)",
+            "problemCount": 153,
+            "problemsCount": 153
+          },
+          {
+            "code": "tech_eye_house_ch12",
+            "chapterCode": "tech_eye_house_ch12",
+            "title": "12단원. 오궁도화와 매화육궁 (95제)",
+            "chapter": "12단원. 오궁도화와 매화육궁 (95제)",
             "problemCount": 95,
             "problemsCount": 95
           },
           {
-            "code": "tech_gungdo_ch05",
-            "chapterCode": "tech_gungdo_ch05",
-            "title": "5단원. 6궁 사활과 판육궁 (129제)",
-            "chapter": "5단원. 6궁 사활과 판육궁 (129제)",
+            "code": "tech_eye_house_ch13",
+            "chapterCode": "tech_eye_house_ch13",
+            "title": "13단원. 6궁 사활과 판육궁 (129제)",
+            "chapter": "13단원. 6궁 사활과 판육궁 (129제)",
             "problemCount": 129,
             "problemsCount": 129
           },
           {
-            "code": "tech_gungdo_ch06",
-            "chapterCode": "tech_gungdo_ch06",
-            "title": "6단원. 귀는 4사6생·변은 6사8생 (101제)",
-            "chapter": "6단원. 귀는 4사6생·변은 6사8생 (101제)",
+            "code": "tech_eye_house_ch14",
+            "chapterCode": "tech_eye_house_ch14",
+            "title": "14단원. 귀는 4사6생·변은 6사8생 (101제)",
+            "chapter": "14단원. 귀는 4사6생·변은 6사8생 (101제)",
             "problemCount": 101,
             "problemsCount": 101
           },
           {
-            "code": "tech_gungdo_ch07",
-            "chapterCode": "tech_gungdo_ch07",
-            "title": "7단원. 궁도 사활 종합 (51제)",
-            "chapter": "7단원. 궁도 사활 종합 (51제)",
+            "code": "tech_eye_house_ch15",
+            "chapterCode": "tech_eye_house_ch15",
+            "title": "15단원. 궁도 사활 종합 (51제)",
+            "chapter": "15단원. 궁도 사활 종합 (51제)",
             "problemCount": 51,
             "problemsCount": 51
           },
           {
-            "code": "tech_gungdo_ch08",
-            "chapterCode": "tech_gungdo_ch08",
-            "title": "8단원. 빅으로 살기 (303제)",
-            "chapter": "8단원. 빅으로 살기 (303제)",
+            "code": "tech_eye_house_ch16",
+            "chapterCode": "tech_eye_house_ch16",
+            "title": "16단원. 빅으로 살기 (303제)",
+            "chapter": "16단원. 빅으로 살기 (303제)",
             "problemCount": 303,
             "problemsCount": 303
-          }
-        ],
-        "book": "🏯 사활: 궁도 (3궁~6궁) 삶과 죽음"
-      },
-      {
-        "code": "tech_chijung",
-        "title": "🎯 사활: 치중의 급소 찌르기",
-        "chapterCount": 10,
-        "totalProblems": 1845,
-        "chapters": [
-          {
-            "code": "tech_chijung_ch01",
-            "chapterCode": "tech_chijung_ch01",
-            "title": "1단원. 궁도 넓혀 살기 (149제)",
-            "chapter": "1단원. 궁도 넓혀 살기 (149제)",
-            "problemCount": 149,
-            "problemsCount": 149
           },
           {
-            "code": "tech_chijung_ch02",
-            "chapterCode": "tech_chijung_ch02",
-            "title": "2단원. 궁도 줄여 잡기 (142제)",
-            "chapter": "2단원. 궁도 줄여 잡기 (142제)",
+            "code": "tech_eye_house_ch17",
+            "chapterCode": "tech_eye_house_ch17",
+            "title": "17단원. 궁도 넓혀 살기 (146제)",
+            "chapter": "17단원. 궁도 넓혀 살기 (146제)",
+            "problemCount": 146,
+            "problemsCount": 146
+          },
+          {
+            "code": "tech_eye_house_ch18",
+            "chapterCode": "tech_eye_house_ch18",
+            "title": "18단원. 궁도 줄여 잡기 (142제)",
+            "chapter": "18단원. 궁도 줄여 잡기 (142제)",
             "problemCount": 142,
             "problemsCount": 142
           },
           {
-            "code": "tech_chijung_ch03",
-            "chapterCode": "tech_chijung_ch03",
-            "title": "3단원. 급소에 두어 살리기와 치중하여 잡기 (245제)",
-            "chapter": "3단원. 급소에 두어 살리기와 치중하여 잡기 (245제)",
-            "problemCount": 245,
-            "problemsCount": 245
+            "code": "tech_eye_house_ch19",
+            "chapterCode": "tech_eye_house_ch19",
+            "title": "19단원. 급소에 두어 살리기와 치중하여 잡기 (242제)",
+            "chapter": "19단원. 급소에 두어 살리기와 치중하여 잡기 (242제)",
+            "problemCount": 242,
+            "problemsCount": 242
           },
           {
-            "code": "tech_chijung_ch04",
-            "chapterCode": "tech_chijung_ch04",
-            "title": "4단원. 좌우동형은 중앙이 급소 (74제)",
-            "chapter": "4단원. 좌우동형은 중앙이 급소 (74제)",
-            "problemCount": 74,
-            "problemsCount": 74
+            "code": "tech_eye_house_ch20",
+            "chapterCode": "tech_eye_house_ch20",
+            "title": "20단원. 좌우동형은 중앙이 급소 (72제)",
+            "chapter": "20단원. 좌우동형은 중앙이 급소 (72제)",
+            "problemCount": 72,
+            "problemsCount": 72
           },
           {
-            "code": "tech_chijung_ch05",
-            "chapterCode": "tech_chijung_ch05",
-            "title": "5단원. 1선·2선의 급소 (203제)",
-            "chapter": "5단원. 1선·2선의 급소 (203제)",
+            "code": "tech_eye_house_ch21",
+            "chapterCode": "tech_eye_house_ch21",
+            "title": "21단원. 1선·2선의 급소 (203제)",
+            "chapter": "21단원. 1선·2선의 급소 (203제)",
             "problemCount": 203,
             "problemsCount": 203
           },
           {
-            "code": "tech_chijung_ch06",
-            "chapterCode": "tech_chijung_ch06",
-            "title": "6단원. 1선 입구자 사활 (76제)",
-            "chapter": "6단원. 1선 입구자 사활 (76제)",
+            "code": "tech_eye_house_ch22",
+            "chapterCode": "tech_eye_house_ch22",
+            "title": "22단원. 1선 입구자 사활 (76제)",
+            "chapter": "22단원. 1선 입구자 사활 (76제)",
             "problemCount": 76,
             "problemsCount": 76
           },
           {
-            "code": "tech_chijung_ch07",
-            "chapterCode": "tech_chijung_ch07",
-            "title": "7단원. 착수금지와 자충 사활 (279제)",
-            "chapter": "7단원. 착수금지와 자충 사활 (279제)",
-            "problemCount": 279,
-            "problemsCount": 279
+            "code": "tech_eye_house_ch23",
+            "chapterCode": "tech_eye_house_ch23",
+            "title": "23단원. 착수금지와 자충 사활 (276제)",
+            "chapter": "23단원. 착수금지와 자충 사활 (276제)",
+            "problemCount": 276,
+            "problemsCount": 276
           },
           {
-            "code": "tech_chijung_ch08",
-            "chapterCode": "tech_chijung_ch08",
-            "title": "8단원. 선수·단수·약점 이용 사활 (354제)",
-            "chapter": "8단원. 선수·단수·약점 이용 사활 (354제)",
+            "code": "tech_eye_house_ch24",
+            "chapterCode": "tech_eye_house_ch24",
+            "title": "24단원. 선수·단수·약점 이용 사활 (354제)",
+            "chapter": "24단원. 선수·단수·약점 이용 사활 (354제)",
             "problemCount": 354,
             "problemsCount": 354
           },
           {
-            "code": "tech_chijung_ch09",
-            "chapterCode": "tech_chijung_ch09",
-            "title": "9단원. 맞보기 사활과 후절수 (163제)",
-            "chapter": "9단원. 맞보기 사활과 후절수 (163제)",
-            "problemCount": 163,
-            "problemsCount": 163
+            "code": "tech_eye_house_ch25",
+            "chapterCode": "tech_eye_house_ch25",
+            "title": "25단원. 맞보기 사활과 후절수 (162제)",
+            "chapter": "25단원. 맞보기 사활과 후절수 (162제)",
+            "problemCount": 162,
+            "problemsCount": 162
           },
           {
-            "code": "tech_chijung_ch10",
-            "chapterCode": "tech_chijung_ch10",
-            "title": "10단원. 귀의 기본 사활과 귀곡사 (160제)",
-            "chapter": "10단원. 귀의 기본 사활과 귀곡사 (160제)",
-            "problemCount": 160,
-            "problemsCount": 160
+            "code": "tech_eye_house_ch26",
+            "chapterCode": "tech_eye_house_ch26",
+            "title": "26단원. 귀의 기본 사활과 귀곡사 (159제)",
+            "chapter": "26단원. 귀의 기본 사활과 귀곡사 (159제)",
+            "problemCount": 159,
+            "problemsCount": 159
           }
         ],
-        "book": "🎯 사활: 치중의 급소 찌르기"
+        "book": "👁️ 사활 완전정복 마스터"
       },
       {
         "code": "tech_throw_in",
