@@ -1557,7 +1557,7 @@
         }
       });
 
-      // 3. 자충수(착수금지점) 검사: 상대를 따내지 못했는데 자신의 활로가 0인 경우
+      // 3. 착수금지점 검사: 상대를 따내지 못했는데 자신의 활로가 0인 경우
       var ownGroups = getStoneGroups(state.board, state.boardCols, state.boardRows);
       var selfSuicide = false;
       ownGroups.forEach(function (g) {
@@ -1573,7 +1573,7 @@
         state.board[gy][gx] = 0; // 착수 취소
         sfx('playDdang');
         showSideFeedback('illegal');
-        toast('🚫 착수금지점(자충수)에는 둘 수 없습니다!');
+        toast('🚫 착수금지점에는 둘 수 없습니다!');
         return;
       }
 
@@ -1623,7 +1623,7 @@
     var myColor = getProblemStartingColor(p);
     var oppColor = myColor === 1 ? 2 : 1;
 
-    // 🌟 착수금지점(자충수) 검사: 상대 돌을 따낼 수 없는데 자신의 활로가 0이 되는 곳 🌟
+    // 🌟 착수금지점 검사: 상대 돌을 따낼 수 없는데 자신의 활로가 0이 되는 곳 🌟
     state.board[gy][gx] = myColor;
     var testGroups = getStoneGroups(state.board, state.boardCols, state.boardRows);
     var wouldCapture = false;
@@ -1648,7 +1648,7 @@
     if (isSuicide && !wouldCapture) {
       sfx('playDdang');
       showSideFeedback('illegal');
-      toast('🚫 착수금지점(자충수)에는 둘 수 없습니다!');
+      toast('🚫 착수금지점에는 둘 수 없습니다!');
       return;
     }
 
