@@ -1218,6 +1218,52 @@ window.CATALOG_DATA = [
             "problemsCount": 20
           }
         ]
+      },
+      {
+        "code": "tech_joseki",
+        "bookCode": "tech_joseki",
+        "title": "📐 정석 완전정복 마스터",
+        "book": "📐 정석 완전정복 마스터",
+        "chapterCount": 7,
+        "totalProblems": 199,
+        "problemCount": 199,
+        "chapters": [
+          {
+            "code": "tech_joseki_ch01",
+            "title": "1단원. 화점정석 — 날일자 걸침에 날일자·한칸 받기 (32제)",
+            "problemCount": 32
+          },
+          {
+            "code": "tech_joseki_ch02",
+            "title": "2단원. 화점정석 — 날일자 걸침에 붙임·젖힘 정석 (26제)",
+            "problemCount": 26
+          },
+          {
+            "code": "tech_joseki_ch03",
+            "title": "3단원. 화점정석 — 한칸·두칸 협공 정석 (29제)",
+            "problemCount": 29
+          },
+          {
+            "code": "tech_joseki_ch04",
+            "title": "4단원. 화점정석 — 날일자 받기 후 침입·응수 (22제)",
+            "problemCount": 22
+          },
+          {
+            "code": "tech_joseki_ch05",
+            "title": "5단원. 화점정석 — 삼삼 침입 정석 (32제)",
+            "problemCount": 32
+          },
+          {
+            "code": "tech_joseki_ch06",
+            "title": "6단원. 소목정석 — 한칸 걸침에 밑붙임·날일자 받기 (24제)",
+            "problemCount": 24
+          },
+          {
+            "code": "tech_joseki_ch07",
+            "title": "7단원. 삼삼정석과 고목정석 (34제)",
+            "problemCount": 34
+          }
+        ]
       }
     ]
   },
@@ -2814,6 +2860,52 @@ window.CATALOG_DATA = [
         ],
         "book": "🗺️ 포석 완전정복 마스터",
         "problemCount": 620
+      },
+      {
+        "code": "tech_joseki",
+        "bookCode": "tech_joseki",
+        "title": "📐 정석 완전정복 마스터",
+        "book": "📐 정석 완전정복 마스터",
+        "chapterCount": 7,
+        "totalProblems": 199,
+        "problemCount": 199,
+        "chapters": [
+          {
+            "code": "tech_joseki_ch01",
+            "title": "1단원. 화점정석 — 날일자 걸침에 날일자·한칸 받기 (32제)",
+            "problemCount": 32
+          },
+          {
+            "code": "tech_joseki_ch02",
+            "title": "2단원. 화점정석 — 날일자 걸침에 붙임·젖힘 정석 (26제)",
+            "problemCount": 26
+          },
+          {
+            "code": "tech_joseki_ch03",
+            "title": "3단원. 화점정석 — 한칸·두칸 협공 정석 (29제)",
+            "problemCount": 29
+          },
+          {
+            "code": "tech_joseki_ch04",
+            "title": "4단원. 화점정석 — 날일자 받기 후 침입·응수 (22제)",
+            "problemCount": 22
+          },
+          {
+            "code": "tech_joseki_ch05",
+            "title": "5단원. 화점정석 — 삼삼 침입 정석 (32제)",
+            "problemCount": 32
+          },
+          {
+            "code": "tech_joseki_ch06",
+            "title": "6단원. 소목정석 — 한칸 걸침에 밑붙임·날일자 받기 (24제)",
+            "problemCount": 24
+          },
+          {
+            "code": "tech_joseki_ch07",
+            "title": "7단원. 삼삼정석과 고목정석 (34제)",
+            "problemCount": 34
+          }
+        ]
       }
     ]
   },
