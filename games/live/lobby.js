@@ -335,7 +335,10 @@
         textEl.innerHTML = '<b>' + escapeHtml(data.from.name) + '</b> (' + escapeHtml(data.from.level) + ') 친구가 1:1 대국을 신청했어요!';
       }
       if (bEl) bEl.textContent = data.boardSize + '줄 바둑';
-      if (tEl) tEl.textContent = data.timeRule || '10분';
+      if (tEl) {
+        var tMap = { '1m10s': '1분 (10초 3회)', '5m': '5분 (20초 3회)', '10m': '10분 (30초 3회)', '15m': '15분 (40초 3회)', 'none': '무제한' };
+        tEl.textContent = tMap[data.timeRule] || data.timeRule || '10분';
+      }
 
       if (modal) modal.hidden = false;
 
@@ -351,7 +354,7 @@
           setTimeout(function () {
             window.location.href = '/games/play/index.html?mode=live&room=' + encodeURIComponent(data.roomCode) +
               '&boardSize=' + (data.boardSize || 19) +
-              '&handicap=' + (data.handicap || 0) +
+              '&handicap=' + (data.handicap || 0) + '&timeLimit=' + encodeURIComponent(data.timeRule || '10m') +
               '&p1=' + encodeURIComponent(data.from.name) +
               '&p2=' + encodeURIComponent(myProfile.name);
           }, 800);
@@ -376,7 +379,7 @@
         setTimeout(function () {
           window.location.href = '/games/play/index.html?mode=live&room=' + encodeURIComponent(data.roomCode) +
             '&host=1&boardSize=' + (data.boardSize || 19) +
-            '&handicap=' + (data.handicap || 0) +
+            '&handicap=' + (data.handicap || 0) + '&timeLimit=' + encodeURIComponent(data.timeRule || '10m') +
             '&p1=' + encodeURIComponent(myProfile.name) +
             '&p2=' + encodeURIComponent(data.fromName || '상대방');
         }, 800);
@@ -671,7 +674,7 @@
 
       setTimeout(function () {
         window.location.href = '/games/play/index.html?mode=live&room=' + rCode + '&host=1&boardSize=' + bSize +
-          '&handicap=' + (challengeOptions.handicap || 0) +
+          '&handicap=' + (challengeOptions.handicap || 0) + '&timeLimit=' + encodeURIComponent(challengeOptions.timeRule || '10m') +
           '&p1=' + encodeURIComponent(myProfile.name) + '&p2=' + encodeURIComponent(target.name);
       }, 1000);
     }, 2500);

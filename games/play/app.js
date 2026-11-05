@@ -20,7 +20,7 @@
     humanColor: parseInt(localStorage.getItem('play_human_color') || '1', 10), // 1: BLACK, 2: WHITE
     colorChoice: localStorage.getItem('play_color_choice') || '1', // '1' | '2' | 'random'
     handicap: parseInt(urlParams.get('handicap') || localStorage.getItem('play_handicap') || '0', 10), // 0: 호선, 1: 정선, 2~9: 접바둑
-    timeLimit: localStorage.getItem('play_time_limit') || 'none',
+    timeLimit: urlParams.get('timeLimit') || urlParams.get('time') || localStorage.getItem('play_time_limit') || 'none',
     freeStones: [],
     isFreePlacementActive: false,
     hoverPos: null,
@@ -710,6 +710,10 @@
   /* ---------- ⏱️ 제한 시간 & 초읽기 시계 엔진 ---------- */
   var TIMER_CONFIGS = {
     'none': null,
+    '1m': { mainSeconds: 60, byoSeconds: 10, byoPeriods: 3, label: '1분 + 10초 3회' },
+    '5m': { mainSeconds: 300, byoSeconds: 20, byoPeriods: 3, label: '5분 + 20초 3회' },
+    '10m': { mainSeconds: 600, byoSeconds: 30, byoPeriods: 3, label: '10분 + 30초 3회' },
+    '15m': { mainSeconds: 900, byoSeconds: 40, byoPeriods: 3, label: '15분 + 40초 3회' },
     '10m30s': { mainSeconds: 600, byoSeconds: 30, byoPeriods: 3, label: '10분 + 30초 3회' },
     '10m_30s': { mainSeconds: 600, byoSeconds: 30, byoPeriods: 3, label: '10분 + 30초 3회' },
     '20m30s': { mainSeconds: 1200, byoSeconds: 30, byoPeriods: 3, label: '20분 + 30초 3회' },
