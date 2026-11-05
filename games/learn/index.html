@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>바둑 학습 — 바둑스쿨</title>
-<link rel="stylesheet" href="style.css?v=big-3">
+<link rel="stylesheet" href="style.css?v=v20261105-probedit1">
 <script src="../../js/site_lock.js?v=v20261105-chok10"></script>
 </head>
 <body>
@@ -30,7 +30,35 @@
       <button class="mini hint" id="btnHint" type="button" hidden>힌트</button>
       <button class="mini" id="btnAnswer" type="button" hidden>정답 보기</button>
       <button class="mini" id="btnRetry" type="button" hidden>처음부터</button>
+      <button class="mini edit-toggle" id="btnLearnEditToggle" type="button" hidden>🛠️ 편집 ▾</button>
       <button class="mini" id="btnOpts" type="button">옵션</button>
+    </div>
+    <div class="learn-edit-drawer" id="learnEditDrawer" hidden>
+      <div class="led-row">
+        <span class="led-label">🪨 돌·정답 편집:</span>
+        <button type="button" class="led-btn" data-led-tool="black">⚫ 흑돌</button>
+        <button type="button" class="led-btn" data-led-tool="white">⚪ 백돌</button>
+        <button type="button" class="led-btn" data-led-tool="erase">❌ 지우개</button>
+        <button type="button" class="led-btn" data-led-tool="triangle">△ 표시</button>
+        <button type="button" class="led-btn" data-led-tool="answer">🎯 정답자리</button>
+        <span class="led-sep">|</span>
+        <button type="button" class="led-btn" data-led-shift="up">↑</button>
+        <button type="button" class="led-btn" data-led-shift="down">↓</button>
+        <button type="button" class="led-btn" data-led-shift="left">←</button>
+        <button type="button" class="led-btn" data-led-shift="right">→</button>
+      </div>
+      <div class="led-row">
+        <span class="led-label">🔢 순서·이동·삭제:</span>
+        <button type="button" class="led-btn" id="btnLedPrevOrder">◀ 앞으로</button>
+        <button type="button" class="led-btn" id="btnLedNextOrder">뒤로 ▶</button>
+        <input type="number" id="ledTargetOrder" class="led-input-num" min="1" placeholder="번호" />
+        <button type="button" class="led-btn" id="btnLedJumpOrder">번 이동</button>
+        <span class="led-sep">|</span>
+        <select id="ledTargetChap" class="led-select"></select>
+        <button type="button" class="led-btn primary" id="btnLedMoveChap">📂 단원 이동</button>
+        <button type="button" class="led-btn danger" id="btnLedDelete">🗑️ 문제 삭제</button>
+        <span class="led-status" id="ledStatus">✓ 자동저장</span>
+      </div>
     </div>
 
     <div class="board-box" id="boardBox">
@@ -56,6 +84,6 @@
 <div class="toast" id="toast" hidden></div>
 <script src="catalog.js?v=v20261105-top5done"></script>
 <script src="../../js/audio.js?v=v20261105-chok10"></script>
-<script src="game.js?v=v20261105-top5done"></script>
+<script src="game.js?v=v20261105-probedit1"></script>
 </body>
 </html>

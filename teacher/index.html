@@ -95,10 +95,78 @@
             <span class="q-turn" id="qTurnBadge">⚫ 흑선</span>
             <button type="button" id="btnHint" class="btn-hint">💡 힌트</button>
             <button type="button" id="btnAnswer" class="btn-answer">👁️ 정답</button>
+            <button type="button" id="btnToggleProbEdit" class="btn-prob-edit" title="현재 문제 편집 메뉴 펼치기/접기">🛠️ 편집 ▾</button>
           </div>
           <p class="question-text" id="questionText">문제를 불러오는 중입니다...</p>
           <div class="hint-box" id="hintBox" hidden>
             <span class="hint-icon">💡</span> <span id="hintText"></span>
+          </div>
+
+          <!-- 🌟 문제별 접이식 간편 편집 메뉴 (클릭 시 펼쳐짐) 🌟 -->
+          <div class="prob-edit-drawer" id="probEditDrawer" hidden>
+            <div class="ped-status-banner" id="pedModeBanner" hidden>
+              <span id="pedModeBannerText">바둑판 위를 클릭해 돌을 편집하세요</span>
+              <button type="button" id="btnPedExitTool" class="ped-btn-mini">완료</button>
+            </div>
+
+            <!-- 1. 돌 위치 및 정답 수순 변경 -->
+            <div class="ped-group">
+              <div class="ped-group-header">
+                <span class="ped-label">🪨 돌 위치 · 정답 편집 (바둑판 클릭)</span>
+                <button type="button" id="btnPedToggleTurn" class="ped-btn-mini" title="흑선/백선 전환">흑↔백선</button>
+              </div>
+              <div class="ped-tool-row">
+                <button type="button" class="ped-tool-btn" data-edit-tool="black" title="바둑판 클릭 시 흑돌 추가/제거">⚫ 흑돌</button>
+                <button type="button" class="ped-tool-btn" data-edit-tool="white" title="바둑판 클릭 시 백돌 추가/제거">⚪ 백돌</button>
+                <button type="button" class="ped-tool-btn" data-edit-tool="erase" title="바둑판 클릭 시 돌/표시 지우기">❌ 지우개</button>
+                <button type="button" class="ped-tool-btn" data-edit-tool="triangle" title="바둑판 클릭 시 △ 표시 추가/제거">△ 표시</button>
+                <button type="button" class="ped-tool-btn" data-edit-tool="answer" title="바둑판 클릭으로 정답 수순 새로 입력">🎯 정답수순</button>
+              </div>
+              <div class="ped-sub-row">
+                <button type="button" class="ped-mini-act" data-shift-dir="up" title="모든 돌 위로 1칸 이동">↑</button>
+                <button type="button" class="ped-mini-act" data-shift-dir="down" title="모든 돌 아래로 1칸 이동">↓</button>
+                <button type="button" class="ped-mini-act" data-shift-dir="left" title="모든 돌 왼쪽으로 1칸 이동">←</button>
+                <button type="button" class="ped-mini-act" data-shift-dir="right" title="모든 돌 오른쪽으로 1칸 이동">→</button>
+                <button type="button" class="ped-mini-act" id="btnPedDiagFlip" title="귀 대각선 대칭 회전">🔄 대칭</button>
+                <button type="button" class="ped-mini-act" id="btnPedColorSwap" title="흑백 돌 색상 맞바꾸기">☯ 흑백전환</button>
+                <button type="button" class="ped-mini-act danger-soft" id="btnPedClearAns" title="정답 수순 비우고 새로 찍기">정답비움</button>
+              </div>
+            </div>
+
+            <!-- 2. 단원 내 문제 위치(번호) 이동 및 문제 제거 -->
+            <div class="ped-group">
+              <span class="ped-label">🔢 문제 순서 변경 · 제거</span>
+              <div class="ped-action-row">
+                <button type="button" id="btnPedMovePrev" class="ped-act-btn" title="번호 앞으로 한 칸 이동">◀ 앞으로</button>
+                <button type="button" id="btnPedMoveNext" class="ped-act-btn" title="번호 뒤로 한 칸 이동">뒤로 ▶</button>
+                <input type="number" id="pedTargetNumInput" class="ped-num-input" min="1" placeholder="번호" title="이동할 문제 번호 입력" />
+                <button type="button" id="btnPedJumpMove" class="ped-act-btn" title="입력한 번호 위치로 문제 이동">번 이동</button>
+                <button type="button" id="btnPedDeleteProb" class="ped-act-btn danger" title="현재 문제를 이 단원에서 삭제">🗑️ 문제 삭제</button>
+              </div>
+            </div>
+
+            <!-- 3. 다른 단원으로 문제 옮기기 -->
+            <div class="ped-group">
+              <span class="ped-label">📂 다른 단원으로 옮기기</span>
+              <div class="ped-action-row">
+                <select id="pedTargetChapterSelect" class="ped-select"></select>
+                <button type="button" id="btnPedMoveChapter" class="ped-act-btn primary">단원 이동</button>
+              </div>
+            </div>
+
+            <!-- 4. 지문 수정 & 교재 파일 내보내기 / 복원 -->
+            <div class="ped-group">
+              <div class="ped-action-row">
+                <input type="text" id="pedQuestionInput" class="ped-text-input" placeholder="문제 지문 수정..." />
+                <button type="button" id="btnPedSaveQuestion" class="ped-act-btn">지문 적용</button>
+              </div>
+              <div class="ped-footer-row">
+                <span class="ped-save-badge" id="pedSaveBadge">✓ 변경 시 자동저장</span>
+                <button type="button" id="btnPedUndoDelete" class="ped-link-btn" hidden>↩ 삭제취소</button>
+                <button type="button" id="btnPedExportJson" class="ped-link-btn" title="편집된 교재 JSON 다운로드">💾 파일저장</button>
+                <button type="button" id="btnPedResetBook" class="ped-link-btn danger-text" title="이 교재의 모든 편집을 원본으로 초기화">원본복원</button>
+              </div>
+            </div>
           </div>
         </section>
       </div>

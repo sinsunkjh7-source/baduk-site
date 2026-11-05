@@ -123,10 +123,20 @@
   }
 
   function loadBookScript(code) {
+    try {
+      var savedCustom = localStorage.getItem('teacher_book_custom_' + code);
+      if (savedCustom) {
+        var parsed = JSON.parse(savedCustom);
+        if (parsed && Array.isArray(parsed.chapters)) {
+          window['BOOK_DATA_' + code] = parsed;
+          return Promise.resolve(parsed);
+        }
+      }
+    } catch (e) {}
     if (window['BOOK_DATA_' + code]) return Promise.resolve(window['BOOK_DATA_' + code]);
     return new Promise(function (resolve, reject) {
       var s = document.createElement('script');
-      s.src = 'books/book_' + code + '.js?v=v20261105-top5done';
+      s.src = 'books/book_' + code + '.js?v=v20261105-probedit1';
       s.onload = function () { resolve(window['BOOK_DATA_' + code]); };
       s.onerror = function () { reject(new Error('book load fail: ' + code)); };
       document.body.appendChild(s);
@@ -152,6 +162,8 @@
       document.getElementById('btnHint').hidden = false;
       document.getElementById('btnAnswer').hidden = false;
       document.getElementById('btnRetry').hidden = false;
+      var btnEditToggle = document.getElementById('btnLearnEditToggle');
+      if (btnEditToggle) btnEditToggle.hidden = false;
       showProblem(0);
     }).catch(function () {
       document.getElementById('probTitle').textContent = '문제를 불러오지 못했습니다';
@@ -548,6 +560,15 @@
   /* ---------- 착수 판정 ---------- */
   canvas.addEventListener('click', function (e) {
     state.hover = null;
+    if (state.editTool && state.problems && state.problems[state.probIdx]) {
+      var rectE = canvas.getBoundingClientRect();
+      var gx = Math.round((e.clientX - rectE.left - m.pad) / m.cell);
+      var gy = Math.round((e.clientY - rectE.top - m.pad) / m.cell);
+      if (gx >= 0 && gy >= 0 && gx < state.size && gy < state.size) {
+        handleLearnBoardEdit(gx, gy);
+      }
+      return;
+    }
     if (!state.answer || state.solved) return;
     var rect = canvas.getBoundingClientRect();
     var px = e.clientX - rect.left, py = e.clientY - rect.top;
@@ -619,6 +640,206 @@
   document.getElementById('optNum').addEventListener('change', function (e) { state.showNumbers = e.target.checked; draw(); });
 
   window.addEventListener('resize', function () { layout(); draw(); });
+
+  /* ---------- 문제별 접이식 간편 편집 기능 ---------- */
+  function saveLearnCustomBook(msg) {
+    if (!state.bookCode || !state.bookData) return;
+    try {
+      localStorage.setItem('teacher_book_custom_' + state.bookCode, JSON.stringify(state.bookData));
+    } catch (e) {}
+    var st = document.getElementById('ledStatus');
+    if (st) st.textContent = '✓ ' + (msg || '자동저장됨');
+  }
+
+  function rebuildLearnProblemSgf(p) {
+    var parts = [];
+    (state.stones || []).forEach(function (s) {
+      var sx = Math.max(0, Math.min(18, s.x + state.offset.x));
+      var sy = Math.max(0, Math.min(18, s.y + state.offset.y));
+      parts.push(';' + (s.color === WHITE ? 'W' : 'B') + '[' + String.fromCharCode(97 + sx) + String.fromCharCode(97 + sy) + ']');
+    });
+    (state.marks || []).forEach(function (mk) {
+      var sx = Math.max(0, Math.min(18, mk.x + state.offset.x));
+      var sy = Math.max(0, Math.min(18, mk.y + state.offset.y));
+      var c = String.fromCharCode(97 + sx) + String.fromCharCode(97 + sy);
+      if (mk.type === 'triangle') parts.push(';T[' + c + ']');
+      else if (mk.type === 'circle') parts.push(';C[' + c + ']');
+      else if (mk.type === 'label') parts.push(';L[' + c + ':' + (mk.label || '') + ']');
+    });
+    p.data = parts.join('');
+  }
+
+  function handleLearnBoardEdit(gx, gy) {
+    var p = state.problems[state.probIdx];
+    if (!p) return;
+    var existingIdx = state.stones.findIndex(function (s) { return s.x === gx && s.y === gy; });
+    if (state.editTool === 'black' || state.editTool === 'white') {
+      var col = state.editTool === 'black' ? BLACK : WHITE;
+      if (existingIdx >= 0 && state.stones[existingIdx].color === col) {
+        state.stones.splice(existingIdx, 1);
+      } else if (existingIdx >= 0) {
+        state.stones[existingIdx].color = col;
+      } else {
+        state.stones.push({ x: gx, y: gy, color: col });
+      }
+      rebuildLearnProblemSgf(p);
+      saveLearnCustomBook('돌 위치 수정됨');
+      draw();
+    } else if (state.editTool === 'erase') {
+      if (existingIdx >= 0) state.stones.splice(existingIdx, 1);
+      state.marks = (state.marks || []).filter(function (mk) { return !(mk.x === gx && mk.y === gy); });
+      rebuildLearnProblemSgf(p);
+      saveLearnCustomBook('돌/표시 삭제됨');
+      draw();
+    } else if (state.editTool === 'triangle') {
+      var mIdx = (state.marks || []).findIndex(function (mk) { return mk.x === gx && mk.y === gy && mk.type === 'triangle'; });
+      if (mIdx >= 0) state.marks.splice(mIdx, 1);
+      else state.marks.push({ x: gx, y: gy, type: 'triangle' });
+      rebuildLearnProblemSgf(p);
+      saveLearnCustomBook('△ 표시 수정됨');
+      draw();
+    } else if (state.editTool === 'answer') {
+      var sx = Math.max(0, Math.min(18, gx + state.offset.x));
+      var sy = Math.max(0, Math.min(18, gy + state.offset.y));
+      var startCol = (state.answer && state.answer.color === WHITE) ? 'W' : 'B';
+      p.answer1 = ';' + startCol + '[' + String.fromCharCode(97 + sx) + String.fromCharCode(97 + sy) + ']';
+      state.answer = { x: gx, y: gy, color: startCol === 'W' ? WHITE : BLACK };
+      state.showAnswerHint = true;
+      saveLearnCustomBook('정답 자리 수정됨');
+      draw();
+    }
+  }
+
+  function syncLearnEditUI() {
+    var sel = document.getElementById('ledTargetChap');
+    if (sel && state.bookData && Array.isArray(state.bookData.chapters)) {
+      sel.innerHTML = '';
+      state.bookData.chapters.forEach(function (ch, idx) {
+        var opt = document.createElement('option');
+        opt.value = idx;
+        opt.textContent = (ch.title || ch.chapter || ((idx + 1) + '단원')) + (idx === state.chapterIdx ? ' [현재]' : '');
+        sel.appendChild(opt);
+      });
+      sel.value = (state.chapterIdx + 1) % state.bookData.chapters.length;
+    }
+    var ord = document.getElementById('ledTargetOrder');
+    if (ord) ord.value = state.probIdx + 1;
+  }
+
+  (function initLearnEditor() {
+    var btnToggle = document.getElementById('btnLearnEditToggle');
+    var drawer = document.getElementById('learnEditDrawer');
+    if (!btnToggle || !drawer) return;
+
+    btnToggle.addEventListener('click', function () {
+      var open = drawer.hidden;
+      drawer.hidden = !open;
+      btnToggle.classList.toggle('active', open);
+      btnToggle.textContent = open ? '🛠️ 편집 ▴' : '🛠️ 편집 ▾';
+      if (!open) {
+        state.editTool = null;
+        document.querySelectorAll('[data-led-tool]').forEach(function (b) { b.classList.remove('active'); });
+      } else {
+        syncLearnEditUI();
+      }
+      layout();
+      draw();
+    });
+
+    document.querySelectorAll('[data-led-tool]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var t = btn.dataset.ledTool;
+        state.editTool = (state.editTool === t) ? null : t;
+        document.querySelectorAll('[data-led-tool]').forEach(function (b) {
+          b.classList.toggle('active', b.dataset.ledTool === state.editTool);
+        });
+        if (state.editTool === 'answer') {
+          state.showAnswerHint = true;
+          draw();
+        }
+      });
+    });
+
+    document.querySelectorAll('[data-led-shift]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var p = state.problems && state.problems[state.probIdx];
+        if (!p) return;
+        var d = btn.dataset.ledShift;
+        var dx = d === 'left' ? -1 : (d === 'right' ? 1 : 0);
+        var dy = d === 'up' ? -1 : (d === 'down' ? 1 : 0);
+        function shiftSgf(s) {
+          return (s || '').replace(/([BWTCMSL]|TR|CR|SQ|MA|LB)\[([a-s]{2})(:[^\]]*)?\]/gi, function (f, tag, c, r) {
+            var nx = Math.max(0, Math.min(18, c.charCodeAt(0) - 97 + dx));
+            var ny = Math.max(0, Math.min(18, c.charCodeAt(1) - 97 + dy));
+            return tag + '[' + String.fromCharCode(97 + nx) + String.fromCharCode(97 + ny) + (r || '') + ']';
+          });
+        }
+        p.data = shiftSgf(p.data);
+        p.answer1 = shiftSgf(p.answer1);
+        saveLearnCustomBook('돌 전체 이동됨');
+        showProblem(state.probIdx);
+      });
+    });
+
+    var btnPrevOrd = document.getElementById('btnLedPrevOrder');
+    if (btnPrevOrd) btnPrevOrd.addEventListener('click', function () {
+      var i = state.probIdx;
+      if (!state.problems || i <= 0) return;
+      var tmp = state.problems[i - 1];
+      state.problems[i - 1] = state.problems[i];
+      state.problems[i] = tmp;
+      saveLearnCustomBook(i + '번으로 이동됨');
+      showProblem(i - 1);
+      syncLearnEditUI();
+    });
+
+    var btnNextOrd = document.getElementById('btnLedNextOrder');
+    if (btnNextOrd) btnNextOrd.addEventListener('click', function () {
+      var i = state.probIdx;
+      if (!state.problems || i >= state.problems.length - 1) return;
+      var tmp = state.problems[i + 1];
+      state.problems[i + 1] = state.problems[i];
+      state.problems[i] = tmp;
+      saveLearnCustomBook((i + 2) + '번으로 이동됨');
+      showProblem(i + 1);
+      syncLearnEditUI();
+    });
+
+    var btnJumpOrd = document.getElementById('btnLedJumpOrder');
+    if (btnJumpOrd) btnJumpOrd.addEventListener('click', function () {
+      var inp = document.getElementById('ledTargetOrder');
+      if (!inp || !state.problems) return;
+      var tIdx = Math.max(0, Math.min(state.problems.length - 1, (parseInt(inp.value, 10) || 1) - 1));
+      if (tIdx === state.probIdx) return;
+      var moved = state.problems.splice(state.probIdx, 1)[0];
+      state.problems.splice(tIdx, 0, moved);
+      saveLearnCustomBook((tIdx + 1) + '번으로 이동됨');
+      showProblem(tIdx);
+      syncLearnEditUI();
+    });
+
+    var btnMoveChap = document.getElementById('btnLedMoveChap');
+    if (btnMoveChap) btnMoveChap.addEventListener('click', function () {
+      var sel = document.getElementById('ledTargetChap');
+      if (!sel || !state.bookData || !state.problems || !state.problems.length) return;
+      var tCh = parseInt(sel.value, 10);
+      if (isNaN(tCh) || tCh === state.chapterIdx) return;
+      var moved = state.problems.splice(state.probIdx, 1)[0];
+      state.bookData.chapters[tCh].problems.push(moved);
+      saveLearnCustomBook((tCh + 1) + '단원으로 이동됨');
+      if (state.problems.length > 0) showProblem(Math.min(state.probIdx, state.problems.length - 1));
+      syncLearnEditUI();
+    });
+
+    var btnDel = document.getElementById('btnLedDelete');
+    if (btnDel) btnDel.addEventListener('click', function () {
+      if (!state.problems || !state.problems.length) return;
+      state.problems.splice(state.probIdx, 1);
+      saveLearnCustomBook('문제 삭제됨');
+      if (state.problems.length > 0) showProblem(Math.min(state.probIdx, state.problems.length - 1));
+      syncLearnEditUI();
+    });
+  })();
 
   /* ---------- 시작 ---------- */
   buildBookList();
