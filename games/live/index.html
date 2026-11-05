@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <style>[hidden]{display:none!important;}</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>🌐 실시간 대국 라운지 — JH 바둑스쿨</title>
+
+  <link rel="stylesheet" href="style.css?v=20261105-lounge-v1">
+  <link rel="stylesheet" href="/unified-nav.css?v=20261105-nav-v12">
+  <script src="/unified-nav.js?v=20261105-nav-v12" defer></script>
+</head>
+<body data-bks-page="play">
+
+<div class="lounge-app" id="loungeApp">
+
+  <!-- 🌟 라운지 헤더바 🌟 -->
+  <header class="lounge-header">
+    <div class="header-left">
+      <span class="badge-lounge">🌐 실시간 대국</span>
+      <h1 class="lounge-title">실시간 대국 라운지 (대기실)</h1>
+      <span class="online-indicator"><span class="pulse-dot"></span> <b id="onlineCountBadge">12명</b> 접속 중</span>
+    </div>
+    <div class="header-right">
+      <button type="button" id="btnSoundToggle" class="btn-tool" title="효과음 켜기/끄기">🔊 효과음</button>
+      <button type="button" id="btnFullscreen" class="btn-tool" title="전체화면">⛶ 전체화면</button>
+      <a href="/#play" class="btn-tool home">← 대국 허브로</a>
+    </div>
+  </header>
+
+  <!-- 🌟 메인 라운지 2열 그리드 본문 🌟 -->
+  <div class="lounge-body">
+
+    <!-- 👈 좌측 메인: 개설된 대국방 목록 & 매너 캠페인 -->
+    <section class="lounge-col lounge-col-left">
+
+      <!-- 대국실 상단 필터 바 -->
+      <div class="section-card rooms-card">
+        <div class="card-header-row">
+          <div class="header-title-group">
+            <span class="sec-emoji">🏆</span>
+            <div>
+              <h2 class="sec-title">진행 중인 대국실</h2>
+              <p class="sec-subtitle">친구들의 대국을 관전하거나 빈 방에 입장하세요</p>
+            </div>
+          </div>
+          <div class="filter-tabs" id="roomBoardFilter">
+            <button type="button" class="tab-pill active" data-filter="all">전체</button>
+            <button type="button" class="tab-pill" data-filter="19">19줄</button>
+            <button type="button" class="tab-pill" data-filter="13">13줄</button>
+            <button type="button" class="tab-pill" data-filter="9">9줄</button>
+          </div>
+        </div>
+
+        <!-- 대국실 목록 리스트 -->
+        <div class="rooms-list-wrap" id="roomsListWrap">
+          <div class="rooms-grid" id="roomsGrid">
+            <!-- JS로 동적 생성 및 실시간 갱신 -->
+          </div>
+        </div>
+      </div>
+
+      <!-- 하단 매너 바둑 안내 배너 -->
+      <div class="manner-banner">
+        <div class="banner-icon-box">🌟</div>
+        <div class="banner-text-box">
+          <strong>JH 바둑스쿨 매너 바둑 캠페인</strong>
+          <p>대국 전후 공손한 인사와 배려가 가장 강한 바둑을 만듭니다. 끝까지 두고 계가하는 어린이가 진정한 바둑인입니다!</p>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- 👉 우측 사이드: 접속자 명단 & 내 프로필 -->
+    <aside class="lounge-col lounge-col-right">
+
+      <!-- 1. 접속 친구 명단 & 대국 신청 -->
+      <div class="section-card users-card">
+        <div class="card-header-row">
+          <div class="header-title-group">
+            <span class="sec-emoji">👥</span>
+            <div>
+              <h2 class="sec-title">대기실 친구들 (<span id="userCount">12</span>명)</h2>
+              <p class="sec-subtitle">친구를 선택해 1:1 대국을 신청하세요</p>
+            </div>
+          </div>
+          <div class="filter-tabs" id="userStatusFilter">
+            <button type="button" class="tab-pill active" data-user-filter="waiting">대기 중만</button>
+            <button type="button" class="tab-pill" data-user-filter="all">전체</button>
+          </div>
+        </div>
+
+        <!-- 빠른 검색창 -->
+        <div class="search-box-row">
+          <input type="text" id="userSearchInput" class="search-input" placeholder="🔍 친구 이름 또는 학교 검색...">
+        </div>
+
+        <!-- 접속자 리스트 -->
+        <div class="users-list-scroll" id="usersListScroll">
+          <div class="users-list" id="usersList">
+            <!-- JS로 동적 생성 -->
+          </div>
+        </div>
+
+        <!-- 빠른 대국 조작 버튼 2개 -->
+        <div class="users-action-row">
+          <button type="button" class="btn-lounge-action auto" id="btnAutoMatch" title="나와 실력이 비슷한 친구와 자동 매칭">
+            <span>🎲</span> 자동 맞춤 대국
+          </button>
+          <button type="button" class="btn-lounge-action create" id="btnCreateRoom" title="새로운 대국방 개설하기">
+            <span>🏠</span> 대국방 만들기
+          </button>
+        </div>
+      </div>
+
+      <!-- 2. 나의 대국 프로필 카드 -->
+      <div class="section-card profile-card">
+        <div class="my-profile-header">
+          <div class="my-avatar-wrap">
+            <img src="/assets/stat_1.png" alt="내 캐릭터" id="myAvatarImg" class="my-avatar-img">
+            <span class="avatar-badge-edit" title="캐릭터 변경">✏️</span>
+          </div>
+          <div class="my-info-text">
+            <div class="my-name-row">
+              <strong id="myNickName">김진홍선생님</strong>
+              <span class="my-rank-badge" id="myRankBadge">Lv2 (2단)</span>
+            </div>
+            <p class="my-stat-summary">최근 전적: <b class="stat-win">12승</b> <b class="stat-loss">4패</b> (승률 75%)</p>
+          </div>
+        </div>
+
+        <!-- 리그별 점수 현황 미니 테이블 -->
+        <div class="league-scores-grid">
+          <div class="score-pill">
+            <span class="score-label">19줄 레이팅</span>
+            <strong class="score-val">Lv2 · 292점</strong>
+          </div>
+          <div class="score-pill">
+            <span class="score-label">13줄 리그</span>
+            <strong class="score-val">루키 · 69점</strong>
+          </div>
+          <div class="score-pill">
+            <span class="score-label">9줄 새싹</span>
+            <strong class="score-val">루키 · 45점</strong>
+          </div>
+        </div>
+
+        <!-- 대국 수신 옵션 체크박스 -->
+        <div class="reception-options">
+          <label class="check-opt"><input type="checkbox" id="chkAccept19" checked> 19줄 신청 받음</label>
+          <label class="check-opt"><input type="checkbox" id="chkAccept13" checked> 13줄 신청 받음</label>
+          <label class="check-opt"><input type="checkbox" id="chkAccept9" checked> 9줄 신청 받음</label>
+        </div>
+      </div>
+
+    </aside>
+
+  </div>
+</div>
+
+<!-- =========================================================
+     🌟 대국 신청 모달 (친구 콕 찍어서 신청할 때) 🌟
+     ========================================================= -->
+<div class="lounge-modal-overlay" id="challengeModal" hidden>
+  <div class="lounge-modal-box">
+    <div class="modal-header">
+      <div class="modal-title-wrap">
+        <span class="modal-badge-icon">⚔️</span>
+        <div>
+          <h3>1:1 바둑 대국 신청</h3>
+          <p id="targetUserLabel">상대방: <b>최현우선생님</b> (Lv1)</p>
+        </div>
+      </div>
+      <button type="button" class="btn-modal-close" id="btnCloseChallengeModal">✕</button>
+    </div>
+
+    <div class="modal-body">
+      <!-- 1. 바둑판 크기 선택 (어린이 수업 핵심) -->
+      <div class="modal-option-group">
+        <span class="opt-label">📐 바둑판 크기</span>
+        <div class="opt-btns-grid" id="optBoardSizeGrid">
+          <button type="button" class="opt-select-btn" data-val="9">
+            <span class="opt-emoji">🌱</span>
+            <strong>9줄 바둑</strong>
+            <small>빠른 승부 (초급 추천)</small>
+          </button>
+          <button type="button" class="opt-select-btn" data-val="13">
+            <span class="opt-emoji">🌿</span>
+            <strong>13줄 바둑</strong>
+            <small>집 짓기와 전투 (중급)</small>
+          </button>
+          <button type="button" class="opt-select-btn active" data-val="19">
+            <span class="opt-emoji">🌳</span>
+            <strong>19줄 바둑</strong>
+            <small>정규 표준 대국 (고급)</small>
+          </button>
+        </div>
+      </div>
+
+      <!-- 2. 돌 배정 (흑/백/돌가리기) -->
+      <div class="modal-option-group">
+        <span class="opt-label">⚔️ 돌 배정</span>
+        <div class="opt-pill-row" id="optStoneGrid">
+          <button type="button" class="opt-pill-btn active" data-val="nigiri">🎲 돌가리기 (50%)</button>
+          <button type="button" class="opt-pill-btn" data-val="black">⚫ 내가 흑돌 (선공)</button>
+          <button type="button" class="opt-pill-btn" data-val="white">⚪ 내가 백돌 (후공)</button>
+        </div>
+      </div>
+
+      <!-- 3. 치수 (호선/정선/접바둑) -->
+      <div class="modal-option-group">
+        <span class="opt-label">⚖️ 치수 (덤 및 접바둑)</span>
+        <div class="opt-pill-row" id="optHandicapGrid">
+          <button type="button" class="opt-pill-btn active" data-val="0">호선 (덤 6.5집)</button>
+          <button type="button" class="opt-pill-btn" data-val="1">정선 (덤 0.5집)</button>
+          <button type="button" class="opt-pill-btn" data-val="2">2점 접바둑</button>
+          <button type="button" class="opt-pill-btn" data-val="3">3점 접바둑</button>
+          <button type="button" class="opt-pill-btn" data-val="4">4점 접바둑</button>
+        </div>
+      </div>
+
+      <!-- 4. 제한시간 규칙 -->
+      <div class="modal-option-group">
+        <span class="opt-label">⏱️ 대국 시간</span>
+        <div class="opt-pill-row" id="optTimeGrid">
+          <button type="button" class="opt-pill-btn" data-val="none">무제한 (여유롭게)</button>
+          <button type="button" class="opt-pill-btn" data-val="5m">⚡ 5분 (30초 1회)</button>
+          <button type="button" class="opt-pill-btn active" data-val="10m">⏳ 10분 (30초 3회)</button>
+          <button type="button" class="opt-pill-btn" data-val="15m">🏆 15분 (40초 3회)</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn-cancel" id="btnCancelChallenge">취소</button>
+      <button type="button" class="btn-submit-action" id="btnSendChallenge">⚔️ 대국 신청 보내기</button>
+    </div>
+  </div>
+</div>
+
+<!-- =========================================================
+     🌟 대국 신청 수신 알림 팝업 (상대방 화면에 뜰 때) 🌟
+     ========================================================= -->
+<div class="lounge-modal-overlay" id="incomingModal" hidden>
+  <div class="lounge-modal-box incoming-box">
+    <div class="incoming-bell-animation">🔔</div>
+    <div class="incoming-header-text">
+      <h3>1:1 대국 신청이 도착했습니다!</h3>
+      <p id="incomingSenderText"><b>최현우선생님</b> (Lv1) 친구가 대국을 신청했어요!</p>
+    </div>
+
+    <div class="incoming-details-card">
+      <div class="incoming-detail-row">
+        <span>📐 바둑판 크기</span>
+        <strong id="incDetailBoard">19줄 정규 바둑</strong>
+      </div>
+      <div class="incoming-detail-row">
+        <span>⏱️ 대국 시간</span>
+        <strong id="incDetailTime">10분 (30초 3회)</strong>
+      </div>
+      <div class="incoming-detail-row">
+        <span>⚖️ 치수 규칙</span>
+        <strong id="incDetailRule">호선 (덤 6.5집)</strong>
+      </div>
+    </div>
+
+    <div class="incoming-actions">
+      <button type="button" class="btn-reject" id="btnRejectIncoming">✕ 거절하기</button>
+      <button type="button" class="btn-accept" id="btnAcceptIncoming">🟢 대국 수락! (입장)</button>
+    </div>
+  </div>
+</div>
+
+<!-- 플로팅 토스트 -->
+<div class="lounge-toast" id="loungeToast" hidden></div>
+
+<script src="lobby.js?v=20261105-lounge-v1"></script>
+</body>
+</html>
