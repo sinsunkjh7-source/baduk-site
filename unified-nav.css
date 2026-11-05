@@ -148,3 +148,10 @@ body[data-bks-page=sandbox] .bks-bottom-board-size .size-btn.active:hover{backgr
 @media(min-width:1251px) and (max-width:1599px){.bks-nav-links>.bks-logout{padding-inline:8px}}
 @media(min-width:1600px){.bks-nav-links{grid-template-columns:minmax(8px,1fr) repeat(7,max-content) minmax(8px,1fr) repeat(3,max-content)}.bks-nav-links>.bks-login{grid-column:11}.bks-nav-links>.bks-account-link.bks-logout{grid-column:12}}
 @media(max-width:1250px){.bks-nav-links>.bks-logout{width:100%;text-align:left;padding:12px;color:var(--bks-ink)}}
+
+/* Coaster adventure: reserve the shared site header above the viewport and HUD. */
+body[data-bks-page="coaster-run"] #coasterViewport,body[data-bks-page="coaster-run"] .hud-overlay,body[data-bks-page="coaster-run"] .board-modal-overlay,body[data-bks-page="coaster-run"] .fullscreen-modal{top:var(--bks-nav-h,64px)}
+body[data-bks-page="coaster-run"] #coasterViewport{height:calc(100dvh - var(--bks-nav-h,64px))}
+body[data-bks-page="coaster-run"] .hud-overlay{padding-top:20px}
+body[data-bks-page="coaster-run"] .fullscreen-modal{padding-top:16px}
+body[data-bks-page="coaster-run"] .intro-card{max-height:calc(100dvh - var(--bks-nav-h,64px) - 32px)}
