@@ -136,7 +136,7 @@
     if (window['BOOK_DATA_' + code]) return Promise.resolve(window['BOOK_DATA_' + code]);
     return new Promise(function (resolve, reject) {
       var s = document.createElement('script');
-      s.src = 'books/book_' + code + '.js?v=v20261105-endgame1book';
+      s.src = 'books/book_' + code + '.js?v=v20261105-fuseki1book';
       s.onload = function () { resolve(window['BOOK_DATA_' + code]); };
       s.onerror = function () { reject(new Error('book load fail: ' + code)); };
       document.body.appendChild(s);

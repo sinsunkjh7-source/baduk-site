@@ -46,6 +46,11 @@
     <div class="b-spin" id="spinPad">
       <span class="b-spin-label">당점</span>
       <canvas class="b-spin-float" id="spinFloat" width="176" height="176" hidden aria-hidden="true"></canvas>
+      <div class="b-elev">
+        <span class="b-elev-label">기울기</span>
+        <input type="range" id="elevRange" min="0" max="60" step="1" value="0" aria-label="큐 기울기">
+        <output id="elevVal">0°</output>
+      </div>
       <canvas class="b-spin-ball" id="spinBall" width="176" height="176"
               role="slider" aria-label="당점 선택 (공 위를 클릭)" tabindex="0"></canvas>
     </div>

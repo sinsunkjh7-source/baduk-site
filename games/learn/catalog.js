@@ -2757,411 +2757,63 @@ window.CATALOG_DATA = [
       },
       {
         "code": "tech_fuseki",
-        "title": "🗺️ 포석: 3선·4선과 굳힘·벌림의 원리",
-        "chapterCount": 50,
-        "totalProblems": 1202,
+        "title": "🗺️ 포석 완전정복 마스터",
+        "chapterCount": 10,
+        "totalProblems": 620,
         "chapters": [
           {
-            "code": "tech_fuseki_u01",
-            "chapterCode": "tech_fuseki_u01",
-            "title": "1단계 [기초/입문: 30급~21급] Part 1 (25제)",
-            "chapter": "1단계 [기초/입문: 30급~21급] Part 1 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
+            "code": "tech_fuseki_ch01",
+            "title": "1단원. 귀와 변의 기초 포석·귀 굳힘과 귀 지키기 (62제)",
+            "problemCount": 62
           },
           {
-            "code": "tech_fuseki_u02",
-            "chapterCode": "tech_fuseki_u02",
-            "title": "1단계 [기초/입문: 30급~21급] Part 2 (25제)",
-            "chapter": "1단계 [기초/입문: 30급~21급] Part 2 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
+            "code": "tech_fuseki_ch02",
+            "title": "2단원. 걸침의 방향과 응수·협공 (62제)",
+            "problemCount": 62
           },
           {
-            "code": "tech_fuseki_u03",
-            "chapterCode": "tech_fuseki_u03",
-            "title": "1단계 [기초/입문: 30급~21급] Part 3 (25제)",
-            "chapter": "1단계 [기초/입문: 30급~21급] Part 3 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
+            "code": "tech_fuseki_ch03",
+            "title": "3단원. 일립이전·이립삼전과 적당한 간격 벌리기 (86제)",
+            "problemCount": 86
           },
           {
-            "code": "tech_fuseki_u04",
-            "chapterCode": "tech_fuseki_u04",
-            "title": "1단계 [기초/입문: 30급~21급] Part 4 (25제)",
-            "chapter": "1단계 [기초/입문: 30급~21급] Part 4 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
+            "code": "tech_fuseki_ch04",
+            "title": "4단원. 변으로 넓게 벌리기와 벌림의 방향·날개 포석 (93제)",
+            "problemCount": 93
           },
           {
-            "code": "tech_fuseki_u05",
-            "chapterCode": "tech_fuseki_u05",
-            "title": "1단계 [기초/입문: 30급~21급] Part 5 (25제)",
-            "chapter": "1단계 [기초/입문: 30급~21급] Part 5 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
+            "code": "tech_fuseki_ch05",
+            "title": "5단원. 갈라치기와 다가서기 (36제)",
+            "problemCount": 36
           },
           {
-            "code": "tech_fuseki_u06",
-            "chapterCode": "tech_fuseki_u06",
-            "title": "1단계 [기초/입문: 30급~21급] Part 6 (25제)",
-            "chapter": "1단계 [기초/입문: 30급~21급] Part 6 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
+            "code": "tech_fuseki_ch06",
+            "title": "6단원. 3선과 4선·실리와 세력의 조화 (38제)",
+            "problemCount": 38
           },
           {
-            "code": "tech_fuseki_u07",
-            "chapterCode": "tech_fuseki_u07",
-            "title": "1단계 [기초/입문: 30급~21급] Part 7 (25제)",
-            "chapter": "1단계 [기초/입문: 30급~21급] Part 7 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
+            "code": "tech_fuseki_ch07",
+            "title": "7단원. 집 넓히기와 중앙 진출 (58제)",
+            "problemCount": 58
           },
           {
-            "code": "tech_fuseki_u08",
-            "chapterCode": "tech_fuseki_u08",
-            "title": "1단계 [기초/입문: 30급~21급] Part 8 (25제)",
-            "chapter": "1단계 [기초/입문: 30급~21급] Part 8 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
+            "code": "tech_fuseki_ch08",
+            "title": "8단원. 근거 확보·돌의 안정과 공격·모자 씌우기 (64제)",
+            "problemCount": 64
           },
           {
-            "code": "tech_fuseki_u09",
-            "chapterCode": "tech_fuseki_u09",
-            "title": "1단계 [기초/입문: 30급~21급] Part 9 (25제)",
-            "chapter": "1단계 [기초/입문: 30급~21급] Part 9 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
+            "code": "tech_fuseki_ch09",
+            "title": "9단원. 어깨짚기·침투와 삭감·응수타진 (17제)",
+            "problemCount": 17
           },
           {
-            "code": "tech_fuseki_u10",
-            "chapterCode": "tech_fuseki_u10",
-            "title": "1단계 [기초/입문: 30급~21급] Part 10 (25제)",
-            "chapter": "1단계 [기초/입문: 30급~21급] Part 10 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_fuseki_u11",
-            "chapterCode": "tech_fuseki_u11",
-            "title": "1단계 [기초/입문: 30급~21급] Part 11 (25제)",
-            "chapter": "1단계 [기초/입문: 30급~21급] Part 11 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_fuseki_u12",
-            "chapterCode": "tech_fuseki_u12",
-            "title": "1단계 [기초/입문: 30급~21급] Part 12 (25제)",
-            "chapter": "1단계 [기초/입문: 30급~21급] Part 12 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_fuseki_u13",
-            "chapterCode": "tech_fuseki_u13",
-            "title": "1단계 [기초/입문: 30급~21급] Part 13 (25제)",
-            "chapter": "1단계 [기초/입문: 30급~21급] Part 13 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_fuseki_u14",
-            "chapterCode": "tech_fuseki_u14",
-            "title": "1단계 [기초/입문: 30급~21급] Part 14 (25제)",
-            "chapter": "1단계 [기초/입문: 30급~21급] Part 14 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_fuseki_u15",
-            "chapterCode": "tech_fuseki_u15",
-            "title": "1단계 [기초/입문: 30급~21급] Part 15 (24제)",
-            "chapter": "1단계 [기초/입문: 30급~21급] Part 15 (24제)",
-            "problemCount": 24,
-            "problemsCount": 24
-          },
-          {
-            "code": "tech_fuseki_u16",
-            "chapterCode": "tech_fuseki_u16",
-            "title": "2단계 [초급: 20급~15급] Part 1 (25제)",
-            "chapter": "2단계 [초급: 20급~15급] Part 1 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_fuseki_u17",
-            "chapterCode": "tech_fuseki_u17",
-            "title": "2단계 [초급: 20급~15급] Part 2 (25제)",
-            "chapter": "2단계 [초급: 20급~15급] Part 2 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_fuseki_u18",
-            "chapterCode": "tech_fuseki_u18",
-            "title": "2단계 [초급: 20급~15급] Part 3 (25제)",
-            "chapter": "2단계 [초급: 20급~15급] Part 3 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_fuseki_u19",
-            "chapterCode": "tech_fuseki_u19",
-            "title": "2단계 [초급: 20급~15급] Part 4 (25제)",
-            "chapter": "2단계 [초급: 20급~15급] Part 4 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_fuseki_u20",
-            "chapterCode": "tech_fuseki_u20",
-            "title": "2단계 [초급: 20급~15급] Part 5 (25제)",
-            "chapter": "2단계 [초급: 20급~15급] Part 5 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_fuseki_u21",
-            "chapterCode": "tech_fuseki_u21",
-            "title": "2단계 [초급: 20급~15급] Part 6 (25제)",
-            "chapter": "2단계 [초급: 20급~15급] Part 6 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_fuseki_u22",
-            "chapterCode": "tech_fuseki_u22",
-            "title": "2단계 [초급: 20급~15급] Part 7 (25제)",
-            "chapter": "2단계 [초급: 20급~15급] Part 7 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_fuseki_u23",
-            "chapterCode": "tech_fuseki_u23",
-            "title": "2단계 [초급: 20급~15급] Part 8 (25제)",
-            "chapter": "2단계 [초급: 20급~15급] Part 8 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_fuseki_u24",
-            "chapterCode": "tech_fuseki_u24",
-            "title": "2단계 [초급: 20급~15급] Part 9 (25제)",
-            "chapter": "2단계 [초급: 20급~15급] Part 9 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_fuseki_u25",
-            "chapterCode": "tech_fuseki_u25",
-            "title": "2단계 [초급: 20급~15급] Part 10 (8제)",
-            "chapter": "2단계 [초급: 20급~15급] Part 10 (8제)",
-            "problemCount": 8,
-            "problemsCount": 8
-          },
-          {
-            "code": "tech_fuseki_u26",
-            "chapterCode": "tech_fuseki_u26",
-            "title": "3단계 [중급: 14급~9급] Part 1 (25제)",
-            "chapter": "3단계 [중급: 14급~9급] Part 1 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_fuseki_u27",
-            "chapterCode": "tech_fuseki_u27",
-            "title": "3단계 [중급: 14급~9급] Part 2 (25제)",
-            "chapter": "3단계 [중급: 14급~9급] Part 2 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_fuseki_u28",
-            "chapterCode": "tech_fuseki_u28",
-            "title": "3단계 [중급: 14급~9급] Part 3 (25제)",
-            "chapter": "3단계 [중급: 14급~9급] Part 3 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_fuseki_u29",
-            "chapterCode": "tech_fuseki_u29",
-            "title": "3단계 [중급: 14급~9급] Part 4 (25제)",
-            "chapter": "3단계 [중급: 14급~9급] Part 4 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_fuseki_u30",
-            "chapterCode": "tech_fuseki_u30",
-            "title": "3단계 [중급: 14급~9급] Part 5 (25제)",
-            "chapter": "3단계 [중급: 14급~9급] Part 5 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_fuseki_u31",
-            "chapterCode": "tech_fuseki_u31",
-            "title": "3단계 [중급: 14급~9급] Part 6 (25제)",
-            "chapter": "3단계 [중급: 14급~9급] Part 6 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_fuseki_u32",
-            "chapterCode": "tech_fuseki_u32",
-            "title": "3단계 [중급: 14급~9급] Part 7 (25제)",
-            "chapter": "3단계 [중급: 14급~9급] Part 7 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_fuseki_u33",
-            "chapterCode": "tech_fuseki_u33",
-            "title": "3단계 [중급: 14급~9급] Part 8 (25제)",
-            "chapter": "3단계 [중급: 14급~9급] Part 8 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_fuseki_u34",
-            "chapterCode": "tech_fuseki_u34",
-            "title": "3단계 [중급: 14급~9급] Part 9 (25제)",
-            "chapter": "3단계 [중급: 14급~9급] Part 9 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_fuseki_u35",
-            "chapterCode": "tech_fuseki_u35",
-            "title": "3단계 [중급: 14급~9급] Part 10 (25제)",
-            "chapter": "3단계 [중급: 14급~9급] Part 10 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_fuseki_u36",
-            "chapterCode": "tech_fuseki_u36",
-            "title": "3단계 [중급: 14급~9급] Part 11 (25제)",
-            "chapter": "3단계 [중급: 14급~9급] Part 11 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_fuseki_u37",
-            "chapterCode": "tech_fuseki_u37",
-            "title": "3단계 [중급: 14급~9급] Part 12 (25제)",
-            "chapter": "3단계 [중급: 14급~9급] Part 12 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_fuseki_u38",
-            "chapterCode": "tech_fuseki_u38",
-            "title": "3단계 [중급: 14급~9급] Part 13 (17제)",
-            "chapter": "3단계 [중급: 14급~9급] Part 13 (17제)",
-            "problemCount": 17,
-            "problemsCount": 17
-          },
-          {
-            "code": "tech_fuseki_u39",
-            "chapterCode": "tech_fuseki_u39",
-            "title": "4단계 [고급/유단자: 8급~유단자] Part 1 (25제)",
-            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 1 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_fuseki_u40",
-            "chapterCode": "tech_fuseki_u40",
-            "title": "4단계 [고급/유단자: 8급~유단자] Part 2 (25제)",
-            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 2 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_fuseki_u41",
-            "chapterCode": "tech_fuseki_u41",
-            "title": "4단계 [고급/유단자: 8급~유단자] Part 3 (25제)",
-            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 3 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_fuseki_u42",
-            "chapterCode": "tech_fuseki_u42",
-            "title": "4단계 [고급/유단자: 8급~유단자] Part 4 (25제)",
-            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 4 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_fuseki_u43",
-            "chapterCode": "tech_fuseki_u43",
-            "title": "4단계 [고급/유단자: 8급~유단자] Part 5 (25제)",
-            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 5 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_fuseki_u44",
-            "chapterCode": "tech_fuseki_u44",
-            "title": "4단계 [고급/유단자: 8급~유단자] Part 6 (25제)",
-            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 6 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_fuseki_u45",
-            "chapterCode": "tech_fuseki_u45",
-            "title": "4단계 [고급/유단자: 8급~유단자] Part 7 (25제)",
-            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 7 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_fuseki_u46",
-            "chapterCode": "tech_fuseki_u46",
-            "title": "4단계 [고급/유단자: 8급~유단자] Part 8 (25제)",
-            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 8 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_fuseki_u47",
-            "chapterCode": "tech_fuseki_u47",
-            "title": "4단계 [고급/유단자: 8급~유단자] Part 9 (25제)",
-            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 9 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_fuseki_u48",
-            "chapterCode": "tech_fuseki_u48",
-            "title": "4단계 [고급/유단자: 8급~유단자] Part 10 (25제)",
-            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 10 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_fuseki_u49",
-            "chapterCode": "tech_fuseki_u49",
-            "title": "4단계 [고급/유단자: 8급~유단자] Part 11 (25제)",
-            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 11 (25제)",
-            "problemCount": 25,
-            "problemsCount": 25
-          },
-          {
-            "code": "tech_fuseki_u50",
-            "chapterCode": "tech_fuseki_u50",
-            "title": "4단계 [고급/유단자: 8급~유단자] Part 12 (3제)",
-            "chapter": "4단계 [고급/유단자: 8급~유단자] Part 12 (3제)",
-            "problemCount": 3,
-            "problemsCount": 3
+            "code": "tech_fuseki_ch10",
+            "title": "10단원. 큰 곳과 급한 곳·대세점과 포석의 요처 (104제)",
+            "problemCount": 104
           }
-        ]
+        ],
+        "book": "🗺️ 포석 완전정복 마스터",
+        "problemCount": 620
       }
     ]
   },

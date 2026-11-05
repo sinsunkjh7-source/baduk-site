@@ -254,3 +254,11 @@ canvas{display:block;margin:0 auto;border-radius:10px;touch-action:none;width:au
 }
 
 .b-spin-float.is-spin-mode{box-shadow:0 0 0 3px rgba(122,178,96,.55),0 8px 24px rgba(20,32,16,.3)}
+
+/* 큐 기울기 (b-elev) */
+.b-elev{display:flex;flex-direction:column;align-items:center;gap:2px}
+.b-elev-label{font-size:11px;font-weight:800;color:#4f6f45;white-space:nowrap}
+#elevRange{-webkit-appearance:none;width:86px;height:16px;background:transparent}
+#elevRange::-webkit-slider-runnable-track{height:6px;border-radius:4px;background:#dfe9d4;border:1px solid #cfdcc4}
+#elevRange::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;border-radius:50%;background:#fff;border:2px solid #4a8a3a;margin-top:-5px}
+#elevVal{font-size:11px;font-weight:800;color:#2f4a25;font-variant-numeric:tabular-nums}

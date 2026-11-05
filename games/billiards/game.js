@@ -13,6 +13,7 @@
   var R = 9.5, POCKET_R = 0;
 
   /* 공식 규격 (플레이필드 2:1 고정) */
+  var MASSE_K = 0.09;
   var FOLLOW_K = 3.0, SIDE_K = 1.15, THROW_K = 0.85, SPIN_DECAY_F = 0.995, SPIN_DECAY_S = 0.992, DEFLECT_K = 0.045;
   var BALL_SCALE = 1.3;   /* 보기용 배율: 규격 1/46.2 → 1/35.6 (화면에서 작아 보여 보정) */
   var bs = /[?&]ballscale=(\d+(?:\.\d+)?)/.exec(location.search);
@@ -47,7 +48,8 @@
   var mt = /[?&]target=(\d+)/.exec(location.search); if (mt) TARGET = Math.max(1, parseInt(mt[1], 10));
   var cushionCount = 0, hitList = [], pottedThisShot = 0, foulThisShot = false, lastCushion = 0;
   var spin = { x: 0, y: 0 };
-  var lastAim = { x: 1, y: 0, power: 0 }, spinZone = false;   /* 당점: x=-1(좌)~1(우), y=-1(하)~1(상) */
+  var lastAim = { x: 1, y: 0, power: 0 }, spinZone = false;
+  var elevDeg = 0, elevEl = document.getElementById('elevRange'), elevVal = document.getElementById('elevVal');   /* 당점: x=-1(좌)~1(우), y=-1(하)~1(상) */
   if (/[?&]spin=top/.test(location.search)) spin.y = 1;
   if (/[?&]spin=bottom/.test(location.search)) spin.y = -1;
   if (/[?&]spin=left/.test(location.search)) spin.x = -1;
@@ -77,7 +79,7 @@
   };
 
   function mkBall(x, y, color, kind, num) {
-    return { x: x, y: y, vx: 0, vy: 0, color: color, kind: kind, num: num || 0, r: R, alive: true, spinF: 0, spinS: 0 };
+    return { x: x, y: y, vx: 0, vy: 0, color: color, kind: kind, num: num || 0, r: R, alive: true, spinF: 0, spinS: 0, masse: 0 };
   }
 
   function buildPockets() {
@@ -216,10 +218,19 @@
 
       b.x += b.vx / SUB; b.y += b.vy / SUB;
       b.vx *= FR_SUB; b.vy *= FR_SUB;
+      if (b.masse && Math.abs(b.masse) > 0.001 && (b.vx || b.vy)) {
+        var sp = Math.hypot(b.vx, b.vy);
+        if (sp > 0.9) {
+          var px = -b.vy / sp, py = b.vx / sp;       /* 진행 방향 수직 */
+          b.vx += px * b.masse * MASSE_K / SUB;
+          b.vy += py * b.masse * MASSE_K / SUB;
+          b.masse *= 0.985;
+        }
+      }
       if (b.spinF) { b.spinF *= SPIN_DECAY_F_SUB; if (Math.abs(b.spinF) < 0.01) b.spinF = 0; }
       if (b.spinS) { b.spinS *= SPIN_DECAY_S_SUB; if (Math.abs(b.spinS) < 0.01) b.spinS = 0; }
-      if (Math.abs(b.vx) < STOP) b.vx = 0;
-      if (Math.abs(b.vy) < STOP) b.vy = 0;
+      if (Math.abs(b.vx) < STOP && !b.masse) b.vx = 0;
+      if (Math.abs(b.vy) < STOP && !b.masse) b.vy = 0;
 
       var bounced = false;
       if (b.x - b.r < MINX) { b.x = MINX + b.r; b.vx = -b.vx * CUSHION; if (b.kind === 'cue') { b.vy += b.spinS * SIDE_K * (b.vx > 0 ? 1 : -1); b.spinS *= 0.72; } bounced = true; }
@@ -554,10 +565,12 @@
         ctx.restore();
       }
 
-      /* 큐대 */
+      /* 큐대 — 기울기만큼 짧아지고 끝이 들려 보이게 */
+      var eCos = Math.cos(elevDeg * Math.PI / 180);
+      var liftPx = Math.sin(elevDeg * Math.PI / 180) * 34;
       var back = R + 10 + aim.power * 54;
       var sx = cue.x - dir.x * back, sy = cue.y - dir.y * back;
-      var ex = sx - dir.x * 168, ey = sy - dir.y * 168;
+      var ex = sx - dir.x * (168 * eCos), ey = sy - dir.y * (168 * eCos) - liftPx;
       var cg = ctx.createLinearGradient(sx, sy, ex, ey);
       cg.addColorStop(0, '#f3e2c0');
       cg.addColorStop(0.12, '#d8b678');
@@ -808,8 +821,10 @@
     var dxA = lastAim.x * Math.cos(defl) - lastAim.y * Math.sin(defl);
     var dyA = lastAim.x * Math.sin(defl) + lastAim.y * Math.cos(defl);
     cue.spinF = spin.y; cue.spinS = spin.x;
-    cue.vx = dxA * MAX_POWER * shotPower;
-    cue.vy = dyA * MAX_POWER * shotPower;
+    var sinE = Math.sin(elevDeg * Math.PI / 180), cosE = Math.cos(elevDeg * Math.PI / 180);
+    cue.masse = spin.x * sinE;          /* 마세(곡선) 세기 */
+    cue.vx = dxA * MAX_POWER * shotPower * cosE;
+    cue.vy = dyA * MAX_POWER * shotPower * cosE;
     aim.x = lastAim.x; aim.y = lastAim.y;
     moving = true;
     updateStats();
@@ -849,6 +864,14 @@
   }
 
   /* ---------- 당점 다이얼 (공 그림 위 클릭/드래그) ---------- */
+  if (elevEl) {
+    elevEl.addEventListener('input', function () {
+      elevDeg = parseFloat(elevEl.value) || 0;
+      if (elevVal) elevVal.textContent = elevDeg + '°';
+      draw();
+    });
+  }
+
   var spinCv = document.getElementById('spinBall');
   var spinPad = document.getElementById('spinPad');
   var spinFloat = document.getElementById('spinFloat');
@@ -995,6 +1018,28 @@
   newGame();
   fitCanvas();
   requestAnimationFrame(loop);
+
+  if (/[?&]masse=1/.test(location.search)) {
+    setTimeout(function () {
+      function run(deg, ss) {
+        newGame();
+        balls.forEach(function (b) { if (b.kind !== 'cue') { b.alive = false; b.x = -999; } });
+        cue.x = W * 0.2; cue.y = H / 2; cue.spinF = 0; cue.spinS = ss;
+        var e = deg * Math.PI / 180;
+        cue.masse = ss * Math.sin(e);
+        moving = true; beginShot();
+        cue.vx = MAX_POWER * 0.7 * Math.cos(e);
+        cue.vy = 0;
+        var y0 = cue.y;
+        var dbg = [];
+        for (var i = 0; i < 45; i++) { step(); if (i < 3) dbg.push(+cue.masse.toFixed(3) + '/' + +cue.vy.toFixed(2)); }
+        return +(cue.y - y0).toFixed(2) + ' [' + dbg.join(' ') + ']';
+      }
+      document.body.setAttribute('data-masse', JSON.stringify({
+        flat: run(0, 1), e30: run(30, 1), e45: run(45, 1), e60: run(60, 1), noSpin45: run(45, 0)
+      }));
+    }, 700);
+  }
 
   if (/[?&]spintest=1/.test(location.search)) {
     setTimeout(function () {
