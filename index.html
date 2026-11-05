@@ -115,14 +115,6 @@
      <div class="card-course-tags"><span>10×10 홀로그램</span><span>5문제</span><span>연료 충전</span><span>충전·추진 효과음</span></div>
      <div class="card-btn-action"><span>실행형 샘플 탑승하기 →</span></div>
     </a>
-    <a href="/sky-city-demo.html" class="learn-card" aria-label="폭풍 속 공중도시 코스터 탑승하기">
-     <div class="card-badge-row"><span class="badge-level">새 코스 시제품</span><span class="badge-tech">실시간 3D</span></div>
-     <div class="card-icon-title"><div><h2 class="card-title">폭풍 속 공중도시</h2><p class="card-subtitle">구름 위 도시와 공중 교각을 돌파하는 고공 질주</p></div></div>
-     <p class="card-desc">황금빛 항구, 거대한 공중 교각, 비행선과 폭풍 전선을 지납니다. 중앙 10×10 홀로그램에서 바둑 5문제를 풀고, 정오답 직후 곧바로 고속 주행하세요.</p>
-     <div class="card-course-tags"><span>10×10 홀로그램</span><span>5문제</span><span>즉시 재가속</span></div>
-     <div class="card-btn-action"><span>공중도시 코스 탑승하기 →</span></div>
-    </a>
-
     
 
     <!-- 2. 바둑 입문 & 첫걸음 -->
@@ -212,22 +204,131 @@
    </div>
   </div>
  </section>
+
+ <!-- 🌟 바둑 대국 네모 카드 메뉴 스크린 🌟 -->
+ <section id="play-screen" class="empty-screen play-screen" aria-labelledby="play-title" hidden>
+  <div class="empty-inner">
+   <a class="back-link" href="#home">← 홈으로</a>
+   <p class="page-label">JH 바둑스쿨 · 아이들의 성장 놀이터</p>
+   <div class="empty-heading">
+    <img id="play-icon" src="assets/stat_4.png?v=static-68a173ca45abc653" alt="바둑 대국" width="400" height="400">
+    <div>
+     <h1 id="play-title">바둑 대국</h1>
+     <p id="play-description">신나는 인공지능 대국부터 친구와의 실시간 1:1 맞대결까지!</p>
+    </div>
+   </div>
+
+   <!-- 바둑 대국 3대 메뉴 박스 그리드 -->
+   <div class="learn-card-grid play-card-grid">
+
+    <!-- 1. AI 인공지능 대국 -->
+    <a href="games/play/index.html?mode=ai" class="learn-card learn-card-featured-play" aria-label="AI 대국 시작하기">
+     <div class="card-badge-row">
+      <span class="badge-hot">🤖 인공지능</span>
+      <span class="badge-tech">실력별 맞춤</span>
+     </div>
+     <div class="card-icon-title">
+      <span class="card-emoji">🤖</span>
+      <div>
+       <h2 class="card-title">AI 대국</h2>
+       <p class="card-subtitle">GNU Go 기반 8단계 맞춤 인공지능 대국</p>
+      </div>
+     </div>
+     <p class="card-desc">
+      입문(30급)부터 유단자까지! 나에게 꼭 맞는 인공지능과 대국하며 실전 감각을 키우는 대국실입니다.
+     </p>
+     <div class="card-course-tags">
+      <span>9줄 · 13줄 · 19줄</span>
+      <span>접바둑 치수 설정</span>
+      <span>초읽기 타이머</span>
+     </div>
+     <div class="card-btn-action">
+      <span>AI 대국 시작하기 ➔</span>
+     </div>
+    </a>
+
+    <!-- 2. 일반 대국 (맞대국) -->
+    <a href="games/play/index.html?mode=pvp" class="learn-card" aria-label="일반 대국 시작하기">
+     <div class="card-badge-row">
+      <span class="badge-level">👥 2인 오프라인</span>
+      <span class="badge-tech">자유 대국</span>
+     </div>
+     <div class="card-icon-title">
+      <span class="card-emoji">👥</span>
+      <div>
+       <h2 class="card-title">일반 대국 (맞대국)</h2>
+       <p class="card-subtitle">한 컴퓨터·태블릿에서 흑과 백을 번갈아 두는 2인 대국</p>
+      </div>
+     </div>
+     <p class="card-desc">
+      학교나 학원 교실에서 짝꿍, 친구, 선생님과 한 화면을 마주 보며 자유롭게 바둑을 두고 기보를 복기해요.
+     </p>
+     <div class="card-course-tags">
+      <span>한 화면 2인 대국</span>
+      <span>무제한 / 초읽기</span>
+      <span>계가 및 사석 분석</span>
+     </div>
+     <div class="card-btn-action">
+      <span>일반 대국 시작하기 ➔</span>
+     </div>
+    </a>
+
+    <!-- 3. 실시간 1:1 대국 (대기실) -->
+    <a href="baduk/index.html#online" class="learn-card" id="btnLiveMatchCard" aria-label="실시간 대기실 입장하기">
+     <div class="card-badge-row">
+      <span class="badge-hot" style="background:#0ea5e9;color:#fff;">🌐 실시간 온라인</span>
+      <span class="badge-tech" style="background:#ecfdf5;color:#059669;border:1px solid #10b981;">대기실 매칭</span>
+     </div>
+     <div class="card-icon-title">
+      <span class="card-emoji">⚔️</span>
+      <div>
+       <h2 class="card-title">실시간 1:1 대국</h2>
+       <p class="card-subtitle">대기실에서 친구를 지목해 신청하는 온라인 실시간 대국</p>
+      </div>
+     </div>
+     <p class="card-desc">
+      대기실에 모여 있는 친구 목록을 보고 1:1로 대국을 신청하세요! 상대방이 수락하면 즉시 실시간 대국판으로 입장합니다.
+     </p>
+     <div class="card-course-tags">
+      <span>대기실 접속자 명단</span>
+      <span>지목 대국 신청</span>
+      <span>실시간 착수 동기화</span>
+     </div>
+     <div class="card-btn-action">
+      <span>대기실 입장하기 ➔</span>
+     </div>
+    </a>
+
+   </div>
+  </div>
+ </section>
  <script>
   (function() {
-    function checkLearn() {
+    function checkNavScreens() {
       var h = (location.hash || '').split('?')[0];
+      var ls = document.getElementById('learn-screen');
+      var ps = document.getElementById('play-screen');
+      var hs = document.getElementById('home-screen');
+      var es = document.getElementById('empty-screen');
       if (h === '#learn') {
-        var ls = document.getElementById('learn-screen');
-        var hs = document.getElementById('home-screen');
-        var es = document.getElementById('empty-screen');
         if (ls) ls.hidden = false;
+        if (ps) ps.hidden = true;
         if (hs) hs.hidden = true;
         if (es) es.hidden = true;
+      } else if (h === '#play') {
+        if (ls) ls.hidden = true;
+        if (ps) ps.hidden = false;
+        if (hs) hs.hidden = true;
+        if (es) es.hidden = true;
+      } else if (h === '#home' || !h) {
+        if (ls) ls.hidden = true;
+        if (ps) ps.hidden = true;
+        if (hs) hs.hidden = false;
       }
     }
-    window.addEventListener('DOMContentLoaded', checkLearn);
-    window.addEventListener('hashchange', checkLearn);
-    checkLearn();
+    window.addEventListener('DOMContentLoaded', checkNavScreens);
+    window.addEventListener('hashchange', checkNavScreens);
+    checkNavScreens();
   })();
  </script>
  <section id="empty-screen" class="empty-screen" aria-labelledby="empty-title" hidden>
