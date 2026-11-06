@@ -74,11 +74,11 @@
   };
 
   var BOTS = {
-    beginner: { name: '삐약이', title: '🌱 입문 (18급)', avatar: '🐥', img: '../../images/characters/char_chick_beginner.png', desc: '바둑의 첫걸음! 따내기와 단수를 배우는 귀여운 병아리 봇' },
-    intermediate: { name: '바둑이', title: '🌿 초급 (12급)', avatar: '🐶', img: '../../images/characters/char_pup_think.png', desc: '돌의 연결과 활로를 살피며 씩씩하게 두는 강아지 봇' },
-    advanced: { name: '영리한 여우', title: '🌲 중급 (5급)', avatar: '🦊', img: '../../images/characters/char_fox_victory.jpg', desc: '호구와 집 모양의 급소를 노리는 지혜로운 여우 봇' },
-    dan: { name: '지혜로운 판다', title: '⭐ 상급 (1~2급)', avatar: '🐼', img: '../../images/characters/char_panda_victory.jpg', desc: '두터운 정석과 대국적 안목을 지닌 상급자 판다 봇' },
-    master: { name: '용맹한 호랑이', title: '🔥 유단자 (기원 1단 / 타이젬 2~3단)', avatar: '🐯', img: '../../images/characters/char_tiger_cheer.png', desc: '강력한 전투력과 정확한 사활 수읽기를 펼치는 맹호 유단자 봇' }
+    beginner: { name: 'AI 삐약이', title: '🌱 입문 (18급)', avatar: '🐥', img: '../../images/characters/char_chick_beginner.png', desc: '바둑의 첫걸음! 따내기와 단수를 배우는 귀여운 병아리 봇' },
+    intermediate: { name: 'AI 바둑이', title: '🌿 초급 (12급)', avatar: '🐶', img: '../../images/characters/char_pup_think.png', desc: '돌의 연결과 활로를 살피며 씩씩하게 두는 강아지 봇' },
+    advanced: { name: 'AI 영리한 여우', title: '🌲 중급 (5급)', avatar: '🦊', img: '../../images/characters/char_fox_victory.jpg', desc: '호구와 집 모양의 급소를 노리는 지혜로운 여우 봇' },
+    dan: { name: 'AI 지혜로운 판다', title: '⭐ 상급 (1~2급)', avatar: '🐼', img: '../../images/characters/char_panda_victory.jpg', desc: '두터운 정석과 대국적 안목을 지닌 상급자 판다 봇' },
+    master: { name: 'AI 용맹한 호랑이', title: '🔥 유단자 (기원 1단 / 타이젬 2~3단)', avatar: '🐯', img: '../../images/characters/char_tiger_cheer.png', desc: '강력한 전투력과 정확한 사활 수읽기를 펼치는 맹호 유단자 봇' }
   };
 
   /* 엔진 & 오디오 */
@@ -651,82 +651,129 @@
     }
 
     // 🌟 아레나 좌우 대국 정보 패널 실시간 동기화 🌟
-    var whiteCapEl = document.getElementById('arenaWhiteCaptures');
-    if (whiteCapEl) whiteCapEl.textContent = wCap + '개';
+    // 우측 카드: 항상 '나' (또는 2인 대국 시 1P 흑)
+    // 좌측 카드: 항상 '상대 / AI' (또는 2인 대국 시 2P 백)
 
-    var blackCapEl = document.getElementById('arenaBlackCaptures');
-    if (blackCapEl) blackCapEl.textContent = bCap + '개';
+    var myColor = (state.mode === 'ai') ? state.humanColor : BLACK;
+    var oppColor = (myColor === BLACK) ? WHITE : BLACK;
+
+    var myCap = (myColor === BLACK) ? bCap : wCap;
+    var oppCap = (oppColor === BLACK) ? bCap : wCap;
+
+    var userCapEl = document.getElementById('arenaBlackCaptures');
+    if (userCapEl) userCapEl.textContent = myCap + '개';
+
+    var oppCapEl = document.getElementById('arenaWhiteCaptures');
+    if (oppCapEl) oppCapEl.textContent = oppCap + '개';
 
     var moveCountEl = document.getElementById('arenaMoveCount');
     if (moveCountEl) moveCountEl.textContent = moveCount + '수';
     var whiteMoveCountEl = document.getElementById('arenaWhiteMoveCount');
     if (whiteMoveCountEl) whiteMoveCountEl.textContent = moveCount + '수';
 
-    var ruleText = state.boardSize + '줄 ' + (state.handicap >= 2 ? (state.handicap + '점 접바둑') : (state.handicap === 1 ? '정선 (덤 0.5집)' : '호선 (덤 6.5집)'));
+    var fullRuleText = state.boardSize + '줄 ' + (state.handicap >= 2 ? (state.handicap + '점 접바둑') : (state.handicap === 1 ? '정선 (덤 0.5집)' : '호선 (덤 6.5집)'));
     var ruleBadge = document.getElementById('arenaRuleBadge');
-    if (ruleBadge) ruleBadge.textContent = ruleText;
+    if (ruleBadge) ruleBadge.textContent = fullRuleText;
     var whiteRuleBadge = document.getElementById('arenaWhiteRuleBadge');
-    if (whiteRuleBadge) whiteRuleBadge.textContent = ruleText;
+    if (whiteRuleBadge) whiteRuleBadge.textContent = fullRuleText;
 
-    var whiteRankBadge = document.getElementById('arenaWhiteRankBadge');
-    if (whiteRankBadge && BOTS[state.difficulty]) {
-      whiteRankBadge.textContent = BOTS[state.difficulty].title;
-    }
+    // 돌 아이콘 & 닉네임 동기화
+    var userStoneEl = document.getElementById('arenaBlackStone');
+    if (userStoneEl) userStoneEl.textContent = (myColor === BLACK ? '⚫' : '⚪');
 
-    var whiteNameEl = document.getElementById('timerWhiteName');
-    if (whiteNameEl) {
-      if (state.mode === 'ai' && BOTS[state.difficulty]) {
-        whiteNameEl.textContent = BOTS[state.difficulty].name;
+    var oppStoneEl = document.getElementById('arenaWhiteStone');
+    if (oppStoneEl) oppStoneEl.textContent = (oppColor === BLACK ? '⚫' : '⚪');
+
+    var userNameEl = document.getElementById('timerBlackName');
+    if (userNameEl) {
+      if (state.mode === 'ai') {
+        userNameEl.textContent = (myColor === BLACK ? '나 (흑)' : '나 (백)');
       } else {
-        whiteNameEl.textContent = '상대 (백)';
+        userNameEl.textContent = '1P (흑)';
       }
     }
-    var whiteRankBadge = document.getElementById('arenaWhiteRankBadge');
-    if (whiteRankBadge) {
+
+    var oppNameEl = document.getElementById('timerWhiteName');
+    if (oppNameEl) {
       if (state.mode === 'ai' && BOTS[state.difficulty]) {
-        whiteRankBadge.textContent = BOTS[state.difficulty].title;
-        whiteRankBadge.style.display = 'inline-block';
+        oppNameEl.textContent = BOTS[state.difficulty].name;
       } else {
-        whiteRankBadge.textContent = '일반 대국';
-        whiteRankBadge.style.display = 'inline-block';
+        oppNameEl.textContent = '2P (백)';
       }
     }
+
+    var oppRankBadge = document.getElementById('arenaWhiteRankBadge');
+    if (oppRankBadge) {
+      if (state.mode === 'ai' && BOTS[state.difficulty]) {
+        oppRankBadge.textContent = BOTS[state.difficulty].title;
+        oppRankBadge.style.display = 'inline-block';
+      } else {
+        oppRankBadge.textContent = '일반 대국';
+        oppRankBadge.style.display = 'inline-block';
+      }
+    }
+
     var engineCard = document.getElementById('arenaEngineCard');
     if (engineCard) {
       engineCard.style.display = (state.mode === 'ai') ? 'flex' : 'none';
     }
-    var whitePlayerCard = document.getElementById('arenaWhiteCard');
-    var blackPlayerCard = document.getElementById('arenaBlackCard');
-    if (whitePlayerCard) whitePlayerCard.classList.toggle('active-turn', state.currentTurn === WHITE);
-    if (blackPlayerCard) blackPlayerCard.classList.toggle('active-turn', state.currentTurn === BLACK);
-    var whiteImgEl = document.getElementById('arenaWhiteImg');
-    if (whiteImgEl && BOTS[state.difficulty] && BOTS[state.difficulty].img) {
-      whiteImgEl.src = BOTS[state.difficulty].img;
+
+    // 캐릭터 이미지 동기화
+    var oppImgEl = document.getElementById('arenaWhiteImg');
+    if (oppImgEl) {
+      if (state.mode === 'ai' && BOTS[state.difficulty] && BOTS[state.difficulty].img) {
+        oppImgEl.src = BOTS[state.difficulty].img;
+      } else {
+        oppImgEl.src = '../alkkagi/bullterrier/01-idle.png';
+      }
     }
 
-    var whiteStatus = document.getElementById('arenaWhiteStatus');
-    var blackStatus = document.getElementById('arenaBlackStatus');
+    var userImgEl = document.getElementById('arenaBlackImg');
+    if (userImgEl && ARENA_AVATARS[currentAvatarIdx]) {
+      userImgEl.src = ARENA_AVATARS[currentAvatarIdx].src;
+    }
+
+    // 턴 하이라이트 및 상태 문구
+    var userCard = document.getElementById('arenaBlackCard');
+    var oppCard = document.getElementById('arenaWhiteCard');
+    var isMyTurn = (state.currentTurn === myColor);
+
+    if (userCard) userCard.classList.toggle('active-turn', isMyTurn);
+    if (oppCard) oppCard.classList.toggle('active-turn', !isMyTurn);
+
+    var userStatus = document.getElementById('arenaBlackStatus');
+    var oppStatus = document.getElementById('arenaWhiteStatus');
+
     if (state.isGameOver) {
-      if (whiteStatus) { whiteStatus.textContent = '대국 종료'; whiteStatus.className = 'arena-turn-status'; }
-      if (blackStatus) { blackStatus.textContent = '대국 종료'; blackStatus.className = 'arena-turn-status'; }
+      if (userStatus) { userStatus.textContent = '대국 종료'; userStatus.className = 'arena-turn-status'; }
+      if (oppStatus) { oppStatus.textContent = '대국 종료'; oppStatus.className = 'arena-turn-status'; }
     } else {
-      var isBlackTurn = (state.currentTurn === BLACK);
-      if (blackStatus) {
-        blackStatus.textContent = isBlackTurn ? '⚫ 내 차례' : '상대 차례';
-        blackStatus.className = 'arena-turn-status' + (isBlackTurn ? ' my-turn' : '');
+      if (userStatus) {
+        if (isMyTurn) {
+          userStatus.textContent = (myColor === BLACK ? '⚫ 내 차례' : '⚪ 내 차례');
+          userStatus.className = 'arena-turn-status my-turn';
+        } else {
+          userStatus.textContent = '상대 차례';
+          userStatus.className = 'arena-turn-status';
+        }
       }
-      if (whiteStatus) {
-        if (state.mode === 'ai') {
-          if (state.isThinking) {
-            whiteStatus.textContent = '⏳ 수읽기 생각 중...';
-            whiteStatus.className = 'arena-turn-status thinking';
+      if (oppStatus) {
+        if (!isMyTurn) {
+          if (state.mode === 'ai') {
+            if (state.isThinking) {
+              oppStatus.textContent = '⏳ 수읽기 생각 중...';
+              oppStatus.className = 'arena-turn-status thinking';
+            } else {
+              oppStatus.textContent = (oppColor === BLACK ? '⚫ AI 착수 차례' : '⚪ AI 착수 차례');
+              oppStatus.className = 'arena-turn-status my-turn';
+            }
           } else {
-            whiteStatus.textContent = isBlackTurn ? '차례 대기 중' : '⚪ 백돌 착수 차례';
-            whiteStatus.className = 'arena-turn-status' + (!isBlackTurn ? ' my-turn' : '');
+            oppStatus.textContent = '⚪ 2P 차례';
+            oppStatus.className = 'arena-turn-status my-turn';
           }
         } else {
-          whiteStatus.textContent = !isBlackTurn ? '⚪ 백 차례' : '차례 대기 중';
-          whiteStatus.className = 'arena-turn-status' + (!isBlackTurn ? ' my-turn' : '');
+          oppStatus.textContent = '차례 대기 중';
+          oppStatus.className = 'arena-turn-status';
         }
       }
     }
@@ -767,71 +814,74 @@
   }
 
   function updateTimerUI() {
-    var bCard = document.getElementById('blackTimerCard');
-    var wCard = document.getElementById('whiteTimerCard');
-    var bDigits = document.getElementById('timerBlackTime');
-    var wDigits = document.getElementById('timerWhiteTime');
-    var bByo = document.getElementById('timerBlackByo');
-    var wByo = document.getElementById('timerWhiteByo');
+    var userCard = document.getElementById('blackTimerCard');
+    var oppCard = document.getElementById('whiteTimerCard');
+    var userDigits = document.getElementById('timerBlackTime');
+    var oppDigits = document.getElementById('timerWhiteTime');
+    var userByo = document.getElementById('timerBlackByo');
+    var oppByo = document.getElementById('timerWhiteByo');
+
+    var myColor = (state.mode === 'ai') ? state.humanColor : BLACK;
+    var oppColor = (myColor === BLACK) ? WHITE : BLACK;
+
+    var myTimer = (myColor === BLACK) ? timerData.black : timerData.white;
+    var oppTimer = (oppColor === BLACK) ? timerData.black : timerData.white;
+
+    var isMyTurn = (state.currentTurn === myColor);
 
     if (!timerData.active || !timerData.config) {
-      if (bDigits) bDigits.textContent = '무제한';
-      if (wDigits) wDigits.textContent = '무제한';
-      if (bByo) bByo.textContent = '시간 제한 없음';
-      if (wByo) wByo.textContent = '시간 제한 없음';
-      var isBlackTurnNoTimer = (state.currentTurn === BLACK);
-      if (bCard) {
-        bCard.classList.toggle('active-turn', isBlackTurnNoTimer);
-        bCard.classList.remove('in-byo', 'urgent');
+      if (userDigits) userDigits.textContent = '무제한';
+      if (oppDigits) oppDigits.textContent = '무제한';
+      if (userByo) userByo.textContent = '시간 제한 없음';
+      if (oppByo) oppByo.textContent = '시간 제한 없음';
+      if (userCard) {
+        userCard.classList.toggle('active-turn', isMyTurn);
+        userCard.classList.remove('in-byo', 'urgent');
       }
-      if (wCard) {
-        wCard.classList.toggle('active-turn', !isBlackTurnNoTimer);
-        wCard.classList.remove('in-byo', 'urgent');
+      if (oppCard) {
+        oppCard.classList.toggle('active-turn', !isMyTurn);
+        oppCard.classList.remove('in-byo', 'urgent');
       }
       return;
     }
 
-    var bCard = document.getElementById('blackTimerCard');
-    var wCard = document.getElementById('whiteTimerCard');
-    var bDigits = document.getElementById('timerBlackTime');
-    var wDigits = document.getElementById('timerWhiteTime');
-    var bByo = document.getElementById('timerBlackByo');
-    var wByo = document.getElementById('timerWhiteByo');
+    // 내 타이머 (우측)
+    if (myTimer.inByo) {
+      if (userDigits) userDigits.textContent = formatTimerDigits(myTimer.byo);
+      if (userByo) userByo.textContent = '초읽기 ' + myTimer.byo + '초 (' + myTimer.periods + '회)';
+      if (userCard) {
+        userCard.classList.add('in-byo');
+        userCard.classList.toggle('urgent', myTimer.byo <= 5 && isMyTurn);
+      }
+    } else {
+      if (userDigits) userDigits.textContent = formatTimerDigits(myTimer.main);
+      if (userByo) userByo.textContent = '초읽기 ' + timerData.config.byoSeconds + '초 (' + timerData.config.byoPeriods + '회)';
+      if (userCard) userCard.classList.remove('in-byo', 'urgent');
+    }
+
+    // 상대 타이머 (좌측)
+    if (oppTimer.inByo) {
+      if (oppDigits) oppDigits.textContent = formatTimerDigits(oppTimer.byo);
+      if (oppByo) oppByo.textContent = '초읽기 ' + oppTimer.byo + '초 (' + oppTimer.periods + '회)';
+      if (oppCard) {
+        oppCard.classList.add('in-byo');
+        oppCard.classList.toggle('urgent', oppTimer.byo <= 5 && !isMyTurn);
+      }
+    } else {
+      if (oppDigits) oppDigits.textContent = formatTimerDigits(oppTimer.main);
+      if (oppByo) oppByo.textContent = '초읽기 ' + timerData.config.byoSeconds + '초 (' + timerData.config.byoPeriods + '회)';
+      if (oppCard) oppCard.classList.remove('in-byo', 'urgent');
+    }
+
+    if (userCard) userCard.classList.toggle('active-turn', isMyTurn);
+    if (oppCard) oppCard.classList.toggle('active-turn', !isMyTurn);
+
     var turnText = document.getElementById('timerTurnText');
-
-    if (timerData.black.inByo) {
-      if (bDigits) bDigits.textContent = formatTimerDigits(timerData.black.byo);
-      if (bByo) bByo.textContent = '초읽기 ' + timerData.black.byo + '초 (' + timerData.black.periods + '회)';
-      if (bCard) {
-        bCard.classList.add('in-byo');
-        bCard.classList.toggle('urgent', timerData.black.byo <= 5 && state.currentTurn === BLACK);
-      }
-    } else {
-      if (bDigits) bDigits.textContent = formatTimerDigits(timerData.black.main);
-      if (bByo) bByo.textContent = '초읽기 ' + timerData.config.byoSeconds + '초 (' + timerData.config.byoPeriods + '회)';
-      if (bCard) bCard.classList.remove('in-byo', 'urgent');
-    }
-
-    if (timerData.white.inByo) {
-      if (wDigits) wDigits.textContent = formatTimerDigits(timerData.white.byo);
-      if (wByo) wByo.textContent = '초읽기 ' + timerData.white.byo + '초 (' + timerData.white.periods + '회)';
-      if (wCard) {
-        wCard.classList.add('in-byo');
-        wCard.classList.toggle('urgent', timerData.white.byo <= 5 && state.currentTurn === WHITE);
-      }
-    } else {
-      if (wDigits) wDigits.textContent = formatTimerDigits(timerData.white.main);
-      if (wByo) wByo.textContent = '초읽기 ' + timerData.config.byoSeconds + '초 (' + timerData.config.byoPeriods + '회)';
-      if (wCard) wCard.classList.remove('in-byo', 'urgent');
-    }
-
-    var isBlackTurn = (state.currentTurn === BLACK);
-    if (bCard) bCard.classList.toggle('active-turn', isBlackTurn);
-    if (wCard) wCard.classList.toggle('active-turn', !isBlackTurn);
-
     if (turnText) {
-      var botName = (state.mode === 'ai') ? BOTS[state.difficulty].name : (isBlackTurn ? '흑' : '백');
-      turnText.textContent = isBlackTurn ? '⚫ 흑의 시간' : ('⚪ ' + botName + '의 시간');
+      var botName = (state.mode === 'ai') ? BOTS[state.difficulty].name : '상대';
+      turnText.textContent = isMyTurn
+        ? (myColor === BLACK ? '⚫ 내 시간' : '⚪ 내 시간')
+        : ((oppColor === BLACK ? '⚫ ' : '⚪ ') + botName + '의 시간');
     }
   }
 
@@ -942,15 +992,7 @@
     timerData.black = { main: cfg.mainSeconds, byo: cfg.byoSeconds, periods: cfg.byoPeriods, inByo: false };
     timerData.white = { main: cfg.mainSeconds, byo: cfg.byoSeconds, periods: cfg.byoPeriods, inByo: false };
 
-    var bName = document.getElementById('timerBlackName');
-    var wName = document.getElementById('timerWhiteName');
-    if (state.mode === 'ai') {
-      if (bName) bName.textContent = (state.humanColor === BLACK) ? '나 (흑)' : BOTS[state.difficulty].name;
-      if (wName) wName.textContent = (state.humanColor === WHITE) ? '나 (백)' : BOTS[state.difficulty].name;
-    } else {
-      if (bName) bName.textContent = '흑';
-      if (wName) wName.textContent = '백';
-    }
+    updateStatus();
 
     updateTimerUI();
     layoutBoard();
@@ -1364,7 +1406,8 @@
 
     var ruleName = hCount >= 2 ? (hCount + '점 접바둑') : (state.handicap === 1 ? '정선(덤 0.5집)' : '호선(덤 6.5집)');
     var oppName = state.mode === 'ai' ? (BOTS[state.difficulty].avatar + ' ' + BOTS[state.difficulty].name) : '👥 2인 대국';
-    toast('새 대국 시작! (' + oppName + ' · ' + state.boardSize + '줄 ' + ruleName + ')');
+    var myColText = (state.humanColor === BLACK ? '내 돌: 흑⚫' : '내 돌: 백⚪');
+    toast('새 대국 시작! (' + oppName + ' · ' + myColText + ' · ' + state.boardSize + '줄 ' + ruleName + ')');
 
     // AI가 백일 때 접바둑이면 AI 착수
     if (state.mode === 'ai' && state.currentTurn !== state.humanColor) {
@@ -2012,17 +2055,18 @@
 
   function initArenaAvatar() {
     var blackImg = document.getElementById('arenaBlackImg');
-    if (blackImg) {
+    if (blackImg && ARENA_AVATARS[currentAvatarIdx]) {
       blackImg.src = ARENA_AVATARS[currentAvatarIdx].src;
     }
     var btnChange = document.getElementById('btnChangeChar');
-    if (btnChange) {
+    if (btnChange && !btnChange._bound) {
+      btnChange._bound = true;
       btnChange.addEventListener('click', function () {
         currentAvatarIdx = (currentAvatarIdx + 1) % ARENA_AVATARS.length;
         var chosen = ARENA_AVATARS[currentAvatarIdx];
         if (blackImg) blackImg.src = chosen.src;
         localStorage.setItem('play_arena_avatar_idx', currentAvatarIdx);
-        toast('흑돌 캐릭터가 ' + chosen.name + '(으)로 변경되었습니다!');
+        toast('내 캐릭터가 ' + chosen.name + '(으)로 변경되었습니다!');
       });
     }
   }

@@ -10,7 +10,7 @@
   <title>🤖 AI 바둑 대국 — 바둑스쿨</title>
   <link rel="preload" as="image" href="images/board_wood_grain.png">
 
-  <link rel="stylesheet" href="style.css?v=20261106_card_big_v7">
+  <link rel="stylesheet" href="style.css?v=20261106_card_big_v8">
   <link rel="stylesheet" href="/unified-nav.css?v=20261103-nav-v11">
   <script src="/unified-nav.js?v=20261103-nav-v11" defer></script>
 </head>
@@ -28,8 +28,8 @@
       <div class="player-card-header">
         <div class="player-card-identity">
           <div class="player-card-name-wrap">
-            <span class="timer-stone">⚪</span>
-            <span class="player-name" id="timerWhiteName">용맹한 호랑이</span>
+            <span class="timer-stone" id="arenaWhiteStone">⚪</span>
+            <span class="player-name" id="timerWhiteName">AI 지혜로운 판다</span>
           </div>
           <span class="arena-player-badge" id="arenaWhiteRankBadge">⭐ 상급 (1~2급)</span>
         </div>
@@ -103,10 +103,10 @@
       <div class="player-card-header">
         <div class="player-card-identity">
           <div class="player-card-name-wrap">
-            <span class="timer-stone">⚫</span>
+            <span class="timer-stone" id="arenaBlackStone">⚫</span>
             <span class="player-name" id="timerBlackName">나 (흑)</span>
           </div>
-          <button type="button" class="btn-char-change" id="btnChangeChar" title="캐릭터 교체">교체</button>
+          <button type="button" class="btn-char-change" id="btnChangeChar" title="캐릭터 교체">캐릭터 교체</button>
         </div>
         <div class="arena-turn-status my-turn" id="arenaBlackStatus">⚫ 내 차례</div>
       </div>
@@ -186,35 +186,35 @@
             <button type="button" class="match-bot-card" data-bot="beginner">
               <span class="bot-card-avatar">🐥</span>
               <div class="bot-card-info">
-                <strong>삐약이</strong>
+                <strong>AI 삐약이</strong>
                 <small>입문 (18급)</small>
               </div>
             </button>
             <button type="button" class="match-bot-card" data-bot="intermediate">
               <span class="bot-card-avatar">🐶</span>
               <div class="bot-card-info">
-                <strong>바둑이</strong>
+                <strong>AI 바둑이</strong>
                 <small>초급 (12급)</small>
               </div>
             </button>
             <button type="button" class="match-bot-card" data-bot="advanced">
               <span class="bot-card-avatar">🦊</span>
               <div class="bot-card-info">
-                <strong>영리한 여우</strong>
+                <strong>AI 영리한 여우</strong>
                 <small>중급 (5급)</small>
               </div>
             </button>
             <button type="button" class="match-bot-card active" data-bot="dan">
               <span class="bot-card-avatar">🐼</span>
               <div class="bot-card-info">
-                <strong>지혜로운 판다</strong>
+                <strong>AI 지혜로운 판다</strong>
                 <small>상급 (1~2급)</small>
               </div>
             </button>
             <button type="button" class="match-bot-card" data-bot="master">
               <span class="bot-card-avatar">🐯</span>
               <div class="bot-card-info">
-                <strong>용맹한 호랑이</strong>
+                <strong>AI 용맹한 호랑이</strong>
                 <small>유단자 (기원 1단/타이젬 2~3단)</small>
               </div>
             </button>
@@ -389,7 +389,7 @@
 <script src="engine.js?v=20261030-gnugo-v1"></script>
 <script src="ai.js?v=20261029-play-ai-v6"></script>
 <script src="audio.js?v=20261029-play-ai-v6"></script>
-<script src="app.js?v=20261106_card_big_v7"></script>
+<script src="app.js?v=20261106_card_big_v8"></script>
 <script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
 <script src="live-p2p.js?v=20261105-live-v1"></script>
 </body>
