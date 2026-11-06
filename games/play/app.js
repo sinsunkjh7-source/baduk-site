@@ -1302,9 +1302,111 @@
     updateStatus();
   }
 
+  /* ---------- 🎲 돌가리기 (랜덤) 결과 모달 제어 ---------- */
+  var nigiriCountdownTimer = null;
+
+  function showNigiriModal(onCloseCallback) {
+    var modal = document.getElementById('nigiriModal');
+    if (!modal) {
+      if (onCloseCallback) onCloseCallback();
+      return;
+    }
+
+    var isUserBlack = (state.humanColor === BLACK);
+    var bot = (state.mode === 'ai' && BOTS[state.difficulty]) ? BOTS[state.difficulty] : null;
+    var oppName = bot ? bot.name : '2P (상대)';
+    var oppImgSrc = bot ? bot.img : '../alkkagi/bullterrier/01-idle.png';
+    var userImgSrc = ARENA_AVATARS[currentAvatarIdx] ? ARENA_AVATARS[currentAvatarIdx].src : '../alkkagi/bullterrier/01-idle.png';
+
+    // 1. 내 카드 정보
+    var userImg = document.getElementById('nigiriUserImg');
+    if (userImg) userImg.src = userImgSrc;
+    var userName = document.getElementById('nigiriUserName');
+    if (userName) userName.textContent = isUserBlack ? '나 (흑)' : '나 (백)';
+    var userStone = document.getElementById('nigiriUserStoneBadge');
+    if (userStone) {
+      userStone.textContent = isUserBlack ? '⚫ 흑돌' : '⚪ 백돌';
+      userStone.className = 'nigiri-stone-badge' + (isUserBlack ? '' : ' white');
+    }
+    var userRole = document.getElementById('nigiriUserRole');
+    if (userRole) userRole.textContent = isUserBlack ? '선공 (먼저 착수)' : '후공 (덤 6.5집)';
+
+    var userBox = document.getElementById('nigiriUserBox');
+    if (userBox) userBox.classList.toggle('is-first', isUserBlack);
+
+    // 2. 상대 카드 정보
+    var oppImg = document.getElementById('nigiriOppImg');
+    if (oppImg) oppImg.src = oppImgSrc;
+    var oppNameEl = document.getElementById('nigiriOppName');
+    if (oppNameEl) oppNameEl.textContent = oppName;
+    var oppStone = document.getElementById('nigiriOppStoneBadge');
+    if (oppStone) {
+      oppStone.textContent = !isUserBlack ? '⚫ 흑돌' : '⚪ 백돌';
+      oppStone.className = 'nigiri-stone-badge' + (!isUserBlack ? '' : ' white');
+    }
+    var oppRole = document.getElementById('nigiriOppRole');
+    if (oppRole) oppRole.textContent = !isUserBlack ? '선공 (먼저 착수)' : '후공 (덤 6.5집)';
+
+    var oppBox = document.getElementById('nigiriOppBox');
+    if (oppBox) oppBox.classList.toggle('is-first', !isUserBlack);
+
+    // 3. 안내 배너 문구
+    var alertEl = document.getElementById('nigiriResultAlert');
+    if (alertEl) {
+      if (isUserBlack) {
+        alertEl.innerHTML = '🎉 내가 <strong>흑돌(선공)</strong>을 잡았습니다! 먼저 바둑판에 돌을 놓으세요.';
+        alertEl.className = 'nigiri-result-alert';
+      } else {
+        alertEl.innerHTML = '⚪ 내가 <strong>백돌(후공)</strong>을 잡았습니다. 상대(' + oppName + ')의 선공으로 시작합니다!';
+        alertEl.className = 'nigiri-result-alert white-alert';
+      }
+    }
+
+    // 모달 표시
+    modal.removeAttribute('hidden');
+    modal.style.display = 'flex';
+
+    // 4. 5초 카운트다운
+    var remainingSeconds = 5;
+    var countText = document.getElementById('nigiriCountdownText');
+    if (countText) countText.textContent = '(' + remainingSeconds + '초)';
+
+    clearInterval(nigiriCountdownTimer);
+
+    function closeNigiri() {
+      clearInterval(nigiriCountdownTimer);
+      nigiriCountdownTimer = null;
+      modal.setAttribute('hidden', '');
+      modal.style.display = 'none';
+      if (onCloseCallback) {
+        var cb = onCloseCallback;
+        onCloseCallback = null;
+        cb();
+      }
+    }
+
+    nigiriCountdownTimer = setInterval(function () {
+      remainingSeconds--;
+      if (remainingSeconds <= 0) {
+        closeNigiri();
+      } else {
+        if (countText) countText.textContent = '(' + remainingSeconds + '초)';
+      }
+    }, 1000);
+
+    var btnConfirm = document.getElementById('btnNigiriConfirm');
+    if (btnConfirm) {
+      btnConfirm.onclick = function () {
+        closeNigiri();
+      };
+    }
+  }
+
   /* ---------- 새 대국 시작 (초기화) ---------- */
   function startNewGame(customOpts) {
     var freePlacementMode = false;
+    var wasRandomNigiri = false;
+
     if (customOpts) {
       if (customOpts.mode) { state.mode = customOpts.mode; localStorage.setItem('play_mode', customOpts.mode); }
       if (customOpts.difficulty) { state.difficulty = customOpts.difficulty; localStorage.setItem('play_ai_difficulty', customOpts.difficulty); }
@@ -1314,10 +1416,14 @@
         localStorage.setItem('play_color_choice', customOpts.colorChoice);
         if (customOpts.colorChoice === 'random') {
           state.humanColor = Math.random() < 0.5 ? BLACK : WHITE;
+          wasRandomNigiri = true;
         } else {
           state.humanColor = parseInt(customOpts.colorChoice, 10);
         }
         localStorage.setItem('play_human_color', state.humanColor);
+      } else if (state.colorChoice === 'random') {
+        state.humanColor = Math.random() < 0.5 ? BLACK : WHITE;
+        wasRandomNigiri = true;
       }
       if (customOpts.timeLimit !== undefined) {
         state.timeLimit = customOpts.timeLimit;
@@ -1336,6 +1442,9 @@
         }
         localStorage.setItem('play_handicap', String(state.handicap));
       }
+    } else if (state.colorChoice === 'random') {
+      state.humanColor = Math.random() < 0.5 ? BLACK : WHITE;
+      wasRandomNigiri = true;
     }
 
     state.isGameOver = false;
@@ -1401,17 +1510,27 @@
 
     layoutBoard();
     updateStatus();
-    initMatchTimer(state.timeLimit);
     initArenaAvatar();
 
     var ruleName = hCount >= 2 ? (hCount + '점 접바둑') : (state.handicap === 1 ? '정선(덤 0.5집)' : '호선(덤 6.5집)');
     var oppName = state.mode === 'ai' ? (BOTS[state.difficulty].avatar + ' ' + BOTS[state.difficulty].name) : '👥 2인 대국';
     var myColText = (state.humanColor === BLACK ? '내 돌: 흑⚫' : '내 돌: 백⚪');
-    toast('새 대국 시작! (' + oppName + ' · ' + myColText + ' · ' + state.boardSize + '줄 ' + ruleName + ')');
 
-    // AI가 백일 때 접바둑이면 AI 착수
-    if (state.mode === 'ai' && state.currentTurn !== state.humanColor) {
-      triggerAiMove();
+    if (wasRandomNigiri) {
+      // 🎲 돌가리기 결과 모달을 5초 동안 넉넉하고 크게 표시
+      showNigiriModal(function () {
+        initMatchTimer(state.timeLimit);
+        toast('대국 시작! (' + oppName + ' · ' + myColText + ' · ' + state.boardSize + '줄 ' + ruleName + ')');
+        if (state.mode === 'ai' && state.currentTurn !== state.humanColor) {
+          triggerAiMove();
+        }
+      });
+    } else {
+      initMatchTimer(state.timeLimit);
+      toast('새 대국 시작! (' + oppName + ' · ' + myColText + ' · ' + state.boardSize + '줄 ' + ruleName + ')');
+      if (state.mode === 'ai' && state.currentTurn !== state.humanColor) {
+        triggerAiMove();
+      }
     }
   }
 

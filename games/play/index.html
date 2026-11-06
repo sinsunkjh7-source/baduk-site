@@ -10,7 +10,7 @@
   <title>🤖 AI 바둑 대국 — 바둑스쿨</title>
   <link rel="preload" as="image" href="images/board_wood_grain.png">
 
-  <link rel="stylesheet" href="style.css?v=20261106_card_big_v8">
+  <link rel="stylesheet" href="style.css?v=20261106_nigiri_v1">
   <link rel="stylesheet" href="/unified-nav.css?v=20261103-nav-v11">
   <script src="/unified-nav.js?v=20261103-nav-v11" defer></script>
 </head>
@@ -305,6 +305,56 @@
     </div>
   </div>
 
+  <!-- 🎲 돌가리기 (랜덤) 결과 팝업 모달 🎲 -->
+  <div class="nigiri-modal" id="nigiriModal" hidden>
+    <div class="nigiri-card">
+      <div class="nigiri-header">
+        <span class="nigiri-badge">🎲</span>
+        <h2 class="nigiri-title">돌가리기 결과</h2>
+        <p class="nigiri-desc">공정한 랜덤 추첨으로 흑돌과 백돌이 결정되었습니다!</p>
+      </div>
+
+      <div class="nigiri-vs-wrap">
+        <!-- 나 -->
+        <div class="nigiri-player-box" id="nigiriUserBox">
+          <div class="nigiri-avatar-wrap">
+            <img src="../alkkagi/bullterrier/01-idle.png" alt="내 캐릭터" id="nigiriUserImg" class="nigiri-avatar-img">
+            <span class="nigiri-stone-badge" id="nigiriUserStoneBadge">⚫ 흑돌</span>
+          </div>
+          <strong class="nigiri-player-name" id="nigiriUserName">나 (흑)</strong>
+          <span class="nigiri-player-role" id="nigiriUserRole">선공 (먼저 착수)</span>
+        </div>
+
+        <!-- VS 디바이더 -->
+        <div class="nigiri-vs-divider">
+          <span class="nigiri-vs-badge">VS</span>
+        </div>
+
+        <!-- 상대방 (AI) -->
+        <div class="nigiri-player-box" id="nigiriOppBox">
+          <div class="nigiri-avatar-wrap">
+            <img src="../../images/characters/char_chick_beginner.png" alt="상대 캐릭터" id="nigiriOppImg" class="nigiri-avatar-img">
+            <span class="nigiri-stone-badge" id="nigiriOppStoneBadge">⚪ 백돌</span>
+          </div>
+          <strong class="nigiri-player-name" id="nigiriOppName">AI 삐약이</strong>
+          <span class="nigiri-player-role" id="nigiriOppRole">후공 (덤 6.5집)</span>
+        </div>
+      </div>
+
+      <!-- 핵심 안내 배너 -->
+      <div class="nigiri-result-alert" id="nigiriResultAlert">
+        🎉 내가 <strong>흑돌(선공)</strong>을 잡았습니다! 먼저 바둑판에 돌을 놓으세요.
+      </div>
+
+      <!-- 하단 액션 버튼 & 카운트다운 -->
+      <div class="nigiri-footer">
+        <button type="button" class="btn-nigiri-confirm" id="btnNigiriConfirm">
+          ⚔️ 대국 시작하기 <span id="nigiriCountdownText">(5초)</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
 <!-- 🌟 대국 결과 & 계가 모달 (전역 오버레이) 🌟 -->
   <div class="result-modal" id="resultModal" hidden>
     <div class="result-card">
@@ -389,7 +439,7 @@
 <script src="engine.js?v=20261030-gnugo-v1"></script>
 <script src="ai.js?v=20261029-play-ai-v6"></script>
 <script src="audio.js?v=20261029-play-ai-v6"></script>
-<script src="app.js?v=20261106_card_big_v8"></script>
+<script src="app.js?v=20261106_nigiri_v1"></script>
 <script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
 <script src="live-p2p.js?v=20261105-live-v1"></script>
 </body>
