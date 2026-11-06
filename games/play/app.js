@@ -27,6 +27,7 @@
     hoverPos: null,
     currentTurn: BLACK,
     isThinking: false,
+    isGameStarted: false,
     isGameOver: false,
     showingTerritory: false,
     lastMove: null,
@@ -887,7 +888,12 @@
 
   function startTimerInterval() {
     clearInterval(timerData.intervalId);
-    if (!timerData.active || state.isGameOver || state.isFreePlacementActive) return;
+    var matchModal = document.getElementById('matchModal');
+    var nigiriModal = document.getElementById('nigiriModal');
+    var isMatchModalOpen = matchModal && !matchModal.hasAttribute('hidden') && matchModal.style.display !== 'none';
+    var isNigiriModalOpen = nigiriModal && !nigiriModal.hasAttribute('hidden') && nigiriModal.style.display !== 'none';
+    if (isMatchModalOpen || isNigiriModalOpen) return;
+    if (!state.isGameStarted || !timerData.active || state.isGameOver || state.isFreePlacementActive) return;
     timerData.intervalId = setInterval(onTimerTick, 1000);
   }
 
@@ -897,6 +903,14 @@
   }
 
   function onTimerTick() {
+    var matchModal = document.getElementById('matchModal');
+    var nigiriModal = document.getElementById('nigiriModal');
+    var isMatchModalOpen = matchModal && !matchModal.hasAttribute('hidden') && matchModal.style.display !== 'none';
+    var isNigiriModalOpen = nigiriModal && !nigiriModal.hasAttribute('hidden') && nigiriModal.style.display !== 'none';
+    if (isMatchModalOpen || isNigiriModalOpen || !state.isGameStarted) {
+      pauseTimerInterval();
+      return;
+    }
     if (!timerData.active || state.isGameOver || state.isFreePlacementActive) return;
 
     var cur = (state.currentTurn === BLACK) ? timerData.black : timerData.white;
@@ -1099,10 +1113,27 @@
       }
 
       var aiColor = state.currentTurn;
-      var move = ai.findBestMove(engine, aiColor, state.difficulty);
+      var move = null;
+      try {
+        move = ai.findBestMove(engine, aiColor, state.difficulty);
+      } catch (aiErr) {
+        console.error('[AI Move Error]', aiErr);
+      }
 
       state.isThinking = false;
       if (aiThinkingBadge) aiThinkingBadge.hidden = true;
+
+      if (!move) {
+        var legal = [];
+        for (var r = 0; r < engine.size; r++) {
+          for (var c = 0; c < engine.size; c++) {
+            if (engine.isLegal(c, r, aiColor)) legal.push({ x: c, y: r });
+          }
+        }
+        if (legal.length > 0) {
+          move = legal[Math.floor(Math.random() * legal.length)];
+        }
+      }
 
       if (!move) {
         // AI 패스
@@ -1386,6 +1417,7 @@
 
   /* ---------- 새 대국 시작 (초기화) ---------- */
   function startNewGame(customOpts) {
+    state.isGameStarted = true;
     var freePlacementMode = false;
     var wasRandomNigiri = false;
 
@@ -1596,6 +1628,7 @@
   }
 
   function openMatchModal() {
+    pauseTimerInterval(); // 🌟 모달 설정 중에는 시간 정지!
     var modal = document.getElementById('matchModal');
     if (modal) {
       syncMatchModalUI();
@@ -1604,11 +1637,29 @@
     }
   }
 
-  function closeMatchModal() {
+  function closeMatchModal(isExplicitStart) {
     var modal = document.getElementById('matchModal');
     if (modal) {
       modal.setAttribute('hidden', '');
       modal.style.display = 'none';
+    }
+    // 🌟 [원장님 지침 핵심 수정]
+    // 1. '대국 시작' 버튼으로 닫힌 게 아닌 ✕ 또는 닫기 버튼으로 닫힌 경우:
+    if (!isExplicitStart) {
+      if (!state.isGameStarted || engine.moves.length === 0) {
+        // 아직 대국이 시작된 적 없거나 0수 상태에서 닫기를 누른 경우:
+        // 사용자가 선택한 설정대로 대국을 즉시 시작!
+        startNewGame(pendingMatchOpts);
+      } else {
+        // 이미 진행 중이던 대국이 있었던 경우: 타이머 재개
+        if (!state.isGameOver && !state.isFreePlacementActive) {
+          startTimerInterval();
+          toast('진행 중인 대국으로 돌아왔습니다.');
+          if (state.mode === 'ai' && state.currentTurn !== state.humanColor && !state.isThinking) {
+            triggerAiMove();
+          }
+        }
+      }
     }
   }
 
@@ -1621,9 +1672,9 @@
 
     // 모달 닫기 버튼들
     var btnClose = document.getElementById('btnCloseMatchModal');
-    if (btnClose) btnClose.addEventListener('click', closeMatchModal);
+    if (btnClose) btnClose.addEventListener('click', function () { closeMatchModal(false); });
     var btnCancel = document.getElementById('btnCancelMatch');
-    if (btnCancel) btnCancel.addEventListener('click', closeMatchModal);
+    if (btnCancel) btnCancel.addEventListener('click', function () { closeMatchModal(false); });
 
     // 모드 칩
     document.querySelectorAll('#matchModeChips .match-chip').forEach(function (btn) {
@@ -1798,7 +1849,7 @@
     var btnStart = document.getElementById('btnStartCustomMatch');
     if (btnStart) {
       btnStart.addEventListener('click', function () {
-        closeMatchModal();
+        closeMatchModal(true);
         startNewGame(pendingMatchOpts);
       });
     }
@@ -2200,6 +2251,7 @@
     layoutBoard();
     updateStatus();
     // ⚠️ 대국 시작 버튼을 누르기 전까지는 타이머가 미리 작동하지 않도록 정지 상태 유지
+    state.isGameStarted = false;
     pauseTimerInterval();
     initArenaAvatar();
 
