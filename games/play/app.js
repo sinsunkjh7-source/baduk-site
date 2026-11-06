@@ -1362,20 +1362,11 @@
       }
     }
 
-    // 모달 표시
+    // 모달 표시 (사용자가 직접 시작 버튼을 누를 때까지 대기 - 자동 시작 방지)
     modal.removeAttribute('hidden');
     modal.style.display = 'flex';
 
-    // 4. 5초 카운트다운
-    var remainingSeconds = 5;
-    var countText = document.getElementById('nigiriCountdownText');
-    if (countText) countText.textContent = '(' + remainingSeconds + '초)';
-
-    clearInterval(nigiriCountdownTimer);
-
     function closeNigiri() {
-      clearInterval(nigiriCountdownTimer);
-      nigiriCountdownTimer = null;
       modal.setAttribute('hidden', '');
       modal.style.display = 'none';
       if (onCloseCallback) {
@@ -1384,15 +1375,6 @@
         cb();
       }
     }
-
-    nigiriCountdownTimer = setInterval(function () {
-      remainingSeconds--;
-      if (remainingSeconds <= 0) {
-        closeNigiri();
-      } else {
-        if (countText) countText.textContent = '(' + remainingSeconds + '초)';
-      }
-    }, 1000);
 
     var btnConfirm = document.getElementById('btnNigiriConfirm');
     if (btnConfirm) {
@@ -2217,7 +2199,8 @@
     updateSettingsUI();
     layoutBoard();
     updateStatus();
-    initMatchTimer(state.timeLimit);
+    // ⚠️ 대국 시작 버튼을 누르기 전까지는 타이머가 미리 작동하지 않도록 정지 상태 유지
+    pauseTimerInterval();
     initArenaAvatar();
 
     // 🌟 [원장님 지침] AI 대국 및 일반 대국 진입 시 옵션 설정 모달 자동 표시!
