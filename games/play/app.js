@@ -739,11 +739,28 @@
     var oppCard = document.getElementById('arenaWhiteCard');
     var isMyTurn = (state.currentTurn === myColor);
 
-    if (userCard) userCard.classList.toggle('active-turn', isMyTurn);
-    if (oppCard) oppCard.classList.toggle('active-turn', !isMyTurn);
-
     var userStatus = document.getElementById('arenaBlackStatus');
     var oppStatus = document.getElementById('arenaWhiteStatus');
+
+    if (!state.isGameStarted) {
+      if (userCard) userCard.classList.remove('active-turn');
+      if (oppCard) oppCard.classList.remove('active-turn');
+      if (userStatus) {
+        userStatus.textContent = '대국 대기';
+        userStatus.className = 'arena-turn-status';
+      }
+      if (oppStatus) {
+        oppStatus.textContent = '대국 대기';
+        oppStatus.className = 'arena-turn-status';
+      }
+      if (moveInfoBadge) {
+        moveInfoBadge.textContent = '대국 준비 중 · 아래 [새 대국] 버튼을 눌러 대국을 시작하세요 [' + state.boardSize + '줄]';
+      }
+      return;
+    }
+
+    if (userCard) userCard.classList.toggle('active-turn', isMyTurn);
+    if (oppCard) oppCard.classList.toggle('active-turn', !isMyTurn);
 
     if (state.isGameOver) {
       if (userStatus) { userStatus.textContent = '대국 종료'; userStatus.className = 'arena-turn-status'; }
@@ -829,6 +846,20 @@
     var oppTimer = (oppColor === BLACK) ? timerData.black : timerData.white;
 
     var isMyTurn = (state.currentTurn === myColor);
+
+    if (!state.isGameStarted) {
+      var cfg = TIMER_CONFIGS[state.timeLimit];
+      var defaultText = cfg ? formatTimerDigits(cfg.mainSeconds) : '무제한';
+      if (userDigits) userDigits.textContent = defaultText;
+      if (oppDigits) oppDigits.textContent = defaultText;
+      if (userByo) userByo.textContent = '대기 중';
+      if (oppByo) oppByo.textContent = '대기 중';
+      if (userCard) userCard.classList.remove('active-turn', 'in-byo', 'urgent');
+      if (oppCard) oppCard.classList.remove('active-turn', 'in-byo', 'urgent');
+      var tTurn = document.getElementById('timerTurnText');
+      if (tTurn) tTurn.textContent = '대국 대기 중';
+      return;
+    }
 
     if (!timerData.active || !timerData.config) {
       if (userDigits) userDigits.textContent = '무제한';
@@ -1017,6 +1048,11 @@
 
   /* ---------- 인간 착수 처리 ---------- */
   function handleHumanMove(c, r) {
+    if (!state.isGameStarted) {
+      toast('대국 시작 버튼을 눌러 새 대국을 시작해주세요.');
+      openMatchModal();
+      return;
+    }
     if (state.isGameOver || state.isThinking) return;
 
     // 🎨 프리 접바둑 자유 배치 모드일 때
@@ -1400,19 +1436,65 @@
     function closeNigiri() {
       modal.setAttribute('hidden', '');
       modal.style.display = 'none';
-      if (onCloseCallback) {
-        var cb = onCloseCallback;
-        onCloseCallback = null;
-        cb();
-      }
     }
 
     var btnConfirm = document.getElementById('btnNigiriConfirm');
     if (btnConfirm) {
       btnConfirm.onclick = function () {
         closeNigiri();
+        if (onCloseCallback) {
+          var cb = onCloseCallback;
+          onCloseCallback = null;
+          cb();
+        }
       };
     }
+
+    var btnCancel = document.getElementById('btnNigiriCancel');
+    if (btnCancel) {
+      btnCancel.onclick = function () {
+        closeNigiri();
+        resetToStandby();
+        toast('돌가리기 대국이 취소되었습니다.');
+      };
+    }
+
+    var btnClose = document.getElementById('btnCloseNigiri');
+    if (btnClose) {
+      btnClose.onclick = function () {
+        closeNigiri();
+        resetToStandby();
+        toast('돌가리기 대국이 취소되었습니다.');
+      };
+    }
+  }
+
+  /* ---------- 대국 완전 대기(리셋) 상태로 초기화 ---------- */
+  function resetToStandby() {
+    state.isGameStarted = false;
+    state.isGameOver = false;
+    state.isThinking = false;
+    state.showingTerritory = false;
+    state.lastMove = null;
+    state.freeStones = [];
+    state.isFreePlacementActive = false;
+
+    pauseTimerInterval();
+    timerData.active = false;
+    timerData.config = null;
+
+    engine = new window.BadukEngine(state.boardSize);
+    ai = new window.BadukAI(state.boardSize);
+    ai.setSize(state.boardSize);
+
+    var freeBanner = document.getElementById('freePlacementBanner');
+    if (freeBanner) freeBanner.hidden = true;
+    if (aiThinkingBadge) aiThinkingBadge.hidden = true;
+    if (resultModal) { resultModal.setAttribute('hidden', ''); resultModal.style.display = 'none'; }
+
+    drawBoard();
+    updateStatus();
+    updateTimerUI();
   }
 
   /* ---------- 새 대국 시작 (초기화) ---------- */
@@ -1628,7 +1710,9 @@
   }
 
   function openMatchModal() {
-    pauseTimerInterval(); // 🌟 모달 설정 중에는 시간 정지!
+    pauseTimerInterval();
+    // 🌟 원장님 지침: 모달이 열릴 때 뒷배경의 이전 판 내용을 깨끗이 리셋하여 대기 상태로 유지
+    resetToStandby();
     var modal = document.getElementById('matchModal');
     if (modal) {
       syncMatchModalUI();
@@ -1637,30 +1721,15 @@
     }
   }
 
-  function closeMatchModal(isExplicitStart) {
+  function closeMatchModal() {
     var modal = document.getElementById('matchModal');
     if (modal) {
       modal.setAttribute('hidden', '');
       modal.style.display = 'none';
     }
-    // 🌟 [원장님 지침 핵심 수정]
-    // 1. '대국 시작' 버튼으로 닫힌 게 아닌 ✕ 또는 닫기 버튼으로 닫힌 경우:
-    if (!isExplicitStart) {
-      if (!state.isGameStarted || engine.moves.length === 0) {
-        // 아직 대국이 시작된 적 없거나 0수 상태에서 닫기를 누른 경우:
-        // 사용자가 선택한 설정대로 대국을 즉시 시작!
-        startNewGame(pendingMatchOpts);
-      } else {
-        // 이미 진행 중이던 대국이 있었던 경우: 타이머 재개
-        if (!state.isGameOver && !state.isFreePlacementActive) {
-          startTimerInterval();
-          toast('진행 중인 대국으로 돌아왔습니다.');
-          if (state.mode === 'ai' && state.currentTurn !== state.humanColor && !state.isThinking) {
-            triggerAiMove();
-          }
-        }
-      }
-    }
+    // 🌟 원장님 지침: '대국 시작'을 누르지 않고 닫기를 누르면 대국을 시작하지 않고 깨끗한 대기 상태 유지!
+    resetToStandby();
+    toast('대국 설정이 닫혔습니다. 새 대국을 시작하려면 하단의 [새 대국]을 누르세요.');
   }
 
   function bindMatchModalEvents() {
@@ -1672,9 +1741,9 @@
 
     // 모달 닫기 버튼들
     var btnClose = document.getElementById('btnCloseMatchModal');
-    if (btnClose) btnClose.addEventListener('click', function () { closeMatchModal(false); });
+    if (btnClose) btnClose.addEventListener('click', closeMatchModal);
     var btnCancel = document.getElementById('btnCancelMatch');
-    if (btnCancel) btnCancel.addEventListener('click', function () { closeMatchModal(false); });
+    if (btnCancel) btnCancel.addEventListener('click', closeMatchModal);
 
     // 모드 칩
     document.querySelectorAll('#matchModeChips .match-chip').forEach(function (btn) {
@@ -1849,7 +1918,11 @@
     var btnStart = document.getElementById('btnStartCustomMatch');
     if (btnStart) {
       btnStart.addEventListener('click', function () {
-        closeMatchModal(true);
+        var modal = document.getElementById('matchModal');
+        if (modal) {
+          modal.setAttribute('hidden', '');
+          modal.style.display = 'none';
+        }
         startNewGame(pendingMatchOpts);
       });
     }
@@ -2249,10 +2322,7 @@
     bindMatchModalEvents();
     updateSettingsUI();
     layoutBoard();
-    updateStatus();
-    // ⚠️ 대국 시작 버튼을 누르기 전까지는 타이머가 미리 작동하지 않도록 정지 상태 유지
-    state.isGameStarted = false;
-    pauseTimerInterval();
+    resetToStandby();
     initArenaAvatar();
 
     // 🌟 [원장님 지침] AI 대국 및 일반 대국 진입 시 옵션 설정 모달 자동 표시!

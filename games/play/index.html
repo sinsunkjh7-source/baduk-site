@@ -308,6 +308,7 @@
   <!-- 🎲 돌가리기 (랜덤) 결과 팝업 모달 🎲 -->
   <div class="nigiri-modal" id="nigiriModal" hidden>
     <div class="nigiri-card">
+      <button type="button" class="btn-nigiri-close" id="btnCloseNigiri" aria-label="닫기">✕</button>
       <div class="nigiri-header">
         <span class="nigiri-badge">🎲</span>
         <h2 class="nigiri-title">돌가리기 결과</h2>
@@ -348,6 +349,9 @@
 
       <!-- 하단 액션 버튼 -->
       <div class="nigiri-footer">
+        <button type="button" class="btn-nigiri-cancel" id="btnNigiriCancel">
+          ✕ 닫기
+        </button>
         <button type="button" class="btn-nigiri-confirm" id="btnNigiriConfirm">
           🚀 이 설정으로 대국 시작!
         </button>
