@@ -672,11 +672,28 @@
     var whiteMoveCountEl = document.getElementById('arenaWhiteMoveCount');
     if (whiteMoveCountEl) whiteMoveCountEl.textContent = moveCount + '수';
 
-    var fullRuleText = state.boardSize + '줄 ' + (state.handicap >= 2 ? (state.handicap + '점 접바둑') : (state.handicap === 1 ? '정선 (덤 0.5집)' : '호선 (덤 6.5집)'));
+    function getPlayerRuleText(color) {
+      var sizePrefix = state.boardSize + '줄 ';
+      if (state.handicap >= 2) {
+        return color === BLACK
+          ? (sizePrefix + state.handicap + '점 접바둑 (흑 깔림)')
+          : (sizePrefix + state.handicap + '점 접바둑 (덤 0.5집)');
+      } else if (state.handicap === 1) {
+        return color === BLACK
+          ? (sizePrefix + '정선 (선공)')
+          : (sizePrefix + '정선 (덤 0.5집)');
+      } else {
+        // 호선 (맞바둑): 흑은 선공, 덤은 후공(백)에게만 부여
+        return color === BLACK
+          ? (sizePrefix + '호선 (선공)')
+          : (sizePrefix + '호선 (덤 6.5집)');
+      }
+    }
+
     var ruleBadge = document.getElementById('arenaRuleBadge');
-    if (ruleBadge) ruleBadge.textContent = fullRuleText;
+    if (ruleBadge) ruleBadge.textContent = getPlayerRuleText(myColor);
     var whiteRuleBadge = document.getElementById('arenaWhiteRuleBadge');
-    if (whiteRuleBadge) whiteRuleBadge.textContent = fullRuleText;
+    if (whiteRuleBadge) whiteRuleBadge.textContent = getPlayerRuleText(oppColor);
 
     // 돌 아이콘 & 닉네임 동기화
     var userStoneEl = document.getElementById('arenaBlackStone');
