@@ -278,7 +278,7 @@ html, body {
   box-shadow: 0 0 0 3px rgba(74, 138, 58, 0.18);
 }
 
-.problem-list-section { flex: 1; display: flex; flex-direction: column; min-height: 0; }
+.problem-list-section { flex: 1 1 auto; display: flex; flex-direction: column; min-height: 250px; }
 .section-title-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
 .problem-progress { font-size: 13px; font-weight: 800; color: var(--green-deep); }
 .problem-grid {
@@ -286,8 +286,10 @@ html, body {
   grid-template-columns: repeat(4, 1fr);
   gap: 6px;
   overflow-y: auto;
+  overflow-x: hidden;
   padding: 2px 4px 6px 2px;
-  max-height: 202px;
+  flex: 1 1 auto;
+  min-height: 200px;
   box-sizing: border-box;
   scroll-behavior: smooth;
 }
@@ -1298,4 +1300,19 @@ html, body {
 }
 .ped-link-btn.danger-text {
   color: #dc2626;
+}
+
+/* 짧은 화면(노트북·확대 브라우저)에서도 문제 목록이 보이게 (tall-list) */
+@media (max-height: 760px) {
+  .teacher-sidebar { padding: 10px 12px 12px; gap: 8px; }
+  .problem-list-section { min-height: 220px; }
+  .problem-grid { min-height: 170px; gap: 5px; }
+  .prob-btn { height: 30px; font-size: 12.5px; }
+  .form-select { padding: 8px 10px; font-size: 13px; }
+}
+@media (max-height: 640px) {
+  .teacher-sidebar { gap: 6px; }
+  .problem-list-section { min-height: 190px; }
+  .problem-grid { min-height: 150px; }
+  .prob-btn { height: 27px; font-size: 12px; }
 }
