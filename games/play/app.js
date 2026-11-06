@@ -735,7 +735,7 @@
 
     var engineCard = document.getElementById('arenaEngineCard');
     if (engineCard) {
-      engineCard.style.display = (state.mode === 'ai') ? 'flex' : 'none';
+      engineCard.style.display = (state.mode === 'ai' && state.isGameStarted) ? 'flex' : 'none';
       var engineTitle = engineCard.querySelector('.engine-badge-title'), engineSub = engineCard.querySelector('.engine-badge-sub');
       if (engineTitle) engineTitle.textContent = isKataEngine() ? '카타고 경량판 · 시험' : 'GNU Go';
       if (engineSub) engineSub.textContent = isKataEngine() ? 'b10 신경망 · 브라우저 기기 연산' : 'Wasm 로컬 인공지능 탑재';
@@ -760,6 +760,8 @@
     // 턴 하이라이트 및 상태 문구
     var userCard = document.getElementById('arenaBlackCard');
     var oppCard = document.getElementById('arenaWhiteCard');
+    if (userCard) userCard.style.display = state.isGameStarted ? '' : 'none';
+    if (oppCard) oppCard.style.display = state.isGameStarted ? '' : 'none';
     var isMyTurn = (state.currentTurn === myColor);
 
     var userStatus = document.getElementById('arenaBlackStatus');
@@ -2200,8 +2202,11 @@
       resultModal.setAttribute('hidden', ''); resultModal.style.display = 'none';
       startNewGame();
     });
-    document.getElementById('btnResultClose')?.addEventListener('click', function () {
+    document.getElementById('btnResultReview')?.addEventListener('click', function () {
       resultModal.setAttribute('hidden', ''); resultModal.style.display = 'none';
+    });
+    document.getElementById('btnResultClose')?.addEventListener('click', function () {
+      resetToStandby();
     });
 
     // 9. 리사이즈 대응

@@ -24,7 +24,7 @@
   <!-- 👈 좌측 백돌 진영 패널 -->
   <aside class="arena-side arena-left" id="arenaLeft">
     <!-- 대국자 카드 (사이드 정중앙 위치) -->
-    <div class="arena-player-card white-player-card" id="arenaWhiteCard">
+    <div class="arena-player-card white-player-card" id="arenaWhiteCard" style="display:none">
       <!-- 1. 헤더: 플레이어 닉네임, 돌, 턴 상태 -->
       <div class="player-card-header">
         <div class="player-card-identity">
@@ -65,7 +65,7 @@
     </div>
 
     <!-- 하단 엔진 배지 -->
-    <div class="arena-engine-card" id="arenaEngineCard">
+    <div class="arena-engine-card" id="arenaEngineCard" style="display:none">
       <div class="engine-badge-title">⚡ GNU Go 3.8.1</div>
       <div class="engine-badge-sub">Wasm 로컬 인공지능 탑재</div>
     </div>
@@ -99,7 +99,7 @@
   <!-- 👉 우측 흑돌 진영 & 조작 패널 -->
   <aside class="arena-side arena-right" id="arenaRight">
     <!-- 대국자 카드 (사이드 정중앙 위치 - 좌측 카드와 100% 동일 규격) -->
-    <div class="arena-player-card black-player-card" id="arenaBlackCard">
+    <div class="arena-player-card black-player-card" id="arenaBlackCard" style="display:none">
       <!-- 1. 헤더: 플레이어 닉네임, 돌, 턴 상태 -->
       <div class="player-card-header">
         <div class="player-card-identity">
@@ -378,9 +378,10 @@
       <h2 class="result-title" id="resultTitle">대국 결과</h2>
       <p class="result-desc" id="resultDesc">대국이 종료되었습니다.</p>
       <div class="result-stats-table" id="resultStatsTable"></div>
-      <div class="result-actions">
+      <div class="result-actions" style="flex-wrap:wrap">
         <button type="button" class="result-btn-again" id="btnResultAgain">한 판 더 두기</button>
-        <button type="button" class="result-btn-close" id="btnResultClose">판 살펴보기</button>
+        <button type="button" class="result-btn-close" id="btnResultReview">판 살펴보기</button>
+        <button type="button" class="result-btn-close" id="btnResultClose">대기로 돌아가기</button>
       </div>
     </div>
   </div>
@@ -456,7 +457,7 @@
 <script src="ai.js?v=20261029-play-ai-v6"></script>
 <script src="audio.js?v=20261029-play-ai-v6"></script>
 <script src="kata-lite-bridge.v1.js?v=engine-select-v1"></script>
-<script src="app.js?v=20261106-engine-select-v1"></script>
+<script src="app.js?v=20261106-standby-cards-v1"></script>
 <script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
 <script src="live-p2p.js?v=20261105-live-v1"></script>
 </body>
