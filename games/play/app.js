@@ -74,10 +74,10 @@
   };
 
   var BOTS = {
-    beginner: { name: '삐약이', title: '🌱 입문 (18급)', avatar: '🐥', img: '../../images/characters/char_pup_think.png', desc: '바둑의 첫걸음! 따내기와 단수를 배우는 귀여운 병아리 봇' },
-    intermediate: { name: '바둑이', title: '🌿 초급 (12급)', avatar: '🐶', img: '../alkkagi/hamster/01-idle.png', desc: '돌의 연결과 활로를 살피며 씩씩하게 두는 강아지 봇' },
-    advanced: { name: '영리한 여우', title: '🌲 중급 (5급)', avatar: '🦊', img: '../alkkagi/exotic/01-idle.png', desc: '호구와 집 모양의 급소를 노리는 지혜로운 여우 봇' },
-    dan: { name: '지혜로운 판다', title: '⭐ 상급 (1~2급)', avatar: '🐼', img: '../alkkagi/capybara/01-idle.png', desc: '두터운 정석과 대국적 안목을 지닌 상급자 판다 봇' },
+    beginner: { name: '삐약이', title: '🌱 입문 (18급)', avatar: '🐥', img: '../../images/characters/char_chick_beginner.png', desc: '바둑의 첫걸음! 따내기와 단수를 배우는 귀여운 병아리 봇' },
+    intermediate: { name: '바둑이', title: '🌿 초급 (12급)', avatar: '🐶', img: '../../images/characters/char_pup_think.png', desc: '돌의 연결과 활로를 살피며 씩씩하게 두는 강아지 봇' },
+    advanced: { name: '영리한 여우', title: '🌲 중급 (5급)', avatar: '🦊', img: '../../images/characters/char_fox_victory.jpg', desc: '호구와 집 모양의 급소를 노리는 지혜로운 여우 봇' },
+    dan: { name: '지혜로운 판다', title: '⭐ 상급 (1~2급)', avatar: '🐼', img: '../../images/characters/char_panda_victory.jpg', desc: '두터운 정석과 대국적 안목을 지닌 상급자 판다 봇' },
     master: { name: '용맹한 호랑이', title: '🔥 유단자 (기원 1단 / 타이젬 2~3단)', avatar: '🐯', img: '../../images/characters/char_tiger_cheer.png', desc: '강력한 전투력과 정확한 사활 수읽기를 펼치는 맹호 유단자 봇' }
   };
 
