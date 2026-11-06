@@ -10,7 +10,7 @@
   <title>🤖 AI 바둑 대국 — 바둑스쿨</title>
   <link rel="preload" as="image" href="images/board_wood_grain.png">
 
-  <link rel="stylesheet" href="style.css?v=20261106_pvp_mode_v4">
+  <link rel="stylesheet" href="style.css?v=20261106_card_center_v5">
   <link rel="stylesheet" href="/unified-nav.css?v=20261103-nav-v11">
   <script src="/unified-nav.js?v=20261103-nav-v11" defer></script>
 </head>
@@ -22,39 +22,50 @@
     <!-- 🌟 바둑 대국 아레나 3열 레이아웃 🌟 -->
   <!-- 👈 좌측 백돌 진영 패널 -->
   <aside class="arena-side arena-left" id="arenaLeft">
-    <!-- 1. 좌측 상단 백 시계 -->
-    <div class="arena-timer-card white-timer-card" id="whiteTimerCard">
-      <div class="timer-player-info">
-        <span class="timer-stone">⚪</span>
-        <span class="timer-name" id="timerWhiteName">지혜로운 판다</span>
+    <!-- 대국자 카드 (사이드 정중앙 위치) -->
+    <div class="arena-player-card white-player-card" id="arenaWhiteCard">
+      <!-- 1. 헤더: 플레이어 닉네임, 돌, 턴 상태 -->
+      <div class="player-card-header">
+        <div class="player-card-identity">
+          <div class="player-card-name-wrap">
+            <span class="timer-stone">⚪</span>
+            <span class="player-name" id="timerWhiteName">용맹한 호랑이</span>
+          </div>
+          <span class="arena-player-badge" id="arenaWhiteRankBadge">⭐ 상급 (1~2급)</span>
+        </div>
+        <div class="arena-turn-status" id="arenaWhiteStatus">차례 대기 중</div>
       </div>
-      <div class="timer-digits" id="timerWhiteTime">무제한</div>
-      <div class="timer-byo" id="timerWhiteByo">시간 제한 없음</div>
+
+      <!-- 2. 캐릭터 아바타 -->
+      <div class="arena-char-box" id="arenaWhiteCharBox">
+        <div class="char-img-wrap">
+          <img src="../alkkagi/capybara/01-idle.png" alt="백돌 캐릭터" id="arenaWhiteImg" class="arena-char-img">
+        </div>
+      </div>
+
+      <!-- 3. 디지털 타이머 시계 -->
+      <div class="arena-timer-card white-timer-card" id="whiteTimerCard">
+        <div class="timer-digits" id="timerWhiteTime">무제한</div>
+        <div class="timer-byo" id="timerWhiteByo">시간 제한 없음</div>
+      </div>
+
+      <!-- 4. 대국 정보 (따낸 돌, 총 수수, 규칙) -->
+      <div class="arena-info-card" id="arenaWhiteInfo">
+        <div class="arena-stat-row">
+          <span>따낸 돌</span>
+          <strong id="arenaWhiteCaptures">0개</strong>
+        </div>
+        <div class="arena-stat-row">
+          <span>총 수수</span>
+          <strong id="arenaWhiteMoveCount">0수</strong>
+        </div>
+        <div class="arena-rule-badge" id="arenaWhiteRuleBadge">19줄 호선 (덤 6.5집)</div>
+      </div>
     </div>
 
-    <!-- 2. 좌우 캐릭터: 백 캐릭터 -->
-    <div class="arena-char-box" id="arenaWhiteCharBox">
-      <div class="char-header-row">
-        <span class="char-stone-indicator">⚪ 백돌 진영</span>
-        <span class="char-badge-ai">AI 지능</span>
-      </div>
-      <div class="char-img-wrap">
-        <img src="../alkkagi/capybara/01-idle.png" alt="백돌 캐릭터" id="arenaWhiteImg" class="arena-char-img">
-      </div>
-    </div>
-
-    <!-- 3. 그 아래 대국 정보: 백 정보 -->
-    <div class="arena-info-card" id="arenaWhiteInfo">
-      <div class="arena-player-badge" id="arenaWhiteRankBadge">⭐ 상급 (1~2급)</div>
-      <div class="arena-stat-row">
-        <span>⚪ 백이 따낸 돌</span>
-        <strong id="arenaWhiteCaptures">0개</strong>
-      </div>
-      <div class="arena-turn-status" id="arenaWhiteStatus">차례 대기 중</div>
-    </div>
-    <!-- 4. AI 엔진 정보 배지 (좌우 대칭 및 고급감) -->
+    <!-- 하단 엔진 배지 -->
     <div class="arena-engine-card" id="arenaEngineCard">
-      <div class="engine-badge-title">⚡ GNU Go 3.9.1</div>
+      <div class="engine-badge-title">⚡ GNU Go 3.8.1</div>
       <div class="engine-badge-sub">Wasm 로컬 인공지능 탑재</div>
     </div>
   </aside>
@@ -86,43 +97,49 @@
 
   <!-- 👉 우측 흑돌 진영 & 조작 패널 -->
   <aside class="arena-side arena-right" id="arenaRight">
-    <!-- 1. 우측 상단 흑 시계 -->
-    <div class="arena-timer-card black-timer-card" id="blackTimerCard">
-      <div class="timer-player-info">
-        <span class="timer-stone">⚫</span>
-        <span class="timer-name" id="timerBlackName">나 (흑)</span>
+    <!-- 대국자 카드 (사이드 정중앙 위치 - 좌측 카드와 100% 동일 규격) -->
+    <div class="arena-player-card black-player-card" id="arenaBlackCard">
+      <!-- 1. 헤더: 플레이어 닉네임, 돌, 턴 상태 -->
+      <div class="player-card-header">
+        <div class="player-card-identity">
+          <div class="player-card-name-wrap">
+            <span class="timer-stone">⚫</span>
+            <span class="player-name" id="timerBlackName">나 (흑)</span>
+          </div>
+          <button type="button" class="btn-char-change" id="btnChangeChar" title="캐릭터 교체">교체</button>
+        </div>
+        <div class="arena-turn-status my-turn" id="arenaBlackStatus">⚫ 내 차례</div>
       </div>
-      <div class="timer-digits" id="timerBlackTime">무제한</div>
-      <div class="timer-byo" id="timerBlackByo">시간 제한 없음</div>
+
+      <!-- 2. 캐릭터 아바타 -->
+      <div class="arena-char-box" id="arenaBlackCharBox">
+        <div class="char-img-wrap">
+          <img src="../alkkagi/bullterrier/01-idle.png" alt="흑돌 캐릭터" id="arenaBlackImg" class="arena-char-img">
+        </div>
+      </div>
+
+      <!-- 3. 디지털 타이머 시계 -->
+      <div class="arena-timer-card black-timer-card" id="blackTimerCard">
+        <div class="timer-digits" id="timerBlackTime">무제한</div>
+        <div class="timer-byo" id="timerBlackByo">시간 제한 없음</div>
+      </div>
+
+      <!-- 4. 대국 정보 (따낸 돌, 총 수수, 규칙) -->
+      <div class="arena-info-card" id="arenaBlackInfo">
+        <div class="arena-stat-row">
+          <span>따낸 돌</span>
+          <strong id="arenaBlackCaptures">0개</strong>
+        </div>
+        <div class="arena-stat-row">
+          <span>총 수수</span>
+          <strong id="arenaMoveCount">0수</strong>
+        </div>
+        <div class="arena-rule-badge" id="arenaRuleBadge">19줄 호선 (덤 6.5집)</div>
+      </div>
     </div>
 
-    <!-- 2. 좌우 캐릭터: 흑 캐릭터 -->
-    <div class="arena-char-box" id="arenaBlackCharBox">
-      <div class="char-header-row">
-        <span class="char-stone-indicator">⚫ 흑돌 진영</span>
-        <button type="button" class="btn-char-change" id="btnChangeChar" title="캐릭터 교체">교체</button>
-      </div>
-      <div class="char-img-wrap">
-        <img src="../alkkagi/bullterrier/01-idle.png" alt="흑돌 캐릭터" id="arenaBlackImg" class="arena-char-img">
-      </div>
-    </div>
-
-    <!-- 3. 그 아래 대국 정보: 흑/전체 정보 -->
-    <div class="arena-info-card" id="arenaBlackInfo">
-      <div class="arena-turn-status my-turn" id="arenaBlackStatus">내 차례</div>
-      <div class="arena-stat-row">
-        <span>⚫ 흑이 따낸 돌</span>
-        <strong id="arenaBlackCaptures">0개</strong>
-      </div>
-      <div class="arena-stat-row">
-        <span>총 수수</span>
-        <strong id="arenaMoveCount">0수</strong>
-      </div>
-      <div class="arena-rule-badge" id="arenaRuleBadge">19줄 호선 (덤 6.5집)</div>
-    </div>
-
-    <!-- 4. 하단 메뉴바 -->
-    <div class="arena-menu-bar" id="arenaMenuBar">
+    <!-- 하단 별도 분리 메뉴 박스 -->
+    <div class="arena-menu-card" id="arenaMenuBar">
       <button type="button" class="tool-btn primary-btn btn-new-game" id="btnOpenMatchModal" title="새 대국 설정">⚔️ 새 대국 (옵션)</button>
       
       <div class="menu-btn-row">
@@ -372,7 +389,7 @@
 <script src="engine.js?v=20261030-gnugo-v1"></script>
 <script src="ai.js?v=20261029-play-ai-v6"></script>
 <script src="audio.js?v=20261029-play-ai-v6"></script>
-<script src="app.js?v=20261106_pvp_mode_v4"></script>
+<script src="app.js?v=20261106_card_center_v5"></script>
 <script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
 <script src="live-p2p.js?v=20261105-live-v1"></script>
 </body>

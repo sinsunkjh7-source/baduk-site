@@ -659,11 +659,14 @@
 
     var moveCountEl = document.getElementById('arenaMoveCount');
     if (moveCountEl) moveCountEl.textContent = moveCount + '수';
+    var whiteMoveCountEl = document.getElementById('arenaWhiteMoveCount');
+    if (whiteMoveCountEl) whiteMoveCountEl.textContent = moveCount + '수';
 
+    var ruleText = state.boardSize + '줄 ' + (state.handicap >= 2 ? (state.handicap + '점 접바둑') : (state.handicap === 1 ? '정선 (덤 0.5집)' : '호선 (덤 6.5집)'));
     var ruleBadge = document.getElementById('arenaRuleBadge');
-    if (ruleBadge) {
-      ruleBadge.textContent = state.boardSize + '줄 ' + (state.handicap >= 2 ? (state.handicap + '점 접바둑') : (state.handicap === 1 ? '정선 (덤 0.5집)' : '호선 (덤 6.5집)'));
-    }
+    if (ruleBadge) ruleBadge.textContent = ruleText;
+    var whiteRuleBadge = document.getElementById('arenaWhiteRuleBadge');
+    if (whiteRuleBadge) whiteRuleBadge.textContent = ruleText;
 
     var whiteRankBadge = document.getElementById('arenaWhiteRankBadge');
     if (whiteRankBadge && BOTS[state.difficulty]) {
@@ -671,9 +674,31 @@
     }
 
     var whiteNameEl = document.getElementById('timerWhiteName');
-    if (whiteNameEl && BOTS[state.difficulty]) {
-      whiteNameEl.textContent = (state.mode === 'ai') ? BOTS[state.difficulty].name : '백';
+    if (whiteNameEl) {
+      if (state.mode === 'ai' && BOTS[state.difficulty]) {
+        whiteNameEl.textContent = BOTS[state.difficulty].name;
+      } else {
+        whiteNameEl.textContent = '상대 (백)';
+      }
     }
+    var whiteRankBadge = document.getElementById('arenaWhiteRankBadge');
+    if (whiteRankBadge) {
+      if (state.mode === 'ai' && BOTS[state.difficulty]) {
+        whiteRankBadge.textContent = BOTS[state.difficulty].title;
+        whiteRankBadge.style.display = 'inline-block';
+      } else {
+        whiteRankBadge.textContent = '일반 대국';
+        whiteRankBadge.style.display = 'inline-block';
+      }
+    }
+    var engineCard = document.getElementById('arenaEngineCard');
+    if (engineCard) {
+      engineCard.style.display = (state.mode === 'ai') ? 'flex' : 'none';
+    }
+    var whitePlayerCard = document.getElementById('arenaWhiteCard');
+    var blackPlayerCard = document.getElementById('arenaBlackCard');
+    if (whitePlayerCard) whitePlayerCard.classList.toggle('active-turn', state.currentTurn === WHITE);
+    if (blackPlayerCard) blackPlayerCard.classList.toggle('active-turn', state.currentTurn === BLACK);
     var whiteImgEl = document.getElementById('arenaWhiteImg');
     if (whiteImgEl && BOTS[state.difficulty] && BOTS[state.difficulty].img) {
       whiteImgEl.src = BOTS[state.difficulty].img;
