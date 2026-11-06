@@ -1127,34 +1127,34 @@ body {
    🌟 바둑 대국 3열 아레나 레이아웃 (일체형 대국석 콘솔 & 초대형 바둑판) 🌟
    ========================================================================= */
 
-/* 전체 앱: 세로 중앙 정렬 및 자연스러운 스포트라이트 배경 */
+/* 전체 앱: 가로 3분할 완벽 대칭 구조 */
 .play-app {
   display: flex !important;
   flex-direction: row !important;
-  align-items: center !important;
+  align-items: stretch !important;
   justify-content: center !important;
   width: 100vw !important;
   height: calc(100vh - 46px) !important;
   overflow: hidden !important;
   position: relative !important;
   box-sizing: border-box !important;
-  padding: 10px 24px !important;
-  gap: 24px !important;
+  padding: 10px 16px !important;
+  gap: 0 !important;
   background: radial-gradient(circle at 50% 50%, #f7faf4 0%, #e2ece0 100%) !important;
 }
 
-/* 중앙 바둑판 스테이지: 100% 꽉 채우면서도 가장자리 여백 완벽 유지 */
+/* 중앙 바둑판 스테이지: 정사각형 유지 및 중앙 고정 */
 .play-stage {
-  flex: 1 !important;
-  height: 100% !important;
-  min-width: 0 !important;
+  flex: 0 0 auto !important;
+  width: min(calc(100vh - 72px), calc(100vw - 520px)) !important;
+  height: min(calc(100vh - 72px), calc(100vw - 520px)) !important;
   display: flex !important;
   flex-direction: column !important;
   align-items: center !important;
   justify-content: center !important;
   background: transparent !important;
   padding: 0 !important;
-  margin: 0 !important;
+  margin: auto 0 !important;
   overflow: hidden !important;
   position: relative !important;
 }
@@ -1208,12 +1208,13 @@ body {
   transition: opacity 0.15s ease-out;
 }
 
-/* 🌟 좌우 일체형 대국석 콘솔 (Arena Player Console) 🌟 */
+/* 🌟 좌우 사이드 패널: 양쪽 남은 여백을 균등하게 1:1 분할(flex: 1)하여 카드를 정중앙에 배치 🌟 */
 .arena-side {
-  width: 250px;
-  min-width: 235px;
-  max-width: 265px;
-  height: 100%;
+  flex: 1 1 0 !important;
+  width: auto !important;
+  min-width: 230px !important;
+  max-width: none !important;
+  height: 100% !important;
   display: flex !important;
   flex-direction: column !important;
   justify-content: center !important;
@@ -1224,24 +1225,24 @@ body {
   box-shadow: none !important;
   padding: 0 !important;
   box-sizing: border-box !important;
-  flex-shrink: 0 !important;
   z-index: 20;
 }
 
 /* 🌟 대국자 전용 카드 (좌/우 완전 동일 규격 및 정중앙 배치) 🌟 */
 .arena-player-card {
-  width: 100%;
+  width: 228px !important;
+  max-width: 240px !important;
   background: rgba(255, 255, 255, 0.94);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  border-radius: 20px;
+  border-radius: 18px;
   border: 1.5px solid rgba(255, 255, 255, 0.95);
   box-shadow: 0 10px 28px rgba(45, 75, 40, 0.09), 0 2px 6px rgba(0, 0, 0, 0.04);
-  padding: 12px 14px;
+  padding: 10px 12px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  gap: 7px;
+  gap: 6px;
   transition: all 0.25s ease;
 }
 
@@ -1254,7 +1255,7 @@ body {
 .player-card-header {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 3px;
   width: 100%;
 }
 
@@ -1280,7 +1281,7 @@ body {
 }
 
 .player-name {
-  font-size: 13.5px;
+  font-size: 13px;
   font-weight: 800;
   color: #0f172a;
   overflow: hidden;
@@ -1303,7 +1304,7 @@ body {
 
 .char-img-wrap {
   width: 100%;
-  height: 94px;
+  height: 72px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1312,23 +1313,23 @@ body {
 
 .arena-char-img {
   max-width: 100%;
-  max-height: 90px;
+  max-height: 70px;
   object-fit: contain;
-  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.14));
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.12));
   transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .arena-char-box:hover .arena-char-img {
-  transform: scale(1.05) translateY(-2px);
+  transform: scale(1.06) translateY(-2px);
 }
 
 .btn-char-change {
   background: #f8fafc;
   border: 1px solid #cbd5e1;
   border-radius: 12px;
-  font-size: 11px;
+  font-size: 10.5px;
   font-weight: 800;
-  padding: 2px 8px;
+  padding: 1px 7px;
   color: #334155;
   cursor: pointer;
   transition: all 0.15s;
@@ -1343,10 +1344,10 @@ body {
 
 /* 3. 턴 상태 배지 */
 .arena-turn-status {
-  font-size: 11.5px;
+  font-size: 11px;
   font-weight: 800;
   text-align: center;
-  padding: 4px 10px;
+  padding: 3px 8px;
   border-radius: 20px;
   background: #f1f5f9;
   color: #64748b;
@@ -1380,9 +1381,9 @@ body {
   background: #ffffff;
   border: 1.5px solid #e2e8f0;
   border-radius: 12px;
-  padding: 5px 8px;
+  padding: 4px 6px;
   text-align: center;
-  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.02), 0 2px 6px rgba(0, 0, 0, 0.03);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.02), 0 2px 5px rgba(0, 0, 0, 0.03);
   transition: all 0.2s ease;
 }
 
@@ -1405,7 +1406,7 @@ body {
 .arena-timer-card .timer-digits {
   font-family: 'Outfit', 'Pretendard', system-ui, -apple-system, monospace;
   font-variant-numeric: tabular-nums;
-  font-size: 21px;
+  font-size: 19px;
   font-weight: 800;
   color: #0f172a;
   line-height: 1.15;
@@ -1423,11 +1424,11 @@ body {
 
 .arena-timer-card .timer-byo {
   display: inline-block;
-  font-size: 10.5px;
+  font-size: 10px;
   font-weight: 700;
   color: #64748b;
   background: #f1f5f9;
-  padding: 1px 7px;
+  padding: 1px 6px;
   border-radius: 10px;
 }
 
@@ -1447,19 +1448,19 @@ body {
   background: rgba(248, 250, 252, 0.95);
   border: 1.5px solid #e2e8f0;
   border-radius: 12px;
-  padding: 6px 10px;
+  padding: 5px 8px;
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 2px;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.02);
 }
 
 .arena-player-badge {
-  font-size: 11px;
+  font-size: 10.5px;
   font-weight: 800;
   color: #c2410c;
   background: #fff7ed;
-  padding: 2px 7px;
+  padding: 1px 6px;
   border-radius: 8px;
   border: 1px solid #fed7aa;
   text-align: center;
@@ -1471,7 +1472,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 11px;
+  font-size: 10.5px;
   color: #64748b;
   font-weight: 700;
 }
@@ -1482,11 +1483,11 @@ body {
 }
 
 .arena-rule-badge {
-  font-size: 10.5px;
+  font-size: 10px;
   font-weight: 800;
   color: #4338ca;
   background: #eef2ff;
-  padding: 2px 6px;
+  padding: 2px 5px;
   border-radius: 6px;
   text-align: center;
   border: 1px solid #c7d2fe;
@@ -1496,34 +1497,37 @@ body {
   margin-top: 1px;
 }
 
-/* 🌟 하단 별도 분리 메뉴 박스 (우측 하단) 🌟 */
+/* 🌟 하단 별도 분리 메뉴 박스 (우측 하단 정중앙) 🌟 */
 .arena-menu-card {
   position: absolute;
-  bottom: 0;
-  width: 100%;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 228px !important;
+  max-width: 240px !important;
   background: rgba(255, 255, 255, 0.94);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border-radius: 16px;
   border: 1.5px solid rgba(255, 255, 255, 0.95);
-  box-shadow: 0 10px 24px rgba(45, 75, 40, 0.09), 0 2px 6px rgba(0, 0, 0, 0.04);
-  padding: 8px 10px;
+  box-shadow: 0 8px 20px rgba(45, 75, 40, 0.08), 0 2px 6px rgba(0, 0, 0, 0.04);
+  padding: 7px 9px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 4px;
   z-index: 25;
 }
 
 .arena-menu-card .btn-new-game {
   width: 100%;
-  font-size: 13px !important;
+  font-size: 12px !important;
   font-weight: 900 !important;
-  padding: 8px 10px !important;
-  border-radius: 10px !important;
+  padding: 6px 8px !important;
+  border-radius: 9px !important;
   background: linear-gradient(180deg, #10b981 0%, #059669 100%) !important;
   color: #ffffff !important;
-  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.35) !important;
+  box-shadow: 0 3px 10px rgba(16, 185, 129, 0.35) !important;
   border: none !important;
   cursor: pointer;
   transition: all 0.15s;
@@ -1531,19 +1535,79 @@ body {
 
 .arena-menu-card .btn-new-game:hover {
   transform: translateY(-1px);
-  box-shadow: 0 6px 16px rgba(16, 185, 129, 0.45) !important;
+  box-shadow: 0 5px 14px rgba(16, 185, 129, 0.45) !important;
 }
 
-/* 좌측 하단 AI 전용 엔진 배지 */
+.menu-btn-row {
+  display: flex;
+  gap: 4px;
+  width: 100%;
+}
+
+.menu-btn-row .tool-btn {
+  flex: 1;
+  font-size: 11px !important;
+  font-weight: 800 !important;
+  padding: 5px 3px !important;
+  border-radius: 7px !important;
+  text-align: center;
+  white-space: nowrap;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  color: #334155;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.menu-btn-row .tool-btn:hover {
+  background: #f1f5f9;
+  color: #0f172a;
+}
+
+.menu-btn-row .tool-btn.warn {
+  color: #dc2626;
+  border-color: #fca5a5;
+  background: #fef2f2;
+}
+
+.assist-toggle-row {
+  display: flex;
+  gap: 3px;
+  width: 100%;
+}
+
+.assist-btn {
+  flex: 1;
+  font-size: 10px !important;
+  font-weight: 800 !important;
+  padding: 4px 2px !important;
+  border-radius: 6px !important;
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.assist-btn.active {
+  background: #eff6ff;
+  border-color: #93c5fd;
+  color: #1d4ed8;
+}
+
+/* 좌측 하단 AI 전용 엔진 배지 (좌측 하단 정중앙) */
 .arena-engine-card {
   position: absolute;
-  bottom: 0;
-  width: 100%;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 228px !important;
+  max-width: 240px !important;
   background: rgba(255, 255, 255, 0.88);
   backdrop-filter: blur(10px);
   border: 1px dashed #cbd5e1;
   border-radius: 12px;
-  padding: 6px 10px;
+  padding: 5px 8px;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -1552,70 +1616,17 @@ body {
 }
 
 .engine-badge-title {
-  font-size: 11px;
+  font-size: 10.5px;
   font-weight: 800;
   color: #334155;
 }
 
 .engine-badge-sub {
-  font-size: 10px;
+  font-size: 9.5px;
   font-weight: 600;
   color: #64748b;
 }
 
-.assist-btn {
-  flex: 1;
-  font-size: 10.5px;
-  font-weight: 800;
-  padding: 5px 2px;
-  border-radius: 7px;
-  background: #f8fafc;
-  border: 1px solid #cbd5e1;
-  color: #64748b;
-  cursor: pointer;
-  text-align: center;
-  transition: all 0.15s;
-}
-
-.assist-btn:hover {
-  background: #e2e8f0;
-}
-
-.assist-btn.active {
-  background: #eff6ff;
-  color: #2563eb;
-  border-color: #93c5fd;
-  box-shadow: 0 1px 4px rgba(37, 99, 235, 0.2);
-}
-
-/* 🌟 1240px 이하: 노트북 및 태블릿 가로 (바둑판 크기 확보를 위한 사이드바 컴팩트화) 🌟 */
-@media (max-width: 1240px) {
-  .play-app {
-    padding: 8px 14px !important;
-    gap: 14px !important;
-  }
-  .arena-side {
-    width: 200px !important;
-    min-width: 185px !important;
-    max-width: 210px !important;
-    padding: 10px 8px !important;
-    gap: 8px !important;
-  }
-  .arena-char-box {
-    padding: 6px !important;
-  }
-  .arena-char-img {
-    height: 70px !important;
-  }
-  .arena-timer-card {
-    padding: 8px !important;
-  }
-  .timer-digits {
-    font-size: 26px !important;
-  }
-}
-
-/* 🌟 860px 이하: 모바일 및 세로 태블릿 (바둑판을 중앙 전체에 온전히 배치) 🌟 */
 @media (max-width: 860px) {
   .play-app {
     flex-direction: column !important;
