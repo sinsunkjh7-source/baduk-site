@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <style>[hidden]{display:none!important;}</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>🤖 AI 바둑 대국 — 바둑스쿨</title>
+  <link rel="preload" as="image" href="images/board_wood_grain.png">
+
+  <link rel="stylesheet" href="style.css?v=20261106_nigiri_v2">
+  <link rel="stylesheet" href="/unified-nav.css?v=20261103-nav-v11">
+  <script src="/unified-nav.js?v=20261103-nav-v11" defer></script>
+  <link rel="stylesheet" href="kata-engine.v1.css?v=engine-select-v1">
+</head>
+<body data-bks-page="play">
+
+<div class="play-app" id="playApp">
+
+  <!-- 🌟 중앙 메인 대국 스테이지 (놓아보기 캔버스 탑재) 🌟 -->
+    <!-- 🌟 바둑 대국 아레나 3열 레이아웃 🌟 -->
+  <!-- 👈 좌측 백돌 진영 패널 -->
+  <aside class="arena-side arena-left" id="arenaLeft">
+    <!-- 대국자 카드 (사이드 정중앙 위치) -->
+    <div class="arena-player-card white-player-card" id="arenaWhiteCard">
+      <!-- 1. 헤더: 플레이어 닉네임, 돌, 턴 상태 -->
+      <div class="player-card-header">
+        <div class="player-card-identity">
+          <div class="player-card-name-wrap">
+            <span class="timer-stone" id="arenaWhiteStone">⚪</span>
+            <span class="player-name" id="timerWhiteName">AI 지혜로운 판다</span>
+          </div>
+          <span class="arena-player-badge" id="arenaWhiteRankBadge">⭐ 상급 (1~2급)</span>
+        </div>
+        <div class="arena-turn-status" id="arenaWhiteStatus">차례 대기 중</div>
+      </div>
+
+      <!-- 2. 캐릭터 아바타 -->
+      <div class="arena-char-box" id="arenaWhiteCharBox">
+        <div class="char-img-wrap">
+          <img src="../../images/characters/char_tiger_cheer.png" alt="백돌 캐릭터" id="arenaWhiteImg" class="arena-char-img">
+        </div>
+      </div>
+
+      <!-- 3. 디지털 타이머 시계 -->
+      <div class="arena-timer-card white-timer-card" id="whiteTimerCard">
+        <div class="timer-digits" id="timerWhiteTime">무제한</div>
+        <div class="timer-byo" id="timerWhiteByo">시간 제한 없음</div>
+      </div>
+
+      <!-- 4. 대국 정보 (따낸 돌, 총 수수, 규칙) -->
+      <div class="arena-info-card" id="arenaWhiteInfo">
+        <div class="arena-stat-row">
+          <span>따낸 돌</span>
+          <strong id="arenaWhiteCaptures">0개</strong>
+        </div>
+        <div class="arena-stat-row">
+          <span>총 수수</span>
+          <strong id="arenaWhiteMoveCount">0수</strong>
+        </div>
+        <div class="arena-rule-badge" id="arenaWhiteRuleBadge">19줄 호선 (덤 6.5집)</div>
+      </div>
+    </div>
+
+    <!-- 하단 엔진 배지 -->
+    <div class="arena-engine-card" id="arenaEngineCard">
+      <div class="engine-badge-title">⚡ GNU Go 3.8.1</div>
+      <div class="engine-badge-sub">Wasm 로컬 인공지능 탑재</div>
+    </div>
+  </aside>
+
+  <!-- 🌟 중앙 메인 대국 스테이지 (초대형 바둑판) 🌟 -->
+  <main class="play-stage theme-green" id="playStage">
+    <!-- 🎨 프리 접바둑 자유 배치 안내 배너 (플로팅) -->
+    <div class="free-placement-banner" id="freePlacementBanner" hidden>
+      <div class="banner-text">
+        <span class="banner-icon">🎨</span>
+        <span><strong>프리 접바둑 돌 놓기</strong>: 바둑판을 클릭해 흑돌을 배치하세요. (<strong id="freePlacedCount">0</strong>개)</span>
+      </div>
+      <div class="banner-btns">
+        <button type="button" class="btn-banner-finish" id="btnFreePlacementDone">✅ 배치 완료</button>
+        <button type="button" class="btn-banner-clear" id="btnFreePlacementReset">🔄 전체 지우기</button>
+      </div>
+    </div>
+
+    <!-- 바둑판 메인 컨테이너 (세로 100% 꽉 채움) -->
+    <div class="board-container" id="boardContainer">
+      <div class="canvas-stack" id="canvasStack">
+        <canvas id="boardCanvas"></canvas>
+      </div>
+    </div>
+
+    <!-- 플로팅 토스트 -->
+    <div class="play-toast" id="playToast" hidden></div>
+  </main>
+
+  <!-- 👉 우측 흑돌 진영 & 조작 패널 -->
+  <aside class="arena-side arena-right" id="arenaRight">
+    <!-- 대국자 카드 (사이드 정중앙 위치 - 좌측 카드와 100% 동일 규격) -->
+    <div class="arena-player-card black-player-card" id="arenaBlackCard">
+      <!-- 1. 헤더: 플레이어 닉네임, 돌, 턴 상태 -->
+      <div class="player-card-header">
+        <div class="player-card-identity">
+          <div class="player-card-name-wrap">
+            <span class="timer-stone" id="arenaBlackStone">⚫</span>
+            <span class="player-name" id="timerBlackName">나 (흑)</span>
+          </div>
+          <button type="button" class="btn-char-change" id="btnChangeChar" title="캐릭터 교체">캐릭터 교체</button>
+        </div>
+        <div class="arena-turn-status my-turn" id="arenaBlackStatus">⚫ 내 차례</div>
+      </div>
+
+      <!-- 2. 캐릭터 아바타 -->
+      <div class="arena-char-box" id="arenaBlackCharBox">
+        <div class="char-img-wrap">
+          <img src="../alkkagi/bullterrier/01-idle.png" alt="흑돌 캐릭터" id="arenaBlackImg" class="arena-char-img">
+        </div>
+      </div>
+
+      <!-- 3. 디지털 타이머 시계 -->
+      <div class="arena-timer-card black-timer-card" id="blackTimerCard">
+        <div class="timer-digits" id="timerBlackTime">무제한</div>
+        <div class="timer-byo" id="timerBlackByo">시간 제한 없음</div>
+      </div>
+
+      <!-- 4. 대국 정보 (따낸 돌, 총 수수, 규칙) -->
+      <div class="arena-info-card" id="arenaBlackInfo">
+        <div class="arena-stat-row">
+          <span>따낸 돌</span>
+          <strong id="arenaBlackCaptures">0개</strong>
+        </div>
+        <div class="arena-stat-row">
+          <span>총 수수</span>
+          <strong id="arenaMoveCount">0수</strong>
+        </div>
+        <div class="arena-rule-badge" id="arenaRuleBadge">19줄 호선 (덤 6.5집)</div>
+      </div>
+    </div>
+
+    <!-- 하단 별도 분리 메뉴 박스 -->
+    <div class="arena-menu-card" id="arenaMenuBar">
+      <button type="button" class="tool-btn primary-btn btn-new-game" id="btnOpenMatchModal" title="새 대국 설정">⚔️ 새 대국 (옵션)</button>
+      
+      <div class="menu-btn-row">
+        <button type="button" class="tool-btn" id="btnUndo" title="한 수 무르기">↩️ 무르기</button>
+        <button type="button" class="tool-btn" id="btnPass" title="착수 넘김">⏩ 패스</button>
+      </div>
+
+      <div class="menu-btn-row">
+        <button type="button" class="tool-btn" id="btnCount" title="집 계산(계가)">🧮 계가하기</button>
+        <button type="button" class="tool-btn warn" id="btnResign" title="기권 (불계패)">🏳️ 기권</button>
+      </div>
+
+      <!-- 보조 토글 옵션 -->
+      <div class="assist-toggle-row">
+        <button type="button" class="assist-btn active" id="btnToggleAtari" title="단수 경고">🚨 단수</button>
+        <button type="button" class="assist-btn active" id="btnToggleSweat" title="땀방울 연출">💦 땀방울</button>
+        <button type="button" class="assist-btn" id="btnToggleNumbers" title="수순 번호">🔢 수순</button>
+      </div>
+    </div>
+  </aside>
+
+    <!-- ⚔️ 새 대국 설정 & 옵션 모달 (AI 수준, 접바둑, 판 크기, 돌 선택) ⚔️ -->
+  <div class="match-modal" id="matchModal" hidden>
+    <div class="match-card">
+      <div class="match-header">
+        <h2 class="match-title">⚔️ 새 대국 설정</h2>
+        <button type="button" class="btn-close-match" id="btnCloseMatchModal" title="닫기">✕</button>
+      </div>
+
+      <div class="match-body">
+        <!-- 1. 대국 방식 (AI vs 2인 대국) -->
+        <div class="match-section">
+          <label class="match-section-label">🎮 대국 방식</label>
+          <div class="match-chips" id="matchModeChips">
+            <button type="button" class="match-chip active" data-mode="ai" id="chipModeAi">🤖 AI 대국</button>
+            <button type="button" class="match-chip" data-mode="pvp" id="chipModePvp" style="display: none;">👥 일반 대국</button>
+          </div>
+        </div>
+
+        <div class="match-section" id="matchAiEngineSection">
+          <label class="match-section-label">AI 엔진 선택</label>
+          <div class="match-chips" id="matchEngineChips" role="group" aria-label="AI 엔진 선택">
+            <button type="button" class="match-chip active" data-ai-engine="gnugo" aria-pressed="true">GNU Go · 기본</button>
+            <button type="button" class="match-chip" data-ai-engine="katago-lite" aria-pressed="false">카타고 경량판 · 시험</button>
+          </div>
+          <p id="matchEngineHelp" class="kata-engine-help">GNU Go는 기존 다섯 단계 동물 봇을 사용합니다.</p>
+          <p id="matchEngineStatus" class="kata-engine-status" role="status" aria-live="polite"></p>
+          <a class="kata-license-link" href="kata-licenses.txt" target="_blank" rel="noopener">엔진·모델 출처 및 사용 조건</a>
+        </div>
+
+        <!-- 2. AI 상대 기력 (난이도) -->
+        <div class="match-section" id="matchAiDifficultySection">
+          <label class="match-section-label">🤖 AI 상대 기력 (5단계 동물 봇)</label>
+          <div class="match-bot-grid" id="matchBotGrid">
+            <button type="button" class="match-bot-card" data-bot="beginner">
+              <span class="bot-card-avatar">🐥</span>
+              <div class="bot-card-info">
+                <strong>AI 삐약이</strong>
+                <small>입문 (18급)</small>
+              </div>
+            </button>
+            <button type="button" class="match-bot-card" data-bot="intermediate">
+              <span class="bot-card-avatar">🐶</span>
+              <div class="bot-card-info">
+                <strong>AI 바둑이</strong>
+                <small>초급 (12급)</small>
+              </div>
+            </button>
+            <button type="button" class="match-bot-card" data-bot="advanced">
+              <span class="bot-card-avatar">🦊</span>
+              <div class="bot-card-info">
+                <strong>AI 영리한 여우</strong>
+                <small>중급 (5급)</small>
+              </div>
+            </button>
+            <button type="button" class="match-bot-card active" data-bot="dan">
+              <span class="bot-card-avatar">🐼</span>
+              <div class="bot-card-info">
+                <strong>AI 지혜로운 판다</strong>
+                <small>상급 (1~2급)</small>
+              </div>
+            </button>
+            <button type="button" class="match-bot-card" data-bot="master">
+              <span class="bot-card-avatar">🐯</span>
+              <div class="bot-card-info">
+                <strong>AI 용맹한 호랑이</strong>
+                <small>유단자 (기원 1단/타이젬 2~3단)</small>
+              </div>
+            </button>
+          </div>
+        </div>
+
+        <!-- 3. 바둑판 크기 -->
+        <div class="match-section">
+          <label class="match-section-label">📐 바둑판 선택</label>
+          <div class="match-chips" id="matchSizeChips">
+            <button type="button" class="match-chip active" data-size="19">19줄 (정규 바둑판)</button>
+            <button type="button" class="match-chip" data-size="13">13줄</button>
+            <button type="button" class="match-chip" data-size="9">9줄 (입문 빠른 바둑판)</button>
+          </div>
+        </div>
+
+        <!-- 4. 내 돌 선택 -->
+        <div class="match-section">
+          <label class="match-section-label">⚫⚪ 내 돌 선택</label>
+          <div class="match-chips" id="matchColorChips">
+            <button type="button" class="match-chip active" data-color="random">🎲 돌가리기 (랜덤)</button>
+            <button type="button" class="match-chip" data-color="1">⚫ 흑돌 (선공)</button>
+            <button type="button" class="match-chip" data-color="2">⚪ 백돌 (후공)</button>
+          </div>
+        </div>
+
+        <!-- 5. 치수 및 접바둑 (핸디캡) -->
+        <div class="match-section">
+          <label class="match-section-label">⭐ 치수 / 접바둑 옵션</label>
+          <div class="match-chips" id="matchHandicapChips">
+            <button type="button" class="match-chip active" data-handicap="0">⚖️ 호선 (맞바둑 · 덤 6.5집)</button>
+            <button type="button" class="match-chip" data-handicap="1">🏳️ 정선 (덤 0.5집)</button>
+            <button type="button" class="match-chip" data-handicap="2">2점 접바둑</button>
+            <button type="button" class="match-chip" data-handicap="3">3점 접바둑</button>
+            <button type="button" class="match-chip" data-handicap="4">4점 접바둑</button>
+            <button type="button" class="match-chip" data-handicap="5">5점 접바둑</button>
+            <button type="button" class="match-chip" data-handicap="6">6점 접바둑</button>
+            <button type="button" class="match-chip" data-handicap="7">7점 접바둑</button>
+            <button type="button" class="match-chip" data-handicap="8">8점 접바둑</button>
+            <button type="button" class="match-chip" data-handicap="9">9점 접바둑</button>
+            <button type="button" class="match-chip" data-handicap="free">🎨 프리 접바둑 (자유 배치 / 9점 이상)</button>
+          </div>
+
+          <!-- 프리 접바둑 세부 설정 패널 -->
+          <div class="free-handicap-sub" id="freeHandicapSub" style="display: none;">
+            <div class="free-sub-row">
+              <span class="free-sub-label">접바둑 점수 프리셋:</span>
+              <div class="free-preset-chips" id="freePresetChips">
+                <button type="button" class="free-preset-chip active" data-count="10">10점</button>
+                <button type="button" class="free-preset-chip" data-count="12">12점</button>
+                <button type="button" class="free-preset-chip" data-count="13">13점</button>
+                <button type="button" class="free-preset-chip" data-count="16">16점</button>
+                <button type="button" class="free-preset-chip" data-count="17">17점</button>
+                <button type="button" class="free-preset-chip" data-count="25">25점</button>
+                <button type="button" class="free-preset-chip" data-count="custom">👆 직접 판에 놓기</button>
+              </div>
+            </div>
+            <div class="free-sub-row" id="freeCountRow">
+              <span class="free-sub-label">점수 직접 지정:</span>
+              <div class="free-stepper">
+                <button type="button" class="free-stepper-btn" id="btnDecFreeCount">-</button>
+                <input type="number" id="inputFreeCount" min="9" max="50" value="10" readonly>
+                <button type="button" class="free-stepper-btn" id="btnIncFreeCount">+</button>
+                <span class="free-stepper-unit">점 접바둑</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. 제한 시간 선택 -->
+        <div class="match-section">
+          <label class="match-section-label">⏱️ 제한 시간 선택</label>
+          <div class="match-chips" id="matchTimeChips">
+            <button type="button" class="match-chip" data-time="1m10s">1분 + 초읽기 10초 3회 (초속기)</button>
+            <button type="button" class="match-chip" data-time="5m20s">5분 + 초읽기 20초 3회 (속기)</button>
+            <button type="button" class="match-chip" data-time="10m30s">10분 + 초읽기 30초 3회</button>
+            <button type="button" class="match-chip" data-time="20m30s">20분 + 초읽기 30초 3회</button>
+            <button type="button" class="match-chip" data-time="30m40s">30분 + 초읽기 40초 3회</button>
+            <button type="button" class="match-chip active" data-time="none">무제한 (시간 없음)</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="match-footer" style="display: flex !important; justify-content: center !important; align-items: center !important; position: relative !important; padding: 16px 24px !important;">
+        <button type="button" class="btn-start-match" id="btnStartCustomMatch">🚀 이 설정으로 대국 시작!</button>
+        <button type="button" class="btn-cancel-match" id="btnCancelMatch" style="position: absolute !important; right: 20px !important;">✕ 닫기</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 🎲 돌가리기 (랜덤) 결과 팝업 모달 🎲 -->
+  <div class="nigiri-modal" id="nigiriModal" hidden>
+    <div class="nigiri-card">
+      <button type="button" class="btn-nigiri-close" id="btnCloseNigiri" aria-label="닫기">✕</button>
+      <div class="nigiri-header">
+        <span class="nigiri-badge">🎲</span>
+        <h2 class="nigiri-title">돌가리기 결과</h2>
+        <p class="nigiri-desc">공정한 랜덤 추첨으로 흑돌과 백돌이 결정되었습니다!</p>
+      </div>
+
+      <div class="nigiri-vs-wrap">
+        <!-- 나 -->
+        <div class="nigiri-player-box" id="nigiriUserBox">
+          <div class="nigiri-avatar-wrap">
+            <img src="../alkkagi/bullterrier/01-idle.png" alt="내 캐릭터" id="nigiriUserImg" class="nigiri-avatar-img">
+            <span class="nigiri-stone-badge" id="nigiriUserStoneBadge">⚫ 흑돌</span>
+          </div>
+          <strong class="nigiri-player-name" id="nigiriUserName">나 (흑)</strong>
+          <span class="nigiri-player-role" id="nigiriUserRole">선공 (먼저 착수)</span>
+        </div>
+
+        <!-- VS 디바이더 -->
+        <div class="nigiri-vs-divider">
+          <span class="nigiri-vs-badge">VS</span>
+        </div>
+
+        <!-- 상대방 (AI) -->
+        <div class="nigiri-player-box" id="nigiriOppBox">
+          <div class="nigiri-avatar-wrap">
+            <img src="../../images/characters/char_chick_beginner.png" alt="상대 캐릭터" id="nigiriOppImg" class="nigiri-avatar-img">
+            <span class="nigiri-stone-badge" id="nigiriOppStoneBadge">⚪ 백돌</span>
+          </div>
+          <strong class="nigiri-player-name" id="nigiriOppName">AI 삐약이</strong>
+          <span class="nigiri-player-role" id="nigiriOppRole">후공 (덤 6.5집)</span>
+        </div>
+      </div>
+
+      <!-- 핵심 안내 배너 -->
+      <div class="nigiri-result-alert" id="nigiriResultAlert">
+        🎉 내가 <strong>흑돌(선공)</strong>을 잡았습니다! 먼저 바둑판에 돌을 놓으세요.
+      </div>
+
+      <!-- 하단 액션 버튼 -->
+      <div class="nigiri-footer">
+        <button type="button" class="btn-nigiri-cancel" id="btnNigiriCancel">
+          ✕ 닫기
+        </button>
+        <button type="button" class="btn-nigiri-confirm" id="btnNigiriConfirm">
+          🚀 이 설정으로 대국 시작!
+        </button>
+      </div>
+    </div>
+  </div>
+
+<!-- 🌟 대국 결과 & 계가 모달 (전역 오버레이) 🌟 -->
+  <div class="result-modal" id="resultModal" hidden>
+    <div class="result-card">
+      <span class="result-badge">🏆</span>
+      <h2 class="result-title" id="resultTitle">대국 결과</h2>
+      <p class="result-desc" id="resultDesc">대국이 종료되었습니다.</p>
+      <div class="result-stats-table" id="resultStatsTable"></div>
+      <div class="result-actions">
+        <button type="button" class="result-btn-again" id="btnResultAgain">한 판 더 두기</button>
+        <button type="button" class="result-btn-close" id="btnResultClose">판 살펴보기</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ⚙️ 환경설정 패널 (통합 내비 상단 ⚙️ 설정 버튼 마운트용) ⚙️ -->
+  <div class="settings-panel" id="settingsPanel" hidden>
+    <div class="settings-header">
+      <span class="settings-title">⚙️ 환경 설정</span>
+      <button type="button" class="btn-close-settings" id="btnCloseSettings">✕</button>
+    </div>
+
+    <!-- 바탕화면 테마 -->
+    <div class="setting-group">
+      <span class="setting-label">🎨 바둑판 바탕</span>
+      <div class="setting-options" id="optTheme">
+        <button type="button" class="setting-opt-btn" data-theme="green">시그니처 초록</button>
+        <button type="button" class="setting-opt-btn" data-theme="cream">크림화이트</button>
+        <button type="button" class="setting-opt-btn" data-theme="forest">포레스트</button>
+        <button type="button" class="setting-opt-btn" data-theme="slate">모던 슬레이트</button>
+      </div>
+    </div>
+
+    <!-- 바둑판 스킨 -->
+    <div class="setting-group">
+      <span class="setting-label">🪵 바둑판 재질</span>
+      <div class="setting-options" id="optBoardSkin">
+        <button type="button" class="setting-opt-btn" data-skin="wood">밝은 비자목</button>
+        <button type="button" class="setting-opt-btn" data-skin="darkwood">진한 원목 (나뭇결)</button>
+        <button type="button" class="setting-opt-btn" data-skin="sky">시원한 스카이</button>
+      </div>
+    </div>
+
+    <!-- 바둑알 스킨 -->
+    <div class="setting-group">
+      <span class="setting-label">⚪ 바둑알 디자인 (6종)</span>
+      <div class="setting-options" id="optStoneStyle">
+        <button type="button" class="setting-opt-btn" data-stone="classic">전통 클래식</button>
+        <button type="button" class="setting-opt-btn" data-stone="gem">영롱한 보석</button>
+        <button type="button" class="setting-opt-btn" data-stone="cute">귀여운 눈</button>
+        <button type="button" class="setting-opt-btn" data-stone="cat">3D 고양이</button>
+        <button type="button" class="setting-opt-btn" data-stone="galaxy">우주 은하</button>
+        <button type="button" class="setting-opt-btn" data-stone="crystal">크리스탈 다이아</button>
+      </div>
+    </div>
+
+    <!-- 착수음 사운드 종류 -->
+    <div class="setting-group">
+      <span class="setting-label">🔊 착수음 종류</span>
+      <div class="setting-options" id="optSoundType">
+        <button type="button" class="setting-opt-btn" data-sound="classic">경쾌한 바둑돌</button>
+        <button type="button" class="setting-opt-btn" data-sound="stone">맑은 또각</button>
+        <button type="button" class="setting-opt-btn" data-sound="wood">둔탁한 묵직</button>
+        <button type="button" class="setting-opt-btn" data-sound="maple">은은한 단풍</button>
+      </div>
+    </div>
+
+    <!-- 음량 조절 -->
+    <div class="setting-group">
+      <span class="setting-label">🔈 착수음 음량</span>
+      <div class="volume-slider-row">
+        <input type="range" min="0" max="100" value="100" class="volume-slider" id="volumeSlider">
+        <span class="volume-val" id="volumeVal">100%</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- 엔진 & AI & 오디오 & 앱 스크립트 -->
+<script src="gnugo/gnugo.js"></script>
+<script src="gnugo/gnugo-bridge.js"></script>
+<script src="engine.js?v=20261030-gnugo-v1"></script>
+<script src="ai.js?v=20261029-play-ai-v6"></script>
+<script src="audio.js?v=20261029-play-ai-v6"></script>
+<script src="kata-lite-bridge.v1.js?v=engine-select-v1"></script>
+<script src="app-kata.v1.js?v=20261106-engine-select-v1"></script>
+<script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
+<script src="live-p2p.js?v=20261105-live-v1"></script>
+</body>
+</html>
