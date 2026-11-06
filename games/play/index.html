@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="style.css?v=20261106_nigiri_v2">
   <link rel="stylesheet" href="/unified-nav.css?v=20261103-nav-v11">
   <script src="/unified-nav.js?v=20261103-nav-v11" defer></script>
+  <link rel="stylesheet" href="kata-engine.v1.css?v=engine-select-v1">
 </head>
 <body data-bks-page="play">
 
@@ -177,6 +178,17 @@
             <button type="button" class="match-chip active" data-mode="ai" id="chipModeAi">🤖 AI 대국</button>
             <button type="button" class="match-chip" data-mode="pvp" id="chipModePvp" style="display: none;">👥 일반 대국</button>
           </div>
+        </div>
+
+        <div class="match-section" id="matchAiEngineSection">
+          <label class="match-section-label">AI 엔진 선택</label>
+          <div class="match-chips" id="matchEngineChips" role="group" aria-label="AI 엔진 선택">
+            <button type="button" class="match-chip active" data-ai-engine="gnugo" aria-pressed="true">GNU Go · 기본</button>
+            <button type="button" class="match-chip" data-ai-engine="katago-lite" aria-pressed="false">카타고 경량판 · 시험</button>
+          </div>
+          <p id="matchEngineHelp" class="kata-engine-help">GNU Go는 기존 다섯 단계 동물 봇을 사용합니다.</p>
+          <p id="matchEngineStatus" class="kata-engine-status" role="status" aria-live="polite"></p>
+          <a class="kata-license-link" href="kata-licenses.txt" target="_blank" rel="noopener">엔진·모델 출처 및 사용 조건</a>
         </div>
 
         <!-- 2. AI 상대 기력 (난이도) -->
@@ -443,7 +455,8 @@
 <script src="engine.js?v=20261030-gnugo-v1"></script>
 <script src="ai.js?v=20261029-play-ai-v6"></script>
 <script src="audio.js?v=20261029-play-ai-v6"></script>
-<script src="app.js?v=20261106_nigiri_v2"></script>
+<script src="kata-lite-bridge.v1.js?v=engine-select-v1"></script>
+<script src="app.js?v=20261106-engine-select-v1"></script>
 <script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
 <script src="live-p2p.js?v=20261105-live-v1"></script>
 </body>
