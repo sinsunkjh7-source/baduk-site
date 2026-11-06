@@ -1367,12 +1367,27 @@
     pendingMatchOpts.handicap = state.handicap;
     pendingMatchOpts.timeLimit = state.timeLimit;
 
-    // 모드
-    document.querySelectorAll('#matchModeChips .match-chip').forEach(function (btn) {
-      btn.classList.toggle('active', btn.dataset.mode === pendingMatchOpts.mode);
-    });
+    // 모드: AI 대국은 AI만, 일반 대국(PVP)은 일반 대국만 표시
+    var chipAi = document.querySelector('#matchModeChips [data-mode="ai"]');
+    var chipPvp = document.querySelector('#matchModeChips [data-mode="pvp"]');
+    if (pendingMatchOpts.mode === 'pvp') {
+      if (chipAi) { chipAi.style.display = 'none'; chipAi.classList.remove('active'); }
+      if (chipPvp) { chipPvp.style.display = 'inline-flex'; chipPvp.classList.add('active'); }
+    } else {
+      if (chipAi) { chipAi.style.display = 'inline-flex'; chipAi.classList.add('active'); }
+      if (chipPvp) { chipPvp.style.display = 'none'; chipPvp.classList.remove('active'); }
+    }
     var aiDiffSec = document.getElementById('matchAiDifficultySection');
     if (aiDiffSec) aiDiffSec.style.display = (pendingMatchOpts.mode === 'ai') ? 'flex' : 'none';
+
+    // 내 돌 선택 DOM 순서 보장 (돌가리기 랜덤이 항상 맨 앞)
+    var colorChipsContainer = document.getElementById('matchColorChips');
+    if (colorChipsContainer) {
+      var randomChip = colorChipsContainer.querySelector('[data-color="random"]');
+      if (randomChip && colorChipsContainer.firstElementChild !== randomChip) {
+        colorChipsContainer.insertBefore(randomChip, colorChipsContainer.firstElementChild);
+      }
+    }
 
     // AI 난이도
     document.querySelectorAll('#matchBotGrid .match-bot-card').forEach(function (card) {

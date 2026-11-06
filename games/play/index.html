@@ -10,7 +10,7 @@
   <title>🤖 AI 바둑 대국 — 바둑스쿨</title>
   <link rel="preload" as="image" href="images/board_wood_grain.png">
 
-  <link rel="stylesheet" href="style.css?v=20261106_center_v3">
+  <link rel="stylesheet" href="style.css?v=20261106_pvp_mode_v4">
   <link rel="stylesheet" href="/unified-nav.css?v=20261103-nav-v11">
   <script src="/unified-nav.js?v=20261103-nav-v11" defer></script>
 </head>
@@ -157,7 +157,8 @@
         <div class="match-section">
           <label class="match-section-label">🎮 대국 방식</label>
           <div class="match-chips" id="matchModeChips">
-            <button type="button" class="match-chip active" data-mode="ai">🤖 AI와 대국</button>
+            <button type="button" class="match-chip active" data-mode="ai" id="chipModeAi">🤖 AI 대국</button>
+            <button type="button" class="match-chip" data-mode="pvp" id="chipModePvp" style="display: none;">👥 일반 대국</button>
           </div>
         </div>
 
@@ -371,7 +372,7 @@
 <script src="engine.js?v=20261030-gnugo-v1"></script>
 <script src="ai.js?v=20261029-play-ai-v6"></script>
 <script src="audio.js?v=20261029-play-ai-v6"></script>
-<script src="app.js?v=20261106_random_color_v2"></script>
+<script src="app.js?v=20261106_pvp_mode_v4"></script>
 <script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
 <script src="live-p2p.js?v=20261105-live-v1"></script>
 </body>
