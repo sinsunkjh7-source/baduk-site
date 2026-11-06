@@ -1223,7 +1223,7 @@
   },
   {
     "title": "🎯 핵심 기법 심층 마스터관",
-    "bookCount": 13,
+    "bookCount": 14,
     "books": [
       {
         "code": "tech_atari",
@@ -2116,134 +2116,236 @@
         "problemCount": 2829
       },
       {
+        "code": "tech_connect_cut",
+        "title": "🔗 연결과 끊음 완전정복 마스터",
+        "chapterCount": 14,
+        "totalProblems": 3920,
+        "chapters": [
+          {
+            "code": "tech_connect_cut_ch01",
+            "chapterCode": "tech_connect_cut_ch01",
+            "title": "1단원. 돌의 기본 연결 — 꽉 잇기와 들여다본 곳 잇기 (입문 기초) (203제)",
+            "chapter": "1단원. 돌의 기본 연결 — 꽉 잇기와 들여다본 곳 잇기 (입문 기초) (203제)",
+            "problemCount": 203,
+            "problemsCount": 203
+          },
+          {
+            "code": "tech_connect_cut_ch02",
+            "chapterCode": "tech_connect_cut_ch02",
+            "title": "2단원. 따내면서 연결하기와 초급 실전 연결 (포획과 연결) (190제)",
+            "chapter": "2단원. 따내면서 연결하기와 초급 실전 연결 (포획과 연결) (190제)",
+            "problemCount": 190,
+            "problemsCount": 190
+          },
+          {
+            "code": "tech_connect_cut_ch03",
+            "chapterCode": "tech_connect_cut_ch03",
+            "title": "3단원. 모양별 연결 ① — 입구자(마늘모)·한칸·날일자 연결 (117제)",
+            "chapter": "3단원. 모양별 연결 ① — 입구자(마늘모)·한칸·날일자 연결 (117제)",
+            "problemCount": 117,
+            "problemsCount": 117
+          },
+          {
+            "code": "tech_connect_cut_ch04",
+            "chapterCode": "tech_connect_cut_ch04",
+            "title": "4단원. 모양별 연결 ② — 호구·양호구·쌍립 연결 (287제)",
+            "chapter": "4단원. 모양별 연결 ② — 호구·양호구·쌍립 연결 (287제)",
+            "problemCount": 287,
+            "problemsCount": 287
+          },
+          {
+            "code": "tech_connect_cut_ch05",
+            "chapterCode": "tech_connect_cut_ch05",
+            "title": "5단원. 1선·2선 연결과 넘어가는 맥 (젖혀 잇기·껴붙이기·1선 눈목자) (351제)",
+            "chapter": "5단원. 1선·2선 연결과 넘어가는 맥 (젖혀 잇기·껴붙이기·1선 눈목자) (351제)",
+            "problemCount": 351,
+            "problemsCount": 351
+          },
+          {
+            "code": "tech_connect_cut_ch06",
+            "chapterCode": "tech_connect_cut_ch06",
+            "title": "6단원. 단수·자충·찝음·맞보기·사석을 이용한 연결 (중급 연결 맥점) (339제)",
+            "chapter": "6단원. 단수·자충·찝음·맞보기·사석을 이용한 연결 (중급 연결 맥점) (339제)",
+            "problemCount": 339,
+            "problemsCount": 339
+          },
+          {
+            "code": "tech_connect_cut_ch07",
+            "chapterCode": "tech_connect_cut_ch07",
+            "title": "7단원. 효율적인 연결과 실전 연결 마스터 (중·고급 실전 연결) (507제)",
+            "chapter": "7단원. 효율적인 연결과 실전 연결 마스터 (중·고급 실전 연결) (507제)",
+            "problemCount": 507,
+            "problemsCount": 507
+          },
+          {
+            "code": "tech_connect_cut_ch08",
+            "chapterCode": "tech_connect_cut_ch08",
+            "title": "8단원. 돌의 기본 끊음과 뚫어서 끊기 (입문·초급 기초 끊음) (352제)",
+            "chapter": "8단원. 돌의 기본 끊음과 뚫어서 끊기 (입문·초급 기초 끊음) (352제)",
+            "problemCount": 352,
+            "problemsCount": 352
+          },
+          {
+            "code": "tech_connect_cut_ch09",
+            "chapterCode": "tech_connect_cut_ch09",
+            "title": "9단원. 1선·2선 끊음과 넘어가는 수 차단하기 (변·귀 끊음과 막기) (246제)",
+            "chapter": "9단원. 1선·2선 끊음과 넘어가는 수 차단하기 (변·귀 끊음과 막기) (246제)",
+            "problemCount": 246,
+            "problemsCount": 246
+          },
+          {
+            "code": "tech_connect_cut_ch10",
+            "chapterCode": "tech_connect_cut_ch10",
+            "title": "10단원. 단수·젖힘·자충·맞보기를 이용한 끊음 (초·중급 끊음 맥점) (383제)",
+            "chapter": "10단원. 단수·젖힘·자충·맞보기를 이용한 끊음 (초·중급 끊음 맥점) (383제)",
+            "problemCount": 383,
+            "problemsCount": 383
+          },
+          {
+            "code": "tech_connect_cut_ch11",
+            "chapterCode": "tech_connect_cut_ch11",
+            "title": "11단원. 건너붙임·끼움·쌍립의 급소로 끊기 (중·고급 절단의 맥) (246제)",
+            "chapter": "11단원. 건너붙임·끼움·쌍립의 급소로 끊기 (중·고급 절단의 맥) (246제)",
+            "problemCount": 246,
+            "problemsCount": 246
+          },
+          {
+            "code": "tech_connect_cut_ch12",
+            "chapterCode": "tech_connect_cut_ch12",
+            "title": "12단원. 실전 끊기와 상대의 끊기 대응 (중·고급 접근전 공방) (293제)",
+            "chapter": "12단원. 실전 끊기와 상대의 끊기 대응 (중·고급 접근전 공방) (293제)",
+            "problemCount": 293,
+            "problemsCount": 293
+          },
+          {
+            "code": "tech_connect_cut_ch13",
+            "chapterCode": "tech_connect_cut_ch13",
+            "title": "13단원. 단점과 약점 ① — 내 돌의 단점·약점 찾아 지키기 (수비와 보강) (171제)",
+            "chapter": "13단원. 단점과 약점 ① — 내 돌의 단점·약점 찾아 지키기 (수비와 보강) (171제)",
+            "problemCount": 171,
+            "problemsCount": 171
+          },
+          {
+            "code": "tech_connect_cut_ch14",
+            "chapterCode": "tech_connect_cut_ch14",
+            "title": "14단원. 단점과 약점 ② — 상대의 단점·약점 찾아 공략하기 (공격과 수내기) (235제)",
+            "chapter": "14단원. 단점과 약점 ② — 상대의 단점·약점 찾아 공략하기 (공격과 수내기) (235제)",
+            "problemCount": 235,
+            "problemsCount": 235
+          }
+        ]
+      },
+      {
         "code": "tech_connection",
         "title": "🛡️ 행마와 맥 완전정복 마스터",
-        "chapterCount": 24,
-        "totalProblems": 5915,
+        "chapterCount": 13,
+        "totalProblems": 2676,
         "chapters": [
           {
             "code": "tech_connection_ch01",
-            "title": "1단원. 돌의 기본 연결과 따내면서 연결 (193제)",
-            "problemCount": 193
+            "chapterCode": "tech_connection_ch01",
+            "title": "1단원. 한칸·날일자·입구자 기본 행마 (345제)",
+            "chapter": "1단원. 한칸·날일자·입구자 기본 행마 (345제)",
+            "problemCount": 345,
+            "problemsCount": 345
           },
           {
             "code": "tech_connection_ch02",
-            "title": "2단원. 입구자·한칸·날일자·눈목자 연결 (106제)",
-            "problemCount": 106
+            "chapterCode": "tech_connection_ch02",
+            "title": "2단원. 붙이면 젖히고 젖히면 뻗어라·두 점 머리·2선 패망선 (296제)",
+            "chapter": "2단원. 붙이면 젖히고 젖히면 뻗어라·두 점 머리·2선 패망선 (296제)",
+            "problemCount": 296,
+            "problemsCount": 296
           },
           {
             "code": "tech_connection_ch03",
-            "title": "3단원. 호구·양호구·쌍립 연결 (215제)",
-            "problemCount": 215
+            "chapterCode": "tech_connection_ch03",
+            "title": "3단원. 빈삼각 피하기와 나쁜 모양 만들기 (119제)",
+            "chapter": "3단원. 빈삼각 피하기와 나쁜 모양 만들기 (119제)",
+            "problemCount": 119,
+            "problemsCount": 119
           },
           {
             "code": "tech_connection_ch04",
-            "title": "4단원. 1선·2선 연결과 넘어가는 맥 (224제)",
-            "problemCount": 224
+            "chapterCode": "tech_connection_ch04",
+            "title": "4단원. 활로와 탈출·앞서가기 (222제)",
+            "chapter": "4단원. 활로와 탈출·앞서가기 (222제)",
+            "problemCount": 222,
+            "problemsCount": 222
           },
           {
             "code": "tech_connection_ch05",
-            "title": "5단원. 단수·자충·찝음·사석을 이용한 연결 (300제)",
-            "problemCount": 300
+            "chapterCode": "tech_connection_ch05",
+            "title": "5단원. 봉쇄하기와 무리수 응징 (250제)",
+            "chapter": "5단원. 봉쇄하기와 무리수 응징 (250제)",
+            "problemCount": 250,
+            "problemsCount": 250
           },
           {
             "code": "tech_connection_ch06",
-            "title": "6단원. 효율적인 연결과 실전 연결 (268제)",
-            "problemCount": 268
+            "chapterCode": "tech_connection_ch06",
+            "title": "6단원. 붙임과 건너붙임의 맥 (108제)",
+            "chapter": "6단원. 붙임과 건너붙임의 맥 (108제)",
+            "problemCount": 108,
+            "problemsCount": 108
           },
           {
             "code": "tech_connection_ch07",
-            "title": "7단원. 돌의 기본 끊음과 뚫어서 끊음 (402제)",
-            "problemCount": 402
+            "chapterCode": "tech_connection_ch07",
+            "title": "7단원. 젖힘과 이단젖힘의 맥 (116제)",
+            "chapter": "7단원. 젖힘과 이단젖힘의 맥 (116제)",
+            "problemCount": 116,
+            "problemsCount": 116
           },
           {
             "code": "tech_connection_ch08",
-            "title": "8단원. 단수·자충·맞보기를 이용한 끊음 (323제)",
-            "problemCount": 323
+            "chapterCode": "tech_connection_ch08",
+            "title": "8단원. 끼움과 찝음의 맥 (122제)",
+            "chapter": "8단원. 끼움과 찝음의 맥 (122제)",
+            "problemCount": 122,
+            "problemsCount": 122
           },
           {
             "code": "tech_connection_ch09",
-            "title": "9단원. 건너붙임·끼움·쌍립의 급소로 끊기 (233제)",
-            "problemCount": 233
+            "chapterCode": "tech_connection_ch09",
+            "title": "9단원. 쌍립·호구·모양의 급소 (206제)",
+            "chapter": "9단원. 쌍립·호구·모양의 급소 (206제)",
+            "problemCount": 206,
+            "problemsCount": 206
           },
           {
             "code": "tech_connection_ch10",
-            "title": "10단원. 실전 끊기와 끊기 대응 (279제)",
-            "problemCount": 279
+            "chapterCode": "tech_connection_ch10",
+            "title": "10단원. 중요한 돌·요석 잡기와 살리기 (176제)",
+            "chapter": "10단원. 중요한 돌·요석 잡기와 살리기 (176제)",
+            "problemCount": 176,
+            "problemsCount": 176
           },
           {
             "code": "tech_connection_ch11",
-            "title": "11단원. 단점과 약점 찾기·지키기 (310제)",
-            "problemCount": 310
+            "chapterCode": "tech_connection_ch11",
+            "title": "11단원. 사석작전·키워버리기와 회돌이 (114제)",
+            "chapter": "11단원. 사석작전·키워버리기와 회돌이 (114제)",
+            "problemCount": 114,
+            "problemsCount": 114
           },
           {
             "code": "tech_connection_ch12",
-            "title": "12단원. 한칸·날일자·입구자 기본 행마 (345제)",
-            "problemCount": 345
+            "chapterCode": "tech_connection_ch12",
+            "title": "12단원. 수순의 묘와 맞보기·양자충·후절수 (265제)",
+            "chapter": "12단원. 수순의 묘와 맞보기·양자충·후절수 (265제)",
+            "problemCount": 265,
+            "problemsCount": 265
           },
           {
             "code": "tech_connection_ch13",
-            "title": "13단원. 붙이면 젖히고 젖히면 뻗어라·두 점 머리·2선 패망선 (299제)",
-            "problemCount": 299
-          },
-          {
-            "code": "tech_connection_ch14",
-            "title": "14단원. 빈삼각 피하기와 나쁜 모양 만들기 (120제)",
-            "problemCount": 120
-          },
-          {
-            "code": "tech_connection_ch15",
-            "title": "15단원. 활로와 탈출·앞서가기 (320제)",
-            "problemCount": 320
-          },
-          {
-            "code": "tech_connection_ch16",
-            "title": "16단원. 봉쇄하기와 무리수 응징 (276제)",
-            "problemCount": 276
-          },
-          {
-            "code": "tech_connection_ch17",
-            "title": "17단원. 붙임과 건너붙임의 맥 (108제)",
-            "problemCount": 108
-          },
-          {
-            "code": "tech_connection_ch18",
-            "title": "18단원. 젖힘과 이단젖힘의 맥 (117제)",
-            "problemCount": 117
-          },
-          {
-            "code": "tech_connection_ch19",
-            "title": "19단원. 끼움과 찝음의 맥 (122제)",
-            "problemCount": 122
-          },
-          {
-            "code": "tech_connection_ch20",
-            "title": "20단원. 쌍립·호구·모양의 급소 (206제)",
-            "problemCount": 206
-          },
-          {
-            "code": "tech_connection_ch21",
-            "title": "21단원. 중요한 돌·요석 잡기와 살리기 (176제)",
-            "problemCount": 176
-          },
-          {
-            "code": "tech_connection_ch22",
-            "title": "22단원. 사석작전·키워버리기와 회돌이 (213제)",
-            "problemCount": 213
-          },
-          {
-            "code": "tech_connection_ch23",
-            "title": "23단원. 수순의 묘와 맞보기·양자충·후절수 (301제)",
-            "problemCount": 301
-          },
-          {
-            "code": "tech_connection_ch24",
-            "title": "24단원. 돌을 잡는 맥과 실전 수읽기 (459제)",
-            "problemCount": 459
+            "chapterCode": "tech_connection_ch13",
+            "title": "13단원. 돌을 잡는 맥과 실전 수읽기 (337제)",
+            "chapter": "13단원. 돌을 잡는 맥과 실전 수읽기 (337제)",
+            "problemCount": 337,
+            "problemsCount": 337
           }
-        ],
-        "book": "🛡️ 행마와 맥 완전정복 마스터",
-        "problemCount": 5915
+        ]
       },
       {
         "code": "tech_endgame",
