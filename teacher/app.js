@@ -219,7 +219,7 @@
   /* ---------- 강사모드 진입 (회원 계정 연동 전 다이렉트 진입) ---------- */
   /* ---------- 카탈로그 및 교재 로드 ---------- */
   function initCatalog() {
-    fetch('data/catalog.json?v=1794048819')
+    fetch('data/catalog.json?v=1794049439')
       .then(function (res) { return res.json(); })
       .then(function (cat) {
         state.catalog = cat;
@@ -317,7 +317,7 @@
         console.warn('Custom book parse error:', e);
       }
     }
-    fetch('data/books/book_' + code + '.json?v=1794048819')
+    fetch('data/books/book_' + code + '.json?v=1794049439')
       .then(function (res) { return res.json(); })
       .then(function (bookData) {
         bookData.bookCode = code;
@@ -2668,6 +2668,9 @@
         setBoardEditTool(null);
       } else if (isOpening) {
         syncProbEditDrawerUI();
+        setTimeout(function () {
+          drawer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }, 50);
       }
     });
 

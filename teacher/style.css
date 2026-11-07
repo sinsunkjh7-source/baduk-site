@@ -278,7 +278,7 @@ html, body {
   box-shadow: 0 0 0 3px rgba(74, 138, 58, 0.18);
 }
 
-.problem-list-section { flex: 1 1 auto; display: flex; flex-direction: column; min-height: 250px; }
+.problem-list-section { flex: 1; display: flex; flex-direction: column; min-height: 0; }
 .section-title-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
 .problem-progress { font-size: 13px; font-weight: 800; color: var(--green-deep); }
 .problem-grid {
@@ -286,10 +286,8 @@ html, body {
   grid-template-columns: repeat(4, 1fr);
   gap: 6px;
   overflow-y: auto;
-  overflow-x: hidden;
   padding: 2px 4px 6px 2px;
-  flex: 1 1 auto;
-  min-height: 200px;
+  max-height: 202px;
   box-sizing: border-box;
   scroll-behavior: smooth;
 }
@@ -1047,10 +1045,10 @@ html, body {
 .prob-edit-drawer {
   margin-top: 8px;
   padding-top: 8px;
-  border-top: 1.5px dashed #cbd5e1;
+  border-top: 1.5px dashed #94a3b8;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
   width: 100%;
   box-sizing: border-box;
   animation: pedFadeIn 0.16s ease-out;
@@ -1080,15 +1078,14 @@ html, body {
 
 .ped-group {
   background: #f8fafc;
-  border: 1px solid #e2e8f0;
+  border: 1px solid #cbd5e1;
   border-radius: 8px;
-  padding: 6px 7px;
+  padding: 7px 8px;
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 6px;
   width: 100%;
   box-sizing: border-box;
-  overflow: hidden;
 }
 .ped-group-header {
   display: flex;
@@ -1195,9 +1192,10 @@ html, body {
 }
 .ped-action-row.ped-order-row {
   display: grid;
-  grid-template-columns: 1fr 1fr 42px 1fr 1.25fr;
-  gap: 3px;
+  grid-template-columns: 1fr 1fr 46px 1fr 1.25fr;
+  gap: 4px;
   width: 100%;
+  align-items: center;
 }
 .ped-act-btn {
   min-width: 0;
@@ -1300,19 +1298,4 @@ html, body {
 }
 .ped-link-btn.danger-text {
   color: #dc2626;
-}
-
-/* 짧은 화면(노트북·확대 브라우저)에서도 문제 목록이 보이게 (tall-list) */
-@media (max-height: 760px) {
-  .teacher-sidebar { padding: 10px 12px 12px; gap: 8px; }
-  .problem-list-section { min-height: 220px; }
-  .problem-grid { min-height: 170px; gap: 5px; }
-  .prob-btn { height: 30px; font-size: 12.5px; }
-  .form-select { padding: 8px 10px; font-size: 13px; }
-}
-@media (max-height: 640px) {
-  .teacher-sidebar { gap: 6px; }
-  .problem-list-section { min-height: 190px; }
-  .problem-grid { min-height: 150px; }
-  .prob-btn { height: 27px; font-size: 12px; }
 }
