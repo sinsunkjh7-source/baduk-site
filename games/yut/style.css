@@ -1027,3 +1027,73 @@ canvas#yutBoard {
   .stick-box { gap: 12px; }
   .turn-center-banner { width: 94% !important; }
 }
+
+/* 투명 배너 + 보유패 확대 (yut-clear-banner) */
+.turn-center-banner {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: 0 !important;
+  padding: 4px 8px !important;
+}
+.turn-title {
+  text-shadow: 0 1px 0 rgba(255,255,255,.95), 0 0 10px rgba(255,255,255,.9), 0 2px 6px rgba(0,0,0,.18);
+}
+.turn-sub {
+  color: #1f2937 !important;
+  text-shadow: 0 1px 0 rgba(255,255,255,.95), 0 0 8px rgba(255,255,255,.9);
+}
+.turn-center-banner.is-win {
+  background: rgba(255,255,255,.55) !important;
+  border: 0 !important;
+  box-shadow: 0 6px 22px rgba(20,40,15,.12) !important;
+  border-radius: 14px;
+}
+
+/* 보유패 더 크게 */
+.hand-label { font-size: 24px !important; font-weight: 900; }
+.hand-chip { font-size: 22px !important; padding: 8px 16px !important; border-radius: 12px !important; }
+.empty-hand { font-size: 20px !important; }
+.hand-chips { gap: 8px; }
+
+/* 배너 가독성 (yut-clear-v2) */
+.turn-title {
+  color: #14532d !important;
+  text-shadow: 0 0 3px #fff, 0 0 8px #fff, 0 0 14px rgba(255,255,255,.9), 0 2px 4px rgba(0,0,0,.18) !important;
+}
+.turn-sub {
+  font-size: 17px !important;
+  color: #1f2937 !important;
+  text-shadow: 0 0 3px #fff, 0 0 9px #fff, 0 1px 3px rgba(255,255,255,.95) !important;
+}
+.turn-center-banner.is-win {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+.turn-center-banner.is-win .turn-sub { color: #166534 !important; }
+
+/* 배너 자리 확보 (yut-banner-space) */
+.arena-center-col { padding-top: 40px; }
+.turn-center-banner { top: 2px !important; }
+canvas#yutBoard {
+  max-width: min(calc(100vh - 345px), calc(100vw - 780px), 940px) !important;
+  max-height: calc(100vh - 345px) !important;
+}
+@media (max-width: 760px) {
+  .arena-center-col { padding-top: 34px; }
+}
+
+/* 모바일 재정리 (yut-mobile-v2) */
+@media (max-width: 760px) {
+  .arena-center-col { padding-top: 30px; }
+  canvas#yutBoard {
+    width: 92vw !important;
+    max-width: 92vw !important;
+    height: auto !important;
+    max-height: none !important;
+  }
+  .throw-controls { flex-wrap: wrap; justify-content: flex-start; gap: 8px; }
+  .hand-container { flex: 1 1 100%; justify-content: flex-start; flex-wrap: wrap; }
+  .hand-label { font-size: 18px !important; }
+  .hand-chip { font-size: 16px !important; padding: 6px 12px !important; }
+  .btn-throw { margin-right: 0; }
+}
