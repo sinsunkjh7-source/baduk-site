@@ -442,7 +442,11 @@
 
   function drawTargets(c, t) {
     targets.forEach(function (tg) {
-      ICONS[tg.icon](c, tg.x, tg.y, tg.r * 1.45, null);
+      c.save();
+      c.fillStyle = 'rgba(40,30,15,.14)';
+      c.beginPath(); c.ellipse(tg.x + 2, tg.y + tg.r * 0.46, tg.r * 0.5, tg.r * 0.16, 0, 0, 6.283); c.fill();
+      c.restore();
+      ICONS[tg.icon](c, tg.x, tg.y, tg.r * 1.18, null);
       if (found[tg.id]) {
         c.beginPath(); c.arc(tg.x, tg.y, tg.r * 1.15, 0, 6.283);
         c.strokeStyle = '#4a8a3a'; c.lineWidth = 4; c.stroke();
@@ -461,23 +465,326 @@
     }
   }
 
+  function drawClassroomProps(c) {
+    drawBackground(c);
+    drawWindow(c);
+    drawPoster(c);
+    drawWallPhoto(c);
+    drawShelf(c);
+    drawLamp(c);
+    drawDesk(c);
+    drawBoard(c);
+    drawDeskBooks(c);
+    drawBowls(c);
+    drawCup(c);
+    drawChair(c);
+    drawPlant(c);
+    drawRugAndCat(c);
+  }
+
+  /* ---------- 부엌 ---------- */
+  function drawKitchenProps(c) {
+    c.fillStyle = '#eef3ee'; c.fillRect(0, 0, W, 520);
+    c.strokeStyle = 'rgba(150,170,150,.35)'; c.lineWidth = 1.5;
+    for (var x = 0; x < W; x += 50) { c.beginPath(); c.moveTo(x, 0); c.lineTo(x, 520); c.stroke(); }
+    for (var y = 0; y < 520; y += 50) { c.beginPath(); c.moveTo(0, y); c.lineTo(W, y); c.stroke(); }
+
+    var fg = c.createLinearGradient(0, 520, 0, H);
+    fg.addColorStop(0, '#cfd6cd'); fg.addColorStop(1, '#b9c2b8');
+    c.fillStyle = fg; c.fillRect(0, 520, W, H - 520);
+    c.strokeStyle = 'rgba(120,135,120,.35)'; c.lineWidth = 2;
+    for (var gx = 0; gx < W; gx += 80) { c.beginPath(); c.moveTo(gx, 520); c.lineTo(gx - 30, H); c.stroke(); }
+
+    c.fillStyle = '#d9b98a'; c.fillRect(60, 60, 520, 170);
+    c.fillStyle = '#c9a877';
+    [60, 190, 320, 450].forEach(function (x0) { c.fillRect(x0, 60, 126, 170); });
+    c.fillStyle = '#8a6a3a';
+    [185, 315, 445].forEach(function (x0) { c.fillRect(x0, 140, 6, 26); });
+
+    c.fillStyle = '#e9eef0'; c.fillRect(760, 90, 190, 330);
+    c.strokeStyle = '#c3ccd0'; c.lineWidth = 4; c.strokeRect(760, 90, 190, 330);
+    c.beginPath(); c.moveTo(760, 250); c.lineTo(950, 250); c.stroke();
+    c.fillStyle = '#9aa6ab'; c.fillRect(770, 170, 8, 50); c.fillRect(770, 280, 8, 60);
+    c.fillStyle = '#e2543a'; c.beginPath(); c.arc(880, 150, 9, 0, 6.283); c.fill();
+    c.fillStyle = '#4a8a3a'; c.fillRect(900, 300, 26, 30);
+
+    c.fillStyle = '#f2f5f2'; c.fillRect(40, 430, 700, 26);
+    c.fillStyle = '#d6dcda'; c.fillRect(40, 456, 700, 90);
+    c.strokeStyle = '#c3cbc9'; c.lineWidth = 3;
+    [40, 275, 510].forEach(function (x0) { c.strokeRect(x0 + 6, 462, 220, 76); });
+
+    c.fillStyle = '#4a4f52'; c.fillRect(90, 404, 210, 26);
+    c.fillStyle = '#8a8f92';
+    c.beginPath(); c.ellipse(150, 410, 34, 12, 0, 0, 6.283); c.fill();
+    c.fillStyle = '#b9bec1'; c.fillRect(120, 366, 62, 40);
+    c.fillStyle = '#9aa0a3'; c.fillRect(112, 360, 78, 10);
+
+    c.fillStyle = '#cfd6d8'; c.fillRect(380, 396, 180, 34);
+    c.fillStyle = '#aeb7ba';
+    c.beginPath(); c.ellipse(470, 412, 62, 18, 0, 0, 6.283); c.fill();
+    c.strokeStyle = '#8a9497'; c.lineWidth = 7; c.lineCap = 'round';
+    c.beginPath(); c.moveTo(470, 396); c.lineTo(470, 350); c.quadraticCurveTo(470, 330, 500, 330); c.stroke();
+
+    c.fillStyle = '#b98d5c'; c.fillRect(600, 300, 140, 10);
+    c.strokeStyle = '#6b6f72'; c.lineWidth = 5;
+    [620, 660, 700].forEach(function (x0, i) {
+      c.beginPath(); c.moveTo(x0, 300); c.lineTo(x0, 334); c.stroke();
+      c.beginPath(); c.arc(x0, 344, 17 + i * 2, 0, 6.283); c.stroke();
+    });
+
+    c.fillStyle = '#c08a52'; c.fillRect(120, 560, 420, 22);
+    c.fillStyle = '#a3713f'; c.fillRect(150, 582, 20, 90); c.fillRect(490, 582, 20, 90);
+
+    c.fillStyle = '#b5764a';
+    c.beginPath(); c.ellipse(300, 552, 52, 20, 0, 0, 6.283); c.fill();
+    c.fillStyle = '#cf3f3b';
+    c.beginPath(); c.arc(282, 540, 14, 0, 6.283); c.fill();
+    c.beginPath(); c.arc(312, 536, 14, 0, 6.283); c.fill();
+    c.fillStyle = '#f0b429';
+    c.beginPath(); c.arc(300, 552, 13, 0, 6.283); c.fill();
+
+    c.fillStyle = '#5f8fb8'; c.fillRect(420, 528, 26, 32);
+    c.fillStyle = '#4a7599'; c.fillRect(420, 528, 26, 7);
+
+    /* 조리대 위 항아리 3개 */
+    [[560, 400], [592, 396], [622, 402]].forEach(function (j, i) {
+      c.fillStyle = ['#e0c9a0', '#cfa87a', '#e6d5b4'][i];
+      c.fillRect(j[0], j[1] - 22, 26, 22);
+      c.fillStyle = '#8a6a3a'; c.fillRect(j[0] - 2, j[1] - 26, 30, 6);
+    });
+    /* 행주 */
+    c.fillStyle = 'rgba(240,245,240,.9)';
+    c.fillRect(620, 424, 46, 16);
+    c.fillStyle = 'rgba(200,210,200,.7)';
+    c.fillRect(620, 434, 46, 3);
+    /* 주전자 */
+    c.fillStyle = '#b9bec1';
+    c.beginPath(); c.arc(686, 412, 18, 0, 6.283); c.fill();
+    c.strokeStyle = '#9aa0a3'; c.lineWidth = 4;
+    c.beginPath(); c.arc(700, 404, 12, -0.6, 1.4); c.stroke();
+  }
+
+  /* ---------- 공원 ---------- */
+  function drawParkProps(c) {
+    var sky = c.createLinearGradient(0, 0, 0, 430);
+    sky.addColorStop(0, '#bfe3f5'); sky.addColorStop(1, '#e9f7e5');
+    c.fillStyle = sky; c.fillRect(0, 0, W, 430);
+
+    c.fillStyle = 'rgba(255,220,120,.9)';
+    c.beginPath(); c.arc(840, 110, 54, 0, 6.283); c.fill();
+    c.fillStyle = 'rgba(255,235,170,.35)';
+    c.beginPath(); c.arc(840, 110, 78, 0, 6.283); c.fill();
+
+    c.fillStyle = 'rgba(255,255,255,.9)';
+    [[160, 110, 34], [230, 96, 26], [200, 130, 22], [620, 90, 28], [670, 104, 20]].forEach(function (p) {
+      c.beginPath(); c.arc(p[0], p[1], p[2], 0, 6.283); c.fill();
+    });
+
+    var grass = c.createLinearGradient(0, 400, 0, H);
+    grass.addColorStop(0, '#8fc46f'); grass.addColorStop(1, '#6fae55');
+    c.fillStyle = grass; c.fillRect(0, 400, W, H - 400);
+
+    c.fillStyle = '#a9cf8f';
+    c.beginPath(); c.moveTo(-40, 400); c.lineTo(160, 250); c.lineTo(360, 400); c.closePath(); c.fill();
+    c.fillStyle = '#95c07d';
+    c.beginPath(); c.moveTo(280, 400); c.lineTo(470, 268); c.lineTo(660, 400); c.closePath(); c.fill();
+
+    c.fillStyle = '#e0d2ae';
+    c.beginPath();
+    c.moveTo(380, H); c.lineTo(560, H); c.lineTo(520, 430); c.lineTo(470, 430); c.closePath(); c.fill();
+
+    [[120, 430, 74], [300, 452, 58], [880, 440, 66]].forEach(function (t) {
+      c.fillStyle = '#8a5a34';
+      c.fillRect(t[0] - 9, t[1] - 10, 18, t[2] * 0.7);
+      c.fillStyle = '#4f9a4a';
+      c.beginPath(); c.arc(t[0], t[1] - t[2] * 0.55, t[2] * 0.5, 0, 6.283); c.fill();
+      c.fillStyle = '#5fae57';
+      c.beginPath(); c.arc(t[0] - t[2] * 0.28, t[1] - t[2] * 0.3, t[2] * 0.36, 0, 6.283); c.fill();
+      c.beginPath(); c.arc(t[0] + t[2] * 0.3, t[1] - t[2] * 0.34, t[2] * 0.34, 0, 6.283); c.fill();
+    });
+
+    c.fillStyle = '#7fc4e8';
+    c.beginPath(); c.ellipse(250, 590, 150, 54, 0, 0, 6.283); c.fill();
+    c.fillStyle = '#a9dcf4';
+    c.beginPath(); c.ellipse(250, 582, 120, 38, 0, 0, 6.283); c.fill();
+    c.strokeStyle = 'rgba(255,255,255,.6)'; c.lineWidth = 3;
+    c.beginPath(); c.arc(210, 578, 30, 0.2, 2.4); c.stroke();
+    c.beginPath(); c.arc(280, 596, 22, 3.4, 5.6); c.stroke();
+
+    c.fillStyle = '#b07c46';
+    c.fillRect(640, 520, 190, 16);
+    c.fillRect(640, 546, 190, 16);
+    c.fillStyle = '#8f6134';
+    c.fillRect(656, 536, 14, 70); c.fillRect(800, 536, 14, 70);
+    c.fillRect(640, 470, 16, 66);
+
+    c.fillStyle = 'rgba(226,84,58,.65)';
+    c.beginPath(); c.ellipse(760, 640, 92, 30, 0, 0, 6.283); c.fill();
+    c.strokeStyle = 'rgba(255,255,255,.5)'; c.lineWidth = 3;
+    c.beginPath(); c.ellipse(760, 640, 60, 18, 0, 0, 6.283); c.stroke();
+    c.fillStyle = '#c99c68';
+    c.fillRect(716, 600, 54, 34);
+    c.strokeStyle = '#a87d45'; c.lineWidth = 4;
+    c.beginPath(); c.arc(743, 600, 20, Math.PI, 0); c.stroke();
+
+    /* 연 (별 타깃이 연에 붙어 있음) */
+    c.strokeStyle = 'rgba(120,110,90,.55)'; c.lineWidth = 2;
+    c.beginPath(); c.moveTo(330, 168); c.quadraticCurveTo(392, 300, 470, 400); c.stroke();
+    c.fillStyle = '#4f81bd';
+    c.beginPath(); c.moveTo(330, 112); c.lineTo(374, 168); c.lineTo(330, 226); c.lineTo(286, 168); c.closePath(); c.fill();
+    c.strokeStyle = '#3f6ea8'; c.lineWidth = 3; c.stroke();
+
+    /* 길 돌멩이 */
+    c.fillStyle = 'rgba(180,170,140,.55)';
+    [[440, 520], [500, 560], [452, 600], [512, 640]].forEach(function (p) {
+      c.beginPath(); c.ellipse(p[0], p[1], 9, 5, 0, 0, 6.283); c.fill();
+    });
+
+    /* 벤치 그림자 */
+    c.fillStyle = 'rgba(30,60,20,.14)';
+    c.beginPath(); c.ellipse(735, 610, 100, 14, 0, 0, 6.283); c.fill();
+
+    [[420, 470], [470, 500], [540, 466], [980, 520]].forEach(function (p, i) {
+      c.fillStyle = ['#e4572e', '#f2b134', '#d96ba0', '#8e6fd8'][i % 4];
+      for (var k = 0; k < 5; k++) {
+        var a = k * 1.256;
+        c.beginPath(); c.arc(p[0] + Math.cos(a) * 8, p[1] + Math.sin(a) * 8, 7, 0, 6.283); c.fill();
+      }
+      c.fillStyle = '#ffd24a';
+      c.beginPath(); c.arc(p[0], p[1], 5, 0, 6.283); c.fill();
+    });
+  }
+
+  /* ---------- 바닷가 ---------- */
+  function drawBeachProps(c) {
+    var sky = c.createLinearGradient(0, 0, 0, 380);
+    sky.addColorStop(0, '#bfe6f7'); sky.addColorStop(1, '#f2fbff');
+    c.fillStyle = sky; c.fillRect(0, 0, W, 380);
+
+    c.fillStyle = 'rgba(255,214,102,.95)';
+    c.beginPath(); c.arc(760, 120, 60, 0, 6.283); c.fill();
+    c.fillStyle = 'rgba(255,235,170,.3)';
+    c.beginPath(); c.arc(760, 120, 92, 0, 6.283); c.fill();
+
+    c.strokeStyle = '#6b7d85'; c.lineWidth = 4; c.lineCap = 'round';
+    [[180, 120], [240, 96], [300, 130]].forEach(function (p) {
+      c.beginPath(); c.moveTo(p[0] - 14, p[1]); c.quadraticCurveTo(p[0] - 6, p[1] - 10, p[0], p[1]);
+      c.quadraticCurveTo(p[0] + 6, p[1] - 10, p[0] + 14, p[1]); c.stroke();
+    });
+
+    var sea = c.createLinearGradient(0, 380, 0, 520);
+    sea.addColorStop(0, '#4fa9d8'); sea.addColorStop(1, '#7fc9e6');
+    c.fillStyle = sea; c.fillRect(0, 380, W, 140);
+    c.strokeStyle = 'rgba(255,255,255,.55)'; c.lineWidth = 3;
+    for (var i = 0; i < 5; i++) {
+      c.beginPath();
+      c.moveTo(60 + i * 60, 420 + i * 14);
+      c.quadraticCurveTo(120 + i * 60, 410 + i * 14, 180 + i * 60, 420 + i * 14);
+      c.stroke();
+    }
+    c.fillStyle = 'rgba(255,255,255,.75)';
+    c.beginPath();
+    c.moveTo(0, 516);
+    for (var x = 0; x <= W; x += 50) c.quadraticCurveTo(x + 25, 500, x + 50, 516);
+    c.lineTo(W, 540); c.lineTo(0, 540); c.closePath(); c.fill();
+
+    var sand = c.createLinearGradient(0, 530, 0, H);
+    sand.addColorStop(0, '#f2dfb4'); sand.addColorStop(1, '#e6cd97');
+    c.fillStyle = sand; c.fillRect(0, 530, W, H - 530);
+
+    c.strokeStyle = '#a3713f'; c.lineWidth = 8;
+    c.beginPath(); c.moveTo(180, 600); c.lineTo(180, 400); c.stroke();
+    var um = c.createLinearGradient(60, 380, 300, 420);
+    um.addColorStop(0, '#e2543a'); um.addColorStop(0.5, '#f7f3ea'); um.addColorStop(1, '#e2543a');
+    c.fillStyle = um;
+    c.beginPath(); c.moveTo(60, 420); c.quadraticCurveTo(180, 330, 300, 420); c.closePath(); c.fill();
+
+    c.fillStyle = 'rgba(90,160,200,.5)';
+    c.beginPath(); c.ellipse(360, 636, 110, 30, 0, 0, 6.283); c.fill();
+    c.fillStyle = '#d9a441'; c.fillRect(300, 596, 52, 34);
+    c.strokeStyle = '#a3713f'; c.lineWidth = 4;
+    c.beginPath(); c.arc(326, 596, 18, Math.PI, 0); c.stroke();
+
+    c.fillStyle = '#e8cf9b';
+    c.fillRect(620, 604, 120, 60);
+    c.fillRect(646, 566, 68, 40);
+    c.fillStyle = '#dcc08a';
+    c.beginPath(); c.moveTo(620, 604); c.lineTo(680, 604); c.lineTo(620, 640); c.closePath(); c.fill();
+    c.beginPath(); c.moveTo(740, 604); c.lineTo(680, 604); c.lineTo(740, 640); c.closePath(); c.fill();
+    c.strokeStyle = '#8a6a3a'; c.lineWidth = 4;
+    c.beginPath(); c.moveTo(680, 566); c.lineTo(680, 528); c.stroke();
+    c.fillStyle = '#e2543a';
+    c.beginPath(); c.moveTo(680, 528); c.lineTo(710, 538); c.lineTo(680, 548); c.closePath(); c.fill();
+
+    /* 조개 */
+    c.fillStyle = '#f6e6d8';
+    [[430, 690], [880, 600], [660, 690]].forEach(function (p) {
+      c.beginPath(); c.arc(p[0], p[1], 12, Math.PI, 0); c.closePath(); c.fill();
+      c.strokeStyle = '#e0c9b4'; c.lineWidth = 1.5; c.stroke();
+    });
+    /* 양동이 */
+    c.fillStyle = '#e2543a'; c.fillRect(360, 626, 44, 34);
+    c.strokeStyle = '#c9402f'; c.lineWidth = 3;
+    c.beginPath(); c.arc(382, 626, 22, Math.PI, 0); c.stroke();
+
+    c.fillStyle = '#f2f5f2';
+    c.beginPath(); c.arc(520, 660, 26, 0, 6.283); c.fill();
+    c.strokeStyle = '#e2543a'; c.lineWidth = 5;
+    c.beginPath(); c.arc(520, 660, 26, 0.4, 2.2); c.stroke();
+    c.strokeStyle = '#4a8a3a';
+    c.beginPath(); c.arc(520, 660, 26, 3.6, 5.4); c.stroke();
+  }
+
+  /* ================= 장면 목록 ================= */
+  var SCENES = [
+    { id: 'classroom', name: '바둑 교실', draw: drawClassroomProps, spots: [
+      { id: 'key', name: '열쇠', x: 700, y: 232, r: 26, icon: 'key' },
+      { id: 'glasses', name: '안경', x: 634, y: 452, r: 28, icon: 'glasses' },
+      { id: 'pencil', name: '연필', x: 574, y: 404, r: 24, icon: 'pencil' },
+      { id: 'apple', name: '사과', x: 918, y: 288, r: 26, icon: 'apple' },
+      { id: 'star', name: '별', x: 424, y: 200, r: 24, icon: 'star' },
+      { id: 'fish', name: '물고기', x: 268, y: 656, r: 26, icon: 'fish' },
+      { id: 'butterfly', name: '나비', x: 250, y: 108, r: 24, icon: 'butterfly' },
+      { id: 'coin', name: '동전', x: 786, y: 660, r: 24, icon: 'coin' }
+    ] },
+    { id: 'kitchen', name: '부엌', draw: drawKitchenProps, spots: [
+      { id: 'spoon', name: '숟가락', x: 250, y: 424, r: 22, icon: 'pencil' },
+      { id: 'cup', name: '컵', x: 432, y: 542, r: 22, icon: 'coin' },
+      { id: 'apple', name: '사과', x: 300, y: 536, r: 26, icon: 'apple' },
+      { id: 'key', name: '열쇠', x: 930, y: 330, r: 24, icon: 'key' },
+      { id: 'glasses', name: '안경', x: 340, y: 424, r: 24, icon: 'glasses' },
+      { id: 'star', name: '별', x: 820, y: 296, r: 24, icon: 'star' },
+      { id: 'coin', name: '동전', x: 600, y: 660, r: 22, icon: 'coin' },
+      { id: 'fish', name: '물고기', x: 700, y: 470, r: 26, icon: 'fish' }
+    ] },
+    { id: 'park', name: '공원', draw: drawParkProps, spots: [
+      { id: 'key', name: '열쇠', x: 700, y: 528, r: 24, icon: 'key' },
+      { id: 'glasses', name: '안경', x: 800, y: 648, r: 24, icon: 'glasses' },
+      { id: 'apple', name: '사과', x: 742, y: 594, r: 22, icon: 'apple' },
+      { id: 'fish', name: '물고기', x: 250, y: 588, r: 24, icon: 'fish' },
+      { id: 'butterfly', name: '나비', x: 470, y: 500, r: 22, icon: 'butterfly' },
+      { id: 'star', name: '별', x: 330, y: 168, r: 26, icon: 'star' },
+      { id: 'coin', name: '동전', x: 470, y: 646, r: 22, icon: 'coin' },
+      { id: 'pencil', name: '연필', x: 900, y: 470, r: 24, icon: 'pencil' }
+    ] },
+    { id: 'beach', name: '바닷가', draw: drawBeachProps, spots: [
+      { id: 'star', name: '불가사리', x: 900, y: 672, r: 24, icon: 'star' },
+      { id: 'fish', name: '물고기', x: 250, y: 458, r: 24, icon: 'fish' },
+      { id: 'glasses', name: '안경', x: 330, y: 610, r: 24, icon: 'glasses' },
+      { id: 'key', name: '열쇠', x: 440, y: 660, r: 22, icon: 'key' },
+      { id: 'coin', name: '동전', x: 600, y: 668, r: 22, icon: 'coin' },
+      { id: 'apple', name: '사과', x: 760, y: 660, r: 22, icon: 'apple' },
+      { id: 'butterfly', name: '나비', x: 150, y: 396, r: 22, icon: 'butterfly' },
+      { id: 'pencil', name: '연필', x: 850, y: 620, r: 24, icon: 'pencil' }
+    ] }
+  ];
+
+  var sceneIdx = 0;
+
   function drawScene(t) {
     ctx.clearRect(0, 0, W, H);
-    drawBackground(ctx);
-    drawWindow(ctx);
-    drawPoster(ctx);
-    drawWallPhoto(ctx);
-    drawShelf(ctx);
-    drawLamp(ctx);
-    drawDesk(ctx);
-    drawBoard(ctx);
-    drawDeskBooks(ctx);
-    drawBowls(ctx);
-    drawCup(ctx);
-    drawChair(ctx);
-    drawPlant(ctx);
-    drawRugAndCat(ctx);
-    drawTargets(ctx, t);
+    SCENES[sceneIdx].draw(ctx);
+    drawTargets(ctx, t || 0);
   }
 
   /* ================= 칩/점수 ================= */
@@ -514,12 +821,19 @@
 
   /* ================= 진행 ================= */
   function newGame() {
+    var forced = /[?&]scene=([a-z]+)/.exec(location.search);
+    if (forced) {
+      for (var si = 0; si < SCENES.length; si++) if (SCENES[si].id === forced[1]) sceneIdx = si;
+    }
     over = false; found = {}; scores = [0, 0]; turn = 0; hints = 3; hintId = null;
-    targets = SPOTS.map(function (s) { return { id: s.id, name: s.name, x: s.x, y: s.y, r: s.r, icon: s.icon }; });
+    var next = sceneIdx;
+    if (!forced && SCENES.length > 1) { do { next = Math.floor(Math.random() * SCENES.length); } while (next === sceneIdx); }
+    sceneIdx = next;
+    targets = SCENES[sceneIdx].spots.map(function (sp) { return { id: sp.id, name: sp.name, x: sp.x, y: sp.y, r: sp.r, icon: sp.icon }; });
     el('resultPanel').hidden = true;
     renderTargetChips();
     renderScores();
-    msg('그림 속에서 물건 ' + targets.length + '개를 찾아 누르세요.');
+    msg(SCENES[sceneIdx].name + ' — 물건 ' + targets.length + '개를 찾아 누르세요.');
   }
 
   function click(e) {
