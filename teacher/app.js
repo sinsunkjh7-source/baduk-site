@@ -219,7 +219,7 @@
   /* ---------- 강사모드 진입 (회원 계정 연동 전 다이렉트 진입) ---------- */
   /* ---------- 카탈로그 및 교재 로드 ---------- */
   function initCatalog() {
-    fetch('data/catalog.json?v=1794047146')
+    fetch('data/catalog.json?v=1794047666')
       .then(function (res) { return res.json(); })
       .then(function (cat) {
         state.catalog = cat;
@@ -233,6 +233,11 @@
 
   // 🌟 마지막 선택한 교육 시리즈/교재/단원/문제 영구 보존 및 복원 🌟
   function populateSeries() {
+    var sLbl = document.getElementById('seriesLabelText');
+    if (sLbl) sLbl.textContent = '📚 교육 시리즈 (총 ' + state.catalog.length + '종)';
+    var totalBooks = state.catalog.reduce(function(acc, s){ return acc + (s.books ? s.books.length : 0); }, 0);
+    var bLbl = document.getElementById('booksLabelText');
+    if (bLbl) bLbl.textContent = '📖 권 선택 (총 ' + totalBooks + '권)';
     seriesSelect.innerHTML = '';
     state.catalog.forEach(function (sec, idx) {
       var opt = document.createElement('option');
@@ -308,7 +313,7 @@
         console.warn('Custom book parse error:', e);
       }
     }
-    fetch('data/books/book_' + code + '.json?v=1794047146')
+    fetch('data/books/book_' + code + '.json?v=1794047666')
       .then(function (res) { return res.json(); })
       .then(function (bookData) {
         bookData.bookCode = code;
