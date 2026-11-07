@@ -416,7 +416,7 @@
           "type": "3",
           "question": "5. 1선의 촉촉수\r\n백△를 잡아보세요. (3수 표시)\r\n\r\n",
           "hint": "1선에 단수쳐서 상대의 돌을 촉촉수로 만듭니다.",
-          "data": ";B[rr];B[rq];B[qq];B[pp];B[op];B[oq];B[or];W[qr];W[pr];W[pq];W[os];W[nr];W[nq];W[np];T[pq];T[pr];T[qr]",
+          "data": ";W[ln];B[mn];B[nn];W[mo];B[no];W[lp];W[np];B[op];B[pp];W[nq];B[oq];W[pq];B[qq];B[rq];W[nr];B[or];W[pr];W[qr];B[rr];W[os];T[pq];T[pr];T[qr]",
           "answer1": ";B[qs];W[ps];B[ns]",
           "answer2": "",
           "answer3": "",
@@ -438,7 +438,7 @@
           "type": "3",
           "question": "5. 1선의 촉촉수\r\n백△를 잡아보세요. (3수 표시)\r\n\r\n",
           "hint": "잡힌 돌을 이용해 촉촉수를 만듭니다.",
-          "data": ";B[rr];B[qr];B[pr];B[or];B[nq];B[mq];B[lr];W[qs];W[ps];W[os];W[nr];W[mr];W[kr];W[lq];W[lp];T[os];T[ps];T[qs]",
+          "data": ";B[pm];W[mo];B[oo];W[lp];W[jq];W[lq];B[mq];B[nq];W[kr];B[lr];W[mr];W[nr];B[or];B[pr];B[qr];B[rr];W[os];W[ps];W[qs];T[os];T[ps];T[qs]",
           "answer1": ";B[rs];W[ns];B[ms]",
           "answer2": "",
           "answer3": "",
@@ -460,7 +460,7 @@
           "type": "3",
           "question": "5. 1선의 촉촉수\r\n백△를 잡아보세요. (3수 표시)\r\n\r\n",
           "hint": "1선에 단수쳐서 상대의 돌을 촉촉수로 만듭니다.",
-          "data": ";W[ss];W[rr];W[qs];W[ps];W[os];W[or];W[qq];W[qp];W[rp];W[qn];B[rq];B[qr];B[pr];B[pq];B[oq];B[nr];B[mq];T[or];T[os];T[ps];T[qs]",
+          "data": ";W[nn];W[qn];W[ko];W[qp];W[rp];W[kq];B[mq];B[oq];B[pq];W[qq];B[rq];W[kr];B[lr];B[nr];W[or];B[pr];B[qr];W[rr];W[os];W[ps];W[qs];W[ss];T[or];T[os];T[ps];T[qs]",
           "answer1": ";B[ns];W[rs];B[sr]",
           "answer2": "",
           "answer3": "",
@@ -866,5 +866,5 @@
     }
   ],
   "problemCount": 38,
-  "_buildVer": "v3-ch1-purified-23"
+  "_buildVer": "v4-ch1-user-curated-38"
 }
