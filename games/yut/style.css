@@ -1156,3 +1156,15 @@ canvas#yutBoard {
 
 /* 모드 선택 버튼 (yut-mode-btns) */
 .mode-btn.active { background: #1e293b !important; color: #fff !important; border-color: #1e293b !important; }
+
+/* 승리 배너 글자 외곽선 (yut-win-outline) */
+.turn-center-banner.is-win .turn-title,
+.turn-center-banner.is-win .turn-sub {
+  text-shadow:
+    2px 0 0 #fff, -2px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff,
+    1.5px 1.5px 0 #fff, -1.5px -1.5px 0 #fff, 1.5px -1.5px 0 #fff, -1.5px 1.5px 0 #fff,
+    0 4px 10px rgba(0,0,0,.18) !important;
+}
+.turn-center-banner.is-win { gap: 2px !important; }
+.turn-center-banner.is-win .turn-title { font-size: 25px !important; }
+.turn-center-banner.is-win .turn-sub { font-size: 18px !important; }
