@@ -219,7 +219,7 @@
   /* ---------- 강사모드 진입 (회원 계정 연동 전 다이렉트 진입) ---------- */
   /* ---------- 카탈로그 및 교재 로드 ---------- */
   function initCatalog() {
-    fetch('data/catalog.json?v=1794048040')
+    fetch('data/catalog.json?v=1794048248')
       .then(function (res) { return res.json(); })
       .then(function (cat) {
         state.catalog = cat;
@@ -243,7 +243,7 @@
       var opt = document.createElement('option');
       opt.value = idx;
       var tTitle = sec.title || '';
-      if (/^\d+\./.test(tTitle) || tTitle.indexOf('교육시리즈') !== -1) {
+      if (/^\d+\./.test(tTitle)) {
         opt.textContent = tTitle + ' (' + (sec.books ? sec.books.length : 0) + '권)';
       } else {
         opt.textContent = (idx + 1) + '. ' + tTitle + ' (' + (sec.books ? sec.books.length : 0) + '권)';
@@ -313,7 +313,7 @@
         console.warn('Custom book parse error:', e);
       }
     }
-    fetch('data/books/book_' + code + '.json?v=1794048040')
+    fetch('data/books/book_' + code + '.json?v=1794048248')
       .then(function (res) { return res.json(); })
       .then(function (bookData) {
         bookData.bookCode = code;
