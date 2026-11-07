@@ -219,7 +219,7 @@
   /* ---------- 강사모드 진입 (회원 계정 연동 전 다이렉트 진입) ---------- */
   /* ---------- 카탈로그 및 교재 로드 ---------- */
   function initCatalog() {
-    fetch('data/catalog.json?v=1794049439')
+    fetch('data/catalog.json?v=1794049670')
       .then(function (res) { return res.json(); })
       .then(function (cat) {
         state.catalog = cat;
@@ -304,7 +304,7 @@
         var savedCustom = localStorage.getItem('teacher_book_custom_' + code);
         if (savedCustom) {
           var customData = JSON.parse(savedCustom);
-          if (code === 'tech_atari' && customData._buildVer !== 'v2-clean') { localStorage.removeItem('teacher_book_custom_' + code); } else if (customData && Array.isArray(customData.chapters)) {
+          if (code === 'tech_atari' && customData._buildVer !== 'v2-clean') { localStorage.removeItem('teacher_book_custom_' + code); } else if (customData && Array.isArray(customData.chapters) && (customData.totalProblems > 0 || customData.chapters.some(function(c){ return (c.problems||[]).length > 0; }))) {
             customData.bookCode = code;
             state.currentBook = customData;
             currentBookTitle.textContent = customData.book || customData.title || ('교재 ' + code);
@@ -317,7 +317,7 @@
         console.warn('Custom book parse error:', e);
       }
     }
-    fetch('data/books/book_' + code + '.json?v=1794049439')
+    fetch('data/books/book_' + code + '.json?v=1794049670')
       .then(function (res) { return res.json(); })
       .then(function (bookData) {
         bookData.bookCode = code;
@@ -2660,17 +2660,23 @@
     if (!btnToggle || !drawer) return;
 
     btnToggle.addEventListener('click', function () {
-      var isOpening = drawer.hidden;
-      drawer.hidden = !isOpening;
-      btnToggle.classList.toggle('active', isOpening);
-      btnToggle.textContent = isOpening ? '🛠️ 편집 ▴' : '🛠️ 편집 ▾';
-      if (!isOpening && state.boardEditTool) {
-        setBoardEditTool(null);
-      } else if (isOpening) {
+      var isHidden = drawer.hasAttribute('hidden') || drawer.hidden || drawer.style.display === 'none';
+      if (isHidden) {
+        drawer.hidden = false;
+        drawer.removeAttribute('hidden');
+        drawer.style.display = 'flex';
+        btnToggle.classList.add('active');
+        btnToggle.textContent = '🛠️ 편집 ▴';
         syncProbEditDrawerUI();
-        setTimeout(function () {
-          drawer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        }, 50);
+      } else {
+        drawer.hidden = true;
+        drawer.setAttribute('hidden', '');
+        drawer.style.display = 'none';
+        btnToggle.classList.remove('active');
+        btnToggle.textContent = '🛠️ 편집 ▾';
+        if (state.boardEditTool) {
+          setBoardEditTool(null);
+        }
       }
     });
 
