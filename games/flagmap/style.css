@@ -117,3 +117,24 @@ body{
   .f-wrap{height:auto;min-height:calc(100dvh - var(--bks-nav-h,64px));overflow:visible}
   .f-mapwrap{min-height:300px}
 }
+
+/* 난이도 (f-diff) */
+.f-diff .f-diffbtn{
+  border:0;background:transparent;border-radius:8px;padding:7px 10px;
+  font-family:inherit;font-size:12.5px;font-weight:800;color:#6b7d62;cursor:pointer;white-space:nowrap;
+}
+.f-diff .f-diffbtn.active{background:var(--f-green);color:#fff}
+@media (max-width:760px){
+  .f-diff{order:6;width:100%}
+  .f-diff .f-diffbtn{flex:1 1 auto;padding:7px 4px;font-size:12px}
+}
+
+/* 단계 선택 (f-stage) */
+.f-stage{gap:4px;max-width:100%;overflow-x:auto;flex-wrap:nowrap;padding:4px}
+.f-stagebtn{
+  border:0;background:transparent;border-radius:8px;min-width:30px;padding:6px 8px;
+  font-family:inherit;font-size:12px;font-weight:800;color:#6b7d62;cursor:pointer;flex:0 0 auto;
+}
+.f-stagebtn.active{background:var(--f-green);color:#fff}
+.f-stagebtn.all{min-width:44px;border:1px solid var(--f-line)}
+.f-stagebtn.all.active{border-color:var(--f-green-deep)}
