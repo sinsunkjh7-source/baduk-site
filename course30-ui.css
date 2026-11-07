@@ -1,0 +1,41 @@
+/* Student-only additions. Teaching Zone's original appearance and toolbar are reused. */
+body.course30 #teacherApp{height:calc(100dvh - 64px);min-height:460px}
+body.course30 .teacher-sidebar{height:100%;max-height:none;overflow-y:auto;min-height:0}
+body.course30 .teacher-stage{min-height:0}
+body.course30 #btnToggleProbEdit,body.course30 #probEditDrawer{display:none!important}
+.course-intro{border-bottom:1px solid var(--border-light);padding-bottom:10px}
+.course-intro h1{font-size:18px;line-height:1.45;color:var(--green-deep);margin:6px 0}
+.course-status{font-size:11px;color:#806018;background:#fff6dc;border-radius:6px;padding:4px 7px;display:inline-block}
+.course-actions,.course-tabs,.course-role{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.course-actions button,.course-tabs button,.course-role button,.course-full{border:1px solid var(--border-light);border-radius:7px;padding:7px 10px;background:#f8fbf5;color:var(--green-deep);font:inherit;font-size:12px;font-weight:700;cursor:pointer}
+.course-actions a{font-size:12px;color:var(--green-deep);padding:7px 0}
+.course-tabs button[aria-pressed="true"],.course-role button[aria-pressed="true"]{background:var(--green);color:white;border-color:var(--green)}
+.course-role button:disabled{opacity:.4;cursor:default}
+.course-picker,.course-theory-panel{padding:18px;overflow:auto;min-height:0;width:100%}
+.course-picker h2,.course-theory-panel h2{font-size:24px;color:var(--green-deep);line-height:1.45;margin:0 0 10px}
+.course-picker p,.course-theory-panel p{font-size:14px;line-height:1.75;color:var(--muted);margin:0 0 18px}
+.course-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;align-content:start}
+.course-card{display:flex;flex-direction:column;gap:9px;text-align:left;border:1.5px solid var(--border-light);background:white;color:var(--ink);padding:16px;border-radius:12px;cursor:pointer;font:inherit;box-shadow:0 3px 10px rgba(47,74,36,.05)}
+.course-card:hover{border-color:var(--green);box-shadow:0 5px 14px rgba(47,74,36,.12)}
+.course-card strong{font-size:17px;color:var(--green-deep);line-height:1.45}.course-card span{font-size:14px;line-height:1.5}.course-card small{font-size:11px;color:var(--muted);line-height:1.6}
+.course-notes{font-size:11px;line-height:1.6;color:var(--muted);margin:7px 0}
+.course-source{font-size:11px;line-height:1.6;color:var(--muted);margin-top:8px}
+.course-source a{display:block;color:var(--green-deep)}
+.course-stored-answer{background:#fff6dc;border-radius:8px;padding:10px;font-size:13px;line-height:1.65;margin-top:8px}.course-stored-answer p{margin:6px 0}.course-stored-answer small{font-size:11px}
+body.course30.course-selecting .problem-list-section,body.course30.course-selecting .teaching-toolbar,body.course30.course-theory .problem-list-section,body.course30.course-theory .teaching-toolbar{display:none!important}
+body.course30 #teachingBoard{max-width:100%;height:auto!important}
+@media(max-width:900px){
+ body.course30{overflow:auto}
+ body.course30 #teacherApp{height:auto;min-height:calc(100dvh - 64px);overflow:visible}
+ body.course30 .teacher-body{flex-direction:column!important;overflow:visible;height:auto;flex:none}
+ body.course30 .sidebar-spacer{display:none!important}
+ body.course30 .teacher-stage{order:1!important;flex:none;min-height:0;padding:10px;width:100%;overflow:visible}
+ body.course30 .teacher-sidebar{order:2!important;flex:none;width:100%;height:auto;max-height:none;overflow:visible;border-left:none}
+ body.course30 .board-container{width:100%;height:calc(100vw - 26px);max-height:640px;min-height:0;flex:none}
+ body.course30 .course-picker{max-height:none;overflow:visible;padding:10px}
+ body.course30 .course-cards{grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px}
+ body.course30 .course-card{padding:12px}
+ body.course30 .question-text{font-size:18px}
+}
+
+body.course30 .course-intro{padding-bottom:6px}body.course30 .course-intro h1{font-size:14px;margin:3px 0}body.course30 .course-actions{margin:4px 0}body.course30 .course-actions button{font-size:11px;padding:5px 8px}body.course30 .course-tabs,body.course30 .course-role{margin:3px 0}body.course30 .problem-list-section{flex:none;min-height:0}body.course30 .problem-grid{flex:none;min-height:90px;max-height:132px;height:132px}body.course30 .course-notes{margin:4px 0}
