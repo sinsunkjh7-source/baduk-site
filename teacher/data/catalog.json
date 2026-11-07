@@ -1347,9 +1347,9 @@
       },
       {
         "code": "tech_yeon_atari",
-        "title": "⚡ 촉촉수 / 연단수 연속 몰아치기",
+        "title": "촉촉수 (38제)",
         "chapterCount": 10,
-        "totalProblems": 634,
+        "totalProblems": 38,
         "chapters": [
           {
             "code": "tech_yeon_atari_ch01",
@@ -14934,9 +14934,9 @@
     "books": [
       {
         "code": "new_tech_chokchoksu",
-        "title": "촉촉수 (42제)",
+        "title": "촉촉수 (38제)",
         "chapterCount": 1,
-        "totalProblems": 42,
+        "totalProblems": 38,
         "chapters": [
           {
             "code": "new_chokchoksu_01",

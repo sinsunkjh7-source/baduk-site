@@ -5,14 +5,14 @@
   "book": "촉촉수",
   "title": "촉촉수",
   "chapterCount": 1,
-  "totalProblems": 42,
+  "totalProblems": 38,
   "chapters": [
     {
       "code": "new_chokchoksu_01",
       "chapterCode": "new_chokchoksu_01",
       "title": "1. 1선에 이어도 단수",
       "chapter": "1. 1선에 이어도 단수",
-      "problemCount": 27,
+      "problemCount": 23,
       "problemsCount": 27,
       "problems": [
         {
@@ -35,7 +35,7 @@
           "source_chapter": "3. 촉촉수-1선에 이어도 단수",
           "source_p_num": 1,
           "no": 1,
-          "name": "chok-1-1"
+          "name": "1번 문제"
         },
         {
           "code": "1089",
@@ -57,7 +57,7 @@
           "source_chapter": "3. 촉촉수-1선에 이어도 단수",
           "source_p_num": 3,
           "no": 2,
-          "name": "chok-1-2"
+          "name": "2번 문제"
         },
         {
           "code": "1090",
@@ -79,7 +79,7 @@
           "source_chapter": "3. 촉촉수-1선에 이어도 단수",
           "source_p_num": 5,
           "no": 3,
-          "name": "chok-1-3"
+          "name": "3번 문제"
         },
         {
           "code": "1092",
@@ -101,7 +101,7 @@
           "source_chapter": "3. 촉촉수-1선에 이어도 단수",
           "source_p_num": 9,
           "no": 4,
-          "name": "chok-1-4"
+          "name": "4번 문제"
         },
         {
           "code": "1096",
@@ -123,7 +123,7 @@
           "source_chapter": "3. 촉촉수-1선에 이어도 단수",
           "source_p_num": 15,
           "no": 5,
-          "name": "chok-1-5"
+          "name": "5번 문제"
         },
         {
           "code": "1097",
@@ -145,7 +145,7 @@
           "source_chapter": "3. 촉촉수-1선에 이어도 단수",
           "source_p_num": 17,
           "no": 6,
-          "name": "chok-1-6"
+          "name": "6번 문제"
         },
         {
           "code": "1098",
@@ -167,7 +167,7 @@
           "source_chapter": "3. 촉촉수-1선에 이어도 단수",
           "source_p_num": 19,
           "no": 7,
-          "name": "chok-1-7"
+          "name": "7번 문제"
         },
         {
           "code": "1099",
@@ -189,7 +189,7 @@
           "source_chapter": "3. 촉촉수-1선에 이어도 단수",
           "source_p_num": 21,
           "no": 8,
-          "name": "chok-1-8"
+          "name": "8번 문제"
         },
         {
           "code": "6752",
@@ -211,7 +211,7 @@
           "source_chapter": "4. 촉촉수-1선에 이어도 단수",
           "source_p_num": 3,
           "no": 9,
-          "name": "chok-1-9"
+          "name": "9번 문제"
         },
         {
           "code": "30583",
@@ -233,7 +233,7 @@
           "source_chapter": "4. 촉촉수-1선에 이어도 단수",
           "source_p_num": 8,
           "no": 10,
-          "name": "chok-1-10"
+          "name": "10번 문제"
         },
         {
           "code": "30585",
@@ -255,7 +255,7 @@
           "source_chapter": "4. 촉촉수-1선에 이어도 단수",
           "source_p_num": 13,
           "no": 11,
-          "name": "chok-1-11"
+          "name": "11번 문제"
         },
         {
           "code": "30586",
@@ -277,7 +277,7 @@
           "source_chapter": "4. 촉촉수-1선에 이어도 단수",
           "source_p_num": 15,
           "no": 12,
-          "name": "chok-1-12"
+          "name": "12번 문제"
         },
         {
           "code": "6761",
@@ -299,7 +299,7 @@
           "source_chapter": "4. 촉촉수-1선에 이어도 단수",
           "source_p_num": 17,
           "no": 13,
-          "name": "chok-1-13"
+          "name": "13번 문제"
         },
         {
           "code": "30587",
@@ -321,7 +321,7 @@
           "source_chapter": "4. 촉촉수-1선에 이어도 단수",
           "source_p_num": 19,
           "no": 14,
-          "name": "chok-1-14"
+          "name": "14번 문제"
         },
         {
           "code": "6764",
@@ -343,7 +343,7 @@
           "source_chapter": "4. 촉촉수-1선에 이어도 단수",
           "source_p_num": 21,
           "no": 15,
-          "name": "chok-1-15"
+          "name": "15번 문제"
         },
         {
           "code": "30588",
@@ -365,7 +365,7 @@
           "source_chapter": "4. 촉촉수-1선에 이어도 단수",
           "source_p_num": 23,
           "no": 16,
-          "name": "chok-1-16"
+          "name": "16번 문제"
         },
         {
           "code": "6767",
@@ -387,7 +387,7 @@
           "source_chapter": "4. 촉촉수-1선에 이어도 단수",
           "source_p_num": 25,
           "no": 17,
-          "name": "chok-1-17"
+          "name": "17번 문제"
         },
         {
           "code": "30591",
@@ -409,29 +409,7 @@
           "source_chapter": "4. 촉촉수-1선에 이어도 단수",
           "source_p_num": 32,
           "no": 18,
-          "name": "chok-1-18"
-        },
-        {
-          "code": "1524",
-          "type": "3",
-          "question": "5. 1선의 촉촉수\r\n백△를 잡아보세요. (3수 표시)\r\n\r\n\r\n",
-          "hint": "1선에 단수쳐서 상대의 돌을 촉촉수로 만듭니다.",
-          "data": ";B[rr];B[qq];B[pq];B[oq];B[or];W[qr];W[pr];W[os];W[nr];W[nq];W[np];T[qr];T[pr]",
-          "answer1": ";B[qs];W[ps];B[ns]",
-          "answer2": ";B[qs];W[ns];B[ps]",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "",
-          "answer": "",
-          "auto": "false",
-          "size": "4",
-          "start": "BA",
-          "source_book": "씽크탱크 3",
-          "source_chapter": "5. 1선의 촉촉수",
-          "source_p_num": 1,
-          "no": 19,
-          "name": "chok-1-19"
+          "name": "18번 문제"
         },
         {
           "code": "30534",
@@ -452,52 +430,8 @@
           "source_book": "씽크탱크 3",
           "source_chapter": "5. 1선의 촉촉수",
           "source_p_num": 11,
-          "no": 20,
-          "name": "chok-1-20"
-        },
-        {
-          "code": "30536",
-          "type": "3",
-          "question": "5. 1선의 촉촉수\r\n백△를 잡아보세요. (3수 표시)\r\n\r\n",
-          "hint": "1선에 단수쳐서 상대의 돌을 촉촉수로 만듭니다.",
-          "data": ";B[qr];B[qq];B[pp];B[oq];B[nq];B[nr];B[no];W[pq];W[pr];W[or];W[ns];W[mr];W[mq];W[mp];T[or];T[pr];T[pq]",
-          "answer1": ";B[ps];W[os];B[ms]",
-          "answer2": ";B[ps];W[ms];B[os]",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "",
-          "answer": "",
-          "auto": "false",
-          "size": "4",
-          "start": "BA",
-          "source_book": "씽크탱크 3",
-          "source_chapter": "5. 1선의 촉촉수",
-          "source_p_num": 15,
-          "no": 21,
-          "name": "chok-1-21"
-        },
-        {
-          "code": "1535",
-          "type": "3",
-          "question": "5. 1선의 촉촉수\r\n백△를 잡아보세요. (3수 표시)\r\n\r\n\r\n",
-          "hint": "1선에 단수쳐서 상대의 돌을 촉촉수로 만듭니다.",
-          "data": ";B[rr];B[rq];B[rp];B[qo];B[pn];B[pp];B[pq];B[oq];B[or];W[qp];W[qq];W[qr];W[pr];W[os];W[nr];W[nq];W[np];T[qp];T[qq];T[qr];T[pr]",
-          "answer1": ";B[qs];W[ps];B[ns]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "",
-          "answer": "",
-          "auto": "false",
-          "size": "4",
-          "start": "BA",
-          "source_book": "씽크탱크 3",
-          "source_chapter": "5. 1선의 촉촉수",
-          "source_p_num": 19,
-          "no": 22,
-          "name": "chok-1-22"
+          "no": 19,
+          "name": "19번 문제"
         },
         {
           "code": "1541",
@@ -518,30 +452,8 @@
           "source_book": "씽크탱크 3",
           "source_chapter": "5. 1선의 촉촉수",
           "source_p_num": 31,
-          "no": 23,
-          "name": "chok-1-23"
-        },
-        {
-          "code": "30546",
-          "type": "3",
-          "question": "5. 1선의 촉촉수\r\n백△를 잡아보세요. (3수 표시)\r\n\r\n",
-          "hint": "1선에 단수쳐서 상대의 돌을 촉촉수로 만듭니다.",
-          "data": ";W[qs];W[qr];W[pr];W[os];W[ns];W[nr];W[mr];W[rq];W[sr];W[qp];W[ro];B[rr];B[qq];B[pq];B[oq];B[or];B[nq];B[mq];B[lr];B[ls];T[mr];T[nr];T[ns];T[os]",
-          "answer1": ";B[ms];W[ps];B[rs]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "",
-          "answer": "",
-          "auto": "false",
-          "size": "4",
-          "start": "BA",
-          "source_book": "씽크탱크 3",
-          "source_chapter": "5. 1선의 촉촉수",
-          "source_p_num": 33,
-          "no": 24,
-          "name": "chok-1-24"
+          "no": 20,
+          "name": "20번 문제"
         },
         {
           "code": "30547",
@@ -562,8 +474,8 @@
           "source_book": "씽크탱크 3",
           "source_chapter": "5. 1선의 촉촉수",
           "source_p_num": 35,
-          "no": 25,
-          "name": "chok-1-25"
+          "no": 21,
+          "name": "21번 문제"
         },
         {
           "code": "6771",
@@ -584,8 +496,8 @@
           "source_book": "논리바둑 2",
           "source_chapter": "4. 촉촉수-1선에 이어도 단수",
           "source_p_num": 29,
-          "no": 26,
-          "name": "chok-1-26"
+          "no": 22,
+          "name": "22번 문제"
         },
         {
           "code": "30593",
@@ -606,10 +518,11 @@
           "source_book": "논리바둑 2",
           "source_chapter": "4. 촉촉수-1선에 이어도 단수",
           "source_p_num": 37,
-          "no": 27,
-          "name": "chok-1-27"
+          "no": 23,
+          "name": "23번 문제"
         }
-      ]
+      ],
+      "totalProblems": 23
     },
     {
       "code": "new_chokchoksu_02",
@@ -952,6 +865,6 @@
       ]
     }
   ],
-  "problemCount": 42,
-  "_buildVer": "v2-ch1-expanded-27"
+  "problemCount": 38,
+  "_buildVer": "v3-ch1-purified-23"
 }
