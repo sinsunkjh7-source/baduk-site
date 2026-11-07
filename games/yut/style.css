@@ -1097,3 +1097,28 @@ canvas#yutBoard {
   .hand-chip { font-size: 16px !important; padding: 6px 12px !important; }
   .btn-throw { margin-right: 0; }
 }
+
+/* 배너 완전 투명 (yut-banner-clear3) */
+.turn-center-banner,
+.turn-center-banner.is-win {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: 0 !important;
+  backdrop-filter: none !important;
+}
+
+/* 정통 룰 박스: 세로로 길게 + 글자 확대 (yut-guide-big) */
+.yut-arena-container { align-items: stretch; }
+.arena-player-col { height: 100%; }
+.guide-box {
+  flex: 1 1 auto;
+  min-height: 260px;
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+}
+.guide-title { font-size: 18px; margin-bottom: 10px; }
+.guide-list { font-size: 15px; line-height: 1.72; padding-left: 18px; }
+.guide-list li { margin-bottom: 8px; }
+.guide-list b { color: #0f172a; }
