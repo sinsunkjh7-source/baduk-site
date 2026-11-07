@@ -5,15 +5,15 @@
   "book": "🏁 끝내기 완전정복 마스터",
   "title": "🏁 끝내기 완전정복 마스터",
   "chapterCount": 13,
-  "totalProblems": 1565,
+  "totalProblems": 1486,
   "chapters": [
     {
       "code": "tech_endgame_ch01",
       "chapterCode": "tech_endgame_ch01",
-      "title": "1단원. 집 완성하기와 집 지키기·막기 (152제)",
-      "chapter": "1단원. 집 완성하기와 집 지키기·막기 (152제)",
-      "problemCount": 152,
-      "problemsCount": 152,
+      "title": "1단원. 집 완성하기와 집 지키기·막기 (109제)",
+      "chapter": "1단원. 집 완성하기와 집 지키기·막기 (109제)",
+      "problemCount": 109,
+      "problemsCount": 109,
       "problems": [
         {
           "code": "1990",
@@ -111,25 +111,6 @@
           "name": "endgame-1-5"
         },
         {
-          "code": "39509",
-          "type": "1",
-          "question": "백△로 둔 장면입니다. 흑 집을 완성해 보세요.\r\n",
-          "hint": "",
-          "data": ";B[sr];B[rr];B[rs];B[rq];B[rp];B[ro];W[so];W[sn];W[rn];W[qn];W[qo];W[qp];W[qq];W[qr];W[qs];T[so]",
-          "answer1": ";B[sp]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "",
-          "answer": "",
-          "auto": "false",
-          "size": "4",
-          "start": "BK",
-          "no": 6,
-          "name": "endgame-1-6"
-        },
-        {
           "code": "1993",
           "type": "3",
           "question": "11. 끝내기-집 완성하기\r\n최대한 크게 흑집을 완성해 보세요.\r\n\r\n\r\n",
@@ -145,8 +126,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 7,
-          "name": "endgame-1-7"
+          "no": 6,
+          "name": "endgame-1-6"
         },
         {
           "code": "7418",
@@ -164,8 +145,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 8,
-          "name": "endgame-1-8"
+          "no": 7,
+          "name": "endgame-1-7"
         },
         {
           "code": "7431",
@@ -183,8 +164,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 9,
-          "name": "endgame-1-9"
+          "no": 8,
+          "name": "endgame-1-8"
         },
         {
           "code": "7436",
@@ -202,8 +183,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 10,
-          "name": "endgame-1-10"
+          "no": 9,
+          "name": "endgame-1-9"
         },
         {
           "code": "7417",
@@ -221,8 +202,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 11,
-          "name": "endgame-1-11"
+          "no": 10,
+          "name": "endgame-1-10"
         },
         {
           "code": "2319",
@@ -240,27 +221,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 12,
-          "name": "endgame-1-12"
-        },
-        {
-          "code": "39517",
-          "type": "1",
-          "question": "백△로 둔 장면입니다. 흑 집을 완성해 보세요.",
-          "hint": "",
-          "data": ";B[rs];B[rr];B[qr];B[qq];B[qp];B[rp];B[ro];W[so];W[sn];W[rn];W[qn];W[qo];W[pp];W[pq];W[pr];W[ps];W[qs];T[so]",
-          "answer1": ";B[sp]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "",
-          "answer": "",
-          "auto": "false",
-          "size": "4",
-          "start": "BK",
-          "no": 13,
-          "name": "endgame-1-13"
+          "no": 11,
+          "name": "endgame-1-11"
         },
         {
           "code": "7414",
@@ -278,8 +240,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 14,
-          "name": "endgame-1-14"
+          "no": 12,
+          "name": "endgame-1-12"
         },
         {
           "code": "42806",
@@ -297,8 +259,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 15,
-          "name": "endgame-1-15"
+          "no": 13,
+          "name": "endgame-1-13"
         },
         {
           "code": "7416",
@@ -316,8 +278,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 16,
-          "name": "endgame-1-16"
+          "no": 14,
+          "name": "endgame-1-14"
         },
         {
           "code": "42803",
@@ -335,27 +297,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 17,
-          "name": "endgame-1-17"
-        },
-        {
-          "code": "7420",
-          "type": "3",
-          "question": "15. 끝내기-완전한 집 만들기\r\n흑이 둘 차례입니다. 흑집을 완성해보세요.\r\n\r\n",
-          "hint": "끝내기는 자신의 집을 완성하는 단계입니다.",
-          "data": ";B[rr];B[rp];B[qp];B[pp];B[pq];B[pr];B[ps];W[os];W[or];W[oq];W[op];W[oo];W[qo];W[po];W[ro];W[so];W[sp];L[sp:1]",
-          "answer1": ";B[sq]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "",
-          "answer": "",
-          "auto": "false",
-          "size": "4",
-          "start": "BA",
-          "no": 18,
-          "name": "endgame-1-18"
+          "no": 15,
+          "name": "endgame-1-15"
         },
         {
           "code": "2316",
@@ -373,8 +316,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 19,
-          "name": "endgame-1-19"
+          "no": 16,
+          "name": "endgame-1-16"
         },
         {
           "code": "2315",
@@ -392,8 +335,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 20,
-          "name": "endgame-1-20"
+          "no": 17,
+          "name": "endgame-1-17"
         },
         {
           "code": "1987",
@@ -411,8 +354,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 21,
-          "name": "endgame-1-21"
+          "no": 18,
+          "name": "endgame-1-18"
         },
         {
           "code": "2314",
@@ -430,8 +373,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 22,
-          "name": "endgame-1-22"
+          "no": 19,
+          "name": "endgame-1-19"
         },
         {
           "code": "7422",
@@ -449,8 +392,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 23,
-          "name": "endgame-1-23"
+          "no": 20,
+          "name": "endgame-1-20"
         },
         {
           "code": "7430",
@@ -468,8 +411,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 24,
-          "name": "endgame-1-24"
+          "no": 21,
+          "name": "endgame-1-21"
         },
         {
           "code": "2313",
@@ -487,8 +430,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 25,
-          "name": "endgame-1-25"
+          "no": 22,
+          "name": "endgame-1-22"
         },
         {
           "code": "42802",
@@ -506,27 +449,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 26,
-          "name": "endgame-1-26"
-        },
-        {
-          "code": "38870",
-          "type": "1",
-          "question": "백△로 흑 집을 줄이려고 합니다. 흑은 1집을 더 만들기 위하여 어디에 두어야 할까요?",
-          "hint": "",
-          "data": ";B[sq];B[rq];B[rr];B[ss];B[qr];B[qs];B[pr];B[or];W[sp];W[rp];W[qq];W[pq];W[oq];W[nq];W[nr];W[ns];T[ns]",
-          "answer1": ";B[os]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "",
-          "answer": "",
-          "auto": "false",
-          "size": "4",
-          "start": "BK",
-          "no": 27,
-          "name": "endgame-1-27"
+          "no": 23,
+          "name": "endgame-1-23"
         },
         {
           "code": "2312",
@@ -544,8 +468,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 28,
-          "name": "endgame-1-28"
+          "no": 24,
+          "name": "endgame-1-24"
         },
         {
           "code": "2328",
@@ -563,8 +487,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 29,
-          "name": "endgame-1-29"
+          "no": 25,
+          "name": "endgame-1-25"
         },
         {
           "code": "42815",
@@ -582,8 +506,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 30,
-          "name": "endgame-1-30"
+          "no": 26,
+          "name": "endgame-1-26"
         },
         {
           "code": "2317",
@@ -601,8 +525,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 31,
-          "name": "endgame-1-31"
+          "no": 27,
+          "name": "endgame-1-27"
         },
         {
           "code": "7434",
@@ -620,65 +544,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 32,
-          "name": "endgame-1-32"
-        },
-        {
-          "code": "39507",
-          "type": "1",
-          "question": "백△로 둔 장면입니다. 흑 집을 완성해 보세요.",
-          "hint": "",
-          "data": ";B[sr];B[sp];B[rp];B[rq];B[qq];B[qr];W[so];W[ro];W[qp];W[pp];W[pq];W[pr];W[ps];W[qs];T[qs]",
-          "answer1": ";B[rs]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "",
-          "answer": "",
-          "auto": "false",
-          "size": "4",
-          "start": "BK",
-          "no": 33,
-          "name": "endgame-1-33"
-        },
-        {
-          "code": "38871",
-          "type": "1",
-          "question": "백△로 흑 집을 줄이려고 합니다. 흑은 1집을 더 만들기 위하여 어디에 두어야 할까요?",
-          "hint": "",
-          "data": ";B[sq];B[sr];B[rr];B[qq];B[qp];B[rp];B[ro];B[so];W[sn];W[rn];W[qn];W[qo];W[pp];W[pq];W[pr];W[qr];W[qs];T[qs]",
-          "answer1": ";B[rs]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "",
-          "answer": "",
-          "auto": "false",
-          "size": "4",
-          "start": "BK",
-          "no": 34,
-          "name": "endgame-1-34"
-        },
-        {
-          "code": "38876",
-          "type": "1",
-          "question": "백△로 흑 집을 줄이려고 합니다. 흑은 어디에 두어야 할까요?",
-          "hint": "",
-          "data": ";B[sq];B[rr];B[rp];B[qp];B[pp];B[pq];B[pr];W[sp];W[ro];W[so];W[qo];W[po];W[oo];W[op];W[oq];W[or];W[os];T[os]",
-          "answer1": ";B[ps]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "",
-          "answer": "",
-          "auto": "false",
-          "size": "4",
-          "start": "BK",
-          "no": 35,
-          "name": "endgame-1-35"
+          "no": 28,
+          "name": "endgame-1-28"
         },
         {
           "code": "2318",
@@ -696,8 +563,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 36,
-          "name": "endgame-1-36"
+          "no": 29,
+          "name": "endgame-1-29"
         },
         {
           "code": "2323",
@@ -715,8 +582,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 37,
-          "name": "endgame-1-37"
+          "no": 30,
+          "name": "endgame-1-30"
         },
         {
           "code": "7419",
@@ -734,8 +601,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 38,
-          "name": "endgame-1-38"
+          "no": 31,
+          "name": "endgame-1-31"
         },
         {
           "code": "42850",
@@ -753,8 +620,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 39,
-          "name": "endgame-1-39"
+          "no": 32,
+          "name": "endgame-1-32"
         },
         {
           "code": "1992",
@@ -772,8 +639,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 40,
-          "name": "endgame-1-40"
+          "no": 33,
+          "name": "endgame-1-33"
         },
         {
           "code": "2326",
@@ -791,8 +658,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 41,
-          "name": "endgame-1-41"
+          "no": 34,
+          "name": "endgame-1-34"
         },
         {
           "code": "7429",
@@ -810,8 +677,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 42,
-          "name": "endgame-1-42"
+          "no": 35,
+          "name": "endgame-1-35"
         },
         {
           "code": "2321",
@@ -829,8 +696,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 43,
-          "name": "endgame-1-43"
+          "no": 36,
+          "name": "endgame-1-36"
         },
         {
           "code": "7412",
@@ -848,8 +715,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 44,
-          "name": "endgame-1-44"
+          "no": 37,
+          "name": "endgame-1-37"
         },
         {
           "code": "42817",
@@ -867,8 +734,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 45,
-          "name": "endgame-1-45"
+          "no": 38,
+          "name": "endgame-1-38"
         },
         {
           "code": "42819",
@@ -886,8 +753,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 46,
-          "name": "endgame-1-46"
+          "no": 39,
+          "name": "endgame-1-39"
         },
         {
           "code": "2324",
@@ -905,8 +772,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 47,
-          "name": "endgame-1-47"
+          "no": 40,
+          "name": "endgame-1-40"
         },
         {
           "code": "2322",
@@ -924,8 +791,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 48,
-          "name": "endgame-1-48"
+          "no": 41,
+          "name": "endgame-1-41"
         },
         {
           "code": "7415",
@@ -943,27 +810,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 49,
-          "name": "endgame-1-49"
-        },
-        {
-          "code": "38878",
-          "type": "1",
-          "question": "백△로 흑 집을 줄이려고 합니다. 흑은 어디에 두어야 할까요?",
-          "hint": "",
-          "data": ";B[rr];B[sp];B[rp];B[qp];B[pp];B[pr];B[ps];W[so];W[ro];W[qo];W[po];W[oo];W[op];W[oq];W[pq];W[or];W[os];T[pq]",
-          "answer1": ";B[qq]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "",
-          "answer": "",
-          "auto": "false",
-          "size": "4",
-          "start": "BK",
-          "no": 50,
-          "name": "endgame-1-50"
+          "no": 42,
+          "name": "endgame-1-42"
         },
         {
           "code": "7423",
@@ -981,27 +829,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 51,
-          "name": "endgame-1-51"
-        },
-        {
-          "code": "38872",
-          "type": "1",
-          "question": "백△로 흑 집을 줄이려고 합니다. 흑은 1집을 더 만들기 위하여 어디에 두어야 할까요?",
-          "hint": "",
-          "data": ";B[sr];B[rr];B[rs];B[qr];B[pr];B[ps];B[pq];B[qp];B[rp];W[sq];W[sp];W[so];W[ro];W[qo];W[po];W[pp];W[oq];W[or];W[os];T[sq]",
-          "answer1": ";B[rq]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "",
-          "answer": "",
-          "auto": "false",
-          "size": "4",
-          "start": "BK",
-          "no": 52,
-          "name": "endgame-1-52"
+          "no": 43,
+          "name": "endgame-1-43"
         },
         {
           "code": "2320",
@@ -1019,8 +848,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 53,
-          "name": "endgame-1-53"
+          "no": 44,
+          "name": "endgame-1-44"
         },
         {
           "code": "7413",
@@ -1038,8 +867,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 54,
-          "name": "endgame-1-54"
+          "no": 45,
+          "name": "endgame-1-45"
         },
         {
           "code": "2327",
@@ -1057,27 +886,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 55,
-          "name": "endgame-1-55"
-        },
-        {
-          "code": "39513",
-          "type": "1",
-          "question": "백△로 둔 장면입니다. 흑 집을 완성해 보세요.\r\n",
-          "hint": "",
-          "data": ";B[sq];B[rq];B[rs];B[pq];B[pr];B[ps];W[qq];W[qp];W[rp];W[sp];W[pp];W[op];W[oq];W[or];W[os];T[qq]",
-          "answer1": ";B[qr]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "",
-          "answer": "",
-          "auto": "false",
-          "size": "4",
-          "start": "BK",
-          "no": 56,
-          "name": "endgame-1-56"
+          "no": 46,
+          "name": "endgame-1-46"
         },
         {
           "code": "2325",
@@ -1095,8 +905,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 57,
-          "name": "endgame-1-57"
+          "no": 47,
+          "name": "endgame-1-47"
         },
         {
           "code": "42807",
@@ -1114,8 +924,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 58,
-          "name": "endgame-1-58"
+          "no": 48,
+          "name": "endgame-1-48"
         },
         {
           "code": "42844",
@@ -1133,27 +943,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 59,
-          "name": "endgame-1-59"
-        },
-        {
-          "code": "39511",
-          "type": "1",
-          "question": "백△로 둔 장면입니다. 흑 집을 완성해 보세요.\r\n",
-          "hint": "",
-          "data": ";B[sr];B[rr];B[rq];B[rs];B[qp];B[pp];B[pq];B[pr];W[rp];W[sp];W[sq];W[rn];W[qo];W[po];W[oo];W[op];W[oq];W[or];W[os];W[ps];T[ps]",
-          "answer1": ";B[qs]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "",
-          "answer": "",
-          "auto": "false",
-          "size": "4",
-          "start": "BK",
-          "no": 60,
-          "name": "endgame-1-60"
+          "no": 49,
+          "name": "endgame-1-49"
         },
         {
           "code": "42816",
@@ -1171,8 +962,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 61,
-          "name": "endgame-1-61"
+          "no": 50,
+          "name": "endgame-1-50"
         },
         {
           "code": "42804",
@@ -1190,8 +981,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 62,
-          "name": "endgame-1-62"
+          "no": 51,
+          "name": "endgame-1-51"
         },
         {
           "code": "7433",
@@ -1209,8 +1000,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 63,
-          "name": "endgame-1-63"
+          "no": 52,
+          "name": "endgame-1-52"
         },
         {
           "code": "42814",
@@ -1228,27 +1019,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 64,
-          "name": "endgame-1-64"
-        },
-        {
-          "code": "38874",
-          "type": "1",
-          "question": "백△로 흑 집을 줄이려고 합니다. 흑은 1집을 더 만들기 위하여 어디에 두어야 할까요?",
-          "hint": "",
-          "data": ";B[sr];B[sq];B[rq];B[qq];B[qr];B[rs];B[qo];B[ro];B[so];W[sn];W[rn];W[qn];W[po];W[pp];W[qp];W[pq];W[pr];W[ps];W[qs];T[qp]",
-          "answer1": ";B[rp]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "",
-          "answer": "",
-          "auto": "false",
-          "size": "4",
-          "start": "BK",
-          "no": 65,
-          "name": "endgame-1-65"
+          "no": 53,
+          "name": "endgame-1-53"
         },
         {
           "code": "7426",
@@ -1266,27 +1038,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 66,
-          "name": "endgame-1-66"
-        },
-        {
-          "code": "41394",
-          "type": "3",
-          "question": "백1로 둔 장면입니다. 흑은 가, 나 중 어디에 두어야 할까요?",
-          "hint": "",
-          "data": ";B[rs];B[qr];B[qq];B[rq];B[ps];W[qp];W[op];W[pq];W[pr];W[nr];W[os];L[os:1];L[rp:가];L[qs:나]",
-          "answer1": ";B[rp]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "가|나||",
-          "answer": "2",
-          "auto": "false",
-          "size": "4",
-          "start": "BA",
-          "no": 67,
-          "name": "endgame-1-67"
+          "no": 54,
+          "name": "endgame-1-54"
         },
         {
           "code": "42835",
@@ -1304,8 +1057,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 68,
-          "name": "endgame-1-68"
+          "no": 55,
+          "name": "endgame-1-55"
         },
         {
           "code": "42852",
@@ -1323,27 +1076,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 69,
-          "name": "endgame-1-69"
-        },
-        {
-          "code": "39519",
-          "type": "1",
-          "question": "백△로 둔 장면입니다. 흑 집을 완성해 보세요.\r\n",
-          "hint": "",
-          "data": ";B[sq];B[sp];B[rp];B[qq];B[qr];B[rr];B[ps];W[os];W[nr];W[pr];W[pq];W[qp];W[qo];W[ro];W[so];T[os]",
-          "answer1": ";B[qs]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "",
-          "answer": "",
-          "auto": "false",
-          "size": "4",
-          "start": "BK",
-          "no": 70,
-          "name": "endgame-1-70"
+          "no": 56,
+          "name": "endgame-1-56"
         },
         {
           "code": "7428",
@@ -1361,8 +1095,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 71,
-          "name": "endgame-1-71"
+          "no": 57,
+          "name": "endgame-1-57"
         },
         {
           "code": "7432",
@@ -1380,8 +1114,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 72,
-          "name": "endgame-1-72"
+          "no": 58,
+          "name": "endgame-1-58"
         },
         {
           "code": "7435",
@@ -1399,8 +1133,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 73,
-          "name": "endgame-1-73"
+          "no": 59,
+          "name": "endgame-1-59"
         },
         {
           "code": "44261",
@@ -1418,8 +1152,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 74,
-          "name": "endgame-1-74"
+          "no": 60,
+          "name": "endgame-1-60"
         },
         {
           "code": "42855",
@@ -1437,8 +1171,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 75,
-          "name": "endgame-1-75"
+          "no": 61,
+          "name": "endgame-1-61"
         },
         {
           "code": "42832",
@@ -1456,8 +1190,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 76,
-          "name": "endgame-1-76"
+          "no": 62,
+          "name": "endgame-1-62"
         },
         {
           "code": "44257",
@@ -1475,8 +1209,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 77,
-          "name": "endgame-1-77"
+          "no": 63,
+          "name": "endgame-1-63"
         },
         {
           "code": "44267",
@@ -1494,8 +1228,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 78,
-          "name": "endgame-1-78"
+          "no": 64,
+          "name": "endgame-1-64"
         },
         {
           "code": "42854",
@@ -1513,8 +1247,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 79,
-          "name": "endgame-1-79"
+          "no": 65,
+          "name": "endgame-1-65"
         },
         {
           "code": "42834",
@@ -1532,8 +1266,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 80,
-          "name": "endgame-1-80"
+          "no": 66,
+          "name": "endgame-1-66"
         },
         {
           "code": "7424",
@@ -1551,8 +1285,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 81,
-          "name": "endgame-1-81"
+          "no": 67,
+          "name": "endgame-1-67"
         },
         {
           "code": "7425",
@@ -1570,8 +1304,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 82,
-          "name": "endgame-1-82"
+          "no": 68,
+          "name": "endgame-1-68"
         },
         {
           "code": "42838",
@@ -1589,8 +1323,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 83,
-          "name": "endgame-1-83"
+          "no": 69,
+          "name": "endgame-1-69"
         },
         {
           "code": "42853",
@@ -1608,8 +1342,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 84,
-          "name": "endgame-1-84"
+          "no": 70,
+          "name": "endgame-1-70"
         },
         {
           "code": "42805",
@@ -1627,27 +1361,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 85,
-          "name": "endgame-1-85"
-        },
-        {
-          "code": "41395",
-          "type": "3",
-          "question": "백1로 둔 장면입니다. 흑은 가, 나 중 어디에 두어야 할까요?",
-          "hint": "",
-          "data": ";B[rs];B[sr];B[rq];B[qq];B[pr];B[sp];W[pq];W[oq];W[rp];W[qp];W[rn];W[so];L[so:1];L[sq:가];L[or:나]",
-          "answer1": ";B[or]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "가|나||",
-          "answer": "2",
-          "auto": "false",
-          "size": "4",
-          "start": "BA",
-          "no": 86,
-          "name": "endgame-1-86"
+          "no": 71,
+          "name": "endgame-1-71"
         },
         {
           "code": "44259",
@@ -1665,8 +1380,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 87,
-          "name": "endgame-1-87"
+          "no": 72,
+          "name": "endgame-1-72"
         },
         {
           "code": "44263",
@@ -1684,8 +1399,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 88,
-          "name": "endgame-1-88"
+          "no": 73,
+          "name": "endgame-1-73"
         },
         {
           "code": "7427",
@@ -1703,8 +1418,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 89,
-          "name": "endgame-1-89"
+          "no": 74,
+          "name": "endgame-1-74"
         },
         {
           "code": "44260",
@@ -1722,8 +1437,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 90,
-          "name": "endgame-1-90"
+          "no": 75,
+          "name": "endgame-1-75"
         },
         {
           "code": "42846",
@@ -1741,27 +1456,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 91,
-          "name": "endgame-1-91"
-        },
-        {
-          "code": "41387",
-          "type": "3",
-          "question": "백1로 둔 장면입니다. 흑은 가, 나 중 어디에 두어야 할까요?",
-          "hint": "",
-          "data": ";B[qr];B[pq];B[oq];B[or];B[pp];B[qp];B[qo];B[ro];B[sp];B[sn];W[op];W[np];W[nq];W[nr];W[ns];W[po];W[pn];W[qn];W[rn];W[rm];W[sm];L[sm:1];L[so:가];L[os:나]",
-          "answer1": ";B[os]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "가|나||",
-          "answer": "2",
-          "auto": "false",
-          "size": "4",
-          "start": "BA",
-          "no": 92,
-          "name": "endgame-1-92"
+          "no": 76,
+          "name": "endgame-1-76"
         },
         {
           "code": "42848",
@@ -1779,8 +1475,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 93,
-          "name": "endgame-1-93"
+          "no": 77,
+          "name": "endgame-1-77"
         },
         {
           "code": "44255",
@@ -1798,8 +1494,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 94,
-          "name": "endgame-1-94"
+          "no": 78,
+          "name": "endgame-1-78"
         },
         {
           "code": "42849",
@@ -1817,8 +1513,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 95,
-          "name": "endgame-1-95"
+          "no": 79,
+          "name": "endgame-1-79"
         },
         {
           "code": "44265",
@@ -1836,27 +1532,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 96,
-          "name": "endgame-1-96"
-        },
-        {
-          "code": "41405",
-          "type": "3",
-          "question": "백1로 둔 장면입니다. 흑은 가, 나, 다 중 어디에 두어야 할까요?",
-          "hint": "",
-          "data": ";B[pr];B[or];B[nr];B[ms];B[os];B[oq];B[pp];B[po];W[pn];W[nn];W[oo];W[np];W[nq];W[mr];W[lr];W[ls];L[ls:1];L[qn:가];L[op:나];L[ns:다]",
-          "answer1": ";B[qn]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "가|나||",
-          "answer": "2",
-          "auto": "false",
-          "size": "4",
-          "start": "BA",
-          "no": 97,
-          "name": "endgame-1-97"
+          "no": 80,
+          "name": "endgame-1-80"
         },
         {
           "code": "44251",
@@ -1874,8 +1551,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 98,
-          "name": "endgame-1-98"
+          "no": 81,
+          "name": "endgame-1-81"
         },
         {
           "code": "44266",
@@ -1893,46 +1570,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 99,
-          "name": "endgame-1-99"
-        },
-        {
-          "code": "41389",
-          "type": "3",
-          "question": "백1로 둔 장면입니다. 흑은 가, 나 중 어디에 두어야 할까요?",
-          "hint": "",
-          "data": ";B[rr];B[rp];B[qp];B[pq];B[ps];B[pr];B[or];B[ns];W[nr];W[mr];W[ms];W[oq];W[op];W[pp];W[qo];W[ro];W[pn];L[ms:1];L[so:가];L[os:나]",
-          "answer1": ";B[so]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "가|나||",
-          "answer": "2",
-          "auto": "false",
-          "size": "4",
-          "start": "BA",
-          "no": 100,
-          "name": "endgame-1-100"
-        },
-        {
-          "code": "41402",
-          "type": "3",
-          "question": "백1로 둔 장면입니다. 흑은 가, 나, 다 중 어디에 두어야 할까요?",
-          "hint": "",
-          "data": ";B[pr];B[os];B[ms];B[nr];B[nq];B[oq];B[pq];B[qp];B[qo];W[pm];W[po];W[op];W[np];W[mp];W[mq];W[mr];W[lr];W[ls];L[ls:1];L[qn:가];L[pp:나];L[ns:다]",
-          "answer1": ";B[qn]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "가|나||",
-          "answer": "2",
-          "auto": "false",
-          "size": "4",
-          "start": "BA",
-          "no": 101,
-          "name": "endgame-1-101"
+          "no": 82,
+          "name": "endgame-1-82"
         },
         {
           "code": "42836",
@@ -1950,8 +1589,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 102,
-          "name": "endgame-1-102"
+          "no": 83,
+          "name": "endgame-1-83"
         },
         {
           "code": "42851",
@@ -1969,8 +1608,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 103,
-          "name": "endgame-1-103"
+          "no": 84,
+          "name": "endgame-1-84"
         },
         {
           "code": "42818",
@@ -1988,8 +1627,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 104,
-          "name": "endgame-1-104"
+          "no": 85,
+          "name": "endgame-1-85"
         },
         {
           "code": "42847",
@@ -2007,46 +1646,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 105,
-          "name": "endgame-1-105"
-        },
-        {
-          "code": "41403",
-          "type": "3",
-          "question": "백1로 둔 장면입니다. 흑은 가, 나, 다 중 어디에 두어야 할까요?",
-          "hint": "",
-          "data": ";B[pq];B[qp];B[rp];B[qo];B[qn];B[rn];B[sm];B[so];W[sl];W[rm];W[pm];W[qm];W[on];W[no];W[po];L[sl:1];L[sn:가];L[pn:나];L[mq:다]",
-          "answer1": ";B[mq]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "가|나||",
-          "answer": "2",
-          "auto": "false",
-          "size": "4",
-          "start": "BA",
-          "no": 106,
-          "name": "endgame-1-106"
-        },
-        {
-          "code": "41396",
-          "type": "3",
-          "question": "백1로 둔 장면입니다. 흑은 가, 나, 다 중 어디에 두어야 할까요?",
-          "hint": "",
-          "data": ";B[rq];B[sp];B[sn];B[ro];B[qo];B[pp];B[pq];B[pr];B[ps];W[pn];W[qn];W[rn];W[rm];W[sm];W[oo];W[op];W[oq];W[or];W[nq];W[mr];L[sm:1];L[so:가];L[po:나];L[os:다]",
-          "answer1": ";B[os]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "가|나||",
-          "answer": "2",
-          "auto": "false",
-          "size": "4",
-          "start": "BA",
-          "no": 107,
-          "name": "endgame-1-107"
+          "no": 86,
+          "name": "endgame-1-86"
         },
         {
           "code": "44253",
@@ -2064,27 +1665,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 108,
-          "name": "endgame-1-108"
-        },
-        {
-          "code": "38873",
-          "type": "1",
-          "question": "백△로 흑 집을 줄이려고 합니다. 흑은 1집을 더 만들기 위하여 어디에 두어야 할까요?",
-          "hint": "",
-          "data": ";B[sr];B[rr];B[rq];B[qq];B[pr];B[ps];B[qs];B[qp];B[pp];B[op];B[np];B[nq];B[nr];W[rp];W[sp];W[sq];W[rn];W[qo];W[po];W[oo];W[no];W[mp];W[mq];W[mr];W[ms];W[ns];W[os];W[or];T[or]",
-          "answer1": ";B[oq]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "",
-          "answer": "",
-          "auto": "false",
-          "size": "4",
-          "start": "BK",
-          "no": 109,
-          "name": "endgame-1-109"
+          "no": 87,
+          "name": "endgame-1-87"
         },
         {
           "code": "42837",
@@ -2102,8 +1684,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 110,
-          "name": "endgame-1-110"
+          "no": 88,
+          "name": "endgame-1-88"
         },
         {
           "code": "42840",
@@ -2121,27 +1703,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 111,
-          "name": "endgame-1-111"
-        },
-        {
-          "code": "41384",
-          "type": "3",
-          "question": "백1로 둔 장면입니다. 흑은 가, 나 중 어디에 두어야 할까요?",
-          "hint": "",
-          "data": ";B[pp];B[rp];B[qp];B[sp];B[ro];B[sn];B[qq];B[qr];B[oq];B[or];B[nr];B[ps];W[ms];W[mr];W[mq];W[nq];W[op];W[oo];W[po];W[qo];W[rn];W[rm];W[sm];L[sm:1];L[so:가];L[ns:나]",
-          "answer1": ";B[ns]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "가|나||",
-          "answer": "2",
-          "auto": "false",
-          "size": "4",
-          "start": "BA",
-          "no": 112,
-          "name": "endgame-1-112"
+          "no": 89,
+          "name": "endgame-1-89"
         },
         {
           "code": "44254",
@@ -2159,8 +1722,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 113,
-          "name": "endgame-1-113"
+          "no": 90,
+          "name": "endgame-1-90"
         },
         {
           "code": "42842",
@@ -2178,46 +1741,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 114,
-          "name": "endgame-1-114"
-        },
-        {
-          "code": "41401",
-          "type": "3",
-          "question": "백1로 둔 장면입니다. 흑은 가, 나, 다 중 어디에 두어야 할까요?",
-          "hint": "",
-          "data": ";B[qr];B[ps];B[or];B[oq];B[ns];B[pp];B[qp];B[qo];W[lr];W[ms];W[nr];W[nq];W[np];W[oo];W[po];W[qn];L[ms:1];L[rn:가];L[op:나];L[os:다]",
-          "answer1": ";B[rn]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "가|나||",
-          "answer": "2",
-          "auto": "false",
-          "size": "4",
-          "start": "BA",
-          "no": 115,
-          "name": "endgame-1-115"
-        },
-        {
-          "code": "41406",
-          "type": "3",
-          "question": "백1로 둔 장면입니다. 흑은 가, 나, 다 중 어디에 두어야 할까요?",
-          "hint": "",
-          "data": ";W[qs];W[rr];W[qr];W[pr];W[qq];W[rp];W[ro];W[qo];B[rn];B[qn];B[pn];B[om];B[oo];B[qp];B[pp];B[pq];B[or];B[nr];B[ns];B[ps];L[so:가];L[po:나];L[os:다];L[qs:1]",
-          "answer1": ";B[so]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "가|나||",
-          "answer": "2",
-          "auto": "false",
-          "size": "4",
-          "start": "BA",
-          "no": 116,
-          "name": "endgame-1-116"
+          "no": 91,
+          "name": "endgame-1-91"
         },
         {
           "code": "7437",
@@ -2235,27 +1760,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 117,
-          "name": "endgame-1-117"
-        },
-        {
-          "code": "39515",
-          "type": "1",
-          "question": "백△로 둔 장면입니다. 흑 집을 완성해 보세요.",
-          "hint": "",
-          "data": ";B[qr];B[qq];B[qp];B[pp];B[op];B[nq];B[mr];B[ms];B[ns];B[or];W[qs];W[rs];W[rr];W[rq];W[rp];W[qo];W[po];W[oo];W[no];W[np];W[mq];W[lq];W[lr];W[ls];T[qs]",
-          "answer1": ";B[ps]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "",
-          "answer": "",
-          "auto": "false",
-          "size": "4",
-          "start": "BK",
-          "no": 118,
-          "name": "endgame-1-118"
+          "no": 92,
+          "name": "endgame-1-92"
         },
         {
           "code": "42843",
@@ -2273,8 +1779,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 119,
-          "name": "endgame-1-119"
+          "no": 93,
+          "name": "endgame-1-93"
         },
         {
           "code": "44273",
@@ -2292,8 +1798,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 120,
-          "name": "endgame-1-120"
+          "no": 94,
+          "name": "endgame-1-94"
         },
         {
           "code": "44269",
@@ -2311,8 +1817,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 121,
-          "name": "endgame-1-121"
+          "no": 95,
+          "name": "endgame-1-95"
         },
         {
           "code": "44258",
@@ -2330,8 +1836,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 122,
-          "name": "endgame-1-122"
+          "no": 96,
+          "name": "endgame-1-96"
         },
         {
           "code": "42841",
@@ -2349,8 +1855,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 123,
-          "name": "endgame-1-123"
+          "no": 97,
+          "name": "endgame-1-97"
         },
         {
           "code": "42845",
@@ -2368,27 +1874,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 124,
-          "name": "endgame-1-124"
-        },
-        {
-          "code": "38879",
-          "type": "1",
-          "question": "백△로 흑 집을 줄이려고 합니다. 흑은 어디에 두어야 할까요?",
-          "hint": "",
-          "data": ";B[pq];B[qp];B[ro];B[po];B[oo];B[no];B[nq];B[nr];B[ns];B[pm];B[om];B[qm];B[rm];W[mo];W[mp];W[mq];W[mr];W[ms];W[nn];W[on];W[nm];W[nl];W[ol];W[pl];W[ql];W[rl];W[sl];W[sm];T[sm]",
-          "answer1": ";B[sn]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "",
-          "answer": "",
-          "auto": "false",
-          "size": "4",
-          "start": "BK",
-          "no": 125,
-          "name": "endgame-1-125"
+          "no": 98,
+          "name": "endgame-1-98"
         },
         {
           "code": "44262",
@@ -2406,8 +1893,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 126,
-          "name": "endgame-1-126"
+          "no": 99,
+          "name": "endgame-1-99"
         },
         {
           "code": "44271",
@@ -2425,8 +1912,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 127,
-          "name": "endgame-1-127"
+          "no": 100,
+          "name": "endgame-1-100"
         },
         {
           "code": "42833",
@@ -2444,8 +1931,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 128,
-          "name": "endgame-1-128"
+          "no": 101,
+          "name": "endgame-1-101"
         },
         {
           "code": "44264",
@@ -2463,8 +1950,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 129,
-          "name": "endgame-1-129"
+          "no": 102,
+          "name": "endgame-1-102"
         },
         {
           "code": "44268",
@@ -2482,8 +1969,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 130,
-          "name": "endgame-1-130"
+          "no": 103,
+          "name": "endgame-1-103"
         },
         {
           "code": "44272",
@@ -2501,46 +1988,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 131,
-          "name": "endgame-1-131"
-        },
-        {
-          "code": "41386",
-          "type": "3",
-          "question": "백1로 둔 장면입니다. 흑은 가, 나 중 어디에 두어야 할까요?",
-          "hint": "",
-          "data": ";B[pq];B[pr];B[ps];B[os];B[op];B[po];B[pn];B[qn];B[rn];B[ro];B[qp];B[rq];B[sp];W[np];W[nq];W[oq];W[or];W[ns];W[oo];W[on];W[om];W[pm];W[qm];W[sm];W[rm];L[sn:가];L[pp:나];L[oq:1]",
-          "answer1": ";B[sn]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "가|나||",
-          "answer": "2",
-          "auto": "false",
-          "size": "4",
-          "start": "BA",
-          "no": 132,
-          "name": "endgame-1-132"
-        },
-        {
-          "code": "41407",
-          "type": "3",
-          "question": "백1로 둔 장면입니다. 흑은 가, 나, 다 중 어디에 두어야 할까요?",
-          "hint": "",
-          "data": ";B[rq];B[sp];B[qp];B[pq];B[qo];B[ro];B[sn];B[mq];W[op];W[po];W[on];W[qn];W[rn];W[sm];W[rl];L[sm:1];L[so:가];L[pp:나];L[oq:다]",
-          "answer1": ";B[oq]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "가|나||",
-          "answer": "2",
-          "auto": "false",
-          "size": "4",
-          "start": "BA",
-          "no": 133,
-          "name": "endgame-1-133"
+          "no": 104,
+          "name": "endgame-1-104"
         },
         {
           "code": "44252",
@@ -2558,46 +2007,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 134,
-          "name": "endgame-1-134"
-        },
-        {
-          "code": "38875",
-          "type": "1",
-          "question": "백△로 흑 집을 줄이려고 합니다. 흑은 1집을 더 만들기 위하여 어디에 두어야 할까요?",
-          "hint": "",
-          "data": ";B[qs];B[qr];B[qq];B[qp];B[qo];B[ro];B[so];B[pn];B[on];B[nn];B[no];B[np];B[op];W[qn];W[rn];W[sn];W[ql];W[pm];W[om];W[nm];W[mn];W[mo];W[mp];W[nq];W[oq];W[pq];W[pp];W[pr];W[ps];T[pp]",
-          "answer1": ";B[po]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "",
-          "answer": "",
-          "auto": "false",
-          "size": "4",
-          "start": "BK",
-          "no": 135,
-          "name": "endgame-1-135"
-        },
-        {
-          "code": "41400",
-          "type": "3",
-          "question": "백1로 둔 장면입니다. 흑은 가, 나, 다 중 어디에 두어야 할까요?",
-          "hint": "",
-          "data": ";B[pr];B[ps];B[os];B[oq];B[nq];B[np];B[no];B[oo];B[pp];B[qp];B[qo];B[pn];W[qn];W[qm];W[pm];W[on];W[nn];W[mn];W[lo];W[kp];W[mp];W[mq];W[mr];W[nr];W[or];W[ns];L[qn:1];L[rn:가];L[po:나];L[mo:다]",
-          "answer1": ";B[rn]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "가|나||",
-          "answer": "2",
-          "auto": "false",
-          "size": "4",
-          "start": "BA",
-          "no": 136,
-          "name": "endgame-1-136"
+          "no": 105,
+          "name": "endgame-1-105"
         },
         {
           "code": "42839",
@@ -2615,27 +2026,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 137,
-          "name": "endgame-1-137"
-        },
-        {
-          "code": "41391",
-          "type": "3",
-          "question": "백1로 둔 장면입니다. 흑은 가, 나 중 어디에 두어야 할까요?",
-          "hint": "",
-          "data": ";B[rq];B[sp];B[sn];B[ro];B[qo];B[pp];B[np];B[op];B[pq];B[pr];B[os];W[or];W[oq];W[nq];W[mq];W[mp];W[mo];W[no];W[oo];W[po];W[qn];W[rn];W[rm];W[sm];W[lr];W[ls];L[sm:1];L[so:가];L[ns:나]",
-          "answer1": ";B[ns]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "가|나||",
-          "answer": "2",
-          "auto": "false",
-          "size": "4",
-          "start": "BA",
-          "no": 138,
-          "name": "endgame-1-138"
+          "no": 106,
+          "name": "endgame-1-106"
         },
         {
           "code": "44256",
@@ -2653,84 +2045,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 139,
-          "name": "endgame-1-139"
-        },
-        {
-          "code": "41404",
-          "type": "3",
-          "question": "백1로 둔 장면입니다. 흑은 가, 나, 다 중 어디에 두어야 할까요?",
-          "hint": "",
-          "data": ";B[ps];B[pr];B[oq];B[op];B[no];B[on];B[pn];B[qn];B[po];B[qp];W[pm];W[qm];W[rm];W[ol];W[nl];W[nm];W[nn];W[mo];W[np];W[nq];W[mr];W[or];W[os];L[mo:1];L[rn:가];L[om:나];L[oo:다]",
-          "answer1": ";B[rn]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "가|나||",
-          "answer": "2",
-          "auto": "false",
-          "size": "4",
-          "start": "BA",
-          "no": 140,
-          "name": "endgame-1-140"
-        },
-        {
-          "code": "41399",
-          "type": "3",
-          "question": "백1로 둔 장면입니다. 흑은 가, 나, 다 중 어디에 두어야 할까요?",
-          "hint": "",
-          "data": ";B[sr];B[rs];B[qs];B[qr];B[qq];B[qp];B[po];B[pn];B[nn];B[on];B[no];B[op];B[oq];W[ro];W[rp];W[rq];W[rr];W[sq];W[qn];W[rm];W[pm];W[om];W[nm];W[mn];W[mo];W[mp];W[np];W[nq];L[sq:1];L[ss:가];L[qo:나];L[nr:다]",
-          "answer1": ";B[nr]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "가|나||",
-          "answer": "2",
-          "auto": "false",
-          "size": "4",
-          "start": "BA",
-          "no": 141,
-          "name": "endgame-1-141"
-        },
-        {
-          "code": "41392",
-          "type": "3",
-          "question": "백1로 둔 장면입니다. 흑은 가, 나 중 어디에 두어야 할까요?",
-          "hint": "",
-          "data": ";B[qq];B[rq];B[rp];B[so];B[rn];B[qn];B[qo];B[po];B[qm];B[pm];B[om];B[on];B[nn];B[no];B[op];W[qp];W[pp];W[pq];W[oq];W[nq];W[np];W[mo];W[mn];W[mm];W[nm];W[ol];W[ql];W[pl];W[rl];W[rm];W[sm];W[sn];L[np:1];L[oo:가];L[pr:나]",
-          "answer1": ";B[pr]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "가|나||",
-          "answer": "2",
-          "auto": "false",
-          "size": "4",
-          "start": "BA",
-          "no": 142,
-          "name": "endgame-1-142"
-        },
-        {
-          "code": "41385",
-          "type": "3",
-          "question": "백1로 둔 장면입니다. 흑은 가, 나 중 어디에 두어야 할까요?",
-          "hint": "",
-          "data": ";B[qp];B[pq];B[rq];B[sp];B[so];B[rn];B[qn];B[qr];B[pr];B[or];B[ns];B[ps];W[sn];W[sm];W[qm];W[rm];W[pm];W[pn];W[po];W[pp];W[oq];W[np];W[nr];W[mr];W[ms];L[ms:1];L[qo:가];L[os:나]",
-          "answer1": ";B[qo]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "가|나||",
-          "answer": "2",
-          "auto": "false",
-          "size": "4",
-          "start": "BA",
-          "no": 143,
-          "name": "endgame-1-143"
+          "no": 107,
+          "name": "endgame-1-107"
         },
         {
           "code": "44270",
@@ -2748,46 +2064,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 144,
-          "name": "endgame-1-144"
-        },
-        {
-          "code": "41393",
-          "type": "3",
-          "question": "백1로 둔 장면입니다. 흑은 가, 나 중 어디에 두어야 할까요?",
-          "hint": "",
-          "data": ";B[sr];B[rs];B[qs];B[qr];B[qq];B[qp];B[qo];B[qn];B[po];B[oo];B[op];B[oq];B[or];B[os];W[sq];W[rq];W[rr];W[rp];W[ro];W[rn];W[qm];W[pm];W[pn];W[ol];W[nl];W[mm];W[mn];W[no];W[np];W[nq];W[nr];W[ns];L[sq:1];L[ss:가];L[on:나]",
-          "answer1": ";B[on]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "가|나||",
-          "answer": "2",
-          "auto": "false",
-          "size": "4",
-          "start": "BA",
-          "no": 145,
-          "name": "endgame-1-145"
-        },
-        {
-          "code": "38880",
-          "type": "1",
-          "question": "백△로 흑 집을 줄이려고 합니다. 흑은 어디에 두어야 할까요?",
-          "hint": "",
-          "data": ";B[pq];B[po];B[oo];B[no];B[qp];B[ro];B[sn];B[nq];B[nr];B[ns];B[rm];B[qm];B[pm];B[om];W[sm];W[sl];W[rl];W[ql];W[pl];W[ol];W[nl];W[nm];W[nn];W[on];W[pn];W[mo];W[mp];W[mq];W[mr];W[ms];T[pn]",
-          "answer1": ";B[qn]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "",
-          "answer": "",
-          "auto": "false",
-          "size": "4",
-          "start": "BK",
-          "no": 146,
-          "name": "endgame-1-146"
+          "no": 108,
+          "name": "endgame-1-108"
         },
         {
           "code": "44274",
@@ -2805,152 +2083,19 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 147,
-          "name": "endgame-1-147"
-        },
-        {
-          "code": "38881",
-          "type": "1",
-          "question": "백△로 흑 집을 줄이려고 합니다. 흑은 어디에 두어야 할까요?",
-          "hint": "",
-          "data": ";B[pq];B[po];B[oo];B[no];B[nq];B[nr];B[ns];B[qp];B[ro];B[sn];B[rm];B[qm];B[qn];B[pm];B[om];W[np];W[mp];W[mo];W[mq];W[mr];W[ms];W[pn];W[on];W[nn];W[nm];W[nl];W[ol];W[pl];W[ql];W[rl];W[sl];W[sm];T[np]",
-          "answer1": ";B[op]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "",
-          "answer": "",
-          "auto": "false",
-          "size": "4",
-          "start": "BK",
-          "no": 148,
-          "name": "endgame-1-148"
-        },
-        {
-          "code": "41390",
-          "type": "3",
-          "question": "백1로 둔 장면입니다. 흑은 가, 나 중 어디에 두어야 할까요?",
-          "hint": "",
-          "data": ";B[rr];B[qq];B[pq];B[oq];B[pp];B[oo];B[po];B[ro];B[qo];B[rp];B[sp];B[nn];B[mo];B[mp];B[mq];B[np];B[mr];B[nr];W[or];W[qr];W[pr];W[qs];W[os];W[ns];W[ms];W[lr];W[lq];W[lp];W[lo];W[mn];W[mm];W[nm];W[on];W[pn];W[qn];W[rn];W[so];W[sn];L[mn:1];L[rs:가];L[no:나]",
-          "answer1": ";B[rs]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "가|나||",
-          "answer": "2",
-          "auto": "false",
-          "size": "4",
-          "start": "BA",
-          "no": 149,
-          "name": "endgame-1-149"
-        },
-        {
-          "code": "41397",
-          "type": "3",
-          "question": "백1로 둔 장면입니다. 흑은 가, 나, 다 중 어디에 두어야 할까요?",
-          "hint": "",
-          "data": ";B[qr];B[ps];B[or];B[oq];B[op];B[ns];B[po];B[qp];B[rp];B[sp];W[sn];W[ro];W[rm];W[qn];W[qo];W[pn];W[on];W[nm];W[mm];W[mn];W[mo];W[np];W[nq];W[nr];W[mr];W[ms];L[ms:1];L[so:가];L[oo:나];L[os:다]",
-          "answer1": ";B[oo]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "가|나||",
-          "answer": "2",
-          "auto": "false",
-          "size": "4",
-          "start": "BA",
-          "no": 150,
-          "name": "endgame-1-150"
-        },
-        {
-          "code": "41388",
-          "type": "3",
-          "question": "백1로 둔 장면입니다. 흑은 가, 나 중 어디에 두어야 할까요?",
-          "hint": "",
-          "data": ";B[rs];B[sr];B[sq];B[rq];B[qq];B[pp];B[po];B[oo];B[nm];B[om];B[pm];B[qn];B[rn];B[ro];B[so];W[rr];W[qr];W[pr];W[qs];W[pq];W[op];W[np];W[no];W[mn];W[mm];W[nl];W[ol];W[pl];W[ql];W[qm];W[rm];W[sm];W[sn];L[qs:1];L[ss:가];L[nn:나]",
-          "answer1": ";B[nn]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "가|나||",
-          "answer": "2",
-          "auto": "false",
-          "size": "4",
-          "start": "BA",
-          "no": 151,
-          "name": "endgame-1-151"
-        },
-        {
-          "code": "41398",
-          "type": "3",
-          "question": "백1로 둔 장면입니다. 흑은 가, 나, 다 중 어디에 두어야 할까요?",
-          "hint": "",
-          "data": ";B[rq];B[sp];B[ro];B[sn];B[qn];B[pn];B[pm];B[om];B[nn];B[mn];B[oo];B[po];B[pp];B[pq];B[pr];B[ps];W[op];W[oq];W[or];W[ns];W[mr];W[no];W[mo];W[ln];W[lm];W[mm];W[nm];W[ol];W[pl];W[ql];W[qm];W[rm];W[sm];W[rn];L[sm:1];L[so:가];L[on:나];L[os:다]",
-          "answer1": ";B[on]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "가|나||",
-          "answer": "2",
-          "auto": "false",
-          "size": "4",
-          "start": "BA",
-          "no": 152,
-          "name": "endgame-1-152"
+          "no": 109,
+          "name": "endgame-1-109"
         }
       ]
     },
     {
       "code": "tech_endgame_ch02",
       "chapterCode": "tech_endgame_ch02",
-      "title": "2단원. 상대 집 부수기와 집 줄이기 (122제)",
-      "chapter": "2단원. 상대 집 부수기와 집 줄이기 (122제)",
-      "problemCount": 122,
-      "problemsCount": 122,
+      "title": "2단원. 상대 집 부수기와 집 줄이기 (86제)",
+      "chapter": "2단원. 상대 집 부수기와 집 줄이기 (86제)",
+      "problemCount": 86,
+      "problemsCount": 86,
       "problems": [
-        {
-          "code": "42793",
-          "type": "3",
-          "question": "가, 나 중 더 좋은 수는 어디일까요?",
-          "hint": "",
-          "data": ";W[pp];W[nq];B[qn];L[qo:가];L[rp:나]",
-          "answer1": ";B[rp]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "한 칸 지키기|일립이전||",
-          "answer": "2",
-          "auto": "false",
-          "size": "4",
-          "start": "BA",
-          "no": 1,
-          "name": "endgame-2-1"
-        },
-        {
-          "code": "41370",
-          "type": "3",
-          "question": "백 집을 줄이기 위해 흑은 가, 나 중 어디에 두어야 할까요?",
-          "hint": "",
-          "data": ";W[pq];W[nq];B[pn];L[qn:가];L[qp:나]",
-          "answer1": ";B[qp]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "가|나||",
-          "answer": "2",
-          "auto": "false",
-          "size": "4",
-          "start": "BA",
-          "no": 2,
-          "name": "endgame-2-2"
-        },
         {
           "code": "42279",
           "type": "1",
@@ -2967,8 +2112,8 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "no": 3,
-          "name": "endgame-2-3"
+          "no": 1,
+          "name": "endgame-2-1"
         },
         {
           "code": "42281",
@@ -2986,122 +2131,8 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "no": 4,
-          "name": "endgame-2-4"
-        },
-        {
-          "code": "42794",
-          "type": "3",
-          "question": "가, 나 중 더 좋은 수는 어디일까요?",
-          "hint": "",
-          "data": ";W[qp];W[op];W[pl];B[nq];L[pr:가];L[oq:나]",
-          "answer1": ";B[pr]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "한 칸 지키기|일립이전||",
-          "answer": "2",
-          "auto": "false",
-          "size": "4",
-          "start": "BA",
-          "no": 5,
-          "name": "endgame-2-5"
-        },
-        {
-          "code": "41349",
-          "type": "3",
-          "question": "백 집을 줄이기 위해 흑은 가, 나 중 어디에 두어야 할까요?",
-          "hint": "",
-          "data": ";W[pp];W[nq];B[qo];B[ql];L[ro:가];L[qp:나]",
-          "answer1": ";B[qp]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "가|나||",
-          "answer": "2",
-          "auto": "false",
-          "size": "4",
-          "start": "BA",
-          "no": 6,
-          "name": "endgame-2-6"
-        },
-        {
-          "code": "41364",
-          "type": "3",
-          "question": "백 집을 줄이기 위해 흑은 가, 나 중 어디에 두어야 할까요?",
-          "hint": "",
-          "data": ";B[kp];B[nq];W[op];W[qo];L[oq:가];L[mq:나]",
-          "answer1": ";B[oq]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "가|나||",
-          "answer": "2",
-          "auto": "false",
-          "size": "4",
-          "start": "BA",
-          "no": 7,
-          "name": "endgame-2-7"
-        },
-        {
-          "code": "42792",
-          "type": "3",
-          "question": "가, 나 중 더 좋은 수는 어디일까요?",
-          "hint": "",
-          "data": ";W[pp];W[po];W[pn];W[pl];B[oo];B[nq];L[pr:가];L[oq:나]",
-          "answer1": ";B[pr]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "한 칸 지키기|일립이전||",
-          "answer": "2",
-          "auto": "false",
-          "size": "4",
-          "start": "BA",
-          "no": 8,
-          "name": "endgame-2-8"
-        },
-        {
-          "code": "42790",
-          "type": "3",
-          "question": "가, 나 중 더 좋은 수는 어디일까요?",
-          "hint": "",
-          "data": ";W[pq];W[po];W[pn];W[mq];B[qm];B[qn];L[rp:가];L[qo:나]",
-          "answer1": ";B[rp]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "한 칸 지키기|일립이전||",
-          "answer": "2",
-          "auto": "false",
-          "size": "4",
-          "start": "BA",
-          "no": 9,
-          "name": "endgame-2-9"
-        },
-        {
-          "code": "41377",
-          "type": "3",
-          "question": "백 집을 줄이기 위해 흑은 가, 나 중 어디에 두어야 할까요?",
-          "hint": "",
-          "data": ";B[kq];B[nq];W[qo];W[pm];L[qq:가];L[oq:나]",
-          "answer1": ";B[qq]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "가|나||",
-          "answer": "2",
-          "auto": "false",
-          "size": "4",
-          "start": "BA",
-          "no": 10,
-          "name": "endgame-2-10"
+          "no": 2,
+          "name": "endgame-2-2"
         },
         {
           "code": "7801",
@@ -3119,8 +2150,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 11,
-          "name": "endgame-2-11"
+          "no": 3,
+          "name": "endgame-2-3"
         },
         {
           "code": "7802",
@@ -3138,8 +2169,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 12,
-          "name": "endgame-2-12"
+          "no": 4,
+          "name": "endgame-2-4"
         },
         {
           "code": "7806",
@@ -3157,8 +2188,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 13,
-          "name": "endgame-2-13"
+          "no": 5,
+          "name": "endgame-2-5"
         },
         {
           "code": "42289",
@@ -3176,8 +2207,8 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "no": 14,
-          "name": "endgame-2-14"
+          "no": 6,
+          "name": "endgame-2-6"
         },
         {
           "code": "7807",
@@ -3195,8 +2226,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 15,
-          "name": "endgame-2-15"
+          "no": 7,
+          "name": "endgame-2-7"
         },
         {
           "code": "42280",
@@ -3214,27 +2245,8 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "no": 16,
-          "name": "endgame-2-16"
-        },
-        {
-          "code": "42778",
-          "type": "3",
-          "question": "가, 나 중 백 집을 줄이는 좋은 수는 어디일까요?",
-          "hint": "",
-          "data": ";W[pp];W[op];W[qo];W[qm];B[oo];B[no];B[np];B[nq];L[pr:가];L[oq:나]",
-          "answer1": ";B[pr]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "한 칸 지키기|일립이전||",
-          "answer": "2",
-          "auto": "false",
-          "size": "4",
-          "start": "BA",
-          "no": 17,
-          "name": "endgame-2-17"
+          "no": 8,
+          "name": "endgame-2-8"
         },
         {
           "code": "7808",
@@ -3252,27 +2264,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 18,
-          "name": "endgame-2-18"
-        },
-        {
-          "code": "42791",
-          "type": "3",
-          "question": "가, 나 중 더 좋은 수는 어디일까요?",
-          "hint": "",
-          "data": ";W[qp];W[pp];W[op];W[pn];W[pm];B[on];B[no];B[np];B[nq];L[pr:가];L[oq:나]",
-          "answer1": ";B[pr]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "한 칸 지키기|일립이전||",
-          "answer": "2",
-          "auto": "false",
-          "size": "4",
-          "start": "BA",
-          "no": 19,
-          "name": "endgame-2-19"
+          "no": 9,
+          "name": "endgame-2-9"
         },
         {
           "code": "42291",
@@ -3290,46 +2283,8 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "no": 20,
-          "name": "endgame-2-20"
-        },
-        {
-          "code": "41371",
-          "type": "3",
-          "question": "백 집을 줄이기 위해 흑은 가, 나 중 어디에 두어야 할까요?",
-          "hint": "",
-          "data": ";W[qp];W[po];W[pm];B[np];B[kp];L[pq:가];L[nq:나]",
-          "answer1": ";B[pq]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "가|나||",
-          "answer": "2",
-          "auto": "false",
-          "size": "4",
-          "start": "BA",
-          "no": 21,
-          "name": "endgame-2-21"
-        },
-        {
-          "code": "41376",
-          "type": "3",
-          "question": "백 집을 줄이기 위해 흑은 가, 나 중 어디에 두어야 할까요?",
-          "hint": "",
-          "data": ";W[lp];W[oo];W[oq];B[qo];B[qm];L[qp:가];L[qq:나]",
-          "answer1": ";B[qq]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "가|나||",
-          "answer": "2",
-          "auto": "false",
-          "size": "4",
-          "start": "BA",
-          "no": 22,
-          "name": "endgame-2-22"
+          "no": 10,
+          "name": "endgame-2-10"
         },
         {
           "code": "42278",
@@ -3347,27 +2302,8 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "no": 23,
-          "name": "endgame-2-23"
-        },
-        {
-          "code": "41350",
-          "type": "3",
-          "question": "백 집을 줄이기 위해 흑은 가, 나 중 어디에 두어야 할까요?",
-          "hint": "",
-          "data": ";B[qq];B[qp];B[qo];W[pp];W[po];W[pn];W[mp];W[kq];L[qr:가];L[pq:나]",
-          "answer1": ";B[pq]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "가|나||",
-          "answer": "2",
-          "auto": "false",
-          "size": "4",
-          "start": "BA",
-          "no": 24,
-          "name": "endgame-2-24"
+          "no": 11,
+          "name": "endgame-2-11"
         },
         {
           "code": "42277",
@@ -3385,27 +2321,8 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "no": 25,
-          "name": "endgame-2-25"
-        },
-        {
-          "code": "41342",
-          "type": "3",
-          "question": "백 집을 줄이기 위해 흑은 가, 나 중 어디에 두어야 할까요?",
-          "hint": "",
-          "data": ";B[kq];B[nq];W[op];W[qo];W[ql];L[oq:가];L[nr:나]",
-          "answer1": ";B[oq]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "가|나||",
-          "answer": "2",
-          "auto": "false",
-          "size": "4",
-          "start": "BA",
-          "no": 26,
-          "name": "endgame-2-26"
+          "no": 12,
+          "name": "endgame-2-12"
         },
         {
           "code": "7817",
@@ -3423,8 +2340,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 27,
-          "name": "endgame-2-27"
+          "no": 13,
+          "name": "endgame-2-13"
         },
         {
           "code": "42293",
@@ -3442,27 +2359,8 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "no": 28,
-          "name": "endgame-2-28"
-        },
-        {
-          "code": "41344",
-          "type": "3",
-          "question": "백 집을 줄이기 위해 흑은 가, 나 중 어디에 두어야 할까요?",
-          "hint": "",
-          "data": ";W[ko];W[kp];W[kq];W[op];W[on];B[pq];B[qo];L[pp:가];L[oq:나]",
-          "answer1": ";B[oq]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "가|나||",
-          "answer": "2",
-          "auto": "false",
-          "size": "4",
-          "start": "BA",
-          "no": 29,
-          "name": "endgame-2-29"
+          "no": 14,
+          "name": "endgame-2-14"
         },
         {
           "code": "7799",
@@ -3480,46 +2378,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 30,
-          "name": "endgame-2-30"
-        },
-        {
-          "code": "41365",
-          "type": "3",
-          "question": "백 집을 줄이기 위해 흑은 가, 나 중 어디에 두어야 할까요?",
-          "hint": "",
-          "data": ";B[qp];B[qo];B[ql];W[pp];W[op];W[mp];W[kp];L[rp:가];L[qq:나]",
-          "answer1": ";B[qq]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "가|나||",
-          "answer": "2",
-          "auto": "false",
-          "size": "4",
-          "start": "BA",
-          "no": 31,
-          "name": "endgame-2-31"
-        },
-        {
-          "code": "41381",
-          "type": "3",
-          "question": "백 집을 줄이기 위해 흑은 가, 나 중 어디에 두어야 할까요?",
-          "hint": "",
-          "data": ";B[qp];B[pq];B[np];W[po];W[nn];W[pl];L[qo:가];L[pp:나]",
-          "answer1": ";B[qo]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "가|나||",
-          "answer": "2",
-          "auto": "false",
-          "size": "4",
-          "start": "BA",
-          "no": 32,
-          "name": "endgame-2-32"
+          "no": 15,
+          "name": "endgame-2-15"
         },
         {
           "code": "7800",
@@ -3537,122 +2397,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 33,
-          "name": "endgame-2-33"
-        },
-        {
-          "code": "41338",
-          "type": "3",
-          "question": "백 집을 줄이기 위해 흑은 가, 나 중 어디에 두어야 할까요?",
-          "hint": "",
-          "data": ";W[lq];W[lp];W[lo];W[ln];W[mm];W[om];B[pq];B[qp];L[pr:가];L[nq:나]",
-          "answer1": ";B[nq]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "가|나||",
-          "answer": "2",
-          "auto": "false",
-          "size": "4",
-          "start": "BA",
-          "no": 34,
-          "name": "endgame-2-34"
-        },
-        {
-          "code": "41382",
-          "type": "3",
-          "question": "백 집을 줄이기 위해 흑은 가, 나 중 어디에 두어야 할까요?",
-          "hint": "",
-          "data": ";W[pp];W[op];W[np];W[no];W[nn];W[pl];B[mn];B[mo];B[mp];B[nq];B[oq];L[pq:가];L[or:나]",
-          "answer1": ";B[pq]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "가|나||",
-          "answer": "2",
-          "auto": "false",
-          "size": "4",
-          "start": "BA",
-          "no": 35,
-          "name": "endgame-2-35"
-        },
-        {
-          "code": "41337",
-          "type": "3",
-          "question": "백 집을 줄이기 위해 흑은 가, 나 중 어디에 두어야 할까요?",
-          "hint": "",
-          "data": ";B[oq];B[pq];B[qp];B[ro];W[op];W[po];W[qo];W[pl];L[so:가];L[rn:나]",
-          "answer1": ";B[rn]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "가|나||",
-          "answer": "2",
-          "auto": "false",
-          "size": "4",
-          "start": "BA",
-          "no": 36,
-          "name": "endgame-2-36"
-        },
-        {
-          "code": "42782",
-          "type": "3",
-          "question": "가, 나 중 백 집을 줄이는 좋은 수는 어디일까요?",
-          "hint": "",
-          "data": ";W[qp];W[op];W[oo];W[pl];W[ql];B[np];B[nq];B[kq];L[pr:가];L[oq:나]",
-          "answer1": ";B[pr]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "한 칸 지키기|일립이전||",
-          "answer": "2",
-          "auto": "false",
-          "size": "4",
-          "start": "BA",
-          "no": 37,
-          "name": "endgame-2-37"
-        },
-        {
-          "code": "41380",
-          "type": "3",
-          "question": "백 집을 줄이기 위해 흑은 가, 나 중 어디에 두어야 할까요?",
-          "hint": "",
-          "data": ";B[pq];B[qp];B[qm];W[op];W[lo];W[lq];L[pp:가];L[oq:나]",
-          "answer1": ";B[oq]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "가|나||",
-          "answer": "2",
-          "auto": "false",
-          "size": "4",
-          "start": "BA",
-          "no": 38,
-          "name": "endgame-2-38"
-        },
-        {
-          "code": "41373",
-          "type": "3",
-          "question": "백 집을 줄이기 위해 흑은 가, 나 중 어디에 두어야 할까요?",
-          "hint": "",
-          "data": ";B[kp];B[no];B[np];B[nq];B[or];W[op];W[pp];W[qp];W[qm];L[qr:가];L[pr:나]",
-          "answer1": ";B[qr]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "가|나||",
-          "answer": "2",
-          "auto": "false",
-          "size": "4",
-          "start": "BA",
-          "no": 39,
-          "name": "endgame-2-39"
+          "no": 16,
+          "name": "endgame-2-16"
         },
         {
           "code": "42282",
@@ -3670,27 +2416,8 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "no": 40,
-          "name": "endgame-2-40"
-        },
-        {
-          "code": "42781",
-          "type": "3",
-          "question": "가, 나 중 백 집을 줄이는 좋은 수는 어디일까요?",
-          "hint": "",
-          "data": ";B[qq];B[qr];B[pr];B[nq];W[or];W[oq];W[pq];W[pp];W[pn];W[ql];L[ro:가];L[qp:나]",
-          "answer1": ";B[ro]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "한 칸 지키기|일립이전||",
-          "answer": "2",
-          "auto": "false",
-          "size": "4",
-          "start": "BA",
-          "no": 41,
-          "name": "endgame-2-41"
+          "no": 17,
+          "name": "endgame-2-17"
         },
         {
           "code": "7813",
@@ -3708,8 +2435,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 42,
-          "name": "endgame-2-42"
+          "no": 18,
+          "name": "endgame-2-18"
         },
         {
           "code": "7820",
@@ -3727,65 +2454,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 43,
-          "name": "endgame-2-43"
-        },
-        {
-          "code": "41347",
-          "type": "3",
-          "question": "백 집을 줄이기 위해 흑은 가, 나 중 어디에 두어야 할까요?",
-          "hint": "",
-          "data": ";B[kp];B[np];B[oq];W[pp];W[qo];W[ql];L[pq:가];L[or:나]",
-          "answer1": ";B[pq]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "가|나||",
-          "answer": "2",
-          "auto": "false",
-          "size": "4",
-          "start": "BA",
-          "no": 44,
-          "name": "endgame-2-44"
-        },
-        {
-          "code": "42780",
-          "type": "3",
-          "question": "가, 나 중 백 집을 줄이는 좋은 수는 어디일까요?",
-          "hint": "",
-          "data": ";B[qq];B[qp];B[rp];B[ro];W[pp];W[po];W[qo];W[rn];W[np];W[kq];L[pq:가];L[or:나]",
-          "answer1": ";B[or]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "한 칸 지키기|일립이전||",
-          "answer": "2",
-          "auto": "false",
-          "size": "4",
-          "start": "BA",
-          "no": 45,
-          "name": "endgame-2-45"
-        },
-        {
-          "code": "41336",
-          "type": "3",
-          "question": "백 집을 줄이기 위해 흑은 가, 나 중 어디에 두어야 할까요?",
-          "hint": "",
-          "data": ";B[qp];B[rp];B[sp];B[pq];B[pr];W[oq];W[nq];W[mp];W[lp];W[kq];W[kr];L[ps:가];L[or:나]",
-          "answer1": ";B[or]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "가|나||",
-          "answer": "2",
-          "auto": "false",
-          "size": "4",
-          "start": "BA",
-          "no": 46,
-          "name": "endgame-2-46"
+          "no": 19,
+          "name": "endgame-2-19"
         },
         {
           "code": "7805",
@@ -3803,8 +2473,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 47,
-          "name": "endgame-2-47"
+          "no": 20,
+          "name": "endgame-2-20"
         },
         {
           "code": "42290",
@@ -3822,46 +2492,8 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "no": 48,
-          "name": "endgame-2-48"
-        },
-        {
-          "code": "41383",
-          "type": "3",
-          "question": "백 집을 줄이기 위해 흑은 가, 나 중 어디에 두어야 할까요?",
-          "hint": "",
-          "data": ";B[qp];B[rp];B[ro];B[qn];B[qm];W[pn];W[po];W[pp];W[qo];W[mo];W[lp];L[qq:가];L[pq:나]",
-          "answer1": ";B[pq]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "가|나||",
-          "answer": "2",
-          "auto": "false",
-          "size": "4",
-          "start": "BA",
-          "no": 49,
-          "name": "endgame-2-49"
-        },
-        {
-          "code": "41367",
-          "type": "3",
-          "question": "백 집을 줄이기 위해 흑은 가, 나 중 어디에 두어야 할까요?",
-          "hint": "",
-          "data": ";B[qq];B[pp];B[nq];B[mq];W[qo];W[lq];W[lp];W[mn];L[po:가];L[op:나]",
-          "answer1": ";B[po]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "가|나||",
-          "answer": "2",
-          "auto": "false",
-          "size": "4",
-          "start": "BA",
-          "no": 50,
-          "name": "endgame-2-50"
+          "no": 21,
+          "name": "endgame-2-21"
         },
         {
           "code": "7823",
@@ -3879,8 +2511,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 51,
-          "name": "endgame-2-51"
+          "no": 22,
+          "name": "endgame-2-22"
         },
         {
           "code": "42292",
@@ -3898,46 +2530,8 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "no": 52,
-          "name": "endgame-2-52"
-        },
-        {
-          "code": "41346",
-          "type": "3",
-          "question": "백 집을 줄이기 위해 흑은 가, 나 중 어디에 두어야 할까요?",
-          "hint": "",
-          "data": ";B[qq];B[pr];B[nr];B[mq];W[np];W[pp];W[ql];L[qp:가];L[pq:나]",
-          "answer1": ";B[qp]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "가|나||",
-          "answer": "2",
-          "auto": "false",
-          "size": "4",
-          "start": "BA",
-          "no": 53,
-          "name": "endgame-2-53"
-        },
-        {
-          "code": "42783",
-          "type": "3",
-          "question": "가, 나 중 백 집을 줄이는 좋은 수는 어디일까요?",
-          "hint": "",
-          "data": ";W[pp];W[oq];W[lq];W[pn];W[on];B[qn];B[pm];B[ql];L[qo:가];L[rp:나]",
-          "answer1": ";B[rp]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "한 칸 지키기|일립이전||",
-          "answer": "2",
-          "auto": "false",
-          "size": "4",
-          "start": "BA",
-          "no": 54,
-          "name": "endgame-2-54"
+          "no": 23,
+          "name": "endgame-2-23"
         },
         {
           "code": "7824",
@@ -3955,8 +2549,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 55,
-          "name": "endgame-2-55"
+          "no": 24,
+          "name": "endgame-2-24"
         },
         {
           "code": "7803",
@@ -3974,8 +2568,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 56,
-          "name": "endgame-2-56"
+          "no": 25,
+          "name": "endgame-2-25"
         },
         {
           "code": "7819",
@@ -3993,8 +2587,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 57,
-          "name": "endgame-2-57"
+          "no": 26,
+          "name": "endgame-2-26"
         },
         {
           "code": "42294",
@@ -4012,8 +2606,8 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "no": 58,
-          "name": "endgame-2-58"
+          "no": 27,
+          "name": "endgame-2-27"
         },
         {
           "code": "7815",
@@ -4031,8 +2625,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 59,
-          "name": "endgame-2-59"
+          "no": 28,
+          "name": "endgame-2-28"
         },
         {
           "code": "7816",
@@ -4050,8 +2644,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 60,
-          "name": "endgame-2-60"
+          "no": 29,
+          "name": "endgame-2-29"
         },
         {
           "code": "7821",
@@ -4069,8 +2663,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 61,
-          "name": "endgame-2-61"
+          "no": 30,
+          "name": "endgame-2-30"
         },
         {
           "code": "7809",
@@ -4088,8 +2682,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 62,
-          "name": "endgame-2-62"
+          "no": 31,
+          "name": "endgame-2-31"
         },
         {
           "code": "7811",
@@ -4107,8 +2701,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 63,
-          "name": "endgame-2-63"
+          "no": 32,
+          "name": "endgame-2-32"
         },
         {
           "code": "7812",
@@ -4126,8 +2720,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 64,
-          "name": "endgame-2-64"
+          "no": 33,
+          "name": "endgame-2-33"
         },
         {
           "code": "7818",
@@ -4145,46 +2739,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 65,
-          "name": "endgame-2-65"
-        },
-        {
-          "code": "41374",
-          "type": "3",
-          "question": "백 집을 줄이기 위해 흑은 가, 나 중 어디에 두어야 할까요?",
-          "hint": "",
-          "data": ";W[pq];W[po];W[mp];W[pm];W[qn];B[ol];B[pl];B[ql];B[qm];B[rn];B[ro];L[rp:가];L[rq:나]",
-          "answer1": ";B[rq]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "가|나||",
-          "answer": "2",
-          "auto": "false",
-          "size": "4",
-          "start": "BA",
-          "no": 66,
-          "name": "endgame-2-66"
-        },
-        {
-          "code": "42795",
-          "type": "3",
-          "question": "가, 나 중 더 좋은 수는 어디일까요?",
-          "hint": "",
-          "data": ";W[pp];W[oq];W[or];W[nr];W[pn];B[ql];B[np];B[nq];B[mr];B[kp];L[rn:가];L[qm:나]",
-          "answer1": ";B[rn]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "한 칸 지키기|일립이전||",
-          "answer": "2",
-          "auto": "false",
-          "size": "4",
-          "start": "BA",
-          "no": 67,
-          "name": "endgame-2-67"
+          "no": 34,
+          "name": "endgame-2-34"
         },
         {
           "code": "7804",
@@ -4202,27 +2758,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 68,
-          "name": "endgame-2-68"
-        },
-        {
-          "code": "42779",
-          "type": "3",
-          "question": "가, 나 중 백 집을 줄이는 좋은 수는 어디일까요?",
-          "hint": "",
-          "data": ";W[pp];W[po];W[pn];W[op];W[op];W[np];W[no];W[lp];W[or];B[oo];B[on];B[om];B[pm];B[ql];B[qn];L[rp:가];L[qo:나]",
-          "answer1": ";B[rp]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "한 칸 지키기|일립이전||",
-          "answer": "2",
-          "auto": "false",
-          "size": "4",
-          "start": "BA",
-          "no": 69,
-          "name": "endgame-2-69"
+          "no": 35,
+          "name": "endgame-2-35"
         },
         {
           "code": "7822",
@@ -4240,27 +2777,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 70,
-          "name": "endgame-2-70"
-        },
-        {
-          "code": "41368",
-          "type": "3",
-          "question": "백 집을 줄이기 위해 흑은 가, 나 중 어디에 두어야 할까요?",
-          "hint": "",
-          "data": ";W[qp];W[po];W[pl];W[nq];B[mp];B[lq];B[ml];B[kl];L[np:가];L[mq:나]",
-          "answer1": ";B[np]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "가|나||",
-          "answer": "2",
-          "auto": "false",
-          "size": "4",
-          "start": "BA",
-          "no": 71,
-          "name": "endgame-2-71"
+          "no": 36,
+          "name": "endgame-2-36"
         },
         {
           "code": "49282",
@@ -4278,8 +2796,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 72,
-          "name": "endgame-2-72"
+          "no": 37,
+          "name": "endgame-2-37"
         },
         {
           "code": "7810",
@@ -4297,27 +2815,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 73,
-          "name": "endgame-2-73"
-        },
-        {
-          "code": "41363",
-          "type": "3",
-          "question": "백 집을 줄이기 위해 흑은 가, 나 중 어디에 두어야 할까요?",
-          "hint": "",
-          "data": ";B[pp];B[qp];B[rp];B[mp];B[mq];W[kp];W[kn];W[mn];W[qo];W[ro];W[ql];L[po:가];L[op:나]",
-          "answer1": ";B[po]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "가|나||",
-          "answer": "2",
-          "auto": "false",
-          "size": "4",
-          "start": "BA",
-          "no": 74,
-          "name": "endgame-2-74"
+          "no": 38,
+          "name": "endgame-2-38"
         },
         {
           "code": "49280",
@@ -4335,8 +2834,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 75,
-          "name": "endgame-2-75"
+          "no": 39,
+          "name": "endgame-2-39"
         },
         {
           "code": "7814",
@@ -4354,8 +2853,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 76,
-          "name": "endgame-2-76"
+          "no": 40,
+          "name": "endgame-2-40"
         },
         {
           "code": "50314",
@@ -4373,8 +2872,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 77,
-          "name": "endgame-2-77"
+          "no": 41,
+          "name": "endgame-2-41"
         },
         {
           "code": "49281",
@@ -4392,8 +2891,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 78,
-          "name": "endgame-2-78"
+          "no": 42,
+          "name": "endgame-2-42"
         },
         {
           "code": "50313",
@@ -4411,8 +2910,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 79,
-          "name": "endgame-2-79"
+          "no": 43,
+          "name": "endgame-2-43"
         },
         {
           "code": "49290",
@@ -4430,8 +2929,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 80,
-          "name": "endgame-2-80"
+          "no": 44,
+          "name": "endgame-2-44"
         },
         {
           "code": "49268",
@@ -4449,8 +2948,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 81,
-          "name": "endgame-2-81"
+          "no": 45,
+          "name": "endgame-2-45"
         },
         {
           "code": "49283",
@@ -4468,8 +2967,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 82,
-          "name": "endgame-2-82"
+          "no": 46,
+          "name": "endgame-2-46"
         },
         {
           "code": "50315",
@@ -4487,8 +2986,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 83,
-          "name": "endgame-2-83"
+          "no": 47,
+          "name": "endgame-2-47"
         },
         {
           "code": "49277",
@@ -4506,8 +3005,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 84,
-          "name": "endgame-2-84"
+          "no": 48,
+          "name": "endgame-2-48"
         },
         {
           "code": "49274",
@@ -4525,8 +3024,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 85,
-          "name": "endgame-2-85"
+          "no": 49,
+          "name": "endgame-2-49"
         },
         {
           "code": "49286",
@@ -4544,8 +3043,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 86,
-          "name": "endgame-2-86"
+          "no": 50,
+          "name": "endgame-2-50"
         },
         {
           "code": "49289",
@@ -4563,8 +3062,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 87,
-          "name": "endgame-2-87"
+          "no": 51,
+          "name": "endgame-2-51"
         },
         {
           "code": "49276",
@@ -4582,8 +3081,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 88,
-          "name": "endgame-2-88"
+          "no": 52,
+          "name": "endgame-2-52"
         },
         {
           "code": "49269",
@@ -4601,8 +3100,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 89,
-          "name": "endgame-2-89"
+          "no": 53,
+          "name": "endgame-2-53"
         },
         {
           "code": "49273",
@@ -4620,8 +3119,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 90,
-          "name": "endgame-2-90"
+          "no": 54,
+          "name": "endgame-2-54"
         },
         {
           "code": "49272",
@@ -4639,8 +3138,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 91,
-          "name": "endgame-2-91"
+          "no": 55,
+          "name": "endgame-2-55"
         },
         {
           "code": "49291",
@@ -4658,8 +3157,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 92,
-          "name": "endgame-2-92"
+          "no": 56,
+          "name": "endgame-2-56"
         },
         {
           "code": "50308",
@@ -4677,8 +3176,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 93,
-          "name": "endgame-2-93"
+          "no": 57,
+          "name": "endgame-2-57"
         },
         {
           "code": "50326",
@@ -4696,8 +3195,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 94,
-          "name": "endgame-2-94"
+          "no": 58,
+          "name": "endgame-2-58"
         },
         {
           "code": "49285",
@@ -4715,8 +3214,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 95,
-          "name": "endgame-2-95"
+          "no": 59,
+          "name": "endgame-2-59"
         },
         {
           "code": "49284",
@@ -4734,8 +3233,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 96,
-          "name": "endgame-2-96"
+          "no": 60,
+          "name": "endgame-2-60"
         },
         {
           "code": "50323",
@@ -4753,8 +3252,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 97,
-          "name": "endgame-2-97"
+          "no": 61,
+          "name": "endgame-2-61"
         },
         {
           "code": "50327",
@@ -4772,8 +3271,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 98,
-          "name": "endgame-2-98"
+          "no": 62,
+          "name": "endgame-2-62"
         },
         {
           "code": "50311",
@@ -4791,8 +3290,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 99,
-          "name": "endgame-2-99"
+          "no": 63,
+          "name": "endgame-2-63"
         },
         {
           "code": "50324",
@@ -4810,8 +3309,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 100,
-          "name": "endgame-2-100"
+          "no": 64,
+          "name": "endgame-2-64"
         },
         {
           "code": "49271",
@@ -4829,8 +3328,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 101,
-          "name": "endgame-2-101"
+          "no": 65,
+          "name": "endgame-2-65"
         },
         {
           "code": "50312",
@@ -4848,8 +3347,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 102,
-          "name": "endgame-2-102"
+          "no": 66,
+          "name": "endgame-2-66"
         },
         {
           "code": "50320",
@@ -4867,8 +3366,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 103,
-          "name": "endgame-2-103"
+          "no": 67,
+          "name": "endgame-2-67"
         },
         {
           "code": "49279",
@@ -4886,8 +3385,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 104,
-          "name": "endgame-2-104"
+          "no": 68,
+          "name": "endgame-2-68"
         },
         {
           "code": "50305",
@@ -4905,8 +3404,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 105,
-          "name": "endgame-2-105"
+          "no": 69,
+          "name": "endgame-2-69"
         },
         {
           "code": "49288",
@@ -4924,8 +3423,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 106,
-          "name": "endgame-2-106"
+          "no": 70,
+          "name": "endgame-2-70"
         },
         {
           "code": "49287",
@@ -4943,8 +3442,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 107,
-          "name": "endgame-2-107"
+          "no": 71,
+          "name": "endgame-2-71"
         },
         {
           "code": "50309",
@@ -4962,8 +3461,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 108,
-          "name": "endgame-2-108"
+          "no": 72,
+          "name": "endgame-2-72"
         },
         {
           "code": "49270",
@@ -4981,8 +3480,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 109,
-          "name": "endgame-2-109"
+          "no": 73,
+          "name": "endgame-2-73"
         },
         {
           "code": "50319",
@@ -5000,8 +3499,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 110,
-          "name": "endgame-2-110"
+          "no": 74,
+          "name": "endgame-2-74"
         },
         {
           "code": "50316",
@@ -5019,8 +3518,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 111,
-          "name": "endgame-2-111"
+          "no": 75,
+          "name": "endgame-2-75"
         },
         {
           "code": "50325",
@@ -5038,8 +3537,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 112,
-          "name": "endgame-2-112"
+          "no": 76,
+          "name": "endgame-2-76"
         },
         {
           "code": "50322",
@@ -5057,8 +3556,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 113,
-          "name": "endgame-2-113"
+          "no": 77,
+          "name": "endgame-2-77"
         },
         {
           "code": "50328",
@@ -5076,8 +3575,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 114,
-          "name": "endgame-2-114"
+          "no": 78,
+          "name": "endgame-2-78"
         },
         {
           "code": "50307",
@@ -5095,8 +3594,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 115,
-          "name": "endgame-2-115"
+          "no": 79,
+          "name": "endgame-2-79"
         },
         {
           "code": "50310",
@@ -5114,8 +3613,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 116,
-          "name": "endgame-2-116"
+          "no": 80,
+          "name": "endgame-2-80"
         },
         {
           "code": "50317",
@@ -5133,8 +3632,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 117,
-          "name": "endgame-2-117"
+          "no": 81,
+          "name": "endgame-2-81"
         },
         {
           "code": "49275",
@@ -5152,8 +3651,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 118,
-          "name": "endgame-2-118"
+          "no": 82,
+          "name": "endgame-2-82"
         },
         {
           "code": "50321",
@@ -5171,8 +3670,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 119,
-          "name": "endgame-2-119"
+          "no": 83,
+          "name": "endgame-2-83"
         },
         {
           "code": "50318",
@@ -5190,8 +3689,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 120,
-          "name": "endgame-2-120"
+          "no": 84,
+          "name": "endgame-2-84"
         },
         {
           "code": "49278",
@@ -5209,8 +3708,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 121,
-          "name": "endgame-2-121"
+          "no": 85,
+          "name": "endgame-2-85"
         },
         {
           "code": "50306",
@@ -5228,8 +3727,8 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "no": 122,
-          "name": "endgame-2-122"
+          "no": 86,
+          "name": "endgame-2-86"
         }
       ]
     },
