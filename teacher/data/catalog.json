@@ -1347,9 +1347,9 @@
       },
       {
         "code": "tech_yeon_atari",
-        "title": "촉촉수 (81제)",
+        "title": "촉촉수 (66제)",
         "chapterCount": 3,
-        "totalProblems": 81,
+        "totalProblems": 66,
         "chapters": [
           {
             "code": "tech_chok_c1",
@@ -1364,7 +1364,7 @@
           {
             "code": "tech_chok_c3",
             "title": "3. 단수치고 단수",
-            "problemCount": 43
+            "problemCount": 28
           }
         ]
       },
@@ -14869,9 +14869,9 @@
     "books": [
       {
         "code": "new_tech_chokchoksu",
-        "title": "촉촉수 (81제)",
+        "title": "촉촉수 (66제)",
         "chapterCount": 3,
-        "totalProblems": 81,
+        "totalProblems": 66,
         "chapters": [
           {
             "code": "tech_chok_c1",
@@ -14886,7 +14886,7 @@
           {
             "code": "tech_chok_c3",
             "title": "3. 단수치고 단수",
-            "problemCount": 43
+            "problemCount": 28
           }
         ],
         "problemCount": 42,
