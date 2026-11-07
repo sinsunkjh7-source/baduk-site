@@ -29,10 +29,8 @@ body {
 .yut-layout {
   max-width: 1320px;
   margin: 0 auto;
-  margin-top: var(--bks-nav-h, 64px);
   padding: 6px 14px 6px;
   margin: 0 auto;
-  margin-top: var(--bks-nav-h, 64px);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -48,8 +46,8 @@ body {
 /* 3단 대국장(Arena) 컨테이너 (좌측 사용자1 | 중앙 대형 보드판 & 윷마당 | 우측 사용자2) */
 .yut-arena-container {
   display: grid;
-  grid-template-columns: 215px minmax(0, 1fr) 215px;
-  gap: 16px;
+  grid-template-columns: 300px minmax(0, 1fr) 300px;
+  gap: 18px;
   align-items: start;
   width: 100%;
 }
@@ -59,7 +57,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  margin-top: 46px;
+  margin-top: 8px;
 }
 
 .player-card {
@@ -240,6 +238,7 @@ body {
 /* 중앙 메인 컬럼 (턴 알림 배너 + 대형 윷판 + 윷마당) */
 /* ============================================================== */
 .arena-center-col {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -249,6 +248,12 @@ body {
 
 /* 턴 중앙 배너 */
 .turn-center-banner {
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(680px, 94%);
+  z-index: 6;
   background: #ffffff;
   border-radius: 12px;
   padding: 8px 18px;
@@ -313,8 +318,8 @@ body {
 canvas#yutBoard {
   display: block;
   width: 100%;
-  max-width: min(calc(100vh - 410px), calc(100vw - 430px), 740px);
-  max-height: calc(100vh - 410px);
+  max-width: min(calc(100vh - 265px), calc(100vw - 430px), 740px);
+  max-height: calc(100vh - 265px);
   aspect-ratio: 1 / 1;
   border-radius: 16px;
   touch-action: none;
@@ -934,7 +939,91 @@ canvas#yutBoard {
 @media (max-width: 760px) {
   .yut-layout { padding: 6px 10px 10px; }
   .turn-center-banner { max-width: 100%; width: 100%; flex-wrap: wrap; }
+  .turn-center-banner.is-win { position: absolute; width: 94%; top: 4px; }
   .turn-center-banner.is-win .turn-title { font-size: 20px; }
   .turn-center-banner.is-win .turn-sub { font-size: 14.5px; }
   canvas#yutBoard { max-width: 92vw; max-height: none; }
+}
+
+/* ===== 확대 요청 (yut-bigger) : 판·팀카드·윷가락·보유패 ===== */
+.yut-layout { max-width: 1720px; }
+
+canvas#yutBoard {
+  max-width: min(calc(100vh - 285px), calc(100vw - 780px), 940px);
+  max-height: calc(100vh - 285px);
+}
+
+/* 양 사이드 팀 카드 2배 */
+.player-card { padding: 18px 22px; border-radius: 22px; gap: 10px; }
+.player-badge { font-size: 22px; padding: 6px 16px; border-radius: 10px; }
+.goal-count { font-size: 20px; }
+.goal-count b { font-size: 30px; }
+.home-tray-label { font-size: 18px; }
+.home-tray { min-height: 74px; padding: 8px 10px; gap: 10px; border-radius: 14px; }
+.waiting-piece { width: 56px; height: 56px; font-size: 24px; }
+
+/* 윷가락 확대 */
+.yut-stick { width: 38px; height: 88px; }
+.stick-box { gap: 24px; }
+
+/* 던지기 버튼 살짝 왼쪽 + 보유패 크게 */
+.btn-throw { font-size: 17px; padding: 11px 22px; border-radius: 12px; margin-right: 14px; }
+.throw-txt { letter-spacing: .2px; }
+.hand-label { font-size: 17px; }
+.hand-chip { font-size: 16px; padding: 6px 14px; border-radius: 18px; }
+.empty-hand { font-size: 15px; }
+
+@media (max-width: 760px) {
+  .player-card { padding: 12px 14px; border-radius: 16px; }
+  .player-badge { font-size: 16px; padding: 4px 10px; }
+  .goal-count { font-size: 15px; }
+  .goal-count b { font-size: 21px; }
+  .home-tray-label { font-size: 14px; }
+  .waiting-piece { width: 40px; height: 40px; font-size: 17px; }
+  .yut-stick { width: 30px; height: 68px; }
+  .btn-throw { font-size: 15px; padding: 9px 16px; margin-right: 8px; }
+  .hand-label { font-size: 14px; }
+  .hand-chip { font-size: 13.5px; padding: 5px 11px; }
+}
+
+/* 카드 텍스트 한 줄 유지 */
+.player-header { gap: 10px; flex-wrap: nowrap; }
+.player-badge, .goal-count { white-space: nowrap; }
+.yut-throw-zone { padding: 5px 12px; gap: 4px; }
+.mat-legend { font-size: 11px; }
+
+/* 하단 영역 높이 절감 (yut-compact-bottom) */
+.yut-mat { min-height: 112px; padding: 8px 12px 6px; }
+.mat-legend { font-size: 10.5px; gap: 8px; }
+.yut-stick { width: 44px; height: 100px; }
+canvas#yutBoard {
+  max-width: min(calc(100vh - 305px), calc(100vw - 780px), 940px);
+  max-height: calc(100vh - 305px);
+}
+
+/* 배너가 판 위에 확실히 보이도록 (yut-banner-top) */
+.board-wrapper { position: relative; z-index: 1; }
+.yut-throw-zone { position: relative; z-index: 1; }
+.turn-center-banner { z-index: 20; box-shadow: 0 6px 18px rgba(30, 60, 20, .16); }
+
+/* 보유패 강조 + 버튼 위치 (yut-hand-big) */
+.hand-container { gap: 10px; }
+.hand-label { font-size: 18px; color: #334155; }
+.hand-chip { font-size: 17px; padding: 7px 16px; }
+.empty-hand { font-size: 16px; color: #94a3b8; }
+.btn-throw { margin-right: 26px; }
+
+/* 모바일 강제 보정 (yut-mobile-big) */
+@media (max-width: 760px) {
+  canvas#yutBoard {
+    max-width: 92vw !important;
+    width: 92vw !important;
+    max-height: none !important;
+    height: auto !important;
+  }
+  .yut-throw-zone { max-width: 100% !important; width: 100% !important; }
+  .yut-mat { min-height: 92px; }
+  .yut-stick { width: 30px !important; height: 68px !important; }
+  .stick-box { gap: 12px; }
+  .turn-center-banner { width: 94% !important; }
 }
