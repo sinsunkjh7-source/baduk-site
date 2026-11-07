@@ -14934,9 +14934,9 @@
     "books": [
       {
         "code": "new_tech_chokchoksu",
-        "title": "촉촉수",
+        "title": "촉촉수 (37제)",
         "chapterCount": 1,
-        "totalProblems": 45,
+        "totalProblems": 37,
         "chapters": [
           {
             "code": "new_chokchoksu_01",
@@ -14946,7 +14946,9 @@
             "problemCount": 45,
             "problemsCount": 45
           }
-        ]
+        ],
+        "problemCount": 37,
+        "name": "촉촉수 (37제)"
       }
     ]
   }

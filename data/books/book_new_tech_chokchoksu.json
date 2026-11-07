@@ -5,15 +5,15 @@
   "book": "촉촉수",
   "title": "촉촉수",
   "chapterCount": 1,
-  "totalProblems": 45,
+  "totalProblems": 37,
   "chapters": [
     {
       "code": "new_chokchoksu_01",
       "chapterCode": "new_chokchoksu_01",
       "title": "1. 1선에 이어도 단수",
       "chapter": "1. 1선에 이어도 단수",
-      "problemCount": 45,
-      "problemsCount": 45,
+      "problemCount": 37,
+      "problemsCount": 37,
       "problems": [
         {
           "code": "1088",
@@ -280,182 +280,6 @@
           "name": "chok-1-12"
         },
         {
-          "code": "1100",
-          "type": "3",
-          "question": "3. 촉촉수 - 1선에 이어도 단수 \r\n백△를 잡으려면 어디로 단수쳐야 할까요? (3수 표시)",
-          "hint": "촉촉수(이어도 단수), 상대가 단수된 곳을 이어도 단수가 되어 있는 모양",
-          "data": ";W[pq];W[qp];W[op];W[po];W[on];W[no];W[mo];B[np];B[nq];B[oq];B[pr];B[rq];B[rp];B[qo];B[qn];B[pn];T[pq];T[qp]",
-          "answer1": ";B[qq];W[pp];B[oo]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "",
-          "answer": "",
-          "auto": "false",
-          "size": "4",
-          "start": "BA",
-          "source_book": "씽크탱크 2",
-          "source_chapter": "3. 촉촉수-1선에 이어도 단수",
-          "source_p_num": 23,
-          "no": 13,
-          "name": "chok-1-13"
-        },
-        {
-          "code": "1101",
-          "type": "3",
-          "question": "3. 촉촉수 - 중앙에 이어도 단수 \r\n백△를 잡으려면 어디로 단수쳐야 할까요? (3수 표시)",
-          "hint": "촉촉수(이어도 단수), 상대가 단수된 곳을 이어도 단수가 되어 있는 모양",
-          "data": ";W[pp];W[oq];W[np];W[oo];W[pn];W[pm];W[qo];W[ro];B[qp];B[qq];B[pq];B[or];B[nr];B[mp];B[no];B[nn];B[on];T[np];T[oq]",
-          "answer1": ";B[nq];W[op];B[po]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "",
-          "answer": "",
-          "auto": "false",
-          "size": "4",
-          "start": "BA",
-          "source_book": "씽크탱크 2",
-          "source_chapter": "3. 촉촉수-1선에 이어도 단수",
-          "source_p_num": 25,
-          "no": 14,
-          "name": "chok-1-14"
-        },
-        {
-          "code": "1102",
-          "type": "3",
-          "question": "3. 촉촉수 - 중앙에 이어도 단수 \r\n백△를 잡으려면 어디로 단수쳐야 할까요? (3수 표시)",
-          "hint": "촉촉수(이어도 단수), 상대가 단수된 곳을 이어도 단수가 되어 있는 모양",
-          "data": ";W[pp];W[po];W[oq];W[np];W[nr];W[mq];W[lq];B[or];B[pr];B[pq];B[qp];B[qo];B[pn];B[no];B[mo];B[mp];T[pp];T[po]",
-          "answer1": ";B[oo];W[op];B[nq]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "",
-          "answer": "",
-          "auto": "false",
-          "size": "4",
-          "start": "BA",
-          "source_book": "씽크탱크 2",
-          "source_chapter": "3. 촉촉수-1선에 이어도 단수",
-          "source_p_num": 27,
-          "no": 15,
-          "name": "chok-1-15"
-        },
-        {
-          "code": "1103",
-          "type": "3",
-          "question": "3. 촉촉수 - 중앙에 이어도 단수 \r\n백△를 잡으려면 어디로 단수쳐야 할까요? (3수 표시)",
-          "hint": "촉촉수(이어도 단수), 상대가 단수된 곳을 이어도 단수가 되어 있는 모양",
-          "data": ";W[qq];W[qp];W[po];W[op];W[no];W[on];W[om];B[pn];B[qn];B[qo];B[rp];B[rq];B[qr];B[oq];B[np];B[mp];T[qq];T[qp]",
-          "answer1": ";B[pq];W[pp];B[oo]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "",
-          "answer": "",
-          "auto": "false",
-          "size": "4",
-          "start": "BA",
-          "source_book": "씽크탱크 2",
-          "source_chapter": "3. 촉촉수-1선에 이어도 단수",
-          "source_p_num": 29,
-          "no": 16,
-          "name": "chok-1-16"
-        },
-        {
-          "code": "1104",
-          "type": "3",
-          "question": "3. 촉촉수 - 중앙에 이어도 단수 \r\n백△를 잡으려면 어디로 단수쳐야 할까요? (3수 표시)",
-          "hint": "촉촉수(이어도 단수), 상대가 단수된 곳을 이어도 단수가 되어 있는 모양",
-          "data": ";W[qp];W[qo];W[po];W[op];W[pq];W[or];W[nq];W[mq];B[np];B[no];B[oo];B[pn];B[rn];B[ro];B[rp];B[qq];B[qr];B[pr];T[po];T[qo];T[qp]",
-          "answer1": ";B[qn];W[pp];B[oq]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "",
-          "answer": "",
-          "auto": "false",
-          "size": "4",
-          "start": "BA",
-          "source_book": "씽크탱크 2",
-          "source_chapter": "3. 촉촉수-1선에 이어도 단수",
-          "source_p_num": 31,
-          "no": 17,
-          "name": "chok-1-17"
-        },
-        {
-          "code": "1105",
-          "type": "3",
-          "question": "3. 촉촉수 - 중앙에 이어도 단수 \r\n백△를 잡으려면 어디로 단수쳐야 할까요? (3수 표시)",
-          "hint": "촉촉수(이어도 단수), 상대가 단수된 곳을 이어도 단수가 되어 있는 모양",
-          "data": ";W[qq];W[pq];W[op];W[or];W[nq];W[mp];W[mo];W[no];B[pp];B[po];B[nn];B[mn];B[lo];B[lp];B[mq];B[mr];B[nr];T[mp];T[mo];T[no]",
-          "answer1": ";B[oo];W[np];B[oq]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "",
-          "answer": "",
-          "auto": "false",
-          "size": "4",
-          "start": "BA",
-          "source_book": "씽크탱크 2",
-          "source_chapter": "3. 촉촉수-1선에 이어도 단수",
-          "source_p_num": 33,
-          "no": 18,
-          "name": "chok-1-18"
-        },
-        {
-          "code": "1106",
-          "type": "3",
-          "question": "3. 촉촉수 - 중앙에 이어도 단수 \r\n백△를 잡으려면 어디로 단수쳐야 할까요? (3수 표시)",
-          "hint": "촉촉수(이어도 단수), 상대가 단수된 곳을 이어도 단수가 되어 있는 모양\r\n",
-          "data": ";W[pp];W[pq];W[oq];W[np];W[oo];W[mo];W[nn];W[nm];B[on];B[pn];B[po];B[qp];B[qq];B[pr];B[or];B[mp];B[lp];T[oq];T[pq];T[pp]",
-          "answer1": ";B[nq];W[op];B[no]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "",
-          "answer": "",
-          "auto": "false",
-          "size": "4",
-          "start": "BA",
-          "source_book": "씽크탱크 2",
-          "source_chapter": "3. 촉촉수-1선에 이어도 단수",
-          "source_p_num": 35,
-          "no": 19,
-          "name": "chok-1-19"
-        },
-        {
-          "code": "1107",
-          "type": "3",
-          "question": "3. 촉촉수 - 중앙에 이어도 단수 \r\n백△를 잡으려면 어디로 단수쳐야 할까요? (3수 표시)",
-          "hint": "촉촉수(이어도 단수), 상대가 단수된 곳을 이어도 단수가 되어 있는 모양\r\n",
-          "data": ";W[pp];W[oo];W[qo];W[pn];W[pm];W[np];W[nq];W[oq];B[qp];B[qq];B[pq];B[or];B[nr];B[mq];B[mp];B[on];B[nn];T[np];T[nq];T[oq]",
-          "answer1": ";B[no];W[op];B[po]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "",
-          "answer": "",
-          "auto": "false",
-          "size": "4",
-          "start": "BA",
-          "source_book": "씽크탱크 2",
-          "source_chapter": "3. 촉촉수-1선에 이어도 단수",
-          "source_p_num": 37,
-          "no": 20,
-          "name": "chok-1-20"
-        },
-        {
           "code": "30580",
           "type": "3",
           "question": "4. 촉촉수-1선에 이어도 단수\r\n흑이 둘 차례입니다. 촉촉수를 이용하여 백△를 잡아보세요. (3수 표시)\r\n\r\n",
@@ -474,8 +298,8 @@
           "source_book": "논리바둑 2",
           "source_chapter": "4. 촉촉수-1선에 이어도 단수",
           "source_p_num": 1,
-          "no": 21,
-          "name": "chok-1-21"
+          "no": 13,
+          "name": "chok-1-13"
         },
         {
           "code": "6752",
@@ -496,8 +320,8 @@
           "source_book": "논리바둑 2",
           "source_chapter": "4. 촉촉수-1선에 이어도 단수",
           "source_p_num": 3,
-          "no": 22,
-          "name": "chok-1-22"
+          "no": 14,
+          "name": "chok-1-14"
         },
         {
           "code": "30582",
@@ -518,8 +342,8 @@
           "source_book": "논리바둑 2",
           "source_chapter": "4. 촉촉수-1선에 이어도 단수",
           "source_p_num": 5,
-          "no": 23,
-          "name": "chok-1-23"
+          "no": 15,
+          "name": "chok-1-15"
         },
         {
           "code": "30583",
@@ -540,8 +364,8 @@
           "source_book": "논리바둑 2",
           "source_chapter": "4. 촉촉수-1선에 이어도 단수",
           "source_p_num": 8,
-          "no": 24,
-          "name": "chok-1-24"
+          "no": 16,
+          "name": "chok-1-16"
         },
         {
           "code": "6756",
@@ -562,8 +386,8 @@
           "source_book": "논리바둑 2",
           "source_chapter": "4. 촉촉수-1선에 이어도 단수",
           "source_p_num": 9,
-          "no": 25,
-          "name": "chok-1-25"
+          "no": 17,
+          "name": "chok-1-17"
         },
         {
           "code": "30584",
@@ -584,8 +408,8 @@
           "source_book": "논리바둑 2",
           "source_chapter": "4. 촉촉수-1선에 이어도 단수",
           "source_p_num": 10,
-          "no": 26,
-          "name": "chok-1-26"
+          "no": 18,
+          "name": "chok-1-18"
         },
         {
           "code": "6758",
@@ -606,8 +430,8 @@
           "source_book": "논리바둑 2",
           "source_chapter": "4. 촉촉수-1선에 이어도 단수",
           "source_p_num": 12,
-          "no": 27,
-          "name": "chok-1-27"
+          "no": 19,
+          "name": "chok-1-19"
         },
         {
           "code": "30585",
@@ -628,8 +452,8 @@
           "source_book": "논리바둑 2",
           "source_chapter": "4. 촉촉수-1선에 이어도 단수",
           "source_p_num": 13,
-          "no": 28,
-          "name": "chok-1-28"
+          "no": 20,
+          "name": "chok-1-20"
         },
         {
           "code": "30586",
@@ -650,8 +474,8 @@
           "source_book": "논리바둑 2",
           "source_chapter": "4. 촉촉수-1선에 이어도 단수",
           "source_p_num": 15,
-          "no": 29,
-          "name": "chok-1-29"
+          "no": 21,
+          "name": "chok-1-21"
         },
         {
           "code": "6761",
@@ -672,8 +496,8 @@
           "source_book": "논리바둑 2",
           "source_chapter": "4. 촉촉수-1선에 이어도 단수",
           "source_p_num": 17,
-          "no": 30,
-          "name": "chok-1-30"
+          "no": 22,
+          "name": "chok-1-22"
         },
         {
           "code": "6762",
@@ -694,8 +518,8 @@
           "source_book": "논리바둑 2",
           "source_chapter": "4. 촉촉수-1선에 이어도 단수",
           "source_p_num": 18,
-          "no": 31,
-          "name": "chok-1-31"
+          "no": 23,
+          "name": "chok-1-23"
         },
         {
           "code": "30587",
@@ -716,8 +540,8 @@
           "source_book": "논리바둑 2",
           "source_chapter": "4. 촉촉수-1선에 이어도 단수",
           "source_p_num": 19,
-          "no": 32,
-          "name": "chok-1-32"
+          "no": 24,
+          "name": "chok-1-24"
         },
         {
           "code": "6764",
@@ -738,8 +562,8 @@
           "source_book": "논리바둑 2",
           "source_chapter": "4. 촉촉수-1선에 이어도 단수",
           "source_p_num": 21,
-          "no": 33,
-          "name": "chok-1-33"
+          "no": 25,
+          "name": "chok-1-25"
         },
         {
           "code": "6765",
@@ -760,8 +584,8 @@
           "source_book": "논리바둑 2",
           "source_chapter": "4. 촉촉수-1선에 이어도 단수",
           "source_p_num": 22,
-          "no": 34,
-          "name": "chok-1-34"
+          "no": 26,
+          "name": "chok-1-26"
         },
         {
           "code": "30588",
@@ -782,8 +606,8 @@
           "source_book": "논리바둑 2",
           "source_chapter": "4. 촉촉수-1선에 이어도 단수",
           "source_p_num": 23,
-          "no": 35,
-          "name": "chok-1-35"
+          "no": 27,
+          "name": "chok-1-27"
         },
         {
           "code": "6767",
@@ -804,8 +628,8 @@
           "source_book": "논리바둑 2",
           "source_chapter": "4. 촉촉수-1선에 이어도 단수",
           "source_p_num": 25,
-          "no": 36,
-          "name": "chok-1-36"
+          "no": 28,
+          "name": "chok-1-28"
         },
         {
           "code": "6768",
@@ -826,8 +650,8 @@
           "source_book": "논리바둑 2",
           "source_chapter": "4. 촉촉수-1선에 이어도 단수",
           "source_p_num": 26,
-          "no": 37,
-          "name": "chok-1-37"
+          "no": 29,
+          "name": "chok-1-29"
         },
         {
           "code": "6769",
@@ -848,8 +672,8 @@
           "source_book": "논리바둑 2",
           "source_chapter": "4. 촉촉수-1선에 이어도 단수",
           "source_p_num": 27,
-          "no": 38,
-          "name": "chok-1-38"
+          "no": 30,
+          "name": "chok-1-30"
         },
         {
           "code": "6770",
@@ -870,8 +694,8 @@
           "source_book": "논리바둑 2",
           "source_chapter": "4. 촉촉수-1선에 이어도 단수",
           "source_p_num": 28,
-          "no": 39,
-          "name": "chok-1-39"
+          "no": 31,
+          "name": "chok-1-31"
         },
         {
           "code": "30591",
@@ -892,8 +716,8 @@
           "source_book": "논리바둑 2",
           "source_chapter": "4. 촉촉수-1선에 이어도 단수",
           "source_p_num": 32,
-          "no": 40,
-          "name": "chok-1-40"
+          "no": 32,
+          "name": "chok-1-32"
         },
         {
           "code": "30592",
@@ -914,8 +738,8 @@
           "source_book": "논리바둑 2",
           "source_chapter": "4. 촉촉수-1선에 이어도 단수",
           "source_p_num": 34,
-          "no": 41,
-          "name": "chok-1-41"
+          "no": 33,
+          "name": "chok-1-33"
         },
         {
           "code": "6771",
@@ -936,8 +760,8 @@
           "source_book": "논리바둑 2",
           "source_chapter": "4. 촉촉수-1선에 이어도 단수",
           "source_p_num": 29,
-          "no": 42,
-          "name": "chok-1-42"
+          "no": 34,
+          "name": "chok-1-34"
         },
         {
           "code": "30590",
@@ -958,8 +782,8 @@
           "source_book": "논리바둑 2",
           "source_chapter": "4. 촉촉수-1선에 이어도 단수",
           "source_p_num": 30,
-          "no": 43,
-          "name": "chok-1-43"
+          "no": 35,
+          "name": "chok-1-35"
         },
         {
           "code": "6775",
@@ -980,8 +804,8 @@
           "source_book": "논리바둑 2",
           "source_chapter": "4. 촉촉수-1선에 이어도 단수",
           "source_p_num": 36,
-          "no": 44,
-          "name": "chok-1-44"
+          "no": 36,
+          "name": "chok-1-36"
         },
         {
           "code": "30593",
@@ -1002,10 +826,11 @@
           "source_book": "논리바둑 2",
           "source_chapter": "4. 촉촉수-1선에 이어도 단수",
           "source_p_num": 37,
-          "no": 45,
-          "name": "chok-1-45"
+          "no": 37,
+          "name": "chok-1-37"
         }
       ]
     }
-  ]
+  ],
+  "problemCount": 37
 }
