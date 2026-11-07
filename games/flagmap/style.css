@@ -1,0 +1,119 @@
+/* 국기 지도 퍼즐 (flagmap) */
+:root{
+  --f-bg:#DCEBD1; --f-ink:#24361d; --f-dim:#5b6b52; --f-green:#4a8a3a; --f-green-deep:#3f7a33;
+  --f-line:#cfdcc4; --f-card:#ffffff; --f-sea:#cfe3ef;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--f-bg);color:var(--f-ink);
+  font-family:"Malgun Gothic","맑은 고딕",system-ui,sans-serif;
+  overflow-x:hidden;
+}
+.f-wrap{
+  width:100%;max-width:1700px;margin:0 auto;
+  padding:8px clamp(8px,1.6vw,22px) 12px;
+  height:calc(100dvh - var(--bks-nav-h,64px));display:flex;flex-direction:column;gap:10px;overflow:hidden;
+}
+
+/* 상단 바 */
+.f-head{
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+  background:var(--f-card);border-radius:14px;padding:8px 12px;
+  box-shadow:0 4px 16px rgba(36,54,29,.10);
+}
+.f-score{
+  display:flex;align-items:center;gap:6px;padding:5px 12px;border-radius:9px;
+  background:#f4f9ee;border:1.5px solid var(--f-line);font-size:12px;font-weight:800;color:var(--f-dim);
+}
+.f-score b{font-size:16px;color:var(--f-green-deep)}
+.f-score.active-turn{background:#eef7e6;border-color:#8fc47c;box-shadow:0 0 0 2px rgba(122,178,96,.22)}
+.f-left{
+  display:flex;align-items:center;gap:6px;padding:5px 12px;border-radius:9px;
+  background:#f4f9ee;border:1.5px solid var(--f-line);font-size:12px;font-weight:800;color:var(--f-dim);
+}
+.f-left b{font-size:16px;color:var(--f-green-deep)}
+.f-seg{display:flex;gap:4px;background:#f2f8ec;border-radius:11px;padding:4px;flex-wrap:wrap}
+.f-segbtn{
+  border:0;background:transparent;border-radius:8px;padding:7px 12px;
+  font-family:inherit;font-size:13px;font-weight:800;color:#6b7d62;cursor:pointer;
+}
+.f-segbtn.active{background:var(--f-green);color:#fff}
+.f-btn{
+  border:1.5px solid var(--f-line);background:#fff;border-radius:10px;padding:8px 14px;
+  font-family:inherit;font-size:13px;font-weight:800;color:#3f5a34;cursor:pointer;
+}
+.f-btn.primary{background:var(--f-green);border-color:var(--f-green-deep);color:#fff}
+.f-btn:hover{filter:brightness(1.03)}
+
+/* 본문: 지도 + 트레이 */
+.f-main{flex:1 1 auto;display:flex;flex-direction:column;gap:10px;min-height:0}
+.f-mapwrap{
+  position:relative;flex:1 1 auto;min-height:0;background:var(--f-sea);
+  border-radius:16px;overflow:hidden;box-shadow:0 6px 22px rgba(36,54,29,.12);
+}
+#map{width:100%;height:100%;display:block;touch-action:none}
+#map path{
+  fill:#e9f0e1;stroke:#b9cfae;stroke-width:.7;
+  transition:fill .12s ease;
+}
+#map path.playable{fill:#f7fbf1;stroke:#8fc47c;stroke-width:.9;cursor:pointer}
+#map path.playable:hover{fill:#e2f2d3}
+#map path.placed{fill:#cfe6bd;stroke:#5f9c4c}
+#map path.wrong{animation:fShake .38s}
+@keyframes fShake{
+  0%,100%{transform:translateX(0)}
+  25%{transform:translateX(2px)}
+  75%{transform:translateX(-2px)}
+}
+.f-loading{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  font-size:14px;font-weight:800;color:#4f6f45;background:rgba(255,255,255,.6);
+}
+
+/* 트레이 */
+.f-traybox{background:var(--f-card);border-radius:14px;padding:10px 12px;box-shadow:0 4px 16px rgba(36,54,29,.10)}
+.f-tray{display:flex;gap:8px;overflow-x:auto;padding:2px 2px 6px;min-height:66px;align-items:center}
+.f-chip{
+  flex:0 0 auto;width:76px;height:52px;border-radius:8px;overflow:hidden;
+  border:2px solid var(--f-line);background:#fff;cursor:grab;position:relative;
+  box-shadow:0 2px 6px rgba(36,54,29,.12);touch-action:none;
+}
+.f-chip img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
+.f-chip.sel{border-color:var(--f-green);box-shadow:0 0 0 3px rgba(122,178,96,.35)}
+.f-chip.dragging{opacity:.35}
+.f-drag{
+  position:fixed;width:76px;height:52px;border-radius:8px;overflow:hidden;pointer-events:none;
+  box-shadow:0 8px 20px rgba(20,32,16,.35);z-index:9999;transform:translate(-50%,-50%);
+  border:2px solid #fff;
+}
+.f-drag img{width:100%;height:100%;object-fit:cover;display:block}
+.f-msg{margin:6px 2px 0;font-size:12.5px;font-weight:700;color:var(--f-dim);min-height:18px}
+
+/* 오버레이 */
+.f-panel{position:fixed;inset:0;background:rgba(24,38,20,.45);display:flex;align-items:center;justify-content:center;z-index:9999;padding:20px}
+.f-panel[hidden]{display:none!important}
+.f-card{background:#fff;border-radius:18px;padding:26px 30px;max-width:460px;text-align:center;box-shadow:0 18px 46px rgba(0,0,0,.28)}
+.f-card h2{margin:0 0 10px;font-size:24px;font-weight:900;color:#2f4a25}
+.f-card p{margin:0 0 16px;font-size:14.5px;font-weight:700;color:#5b6b52;line-height:1.6}
+.f-rules{text-align:left;font-size:13.5px;line-height:1.75;color:#4a5c40;margin:0 0 16px;padding-left:20px}
+.f-card-actions{display:flex;gap:10px;justify-content:center}
+
+/* 국기 이미지(지도 위) */
+.f-flagpin{pointer-events:none}
+
+/* 모바일 */
+@media (max-width:760px){
+  .f-head{gap:6px;padding:8px}
+  .f-seg{order:5;width:100%}
+  .f-segbtn{flex:1 1 auto;padding:7px 6px;font-size:12px}
+  .f-mapwrap{min-height:240px}
+  .f-chip{width:66px;height:46px}
+  .f-drag{width:66px;height:46px}
+}
+
+.f-loading[hidden]{display:none!important}
+@media (max-width:760px){
+  .f-wrap{height:auto;min-height:calc(100dvh - var(--bks-nav-h,64px));overflow:visible}
+  .f-mapwrap{min-height:300px}
+}

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>국기 지도 퍼즐 — 바둑스쿨 Fun</title>
+<link rel="stylesheet" href="/unified-nav.css?v=nav-v12b">
+<link rel="stylesheet" href="style.css?v=flagmap-3">
+<script src="/unified-nav.js?v=nav-v12b" defer></script>
+<script src="/js/site_lock.js?v=5"></script>
+</head>
+<body data-bks-page="flagmap">
+
+<main class="f-wrap">
+  <div class="f-head">
+    <div class="f-score p1"><span>1P</span><b id="s1">0</b></div>
+    <div class="f-score p2"><span>2P</span><b id="s2">0</b></div>
+    <div class="f-left" id="leftBox"><span>남은 국기</span><b id="left">8</b></div>
+    <div class="f-seg" id="contSeg">
+      <button type="button" class="f-segbtn active" data-cont="asia">아시아</button>
+      <button type="button" class="f-segbtn" data-cont="europe">유럽</button>
+      <button type="button" class="f-segbtn" data-cont="america">아메리카</button>
+      <button type="button" class="f-segbtn" data-cont="africa">아프리카</button>
+      <button type="button" class="f-segbtn" data-cont="oceania">오세아니아</button>
+    </div>
+    <button type="button" class="f-btn primary" id="btnNew">새 게임</button>
+    <button type="button" class="f-btn" id="btnRules">규칙</button>
+  </div>
+
+  <div class="f-main">
+    <div class="f-mapwrap" id="mapWrap">
+      <svg id="map" xmlns="http://www.w3.org/2000/svg" aria-label="세계 지도"></svg>
+      <div class="f-loading" id="loading">지도 불러오는 중…</div>
+    </div>
+    <div class="f-traybox">
+      <div class="f-tray" id="tray"></div>
+      <p class="f-msg" id="msg">국기를 골라 나라 위에 놓아 보세요.</p>
+    </div>
+  </div>
+</main>
+
+<div class="f-panel" id="resultPanel" hidden>
+  <div class="f-card">
+    <h2 id="resultTitle">게임 끝</h2>
+    <p id="resultDesc"></p>
+    <div class="f-card-actions">
+      <button type="button" class="f-btn primary" id="btnAgain">다시 하기</button>
+      <button type="button" class="f-btn" id="btnCloseResult">닫기</button>
+    </div>
+  </div>
+</div>
+
+<div class="f-panel" id="rulesPanel" hidden>
+  <div class="f-card">
+    <h2>규칙</h2>
+    <ul class="f-rules">
+      <li>아래 국기 트레이에서 국기를 골라 <b>지도의 나라 위에 놓으면</b> 1점입니다.</li>
+      <li>틀리면 그 국기는 트레이로 돌아오고 <b>차례가 넘어갑니다</b>.</li>
+      <li>1P와 2P가 번갈아 하며, 8개 국기를 모두 놓으면 끝납니다.</li>
+      <li>점수가 높은 쪽이 이깁니다.</li>
+      <li>모바일에서는 <b>국기를 탭한 뒤 나라를 탭</b>해도 됩니다.</li>
+    </ul>
+    <div class="f-card-actions">
+      <button type="button" class="f-btn primary" id="btnCloseRules">닫기</button>
+    </div>
+  </div>
+</div>
+
+<script src="game.js?v=flagmap-1"></script>
+</body>
+</html>
