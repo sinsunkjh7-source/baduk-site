@@ -872,6 +872,7 @@
     dom.turnTitle.textContent = title;
     dom.turnSub.textContent = sub;
     if (color) dom.turnTitle.style.color = color;
+    if (dom.turnBanner) dom.turnBanner.classList.toggle('is-win', /승리|우승/.test(title));
   }
 
   function updateUI() {
