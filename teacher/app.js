@@ -219,7 +219,7 @@
   /* ---------- 강사모드 진입 (회원 계정 연동 전 다이렉트 진입) ---------- */
   /* ---------- 카탈로그 및 교재 로드 ---------- */
   function initCatalog() {
-    fetch('data/catalog.json?v=tech-p123-1794015050')
+    fetch('data/catalog.json?v=tech-atari-clean-1794040624')
       .then(function (res) { return res.json(); })
       .then(function (cat) {
         state.catalog = cat;
@@ -290,7 +290,7 @@
         var savedCustom = localStorage.getItem('teacher_book_custom_' + code);
         if (savedCustom) {
           var customData = JSON.parse(savedCustom);
-          if (customData && Array.isArray(customData.chapters)) {
+          if (code === 'tech_atari' && customData._buildVer !== 'v2-clean') { localStorage.removeItem('teacher_book_custom_' + code); } else if (customData && Array.isArray(customData.chapters)) {
             customData.bookCode = code;
             state.currentBook = customData;
             currentBookTitle.textContent = customData.book || customData.title || ('교재 ' + code);
@@ -303,7 +303,7 @@
         console.warn('Custom book parse error:', e);
       }
     }
-    fetch('data/books/book_' + code + '.json?v=tech-p123-1794015050')
+    fetch('data/books/book_' + code + '.json?v=tech-atari-clean-1794040624')
       .then(function (res) { return res.json(); })
       .then(function (bookData) {
         bookData.bookCode = code;

@@ -1228,110 +1228,118 @@
       {
         "code": "tech_atari",
         "title": "🎯 단수·양단수 완전정복 마스터",
-        "chapterCount": 13,
-        "totalProblems": 1241,
+        "chapterCount": 14,
+        "totalProblems": 1155,
         "chapters": [
           {
             "code": "tech_atari_ch01",
             "chapterCode": "tech_atari_ch01",
-            "title": "1단원. 단수의 원리와 단수 찾기·피하기 (입문 기초) (50제)",
-            "chapter": "1단원. 단수의 원리와 단수 찾기·피하기 (입문 기초) (50제)",
-            "problemCount": 50,
-            "problemsCount": 50
-          },
-          {
-            "code": "tech_atari_ch02",
-            "chapterCode": "tech_atari_ch02",
-            "title": "2단원. 서로 단수 기초 (내가 먼저 따내기 ①) (86제)",
-            "chapter": "2단원. 서로 단수 기초 (내가 먼저 따내기 ①) (86제)",
+            "title": "1단원. 서로 단수 기초 — 내가 먼저 따내기 ① (입문) (86제)",
+            "chapter": "1단원. 서로 단수 기초 — 내가 먼저 따내기 ① (입문) (86제)",
             "problemCount": 86,
             "problemsCount": 86
           },
           {
-            "code": "tech_atari_ch03",
-            "chapterCode": "tech_atari_ch03",
-            "title": "3단원. 서로 단수 실전과 되단수 (내가 먼저 따내기 ②) (99제)",
-            "chapter": "3단원. 서로 단수 실전과 되단수 (내가 먼저 따내기 ②) (99제)",
+            "code": "tech_atari_ch02",
+            "chapterCode": "tech_atari_ch02",
+            "title": "2단원. 서로 단수 실전과 되단수 — 내가 먼저 따내기 ② (초급) (99제)",
+            "chapter": "2단원. 서로 단수 실전과 되단수 — 내가 먼저 따내기 ② (초급) (99제)",
             "problemCount": 99,
             "problemsCount": 99
           },
           {
+            "code": "tech_atari_ch03",
+            "chapterCode": "tech_atari_ch03",
+            "title": "3단원. 단수치는 방향 ① — 1선 방향으로 단수치기 기초 (입문) (73제)",
+            "chapter": "3단원. 단수치는 방향 ① — 1선 방향으로 단수치기 기초 (입문) (73제)",
+            "problemCount": 73,
+            "problemsCount": 73
+          },
+          {
             "code": "tech_atari_ch04",
             "chapterCode": "tech_atari_ch04",
-            "title": "4단원. 단수치는 방향 ① — 1선 방향으로 단수치기 (기초·실전) (131제)",
-            "chapter": "4단원. 단수치는 방향 ① — 1선 방향으로 단수치기 (기초·실전) (131제)",
-            "problemCount": 131,
-            "problemsCount": 131
-          },
-          {
-            "code": "tech_atari_ch05",
-            "chapterCode": "tech_atari_ch05",
-            "title": "5단원. 단수치는 방향 ② — 우리 편(강한 돌) 방향으로 단수치기 (기초·실전) (144제)",
-            "chapter": "5단원. 단수치는 방향 ② — 우리 편(강한 돌) 방향으로 단수치기 (기초·실전) (144제)",
-            "problemCount": 144,
-            "problemsCount": 144
-          },
-          {
-            "code": "tech_atari_ch06",
-            "chapterCode": "tech_atari_ch06",
-            "title": "6단원. 단수치는 방향 ③ — 끊으면서 단수치기 (기초·실전) (117제)",
-            "chapter": "6단원. 단수치는 방향 ③ — 끊으면서 단수치기 (기초·실전) (117제)",
-            "problemCount": 117,
-            "problemsCount": 117
-          },
-          {
-            "code": "tech_atari_ch07",
-            "chapterCode": "tech_atari_ch07",
-            "title": "7단원. 자충을 피하는 단수 (자충 단수 주의와 활로 수읽기) (80제)",
-            "chapter": "7단원. 자충을 피하는 단수 (자충 단수 주의와 활로 수읽기) (80제)",
-            "problemCount": 80,
-            "problemsCount": 80
-          },
-          {
-            "code": "tech_atari_ch08",
-            "chapterCode": "tech_atari_ch08",
-            "title": "8단원. 올바른 단수 방향과 단수 보류 (실전 단수 판단력) (58제)",
-            "chapter": "8단원. 올바른 단수 방향과 단수 보류 (실전 단수 판단력) (58제)",
+            "title": "4단원. 단수치는 방향 ② — 1선 방향으로 단수치기 실전 (초급) (58제)",
+            "chapter": "4단원. 단수치는 방향 ② — 1선 방향으로 단수치기 실전 (초급) (58제)",
             "problemCount": 58,
             "problemsCount": 58
           },
           {
+            "code": "tech_atari_ch05",
+            "chapterCode": "tech_atari_ch05",
+            "title": "5단원. 단수치는 방향 ③ — 우리 편(강한 돌) 방향으로 단수치기 기초 (입문) (67제)",
+            "chapter": "5단원. 단수치는 방향 ③ — 우리 편(강한 돌) 방향으로 단수치기 기초 (입문) (67제)",
+            "problemCount": 67,
+            "problemsCount": 67
+          },
+          {
+            "code": "tech_atari_ch06",
+            "chapterCode": "tech_atari_ch06",
+            "title": "6단원. 단수치는 방향 ④ — 우리 편 방향으로 단수치기 실전 (초급) (77제)",
+            "chapter": "6단원. 단수치는 방향 ④ — 우리 편 방향으로 단수치기 실전 (초급) (77제)",
+            "problemCount": 77,
+            "problemsCount": 77
+          },
+          {
+            "code": "tech_atari_ch07",
+            "chapterCode": "tech_atari_ch07",
+            "title": "7단원. 단수치는 방향 ⑤ — 끊으면서 단수치기 기초 (입문) (56제)",
+            "chapter": "7단원. 단수치는 방향 ⑤ — 끊으면서 단수치기 기초 (입문) (56제)",
+            "problemCount": 56,
+            "problemsCount": 56
+          },
+          {
+            "code": "tech_atari_ch08",
+            "chapterCode": "tech_atari_ch08",
+            "title": "8단원. 단수치는 방향 ⑥ — 끊으면서 단수치기 실전 (초급) (61제)",
+            "chapter": "8단원. 단수치는 방향 ⑥ — 끊으면서 단수치기 실전 (초급) (61제)",
+            "problemCount": 61,
+            "problemsCount": 61
+          },
+          {
             "code": "tech_atari_ch09",
             "chapterCode": "tech_atari_ch09",
-            "title": "9단원. 양단수 ① — 기초 양단수 찾기 (입문·초급) (112제)",
-            "chapter": "9단원. 양단수 ① — 기초 양단수 찾기 (입문·초급) (112제)",
-            "problemCount": 112,
-            "problemsCount": 112
+            "title": "9단원. 자충을 피하는 단수와 올바른 단수 방향 (초·중급 수읽기) (97제)",
+            "chapter": "9단원. 자충을 피하는 단수와 올바른 단수 방향 (초·중급 수읽기) (97제)",
+            "problemCount": 97,
+            "problemsCount": 97
           },
           {
             "code": "tech_atari_ch10",
             "chapterCode": "tech_atari_ch10",
-            "title": "10단원. 양단수 ② — 실전 양단수와 3수 수읽기 (초·중급) (78제)",
-            "chapter": "10단원. 양단수 ② — 실전 양단수와 3수 수읽기 (초·중급) (78제)",
-            "problemCount": 78,
-            "problemsCount": 78
+            "title": "10단원. 양단수 ① — 기초 양단수 만들기 (입문·초급) (118제)",
+            "chapter": "10단원. 양단수 ① — 기초 양단수 만들기 (입문·초급) (118제)",
+            "problemCount": 118,
+            "problemsCount": 118
           },
           {
             "code": "tech_atari_ch11",
             "chapterCode": "tech_atari_ch11",
-            "title": "11단원. 양단수 ③ — 양단수 피하기와 단수치고 양단수 (중급 응용) (72제)",
-            "chapter": "11단원. 양단수 ③ — 양단수 피하기와 단수치고 양단수 (중급 응용) (72제)",
-            "problemCount": 72,
-            "problemsCount": 72
+            "title": "11단원. 양단수 ② — 실전 양단수로 잡기 (초·중급) (77제)",
+            "chapter": "11단원. 양단수 ② — 실전 양단수로 잡기 (초·중급) (77제)",
+            "problemCount": 77,
+            "problemsCount": 77
           },
           {
             "code": "tech_atari_ch12",
             "chapterCode": "tech_atari_ch12",
-            "title": "12단원. 단수 활용 실전 맥점 ① — 단수 친 후 살리기·탈출·돌파 (중·고급) (122제)",
-            "chapter": "12단원. 단수 활용 실전 맥점 ① — 단수 친 후 살리기·탈출·돌파 (중·고급) (122제)",
-            "problemCount": 122,
-            "problemsCount": 122
+            "title": "12단원. 양단수 ③ — 양단수 피하기와 단수치고 양단수 (중급 응용) (72제)",
+            "chapter": "12단원. 양단수 ③ — 양단수 피하기와 단수치고 양단수 (중급 응용) (72제)",
+            "problemCount": 72,
+            "problemsCount": 72
           },
           {
             "code": "tech_atari_ch13",
             "chapterCode": "tech_atari_ch13",
-            "title": "13단원. 단수 활용 실전 맥점 ② — 단수 친 후 상대 돌 잡기 (중·고급) (92제)",
-            "chapter": "13단원. 단수 활용 실전 맥점 ② — 단수 친 후 상대 돌 잡기 (중·고급) (92제)",
+            "title": "13단원. 단수 활용 실전 맥점 ① — 단수 친 후 살리기·탈출·돌파 (중·고급) (122제)",
+            "chapter": "13단원. 단수 활용 실전 맥점 ① — 단수 친 후 살리기·탈출·돌파 (중·고급) (122제)",
+            "problemCount": 122,
+            "problemsCount": 122
+          },
+          {
+            "code": "tech_atari_ch14",
+            "chapterCode": "tech_atari_ch14",
+            "title": "14단원. 단수 활용 실전 맥점 ② — 단수 친 후 상대 돌 잡기 (중·고급) (92제)",
+            "chapter": "14단원. 단수 활용 실전 맥점 ② — 단수 친 후 상대 돌 잡기 (중·고급) (92제)",
             "problemCount": 92,
             "problemsCount": 92
           }
