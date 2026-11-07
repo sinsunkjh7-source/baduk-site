@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>숨은 그림 찾기 — 바둑스쿨 Fun</title>
+<link rel="stylesheet" href="/unified-nav.css?v=nav-v12d">
+<link rel="stylesheet" href="style.css?v=hidden-3">
+<script src="/unified-nav.js?v=nav-v12d" defer></script>
+<script src="/js/site_lock.js?v=5"></script>
+</head>
+<body data-bks-page="hidden">
+
+<main class="h-wrap">
+  <div class="h-head">
+    <div class="h-score p1"><span>1P</span><b id="s1">0</b></div>
+    <div class="h-score p2"><span>2P</span><b id="s2">0</b></div>
+    <div class="h-left"><span>찾을 것</span><b id="left">8</b></div>
+    <button type="button" class="h-btn" id="btnHint">힌트 <span id="hintLeft">3</span></button>
+    <button type="button" class="h-btn" id="btnZoom">확대</button>
+    <button type="button" class="h-btn primary" id="btnNew">새 장면</button>
+    <button type="button" class="h-btn" id="btnRules">규칙</button>
+  </div>
+
+  <div class="h-targets" id="targets"></div>
+
+  <div class="h-stage">
+    <canvas id="scene" width="1000" height="700" aria-label="숨은 그림 찾기 장면"></canvas>
+  </div>
+  <p class="h-msg" id="msg">그림 속에서 아래 물건들을 찾아 누르세요.</p>
+</main>
+
+<div class="h-panel" id="resultPanel" hidden>
+  <div class="h-card">
+    <h2 id="resultTitle">완료!</h2>
+    <p id="resultDesc"></p>
+    <div class="h-card-actions">
+      <button type="button" class="h-btn primary" id="btnAgain">다시 하기</button>
+      <button type="button" class="h-btn" id="btnNext">새 장면</button>
+      <button type="button" class="h-btn" id="btnCloseResult">닫기</button>
+    </div>
+  </div>
+</div>
+
+<div class="h-panel" id="rulesPanel" hidden>
+  <div class="h-card">
+    <h2>규칙</h2>
+    <ul class="h-rules">
+      <li>위쪽에 보이는 <b>찾을 물건</b>을 그림 속에서 찾아 누르면 1점입니다.</li>
+      <li>맞히면 <b>한 번 더</b>, 틀리면 <b>차례가 넘어갑니다</b>.</li>
+      <li><b>힌트</b>는 3번까지 쓸 수 있고, 남은 물건 하나가 잠깐 반짝입니다.</li>
+      <li>1P와 2P가 번갈아 하며, 물건을 모두 찾으면 끝납니다.</li>
+      <li>휴대폰에서는 <b>손가락으로 확대</b>해서 찾아도 됩니다.</li>
+    </ul>
+    <div class="h-card-actions">
+      <button type="button" class="h-btn primary" id="btnCloseRules">닫기</button>
+    </div>
+  </div>
+</div>
+
+<script src="game.js?v=hidden-4"></script>
+</body>
+</html>
