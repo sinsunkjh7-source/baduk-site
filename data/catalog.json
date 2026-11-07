@@ -14927,5 +14927,18 @@
         ]
       }
     ]
+  },
+  {
+    "title": "교육시리즈 13. NEW 기법, 분야별 마스터",
+    "bookCount": 1,
+    "books": [
+      {
+        "code": "new_tech_atari",
+        "title": "1. 단수",
+        "chapterCount": 0,
+        "totalProblems": 0,
+        "chapters": []
+      }
+    ]
   }
 ]
