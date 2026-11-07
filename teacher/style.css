@@ -1042,16 +1042,37 @@ html, body {
 .prob-edit-drawer[hidden] {
   display: none !important;
 }
+
+/* 🌟 사이드바 옆으로 쏙 나오는 독립 플라이아웃 편집창 🌟 */
 .prob-edit-drawer {
-  margin-top: 8px;
-  padding-top: 8px;
-  border-top: 1.5px dashed #94a3b8;
+  position: fixed;
+  top: 70px;
+  right: 355px; /* 사이드바(340px) 바로 왼쪽 옆에 부착 */
+  width: 300px;
+  max-height: calc(100vh - 90px);
+  overflow-y: auto;
+  background: #ffffff;
+  border: 2px solid #059669;
+  border-radius: 14px;
+  padding: 12px;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.22), 0 2px 8px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
   gap: 8px;
-  width: 100%;
+  z-index: 10050;
   box-sizing: border-box;
-  animation: pedFadeIn 0.16s ease-out;
+  animation: pedFlyout 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* 사이드바가 왼쪽 모드일 때는 우측 옆에 부착 */
+.teacher-body.sidebar-left .prob-edit-drawer {
+  right: auto;
+  left: 355px;
+}
+
+@keyframes pedFlyout {
+  from { opacity: 0; transform: translateX(12px) scale(0.96); }
+  to { opacity: 1; transform: translateX(0) scale(1); }
 }
 @keyframes pedFadeIn {
   from { opacity: 0; transform: translateY(-4px); }

@@ -10,7 +10,7 @@
 <title>🎓 Teaching Zone — 바둑스쿨 교재 사령탑</title>
 <link rel="preload" as="image" href="images/board_wood_grain.png">
 
-<link rel="stylesheet" href="style.css?v=1794049670">
+<link rel="stylesheet" href="style.css?v=1794049829">
 <link rel="stylesheet" href="/unified-nav.css?v=20261103-nav-v11">
 <script src="/unified-nav.js?v=20261103-nav-v11" defer></script>
 </head>
@@ -116,6 +116,10 @@
 
           <!-- 🌟 문제별 접이식 간편 편집 메뉴 (클릭 시 펼쳐짐) 🌟 -->
           <div class="prob-edit-drawer" id="probEditDrawer" hidden>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding-bottom:6px;border-bottom:1.5px solid #e2e8f0;margin-bottom:2px;">
+              <span style="font-size:13px;font-weight:900;color:#065f46;">🛠️ 문제 편집 도구</span>
+              <button type="button" id="btnPedCloseDrawer" style="border:none;background:#f1f5f9;color:#475569;font-weight:900;border-radius:6px;padding:3px 8px;cursor:pointer;">✕ 닫기</button>
+            </div>
             <div class="ped-status-banner" id="pedModeBanner" hidden>
               <span id="pedModeBannerText">바둑판 위를 클릭해 돌을 편집하세요</span>
               <button type="button" id="btnPedExitTool" class="ped-btn-mini">완료</button>
@@ -346,6 +350,6 @@
 <div id="teacherToast" class="teacher-toast" hidden></div>
 
 <script src="audio.js?v=20261028-solidwood&t=teacher-panel-v15"></script>
-<script src="app.js?v=1794049670"></script>
+<script src="app.js?v=1794049829"></script>
 </body>
 </html>

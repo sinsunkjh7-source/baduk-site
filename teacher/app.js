@@ -219,7 +219,7 @@
   /* ---------- 강사모드 진입 (회원 계정 연동 전 다이렉트 진입) ---------- */
   /* ---------- 카탈로그 및 교재 로드 ---------- */
   function initCatalog() {
-    fetch('data/catalog.json?v=1794049670')
+    fetch('data/catalog.json?v=1794049829')
       .then(function (res) { return res.json(); })
       .then(function (cat) {
         state.catalog = cat;
@@ -317,7 +317,7 @@
         console.warn('Custom book parse error:', e);
       }
     }
-    fetch('data/books/book_' + code + '.json?v=1794049670')
+    fetch('data/books/book_' + code + '.json?v=1794049829')
       .then(function (res) { return res.json(); })
       .then(function (bookData) {
         bookData.bookCode = code;
@@ -2659,6 +2659,17 @@
     var drawer = document.getElementById('probEditDrawer');
     if (!btnToggle || !drawer) return;
 
+    var btnClose = document.getElementById('btnPedCloseDrawer');
+    if (btnClose) {
+      btnClose.addEventListener('click', function () {
+        drawer.hidden = true;
+        drawer.setAttribute('hidden', '');
+        drawer.style.display = 'none';
+        btnToggle.classList.remove('active');
+        btnToggle.textContent = '🛠️ 편집 ▾';
+        if (state.boardEditTool) setBoardEditTool(null);
+      });
+    }
     btnToggle.addEventListener('click', function () {
       var isHidden = drawer.hasAttribute('hidden') || drawer.hidden || drawer.style.display === 'none';
       if (isHidden) {
