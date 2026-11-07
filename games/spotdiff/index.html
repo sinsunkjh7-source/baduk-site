@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>다른 그림 찾기 — 바둑스쿨 Fun</title>
+<link rel="stylesheet" href="/unified-nav.css?v=nav-v12c">
+<link rel="stylesheet" href="style.css?v=diff-4">
+<script src="/unified-nav.js?v=nav-v12c" defer></script>
+<script src="/js/site_lock.js?v=5"></script>
+</head>
+<body data-bks-page="spotdiff">
+
+<main class="d-wrap">
+  <div class="d-head">
+    <div class="d-score p1"><span>1P</span><b id="s1">0</b></div>
+    <div class="d-score p2"><span>2P</span><b id="s2">0</b></div>
+    <div class="d-left"><span>남은 차이</span><b id="left">6</b></div>
+    <div class="d-seg" id="diffSeg">
+      <button type="button" class="d-segbtn" data-n="4">쉬움 4</button>
+      <button type="button" class="d-segbtn active" data-n="6">보통 6</button>
+      <button type="button" class="d-segbtn" data-n="8">어려움 8</button>
+    </div>
+    <button type="button" class="d-btn primary" id="btnNew">새 게임</button>
+    <button type="button" class="d-btn" id="btnRules">규칙</button>
+  </div>
+
+  <div class="d-stage">
+    <canvas id="board" width="1240" height="640" aria-label="다른 그림 찾기 판"></canvas>
+  </div>
+  <p class="d-msg" id="msg">두 그림에서 다른 곳을 찾아 누르세요.</p>
+</main>
+
+<div class="d-panel" id="resultPanel" hidden>
+  <div class="d-card">
+    <h2 id="resultTitle">게임 끝</h2>
+    <p id="resultDesc"></p>
+    <div class="d-card-actions">
+      <button type="button" class="d-btn primary" id="btnAgain">다시 하기</button>
+      <button type="button" class="d-btn" id="btnCloseResult">닫기</button>
+    </div>
+  </div>
+</div>
+
+<div class="d-panel" id="rulesPanel" hidden>
+  <div class="d-card">
+    <h2>규칙</h2>
+    <ul class="d-rules">
+      <li>두 그림에서 <b>서로 다른 부분</b>을 찾아 누르면 1점입니다.</li>
+      <li>맞히면 <b>한 번 더</b>, 틀리면 <b>차례가 넘어갑니다</b>.</li>
+      <li>1P와 2P가 번갈아 하며, 모든 차이를 찾으면 끝납니다.</li>
+      <li>점수가 높은 쪽이 이깁니다.</li>
+      <li>모바일에서는 위·아래 그림을 각각 눌러 찾을 수 있습니다.</li>
+    </ul>
+    <div class="d-card-actions">
+      <button type="button" class="d-btn primary" id="btnCloseRules">닫기</button>
+    </div>
+  </div>
+</div>
+
+<script src="game.js?v=diff-3"></script>
+</body>
+</html>
