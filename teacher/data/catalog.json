@@ -1223,7 +1223,7 @@
   },
   {
     "title": "🎯 핵심 기법 심층 마스터관",
-    "bookCount": 17,
+    "bookCount": 20,
     "books": [
       {
         "code": "tech_atari",
@@ -2055,184 +2055,348 @@
         ]
       },
       {
-        "code": "tech_eye_house",
-        "title": "👁️ 사활 완전정복 마스터",
-        "chapterCount": 9,
-        "totalProblems": 1753,
+        "code": "tech_chijung",
+        "title": "🎯 치중과 모양의 급소 사활 마스터",
+        "chapterCount": 8,
+        "totalProblems": 1596,
         "chapters": [
           {
-            "code": "tech_eye_house_ch01",
-            "chapterCode": "tech_eye_house_ch01",
-            "title": "1단원. 급소에 두어 살리기와 치중하여 잡기 (121제)",
-            "chapter": "1단원. 급소에 두어 살리기와 치중하여 잡기 (121제)",
-            "problemCount": 121,
-            "problemsCount": 121
+            "code": "tech_chijung_ch01",
+            "chapterCode": "tech_chijung_ch01",
+            "title": "1단원. 안형의 급소에 두어 살리기와 치중하여 잡기 (기초·초급) (215제)",
+            "chapter": "1단원. 안형의 급소에 두어 살리기와 치중하여 잡기 (기초·초급) (215제)",
+            "problemCount": 215,
+            "problemsCount": 215
           },
           {
-            "code": "tech_eye_house_ch02",
-            "chapterCode": "tech_eye_house_ch02",
-            "title": "2단원. 좌우동형은 중앙이 급소 (71제)",
-            "chapter": "2단원. 좌우동형은 중앙이 급소 (71제)",
-            "problemCount": 71,
-            "problemsCount": 71
+            "code": "tech_chijung_ch02",
+            "chapterCode": "tech_chijung_ch02",
+            "title": "2단원. 좌우동형은 중앙이 급소 (대칭 안형의 급소) (70제)",
+            "chapter": "2단원. 좌우동형은 중앙이 급소 (대칭 안형의 급소) (70제)",
+            "problemCount": 70,
+            "problemsCount": 70
           },
           {
-            "code": "tech_eye_house_ch03",
-            "chapterCode": "tech_eye_house_ch03",
-            "title": "3단원. 1선·2선의 급소 (203제)",
-            "chapter": "3단원. 1선·2선의 급소 (203제)",
+            "code": "tech_chijung_ch03",
+            "chapterCode": "tech_chijung_ch03",
+            "title": "3단원. 1선·2선의 급소 사활 (2의 1·2의 2 급소와 1선 묘수) (203제)",
+            "chapter": "3단원. 1선·2선의 급소 사활 (2의 1·2의 2 급소와 1선 묘수) (203제)",
             "problemCount": 203,
             "problemsCount": 203
           },
           {
-            "code": "tech_eye_house_ch04",
-            "chapterCode": "tech_eye_house_ch04",
-            "title": "4단원. 1선 입구자 사활 (76제)",
-            "chapter": "4단원. 1선 입구자 사활 (76제)",
+            "code": "tech_chijung_ch04",
+            "chapterCode": "tech_chijung_ch04",
+            "title": "4단원. 1선 입구자(마늘모)·날일자 급소 사활 (76제)",
+            "chapter": "4단원. 1선 입구자(마늘모)·날일자 급소 사활 (76제)",
             "problemCount": 76,
             "problemsCount": 76
           },
           {
-            "code": "tech_eye_house_ch05",
-            "chapterCode": "tech_eye_house_ch05",
-            "title": "5단원. 착수금지와 자충 사활 (274제)",
-            "chapter": "5단원. 착수금지와 자충 사활 (274제)",
+            "code": "tech_chijung_ch05",
+            "chapterCode": "tech_chijung_ch05",
+            "title": "5단원. 눈모양의 급소 정통 마스터 ① — 초·중급 안형 급소 (사활 1) (274제)",
+            "chapter": "5단원. 눈모양의 급소 정통 마스터 ① — 초·중급 안형 급소 (사활 1) (274제)",
             "problemCount": 274,
             "problemsCount": 274
           },
           {
+            "code": "tech_chijung_ch06",
+            "chapterCode": "tech_chijung_ch06",
+            "title": "6단원. 눈모양의 급소 정통 마스터 ② — 중급 안형 급소 (사활 2) (271제)",
+            "chapter": "6단원. 눈모양의 급소 정통 마스터 ② — 중급 안형 급소 (사활 2) (271제)",
+            "problemCount": 271,
+            "problemsCount": 271
+          },
+          {
+            "code": "tech_chijung_ch07",
+            "chapterCode": "tech_chijung_ch07",
+            "title": "7단원. 눈모양의 급소 정통 마스터 ③ — 중고급 안형 급소 I (사활 3 전반) (237제)",
+            "chapter": "7단원. 눈모양의 급소 정통 마스터 ③ — 중고급 안형 급소 I (사활 3 전반) (237제)",
+            "problemCount": 237,
+            "problemsCount": 237
+          },
+          {
+            "code": "tech_chijung_ch08",
+            "chapterCode": "tech_chijung_ch08",
+            "title": "8단원. 눈모양의 급소 정통 마스터 ④ — 고급 안형 급소 II (사활 3 후반) (250제)",
+            "chapter": "8단원. 눈모양의 급소 정통 마스터 ④ — 고급 안형 급소 II (사활 3 후반) (250제)",
+            "problemCount": 250,
+            "problemsCount": 250
+          }
+        ]
+      },
+      {
+        "code": "tech_eye_house",
+        "title": "👁️ 특수 사활과 실전·고전 사활 마스터",
+        "chapterCount": 10,
+        "totalProblems": 4274,
+        "chapters": [
+          {
+            "code": "tech_eye_house_ch01",
+            "chapterCode": "tech_eye_house_ch01",
+            "title": "1단원. 착수금지와 자충 사활 ① — 입문·초중급 자충·착수금지 사활 (263제)",
+            "chapter": "1단원. 착수금지와 자충 사활 ① — 입문·초중급 자충·착수금지 사활 (263제)",
+            "problemCount": 263,
+            "problemsCount": 263
+          },
+          {
+            "code": "tech_eye_house_ch02",
+            "chapterCode": "tech_eye_house_ch02",
+            "title": "2단원. 착수금지와 자충 사활 ② — 정통·중고급 자충 이용 사활 (281제)",
+            "chapter": "2단원. 착수금지와 자충 사활 ② — 정통·중고급 자충 이용 사활 (281제)",
+            "problemCount": 281,
+            "problemsCount": 281
+          },
+          {
+            "code": "tech_eye_house_ch03",
+            "chapterCode": "tech_eye_house_ch03",
+            "title": "3단원. 선수·단수·약점을 이용한 사활 (271제)",
+            "chapter": "3단원. 선수·단수·약점을 이용한 사활 (271제)",
+            "problemCount": 271,
+            "problemsCount": 271
+          },
+          {
+            "code": "tech_eye_house_ch04",
+            "chapterCode": "tech_eye_house_ch04",
+            "title": "4단원. 맞보기 사활과 환격·촉촉수·후절수 사활 (255제)",
+            "chapter": "4단원. 맞보기 사활과 환격·촉촉수·후절수 사활 (255제)",
+            "problemCount": 255,
+            "problemsCount": 255
+          },
+          {
+            "code": "tech_eye_house_ch05",
+            "chapterCode": "tech_eye_house_ch05",
+            "title": "5단원. 귀의 기본 사활과 귀곡사·변 사활 (340제)",
+            "chapter": "5단원. 귀의 기본 사활과 귀곡사·변 사활 (340제)",
+            "problemCount": 340,
+            "problemsCount": 340
+          },
+          {
             "code": "tech_eye_house_ch06",
             "chapterCode": "tech_eye_house_ch06",
-            "title": "6단원. 선수·단수·약점 이용 사활 (277제)",
-            "chapter": "6단원. 선수·단수·약점 이용 사활 (277제)",
-            "problemCount": 277,
-            "problemsCount": 277
+            "title": "6단원. 사는 수와 잡는 수 실전 사활 종합 ① (초급 실전 사활) (439제)",
+            "chapter": "6단원. 사는 수와 잡는 수 실전 사활 종합 ① (초급 실전 사활) (439제)",
+            "problemCount": 439,
+            "problemsCount": 439
           },
           {
             "code": "tech_eye_house_ch07",
             "chapterCode": "tech_eye_house_ch07",
-            "title": "7단원. 맞보기 사활과 후절수 (160제)",
-            "chapter": "7단원. 맞보기 사활과 후절수 (160제)",
-            "problemCount": 160,
-            "problemsCount": 160
+            "title": "7단원. 사는 수와 잡는 수 실전 사활 종합 ② (중급 실전 사활) (412제)",
+            "chapter": "7단원. 사는 수와 잡는 수 실전 사활 종합 ② (중급 실전 사활) (412제)",
+            "problemCount": 412,
+            "problemsCount": 412
           },
           {
             "code": "tech_eye_house_ch08",
             "chapterCode": "tech_eye_house_ch08",
-            "title": "8단원. 귀의 기본 사활과 귀곡사 (159제)",
-            "chapter": "8단원. 귀의 기본 사활과 귀곡사 (159제)",
-            "problemCount": 159,
-            "problemsCount": 159
+            "title": "8단원. 사는 수와 잡는 수 실전 사활 종합 ③ (고급 파워사활·정석사활·퍼펙트) (525제)",
+            "chapter": "8단원. 사는 수와 잡는 수 실전 사활 종합 ③ (고급 파워사활·정석사활·퍼펙트) (525제)",
+            "problemCount": 525,
+            "problemsCount": 525
           },
           {
             "code": "tech_eye_house_ch09",
             "chapterCode": "tech_eye_house_ch09",
-            "title": "9단원. 사는 수와 잡는 수 종합 사활 (412제)",
-            "chapter": "9단원. 사는 수와 잡는 수 종합 사활 (412제)",
-            "problemCount": 412,
-            "problemsCount": 412
+            "title": "9단원. 고전사활 명작선 ① — 기경중묘·사활묘기·현람 정선 (690제)",
+            "chapter": "9단원. 고전사활 명작선 ① — 기경중묘·사활묘기·현람 정선 (690제)",
+            "problemCount": 690,
+            "problemsCount": 690
+          },
+          {
+            "code": "tech_eye_house_ch10",
+            "chapterCode": "tech_eye_house_ch10",
+            "title": "10단원. 고전사활 명작선 ② — 현현기경·관자보·발양론 최고급 사활 (798제)",
+            "chapter": "10단원. 고전사활 명작선 ② — 현현기경·관자보·발양론 최고급 사활 (798제)",
+            "problemCount": 798,
+            "problemsCount": 798
           }
         ]
       },
       {
         "code": "tech_race_outer",
         "title": "⏱️ 수상전 완전정복 마스터",
-        "chapterCount": 18,
-        "totalProblems": 2829,
+        "chapterCount": 16,
+        "totalProblems": 3843,
         "chapters": [
           {
             "code": "tech_race_outer_ch01",
-            "title": "1단원. 바깥부터 수 줄이기 (216제)",
-            "problemCount": 216
+            "chapterCode": "tech_race_outer_ch01",
+            "title": "1단원. 바깥부터 수 줄이기 기초 (입문·초급 외공 수상전) (243제)",
+            "chapter": "1단원. 바깥부터 수 줄이기 기초 (입문·초급 외공 수상전) (243제)",
+            "problemCount": 243,
+            "problemsCount": 243
           },
           {
             "code": "tech_race_outer_ch02",
-            "title": "2단원. 수를 줄이는 방향과 안쪽에서 수 줄이기 (176제)",
-            "problemCount": 176
+            "chapterCode": "tech_race_outer_ch02",
+            "title": "2단원. 수를 줄이는 방향과 안쪽에서 수 줄이기 (174제)",
+            "chapter": "2단원. 수를 줄이는 방향과 안쪽에서 수 줄이기 (174제)",
+            "problemCount": 174,
+            "problemsCount": 174
           },
           {
             "code": "tech_race_outer_ch03",
-            "title": "3단원. 중요한 돌부터 수 줄이기 (93제)",
-            "problemCount": 93
+            "chapterCode": "tech_race_outer_ch03",
+            "title": "3단원. 중요한 돌(요석)부터 수 줄이기 (107제)",
+            "chapter": "3단원. 중요한 돌(요석)부터 수 줄이기 (107제)",
+            "problemCount": 107,
+            "problemsCount": 107
           },
           {
             "code": "tech_race_outer_ch04",
-            "title": "4단원. 단수쳐서 수 줄이기와 조이기 (152제)",
-            "problemCount": 152
+            "chapterCode": "tech_race_outer_ch04",
+            "title": "4단원. 단수쳐서 수 줄이기와 조이기 수상전 (152제)",
+            "chapter": "4단원. 단수쳐서 수 줄이기와 조이기 수상전 (152제)",
+            "problemCount": 152,
+            "problemsCount": 152
           },
           {
             "code": "tech_race_outer_ch05",
-            "title": "5단원. 뒤부터 잇고 수 줄이기와 자충 수상전 (150제)",
-            "problemCount": 150
+            "chapterCode": "tech_race_outer_ch05",
+            "title": "5단원. 뒤부터 잇고 수 줄이기와 자충 수상전 (182제)",
+            "chapter": "5단원. 뒤부터 잇고 수 줄이기와 자충 수상전 (182제)",
+            "problemCount": 182,
+            "problemsCount": 182
           },
           {
             "code": "tech_race_outer_ch06",
-            "title": "6단원. 나의 수 늘리기와 뻗기 (176제)",
-            "problemCount": 176
+            "chapterCode": "tech_race_outer_ch06",
+            "title": "6단원. 나의 활로(수) 늘리기와 뻗기·살아감 (244제)",
+            "chapter": "6단원. 나의 활로(수) 늘리기와 뻗기·살아감 (244제)",
+            "problemCount": 244,
+            "problemsCount": 244
           },
           {
             "code": "tech_race_outer_ch07",
-            "title": "7단원. 연결과 끊음을 이용한 수상전 (164제)",
-            "problemCount": 164
+            "chapterCode": "tech_race_outer_ch07",
+            "title": "7단원. 연결과 끊음을 이용한 수상전 (134제)",
+            "chapter": "7단원. 연결과 끊음을 이용한 수상전 (134제)",
+            "problemCount": 134,
+            "problemsCount": 134
           },
           {
             "code": "tech_race_outer_ch08",
-            "title": "8단원. 1선 내림과 1선 젖히기 수상전 (194제)",
-            "problemCount": 194
+            "chapterCode": "tech_race_outer_ch08",
+            "title": "8단원. 1선 내림과 1선 젖히기 수상전 (284제)",
+            "chapter": "8단원. 1선 내림과 1선 젖히기 수상전 (284제)",
+            "problemCount": 284,
+            "problemsCount": 284
           },
           {
             "code": "tech_race_outer_ch09",
-            "title": "9단원. 1선 마늘모와 1선의 맥 수상전 (144제)",
-            "problemCount": 144
+            "chapterCode": "tech_race_outer_ch09",
+            "title": "9단원. 1선 마늘모(입구자)와 1선의 맥 수상전 (195제)",
+            "chapter": "9단원. 1선 마늘모(입구자)와 1선의 맥 수상전 (195제)",
+            "problemCount": 195,
+            "problemsCount": 195
           },
           {
             "code": "tech_race_outer_ch10",
-            "title": "10단원. 붙임·끼움·찝음 수상전 (131제)",
-            "problemCount": 131
+            "chapterCode": "tech_race_outer_ch10",
+            "title": "10단원. 붙임·끼움·찝음의 맥 수상전 (198제)",
+            "chapter": "10단원. 붙임·끼움·찝음의 맥 수상전 (198제)",
+            "problemCount": 198,
+            "problemsCount": 198
           },
           {
             "code": "tech_race_outer_ch11",
-            "title": "11단원. 먹여치기와 회돌이 수상전 (228제)",
-            "problemCount": 228
+            "chapterCode": "tech_race_outer_ch11",
+            "title": "11단원. 먹여치기와 회돌이 수상전 (165제)",
+            "chapter": "11단원. 먹여치기와 회돌이 수상전 (165제)",
+            "problemCount": 165,
+            "problemsCount": 165
           },
           {
             "code": "tech_race_outer_ch12",
-            "title": "12단원. 촉촉수·장문·환격 수상전 (116제)",
-            "problemCount": 116
+            "chapterCode": "tech_race_outer_ch12",
+            "title": "12단원. 촉촉수·장문·환격·후절수 수상전 (113제)",
+            "chapter": "12단원. 촉촉수·장문·환격·후절수 수상전 (113제)",
+            "problemCount": 113,
+            "problemsCount": 113
           },
           {
             "code": "tech_race_outer_ch13",
-            "title": "13단원. 치중과 키움·수상전의 급소 (217제)",
-            "problemCount": 217
+            "chapterCode": "tech_race_outer_ch13",
+            "title": "13단원. 치중과 키움·수상전의 급소 (296제)",
+            "chapter": "13단원. 치중과 키움·수상전의 급소 (296제)",
+            "problemCount": 296,
+            "problemsCount": 296
           },
           {
             "code": "tech_race_outer_ch14",
-            "title": "14단원. 유가무가와 집 만들어 잡기 (163제)",
-            "problemCount": 163
+            "chapterCode": "tech_race_outer_ch14",
+            "title": "14단원. 패 수상전과 패 피하기·응수와 손뺌 (63제)",
+            "chapter": "14단원. 패 수상전과 패 피하기·응수와 손뺌 (63제)",
+            "problemCount": 63,
+            "problemsCount": 63
           },
           {
             "code": "tech_race_outer_ch15",
-            "title": "15단원. 단수·찝기·먹여치기·키움 유가무가 (128제)",
-            "problemCount": 128
+            "chapterCode": "tech_race_outer_ch15",
+            "title": "15단원. 실전 수상전 종합 마스터 ① (초·중급 종합 수읽기) (534제)",
+            "chapter": "15단원. 실전 수상전 종합 마스터 ① (초·중급 종합 수읽기) (534제)",
+            "problemCount": 534,
+            "problemsCount": 534
           },
           {
             "code": "tech_race_outer_ch16",
-            "title": "16단원. 귀삼수와 귀의 특수성·대궁소궁 (170제)",
-            "problemCount": 170
-          },
-          {
-            "code": "tech_race_outer_ch17",
-            "title": "17단원. 패 수상전과 패 피하기 (160제)",
-            "problemCount": 160
-          },
-          {
-            "code": "tech_race_outer_ch18",
-            "title": "18단원. 수상전 종합 (51제)",
-            "problemCount": 51
+            "chapterCode": "tech_race_outer_ch16",
+            "title": "16단원. 실전 수상전 종합 마스터 ② (중·고급 정통·고전 수상전) (759제)",
+            "chapter": "16단원. 실전 수상전 종합 마스터 ② (중·고급 정통·고전 수상전) (759제)",
+            "problemCount": 759,
+            "problemsCount": 759
           }
-        ],
-        "book": "⏱️ 수상전 완전정복 마스터",
-        "problemCount": 2829
+        ]
+      },
+      {
+        "code": "tech_yugamuga",
+        "title": "👑 유가무가·귀삼수 완전정복 마스터",
+        "chapterCount": 5,
+        "totalProblems": 556,
+        "chapters": [
+          {
+            "code": "tech_yugamuga_ch01",
+            "chapterCode": "tech_yugamuga_ch01",
+            "title": "1단원. 유가무가의 기본 원리와 집 만들어 이기는 수상전 (입문·초급) (168제)",
+            "chapter": "1단원. 유가무가의 기본 원리와 집 만들어 이기는 수상전 (입문·초급) (168제)",
+            "problemCount": 168,
+            "problemsCount": 168
+          },
+          {
+            "code": "tech_yugamuga_ch02",
+            "chapterCode": "tech_yugamuga_ch02",
+            "title": "2단원. 단수·찝기·먹여치기·키움을 이용한 유가무가 (초·중급) (102제)",
+            "chapter": "2단원. 단수·찝기·먹여치기·키움을 이용한 유가무가 (초·중급) (102제)",
+            "problemCount": 102,
+            "problemsCount": 102
+          },
+          {
+            "code": "tech_yugamuga_ch03",
+            "chapterCode": "tech_yugamuga_ch03",
+            "title": "3단원. 정통 유가무가와 실전 유가무가 마스터 (중·고급) (74제)",
+            "chapter": "3단원. 정통 유가무가와 실전 유가무가 마스터 (중·고급) (74제)",
+            "problemCount": 74,
+            "problemsCount": 74
+          },
+          {
+            "code": "tech_yugamuga_ch04",
+            "chapterCode": "tech_yugamuga_ch04",
+            "title": "4단원. 귀삼수(귀의 특수성) ① — 귀의 1선·젖힘·늘어진 수 수상전 (145제)",
+            "chapter": "4단원. 귀삼수(귀의 특수성) ① — 귀의 1선·젖힘·늘어진 수 수상전 (145제)",
+            "problemCount": 145,
+            "problemsCount": 145
+          },
+          {
+            "code": "tech_yugamuga_ch05",
+            "chapterCode": "tech_yugamuga_ch05",
+            "title": "5단원. 귀삼수(귀의 특수성) ② — 정통 귀의 특수성과 실전 귀삼수 (67제)",
+            "chapter": "5단원. 귀삼수(귀의 특수성) ② — 정통 귀의 특수성과 실전 귀삼수 (67제)",
+            "problemCount": 67,
+            "problemsCount": 67
+          }
+        ]
       },
       {
         "code": "tech_connect_cut",
@@ -2356,113 +2520,161 @@
       },
       {
         "code": "tech_connection",
-        "title": "🛡️ 행마와 맥 완전정복 마스터",
-        "chapterCount": 13,
-        "totalProblems": 2676,
+        "title": "🐎 행마와 좋은 모양 완전정복 마스터",
+        "chapterCount": 8,
+        "totalProblems": 2824,
         "chapters": [
           {
             "code": "tech_connection_ch01",
             "chapterCode": "tech_connection_ch01",
-            "title": "1단원. 한칸·날일자·입구자 기본 행마 (345제)",
-            "chapter": "1단원. 한칸·날일자·입구자 기본 행마 (345제)",
-            "problemCount": 345,
-            "problemsCount": 345
+            "title": "1단원. 한칸·날일자·입구자·눈목자 기본 행마 (입문·초급) (373제)",
+            "chapter": "1단원. 한칸·날일자·입구자·눈목자 기본 행마 (입문·초급) (373제)",
+            "problemCount": 373,
+            "problemsCount": 373
           },
           {
             "code": "tech_connection_ch02",
             "chapterCode": "tech_connection_ch02",
-            "title": "2단원. 붙이면 젖히고 젖히면 뻗어라·두 점 머리·2선 패망선 (296제)",
-            "chapter": "2단원. 붙이면 젖히고 젖히면 뻗어라·두 점 머리·2선 패망선 (296제)",
-            "problemCount": 296,
-            "problemsCount": 296
+            "title": "2단원. 바둑 격언 행마 (붙이면 젖히고 뻗어라·두 점 머리·2선 패망선) (347제)",
+            "chapter": "2단원. 바둑 격언 행마 (붙이면 젖히고 뻗어라·두 점 머리·2선 패망선) (347제)",
+            "problemCount": 347,
+            "problemsCount": 347
           },
           {
             "code": "tech_connection_ch03",
             "chapterCode": "tech_connection_ch03",
-            "title": "3단원. 빈삼각 피하기와 나쁜 모양 만들기 (119제)",
-            "chapter": "3단원. 빈삼각 피하기와 나쁜 모양 만들기 (119제)",
-            "problemCount": 119,
-            "problemsCount": 119
+            "title": "3단원. 좋은 모양과 나쁜 모양 (빈삼각 피하기와 상대 우형 만들기) (155제)",
+            "chapter": "3단원. 좋은 모양과 나쁜 모양 (빈삼각 피하기와 상대 우형 만들기) (155제)",
+            "problemCount": 155,
+            "problemsCount": 155
           },
           {
             "code": "tech_connection_ch04",
             "chapterCode": "tech_connection_ch04",
-            "title": "4단원. 활로와 탈출·앞서가기 (222제)",
-            "chapter": "4단원. 활로와 탈출·앞서가기 (222제)",
-            "problemCount": 222,
-            "problemsCount": 222
+            "title": "4단원. 모양 정비와 수비 행마 (돌을 튼튼히 하고 지키는 법) (202제)",
+            "chapter": "4단원. 모양 정비와 수비 행마 (돌을 튼튼히 하고 지키는 법) (202제)",
+            "problemCount": 202,
+            "problemsCount": 202
           },
           {
             "code": "tech_connection_ch05",
             "chapterCode": "tech_connection_ch05",
-            "title": "5단원. 봉쇄하기와 무리수 응징 (250제)",
-            "chapter": "5단원. 봉쇄하기와 무리수 응징 (250제)",
-            "problemCount": 250,
-            "problemsCount": 250
+            "title": "5단원. 활로와 탈출·앞서가기 (포위망 돌파와 중앙 진출) (318제)",
+            "chapter": "5단원. 활로와 탈출·앞서가기 (포위망 돌파와 중앙 진출) (318제)",
+            "problemCount": 318,
+            "problemsCount": 318
           },
           {
             "code": "tech_connection_ch06",
             "chapterCode": "tech_connection_ch06",
-            "title": "6단원. 붙임과 건너붙임의 맥 (108제)",
-            "chapter": "6단원. 붙임과 건너붙임의 맥 (108제)",
-            "problemCount": 108,
-            "problemsCount": 108
+            "title": "6단원. 돌의 수습과 타개 행마 (위기의 돌 살리기와 수습의 급소) (173제)",
+            "chapter": "6단원. 돌의 수습과 타개 행마 (위기의 돌 살리기와 수습의 급소) (173제)",
+            "problemCount": 173,
+            "problemsCount": 173
           },
           {
             "code": "tech_connection_ch07",
             "chapterCode": "tech_connection_ch07",
-            "title": "7단원. 젖힘과 이단젖힘의 맥 (116제)",
-            "chapter": "7단원. 젖힘과 이단젖힘의 맥 (116제)",
-            "problemCount": 116,
-            "problemsCount": 116
+            "title": "7단원. 봉쇄하기와 무리수 응징·공격 행마 (공격의 급소와 추궁) (525제)",
+            "chapter": "7단원. 봉쇄하기와 무리수 응징·공격 행마 (공격의 급소와 추궁) (525제)",
+            "problemCount": 525,
+            "problemsCount": 525
           },
           {
             "code": "tech_connection_ch08",
             "chapterCode": "tech_connection_ch08",
-            "title": "8단원. 끼움과 찝음의 맥 (122제)",
-            "chapter": "8단원. 끼움과 찝음의 맥 (122제)",
-            "problemCount": 122,
-            "problemsCount": 122
+            "title": "8단원. 올바른 응수와 반격·실전 다음 한 수 (중·고급 실전 행마) (731제)",
+            "chapter": "8단원. 올바른 응수와 반격·실전 다음 한 수 (중·고급 실전 행마) (731제)",
+            "problemCount": 731,
+            "problemsCount": 731
+          }
+        ]
+      },
+      {
+        "code": "tech_tesuji",
+        "title": "💎 맥점과 사석작전 완전정복 마스터",
+        "chapterCount": 10,
+        "totalProblems": 2473,
+        "chapters": [
+          {
+            "code": "tech_tesuji_ch01",
+            "chapterCode": "tech_tesuji_ch01",
+            "title": "1단원. 붙임과 건너붙임의 맥 (1선·2선 붙임과 건너붙임) (108제)",
+            "chapter": "1단원. 붙임과 건너붙임의 맥 (1선·2선 붙임과 건너붙임) (108제)",
+            "problemCount": 108,
+            "problemsCount": 108
           },
           {
-            "code": "tech_connection_ch09",
-            "chapterCode": "tech_connection_ch09",
-            "title": "9단원. 쌍립·호구·모양의 급소 (206제)",
-            "chapter": "9단원. 쌍립·호구·모양의 급소 (206제)",
-            "problemCount": 206,
-            "problemsCount": 206
+            "code": "tech_tesuji_ch02",
+            "chapterCode": "tech_tesuji_ch02",
+            "title": "2단원. 젖힘과 이단젖힘·맞젖힘의 맥 (115제)",
+            "chapter": "2단원. 젖힘과 이단젖힘·맞젖힘의 맥 (115제)",
+            "problemCount": 115,
+            "problemsCount": 115
           },
           {
-            "code": "tech_connection_ch10",
-            "chapterCode": "tech_connection_ch10",
-            "title": "10단원. 중요한 돌·요석 잡기와 살리기 (176제)",
-            "chapter": "10단원. 중요한 돌·요석 잡기와 살리기 (176제)",
-            "problemCount": 176,
-            "problemsCount": 176
+            "code": "tech_tesuji_ch03",
+            "chapterCode": "tech_tesuji_ch03",
+            "title": "3단원. 끼움과 찝음의 맥 (끼워 잇기와 약점 찝기) (137제)",
+            "chapter": "3단원. 끼움과 찝음의 맥 (끼워 잇기와 약점 찝기) (137제)",
+            "problemCount": 137,
+            "problemsCount": 137
           },
           {
-            "code": "tech_connection_ch11",
-            "chapterCode": "tech_connection_ch11",
-            "title": "11단원. 사석작전·키워버리기와 회돌이 (114제)",
-            "chapter": "11단원. 사석작전·키워버리기와 회돌이 (114제)",
-            "problemCount": 114,
-            "problemsCount": 114
+            "code": "tech_tesuji_ch04",
+            "chapterCode": "tech_tesuji_ch04",
+            "title": "4단원. 쌍립·호구·모양의 급소 (적의 급소는 나의 급소) (329제)",
+            "chapter": "4단원. 쌍립·호구·모양의 급소 (적의 급소는 나의 급소) (329제)",
+            "problemCount": 329,
+            "problemsCount": 329
           },
           {
-            "code": "tech_connection_ch12",
-            "chapterCode": "tech_connection_ch12",
-            "title": "12단원. 수순의 묘와 맞보기·양자충·후절수 (265제)",
-            "chapter": "12단원. 수순의 묘와 맞보기·양자충·후절수 (265제)",
-            "problemCount": 265,
-            "problemsCount": 265
+            "code": "tech_tesuji_ch05",
+            "chapterCode": "tech_tesuji_ch05",
+            "title": "5단원. 중요한 돌(요석) 잡기와 살리기 (요석과 폐석 구분) (185제)",
+            "chapter": "5단원. 중요한 돌(요석) 잡기와 살리기 (요석과 폐석 구분) (185제)",
+            "problemCount": 185,
+            "problemsCount": 185
           },
           {
-            "code": "tech_connection_ch13",
-            "chapterCode": "tech_connection_ch13",
-            "title": "13단원. 돌을 잡는 맥과 실전 수읽기 (337제)",
-            "chapter": "13단원. 돌을 잡는 맥과 실전 수읽기 (337제)",
-            "problemCount": 337,
-            "problemsCount": 337
+            "code": "tech_tesuji_ch06",
+            "chapterCode": "tech_tesuji_ch06",
+            "title": "6단원. 사석작전·키워버리기와 회돌이·조이기 (버림돌 전술) (146제)",
+            "chapter": "6단원. 사석작전·키워버리기와 회돌이·조이기 (버림돌 전술) (146제)",
+            "problemCount": 146,
+            "problemsCount": 146
+          },
+          {
+            "code": "tech_tesuji_ch07",
+            "chapterCode": "tech_tesuji_ch07",
+            "title": "7단원. 수순의 묘와 선수 활용의 맥 (선수의 위력과 활용) (296제)",
+            "chapter": "7단원. 수순의 묘와 선수 활용의 맥 (선수의 위력과 활용) (296제)",
+            "problemCount": 296,
+            "problemsCount": 296
+          },
+          {
+            "code": "tech_tesuji_ch08",
+            "chapterCode": "tech_tesuji_ch08",
+            "title": "8단원. 맞보기·양자충·후절수와 빈축의 맥 (고급 전술 맥점) (121제)",
+            "chapter": "8단원. 맞보기·양자충·후절수와 빈축의 맥 (고급 전술 맥점) (121제)",
+            "problemCount": 121,
+            "problemsCount": 121
+          },
+          {
+            "code": "tech_tesuji_ch09",
+            "chapterCode": "tech_tesuji_ch09",
+            "title": "9단원. 상대의 엷음 추궁과 돌을 잡는 맥 ① (초·중급 수읽기 훈련) (451제)",
+            "chapter": "9단원. 상대의 엷음 추궁과 돌을 잡는 맥 ① (초·중급 수읽기 훈련) (451제)",
+            "problemCount": 451,
+            "problemsCount": 451
+          },
+          {
+            "code": "tech_tesuji_ch10",
+            "chapterCode": "tech_tesuji_ch10",
+            "title": "10단원. 상대의 엷음 추궁과 돌을 잡는 맥 ② (중·고급 실전 수읽기 종합) (585제)",
+            "chapter": "10단원. 상대의 엷음 추궁과 돌을 잡는 맥 ② (중·고급 실전 수읽기 종합) (585제)",
+            "problemCount": 585,
+            "problemsCount": 585
           }
         ]
       },

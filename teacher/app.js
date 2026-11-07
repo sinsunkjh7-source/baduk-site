@@ -219,7 +219,7 @@
   /* ---------- 강사모드 진입 (회원 계정 연동 전 다이렉트 진입) ---------- */
   /* ---------- 카탈로그 및 교재 로드 ---------- */
   function initCatalog() {
-    fetch('data/catalog.json?v=tech-fegd-1794011586')
+    fetch('data/catalog.json?v=tech-p123-1794015050')
       .then(function (res) { return res.json(); })
       .then(function (cat) {
         state.catalog = cat;
@@ -303,7 +303,7 @@
         console.warn('Custom book parse error:', e);
       }
     }
-    fetch('data/books/book_' + code + '.json?v=tech-fegd-1794011586')
+    fetch('data/books/book_' + code + '.json?v=tech-p123-1794015050')
       .then(function (res) { return res.json(); })
       .then(function (bookData) {
         bookData.bookCode = code;
