@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>전통 윷놀이 — JH 바둑스쿨 EduFun</title>
 <link rel="stylesheet" href="/unified-nav.css?v=nav-v12d">
-<link rel="stylesheet" href="style.css?v=yut-clear-v5">
+<link rel="stylesheet" href="style.css?v=yut-menu-v3">
 <script src="/unified-nav.js?v=nav-v12d" defer></script>
 </head>
 <body data-bks-page="yut">
@@ -106,7 +106,8 @@
       <!-- 좌측에서 우측 규칙 밑으로 이동된 메뉴 조작 버튼들 -->
       <div class="game-control-buttons vertical">
         <button type="button" class="side-btn primary" id="btnNewGame">🔄 새 게임</button>
-        <button type="button" class="side-btn" id="btnToggleMode">🤖 대전: AI 대전</button>
+        <button type="button" class="side-btn mode-btn active" id="btnModeAI">🤖 AI 대전</button>
+        <button type="button" class="side-btn mode-btn" id="btnMode2P">👥 2인 대전</button>
         <button type="button" class="side-btn" id="btnToggleSound">🔊 소리 켜짐</button>
       </div>
     </aside>
@@ -114,6 +115,6 @@
   </div>
 </main>
 
-<script src="game.js?v=yut-win-v1"></script>
+<script src="game.js?v=yut-mode-v2"></script>
 </body>
 </html>

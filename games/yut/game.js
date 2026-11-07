@@ -298,6 +298,8 @@
     ],
     btnNewGame: document.getElementById('btnNewGame'),
     btnToggleMode: document.getElementById('btnToggleMode'),
+    btnModeAI: document.getElementById('btnModeAI'),
+    btnMode2P: document.getElementById('btnMode2P'),
     btnToggleSound: document.getElementById('btnToggleSound')
   };
 
@@ -1456,14 +1458,16 @@
   dom.btnThrow.addEventListener('click', throwYutAction);
   dom.btnNewGame.addEventListener('click', startNewGame);
 
-  dom.btnToggleMode.addEventListener('click', () => {
-    vsAI = !vsAI;
-    dom.btnToggleMode.innerHTML = vsAI ? '🤖 대전 모드: <b>AI 대전</b>' : '👥 대전 모드: <b>2인 대전</b>';
-    dom.btnToggleMode.classList.toggle('mode-active', !vsAI);
+  function setMode(isAI) {
+    vsAI = isAI;
     if (dom.p1BadgeTitle) dom.p1BadgeTitle.textContent = vsAI ? '청팀 (나)' : '청팀 (1P)';
     if (dom.p2BadgeTitle) dom.p2BadgeTitle.textContent = vsAI ? '홍팀 (AI)' : '홍팀 (2P)';
+    if (dom.btnModeAI) dom.btnModeAI.classList.toggle('active', vsAI);
+    if (dom.btnMode2P) dom.btnMode2P.classList.toggle('active', !vsAI);
     startNewGame();
-  });
+  }
+  if (dom.btnModeAI) dom.btnModeAI.addEventListener('click', () => setMode(true));
+  if (dom.btnMode2P) dom.btnMode2P.addEventListener('click', () => setMode(false));
 
   dom.btnToggleSound.addEventListener('click', () => {
     soundEnabled = !soundEnabled;
