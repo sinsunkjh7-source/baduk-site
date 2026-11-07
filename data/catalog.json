@@ -1223,7 +1223,7 @@
   },
   {
     "title": "🎯 핵심 기법 심층 마스터관",
-    "bookCount": 14,
+    "bookCount": 15,
     "books": [
       {
         "code": "tech_atari",
@@ -1791,10 +1791,74 @@
         "problemCount": 697
       },
       {
+        "code": "tech_seki",
+        "title": "☯️ 빅(공생) 완전정복 마스터",
+        "chapterCount": 7,
+        "totalProblems": 709,
+        "chapters": [
+          {
+            "code": "tech_seki_ch01",
+            "chapterCode": "tech_seki_ch01",
+            "title": "1단원. 빅(공생)의 기본 원리와 공배 빅 만들기 (입문 기초) (110제)",
+            "chapter": "1단원. 빅(공생)의 기본 원리와 공배 빅 만들기 (입문 기초) (110제)",
+            "problemCount": 110,
+            "problemsCount": 110
+          },
+          {
+            "code": "tech_seki_ch02",
+            "chapterCode": "tech_seki_ch02",
+            "title": "2단원. 끊으면서 빅 만들기와 초급 실전 빅 (초급) (105제)",
+            "chapter": "2단원. 끊으면서 빅 만들기와 초급 실전 빅 (초급) (105제)",
+            "problemCount": 105,
+            "problemsCount": 105
+          },
+          {
+            "code": "tech_seki_ch03",
+            "chapterCode": "tech_seki_ch03",
+            "title": "3단원. 상대 집 없애서 빅 만들기 (파호와 빅 — 초·중급) (85제)",
+            "chapter": "3단원. 상대 집 없애서 빅 만들기 (파호와 빅 — 초·중급) (85제)",
+            "problemCount": 85,
+            "problemsCount": 85
+          },
+          {
+            "code": "tech_seki_ch04",
+            "chapterCode": "tech_seki_ch04",
+            "title": "4단원. 한 집 만들어 빅으로 살기 (안형 확보와 빅 — 중급) (86제)",
+            "chapter": "4단원. 한 집 만들어 빅으로 살기 (안형 확보와 빅 — 중급) (86제)",
+            "problemCount": 86,
+            "problemsCount": 86
+          },
+          {
+            "code": "tech_seki_ch05",
+            "chapterCode": "tech_seki_ch05",
+            "title": "5단원. 집 안의 빅과 궁도 사활 빅 ① (곡사궁·궁도 안의 빅 — 중급) (78제)",
+            "chapter": "5단원. 집 안의 빅과 궁도 사활 빅 ① (곡사궁·궁도 안의 빅 — 중급) (78제)",
+            "problemCount": 78,
+            "problemsCount": 78
+          },
+          {
+            "code": "tech_seki_ch06",
+            "chapterCode": "tech_seki_ch06",
+            "title": "6단원. 집 안의 빅과 궁도 사활 빅 ② (중·고급 궁도 빅과 실전 사활 빅) (103제)",
+            "chapter": "6단원. 집 안의 빅과 궁도 사활 빅 ② (중·고급 궁도 빅과 실전 사활 빅) (103제)",
+            "problemCount": 103,
+            "problemsCount": 103
+          },
+          {
+            "code": "tech_seki_ch07",
+            "chapterCode": "tech_seki_ch07",
+            "title": "7단원. 끝내기와 고전사활의 고급 빅 맥점 (끝내기 빅 & 고전 명작 — 고급) (142제)",
+            "chapter": "7단원. 끝내기와 고전사활의 고급 빅 맥점 (끝내기 빅 & 고전 명작 — 고급) (142제)",
+            "problemCount": 142,
+            "problemsCount": 142
+          }
+        ]
+      },
+      {
         "code": "tech_eye_house",
         "title": "👁️ 사활 완전정복 마스터",
-        "chapterCount": 27,
-        "totalProblems": 4662,
+        "chapterCount": 26,
+        "totalProblems": 4352,
         "chapters": [
           {
             "code": "tech_eye_house_ch01",
@@ -1887,10 +1951,10 @@
           {
             "code": "tech_eye_house_ch12",
             "chapterCode": "tech_eye_house_ch12",
-            "title": "12단원. 오궁도화와 매화육궁 (95제)",
-            "chapter": "12단원. 오궁도화와 매화육궁 (95제)",
-            "problemCount": 95,
-            "problemsCount": 95
+            "title": "12단원. 오궁도화와 매화육궁 (94제)",
+            "chapter": "12단원. 오궁도화와 매화육궁 (94제)",
+            "problemCount": 94,
+            "problemsCount": 94
           },
           {
             "code": "tech_eye_house_ch13",
@@ -1919,101 +1983,92 @@
           {
             "code": "tech_eye_house_ch16",
             "chapterCode": "tech_eye_house_ch16",
-            "title": "16단원. 빅으로 살기 (303제)",
-            "chapter": "16단원. 빅으로 살기 (303제)",
-            "problemCount": 303,
-            "problemsCount": 303
-          },
-          {
-            "code": "tech_eye_house_ch17",
-            "chapterCode": "tech_eye_house_ch17",
-            "title": "17단원. 궁도 넓혀 살기 (146제)",
-            "chapter": "17단원. 궁도 넓혀 살기 (146제)",
+            "title": "16단원. 궁도 넓혀 살기 (146제)",
+            "chapter": "16단원. 궁도 넓혀 살기 (146제)",
             "problemCount": 146,
             "problemsCount": 146
           },
           {
-            "code": "tech_eye_house_ch18",
-            "chapterCode": "tech_eye_house_ch18",
-            "title": "18단원. 궁도 줄여 잡기 (142제)",
-            "chapter": "18단원. 궁도 줄여 잡기 (142제)",
+            "code": "tech_eye_house_ch17",
+            "chapterCode": "tech_eye_house_ch17",
+            "title": "17단원. 궁도 줄여 잡기 (142제)",
+            "chapter": "17단원. 궁도 줄여 잡기 (142제)",
             "problemCount": 142,
             "problemsCount": 142
           },
           {
-            "code": "tech_eye_house_ch19",
-            "chapterCode": "tech_eye_house_ch19",
-            "title": "19단원. 급소에 두어 살리기와 치중하여 잡기 (241제)",
-            "chapter": "19단원. 급소에 두어 살리기와 치중하여 잡기 (241제)",
+            "code": "tech_eye_house_ch18",
+            "chapterCode": "tech_eye_house_ch18",
+            "title": "18단원. 급소에 두어 살리기와 치중하여 잡기 (241제)",
+            "chapter": "18단원. 급소에 두어 살리기와 치중하여 잡기 (241제)",
             "problemCount": 241,
             "problemsCount": 241
           },
           {
-            "code": "tech_eye_house_ch20",
-            "chapterCode": "tech_eye_house_ch20",
-            "title": "20단원. 좌우동형은 중앙이 급소 (72제)",
-            "chapter": "20단원. 좌우동형은 중앙이 급소 (72제)",
+            "code": "tech_eye_house_ch19",
+            "chapterCode": "tech_eye_house_ch19",
+            "title": "19단원. 좌우동형은 중앙이 급소 (72제)",
+            "chapter": "19단원. 좌우동형은 중앙이 급소 (72제)",
             "problemCount": 72,
             "problemsCount": 72
           },
           {
-            "code": "tech_eye_house_ch21",
-            "chapterCode": "tech_eye_house_ch21",
-            "title": "21단원. 1선·2선의 급소 (203제)",
-            "chapter": "21단원. 1선·2선의 급소 (203제)",
+            "code": "tech_eye_house_ch20",
+            "chapterCode": "tech_eye_house_ch20",
+            "title": "20단원. 1선·2선의 급소 (203제)",
+            "chapter": "20단원. 1선·2선의 급소 (203제)",
             "problemCount": 203,
             "problemsCount": 203
           },
           {
-            "code": "tech_eye_house_ch22",
-            "chapterCode": "tech_eye_house_ch22",
-            "title": "22단원. 1선 입구자 사활 (76제)",
-            "chapter": "22단원. 1선 입구자 사활 (76제)",
+            "code": "tech_eye_house_ch21",
+            "chapterCode": "tech_eye_house_ch21",
+            "title": "21단원. 1선 입구자 사활 (76제)",
+            "chapter": "21단원. 1선 입구자 사활 (76제)",
             "problemCount": 76,
             "problemsCount": 76
           },
           {
-            "code": "tech_eye_house_ch23",
-            "chapterCode": "tech_eye_house_ch23",
-            "title": "23단원. 착수금지와 자충 사활 (276제)",
-            "chapter": "23단원. 착수금지와 자충 사활 (276제)",
+            "code": "tech_eye_house_ch22",
+            "chapterCode": "tech_eye_house_ch22",
+            "title": "22단원. 착수금지와 자충 사활 (276제)",
+            "chapter": "22단원. 착수금지와 자충 사활 (276제)",
             "problemCount": 276,
             "problemsCount": 276
           },
           {
-            "code": "tech_eye_house_ch24",
-            "chapterCode": "tech_eye_house_ch24",
-            "title": "24단원. 선수·단수·약점 이용 사활 (354제)",
-            "chapter": "24단원. 선수·단수·약점 이용 사활 (354제)",
+            "code": "tech_eye_house_ch23",
+            "chapterCode": "tech_eye_house_ch23",
+            "title": "23단원. 선수·단수·약점 이용 사활 (354제)",
+            "chapter": "23단원. 선수·단수·약점 이용 사활 (354제)",
             "problemCount": 354,
             "problemsCount": 354
           },
           {
-            "code": "tech_eye_house_ch25",
-            "chapterCode": "tech_eye_house_ch25",
-            "title": "25단원. 맞보기 사활과 후절수 (162제)",
-            "chapter": "25단원. 맞보기 사활과 후절수 (162제)",
+            "code": "tech_eye_house_ch24",
+            "chapterCode": "tech_eye_house_ch24",
+            "title": "24단원. 맞보기 사활과 후절수 (162제)",
+            "chapter": "24단원. 맞보기 사활과 후절수 (162제)",
             "problemCount": 162,
             "problemsCount": 162
           },
           {
-            "code": "tech_eye_house_ch26",
-            "chapterCode": "tech_eye_house_ch26",
-            "title": "26단원. 귀의 기본 사활과 귀곡사 (159제)",
-            "chapter": "26단원. 귀의 기본 사활과 귀곡사 (159제)",
+            "code": "tech_eye_house_ch25",
+            "chapterCode": "tech_eye_house_ch25",
+            "title": "25단원. 귀의 기본 사활과 귀곡사 (159제)",
+            "chapter": "25단원. 귀의 기본 사활과 귀곡사 (159제)",
             "problemCount": 159,
             "problemsCount": 159
           },
           {
-            "code": "tech_eye_house_ch27",
-            "chapterCode": "tech_eye_house_ch27",
-            "title": "27단원. 사는 수와 잡는 수 종합 사활 (419제)",
-            "chapter": "27단원. 사는 수와 잡는 수 종합 사활 (419제)",
-            "problemCount": 419,
-            "problemsCount": 419
+            "code": "tech_eye_house_ch26",
+            "chapterCode": "tech_eye_house_ch26",
+            "title": "26단원. 사는 수와 잡는 수 종합 사활 (413제)",
+            "chapter": "26단원. 사는 수와 잡는 수 종합 사활 (413제)",
+            "problemCount": 413,
+            "problemsCount": 413
           }
-        ],
-        "book": "👁️ 사활 완전정복 마스터"
+        ]
       },
       {
         "code": "tech_race_outer",
@@ -2351,76 +2406,113 @@
         "code": "tech_endgame",
         "title": "🏁 끝내기 완전정복 마스터",
         "chapterCount": 13,
-        "totalProblems": 1577,
+        "totalProblems": 1565,
         "chapters": [
           {
             "code": "tech_endgame_ch01",
+            "chapterCode": "tech_endgame_ch01",
             "title": "1단원. 집 완성하기와 집 지키기·막기 (152제)",
-            "problemCount": 152
+            "chapter": "1단원. 집 완성하기와 집 지키기·막기 (152제)",
+            "problemCount": 152,
+            "problemsCount": 152
           },
           {
             "code": "tech_endgame_ch02",
+            "chapterCode": "tech_endgame_ch02",
             "title": "2단원. 상대 집 부수기와 집 줄이기 (122제)",
-            "problemCount": 122
+            "chapter": "2단원. 상대 집 부수기와 집 줄이기 (122제)",
+            "problemCount": 122,
+            "problemsCount": 122
           },
           {
             "code": "tech_endgame_ch03",
+            "chapterCode": "tech_endgame_ch03",
             "title": "3단원. 1선 막기와 1선 젖혀잇기 끝내기 (172제)",
-            "problemCount": 172
+            "chapter": "3단원. 1선 막기와 1선 젖혀잇기 끝내기 (172제)",
+            "problemCount": 172,
+            "problemsCount": 172
           },
           {
             "code": "tech_endgame_ch04",
+            "chapterCode": "tech_endgame_ch04",
             "title": "4단원. 2선 젖혀잇기와 2선 끝내기 (83제)",
-            "problemCount": 83
+            "chapter": "4단원. 2선 젖혀잇기와 2선 끝내기 (83제)",
+            "problemCount": 83,
+            "problemsCount": 83
           },
           {
             "code": "tech_endgame_ch05",
+            "chapterCode": "tech_endgame_ch05",
             "title": "5단원. 1선·2선 입구자(마늘모) 끝내기 (110제)",
-            "problemCount": 110
+            "chapter": "5단원. 1선·2선 입구자(마늘모) 끝내기 (110제)",
+            "problemCount": 110,
+            "problemsCount": 110
           },
           {
             "code": "tech_endgame_ch06",
+            "chapterCode": "tech_endgame_ch06",
             "title": "6단원. 1선·2선 한칸 뛰어 들어가기 끝내기 (120제)",
-            "problemCount": 120
+            "chapter": "6단원. 1선·2선 한칸 뛰어 들어가기 끝내기 (120제)",
+            "problemCount": 120,
+            "problemsCount": 120
           },
           {
             "code": "tech_endgame_ch07",
+            "chapterCode": "tech_endgame_ch07",
             "title": "7단원. 눈목자 달리기(비마) 끝내기와 대응 (90제)",
-            "problemCount": 90
+            "chapter": "7단원. 눈목자 달리기(비마) 끝내기와 대응 (90제)",
+            "problemCount": 90,
+            "problemsCount": 90
           },
           {
             "code": "tech_endgame_ch08",
+            "chapterCode": "tech_endgame_ch08",
             "title": "8단원. 껴붙이기 끝내기 (90제)",
-            "problemCount": 90
+            "chapter": "8단원. 껴붙이기 끝내기 (90제)",
+            "problemCount": 90,
+            "problemsCount": 90
           },
           {
             "code": "tech_endgame_ch09",
+            "chapterCode": "tech_endgame_ch09",
             "title": "9단원. 끊어잡기와 단점 이용 끝내기 (102제)",
-            "problemCount": 102
+            "chapter": "9단원. 끊어잡기와 단점 이용 끝내기 (102제)",
+            "problemCount": 102,
+            "problemsCount": 102
           },
           {
             "code": "tech_endgame_ch10",
-            "title": "10단원. 치중·자충·빅을 이용한 끝내기 (120제)",
-            "problemCount": 120
+            "chapterCode": "tech_endgame_ch10",
+            "title": "10단원. 치중·자충·빅을 이용한 끝내기 (108제)",
+            "chapter": "10단원. 치중·자충·빅을 이용한 끝내기 (108제)",
+            "problemCount": 108,
+            "problemsCount": 108
           },
           {
             "code": "tech_endgame_ch11",
+            "chapterCode": "tech_endgame_ch11",
             "title": "11단원. 되따내기와 환격·사석 활용 끝내기 (109제)",
-            "problemCount": 109
+            "chapter": "11단원. 되따내기와 환격·사석 활용 끝내기 (109제)",
+            "problemCount": 109,
+            "problemsCount": 109
           },
           {
             "code": "tech_endgame_ch12",
+            "chapterCode": "tech_endgame_ch12",
             "title": "12단원. 선수·역끝내기·양선수 끝내기와 늦춰 받기 (194제)",
-            "problemCount": 194
+            "chapter": "12단원. 선수·역끝내기·양선수 끝내기와 늦춰 받기 (194제)",
+            "problemCount": 194,
+            "problemsCount": 194
           },
           {
             "code": "tech_endgame_ch13",
+            "chapterCode": "tech_endgame_ch13",
             "title": "13단원. 큰 곳 찾기와 최선의 실전 끝내기 (113제)",
-            "problemCount": 113
+            "chapter": "13단원. 큰 곳 찾기와 최선의 실전 끝내기 (113제)",
+            "problemCount": 113,
+            "problemsCount": 113
           }
-        ],
-        "book": "🏁 끝내기 완전정복 마스터",
-        "problemCount": 1577
+        ]
       },
       {
         "code": "tech_fuseki",
