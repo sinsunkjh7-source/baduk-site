@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>미로 찾기 — 바둑스쿨 Fun</title>
+<link rel="stylesheet" href="/unified-nav.css?v=nav-v12c">
+<link rel="stylesheet" href="style.css?v=maze-3">
+<script src="/unified-nav.js?v=nav-v12c" defer></script>
+<script src="/js/site_lock.js?v=5"></script>
+</head>
+<body data-bks-page="maze">
+
+<main class="m-wrap">
+  <div class="m-head">
+    <div class="m-score p1"><span>1P</span><b id="t1">–</b></div>
+    <div class="m-score p2"><span>2P</span><b id="t2">–</b></div>
+    <div class="m-seg" id="sizeSeg">
+      <button type="button" class="m-segbtn" data-n="10">쉬움</button>
+      <button type="button" class="m-segbtn active" data-n="14">보통</button>
+      <button type="button" class="m-segbtn" data-n="18">어려움</button>
+    </div>
+    <div class="m-seg" id="modeSeg">
+      <button type="button" class="m-modebtn active" data-mode="solo">혼자</button>
+      <button type="button" class="m-modebtn" data-mode="duo">2인 대결</button>
+    </div>
+    <button type="button" class="m-btn primary" id="btnNew">새 미로</button>
+    <button type="button" class="m-btn" id="btnRules">규칙</button>
+  </div>
+
+  <div class="m-stage" id="stage">
+    <div class="m-board-wrap" id="wrap1">
+      <span class="m-tag p1">1P</span>
+      <canvas id="maze1" width="560" height="560"></canvas>
+    </div>
+    <div class="m-board-wrap" id="wrap2" hidden>
+      <span class="m-tag p2">2P</span>
+      <canvas id="maze2" width="560" height="560"></canvas>
+    </div>
+  </div>
+
+  <p class="m-msg" id="msg">방향키(또는 WASD)로 출발점에서 깃발까지 이동하세요.</p>
+</main>
+
+<div class="m-panel" id="resultPanel" hidden>
+  <div class="m-card">
+    <h2 id="resultTitle">도착!</h2>
+    <p id="resultDesc"></p>
+    <div class="m-card-actions">
+      <button type="button" class="m-btn primary" id="btnAgain">다시 하기</button>
+      <button type="button" class="m-btn" id="btnNext">다음 미로</button>
+      <button type="button" class="m-btn" id="btnCloseResult">닫기</button>
+    </div>
+  </div>
+</div>
+
+<div class="m-panel" id="rulesPanel" hidden>
+  <div class="m-card">
+    <h2>규칙</h2>
+    <ul class="m-rules">
+      <li>왼쪽 위 <b>출발점</b>에서 오른쪽 아래 <b>깃발</b>까지 벽을 피해 이동합니다.</li>
+      <li>조작: <b>방향키 / WASD</b>, 모바일은 <b>미로를 문질러</b> 이동합니다.</li>
+      <li><b>2인 대결</b>은 같은 미로에서 1P(파랑)와 2P(빨강)가 동시에 시작해 먼저 도착한 쪽이 이깁니다.</li>
+      <li>1P는 <b>WASD</b>, 2P는 <b>방향키</b>를 씁니다. 모바일은 각자 자기 미로를 문지릅니다.</li>
+      <li>이동 횟수와 걸린 시간이 기록됩니다.</li>
+    </ul>
+    <div class="m-card-actions">
+      <button type="button" class="m-btn primary" id="btnCloseRules">닫기</button>
+    </div>
+  </div>
+</div>
+
+<script src="game.js?v=maze-4"></script>
+</body>
+</html>
