@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>국기 지도 퍼즐 — 바둑스쿨 Fun</title>
 <link rel="stylesheet" href="/unified-nav.css?v=nav-v12b">
-<link rel="stylesheet" href="style.css?v=flagmap-5">
+<link rel="stylesheet" href="style.css?v=flagmap-7">
 <script src="/unified-nav.js?v=nav-v12b" defer></script>
 <script src="/js/site_lock.js?v=5"></script>
 </head>
@@ -16,6 +16,10 @@
     <div class="f-score p1"><span>1P</span><b id="s1">0</b></div>
     <div class="f-score p2"><span>2P</span><b id="s2">0</b></div>
     <div class="f-left" id="leftBox"><span>남은 국기</span><b id="left">8</b></div>
+    <div class="f-seg f-mode" id="modeSeg">
+      <button type="button" class="f-modebtn active" data-mode="flags">국기 놓기</button>
+      <button type="button" class="f-modebtn" data-mode="capitals">수도 맞추기</button>
+    </div>
     <div class="f-seg" id="contSeg">
       <button type="button" class="f-segbtn active" data-cont="asia">아시아</button>
       <button type="button" class="f-segbtn" data-cont="europe">유럽</button>
@@ -33,11 +37,19 @@
       <svg id="map" xmlns="http://www.w3.org/2000/svg" aria-label="세계 지도"></svg>
       <div class="f-loading" id="loading">지도 불러오는 중…</div>
     </div>
-    <div class="f-traybox">
+    <div class="f-traybox" id="traybox">
       <div class="f-tray" id="tray"></div>
-      <p class="f-msg" id="msg">국기를 골라 나라 위에 놓아 보세요.</p>
+    </div>
+
+    <div class="f-quiz" id="quizBox" hidden>
+      <div class="f-quiz-head">
+        <div class="f-quiz-flag" id="quizFlag"></div>
+        <div class="f-quiz-clue" id="quizClue"></div>
+      </div>
+      <div class="f-options" id="quizOptions"></div>
     </div>
   </div>
+  <p class="f-msg" id="msg"></p>
 </main>
 
 <div class="f-panel" id="resultPanel" hidden>
@@ -60,6 +72,8 @@
       <li>1P와 2P가 번갈아 하며, 8개 국기를 모두 놓으면 끝납니다.</li>
       <li>점수가 높은 쪽이 이깁니다.</li>
       <li>모바일에서는 <b>국기를 탭한 뒤 나라를 탭</b>해도 됩니다.</li>
+      <li><b>수도 맞추기</b>: 지도에 표시된 나라와 지역 특징을 보고 <b>수도</b>를 4개 중에서 고릅니다.</li>
+      <li>어느 모드든 <b>1P·2P가 번갈아</b> 하고, 점수가 높은 쪽이 이깁니다.</li>
     </ul>
     <div class="f-card-actions">
       <button type="button" class="f-btn primary" id="btnCloseRules">닫기</button>
@@ -68,6 +82,7 @@
 </div>
 
 <script src="data/countries.js?v=1"></script>
-<script src="game.js?v=flagmap-3"></script>
+<script src="data/capitals.js?v=1"></script>
+<script src="game.js?v=flagmap-4"></script>
 </body>
 </html>

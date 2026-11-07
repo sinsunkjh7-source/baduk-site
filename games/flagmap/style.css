@@ -138,3 +138,43 @@ body{
 .f-stagebtn.active{background:var(--f-green);color:#fff}
 .f-stagebtn.all{min-width:44px;border:1px solid var(--f-line)}
 .f-stagebtn.all.active{border-color:var(--f-green-deep)}
+
+/* 모드 전환 (f-mode) */
+.f-mode .f-modebtn{
+  border:0;background:transparent;border-radius:8px;padding:7px 12px;
+  font-family:inherit;font-size:13px;font-weight:800;color:#6b7d62;cursor:pointer;white-space:nowrap;
+}
+.f-mode .f-modebtn.active{background:var(--f-green);color:#fff}
+
+/* 수도 퀴즈 (f-quiz) */
+.f-quiz{background:var(--f-card);border-radius:14px;padding:12px;box-shadow:0 4px 16px rgba(36,54,29,.10)}
+.f-quiz-head{display:flex;align-items:center;gap:12px;margin-bottom:10px;flex-wrap:wrap}
+.f-quiz-flag{width:84px;height:56px;border-radius:8px;overflow:hidden;border:2px solid var(--f-line);flex:0 0 auto}
+.f-quiz-flag img{width:100%;height:100%;object-fit:cover;display:block}
+.f-quiz-clue{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:800;color:#3f5a34}
+.f-clue-icon{font-size:26px;line-height:1}
+.f-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.f-opt{
+  display:flex;align-items:center;gap:8px;border:2px solid var(--f-line);background:#fff;
+  border-radius:10px;padding:11px 12px;font-family:inherit;font-size:14px;font-weight:800;
+  color:#33452b;cursor:pointer;text-align:left;
+}
+.f-opt:hover{border-color:#8fc47c;background:#f6fbf0}
+.f-opt-num{
+  width:20px;height:20px;border-radius:50%;background:#eef4e7;color:#5f7a52;
+  display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;flex:0 0 auto;
+}
+.f-opt.right{border-color:#4a8a3a;background:#e8f5dd;box-shadow:0 0 0 2px rgba(122,178,96,.25)}
+.f-opt.wrong{border-color:#d3563f;background:#fdecea}
+@media (max-width:760px){
+  .f-options{grid-template-columns:1fr}
+  .f-quiz-flag{width:66px;height:44px}
+  .f-mode{order:4;width:100%}
+  .f-mode .f-modebtn{flex:1 1 auto}
+}
+
+/* 모바일 수도 모드: 지도 높이 제한 (f-quiz-mobile) */
+@media (max-width:760px){
+  .f-mapwrap{min-height:200px!important;height:34vh;max-height:34vh}
+  .f-quiz{padding:10px}
+}
