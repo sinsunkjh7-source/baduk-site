@@ -1,6 +1,10 @@
 /* 30-stage curriculum adapter. The board and controls are Teaching Zone's shared engine. */
 (function () {
   'use strict';
+  var courseTitle='단계별 학습관 | 바둑스쿨';
+  function keepCourseTitle(){if(document.title!==courseTitle)document.title=courseTitle;}
+  keepCourseTitle();
+  new MutationObserver(keepCourseTitle).observe(document.querySelector('title'),{childList:true,subtree:true,characterData:true});
   var data, dataPromise, role = 'body', tab = 'problem', currentBook;
   var params = new URLSearchParams(location.search);
   var requestedStage = Number(params.get('stage'));
@@ -78,6 +82,10 @@
   }
   function renderView() {
     if(!data)return;
+    var route=new URL(location.href);
+    if(view==='stages'){route.searchParams.delete('stage');route.searchParams.delete('unit');}
+    else {route.searchParams.set('stage',stageNumber());if(view==='units')route.searchParams.delete('unit');}
+    history.replaceState(null,'',route);
     document.body.classList.toggle('course-selecting',view!=='lesson');
     document.body.classList.toggle('course-theory',view==='lesson'&&tab==='theory');
     $('coursePicker').hidden=view==='lesson';
