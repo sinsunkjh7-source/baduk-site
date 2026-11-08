@@ -154,6 +154,10 @@
                 <button type="button" class="ped-mini-act" id="btnPedColorSwap" title="흑백 돌 색상 맞바꾸기">☯흑백</button>
                 <button type="button" class="ped-mini-act danger-soft" id="btnPedClearAns" title="정답 수순 비우고 새로 찍기">정답비움</button>
               </div>
+              <div style="margin-top: 6px; display: flex; gap: 6px;">
+                <button type="button" class="ped-mini-act" id="btnPedUndoProblemAction" style="flex: 1; background: #f8fafc; color: #334155; font-weight: 700; border: 1px solid #cbd5e1; padding: 5px 6px;" title="직전 편집 동작(돌 놓기/이동/색상변경 등) 1단계 취소">↩️ 1수 되돌리기</button>
+                <button type="button" class="ped-mini-act" id="btnPedRevertCurrentProb" style="flex: 1.4; background: #fef2f2; color: #b91c1c; border: 1px solid #fca5a5; font-weight: 800; padding: 5px 6px;" title="현재 선택된 이 문제만 편집 전 최초 원본 상태로 완전히 복구">↩️ 이 문제 원본 복원</button>
+              </div>
             </div>
 
             <!-- 2. 단원 내 문제 위치(번호) 이동 및 문제 제거 -->
@@ -379,7 +383,7 @@
 
 
 <script src="audio.js?v=20261028-solidwood&t=teacher-panel-v15"></script>
-<script src="app.js?v=20261108-gridview-v2"></script>
+<script src="app.js?v=20261108-revert-v1"></script>
 
 </body>
 </html>

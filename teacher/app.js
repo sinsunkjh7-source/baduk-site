@@ -63,7 +63,9 @@
     playedMoves: [],            // 현재 문제 풀이에서 둔 착수 목록
     isOpponentResponding: false,// 상대방(컴퓨터) 응수 대기 플래그
     boardEditTool: null,        // 'black' | 'white' | 'erase' | 'triangle' | 'answer' | null
-    lastDeletedProblem: null    // { problem, chapterIdx, probIdx, bookCode }
+    lastDeletedProblem: null,   // { problem, chapterIdx, probIdx, bookCode }
+    pristineBook: null,         // 최초 원본 교재 데이터 원본 보존용
+    probEditHistory: []         // 현재 문제 편집 실행 취소(Undo)용 스택
   };
   window.teacherState = state;
 
@@ -2500,6 +2502,7 @@
   }
 
   function shiftCurrentProblemStones(dx, dy) {
+    pushProbEditSnapshot();
     var p = state.currentProblems[state.currentProblemIndex];
     if (!p) return;
 
@@ -2524,6 +2527,7 @@
   }
 
   function flipCurrentProblemDiagonal() {
+    pushProbEditSnapshot();
     var p = state.currentProblems[state.currentProblemIndex];
     if (!p) return;
 
@@ -2552,6 +2556,7 @@
   }
 
   function swapCurrentProblemColors() {
+    pushProbEditSnapshot();
     var p = state.currentProblems[state.currentProblemIndex];
     if (!p) return;
 
@@ -2715,6 +2720,101 @@
         else if (dir === 'right') shiftCurrentProblemStones(1, 0);
       });
     });
+
+        function pushProbEditSnapshot() {
+      var p = state.currentProblems[state.currentProblemIndex];
+      if (!p) return;
+      state.probEditHistory.push({
+        idx: state.currentProblemIndex,
+        data: p.data || '',
+        answer1: p.answer1 || '',
+        question: p.question || ''
+      });
+      if (state.probEditHistory.length > 30) state.probEditHistory.shift();
+    }
+
+    var btnUndoProbAct = document.getElementById('btnPedUndoProblemAction');
+    if (btnUndoProbAct) {
+      btnUndoProbAct.addEventListener('click', function () {
+        if (!state.probEditHistory || state.probEditHistory.length === 0) {
+          showToast('더 이상 되돌릴 편집 동작이 없습니다.');
+          return;
+        }
+        var last = state.probEditHistory.pop();
+        if (last.idx !== state.currentProblemIndex) {
+          loadProblem(last.idx);
+        }
+        var p = state.currentProblems[state.currentProblemIndex];
+        if (p) {
+          p.data = last.data;
+          p.answer1 = last.answer1;
+          p.question = last.question;
+          saveCustomBookState('직전 편집 1수 취소됨');
+          loadProblem(state.currentProblemIndex);
+          showToast('직전 편집 동작이 1단계 취소되었습니다.');
+        }
+      });
+    }
+
+    var btnRevertProb = document.getElementById('btnPedRevertCurrentProb');
+    if (btnRevertProb) {
+      btnRevertProb.addEventListener('click', function () {
+        var pIdx = state.currentProblemIndex;
+        var chIdx = state.currentChapterIndex;
+        var curP = state.currentProblems[pIdx];
+        if (!curP) return;
+
+        function applyRevert(rawBook) {
+          var origP = null;
+          var ch = (rawBook && rawBook.chapters) ? rawBook.chapters[chIdx] : null;
+          if (ch && ch.problems && ch.problems[pIdx]) {
+            origP = ch.problems[pIdx];
+          }
+          if (!origP && rawBook && rawBook.chapters) {
+            for (var ci = 0; ci < rawBook.chapters.length; ci++) {
+              var cch = rawBook.chapters[ci];
+              if (!cch.problems) continue;
+              for (var pi = 0; pi < cch.problems.length; pi++) {
+                if (cch.problems[pi].code === curP.code) {
+                  origP = cch.problems[pi];
+                  break;
+                }
+              }
+              if (origP) break;
+            }
+          }
+          if (!origP) {
+            showToast('이 문제의 원본 데이터를 찾을 수 없습니다.');
+            return;
+          }
+
+          if (!window.confirm((pIdx + 1) + '번 문제를 편집 전 최초 원본 상태로 완전히 되돌리시겠습니까?')) return;
+          pushProbEditSnapshot();
+          state.currentProblems[pIdx] = JSON.parse(JSON.stringify(origP));
+          if (state.currentBook && state.currentBook.chapters[chIdx]) {
+            state.currentBook.chapters[chIdx].problems = state.currentProblems;
+          }
+          saveCustomBookState((pIdx + 1) + '번 문제 원본 복원됨');
+          loadProblem(pIdx);
+          showToast('✓ ' + (pIdx + 1) + '번 문제가 원래 원본 형태로 복원되었습니다.');
+        }
+
+        if (state.pristineBook && state.pristineBook.chapters) {
+          applyRevert(state.pristineBook);
+        } else {
+          var code = getBookCode();
+          fetch('data/books/book_' + code + '.json?v=' + Date.now())
+            .then(function (res) { return res.json(); })
+            .then(function (raw) {
+              state.pristineBook = raw;
+              applyRevert(raw);
+            })
+            .catch(function () {
+              showToast('원본 데이터를 불러오지 못했습니다.');
+            });
+        }
+      });
+    }
 
     var btnDiagFlip = document.getElementById('btnPedDiagFlip');
     if (btnDiagFlip) btnDiagFlip.addEventListener('click', flipCurrentProblemDiagonal);
