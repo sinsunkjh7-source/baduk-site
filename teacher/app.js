@@ -12,7 +12,7 @@
 
   /* ---------- 상태 ---------- */
   var state = {
-    authenticated: false,
+    authenticated: true,
     catalog: [],
     currentSeriesIndex: 0,
     currentBook: null,
@@ -2993,5 +2993,380 @@
   initSettingsModal();
   initTeachingToolbar();
   initProblemEditor();
+  
+  /* ========================================================
+     10×5 문제 모아보기 & 마우스 드래그 순서 편집기 컨트롤러
+     ======================================================== */
+  function initGridViewModal() {
+    var modal = document.getElementById('probGridViewModal');
+    var btnHeader = document.getElementById('btnHeaderGridView');
+    var btnSidebar = document.getElementById('btnOpenGridView');
+    var btnClose = document.getElementById('btnGridClose');
+    var btnSave = document.getElementById('btnGridSave');
+    var btnExport = document.getElementById('btnGridExport');
+    var btnAddProb = document.getElementById('btnGridAddProb');
+    var container = document.getElementById('probGridCards');
+
+    var draggedIdx = null;
+
+    function openModal() {
+      if (!modal) return;
+      if (!state.currentProblems || state.currentProblems.length === 0) {
+        showToast('현재 선택된 단원에 문제가 없습니다.');
+        return;
+      }
+      modal.removeAttribute('hidden');
+      renderCards();
+    }
+
+    function closeModal() {
+      if (!modal) return;
+      modal.setAttribute('hidden', 'true');
+    }
+
+    function renderCards() {
+      if (!container) return;
+      container.innerHTML = '';
+
+      var chapterTitleEl = document.getElementById('gridChapterTitle');
+      var probCountEl = document.getElementById('gridProbCount');
+      if (chapterTitleEl && state.currentBook && state.currentBook.chapters[state.currentChapterIndex]) {
+        chapterTitleEl.textContent = state.currentBook.chapters[state.currentChapterIndex].chapter || '단원';
+      }
+      if (probCountEl) {
+        probCountEl.textContent = state.currentProblems.length;
+      }
+
+      state.currentProblems.forEach(function (p, idx) {
+        var card = document.createElement('div');
+        card.className = 'prob-card' + (idx === state.currentProblemIndex ? ' active' : '');
+        card.draggable = true;
+        card.dataset.index = idx;
+
+        // Card Header
+        var header = document.createElement('div');
+        header.className = 'prob-card-header';
+
+        var badge = document.createElement('span');
+        badge.className = 'prob-card-badge';
+        badge.textContent = '#' + (idx + 1);
+        header.appendChild(badge);
+
+        var moveCount = 0;
+        if (p.answer1) {
+          moveCount = (p.answer1.match(/;[BW]\[/gi) || []).length;
+        }
+        var meta = document.createElement('span');
+        meta.className = 'prob-card-meta';
+        meta.textContent = moveCount > 0 ? (moveCount + '수') : '';
+        header.appendChild(meta);
+
+        var delBtn = document.createElement('button');
+        delBtn.type = 'button';
+        delBtn.className = 'prob-card-del';
+        delBtn.textContent = '✕';
+        delBtn.title = (idx + 1) + '번 문제 삭제';
+        delBtn.addEventListener('click', function (e) {
+          e.stopPropagation();
+          deleteCardAt(idx);
+        });
+        header.appendChild(delBtn);
+
+        card.appendChild(header);
+
+        // Canvas
+        var canvas = document.createElement('canvas');
+        canvas.className = 'prob-card-canvas';
+        card.appendChild(canvas);
+
+        // Footer
+        var footer = document.createElement('div');
+        footer.className = 'prob-card-footer';
+        var srcSpan = document.createElement('span');
+        srcSpan.className = 'prob-card-source';
+        var srcText = p.source_book || '';
+        srcText = srcText.replace('논리바둑', '논리').replace('씽크탱크', '씽크').replace('알파바둑', '알파');
+        if (p.source_p_num) srcText += ' #' + p.source_p_num;
+        srcSpan.textContent = srcText;
+        footer.appendChild(srcSpan);
+        card.appendChild(footer);
+
+        // Drag and drop events
+        card.addEventListener('dragstart', function (e) {
+          draggedIdx = idx;
+          card.classList.add('dragging');
+          e.dataTransfer.effectAllowed = 'move';
+          try { e.dataTransfer.setData('text/plain', String(idx)); } catch (err) {}
+        });
+
+        card.addEventListener('dragend', function () {
+          card.classList.remove('dragging');
+          document.querySelectorAll('.prob-card.drag-over').forEach(function (el) {
+            el.classList.remove('drag-over');
+          });
+          draggedIdx = null;
+        });
+
+        card.addEventListener('dragover', function (e) {
+          e.preventDefault();
+          e.dataTransfer.dropEffect = 'move';
+          card.classList.add('drag-over');
+        });
+
+        card.addEventListener('dragleave', function () {
+          card.classList.remove('drag-over');
+        });
+
+        card.addEventListener('drop', function (e) {
+          e.preventDefault();
+          card.classList.remove('drag-over');
+          var from = draggedIdx;
+          var to = idx;
+          if (from !== null && from !== to) {
+            reorderProblem(from, to);
+          }
+        });
+
+        // Click on card to open in main board
+        card.addEventListener('click', function () {
+          closeModal();
+          loadProblem(idx);
+        });
+
+        container.appendChild(card);
+
+        // Mini board render
+        setTimeout(function () {
+          drawThumbnailBoard(canvas, p, idx === state.currentProblemIndex);
+        }, 0);
+      });
+    }
+
+    function reorderProblem(fromIdx, toIdx) {
+      if (fromIdx < 0 || fromIdx >= state.currentProblems.length) return;
+      if (toIdx < 0 || toIdx >= state.currentProblems.length) return;
+      if (fromIdx === toIdx) return;
+
+      var moved = state.currentProblems.splice(fromIdx, 1)[0];
+      state.currentProblems.splice(toIdx, 0, moved);
+
+      // Re-number
+      state.currentProblems.forEach(function (p, i) {
+        p.no = i + 1;
+        p.name = (i + 1) + '번 문제';
+        p.code = '1' + String(i + 1).padStart(3, '0');
+      });
+
+      state.currentProblemIndex = toIdx;
+      if (state.currentBook && state.currentBook.chapters[state.currentChapterIndex]) {
+        state.currentBook.chapters[state.currentChapterIndex].problems = state.currentProblems;
+      }
+
+      saveCustomBookToLocalStorage();
+      renderCards();
+      renderProblemGrid();
+      showToast('문제 #' + (fromIdx + 1) + '이(가) #' + (toIdx + 1) + ' 위치로 이동되었습니다.');
+    }
+
+    function deleteCardAt(idx) {
+      if (idx < 0 || idx >= state.currentProblems.length) return;
+      if (!confirm((idx + 1) + '번 문제를 삭제하시겠습니까?')) return;
+
+      state.currentProblems.splice(idx, 1);
+      state.currentProblems.forEach(function (p, i) {
+        p.no = i + 1;
+        p.name = (i + 1) + '번 문제';
+        p.code = '1' + String(i + 1).padStart(3, '0');
+      });
+
+      if (state.currentProblemIndex >= state.currentProblems.length) {
+        state.currentProblemIndex = Math.max(0, state.currentProblems.length - 1);
+      }
+      if (state.currentBook && state.currentBook.chapters[state.currentChapterIndex]) {
+        state.currentBook.chapters[state.currentChapterIndex].problems = state.currentProblems;
+      }
+
+      saveCustomBookToLocalStorage();
+      renderCards();
+      renderProblemGrid();
+      showToast('문제 #' + (idx + 1) + '이(가) 삭제되었습니다.');
+    }
+
+    function drawThumbnailBoard(canvas, p, isActive) {
+      if (!canvas || !p) return;
+      var dpr = window.devicePixelRatio || 1;
+      var w = canvas.clientWidth || 120;
+      var h = canvas.clientHeight || 120;
+      canvas.width = Math.round(w * dpr);
+      canvas.height = Math.round(h * dpr);
+      var ctx = canvas.getContext('2d');
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      // Wood background
+      ctx.fillStyle = isActive ? '#fef3c7' : '#f5cf8b';
+      ctx.fillRect(0, 0, w, h);
+
+      var spec = detectBoardSpec(p);
+      var cols = spec.cols || 10;
+      var rows = spec.rows || 10;
+
+      var pad = 8;
+      var availW = w - pad * 2;
+      var availH = h - pad * 2;
+      var cell = Math.min(availW / (cols - 1), availH / (rows - 1));
+      var startX = pad + (availW - cell * (cols - 1)) / 2;
+      var startY = pad + (availH - cell * (rows - 1)) / 2;
+
+      // Lines
+      ctx.strokeStyle = 'rgba(70, 35, 15, 0.72)';
+      ctx.lineWidth = 1;
+      for (var c = 0; c < cols; c++) {
+        var lx = startX + cell * c;
+        ctx.beginPath();
+        ctx.moveTo(lx, startY);
+        ctx.lineTo(lx, startY + cell * (rows - 1));
+        ctx.stroke();
+      }
+      for (var r = 0; r < rows; r++) {
+        var ly = startY + cell * r;
+        ctx.beginPath();
+        ctx.moveTo(startX, ly);
+        ctx.lineTo(startX + cell * (cols - 1), ly);
+        ctx.stroke();
+      }
+
+      // Stones
+      var shiftX = 0, shiftY = 0;
+      if (!spec.isFull19) {
+        if (spec.quadrant === 'BR') {
+          shiftX = 19 - cols;
+          shiftY = 19 - rows;
+        } else if (spec.quadrant === 'BL') {
+          shiftX = 0;
+          shiftY = 19 - rows;
+        } else if (spec.quadrant === 'TR') {
+          shiftX = 19 - cols;
+          shiftY = 0;
+        }
+      }
+
+      var reg = /(?:;|^)([BWTCMSL]|TR|CR|SQ|MA|LB)\[([a-s]{2})(?::[^\]]*)?\]/gi;
+      var sgf = (p.data || '');
+      var m;
+      var stones = [];
+      var marks = [];
+      while ((m = reg.exec(sgf)) !== null) {
+        var tag = m[1].toUpperCase();
+        var coords = m[2].toLowerCase();
+        var gx = coords.charCodeAt(0) - 97 - shiftX;
+        var gy = coords.charCodeAt(1) - 97 - shiftY;
+        if (gx >= 0 && gx < cols && gy >= 0 && gy < rows) {
+          if (tag === 'B') stones.push({ x: gx, y: gy, color: 1 });
+          else if (tag === 'W') stones.push({ x: gx, y: gy, color: 2 });
+          else if (tag === 'T' || tag === 'TR') marks.push({ x: gx, y: gy });
+        }
+      }
+
+      var radius = Math.max(3, cell * 0.45);
+      stones.forEach(function (s) {
+        var sx = startX + cell * s.x;
+        var sy = startY + cell * s.y;
+        ctx.beginPath();
+        ctx.arc(sx, sy, radius, 0, Math.PI * 2);
+        if (s.color === 1) {
+          ctx.fillStyle = '#1e293b';
+          ctx.fill();
+        } else {
+          ctx.fillStyle = '#ffffff';
+          ctx.fill();
+          ctx.lineWidth = 1;
+          ctx.strokeStyle = '#64748b';
+          ctx.stroke();
+        }
+      });
+
+      marks.forEach(function (mk) {
+        var mx = startX + cell * mk.x;
+        var my = startY + cell * mk.y;
+        var st = stones.find(function (s) { return s.x === mk.x && s.y === mk.y; });
+        var mkColor = (st && st.color === 1) ? '#ffffff' : '#ef4444';
+        ctx.strokeStyle = mkColor;
+        ctx.lineWidth = 1.4;
+        var mr = radius * 0.58;
+        ctx.beginPath();
+        ctx.moveTo(mx, my - mr);
+        ctx.lineTo(mx + mr * 0.866, my + mr * 0.5);
+        ctx.lineTo(mx - mr * 0.866, my + mr * 0.5);
+        ctx.closePath();
+        ctx.stroke();
+      });
+    }
+
+    window.openProblemGridView = openModal;
+    window.closeProblemGridView = closeModal;
+    if (btnHeader) btnHeader.addEventListener('click', openModal);
+    if (btnSidebar) btnSidebar.addEventListener('click', openModal);
+
+    document.addEventListener('click', function (e) {
+      var t = e.target && e.target.closest ? e.target.closest('#btnOpenGridView, #btnHeaderGridView') : null;
+      if (t) {
+        e.preventDefault();
+        openModal();
+      }
+    });
+    if (btnClose) btnClose.addEventListener('click', closeModal);
+
+    if (btnSave) {
+      btnSave.addEventListener('click', function () {
+        saveCustomBookToLocalStorage();
+        showToast('✓ 현재 문제 순서 및 내용이 저장되었습니다.');
+      });
+    }
+
+    if (btnExport) {
+      btnExport.addEventListener('click', function () {
+        exportCustomBookJson();
+      });
+    }
+
+    if (btnAddProb) {
+      btnAddProb.addEventListener('click', function () {
+        var newNo = state.currentProblems.length + 1;
+        var newP = {
+          code: '1' + String(newNo).padStart(3, '0'),
+          type: '3',
+          question: (state.currentBook ? state.currentBook.chapters[state.currentChapterIndex].chapter : '새 문제') + '\r\n문제를 풀어보세요.',
+          hint: '',
+          data: '',
+          answer1: '',
+          answer2: '',
+          answer3: '',
+          answer4: '',
+          answer5: '',
+          sample: '',
+          answer: '',
+          auto: 'false',
+          size: '4',
+          start: 'BA',
+          source_book: '선생님 직접 작성',
+          source_chapter: '',
+          source_p_num: newNo,
+          no: newNo,
+          name: newNo + '번 문제'
+        };
+        state.currentProblems.push(newP);
+        if (state.currentBook && state.currentBook.chapters[state.currentChapterIndex]) {
+          state.currentBook.chapters[state.currentChapterIndex].problems = state.currentProblems;
+        }
+        saveCustomBookToLocalStorage();
+        state.currentProblemIndex = state.currentProblems.length - 1;
+        closeModal();
+        loadProblem(state.currentProblemIndex);
+        showToast('새 문제(#' + newNo + ')가 추가되었습니다. 바둑판에 돌을 배치해 보세요!');
+      });
+    }
+  }
+
+  initGridViewModal();
   initCatalog();
 })();

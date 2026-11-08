@@ -10,7 +10,7 @@
 <title>🎓 Teaching Zone — 바둑스쿨 교재 사령탑</title>
 <link rel="preload" as="image" href="images/board_wood_grain.png">
 
-<link rel="stylesheet" href="style.css?v=1794056954">
+<link rel="stylesheet" href="style.css?v=20261108-gridview-v1">
 <link rel="stylesheet" href="/unified-nav.css?v=20261103-nav-v11">
 <script src="/unified-nav.js?v=20261103-nav-v11" defer></script>
 </head>
@@ -27,6 +27,7 @@
       <span id="currentChapterTitle" class="chapter-title-tag"></span>
     </div>
     <div class="header-right">
+        <button type="button" id="btnHeaderGridView" class="btn-tool" style="background:#059669; color:#fff; font-weight:700; border-color:#047857;" title="한 화면에서 모든 문제 모아보기 및 드래그 순서 편집 (10열 5행)">📊 10×5 모아보기</button>
         <button type="button" id="btnOpenSettings" class="btn-tool" title="환경설정 (바탕화면, 바둑판, 바둑알, 음량)">
           <span>⚙️</span> 환경설정
         </button>
@@ -92,6 +93,12 @@
         <div class="section-title-row">
           <span class="sidebar-label">🎯 단원 문제 목록</span>
           <span id="problemProgress" class="problem-progress">0 / 0</span>
+        </div>
+        
+        <div style="margin: 6px 0 10px 0;">
+          <button type="button" id="btnOpenGridView" class="btn-grid-open" title="한 화면에서 모든 문제 모아보기 및 마우스 드래그 순서 변경">
+            📊 10×5 모아보기 &amp; 순서편집
+          </button>
         </div>
         <div id="problemGrid" class="problem-grid"></div>
         <div class="sidebar-nav-controls" id="sidebarNavControls">
@@ -349,7 +356,30 @@
 <!-- 정답 / 오답 알림 토스트 -->
 <div id="teacherToast" class="teacher-toast" hidden></div>
 
+  <!-- ================= 10×5 문제 모아보기 & 순서 편집 모달 ================= -->
+  <div id="probGridViewModal" class="prob-grid-modal" hidden>
+    <div class="prob-grid-window">
+      <div class="prob-grid-header">
+        <div class="prob-grid-title">
+          <h3>📊 <span id="gridChapterTitle">1단원</span> 모아보기 및 순서 편집 (<span id="gridProbCount">0</span>문제)</h3>
+          <p>💡 <b>문제를 클릭</b>하면 바둑판으로 즉시 확대되어 편집할 수 있습니다. <b>카드를 마우스로 드래그</b>하여 원하는 위치로 옮기면 순서가 자동으로 바뀝니다. (우상단 ✕ 버튼 클릭 시 즉시 삭제)</p>
+        </div>
+        <div class="prob-grid-actions">
+          <button type="button" id="btnGridAddProb" class="prob-grid-btn success" title="새로운 빈 문제 추가">+ 문제 추가</button>
+          <button type="button" id="btnGridSave" class="prob-grid-btn primary" title="현재 순서 및 편집 상태 저장">💾 저장</button>
+          <button type="button" id="btnGridExport" class="prob-grid-btn" title="교재 JSON 파일 다운로드">📥 JSON 다운로드</button>
+          <button type="button" id="btnGridClose" class="prob-grid-btn danger" title="모아보기 창 닫고 바둑판으로 복귀">✕ 닫기</button>
+        </div>
+      </div>
+      <div class="prob-grid-content">
+        <div id="probGridCards" class="prob-grid-cards"></div>
+      </div>
+    </div>
+  </div>
+
+
 <script src="audio.js?v=20261028-solidwood&t=teacher-panel-v15"></script>
-<script src="app.js?v=1794056954"></script>
+<script src="app.js?v=20261108-gridview-v2"></script>
+
 </body>
 </html>
