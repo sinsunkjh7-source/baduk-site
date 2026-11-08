@@ -14929,16 +14929,16 @@
       },
       {
         "code": "new_tech_chuk",
-        "title": "축 (60제)",
-        "name": "축 (60제)",
+        "title": "축 (53제)",
+        "name": "축 (53제)",
         "chapterCount": 2,
-        "totalProblems": 60,
-        "problemCount": 60,
+        "totalProblems": 53,
+        "problemCount": 53,
         "chapters": [
           {
             "code": "new_chuk_01",
-            "title": "1. 축 기초 (30제)",
-            "problemCount": 30
+            "title": "1. 축 기초 (23제)",
+            "problemCount": 23
           },
           {
             "code": "new_chuk_02",
