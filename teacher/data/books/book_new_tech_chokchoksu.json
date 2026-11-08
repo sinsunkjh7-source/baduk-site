@@ -3,9 +3,9 @@
   "code": "new_tech_chokchoksu",
   "bookCode": "new_tech_chokchoksu",
   "book": "촉촉수",
-  "title": "촉촉수 (294제)",
+  "title": "촉촉수 (293제)",
   "chapterCount": 9,
-  "totalProblems": 294,
+  "totalProblems": 293,
   "chapters": [
     {
       "code": "new_chokchoksu_01",
@@ -6424,28 +6424,6 @@
           "type": "3",
           "question": "9. 사활 촉촉수\r\n사활 문제입니다. 촉촉수(연단수)를 활용하여 정답을 찾아보세요.",
           "hint": "상대방의 약점을 촉촉수로 몰아쳐보세요.",
-          "data": ";W[qs];W[ps];W[rr];W[rp];W[qq];W[pq];W[oq];W[np];W[mp];W[lp];W[kp];W[kq];W[kr];B[lr];B[lq];B[mq];B[nr];B[or];B[pr];B[qr];B[rq]",
-          "answer1": ";B[ms];W[rs];B[os]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "",
-          "answer": "",
-          "auto": "false",
-          "size": "4",
-          "start": "BA",
-          "source_book": "논리바둑 21",
-          "source_chapter": "10. 사는 수-촉촉수",
-          "source_p_num": 8,
-          "no": 45,
-          "name": "45번 문제"
-        },
-        {
-          "code": "9046",
-          "type": "3",
-          "question": "9. 사활 촉촉수\r\n사활 문제입니다. 촉촉수(연단수)를 활용하여 정답을 찾아보세요.",
-          "hint": "상대방의 약점을 촉촉수로 몰아쳐보세요.",
           "data": ";W[rr];W[qs];W[ps];W[qq];W[rp];W[pq];W[oq];W[np];W[mp];W[lp];W[kp];W[kq];W[kr];B[lr];B[lq];B[mq];B[nr];B[pr];B[or];B[qr];B[rq]",
           "answer1": ";B[ms];W[os];B[rs];W[ss];B[ns]",
           "answer2": "",
@@ -6460,11 +6438,11 @@
           "source_book": "논리바둑 21",
           "source_chapter": "10. 사는 수-촉촉수",
           "source_p_num": 9,
-          "no": 46,
-          "name": "46번 문제"
+          "no": 45,
+          "name": "45번 문제"
         },
         {
-          "code": "9047",
+          "code": "9046",
           "type": "3",
           "question": "9. 사활 촉촉수\r\n사활 문제입니다. 촉촉수(연단수)를 활용하여 정답을 찾아보세요.",
           "hint": "상대방의 약점을 촉촉수로 몰아쳐보세요.",
@@ -6482,11 +6460,11 @@
           "source_book": "논리바둑 21",
           "source_chapter": "10. 사는 수-촉촉수",
           "source_p_num": 10,
-          "no": 47,
-          "name": "47번 문제"
+          "no": 46,
+          "name": "46번 문제"
         },
         {
-          "code": "9048",
+          "code": "9047",
           "type": "3",
           "question": "9. 사활 촉촉수\r\n사활 문제입니다. 촉촉수(연단수)를 활용하여 정답을 찾아보세요.",
           "hint": "상대방의 약점을 촉촉수로 몰아쳐보세요.",
@@ -6504,11 +6482,11 @@
           "source_book": "논리바둑 21",
           "source_chapter": "10. 사는 수-촉촉수",
           "source_p_num": 11,
-          "no": 48,
-          "name": "48번 문제"
+          "no": 47,
+          "name": "47번 문제"
         },
         {
-          "code": "9049",
+          "code": "9048",
           "type": "3",
           "question": "9. 사활 촉촉수\r\n사활 문제입니다. 촉촉수(연단수)를 활용하여 정답을 찾아보세요.",
           "hint": "상대방의 약점을 촉촉수로 몰아쳐보세요.",
@@ -6526,11 +6504,11 @@
           "source_book": "논리바둑 21",
           "source_chapter": "10. 사는 수-촉촉수",
           "source_p_num": 13,
-          "no": 49,
-          "name": "49번 문제"
+          "no": 48,
+          "name": "48번 문제"
         },
         {
-          "code": "9050",
+          "code": "9049",
           "type": "3",
           "question": "9. 사활 촉촉수\r\n사활 문제입니다. 촉촉수(연단수)를 활용하여 정답을 찾아보세요.",
           "hint": "상대방의 약점을 촉촉수로 몰아쳐보세요.",
@@ -6548,11 +6526,11 @@
           "source_book": "논리바둑 21",
           "source_chapter": "10. 사는 수-촉촉수",
           "source_p_num": 17,
-          "no": 50,
-          "name": "50번 문제"
+          "no": 49,
+          "name": "49번 문제"
         },
         {
-          "code": "9051",
+          "code": "9050",
           "type": "3",
           "question": "9. 사활 촉촉수\r\n사활 문제입니다. 촉촉수(연단수)를 활용하여 정답을 찾아보세요.",
           "hint": "상대방의 약점을 촉촉수로 몰아쳐보세요.",
@@ -6570,11 +6548,11 @@
           "source_book": "논리바둑 21",
           "source_chapter": "10. 사는 수-촉촉수",
           "source_p_num": 19,
-          "no": 51,
-          "name": "51번 문제"
+          "no": 50,
+          "name": "50번 문제"
         },
         {
-          "code": "9052",
+          "code": "9051",
           "type": "3",
           "question": "9. 사활 촉촉수\r\n사활 문제입니다. 촉촉수(연단수)를 활용하여 정답을 찾아보세요.",
           "hint": "상대방의 약점을 촉촉수로 몰아쳐보세요.",
@@ -6592,11 +6570,11 @@
           "source_book": "논리바둑 21",
           "source_chapter": "10. 사는 수-촉촉수",
           "source_p_num": 29,
-          "no": 52,
-          "name": "52번 문제"
+          "no": 51,
+          "name": "51번 문제"
         },
         {
-          "code": "9053",
+          "code": "9052",
           "type": "3",
           "question": "9. 사활 촉촉수\r\n사활 문제입니다. 촉촉수(연단수)를 활용하여 정답을 찾아보세요.",
           "hint": "상대방의 약점을 촉촉수로 몰아쳐보세요.",
@@ -6614,12 +6592,12 @@
           "source_book": "논리바둑 21",
           "source_chapter": "10. 사는 수-촉촉수",
           "source_p_num": 32,
-          "no": 53,
-          "name": "53번 문제"
+          "no": 52,
+          "name": "52번 문제"
         }
       ]
     }
   ],
-  "problemCount": 294,
-  "_buildVer": "v19-ch9-sahwal-curated-294"
+  "problemCount": 293,
+  "_buildVer": "v20-ch9-clean-weeded-293"
 }
