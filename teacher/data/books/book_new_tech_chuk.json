@@ -1,9 +1,9 @@
 {
   "bookCode": "new_tech_chuk",
-  "title": "축 (53제)",
-  "book": "축 (53제)",
-  "totalProblems": 53,
-  "_buildVer": "v9-ch1-teacher-curated-23",
+  "title": "축 (50제)",
+  "book": "축 (50제)",
+  "totalProblems": 50,
+  "_buildVer": "v10-ch2-teacher-curated-27",
   "chapters": [
     {
       "chapter": "1. 축 기초 (23제)",
@@ -29,7 +29,7 @@
           "source_book": "씽크탱크 2권",
           "source_chapter": "4단원",
           "no": 1,
-          "name": "1번 문제 축 기초",
+          "name": "1번 축 기초",
           "source_p_num": 3
         },
         {
@@ -51,7 +51,7 @@
           "source_book": "씽크탱크 2권",
           "source_chapter": "4단원",
           "no": 2,
-          "name": "2번 문제 축 기초",
+          "name": "2번 축 기초",
           "source_p_num": 7
         },
         {
@@ -73,7 +73,7 @@
           "source_book": "씽크탱크 2권",
           "source_chapter": "4단원",
           "no": 3,
-          "name": "3번 문제 축 기초",
+          "name": "3번 축 기초",
           "source_p_num": 9
         },
         {
@@ -95,7 +95,7 @@
           "source_book": "씽크탱크 2권",
           "source_chapter": "4단원",
           "no": 4,
-          "name": "4번 문제 축 기초",
+          "name": "4번 축 기초",
           "source_p_num": 13
         },
         {
@@ -117,7 +117,7 @@
           "source_book": "씽크탱크 2권",
           "source_chapter": "4단원",
           "no": 5,
-          "name": "5번 문제 축 기초",
+          "name": "5번 축 기초",
           "source_p_num": 14
         },
         {
@@ -139,7 +139,7 @@
           "source_book": "씽크탱크 2권",
           "source_chapter": "4단원",
           "no": 6,
-          "name": "6번 문제 축 기초",
+          "name": "6번 축 기초",
           "source_p_num": 17
         },
         {
@@ -161,7 +161,7 @@
           "source_book": "씽크탱크 2권",
           "source_chapter": "4단원",
           "no": 7,
-          "name": "7번 문제 축 기초",
+          "name": "7번 축 기초",
           "source_p_num": 18
         },
         {
@@ -183,7 +183,7 @@
           "source_book": "씽크탱크 2권",
           "source_chapter": "4단원",
           "no": 8,
-          "name": "8번 문제 축 기초",
+          "name": "8번 축 기초",
           "source_p_num": 20
         },
         {
@@ -205,7 +205,7 @@
           "source_book": "씽크탱크 2권",
           "source_chapter": "4단원",
           "no": 9,
-          "name": "9번 문제 축 기초",
+          "name": "9번 축 기초",
           "source_p_num": 21
         },
         {
@@ -228,7 +228,7 @@
           "source_chapter": "7단원",
           "source_p_num": 1,
           "no": 10,
-          "name": "10번 문제 축 기초"
+          "name": "10번 축 기초"
         },
         {
           "code": "1011",
@@ -250,7 +250,7 @@
           "source_chapter": "7단원",
           "source_p_num": 2,
           "no": 11,
-          "name": "11번 문제 축 기초"
+          "name": "11번 축 기초"
         },
         {
           "code": "1012",
@@ -272,7 +272,7 @@
           "source_chapter": "7단원",
           "source_p_num": 3,
           "no": 12,
-          "name": "12번 문제 축 기초"
+          "name": "12번 축 기초"
         },
         {
           "code": "1013",
@@ -294,7 +294,7 @@
           "source_chapter": "7단원",
           "source_p_num": 4,
           "no": 13,
-          "name": "13번 문제 축 기초"
+          "name": "13번 축 기초"
         },
         {
           "code": "1014",
@@ -316,7 +316,7 @@
           "source_chapter": "7단원",
           "source_p_num": 5,
           "no": 14,
-          "name": "14번 문제 축 기초"
+          "name": "14번 축 기초"
         },
         {
           "code": "1015",
@@ -338,7 +338,7 @@
           "source_chapter": "7단원",
           "source_p_num": 7,
           "no": 15,
-          "name": "15번 문제 축 기초"
+          "name": "15번 축 기초"
         },
         {
           "code": "1016",
@@ -360,7 +360,7 @@
           "source_chapter": "7단원",
           "source_p_num": 9,
           "no": 16,
-          "name": "16번 문제 축 기초"
+          "name": "16번 축 기초"
         },
         {
           "code": "1017",
@@ -382,7 +382,7 @@
           "source_chapter": "7단원",
           "source_p_num": 10,
           "no": 17,
-          "name": "17번 문제 축 기초"
+          "name": "17번 축 기초"
         },
         {
           "code": "1018",
@@ -404,7 +404,7 @@
           "source_chapter": "7단원",
           "source_p_num": 19,
           "no": 18,
-          "name": "18번 문제 축 기초"
+          "name": "18번 축 기초"
         },
         {
           "code": "1019",
@@ -426,7 +426,7 @@
           "source_chapter": "7단원",
           "source_p_num": 20,
           "no": 19,
-          "name": "19번 문제 축 기초"
+          "name": "19번 축 기초"
         },
         {
           "code": "1020",
@@ -448,7 +448,7 @@
           "source_chapter": "7단원",
           "source_p_num": 21,
           "no": 20,
-          "name": "20번 문제 축 기초"
+          "name": "20번 축 기초"
         },
         {
           "code": "1021",
@@ -470,7 +470,7 @@
           "source_chapter": "7단원",
           "source_p_num": 22,
           "no": 21,
-          "name": "21번 문제 축 기초"
+          "name": "21번 축 기초"
         },
         {
           "code": "1022",
@@ -492,7 +492,7 @@
           "source_chapter": "7단원",
           "source_p_num": 25,
           "no": 22,
-          "name": "22번 문제 축 기초"
+          "name": "22번 축 기초"
         },
         {
           "code": "1023",
@@ -514,109 +514,21 @@
           "source_chapter": "7단원",
           "source_p_num": 26,
           "no": 23,
-          "name": "23번 문제 축 기초"
+          "name": "23번 축 기초"
         }
       ]
     },
     {
-      "chapter": "2. 축을 모는 방향 (30제)",
-      "title": "2. 축을 모는 방향 (30제)",
-      "problemCount": 30,
+      "chapter": "2. 축을 모는 방향 (27제)",
+      "title": "2. 축을 모는 방향 (27제)",
+      "problemCount": 27,
       "problems": [
         {
           "code": "2001",
           "type": "3",
           "question": "2. 축을 모는 방향\r\n어느 쪽으로 단수쳐야 백을 축으로 잡을 수 있을까요?",
           "hint": "축을 몰 때는 우리 편 돌이 있는 쪽이나 1선(벽) 방향으로 몰아야 합니다. 상대방 원군이 있는 쪽으로 몰면 축이 풀려버립니다.",
-          "data": ";B[qp];B[qo];B[pq];W[pp];L[po:가]",
-          "answer1": ";B[op]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "",
-          "answer": "",
-          "auto": "false",
-          "size": "4",
-          "start": "BK",
-          "source_book": "알파바둑 3권",
-          "source_chapter": "4단원",
-          "source_p_num": 1,
-          "no": 1,
-          "name": "1번 축을 모는 방향"
-        },
-        {
-          "code": "2002",
-          "type": "3",
-          "question": "2. 축을 모는 방향\r\n어느 쪽으로 단수쳐야 백을 축으로 잡을 수 있을까요?",
-          "hint": "축을 몰 때는 우리 편 돌이 있는 쪽이나 1선(벽) 방향으로 몰아야 합니다. 상대방 원군이 있는 쪽으로 몰면 축이 풀려버립니다.",
-          "data": ";B[qq];B[qp];B[qo];B[pr];B[oq];W[pq];W[pp];W[or];W[nr];L[po:가]",
-          "answer1": ";B[op]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "",
-          "answer": "",
-          "auto": "false",
-          "size": "4",
-          "start": "BK",
-          "source_book": "알파바둑 3권",
-          "source_chapter": "4단원",
-          "source_p_num": 5,
-          "no": 2,
-          "name": "2번 축을 모는 방향"
-        },
-        {
-          "code": "2003",
-          "type": "3",
-          "question": "2. 축을 모는 방향\r\n어느 쪽으로 단수쳐야 백을 축으로 잡을 수 있을까요?",
-          "hint": "축을 몰 때는 우리 편 돌이 있는 쪽이나 1선(벽) 방향으로 몰아야 합니다. 상대방 원군이 있는 쪽으로 몰면 축이 풀려버립니다.",
-          "data": ";B[qq];B[pq];B[or];B[nq];B[np];B[oo];W[no];W[nn];W[om];W[pp];W[op];W[oq];L[qp:가]",
-          "answer1": ";B[po]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "",
-          "answer": "",
-          "auto": "false",
-          "size": "4",
-          "start": "BK",
-          "source_book": "알파바둑 3권",
-          "source_chapter": "4단원",
-          "source_p_num": 6,
-          "no": 3,
-          "name": "3번 축을 모는 방향"
-        },
-        {
-          "code": "2004",
-          "type": "3",
-          "question": "2. 축을 모는 방향\r\n어느 쪽으로 단수쳐야 백을 축으로 잡을 수 있을까요?",
-          "hint": "축을 몰 때는 우리 편 돌이 있는 쪽이나 1선(벽) 방향으로 몰아야 합니다. 상대방 원군이 있는 쪽으로 몰면 축이 풀려버립니다.",
-          "data": ";B[oq];B[op];B[oo];B[pn];B[qo];W[po];W[pp];W[qn];W[qm];T[oo];T[op];T[oq]",
-          "answer1": ";B[qp]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "",
-          "answer": "",
-          "auto": "false",
-          "size": "4",
-          "start": "BK",
-          "source_book": "알파바둑 3권",
-          "source_chapter": "4단원",
-          "source_p_num": 11,
-          "no": 4,
-          "name": "4번 축을 모는 방향"
-        },
-        {
-          "code": "2005",
-          "type": "3",
-          "question": "2. 축을 모는 방향\r\n어느 쪽으로 단수쳐야 백을 축으로 잡을 수 있을까요?",
-          "hint": "축을 몰 때는 우리 편 돌이 있는 쪽이나 1선(벽) 방향으로 몰아야 합니다. 상대방 원군이 있는 쪽으로 몰면 축이 풀려버립니다.",
-          "data": ";B[pq];B[qp];B[qo];B[pn];W[po];W[pp];W[nn];T[po];T[pp]",
+          "data": ";W[pm];W[nn];B[pn];W[mo];W[po];B[qo];W[pp];B[qp];B[pq];T[po];T[pp]",
           "answer1": ";B[oo]",
           "answer2": "",
           "answer3": "",
@@ -630,15 +542,15 @@
           "source_book": "파워씽크 3권",
           "source_chapter": "3단원",
           "source_p_num": 1,
-          "no": 5,
-          "name": "5번 축을 모는 방향"
+          "no": 1,
+          "name": "1번 축을 모는 방향"
         },
         {
-          "code": "2006",
+          "code": "2002",
           "type": "3",
           "question": "2. 축을 모는 방향\r\n어느 쪽으로 단수쳐야 백을 축으로 잡을 수 있을까요?",
           "hint": "축을 몰 때는 우리 편 돌이 있는 쪽이나 1선(벽) 방향으로 몰아야 합니다. 상대방 원군이 있는 쪽으로 몰면 축이 풀려버립니다.",
-          "data": ";B[qp];B[po];B[oo];B[np];W[pp];W[op];W[no];W[mo];W[mr];T[op];T[pp]",
+          "data": ";B[ql];W[om];W[on];B[pn];W[mo];W[no];B[oo];B[po];B[np];W[op];W[pp];B[qp];W[lq];W[mr];T[op];T[pp]",
           "answer1": ";B[oq]",
           "answer2": "",
           "answer3": "",
@@ -652,15 +564,15 @@
           "source_book": "파워씽크 3권",
           "source_chapter": "3단원",
           "source_p_num": 7,
-          "no": 6,
-          "name": "6번 축을 모는 방향"
+          "no": 2,
+          "name": "2번 축을 모는 방향"
         },
         {
-          "code": "2007",
+          "code": "2003",
           "type": "3",
           "question": "2. 축을 모는 방향\r\n어느 쪽으로 단수쳐야 백을 축으로 잡을 수 있을까요?",
           "hint": "축을 몰 때는 우리 편 돌이 있는 쪽이나 1선(벽) 방향으로 몰아야 합니다. 상대방 원군이 있는 쪽으로 몰면 축이 풀려버립니다.",
-          "data": ";B[pq];B[op];B[no];B[nn];B[om];B[pn];W[on];W[oo];W[po];W[pp];W[rn];T[on];T[oo];T[po];T[pp]",
+          "data": ";W[mm];W[nm];B[om];W[qm];B[nn];W[on];B[pn];W[rn];B[no];W[oo];W[po];B[op];W[pp];B[pq];T[on];T[oo];T[po];T[pp]",
           "answer1": ";B[qo]",
           "answer2": "",
           "answer3": "",
@@ -674,15 +586,15 @@
           "source_book": "파워씽크 3권",
           "source_chapter": "3단원",
           "source_p_num": 8,
-          "no": 7,
-          "name": "7번 축을 모는 방향"
+          "no": 3,
+          "name": "3번 축을 모는 방향"
         },
         {
-          "code": "2008",
+          "code": "2004",
           "type": "3",
           "question": "2. 축을 모는 방향\r\n어느 쪽으로 단수쳐야 백을 축으로 잡을 수 있을까요?",
           "hint": "축을 몰 때는 우리 편 돌이 있는 쪽이나 1선(벽) 방향으로 몰아야 합니다. 상대방 원군이 있는 쪽으로 몰면 축이 풀려버립니다.",
-          "data": ";W[qr];W[rp];W[qo];W[po];W[op];W[np];B[mp];B[no];B[oo];B[pp];B[qp];T[np];T[op]",
+          "data": ";W[rn];B[no];B[oo];W[po];W[qo];B[kp];B[mp];W[np];W[op];B[pp];B[qp];W[rp];W[qr];T[np];T[op]",
           "answer1": ";B[oq]",
           "answer2": "",
           "answer3": "",
@@ -696,15 +608,15 @@
           "source_book": "파워씽크 3권",
           "source_chapter": "3단원",
           "source_p_num": 9,
-          "no": 8,
-          "name": "8번 축을 모는 방향"
+          "no": 4,
+          "name": "4번 축을 모는 방향"
         },
         {
-          "code": "2009",
+          "code": "2005",
           "type": "3",
           "question": "2. 축을 모는 방향\r\n어느 쪽으로 단수쳐야 백을 축으로 잡을 수 있을까요?",
           "hint": "축을 몰 때는 우리 편 돌이 있는 쪽이나 1선(벽) 방향으로 몰아야 합니다. 상대방 원군이 있는 쪽으로 몰면 축이 풀려버립니다.",
-          "data": ";B[rp];B[qp];B[po];B[pn];B[on];B[no];B[np];W[qm];W[qo];W[ro];W[oo];W[op];W[pp];W[mr];T[oo];T[op];T[pp]",
+          "data": ";W[nm];W[qm];W[nn];B[on];B[pn];B[no];W[oo];B[po];W[qo];W[ro];B[np];W[op];W[pp];B[qp];B[rp];W[lq];W[mr];T[oo];T[op];T[pp]",
           "answer1": ";B[oq]",
           "answer2": "",
           "answer3": "",
@@ -718,15 +630,15 @@
           "source_book": "파워씽크 3권",
           "source_chapter": "3단원",
           "source_p_num": 10,
-          "no": 9,
-          "name": "9번 축을 모는 방향"
+          "no": 5,
+          "name": "5번 축을 모는 방향"
         },
         {
-          "code": "2010",
+          "code": "2006",
           "type": "3",
           "question": "2. 축을 모는 방향\r\n어느 쪽으로 단수쳐야 백을 축으로 잡을 수 있을까요?",
           "hint": "축을 몰 때는 우리 편 돌이 있는 쪽이나 1선(벽) 방향으로 몰아야 합니다. 상대방 원군이 있는 쪽으로 몰면 축이 풀려버립니다.",
-          "data": ";W[rq];W[rr];W[qr];W[qp];W[pp];W[op];W[oo];W[mn];B[on];B[po];B[qo];B[ro];B[rp];B[qq];B[pq];B[oq];T[oo];T[op];T[pp];T[qp]",
+          "data": ";W[om];W[mn];B[on];W[ko];W[oo];B[po];B[qo];B[ro];W[op];W[pp];W[qp];B[rp];B[oq];B[pq];B[qq];W[rq];W[qr];W[rr];T[oo];T[op];T[pp];T[qp]",
           "answer1": ";B[no]",
           "answer2": "",
           "answer3": "",
@@ -740,15 +652,15 @@
           "source_book": "파워씽크 3권",
           "source_chapter": "3단원",
           "source_p_num": 11,
-          "no": 10,
-          "name": "10번 축을 모는 방향"
+          "no": 6,
+          "name": "6번 축을 모는 방향"
         },
         {
-          "code": "2011",
+          "code": "2007",
           "type": "3",
           "question": "2. 축을 모는 방향\r\n어느 쪽으로 단수쳐야 백을 축으로 잡을 수 있을까요?",
           "hint": "축을 몰 때는 우리 편 돌이 있는 쪽이나 1선(벽) 방향으로 몰아야 합니다. 상대방 원군이 있는 쪽으로 몰면 축이 풀려버립니다.",
-          "data": ";B[pq];B[qp];B[po];B[oo];B[mp];W[mo];W[no];W[op];W[pp];T[op];T[pp]",
+          "data": ";W[om];W[on];B[pn];W[mo];W[no];B[oo];B[po];W[lp];B[mp];W[op];W[pp];B[qp];B[pq];T[op];T[pp]",
           "answer1": ";B[np]",
           "answer2": "",
           "answer3": "",
@@ -762,15 +674,15 @@
           "source_book": "파워씽크 3권",
           "source_chapter": "3단원",
           "source_p_num": 12,
-          "no": 11,
-          "name": "11번 축을 모는 방향"
+          "no": 7,
+          "name": "7번 축을 모는 방향"
         },
         {
-          "code": "2012",
+          "code": "2008",
           "type": "3",
           "question": "2. 축을 모는 방향\r\n어느 쪽으로 단수쳐야 백을 축으로 잡을 수 있을까요?",
           "hint": "축을 몰 때는 우리 편 돌이 있는 쪽이나 1선(벽) 방향으로 몰아야 합니다. 상대방 원군이 있는 쪽으로 몰면 축이 풀려버립니다.",
-          "data": ";B[qo];B[pn];B[oo];B[np];B[oq];W[po];W[pp];W[op];W[nq];W[mq];T[po];T[pp];T[op]",
+          "data": ";B[pn];B[oo];W[po];B[qo];W[kp];B[np];W[op];W[pp];W[mq];W[nq];B[oq];T[po];T[pp];T[op]",
           "answer1": ";B[pq]",
           "answer2": "",
           "answer3": "",
@@ -784,15 +696,37 @@
           "source_book": "파워씽크 3권",
           "source_chapter": "3단원",
           "source_p_num": 20,
-          "no": 12,
-          "name": "12번 축을 모는 방향"
+          "no": 8,
+          "name": "8번 축을 모는 방향"
         },
         {
-          "code": "2013",
+          "code": "2009",
           "type": "3",
           "question": "2. 축을 모는 방향\r\n어느 쪽으로 단수쳐야 백을 축으로 잡을 수 있을까요?",
           "hint": "축을 몰 때는 우리 편 돌이 있는 쪽이나 1선(벽) 방향으로 몰아야 합니다. 상대방 원군이 있는 쪽으로 몰면 축이 풀려버립니다.",
-          "data": ";W[qr];W[qq];W[pp];W[op];W[oq];B[pq];B[pr];B[qp];B[rp];B[po];B[oo];B[np];T[oq];T[op];T[pp]",
+          "data": ";W[pl];W[qm];B[pn];W[qn];B[oo];W[po];B[qo];B[op];W[pp];B[kq];B[oq];T[oo];T[op];T[oq]",
+          "answer1": ";B[qp]",
+          "answer2": "",
+          "answer3": "",
+          "answer4": "",
+          "answer5": "",
+          "sample": "",
+          "answer": "",
+          "auto": "false",
+          "size": "4",
+          "start": "BK",
+          "source_book": "알파바둑 3권",
+          "source_chapter": "4단원",
+          "source_p_num": 11,
+          "no": 9,
+          "name": "9번 축을 모는 방향"
+        },
+        {
+          "code": "2010",
+          "type": "3",
+          "question": "2. 축을 모는 방향\r\n어느 쪽으로 단수쳐야 백을 축으로 잡을 수 있을까요?",
+          "hint": "축을 몰 때는 우리 편 돌이 있는 쪽이나 1선(벽) 방향으로 몰아야 합니다. 상대방 원군이 있는 쪽으로 몰면 축이 풀려버립니다.",
+          "data": ";B[mo];B[oo];B[po];W[lp];B[np];W[op];W[pp];B[qp];B[rp];W[oq];B[pq];W[qq];W[rq];B[pr];W[qr];T[oq];T[op];T[pp]",
           "answer1": ";B[or]",
           "answer2": "",
           "answer3": "",
@@ -806,15 +740,15 @@
           "source_book": "파워씽크 3권",
           "source_chapter": "3단원",
           "source_p_num": 22,
-          "no": 13,
-          "name": "13번 축을 모는 방향"
+          "no": 10,
+          "name": "10번 축을 모는 방향"
         },
         {
-          "code": "2014",
+          "code": "2011",
           "type": "3",
           "question": "2. 축을 모는 방향\r\n올바른 방향으로 단수치며 백을 축으로 몰아 잡아보세요.",
           "hint": "첫 단수를 올바른 방향으로 친 뒤 계단 모양으로 계속 단수쳐서 잡아보세요.",
-          "data": ";B[pr];B[oq];B[op];B[po];W[pq];W[pp];W[oo];W[no];W[np];T[pq];T[pp]",
+          "data": ";W[no];W[oo];B[po];W[np];B[op];W[pp];W[lq];W[mq];B[nq];B[oq];W[pq];B[mr];B[pr];T[pq];T[pp]",
           "answer1": ";B[qp];W[qq];B[rq]",
           "answer2": "",
           "answer3": "",
@@ -828,15 +762,15 @@
           "source_book": "씽크탱크 3권",
           "source_chapter": "6단원",
           "source_p_num": 1,
-          "no": 14,
-          "name": "14번 축을 모는 방향"
+          "no": 11,
+          "name": "11번 축을 모는 방향"
         },
         {
-          "code": "2015",
+          "code": "2012",
           "type": "3",
           "question": "2. 축을 모는 방향\r\n올바른 방향으로 단수치며 백을 축으로 몰아 잡아보세요.",
           "hint": "첫 단수를 올바른 방향으로 친 뒤 계단 모양으로 계속 단수쳐서 잡아보세요.",
-          "data": ";B[pr];B[qq];B[qp];B[po];W[pq];W[pp];W[qo];W[qn];W[pm];T[pp];T[pq]",
+          "data": ";W[pm];W[qn];B[po];W[qo];W[so];W[pp];B[qp];W[rp];W[lq];W[pq];B[qq];B[rq];B[pr];T[pp];T[pq]",
           "answer1": ";B[op];W[oq];B[nq]",
           "answer2": "",
           "answer3": "",
@@ -850,15 +784,15 @@
           "source_book": "씽크탱크 3권",
           "source_chapter": "6단원",
           "source_p_num": 3,
-          "no": 15,
-          "name": "15번 축을 모는 방향"
+          "no": 12,
+          "name": "12번 축을 모는 방향"
         },
         {
-          "code": "2016",
+          "code": "2013",
           "type": "3",
           "question": "2. 축을 모는 방향\r\n올바른 방향으로 단수치며 백을 축으로 몰아 잡아보세요.",
           "hint": "첫 단수를 올바른 방향으로 친 뒤 계단 모양으로 계속 단수쳐서 잡아보세요.",
-          "data": ";B[pr];B[qq];B[qp];B[po];B[nn];W[pq];W[pp];W[qr];W[rr];W[rq];T[pq];T[pp]",
+          "data": ";B[nn];B[po];W[pp];B[qp];W[mq];W[pq];B[qq];W[rq];B[pr];W[qr];W[rr];T[pq];T[pp]",
           "answer1": ";B[oq];W[op];B[np];W[oo];B[on]",
           "answer2": "",
           "answer3": "",
@@ -872,15 +806,15 @@
           "source_book": "씽크탱크 3권",
           "source_chapter": "6단원",
           "source_p_num": 8,
-          "no": 16,
-          "name": "16번 축을 모는 방향"
+          "no": 13,
+          "name": "13번 축을 모는 방향"
         },
         {
-          "code": "2017",
+          "code": "2014",
           "type": "3",
           "question": "2. 축을 모는 방향\r\n올바른 방향으로 단수치며 백을 축으로 몰아 잡아보세요.",
           "hint": "첫 단수를 올바른 방향으로 친 뒤 계단 모양으로 계속 단수쳐서 잡아보세요.",
-          "data": ";B[rp];B[qq];B[pq];B[op];B[np];W[qp];W[pp];W[oq];W[nq];W[mp];W[lq];T[pp];T[qp]",
+          "data": ";W[mn];W[mp];B[np];B[op];W[pp];W[qp];B[rp];W[lq];W[nq];W[oq];B[pq];B[qq];W[or];W[pr];B[qr];T[pp];T[qp]",
           "answer1": ";B[po];W[qo];B[qn]",
           "answer2": "",
           "answer3": "",
@@ -894,15 +828,15 @@
           "source_book": "씽크탱크 3권",
           "source_chapter": "6단원",
           "source_p_num": 9,
-          "no": 17,
-          "name": "17번 축을 모는 방향"
+          "no": 14,
+          "name": "14번 축을 모는 방향"
         },
         {
-          "code": "2018",
+          "code": "2015",
           "type": "3",
           "question": "2. 축을 모는 방향\r\n올바른 방향으로 단수치며 백을 축으로 몰아 잡아보세요.",
           "hint": "첫 단수를 올바른 방향으로 친 뒤 계단 모양으로 계속 단수쳐서 잡아보세요.",
-          "data": ";B[pp];B[op];B[nq];B[mq];B[lp];B[lm];W[mp];W[np];W[oq];W[pq];W[qq];W[qp];T[mp];T[np]",
+          "data": ";B[lm];W[qn];B[lp];W[mp];W[np];B[op];B[pp];W[qp];B[mq];B[nq];W[oq];W[pq];W[qq];B[mr];W[nr];W[or];T[mp];T[np]",
           "answer1": ";B[no];W[mo];B[mn];W[lo];B[ko]",
           "answer2": "",
           "answer3": "",
@@ -916,15 +850,15 @@
           "source_book": "씽크탱크 3권",
           "source_chapter": "6단원",
           "source_p_num": 10,
-          "no": 18,
-          "name": "18번 축을 모는 방향"
+          "no": 15,
+          "name": "15번 축을 모는 방향"
         },
         {
-          "code": "2019",
+          "code": "2016",
           "type": "3",
           "question": "2. 축을 모는 방향\r\n올바른 방향으로 단수치며 백을 축으로 몰아 잡아보세요.",
           "hint": "첫 단수를 올바른 방향으로 친 뒤 계단 모양으로 계속 단수쳐서 잡아보세요.",
-          "data": ";B[qp];B[pq];B[oq];B[np];B[mp];B[nm];W[mq];W[nq];W[op];W[pp];W[qq];W[qr];T[pp];T[op]",
+          "data": ";B[nm];B[mp];B[np];W[op];W[pp];B[qp];B[kq];B[lq];W[mq];W[nq];B[oq];B[pq];W[qq];W[lr];W[nr];W[qr];T[pp];T[op]",
           "answer1": ";B[po];W[oo];B[on];W[no];B[mo]",
           "answer2": "",
           "answer3": "",
@@ -938,15 +872,15 @@
           "source_book": "씽크탱크 3권",
           "source_chapter": "6단원",
           "source_p_num": 11,
-          "no": 19,
-          "name": "19번 축을 모는 방향"
+          "no": 16,
+          "name": "16번 축을 모는 방향"
         },
         {
-          "code": "2020",
+          "code": "2017",
           "type": "3",
           "question": "2. 축을 모는 방향\r\n올바른 방향으로 단수치며 백을 축으로 몰아 잡아보세요.",
           "hint": "첫 단수를 올바른 방향으로 친 뒤 계단 모양으로 계속 단수쳐서 잡아보세요.",
-          "data": ";B[rp];B[qp];B[pq];B[oq];B[np];W[nr];W[nq];W[op];W[pp];W[qq];W[rq];T[op];T[pp]",
+          "data": ";B[qm];B[np];W[op];W[pp];B[qp];B[rp];B[mq];W[nq];B[oq];B[pq];W[qq];W[rq];W[nr];T[op];T[pp]",
           "answer1": ";B[oo];W[po];B[pn];W[qo];B[ro];W[qn];B[qm]",
           "answer2": "",
           "answer3": "",
@@ -960,15 +894,15 @@
           "source_book": "씽크탱크 3권",
           "source_chapter": "6단원",
           "source_p_num": 12,
-          "no": 20,
-          "name": "20번 축을 모는 방향"
+          "no": 17,
+          "name": "17번 축을 모는 방향"
         },
         {
-          "code": "2021",
+          "code": "2018",
           "type": "3",
           "question": "2. 축을 모는 방향\r\n올바른 방향으로 단수치며 백을 축으로 몰아 잡아보세요.",
           "hint": "첫 단수를 올바른 방향으로 친 뒤 계단 모양으로 계속 단수쳐서 잡아보세요.",
-          "data": ";B[qp];B[po];B[oo];B[np];W[op];W[pp];W[qo];W[ro];T[pp];T[op]",
+          "data": ";W[nn];W[no];B[oo];B[po];W[qo];W[ro];B[mp];B[np];W[op];W[pp];B[qp];T[pp];T[op]",
           "answer1": ";B[pq];W[oq];B[or]",
           "answer2": "",
           "answer3": "",
@@ -982,15 +916,15 @@
           "source_book": "씽크탱크 3권",
           "source_chapter": "6단원",
           "source_p_num": 13,
-          "no": 21,
-          "name": "21번 축을 모는 방향"
+          "no": 18,
+          "name": "18번 축을 모는 방향"
         },
         {
-          "code": "2022",
+          "code": "2019",
           "type": "3",
           "question": "2. 축을 모는 방향\r\n올바른 방향으로 단수치며 백을 축으로 몰아 잡아보세요.",
           "hint": "첫 단수를 올바른 방향으로 친 뒤 계단 모양으로 계속 단수쳐서 잡아보세요.",
-          "data": ";B[pr];B[oq];B[op];B[po];B[pn];W[pq];W[pp];W[or];W[nr];W[mp];W[no];W[oo];T[pq];T[pp]",
+          "data": ";W[ln];B[pn];B[ko];W[lo];W[no];W[oo];B[po];B[lp];W[mp];B[op];W[pp];B[lq];B[oq];W[pq];B[mr];W[nr];W[or];B[pr];T[pq];T[pp]",
           "answer1": ";B[qq];W[qp];B[rp]",
           "answer2": "",
           "answer3": "",
@@ -1004,15 +938,15 @@
           "source_book": "씽크탱크 3권",
           "source_chapter": "6단원",
           "source_p_num": 14,
-          "no": 22,
-          "name": "22번 축을 모는 방향"
+          "no": 19,
+          "name": "19번 축을 모는 방향"
         },
         {
-          "code": "2023",
+          "code": "2020",
           "type": "3",
           "question": "2. 축을 모는 방향\r\n올바른 방향으로 단수치며 백을 축으로 몰아 잡아보세요.",
           "hint": "첫 단수를 올바른 방향으로 친 뒤 계단 모양으로 계속 단수쳐서 잡아보세요.",
-          "data": ";B[qp];B[qo];B[pn];B[oo];B[np];W[op];W[pp];W[po];W[qn];W[rn];W[ro];T[op];T[pp];T[po]",
+          "data": ";B[ql];B[qm];W[rm];B[pn];W[qn];W[rn];B[oo];W[po];B[qo];W[ro];B[np];W[op];W[pp];B[qp];W[lq];T[op];T[pp];T[po]",
           "answer1": ";B[pq];W[oq];B[or]",
           "answer2": "",
           "answer3": "",
@@ -1026,15 +960,15 @@
           "source_book": "씽크탱크 3권",
           "source_chapter": "6단원",
           "source_p_num": 15,
-          "no": 23,
-          "name": "23번 축을 모는 방향"
+          "no": 20,
+          "name": "20번 축을 모는 방향"
         },
         {
-          "code": "2024",
+          "code": "2021",
           "type": "3",
           "question": "2. 축을 모는 방향\r\n올바른 방향으로 단수치며 백을 축으로 몰아 잡아보세요.",
           "hint": "첫 단수를 올바른 방향으로 친 뒤 계단 모양으로 계속 단수쳐서 잡아보세요.",
-          "data": ";B[po];B[oo];B[np];B[nq];B[nr];W[op];W[pn];W[on];W[no];W[mn];W[mp];W[mq];W[mr];T[op]",
+          "data": ";W[mn];W[nn];W[on];W[pn];B[lo];B[mo];W[no];B[oo];B[po];B[kp];W[mp];B[np];W[op];W[mq];B[nq];W[mr];B[nr];T[op]",
           "answer1": ";B[pp];W[oq];B[or];W[pq];B[qq]",
           "answer2": "",
           "answer3": "",
@@ -1048,15 +982,15 @@
           "source_book": "씽크탱크 3권",
           "source_chapter": "6단원",
           "source_p_num": 17,
-          "no": 24,
-          "name": "24번 축을 모는 방향"
+          "no": 21,
+          "name": "21번 축을 모는 방향"
         },
         {
-          "code": "2025",
+          "code": "2022",
           "type": "3",
           "question": "2. 축을 모는 방향\r\n올바른 방향으로 단수치며 백을 축으로 몰아 잡아보세요.",
           "hint": "첫 단수를 올바른 방향으로 친 뒤 계단 모양으로 계속 단수쳐서 잡아보세요.",
-          "data": ";B[pr];B[pq];B[pp];B[oo];B[no];W[nn];W[on];W[po];W[qo];W[qp];W[qq];W[qr];W[op];T[op]",
+          "data": ";B[pm];W[nn];W[on];B[pn];B[rn];B[no];B[oo];W[po];W[qo];W[op];B[pp];W[qp];B[pq];W[qq];B[pr];W[qr];T[op]",
           "answer1": ";B[np];W[oq];B[or];W[nq];B[mq]",
           "answer2": "",
           "answer3": "",
@@ -1070,15 +1004,15 @@
           "source_book": "씽크탱크 3권",
           "source_chapter": "6단원",
           "source_p_num": 18,
-          "no": 25,
-          "name": "25번 축을 모는 방향"
+          "no": 22,
+          "name": "22번 축을 모는 방향"
         },
         {
-          "code": "2026",
+          "code": "2023",
           "type": "3",
           "question": "2. 축을 모는 방향\r\n올바른 방향으로 단수치며 백을 축으로 몰아 잡아보세요.",
           "hint": "첫 단수를 올바른 방향으로 친 뒤 계단 모양으로 계속 단수쳐서 잡아보세요.",
-          "data": ";B[qq];B[pq];B[pp];B[oo];B[no];W[nn];W[on];W[op];W[po];W[qo];W[qp];W[rq];W[rr];T[op]",
+          "data": ";W[pm];W[nn];W[on];B[pn];B[no];B[oo];W[po];W[qo];W[op];B[pp];W[qp];B[pq];B[qq];W[rq];W[rr];T[op]",
           "answer1": ";B[np];W[oq];B[or];W[nq];B[mq]",
           "answer2": "",
           "answer3": "",
@@ -1092,15 +1026,15 @@
           "source_book": "씽크탱크 3권",
           "source_chapter": "6단원",
           "source_p_num": 19,
-          "no": 26,
-          "name": "26번 축을 모는 방향"
+          "no": 23,
+          "name": "23번 축을 모는 방향"
         },
         {
-          "code": "2027",
+          "code": "2024",
           "type": "3",
           "question": "2. 축을 모는 방향\r\n올바른 방향으로 단수치며 백을 축으로 몰아 잡아보세요.",
           "hint": "첫 단수를 올바른 방향으로 친 뒤 계단 모양으로 계속 단수쳐서 잡아보세요.",
-          "data": ";B[qp];B[qo];B[pn];B[on];B[oo];B[np];W[mo];W[no];W[op];W[pp];W[po];W[qn];W[rn];W[pm];T[op];T[pp];T[po]",
+          "data": ";W[ol];W[ql];B[om];W[pm];B[on];B[pn];W[qn];W[rn];W[ko];W[mo];W[no];B[oo];W[po];B[qo];B[np];W[op];W[pp];B[qp];T[op];T[pp];T[po]",
           "answer1": ";B[oq];W[pq];B[pr];W[qq];B[rq]",
           "answer2": "",
           "answer3": "",
@@ -1114,15 +1048,15 @@
           "source_book": "씽크탱크 3권",
           "source_chapter": "6단원",
           "source_p_num": 21,
-          "no": 27,
-          "name": "27번 축을 모는 방향"
+          "no": 24,
+          "name": "24번 축을 모는 방향"
         },
         {
-          "code": "2028",
+          "code": "2025",
           "type": "3",
           "question": "2. 축을 모는 방향\r\n올바른 방향으로 단수치며 백을 축으로 몰아 잡아보세요.",
           "hint": "첫 단수를 올바른 방향으로 친 뒤 계단 모양으로 계속 단수쳐서 잡아보세요.",
-          "data": ";B[qp];B[po];B[pn];B[on];B[no];B[np];W[oo];W[op];W[pp];W[qo];W[ro];W[qm];W[om];W[nn];W[mn];T[oo];T[op];T[pp]",
+          "data": ";W[ol];B[nm];W[om];W[qm];W[mn];W[nn];B[on];B[pn];B[no];W[oo];B[po];W[qo];W[ro];W[lp];B[np];W[op];W[pp];B[qp];T[oo];T[op];T[pp]",
           "answer1": ";B[pq];W[oq];B[or];W[nq];B[mq]",
           "answer2": "",
           "answer3": "",
@@ -1136,15 +1070,15 @@
           "source_book": "씽크탱크 3권",
           "source_chapter": "6단원",
           "source_p_num": 22,
-          "no": 28,
-          "name": "28번 축을 모는 방향"
+          "no": 25,
+          "name": "25번 축을 모는 방향"
         },
         {
-          "code": "2029",
+          "code": "2026",
           "type": "3",
           "question": "2. 축을 모는 방향\r\n올바른 방향으로 단수치며 백을 축으로 몰아 잡아보세요.",
           "hint": "첫 단수를 올바른 방향으로 친 뒤 계단 모양으로 계속 단수쳐서 잡아보세요.",
-          "data": ";B[qp];B[po];B[oo];B[np];B[nq];B[or];W[oq];W[op];W[pp];W[pq];W[qo];W[qn];W[no];W[nn];T[op];T[pp];T[pq];T[oq]",
+          "data": ";W[nn];W[qn];W[no];B[oo];B[po];W[qo];W[lp];W[mp];B[np];W[op];W[pp];B[qp];B[mq];B[nq];W[oq];W[pq];B[or];T[op];T[pp];T[pq];T[oq]",
           "answer1": ";B[qq];W[pr];B[qr]",
           "answer2": ";B[qq];W[pr];B[ps]",
           "answer3": "",
@@ -1158,15 +1092,15 @@
           "source_book": "씽크탱크 3권",
           "source_chapter": "6단원",
           "source_p_num": 23,
-          "no": 29,
-          "name": "29번 축을 모는 방향"
+          "no": 26,
+          "name": "26번 축을 모는 방향"
         },
         {
-          "code": "2030",
+          "code": "2027",
           "type": "3",
           "question": "2. 축을 모는 방향\r\n올바른 방향으로 단수치며 백을 축으로 몰아 잡아보세요.",
           "hint": "첫 단수를 올바른 방향으로 친 뒤 계단 모양으로 계속 단수쳐서 잡아보세요.",
-          "data": ";B[pq];B[qp];B[qo];B[pn];B[on];B[no];W[oo];W[po];W[pp];W[op];W[qn];W[qm];W[ol];W[nn];W[mn];T[oo];T[po];T[pp];T[op]",
+          "data": ";W[ol];W[qm];W[rm];W[kn];W[mn];W[nn];B[on];B[pn];W[qn];B[rn];B[no];W[oo];W[po];B[qo];B[so];W[kp];W[op];W[pp];B[qp];B[pq];T[oo];T[po];T[pp];T[op]",
           "answer1": ";B[np];W[oq];B[or];W[nq];B[mq]",
           "answer2": "",
           "answer3": "",
@@ -1180,8 +1114,8 @@
           "source_book": "씽크탱크 3권",
           "source_chapter": "6단원",
           "source_p_num": 24,
-          "no": 30,
-          "name": "30번 축을 모는 방향"
+          "no": 27,
+          "name": "27번 축을 모는 방향"
         }
       ]
     }

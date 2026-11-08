@@ -14929,11 +14929,11 @@
       },
       {
         "code": "new_tech_chuk",
-        "title": "축 (53제)",
-        "name": "축 (53제)",
+        "title": "축 (50제)",
+        "name": "축 (50제)",
         "chapterCount": 2,
-        "totalProblems": 53,
-        "problemCount": 53,
+        "totalProblems": 50,
+        "problemCount": 50,
         "chapters": [
           {
             "code": "new_chuk_01",
@@ -14942,8 +14942,8 @@
           },
           {
             "code": "new_chuk_02",
-            "title": "2. 축을 모는 방향 (30제)",
-            "problemCount": 30
+            "title": "2. 축을 모는 방향 (27제)",
+            "problemCount": 27
           }
         ]
       }
