@@ -14929,11 +14929,11 @@
       },
       {
         "code": "new_tech_chuk",
-        "title": "축 (66제)",
-        "name": "축 (66제)",
-        "chapterCount": 3,
-        "totalProblems": 66,
-        "problemCount": 66,
+        "title": "축 (96제)",
+        "name": "축 (96제)",
+        "chapterCount": 4,
+        "totalProblems": 96,
+        "problemCount": 96,
         "chapters": [
           {
             "code": "new_chuk_01",
@@ -14949,6 +14949,11 @@
             "code": "new_chuk_03",
             "title": "3. 축머리 (16제)",
             "problemCount": 16
+          },
+          {
+            "code": "new_chuk_04",
+            "title": "4. 단수친 후 축 (30제)",
+            "problemCount": 30
           }
         ]
       }
