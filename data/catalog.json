@@ -14879,9 +14879,9 @@
     "books": [
       {
         "code": "new_tech_chokchoksu",
-        "title": "촉촉수 (293제)",
-        "chapterCount": 9,
-        "totalProblems": 293,
+        "title": "촉촉수 (241제)",
+        "chapterCount": 8,
+        "totalProblems": 241,
         "chapters": [
           {
             "code": "tech_chok_c1",
@@ -14922,15 +14922,10 @@
             "code": "tech_chok_c8",
             "title": "8. 사활 촉촉수",
             "problemCount": 72
-          },
-          {
-            "code": "tech_chok_c9",
-            "title": "9. 사활 촉촉수",
-            "problemCount": 52
           }
         ],
-        "problemCount": 293,
-        "name": "촉촉수 (293제)"
+        "problemCount": 241,
+        "name": "촉촉수 (241제)"
       }
     ]
   }
