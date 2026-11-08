@@ -306,7 +306,7 @@
         var savedCustom = localStorage.getItem('teacher_book_custom_' + code);
         if (savedCustom) {
           var customData = JSON.parse(savedCustom);
-          if ((code === 'tech_atari' && customData._buildVer !== 'v2-clean') || (code === 'new_tech_chokchoksu' && customData._buildVer !== 'v23-ch8-teacher-clean-200') || (code === 'new_tech_chuk' && customData._buildVer !== 'v6-chuk-gicho-clean-30')) { localStorage.removeItem('teacher_book_custom_' + code); } else if (customData && Array.isArray(customData.chapters) && (customData.totalProblems > 0 || customData.chapters.some(function(c){ return (c.problems||[]).length > 0; }))) {
+          if ((code === 'tech_atari' && customData._buildVer !== 'v2-clean') || (code === 'new_tech_chokchoksu' && customData._buildVer !== 'v23-ch8-teacher-clean-200') || (code === 'new_tech_chuk' && customData._buildVer !== 'v7-chuk-gicho-unified-30')) { localStorage.removeItem('teacher_book_custom_' + code); } else if (customData && Array.isArray(customData.chapters) && (customData.totalProblems > 0 || customData.chapters.some(function(c){ return (c.problems||[]).length > 0; }))) {
             customData.bookCode = code;
             state.currentBook = customData;
             currentBookTitle.textContent = customData.book || customData.title || ('교재 ' + code);
@@ -2352,7 +2352,14 @@
   function saveCustomBookState(statusText) {
     var code = getBookCode();
     if (!code || !state.currentBook) return;
+    if (code === 'new_tech_chuk') {
+      state.currentBook._buildVer = 'v7-chuk-gicho-unified-30';
+    }
     updateBookOptionCountUI(code, state.currentBook);
+  function saveCustomBookToLocalStorage(msg) {
+    saveCustomBookState(msg || '변경사항 저장됨');
+  }
+
     try {
       localStorage.setItem('teacher_book_custom_' + code, JSON.stringify(state.currentBook));
     } catch (e) {
