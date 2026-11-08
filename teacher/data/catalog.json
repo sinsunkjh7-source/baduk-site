@@ -14879,9 +14879,9 @@
     "books": [
       {
         "code": "new_tech_chokchoksu",
-        "title": "촉촉수 (139제)",
-        "chapterCount": 6,
-        "totalProblems": 139,
+        "title": "촉촉수 (169제)",
+        "chapterCount": 7,
+        "totalProblems": 169,
         "chapters": [
           {
             "code": "tech_chok_c1",
@@ -14912,10 +14912,15 @@
             "code": "tech_chok_c6",
             "title": "6. 중앙에서 먹여치기",
             "problemCount": 20
+          },
+          {
+            "code": "tech_chok_c7",
+            "title": "7. 수상전에서 수 줄이기",
+            "problemCount": 30
           }
         ],
-        "problemCount": 139,
-        "name": "촉촉수 (139제)"
+        "problemCount": 169,
+        "name": "촉촉수 (169제)"
       }
     ]
   }
