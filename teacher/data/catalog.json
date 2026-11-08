@@ -14929,16 +14929,16 @@
       },
       {
         "code": "new_tech_chuk",
-        "title": "축 (34제)",
-        "name": "축 (34제)",
+        "title": "축 (50제)",
+        "name": "축 (50제)",
         "chapterCount": 1,
-        "totalProblems": 34,
-        "problemCount": 34,
+        "totalProblems": 50,
+        "problemCount": 50,
         "chapters": [
           {
             "code": "new_chuk_01",
             "title": "1. 축-모는 방법",
-            "problemCount": 34
+            "problemCount": 50
           }
         ]
       }
