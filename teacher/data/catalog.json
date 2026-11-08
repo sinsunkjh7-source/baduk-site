@@ -14879,9 +14879,9 @@
     "books": [
       {
         "code": "new_tech_chokchoksu",
-        "title": "촉촉수 (114제)",
-        "chapterCount": 5,
-        "totalProblems": 114,
+        "title": "촉촉수 (139제)",
+        "chapterCount": 6,
+        "totalProblems": 139,
         "chapters": [
           {
             "code": "tech_chok_c1",
@@ -14905,12 +14905,17 @@
           },
           {
             "code": "tech_chok_c5",
-            "title": "5. 먹여치고 단수",
-            "problemCount": 17
+            "title": "5. 1선에서 먹여치기",
+            "problemCount": 22
+          },
+          {
+            "code": "tech_chok_c6",
+            "title": "6. 중앙에서 먹여치기",
+            "problemCount": 20
           }
         ],
-        "problemCount": 42,
-        "name": "촉촉수 (42제)"
+        "problemCount": 139,
+        "name": "촉촉수 (139제)"
       }
     ]
   }
