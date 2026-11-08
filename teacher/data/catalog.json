@@ -14929,7 +14929,7 @@
       },
       {
         "code": "new_tech_chuk",
-        "title": "축 (126제)",
+        "title": "축 (139제)",
         "name": "축 (126제)",
         "chapterCount": 5,
         "totalProblems": 126,
@@ -14959,6 +14959,9 @@
             "code": "new_chuk_05",
             "title": "5. 빈축 (30제)",
             "problemCount": 30
+          },
+          {
+            "title": "6. 회돌이 축 (13제)"
           }
         ]
       }
