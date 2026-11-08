@@ -14885,37 +14885,37 @@
         "chapters": [
           {
             "code": "tech_chok_c1",
-            "title": "1. 1선에 이어도 단수",
+            "title": "1. 1선 촉촉수",
             "problemCount": 23
           },
           {
             "code": "tech_chok_c2",
-            "title": "2. 중앙에 이어도 단수",
+            "title": "2. 중앙 촉촉수",
             "problemCount": 15
           },
           {
             "code": "tech_chok_c3",
-            "title": "3. 단수치고 단수",
+            "title": "3. 단수친 후 촉촉수",
             "problemCount": 42
           },
           {
             "code": "tech_chok_c4",
-            "title": "4. 단수치고 끊기",
+            "title": "4. 끊기 촉촉수",
             "problemCount": 17
           },
           {
             "code": "tech_chok_c5",
-            "title": "5. 1선에서 먹여치기",
+            "title": "5. 1선 먹여치기 촉촉수",
             "problemCount": 22
           },
           {
             "code": "tech_chok_c6",
-            "title": "6. 중앙에서 먹여치기",
+            "title": "6. 중앙 먹여치기 촉촉수",
             "problemCount": 20
           },
           {
             "code": "tech_chok_c7",
-            "title": "7. 수상전에서 수 줄이기",
+            "title": "7. 수상전 촉촉수",
             "problemCount": 30
           }
         ],
