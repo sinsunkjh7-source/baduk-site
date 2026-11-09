@@ -14988,13 +14988,13 @@
           },
           {
             "code": "4001",
-            "title": "4. 날일자 장문 (10제)",
-            "problemCount": 10
+            "title": "4. 날일자 장문 (5제)",
+            "problemCount": 5
           }
         ],
         "name": "장문",
-        "totalProblems": 83,
-        "problemCount": 83,
+        "totalProblems": 78,
+        "problemCount": 78,
         "chapterCount": 4
       }
     ]
