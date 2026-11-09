@@ -341,7 +341,8 @@
           "answer2": "",
           "sample": ""
         }
-      ]
+      ],
+      "problemCount": 24
     },
     {
       "title": "2. 한 칸 응용 장문 (24제)",
@@ -682,7 +683,8 @@
           "answer2": "",
           "sample": ""
         }
-      ]
+      ],
+      "problemCount": 24
     },
     {
       "title": "3. 젖혀서 장문 (25제)",
@@ -1037,10 +1039,11 @@
           "answer2": "",
           "sample": ""
         }
-      ]
+      ],
+      "problemCount": 25
     },
     {
-      "title": "4. 입구자(마늘모) 장문 (20제)",
+      "title": "4. 입구자(마늘모) 장문 (12제)",
       "problems": [
         {
           "id": null,
@@ -1209,122 +1212,11 @@
           "answer": "",
           "answer2": "",
           "sample": ""
-        },
-        {
-          "id": null,
-          "code": 4013,
-          "title": null,
-          "question": "4. 입구자(마늘모) 장문\n백△를 장문으로 잡아보세요. (3수 표시)",
-          "hint": "상대의 돌이 달아나지 못하게 포위해서 잡는 방법입니다.",
-          "data": ";B[qp];B[qo];B[pq];B[oq];B[nq];B[no];W[pr];W[qq];W[rq];W[pp];W[op];W[on];W[qm];T[op];T[pp]",
-          "answer1": ";B[oo];W[po];B[pn]",
-          "size": "4",
-          "type": "3",
-          "answer": "",
-          "answer2": "",
-          "sample": ""
-        },
-        {
-          "id": null,
-          "code": 4014,
-          "title": null,
-          "question": "4. 입구자(마늘모) 장문\n백△를 장문으로 잡아보세요. (3수 표시)",
-          "hint": "상대의 돌이 달아나지 못하게 포위해서 잡는 방법입니다.",
-          "data": ";W[pp];W[po];W[no];W[mq];B[oq];B[pq];B[qp];B[qo];B[qn];B[on];T[po];T[pp]",
-          "answer1": ";B[oo];W[op];B[np]",
-          "size": "4",
-          "type": "3",
-          "answer": "",
-          "answer2": "",
-          "sample": ""
-        },
-        {
-          "id": null,
-          "code": 4015,
-          "title": null,
-          "question": "4. 입구자(마늘모) 장문\n백△를 장문으로 잡아보세요. (3수 표시)",
-          "hint": "상대의 돌이 달아나지 못하게 포위해서 잡는 방법입니다.",
-          "data": ";W[qr];W[qq];W[pp];W[op];W[np];W[qo];W[qn];W[qm];W[pm];W[nm];W[mn];B[pn];B[po];B[mo];B[mq];B[nq];B[oq];B[pq];B[qp];B[rp];B[rq];T[np];T[op];T[pp]",
-          "answer1": ";B[no];W[oo];B[on]",
-          "size": "4",
-          "type": "3",
-          "answer": "",
-          "answer2": "",
-          "sample": ""
-        },
-        {
-          "id": null,
-          "code": 4016,
-          "title": null,
-          "question": "4. 입구자(마늘모) 장문\n백△를 장문으로 잡아보세요. (3수 표시)",
-          "hint": "상대의 돌이 달아나지 못하게 포위해서 잡는 방법입니다.",
-          "data": ";B[pq];B[qq];B[qp];B[qo];B[qn];B[qm];B[op];B[np];B[om];W[pp];W[po];W[pn];W[nm];W[mn];W[mp];W[lq];W[nq];W[oq];T[pp];T[po];T[pn]",
-          "answer1": ";B[on];W[oo];B[no]",
-          "size": "4",
-          "type": "3",
-          "answer": "",
-          "answer2": "",
-          "sample": ""
-        },
-        {
-          "id": null,
-          "code": 4017,
-          "title": null,
-          "question": "4. 입구자(마늘모) 장문\n백△를 장문으로 잡아보세요. (3수 표시)",
-          "hint": "상대의 돌이 달아나지 못하게 포위해서 잡는 방법입니다.",
-          "data": ";B[rq];B[qq];B[pq];B[oq];B[nq];B[np];B[oo];B[ro];W[op];W[pp];W[qp];W[no];W[nn];W[om];W[qm];T[op];T[pp];T[qp]",
-          "answer1": ";B[po];W[qo];B[qn]",
-          "size": "4",
-          "type": "3",
-          "answer": "",
-          "answer2": "",
-          "sample": ""
-        },
-        {
-          "id": null,
-          "code": 4018,
-          "title": null,
-          "question": "4. 입구자(마늘모) 장문\n백△를 장문으로 잡아보세요. (3수 표시)",
-          "hint": "상대의 돌이 달아나지 못하게 포위해서 잡는 방법입니다.",
-          "data": ";B[pr];B[qr];B[qq];B[qp];B[qo];B[qn];B[on];B[oq];W[pq];W[pp];W[po];W[or];W[nr];W[mp];W[mn];T[pq];T[po];T[pp]",
-          "answer1": ";B[op];W[oo];B[no]",
-          "size": "4",
-          "type": "3",
-          "answer": "",
-          "answer2": "",
-          "sample": ""
-        },
-        {
-          "id": null,
-          "code": 4019,
-          "title": null,
-          "question": "4. 입구자(마늘모) 장문\n백△를 장문으로 잡아보세요. (3수 표시)",
-          "hint": "상대의 돌이 달아나지 못하게 포위해서 잡는 방법입니다.",
-          "data": ";W[qq];W[rp];W[rq];W[ro];W[qn];W[pm];W[nm];W[pp];W[op];W[np];B[pq];B[oq];B[nq];B[mq];B[mo];B[po];B[qo];B[qp];T[np];T[op];T[pp]",
-          "answer1": ";B[oo];W[no];B[nn]",
-          "size": "4",
-          "type": "3",
-          "answer": "",
-          "answer2": "",
-          "sample": ""
-        },
-        {
-          "id": null,
-          "code": 4020,
-          "title": null,
-          "question": "4. 입구자(마늘모) 장문\n백△를 장문으로 잡아보세요. (3수 표시)",
-          "hint": "상대의 돌이 달아나지 못하게 포위해서 잡는 방법입니다.",
-          "data": ";B[rr];B[qp];B[qq];B[pr];B[oq];B[nq];B[mq];B[mo];B[po];W[np];W[op];W[pp];W[pq];W[qo];W[qn];W[ql];W[om];W[mm];T[np];T[op];T[pp];T[pq]",
-          "answer1": ";B[oo];W[no];B[nn]",
-          "size": "4",
-          "type": "3",
-          "answer": "",
-          "answer2": "",
-          "sample": ""
         }
-      ]
+      ],
+      "problemCount": 12
     }
   ],
-  "_buildVer": "v18-pure-tt7-ch4-20",
-  "totalProblems": 93
+  "_buildVer": "v19-user-jangmun-85",
+  "totalProblems": 85
 }
