@@ -14972,16 +14972,25 @@
         "file": "book_new_tech_jangmun.json",
         "chapters": [
           {
-            "title": "1. 장문 기초 (24제)"
+            "code": "1001",
+            "title": "1. 장문 기초 (24제)",
+            "problemCount": 24
           },
           {
-            "title": "2. 한 칸 응용 장문 (24제)"
+            "code": "2001",
+            "title": "2. 한 칸 응용 장문 (24제)",
+            "problemCount": 24
+          },
+          {
+            "code": "3001",
+            "title": "3. 젖혀서 장문 (22제)",
+            "problemCount": 22
           }
         ],
         "name": "장문",
-        "totalProblems": 48,
-        "problemCount": 48,
-        "chapterCount": 2
+        "totalProblems": 70,
+        "problemCount": 70,
+        "chapterCount": 3
       }
     ]
   }
