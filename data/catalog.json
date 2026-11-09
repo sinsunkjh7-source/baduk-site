@@ -15000,12 +15000,17 @@
             "code": "6001",
             "title": "6. 단수친 후 장문 (24제)",
             "problemCount": 24
+          },
+          {
+            "code": "7001",
+            "title": "7. 수상전의 장문 (26제)",
+            "problemCount": 26
           }
         ],
         "name": "장문",
-        "totalProblems": 118,
-        "problemCount": 118,
-        "chapterCount": 6
+        "totalProblems": 144,
+        "problemCount": 144,
+        "chapterCount": 7
       }
     ]
   }
