@@ -15010,12 +15010,22 @@
             "code": "1001",
             "title": "8. 장문의 맥 (26제)",
             "problemCount": 26
+          },
+          {
+            "code": "9001",
+            "title": "9. 회돌이와 장문 (26제)",
+            "problemCount": 26
+          },
+          {
+            "code": "10001",
+            "title": "10. 빈축과 장문 (28제)",
+            "problemCount": 28
           }
         ],
         "name": "장문",
-        "totalProblems": 170,
-        "problemCount": 170,
-        "chapterCount": 8
+        "totalProblems": 224,
+        "problemCount": 224,
+        "chapterCount": 10
       }
     ]
   }
