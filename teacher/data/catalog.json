@@ -17067,12 +17067,17 @@
             "code": "7001",
             "title": "7. 수상전의 장문 (26제)",
             "problemCount": 26
+          },
+          {
+            "code": "8001",
+            "title": "8. 장문의 맥 (26제)",
+            "problemCount": 26
           }
         ],
         "name": "장문",
-        "totalProblems": 144,
-        "problemCount": 144,
-        "chapterCount": 7
+        "totalProblems": 170,
+        "problemCount": 170,
+        "chapterCount": 8
       }
     ]
   }
