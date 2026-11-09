@@ -14964,6 +14964,17 @@
             "title": "6. 회돌이 축 (12제)"
           }
         ]
+      },
+      {
+        "id": null,
+        "title": "장문 (24제)",
+        "code": "new_tech_jangmun",
+        "file": "book_new_tech_jangmun.json",
+        "chapters": [
+          {
+            "title": "1. 장문 기초 (24제)"
+          }
+        ]
       }
     ]
   }
