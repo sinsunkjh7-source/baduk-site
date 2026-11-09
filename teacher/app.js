@@ -370,7 +370,7 @@
         var savedCustom = localStorage.getItem('teacher_book_custom_' + code);
         if (savedCustom) {
           var customData = JSON.parse(savedCustom);
-          if ((code === 'tech_atari' && customData._buildVer !== 'v2-clean') || (code === 'new_tech_chokchoksu' && customData._buildVer !== 'v23-ch8-teacher-clean-200') || (code === 'new_tech_chuk' && customData._buildVer !== 'v17-ch6-138') || (code === 'new_tech_jangmun' && customData._buildVer !== 'v20-ch5-nalilja-112')) { localStorage.removeItem('teacher_book_custom_' + code); } else if (customData && Array.isArray(customData.chapters) && (customData.totalProblems > 0 || customData.chapters.some(function(c){ return (c.problems||[]).length > 0; }))) {
+          if ((code === 'tech_atari' && customData._buildVer !== 'v2-clean') || (code === 'new_tech_chokchoksu' && customData._buildVer !== 'v23-ch8-teacher-clean-200') || (code === 'new_tech_chuk' && customData._buildVer !== 'v17-ch6-138') || (code === 'new_tech_jangmun' && customData._buildVer !== 'v21-ch5-nalilja-title-112')) { localStorage.removeItem('teacher_book_custom_' + code); } else if (customData && Array.isArray(customData.chapters) && (customData.totalProblems > 0 || customData.chapters.some(function(c){ return (c.problems||[]).length > 0; }))) {
             customData.bookCode = code;
             state.currentBook = customData;
             currentBookTitle.textContent = customData.book || customData.title || ('교재 ' + code);
