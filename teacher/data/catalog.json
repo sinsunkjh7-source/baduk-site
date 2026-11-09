@@ -14879,7 +14879,7 @@
     "books": [
       {
         "code": "new_tech_chokchoksu",
-        "title": "촉촉수 (200제)",
+        "title": "촉촉수",
         "chapterCount": 8,
         "totalProblems": 200,
         "chapters": [
@@ -14925,15 +14925,15 @@
           }
         ],
         "problemCount": 200,
-        "name": "촉촉수 (200제)"
+        "name": "촉촉수"
       },
       {
         "code": "new_tech_chuk",
-        "title": "축 (138제)",
-        "name": "축 (126제)",
-        "chapterCount": 5,
-        "totalProblems": 126,
-        "problemCount": 126,
+        "title": "축",
+        "name": "축",
+        "chapterCount": 6,
+        "totalProblems": 138,
+        "problemCount": 138,
         "chapters": [
           {
             "code": "new_chuk_01",
@@ -14967,14 +14967,18 @@
       },
       {
         "id": null,
-        "title": "장문 (24제)",
+        "title": "장문",
         "code": "new_tech_jangmun",
         "file": "book_new_tech_jangmun.json",
         "chapters": [
           {
             "title": "1. 장문 기초 (24제)"
           }
-        ]
+        ],
+        "name": "장문",
+        "totalProblems": 24,
+        "problemCount": 24,
+        "chapterCount": 1
       }
     ]
   }
