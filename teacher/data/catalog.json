@@ -17047,12 +17047,16 @@
             "code": "3001",
             "title": "3. 젖혀서 장문 (25제)",
             "problemCount": 25
+          },
+          {
+            "chapter": "4. 입구자(마늘모) 장문",
+            "problemCount": 24
           }
         ],
         "name": "장문",
-        "totalProblems": 73,
-        "problemCount": 73,
-        "chapterCount": 3
+        "totalProblems": 97,
+        "problemCount": 97,
+        "chapterCount": 4
       }
     ]
   }
