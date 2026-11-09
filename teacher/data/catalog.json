@@ -17049,13 +17049,14 @@
             "problemCount": 25
           },
           {
-            "chapter": "4. 입구자(마늘모) 장문",
-            "problemCount": 24
+            "code": "4001",
+            "title": "4. 입구자(마늘모) 장문 (20제)",
+            "problemCount": 20
           }
         ],
         "name": "장문",
-        "totalProblems": 97,
-        "problemCount": 97,
+        "totalProblems": 93,
+        "problemCount": 93,
         "chapterCount": 4
       }
     ]
