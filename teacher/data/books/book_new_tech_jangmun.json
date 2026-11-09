@@ -1687,7 +1687,8 @@
           "answer2": "",
           "sample": ""
         }
-      ]
+      ],
+      "problemCount": 24
     },
     {
       "title": "7. 수상전의 장문 (26제)",
@@ -2056,14 +2057,15 @@
           "answer2": "",
           "sample": ""
         }
-      ]
+      ],
+      "problemCount": 26
     },
     {
       "title": "8. 장문의 맥 (26제)",
       "problems": [
         {
           "id": null,
-          "code": 8001,
+          "code": "1001",
           "title": null,
           "question": "8. 장문의 맥\n흑이 둘 차례입니다. 장문의 맥을 이용하여 백을 잡아보세요.",
           "hint": "장문의 맥을 이용하여 상대방을 잡습니다.",
@@ -2073,11 +2075,13 @@
           "type": "3",
           "answer": "",
           "answer2": "",
-          "sample": ""
+          "sample": "",
+          "no": 1,
+          "name": "1번 문제"
         },
         {
           "id": null,
-          "code": 8002,
+          "code": "1002",
           "title": null,
           "question": "8. 장문의 맥\n흑이 둘 차례입니다. 장문의 맥을 이용하여 백을 잡아보세요.",
           "hint": "장문의 맥을 이용하여 상대방을 잡습니다.",
@@ -2087,11 +2091,13 @@
           "type": "3",
           "answer": "",
           "answer2": "",
-          "sample": ""
+          "sample": "",
+          "no": 2,
+          "name": "2번 문제"
         },
         {
           "id": null,
-          "code": 8003,
+          "code": "1003",
           "title": null,
           "question": "8. 장문의 맥\n흑이 둘 차례입니다. 장문의 맥을 이용하여 백을 잡아보세요.",
           "hint": "장문의 맥을 이용하여 상대방을 잡습니다.",
@@ -2101,11 +2107,13 @@
           "type": "3",
           "answer": "",
           "answer2": "",
-          "sample": ""
+          "sample": "",
+          "no": 3,
+          "name": "3번 문제"
         },
         {
           "id": null,
-          "code": 8004,
+          "code": "1004",
           "title": null,
           "question": "8. 장문의 맥\n흑이 둘 차례입니다. 장문의 맥을 이용하여 백을 잡아보세요.",
           "hint": "장문의 맥을 이용하여 상대방을 잡습니다.",
@@ -2115,11 +2123,13 @@
           "type": "3",
           "answer": "",
           "answer2": "",
-          "sample": ""
+          "sample": "",
+          "no": 4,
+          "name": "4번 문제"
         },
         {
           "id": null,
-          "code": 8005,
+          "code": "1005",
           "title": null,
           "question": "8. 장문의 맥\n흑이 둘 차례입니다. 장문의 맥을 이용하여 백을 잡아보세요.",
           "hint": "장문의 맥을 이용하여 상대방을 잡습니다.",
@@ -2129,11 +2139,13 @@
           "type": "3",
           "answer": "",
           "answer2": "",
-          "sample": ""
+          "sample": "",
+          "no": 5,
+          "name": "5번 문제"
         },
         {
           "id": null,
-          "code": 8006,
+          "code": "1006",
           "title": null,
           "question": "8. 장문의 맥\n흑이 둘 차례입니다. 장문의 맥을 이용하여 백을 잡아보세요.",
           "hint": "장문의 맥을 이용하여 상대방을 잡습니다.",
@@ -2143,11 +2155,13 @@
           "type": "3",
           "answer": "",
           "answer2": "",
-          "sample": ""
+          "sample": "",
+          "no": 6,
+          "name": "6번 문제"
         },
         {
           "id": null,
-          "code": 8007,
+          "code": "1007",
           "title": null,
           "question": "8. 장문의 맥\n흑이 둘 차례입니다. 장문의 맥을 이용하여 백을 잡아보세요.",
           "hint": "장문의 맥을 이용하여 상대방을 잡습니다.",
@@ -2157,11 +2171,13 @@
           "type": "3",
           "answer": "",
           "answer2": "",
-          "sample": ""
+          "sample": "",
+          "no": 7,
+          "name": "7번 문제"
         },
         {
           "id": null,
-          "code": 8008,
+          "code": "1008",
           "title": null,
           "question": "8. 장문의 맥\n흑이 둘 차례입니다. 장문의 맥을 이용하여 백을 잡아보세요.",
           "hint": "장문의 맥을 이용하여 상대방을 잡습니다.",
@@ -2171,11 +2187,13 @@
           "type": "3",
           "answer": "",
           "answer2": "",
-          "sample": ""
+          "sample": "",
+          "no": 8,
+          "name": "8번 문제"
         },
         {
           "id": null,
-          "code": 8009,
+          "code": "1009",
           "title": null,
           "question": "8. 장문의 맥\n흑이 둘 차례입니다. 장문의 맥을 이용하여 백을 잡아보세요.",
           "hint": "장문의 맥을 이용하여 상대방을 잡습니다.",
@@ -2185,11 +2203,13 @@
           "type": "3",
           "answer": "",
           "answer2": "",
-          "sample": ""
+          "sample": "",
+          "no": 9,
+          "name": "9번 문제"
         },
         {
           "id": null,
-          "code": 8010,
+          "code": "1010",
           "title": null,
           "question": "8. 장문의 맥\n흑이 둘 차례입니다. 장문의 맥을 이용하여 백을 잡아보세요.",
           "hint": "장문의 맥을 이용하여 상대방을 잡습니다.",
@@ -2199,11 +2219,13 @@
           "type": "3",
           "answer": "",
           "answer2": "",
-          "sample": ""
+          "sample": "",
+          "no": 10,
+          "name": "10번 문제"
         },
         {
           "id": null,
-          "code": 8011,
+          "code": "1011",
           "title": null,
           "question": "8. 장문의 맥\n흑이 둘 차례입니다. 장문의 맥을 이용하여 백을 잡아보세요.",
           "hint": "장문의 맥을 이용하여 상대방을 잡습니다.",
@@ -2213,11 +2235,13 @@
           "type": "3",
           "answer": "",
           "answer2": "",
-          "sample": ""
+          "sample": "",
+          "no": 11,
+          "name": "11번 문제"
         },
         {
           "id": null,
-          "code": 8012,
+          "code": "1012",
           "title": null,
           "question": "8. 장문의 맥\n흑이 둘 차례입니다. 장문의 맥을 이용하여 백을 잡아보세요.",
           "hint": "장문의 맥을 이용하여 상대방을 잡습니다.",
@@ -2227,11 +2251,13 @@
           "type": "3",
           "answer": "",
           "answer2": "",
-          "sample": ""
+          "sample": "",
+          "no": 12,
+          "name": "12번 문제"
         },
         {
           "id": null,
-          "code": 8013,
+          "code": "1013",
           "title": null,
           "question": "8. 장문의 맥\n흑이 둘 차례입니다. 장문의 맥을 이용하여 백을 잡아보세요.",
           "hint": "장문의 맥을 이용하여 상대방을 잡습니다.",
@@ -2241,11 +2267,13 @@
           "type": "3",
           "answer": "",
           "answer2": "",
-          "sample": ""
+          "sample": "",
+          "no": 13,
+          "name": "13번 문제"
         },
         {
           "id": null,
-          "code": 8014,
+          "code": "1014",
           "title": null,
           "question": "8. 장문의 맥\n흑이 둘 차례입니다. 장문의 맥을 이용하여 백을 잡아보세요.",
           "hint": "장문의 맥을 이용하여 상대방을 잡습니다.",
@@ -2255,11 +2283,13 @@
           "type": "3",
           "answer": "",
           "answer2": "",
-          "sample": ""
+          "sample": "",
+          "no": 14,
+          "name": "14번 문제"
         },
         {
           "id": null,
-          "code": 8015,
+          "code": "1015",
           "title": null,
           "question": "8. 장문의 맥\n흑이 둘 차례입니다. 장문의 맥을 이용하여 백을 잡아보세요.",
           "hint": "장문의 맥을 이용하여 상대방을 잡습니다.",
@@ -2269,11 +2299,13 @@
           "type": "3",
           "answer": "",
           "answer2": "",
-          "sample": ""
+          "sample": "",
+          "no": 15,
+          "name": "15번 문제"
         },
         {
           "id": null,
-          "code": 8016,
+          "code": "1016",
           "title": null,
           "question": "8. 장문의 맥\n흑이 둘 차례입니다. 장문의 맥을 이용하여 백을 잡아보세요.",
           "hint": "장문의 맥을 이용하여 상대방을 잡습니다.",
@@ -2283,11 +2315,13 @@
           "type": "3",
           "answer": "",
           "answer2": "",
-          "sample": ""
+          "sample": "",
+          "no": 16,
+          "name": "16번 문제"
         },
         {
           "id": null,
-          "code": 8017,
+          "code": "1017",
           "title": null,
           "question": "8. 장문의 맥\n흑이 둘 차례입니다. 장문의 맥을 이용하여 백을 잡아보세요.",
           "hint": "장문의 맥을 이용하여 상대방을 잡습니다.",
@@ -2297,11 +2331,13 @@
           "type": "3",
           "answer": "",
           "answer2": "",
-          "sample": ""
+          "sample": "",
+          "no": 17,
+          "name": "17번 문제"
         },
         {
           "id": null,
-          "code": 8018,
+          "code": "1018",
           "title": null,
           "question": "8. 장문의 맥\n흑이 둘 차례입니다. 장문의 맥을 이용하여 백을 잡아보세요.",
           "hint": "장문의 맥을 이용하여 상대방을 잡습니다.",
@@ -2311,11 +2347,13 @@
           "type": "3",
           "answer": "",
           "answer2": "",
-          "sample": ""
+          "sample": "",
+          "no": 18,
+          "name": "18번 문제"
         },
         {
           "id": null,
-          "code": 8019,
+          "code": "1019",
           "title": null,
           "question": "8. 장문의 맥\n흑이 둘 차례입니다. 장문의 맥을 이용하여 백을 잡아보세요.",
           "hint": "장문의 맥을 이용하여 상대방을 잡습니다.",
@@ -2325,11 +2363,13 @@
           "type": "3",
           "answer": "",
           "answer2": "",
-          "sample": ""
+          "sample": "",
+          "no": 19,
+          "name": "19번 문제"
         },
         {
           "id": null,
-          "code": 8020,
+          "code": "1020",
           "title": null,
           "question": "8. 장문의 맥\n흑이 둘 차례입니다. 장문의 맥을 이용하여 백을 잡아보세요.",
           "hint": "장문의 맥을 이용하여 상대방을 잡습니다.",
@@ -2339,39 +2379,13 @@
           "type": "3",
           "answer": "",
           "answer2": "",
-          "sample": ""
+          "sample": "",
+          "no": 20,
+          "name": "20번 문제"
         },
         {
           "id": null,
-          "code": 8021,
-          "title": null,
-          "question": "8. 장문의 맥\n흑이 둘 차례입니다. 장문의 맥을 이용하여 백을 잡아보세요.",
-          "hint": "장문의 맥을 이용하여 상대방을 잡습니다.",
-          "data": ";B[rp];B[qp];B[pq];B[oq];B[nr];B[mq];B[lq];B[lp];B[mo];W[nq];W[np];W[mp];W[pp];W[on];W[qn];W[qo]",
-          "answer1": ";B[oo]",
-          "size": "4",
-          "type": "3",
-          "answer": "",
-          "answer2": "",
-          "sample": ""
-        },
-        {
-          "id": null,
-          "code": 8022,
-          "title": null,
-          "question": "8. 장문의 맥\n흑이 둘 차례입니다. 장문의 맥을 이용하여 백을 잡아보세요.",
-          "hint": "장문의 맥을 이용하여 상대방을 잡습니다.",
-          "data": ";W[qr];W[pq];W[nq];W[np];W[mp];W[qo];W[pn];B[pr];B[or];B[nr];B[mq];B[lq];B[lp];B[mo];B[no]",
-          "answer1": ";B[pp]",
-          "size": "4",
-          "type": "3",
-          "answer": "",
-          "answer2": "",
-          "sample": ""
-        },
-        {
-          "id": null,
-          "code": 8023,
+          "code": "1021",
           "title": null,
           "question": "8. 장문의 맥\n흑이 둘 차례입니다. 장문의 맥을 이용하여 백을 잡아보세요.",
           "hint": "장문의 맥을 이용하여 상대방을 잡습니다.",
@@ -2381,11 +2395,13 @@
           "type": "3",
           "answer": "",
           "answer2": "",
-          "sample": ""
+          "sample": "",
+          "no": 21,
+          "name": "21번 문제"
         },
         {
           "id": null,
-          "code": 8024,
+          "code": "1022",
           "title": null,
           "question": "8. 장문의 맥\n흑이 둘 차례입니다. 장문의 맥을 이용하여 백을 잡아보세요.",
           "hint": "장문의 맥을 이용하여 상대방을 잡습니다.",
@@ -2395,11 +2411,45 @@
           "type": "3",
           "answer": "",
           "answer2": "",
-          "sample": ""
+          "sample": "",
+          "no": 22,
+          "name": "22번 문제"
         },
         {
           "id": null,
-          "code": 8025,
+          "code": "1023",
+          "title": null,
+          "question": "8. 장문의 맥\n흑이 둘 차례입니다. 장문의 맥을 이용하여 백을 잡아보세요.",
+          "hint": "장문의 맥을 이용하여 상대방을 잡습니다.",
+          "data": ";B[rp];B[qp];B[pq];B[oq];B[nr];B[mq];B[lq];B[lp];B[mo];W[nq];W[np];W[mp];W[pp];W[on];W[qn];W[qo]",
+          "answer1": ";B[oo]",
+          "size": "4",
+          "type": "3",
+          "answer": "",
+          "answer2": "",
+          "sample": "",
+          "no": 23,
+          "name": "23번 문제"
+        },
+        {
+          "id": null,
+          "code": "1024",
+          "title": null,
+          "question": "8. 장문의 맥\n흑이 둘 차례입니다. 장문의 맥을 이용하여 백을 잡아보세요.",
+          "hint": "장문의 맥을 이용하여 상대방을 잡습니다.",
+          "data": ";W[qr];W[pq];W[nq];W[np];W[mp];W[qo];W[pn];B[pr];B[or];B[nr];B[mq];B[lq];B[lp];B[mo];B[no]",
+          "answer1": ";B[pp]",
+          "size": "4",
+          "type": "3",
+          "answer": "",
+          "answer2": "",
+          "sample": "",
+          "no": 24,
+          "name": "24번 문제"
+        },
+        {
+          "id": null,
+          "code": "1025",
           "title": null,
           "question": "8. 장문의 맥\n흑이 둘 차례입니다. 장문의 맥을 이용하여 백을 잡아보세요.",
           "hint": "장문의 맥을 이용하여 상대방을 잡습니다.",
@@ -2409,11 +2459,13 @@
           "type": "3",
           "answer": "",
           "answer2": "",
-          "sample": ""
+          "sample": "",
+          "no": 25,
+          "name": "25번 문제"
         },
         {
           "id": null,
-          "code": 8026,
+          "code": "1026",
           "title": null,
           "question": "8. 장문의 맥\n흑이 둘 차례입니다. 장문의 맥을 이용하여 백을 잡아보세요.",
           "hint": "장문의 맥을 이용하여 상대방을 잡습니다.",
@@ -2423,11 +2475,14 @@
           "type": "3",
           "answer": "",
           "answer2": "",
-          "sample": ""
+          "sample": "",
+          "no": 26,
+          "name": "26번 문제"
         }
-      ]
+      ],
+      "problemCount": 26
     }
   ],
-  "_buildVer": "v25-ch8-jangmun-maek-170",
+  "_buildVer": "v26-user-jangmun-maek-170",
   "totalProblems": 170
 }
