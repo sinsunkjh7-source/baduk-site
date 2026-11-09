@@ -17057,12 +17057,17 @@
             "code": "5001",
             "title": "5. 날일자 장문 (9제)",
             "problemCount": 9
+          },
+          {
+            "code": "6001",
+            "title": "6. 단수친 후 장문 (24제)",
+            "problemCount": 24
           }
         ],
         "name": "장문",
-        "totalProblems": 94,
-        "problemCount": 94,
-        "chapterCount": 5
+        "totalProblems": 118,
+        "problemCount": 118,
+        "chapterCount": 6
       }
     ]
   }
