@@ -1,6 +1,19 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+<script>
+(function() {
+  try {
+    var k = 'teacher_book_custom_new_tech_jangmun';
+    var v = localStorage.getItem(k);
+    if (v && v.indexOf('10. 빈축') === -1) {
+      localStorage.removeItem(k);
+      console.log('[AUTO-PURGE] Outdated jangmun cache purged from localStorage');
+    }
+  } catch(e) {}
+})();
+</script>
+
   <style>[hidden]{display:none!important;}</style>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +23,7 @@
 <title>🎓 Teaching Zone — 바둑스쿨 교재 사령탑</title>
 <link rel="preload" as="image" href="images/board_wood_grain.png">
 
-<link rel="stylesheet" href="style.css?v=force_1794238139">
+<link rel="stylesheet" href="style.css?v=force_purge_1794239858">
 <link rel="stylesheet" href="/unified-nav.css?v=20261103-nav-v11">
 <script src="/unified-nav.js?v=20261103-nav-v11" defer></script>
 </head>
@@ -383,7 +396,7 @@
 
 
 <script src="audio.js?v=20261028-solidwood&t=teacher-panel-v15"></script>
-<script src="app.js?v=force_1794238139"></script>
+<script src="app.js?v=force_purge_1794239858"></script>
 
 </body>
 </html>
