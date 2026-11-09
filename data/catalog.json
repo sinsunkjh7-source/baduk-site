@@ -14973,12 +14973,15 @@
         "chapters": [
           {
             "title": "1. 장문 기초 (24제)"
+          },
+          {
+            "title": "2. 한 칸 응용 장문 (24제)"
           }
         ],
         "name": "장문",
-        "totalProblems": 24,
-        "problemCount": 24,
-        "chapterCount": 1
+        "totalProblems": 48,
+        "problemCount": 48,
+        "chapterCount": 2
       }
     ]
   }
