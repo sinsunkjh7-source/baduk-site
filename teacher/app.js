@@ -143,6 +143,70 @@
 
   /* ---------- 토스트 ---------- */
   var toastTimer = null;
+
+  function showToast(msg) {
+    if (!msg) return;
+    var el = document.getElementById('teacherToast');
+    if (!el) {
+      console.log('[Toast]', msg);
+      return;
+    }
+    el.textContent = msg;
+    el.hidden = false;
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { el.hidden = true; }, 1600);
+  }
+  window.showToast = showToast;
+
+  function getBookCode() {
+    if (state.currentBook && state.currentBook.bookCode) return state.currentBook.bookCode;
+    return bookSelect ? bookSelect.value : '';
+  }
+
+  function saveCustomBookState(statusText) {
+    var code = getBookCode();
+    if (!code || !state.currentBook) return;
+    if (code === 'new_tech_chuk') {
+      state.currentBook._buildVer = 'v16-ch5-teacher-final-126';
+    }
+    if (typeof updateBookOptionCountUI === 'function') {
+      updateBookOptionCountUI(code, state.currentBook);
+    }
+    try {
+      localStorage.setItem('teacher_book_custom_' + code, JSON.stringify(state.currentBook));
+    } catch (e) {
+      console.error('Failed to save custom book to localStorage:', e);
+    }
+    var badge = document.getElementById('pedSaveBadge');
+    if (badge) {
+      badge.textContent = '✓ ' + (statusText || '변경사항 자동저장됨');
+      badge.style.color = '#059669';
+    }
+  }
+  window.saveCustomBookState = saveCustomBookState;
+
+  function saveCustomBookToLocalStorage(msg) {
+    saveCustomBookState(msg || '변경사항 저장됨');
+  }
+  window.saveCustomBookToLocalStorage = saveCustomBookToLocalStorage;
+
+  function exportCustomBookJson() {
+    if (!state.currentBook) return;
+    var code = getBookCode() || 'custom';
+    var blob = new Blob([JSON.stringify(state.currentBook, null, 2)], { type: 'application/json;charset=utf-8' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = 'book_' + code + '.json';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    saveCustomBookState('book_' + code + '.json 다운로드됨');
+    showToast('교재 JSON 파일이 다운로드되었습니다.');
+  }
+  window.exportCustomBookJson = exportCustomBookJson;
+
   function toast(msg) {
     if (!msg) return;
     // 🌟 [원장님 지침] 정답, 오답 외의 모든 안내 팝업 문구 원천 차단
@@ -306,7 +370,7 @@
         var savedCustom = localStorage.getItem('teacher_book_custom_' + code);
         if (savedCustom) {
           var customData = JSON.parse(savedCustom);
-          if ((code === 'tech_atari' && customData._buildVer !== 'v2-clean') || (code === 'new_tech_chokchoksu' && customData._buildVer !== 'v23-ch8-teacher-clean-200') || (code === 'new_tech_chuk' && customData._buildVer !== 'v17-ch6-138') || (code === 'new_tech_jangmun' && customData._buildVer !== 'v14-ch1-3-clean-73')) { localStorage.removeItem('teacher_book_custom_' + code); } else if (customData && Array.isArray(customData.chapters) && (customData.totalProblems > 0 || customData.chapters.some(function(c){ return (c.problems||[]).length > 0; }))) {
+          if ((code === 'tech_atari' && customData._buildVer !== 'v2-clean') || (code === 'new_tech_chokchoksu' && customData._buildVer !== 'v23-ch8-teacher-clean-200') || (code === 'new_tech_chuk' && customData._buildVer !== 'v17-ch6-138') || (code === 'new_tech_jangmun' && customData._buildVer !== 'v15-reorder-fixed')) { localStorage.removeItem('teacher_book_custom_' + code); } else if (customData && Array.isArray(customData.chapters) && (customData.totalProblems > 0 || customData.chapters.some(function(c){ return (c.problems||[]).length > 0; }))) {
             customData.bookCode = code;
             state.currentBook = customData;
             currentBookTitle.textContent = customData.book || customData.title || ('교재 ' + code);
@@ -2356,9 +2420,6 @@
       state.currentBook._buildVer = 'v16-ch5-teacher-final-126';
     }
     updateBookOptionCountUI(code, state.currentBook);
-  function saveCustomBookToLocalStorage(msg) {
-    saveCustomBookState(msg || '변경사항 저장됨');
-  }
 
     try {
       localStorage.setItem('teacher_book_custom_' + code, JSON.stringify(state.currentBook));
