@@ -17036,59 +17036,62 @@
           {
             "code": "1001",
             "title": "1. 장문 기초 (24제)",
+            "name": "1. 장문 기초 (24제)",
             "problemCount": 24
           },
           {
-            "code": "2001",
+            "code": "2002",
             "title": "2. 한 칸 응용 장문 (24제)",
+            "name": "2. 한 칸 응용 장문 (24제)",
             "problemCount": 24
           },
           {
-            "code": "3001",
+            "code": "3003",
             "title": "3. 젖혀서 장문 (25제)",
+            "name": "3. 젖혀서 장문 (25제)",
             "problemCount": 25
           },
           {
-            "code": "4001",
+            "code": "4004",
             "title": "4. 입구자(마늘모) 장문 (12제)",
+            "name": "4. 입구자(마늘모) 장문 (12제)",
             "problemCount": 12
           },
           {
-            "code": "5001",
+            "code": "5005",
             "title": "5. 날일자 장문 (9제)",
+            "name": "5. 날일자 장문 (9제)",
             "problemCount": 9
           },
           {
-            "code": "6001",
+            "code": "6006",
             "title": "6. 단수친 후 장문 (24제)",
+            "name": "6. 단수친 후 장문 (24제)",
             "problemCount": 24
           },
           {
-            "code": "7001",
+            "code": "7007",
             "title": "7. 수상전의 장문 (26제)",
+            "name": "7. 수상전의 장문 (26제)",
             "problemCount": 26
           },
           {
-            "code": "1001",
+            "code": "8008",
             "title": "8. 장문의 맥 (26제)",
+            "name": "8. 장문의 맥 (26제)",
             "problemCount": 26
           },
           {
-            "code": "9001",
-            "title": "9. 회돌이와 장문 (26제)",
-            "problemCount": 26,
-            "name": "9. 회돌이와 장문 (26제)"
-          },
-          {
-            "code": "10001",
-            "title": "10. 빈축과 장문 (28제)",
-            "problemCount": 28
+            "code": "9009",
+            "title": "9. 회돌이와 장문 (9제)",
+            "name": "9. 회돌이와 장문 (9제)",
+            "problemCount": 9
           }
         ],
         "name": "장문",
-        "totalProblems": 224,
-        "problemCount": 224,
-        "chapterCount": 10
+        "totalProblems": 179,
+        "problemCount": 179,
+        "chapterCount": 9
       }
     ]
   }
