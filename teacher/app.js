@@ -3168,6 +3168,33 @@
         meta.textContent = moveCount > 0 ? (moveCount + '수') : '';
         header.appendChild(meta);
 
+        var btnGroup = document.createElement('div');
+        btnGroup.className = 'prob-card-btn-group';
+
+        var moveLeftBtn = document.createElement('button');
+        moveLeftBtn.type = 'button';
+        moveLeftBtn.className = 'prob-card-move-btn';
+        moveLeftBtn.textContent = '◀';
+        moveLeftBtn.title = '앞으로 한 칸 이동';
+        if (idx === 0) moveLeftBtn.disabled = true;
+        moveLeftBtn.addEventListener('click', function (e) {
+          e.stopPropagation();
+          reorderProblem(idx, idx - 1);
+        });
+        btnGroup.appendChild(moveLeftBtn);
+
+        var moveRightBtn = document.createElement('button');
+        moveRightBtn.type = 'button';
+        moveRightBtn.className = 'prob-card-move-btn';
+        moveRightBtn.textContent = '▶';
+        moveRightBtn.title = '뒤로 한 칸 이동';
+        if (idx === state.currentProblems.length - 1) moveRightBtn.disabled = true;
+        moveRightBtn.addEventListener('click', function (e) {
+          e.stopPropagation();
+          reorderProblem(idx, idx + 1);
+        });
+        btnGroup.appendChild(moveRightBtn);
+
         var delBtn = document.createElement('button');
         delBtn.type = 'button';
         delBtn.className = 'prob-card-del';
@@ -3177,7 +3204,9 @@
           e.stopPropagation();
           deleteCardAt(idx);
         });
-        header.appendChild(delBtn);
+        btnGroup.appendChild(delBtn);
+
+        header.appendChild(btnGroup);
 
         card.appendChild(header);
 
@@ -3199,8 +3228,11 @@
         card.appendChild(footer);
 
         // Drag and drop events
+        var hasDragged = false;
         card.addEventListener('dragstart', function (e) {
           draggedIdx = idx;
+          hasDragged = true;
+          window._isCardDragging = true;
           card.classList.add('dragging');
           e.dataTransfer.effectAllowed = 'move';
           try { e.dataTransfer.setData('text/plain', String(idx)); } catch (err) {}
@@ -3211,31 +3243,39 @@
           document.querySelectorAll('.prob-card.drag-over').forEach(function (el) {
             el.classList.remove('drag-over');
           });
-          draggedIdx = null;
+          setTimeout(function() {
+            window._isCardDragging = false;
+            draggedIdx = null;
+          }, 100);
         });
 
         card.addEventListener('dragover', function (e) {
           e.preventDefault();
           e.dataTransfer.dropEffect = 'move';
-          card.classList.add('drag-over');
+          if (!card.classList.contains('drag-over')) {
+            card.classList.add('drag-over');
+          }
         });
 
-        card.addEventListener('dragleave', function () {
-          card.classList.remove('drag-over');
+        card.addEventListener('dragleave', function (e) {
+          if (!card.contains(e.relatedTarget)) {
+            card.classList.remove('drag-over');
+          }
         });
 
         card.addEventListener('drop', function (e) {
           e.preventDefault();
           card.classList.remove('drag-over');
-          var from = draggedIdx;
+          var from = (draggedIdx !== null) ? draggedIdx : parseInt(e.dataTransfer.getData('text/plain'), 10);
           var to = idx;
-          if (from !== null && from !== to) {
+          if (!isNaN(from) && from !== null && from !== to) {
             reorderProblem(from, to);
           }
         });
 
         // Click on card to open in main board
-        card.addEventListener('click', function () {
+        card.addEventListener('click', function (e) {
+          if (window._isCardDragging) return;
           closeModal();
           loadProblem(idx);
         });

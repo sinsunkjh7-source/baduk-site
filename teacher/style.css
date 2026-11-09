@@ -1496,6 +1496,52 @@ html, body {
   transform: scale(0.96);
   border: 2px dashed #3b82f6;
 }
+
+.prob-card canvas,
+.prob-card-header,
+.prob-card-badge,
+.prob-card-meta,
+.prob-card-footer,
+.prob-card-source {
+  pointer-events: none;
+}
+
+.prob-card-btn-group {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  pointer-events: auto;
+}
+.prob-card-move-btn {
+  border: 1px solid #cbd5e1;
+  background: #f8fafc;
+  color: #475569;
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 18px;
+  text-align: center;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.15s;
+  pointer-events: auto;
+}
+.prob-card-move-btn:hover:not(:disabled) {
+  background: #2563eb;
+  color: #ffffff;
+  border-color: #2563eb;
+}
+.prob-card-move-btn:disabled {
+  opacity: 0.25;
+  cursor: not-allowed;
+}
+
+.prob-card-del {
+  pointer-events: auto;
+}
+
 .prob-card.drag-over {
   border-color: #10b981;
   background: #ecfdf5;
@@ -1526,6 +1572,39 @@ html, body {
   font-weight: 700;
   color: #64748b;
 }
+
+.prob-card-btn-group {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  pointer-events: auto;
+}
+.prob-card-move-btn {
+  border: 1px solid #cbd5e1;
+  background: #f8fafc;
+  color: #475569;
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 18px;
+  text-align: center;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.15s;
+  pointer-events: auto;
+}
+.prob-card-move-btn:hover:not(:disabled) {
+  background: #2563eb;
+  color: #ffffff;
+  border-color: #2563eb;
+}
+.prob-card-move-btn:disabled {
+  opacity: 0.25;
+  cursor: not-allowed;
+}
+
 .prob-card-del {
   border: none;
   background: #fee2e2;
