@@ -14990,12 +14990,17 @@
             "code": "4001",
             "title": "4. 날일자 장문 (5제)",
             "problemCount": 5
+          },
+          {
+            "code": "5001",
+            "title": "5. 입구자(마늘모) 장문 (18제)",
+            "problemCount": 18
           }
         ],
         "name": "장문",
-        "totalProblems": 78,
-        "problemCount": 78,
-        "chapterCount": 4
+        "totalProblems": 96,
+        "problemCount": 96,
+        "chapterCount": 5
       }
     ]
   }
