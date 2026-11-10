@@ -15103,9 +15103,9 @@
         "name": "먹여치기",
         "code": "new_tech_meokyeochigi",
         "file": "book_new_tech_meokyeochigi.json",
-        "totalProblems": 148,
-        "problemCount": 148,
-        "chapterCount": 6,
+        "totalProblems": 172,
+        "problemCount": 172,
+        "chapterCount": 7,
         "chapters": [
           {
             "code": "1001",
@@ -15142,6 +15142,12 @@
             "title": "6. 두 번 먹여치기 (26제)",
             "name": "6. 두 번 먹여치기 (26제)",
             "problemCount": 26
+          },
+          {
+            "code": "7007",
+            "title": "7. 먹여쳐서 옥집 만들기 (24제)",
+            "name": "7. 먹여쳐서 옥집 만들기 (24제)",
+            "problemCount": 24
           }
         ]
       }
