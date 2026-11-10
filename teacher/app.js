@@ -770,10 +770,10 @@
 
         if (isO && !isX) {
           btnClass += ' choice-o';
-          label = '⭕ ' + rawItem + (rawItem === '○' || rawItem.toUpperCase() === 'O' ? ' (착수 가능)' : '');
+          label = (rawItem === '○' || rawItem.toUpperCase() === 'O') ? '⭕ (착수 가능)' : ('⭕ ' + rawItem);
         } else if (isX) {
           btnClass += ' choice-x';
-          label = '❌ ' + rawItem + (rawItem === 'Χ' || rawItem === '×' || rawItem.toUpperCase() === 'X' ? ' (착수금지)' : '');
+          label = (rawItem === 'Χ' || rawItem === '×' || rawItem.toUpperCase() === 'X') ? '❌ (착수금지)' : ('❌ ' + rawItem);
         } else {
           label = (idx + 1) + '. ' + rawItem;
         }
