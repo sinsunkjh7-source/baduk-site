@@ -17348,37 +17348,49 @@
         "name": "사활",
         "code": "new_tech_sahwal",
         "file": "book_new_tech_sahwal.json",
-        "totalProblems": 182,
+        "totalProblems": 208,
         "problemCount": 280,
-        "chapterCount": 10,
+        "chapterCount": 8,
         "chapters": [
           {
+            "chapter": 1,
             "title": "1. 사는 수-막아서 두 집 내기 (26제)",
-            "count": 26
+            "problemsCount": 26
           },
           {
+            "chapter": 2,
             "title": "2. 잡는 수-밀어서 두 집 없애기 (26제)",
-            "count": 26
+            "problemsCount": 26
           },
           {
+            "chapter": 3,
             "title": "3. 궁도사활1 — 3궁 살리기와 잡기 (26제)",
-            "count": 26
+            "problemsCount": 26
           },
           {
+            "chapter": 4,
             "title": "4. 궁도사활2 — 4궁 살리기와 잡기 (26제)",
-            "count": 26
+            "problemsCount": 26
           },
           {
+            "chapter": 5,
             "title": "5. 궁도사활3 — 5궁 살리기와 잡기 (26제)",
-            "count": 26
+            "problemsCount": 26
           },
           {
+            "chapter": 6,
             "title": "6. 궁도사활4 — 6궁 살리기와 잡기 (26제)",
-            "count": 26
+            "problemsCount": 26
           },
           {
+            "chapter": 7,
             "title": "7. 궁도사활5 — 심화 궁도사활 (오궁도화·매화6궁·판6궁·실전궁도) (26제)",
-            "count": 26
+            "problemsCount": 26
+          },
+          {
+            "chapter": 8,
+            "title": "8. 옥집사활1 — 기초 옥집 (찌르고 막기) (26제)",
+            "problemsCount": 26
           }
         ]
       }
