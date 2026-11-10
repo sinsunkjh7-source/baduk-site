@@ -17230,9 +17230,9 @@
         "name": "패",
         "code": "new_tech_pae",
         "file": "book_new_tech_pae.json",
-        "totalProblems": 152,
-        "problemCount": 152,
-        "chapterCount": 6,
+        "totalProblems": 204,
+        "problemCount": 204,
+        "chapterCount": 8,
         "chapters": [
           {
             "code": "1001",
@@ -17269,6 +17269,18 @@
             "title": "6. 수상전-선패와 후패 (24제)",
             "name": "6. 수상전-선패와 후패 (24제)",
             "problemCount": 24
+          },
+          {
+            "code": "7007",
+            "title": "7. 사활-패로 살리기 (26제)",
+            "name": "7. 사활-패로 살리기 (26제)",
+            "problemCount": 26
+          },
+          {
+            "code": "8008",
+            "title": "8. 사활-패로 잡기 (26제)",
+            "name": "8. 사활-패로 잡기 (26제)",
+            "problemCount": 26
           }
         ]
       }
