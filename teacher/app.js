@@ -425,8 +425,8 @@
     chapters.forEach(function (ch, idx) {
       var opt = document.createElement('option');
       opt.value = idx;
-      var rawChTitle = ch.chapter || ch.title || ('제 ' + (idx + 1) + '단원');
-      opt.textContent = rawChTitle.replace(/\s*\(\s*\d+\s*[^)]*\)\s*$/, '');
+      var rawChTitle = (typeof ch.title === 'string' && ch.title) || (typeof ch.chapter === 'string' && ch.chapter) || String(ch.chapter || ch.title || ('제 ' + (idx + 1) + '단원'));
+      opt.textContent = String(rawChTitle).replace(/\s*\(\s*\d+\s*[^)]*\)\s*$/, '');
       chapterSelect.appendChild(opt);
     });
 
