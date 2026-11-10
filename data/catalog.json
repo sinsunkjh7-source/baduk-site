@@ -15286,9 +15286,9 @@
         "name": "사활",
         "code": "new_tech_sahwal",
         "file": "book_new_tech_sahwal.json",
-        "totalProblems": 208,
-        "problemCount": 208,
-        "chapterCount": 8,
+        "totalProblems": 234,
+        "problemCount": 234,
+        "chapterCount": 9,
         "chapters": [
           {
             "chapter": 1,
@@ -15329,9 +15329,14 @@
             "chapter": 8,
             "title": "8. 옥집사활1 — 기초 옥집 (찌르고 막기) (26제)",
             "problemsCount": 26
+          },
+          {
+            "chapter": 9,
+            "title": "9. 옥집사활2 — 초급 옥집 (찝기와 단수) (26제)",
+            "problemsCount": 26
           }
         ],
-        "_buildVer": "v16-sahwal-8ch-208probs-okjip1-clean"
+        "_buildVer": "v17-sahwal-9ch-234probs-okjip2"
       }
     ]
   }

@@ -16,7 +16,7 @@
     if (v2) {
       try {
         var p2 = JSON.parse(v2);
-        if (!p2.chapters || p2.chapters.length !== 8 || p2._buildVer !== 'v16-sahwal-8ch-208probs-okjip1-clean' || p2.chapters.some(function(c){ return !c.problems || c.problems.length === 0; })) {
+        if (!p2.chapters || p2.chapters.length !== 9 || p2._buildVer !== 'v17-sahwal-9ch-234probs-okjip2' || p2.chapters.some(function(c){ return !c.problems || c.problems.length === 0; })) {
           localStorage.removeItem(k2);
           console.log('[AUTO-PURGE] Outdated sahwal cache purged from localStorage');
         }
@@ -37,7 +37,7 @@
 <title>🎓 Teaching Zone — 바둑스쿨 교재 사령탑</title>
 <link rel="preload" as="image" href="images/board_wood_grain.png">
 
-<link rel="stylesheet" href="style.css?v=v67-sahwal-8ch-208p-1794310000">
+<link rel="stylesheet" href="style.css?v=v68-sahwal-9ch-234p-1794311000">
 <link rel="stylesheet" href="/unified-nav.css?v=20261103-nav-v11">
 <script src="/unified-nav.js?v=20261103-nav-v11" defer></script>
 </head>
@@ -423,7 +423,7 @@
 
 
 <script src="audio.js?v=20261028-solidwood&t=teacher-panel-v15"></script>
-<script src="app.js?v=v67-sahwal-8ch-208p-1794310000"></script>
+<script src="app.js?v=v68-sahwal-9ch-234p-1794311000"></script>
 
 </body>
 </html>
