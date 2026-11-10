@@ -15245,9 +15245,9 @@
         "name": "착수금지",
         "code": "new_tech_chaksu_geumji",
         "file": "book_new_tech_chaksu_geumji.json",
-        "totalProblems": 52,
-        "problemCount": 52,
-        "chapterCount": 2,
+        "totalProblems": 94,
+        "problemCount": 94,
+        "chapterCount": 4,
         "chapters": [
           {
             "code": "1001",
@@ -15259,6 +15259,18 @@
             "code": "2002",
             "title": "2. 따내는 착수 vs 착수금지 (26제)",
             "name": "2. 따내는 착수 vs 착수금지 (26제)",
+            "problemCount": 26
+          },
+          {
+            "code": "3003",
+            "title": "3. 착수금지를 이용해 살리기 (16제)",
+            "name": "3. 착수금지를 이용해 살리기 (16제)",
+            "problemCount": 16
+          },
+          {
+            "code": "4004",
+            "title": "4. 사는 수-착수금지로 두 집 내기 (26제)",
+            "name": "4. 사는 수-착수금지로 두 집 내기 (26제)",
             "problemCount": 26
           }
         ]
