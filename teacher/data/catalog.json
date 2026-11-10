@@ -17165,9 +17165,9 @@
         "name": "먹여치기",
         "code": "new_tech_meokyeochigi",
         "file": "book_new_tech_meokyeochigi.json",
-        "totalProblems": 200,
-        "problemCount": 200,
-        "chapterCount": 8,
+        "totalProblems": 224,
+        "problemCount": 224,
+        "chapterCount": 9,
         "chapters": [
           {
             "code": "1001",
@@ -17216,6 +17216,12 @@
             "title": "8. 사활-먹여쳐서 잡기 (28제)",
             "name": "8. 사활-먹여쳐서 잡기 (28제)",
             "problemCount": 28
+          },
+          {
+            "code": "9009",
+            "title": "9. 심화 실전 사활 (24제)",
+            "name": "9. 심화 실전 사활 (24제)",
+            "problemCount": 24
           }
         ]
       }
