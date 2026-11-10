@@ -15162,6 +15162,23 @@
             "problemCount": 24
           }
         ]
+      },
+      {
+        "title": "패",
+        "name": "패",
+        "code": "new_tech_pae",
+        "file": "book_new_tech_pae.json",
+        "totalProblems": 24,
+        "problemCount": 24,
+        "chapterCount": 1,
+        "chapters": [
+          {
+            "code": "1001",
+            "title": "1. 기초 패 따내기 (24제)",
+            "name": "1. 기초 패 따내기 (24제)",
+            "problemCount": 24
+          }
+        ]
       }
     ]
   }
