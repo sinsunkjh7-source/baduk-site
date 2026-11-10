@@ -3173,6 +3173,7 @@
     var btnSave = document.getElementById('btnGridSave');
     var btnExport = document.getElementById('btnGridExport');
     var btnAddProb = document.getElementById('btnGridAddProb');
+    var btnFullscreen = document.getElementById('btnGridFullscreen');
     var container = document.getElementById('probGridCards');
 
     var draggedIdx = null;
@@ -3189,6 +3190,16 @@
 
     function closeModal() {
       if (!modal) return;
+      if (modal.classList.contains('is-fullscreen')) {
+        modal.classList.remove('is-fullscreen');
+        if (btnFullscreen) {
+          btnFullscreen.innerHTML = '⛶ 전체화면';
+          btnFullscreen.title = '모아보기 창을 화면 전체로 확대';
+        }
+        if (document.exitFullscreen && document.fullscreenElement) {
+          document.exitFullscreen().catch(function () {});
+        }
+      }
       modal.setAttribute('hidden', 'true');
     }
 
@@ -3530,6 +3541,35 @@
         showToast('✓ 현재 문제 순서 및 내용이 저장되었습니다.');
       });
     }
+
+        if (btnFullscreen) {
+      btnFullscreen.addEventListener('click', function () {
+        var isFs = modal.classList.toggle('is-fullscreen');
+        if (isFs) {
+          btnFullscreen.innerHTML = '🗗 창 복원';
+          btnFullscreen.title = '원래 창 크기로 복원';
+          if (document.documentElement.requestFullscreen && !document.fullscreenElement) {
+            document.documentElement.requestFullscreen().catch(function () {});
+          }
+        } else {
+          btnFullscreen.innerHTML = '⛶ 전체화면';
+          btnFullscreen.title = '모아보기 창을 화면 전체로 확대';
+          if (document.exitFullscreen && document.fullscreenElement) {
+            document.exitFullscreen().catch(function () {});
+          }
+        }
+      });
+    }
+
+    document.addEventListener('fullscreenchange', function () {
+      if (!document.fullscreenElement && modal.classList.contains('is-fullscreen')) {
+        modal.classList.remove('is-fullscreen');
+        if (btnFullscreen) {
+          btnFullscreen.innerHTML = '⛶ 전체화면';
+          btnFullscreen.title = '모아보기 창을 화면 전체로 확대';
+        }
+      }
+    });
 
     if (btnExport) {
       btnExport.addEventListener('click', function () {

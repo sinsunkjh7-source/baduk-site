@@ -1653,3 +1653,19 @@ html, body {
   text-overflow: ellipsis;
   max-width: 90px;
 }
+
+/* 🌟 문제 모아보기 전체화면 모드 🌟 */
+.prob-grid-modal.is-fullscreen {
+  padding: 0 !important;
+}
+.prob-grid-modal.is-fullscreen .prob-grid-window {
+  width: 100vw !important;
+  max-width: 100vw !important;
+  height: 100vh !important;
+  max-height: 100vh !important;
+  border-radius: 0 !important;
+  border: none !important;
+}
+.prob-grid-modal.is-fullscreen .prob-grid-content {
+  padding: 16px 24px !important;
+}
