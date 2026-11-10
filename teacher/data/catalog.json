@@ -17301,6 +17301,29 @@
             "problemCount": 24
           }
         ]
+      },
+      {
+        "title": "착수금지",
+        "name": "착수금지",
+        "code": "new_tech_chaksu_geumji",
+        "file": "book_new_tech_chaksu_geumji.json",
+        "totalProblems": 52,
+        "problemCount": 52,
+        "chapterCount": 2,
+        "chapters": [
+          {
+            "code": "1001",
+            "title": "1. 기초 착수금지 판별 (26제)",
+            "name": "1. 기초 착수금지 판별 (26제)",
+            "problemCount": 26
+          },
+          {
+            "code": "2002",
+            "title": "2. 따내는 착수 vs 착수금지 (26제)",
+            "name": "2. 따내는 착수 vs 착수금지 (26제)",
+            "problemCount": 26
+          }
+        ]
       }
     ]
   }
