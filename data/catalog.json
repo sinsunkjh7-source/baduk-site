@@ -15286,69 +15286,33 @@
         "name": "사활",
         "code": "new_tech_sahwal",
         "file": "book_new_tech_sahwal.json",
-        "totalProblems": 280,
+        "totalProblems": 156,
         "problemCount": 280,
         "chapterCount": 10,
         "chapters": [
           {
-            "code": "1001",
             "title": "1. 사는 수-막아서 두 집 내기 (26제)",
-            "name": "1. 사는 수-막아서 두 집 내기 (26제)",
-            "problemCount": 26
+            "count": 26
           },
           {
-            "code": "2002",
             "title": "2. 잡는 수-밀어서 두 집 없애기 (26제)",
-            "name": "2. 잡는 수-밀어서 두 집 없애기 (26제)",
-            "problemCount": 26
+            "count": 26
           },
           {
-            "code": "3003",
-            "title": "3. 궁도사활1 — 3궁 살리기 (32제)",
-            "name": "3. 궁도사활1 — 3궁 살리기 (32제)",
-            "problemCount": 32
+            "title": "3. 궁도사활1 — 3궁 살리기와 잡기 (26제)",
+            "count": 26
           },
           {
-            "code": "4004",
-            "title": "4. 궁도사활1 — 3궁 잡기 (32제)",
-            "name": "4. 궁도사활1 — 3궁 잡기 (32제)",
-            "problemCount": 32
+            "title": "4. 궁도사활2 — 4궁 살리기와 잡기 (26제)",
+            "count": 26
           },
           {
-            "code": "5005",
-            "title": "5. 궁도사활2 — 4궁 살리기 (26제)",
-            "name": "5. 궁도사활2 — 4궁 살리기 (26제)",
-            "problemCount": 26
+            "title": "5. 궁도사활3 — 5궁 살리기와 잡기 (26제)",
+            "count": 26
           },
           {
-            "code": "6006",
-            "title": "6. 궁도사활2 — 4궁 잡기 (26제)",
-            "name": "6. 궁도사활2 — 4궁 잡기 (26제)",
-            "problemCount": 26
-          },
-          {
-            "code": "7007",
-            "title": "7. 궁도사활3 — 5궁 살리기 (26제)",
-            "name": "7. 궁도사활3 — 5궁 살리기 (26제)",
-            "problemCount": 26
-          },
-          {
-            "code": "8008",
-            "title": "8. 궁도사활3 — 5궁 잡기 (26제)",
-            "name": "8. 궁도사활3 — 5궁 잡기 (26제)",
-            "problemCount": 26
-          },
-          {
-            "code": "9009",
-            "title": "9. 궁도사활4 — 6궁 살리기 (24제)",
-            "name": "9. 궁도사활4 — 6궁 살리기 (24제)",
-            "problemCount": 24
-          },
-          {
-            "code": "10010",
-            "title": "10. 궁도사활4 — 6궁 잡기 (36제)",
-            "name": "10. 궁도사활4 — 6궁 잡기 (36제)",
-            "problemCount": 36
+            "title": "6. 궁도사활4 — 6궁 살리기와 잡기 (26제)",
+            "count": 26
           }
         ]
       }
