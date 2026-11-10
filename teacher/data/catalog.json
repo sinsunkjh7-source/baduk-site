@@ -17307,9 +17307,9 @@
         "name": "착수금지",
         "code": "new_tech_chaksu_geumji",
         "file": "book_new_tech_chaksu_geumji.json",
-        "totalProblems": 94,
-        "problemCount": 94,
-        "chapterCount": 4,
+        "totalProblems": 142,
+        "problemCount": 142,
+        "chapterCount": 6,
         "chapters": [
           {
             "code": "1001",
@@ -17334,6 +17334,18 @@
             "title": "4. 사는 수-착수금지로 두 집 내기 (26제)",
             "name": "4. 사는 수-착수금지로 두 집 내기 (26제)",
             "problemCount": 26
+          },
+          {
+            "code": "5005",
+            "title": "5. 실전 착수금지 사활 (24제)",
+            "name": "5. 실전 착수금지 사활 (24제)",
+            "problemCount": 24
+          },
+          {
+            "code": "6006",
+            "title": "6. 착수금지 생환 맥점 (24제)",
+            "name": "6. 착수금지 생환 맥점 (24제)",
+            "problemCount": 24
           }
         ]
       }
