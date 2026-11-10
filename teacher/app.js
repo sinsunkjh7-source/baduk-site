@@ -3061,18 +3061,7 @@
     var btnExport = document.getElementById('btnPedExportJson');
     if (btnExport) {
       btnExport.addEventListener('click', function () {
-        if (!state.currentBook) return;
-        var code = getBookCode() || 'custom';
-        var blob = new Blob([JSON.stringify(state.currentBook, null, 2)], { type: 'application/json;charset=utf-8' });
-        var url = URL.createObjectURL(blob);
-        var a = document.createElement('a');
-        a.href = url;
-        a.download = 'book_' + code + '.json';
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        URL.revokeObjectURL(url);
-        saveCustomBookState('book_' + code + '.json 다운로드됨');
+        exportCustomBookJson();
       });
     }
 
