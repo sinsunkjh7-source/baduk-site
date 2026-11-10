@@ -23,7 +23,7 @@
 <title>🎓 Teaching Zone — 바둑스쿨 교재 사령탑</title>
 <link rel="preload" as="image" href="images/board_wood_grain.png">
 
-<link rel="stylesheet" href="style.css?v=v47-stone1-boardonly-1794289248">
+<link rel="stylesheet" href="style.css?v=v49-no-overlap-1794289800">
 <link rel="stylesheet" href="/unified-nav.css?v=20261103-nav-v11">
 <script src="/unified-nav.js?v=20261103-nav-v11" defer></script>
 </head>
@@ -56,15 +56,9 @@
 
     <!-- 메인 대형 수업 바둑판 영역 (화면 정중앙 고정) -->
     <main class="teacher-stage">
-      
-
-
       <!-- 대형 수업 바둑판 캔버스 -->
       <div class="board-container" id="boardContainer">
         <canvas id="teachingBoard"></canvas>
-
-        <!-- 🌟 O X 및 객관식 선택 버튼 오버레이 (바둑판 하단) 🌟 -->
-        <div class="board-choice-overlay" id="boardChoiceContainer" hidden></div>
 
         <!-- 🌟 차분하고 품격 있는 바둑판 옆 피드백 카드 (정답 / 오답) 🌟 -->
         <div id="sideFeedbackCard" class="side-feedback-card" hidden>
@@ -73,10 +67,8 @@
         </div>
       </div>
 
-
-
-
-
+      <!-- 🌟 O X 및 객관식 선택 버튼 영역 (바둑판 하단에 별도 배치되어 바둑판/1선을 절대 가리지 않음) 🌟 -->
+      <div class="board-choice-container" id="boardChoiceContainer" hidden></div>
     </main>
 
     <!-- 사이드바: 12개 시리즈 및 166권 교재 선택 -->
@@ -417,7 +409,7 @@
 
 
 <script src="audio.js?v=20261028-solidwood&t=teacher-panel-v15"></script>
-<script src="app.js?v=v48-single-ox-1794289555"></script>
+<script src="app.js?v=v49-no-overlap-1794289800"></script>
 
 </body>
 </html>

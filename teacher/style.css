@@ -1688,25 +1688,32 @@ html, body {
   flex-wrap: wrap;
 }
 
+/* 🌟 바둑판 하단 O/X 및 객관식 선택 버튼 영역 (바둑판 외부에 독립 배치하여 1선 돌 가림 완전 방지) 🌟 */
+.board-choice-container,
 .board-choice-overlay {
-  position: absolute;
-  bottom: 24px;
-  left: 50%;
-  transform: translateX(-50%);
   display: flex;
   justify-content: center;
   align-items: center;
+  flex: 0 0 auto;
   gap: 16px;
-  padding: 10px 18px;
-  background: rgba(255, 255, 255, 0.94);
+  padding: 8px 18px;
+  margin-top: 8px;
+  margin-bottom: 2px;
+  background: rgba(255, 255, 255, 0.96);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border: 1.5px solid rgba(226, 232, 240, 0.9);
-  border-radius: 20px;
-  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.18), 0 2px 6px rgba(0, 0, 0, 0.08);
-  z-index: 50;
+  border: 1.5px solid rgba(203, 213, 225, 0.9);
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.08), 0 1px 3px rgba(0, 0, 0, 0.04);
+  z-index: 20;
   max-width: 90%;
-  transition: all 0.25s ease;
+  align-self: center;
+  transition: all 0.2s ease;
+}
+
+.board-choice-container[hidden],
+.board-choice-overlay[hidden] {
+  display: none !important;
 }
 
 .board-choice-row {

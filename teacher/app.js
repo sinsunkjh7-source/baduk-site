@@ -886,11 +886,11 @@
       moves: []
     }];
     state.historyIndex = 0;
+    if (typeof renderChoiceButtons === 'function') renderChoiceButtons(p);
     layoutBoard();
     if (typeof updatePlacementUI === 'function') updatePlacementUI();
     if (typeof syncProbEditDrawerUI === 'function') syncProbEditDrawerUI();
     drawBoard();
-    if (typeof renderChoiceButtons === 'function') renderChoiceButtons(p);
   }
 
   /* ---------- 🌟 원 교재 규격 판별 (가로선 9, 세로선 10 / 열린 선) ---------- */
