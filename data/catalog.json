@@ -15037,9 +15037,9 @@
         "name": "환격",
         "code": "new_tech_hwangyeok",
         "file": "book_new_tech_hwangyeok.json",
-        "totalProblems": 190,
-        "problemCount": 190,
-        "chapterCount": 7,
+        "totalProblems": 216,
+        "problemCount": 216,
+        "chapterCount": 8,
         "chapters": [
           {
             "code": "1001",
@@ -15081,6 +15081,12 @@
             "code": "7007",
             "title": "7. 두 번 먹여치는 환격 (26제)",
             "name": "7. 두 번 먹여치는 환격 (26제)",
+            "problemCount": 26
+          },
+          {
+            "code": "8008",
+            "title": "8. 수상전의 환격 (26제)",
+            "name": "8. 수상전의 환격 (26제)",
             "problemCount": 26
           }
         ]
