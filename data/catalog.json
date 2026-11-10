@@ -15168,15 +15168,33 @@
         "name": "패",
         "code": "new_tech_pae",
         "file": "book_new_tech_pae.json",
-        "totalProblems": 24,
-        "problemCount": 24,
-        "chapterCount": 1,
+        "totalProblems": 102,
+        "problemCount": 102,
+        "chapterCount": 4,
         "chapters": [
           {
             "code": "1001",
             "title": "1. 기초 패 따내기 (24제)",
             "name": "1. 기초 패 따내기 (24제)",
             "problemCount": 24
+          },
+          {
+            "code": "2002",
+            "title": "2. 패 연결 (26제)",
+            "name": "2. 패 연결 (26제)",
+            "problemCount": 26
+          },
+          {
+            "code": "3003",
+            "title": "3. 패 끊음 (26제)",
+            "name": "3. 패 끊음 (26제)",
+            "problemCount": 26
+          },
+          {
+            "code": "4004",
+            "title": "4. 패싸움과 팻감 (26제)",
+            "name": "4. 패싸움과 팻감 (26제)",
+            "problemCount": 26
           }
         ]
       }
