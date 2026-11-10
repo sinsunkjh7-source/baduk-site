@@ -15037,9 +15037,9 @@
         "name": "환격",
         "code": "new_tech_hwangyeok",
         "file": "book_new_tech_hwangyeok.json",
-        "totalProblems": 87,
-        "problemCount": 87,
-        "chapterCount": 3,
+        "totalProblems": 112,
+        "problemCount": 112,
+        "chapterCount": 4,
         "chapters": [
           {
             "code": "1001",
@@ -15058,6 +15058,12 @@
             "title": "3. 단수친 후 환격 (26제)",
             "name": "3. 단수친 후 환격 (26제)",
             "problemCount": 26
+          },
+          {
+            "code": "4004",
+            "title": "4. 끼워서 환격 (25제)",
+            "name": "4. 끼워서 환격 (25제)",
+            "problemCount": 25
           }
         ]
       }
