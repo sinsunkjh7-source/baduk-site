@@ -17165,14 +17165,20 @@
         "name": "먹여치기",
         "code": "new_tech_meokyeochigi",
         "file": "book_new_tech_meokyeochigi.json",
-        "totalProblems": 24,
-        "problemCount": 24,
-        "chapterCount": 1,
+        "totalProblems": 48,
+        "problemCount": 48,
+        "chapterCount": 2,
         "chapters": [
           {
             "code": "1001",
             "title": "1. 기초 먹여치기 (24제)",
             "name": "1. 기초 먹여치기 (24제)",
+            "problemCount": 24
+          },
+          {
+            "code": "2002",
+            "title": "2. 호구에 먹여치기 (24제)",
+            "name": "2. 호구에 먹여치기 (24제)",
             "problemCount": 24
           }
         ]
