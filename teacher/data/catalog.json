@@ -17307,9 +17307,9 @@
         "name": "착수금지",
         "code": "new_tech_chaksu_geumji",
         "file": "book_new_tech_chaksu_geumji.json",
-        "totalProblems": 142,
-        "problemCount": 142,
-        "chapterCount": 6,
+        "totalProblems": 118,
+        "problemCount": 118,
+        "chapterCount": 5,
         "chapters": [
           {
             "code": "1001",
@@ -17339,12 +17339,6 @@
             "code": "5005",
             "title": "5. 실전 착수금지 사활과 맥점 (24제)",
             "name": "5. 실전 착수금지 사활과 맥점 (24제)",
-            "problemCount": 24
-          },
-          {
-            "code": "6006",
-            "title": "6. 고단자 3수 착수금지 사활 (24제)",
-            "name": "6. 고단자 3수 착수금지 사활 (24제)",
             "problemCount": 24
           }
         ]
