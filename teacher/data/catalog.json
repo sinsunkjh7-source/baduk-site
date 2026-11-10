@@ -17099,8 +17099,8 @@
         "name": "환격",
         "code": "new_tech_hwangyeok",
         "file": "book_new_tech_hwangyeok.json",
-        "totalProblems": 240,
-        "problemCount": 240,
+        "totalProblems": 244,
+        "problemCount": 244,
         "chapterCount": 9,
         "chapters": [
           {
@@ -17153,9 +17153,9 @@
           },
           {
             "code": "9009",
-            "title": "9. 사활 환격 (24제)",
-            "name": "9. 사활 환격 (24제)",
-            "problemCount": 24
+            "title": "9. 사활 환격 (28제)",
+            "name": "9. 사활 환격 (28제)",
+            "problemCount": 28
           }
         ]
       }
