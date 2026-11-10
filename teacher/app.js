@@ -3472,7 +3472,7 @@
         }
       }
 
-      var reg = /(?:;|^)([BWTCMSL]|TR|CR|SQ|MA|LB)\[([a-s]{2})(?::[^\]]*)?\]/gi;
+      var reg = /(?:;|^)([BWTCMSL]|TR|CR|SQ|MA|LB)\[([a-s]{2})(?::([^\]]*))?\]/gi;
       var sgf = (p.data || '');
       var m;
       var stones = [];
@@ -3483,9 +3483,19 @@
         var gx = coords.charCodeAt(0) - 97 - shiftX;
         var gy = coords.charCodeAt(1) - 97 - shiftY;
         if (gx >= 0 && gx < cols && gy >= 0 && gy < rows) {
-          if (tag === 'B') stones.push({ x: gx, y: gy, color: 1 });
-          else if (tag === 'W') stones.push({ x: gx, y: gy, color: 2 });
-          else if (tag === 'T' || tag === 'TR') marks.push({ x: gx, y: gy });
+          if (tag === 'B') {
+            stones.push({ x: gx, y: gy, color: 1 });
+          } else if (tag === 'W') {
+            stones.push({ x: gx, y: gy, color: 2 });
+          } else if (tag === 'T' || tag === 'TR') {
+            marks.push({ x: gx, y: gy, type: 'triangle' });
+          } else if (tag === 'C' || tag === 'CR') {
+            marks.push({ x: gx, y: gy, type: 'circle' });
+          } else if (tag === 'S' || tag === 'SQ' || tag === 'M' || tag === 'MA') {
+            marks.push({ x: gx, y: gy, type: 'square' });
+          } else if (tag === 'L' || tag === 'LB') {
+            marks.push({ x: gx, y: gy, type: 'label', label: m[3] || '' });
+          }
         }
       }
 
@@ -3507,20 +3517,46 @@
         }
       });
 
+      // 🌟 [원장님 지침] 모아보기 카드 썸네일에도 세모(△), 동그라미(○), 네모(□), 라벨(가)을 선명하게 렌더링 🌟
       marks.forEach(function (mk) {
         var mx = startX + cell * mk.x;
         var my = startY + cell * mk.y;
         var st = stones.find(function (s) { return s.x === mk.x && s.y === mk.y; });
-        var mkColor = (st && st.color === 1) ? '#ffffff' : '#ef4444';
+        var mkColor = (st && st.color === 1) ? '#ffffff' : '#18181b';
+        if (!st) mkColor = '#dc2626'; // 빈 교차점 위 마크면 강조 빨간색
+
+        ctx.save();
         ctx.strokeStyle = mkColor;
-        ctx.lineWidth = 1.4;
-        var mr = radius * 0.58;
-        ctx.beginPath();
-        ctx.moveTo(mx, my - mr);
-        ctx.lineTo(mx + mr * 0.866, my + mr * 0.5);
-        ctx.lineTo(mx - mr * 0.866, my + mr * 0.5);
-        ctx.closePath();
-        ctx.stroke();
+        ctx.fillStyle = mkColor;
+        ctx.lineWidth = Math.max(1.8, Math.round(cell * 0.08));
+        ctx.lineJoin = 'round';
+        ctx.lineCap = 'round';
+
+        var type = mk.type || 'triangle';
+        if (type === 'triangle') {
+          var mr = Math.max(3.8, cell * 0.28);
+          ctx.beginPath();
+          ctx.moveTo(mx, my - mr * 1.05);
+          ctx.lineTo(mx + mr * 0.90, my + mr * 0.55);
+          ctx.lineTo(mx - mr * 0.90, my + mr * 0.55);
+          ctx.closePath();
+          ctx.stroke();
+        } else if (type === 'circle') {
+          var cr = Math.max(3.2, cell * 0.24);
+          ctx.beginPath();
+          ctx.arc(mx, my, cr, 0, Math.PI * 2);
+          ctx.stroke();
+        } else if (type === 'square') {
+          var sq = Math.max(3.0, cell * 0.22);
+          ctx.strokeRect(mx - sq, my - sq, sq * 2, sq * 2);
+        } else if (type === 'label') {
+          var fontSize = Math.max(9, Math.round(cell * 0.44));
+          ctx.font = 'bold ' + fontSize + 'px -apple-system, sans-serif';
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          ctx.fillText(mk.label || '', mx, my);
+        }
+        ctx.restore();
       });
     }
 
