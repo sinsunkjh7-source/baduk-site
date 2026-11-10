@@ -345,7 +345,7 @@
     sec.books.forEach(function (b) {
       var opt = document.createElement('option');
       opt.value = b.code;
-      opt.textContent = b.title + ' (' + (b.totalProblems || 0) + '제)';
+      opt.textContent = (b.title || '').replace(/\s*\(\s*\d+\s*[^)]*\)\s*$/, '');
       bookSelect.appendChild(opt);
     });
 
@@ -410,7 +410,7 @@
       Array.from(bookSelect.options).forEach(function (opt) {
         if (opt.value === code) {
           var baseTitle = (bookData.title || bookData.book || opt.textContent).replace(/\s*\(\d+제\)\s*$/, '');
-          opt.textContent = baseTitle + ' (' + total + '제)';
+          opt.textContent = baseTitle;
         }
       });
     }
@@ -422,7 +422,8 @@
     chapters.forEach(function (ch, idx) {
       var opt = document.createElement('option');
       opt.value = idx;
-      opt.textContent = ch.chapter || ch.title || ('제 ' + (idx + 1) + '단원');
+      var rawChTitle = ch.chapter || ch.title || ('제 ' + (idx + 1) + '단원');
+      opt.textContent = rawChTitle.replace(/\s*\(\s*\d+\s*[^)]*\)\s*$/, '');
       chapterSelect.appendChild(opt);
     });
 
@@ -2699,7 +2700,7 @@
         opt.value = idx;
         var cnt = (ch.problems || []).length;
         var chName = (ch.chapter || ch.title || ('제 ' + (idx + 1) + '단원')).replace(/\s*\(\d+제\)\s*$/, '');
-        opt.textContent = chName + ' (' + cnt + '제)' + (idx === state.currentChapterIndex ? ' [현재]' : '');
+        opt.textContent = chName + (idx === state.currentChapterIndex ? ' [현재]' : '');
         chSelect.appendChild(opt);
       });
       if (prevVal !== '' && parseInt(prevVal, 10) < state.currentBook.chapters.length && parseInt(prevVal, 10) !== state.currentChapterIndex) {
@@ -2722,7 +2723,7 @@
       var ch = state.currentBook.chapters[idx];
       if (ch) {
         var baseName = (ch.chapter || ch.title || ('제 ' + (idx + 1) + '단원')).replace(/\s*\(\d+제\)\s*$/, '');
-        opt.textContent = baseName + ' (' + (ch.problems ? ch.problems.length : 0) + '제)';
+        opt.textContent = baseName;
       }
     });
   }
