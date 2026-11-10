@@ -23,7 +23,7 @@
 <title>🎓 Teaching Zone — 바둑스쿨 교재 사령탑</title>
 <link rel="preload" as="image" href="images/board_wood_grain.png">
 
-<link rel="stylesheet" href="style.css?v=v49-no-overlap-1794289800">
+<link rel="stylesheet" href="style.css?v=v50-question-choice-1794290100">
 <link rel="stylesheet" href="/unified-nav.css?v=20261103-nav-v11">
 <script src="/unified-nav.js?v=20261103-nav-v11" defer></script>
 </head>
@@ -56,7 +56,7 @@
 
     <!-- 메인 대형 수업 바둑판 영역 (화면 정중앙 고정) -->
     <main class="teacher-stage">
-      <!-- 대형 수업 바둑판 캔버스 -->
+      <!-- 대형 수업 바둑판 캔버스 (화면 최대 크기 100% 온전히 유지) -->
       <div class="board-container" id="boardContainer">
         <canvas id="teachingBoard"></canvas>
 
@@ -66,9 +66,6 @@
           <div class="feedback-text" id="feedbackText">정답입니다</div>
         </div>
       </div>
-
-      <!-- 🌟 O X 및 객관식 선택 버튼 영역 (바둑판 하단에 별도 배치되어 바둑판/1선을 절대 가리지 않음) 🌟 -->
-      <div class="board-choice-container" id="boardChoiceContainer" hidden></div>
     </main>
 
     <!-- 사이드바: 12개 시리즈 및 166권 교재 선택 -->
@@ -128,6 +125,9 @@
           <div class="hint-box" id="hintBox" hidden>
             <span class="hint-icon">💡</span> <span id="hintText"></span>
           </div>
+
+          <!-- 🌟 O X 및 객관식 선택 버튼 컨테이너 (문제 지문 바로 아래 컴팩트 단독 배치) 🌟 -->
+          <div class="sidebar-choice-container" id="sidebarChoiceContainer" hidden></div>
 
           <!-- 🌟 문제별 접이식 간편 편집 메뉴 (클릭 시 펼쳐짐) 🌟 -->
           <div class="prob-edit-drawer" id="probEditDrawer" hidden>
@@ -409,7 +409,7 @@
 
 
 <script src="audio.js?v=20261028-solidwood&t=teacher-panel-v15"></script>
-<script src="app.js?v=v49-no-overlap-1794289800"></script>
+<script src="app.js?v=v50-question-choice-1794290100"></script>
 
 </body>
 </html>

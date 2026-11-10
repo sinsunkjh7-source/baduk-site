@@ -1689,115 +1689,81 @@ html, body {
 }
 
 /* 🌟 바둑판 하단 O/X 및 객관식 선택 버튼 영역 (바둑판 외부에 독립 배치하여 1선 돌 가림 완전 방지) 🌟 */
-.board-choice-container,
-.board-choice-overlay {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex: 0 0 auto;
-  gap: 16px;
-  padding: 8px 18px;
-  margin-top: 8px;
+/* 🌟 문제 지문 바로 아래 컴팩트 O/X 및 객관식 선택 바 🌟 */
+.sidebar-choice-container {
+  margin-top: 10px;
   margin-bottom: 2px;
-  background: rgba(255, 255, 255, 0.96);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1.5px solid rgba(203, 213, 225, 0.9);
-  border-radius: 16px;
-  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.08), 0 1px 3px rgba(0, 0, 0, 0.04);
-  z-index: 20;
-  max-width: 90%;
-  align-self: center;
-  transition: all 0.2s ease;
+  width: 100%;
 }
 
-.board-choice-container[hidden],
-.board-choice-overlay[hidden] {
+.sidebar-choice-container[hidden] {
   display: none !important;
 }
 
-.board-choice-row {
+.sidebar-choice-row {
   display: flex;
-  gap: 14px;
-  justify-content: center;
+  gap: 8px;
+  width: 100%;
   align-items: center;
-  flex-wrap: wrap;
 }
 
-.choice-btn {
-  flex: 1 1 auto;
-  min-width: 130px;
-  min-height: 52px;
-  padding: 10px 22px;
-  font-size: 17px;
+.sidebar-choice-row .choice-btn {
+  flex: 1 1 0;
+  min-width: 0;
+  min-height: 38px;
+  padding: 6px 10px;
+  font-size: 13.5px;
   font-weight: 800;
   font-family: inherit;
-  border-radius: 14px;
+  border-radius: 8px;
   cursor: pointer;
-  border: 2px solid #cbd5e1;
+  border: 1.5px solid #cbd5e1;
   background: #ffffff;
   color: #1e293b;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  transition: all 0.18s cubic-bezier(0.4, 0, 0.2, 1);
+  gap: 6px;
+  transition: all 0.15s ease;
   user-select: none;
   outline: none;
+  white-space: nowrap;
 }
 
-.choice-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1);
+.sidebar-choice-row .choice-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
   border-color: #94a3b8;
 }
 
-.choice-btn:active {
+.sidebar-choice-row .choice-btn:active {
   transform: translateY(0);
 }
 
-/* O 버튼 전용 스타일 */
-.choice-btn.choice-o {
+.sidebar-choice-row .choice-btn.choice-o {
   border-color: #10b981;
   color: #065f46;
   background: #f0fdf4;
 }
-.choice-btn.choice-o:hover {
+
+.sidebar-choice-row .choice-btn.choice-o:hover {
   background: #dcfce7;
   border-color: #059669;
 }
 
-/* X 버튼 전용 스타일 */
-.choice-btn.choice-x {
+.sidebar-choice-row .choice-btn.choice-x {
   border-color: #f43f5e;
   color: #9f1239;
   background: #fff1f2;
 }
-.choice-btn.choice-x:hover {
+
+.sidebar-choice-row .choice-btn.choice-x:hover {
   background: #ffe4e6;
   border-color: #e11d48;
 }
 
-/* 정답 성공 상태 */
-.choice-btn.correct {
-  background: #059669 !important;
-  border-color: #047857 !important;
-  color: #ffffff !important;
-  transform: scale(1.04);
-  box-shadow: 0 8px 24px rgba(5, 150, 105, 0.4) !important;
-}
-
-/* 오답 실패 상태 */
-.choice-btn.wrong {
-  background: #e11d48 !important;
-  border-color: #be123c !important;
-  color: #ffffff !important;
-  animation: choiceShake 0.4s ease;
-  box-shadow: 0 8px 24px rgba(225, 29, 72, 0.4) !important;
-}
-
-/* [👁️ 정답] 확인 시 정답 강조 */
+/* O/X 정답 및 오답 애니메이션 */
 .choice-btn.reveal-answer {
   border-color: #f59e0b !important;
   background: #fef3c7 !important;

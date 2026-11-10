@@ -740,58 +740,59 @@
   }
 
   function renderChoiceButtons(p) {
-    var bdContainer = document.getElementById('boardChoiceContainer');
     var sbContainer = document.getElementById('sidebarChoiceContainer');
-    if (sbContainer) { sbContainer.innerHTML = ''; sbContainer.hidden = true; }
+    var bdContainer = document.getElementById('boardChoiceContainer');
+    if (bdContainer) { bdContainer.innerHTML = ''; bdContainer.hidden = true; }
+
+    if (!sbContainer) return;
 
     var parts = getChoiceParts(p);
 
     if (parts.length === 0) {
-      if (bdContainer) { bdContainer.innerHTML = ''; bdContainer.hidden = true; }
+      sbContainer.innerHTML = '';
+      sbContainer.hidden = true;
       return;
     }
 
-    // [원장님 지침] 사이드바에는 표시하지 않고 바둑판 하단에만 깔끔하게 단일 표시!
-    if (bdContainer) {
-      bdContainer.innerHTML = '';
-      var row = document.createElement('div');
-      row.className = 'board-choice-row';
+    // [원장님 지침] 문제 지문 바로 아래에 너무 크지 않게 컴팩트 단독 배치 (바둑판 크기 100% 보존)
+    sbContainer.innerHTML = '';
+    var row = document.createElement('div');
+    row.className = 'sidebar-choice-row';
 
-      parts.forEach(function(rawItem, idx) {
-        var btn = document.createElement('button');
-        btn.type = 'button';
-        btn.dataset.choiceIdx = idx.toString();
+    parts.forEach(function(rawItem, idx) {
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.dataset.choiceIdx = idx.toString();
 
-        var isO = (rawItem === '○' || rawItem.toUpperCase() === 'O' || rawItem.indexOf('둘 수 있다') !== -1 || rawItem.indexOf('있다') !== -1);
-        var isX = (rawItem === 'Χ' || rawItem === '×' || rawItem.toUpperCase() === 'X' || rawItem.indexOf('착수금지') !== -1 || rawItem.indexOf('둘 수 없다') !== -1 || rawItem.indexOf('없다') !== -1);
+      var isO = (rawItem === '○' || rawItem.toUpperCase() === 'O' || rawItem.indexOf('둘 수 있다') !== -1 || rawItem.indexOf('있다') !== -1);
+      var isX = (rawItem === 'Χ' || rawItem === '×' || rawItem.toUpperCase() === 'X' || rawItem.indexOf('착수금지') !== -1 || rawItem.indexOf('둘 수 없다') !== -1 || rawItem.indexOf('없다') !== -1);
 
-        var btnClass = 'choice-btn';
-        var label = rawItem;
+      var btnClass = 'choice-btn';
+      var label = rawItem;
 
-        if (isO && !isX) {
-          btnClass += ' choice-o';
-          label = (rawItem === '○' || rawItem.toUpperCase() === 'O') ? '⭕ (착수 가능)' : ('⭕ ' + rawItem);
-        } else if (isX) {
-          btnClass += ' choice-x';
-          label = (rawItem === 'Χ' || rawItem === '×' || rawItem.toUpperCase() === 'X') ? '❌ (착수금지)' : ('❌ ' + rawItem);
-        } else {
-          label = (idx + 1) + '. ' + rawItem;
-        }
+      if (isO && !isX) {
+        btnClass += ' choice-o';
+        label = (rawItem === '○' || rawItem.toUpperCase() === 'O') ? '⭕ (착수 가능)' : ('⭕ ' + rawItem);
+      } else if (isX) {
+        btnClass += ' choice-x';
+        label = (rawItem === 'Χ' || rawItem === '×' || rawItem.toUpperCase() === 'X') ? '❌ (착수금지)' : ('❌ ' + rawItem);
+      } else {
+        label = (idx + 1) + '. ' + rawItem;
+      }
 
-        btn.className = btnClass;
-        btn.innerHTML = label;
+      btn.className = btnClass;
+      btn.innerHTML = label;
 
-        btn.addEventListener('click', function(e) {
-          e.stopPropagation();
-          handleChoiceClick(idx, rawItem, btn);
-        });
-
-        row.appendChild(btn);
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        handleChoiceClick(idx, rawItem, btn);
       });
 
-      bdContainer.appendChild(row);
-      bdContainer.hidden = false;
-    }
+      row.appendChild(btn);
+    });
+
+    sbContainer.appendChild(row);
+    sbContainer.hidden = false;
   }
 
   function highlightCorrectChoice(p) {
