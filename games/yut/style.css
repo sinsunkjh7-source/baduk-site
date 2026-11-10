@@ -1227,3 +1227,59 @@ canvas#yutBoard {
   .guide-list li { margin-bottom: 5px; }
   .side-btn { font-size: 11.5px; padding: 5px 8px; }
 }
+
+/* ===== 대형 화면(교실 모니터·프로젝터) 대응 : 화면 크기에 비례 (yut-bigscreen) ===== */
+:root {
+  --yut-fs-banner: clamp(18px, 2.0vh + 0.35vw, 40px);
+  --yut-fs-banner-sub: clamp(14px, 1.35vh + 0.25vw, 28px);
+  --yut-fs-badge: clamp(14px, 1.45vh + 0.2vw, 30px);
+  --yut-fs-count: clamp(13px, 1.35vh + 0.2vw, 28px);
+  --yut-fs-count-b: clamp(18px, 1.9vh + 0.3vw, 42px);
+  --yut-fs-label: clamp(12px, 1.2vh + 0.15vw, 24px);
+  --yut-fs-btn: clamp(12px, 1.15vh + 0.12vw, 22px);
+  --yut-fs-guide: clamp(12px, 1.15vh + 0.12vw, 21px);
+  --yut-fs-guide-title: clamp(14px, 1.4vh + 0.18vw, 30px);
+  --yut-fs-hand: clamp(15px, 1.5vh + 0.2vw, 32px);
+}
+
+.turn-center-banner .turn-title { font-size: var(--yut-fs-banner) !important; }
+.turn-center-banner .turn-sub { font-size: var(--yut-fs-banner-sub) !important; }
+.turn-center-banner.is-win .turn-title { font-size: calc(var(--yut-fs-banner) * 1.05) !important; }
+.turn-center-banner.is-win .turn-sub { font-size: var(--yut-fs-banner-sub) !important; }
+
+.player-badge { font-size: var(--yut-fs-badge) !important; }
+.goal-count { font-size: var(--yut-fs-count) !important; }
+.goal-count b { font-size: var(--yut-fs-count-b) !important; }
+.home-tray-label { font-size: var(--yut-fs-label) !important; }
+.side-btn { font-size: var(--yut-fs-btn) !important; }
+.guide-title { font-size: var(--yut-fs-guide-title) !important; }
+.guide-list { font-size: var(--yut-fs-guide) !important; }
+.hand-label { font-size: var(--yut-fs-hand) !important; }
+.hand-chip { font-size: calc(var(--yut-fs-hand) * 0.92) !important; }
+.btn-throw { font-size: calc(var(--yut-fs-hand) * 0.95) !important; }
+.mat-legend { font-size: clamp(10px, 0.95vh + 0.1vw, 17px) !important; }
+
+/* 큰 화면에서는 대기석 말도 비례해서 */
+.waiting-piece {
+  width: clamp(32px, 4.4vh, 76px) !important;
+  height: clamp(32px, 4.4vh, 76px) !important;
+  font-size: clamp(13px, 1.8vh, 30px) !important;
+}
+.home-tray { min-height: clamp(44px, 5.6vh, 96px) !important; }
+
+/* 그리드가 화면 높이를 꽉 채우도록 (yut-grid-fill) */
+@media (min-width: 761px) {
+  .yut-arena-container { height: 100%; }
+  .arena-center-col { height: 100%; }
+}
+
+/* 대형 화면에서 레이아웃 폭 확장 (yut-wide) */
+.yut-layout { max-width: min(2400px, 100%) !important; }
+@media (min-width: 2200px) {
+  .yut-arena-container { grid-template-columns: 340px minmax(0, 1fr) 340px; }
+}
+
+/* TV 오버스캔 대비 하단 안전 여백 (yut-safe-area) */
+@media (min-width: 761px) {
+  .yut-layout { padding-bottom: 14px; }
+}
