@@ -2875,6 +2875,26 @@
 
   function syncProbEditDrawerUI() {
     var p = state.currentProblems[state.currentProblemIndex];
+    var choiceGroup = document.getElementById('pedChoiceGroup');
+    var curAnsLabel = document.getElementById('pedChoiceCurAns');
+    var sampleInput = document.getElementById('pedSampleInput');
+    if (choiceGroup && p) {
+      if (typeof isChoiceProblem === 'function' && isChoiceProblem(p)) {
+        choiceGroup.hidden = false;
+        var ansStr = String(p.answer !== undefined && p.answer !== null ? p.answer : '').trim();
+        var isAnsO = (ansStr === '1' || ansStr === '○' || ansStr.toUpperCase() === 'O');
+        if (curAnsLabel) {
+          curAnsLabel.textContent = '현재 정답: ' + (isAnsO ? '⭕ O (1번)' : '❌ X (2번)');
+          curAnsLabel.style.color = isAnsO ? '#059669' : '#e11d48';
+        }
+        if (sampleInput) {
+          sampleInput.value = p.sample || '○|Χ';
+        }
+      } else {
+        choiceGroup.hidden = true;
+      }
+    }
+    var p = state.currentProblems[state.currentProblemIndex];
     var qInput = document.getElementById('pedQuestionInput');
     if (qInput && p) {
       qInput.value = (p.question || '').replace(/\r?\n/g, ' ');
@@ -3016,6 +3036,47 @@
           loadProblem(state.currentProblemIndex);
           showToast('직전 편집 동작이 1단계 취소되었습니다.');
         }
+      });
+    }
+
+    // 🌟 O/X 및 객관식 정답 설정 및 선택지 편집 이벤트 바인딩 🌟
+    var btnSetO = document.getElementById('btnPedSetAnsO');
+    if (btnSetO) {
+      btnSetO.addEventListener('click', function () {
+        var p = state.currentProblems[state.currentProblemIndex];
+        if (!p) return;
+        p.answer = '1';
+        saveCustomBookState('정답을 O로 변경');
+        syncProbEditDrawerUI();
+        if (typeof renderChoiceButtons === 'function') renderChoiceButtons(p);
+        showToast("현재 문제의 정답이 '⭕ O (1번)'로 설정되었습니다.");
+      });
+    }
+
+    var btnSetX = document.getElementById('btnPedSetAnsX');
+    if (btnSetX) {
+      btnSetX.addEventListener('click', function () {
+        var p = state.currentProblems[state.currentProblemIndex];
+        if (!p) return;
+        p.answer = '2';
+        saveCustomBookState('정답을 X로 변경');
+        syncProbEditDrawerUI();
+        if (typeof renderChoiceButtons === 'function') renderChoiceButtons(p);
+        showToast("현재 문제의 정답이 '❌ X (2번)'로 설정되었습니다.");
+      });
+    }
+
+    var btnSaveSample = document.getElementById('btnPedSaveSample');
+    if (btnSaveSample) {
+      btnSaveSample.addEventListener('click', function () {
+        var p = state.currentProblems[state.currentProblemIndex];
+        var sInput = document.getElementById('pedSampleInput');
+        if (!p || !sInput) return;
+        p.sample = sInput.value.trim();
+        saveCustomBookState('선택지 변경');
+        syncProbEditDrawerUI();
+        if (typeof renderChoiceButtons === 'function') renderChoiceButtons(p);
+        showToast("선택지가 저장되었습니다: " + p.sample);
       });
     }
 

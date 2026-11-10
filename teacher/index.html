@@ -178,6 +178,23 @@
               </div>
             </div>
 
+            
+            <!-- 🌟 1-2. O/X 및 객관식 정답 설정 및 선택지 편집 🌟 -->
+            <div class="ped-group" id="pedChoiceGroup" hidden>
+              <div class="ped-group-header">
+                <span class="ped-label">⭕/❌ 선택형 정답 설정</span>
+                <span id="pedChoiceCurAns" style="font-size:12px; font-weight:800; color:#059669;">현재 정답: ⭕ O</span>
+              </div>
+              <div class="ped-tool-row" style="margin-bottom:6px; display:flex; gap:6px;">
+                <button type="button" id="btnPedSetAnsO" class="ped-tool-btn" style="flex:1; border-color:#10b981; color:#065f46; background:#f0fdf4; font-weight:800; padding:8px 4px; cursor:pointer;" title="현재 문제의 정답을 'O'(1번)로 설정">⭕ 정답을 'O'로 설정</button>
+                <button type="button" id="btnPedSetAnsX" class="ped-tool-btn" style="flex:1; border-color:#f43f5e; color:#9f1239; background:#fff1f2; font-weight:800; padding:8px 4px; cursor:pointer;" title="현재 문제의 정답을 'X'(2번)로 설정">❌ 정답을 'X'로 설정</button>
+              </div>
+              <div style="display:flex; gap:6px; align-items:center;">
+                <input type="text" id="pedSampleInput" class="ped-text-input" placeholder="선택지 (예: ○|Χ 또는 둘 수 있다|둘 수 없다)" style="flex:1; font-size:12px; padding:5px 8px;" />
+                <button type="button" id="btnPedSaveSample" class="ped-act-btn" style="padding:5px 10px; font-size:12px;">선택지 저장</button>
+              </div>
+            </div>
+
             <!-- 2. 단원 내 문제 위치(번호) 이동 및 문제 제거 -->
             <div class="ped-group">
               <span class="ped-label">🔢 문제 순서 변경 · 제거</span>
@@ -402,7 +419,7 @@
 
 
 <script src="audio.js?v=20261028-solidwood&t=teacher-panel-v15"></script>
-<script src="app.js?v=v45-choice-ox-1794288819"></script>
+<script src="app.js?v=v46-ped-choice-1794288971"></script>
 
 </body>
 </html>
