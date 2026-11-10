@@ -15286,21 +15286,15 @@
         "name": "사활",
         "code": "new_tech_sahwal",
         "file": "book_new_tech_sahwal.json",
-        "totalProblems": 52,
-        "problemCount": 52,
-        "chapterCount": 2,
+        "totalProblems": 64,
+        "problemCount": 64,
+        "chapterCount": 1,
         "chapters": [
           {
             "code": "1001",
-            "title": "1. 사는 수-막아서 두 집 내기 (26제)",
-            "name": "1. 사는 수-막아서 두 집 내기 (26제)",
-            "problemCount": 26
-          },
-          {
-            "code": "2002",
-            "title": "2. 잡는 수-밀어서 두 집 없애기 (26제)",
-            "name": "2. 잡는 수-밀어서 두 집 없애기 (26제)",
-            "problemCount": 26
+            "title": "1. 궁도사활1 — 3궁 사활 (64제)",
+            "name": "1. 궁도사활1 — 3궁 사활 (64제)",
+            "problemCount": 64
           }
         ]
       }
