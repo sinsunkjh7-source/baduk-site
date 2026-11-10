@@ -17099,9 +17099,9 @@
         "name": "환격",
         "code": "new_tech_hwangyeok",
         "file": "book_new_tech_hwangyeok.json",
-        "totalProblems": 138,
-        "problemCount": 138,
-        "chapterCount": 5,
+        "totalProblems": 164,
+        "problemCount": 164,
+        "chapterCount": 6,
         "chapters": [
           {
             "code": "1001",
@@ -17131,6 +17131,12 @@
             "code": "5005",
             "title": "5. 끊어서 환격 (26제)",
             "name": "5. 끊어서 환격 (26제)",
+            "problemCount": 26
+          },
+          {
+            "code": "6006",
+            "title": "6. 양환격 (26제)",
+            "name": "6. 양환격 (26제)",
             "problemCount": 26
           }
         ]
