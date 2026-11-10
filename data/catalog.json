@@ -15103,9 +15103,9 @@
         "name": "먹여치기",
         "code": "new_tech_meokyeochigi",
         "file": "book_new_tech_meokyeochigi.json",
-        "totalProblems": 48,
-        "problemCount": 48,
-        "chapterCount": 2,
+        "totalProblems": 68,
+        "problemCount": 68,
+        "chapterCount": 3,
         "chapters": [
           {
             "code": "1001",
@@ -15118,6 +15118,12 @@
             "title": "2. 호구에 먹여치기 (24제)",
             "name": "2. 호구에 먹여치기 (24제)",
             "problemCount": 24
+          },
+          {
+            "code": "3003",
+            "title": "3. 1선에 먹여치기 (20제)",
+            "name": "3. 1선에 먹여치기 (20제)",
+            "problemCount": 20
           }
         ]
       }
