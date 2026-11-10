@@ -3590,5 +3590,10 @@
         }
       ]
     }
-  ]
+  ],
+  "_buildVer": "v16-sahwal-8ch-208probs-okjip1-clean",
+  "bookCode": "new_tech_sahwal",
+  "totalProblems": 208,
+  "problemCount": 208,
+  "chapterCount": 8
 }
