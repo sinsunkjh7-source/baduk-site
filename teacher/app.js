@@ -3389,6 +3389,7 @@
 
     function deleteCardAt(idx) {
       if (idx < 0 || idx >= state.currentProblems.length) return;
+      var wasFullscreen = modal.classList.contains('is-fullscreen');
       if (!confirm((idx + 1) + '번 문제를 삭제하시겠습니까?')) return;
 
       state.currentProblems.splice(idx, 1);
@@ -3409,6 +3410,18 @@
       renderCards();
       renderProblemGrid();
       showToast('문제 #' + (idx + 1) + '이(가) 삭제되었습니다.');
+
+      // 🌟 문제 삭제 후에도 전체화면 모드 고정 유지 🌟
+      if (wasFullscreen) {
+        modal.classList.add('is-fullscreen');
+        if (btnFullscreen) {
+          btnFullscreen.innerHTML = '🗗 창 복원';
+          btnFullscreen.title = '원래 창 크기로 복원';
+        }
+        if (document.documentElement.requestFullscreen && !document.fullscreenElement) {
+          document.documentElement.requestFullscreen().catch(function () {});
+        }
+      }
     }
 
     function drawThumbnailBoard(canvas, p, isActive) {
@@ -3561,14 +3574,9 @@
       });
     }
 
+    // 🌟 확인 팝업 등으로 브라우저 전체화면이 일시 해제되어도 모달의 전체화면 스타일(100vw/100vh)은 고정 유지 🌟
     document.addEventListener('fullscreenchange', function () {
-      if (!document.fullscreenElement && modal.classList.contains('is-fullscreen')) {
-        modal.classList.remove('is-fullscreen');
-        if (btnFullscreen) {
-          btnFullscreen.innerHTML = '⛶ 전체화면';
-          btnFullscreen.title = '모아보기 창을 화면 전체로 확대';
-        }
-      }
+      // 사용자가 직접 '창 복원'이나 '닫기'를 누를 때만 해제되도록 자동 해제 비활성화
     });
 
     if (btnExport) {
