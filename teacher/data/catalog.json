@@ -17165,9 +17165,9 @@
         "name": "먹여치기",
         "code": "new_tech_meokyeochigi",
         "file": "book_new_tech_meokyeochigi.json",
-        "totalProblems": 122,
-        "problemCount": 122,
-        "chapterCount": 5,
+        "totalProblems": 148,
+        "problemCount": 148,
+        "chapterCount": 6,
         "chapters": [
           {
             "code": "1001",
@@ -17198,6 +17198,12 @@
             "title": "5. 수상전-먹여쳐서 수 줄이기 (28제)",
             "name": "5. 수상전-먹여쳐서 수 줄이기 (28제)",
             "problemCount": 28
+          },
+          {
+            "code": "6006",
+            "title": "6. 두 번 먹여치기 (26제)",
+            "name": "6. 두 번 먹여치기 (26제)",
+            "problemCount": 26
           }
         ]
       }
