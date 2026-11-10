@@ -17165,9 +17165,9 @@
         "name": "먹여치기",
         "code": "new_tech_meokyeochigi",
         "file": "book_new_tech_meokyeochigi.json",
-        "totalProblems": 68,
-        "problemCount": 68,
-        "chapterCount": 3,
+        "totalProblems": 94,
+        "problemCount": 94,
+        "chapterCount": 4,
         "chapters": [
           {
             "code": "1001",
@@ -17186,6 +17186,12 @@
             "title": "3. 1선에 먹여치기 (20제)",
             "name": "3. 1선에 먹여치기 (20제)",
             "problemCount": 20
+          },
+          {
+            "code": "4004",
+            "title": "4. 먹여치고 촉촉수 (26제)",
+            "name": "4. 먹여치고 촉촉수 (26제)",
+            "problemCount": 26
           }
         ]
       }
