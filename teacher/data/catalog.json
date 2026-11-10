@@ -17230,9 +17230,9 @@
         "name": "패",
         "code": "new_tech_pae",
         "file": "book_new_tech_pae.json",
-        "totalProblems": 102,
-        "problemCount": 102,
-        "chapterCount": 4,
+        "totalProblems": 152,
+        "problemCount": 152,
+        "chapterCount": 6,
         "chapters": [
           {
             "code": "1001",
@@ -17257,6 +17257,18 @@
             "title": "4. 패싸움과 팻감 (26제)",
             "name": "4. 패싸움과 팻감 (26제)",
             "problemCount": 26
+          },
+          {
+            "code": "5005",
+            "title": "5. 수상전-패를 만드는 맥 (26제)",
+            "name": "5. 수상전-패를 만드는 맥 (26제)",
+            "problemCount": 26
+          },
+          {
+            "code": "6006",
+            "title": "6. 수상전-선패와 후패 (24제)",
+            "name": "6. 수상전-선패와 후패 (24제)",
+            "problemCount": 24
           }
         ]
       }
