@@ -647,6 +647,181 @@
     return 1; // 기본값 흑선
   }
 
+  
+  /* ===================================================
+     🌟 O X 및 객관식 선택형 문제 완벽 지원 시스템 🌟
+     =================================================== */
+  function isChoiceProblem(p) {
+    if (!p) return false;
+    var s = (p.sample || '').trim();
+    if (s && s.indexOf('|') !== -1) {
+      var parts = s.split('|').map(function(item){ return item.trim(); }).filter(Boolean);
+      if (parts.length > 0) return true;
+    }
+    var tp = String(p.type || '').trim();
+    if (tp === '4' || tp === '5') return true;
+    if (p.question && (p.question.indexOf('○') !== -1 || p.question.indexOf('둘 수 있') !== -1)) return true;
+    return false;
+  }
+
+  function getChoiceParts(p) {
+    if (!p) return [];
+    var s = (p.sample || '').trim();
+    var parts = s ? s.split('|').map(function(item){ return item.trim(); }).filter(Boolean) : [];
+    if (parts.length === 0 && isChoiceProblem(p)) {
+      parts = ['○', 'Χ'];
+    }
+    return parts;
+  }
+
+  function checkChoiceAnswer(choiceIdx, choiceText, p) {
+    if (!p) return false;
+    var rawAns = String(p.answer !== undefined && p.answer !== null ? p.answer : '').trim();
+    
+    // 1) 1-based index 일치 (가장 정형화된 DB 규격: '1', '2', '3')
+    if (rawAns === String(choiceIdx + 1)) return true;
+
+    // 2) 텍스트 직접 일치
+    if (rawAns === choiceText.trim()) return true;
+
+    // 3) O / X 기호 호환 (○, O, 1) vs (Χ, ×, X, 2)
+    var isChoiceO = (choiceText.indexOf('○') !== -1 || choiceText.toUpperCase().indexOf('O') !== -1 || choiceText.indexOf('둘 수 있다') !== -1 || choiceText.indexOf('있다') !== -1);
+    var isChoiceX = (choiceText.indexOf('Χ') !== -1 || choiceText.indexOf('×') !== -1 || choiceText.toUpperCase().indexOf('X') !== -1 || choiceText.indexOf('착수금지') !== -1 || choiceText.indexOf('둘 수 없다') !== -1 || choiceText.indexOf('없다') !== -1);
+
+    if ((rawAns === '1' || rawAns === '○' || rawAns.toUpperCase() === 'O') && isChoiceO && !isChoiceX) return true;
+    if ((rawAns === '2' || rawAns === 'Χ' || rawAns === '×' || rawAns.toUpperCase() === 'X') && isChoiceX) return true;
+
+    return false;
+  }
+
+  function handleChoiceClick(choiceIdx, choiceText, btnEl) {
+    var p = state.currentProblems[state.currentProblemIndex];
+    if (!p) return;
+
+    var isCorrect = checkChoiceAnswer(choiceIdx, choiceText, p);
+    var allBtns = document.querySelectorAll('.choice-btn[data-choice-idx="' + choiceIdx + '"]');
+
+    if (isCorrect) {
+      if (window.badukAudio && typeof window.badukAudio.playDingDongDang === 'function') {
+        window.badukAudio.playDingDongDang();
+      }
+      showSideFeedback('correct');
+      state.solved = true;
+
+      allBtns.forEach(function(b){
+        b.classList.remove('wrong');
+        b.classList.add('correct');
+      });
+
+      // 문제 네비게이션 그리드 현재 버튼 풀이 완료 표시
+      var currentGridBtn = document.querySelector('.prob-btn.current');
+      if (currentGridBtn) currentGridBtn.classList.add('solved');
+
+      if (state.autoNextTimer) clearTimeout(state.autoNextTimer);
+      state.autoNextTimer = setTimeout(function () {
+        if (state.currentProblemIndex < state.currentProblems.length - 1) {
+          loadProblem(state.currentProblemIndex + 1);
+        }
+      }, 1200);
+    } else {
+      if (window.badukAudio && typeof window.badukAudio.playDdang === 'function') {
+        window.badukAudio.playDdang();
+      }
+      showSideFeedback('wrong');
+
+      allBtns.forEach(function(b){
+        b.classList.remove('correct');
+        b.classList.add('wrong');
+        setTimeout(function(){
+          b.classList.remove('wrong');
+        }, 800);
+      });
+    }
+  }
+
+  function renderChoiceButtons(p) {
+    var sbContainer = document.getElementById('sidebarChoiceContainer');
+    var bdContainer = document.getElementById('boardChoiceContainer');
+
+    var parts = getChoiceParts(p);
+
+    if (parts.length === 0) {
+      if (sbContainer) { sbContainer.innerHTML = ''; sbContainer.hidden = true; }
+      if (bdContainer) { bdContainer.innerHTML = ''; bdContainer.hidden = true; }
+      return;
+    }
+
+    function createButtonsRow(isOverlay) {
+      var row = document.createElement('div');
+      row.className = isOverlay ? 'board-choice-row' : 'sidebar-choice-row';
+
+      parts.forEach(function(rawItem, idx) {
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.dataset.choiceIdx = idx.toString();
+
+        var isO = (rawItem === '○' || rawItem.toUpperCase() === 'O' || rawItem.indexOf('둘 수 있다') !== -1 || rawItem.indexOf('있다') !== -1);
+        var isX = (rawItem === 'Χ' || rawItem === '×' || rawItem.toUpperCase() === 'X' || rawItem.indexOf('착수금지') !== -1 || rawItem.indexOf('둘 수 없다') !== -1 || rawItem.indexOf('없다') !== -1);
+
+        var btnClass = 'choice-btn';
+        var label = rawItem;
+
+        if (isO && !isX) {
+          btnClass += ' choice-o';
+          label = '⭕ ' + rawItem + (rawItem === '○' || rawItem.toUpperCase() === 'O' ? ' (착수 가능)' : '');
+        } else if (isX) {
+          btnClass += ' choice-x';
+          label = '❌ ' + rawItem + (rawItem === 'Χ' || rawItem === '×' || rawItem.toUpperCase() === 'X' ? ' (착수금지)' : '');
+        } else {
+          label = (idx + 1) + '. ' + rawItem;
+        }
+
+        btn.className = btnClass;
+        btn.innerHTML = label;
+
+        btn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          handleChoiceClick(idx, rawItem, btn);
+        });
+
+        row.appendChild(btn);
+      });
+      return row;
+    }
+
+    if (sbContainer) {
+      sbContainer.innerHTML = '';
+      sbContainer.appendChild(createButtonsRow(false));
+      sbContainer.hidden = false;
+    }
+
+    if (bdContainer) {
+      bdContainer.innerHTML = '';
+      bdContainer.appendChild(createButtonsRow(true));
+      bdContainer.hidden = false;
+    }
+  }
+
+  function highlightCorrectChoice(p) {
+    if (!p) return;
+    var parts = getChoiceParts(p);
+    parts.forEach(function(rawItem, idx) {
+      if (checkChoiceAnswer(idx, rawItem, p)) {
+        var btns = document.querySelectorAll('.choice-btn[data-choice-idx="' + idx + '"]');
+        btns.forEach(function(b){
+          b.classList.add('reveal-answer');
+        });
+      }
+    });
+  }
+
+  function clearChoiceHighlights() {
+    var btns = document.querySelectorAll('.choice-btn');
+    btns.forEach(function(b){
+      b.classList.remove('reveal-answer', 'correct', 'wrong');
+    });
+  }
+
   function loadProblem(idx) {
       // 바둑판 옆 피드백 카드 초기화
       var sCard = document.getElementById('sideFeedbackCard');
@@ -723,6 +898,7 @@
     if (typeof updatePlacementUI === 'function') updatePlacementUI();
     if (typeof syncProbEditDrawerUI === 'function') syncProbEditDrawerUI();
     drawBoard();
+    if (typeof renderChoiceButtons === 'function') renderChoiceButtons(p);
   }
 
   /* ---------- 🌟 원 교재 규격 판별 (가로선 9, 세로선 10 / 열린 선) ---------- */
@@ -1584,6 +1760,12 @@
 
     if (gx < 0 || gx >= state.boardCols || gy < 0 || gy >= state.boardRows) return;
 
+    var currentProbForChoice = state.currentProblems ? state.currentProblems[state.currentProblemIndex] : null;
+    if (currentProbForChoice && typeof isChoiceProblem === 'function' && isChoiceProblem(currentProbForChoice) && !state.trialMode && !state.boardEditTool) {
+      showToast('하단의 O / X 선택 버튼을 클릭하여 문제를 풀어주세요! 👆');
+      return;
+    }
+
     // 🌟 문제별 편집 모드(흑돌/백돌/지우개/세모/정답수순) 활성화 시 바둑판 직접 편집 처리 🌟
     if (state.boardEditTool) {
       handleBoardEditClick(gx, gy);
@@ -1898,6 +2080,7 @@
   });
 
   function resetCurrentProblem() {
+    if (typeof clearChoiceHighlights === 'function') clearChoiceHighlights();
     if (state.autoNextTimer) {
       clearTimeout(state.autoNextTimer);
       state.autoNextTimer = null;
@@ -1932,6 +2115,7 @@
     if (btnHintEl) btnHintEl.classList.remove('active');
 
     drawBoard();
+    if (typeof renderChoiceButtons === 'function') renderChoiceButtons(p);
   }
 
   var btnHintEl = document.getElementById('btnHint');
@@ -1949,6 +2133,11 @@
     }
     state.showAnswer = !state.showAnswer;
     this.textContent = state.showAnswer ? '🙈 숨김' : '👁️ 정답';
+    if (state.showAnswer) {
+      if (typeof highlightCorrectChoice === 'function') highlightCorrectChoice(state.currentProblems[state.currentProblemIndex]);
+    } else {
+      if (typeof clearChoiceHighlights === 'function') clearChoiceHighlights();
+    }
 
     // 정답을 볼 때는 놓아보기 모드를 자동으로 해제하여 잔존 돌과 충돌 방지
     if (state.showAnswer && state.trialMode) {
@@ -1959,6 +2148,7 @@
       updatePlacementUI();
     }
     drawBoard();
+    if (typeof renderChoiceButtons === 'function') renderChoiceButtons(p);
   });
 
   var btnResetEl = document.getElementById('btnReset');
@@ -2035,6 +2225,7 @@
     }
     updatePlacementUI();
     drawBoard();
+    if (typeof renderChoiceButtons === 'function') renderChoiceButtons(p);
   }
 
   function restoreProblemBoardState() {
@@ -2503,6 +2694,7 @@
       if (banner) banner.hidden = true;
     }
     drawBoard();
+    if (typeof renderChoiceButtons === 'function') renderChoiceButtons(p);
   }
 
   function handleBoardEditClick(gx, gy) {
@@ -2593,6 +2785,7 @@
     parseProblemSgf(p, state.boardSpec);
     saveCustomBookState('돌 전체 위치 이동됨');
     drawBoard();
+    if (typeof renderChoiceButtons === 'function') renderChoiceButtons(p);
   }
 
   function flipCurrentProblemDiagonal() {
@@ -2622,6 +2815,7 @@
     layoutBoard();
     saveCustomBookState('귀 대칭 회전 적용됨');
     drawBoard();
+    if (typeof renderChoiceButtons === 'function') renderChoiceButtons(p);
   }
 
   function swapCurrentProblemColors() {

@@ -23,7 +23,7 @@
 <title>🎓 Teaching Zone — 바둑스쿨 교재 사령탑</title>
 <link rel="preload" as="image" href="images/board_wood_grain.png">
 
-<link rel="stylesheet" href="style.css?v=v34-save-feedback-1794271317">
+<link rel="stylesheet" href="style.css?v=v45-choice-ox-1794288819">
 <link rel="stylesheet" href="/unified-nav.css?v=20261103-nav-v11">
 <script src="/unified-nav.js?v=20261103-nav-v11" defer></script>
 </head>
@@ -62,6 +62,9 @@
       <!-- 대형 수업 바둑판 캔버스 -->
       <div class="board-container" id="boardContainer">
         <canvas id="teachingBoard"></canvas>
+
+        <!-- 🌟 O X 및 객관식 선택 버튼 오버레이 (바둑판 하단) 🌟 -->
+        <div class="board-choice-overlay" id="boardChoiceContainer" hidden></div>
 
         <!-- 🌟 차분하고 품격 있는 바둑판 옆 피드백 카드 (정답 / 오답) 🌟 -->
         <div id="sideFeedbackCard" class="side-feedback-card" hidden>
@@ -130,6 +133,8 @@
             <button type="button" id="btnToggleProbEdit" class="btn-prob-edit" title="현재 문제 편집 메뉴 펼치기/접기">🛠️ 편집 ▾</button>
           </div>
           <p class="question-text" id="questionText">문제를 불러오는 중입니다...</p>
+          <!-- 🌟 O X 및 객관식 선택 버튼 컨테이너 (사이드바) 🌟 -->
+          <div class="choice-buttons-container" id="sidebarChoiceContainer" hidden></div>
           <div class="hint-box" id="hintBox" hidden>
             <span class="hint-icon">💡</span> <span id="hintText"></span>
           </div>
@@ -397,7 +402,7 @@
 
 
 <script src="audio.js?v=20261028-solidwood&t=teacher-panel-v15"></script>
-<script src="app.js?v=v44-chaksu-ch2-1794288041"></script>
+<script src="app.js?v=v45-choice-ox-1794288819"></script>
 
 </body>
 </html>

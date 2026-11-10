@@ -1669,3 +1669,138 @@ html, body {
 .prob-grid-modal.is-fullscreen .prob-grid-content {
   padding: 16px 24px !important;
 }
+
+
+/* ===================================================
+   🌟 O X 및 객관식 문제 선택 버튼 스타일 (완벽 지원) 🌟
+   =================================================== */
+.choice-buttons-container {
+  display: flex;
+  gap: 10px;
+  margin: 12px 0 8px 0;
+  flex-wrap: wrap;
+}
+
+.sidebar-choice-row {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.board-choice-overlay {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 18px;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1.5px solid rgba(226, 232, 240, 0.9);
+  border-radius: 20px;
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.18), 0 2px 6px rgba(0, 0, 0, 0.08);
+  z-index: 50;
+  max-width: 90%;
+  transition: all 0.25s ease;
+}
+
+.board-choice-row {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.choice-btn {
+  flex: 1 1 auto;
+  min-width: 130px;
+  min-height: 52px;
+  padding: 10px 22px;
+  font-size: 17px;
+  font-weight: 800;
+  font-family: inherit;
+  border-radius: 14px;
+  cursor: pointer;
+  border: 2px solid #cbd5e1;
+  background: #ffffff;
+  color: #1e293b;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.18s cubic-bezier(0.4, 0, 0.2, 1);
+  user-select: none;
+  outline: none;
+}
+
+.choice-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1);
+  border-color: #94a3b8;
+}
+
+.choice-btn:active {
+  transform: translateY(0);
+}
+
+/* O 버튼 전용 스타일 */
+.choice-btn.choice-o {
+  border-color: #10b981;
+  color: #065f46;
+  background: #f0fdf4;
+}
+.choice-btn.choice-o:hover {
+  background: #dcfce7;
+  border-color: #059669;
+}
+
+/* X 버튼 전용 스타일 */
+.choice-btn.choice-x {
+  border-color: #f43f5e;
+  color: #9f1239;
+  background: #fff1f2;
+}
+.choice-btn.choice-x:hover {
+  background: #ffe4e6;
+  border-color: #e11d48;
+}
+
+/* 정답 성공 상태 */
+.choice-btn.correct {
+  background: #059669 !important;
+  border-color: #047857 !important;
+  color: #ffffff !important;
+  transform: scale(1.04);
+  box-shadow: 0 8px 24px rgba(5, 150, 105, 0.4) !important;
+}
+
+/* 오답 실패 상태 */
+.choice-btn.wrong {
+  background: #e11d48 !important;
+  border-color: #be123c !important;
+  color: #ffffff !important;
+  animation: choiceShake 0.4s ease;
+  box-shadow: 0 8px 24px rgba(225, 29, 72, 0.4) !important;
+}
+
+/* [👁️ 정답] 확인 시 정답 강조 */
+.choice-btn.reveal-answer {
+  border-color: #f59e0b !important;
+  background: #fef3c7 !important;
+  color: #92400e !important;
+  font-weight: 900;
+  box-shadow: 0 0 18px rgba(245, 158, 11, 0.5) !important;
+}
+
+@keyframes choiceShake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-6px); }
+  40%, 80% { transform: translateX(6px); }
+}
