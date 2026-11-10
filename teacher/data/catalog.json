@@ -17099,15 +17099,15 @@
         "name": "환격",
         "code": "new_tech_hwangyeok",
         "file": "book_new_tech_hwangyeok.json",
-        "totalProblems": 42,
-        "problemCount": 42,
+        "totalProblems": 61,
+        "problemCount": 61,
         "chapterCount": 2,
         "chapters": [
           {
             "code": "1001",
-            "title": "1. 기초 환격 (22제)",
-            "name": "1. 기초 환격 (22제)",
-            "problemCount": 22
+            "title": "1. 기초 환격 (41제)",
+            "name": "1. 기초 환격 (41제)",
+            "problemCount": 41
           },
           {
             "code": "2002",
