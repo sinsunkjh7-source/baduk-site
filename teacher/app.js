@@ -740,20 +740,22 @@
   }
 
   function renderChoiceButtons(p) {
-    var sbContainer = document.getElementById('sidebarChoiceContainer');
     var bdContainer = document.getElementById('boardChoiceContainer');
+    var sbContainer = document.getElementById('sidebarChoiceContainer');
+    if (sbContainer) { sbContainer.innerHTML = ''; sbContainer.hidden = true; }
 
     var parts = getChoiceParts(p);
 
     if (parts.length === 0) {
-      if (sbContainer) { sbContainer.innerHTML = ''; sbContainer.hidden = true; }
       if (bdContainer) { bdContainer.innerHTML = ''; bdContainer.hidden = true; }
       return;
     }
 
-    function createButtonsRow(isOverlay) {
+    // [원장님 지침] 사이드바에는 표시하지 않고 바둑판 하단에만 깔끔하게 단일 표시!
+    if (bdContainer) {
+      bdContainer.innerHTML = '';
       var row = document.createElement('div');
-      row.className = isOverlay ? 'board-choice-row' : 'sidebar-choice-row';
+      row.className = 'board-choice-row';
 
       parts.forEach(function(rawItem, idx) {
         var btn = document.createElement('button');
@@ -786,18 +788,8 @@
 
         row.appendChild(btn);
       });
-      return row;
-    }
 
-    if (sbContainer) {
-      sbContainer.innerHTML = '';
-      sbContainer.appendChild(createButtonsRow(false));
-      sbContainer.hidden = false;
-    }
-
-    if (bdContainer) {
-      bdContainer.innerHTML = '';
-      bdContainer.appendChild(createButtonsRow(true));
+      bdContainer.appendChild(row);
       bdContainer.hidden = false;
     }
   }
@@ -1468,10 +1460,15 @@
         var stoneColor = state.board[mk.y][mk.x]; // 0: 빈칸, 1: 흑돌, 2: 백돌
 
         if (mk.type === 'label') {
-          // 1) 해당 자리에 돌이 놓여지면 글자는 사라짐
-          if (stoneColor !== 0) return;
-          // 2) 바둑판에 돌이 놓여지면(풀이/놓아보기/정답보기 진행 시) 선택지 글자들은 모두 사라짐
-          if (hasMovesPlayed) return;
+          var initColor = state.initialBoard ? state.initialBoard[mk.y][mk.x] : 0;
+          // 1) 원래 빈 교차점이었는데 수순 진행으로 돌이 놓여졌으면 라벨 숨김
+          if (initColor === 0 && stoneColor !== 0) return;
+          // 2) 원래 돌 위에 있던 라벨인데 돌이 따내어져 빈칸이 되었으면 라벨 숨김
+          if (initColor !== 0 && stoneColor === 0) return;
+          // 3) 원래 돌의 색상과 현재 돌의 색상이 달라졌으면(따내고 다른 색 돌 착수) 라벨 숨김
+          if (initColor !== 0 && stoneColor !== initColor) return;
+          // 4) 빈칸 라벨인데 수순 진행 중이면 숨김
+          if (initColor === 0 && hasMovesPlayed) return;
         }
 
         // 🌟 [원장님 지침] 세모(△), 동그라미(○), 네모(□) 표시 돌을 따내고 나면 마크가 빈 교차점에 남지 않도록 제거
