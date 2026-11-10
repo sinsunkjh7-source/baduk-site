@@ -3551,7 +3551,24 @@
     if (btnSave) {
       btnSave.addEventListener('click', function () {
         saveCustomBookToLocalStorage();
-        showToast('✓ 현재 문제 순서 및 내용이 저장되었습니다.');
+        
+        // 🌟 버튼 시각적 변화: 초록색 '✓ 저장 완료!' 즉시 표시 🌟
+        var origText = btnSave.innerHTML;
+        var origBg = btnSave.style.backgroundColor;
+        btnSave.innerHTML = '✓ 저장 완료!';
+        btnSave.style.backgroundColor = '#059669';
+        btnSave.style.borderColor = '#047857';
+        btnSave.style.color = '#ffffff';
+
+        showToast('✓ 현재 문제 순서 및 내용이 안전하게 저장되었습니다.');
+        sfx('correct');
+
+        setTimeout(function () {
+          btnSave.innerHTML = origText;
+          btnSave.style.backgroundColor = origBg || '';
+          btnSave.style.borderColor = '';
+          btnSave.style.color = '';
+        }, 1500);
       });
     }
 

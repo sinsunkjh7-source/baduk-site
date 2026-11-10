@@ -626,7 +626,7 @@ html, body {
   font-size: 15px;
   font-weight: 800;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
-  z-index: 10000;
+  z-index: 1000000;
   pointer-events: none;
 }
 .teacher-toast[hidden] { display: none; }
