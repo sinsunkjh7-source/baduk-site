@@ -906,7 +906,7 @@
     },
     {
       "chapter": null,
-      "title": "3. 궁도사활1 — 3궁 살리기와 잡기 (26제)",
+      "title": "3. 3궁 사활 (26제)",
       "problems": [
         {
           "code": "1670",
@@ -1354,7 +1354,7 @@
     },
     {
       "chapter": null,
-      "title": "4. 궁도사활2 — 4궁 살리기와 잡기 (26제)",
+      "title": "4. 4궁 사활 (26제)",
       "problems": [
         {
           "code": "8163",
@@ -1802,7 +1802,7 @@
     },
     {
       "chapter": null,
-      "title": "5. 궁도사활3 — 5궁 살리기와 잡기 (26제)",
+      "title": "5. 5궁 사활 (26제)",
       "problems": [
         {
           "code": "8189",
@@ -2250,7 +2250,7 @@
     },
     {
       "chapter": null,
-      "title": "6. 궁도사활4 — 6궁 살리기와 잡기 (26제)",
+      "title": "6. 6궁 사활 (26제)",
       "problems": [
         {
           "code": "5504",
@@ -2698,7 +2698,7 @@
     },
     {
       "chapter": null,
-      "title": "7. 궁도사활5 — 심화 궁도사활 (오궁도화·매화6궁·판6궁·실전궁도) (26제)",
+      "title": "7. 기타 궁도사활 (26제)",
       "problems": [
         {
           "code": "16418",
@@ -3146,7 +3146,7 @@
     },
     {
       "chapter": null,
-      "title": "8. 옥집사활1 — 기초 옥집 (찌르고 막기) (26제)",
+      "title": "8. 옥집사활 1 (26제)",
       "problems": [
         {
           "id": null,
@@ -3594,7 +3594,7 @@
     },
     {
       "chapter": null,
-      "title": "9. 옥집사활2 — 초급 옥집 (찝기와 단수) (26제)",
+      "title": "9. 옥집사활 2 (26제)",
       "problems": [
         {
           "id": null,
@@ -4041,7 +4041,7 @@
       ]
     }
   ],
-  "_buildVer": "v19-sahwal-verbatim-clean-234",
+  "_buildVer": "v20-sahwal-simple-titles-234",
   "bookCode": "new_tech_sahwal",
   "totalProblems": 234,
   "problemCount": 234,
