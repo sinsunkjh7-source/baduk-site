@@ -723,6 +723,19 @@
     }
   }, { passive: true });
 
+  
+  var btnMobNew = document.getElementById('btnMobNew');
+  var btnMobUndo = document.getElementById('btnMobUndo');
+  var btnMobHint = document.getElementById('btnMobHint');
+  var btnMobFlip = document.getElementById('btnMobFlip');
+  if (btnMobNew) btnMobNew.addEventListener('click', newGame);
+  if (btnMobUndo) btnMobUndo.addEventListener('click', undoMove);
+  if (btnMobHint) btnMobHint.addEventListener('click', showHint);
+  if (btnMobFlip) btnMobFlip.addEventListener('click', function() {
+    state.isFlipped = !state.isFlipped;
+    drawBoard();
+  });
+
   btnNew.addEventListener('click', function() {
     newGame();
   });

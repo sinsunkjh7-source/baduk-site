@@ -8,17 +8,40 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>정통 체스 (Chess) — JH 바둑스쿨 EduFun</title>
   <link rel="stylesheet" href="/unified-nav.css?v=20261103-nav-v11">
-  <link rel="stylesheet" href="style.css?v=20261111-v2-bigboard">
+  <link rel="stylesheet" href="style.css?v=20261111-v3-center-big">
   <script src="/unified-nav.js?v=20261103-nav-v11" defer></script>
 </head>
 <body data-bks-page="chess">
 
 <main class="chess-layout">
-  <div class="chess-main-stage">
+  <div class="chess-arena-grid">
 
-    <!-- 🌟 [좌측 메인] 화면에 시원하게 꽉 차는 대형 체스판 영역 🌟 -->
-    <section class="chess-board-col">
-      <!-- 체스판 상단 미니 턴 & 형세 상태 바 -->
+    <!-- 🌟 [좌측 컬럼] 플레이어 1 (나 / 백) 카드 🌟 -->
+    <aside class="arena-col left-col">
+      <div class="player-card white-card active" id="p1Card">
+        <div class="player-header">
+          <span class="player-badge white" id="p1Badge">⚪ 백(White)</span>
+          <span class="player-score" id="p1Score">+0</span>
+        </div>
+        <div class="player-avatar-box">
+          <div class="player-avatar-icon white-icon" id="p1Avatar">♔</div>
+        </div>
+        <div class="player-name" id="p1Name">나 (플레이어)</div>
+        <div class="turn-indicator-pill" id="p1Status">내 차례</div>
+
+        <div class="captured-box">
+          <div class="captured-title">
+            <span>획득한 기물</span>
+            <span class="material-diff-badge" id="p1Diff"></span>
+          </div>
+          <div class="captured-list" id="p1Captured"></div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- 🌟 [중앙 컬럼] 초대형 정중앙 체스판 (최대 화면 확장) 🌟 -->
+    <section class="arena-col center-col">
+      <!-- 턴 알림 & 체크 배지 미니 바 -->
       <div class="board-top-status-bar" id="turnBanner">
         <div class="turn-title-group">
           <span class="turn-badge-icon white" id="turnBadgeIcon"></span>
@@ -37,27 +60,34 @@
         <div class="eval-text-overlay" id="evalText">균형 (50:50)</div>
       </div>
 
-      <!-- 대형 체스판 캔버스 -->
-      <div class="board-wrapper" id="boardWrapper">
-        <canvas id="chessBoard" width="800" height="800"></canvas>
+      <!-- 🌟 초대형 체스판 캔버스 🌟 -->
+      <div class="board-wrapper green-theme" id="boardWrapper">
+        <canvas id="chessBoard" width="840" height="840"></canvas>
+      </div>
+
+      <!-- 모바일 전용 빠른 액션 바 (화면 좁을 때만 노출) -->
+      <div class="mobile-quick-actions" id="mobileActions">
+        <button type="button" class="mob-btn primary" id="btnMobNew">🔄 새게임</button>
+        <button type="button" class="mob-btn" id="btnMobUndo">↩️ 무르기</button>
+        <button type="button" class="mob-btn highlight" id="btnMobHint">💡 힌트</button>
+        <button type="button" class="mob-btn" id="btnMobFlip">🔃 회전</button>
       </div>
     </section>
 
-    <!-- 🌟 [우측 사이드 패널] 조작 메뉴, 대국자 정보, 설정 통합 배치 🌟 -->
-    <aside class="chess-sidebar-col">
-
-      <!-- 1. 상대방 (AI / 흑) 카드 -->
+    <!-- 🌟 [우측 컬럼] 플레이어 2 (상대방 AI / 흑) + 조작 메뉴 패널 🌟 -->
+    <aside class="arena-col right-col">
+      <!-- 상대방 (AI) 카드 -->
       <div class="player-card black-card" id="p2Card">
         <div class="player-header">
-          <div class="player-info-left">
-            <span class="player-avatar-icon black-icon" id="p2Avatar">♚</span>
-            <div>
-              <div class="player-name" id="p2Name">상대 (AI 3단계)</div>
-              <span class="player-badge black" id="p2Badge">⚫ 흑(Black)</span>
-            </div>
-          </div>
+          <span class="player-badge black" id="p2Badge">⚫ 흑(Black)</span>
           <span class="player-score" id="p2Score">+0</span>
         </div>
+        <div class="player-avatar-box">
+          <div class="player-avatar-icon black-icon" id="p2Avatar">♚</div>
+        </div>
+        <div class="player-name" id="p2Name">상대 (AI 3단계)</div>
+        <div class="turn-indicator-pill" id="p2Status">대기 중</div>
+
         <div class="captured-box">
           <div class="captured-title">
             <span>획득한 기물</span>
@@ -65,21 +95,21 @@
           </div>
           <div class="captured-list" id="p2Captured"></div>
         </div>
-        <div class="turn-indicator-pill" id="p2Status">대기 중</div>
       </div>
 
-      <!-- 2. 주요 빠른 조작 버튼 바 (가장 자주 쓰는 기능들) -->
-      <div class="quick-action-card">
-        <div class="quick-buttons-grid">
-          <button type="button" id="btnNew" class="act-btn primary" title="새로운 대국을 시작합니다">
+      <!-- 사이드 전용 대국 조작 메뉴 (우측에 명확히 분리) -->
+      <div class="side-menu-card">
+        <div class="side-menu-header">🎮 대국 메뉴</div>
+        <div class="side-buttons-grid">
+          <button type="button" id="btnNew" class="act-btn primary" title="새로운 대국 시작">
             <span class="btn-icon">🔄</span>
             <span class="btn-text">새 게임</span>
           </button>
-          <button type="button" id="btnUndo" class="act-btn" title="한 수 뒤로 물립니다">
+          <button type="button" id="btnUndo" class="act-btn" title="한 수 뒤로 물리기">
             <span class="btn-icon">↩️</span>
             <span class="btn-text">무르기</span>
           </button>
-          <button type="button" id="btnHint" class="act-btn highlight" title="AI가 추천하는 다음 최선의 수">
+          <button type="button" id="btnHint" class="act-btn highlight" title="AI 추천 최선의 수">
             <span class="btn-icon">💡</span>
             <span class="btn-text">AI 힌트</span>
           </button>
@@ -87,7 +117,7 @@
             <span class="btn-icon">🔃</span>
             <span class="btn-text">판 회전</span>
           </button>
-          <button type="button" id="btnGuide" class="act-btn" title="착수 가능 위치 표시 켜기/끄기">
+          <button type="button" id="btnGuide" class="act-btn" title="착수 가능 위치 표시 토글">
             <span class="btn-icon">👁️</span>
             <span class="btn-text">가이드: ON</span>
           </button>
@@ -96,87 +126,61 @@
             <span class="btn-text">AI 대전</span>
           </button>
         </div>
-      </div>
 
-      <!-- 3. 플레이어 (나 / 백) 카드 -->
-      <div class="player-card white-card active" id="p1Card">
-        <div class="player-header">
-          <div class="player-info-left">
-            <span class="player-avatar-icon white-icon" id="p1Avatar">♔</span>
-            <div>
-              <div class="player-name" id="p1Name">나 (플레이어)</div>
-              <span class="player-badge white" id="p1Badge">⚪ 백(White)</span>
-            </div>
-          </div>
-          <span class="player-score" id="p1Score">+0</span>
-        </div>
-        <div class="captured-box">
-          <div class="captured-title">
-            <span>획득한 기물</span>
-            <span class="material-diff-badge" id="p1Diff"></span>
-          </div>
-          <div class="captured-list" id="p1Captured"></div>
-        </div>
-        <div class="turn-indicator-pill" id="p1Status">내 차례</div>
-      </div>
-
-      <!-- 4. 환경 설정 패널 (접이식 컴팩트) -->
-      <details class="sidebar-accordion-card" open>
-        <summary class="accordion-header">⚙️ 대국 및 체스판 설정</summary>
-        <div class="accordion-content">
-          <div class="setting-row">
+        <!-- 대국 세부 설정 (컴팩트 리스트) -->
+        <div class="settings-mini-group">
+          <div class="setting-item">
             <label for="selLevel">🤖 AI 난이도</label>
             <select id="selLevel">
-              <option value="1">1단계: 입문 (초보)</option>
-              <option value="2">2단계: 초급 (방과후)</option>
-              <option value="3" selected>3단계: 중급 (클럽)</option>
-              <option value="4">4단계: 고급 (지도사)</option>
-              <option value="5">5단계: 마스터 (최고수)</option>
+              <option value="1">1단계: 입문</option>
+              <option value="2">2단계: 초급</option>
+              <option value="3" selected>3단계: 중급</option>
+              <option value="4">4단계: 고급</option>
+              <option value="5">5단계: 마스터</option>
             </select>
           </div>
 
-          <div class="setting-row">
+          <div class="setting-item">
             <label for="selSide">⚪ 내 진영</label>
             <select id="selSide">
-              <option value="w" selected>백(White) · 선공</option>
-              <option value="b">흑(Black) · 후공</option>
-              <option value="random">랜덤 진영</option>
+              <option value="w" selected>백(선공)</option>
+              <option value="b">흑(후공)</option>
+              <option value="random">랜덤</option>
             </select>
           </div>
 
-          <div class="setting-row">
-            <label for="selSkin">🎨 체스판 스킨</label>
+          <div class="setting-item">
+            <label for="selSkin">🎨 보드 스킨</label>
             <select id="selSkin">
-              <option value="green" selected>토너먼트 그린 (공식)</option>
-              <option value="wood">클래식 우드 (비자목)</option>
-              <option value="blue">모던 네이비 블루</option>
+              <option value="green" selected>토너먼트 그린</option>
+              <option value="wood">클래식 우드</option>
+              <option value="blue">모던 네이비</option>
             </select>
           </div>
 
-          <div class="setting-row">
+          <div class="setting-item">
             <label for="selSound">🔊 소리 효과</label>
             <select id="selSound">
-              <option value="on" selected>소리 켜기</option>
-              <option value="off">소리 끄기</option>
+              <option value="on" selected>켜기</option>
+              <option value="off">끄기</option>
             </select>
           </div>
         </div>
-      </details>
 
-      <!-- 5. 체스 룰 안내 (접이식) -->
-      <details class="sidebar-accordion-card">
-        <summary class="accordion-header">📜 체스 정통 규칙 안내</summary>
-        <div class="accordion-content rule-text">
-          <p><b>♔ 킹</b>: 모든 방향 1칸 (체크 피해야 함)</p>
-          <p><b>♕ 퀸</b>: 가로·세로·대각선 무제한 이동</p>
-          <p><b>♖ 룩</b>: 가로·세로 직진 무제한</p>
-          <p><b>♗ 비숍</b>: 대각선 방향 무제한</p>
-          <p><b>♘ 나이트</b>: L자 점프 (말 뛰어넘기 가능)</p>
-          <p><b>♙ 폰</b>: 전진 1칸, 잡을 땐 대각선 1칸</p>
-          <p><b>특수 룰</b>: 캐슬링, 앙파상, 8선 폰 승급</p>
-        </div>
-      </details>
-
+        <!-- 룰 안내 접이식 -->
+        <details class="rules-mini-accordion">
+          <summary class="rules-summary">📜 체스 룰 요약</summary>
+          <div class="rules-content">
+            <p>• <b>♔ 킹</b>: 모든 방향 1칸 (체크 피하기)</p>
+            <p>• <b>♕ 퀸</b>: 전 방향 무제한 이동</p>
+            <p>• <b>♖ 룩</b>: 가로·세로 무제한</p>
+            <p>• <b>♗ 비숍</b>: 대각선 무제한</p>
+            <p>• <b>♘ 나이트</b>: L자 점프(말 뛰어넘기)</p>
+            <p>• <b>♙ 폰</b>: 전진 1칸(처음 2칸), 대각선 잡기</p>
+            <p>• <b>특수 룰</b>: 캐슬링, 앙파상, 8선 폰 승급</p>
+          </div>
+        </details>
+      </div>
     </aside>
 
   </div>
@@ -221,8 +225,8 @@
   </div>
 </div>
 
-<script src="audio.js?v=20261111-v2"></script>
-<script src="engine.js?v=20261111-v2"></script>
-<script src="game.js?v=20261111-v2"></script>
+<script src="audio.js?v=20261111-v3"></script>
+<script src="engine.js?v=20261111-v3"></script>
+<script src="game.js?v=20261111-v3"></script>
 </body>
 </html>
