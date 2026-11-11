@@ -16937,7 +16937,7 @@
   },
   {
     "title": "13. NEW 기법, 분야별 마스터관",
-    "bookCount": 4,
+    "bookCount": 9,
     "books": [
       {
         "code": "new_tech_chokchoksu",
@@ -17394,6 +17394,238 @@
           }
         ],
         "_buildVer": "v22-sahwal-filtered-okjip-26p-208"
+      },
+      {
+        "title": "수상전",
+        "name": "수상전",
+        "code": "new_tech_susangjeon",
+        "file": "book_new_tech_susangjeon.json",
+        "chapterCount": 44,
+        "totalProblems": 3494,
+        "problemCount": 3494,
+        "_buildVer": "v1-three-series-susangjeon-2026-11-11",
+        "chapters": [
+          {
+            "code": "susangjeon_01",
+            "title": "1. 활로 비교와 기본 수상전",
+            "problemCount": 95
+          },
+          {
+            "code": "susangjeon_02",
+            "title": "2. 바깥부터 수 줄이기",
+            "problemCount": 124
+          },
+          {
+            "code": "susangjeon_03",
+            "title": "3. 안쪽의 급소와 2·3궁 수 줄이기",
+            "problemCount": 97
+          },
+          {
+            "code": "susangjeon_04",
+            "title": "4. 중요한 돌부터 공격하기",
+            "problemCount": 131
+          },
+          {
+            "code": "susangjeon_05",
+            "title": "5. 단수쳐서 수 줄이기",
+            "problemCount": 77
+          },
+          {
+            "code": "susangjeon_06",
+            "title": "6. 연결과 수상전 탈출",
+            "problemCount": 62
+          },
+          {
+            "code": "susangjeon_07",
+            "title": "7. 끊어서 연결 막기",
+            "problemCount": 38
+          },
+          {
+            "code": "susangjeon_08",
+            "title": "8. 자충을 피하는 방향",
+            "problemCount": 43
+          },
+          {
+            "code": "susangjeon_09",
+            "title": "9. 내 수 늘리기와 뻗기",
+            "problemCount": 251
+          },
+          {
+            "code": "susangjeon_10",
+            "title": "10. 뒤부터 잇고 수 줄이기",
+            "problemCount": 52
+          },
+          {
+            "code": "susangjeon_11",
+            "title": "11. 빅의 판별과 기본 만들기",
+            "problemCount": 141
+          },
+          {
+            "code": "susangjeon_12",
+            "title": "12. 촉촉수로 수 줄이기",
+            "problemCount": 43
+          },
+          {
+            "code": "susangjeon_13",
+            "title": "13. 1선 내림",
+            "problemCount": 81
+          },
+          {
+            "code": "susangjeon_14",
+            "title": "14. 1선 젖힘과 1선의 맥",
+            "problemCount": 133
+          },
+          {
+            "code": "susangjeon_15",
+            "title": "15. 1선 입구자·마늘모",
+            "problemCount": 66
+          },
+          {
+            "code": "susangjeon_16",
+            "title": "16. 붙여서 수 줄이기",
+            "problemCount": 38
+          },
+          {
+            "code": "susangjeon_17",
+            "title": "17. 먹여쳐서 수 줄이기",
+            "problemCount": 145
+          },
+          {
+            "code": "susangjeon_18",
+            "title": "18. 자충을 유도해 수 줄이기",
+            "problemCount": 54
+          },
+          {
+            "code": "susangjeon_19",
+            "title": "19. 치중과 집 안의 급소",
+            "problemCount": 99
+          },
+          {
+            "code": "susangjeon_20",
+            "title": "20. 유가무가: 집 만들기·없애기",
+            "problemCount": 162
+          },
+          {
+            "code": "susangjeon_21",
+            "title": "21. 유가무가 응용",
+            "problemCount": 127
+          },
+          {
+            "code": "susangjeon_22",
+            "title": "22. 궁도 수 계산",
+            "problemCount": 103
+          },
+          {
+            "code": "susangjeon_23",
+            "title": "23. 가짜 활로",
+            "problemCount": 24
+          },
+          {
+            "code": "susangjeon_24",
+            "title": "24. 정확한 실효 수 계산",
+            "problemCount": 134
+          },
+          {
+            "code": "susangjeon_25",
+            "title": "25. 5·6궁의 수상전",
+            "problemCount": 62
+          },
+          {
+            "code": "susangjeon_26",
+            "title": "26. 대궁소궁",
+            "problemCount": 24
+          },
+          {
+            "code": "susangjeon_27",
+            "title": "27. 돌을 키워 상대 수 줄이기",
+            "problemCount": 57
+          },
+          {
+            "code": "susangjeon_28",
+            "title": "28. 조임으로 수 줄이기",
+            "problemCount": 35
+          },
+          {
+            "code": "susangjeon_29",
+            "title": "29. 끼움으로 수 줄이기",
+            "problemCount": 58
+          },
+          {
+            "code": "susangjeon_30",
+            "title": "30. 찝어서 수 줄이기",
+            "problemCount": 34
+          },
+          {
+            "code": "susangjeon_31",
+            "title": "31. 젖혀서 수 줄이기",
+            "problemCount": 28
+          },
+          {
+            "code": "susangjeon_32",
+            "title": "32. 회돌이와 돌려치기",
+            "problemCount": 85
+          },
+          {
+            "code": "susangjeon_33",
+            "title": "33. 장문을 이용한 수상전",
+            "problemCount": 29
+          },
+          {
+            "code": "susangjeon_34",
+            "title": "34. 환격을 이용한 수상전",
+            "problemCount": 34
+          },
+          {
+            "code": "susangjeon_35",
+            "title": "35. 두 번 먹여치기",
+            "problemCount": 31
+          },
+          {
+            "code": "susangjeon_36",
+            "title": "36. 귀삼수",
+            "problemCount": 25
+          },
+          {
+            "code": "susangjeon_37",
+            "title": "37. 귀의 특수성을 이용한 수상전",
+            "problemCount": 62
+          },
+          {
+            "code": "susangjeon_38",
+            "title": "38. 빅으로 살아가는 응용",
+            "problemCount": 206
+          },
+          {
+            "code": "susangjeon_39",
+            "title": "39. 살아서 수상전 전환",
+            "problemCount": 30
+          },
+          {
+            "code": "susangjeon_40",
+            "title": "40. 패를 만드는 수상전",
+            "problemCount": 105
+          },
+          {
+            "code": "susangjeon_41",
+            "title": "41. 패를 피하고 지키기",
+            "problemCount": 30
+          },
+          {
+            "code": "susangjeon_42",
+            "title": "42. 선패와 후패",
+            "problemCount": 24
+          },
+          {
+            "code": "susangjeon_43",
+            "title": "43. 응수와 손빼기",
+            "problemCount": 85
+          },
+          {
+            "code": "susangjeon_44",
+            "title": "44. 종합 응용과 급소 찾기",
+            "problemCount": 130
+          }
+        ]
       }
     ]
   }
