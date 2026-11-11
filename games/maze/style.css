@@ -487,3 +487,15 @@ body[data-theme="neon"] {
   font-weight: 700;
   margin-left: 2px;
 }
+
+.m-best-record {
+  font-size: 13px;
+  font-weight: 800;
+  color: #059669;
+  background: #ecfdf5;
+  border: 1px solid #a7f3d0;
+  border-radius: 10px;
+  padding: 6px 12px;
+  margin: -10px auto 16px;
+  display: inline-block;
+}

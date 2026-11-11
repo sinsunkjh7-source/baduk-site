@@ -1,6 +1,6 @@
 /* ========================================================
    미로 탐험대 (Maze Explorer) - Pro Edition
-   바둑스쿨 Fun: 스테이지 모드(1~10단계) + 자유 연습 + 2인 대결
+   바둑스쿨 Fun: 스테이지 모드 (1~10단계) & 자유 연습 (시간/걸음 기록 경쟁)
    ======================================================== */
 (function () {
   'use strict';
@@ -22,19 +22,17 @@
   ];
 
   var state = {
-    mode: 'stage',       // 'stage' | 'free' | 'duo'
+    mode: 'stage',       // 'stage' | 'free'
     stageIndex: 0,       // 0 ~ 9
     unlockedStage: 0,
     freeN: 21,
     N: 9,
-    duo: false,
     theme: 'dungeon',
     fog: false,
     running: false,
     walls: null,          // Uint8: bit 1=N, 2=E, 4=S, 8=W
-    players: [],
+    player: null,
     keyState: {},
-    lastMoveTime: [0, 0],
     rafId: 0
   };
 
@@ -216,12 +214,8 @@
   }
 
   /* ---------------- Player Entity ---------------- */
-  function makePlayer(id, name, color, eyeColor) {
+  function makePlayer() {
     return {
-      id: id,
-      name: name,
-      color: color,
-      eyeColor: eyeColor,
       x: 0, y: 0,
       fx: 0, fy: 0,
       lookDir: 1, // 0=N, 1=E, 2=S, 3=W
@@ -240,16 +234,15 @@
     var navH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--bks-nav-h'), 10) || 64;
     var availH = window.innerHeight - navH - 180;
     var stage = el('stage');
-    var availW = (stage ? stage.clientWidth : window.innerWidth) - (state.duo ? 36 : 24);
-    var size = Math.min(availH, state.duo ? availW / 2 : availW, 760);
-    size = Math.max(260, Math.floor(size));
+    var availW = (stage ? stage.clientWidth : window.innerWidth) - 24;
+    var size = Math.min(availH, availW, 760);
+    size = Math.max(280, Math.floor(size));
 
-    ['maze1', 'maze2'].forEach(function (id) {
-      var c = el(id);
-      if (!c) return;
+    var c = el('maze1');
+    if (c) {
       c.style.width = size + 'px';
       c.style.height = size + 'px';
-    });
+    }
   }
 
   function resetGame() {
@@ -262,29 +255,20 @@
     }
 
     generateMaze();
-    state.players = [
-      makePlayer(0, '1P 흑돌이', '#1e293b', '#38bdf8'),
-      makePlayer(1, '2P 백돌이', '#f8fafc', '#ef4444')
-    ];
+    state.player = makePlayer();
     state.running = true;
 
     el('resultPanel').hidden = true;
     el('t1').textContent = '0.0s';
     el('m1').textContent = '0걸음';
-    el('t2').textContent = state.duo ? '0.0s' : '–';
-    el('m2').textContent = state.duo ? '0걸음' : '';
-    el('wrap2').hidden = !state.duo;
-    el('scoreP2').hidden = !state.duo;
 
     layoutBoards();
     drawAll();
 
     if (state.mode === 'stage') {
       msg('🏆 ' + STAGES[state.stageIndex].name + ' — 출발점에서 출구까지 미로를 돌파하세요!');
-    } else if (state.duo) {
-      msg('⚔️ 2인 대결! 1P(WASD) vs 2P(방향키) — 먼저 목표 지점에 도착하세요!');
     } else {
-      msg('🎲 자유 연습 — 출발점(좌상단)에서 목표 지점(우하단)까지 미로를 통과하세요!');
+      msg('🎲 자유 연습 (' + state.N + '×' + state.N + ') — 출발점에서 출구까지 미로를 통과하세요!');
     }
   }
 
@@ -446,7 +430,7 @@
       ctx.lineWidth = Math.max(2.5, cell * 0.18);
       ctx.lineCap = 'round';
       ctx.lineJoin = 'round';
-      ctx.strokeStyle = p.color === '#1e293b' ? 'rgba(59, 130, 246, 0.45)' : 'rgba(239, 68, 68, 0.45)';
+      ctx.strokeStyle = 'rgba(59, 130, 246, 0.45)';
       for (var i = 0; i < p.trail.length; i++) {
         var tx = PAD + (p.trail[i][0] + 0.5) * cell, ty = PAD + (p.trail[i][1] + 0.5) * cell;
         if (i === 0) ctx.moveTo(tx, ty); else ctx.lineTo(tx, ty);
@@ -471,7 +455,7 @@
     // 3. Cute Baduk Character Body
     var px = PAD + (p.fx + 0.5) * cell;
     var py = PAD + (p.fy + 0.5) * cell;
-    var bob = Math.sin(t * 0.012 + p.id) * (cell * 0.04);
+    var bob = Math.sin(t * 0.012) * (cell * 0.04);
     py += bob;
     var r = cell * 0.32;
 
@@ -481,31 +465,25 @@
     ctx.ellipse(px, py + r * 0.9 - bob, r * 0.85, r * 0.35, 0, 0, Math.PI * 2);
     ctx.fill();
 
-    // 3D Baduk Stone Body
+    // 3D Baduk Stone Body (Glossy Obsidian Black Stone)
     ctx.save();
     ctx.translate(px, py);
 
     var bodyGrad = ctx.createRadialGradient(-r * 0.3, -r * 0.35, r * 0.15, 0, 0, r);
-    if (p.id === 0) {
-      bodyGrad.addColorStop(0, '#64748b');
-      bodyGrad.addColorStop(0.4, '#1e293b');
-      bodyGrad.addColorStop(1, '#090d16');
-    } else {
-      bodyGrad.addColorStop(0, '#ffffff');
-      bodyGrad.addColorStop(0.6, '#f1f5f9');
-      bodyGrad.addColorStop(1, '#cbd5e1');
-    }
+    bodyGrad.addColorStop(0, '#64748b');
+    bodyGrad.addColorStop(0.4, '#1e293b');
+    bodyGrad.addColorStop(1, '#090d16');
 
     ctx.beginPath();
     ctx.arc(0, 0, r, 0, Math.PI * 2);
     ctx.fillStyle = bodyGrad;
     ctx.fill();
-    ctx.strokeStyle = (p.id === 0) ? '#38bdf8' : '#f87171';
+    ctx.strokeStyle = '#38bdf8';
     ctx.lineWidth = Math.max(1.5, cell * 0.05);
     ctx.stroke();
 
     // Explorer Headband
-    ctx.fillStyle = (p.id === 0) ? '#3b82f6' : '#ef4444';
+    ctx.fillStyle = '#3b82f6';
     ctx.beginPath();
     ctx.rect(-r * 0.85, -r * 0.55, r * 1.7, r * 0.28);
     ctx.fill();
@@ -534,15 +512,6 @@
     ctx.arc(-eyeSpacing + eyeOffset + pupilX, eyeY, r * 0.12, 0, Math.PI * 2);
     ctx.arc(eyeSpacing + eyeOffset + pupilX, eyeY, r * 0.12, 0, Math.PI * 2);
     ctx.fill();
-
-    // Blush cheeks for 2P 백돌이
-    if (p.id === 1) {
-      ctx.fillStyle = 'rgba(244, 63, 94, 0.45)';
-      ctx.beginPath();
-      ctx.ellipse(-eyeSpacing - 1, eyeY + r * 0.32, r * 0.16, r * 0.09, 0, 0, Math.PI * 2);
-      ctx.ellipse(eyeSpacing + 1, eyeY + r * 0.32, r * 0.16, r * 0.09, 0, 0, Math.PI * 2);
-      ctx.fill();
-    }
 
     ctx.restore();
   }
@@ -577,9 +546,9 @@
 
   function drawAll(t) {
     t = t || performance.now();
-    renderCanvas(el('maze1'), state.players[0], t);
-    if (state.duo && state.players[1]) {
-      renderCanvas(el('maze2'), state.players[1], t);
+    var cv = el('maze1');
+    if (cv && state.player) {
+      renderCanvas(cv, state.player, t);
     }
   }
 
@@ -601,7 +570,7 @@
     p.moves++;
     sfx.step();
 
-    var movesEl = el('m' + (p.id + 1));
+    var movesEl = el('m1');
     if (movesEl) movesEl.textContent = p.moves + '걸음';
 
     if (!p.startAt) p.startAt = performance.now();
@@ -620,76 +589,78 @@
     state.running = false;
     sfx.win();
 
-    if (state.mode === 'duo') {
-      var w = p, l = state.players[1 - p.id];
-      el('resultBadge').textContent = (p.id === 0) ? '🥇' : '🥈';
-      el('resultTitle').textContent = p.name + ' 승리!';
-      el('resultDesc').textContent = p.name + ' ' + w.time.toFixed(1) + '초 (' + w.moves + '걸음) · ' +
-        l.name + ' ' + (l.startAt ? '미완주(' + l.moves + '걸음)' : '출발 전');
-      el('btnNextStage').textContent = '🔄 다음 대결';
-    } else if (state.mode === 'stage') {
+    var timeStr = p.time.toFixed(1) + '초';
+    var recordKey = (state.mode === 'stage') ? ('bks_maze_best_stage_' + (state.stageIndex + 1)) : ('bks_maze_best_free_' + state.N);
+    var prevBest = null;
+    try {
+      prevBest = parseFloat(localStorage.getItem(recordKey));
+    } catch (e) {}
+
+    var isNewBest = false;
+    if (isNaN(prevBest) || !prevBest || p.time < prevBest) {
+      isNewBest = true;
+      try { localStorage.setItem(recordKey, p.time.toFixed(1)); } catch (e) {}
+    }
+
+    var bestEl = el('resultBest');
+    if (bestEl) {
+      if (isNewBest) {
+        bestEl.textContent = '🌟 신기록 달성! (최고: ' + timeStr + ')';
+        bestEl.hidden = false;
+      } else {
+        bestEl.textContent = '현재 최고 기록: ' + prevBest.toFixed(1) + '초';
+        bestEl.hidden = false;
+      }
+    }
+
+    if (state.mode === 'stage') {
       var isFinal = (state.stageIndex >= STAGES.length - 1);
       if (isFinal) {
         el('resultBadge').textContent = '👑';
         el('resultTitle').textContent = '전 스테이지 정복 완료!';
-        el('resultDesc').textContent = '축하합니다! 총 10개의 모든 미궁을 완벽하게 클리어했습니다! (' + p.time.toFixed(1) + '초, ' + p.moves + '걸음)';
+        el('resultDesc').textContent = '축하합니다! 총 10개의 모든 미궁을 완벽하게 클리어했습니다! (' + timeStr + ' · ' + p.moves + '걸음)';
         el('btnNextStage').textContent = '🔄 1단계부터 다시 도전';
         msg('👑 전 스테이지 정복! 진정한 미궁 마스터 탄생!');
       } else {
-        // Unlock next stage
         state.unlockedStage = Math.max(state.unlockedStage, state.stageIndex + 1);
         try { localStorage.setItem('bks_maze_unlocked', state.unlockedStage); } catch (e) {}
 
         el('resultBadge').textContent = '🏆';
         el('resultTitle').textContent = (state.stageIndex + 1) + '단계 돌파 성공!';
-        el('resultDesc').textContent = STAGES[state.stageIndex].name + ' 클리어! · 기록: ' + p.time.toFixed(1) + '초 · ' + p.moves + '걸음';
+        el('resultDesc').textContent = STAGES[state.stageIndex].name + ' 클리어! · 기록: ' + timeStr + ' · ' + p.moves + '걸음';
         el('btnNextStage').textContent = '🚀 다음 ' + (state.stageIndex + 2) + '단계 도전!';
         msg('🎉 축하합니다! ' + (state.stageIndex + 1) + '단계를 통과했습니다!');
       }
     } else { // Free play
       el('resultBadge').textContent = '🏆';
       el('resultTitle').textContent = '미로 탈출 성공!';
-      el('resultDesc').textContent = '기록: ' + p.time.toFixed(1) + '초 · ' + p.moves + '걸음';
+      el('resultDesc').textContent = '기록: ' + timeStr + ' · ' + p.moves + '걸음';
       el('btnNextStage').textContent = '🎲 다른 미로 풀기';
-      msg('🎉 축하합니다! ' + p.time.toFixed(1) + '초 만에 미로를 탈출했습니다!');
+      msg('🎉 축하합니다! ' + timeStr + ' 만에 미로를 탈출했습니다!');
     }
 
     el('resultPanel').hidden = false;
   }
 
   /* ---------------- Input Handling (Continuous Keyboard, Swipe, D-Pad) ---------------- */
-  function keyToDir(e, which) {
+  function keyToDir(e) {
     var k = e.key.toLowerCase();
     var map1 = { w: 0, d: 1, s: 2, a: 3 };
     var map2 = { arrowup: 0, arrowright: 1, arrowdown: 2, arrowleft: 3 };
-    var isArrow = k.indexOf('arrow') === 0;
-
-    if (which === 0) {
-      if (k in map1) return map1[k];
-      if (!state.duo && isArrow) return map2[k];
-      return -1;
-    }
-    return isArrow ? map2[k] : -1;
+    if (k in map1) return map1[k];
+    if (k in map2) return map2[k];
+    return -1;
   }
 
   document.addEventListener('keydown', function (e) {
     if (el('rulesPanel') && !el('rulesPanel').hidden) return;
     if (el('resultPanel') && !el('resultPanel').hidden) return;
 
-    var d0 = keyToDir(e, 0);
+    var d0 = keyToDir(e);
     if (d0 >= 0) {
       e.preventDefault();
       state.keyState['p0_' + d0] = true;
-      move(state.players[0], d0);
-    }
-
-    if (state.duo) {
-      var d1 = keyToDir(e, 1);
-      if (d1 >= 0) {
-        e.preventDefault();
-        state.keyState['p1_' + d1] = true;
-        move(state.players[1], d1);
-      }
+      move(state.player, d0);
     }
 
     if (e.key.toLowerCase() === 'h') {
@@ -698,16 +669,12 @@
   });
 
   document.addEventListener('keyup', function (e) {
-    var d0 = keyToDir(e, 0);
+    var d0 = keyToDir(e);
     if (d0 >= 0) delete state.keyState['p0_' + d0];
-    if (state.duo) {
-      var d1 = keyToDir(e, 1);
-      if (d1 >= 0) delete state.keyState['p1_' + d1];
-    }
   });
 
   function showHint() {
-    var p = state.players[0];
+    var p = state.player;
     if (p && !p.done) {
       p.hintPath = bfsPath(p.x, p.y, state.N - 1, state.N - 1);
       p.hintUntil = performance.now() + 1800;
@@ -716,7 +683,7 @@
   }
 
   // Mobile Swipe Gesture
-  function bindSwipe(cv, pid) {
+  function bindSwipe(cv) {
     var start = null;
     cv.addEventListener('pointerdown', function (e) {
       start = { x: e.clientX, y: e.clientY };
@@ -730,7 +697,7 @@
       var thr = Math.max(12, cellScreen * 0.5);
       if (Math.abs(dx) < thr && Math.abs(dy) < thr) return;
       var dir = Math.abs(dx) > Math.abs(dy) ? (dx > 0 ? 1 : 3) : (dy > 0 ? 2 : 0);
-      move(state.players[pid], dir);
+      move(state.player, dir);
       start = { x: e.clientX, y: e.clientY };
     });
 
@@ -742,7 +709,7 @@
         var r = cv.getBoundingClientRect();
         var sx = (e.clientX - r.left) / r.width * state.N;
         var sy = (e.clientY - r.top) / r.height * state.N;
-        var p = state.players[pid];
+        var p = state.player;
         var ddx = sx - (p.x + 0.5), ddy = sy - (p.y + 0.5);
         var dir = Math.abs(ddx) > Math.abs(ddy) ? (ddx > 0 ? 1 : 3) : (ddy > 0 ? 2 : 0);
         move(p, dir);
@@ -761,27 +728,23 @@
       var btn = e.target.closest('.dpad-btn');
       if (!btn) return;
       var dir = parseInt(btn.dataset.dir, 10);
-      move(state.players[0], dir);
+      move(state.player, dir);
     });
   }
 
   /* ---------------- Main Game Loop ---------------- */
   function loop(t) {
-    state.players.forEach(function (p) {
+    if (state.player) {
+      var p = state.player;
       p.fx += (p.x - p.fx) * 0.36;
       p.fy += (p.y - p.fy) * 0.36;
       if (Math.abs(p.x - p.fx) < 0.01) p.fx = p.x;
       if (Math.abs(p.y - p.fy) < 0.01) p.fy = p.y;
-    });
+    }
 
-    if (state.running) {
+    if (state.running && state.player && !state.player.done && state.player.startAt) {
       var now = performance.now();
-      if (!state.players[0].done && state.players[0].startAt) {
-        el('t1').textContent = ((now - state.players[0].startAt) / 1000).toFixed(1) + 's';
-      }
-      if (state.duo && state.players[1] && !state.players[1].done && state.players[1].startAt) {
-        el('t2').textContent = ((now - state.players[1].startAt) / 1000).toFixed(1) + 's';
-      }
+      el('t1').textContent = ((now - state.player.startAt) / 1000).toFixed(1) + 's';
     }
 
     drawAll(t);
@@ -795,12 +758,11 @@
       if (!isNaN(savedUnlocked)) state.unlockedStage = savedUnlocked;
     } catch (e) {}
 
-    // 1. Mode Selector (Stage vs Free vs Duo)
+    // 1. Mode Selector (Stage vs Free Play)
     el('modeSeg').addEventListener('click', function (e) {
       var b = e.target.closest('.m-modebtn');
       if (!b) return;
       state.mode = b.dataset.mode;
-      state.duo = (state.mode === 'duo');
 
       document.querySelectorAll('.m-modebtn').forEach(function (x) {
         x.classList.toggle('active', x === b);
@@ -877,8 +839,7 @@
       drawAll();
     });
 
-    bindSwipe(el('maze1'), 0);
-    bindSwipe(el('maze2'), 1);
+    bindSwipe(el('maze1'));
     bindDpad();
 
     var urlParams = new URLSearchParams(window.location.search);
