@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>미로 탐험대 — 바둑스쿨 Fun</title>
 <link rel="stylesheet" href="/unified-nav.css?v=nav-v12d">
-<link rel="stylesheet" href="style.css?v=maze-5">
+<link rel="stylesheet" href="style.css?v=maze-6">
 <script src="/unified-nav.js?v=nav-v12d" defer></script>
 </head>
 <body data-bks-page="maze" data-theme="dungeon">
@@ -18,12 +18,13 @@
         <span class="p-dot p1-dot"></span>
         <span class="p-name">1P 흑돌이</span>
         <b id="t1">0.0s</b>
-        <span class="m-stars" id="stars1">★★★</span>
+        <span class="m-moves" id="m1">0걸음</span>
       </div>
       <div class="m-score p2" id="scoreP2" hidden>
         <span class="p-dot p2-dot"></span>
         <span class="p-name">2P 백돌이</span>
         <b id="t2">0.0s</b>
+        <span class="m-moves" id="m2">0걸음</span>
       </div>
     </div>
 
@@ -74,7 +75,7 @@
 
   <!-- Bottom Guide & Mobile Controls -->
   <footer class="m-bottom-bar">
-    <p class="m-msg" id="msg">방향키(또는 WASD)로 이동해 숨겨진 보석을 모으고 목표 지점에 도달하세요!</p>
+    <p class="m-msg" id="msg">방향키(또는 WASD)로 출발점에서 출구까지 미로를 탈출하세요!</p>
     
     <!-- Virtual Mobile D-Pad -->
     <div class="mobile-dpad" id="mobileDpad">
@@ -93,7 +94,6 @@
   <div class="m-card victory-card">
     <div class="victory-badge" id="resultBadge">🏆</div>
     <h2 id="resultTitle">미로 탈출 성공!</h2>
-    <div class="victory-stars" id="resultStars">★★★</div>
     <p id="resultDesc">기록 0.0초 · 0걸음</p>
     <div class="m-card-actions">
       <button type="button" class="m-btn primary large-btn" id="btnNext">🚀 다음 미로</button>
@@ -108,8 +108,7 @@
   <div class="m-card">
     <h2>🎮 미로 탐험대 규칙</h2>
     <ul class="m-rules">
-      <li>좌측 상단 <b>출발점</b>에서 우측 하단 <b>목표 지점</b>까지 미로를 통과하세요.</li>
-      <li>미로 구석 막다른 길에 숨겨진 <b>3개의 보석 💎</b>을 모두 수집하면 <b>★★★ 퍼펙트 클리어</b>를 달성합니다!</li>
+      <li>좌측 상단 <b>출발점</b>에서 우측 하단 <b>목표 지점</b>까지 벽을 피해 미로를 통과하세요.</li>
       <li><b>난이도</b>:
         <br>· <b>쉬움 (15×15)</b>: 입문용 미로
         <br>· <b>보통 (21×21)</b>: 순환로 없는 진짜 미궁 (추천)
@@ -126,6 +125,6 @@
   </div>
 </div>
 
-<script src="game.js?v=maze-5"></script>
+<script src="game.js?v=maze-6"></script>
 </body>
 </html>

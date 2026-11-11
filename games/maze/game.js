@@ -1,6 +1,6 @@
 /* ========================================================
-   미로 탐험대 (Maze Explorer) - Pro Edition
-   바둑스쿨 Fun: 정교한 미로 생성, 3대 테마, 안개 모드, 보석 수집
+   미로 탐험대 (Maze Explorer) - Pure Maze Edition
+   바둑스쿨 Fun: 정교한 미로 생성, 3대 테마, 안개 모드, 깔끔한 길찾기
    ======================================================== */
 (function () {
   'use strict';
@@ -15,8 +15,6 @@
     fog: false,
     running: false,
     walls: null,          /* Uint8: bit 1=N, 2=E, 4=S, 8=W */
-    gems: [],             /* [{x, y, collected}] */
-    particles: [],
     players: [],
     keyState: {},
     lastMoveTime: [0, 0],
@@ -58,20 +56,6 @@
       g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.08);
       osc.connect(g); g.connect(ctx.destination);
       osc.start(); osc.stop(ctx.currentTime + 0.08);
-    },
-    gem: function () {
-      var ctx = getAudio(); if (!ctx) return;
-      var notes = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6
-      notes.forEach(function (f, idx) {
-        var osc = ctx.createOscillator(), g = ctx.createGain();
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(f, ctx.currentTime + idx * 0.04);
-        g.gain.setValueAtTime(0.12, ctx.currentTime + idx * 0.04);
-        g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + idx * 0.04 + 0.22);
-        osc.connect(g); g.connect(ctx.destination);
-        osc.start(ctx.currentTime + idx * 0.04);
-        osc.stop(ctx.currentTime + idx * 0.04 + 0.22);
-      });
     },
     win: function () {
       var ctx = getAudio(); if (!ctx) return;
@@ -131,7 +115,6 @@
         var nx = cx + DIRS[d].dx, ny = cy + DIRS[d].dy;
         if (nx < 0 || ny < 0 || nx >= N || ny >= N) continue;
         if (!visited[idx(nx, ny)]) {
-          // Slight straight-line bias to create natural corridors
           var weight = (d === lastDir) ? 2.5 : 1.0;
           candidates.push({ nx: nx, ny: ny, d: d, weight: weight });
         }
@@ -187,12 +170,9 @@
     // Open entrance (top-left) & exit (bottom-right)
     state.walls[idx(0, 0)] &= ~8;
     state.walls[idx(N - 1, N - 1)] &= ~2;
-
-    // Place 3 Gems in deep decoy dead-ends
-    placeGems();
   }
 
-  /* ---------------- Optimal Path (BFS) ---------------- */
+  /* ---------------- Optimal Path (BFS for Hint) ---------------- */
   function bfsPath(sx, sy, gx, gy) {
     var N = state.N;
     var prev = new Int32Array(N * N).fill(-1);
@@ -219,37 +199,6 @@
     return path.reverse();
   }
 
-  /* ---------------- Gems Placement in Deep Dead Ends ---------------- */
-  function placeGems() {
-    state.gems = [];
-    var N = state.N;
-    var solution = bfsPath(0, 0, N - 1, N - 1);
-    var solSet = new Set(solution.map(function (p) { return idx(p[0], p[1]); }));
-
-    var deadEnds = [];
-    for (var y = 0; y < N; y++) {
-      for (var x = 0; x < N; x++) {
-        if (x === 0 && y === 0) continue;
-        if (x === N - 1 && y === N - 1) continue;
-        // Count open walls
-        var openCount = 0;
-        for (var d = 0; d < 4; d++) {
-          if (canMove(x, y, d)) openCount++;
-        }
-        if (openCount === 1) { // True dead end
-          var distToSol = solSet.has(idx(x, y)) ? 0 : 1;
-          deadEnds.push({ x: x, y: y, score: distToSol + Math.hypot(x - N / 2, y - N / 2) });
-        }
-      }
-    }
-
-    deadEnds.sort(function (a, b) { return b.score - a.score; });
-    var count = Math.min(3, deadEnds.length);
-    for (var g = 0; g < count; g++) {
-      state.gems.push({ x: deadEnds[g].x, y: deadEnds[g].y, collected: false });
-    }
-  }
-
   /* ---------------- Player Entity ---------------- */
   function makePlayer(id, name, color, eyeColor) {
     return {
@@ -262,7 +211,6 @@
       lookDir: 1, // 0=N, 1=E, 2=S, 3=W
       trail: [[0, 0]],
       moves: 0,
-      gemsCollected: 0,
       startAt: 0,
       time: 0,
       done: false,
@@ -294,13 +242,13 @@
       makePlayer(0, '1P 흑돌이', '#1e293b', '#38bdf8'),
       makePlayer(1, '2P 백돌이', '#f8fafc', '#ef4444')
     ];
-    state.particles = [];
     state.running = true;
 
     el('resultPanel').hidden = true;
     el('t1').textContent = '0.0s';
-    el('stars1').textContent = '☆☆☆';
+    el('m1').textContent = '0걸음';
     el('t2').textContent = state.duo ? '0.0s' : '–';
+    el('m2').textContent = state.duo ? '0걸음' : '';
     el('wrap2').hidden = !state.duo;
     el('scoreP2').hidden = !state.duo;
 
@@ -308,7 +256,7 @@
     drawAll();
     msg(state.duo ?
       '⚔️ 2인 대결! 1P(WASD) vs 2P(방향키) — 먼저 목표 지점에 도착하세요!' :
-      '💎 미로 속 숨겨진 보석을 모으며 목표 지점까지 탈출하세요!');
+      '출발점(좌상단)에서 목표 지점(우하단)까지 미로를 통과하세요!');
   }
 
   /* ---------------- Rendering Engine ---------------- */
@@ -320,22 +268,19 @@
       floorA: '#1e293b', floorB: '#1a2434',
       wallBase: '#0f172a', wallTop: '#475569', wallShadow: 'rgba(0,0,0,0.45)',
       gridLine: 'rgba(255,255,255,0.03)',
-      portalA: '#f59e0b', portalB: '#d97706',
-      gemColor: '#38bdf8'
+      portalA: '#f59e0b', portalB: '#d97706'
     },
     forest: {
       floorA: '#14532d', floorB: '#166534',
       wallBase: '#064e3b', wallTop: '#22c55e', wallShadow: 'rgba(2,44,34,0.5)',
       gridLine: 'rgba(255,255,255,0.04)',
-      portalA: '#10b981', portalB: '#059669',
-      gemColor: '#fbbf24'
+      portalA: '#10b981', portalB: '#059669'
     },
     neon: {
       floorA: '#090d16', floorB: '#0f172a',
       wallBase: '#1e1b4b', wallTop: '#06b6d4', wallShadow: 'rgba(6,182,212,0.3)',
       gridLine: 'rgba(6,182,212,0.07)',
-      portalA: '#8b5cf6', portalB: '#ec4899',
-      gemColor: '#22d3ee'
+      portalA: '#8b5cf6', portalB: '#ec4899'
     }
   };
 
@@ -436,20 +381,17 @@
     ctx.save();
     ctx.translate(gx, gy);
     if (state.theme === 'dungeon') {
-      // Golden Chest
       var cw = cell * 0.55, ch = cell * 0.42;
       ctx.fillStyle = '#b45309';
       ctx.fillRect(-cw / 2, -ch / 2 + 3, cw, ch);
       ctx.fillStyle = '#f59e0b';
       ctx.fillRect(-cw / 2 + 1, -ch / 2 + 4, cw - 2, ch - 2);
-      // Gold trim & lock
       ctx.fillStyle = '#fef08a';
       ctx.fillRect(-2, -ch / 2 + 5, 4, 6);
       ctx.strokeStyle = '#78350f';
       ctx.lineWidth = 1.2;
       ctx.strokeRect(-cw / 2, -ch / 2 + 3, cw, ch);
     } else {
-      // Swirling Magic Rune Portal
       ctx.rotate(t * 0.003);
       ctx.strokeStyle = '#ffffff';
       ctx.lineWidth = Math.max(1.5, cell * 0.08);
@@ -464,50 +406,6 @@
       ctx.stroke();
     }
     ctx.restore();
-  }
-
-  /* ---------------- Animated Gems ---------------- */
-  function drawGems(ctx, t) {
-    var cell = cellPx();
-    var th = THEMES[state.theme] || THEMES.dungeon;
-
-    state.gems.forEach(function (g, idx) {
-      if (g.collected) return;
-      var gx = PAD + (g.x + 0.5) * cell;
-      var gy = PAD + (g.y + 0.5) * cell + Math.sin(t * 0.006 + idx) * (cell * 0.08);
-      var r = cell * 0.22;
-
-      // Glow
-      ctx.fillStyle = th.gemColor + '44';
-      ctx.beginPath();
-      ctx.arc(gx, gy, r * 1.6, 0, Math.PI * 2);
-      ctx.fill();
-
-      // Diamond Polygon
-      ctx.save();
-      ctx.translate(gx, gy);
-      ctx.beginPath();
-      ctx.moveTo(0, -r);
-      ctx.lineTo(r * 0.85, 0);
-      ctx.lineTo(0, r);
-      ctx.lineTo(-r * 0.85, 0);
-      ctx.closePath();
-      ctx.fillStyle = th.gemColor;
-      ctx.fill();
-      ctx.strokeStyle = '#ffffff';
-      ctx.lineWidth = 1.2;
-      ctx.stroke();
-
-      // Top Facet Highlight
-      ctx.fillStyle = '#ffffff';
-      ctx.beginPath();
-      ctx.moveTo(0, -r);
-      ctx.lineTo(r * 0.4, -r * 0.3);
-      ctx.lineTo(-r * 0.4, -r * 0.3);
-      ctx.closePath();
-      ctx.fill();
-      ctx.restore();
-    });
   }
 
   /* ---------------- Baduk Explorer Character ---------------- */
@@ -561,12 +459,10 @@
 
     var bodyGrad = ctx.createRadialGradient(-r * 0.3, -r * 0.35, r * 0.15, 0, 0, r);
     if (p.id === 0) {
-      // 1P 흑돌이 (Glossy Obsidian Black Stone)
       bodyGrad.addColorStop(0, '#64748b');
       bodyGrad.addColorStop(0.4, '#1e293b');
       bodyGrad.addColorStop(1, '#090d16');
     } else {
-      // 2P 백돌이 (Pearl White Stone)
       bodyGrad.addColorStop(0, '#ffffff');
       bodyGrad.addColorStop(0.6, '#f1f5f9');
       bodyGrad.addColorStop(1, '#cbd5e1');
@@ -633,7 +529,6 @@
     var rOuter = cell * 4.6;
 
     ctx.save();
-    // Invert mask: draw dark shroud over everything EXCEPT radius around player
     var fogGrad = ctx.createRadialGradient(px, py, rInner, px, py, rOuter);
     fogGrad.addColorStop(0, 'rgba(3, 7, 18, 0)');
     fogGrad.addColorStop(0.7, 'rgba(3, 7, 18, 0.75)');
@@ -648,7 +543,6 @@
     var ctx = cv.getContext('2d');
     drawFloorAndWalls(ctx);
     drawGoal(ctx, t);
-    drawGems(ctx, t);
     drawPlayer(ctx, p, t);
     applyFogOfWar(ctx, p);
   }
@@ -679,32 +573,17 @@
     p.moves++;
     sfx.step();
 
+    var movesEl = el('m' + (p.id + 1));
+    if (movesEl) movesEl.textContent = p.moves + '걸음';
+
     if (!p.startAt) p.startAt = performance.now();
     var last = p.trail[p.trail.length - 1];
     if (!last || last[0] !== nx || last[1] !== ny) p.trail.push([nx, ny]);
-
-    // Check Gem Collection
-    state.gems.forEach(function (g) {
-      if (!g.collected && g.x === nx && g.y === ny) {
-        g.collected = true;
-        p.gemsCollected++;
-        sfx.gem();
-        updateScoreStars();
-        msg('✨ 보석을 찾았습니다! (' + p.gemsCollected + '/3)');
-      }
-    });
 
     // Check Victory (Reached bottom-right corner)
     if (nx === state.N - 1 && ny === state.N - 1) {
       winGame(p);
     }
-  }
-
-  function updateScoreStars() {
-    var p1 = state.players[0];
-    if (!p1) return;
-    var starStr = (p1.gemsCollected >= 3) ? '★★★' : (p1.gemsCollected === 2) ? '★★☆' : (p1.gemsCollected === 1) ? '★☆☆' : '☆☆☆';
-    el('stars1').textContent = starStr;
   }
 
   function winGame(p) {
@@ -717,15 +596,12 @@
       var w = p, l = state.players[1 - p.id];
       el('resultBadge').textContent = (p.id === 0) ? '🥇' : '🥈';
       el('resultTitle').textContent = p.name + ' 승리!';
-      el('resultStars').textContent = '⚔️ 대결 완료!';
       el('resultDesc').textContent = p.name + ' ' + w.time.toFixed(1) + '초 (' + w.moves + '걸음) · ' +
         l.name + ' ' + (l.startAt ? '미완주(' + l.moves + '걸음)' : '출발 전');
     } else {
-      var stars = (p.gemsCollected >= 3) ? '★★★ 퍼펙트 클리어!' : (p.gemsCollected === 2) ? '★★☆ 우수 클리어!' : (p.gemsCollected === 1) ? '★☆☆ 클리어!' : '★☆☆ 성공!';
-      el('resultBadge').textContent = (p.gemsCollected >= 3) ? '👑' : '🏆';
+      el('resultBadge').textContent = '🏆';
       el('resultTitle').textContent = '미로 탈출 성공!';
-      el('resultStars').textContent = stars;
-      el('resultDesc').textContent = '기록 ' + p.time.toFixed(1) + '초 · ' + p.moves + '걸음 · 보석 ' + p.gemsCollected + '/3개 수집!';
+      el('resultDesc').textContent = '기록: ' + p.time.toFixed(1) + '초 · ' + p.moves + '걸음';
       msg('🎉 축하합니다! ' + p.time.toFixed(1) + '초 만에 미로를 탈출했습니다!');
     }
 

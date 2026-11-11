@@ -107,11 +107,11 @@ body[data-theme="neon"] {
 .p1-dot { background: #3b82f6; color: #3b82f6; }
 .p2-dot { background: #ef4444; color: #ef4444; }
 
-.m-stars {
-  color: #fbbf24;
-  letter-spacing: 2px;
-  font-size: 13px;
-  text-shadow: 0 0 6px rgba(251, 191, 36, 0.5);
+.m-moves {
+  color: #94a3b8;
+  font-size: 12px;
+  font-weight: 700;
+  margin-left: 2px;
 }
 
 .m-score.p1 { border-color: rgba(59, 130, 246, 0.4); }
@@ -361,13 +361,7 @@ body[data-theme="neon"] {
   100% { transform: scale(1) translateY(0); opacity: 1; }
 }
 
-.victory-stars {
-  font-size: 26px;
-  color: #f59e0b;
-  letter-spacing: 4px;
-  margin-bottom: 10px;
-  text-shadow: 0 2px 8px rgba(245, 158, 11, 0.4);
-}
+
 
 .m-card h2 {
   margin: 0 0 8px;
