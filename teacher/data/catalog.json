@@ -16937,7 +16937,7 @@
   },
   {
     "title": "13. NEW 기법, 분야별 마스터관",
-    "bookCount": 10,
+    "bookCount": 11,
     "books": [
       {
         "code": "new_tech_chokchoksu",
@@ -17871,6 +17871,228 @@
             "code": "kkeutnaegi_47",
             "title": "47. 끝내기 수법 종합 적용",
             "problemCount": 85
+          }
+        ]
+      },
+      {
+        "title": "맥점",
+        "name": "맥점",
+        "code": "new_tech_maekjeom",
+        "file": "book_new_tech_maekjeom.json",
+        "chapterCount": 42,
+        "totalProblems": 1595,
+        "problemCount": 1595,
+        "_buildVer": "v1-maekjeom-three-series-2026-11-11",
+        "chapters": [
+          {
+            "code": "maekjeom_01",
+            "title": "1. 두 집을 만드는 기본 급소",
+            "problemCount": 67
+          },
+          {
+            "code": "maekjeom_02",
+            "title": "2. 두 집을 못 만들게 하는 치중의 급소",
+            "problemCount": 76
+          },
+          {
+            "code": "maekjeom_03",
+            "title": "3. 빈삼각의 급소",
+            "problemCount": 19
+          },
+          {
+            "code": "maekjeom_04",
+            "title": "4. 호구의 급소",
+            "problemCount": 62
+          },
+          {
+            "code": "maekjeom_05",
+            "title": "5. 쌍립의 급소 찾기",
+            "problemCount": 40
+          },
+          {
+            "code": "maekjeom_06",
+            "title": "6. 1·2선 연결의 급소로 끊기",
+            "problemCount": 28
+          },
+          {
+            "code": "maekjeom_07",
+            "title": "7. 쌍립의 급소로 끊기",
+            "problemCount": 68
+          },
+          {
+            "code": "maekjeom_08",
+            "title": "8. 쌍립의 급소로 잡기",
+            "problemCount": 57
+          },
+          {
+            "code": "maekjeom_09",
+            "title": "9. 서로 한 칸·날일자가 되는 급소",
+            "problemCount": 22
+          },
+          {
+            "code": "maekjeom_10",
+            "title": "10. 상대 모양의 급소 공격하기",
+            "problemCount": 48
+          },
+          {
+            "code": "maekjeom_11",
+            "title": "11. 내 모양의 급소 지키기",
+            "problemCount": 24
+          },
+          {
+            "code": "maekjeom_12",
+            "title": "12. 급소 공격에 대응하기",
+            "problemCount": 24
+          },
+          {
+            "code": "maekjeom_13",
+            "title": "13. 행마의 급소 찾기",
+            "problemCount": 26
+          },
+          {
+            "code": "maekjeom_14",
+            "title": "14. 붙임의 맥",
+            "problemCount": 65
+          },
+          {
+            "code": "maekjeom_15",
+            "title": "15. 젖힘의 맥",
+            "problemCount": 49
+          },
+          {
+            "code": "maekjeom_16",
+            "title": "16. 이단 젖힘의 맥",
+            "problemCount": 25
+          },
+          {
+            "code": "maekjeom_17",
+            "title": "17. 급소를 젖혀 공격하기",
+            "problemCount": 24
+          },
+          {
+            "code": "maekjeom_18",
+            "title": "18. 끼워서 약점 만들기",
+            "problemCount": 24
+          },
+          {
+            "code": "maekjeom_19",
+            "title": "19. 끼워서 잡는 맥",
+            "problemCount": 70
+          },
+          {
+            "code": "maekjeom_20",
+            "title": "20. 찝음의 맥",
+            "problemCount": 24
+          },
+          {
+            "code": "maekjeom_21",
+            "title": "21. 장문의 맥",
+            "problemCount": 38
+          },
+          {
+            "code": "maekjeom_22",
+            "title": "22. 연결해서 살아가는 맥",
+            "problemCount": 24
+          },
+          {
+            "code": "maekjeom_23",
+            "title": "23. 옥집 급소를 선점해 진짜 집 만들기",
+            "problemCount": 24
+          },
+          {
+            "code": "maekjeom_24",
+            "title": "24. 옥집을 피하여 두 집으로 살리기",
+            "problemCount": 32
+          },
+          {
+            "code": "maekjeom_25",
+            "title": "25. 젖혀서 옥집 만드는 맥",
+            "problemCount": 12
+          },
+          {
+            "code": "maekjeom_26",
+            "title": "26. 자충으로 옥집 만드는 맥",
+            "problemCount": 16
+          },
+          {
+            "code": "maekjeom_27",
+            "title": "27. 먹여쳐서 옥집 만드는 맥",
+            "problemCount": 12
+          },
+          {
+            "code": "maekjeom_28",
+            "title": "28. 찝어서 옥집 만드는 맥",
+            "problemCount": 16
+          },
+          {
+            "code": "maekjeom_29",
+            "title": "29. 한 집을 더 만드는 급소",
+            "problemCount": 52
+          },
+          {
+            "code": "maekjeom_30",
+            "title": "30. 한 집 만드는 급소를 선점해 잡기",
+            "problemCount": 12
+          },
+          {
+            "code": "maekjeom_31",
+            "title": "31. 집을 줄인 뒤 급소 치중",
+            "problemCount": 21
+          },
+          {
+            "code": "maekjeom_32",
+            "title": "32. 석 점의 중앙 급소",
+            "problemCount": 26
+          },
+          {
+            "code": "maekjeom_33",
+            "title": "33. 좌우동형의 중앙 급소와 살리기",
+            "problemCount": 51
+          },
+          {
+            "code": "maekjeom_34",
+            "title": "34. 좌우동형의 중앙을 공격해 잡기",
+            "problemCount": 12
+          },
+          {
+            "code": "maekjeom_35",
+            "title": "35. 1선의 급소로 살리기",
+            "problemCount": 29
+          },
+          {
+            "code": "maekjeom_36",
+            "title": "36. 2의 1 급소로 살리기",
+            "problemCount": 38
+          },
+          {
+            "code": "maekjeom_37",
+            "title": "37. 2의 1 급소로 잡기",
+            "problemCount": 12
+          },
+          {
+            "code": "maekjeom_38",
+            "title": "38. 집모양의 급소로 살리기",
+            "problemCount": 144
+          },
+          {
+            "code": "maekjeom_39",
+            "title": "39. 집모양의 급소로 잡기",
+            "problemCount": 108
+          },
+          {
+            "code": "maekjeom_40",
+            "title": "40. 먹여치는 급소로 수 줄이기",
+            "problemCount": 24
+          },
+          {
+            "code": "maekjeom_41",
+            "title": "41. 수상전의 1선 맥",
+            "problemCount": 24
+          },
+          {
+            "code": "maekjeom_42",
+            "title": "42. 수상전의 복합 급소",
+            "problemCount": 26
           }
         ]
       }
