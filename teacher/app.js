@@ -902,6 +902,10 @@
     if (!p) return { cols: 10, rows: 10, isFull19: false, quadrant: 'BR' };
     
     var rawSize = p.size ? String(p.size).trim() : '';
+    // Explicit opt-in for source 9x9 full-board problems in new course books.
+    if (String(p._boardSize || '').trim() === '9') {
+      return { cols: 9, rows: 9, isFull19: true, quadrant: 'FULL9' };
+    }
     if (rawSize === '1' || rawSize === '2') {
       return { cols: 19, rows: 19, isFull19: true, quadrant: 'FULL19' };
     }
@@ -1340,14 +1344,14 @@
       ctx.lineWidth = 2.8;
       ctx.strokeRect(startX, startY, cell * (cols - 1), cell * (rows - 1));
 
-      // 19줄 9개 화점
-      [3, 9, 15].forEach(function(hx){
-        [3, 9, 15].forEach(function(hy){
-          ctx.fillStyle = '#4a2c11';
-          ctx.beginPath();
-          ctx.arc(startX + cell * hx, startY + cell * hy, Math.max(2.6, cell * 0.08), 0, Math.PI * 2);
-          ctx.fill();
-        });
+      var fullBoardStarPoints = (cols === 9 && rows === 9)
+        ? [[2, 2], [6, 2], [4, 4], [2, 6], [6, 6]]
+        : [[3, 3], [3, 9], [3, 15], [9, 3], [9, 9], [9, 15], [15, 3], [15, 9], [15, 15]];
+      fullBoardStarPoints.forEach(function(point){
+        ctx.fillStyle = '#4a2c11';
+        ctx.beginPath();
+        ctx.arc(startX + cell * point[0], startY + cell * point[1], Math.max(2.6, cell * 0.08), 0, Math.PI * 2);
+        ctx.fill();
       });
     }
 
@@ -2770,6 +2774,22 @@
     pushProbEditSnapshot();
     var p = state.currentProblems[state.currentProblemIndex];
     if (!p) return;
+
+    if (String(p._boardSize || '').trim() === '9') {
+      var full9Sgf = (p.data || '') + (p.answer || '');
+      for (var branch9 = 1; branch9 <= 5; branch9++) full9Sgf += (p['answer' + branch9] || '');
+      var full9Pattern = /([BWTCMSL]|TR|CR|SQ|MA|LB)\[([a-s]{2})(:[^\]]*)?\]/gi;
+      var point9;
+      while ((point9 = full9Pattern.exec(full9Sgf)) !== null) {
+        var shiftedX9 = point9[2].charCodeAt(0) - 97 + dx;
+        var shiftedY9 = point9[2].charCodeAt(1) - 97 + dy;
+        if (shiftedX9 < 0 || shiftedX9 > 8 || shiftedY9 < 0 || shiftedY9 > 8) {
+          var full9Badge = document.getElementById('pedSaveBadge');
+          if (full9Badge) full9Badge.textContent = '9줄 판의 경계를 벗어나 이동할 수 없습니다.';
+          return;
+        }
+      }
+    }
 
     function shiftSgfStr(sgf) {
       if (!sgf || typeof sgf !== 'string') return sgf;
