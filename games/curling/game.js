@@ -532,7 +532,8 @@
   function executeThrow(vx, vy) {
     state.isThrowing = true;
     audio.playSlide();
-    sweepOverlay.hidden = false;
+    statusMessage.innerHTML = '🧹 <b>빙판을 슥삭슥삭 문지르면(스위핑) 더 멀리 갑니다!</b>';
+    statusMessage.classList.add('sweeping-active');
 
     engine.deliverStone(vx, vy);
     updateUI();
@@ -587,7 +588,7 @@
     if (state.isThrowing && !isMoving) {
       // Throw complete!
       state.isThrowing = false;
-      sweepOverlay.hidden = true;
+      statusMessage.classList.remove('sweeping-active');
       onThrowFinished();
     }
 
@@ -754,7 +755,7 @@
     clearTimeout(state.aiTimeout);
     endModal.hidden = true;
     gameOverModal.hidden = true;
-    sweepOverlay.hidden = true;
+    statusMessage.classList.remove('sweeping-active');
     state.isAiming = false;
     state.isThrowing = false;
     state.particles = [];
