@@ -1,11 +1,12 @@
 /**
- * World Flag Quiz (세계 국기 퀴즈 왕) - Game Engine & Interactive Controller
+ * World Flag & Map Quiz (세계 국기 & 지도 탐험) - Game Engine & Interactive Controller
  */
 (function() {
   'use strict';
 
   var DATA = window.FLAGMAP_DATA || {};
   var CAPITALS = window.FLAGMAP_CAPITALS || {};
+  var BBOXES = window.MAP_BBOXES || {};
   var audio = window.FlagAudio;
 
   // 30 Most Recognizable / Popular Countries for Beginners
@@ -27,6 +28,8 @@
     oceania: [],
     world: []
   };
+
+  var rawSvgText = null;
 
   // Build Country Database
   function initDatabase() {
@@ -76,6 +79,8 @@
     scope: 'popular',
     qTotal: 10,
     timerLimit: 10,
+    showMap: true,
+    mapZoomed: true,
     questions: [],
     currentIndex: 0,
     currentQuestion: null,
@@ -113,6 +118,7 @@
     dom.quizFilterBar = document.getElementById('quizFilterBar');
     dom.scopeChips = document.getElementById('scopeChips');
     dom.chipBtns = document.querySelectorAll('.chip-btn');
+    dom.btnToggleMap = document.getElementById('btnToggleMap');
     dom.selectQCount = document.getElementById('selectQCount');
     dom.selectTimer = document.getElementById('selectTimer');
     dom.btnRestartQuiz = document.getElementById('btnRestartQuiz');
@@ -126,7 +132,13 @@
     dom.hintText = document.getElementById('hintText');
 
     dom.questionCard = document.getElementById('questionCard');
+    dom.dualStage = document.getElementById('dualStage');
     dom.mainFlagImg = document.getElementById('mainFlagImg');
+    dom.stageMapBox = document.getElementById('stageMapBox');
+    dom.miniMapWrap = document.getElementById('miniMapWrap');
+    dom.mapRegionBadge = document.getElementById('mapRegionBadge');
+    dom.btnToggleZoom = document.getElementById('btnToggleZoom');
+
     dom.landmarkTag = document.getElementById('landmarkTag');
     dom.landmarkIcon = document.getElementById('landmarkIcon');
     dom.landmarkName = document.getElementById('landmarkName');
@@ -139,6 +151,8 @@
     dom.c2fContinent = document.getElementById('c2fContinent');
     dom.c2fCountryName = document.getElementById('c2fCountryName');
     dom.c2fCapitalHint = document.getElementById('c2fCapitalHint');
+    dom.c2fMapWrap = document.getElementById('c2fMapWrap');
+    dom.c2fRegionBadge = document.getElementById('c2fRegionBadge');
     dom.flagOptionsGrid = document.getElementById('flagOptionsGrid');
 
     dom.answerFeedback = document.getElementById('answerFeedback');
@@ -157,6 +171,7 @@
     dom.detailCapital = document.getElementById('detailCapital');
     dom.detailLandmark = document.getElementById('detailLandmark');
     dom.detailIso = document.getElementById('detailIso');
+    dom.detailMapWrap = document.getElementById('detailMapWrap');
     dom.btnCloseDetail = document.getElementById('btnCloseDetail');
     dom.btnCloseDetail2 = document.getElementById('btnCloseDetail2');
     dom.btnQuizFromDetail = document.getElementById('btnQuizFromDetail');
@@ -187,6 +202,129 @@
       a[j] = temp;
     }
     return a;
+  }
+
+  // ========================================================
+  // World SVG Map Engine
+  // ========================================================
+  function loadWorldSvg() {
+    return fetch('world.svg', { cache: 'force-cache' })
+      .then(function(res) { return res.text(); })
+      .then(function(txt) {
+        rawSvgText = txt;
+        initMapContainers();
+      })
+      .catch(function(err) {
+        console.warn('SVG Map load failed:', err);
+      });
+  }
+
+  function initMapContainers() {
+    if (!rawSvgText) return;
+
+    if (dom.miniMapWrap) {
+      dom.miniMapWrap.innerHTML = rawSvgText;
+      addMapPinGroup(dom.miniMapWrap.querySelector('svg'));
+    }
+    if (dom.c2fMapWrap) {
+      dom.c2fMapWrap.innerHTML = rawSvgText;
+      addMapPinGroup(dom.c2fMapWrap.querySelector('svg'));
+    }
+    if (dom.detailMapWrap) {
+      dom.detailMapWrap.innerHTML = rawSvgText;
+      addMapPinGroup(dom.detailMapWrap.querySelector('svg'));
+    }
+
+    if (state.currentQuestion) {
+      renderMapHighlight(state.currentQuestion.target.iso);
+    }
+  }
+
+  function addMapPinGroup(svgEl) {
+    if (!svgEl) return;
+    svgEl.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+
+    var pinG = svgEl.querySelector('#targetPinGroup');
+    if (!pinG) {
+      pinG = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+      pinG.setAttribute('id', 'targetPinGroup');
+      pinG.innerHTML =
+        '<circle class="beacon-ring" cx="0" cy="0" r="14" />' +
+        '<circle class="beacon-dot" cx="0" cy="0" r="5" />';
+      svgEl.appendChild(pinG);
+    }
+  }
+
+  function renderMapHighlight(iso, targetContainer) {
+    var container = targetContainer || dom.miniMapWrap;
+    if (!container) return;
+    var svg = container.querySelector('svg');
+    if (!svg) return;
+
+    var isoLower = iso.toLowerCase();
+    var b = BBOXES[isoLower];
+
+    // 1. Remove prior active highlights
+    var activePaths = svg.querySelectorAll('.active-target');
+    for (var a = 0; a < activePaths.length; a++) {
+      activePaths[a].classList.remove('active-target');
+    }
+
+    // 2. Add active-target class to target path
+    var path = svg.querySelector('path[id="' + isoLower + '"]') || svg.querySelector('path[id="' + iso.toUpperCase() + '"]');
+    if (path) {
+      path.classList.add('active-target');
+      // Bring target to front
+      svg.appendChild(path);
+    }
+
+    // 3. Move Beacon Pin
+    var pinG = svg.querySelector('#targetPinGroup');
+    if (!pinG) {
+      addMapPinGroup(svg);
+      pinG = svg.querySelector('#targetPinGroup');
+    }
+
+    var cx = 505, cy = 333; // Default center
+    if (b) {
+      cx = b[0] + b[2] / 2;
+      cy = b[1] + b[3] / 2;
+    } else if (path) {
+      try {
+        var bb = path.getBBox();
+        cx = bb.x + bb.width / 2;
+        cy = bb.y + bb.height / 2;
+        b = [bb.x, bb.y, bb.width, bb.height];
+      } catch(e) {}
+    }
+
+    if (pinG) {
+      var ring = pinG.querySelector('.beacon-ring');
+      var dot = pinG.querySelector('.beacon-dot');
+      if (ring) { ring.setAttribute('cx', cx); ring.setAttribute('cy', cy); }
+      if (dot) { dot.setAttribute('cx', cx); dot.setAttribute('cy', cy); }
+      svg.appendChild(pinG); // Ensure pin is on very top
+    }
+
+    // 4. ViewBox Zooming
+    if (state.mapZoomed && b) {
+      var zoomW = Math.max(b[2] * 2.8, 140);
+      var zoomH = Math.max(b[3] * 2.8, 95);
+
+      // Keep approx 1.6:1 aspect ratio
+      if (zoomW / zoomH > 1.6) {
+        zoomH = zoomW / 1.6;
+      } else {
+        zoomW = zoomH * 1.6;
+      }
+
+      var vx = Math.max(0, Math.min(1010 - zoomW, cx - zoomW / 2));
+      var vy = Math.max(0, Math.min(666 - zoomH, cy - zoomH / 2));
+
+      svg.setAttribute('viewBox', vx.toFixed(1) + ' ' + vy.toFixed(1) + ' ' + zoomW.toFixed(1) + ' ' + zoomH.toFixed(1));
+    } else {
+      svg.setAttribute('viewBox', '0 0 1010 666');
+    }
   }
 
   // ========================================================
@@ -266,8 +404,6 @@
     for (var i = 0; i < targetList.length; i++) {
       var target = targetList[i];
 
-      // Select 3 distractors
-      // 1st priority: same continent; 2nd: general pool
       var sameContPool = pool.filter(function(c) {
         return c.iso !== target.iso && c.contKey === target.contKey;
       });
@@ -344,6 +480,9 @@
     updateHeaderStats();
     resetOptionStyles();
 
+    // Map visibility toggle
+    dom.stageMapBox.style.display = state.showMap ? 'flex' : 'none';
+
     // Mode-Specific Setup
     if (state.mode === 'flag-to-country') {
       dom.questionCard.hidden = false;
@@ -351,8 +490,11 @@
       dom.landmarkTag.hidden = true;
 
       dom.mainFlagImg.src = 'flags/' + target.iso + '.svg';
-      dom.promptText.textContent = '이 국기의 나라는 어디일까요?';
-      dom.promptSub.textContent = '4개의 보기 중 올바른 나라를 선택하세요!';
+      dom.mapRegionBadge.textContent = '📍 ' + target.continent;
+      dom.promptText.textContent = '이 국기와 위치의 나라는 어디일까요?';
+      dom.promptSub.textContent = '국기와 지도에 표시된 위치를 보고 올바른 나라를 선택하세요!';
+
+      renderMapHighlight(target.iso, dom.miniMapWrap);
 
       for (var o = 0; o < 4; o++) {
         var opt = q.options[o];
@@ -373,9 +515,12 @@
       dom.landmarkTag.hidden = false;
       dom.landmarkIcon.textContent = target.landmarkIcon;
       dom.landmarkName.textContent = target.name + ' · ' + (target.landmarkName || '대표 문화');
+      dom.mapRegionBadge.textContent = '📍 ' + target.continent;
 
       dom.promptText.textContent = target.name + '의 수도는 어디일까요?';
-      dom.promptSub.textContent = '올바른 수도 이름을 골라보세요!';
+      dom.promptSub.textContent = '지도 위치와 국기를 확인하고 올바른 수도를 골라보세요!';
+
+      renderMapHighlight(target.iso, dom.miniMapWrap);
 
       for (var c = 0; c < 4; c++) {
         var cOpt = q.options[c];
@@ -395,6 +540,9 @@
       dom.c2fContinent.textContent = '🌏 ' + target.continent;
       dom.c2fCountryName.textContent = target.name;
       dom.c2fCapitalHint.textContent = '수도: ' + target.capital + ' ' + target.landmarkIcon;
+      dom.c2fRegionBadge.textContent = '📍 ' + target.name + ' 위치';
+
+      renderMapHighlight(target.iso, dom.c2fMapWrap);
 
       // Render 4 flag choice cards
       dom.flagOptionsGrid.innerHTML = '';
@@ -651,8 +799,8 @@
     // Determine Grade
     if (accuracy === 100) {
       dom.resultBadgeIcon.textContent = '👑';
-      dom.resultTitle.textContent = '완벽한 국기 마스터!';
-      dom.resultGradeDesc.textContent = '단 한 문제도 틀리지 않고 100% 모두 맞혔습니다!';
+      dom.resultTitle.textContent = '완벽한 국기 & 지도 마스터!';
+      dom.resultGradeDesc.textContent = '단 한 문제도 틀리지 않고 국기와 위치를 100% 맞혔습니다!';
       launchConfetti(120);
     } else if (accuracy >= 80) {
       dom.resultBadgeIcon.textContent = '🥇';
@@ -662,11 +810,11 @@
     } else if (accuracy >= 60) {
       dom.resultBadgeIcon.textContent = '🥈';
       dom.resultTitle.textContent = '멋진 도전이었습니다!';
-      dom.resultGradeDesc.textContent = '틀린 나라들을 복습하고 다시 도전해 보세요!';
+      dom.resultGradeDesc.textContent = '틀린 나라들의 위치와 국기를 복습해 보세요!';
     } else {
       dom.resultBadgeIcon.textContent = '🥉';
       dom.resultTitle.textContent = '좋은 배움의 기회!';
-      dom.resultGradeDesc.textContent = '세계 국기 도감에서 나라들을 둘러보고 재도전해 볼까요?';
+      dom.resultGradeDesc.textContent = '세계 국기 도감에서 지도 위치를 확인하고 재도전해 볼까요?';
     }
 
     // Wrong review items
@@ -678,7 +826,7 @@
         row.className = 'review-item';
         row.innerHTML =
           '<img src="flags/' + item.iso + '.svg" alt="국기">' +
-          '<span class="review-name">' + item.name + '</span>' +
+          '<span class="review-name">' + item.name + ' (' + item.continent + ')</span>' +
           '<span class="review-cap">수도: ' + item.capital + ' ' + item.landmarkIcon + '</span>';
         dom.wrongReviewList.appendChild(row);
       });
@@ -742,6 +890,8 @@
     dom.detailLandmark.textContent = c.landmarkIcon + ' ' + (c.landmarkName || '전통 문화');
     dom.detailIso.textContent = c.iso.toUpperCase();
 
+    renderMapHighlight(c.iso, dom.detailMapWrap);
+
     dom.btnQuizFromDetail.onclick = function() {
       dom.countryDetailModal.hidden = true;
       switchMode('flag-to-country');
@@ -758,7 +908,7 @@
     });
 
     var modeLabels = {
-      'flag-to-country': '국기 보고 나라 맞추기',
+      'flag-to-country': '국기 & 지도 보고 나라 맞추기',
       'country-to-flag': '나라 보고 국기 맞추기',
       'capital-quiz': '수도 & 랜드마크 퀴즈',
       'encyclopedia': '세계 국기 도감'
@@ -787,6 +937,24 @@
       var muted = audio.toggleMute();
       dom.soundIcon.textContent = muted ? '🔇' : '🔊';
       dom.btnSoundToggle.title = muted ? '효과음 켜기' : '효과음 끄기';
+    });
+
+    // Map Display Toggle (ON / OFF)
+    dom.btnToggleMap.addEventListener('click', function() {
+      state.showMap = !state.showMap;
+      dom.btnToggleMap.classList.toggle('active', state.showMap);
+      dom.btnToggleMap.textContent = state.showMap ? '🗺️ 지도 위치: ON' : '🗺️ 지도 위치: OFF';
+      dom.stageMapBox.style.display = state.showMap ? 'flex' : 'none';
+      audio.playClick();
+    });
+
+    // Map Zoom Toggle (Zoom in / World overview)
+    dom.btnToggleZoom.addEventListener('click', function() {
+      state.mapZoomed = !state.mapZoomed;
+      if (state.currentQuestion) {
+        renderMapHighlight(state.currentQuestion.target.iso, dom.miniMapWrap);
+      }
+      audio.playClick();
     });
 
     // Mode Tabs
@@ -906,11 +1074,13 @@
       });
     }
 
-    if (initMode && ['flag-to-country', 'country-to-flag', 'capital-quiz', 'encyclopedia'].indexOf(initMode) !== -1) {
-      switchMode(initMode);
-    } else {
-      startNewQuiz();
-    }
+    loadWorldSvg().then(function() {
+      if (initMode && ['flag-to-country', 'country-to-flag', 'capital-quiz', 'encyclopedia'].indexOf(initMode) !== -1) {
+        switchMode(initMode);
+      } else {
+        startNewQuiz();
+      }
+    });
   }
 
   if (document.readyState === 'loading') {

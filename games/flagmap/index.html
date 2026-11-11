@@ -4,15 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>세계 국기 퀴즈 왕 (Flag Quiz) — JH 바둑스쿨 에듀펀</title>
-  <meta name="description" content="전 세계 195개국 국기와 수도를 맞히는 신나는 에듀펀 퀴즈 게임! 스피드 퀴즈, 수도 맞추기, 국기 도감 완벽 수록">
+  <meta name="description" content="전 세계 195개국 국기와 지도 속 위치, 수도를 함께 맞히는 신나는 에듀펀 퀴즈 게임! 국기·지도 동시 연동 학습">
   <link rel="stylesheet" href="/unified-nav.css?v=20261103-nav-v11">
-  <link rel="stylesheet" href="style.css?v=20261111-quiz-v1">
+  <link rel="stylesheet" href="style.css?v=20261111-map-v2">
   <script src="/unified-nav.js?v=20261103-nav-v11" defer></script>
   <script src="/js/site_lock.js?v=5"></script>
 </head>
 <body data-bks-page="flagmap">
 
-  <!-- Confetti Canvas for Celebrations -->
+  <!-- Confetti Celebration Canvas -->
   <canvas id="confettiCanvas" class="confetti-canvas"></canvas>
 
   <div class="flag-game-container">
@@ -20,8 +20,8 @@
     <!-- Top Game Header Bar -->
     <header class="quiz-header-bar">
       <div class="header-left">
-        <span class="game-badge">🌍 세계 국기 탐험</span>
-        <span class="mode-title-pill" id="currentModeLabel">국기 보고 나라 맞추기</span>
+        <span class="game-badge">🌍 세계 국기 & 지도 탐험</span>
+        <span class="mode-title-pill" id="currentModeLabel">국기 & 지도 보고 나라 맞추기</span>
       </div>
 
       <!-- Stats Pill Group -->
@@ -53,7 +53,7 @@
     <nav class="mode-tab-nav" aria-label="게임 모드 선택">
       <button type="button" class="tab-btn active" data-mode="flag-to-country">
         <span class="tab-icon">🥌</span>
-        <span class="tab-text">국기 보고 나라</span>
+        <span class="tab-text">국기 & 지도 퀴즈</span>
       </button>
       <button type="button" class="tab-btn" data-mode="country-to-flag">
         <span class="tab-icon">🗺️</span>
@@ -85,6 +85,9 @@
       </div>
 
       <div class="filter-right-tools">
+        <button type="button" class="chip-btn map-toggle-chip active" id="btnToggleMap" title="지도 위치 힌트 켜기/끄기">
+          🗺️ 지도 위치: ON
+        </button>
         <div class="tool-select-box">
           <label for="selectQCount">문제 수</label>
           <select id="selectQCount">
@@ -126,10 +129,28 @@
       <!-- Question Card: Mode 1 (Flag to Country) & Mode 3 (Capital Quiz) -->
       <section class="question-card" id="questionCard">
         
-        <!-- Big Flag Display -->
-        <div class="flag-stage" id="flagStage">
-          <div class="flag-frame" id="flagFrame">
-            <img id="mainFlagImg" src="flags/kr.svg" alt="국기" loading="eager">
+        <!-- Dual Stage: Flag + Interactive World Map Location -->
+        <div class="quiz-dual-stage" id="dualStage">
+          <!-- Flag Frame -->
+          <div class="stage-flag-box">
+            <div class="flag-frame" id="flagFrame">
+              <img id="mainFlagImg" src="flags/kr.svg" alt="국기" loading="eager">
+            </div>
+            <span class="stage-sub-badge">🥌 국기 (Flag)</span>
+          </div>
+
+          <!-- World Map Location Box -->
+          <div class="stage-map-box" id="stageMapBox">
+            <div class="mini-map-wrap" id="miniMapWrap">
+              <div class="map-placeholder">지도 불러오는 중...</div>
+            </div>
+            <div class="map-overlay-tools">
+              <span class="map-badge" id="mapRegionBadge">📍 아시아</span>
+              <button type="button" class="map-zoom-btn" id="btnToggleZoom" title="전체 지도 / 확대 보기">
+                🔍 전체/확대
+              </button>
+            </div>
+            <span class="stage-sub-badge">🗺️ 지도 속 위치 (Location)</span>
           </div>
         </div>
 
@@ -138,8 +159,8 @@
           <div class="country-landmark-tag" id="landmarkTag" hidden>
             <span id="landmarkIcon">🏛️</span> <span id="landmarkName">경복궁</span>
           </div>
-          <h2 class="prompt-text" id="promptText">이 국기의 나라는 어디일까요?</h2>
-          <p class="prompt-sub" id="promptSub">4개의 보기 중 올바른 정답을 선택하세요!</p>
+          <h2 class="prompt-text" id="promptText">이 국기와 위치의 나라는 어디일까요?</h2>
+          <p class="prompt-sub" id="promptSub">국기와 지도에 표시된 위치를 보고 올바른 나라를 선택하세요!</p>
         </div>
 
         <!-- 4-Choice Options Grid -->
@@ -170,7 +191,15 @@
           <span class="continent-tag" id="c2fContinent">🌏 아시아</span>
           <h2 class="target-country-name" id="c2fCountryName">대한민국</h2>
           <p class="target-country-hint" id="c2fCapitalHint">수도: 서울 🏯</p>
-          <p class="target-prompt-guide">올바른 국기를 골라 터치하세요!</p>
+          <p class="target-prompt-guide">지도 속 위치를 확인하고 올바른 국기를 골라 터치하세요!</p>
+        </div>
+
+        <!-- Map Location Preview for Mode 2 -->
+        <div class="c2f-map-container" id="c2fMapContainer">
+          <div class="mini-map-wrap" id="c2fMapWrap"></div>
+          <div class="map-overlay-tools">
+            <span class="map-badge" id="c2fRegionBadge">📍 위치</span>
+          </div>
         </div>
 
         <div class="flag-options-grid" id="flagOptionsGrid">
@@ -208,9 +237,18 @@
   <div class="modal-backdrop" id="countryDetailModal" hidden>
     <div class="modal-card detail-card">
       <button type="button" class="modal-close-x" id="btnCloseDetail">&times;</button>
-      <div class="detail-flag-wrap">
-        <img id="detailFlagImg" src="flags/kr.svg" alt="국기">
+      
+      <div class="detail-visual-grid">
+        <div class="detail-flag-wrap">
+          <img id="detailFlagImg" src="flags/kr.svg" alt="국기">
+          <span class="detail-sub-badge">국기</span>
+        </div>
+        <div class="detail-map-wrap">
+          <div class="mini-map-wrap" id="detailMapWrap"></div>
+          <span class="detail-sub-badge">세계 지도 위치</span>
+        </div>
       </div>
+
       <h2 class="detail-country-name" id="detailCountryName">대한민국</h2>
       <div class="detail-meta-list">
         <div class="detail-meta-row">
@@ -243,8 +281,8 @@
   <div class="modal-backdrop" id="resultModal" hidden>
     <div class="modal-card result-card">
       <div class="result-badge-icon" id="resultBadgeIcon">👑</div>
-      <h2 class="result-title" id="resultTitle">국기 마스터 달성!</h2>
-      <p class="result-grade-desc" id="resultGradeDesc">대단합니다! 모든 문제를 척척 맞혔어요!</p>
+      <h2 class="result-title" id="resultTitle">국기 & 지도 마스터 달성!</h2>
+      <p class="result-grade-desc" id="resultGradeDesc">대단합니다! 국기와 위치까지 완벽하게 정복했어요!</p>
 
       <div class="result-score-box">
         <div class="score-main">
@@ -269,7 +307,7 @@
 
       <!-- Wrong Review Section (If any) -->
       <div class="wrong-review-box" id="wrongReviewBox" hidden>
-        <h3 class="review-title">📝 복습할 문제</h3>
+        <h3 class="review-title">📝 복습할 문제 (국기 & 위치)</h3>
         <div class="review-list" id="wrongReviewList">
           <!-- Wrong items injected here -->
         </div>
@@ -285,7 +323,8 @@
   <!-- Data & Logic Scripts -->
   <script src="data/countries.js?v=20261111-v1"></script>
   <script src="data/capitals.js?v=20261111-v1"></script>
+  <script src="data/bboxes.js?v=20261111-v1"></script>
   <script src="audio.js?v=20261111-v1"></script>
-  <script src="game.js?v=20261111-quiz-v1"></script>
+  <script src="game.js?v=20261111-map-v2"></script>
 </body>
 </html>
