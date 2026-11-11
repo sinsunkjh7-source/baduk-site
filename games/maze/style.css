@@ -405,8 +405,18 @@ body[data-theme="neon"] {
 }
 
 .m-card-actions .m-btn.primary {
-  color: #ffffff;
-  border-color: #059669;
+  background: linear-gradient(135deg, #10b981, #059669) !important;
+  border-color: #047857 !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.4) !important;
+  font-weight: 900;
+}
+
+.m-card-actions .m-btn.primary:hover {
+  background: linear-gradient(135deg, #059669, #047857) !important;
+  color: #ffffff !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(16, 185, 129, 0.5) !important;
 }
 
 .large-btn {
