@@ -2,62 +2,150 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>숨은 그림 찾기 — 바둑스쿨 Fun</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>숨은 그림 찾기 대모험 — 바둑스쿨 Fun</title>
 <link rel="stylesheet" href="/unified-nav.css?v=nav-v12d">
-<link rel="stylesheet" href="style.css?v=hidden-3">
+<link rel="stylesheet" href="style.css?v=hidden-v20">
 <script src="/unified-nav.js?v=nav-v12d" defer></script>
 <script src="/js/site_lock.js?v=5"></script>
 </head>
 <body data-bks-page="hidden">
 
 <main class="h-wrap">
-  <div class="h-head">
-    <div class="h-score p1"><span>1P</span><b id="s1">0</b></div>
-    <div class="h-score p2"><span>2P</span><b id="s2">0</b></div>
-    <div class="h-left"><span>찾을 것</span><b id="left">8</b></div>
-    <button type="button" class="h-btn" id="btnHint">힌트 <span id="hintLeft">3</span></button>
-    <button type="button" class="h-btn" id="btnZoom">확대</button>
-    <button type="button" class="h-btn primary" id="btnNew">새 장면</button>
-    <button type="button" class="h-btn" id="btnRules">규칙</button>
+  <!-- Game Top Bar -->
+  <header class="h-topbar">
+    <div class="h-top-left">
+      <div class="h-stage-badge" id="stageBadge">
+        <span class="badge-icon">🏰</span>
+        <span class="badge-title" id="stageTitle">1단계: 신비한 바둑 서재</span>
+      </div>
+      <div class="h-stat-pill timer-pill">
+        <span class="stat-icon">⏱️</span>
+        <span class="stat-val" id="timerVal">00:00</span>
+      </div>
+      <div class="h-stat-pill count-pill">
+        <span class="stat-icon">🎯</span>
+        <span class="stat-label">남은 보물</span>
+        <span class="stat-val highlight" id="remainVal">0 / 0</span>
+      </div>
+    </div>
+
+    <div class="h-top-right">
+      <div class="h-stage-select-wrap">
+        <select id="stageSelect" class="h-select" aria-label="스테이지 선택">
+          <option value="0">1단계: 신비한 바둑 서재</option>
+          <option value="1">2단계: 바닷속 용궁</option>
+          <option value="2">3단계: 요정의 숲속 비밀 캠프</option>
+          <option value="3">4단계: 은하수 우주 정거장</option>
+          <option value="4">5단계: 달콤한 과자 마을</option>
+        </select>
+      </div>
+      <button type="button" class="h-btn hint-btn" id="btnHint" title="못 찾은 물건의 위치를 살짝 보여줍니다">
+        <span class="btn-icon">💡</span>
+        <span class="btn-text">힌트</span>
+        <span class="hint-count" id="hintCount">3</span>
+      </button>
+      <button type="button" class="h-btn zoom-btn" id="btnZoomToggle" title="화면 확대/원래대로">
+        <span class="btn-icon" id="zoomIcon">🔍</span>
+        <span class="btn-text" id="zoomText">확대</span>
+      </button>
+      <button type="button" class="h-btn" id="btnRestart" title="현재 스테이지 다시 시작">🔄</button>
+      <button type="button" class="h-btn" id="btnRules" title="게임 규칙">📖</button>
+    </div>
+  </header>
+
+  <!-- Interactive Exploration Area -->
+  <div class="h-stage-container" id="stageContainer">
+    <canvas id="hiddenCanvas" aria-label="숨은 그림 찾기 탐험 화면"></canvas>
+    <div class="h-zoom-overlay-hint" id="zoomOverlayHint">
+      <span>💡 마우스 휠 또는 핀치로 자유롭게 확대·축소 & 드래그 탐색이 가능합니다!</span>
+    </div>
+    <div class="h-floating-toast" id="floatingToast" hidden></div>
   </div>
 
-  <div class="h-targets" id="targets"></div>
-
-  <div class="h-stage">
-    <canvas id="scene" width="1000" height="700" aria-label="숨은 그림 찾기 장면"></canvas>
-  </div>
-  <p class="h-msg" id="msg">그림 속에서 아래 물건들을 찾아 누르세요.</p>
+  <!-- Bottom Target Items Tray -->
+  <footer class="h-tray-section">
+    <div class="h-tray-header">
+      <span class="tray-title">🔍 찾아야 할 보물 목록</span>
+      <span class="tray-guide" id="trayGuide">그림 속에서 아래 사물들을 찾아 터치하세요!</span>
+    </div>
+    <div class="h-targets-tray" id="targetsTray">
+      <!-- Generated Target Item Cards -->
+    </div>
+  </footer>
 </main>
 
-<div class="h-panel" id="resultPanel" hidden>
-  <div class="h-card">
-    <h2 id="resultTitle">완료!</h2>
-    <p id="resultDesc"></p>
+<!-- Result Victory Modal -->
+<div class="h-panel" id="resultModal" hidden>
+  <div class="h-card victory-card">
+    <div class="victory-anim">
+      <div class="victory-crown">👑</div>
+      <div class="victory-stars" id="resultStars">⭐⭐⭐</div>
+    </div>
+    <h2 id="resultTitle">스테이지 클리어!</h2>
+    <p id="resultDesc">모든 숨은 보물을 완벽하게 발견했습니다!</p>
+    <div class="result-stats-grid">
+      <div class="stat-box">
+        <span class="stat-title">소요 시간</span>
+        <span class="stat-num" id="resTime">00:00</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-title">사용한 힌트</span>
+        <span class="stat-num" id="resHints">0회</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-title">최고 기록</span>
+        <span class="stat-num best" id="resBest">00:00</span>
+      </div>
+    </div>
     <div class="h-card-actions">
-      <button type="button" class="h-btn primary" id="btnAgain">다시 하기</button>
-      <button type="button" class="h-btn" id="btnNext">새 장면</button>
-      <button type="button" class="h-btn" id="btnCloseResult">닫기</button>
+      <button type="button" class="h-btn primary large-btn" id="btnNextStage">🚀 다음 단계 도전!</button>
+      <button type="button" class="h-btn large-btn" id="btnModalAgain">🔄 다시 하기</button>
+      <button type="button" class="h-btn" id="btnModalClose">닫기</button>
     </div>
   </div>
 </div>
 
-<div class="h-panel" id="rulesPanel" hidden>
-  <div class="h-card">
-    <h2>규칙</h2>
-    <ul class="h-rules">
-      <li>위쪽에 보이는 <b>찾을 물건</b>을 그림 속에서 찾아 누르면 1점입니다.</li>
-      <li>맞히면 <b>한 번 더</b>, 틀리면 <b>차례가 넘어갑니다</b>.</li>
-      <li><b>힌트</b>는 3번까지 쓸 수 있고, 남은 물건 하나가 잠깐 반짝입니다.</li>
-      <li>1P와 2P가 번갈아 하며, 물건을 모두 찾으면 끝납니다.</li>
-      <li>휴대폰에서는 <b>손가락으로 확대</b>해서 찾아도 됩니다.</li>
-    </ul>
+<!-- Rules Modal -->
+<div class="h-panel" id="rulesModal" hidden>
+  <div class="h-card rules-card">
+    <h2>🎮 숨은 그림 찾기 대모험 규칙</h2>
+    <div class="rules-content">
+      <div class="rule-item">
+        <span class="r-icon">🔍</span>
+        <div>
+          <b>보물 찾기</b>
+          <p>하단에 제시된 <b>사물 사진과 이름</b>을 보고, 그림 속에서 숨겨진 위치를 찾아 클릭/터치하세요.</p>
+        </div>
+      </div>
+      <div class="rule-item">
+        <span class="r-icon">🔎</span>
+        <div>
+          <b>확대 & 드래그 탐색</b>
+          <p>마우스 휠이나 <b>확대 버튼</b>으로 그림을 확대하고 드래그하여 구석구석 정밀하게 찾을 수 있습니다.</p>
+        </div>
+      </div>
+      <div class="rule-item">
+        <span class="r-icon">💡</span>
+        <div>
+          <b>스마트 힌트</b>
+          <p>도저히 못 찾겠을 때는 <b>힌트 버튼</b>을 누르면 남은 사물 하나의 위치가 황금빛으로 반짝입니다 (스테이지당 3회).</p>
+        </div>
+      </div>
+      <div class="rule-item">
+        <span class="r-icon">🏆</span>
+        <div>
+          <b>5대 테마 스테이지</b>
+          <p>신비한 바둑 서재부터 달콤한 과자 마을까지 5개의 스테이지를 차례로 돌파하여 진정한 탐험 마스터가 되어보세요!</p>
+        </div>
+      </div>
+    </div>
     <div class="h-card-actions">
-      <button type="button" class="h-btn primary" id="btnCloseRules">닫기</button>
+      <button type="button" class="h-btn primary" id="btnCloseRules">확인</button>
     </div>
   </div>
 </div>
 
-<script src="game.js?v=hidden-10"></script>
+<script src="game.js?v=hidden-v20"></script>
 </body>
 </html>
