@@ -42,12 +42,12 @@ body {
   align-items: center;
 }
 
-/* 🌟 [핵심 그리드] 좌측 200px | 중앙 가변 대형(Main) | 우측 260px 🌟 */
+/* 🌟 [핵심 그리드] 좌측 240px | 중앙 가변 대형(Main) | 우측 240px (완벽한 좌우 대칭 & 상단 정렬) 🌟 */
 .chess-arena-grid {
   display: grid;
-  grid-template-columns: 200px minmax(360px, 1fr) 260px;
-  gap: 16px;
-  align-items: center;
+  grid-template-columns: 310px minmax(360px, 1fr) 310px;
+  gap: 20px;
+  align-items: start;
   justify-content: center;
   width: 100%;
 }
@@ -70,7 +70,7 @@ body {
 /* 상단 미니 턴 & 체크 알림 바 */
 .board-top-status-bar {
   width: 100%;
-  max-width: min(calc(100vh - 120px), calc(100vw - 500px), 860px);
+  max-width: min(calc(100vh - 120px), calc(100vw - 680px), 860px);
   background: var(--bks-card-bg);
   border-radius: 10px;
   padding: 6px 14px;
@@ -146,7 +146,7 @@ body {
 /* 실시간 형세 바 (Eval Bar) */
 .eval-bar-wrapper {
   width: 100%;
-  max-width: min(calc(100vh - 120px), calc(100vw - 500px), 860px);
+  max-width: min(calc(100vh - 120px), calc(100vw - 680px), 860px);
   display: flex;
   align-items: center;
   background: #cbd5e1;
@@ -185,7 +185,7 @@ body {
 /* 🌟 초대형 체스판 캔버스 래퍼 (화면 세로 꽉 채움) 🌟 */
 .board-wrapper {
   position: relative;
-  width: min(calc(100vh - 120px), calc(100vw - 500px), 860px);
+  width: min(calc(100vh - 120px), calc(100vw - 680px), 860px);
   aspect-ratio: 1 / 1;
   border-radius: 14px;
   overflow: hidden;
@@ -255,12 +255,16 @@ body {
    ======================================================== */
 .player-card {
   background: var(--bks-card-bg);
-  border-radius: 14px;
-  padding: 14px;
+  border-radius: 16px;
+  padding: 18px 16px;
   box-shadow: var(--bks-card-shadow);
   border: 2px solid transparent;
   transition: all 0.2s ease;
   text-align: center;
+  min-height: 290px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .player-card.active {
@@ -281,10 +285,10 @@ body {
 }
 
 .player-badge {
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 700;
-  padding: 3px 8px;
-  border-radius: 12px;
+  padding: 4px 10px;
+  border-radius: 14px;
 }
 
 .player-badge.white {
@@ -299,7 +303,7 @@ body {
 }
 
 .player-score {
-  font-size: 13px;
+  font-size: 16px;
   font-weight: 800;
   color: var(--bks-primary);
 }
@@ -311,14 +315,14 @@ body {
 }
 
 .player-avatar-icon {
-  width: 54px;
-  height: 54px;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 30px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  font-size: 38px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
 }
 
 .player-avatar-icon.white-icon {
@@ -332,17 +336,17 @@ body {
 }
 
 .player-name {
-  font-size: 14px;
+  font-size: 17px;
   font-weight: 700;
   color: #0f172a;
   margin-bottom: 4px;
 }
 
 .turn-indicator-pill {
-  font-size: 11px;
-  font-weight: 600;
-  padding: 3px 8px;
-  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: 10px;
   background: #f1f5f9;
   color: var(--bks-text-muted);
   margin-top: 6px;
@@ -358,32 +362,32 @@ body {
 .captured-box {
   background: #f8fafc;
   border: 1px solid var(--bks-border);
-  border-radius: 8px;
-  padding: 6px 8px;
+  border-radius: 10px;
+  padding: 8px 10px;
   margin-top: 8px;
   text-align: left;
 }
 
 .captured-title {
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 700;
   color: var(--bks-text-muted);
   display: flex;
   justify-content: space-between;
-  margin-bottom: 3px;
+  margin-bottom: 4px;
 }
 
 .captured-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 2px;
-  min-height: 20px;
-  font-size: 15px;
+  gap: 3px;
+  min-height: 24px;
+  font-size: 18px;
   line-height: 1;
 }
 
 .material-diff-badge {
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 800;
   color: var(--bks-primary-dark);
 }
@@ -393,46 +397,46 @@ body {
    ======================================================== */
 .side-menu-card {
   background: var(--bks-card-bg);
-  border-radius: 14px;
-  padding: 12px;
+  border-radius: 16px;
+  padding: 16px;
   box-shadow: var(--bks-card-shadow);
   border: 1px solid var(--bks-border);
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
 }
 
 .side-menu-header {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 800;
   color: #475569;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   border-bottom: 1px solid var(--bks-border);
-  padding-bottom: 6px;
+  padding-bottom: 8px;
 }
 
 .side-buttons-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 5px;
+  gap: 7px;
 }
 
 .act-btn {
   background: #ffffff;
   color: #1e293b;
   border: 1px solid var(--bks-border);
-  border-radius: 8px;
-  padding: 7px 2px;
-  font-size: 11px;
+  border-radius: 10px;
+  padding: 9px 4px;
+  font-size: 13px;
   font-weight: 700;
   cursor: pointer;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 2px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+  gap: 3px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
   transition: all 0.15s ease;
 }
 
@@ -447,12 +451,12 @@ body {
 }
 
 .act-btn .btn-icon {
-  font-size: 15px;
+  font-size: 18px;
   line-height: 1;
 }
 
 .act-btn .btn-text {
-  font-size: 10px;
+  font-size: 12px;
 }
 
 .act-btn.primary {
@@ -482,10 +486,10 @@ body {
 .settings-mini-group {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
   background: #f8fafc;
-  border-radius: 8px;
-  padding: 8px 10px;
+  border-radius: 10px;
+  padding: 10px 12px;
   border: 1px solid var(--bks-border);
 }
 
@@ -493,27 +497,27 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 600;
   color: #334155;
 }
 
 .setting-item select {
-  padding: 3px 6px;
-  border-radius: 6px;
+  padding: 5px 8px;
+  border-radius: 8px;
   border: 1px solid #cbd5e1;
   background: #ffffff;
-  font-size: 11px;
+  font-size: 12.5px;
   font-weight: 600;
   color: #0f172a;
   outline: none;
   cursor: pointer;
-  max-width: 120px;
+  max-width: 145px;
 }
 
 /* 룰 접이식 */
 .rules-mini-accordion {
-  font-size: 11px;
+  font-size: 13px;
 }
 
 .rules-summary {
@@ -645,7 +649,7 @@ body {
 
   .chess-arena-grid {
     grid-template-columns: 1fr;
-    gap: 10px;
+    gap: 12px;
   }
 
   /* 🌟 모바일에서는 체스판이 맨 위에서 화면 가득 100% 차지 🌟 */
