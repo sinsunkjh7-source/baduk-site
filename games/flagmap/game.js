@@ -285,11 +285,19 @@
     svg.appendChild(pinG);
   }
 
-  function renderMapHighlight(iso, targetContainer) {
+  function renderMapHighlight(iso, targetContainer, forceZoom) {
     var container = targetContainer || dom.largeMapWrap;
     if (!container) return;
     var svg = container.querySelector('svg');
-    if (!svg) return;
+    if (!svg) {
+      if (rawSvgText) {
+        container.innerHTML = rawSvgText;
+        addMapPinGroup(container.querySelector('svg'));
+        svg = container.querySelector('svg');
+      } else {
+        return;
+      }
+    }
 
     var isoLower = iso.toLowerCase();
     var b = BBOXES[isoLower];
@@ -327,32 +335,40 @@
       } catch(e) {}
     }
 
-    state.currentCenter = { x: cx, y: cy };
+    if (container === dom.largeMapWrap) {
+      state.currentCenter = { x: cx, y: cy };
+    }
 
     // 4. ViewBox Zooming & Pin Scale
-    if (state.mapZoomed && b) {
+    var isDetail = (container === dom.detailMapWrap);
+    var shouldZoom = isDetail || (forceZoom === true) || state.mapZoomed;
+    if (shouldZoom && b) {
+      var aspect = isDetail ? 1.25 : 1.6;
       var zoomW = Math.max(b[2] * 2.8, 140);
       var zoomH = Math.max(b[3] * 2.8, 95);
 
-      if (zoomW / zoomH > 1.6) {
-        zoomH = zoomW / 1.6;
+      if (zoomW / zoomH > aspect) {
+        zoomH = zoomW / aspect;
       } else {
-        zoomW = zoomH * 1.6;
+        zoomW = zoomH * aspect;
       }
 
-      state.currentBaseBox = [cx, cy, zoomW, zoomH];
-      state.currentZoomFactor = 1.0;
-      applySvgViewBox(svg, cx, cy, zoomW, zoomH);
+      if (container === dom.largeMapWrap) {
+        state.currentBaseBox = [cx, cy, zoomW, zoomH];
+        state.currentZoomFactor = 1.0;
+      }
+      applySvgViewBox(svg, cx, cy, zoomW, zoomH, 1.0);
     } else {
       svg.setAttribute('viewBox', '0 0 1010 666');
       updatePinTransform(svg, cx, cy, 1010);
     }
   }
 
-  function applySvgViewBox(svg, cx, cy, w, h) {
+  function applySvgViewBox(svg, cx, cy, w, h, zoomFactor) {
     if (!svg) return;
-    var finalW = w * state.currentZoomFactor;
-    var finalH = h * state.currentZoomFactor;
+    var zf = (typeof zoomFactor === 'number') ? zoomFactor : state.currentZoomFactor;
+    var finalW = w * zf;
+    var finalH = h * zf;
 
     var vx = Math.max(0, Math.min(1010 - finalW, cx - finalW / 2));
     var vy = Math.max(0, Math.min(666 - finalH, cy - finalH / 2));
@@ -1010,7 +1026,11 @@
     dom.detailLandmark.textContent = c.landmarkIcon + ' ' + (c.landmarkName || '전통 문화');
     dom.detailIso.textContent = c.iso.toUpperCase();
 
-    renderMapHighlight(c.iso, dom.detailMapWrap);
+    // Show modal first so dimensions are computed
+    dom.countryDetailModal.hidden = false;
+
+    // Render highlighted country and pin in modal map
+    renderMapHighlight(c.iso, dom.detailMapWrap, true);
 
     dom.btnQuizFromDetail.onclick = function() {
       dom.countryDetailModal.hidden = true;
@@ -1018,8 +1038,6 @@
       state.scope = 'world';
       launchGame();
     };
-
-    dom.countryDetailModal.hidden = false;
   }
 
   // ========================================================
@@ -1227,7 +1245,12 @@
 
     loadWorldSvg().then(function() {
       var urlParams = new URLSearchParams(window.location.search);
-      if (urlParams.get('start') === '1') {
+      if (urlParams.get('detail')) {
+        showEncyclopedia();
+        var targetIso = urlParams.get('detail').toLowerCase();
+        var found = countryMap[targetIso];
+        if (found) openCountryDetail(found);
+      } else if (urlParams.get('start') === '1') {
         launchGame();
       } else if (urlParams.get('mode') === 'encyclopedia') {
         showEncyclopedia();
