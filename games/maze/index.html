@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>미로 탐험대 — 바둑스쿨 Fun</title>
 <link rel="stylesheet" href="/unified-nav.css?v=nav-v12d">
-<link rel="stylesheet" href="style.css?v=maze-6">
+<link rel="stylesheet" href="style.css?v=maze-7">
 <script src="/unified-nav.js?v=nav-v12d" defer></script>
 </head>
 <body data-bks-page="maze" data-theme="dungeon">
@@ -13,38 +13,48 @@
 <main class="m-wrap">
   <!-- Top Navigation & Control HUD -->
   <header class="m-head">
-    <div class="m-score-group">
-      <div class="m-score p1" id="scoreP1">
-        <span class="p-dot p1-dot"></span>
-        <span class="p-name">1P 흑돌이</span>
-        <b id="t1">0.0s</b>
-        <span class="m-moves" id="m1">0걸음</span>
-      </div>
-      <div class="m-score p2" id="scoreP2" hidden>
-        <span class="p-dot p2-dot"></span>
-        <span class="p-name">2P 백돌이</span>
-        <b id="t2">0.0s</b>
-        <span class="m-moves" id="m2">0걸음</span>
-      </div>
+    <!-- Mode Selection -->
+    <div class="m-seg" id="modeSeg">
+      <button type="button" class="m-modebtn active" data-mode="stage">🏆 스테이지 (10단계)</button>
+      <button type="button" class="m-modebtn" data-mode="free">🎲 자유 연습</button>
+      <button type="button" class="m-modebtn" data-mode="duo">⚔️ 2인 대결</button>
     </div>
 
-    <!-- Difficulty Levels -->
-    <div class="m-seg" id="sizeSeg" title="미로 난이도">
+    <!-- Stage Pill (visible in stage mode) -->
+    <div class="m-score stage-pill" id="stagePill">
+      <span>스테이지</span>
+      <b id="stageNum">1</b>
+      <span class="m-stage-total">/ 10</span>
+      <span class="m-stage-size" id="stageSizeLabel">(9×9)</span>
+    </div>
+
+    <!-- Difficulty Levels (visible in free & duo mode) -->
+    <div class="m-seg" id="sizeSeg" title="미로 크기 선택" hidden>
       <button type="button" class="m-segbtn" data-n="15">쉬움 (15×15)</button>
       <button type="button" class="m-segbtn active" data-n="21">보통 (21×21)</button>
       <button type="button" class="m-segbtn" data-n="29">어려움 (29×29)</button>
       <button type="button" class="m-segbtn master-btn" data-n="39">🔥 마스터 (39×39)</button>
     </div>
 
-    <!-- Solo / Duo Mode -->
-    <div class="m-seg" id="modeSeg">
-      <button type="button" class="m-modebtn active" data-mode="solo">혼자 하기</button>
-      <button type="button" class="m-modebtn" data-mode="duo">2인 대결</button>
+    <!-- Player Scores / Time -->
+    <div class="m-score-group">
+      <div class="m-score p1" id="scoreP1">
+        <span class="p-dot p1-dot"></span>
+        <span class="p-name">1P</span>
+        <b id="t1">0.0s</b>
+        <span class="m-moves" id="m1">0걸음</span>
+      </div>
+      <div class="m-score p2" id="scoreP2" hidden>
+        <span class="p-dot p2-dot"></span>
+        <span class="p-name">2P</span>
+        <b id="t2">0.0s</b>
+        <span class="m-moves" id="m2">0걸음</span>
+      </div>
     </div>
 
     <!-- Fog of War / Exploration Mode -->
     <button type="button" class="m-btn toggle-btn" id="btnFog" title="손전등 시야 탐험 모드">
-      🔦 안개 모드: OFF
+      🔦 안개: OFF
     </button>
 
     <!-- Theme Switcher -->
@@ -75,7 +85,7 @@
 
   <!-- Bottom Guide & Mobile Controls -->
   <footer class="m-bottom-bar">
-    <p class="m-msg" id="msg">방향키(또는 WASD)로 출발점에서 출구까지 미로를 탈출하세요!</p>
+    <p class="m-msg" id="msg">출발점(좌상단)에서 목표 지점(우하단)까지 미로를 통과하세요!</p>
     
     <!-- Virtual Mobile D-Pad -->
     <div class="mobile-dpad" id="mobileDpad">
@@ -96,7 +106,7 @@
     <h2 id="resultTitle">미로 탈출 성공!</h2>
     <p id="resultDesc">기록 0.0초 · 0걸음</p>
     <div class="m-card-actions">
-      <button type="button" class="m-btn primary large-btn" id="btnNext">🚀 다음 미로</button>
+      <button type="button" class="m-btn primary large-btn" id="btnNextStage">🚀 다음 스테이지</button>
       <button type="button" class="m-btn large-btn" id="btnAgain">🔄 다시 하기</button>
       <button type="button" class="m-btn" id="btnCloseResult">닫기</button>
     </div>
@@ -109,15 +119,13 @@
     <h2>🎮 미로 탐험대 규칙</h2>
     <ul class="m-rules">
       <li>좌측 상단 <b>출발점</b>에서 우측 하단 <b>목표 지점</b>까지 벽을 피해 미로를 통과하세요.</li>
-      <li><b>난이도</b>:
-        <br>· <b>쉬움 (15×15)</b>: 입문용 미로
-        <br>· <b>보통 (21×21)</b>: 순환로 없는 진짜 미궁 (추천)
-        <br>· <b>어려움 (29×29)</b>: 촘촘하고 속임수가 많은 대형 미로
-        <br>· <b>마스터 (39×39)</b>: 길찾기 고수만을 위한 극한의 미로
+      <li><b>게임 모드</b>:
+        <br>· <b>🏆 스테이지 모드</b>: 1단계(9×9)부터 최종 10단계(39×39)까지 점점 커지는 미로를 순차 정복하는 모드 (진행 상황 자동 저장)
+        <br>· <b>🎲 자유 연습 모드</b>: 원하는 미로 크기를 골라 무제한으로 새로운 미로를 즐기는 모드
+        <br>· <b>⚔️ 2인 대결 모드</b>: 1P(WASD) vs 2P(방향키) 동시에 출발해 먼저 탈출하는 사람이 승리!
       </li>
       <li><b>🔦 안개 모드</b>: 캐릭터 주변만 보이는 손전등 모드로 스릴 넘치는 탐험을 즐길 수 있습니다.</li>
-      <li><b>조작법</b>: 1P: <b>방향키 / WASD</b>, 모바일: <b>화면 스와이프 또는 하단 방향키</b>.</li>
-      <li><b>2인 대결</b>: 1P(WASD) vs 2P(방향키) 동시에 출발해 먼저 탈출하는 사람이 승리합니다!</li>
+      <li><b>조작법</b>: 1P: <b>방향키 / WASD</b>, 모바일: <b>화면 스와이프 또는 하단 가상 방향키</b>.</li>
     </ul>
     <div class="m-card-actions">
       <button type="button" class="m-btn primary" id="btnCloseRules">확인</button>
@@ -125,6 +133,6 @@
   </div>
 </div>
 
-<script src="game.js?v=maze-6"></script>
+<script src="game.js?v=maze-7"></script>
 </body>
 </html>

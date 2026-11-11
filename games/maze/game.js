@@ -1,6 +1,6 @@
 /* ========================================================
-   미로 탐험대 (Maze Explorer) - Pure Maze Edition
-   바둑스쿨 Fun: 정교한 미로 생성, 3대 테마, 안개 모드, 깔끔한 길찾기
+   미로 탐험대 (Maze Explorer) - Pro Edition
+   바둑스쿨 Fun: 스테이지 모드(1~10단계) + 자유 연습 + 2인 대결
    ======================================================== */
 (function () {
   'use strict';
@@ -8,13 +8,30 @@
   var CANVAS_SIZE = 640;
   var PAD = 14;
 
+  var STAGES = [
+    { level: 1, n: 9, name: '1단계 — 가벼운 출발' },
+    { level: 2, n: 11, name: '2단계 — 골목 탐색' },
+    { level: 3, n: 13, name: '3단계 — 갈림길의 시작' },
+    { level: 4, n: 15, name: '4단계 — 미로 속으로' },
+    { level: 5, n: 19, name: '5단계 — 중간 관문' },
+    { level: 6, n: 23, name: '6단계 — 깊어지는 미궁' },
+    { level: 7, n: 27, name: '7단계 — 혼돈의 통로' },
+    { level: 8, n: 31, name: '8단계 — 거대 미로' },
+    { level: 9, n: 35, name: '9단계 — 탈출 불가?' },
+    { level: 10, n: 39, name: '10단계 — 파이널 마스터 미궁' }
+  ];
+
   var state = {
-    N: 21,
+    mode: 'stage',       // 'stage' | 'free' | 'duo'
+    stageIndex: 0,       // 0 ~ 9
+    unlockedStage: 0,
+    freeN: 21,
+    N: 9,
     duo: false,
     theme: 'dungeon',
     fog: false,
     running: false,
-    walls: null,          /* Uint8: bit 1=N, 2=E, 4=S, 8=W */
+    walls: null,          // Uint8: bit 1=N, 2=E, 4=S, 8=W
     players: [],
     keyState: {},
     lastMoveTime: [0, 0],
@@ -125,7 +142,6 @@
         continue;
       }
 
-      // Weighted random selection
       var totalW = candidates.reduce(function (sum, c) { return sum + c.weight; }, 0);
       var rnd = Math.random() * totalW;
       var pick = candidates[0];
@@ -141,10 +157,10 @@
       stack.push([pick.nx, pick.ny, pick.d]);
     }
 
-    // Braiding: ONLY for "쉬움" (N=15) add 2-3 small loops for young players
-    // For "보통", "어려움", "마스터" (N >= 21): ZERO BRAID (Pure Authentic Labyrinth!)
-    if (N <= 15) {
-      var loops = 3;
+    // Braiding: only for introductory stages (N <= 13) add 1~2 small shortcuts
+    // For N >= 15: Zero Braid (Pure Authentic Labyrinth!)
+    if (N <= 13) {
+      var loops = Math.max(1, Math.round(N * 0.15));
       for (var k = 0; k < loops; k++) {
         var rx = 1 + Math.floor(Math.random() * (N - 2));
         var ry = 1 + Math.floor(Math.random() * (N - 2));
@@ -237,6 +253,14 @@
   }
 
   function resetGame() {
+    if (state.mode === 'stage') {
+      state.N = STAGES[state.stageIndex].n;
+      el('stageNum').textContent = state.stageIndex + 1;
+      el('stageSizeLabel').textContent = '(' + state.N + '×' + state.N + ')';
+    } else {
+      state.N = state.freeN;
+    }
+
     generateMaze();
     state.players = [
       makePlayer(0, '1P 흑돌이', '#1e293b', '#38bdf8'),
@@ -254,9 +278,14 @@
 
     layoutBoards();
     drawAll();
-    msg(state.duo ?
-      '⚔️ 2인 대결! 1P(WASD) vs 2P(방향키) — 먼저 목표 지점에 도착하세요!' :
-      '출발점(좌상단)에서 목표 지점(우하단)까지 미로를 통과하세요!');
+
+    if (state.mode === 'stage') {
+      msg('🏆 ' + STAGES[state.stageIndex].name + ' — 출발점에서 출구까지 미로를 돌파하세요!');
+    } else if (state.duo) {
+      msg('⚔️ 2인 대결! 1P(WASD) vs 2P(방향키) — 먼저 목표 지점에 도착하세요!');
+    } else {
+      msg('🎲 자유 연습 — 출발점(좌상단)에서 목표 지점(우하단)까지 미로를 통과하세요!');
+    }
   }
 
   /* ---------------- Rendering Engine ---------------- */
@@ -377,7 +406,6 @@
     ctx.arc(gx, gy, cell * 0.5 * pulse, 0, Math.PI * 2);
     ctx.fill();
 
-    // Portal Ring or Treasure Chest Icon
     ctx.save();
     ctx.translate(gx, gy);
     if (state.theme === 'dungeon') {
@@ -412,7 +440,7 @@
   function drawPlayer(ctx, p, t) {
     var cell = cellPx();
 
-    // 1. Trail Particles / Breadcrumb line
+    // 1. Trail Line
     if (p.trail.length > 1) {
       ctx.beginPath();
       ctx.lineWidth = Math.max(2.5, cell * 0.18);
@@ -592,16 +620,37 @@
     state.running = false;
     sfx.win();
 
-    if (state.duo) {
+    if (state.mode === 'duo') {
       var w = p, l = state.players[1 - p.id];
       el('resultBadge').textContent = (p.id === 0) ? '🥇' : '🥈';
       el('resultTitle').textContent = p.name + ' 승리!';
       el('resultDesc').textContent = p.name + ' ' + w.time.toFixed(1) + '초 (' + w.moves + '걸음) · ' +
         l.name + ' ' + (l.startAt ? '미완주(' + l.moves + '걸음)' : '출발 전');
-    } else {
+      el('btnNextStage').textContent = '🔄 다음 대결';
+    } else if (state.mode === 'stage') {
+      var isFinal = (state.stageIndex >= STAGES.length - 1);
+      if (isFinal) {
+        el('resultBadge').textContent = '👑';
+        el('resultTitle').textContent = '전 스테이지 정복 완료!';
+        el('resultDesc').textContent = '축하합니다! 총 10개의 모든 미궁을 완벽하게 클리어했습니다! (' + p.time.toFixed(1) + '초, ' + p.moves + '걸음)';
+        el('btnNextStage').textContent = '🔄 1단계부터 다시 도전';
+        msg('👑 전 스테이지 정복! 진정한 미궁 마스터 탄생!');
+      } else {
+        // Unlock next stage
+        state.unlockedStage = Math.max(state.unlockedStage, state.stageIndex + 1);
+        try { localStorage.setItem('bks_maze_unlocked', state.unlockedStage); } catch (e) {}
+
+        el('resultBadge').textContent = '🏆';
+        el('resultTitle').textContent = (state.stageIndex + 1) + '단계 돌파 성공!';
+        el('resultDesc').textContent = STAGES[state.stageIndex].name + ' 클리어! · 기록: ' + p.time.toFixed(1) + '초 · ' + p.moves + '걸음';
+        el('btnNextStage').textContent = '🚀 다음 ' + (state.stageIndex + 2) + '단계 도전!';
+        msg('🎉 축하합니다! ' + (state.stageIndex + 1) + '단계를 통과했습니다!');
+      }
+    } else { // Free play
       el('resultBadge').textContent = '🏆';
       el('resultTitle').textContent = '미로 탈출 성공!';
       el('resultDesc').textContent = '기록: ' + p.time.toFixed(1) + '초 · ' + p.moves + '걸음';
+      el('btnNextStage').textContent = '🎲 다른 미로 풀기';
       msg('🎉 축하합니다! ' + p.time.toFixed(1) + '초 만에 미로를 탈출했습니다!');
     }
 
@@ -643,7 +692,6 @@
       }
     }
 
-    // Hint toggle key (H)
     if (e.key.toLowerCase() === 'h') {
       showHint();
     }
@@ -719,7 +767,6 @@
 
   /* ---------------- Main Game Loop ---------------- */
   function loop(t) {
-    // Smooth character interpolation
     state.players.forEach(function (p) {
       p.fx += (p.x - p.fx) * 0.36;
       p.fy += (p.y - p.fy) * 0.36;
@@ -727,7 +774,6 @@
       if (Math.abs(p.y - p.fy) < 0.01) p.fy = p.y;
     });
 
-    // Stopwatch Update
     if (state.running) {
       var now = performance.now();
       if (!state.players[0].done && state.players[0].startAt) {
@@ -744,23 +790,39 @@
 
   /* ---------------- Initialization & Event Wiring ---------------- */
   function init() {
-    // 1. Difficulty Level Selector
-    el('sizeSeg').addEventListener('click', function (e) {
-      var b = e.target.closest('.m-segbtn');
-      if (!b) return;
-      state.N = parseInt(b.dataset.n, 10);
-      document.querySelectorAll('.m-segbtn').forEach(function (x) {
-        x.classList.toggle('active', x === b);
-      });
-      resetGame();
-    });
+    try {
+      var savedUnlocked = parseInt(localStorage.getItem('bks_maze_unlocked'), 10);
+      if (!isNaN(savedUnlocked)) state.unlockedStage = savedUnlocked;
+    } catch (e) {}
 
-    // 2. Solo / Duo Selector
+    // 1. Mode Selector (Stage vs Free vs Duo)
     el('modeSeg').addEventListener('click', function (e) {
       var b = e.target.closest('.m-modebtn');
       if (!b) return;
-      state.duo = (b.dataset.mode === 'duo');
+      state.mode = b.dataset.mode;
+      state.duo = (state.mode === 'duo');
+
       document.querySelectorAll('.m-modebtn').forEach(function (x) {
+        x.classList.toggle('active', x === b);
+      });
+
+      if (state.mode === 'stage') {
+        el('stagePill').hidden = false;
+        el('sizeSeg').hidden = true;
+      } else {
+        el('stagePill').hidden = true;
+        el('sizeSeg').hidden = false;
+      }
+
+      resetGame();
+    });
+
+    // 2. Free Difficulty Selector
+    el('sizeSeg').addEventListener('click', function (e) {
+      var b = e.target.closest('.m-segbtn');
+      if (!b) return;
+      state.freeN = parseInt(b.dataset.n, 10);
+      document.querySelectorAll('.m-segbtn').forEach(function (x) {
         x.classList.toggle('active', x === b);
       });
       resetGame();
@@ -782,14 +844,29 @@
     el('btnFog').addEventListener('click', function () {
       state.fog = !state.fog;
       this.classList.toggle('active', state.fog);
-      this.textContent = state.fog ? '🔦 안개 모드: ON' : '🔦 안개 모드: OFF';
+      this.textContent = state.fog ? '🔦 안개: ON' : '🔦 안개: OFF';
       drawAll();
     });
 
-    // 5. Action Buttons
+    // 5. Next Stage Action (from Result Modal)
+    el('btnNextStage').addEventListener('click', function () {
+      el('resultPanel').hidden = true;
+      if (state.mode === 'stage') {
+        if (state.stageIndex >= STAGES.length - 1) {
+          state.stageIndex = 0;
+        } else {
+          state.stageIndex++;
+        }
+      }
+      resetGame();
+    });
+
+    // 6. Action Buttons
     el('btnNew').addEventListener('click', resetGame);
-    el('btnAgain').addEventListener('click', resetGame);
-    el('btnNext').addEventListener('click', resetGame);
+    el('btnAgain').addEventListener('click', function () {
+      el('resultPanel').hidden = true;
+      resetGame();
+    });
     el('btnHint').addEventListener('click', showHint);
     el('btnCloseResult').addEventListener('click', function () { el('resultPanel').hidden = true; });
     el('btnRules').addEventListener('click', function () { el('rulesPanel').hidden = false; });
@@ -812,19 +889,13 @@
         x.classList.toggle('active', x.dataset.theme === state.theme);
       });
     }
-    if (urlParams.get('n')) {
-      state.N = parseInt(urlParams.get('n'), 10);
-      document.querySelectorAll('.m-segbtn').forEach(function (x) {
-        x.classList.toggle('active', parseInt(x.dataset.n, 10) === state.N);
+    if (urlParams.get('mode') === 'free') {
+      state.mode = 'free';
+      el('stagePill').hidden = true;
+      el('sizeSeg').hidden = false;
+      document.querySelectorAll('.m-modebtn').forEach(function (x) {
+        x.classList.toggle('active', x.dataset.mode === 'free');
       });
-    }
-    if (urlParams.get('fog') === '1') {
-      state.fog = true;
-      var fogBtn = el('btnFog');
-      if (fogBtn) {
-        fogBtn.classList.add('active');
-        fogBtn.textContent = '🔦 안개 모드: ON';
-      }
     }
 
     resetGame();

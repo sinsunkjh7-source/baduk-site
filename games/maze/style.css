@@ -463,3 +463,27 @@ body[data-theme="neon"] {
     max-height: calc(100dvh - var(--bks-nav-h, 64px) - 220px);
   }
 }
+
+.stage-pill {
+  background: rgba(245, 158, 11, 0.15) !important;
+  border-color: rgba(245, 158, 11, 0.45) !important;
+  color: #fbbf24 !important;
+}
+
+.stage-pill b {
+  color: #fbbf24 !important;
+  font-size: 17px !important;
+}
+
+.m-stage-total {
+  color: #cbd5e1;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.m-stage-size {
+  color: #94a3b8;
+  font-size: 11.5px;
+  font-weight: 700;
+  margin-left: 2px;
+}
