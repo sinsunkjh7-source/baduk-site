@@ -149,7 +149,7 @@ body {
    ======================================================== */
 .curling-arena-grid {
   display: grid;
-  grid-template-columns: 280px minmax(420px, 520px) 280px;
+  grid-template-columns: 280px auto 280px;
   gap: 18px;
   align-items: start;
   justify-content: center;
@@ -326,10 +326,12 @@ body {
 
 .rink-wrapper {
   position: relative;
-  width: 100%;
-  max-width: 520px;
+  /* Strictly enforce 400:900 ratio so the house circles and stones are 100% round circles */
   height: min(calc(100vh - 105px), 880px);
   aspect-ratio: 400 / 900;
+  width: auto;
+  max-width: 100%;
+  margin: 0 auto;
   background: #f0f9ff;
   border-radius: 18px;
   overflow: hidden;
