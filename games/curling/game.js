@@ -351,7 +351,11 @@
     // Colored Grip
     ctx.fillStyle = handleColor;
     ctx.beginPath();
-    ctx.roundRect(-4, -r * 0.75, 8, r * 1.5, 4);
+    if (typeof ctx.roundRect === 'function') {
+      ctx.roundRect(-4, -r * 0.75, 8, r * 1.5, 4);
+    } else {
+      ctx.rect(-4, -r * 0.75, 8, r * 1.5);
+    }
     ctx.fill();
 
     ctx.strokeStyle = '#ffffff';

@@ -9,7 +9,7 @@
     height: 900,
     teeX: 200,
     teeY: 180,
-    hackY: 820,
+    hackY: 760,
     hogLineY: 420,
     backLineY: 55,
     minX: 25,
@@ -36,6 +36,7 @@
     this.inPlay = true;
     this.radius = RINK.stoneRadius;
     this.mass = 20.0;
+    this.wasDelivered = false;
   }
 
   function CurlingEngine() {
@@ -102,6 +103,7 @@
     this.activeStone.vy = vy;
     this.activeStone.vRot = (vx > 0 ? 0.05 : -0.05) + (Math.random() - 0.5) * 0.02;
     this.activeStone.isMoving = true;
+    this.activeStone.wasDelivered = true;
     this.stones.push(this.activeStone);
   };
 
@@ -222,7 +224,7 @@
     }
 
     // Check if throw just finished
-    if (!anyMoving && this.activeStone && !this.activeStone.isMoving) {
+    if (!anyMoving && this.activeStone && this.activeStone.wasDelivered && !this.activeStone.isMoving) {
       this.finishThrow();
     }
 
