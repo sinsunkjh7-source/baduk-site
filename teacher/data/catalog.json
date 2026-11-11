@@ -16937,7 +16937,7 @@
   },
   {
     "title": "13. NEW 기법, 분야별 마스터관",
-    "bookCount": 9,
+    "bookCount": 10,
     "books": [
       {
         "code": "new_tech_chokchoksu",
@@ -17624,6 +17624,253 @@
             "code": "susangjeon_44",
             "title": "44. 종합 응용과 급소 찾기",
             "problemCount": 130
+          }
+        ]
+      },
+      {
+        "title": "끝내기",
+        "name": "끝내기",
+        "code": "new_tech_kkeutnaegi",
+        "file": "book_new_tech_kkeutnaegi.json",
+        "chapterCount": 47,
+        "totalProblems": 1896,
+        "problemCount": 1896,
+        "_buildVer": "v1-yose-three-series-2026-11-11",
+        "chapters": [
+          {
+            "code": "kkeutnaegi_01",
+            "title": "1. 빈틈을 막아 집 완성하기",
+            "problemCount": 64
+          },
+          {
+            "code": "kkeutnaegi_02",
+            "title": "2. 상대 집 줄이기와 경계 막기",
+            "problemCount": 57
+          },
+          {
+            "code": "kkeutnaegi_03",
+            "title": "3. 공배 찾기",
+            "problemCount": 54
+          },
+          {
+            "code": "kkeutnaegi_04",
+            "title": "4. 옥집과 공배 구별",
+            "problemCount": 19
+          },
+          {
+            "code": "kkeutnaegi_05",
+            "title": "5. 집 수 세기",
+            "problemCount": 28
+          },
+          {
+            "code": "kkeutnaegi_06",
+            "title": "6. 계가와 승패 판정",
+            "problemCount": 13
+          },
+          {
+            "code": "kkeutnaegi_07",
+            "title": "7. 반집과 공배",
+            "problemCount": 24
+          },
+          {
+            "code": "kkeutnaegi_08",
+            "title": "8. 한 점 따내면 두 집",
+            "problemCount": 30
+          },
+          {
+            "code": "kkeutnaegi_09",
+            "title": "9. 수의 크기 기초",
+            "problemCount": 38
+          },
+          {
+            "code": "kkeutnaegi_10",
+            "title": "10. 큰 끝내기 비교·선택",
+            "problemCount": 136
+          },
+          {
+            "code": "kkeutnaegi_11",
+            "title": "11. 집 지키기와 막는 방향",
+            "problemCount": 39
+          },
+          {
+            "code": "kkeutnaegi_12",
+            "title": "12. 1선 막은 뒤 잇기",
+            "problemCount": 24
+          },
+          {
+            "code": "kkeutnaegi_13",
+            "title": "13. 1선 젖혀 잇기",
+            "problemCount": 67
+          },
+          {
+            "code": "kkeutnaegi_14",
+            "title": "14. 2선 젖혀 잇기",
+            "problemCount": 89
+          },
+          {
+            "code": "kkeutnaegi_15",
+            "title": "15. 2선 빠지기 선수 끝내기",
+            "problemCount": 12
+          },
+          {
+            "code": "kkeutnaegi_16",
+            "title": "16. 2선 입구자·마늘모",
+            "problemCount": 49
+          },
+          {
+            "code": "kkeutnaegi_17",
+            "title": "17. 2선 끊어잡기",
+            "problemCount": 38
+          },
+          {
+            "code": "kkeutnaegi_18",
+            "title": "18. 2선 한 칸 뛰기",
+            "problemCount": 54
+          },
+          {
+            "code": "kkeutnaegi_19",
+            "title": "19. 선수 끝내기 찾기",
+            "problemCount": 68
+          },
+          {
+            "code": "kkeutnaegi_20",
+            "title": "20. 양선수 끝내기",
+            "problemCount": 34
+          },
+          {
+            "code": "kkeutnaegi_21",
+            "title": "21. 역끝내기",
+            "problemCount": 57
+          },
+          {
+            "code": "kkeutnaegi_22",
+            "title": "22. 늦춰 받기",
+            "problemCount": 38
+          },
+          {
+            "code": "kkeutnaegi_23",
+            "title": "23. 비마·눈목자 달리기",
+            "problemCount": 75
+          },
+          {
+            "code": "kkeutnaegi_24",
+            "title": "24. 단점 공략과 끊기",
+            "problemCount": 54
+          },
+          {
+            "code": "kkeutnaegi_25",
+            "title": "25. 양쪽 단점 지키기",
+            "problemCount": 12
+          },
+          {
+            "code": "kkeutnaegi_26",
+            "title": "26. 1선 한 칸 뛰어 들어가기",
+            "problemCount": 39
+          },
+          {
+            "code": "kkeutnaegi_27",
+            "title": "27. 1선 한 칸 뛰어 붙이기",
+            "problemCount": 28
+          },
+          {
+            "code": "kkeutnaegi_28",
+            "title": "28. 껴붙이기 끝내기",
+            "problemCount": 89
+          },
+          {
+            "code": "kkeutnaegi_29",
+            "title": "29. 자충을 이용한 끝내기",
+            "problemCount": 54
+          },
+          {
+            "code": "kkeutnaegi_30",
+            "title": "30. 사석을 이용한 끝내기",
+            "problemCount": 38
+          },
+          {
+            "code": "kkeutnaegi_31",
+            "title": "31. 치중 끝내기",
+            "problemCount": 53
+          },
+          {
+            "code": "kkeutnaegi_32",
+            "title": "32. 되따내기 끝내기",
+            "problemCount": 53
+          },
+          {
+            "code": "kkeutnaegi_33",
+            "title": "33. 환격 끝내기",
+            "problemCount": 24
+          },
+          {
+            "code": "kkeutnaegi_34",
+            "title": "34. 빅을 이용한 끝내기",
+            "problemCount": 12
+          },
+          {
+            "code": "kkeutnaegi_35",
+            "title": "35. 1선 입구자 응용",
+            "problemCount": 60
+          },
+          {
+            "code": "kkeutnaegi_36",
+            "title": "36. 1선 끝내기의 응수",
+            "problemCount": 39
+          },
+          {
+            "code": "kkeutnaegi_37",
+            "title": "37. 눈목자 끝내기 대응",
+            "problemCount": 17
+          },
+          {
+            "code": "kkeutnaegi_38",
+            "title": "38. 배붙이기 끝내기",
+            "problemCount": 6
+          },
+          {
+            "code": "kkeutnaegi_39",
+            "title": "39. 패와 패감을 고려한 끝내기",
+            "problemCount": 12
+          },
+          {
+            "code": "kkeutnaegi_40",
+            "title": "40. 2선 끝내기의 크기와 반집",
+            "problemCount": 12
+          },
+          {
+            "code": "kkeutnaegi_41",
+            "title": "41. 젖히는 수의 크기",
+            "problemCount": 20
+          },
+          {
+            "code": "kkeutnaegi_42",
+            "title": "42. 따내는 수의 크기",
+            "problemCount": 16
+          },
+          {
+            "code": "kkeutnaegi_43",
+            "title": "43. 잇는 수의 크기",
+            "problemCount": 8
+          },
+          {
+            "code": "kkeutnaegi_44",
+            "title": "44. 선수·후수·역끝내기의 크기 판단",
+            "problemCount": 16
+          },
+          {
+            "code": "kkeutnaegi_45",
+            "title": "45. 눈목자 끝내기의 크기",
+            "problemCount": 8
+          },
+          {
+            "code": "kkeutnaegi_46",
+            "title": "46. 여러 곳의 큰 순서와 실전 끝내기",
+            "problemCount": 34
+          },
+          {
+            "code": "kkeutnaegi_47",
+            "title": "47. 끝내기 수법 종합 적용",
+            "problemCount": 85
           }
         ]
       }
