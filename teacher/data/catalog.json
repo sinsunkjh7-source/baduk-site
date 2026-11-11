@@ -17879,89 +17879,274 @@
         "name": "행마와 맥",
         "code": "new_tech_maekjeom",
         "file": "book_new_tech_maekjeom.json",
-        "chapterCount": 16,
-        "totalProblems": 589,
-        "problemCount": 589,
-        "_buildVer": "v2-haengma-maek-pruned-20261111114435846",
+        "chapterCount": 53,
+        "totalProblems": 1998,
+        "problemCount": 1998,
+        "_buildVer": "v3-haengma-expanded-20261111135208647",
         "chapters": [
           {
+            "code": "haengma_names",
+            "title": "1. 기본 행마의 이름과 모양",
+            "problemCount": 42
+          },
+          {
+            "code": "haengma_judge",
+            "title": "2. 좋은 모양과 나쁜 모양 구별",
+            "problemCount": 45
+          },
+          {
+            "code": "haengma_makeGood",
+            "title": "3. 좋은 모양 만들기",
+            "problemCount": 56
+          },
+          {
+            "code": "haengma_avoidTriangle",
+            "title": "4. 빈삼각을 피하는 행마",
+            "problemCount": 45
+          },
+          {
+            "code": "haengma_diagonalConnect",
+            "title": "5. 마늘모로 튼튼하게 연결하기",
+            "problemCount": 26
+          },
+          {
+            "code": "haengma_tigerConnect",
+            "title": "6. 호구·양호구로 연결하기",
+            "problemCount": 100
+          },
+          {
+            "code": "haengma_ssangConnect",
+            "title": "7. 쌍립으로 연결하기",
+            "problemCount": 46
+          },
+          {
+            "code": "haengma_shapeConnectMix",
+            "title": "8. 여러 행마형을 활용한 연결",
+            "problemCount": 64
+          },
+          {
+            "code": "haengma_edgeDiagonal",
+            "title": "9. 1선 마늘모 연결",
+            "problemCount": 30
+          },
+          {
+            "code": "haengma_efficientConnect",
+            "title": "10. 효율적인 연결과 간격",
+            "problemCount": 30
+          },
+          {
+            "code": "haengma_protectCuts",
+            "title": "11. 단점을 효율적으로 지키기",
+            "problemCount": 39
+          },
+          {
+            "code": "haengma_attachHane",
+            "title": "12. 붙이면 젖혀 받기",
+            "problemCount": 62
+          },
+          {
+            "code": "haengma_haneExtend",
+            "title": "13. 젖히면 뻗어 받기",
+            "problemCount": 31
+          },
+          {
+            "code": "haengma_twoHead",
+            "title": "14. 두 점 머리 두들기기",
+            "problemCount": 51
+          },
+          {
+            "code": "haengma_peepReply",
+            "title": "15. 들여다보면 이어 받기",
+            "problemCount": 44
+          },
+          {
+            "code": "haengma_peepAttack",
+            "title": "16. 들여다보아 상대를 무겁게 만들기",
+            "problemCount": 39
+          },
+          {
+            "code": "haengma_extendConnect",
+            "title": "17. 뻗으면 연결하기",
+            "problemCount": 27
+          },
+          {
+            "code": "haengma_cutExtend",
+            "title": "18. 끊으면 뻗어 받기",
+            "problemCount": 23
+          },
+          {
+            "code": "haengma_haneExtendChoice",
+            "title": "19. 젖힘과 뻗음 선택하기",
+            "problemCount": 47
+          },
+          {
+            "code": "haengma_friendly",
+            "title": "20. 우리 편 방향으로 뻗기",
+            "problemCount": 21
+          },
+          {
+            "code": "haengma_diagonalDirection",
+            "title": "21. 마늘모 행마의 방향",
+            "problemCount": 6
+          },
+          {
+            "code": "haengma_oneSpace",
+            "title": "22. 중앙으로 한 칸 뛰기와 탈출",
+            "problemCount": 103
+          },
+          {
+            "code": "haengma_knightDirection",
+            "title": "23. 날일자 행마의 방향과 활용",
+            "problemCount": 55
+          },
+          {
+            "code": "haengma_largeKnight",
+            "title": "24. 눈목자 행마의 방향",
+            "problemCount": 15
+          },
+          {
+            "code": "haengma_chooseShape",
+            "title": "25. 한 칸·날일자와 행마 선택",
+            "problemCount": 43
+          },
+          {
+            "code": "haengma_knightConnect",
+            "title": "26. 날일자로 연결하기",
+            "problemCount": 24
+          },
+          {
+            "code": "haengma_crossAttach",
+            "title": "27. 날일자에 건너붙이기",
+            "problemCount": 39
+          },
+          {
+            "code": "haengma_crossCut",
+            "title": "28. 건너붙인 뒤 끊는 수읽기",
+            "problemCount": 36
+          },
+          {
+            "code": "haengma_knightReply",
+            "title": "29. 날일자에 대한 응수",
+            "problemCount": 43
+          },
+          {
+            "code": "haengma_cap",
+            "title": "30. 모자 씌워 공격하기",
+            "problemCount": 15
+          },
+          {
+            "code": "haengma_capEscape",
+            "title": "31. 모자는 날일자로 벗기",
+            "problemCount": 13
+          },
+          {
+            "code": "haengma_lean",
+            "title": "32. 기대기 행마",
+            "problemCount": 23
+          },
+          {
+            "code": "haengma_Lshape",
+            "title": "33. 기역자 행마 이후 안정시키기",
+            "problemCount": 16
+          },
+          {
+            "code": "haengma_sacrifice",
+            "title": "34. 3선의 돌은 키워 버리기",
+            "problemCount": 33
+          },
+          {
+            "code": "haengma_spacing",
+            "title": "35. 벌림의 방향·간격·노림",
+            "problemCount": 16
+          },
+          {
+            "code": "haengma_response",
+            "title": "36. 효율적인 응수법",
+            "problemCount": 26
+          },
+          {
+            "code": "haengma_seal",
+            "title": "37. 날일자로 봉쇄하기",
+            "problemCount": 12
+          },
+          {
             "code": "maekjeom_04",
-            "title": "1. 호구의 급소",
+            "title": "38. 호구의 급소",
             "problemCount": 62
           },
           {
             "code": "maekjeom_05",
-            "title": "2. 쌍립의 급소 찾기",
+            "title": "39. 쌍립의 급소 찾기",
             "problemCount": 40
           },
           {
             "code": "maekjeom_09",
-            "title": "3. 서로 한 칸·날일자가 되는 급소",
+            "title": "40. 서로 한 칸·날일자가 되는 급소",
             "problemCount": 22
           },
           {
             "code": "maekjeom_10",
-            "title": "4. 상대 모양의 급소 공격하기",
+            "title": "41. 상대 모양의 급소 공격하기",
             "problemCount": 48
           },
           {
             "code": "maekjeom_11",
-            "title": "5. 내 모양의 급소 지키기",
+            "title": "42. 내 모양의 급소 지키기",
             "problemCount": 24
           },
           {
             "code": "maekjeom_12",
-            "title": "6. 급소 공격에 대응하기",
+            "title": "43. 급소 공격에 대응하기",
             "problemCount": 24
           },
           {
             "code": "maekjeom_13",
-            "title": "7. 행마의 급소 찾기",
+            "title": "44. 행마의 급소 찾기",
             "problemCount": 26
           },
           {
             "code": "maekjeom_14",
-            "title": "8. 붙임의 맥",
+            "title": "45. 붙임의 맥",
             "problemCount": 65
           },
           {
             "code": "maekjeom_15",
-            "title": "9. 젖힘의 맥",
+            "title": "46. 젖힘의 맥",
             "problemCount": 49
           },
           {
             "code": "maekjeom_16",
-            "title": "10. 이단 젖힘의 맥",
-            "problemCount": 25
+            "title": "47. 이단 젖힘의 맥",
+            "problemCount": 48
           },
           {
             "code": "maekjeom_17",
-            "title": "11. 급소를 젖혀 공격하기",
+            "title": "48. 급소를 젖혀 공격하기",
             "problemCount": 24
           },
           {
             "code": "maekjeom_18",
-            "title": "12. 끼워서 약점 만들기",
+            "title": "49. 끼워서 약점 만들기",
             "problemCount": 24
           },
           {
             "code": "maekjeom_19",
-            "title": "13. 끼워서 잡는 맥",
+            "title": "50. 끼워서 잡는 맥",
             "problemCount": 70
           },
           {
             "code": "maekjeom_20",
-            "title": "14. 찝음의 맥",
+            "title": "51. 찝음의 맥",
             "problemCount": 24
           },
           {
             "code": "maekjeom_21",
-            "title": "15. 장문의 맥",
+            "title": "52. 장문의 맥",
             "problemCount": 38
           },
           {
             "code": "maekjeom_22",
-            "title": "16. 연결해서 살아가는 맥",
+            "title": "53. 연결해서 살아가는 맥",
             "problemCount": 24
           }
         ]
