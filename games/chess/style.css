@@ -472,6 +472,42 @@ body {
   background: var(--bks-primary-dark);
 }
 
+
+.act-btn.danger {
+  background: #ffffff;
+  border-color: #fecdd3;
+  color: #e11d48;
+}
+
+.act-btn.danger:hover {
+  background: #fff1f2;
+  border-color: #fda4af;
+  color: #be123c;
+}
+
+.act-btn.full-col {
+  grid-column: span 3;
+  flex-direction: row;
+  gap: 8px;
+  padding: 8px 10px;
+  margin-top: 2px;
+}
+
+.act-btn.full-col .btn-icon {
+  font-size: 16px;
+}
+
+.act-btn.full-col .btn-text {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.mob-btn.danger {
+  background: #fff1f2;
+  border-color: #fecdd3;
+  color: #e11d48;
+}
+
 .act-btn.highlight {
   background: #eff6ff;
   border-color: #bfdbfe;

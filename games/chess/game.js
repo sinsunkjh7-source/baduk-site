@@ -37,6 +37,8 @@
 
   var btnNew = document.getElementById('btnNew');
   var btnMode = document.getElementById('btnMode');
+  var btnResign = document.getElementById('btnResign');
+  var btnMobResign = document.getElementById('btnMobResign');
   var btnGuide = document.getElementById('btnGuide');
   var btnUndo = document.getElementById('btnUndo');
   var btnHint = document.getElementById('btnHint');
@@ -489,34 +491,81 @@
      ======================================================== */
   function handleGameOver(status) {
     state.gameOver = true;
-    var userWon = (state.gameMode === 'ai' && status.winner === state.playerSide);
-    var userLost = (state.gameMode === 'ai' && status.winner && status.winner !== state.playerSide);
 
-    if (userWon) {
-      audio.playVictory();
-      goIcon.textContent = '🏆';
-      goTitle.textContent = '체크메이트! 멋진 승리!';
-      goSub.textContent = '상대방의 킹을 완벽하게 포위하여 체크메이트로 승리하였습니다!';
-    } else if (userLost) {
-      audio.playDefeat();
-      goIcon.textContent = '🛡️';
-      goTitle.textContent = '체크메이트 (패배)';
-      goSub.textContent = '아쉽게도 상대방에게 체크메이트를 허용했습니다. 다시 도전해 보세요!';
-    } else if (status.winner) {
-      audio.playVictory();
-      var winName = (status.winner === 'w') ? '백(White)' : '흑(Black)';
-      goIcon.textContent = '👑';
-      goTitle.textContent = winName + ' 승리!';
-      goSub.textContent = '체크메이트로 ' + winName + '의 승리입니다.';
+    if (status.reason === 'resignation') {
+      var resignedName = (status.resignedBy === 'w') ? '백(White)' : '흑(Black)';
+      var winnerName = (status.winner === 'w') ? '백(White)' : '흑(Black)';
+
+      if (state.gameMode === 'ai' && status.resignedBy === state.playerSide) {
+        audio.playDefeat();
+        goIcon.textContent = '🏳️';
+        goTitle.textContent = '대국 기권패';
+        goSub.textContent = '기권하셨습니다. AI(' + winnerName + ')의 승리로 대국이 종료되었습니다.';
+      } else {
+        audio.playVictory();
+        goIcon.textContent = '🏳️';
+        goTitle.textContent = winnerName + ' 기권승!';
+        goSub.textContent = resignedName + '의 기권으로 ' + winnerName + '의 승리입니다.';
+      }
     } else {
-      // Draw / Stalemate
-      goIcon.textContent = '🤝';
-      goTitle.textContent = '무승부 (Draw)';
-      var reasonText = (status.reason === 'stalemate') ? '스테일메이트(합법적인 수가 없음)' : '50수 무승부 규칙';
-      goSub.textContent = reasonText + '로 대국이 무승부로 종료되었습니다.';
+      var userWon = (state.gameMode === 'ai' && status.winner === state.playerSide);
+      var userLost = (state.gameMode === 'ai' && status.winner && status.winner !== state.playerSide);
+
+      if (userWon) {
+        audio.playVictory();
+        goIcon.textContent = '🏆';
+        goTitle.textContent = '체크메이트! 멋진 승리!';
+        goSub.textContent = '상대방의 킹을 완벽하게 포위하여 체크메이트로 승리하였습니다!';
+      } else if (userLost) {
+        audio.playDefeat();
+        goIcon.textContent = '🛡️';
+        goTitle.textContent = '체크메이트 (패배)';
+        goSub.textContent = '아쉽게도 상대방에게 체크메이트를 허용했습니다. 다시 도전해 보세요!';
+      } else if (status.winner) {
+        audio.playVictory();
+        var winName = (status.winner === 'w') ? '백(White)' : '흑(Black)';
+        goIcon.textContent = '👑';
+        goTitle.textContent = winName + ' 승리!';
+        goSub.textContent = '체크메이트로 ' + winName + '의 승리입니다.';
+      } else {
+        // Draw / Stalemate
+        goIcon.textContent = '🤝';
+        goTitle.textContent = '무승부 (Draw)';
+        var reasonText = (status.reason === 'stalemate') ? '스테일메이트(합법적인 수가 없음)' : '50수 무승부 규칙';
+        goSub.textContent = reasonText + '로 대국이 무승부로 종료되었습니다.';
+      }
     }
 
     gameOverModal.hidden = false;
+  }
+
+  function handleResign() {
+    if (state.gameOver) {
+      alert('이미 종료된 대국입니다.');
+      return;
+    }
+
+    var isWhiteTurn = (state.game.turn === 'w');
+    var confirmMsg = (state.gameMode === 'ai')
+      ? '정말 기권하시겠습니까? 기권패로 처리됩니다.'
+      : (isWhiteTurn ? '백(White) 진영에서 기권하시겠습니까?' : '흑(Black) 진영에서 기권하시겠습니까?');
+
+    if (!confirm(confirmMsg)) return;
+
+    var resignedColor, winnerColor;
+    if (state.gameMode === 'ai') {
+      resignedColor = state.playerSide;
+      winnerColor = (resignedColor === 'w') ? 'b' : 'w';
+    } else {
+      resignedColor = state.game.turn;
+      winnerColor = (resignedColor === 'w') ? 'b' : 'w';
+    }
+
+    handleGameOver({
+      winner: winnerColor,
+      reason: 'resignation',
+      resignedBy: resignedColor
+    });
   }
 
   btnRestartModal.addEventListener('click', function() {
@@ -758,6 +807,9 @@
     btnGuide.innerHTML = '💡 행마 가이드: <b>' + (state.showGuide ? '켜짐' : '꺼짐') + '</b>';
     drawBoard();
   });
+
+  if (btnResign) btnResign.addEventListener('click', handleResign);
+  if (btnMobResign) btnMobResign.addEventListener('click', handleResign);
 
   btnMode.addEventListener('click', function() {
     state.gameMode = (state.gameMode === 'ai') ? 'pvp' : 'ai';
