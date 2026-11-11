@@ -60,7 +60,7 @@
     gameMode: 'ai', // 'ai' or 'pvp'
     playerSide: 'w', // 'w' (player is white), 'b' (player is black)
     aiLevel: 3,
-    skin: 'wood', // 'wood', 'green', 'blue'
+    skin: 'green', // 'wood', 'green', 'blue'
     showGuide: true,
     isFlipped: false, // if true, board is rendered with Black at bottom (row 0 bottom)
     selectedSquare: null, // { r, c }
@@ -152,7 +152,7 @@
   // Handle Board Resize & High-DPI
   function resizeBoard() {
     var rect = boardWrapper.getBoundingClientRect();
-    var size = Math.min(rect.width, 640);
+    var size = Math.floor(rect.width);
     var dpr = window.devicePixelRatio || 1;
 
     metrics.size = size;
@@ -763,7 +763,7 @@
 
   selSkin.addEventListener('change', function() {
     state.skin = selSkin.value;
-    boardWrapper.className = 'board-wrapper ' + (state.skin === 'green' ? 'green-theme' : (state.skin === 'blue' ? 'blue-theme' : ''));
+    boardWrapper.className = 'board-wrapper ' + (state.skin === 'green' ? 'green-theme' : (state.skin === 'blue' ? 'blue-theme' : 'wood-theme'));
     drawBoard();
   });
 

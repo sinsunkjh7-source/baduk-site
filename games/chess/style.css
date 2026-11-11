@@ -1,6 +1,6 @@
 /* ========================================================
    JH 바둑스쿨 EduFun - 정통 체스 (Chess) Arena Stylesheet
-   Modern Glassmorphism & Classic Tournament Board
+   대형 체스판 중심 (Big Board) & 우측 통합 사이드패널 레이아웃
    ======================================================== */
 
 :root {
@@ -9,13 +9,12 @@
   --bks-accent: #2563eb;
   --bks-gold: #f59e0b;
   --bks-danger: #dc2626;
-  --bks-bg: #f1f5f9;
-  --bks-card-bg: rgba(255, 255, 255, 0.95);
+  --bks-bg: #f8fafc;
+  --bks-card-bg: #ffffff;
   --bks-card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
   --bks-border: #e2e8f0;
   --bks-text: #1e293b;
   --bks-text-muted: #64748b;
-  --board-max-size: 640px;
 }
 
 * {
@@ -35,216 +34,65 @@ body {
 
 .chess-layout {
   flex: 1;
-  max-width: 1440px;
+  max-width: 1560px;
   margin: 0 auto;
   width: 100%;
-  padding: 16px 20px 40px;
+  padding: 10px 20px 24px;
 }
 
-/* 3단 대국장 컨테이너 (좌측 백/흑 카드 | 중앙 메인 체스판 | 우측 상대 카드) */
-.chess-arena-container {
+/* 🌟 [핵심 레이아웃] 좌측 대형 체스판 + 우측 통합 사이드바 (2단 구조) 🌟 */
+.chess-main-stage {
   display: grid;
-  grid-template-columns: 240px minmax(320px, 1fr) 240px;
-  gap: 20px;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  gap: 24px;
   align-items: start;
 }
 
-/* ========== 플레이어 카드 (좌/우) ========== */
-.arena-player-col {
+/* ========================================================
+   좌측 메인: 초대형 체스판 영역
+   ======================================================== */
+.chess-board-col {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  align-items: center;
+  width: 100%;
 }
 
-.player-card {
+/* 1. 상단 미니 턴 & 체크 알림 바 */
+.board-top-status-bar {
+  width: 100%;
+  max-width: min(calc(100vh - 130px), 100%, 820px);
   background: var(--bks-card-bg);
-  border-radius: 16px;
-  padding: 18px;
-  box-shadow: var(--bks-card-shadow);
-  border: 2px solid transparent;
-  transition: all 0.25s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.player-card.active {
-  border-color: var(--bks-primary);
-  box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.2), var(--bks-card-shadow);
-  transform: translateY(-2px);
-}
-
-.player-card.check-warning {
-  border-color: var(--bks-danger);
-  animation: pulseCheck 1.2s infinite;
-}
-
-@keyframes pulseCheck {
-  0% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.5); }
-  70% { box-shadow: 0 0 0 10px rgba(220, 38, 38, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0); }
-}
-
-.player-header {
+  border-radius: 12px;
+  padding: 8px 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  border: 1px solid var(--bks-border);
+  border-left: 5px solid var(--bks-primary);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 12px;
-}
-
-.player-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 13px;
-  font-weight: 700;
-  padding: 4px 10px;
-  border-radius: 20px;
-}
-
-.player-badge.white {
-  background: #f8fafc;
-  color: #334155;
-  border: 1px solid #cbd5e1;
-}
-
-.player-badge.black {
-  background: #1e293b;
-  color: #f8fafc;
-}
-
-.player-score {
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--bks-primary);
-}
-
-.player-avatar-box {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 10px 0;
-}
-
-.player-avatar-icon {
-  width: 72px;
-  height: 72px;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 38px;
-  box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.6), 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.player-avatar-icon.white-icon {
-  background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 100%);
-  border: 2px solid #cbd5e1;
-}
-
-.player-avatar-icon.black-icon {
-  background: linear-gradient(135deg, #334155 0%, #0f172a 100%);
-  border: 2px solid #475569;
-}
-
-.player-name {
-  font-size: 16px;
-  font-weight: 700;
-  text-align: center;
   margin-bottom: 6px;
-  color: #0f172a;
-}
-
-.turn-indicator-pill {
-  text-align: center;
-  font-size: 12px;
-  font-weight: 600;
-  padding: 4px 10px;
-  border-radius: 12px;
-  background: #f1f5f9;
-  color: var(--bks-text-muted);
   transition: all 0.2s ease;
 }
 
-.player-card.active .turn-indicator-pill {
-  background: #ecfdf5;
-  color: #047857;
-  font-weight: 700;
+.board-top-status-bar.black-turn {
+  border-left-color: #0f172a;
 }
 
-/* 획득한 상대 기물 트레이 */
-.captured-box {
-  background: #f8fafc;
-  border: 1px solid var(--bks-border);
-  border-radius: 12px;
-  padding: 10px;
-  margin-top: 10px;
-}
-
-.captured-title {
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--bks-text-muted);
-  margin-bottom: 6px;
-  display: flex;
-  justify-content: space-between;
-}
-
-.captured-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 3px;
-  min-height: 24px;
-  font-size: 18px;
-  line-height: 1;
-}
-
-.material-diff-badge {
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--bks-primary-dark);
-}
-
-/* ========== 중앙 메인 컬럼 ========== */
-.arena-center-col {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-}
-
-/* 턴 상단 배너 */
-.turn-center-banner {
-  width: 100%;
-  max-width: var(--board-max-size);
-  background: var(--bks-card-bg);
-  border-radius: 14px;
-  padding: 10px 18px;
-  box-shadow: var(--bks-card-shadow);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-left: 6px solid var(--bks-primary);
-  transition: border-color 0.2s ease;
-}
-
-.turn-center-banner.black-turn {
-  border-left-color: #1e293b;
-}
-
-.turn-center-banner.check-active {
+.board-top-status-bar.check-active {
   border-left-color: var(--bks-danger);
-  background: #fff1f2;
+  background: #fef2f2;
 }
 
 .turn-title-group {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 }
 
 .turn-badge-icon {
-  width: 14px;
-  height: 14px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
   display: inline-block;
 }
@@ -260,40 +108,57 @@ body {
 }
 
 .turn-title {
-  font-size: 17px;
+  font-size: 15px;
   font-weight: 800;
   color: #0f172a;
 }
 
 .turn-sub {
-  font-size: 13px;
+  font-size: 12px;
   color: var(--bks-text-muted);
+  margin-left: 6px;
 }
 
-/* 실시간 형세 바 (Eval Bar) */
+.check-badge-pulse {
+  background: var(--bks-danger);
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 10px;
+  animation: pulseCheck 1s infinite;
+}
+
+@keyframes pulseCheck {
+  0% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.6); }
+  70% { box-shadow: 0 0 0 8px rgba(220, 38, 38, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0); }
+}
+
+/* 2. 실시간 형세 바 (Eval Bar) */
 .eval-bar-wrapper {
   width: 100%;
-  max-width: var(--board-max-size);
+  max-width: min(calc(100vh - 130px), 100%, 820px);
   display: flex;
   align-items: center;
-  gap: 10px;
-  background: #e2e8f0;
-  border-radius: 8px;
-  height: 12px;
+  background: #cbd5e1;
+  border-radius: 6px;
+  height: 10px;
   overflow: hidden;
   position: relative;
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.2);
+  margin-bottom: 8px;
 }
 
 .eval-bar-fill-white {
-  background: linear-gradient(90deg, #f8fafc, #ffffff);
+  background: #ffffff;
   height: 100%;
   width: 50%;
-  transition: width 0.4s ease;
+  transition: width 0.35s ease;
 }
 
 .eval-bar-fill-black {
-  background: linear-gradient(90deg, #334155, #0f172a);
+  background: #1e293b;
   height: 100%;
   flex: 1;
 }
@@ -304,23 +169,28 @@ body {
   text-align: center;
   font-size: 9px;
   font-weight: 800;
-  color: #64748b;
-  text-shadow: 0 0 2px rgba(255, 255, 255, 0.8);
+  color: #475569;
+  text-shadow: 0 0 2px rgba(255, 255, 255, 0.9);
   pointer-events: none;
 }
 
-/* 체스판 캔버스 래퍼 */
+/* 3. 대형 체스판 캔버스 래퍼 */
 .board-wrapper {
   position: relative;
-  width: 100%;
-  max-width: var(--board-max-size);
+  /* 화면 높이에 맞춰 꽉 차며 최대 820px까지 대형화 */
+  width: min(calc(100vh - 130px), 100%, 820px);
   aspect-ratio: 1 / 1;
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.22), 0 8px 12px -6px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.25), 0 8px 16px -4px rgba(0, 0, 0, 0.1);
+  background: #3e532b;
+  border: 6px solid #273819;
+  transition: all 0.2s ease;
+}
+
+.board-wrapper.wood-theme {
   background: #7c481e;
-  border: 6px solid #4a2810;
-  transition: border-color 0.3s ease;
+  border-color: #4a2810;
 }
 
 .board-wrapper.green-theme {
@@ -341,121 +211,226 @@ body {
   touch-action: none;
 }
 
-/* ========== 하단 조작 컨트롤 & 설정 ========== */
-.bottom-controls-zone {
-  width: 100%;
-  max-width: var(--board-max-size);
+/* ========================================================
+   우측 사이드 패널: 컨트롤, 플레이어 정보, 설정
+   ======================================================== */
+.chess-sidebar-col {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  margin-top: 4px;
+  width: 100%;
 }
 
-.game-control-buttons {
+/* 플레이어 카드 (컴팩트 카드) */
+.player-card {
+  background: var(--bks-card-bg);
+  border-radius: 14px;
+  padding: 12px 14px;
+  box-shadow: var(--bks-card-shadow);
+  border: 2px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.player-card.active {
+  border-color: var(--bks-primary);
+  box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.18), var(--bks-card-shadow);
+}
+
+.player-card.check-warning {
+  border-color: var(--bks-danger);
+  animation: pulseCheck 1s infinite;
+}
+
+.player-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.player-info-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.player-avatar-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 22px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.player-avatar-icon.white-icon {
+  background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 100%);
+  border: 1px solid #cbd5e1;
+}
+
+.player-avatar-icon.black-icon {
+  background: linear-gradient(135deg, #334155 0%, #0f172a 100%);
+  border: 1px solid #475569;
+}
+
+.player-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: #0f172a;
+  line-height: 1.2;
+}
+
+.player-badge {
+  font-size: 11px;
+  font-weight: 600;
+  display: inline-block;
+  margin-top: 2px;
+}
+
+.player-badge.white { color: #2563eb; }
+.player-badge.black { color: #64748b; }
+
+.player-score {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--bks-primary);
+}
+
+/* 획득한 기물 트레이 */
+.captured-box {
+  background: #f8fafc;
+  border: 1px solid var(--bks-border);
+  border-radius: 8px;
+  padding: 6px 10px;
+  margin: 8px 0;
+}
+
+.captured-title {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--bks-text-muted);
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.captured-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  justify-content: center;
+  gap: 2px;
+  min-height: 20px;
+  font-size: 16px;
+  line-height: 1;
 }
 
-.side-btn {
+.material-diff-badge {
+  font-size: 10px;
+  font-weight: 800;
+  color: var(--bks-primary-dark);
+}
+
+.turn-indicator-pill {
+  text-align: center;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 10px;
+  background: #f1f5f9;
+  color: var(--bks-text-muted);
+}
+
+.player-card.active .turn-indicator-pill {
+  background: #ecfdf5;
+  color: #047857;
+  font-weight: 700;
+}
+
+/* 빠른 조작 버튼 그리드 (3x2 컴팩트 카드) */
+.quick-action-card {
+  background: var(--bks-card-bg);
+  border-radius: 14px;
+  padding: 10px;
+  box-shadow: var(--bks-card-shadow);
+  border: 1px solid var(--bks-border);
+}
+
+.quick-buttons-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+}
+
+.act-btn {
   background: #ffffff;
   color: #1e293b;
   border: 1px solid var(--bks-border);
-  border-radius: 10px;
-  padding: 9px 14px;
-  font-size: 13px;
+  border-radius: 8px;
+  padding: 8px 4px;
+  font-size: 12px;
   font-weight: 700;
   cursor: pointer;
-  display: inline-flex;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 6px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  justify-content: center;
+  gap: 3px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
   transition: all 0.15s ease;
 }
 
-.side-btn:hover {
+.act-btn:hover {
   background: #f8fafc;
   border-color: #cbd5e1;
   transform: translateY(-1px);
 }
 
-.side-btn:active {
+.act-btn:active {
   transform: translateY(0);
 }
 
-.side-btn.primary {
+.act-btn .btn-icon {
+  font-size: 16px;
+  line-height: 1;
+}
+
+.act-btn .btn-text {
+  font-size: 11px;
+}
+
+.act-btn.primary {
   background: var(--bks-primary);
   color: #ffffff;
   border-color: var(--bks-primary-dark);
 }
 
-.side-btn.primary:hover {
+.act-btn.primary:hover {
   background: var(--bks-primary-dark);
 }
 
-.side-btn.highlight {
-  border-color: #93c5fd;
+.act-btn.highlight {
   background: #eff6ff;
+  border-color: #bfdbfe;
   color: #1d4ed8;
 }
 
-/* 하단 서브 설정 그리드 */
-.bottom-sub-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 10px;
+.act-btn.large {
+  padding: 10px 18px;
+  font-size: 14px;
+  flex-direction: row;
 }
 
-.settings-box {
+/* 접이식 설정 카드 & 룰 카드 */
+.sidebar-accordion-card {
   background: var(--bks-card-bg);
-  border-radius: 12px;
-  padding: 12px 16px;
+  border-radius: 14px;
+  padding: 10px 14px;
   box-shadow: var(--bks-card-shadow);
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-  align-items: center;
-  justify-content: space-between;
+  border: 1px solid var(--bks-border);
 }
 
-.c-field {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
+.accordion-header {
   font-size: 13px;
-  font-weight: 600;
-  color: #334155;
-}
-
-.c-field select {
-  padding: 6px 10px;
-  border-radius: 8px;
-  border: 1px solid #cbd5e1;
-  background: #ffffff;
-  font-size: 13px;
-  font-weight: 600;
-  color: #0f172a;
-  outline: none;
-  cursor: pointer;
-}
-
-.c-field select:focus {
-  border-color: var(--bks-primary);
-  box-shadow: 0 0 0 2px rgba(5, 150, 105, 0.2);
-}
-
-/* 룰 설명 아코디언 */
-.guide-box {
-  background: var(--bks-card-bg);
-  border-radius: 12px;
-  padding: 12px 16px;
-  box-shadow: var(--bks-card-shadow);
-  font-size: 13px;
-  color: #475569;
-}
-
-.guide-title {
   font-weight: 700;
   color: #0f172a;
   cursor: pointer;
@@ -463,17 +438,43 @@ body {
   outline: none;
 }
 
-.guide-list {
+.accordion-content {
   margin-top: 10px;
-  padding-left: 20px;
-  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
-.guide-list li {
-  margin-bottom: 4px;
+.setting-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: #334155;
 }
 
-/* ========== 폰 프로모션 모달 (Pawn Promotion) ========== */
+.setting-row select {
+  padding: 4px 8px;
+  border-radius: 6px;
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  font-size: 12px;
+  font-weight: 600;
+  color: #0f172a;
+  outline: none;
+  cursor: pointer;
+}
+
+.rule-text {
+  font-size: 11px;
+  line-height: 1.5;
+  color: #475569;
+}
+
+/* ========================================================
+   모달 (프로모션 & 게임오버)
+   ======================================================== */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -493,15 +494,16 @@ body {
   display: none !important;
 }
 
-.promo-modal-card {
+.promo-modal-card,
+.gameover-modal-card {
   background: #ffffff;
   border-radius: 20px;
   padding: 24px;
-  max-width: 420px;
+  max-width: 400px;
   width: 100%;
   text-align: center;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-  animation: popModal 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  animation: popModal 0.22s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 @keyframes popModal {
@@ -509,36 +511,38 @@ body {
   to { transform: scale(1); opacity: 1; }
 }
 
-.promo-modal-title {
-  font-size: 20px;
+.promo-modal-title,
+.gameover-title {
+  font-size: 18px;
   font-weight: 800;
   color: #0f172a;
   margin-bottom: 6px;
 }
 
-.promo-modal-desc {
-  font-size: 14px;
+.promo-modal-desc,
+.gameover-sub {
+  font-size: 13px;
   color: var(--bks-text-muted);
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
 
 .promo-choices-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
+  gap: 8px;
 }
 
 .promo-choice-btn {
   background: #f8fafc;
-  border: 2px solid #e2e8f0;
-  border-radius: 14px;
-  padding: 14px 6px;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 10px 4px;
   cursor: pointer;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
-  transition: all 0.18s ease;
+  gap: 4px;
+  transition: all 0.15s ease;
 }
 
 .promo-choice-btn:hover {
@@ -548,110 +552,42 @@ body {
 }
 
 .promo-choice-icon {
-  font-size: 36px;
+  font-size: 30px;
   line-height: 1;
 }
 
 .promo-choice-label {
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 700;
   color: #334155;
 }
 
-/* 대국 결과 모달 (Game Over Modal) */
-.gameover-modal-card {
-  background: #ffffff;
-  border-radius: 24px;
-  padding: 32px 24px;
-  max-width: 440px;
-  width: 100%;
-  text-align: center;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3);
-  animation: popModal 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
 .gameover-icon {
-  font-size: 54px;
-  margin-bottom: 12px;
-}
-
-.gameover-title {
-  font-size: 24px;
-  font-weight: 800;
-  color: #0f172a;
+  font-size: 48px;
   margin-bottom: 8px;
-}
-
-.gameover-sub {
-  font-size: 15px;
-  color: var(--bks-text-muted);
-  margin-bottom: 24px;
-  line-height: 1.5;
 }
 
 .gameover-actions {
   display: flex;
-  gap: 12px;
+  gap: 10px;
   justify-content: center;
 }
 
-/* ========== 반응형 모바일 / 태블릿 최적화 ========== */
-@media (max-width: 960px) {
-  .chess-arena-container {
+/* ========================================================
+   반응형 최적화 (모바일 및 태블릿)
+   ======================================================== */
+@media (max-width: 992px) {
+  .chess-main-stage {
     grid-template-columns: 1fr;
-    gap: 14px;
+    gap: 16px;
   }
 
-  .arena-player-col {
-    order: 2;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
+  .board-wrapper {
+    width: min(96vw, calc(100vh - 220px), 640px);
   }
 
-  .arena-center-col {
-    order: 1;
-  }
-
-  .player-card {
-    padding: 12px 14px;
-  }
-
-  .player-avatar-icon {
-    width: 48px;
-    height: 48px;
-    font-size: 26px;
-  }
-
-  .player-name {
-    font-size: 14px;
-  }
-
-  .settings-box {
-    flex-direction: column;
-    align-items: stretch;
-  }
-}
-
-@media (max-width: 480px) {
-  .chess-layout {
-    padding: 10px 10px 30px;
-  }
-
-  .arena-player-col {
-    grid-template-columns: 1fr;
-  }
-
-  .turn-title {
-    font-size: 15px;
-  }
-
-  .turn-sub {
-    font-size: 12px;
-  }
-
-  .side-btn {
-    padding: 8px 10px;
-    font-size: 12px;
+  .chess-sidebar-col {
+    max-width: 640px;
+    margin: 0 auto;
   }
 }
