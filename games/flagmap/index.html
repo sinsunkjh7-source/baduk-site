@@ -3,12 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>세계 국기 퀴즈 왕 (Flag Quiz) — JH 바둑스쿨 에듀펀</title>
+  <title>세계 국기 & 지도 탐험 (Flag & Map Quiz) — JH 바둑스쿨 에듀펀</title>
   <meta name="description" content="전 세계 195개국 국기와 지도 속 위치, 수도를 함께 맞히는 신나는 에듀펀 퀴즈 게임! 국기·지도 동시 연동 학습">
   <link rel="stylesheet" href="/unified-nav.css?v=20261103-nav-v11">
-  <link rel="stylesheet" href="style.css?v=20261111-map-v2">
+  <link rel="stylesheet" href="style.css?v=20261111-v3">
   <script src="/unified-nav.js?v=20261103-nav-v11" defer></script>
-  <script src="/js/site_lock.js?v=5"></script>
 </head>
 <body data-bks-page="flagmap">
 
@@ -17,195 +16,301 @@
 
   <div class="flag-game-container">
 
-    <!-- Top Game Header Bar -->
-    <header class="quiz-header-bar">
-      <div class="header-left">
-        <span class="game-badge">🌍 세계 국기 & 지도 탐험</span>
-        <span class="mode-title-pill" id="currentModeLabel">국기 & 지도 보고 나라 맞추기</span>
+    <!-- ========================================================
+         SCREEN 1: LOBBY & PREPARATION (시작 전 설정 화면)
+         ======================================================== -->
+    <section class="lobby-view" id="lobbyView">
+      
+      <!-- Lobby Hero Header -->
+      <div class="lobby-hero">
+        <div class="lobby-badge">🌍 에듀펀 지리 탐험</div>
+        <h1 class="lobby-title">세계 국기 & 지도 퀴즈 왕</h1>
+        <p class="lobby-sub">전 세계 195개국의 국기와 지도 속 실제 위치, 수도를 한눈에 배우고 맞혀보세요!</p>
       </div>
 
-      <!-- Stats Pill Group -->
-      <div class="header-stats">
-        <div class="stat-pill q-pill">
-          <span class="stat-label">문제</span>
-          <b id="statQuestion">1 / 10</b>
+      <!-- 1. Mode Selection Cards -->
+      <div class="lobby-section">
+        <h2 class="lobby-section-title">1. 퀴즈 모드 선택</h2>
+        <div class="mode-cards-grid" id="lobbyModeGrid">
+          
+          <div class="mode-card active" data-mode="flag-to-country">
+            <div class="mode-card-icon">🥌 + 🗺️</div>
+            <div class="mode-card-content">
+              <span class="mode-card-badge">인기 추천</span>
+              <h3 class="mode-card-title">국기 & 지도 퀴즈</h3>
+              <p class="mode-card-desc">국기와 지도 속 위치를 동시에 보고 4개 보기 중 나라를 맞힙니다.</p>
+            </div>
+            <div class="mode-card-radio"></div>
+          </div>
+
+          <div class="mode-card" data-mode="country-to-flag">
+            <div class="mode-card-icon">🗺️ ➔ 🥌</div>
+            <div class="mode-card-content">
+              <span class="mode-card-badge">선택형</span>
+              <h3 class="mode-card-title">나라 보고 국기 찾기</h3>
+              <p class="mode-card-desc">나라 이름과 지도 위치를 확인하고 올바른 국기를 골라냅니다.</p>
+            </div>
+            <div class="mode-card-radio"></div>
+          </div>
+
+          <div class="mode-card" data-mode="capital-quiz">
+            <div class="mode-card-icon">🏛️ + 📍</div>
+            <div class="mode-card-content">
+              <span class="mode-card-badge">상식 쑥쑥</span>
+              <h3 class="mode-card-title">수도 & 랜드마크 퀴즈</h3>
+              <p class="mode-card-desc">국기, 지도 위치, 대표 문화 상징을 보고 수도를 맞힙니다.</p>
+            </div>
+            <div class="mode-card-radio"></div>
+          </div>
+
+          <div class="mode-card" data-mode="encyclopedia">
+            <div class="mode-card-icon">📖 ➔ 🔍</div>
+            <div class="mode-card-content">
+              <span class="mode-card-badge">자유 학습</span>
+              <h3 class="mode-card-title">세계 국기 & 지도 도감</h3>
+              <p class="mode-card-desc">195개국 국기와 수도, 지도 위치를 자유롭게 검색하고 배웁니다.</p>
+            </div>
+            <div class="mode-card-radio"></div>
+          </div>
+
         </div>
-        <div class="stat-pill score-pill">
-          <span class="stat-label">점수</span>
-          <b id="statScore">0</b>
+      </div>
+
+      <!-- 2. Scope & Continent Selection -->
+      <div class="lobby-section" id="lobbyScopeSection">
+        <h2 class="lobby-section-title">2. 도전 범위 & 대륙 선택</h2>
+        <div class="lobby-chips-grid" id="lobbyScopeChips">
+          <button type="button" class="lobby-chip-btn active" data-scope="popular">
+            <span class="chip-icon">⭐</span>
+            <span class="chip-name">인기 30개국 (초급)</span>
+          </button>
+          <button type="button" class="lobby-chip-btn" data-scope="asia">
+            <span class="chip-icon">🌏</span>
+            <span class="chip-name">아시아 (48개국)</span>
+          </button>
+          <button type="button" class="lobby-chip-btn" data-scope="europe">
+            <span class="chip-icon">🏰</span>
+            <span class="chip-name">유럽 (44개국)</span>
+          </button>
+          <button type="button" class="lobby-chip-btn" data-scope="america">
+            <span class="chip-icon">🗽</span>
+            <span class="chip-name">아메리카 (35개국)</span>
+          </button>
+          <button type="button" class="lobby-chip-btn" data-scope="africa">
+            <span class="chip-icon">🦁</span>
+            <span class="chip-name">아프리카 (54개국)</span>
+          </button>
+          <button type="button" class="lobby-chip-btn" data-scope="oceania">
+            <span class="chip-icon">🏝️</span>
+            <span class="chip-name">오세아니아 (14개국)</span>
+          </button>
+          <button type="button" class="lobby-chip-btn" data-scope="world">
+            <span class="chip-icon">🌐</span>
+            <span class="chip-name">전 세계 195개국 (마스터)</span>
+          </button>
         </div>
-        <div class="stat-pill combo-pill" id="statComboPill">
-          <span class="combo-icon">🔥</span>
-          <b id="statCombo">0 COMBO</b>
+      </div>
+
+      <!-- 3. Quiz Options Settings -->
+      <div class="lobby-section" id="lobbyOptionsSection">
+        <h2 class="lobby-section-title">3. 퀴즈 세부 설정</h2>
+        <div class="lobby-settings-row">
+          
+          <div class="setting-item">
+            <label class="setting-label" for="lobbySelectQCount">문제 수</label>
+            <select id="lobbySelectQCount" class="lobby-select">
+              <option value="10" selected>10문제 (가볍게)</option>
+              <option value="20">20문제 (도전)</option>
+              <option value="999">무제한 서바이벌</option>
+            </select>
+          </div>
+
+          <div class="setting-item">
+            <label class="setting-label" for="lobbySelectTimer">타이머 제한</label>
+            <select id="lobbySelectTimer" class="lobby-select">
+              <option value="10" selected>10초 제한 (스피드 보너스)</option>
+              <option value="15">15초 제한 (여유롭게)</option>
+              <option value="0">시간 무제한 (공부용)</option>
+            </select>
+          </div>
+
+          <div class="setting-item">
+            <label class="setting-label">지도 위치 표시</label>
+            <button type="button" class="lobby-toggle-btn active" id="lobbyToggleMap">
+              🗺️ 지도 위치: ON
+            </button>
+          </div>
+
         </div>
-        <button type="button" class="icon-toggle-btn" id="btnSoundToggle" title="효과음 켜기/끄기" aria-label="효과음">
-          <span id="soundIcon">🔊</span>
+      </div>
+
+      <!-- 4. Launch Action Button -->
+      <div class="lobby-action-wrap">
+        <button type="button" class="lobby-start-btn" id="btnLaunchQuiz">
+          <span class="btn-glow"></span>
+          <span class="btn-text">🚀 퀴즈 시작하기!</span>
         </button>
       </div>
-    </header>
 
-    <!-- Timer Countdown Bar -->
-    <div class="timer-bar-wrap" id="timerBarWrap">
-      <div class="timer-bar" id="timerBar"></div>
-    </div>
-
-    <!-- Mode Selector Tabs -->
-    <nav class="mode-tab-nav" aria-label="게임 모드 선택">
-      <button type="button" class="tab-btn active" data-mode="flag-to-country">
-        <span class="tab-icon">🥌</span>
-        <span class="tab-text">국기 & 지도 퀴즈</span>
-      </button>
-      <button type="button" class="tab-btn" data-mode="country-to-flag">
-        <span class="tab-icon">🗺️</span>
-        <span class="tab-text">나라 보고 국기</span>
-      </button>
-      <button type="button" class="tab-btn" data-mode="capital-quiz">
-        <span class="tab-icon">🏛️</span>
-        <span class="tab-text">수도 & 랜드마크</span>
-      </button>
-      <button type="button" class="tab-btn" data-mode="encyclopedia">
-        <span class="tab-icon">📖</span>
-        <span class="tab-text">세계 국기 도감</span>
-      </button>
-    </nav>
-
-    <!-- Filters & Settings Bar -->
-    <section class="quiz-filter-bar" id="quizFilterBar">
-      <div class="filter-group scope-group">
-        <span class="filter-title">범위:</span>
-        <div class="filter-chips" id="scopeChips">
-          <button type="button" class="chip-btn active" data-scope="popular">⭐ 인기 30개국</button>
-          <button type="button" class="chip-btn" data-scope="asia">🌏 아시아</button>
-          <button type="button" class="chip-btn" data-scope="europe">🏰 유럽</button>
-          <button type="button" class="chip-btn" data-scope="america">🗽 아메리카</button>
-          <button type="button" class="chip-btn" data-scope="africa">🦁 아프리카</button>
-          <button type="button" class="chip-btn" data-scope="oceania">🏝️ 오세아니아</button>
-          <button type="button" class="chip-btn" data-scope="world">🌐 전 세계 195개국</button>
-        </div>
-      </div>
-
-      <div class="filter-right-tools">
-        <button type="button" class="chip-btn map-toggle-chip active" id="btnToggleMap" title="지도 위치 힌트 켜기/끄기">
-          🗺️ 지도 위치: ON
-        </button>
-        <div class="tool-select-box">
-          <label for="selectQCount">문제 수</label>
-          <select id="selectQCount">
-            <option value="10" selected>10문제</option>
-            <option value="20">20문제</option>
-            <option value="999">무제한 서바이벌</option>
-          </select>
-        </div>
-        <div class="tool-select-box">
-          <label for="selectTimer">타이머</label>
-          <select id="selectTimer">
-            <option value="10" selected>10초 (보너스)</option>
-            <option value="15">15초 (여유)</option>
-            <option value="0">시간 무제한</option>
-          </select>
-        </div>
-        <button type="button" class="action-btn primary" id="btnRestartQuiz">🔄 새 퀴즈</button>
-      </div>
     </section>
 
     <!-- ========================================================
-         MAIN QUIZ ARENA
+         SCREEN 2: ACTIVE IN-GAME ARENA (진행 중 아레나)
          ======================================================== -->
-    <main class="quiz-arena" id="quizArena">
+    <div class="in-game-wrapper" id="inGameWrapper" hidden>
 
-      <!-- Lifelines / Helpers -->
-      <div class="lifeline-bar" id="lifelineBar">
-        <button type="button" class="lifeline-btn" id="btnLifeline5050" title="오답 2개 제거 (게임당 2회)">
-          <span class="life-icon">✂️</span> 50:50 찬스 (<b id="count5050">2</b>)
-        </button>
-        <button type="button" class="lifeline-btn" id="btnLifelineHint" title="수도 및 대륙 힌트 보기">
-          <span class="life-icon">💡</span> 힌트 보기
-        </button>
-        <div class="hint-bubble" id="hintBubble" hidden>
-          <span id="hintText">힌트 내용이 여기에 나타납니다.</span>
+      <!-- In-Game Top Header Bar -->
+      <header class="quiz-header-board">
+        <div class="header-left">
+          <button type="button" class="header-back-btn" id="btnHeaderReturnLobby" title="퀴즈 중단하고 시작 화면으로 돌아가기">
+            🏠 처음으로
+          </button>
+          <span class="game-badge">🌍 세계 국기 & 지도 탐험</span>
+          <span class="mode-pill" id="currentModeLabel">국기 & 지도 퀴즈</span>
         </div>
+
+        <div class="header-stats">
+          <div class="stat-pill q-pill">
+            <span class="stat-label">문제</span>
+            <b id="statQuestion">1 / 10</b>
+          </div>
+          <div class="stat-pill score-pill">
+            <span class="stat-label">점수</span>
+            <b id="statScore">0</b>
+          </div>
+          <div class="stat-pill combo-pill" id="statComboPill">
+            <span class="combo-icon">🔥</span>
+            <b id="statCombo">0 COMBO</b>
+          </div>
+          <button type="button" class="header-control-btn pause-btn" id="btnPauseGame" title="잠시 멈추기 (스톱)">
+            ⏸️ 스톱
+          </button>
+          <button type="button" class="icon-toggle-btn" id="btnSoundToggle" title="효과음 켜기/끄기">
+            <span id="soundIcon">🔊</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- Timer Countdown Bar -->
+      <div class="timer-bar-wrap" id="timerBarWrap">
+        <div class="timer-bar" id="timerBar"></div>
       </div>
 
-      <!-- Question Card: Mode 1 (Flag to Country) & Mode 3 (Capital Quiz) -->
-      <section class="question-card" id="questionCard">
-        
-        <!-- Dual Stage: Flag + Interactive World Map Location -->
-        <div class="quiz-dual-stage" id="dualStage">
-          <!-- Flag Frame -->
-          <div class="stage-flag-box">
-            <div class="flag-frame" id="flagFrame">
-              <img id="mainFlagImg" src="flags/kr.svg" alt="국기" loading="eager">
+      <!-- Main Wide 2-Column Grid Arena -->
+      <main class="quiz-wide-grid" id="quizWideGrid">
+
+        <!-- ====================================================
+             LEFT COLUMN: Quiz Prompt & Options (약 480px)
+             ==================================================== -->
+        <section class="quiz-left-panel">
+          
+          <!-- Lifelines Toolbar -->
+          <div class="lifeline-bar" id="lifelineBar">
+            <button type="button" class="lifeline-btn" id="btnLifeline5050" title="오답 2개 제거 (게임당 2회)">
+              <span class="life-icon">✂️</span> 50:50 찬스 (<b id="count5050">2</b>)
+            </button>
+            <button type="button" class="lifeline-btn" id="btnLifelineHint" title="수도 및 대륙 힌트 보기">
+              <span class="life-icon">💡</span> 힌트 보기
+            </button>
+            <div class="hint-bubble" id="hintBubble" hidden>
+              <span id="hintText">힌트 내용이 여기에 나타납니다.</span>
             </div>
-            <span class="stage-sub-badge">🥌 국기 (Flag)</span>
           </div>
 
-          <!-- World Map Location Box -->
-          <div class="stage-map-box" id="stageMapBox">
-            <div class="mini-map-wrap" id="miniMapWrap">
-              <div class="map-placeholder">지도 불러오는 중...</div>
+          <!-- Mode 1 & 3: Flag Display & Prompt -->
+          <div class="left-quiz-box" id="leftQuizBox">
+            
+            <!-- Flag Frame -->
+            <div class="quiz-flag-display">
+              <div class="flag-frame" id="flagFrame">
+                <img id="mainFlagImg" src="flags/kr.svg" alt="국기" loading="eager">
+              </div>
+              <span class="flag-caption-badge">🥌 국기 (Flag)</span>
             </div>
-            <div class="map-overlay-tools">
-              <span class="map-badge" id="mapRegionBadge">📍 아시아</span>
-              <button type="button" class="map-zoom-btn" id="btnToggleZoom" title="전체 지도 / 확대 보기">
-                🔍 전체/확대
+
+            <!-- Question Prompt Text -->
+            <div class="question-prompt" id="questionPrompt">
+              <div class="country-landmark-tag" id="landmarkTag" hidden>
+                <span id="landmarkIcon">🏛️</span> <span id="landmarkName">경복궁</span>
+              </div>
+              <h2 class="prompt-text" id="promptText">이 국기와 위치의 나라는 어디일까요?</h2>
+              <p class="prompt-sub" id="promptSub">오른쪽 세계 지도 위치와 국기를 보고 정답을 선택하세요!</p>
+            </div>
+
+            <!-- 4-Choice Options Grid -->
+            <div class="options-grid" id="optionsGrid">
+              <button type="button" class="opt-btn" data-index="0">
+                <span class="opt-num">1</span>
+                <span class="opt-label">대한민국</span>
+              </button>
+              <button type="button" class="opt-btn" data-index="1">
+                <span class="opt-num">2</span>
+                <span class="opt-label">일본</span>
+              </button>
+              <button type="button" class="opt-btn" data-index="2">
+                <span class="opt-num">3</span>
+                <span class="opt-label">중국</span>
+              </button>
+              <button type="button" class="opt-btn" data-index="3">
+                <span class="opt-num">4</span>
+                <span class="opt-label">프랑스</span>
               </button>
             </div>
-            <span class="stage-sub-badge">🗺️ 지도 속 위치 (Location)</span>
+
           </div>
-        </div>
 
-        <!-- Prompt Text / Country Badge -->
-        <div class="question-prompt" id="questionPrompt">
-          <div class="country-landmark-tag" id="landmarkTag" hidden>
-            <span id="landmarkIcon">🏛️</span> <span id="landmarkName">경복궁</span>
+          <!-- Mode 2: Country to Flag (Left Panel Content) -->
+          <div class="left-quiz-box flag-options-mode" id="countryToFlagCard" hidden>
+            <div class="target-country-banner">
+              <span class="continent-tag" id="c2fContinent">🌏 아시아</span>
+              <h2 class="target-country-name" id="c2fCountryName">대한민국</h2>
+              <p class="target-country-hint" id="c2fCapitalHint">수도: 서울 🏯</p>
+              <p class="target-prompt-guide">오른쪽 지도에서 위치를 확인하고 올바른 국기를 골라 터치하세요!</p>
+            </div>
+
+            <div class="flag-options-grid" id="flagOptionsGrid">
+              <!-- 4 Flag Choice Cards dynamically generated -->
+            </div>
           </div>
-          <h2 class="prompt-text" id="promptText">이 국기와 위치의 나라는 어디일까요?</h2>
-          <p class="prompt-sub" id="promptSub">국기와 지도에 표시된 위치를 보고 올바른 나라를 선택하세요!</p>
-        </div>
 
-        <!-- 4-Choice Options Grid -->
-        <div class="options-grid" id="optionsGrid">
-          <button type="button" class="opt-btn" data-index="0">
-            <span class="opt-num">1</span>
-            <span class="opt-label">대한민국</span>
-          </button>
-          <button type="button" class="opt-btn" data-index="1">
-            <span class="opt-num">2</span>
-            <span class="opt-label">일본</span>
-          </button>
-          <button type="button" class="opt-btn" data-index="2">
-            <span class="opt-num">3</span>
-            <span class="opt-label">중국</span>
-          </button>
-          <button type="button" class="opt-btn" data-index="3">
-            <span class="opt-num">4</span>
-            <span class="opt-label">프랑스</span>
-          </button>
-        </div>
+        </section>
 
-      </section>
+        <!-- ====================================================
+             RIGHT COLUMN: Huge Interactive World Map (약 750~900px)
+             ==================================================== -->
+        <section class="quiz-right-panel" id="quizRightPanel">
+          <div class="large-map-card">
+            
+            <!-- Map Top Overlay Tools -->
+            <div class="map-top-bar">
+              <div class="map-badge-group">
+                <span class="map-title-badge">🗺️ 세계 지도 위치 뷰</span>
+                <span class="map-region-pill" id="mapRegionBadge">📍 아시아</span>
+              </div>
+              <div class="map-action-tools">
+                <button type="button" class="map-tool-btn" id="btnZoomIn" title="지도 확대">+</button>
+                <button type="button" class="map-tool-btn" id="btnZoomOut" title="지도 축소">-</button>
+                <button type="button" class="map-tool-btn reset-btn" id="btnToggleZoom" title="전체 세계 지도 ↔ 지역 확대 토글">
+                  🌐 전체/지역 토글
+                </button>
+              </div>
+            </div>
 
-      <!-- Question Card: Mode 2 (Country to 4 Flags) -->
-      <section class="question-card flag-options-mode" id="countryToFlagCard" hidden>
-        <div class="target-country-banner">
-          <span class="continent-tag" id="c2fContinent">🌏 아시아</span>
-          <h2 class="target-country-name" id="c2fCountryName">대한민국</h2>
-          <p class="target-country-hint" id="c2fCapitalHint">수도: 서울 🏯</p>
-          <p class="target-prompt-guide">지도 속 위치를 확인하고 올바른 국기를 골라 터치하세요!</p>
-        </div>
+            <!-- SVG Map Wrapper -->
+            <div class="large-map-wrap" id="largeMapWrap">
+              <div class="map-placeholder">세계 지도 불러오는 중...</div>
+            </div>
 
-        <!-- Map Location Preview for Mode 2 -->
-        <div class="c2f-map-container" id="c2fMapContainer">
-          <div class="mini-map-wrap" id="c2fMapWrap"></div>
-          <div class="map-overlay-tools">
-            <span class="map-badge" id="c2fRegionBadge">📍 위치</span>
+            <!-- Map Bottom Info Guide -->
+            <div class="map-bottom-guide">
+              <span class="guide-dot"></span>
+              <span>지도의 <b>초록색 영토</b>와 <b>📍 붉은색 핀</b>이 가리키는 나라입니다.</span>
+            </div>
+
           </div>
-        </div>
+        </section>
 
-        <div class="flag-options-grid" id="flagOptionsGrid">
-          <!-- 4 Flag Choice Cards dynamically generated -->
-        </div>
-      </section>
+      </main>
 
       <!-- Feedback Toast / Float Message -->
       <div class="answer-feedback" id="answerFeedback" hidden>
@@ -213,26 +318,68 @@
         <span class="fb-text" id="fbText">정답입니다!</span>
       </div>
 
-    </main>
+    </div>
 
     <!-- ========================================================
-         ENCYCLOPEDIA / STUDY MODE VIEW
+         SCREEN 3: ENCYCLOPEDIA VIEW (세계 국기 도감)
          ======================================================== -->
     <section class="encyclopedia-view" id="encyclopediaView" hidden>
-      <div class="ency-search-bar">
-        <input type="text" id="encySearchInput" placeholder="🔍 나라 이름, 수도, 또는 랜드마크 검색..." autocomplete="off">
+      
+      <!-- Encyclopedia Header -->
+      <div class="ency-header-bar">
+        <button type="button" class="header-back-btn" id="btnEncyReturnLobby">
+          🏠 처음으로
+        </button>
+        <div class="ency-search-wrap">
+          <input type="text" id="encySearchInput" placeholder="🔍 나라 이름, 수도, 또는 랜드마크 검색..." autocomplete="off">
+        </div>
         <span class="ency-total-badge" id="encyTotalCount">195개국</span>
       </div>
 
+      <!-- Continent Filter Tabs -->
+      <div class="ency-filter-chips" id="encyScopeChips">
+        <button type="button" class="chip-btn active" data-scope="world">🌐 전체 195개국</button>
+        <button type="button" class="chip-btn" data-scope="popular">⭐ 인기 30개국</button>
+        <button type="button" class="chip-btn" data-scope="asia">🌏 아시아</button>
+        <button type="button" class="chip-btn" data-scope="europe">🏰 유럽</button>
+        <button type="button" class="chip-btn" data-scope="america">🗽 아메리카</button>
+        <button type="button" class="chip-btn" data-scope="africa">🦁 아프리카</button>
+        <button type="button" class="chip-btn" data-scope="oceania">🏝️ 오세아니아</button>
+      </div>
+
+      <!-- Encyclopedia Flag Cards Grid -->
       <div class="ency-grid" id="encyGrid">
-        <!-- Flag Cards injected dynamically -->
+        <!-- Injected via JavaScript -->
       </div>
     </section>
 
   </div>
 
   <!-- ========================================================
-       MODAL: COUNTRY DETAIL (From Encyclopedia)
+       MODAL 1: PAUSE MODAL (스톱 / 일시정지)
+       ======================================================== -->
+  <div class="modal-backdrop" id="pauseModal" hidden>
+    <div class="modal-card pause-card">
+      <div class="pause-icon">⏸️</div>
+      <h2 class="modal-title">퀴즈 일시정지</h2>
+      <p class="modal-subtitle">잠시 휴식 중입니다. 준비되면 언제든 계속하세요!</p>
+      
+      <div class="modal-actions-stacked">
+        <button type="button" class="action-btn primary large-btn" id="btnResumeGame">
+          ▶️ 이어서 풀기 (계속)
+        </button>
+        <button type="button" class="action-btn outline large-btn" id="btnRestartCurrent">
+          🔄 이 퀴즈 처음부터 다시 하기
+        </button>
+        <button type="button" class="action-btn danger-light large-btn" id="btnPauseReturnLobby">
+          🏠 퀴즈 종료하고 시작 화면으로
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       MODAL 2: COUNTRY DETAIL (From Encyclopedia)
        ======================================================== -->
   <div class="modal-backdrop" id="countryDetailModal" hidden>
     <div class="modal-card detail-card">
@@ -276,7 +423,7 @@
   </div>
 
   <!-- ========================================================
-       MODAL: QUIZ RESULT
+       MODAL 3: QUIZ RESULT
        ======================================================== -->
   <div class="modal-backdrop" id="resultModal" hidden>
     <div class="modal-card result-card">
@@ -315,16 +462,17 @@
 
       <div class="modal-actions">
         <button type="button" class="action-btn primary" id="btnPlayAgain">🔄 다시 도전하기</button>
+        <button type="button" class="action-btn outline" id="btnResultReturnLobby">🏠 시작 화면으로</button>
         <button type="button" class="action-btn" id="btnGoEncyclopedia">📖 도감에서 복습하기</button>
       </div>
     </div>
   </div>
 
   <!-- Data & Logic Scripts -->
-  <script src="data/countries.js?v=20261111-v1"></script>
-  <script src="data/capitals.js?v=20261111-v1"></script>
-  <script src="data/bboxes.js?v=20261111-v1"></script>
-  <script src="audio.js?v=20261111-v1"></script>
-  <script src="game.js?v=20261111-map-v2"></script>
+  <script src="data/countries.js?v=20261111-v2"></script>
+  <script src="data/capitals.js?v=20261111-v2"></script>
+  <script src="data/bboxes.js?v=20261111-v2"></script>
+  <script src="audio.js?v=20261111-v2"></script>
+  <script src="game.js?v=20261111-v3"></script>
 </body>
 </html>

@@ -1,5 +1,5 @@
 /**
- * World Flag & Map Quiz (세계 국기 & 지도 탐험) - Game Engine & Interactive Controller
+ * World Flag & Map Quiz (세계 국기 & 지도 탐험) - Game Engine & Controller
  */
 (function() {
   'use strict';
@@ -64,7 +64,6 @@
 
     scopePools.world = allCountries.slice();
 
-    // Populate popular pool
     for (var p = 0; p < POPULAR_CODES.length; p++) {
       var pIso = POPULAR_CODES[p];
       if (countryMap[pIso]) {
@@ -81,6 +80,11 @@
     timerLimit: 10,
     showMap: true,
     mapZoomed: true,
+    currentZoomFactor: 1.0,
+    currentCenter: { x: 505, y: 333 },
+    currentBaseBox: [0, 0, 1010, 666],
+    isPlaying: false,
+    isPaused: false,
     questions: [],
     currentIndex: 0,
     currentQuestion: null,
@@ -101,29 +105,37 @@
   var dom = {};
 
   function cacheDom() {
+    // Screen Sections
+    dom.lobbyView = document.getElementById('lobbyView');
+    dom.inGameWrapper = document.getElementById('inGameWrapper');
+    dom.encyclopediaView = document.getElementById('encyclopediaView');
+
+    // Lobby Elements
+    dom.lobbyModeGrid = document.getElementById('lobbyModeGrid');
+    dom.lobbyScopeChips = document.getElementById('lobbyScopeChips');
+    dom.lobbyScopeSection = document.getElementById('lobbyScopeSection');
+    dom.lobbyOptionsSection = document.getElementById('lobbyOptionsSection');
+    dom.lobbySelectQCount = document.getElementById('lobbySelectQCount');
+    dom.lobbySelectTimer = document.getElementById('lobbySelectTimer');
+    dom.lobbyToggleMap = document.getElementById('lobbyToggleMap');
+    dom.btnLaunchQuiz = document.getElementById('btnLaunchQuiz');
+
+    // In-Game Top Header
+    dom.btnHeaderReturnLobby = document.getElementById('btnHeaderReturnLobby');
+    dom.currentModeLabel = document.getElementById('currentModeLabel');
     dom.statQuestion = document.getElementById('statQuestion');
     dom.statScore = document.getElementById('statScore');
     dom.statCombo = document.getElementById('statCombo');
     dom.statComboPill = document.getElementById('statComboPill');
+    dom.btnPauseGame = document.getElementById('btnPauseGame');
     dom.btnSoundToggle = document.getElementById('btnSoundToggle');
     dom.soundIcon = document.getElementById('soundIcon');
-    dom.currentModeLabel = document.getElementById('currentModeLabel');
 
     dom.timerBarWrap = document.getElementById('timerBarWrap');
     dom.timerBar = document.getElementById('timerBar');
 
-    dom.modeTabNav = document.querySelector('.mode-tab-nav');
-    dom.tabBtns = document.querySelectorAll('.tab-btn');
-
-    dom.quizFilterBar = document.getElementById('quizFilterBar');
-    dom.scopeChips = document.getElementById('scopeChips');
-    dom.chipBtns = document.querySelectorAll('.chip-btn');
-    dom.btnToggleMap = document.getElementById('btnToggleMap');
-    dom.selectQCount = document.getElementById('selectQCount');
-    dom.selectTimer = document.getElementById('selectTimer');
-    dom.btnRestartQuiz = document.getElementById('btnRestartQuiz');
-
-    dom.quizArena = document.getElementById('quizArena');
+    // In-Game Wide Grid
+    dom.quizWideGrid = document.getElementById('quizWideGrid');
     dom.lifelineBar = document.getElementById('lifelineBar');
     dom.btnLifeline5050 = document.getElementById('btnLifeline5050');
     dom.count5050 = document.getElementById('count5050');
@@ -131,14 +143,8 @@
     dom.hintBubble = document.getElementById('hintBubble');
     dom.hintText = document.getElementById('hintText');
 
-    dom.questionCard = document.getElementById('questionCard');
-    dom.dualStage = document.getElementById('dualStage');
+    dom.leftQuizBox = document.getElementById('leftQuizBox');
     dom.mainFlagImg = document.getElementById('mainFlagImg');
-    dom.stageMapBox = document.getElementById('stageMapBox');
-    dom.miniMapWrap = document.getElementById('miniMapWrap');
-    dom.mapRegionBadge = document.getElementById('mapRegionBadge');
-    dom.btnToggleZoom = document.getElementById('btnToggleZoom');
-
     dom.landmarkTag = document.getElementById('landmarkTag');
     dom.landmarkIcon = document.getElementById('landmarkIcon');
     dom.landmarkName = document.getElementById('landmarkName');
@@ -151,18 +157,32 @@
     dom.c2fContinent = document.getElementById('c2fContinent');
     dom.c2fCountryName = document.getElementById('c2fCountryName');
     dom.c2fCapitalHint = document.getElementById('c2fCapitalHint');
-    dom.c2fMapWrap = document.getElementById('c2fMapWrap');
-    dom.c2fRegionBadge = document.getElementById('c2fRegionBadge');
     dom.flagOptionsGrid = document.getElementById('flagOptionsGrid');
+
+    // Right Column: Huge World Map
+    dom.quizRightPanel = document.getElementById('quizRightPanel');
+    dom.largeMapWrap = document.getElementById('largeMapWrap');
+    dom.mapRegionBadge = document.getElementById('mapRegionBadge');
+    dom.btnZoomIn = document.getElementById('btnZoomIn');
+    dom.btnZoomOut = document.getElementById('btnZoomOut');
+    dom.btnToggleZoom = document.getElementById('btnToggleZoom');
 
     dom.answerFeedback = document.getElementById('answerFeedback');
     dom.fbIcon = document.getElementById('fbIcon');
     dom.fbText = document.getElementById('fbText');
 
-    dom.encyclopediaView = document.getElementById('encyclopediaView');
+    // Encyclopedia
+    dom.btnEncyReturnLobby = document.getElementById('btnEncyReturnLobby');
     dom.encySearchInput = document.getElementById('encySearchInput');
     dom.encyTotalCount = document.getElementById('encyTotalCount');
+    dom.encyScopeChips = document.getElementById('encyScopeChips');
     dom.encyGrid = document.getElementById('encyGrid');
+
+    // Modals
+    dom.pauseModal = document.getElementById('pauseModal');
+    dom.btnResumeGame = document.getElementById('btnResumeGame');
+    dom.btnRestartCurrent = document.getElementById('btnRestartCurrent');
+    dom.btnPauseReturnLobby = document.getElementById('btnPauseReturnLobby');
 
     dom.countryDetailModal = document.getElementById('countryDetailModal');
     dom.detailFlagImg = document.getElementById('detailFlagImg');
@@ -187,6 +207,7 @@
     dom.wrongReviewBox = document.getElementById('wrongReviewBox');
     dom.wrongReviewList = document.getElementById('wrongReviewList');
     dom.btnPlayAgain = document.getElementById('btnPlayAgain');
+    dom.btnResultReturnLobby = document.getElementById('btnResultReturnLobby');
     dom.btnGoEncyclopedia = document.getElementById('btnGoEncyclopedia');
 
     dom.confettiCanvas = document.getElementById('confettiCanvas');
@@ -222,13 +243,9 @@
   function initMapContainers() {
     if (!rawSvgText) return;
 
-    if (dom.miniMapWrap) {
-      dom.miniMapWrap.innerHTML = rawSvgText;
-      addMapPinGroup(dom.miniMapWrap.querySelector('svg'));
-    }
-    if (dom.c2fMapWrap) {
-      dom.c2fMapWrap.innerHTML = rawSvgText;
-      addMapPinGroup(dom.c2fMapWrap.querySelector('svg'));
+    if (dom.largeMapWrap) {
+      dom.largeMapWrap.innerHTML = rawSvgText;
+      addMapPinGroup(dom.largeMapWrap.querySelector('svg'));
     }
     if (dom.detailMapWrap) {
       dom.detailMapWrap.innerHTML = rawSvgText;
@@ -249,14 +266,14 @@
       pinG = document.createElementNS('http://www.w3.org/2000/svg', 'g');
       pinG.setAttribute('id', 'targetPinGroup');
       pinG.innerHTML =
-        '<circle class="beacon-ring" cx="0" cy="0" r="14" />' +
-        '<circle class="beacon-dot" cx="0" cy="0" r="5" />';
+        '<circle class="beacon-ring" cx="0" cy="0" r="16" />' +
+        '<circle class="beacon-dot" cx="0" cy="0" r="6" />';
       svgEl.appendChild(pinG);
     }
   }
 
   function renderMapHighlight(iso, targetContainer) {
-    var container = targetContainer || dom.miniMapWrap;
+    var container = targetContainer || dom.largeMapWrap;
     if (!container) return;
     var svg = container.querySelector('svg');
     if (!svg) return;
@@ -274,7 +291,6 @@
     var path = svg.querySelector('path[id="' + isoLower + '"]') || svg.querySelector('path[id="' + iso.toUpperCase() + '"]');
     if (path) {
       path.classList.add('active-target');
-      // Bring target to front
       svg.appendChild(path);
     }
 
@@ -285,7 +301,7 @@
       pinG = svg.querySelector('#targetPinGroup');
     }
 
-    var cx = 505, cy = 333; // Default center
+    var cx = 505, cy = 333;
     if (b) {
       cx = b[0] + b[2] / 2;
       cy = b[1] + b[3] / 2;
@@ -298,12 +314,14 @@
       } catch(e) {}
     }
 
+    state.currentCenter = { x: cx, y: cy };
+
     if (pinG) {
       var ring = pinG.querySelector('.beacon-ring');
       var dot = pinG.querySelector('.beacon-dot');
       if (ring) { ring.setAttribute('cx', cx); ring.setAttribute('cy', cy); }
       if (dot) { dot.setAttribute('cx', cx); dot.setAttribute('cy', cy); }
-      svg.appendChild(pinG); // Ensure pin is on very top
+      svg.appendChild(pinG);
     }
 
     // 4. ViewBox Zooming
@@ -311,20 +329,29 @@
       var zoomW = Math.max(b[2] * 2.8, 140);
       var zoomH = Math.max(b[3] * 2.8, 95);
 
-      // Keep approx 1.6:1 aspect ratio
       if (zoomW / zoomH > 1.6) {
         zoomH = zoomW / 1.6;
       } else {
         zoomW = zoomH * 1.6;
       }
 
-      var vx = Math.max(0, Math.min(1010 - zoomW, cx - zoomW / 2));
-      var vy = Math.max(0, Math.min(666 - zoomH, cy - zoomH / 2));
-
-      svg.setAttribute('viewBox', vx.toFixed(1) + ' ' + vy.toFixed(1) + ' ' + zoomW.toFixed(1) + ' ' + zoomH.toFixed(1));
+      state.currentBaseBox = [cx, cy, zoomW, zoomH];
+      state.currentZoomFactor = 1.0;
+      applySvgViewBox(svg, cx, cy, zoomW, zoomH);
     } else {
       svg.setAttribute('viewBox', '0 0 1010 666');
     }
+  }
+
+  function applySvgViewBox(svg, cx, cy, w, h) {
+    if (!svg) return;
+    var finalW = w * state.currentZoomFactor;
+    var finalH = h * state.currentZoomFactor;
+
+    var vx = Math.max(0, Math.min(1010 - finalW, cx - finalW / 2));
+    var vy = Math.max(0, Math.min(666 - finalH, cy - finalH / 2));
+
+    svg.setAttribute('viewBox', vx.toFixed(1) + ' ' + vy.toFixed(1) + ' ' + finalW.toFixed(1) + ' ' + finalH.toFixed(1));
   }
 
   // ========================================================
@@ -433,6 +460,86 @@
   }
 
   // ========================================================
+  // Screen Navigation: Lobby vs Arena vs Encyclopedia
+  // ========================================================
+  function showLobby() {
+    clearInterval(state.timerInterval);
+    state.isPlaying = false;
+    state.isPaused = false;
+
+    dom.lobbyView.hidden = false;
+    dom.inGameWrapper.hidden = true;
+    dom.encyclopediaView.hidden = true;
+    dom.pauseModal.hidden = true;
+    dom.resultModal.hidden = true;
+    dom.countryDetailModal.hidden = true;
+
+    // Scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function launchGame() {
+    if (state.mode === 'encyclopedia') {
+      showEncyclopedia();
+      return;
+    }
+
+    state.isPlaying = true;
+    state.isPaused = false;
+
+    dom.lobbyView.hidden = true;
+    dom.inGameWrapper.hidden = false;
+    dom.encyclopediaView.hidden = true;
+    dom.pauseModal.hidden = true;
+    dom.resultModal.hidden = true;
+
+    var modeLabels = {
+      'flag-to-country': '국기 & 지도 퀴즈',
+      'country-to-flag': '나라 보고 국기 찾기',
+      'capital-quiz': '수도 & 랜드마크 퀴즈'
+    };
+    dom.currentModeLabel.textContent = modeLabels[state.mode] || '국기 & 지도 퀴즈';
+
+    startNewQuiz();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function showEncyclopedia() {
+    state.isPlaying = false;
+    state.isPaused = false;
+
+    dom.lobbyView.hidden = true;
+    dom.inGameWrapper.hidden = true;
+    dom.encyclopediaView.hidden = false;
+
+    renderEncyclopedia();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // ========================================================
+  // Pause / Stop Controllers
+  // ========================================================
+  function pauseGame() {
+    if (!state.isPlaying || state.isPaused) return;
+    state.isPaused = true;
+    clearInterval(state.timerInterval);
+    audio.playClick();
+    dom.pauseModal.hidden = false;
+  }
+
+  function resumeGame() {
+    if (!state.isPlaying || !state.isPaused) return;
+    state.isPaused = false;
+    dom.pauseModal.hidden = true;
+    audio.playClick();
+
+    // Resume timer with remaining seconds
+    if (state.timeRemaining > 0) {
+      resumeTimer();
+    }
+  }
+
+  // ========================================================
   // Quiz Flow Controllers
   // ========================================================
   function startNewQuiz() {
@@ -448,6 +555,7 @@
     state.wrongList = [];
     state.lifeline5050Count = 2;
     state.isLocked = false;
+    state.isPaused = false;
 
     updateHeaderStats();
     updateLifelineUI();
@@ -455,11 +563,7 @@
     dom.resultModal.hidden = true;
     dom.hintBubble.hidden = true;
 
-    if (state.mode === 'encyclopedia') {
-      renderEncyclopedia();
-    } else {
-      renderQuestion();
-    }
+    renderQuestion();
   }
 
   function renderQuestion() {
@@ -480,21 +584,27 @@
     updateHeaderStats();
     resetOptionStyles();
 
-    // Map visibility toggle
-    dom.stageMapBox.style.display = state.showMap ? 'flex' : 'none';
+    // Handle Map Visibility
+    if (state.showMap) {
+      dom.quizRightPanel.style.display = 'flex';
+      dom.quizWideGrid.style.gridTemplateColumns = (window.innerWidth > 950) ? '460px 1fr' : '1fr';
+    } else {
+      dom.quizRightPanel.style.display = 'none';
+      dom.quizWideGrid.style.gridTemplateColumns = '1fr';
+    }
 
     // Mode-Specific Setup
     if (state.mode === 'flag-to-country') {
-      dom.questionCard.hidden = false;
+      dom.leftQuizBox.hidden = false;
       dom.countryToFlagCard.hidden = true;
       dom.landmarkTag.hidden = true;
 
       dom.mainFlagImg.src = 'flags/' + target.iso + '.svg';
       dom.mapRegionBadge.textContent = '📍 ' + target.continent;
       dom.promptText.textContent = '이 국기와 위치의 나라는 어디일까요?';
-      dom.promptSub.textContent = '국기와 지도에 표시된 위치를 보고 올바른 나라를 선택하세요!';
+      dom.promptSub.textContent = '오른쪽 세계 지도 위치와 국기를 보고 정답을 선택하세요!';
 
-      renderMapHighlight(target.iso, dom.miniMapWrap);
+      renderMapHighlight(target.iso, dom.largeMapWrap);
 
       for (var o = 0; o < 4; o++) {
         var opt = q.options[o];
@@ -508,7 +618,7 @@
       }
 
     } else if (state.mode === 'capital-quiz') {
-      dom.questionCard.hidden = false;
+      dom.leftQuizBox.hidden = false;
       dom.countryToFlagCard.hidden = true;
 
       dom.mainFlagImg.src = 'flags/' + target.iso + '.svg';
@@ -518,9 +628,9 @@
       dom.mapRegionBadge.textContent = '📍 ' + target.continent;
 
       dom.promptText.textContent = target.name + '의 수도는 어디일까요?';
-      dom.promptSub.textContent = '지도 위치와 국기를 확인하고 올바른 수도를 골라보세요!';
+      dom.promptSub.textContent = '오른쪽 지도 위치와 국기를 확인하고 올바른 수도를 골라보세요!';
 
-      renderMapHighlight(target.iso, dom.miniMapWrap);
+      renderMapHighlight(target.iso, dom.largeMapWrap);
 
       for (var c = 0; c < 4; c++) {
         var cOpt = q.options[c];
@@ -534,15 +644,15 @@
       }
 
     } else if (state.mode === 'country-to-flag') {
-      dom.questionCard.hidden = true;
+      dom.leftQuizBox.hidden = true;
       dom.countryToFlagCard.hidden = false;
 
       dom.c2fContinent.textContent = '🌏 ' + target.continent;
       dom.c2fCountryName.textContent = target.name;
       dom.c2fCapitalHint.textContent = '수도: ' + target.capital + ' ' + target.landmarkIcon;
-      dom.c2fRegionBadge.textContent = '📍 ' + target.name + ' 위치';
+      dom.mapRegionBadge.textContent = '📍 ' + target.name + ' 위치';
 
-      renderMapHighlight(target.iso, dom.c2fMapWrap);
+      renderMapHighlight(target.iso, dom.largeMapWrap);
 
       // Render 4 flag choice cards
       dom.flagOptionsGrid.innerHTML = '';
@@ -589,11 +699,20 @@
     dom.timerBar.style.width = '100%';
     dom.timerBar.classList.remove('warning');
 
+    runTimerLoop();
+  }
+
+  function resumeTimer() {
+    clearInterval(state.timerInterval);
+    runTimerLoop();
+  }
+
+  function runTimerLoop() {
     var totalMs = state.timerLimit * 1000;
-    var startMs = Date.now();
+    var startMs = Date.now() - (totalMs - state.timeRemaining * 1000);
 
     state.timerInterval = setInterval(function() {
-      if (state.isLocked) return;
+      if (state.isLocked || state.isPaused) return;
 
       var elapsed = Date.now() - startMs;
       var remainingMs = Math.max(0, totalMs - elapsed);
@@ -796,7 +915,6 @@
     dom.resultAccuracy.textContent = accuracy + '%';
     dom.resultMaxCombo.textContent = state.maxCombo + ' 🔥';
 
-    // Determine Grade
     if (accuracy === 100) {
       dom.resultBadgeIcon.textContent = '👑';
       dom.resultTitle.textContent = '완벽한 국기 & 지도 마스터!';
@@ -817,7 +935,6 @@
       dom.resultGradeDesc.textContent = '세계 국기 도감에서 지도 위치를 확인하고 재도전해 볼까요?';
     }
 
-    // Wrong review items
     if (state.wrongList.length > 0) {
       dom.wrongReviewBox.hidden = false;
       dom.wrongReviewList.innerHTML = '';
@@ -841,10 +958,6 @@
   // World Flag Encyclopedia
   // ========================================================
   function renderEncyclopedia(filterKeyword) {
-    dom.quizArena.hidden = true;
-    dom.encyclopediaView.hidden = false;
-    dom.lifelineBar.hidden = true;
-
     var pool = scopePools[state.scope] || scopePools.world;
     if (state.scope === 'popular') pool = scopePools.popular;
 
@@ -894,38 +1007,12 @@
 
     dom.btnQuizFromDetail.onclick = function() {
       dom.countryDetailModal.hidden = true;
-      switchMode('flag-to-country');
+      state.mode = 'flag-to-country';
+      state.scope = 'world';
+      launchGame();
     };
 
     dom.countryDetailModal.hidden = false;
-  }
-
-  function switchMode(newMode) {
-    state.mode = newMode;
-
-    dom.tabBtns.forEach(function(btn) {
-      btn.classList.toggle('active', btn.dataset.mode === newMode);
-    });
-
-    var modeLabels = {
-      'flag-to-country': '국기 & 지도 보고 나라 맞추기',
-      'country-to-flag': '나라 보고 국기 맞추기',
-      'capital-quiz': '수도 & 랜드마크 퀴즈',
-      'encyclopedia': '세계 국기 도감'
-    };
-    dom.currentModeLabel.textContent = modeLabels[newMode] || '';
-
-    if (newMode === 'encyclopedia') {
-      dom.quizArena.hidden = true;
-      dom.encyclopediaView.hidden = false;
-      dom.lifelineBar.hidden = true;
-      renderEncyclopedia();
-    } else {
-      dom.quizArena.hidden = false;
-      dom.encyclopediaView.hidden = true;
-      dom.lifelineBar.hidden = false;
-      startNewQuiz();
-    }
   }
 
   // ========================================================
@@ -939,63 +1026,107 @@
       dom.btnSoundToggle.title = muted ? '효과음 켜기' : '효과음 끄기';
     });
 
-    // Map Display Toggle (ON / OFF)
-    dom.btnToggleMap.addEventListener('click', function() {
-      state.showMap = !state.showMap;
-      dom.btnToggleMap.classList.toggle('active', state.showMap);
-      dom.btnToggleMap.textContent = state.showMap ? '🗺️ 지도 위치: ON' : '🗺️ 지도 위치: OFF';
-      dom.stageMapBox.style.display = state.showMap ? 'flex' : 'none';
+    // Lobby Mode Selection
+    dom.lobbyModeGrid.addEventListener('click', function(e) {
+      var card = e.target.closest('.mode-card');
+      if (!card) return;
       audio.playClick();
+
+      var cards = dom.lobbyModeGrid.querySelectorAll('.mode-card');
+      cards.forEach(function(c) { c.classList.remove('active'); });
+      card.classList.add('active');
+
+      state.mode = card.dataset.mode;
+
+      // If encyclopedia chosen, show or hide scope sections appropriately
+      var isEncy = (state.mode === 'encyclopedia');
+      dom.lobbyOptionsSection.style.display = isEncy ? 'none' : 'flex';
+      dom.btnLaunchQuiz.querySelector('.btn-text').textContent = isEncy ? '📖 도감 열기!' : '🚀 퀴즈 시작하기!';
     });
 
-    // Map Zoom Toggle (Zoom in / World overview)
-    dom.btnToggleZoom.addEventListener('click', function() {
-      state.mapZoomed = !state.mapZoomed;
-      if (state.currentQuestion) {
-        renderMapHighlight(state.currentQuestion.target.iso, dom.miniMapWrap);
-      }
-      audio.playClick();
-    });
-
-    // Mode Tabs
-    dom.modeTabNav.addEventListener('click', function(e) {
-      var btn = e.target.closest('.tab-btn');
-      if (!btn) return;
-      audio.playClick();
-      switchMode(btn.dataset.mode);
-    });
-
-    // Scope Chips
-    dom.scopeChips.addEventListener('click', function(e) {
-      var chip = e.target.closest('.chip-btn');
+    // Lobby Scope Selection Chips
+    dom.lobbyScopeChips.addEventListener('click', function(e) {
+      var chip = e.target.closest('.lobby-chip-btn');
       if (!chip) return;
       audio.playClick();
 
-      dom.chipBtns.forEach(function(c) { c.classList.remove('active'); });
+      var chips = dom.lobbyScopeChips.querySelectorAll('.lobby-chip-btn');
+      chips.forEach(function(c) { c.classList.remove('active'); });
       chip.classList.add('active');
+
       state.scope = chip.dataset.scope;
-
-      if (state.mode === 'encyclopedia') {
-        renderEncyclopedia();
-      } else {
-        startNewQuiz();
-      }
     });
 
-    // Question Count & Timer Selects
-    dom.selectQCount.addEventListener('change', function() {
+    // Lobby Options
+    dom.lobbySelectQCount.addEventListener('change', function() {
       state.qTotal = parseInt(this.value, 10);
-      startNewQuiz();
     });
 
-    dom.selectTimer.addEventListener('change', function() {
+    dom.lobbySelectTimer.addEventListener('change', function() {
       state.timerLimit = parseInt(this.value, 10);
-      startNewQuiz();
     });
 
-    dom.btnRestartQuiz.addEventListener('click', function() {
+    dom.lobbyToggleMap.addEventListener('click', function() {
+      state.showMap = !state.showMap;
+      dom.lobbyToggleMap.classList.toggle('active', state.showMap);
+      dom.lobbyToggleMap.textContent = state.showMap ? '🗺️ 지도 위치: ON' : '🗺️ 지도 위치: OFF';
+      audio.playClick();
+    });
+
+    // Launch Button
+    dom.btnLaunchQuiz.addEventListener('click', function() {
+      audio.playClick();
+      launchGame();
+    });
+
+    // Header Back & Pause Buttons
+    dom.btnHeaderReturnLobby.addEventListener('click', function() {
+      audio.playClick();
+      showLobby();
+    });
+
+    dom.btnPauseGame.addEventListener('click', function() {
+      pauseGame();
+    });
+
+    // Pause Modal Buttons
+    dom.btnResumeGame.addEventListener('click', function() {
+      resumeGame();
+    });
+
+    dom.btnRestartCurrent.addEventListener('click', function() {
+      dom.pauseModal.hidden = true;
       audio.playClick();
       startNewQuiz();
+    });
+
+    dom.btnPauseReturnLobby.addEventListener('click', function() {
+      dom.pauseModal.hidden = true;
+      audio.playClick();
+      showLobby();
+    });
+
+    // Map Zoom Buttons
+    dom.btnZoomIn.addEventListener('click', function() {
+      state.currentZoomFactor = Math.max(0.3, state.currentZoomFactor * 0.75);
+      var svg = dom.largeMapWrap.querySelector('svg');
+      if (svg) applySvgViewBox(svg, state.currentCenter.x, state.currentCenter.y, state.currentBaseBox[2], state.currentBaseBox[3]);
+      audio.playClick();
+    });
+
+    dom.btnZoomOut.addEventListener('click', function() {
+      state.currentZoomFactor = Math.min(3.0, state.currentZoomFactor * 1.35);
+      var svg = dom.largeMapWrap.querySelector('svg');
+      if (svg) applySvgViewBox(svg, state.currentCenter.x, state.currentCenter.y, state.currentBaseBox[2], state.currentBaseBox[3]);
+      audio.playClick();
+    });
+
+    dom.btnToggleZoom.addEventListener('click', function() {
+      state.mapZoomed = !state.mapZoomed;
+      if (state.currentQuestion) {
+        renderMapHighlight(state.currentQuestion.target.iso, dom.largeMapWrap);
+      }
+      audio.playClick();
     });
 
     // Option Buttons Click (Mode 1 & Mode 3)
@@ -1007,9 +1138,9 @@
 
     // Keyboard Shortcuts (1, 2, 3, 4)
     window.addEventListener('keydown', function(e) {
+      if (!state.isPlaying || state.isPaused) return;
       if (dom.resultModal && !dom.resultModal.hidden) return;
       if (dom.countryDetailModal && !dom.countryDetailModal.hidden) return;
-      if (state.mode === 'encyclopedia') return;
 
       var num = parseInt(e.key, 10);
       if (num >= 1 && num <= 4) {
@@ -1028,12 +1159,30 @@
     dom.btnLifeline5050.addEventListener('click', useLifeline5050);
     dom.btnLifelineHint.addEventListener('click', useLifelineHint);
 
-    // Encyclopedia live search
+    // Encyclopedia
+    dom.btnEncyReturnLobby.addEventListener('click', function() {
+      audio.playClick();
+      showLobby();
+    });
+
     dom.encySearchInput.addEventListener('input', function() {
       renderEncyclopedia(this.value);
     });
 
-    // Modal Closes
+    dom.encyScopeChips.addEventListener('click', function(e) {
+      var chip = e.target.closest('.chip-btn');
+      if (!chip) return;
+      audio.playClick();
+
+      var chips = dom.encyScopeChips.querySelectorAll('.chip-btn');
+      chips.forEach(function(c) { c.classList.remove('active'); });
+      chip.classList.add('active');
+
+      state.scope = chip.dataset.scope;
+      renderEncyclopedia();
+    });
+
+    // Detail Modal Closes
     dom.btnCloseDetail.addEventListener('click', function() {
       dom.countryDetailModal.hidden = true;
     });
@@ -1044,14 +1193,20 @@
       if (e.target === dom.countryDetailModal) dom.countryDetailModal.hidden = true;
     });
 
+    // Result Modal Buttons
     dom.btnPlayAgain.addEventListener('click', function() {
       dom.resultModal.hidden = true;
       startNewQuiz();
     });
 
+    dom.btnResultReturnLobby.addEventListener('click', function() {
+      dom.resultModal.hidden = true;
+      showLobby();
+    });
+
     dom.btnGoEncyclopedia.addEventListener('click', function() {
       dom.resultModal.hidden = true;
-      switchMode('encyclopedia');
+      showEncyclopedia();
     });
   }
 
@@ -1063,22 +1218,14 @@
     cacheDom();
     bindEvents();
 
-    var urlParams = new URLSearchParams(window.location.search);
-    var initMode = urlParams.get('mode');
-    var initScope = urlParams.get('scope');
-
-    if (initScope && scopePools[initScope]) {
-      state.scope = initScope;
-      dom.chipBtns.forEach(function(c) {
-        c.classList.toggle('active', c.dataset.scope === initScope);
-      });
-    }
-
     loadWorldSvg().then(function() {
-      if (initMode && ['flag-to-country', 'country-to-flag', 'capital-quiz', 'encyclopedia'].indexOf(initMode) !== -1) {
-        switchMode(initMode);
+      var urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('start') === '1') {
+        launchGame();
+      } else if (urlParams.get('mode') === 'encyclopedia') {
+        showEncyclopedia();
       } else {
-        startNewQuiz();
+        showLobby();
       }
     });
   }
