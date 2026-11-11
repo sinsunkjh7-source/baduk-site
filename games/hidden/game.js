@@ -91,112 +91,531 @@
 
   var STAGES = [
     {
-      id: 'stage1_study',
-      name: '신비한 바둑 서재',
-      icon: '🏰',
-      imageSrc: 'stages/stage1_study.jpg',
-      targetCount: 6,
-      allTargets: [
-        { id: 'cat', name: '잠자는 삼색냥이', x: 880, y: 700, r: 48, desc: '방석 위에서 쿨쿨 자는 고양이' },
-        { id: 'crystal_ball', name: '보라색 마법 구슬', x: 1032, y: 322, r: 42, desc: '책장 위에서 신비롭게 빛나는 보라색 구슬' },
-        { id: 'bonsai', name: '소나무 분재', x: 138, y: 514, r: 48, desc: '작고 고풍스러운 소나무 화분' },
-        { id: 'golden_fox', name: '황금 여우 조각', x: 468, y: 399, r: 40, desc: '창문 옆에 반짝이는 황금 여우상' },
-        { id: 'owl', name: '통나무 부엉이', x: 825, y: 453, r: 40, desc: '눈을 동그랗게 뜬 목각 부엉이' },
-        { id: 'blue_bird', name: '파란 작은 새', x: 798, y: 176, r: 38, desc: '책장 위에 앉아 쉬는 파랑새' },
-        { id: 'paper_crane', name: '하얀 종이학', x: 1004, y: 445, r: 38, desc: '정성스럽게 접어놓은 흰 종이학' },
-        { id: 'moon', name: '창밖의 초승달', x: 289, y: 138, r: 46, desc: '둥근 창문 밖 밤하늘에 뜬 은빛 초승달' },
-        { id: 'star_chart', name: '별자리 지도 액자', x: 1018, y: 606, r: 46, desc: '다다미 바닥에 세워둔 천문 지도' },
-        { id: 'gold_star', name: '황금 별 장식', x: 1210, y: 599, r: 38, desc: '책장에 놓인 반짝이는 별 장식' },
-        { id: 'feather_pen', name: '푸른 깃털 펜', x: 330, y: 868, r: 42, desc: '바닥 지도 위의 푸른 깃털 펜' },
-        { id: 'red_dragon', name: '붉은 용 두루마리', x: 316, y: 522, r: 42, desc: '용이 멋지게 그려진 족자' }
-      ]
+        "id": "stage1_study",
+        "name": "신비한 바둑 서재",
+        "icon": "🏰",
+        "imageSrc": "stages/stage1_study.jpg",
+        "targetCount": 6,
+        "allTargets": [
+            {
+                "id": "cat",
+                "name": "잠자는 삼색냥이",
+                "x": 885,
+                "y": 700,
+                "r": 75,
+                "desc": "방석 위에서 쿨쿨 자는 고양이"
+            },
+            {
+                "id": "crystal_ball",
+                "name": "보라색 마법 구슬",
+                "x": 1040,
+                "y": 250,
+                "r": 60,
+                "desc": "책장 위에서 신비롭게 빛나는 보라색 구슬"
+            },
+            {
+                "id": "bonsai",
+                "name": "소나무 분재",
+                "x": 150,
+                "y": 420,
+                "r": 95,
+                "desc": "작고 고풍스러운 소나무 화분"
+            },
+            {
+                "id": "golden_fox",
+                "name": "황금 여우 조각",
+                "x": 460,
+                "y": 300,
+                "r": 65,
+                "desc": "창문 옆에 반짝이는 황금 여우상"
+            },
+            {
+                "id": "owl",
+                "name": "통나무 부엉이",
+                "x": 835,
+                "y": 340,
+                "r": 65,
+                "desc": "눈을 동그랗게 뜬 목각 부엉이"
+            },
+            {
+                "id": "blue_bird",
+                "name": "파란 작은 새",
+                "x": 795,
+                "y": 135,
+                "r": 55,
+                "desc": "책장 위에 앉아 쉬는 파랑새"
+            },
+            {
+                "id": "paper_crane",
+                "name": "하얀 종이학",
+                "x": 1000,
+                "y": 340,
+                "r": 60,
+                "desc": "정성스럽게 접어놓은 흰 종이학"
+            },
+            {
+                "id": "moon",
+                "name": "창밖의 초승달",
+                "x": 290,
+                "y": 110,
+                "r": 70,
+                "desc": "둥근 창문 밖 밤하늘에 뜬 은빛 초승달"
+            },
+            {
+                "id": "star_chart",
+                "name": "별자리 지도 액자",
+                "x": 1015,
+                "y": 470,
+                "r": 75,
+                "desc": "다다미 바닥에 세워둔 천문 지도"
+            },
+            {
+                "id": "gold_star",
+                "name": "황금 별 장식",
+                "x": 1215,
+                "y": 460,
+                "r": 60,
+                "desc": "책장에 놓인 반짝이는 별 장식"
+            },
+            {
+                "id": "feather_pen",
+                "name": "푸른 깃털 펜",
+                "x": 210,
+                "y": 715,
+                "r": 65,
+                "desc": "바닥 지도 위의 푸른 깃털 펜"
+            },
+            {
+                "id": "red_dragon",
+                "name": "붉은 용 두루마리",
+                "x": 320,
+                "y": 400,
+                "r": 70,
+                "desc": "용이 멋지게 그려진 족자"
+            }
+        ]
     },
     {
-      id: 'stage2_ocean',
-      name: '바닷속 용궁',
-      icon: '🌊',
-      imageSrc: 'stages/stage2_ocean.jpg',
-      targetCount: 7,
-      allTargets: [
-        { id: 'yellow_seahorse', name: '황금 해마', x: 1307, y: 560, r: 44, desc: '보물상자 옆을 헤엄치는 황금빛 해마' },
-        { id: 'pink_seahorse', name: '분홍 아기해마', x: 55, y: 568, r: 44, desc: '산호초 숲에 숨어 있는 귀여운 분홍 해마' },
-        { id: 'treasure_chest', name: '황금 보물상자', x: 1142, y: 561, r: 50, desc: '보석과 금화가 가득 찬 보물상자' },
-        { id: 'sunken_ship', name: '침몰한 난파선', x: 385, y: 215, r: 54, desc: '바닷속에 잠든 웅장한 목조 범선' },
-        { id: 'palace_sign', name: '용궁 현판', x: 949, y: 261, r: 44, desc: '용궁이라고 적힌 금빛 대문 현판' },
-        { id: 'clownfish', name: '흰동가리 (니모)', x: 110, y: 460, r: 42, desc: '말미잘 사이를 누비는 주황 물고기' },
-        { id: 'blue_tang', name: '파란 열대어', x: 1293, y: 407, r: 44, desc: '노란 지느러미의 푸른 물고기' },
-        { id: 'swimming_turtle', name: '헤엄치는 바다거북', x: 371, y: 453, r: 48, desc: '시원하게 바다를 헤엄치는 거북이' },
-        { id: 'red_starfish', name: '빨간 불가사리', x: 1114, y: 730, r: 44, desc: '바닥 모래 위에 놓인 별 모양 불가사리' },
-        { id: 'glowing_jellyfish', name: '황금빛 해파리', x: 220, y: 92, r: 46, desc: '등불처럼 빛나는 해파리' },
-        { id: 'giant_pearl', name: '조개 속 왕진주', x: 124, y: 683, r: 44, desc: '조개 껍질 속에 영롱하게 빛나는 진주' },
-        { id: 'shell_turtle', name: '바둑판 옆 거북이', x: 880, y: 453, r: 44, desc: '조개 바둑판 위를 빼꼼 내다보는 거북이' }
-      ]
+        "id": "stage2_ocean",
+        "name": "바닷속 용궁",
+        "icon": "🌊",
+        "imageSrc": "stages/stage2_ocean.jpg",
+        "targetCount": 7,
+        "allTargets": [
+            {
+                "id": "yellow_seahorse",
+                "name": "황금 해마",
+                "x": 1310,
+                "y": 560,
+                "r": 60,
+                "desc": "보물상자 옆을 헤엄치는 황금빛 해마"
+            },
+            {
+                "id": "pink_seahorse",
+                "name": "분홍 아기해마",
+                "x": 45,
+                "y": 560,
+                "r": 60,
+                "desc": "산호초 숲에 숨어 있는 귀여운 분홍 해마"
+            },
+            {
+                "id": "treasure_chest",
+                "name": "황금 보물상자",
+                "x": 1140,
+                "y": 560,
+                "r": 100,
+                "desc": "보석과 금화가 가득 찬 보물상자"
+            },
+            {
+                "id": "sunken_ship",
+                "name": "침몰한 난파선",
+                "x": 300,
+                "y": 220,
+                "r": 130,
+                "desc": "바닷속에 잠든 웅장한 목조 범선"
+            },
+            {
+                "id": "palace_sign",
+                "name": "용궁 현판",
+                "x": 945,
+                "y": 260,
+                "r": 60,
+                "desc": "용궁이라고 적힌 금빛 대문 현판"
+            },
+            {
+                "id": "clownfish",
+                "name": "흰동가리 (니모)",
+                "x": 90,
+                "y": 460,
+                "r": 60,
+                "desc": "말미잘 사이를 누비는 주황 물고기"
+            },
+            {
+                "id": "blue_tang",
+                "name": "파란 열대어",
+                "x": 1300,
+                "y": 405,
+                "r": 60,
+                "desc": "노란 지느러미의 푸른 물고기"
+            },
+            {
+                "id": "swimming_turtle",
+                "name": "헤엄치는 바다거북",
+                "x": 370,
+                "y": 450,
+                "r": 70,
+                "desc": "시원하게 바다를 헤엄치는 거북이"
+            },
+            {
+                "id": "red_starfish",
+                "name": "빨간 불가사리",
+                "x": 1115,
+                "y": 730,
+                "r": 60,
+                "desc": "바닥 모래 위에 놓인 별 모양 불가사리"
+            },
+            {
+                "id": "glowing_jellyfish",
+                "name": "황금빛 해파리",
+                "x": 220,
+                "y": 95,
+                "r": 65,
+                "desc": "등불처럼 빛나는 해파리"
+            },
+            {
+                "id": "giant_pearl",
+                "name": "조개 속 왕진주",
+                "x": 125,
+                "y": 685,
+                "r": 60,
+                "desc": "조개 껍질 속에 영롱하게 빛나는 진주"
+            },
+            {
+                "id": "shell_turtle",
+                "name": "바둑판 옆 거북이",
+                "x": 885,
+                "y": 455,
+                "r": 55,
+                "desc": "조개 바둑판 위를 빼꼼 내다보는 거북이"
+            }
+        ]
     },
     {
-      id: 'stage3_forest',
-      name: '요정의 숲속 비밀 캠프',
-      icon: '⛺',
-      imageSrc: 'stages/stage3_forest.jpg',
-      targetCount: 8,
-      allTargets: [
-        { id: 'fawn_deer', name: '잠자는 아기 사슴', x: 1155, y: 591, r: 52, desc: '클로버 풀밭에 웅크려 곤히 자는 사슴' },
-        { id: 'backpack_hedgehog', name: '배낭 멘 고슴도치', x: 468, y: 614, r: 46, desc: '파란 탐험가 배낭을 멘 고슴도치' },
-        { id: 'leaf_frog', name: '연잎 위 청개구리', x: 179, y: 653, r: 44, desc: '맑은 옹달샘 연잎에 앉은 초록 개구리' },
-        { id: 'acorn_squirrel', name: '도토리 든 다람쥐', x: 110, y: 384, r: 48, desc: '나뭇가지에서 도토리를 쥔 붉은 다람쥐' },
-        { id: 'blue_butterfly', name: '숲속 파란 나비', x: 1169, y: 337, r: 42, desc: '나뭇잎 사이를 사뿐사뿐 나는 파랑나비' },
-        { id: 'orange_butterfly', name: '호랑나비', x: 137, y: 138, r: 42, desc: '하늘 높이 날아가는 주황빛 호랑나비' },
-        { id: 'hanging_lantern', name: '버섯 등불', x: 495, y: 376, r: 44, desc: '가지에 걸려 은은하게 빛나는 버섯 램프' },
-        { id: 'balcony_fairy', name: '발코니 꼬마 요정', x: 1018, y: 222, r: 42, desc: '오두막 테라스에서 반갑게 손 흔드는 요정' },
-        { id: 'stump_baduk', name: '밑동 바둑판', x: 715, y: 622, r: 50, desc: '나무 그루터기에 정교하게 새겨진 바둑판' },
-        { id: 'watering_fairy', name: '꽃밭 요정', x: 991, y: 476, r: 44, desc: '꽃밭에 물을 주는 날개 달린 요정' },
-        { id: 'chimney_smoke', name: '연기 나는 오두막', x: 440, y: 169, r: 48, desc: '지붕 굴뚝에서 모락모락 연기가 피어오르는 집' },
-        { id: 'flower_basket', name: '걸린 꽃바구니', x: 1032, y: 345, r: 44, desc: '나뭇가지에 예쁘게 매달린 분홍 꽃바구니' }
-      ]
+        "id": "stage3_forest",
+        "name": "요정의 숲속 비밀 캠프",
+        "icon": "⛺",
+        "imageSrc": "stages/stage3_forest.jpg",
+        "targetCount": 8,
+        "allTargets": [
+            {
+                "id": "fawn_deer",
+                "name": "잠자는 아기 사슴",
+                "x": 1160,
+                "y": 600,
+                "r": 100,
+                "desc": "클로버 풀밭에 웅크려 곤히 자는 사슴"
+            },
+            {
+                "id": "backpack_hedgehog",
+                "name": "배낭 멘 고슴도치",
+                "x": 470,
+                "y": 620,
+                "r": 65,
+                "desc": "파란 탐험가 배낭을 멘 고슴도치"
+            },
+            {
+                "id": "leaf_frog",
+                "name": "연잎 위 청개구리",
+                "x": 185,
+                "y": 660,
+                "r": 60,
+                "desc": "맑은 옹달샘 연잎에 앉은 초록 개구리"
+            },
+            {
+                "id": "acorn_squirrel",
+                "name": "도토리 든 다람쥐",
+                "x": 110,
+                "y": 380,
+                "r": 75,
+                "desc": "나뭇가지에서 도토리를 쥔 붉은 다람쥐"
+            },
+            {
+                "id": "blue_butterfly",
+                "name": "숲속 파란 나비",
+                "x": 1170,
+                "y": 340,
+                "r": 55,
+                "desc": "나뭇잎 사이를 사뿐사뿐 나는 파랑나비"
+            },
+            {
+                "id": "orange_butterfly",
+                "name": "호랑나비",
+                "x": 140,
+                "y": 140,
+                "r": 55,
+                "desc": "하늘 높이 날아가는 주황빛 호랑나비"
+            },
+            {
+                "id": "hanging_lantern",
+                "name": "버섯 등불",
+                "x": 495,
+                "y": 375,
+                "r": 55,
+                "desc": "가지에 걸려 은은하게 빛나는 버섯 램프"
+            },
+            {
+                "id": "balcony_fairy",
+                "name": "발코니 꼬마 요정",
+                "x": 1010,
+                "y": 220,
+                "r": 55,
+                "desc": "오두막 테라스에서 반갑게 손 흔드는 요정"
+            },
+            {
+                "id": "stump_baduk",
+                "name": "밑동 바둑판",
+                "x": 715,
+                "y": 625,
+                "r": 80,
+                "desc": "나무 그루터기에 정교하게 새겨진 바둑판"
+            },
+            {
+                "id": "watering_fairy",
+                "name": "꽃밭 요정",
+                "x": 990,
+                "y": 480,
+                "r": 55,
+                "desc": "꽃밭에 물을 주는 날개 달린 요정"
+            },
+            {
+                "id": "chimney_smoke",
+                "name": "연기 나는 오두막",
+                "x": 440,
+                "y": 170,
+                "r": 75,
+                "desc": "지붕 굴뚝에서 모락모락 연기가 피어오르는 집"
+            },
+            {
+                "id": "flower_basket",
+                "name": "걸린 꽃바구니",
+                "x": 1030,
+                "y": 345,
+                "r": 55,
+                "desc": "나뭇가지에 예쁘게 매달린 분홍 꽃바구니"
+            }
+        ]
     },
     {
-      id: 'stage4_space',
-      name: '은하수 우주 정거장',
-      icon: '🚀',
-      imageSrc: 'stages/stage4_space.jpg',
-      targetCount: 8,
-      allTargets: [
-        { id: 'space_puppy', name: '우주견 멍멍이', x: 798, y: 415, r: 50, desc: '우주복 헬멧을 쓰고 뼈다귀와 유영하는 강아지' },
-        { id: 'robot_spark', name: '비행 로봇 SPARK', x: 358, y: 322, r: 46, desc: '웃는 얼굴로 공중에 떠 있는 조수 로봇' },
-        { id: 'robot_glow', name: '비행 로봇 GLOW', x: 977, y: 353, r: 46, desc: '오른쪽에서 환하게 안내하는 도우미 로봇' },
-        { id: 'saturn_planet', name: '고리 달린 토성', x: 853, y: 161, r: 52, desc: '유리 돔 밖 은하수에 떠 있는 거대한 행성' },
-        { id: 'space_satellite', name: '우주 인공위성', x: 481, y: 108, r: 44, desc: '우주 공간에 떠 있는 태양광 인공위성' },
-        { id: 'microscope', name: '연구실 현미경', x: 55, y: 499, r: 44, desc: '책상 위에 놓인 첨단 광학 현미경' },
-        { id: 'space_strawberry', name: '발광 우주 딸기', x: 1238, y: 476, r: 42, desc: '수경 재배실에서 빛나는 신비한 네온 딸기' },
-        { id: 'robot_cat', name: '잠자는 로봇냥이', x: 771, y: 700, r: 44, desc: '안락의자 아래에서 잠든 귀여운 메카 고양이' },
-        { id: 'neon_baduk', name: '홀로그램 바둑판', x: 688, y: 561, r: 52, desc: '공중에 떠서 빛나는 첨단 3D 네온 바둑판' },
-        { id: 'toolbox', name: '무중력 공구함', x: 248, y: 683, r: 46, desc: '렌치가 꽂혀 있는 빨간 메카닉 공구상자' },
-        { id: 'constellation', name: '창밖의 별자리', x: 660, y: 108, r: 44, desc: '우주 창문에 선명하게 빛나는 별자리 선' },
-        { id: 'telescope', name: '천체 망원경', x: 248, y: 438, r: 46, desc: '우주 깊은 곳을 관측하는 금빛 망원경' }
-      ]
+        "id": "stage4_space",
+        "name": "은하수 우주 정거장",
+        "icon": "🚀",
+        "imageSrc": "stages/stage4_space.jpg",
+        "targetCount": 8,
+        "allTargets": [
+            {
+                "id": "space_puppy",
+                "name": "우주견 멍멍이",
+                "x": 800,
+                "y": 420,
+                "r": 80,
+                "desc": "우주복 헬멧을 쓰고 뼈다귀와 유영하는 강아지"
+            },
+            {
+                "id": "robot_spark",
+                "name": "비행 로봇 SPARK",
+                "x": 360,
+                "y": 320,
+                "r": 65,
+                "desc": "웃는 얼굴로 공중에 떠 있는 조수 로봇"
+            },
+            {
+                "id": "robot_glow",
+                "name": "비행 로봇 GLOW",
+                "x": 980,
+                "y": 350,
+                "r": 65,
+                "desc": "오른쪽에서 환하게 안내하는 도우미 로봇"
+            },
+            {
+                "id": "saturn_planet",
+                "name": "고리 달린 토성",
+                "x": 880,
+                "y": 180,
+                "r": 100,
+                "desc": "유리 돔 밖 은하수에 떠 있는 거대한 행성"
+            },
+            {
+                "id": "space_satellite",
+                "name": "우주 인공위성",
+                "x": 480,
+                "y": 110,
+                "r": 55,
+                "desc": "우주 공간에 떠 있는 태양광 인공위성"
+            },
+            {
+                "id": "microscope",
+                "name": "연구실 현미경",
+                "x": 50,
+                "y": 500,
+                "r": 60,
+                "desc": "책상 위에 놓인 첨단 광학 현미경"
+            },
+            {
+                "id": "space_strawberry",
+                "name": "발광 우주 딸기",
+                "x": 1235,
+                "y": 475,
+                "r": 55,
+                "desc": "수경 재배실에서 빛나는 신비한 네온 딸기"
+            },
+            {
+                "id": "robot_cat",
+                "name": "잠자는 로봇냥이",
+                "x": 765,
+                "y": 700,
+                "r": 55,
+                "desc": "안락의자 아래에서 잠든 귀여운 메카 고양이"
+            },
+            {
+                "id": "neon_baduk",
+                "name": "홀로그램 바둑판",
+                "x": 690,
+                "y": 560,
+                "r": 90,
+                "desc": "공중에 떠서 빛나는 첨단 3D 네온 바둑판"
+            },
+            {
+                "id": "toolbox",
+                "name": "무중력 공구함",
+                "x": 250,
+                "y": 685,
+                "r": 65,
+                "desc": "렌치가 꽂혀 있는 빨간 메카닉 공구상자"
+            },
+            {
+                "id": "constellation",
+                "name": "창밖의 별자리",
+                "x": 660,
+                "y": 110,
+                "r": 55,
+                "desc": "우주 창문에 선명하게 빛나는 별자리 선"
+            },
+            {
+                "id": "telescope",
+                "name": "천체 망원경",
+                "x": 250,
+                "y": 440,
+                "r": 65,
+                "desc": "우주 깊은 곳을 관측하는 금빛 망원경"
+            }
+        ]
     },
     {
-      id: 'stage5_candyland',
-      name: '달콤한 과자 마을',
-      icon: '🧁',
-      imageSrc: 'stages/stage5_candyland.jpg',
-      targetCount: 9,
-      allTargets: [
-        { id: 'chef_bear', name: '파티시에 아기곰', x: 922, y: 379, r: 50, desc: '하얀 셰프 모자를 쓰고 크림을 짜는 곰' },
-        { id: 'macaron_bunny', name: '마카롱 토끼', x: 1046, y: 538, r: 50, desc: '마카롱 바구니를 소중히 안고 있는 토끼' },
-        { id: 'lollipop_duck', name: '롤리팝 아기오리', x: 1225, y: 645, r: 46, desc: '커다란 무지개 롤리팝 사탕을 든 노란 오리' },
-        { id: 'waffle_baduk', name: '와플 바둑판', x: 715, y: 515, r: 52, desc: '초콜릿 트러플과 슈가볼이 놓인 달콤한 바둑판' },
-        { id: 'choco_fountain', name: '3단 초콜릿 분수', x: 275, y: 353, r: 48, desc: '진한 초콜릿이 퐁퐁 솟아 흐르는 분수' },
-        { id: 'donut_swing', name: '도넛 그네', x: 702, y: 177, r: 46, desc: '달콤한 초코 & 딸기 도넛으로 만든 그네' },
-        { id: 'gingerbread_house', name: '진저브레드 과자집', x: 454, y: 254, r: 54, desc: '사탕 지붕과 과자 벽으로 지은 동화 속 집' },
-        { id: 'giant_cake', name: '3단 딸기 케이크', x: 1293, y: 223, r: 50, desc: '풍성한 딸기 크림이 덮인 대형 삼단 케이크' },
-        { id: 'cupcake', name: '딸기 컵케이크', x: 825, y: 400, r: 44, desc: '테이블 위 분홍 크림이 올라간 큰 컵케이크' },
-        { id: 'pretzel_bench', name: '프레첼 벤치', x: 1211, y: 415, r: 48, desc: '노릇노릇 프레첼 모양의 정원 벤치' },
-        { id: 'red_gummy', name: '빨간 곰젤리', x: 179, y: 554, r: 42, desc: '길가 울타리 옆에 서 있는 달콤한 빨간 젤리' },
-        { id: 'green_gummy', name: '초록 곰젤리', x: 124, y: 415, r: 42, desc: '과자 나무 옆에서 깜찍하게 서 있는 초록 젤리' }
-      ]
+        "id": "stage5_candyland",
+        "name": "달콤한 과자 마을",
+        "icon": "🧁",
+        "imageSrc": "stages/stage5_candyland.jpg",
+        "targetCount": 9,
+        "allTargets": [
+            {
+                "id": "chef_bear",
+                "name": "파티시에 아기곰",
+                "x": 920,
+                "y": 380,
+                "r": 90,
+                "desc": "하얀 셰프 모자를 쓰고 크림을 짜는 곰"
+            },
+            {
+                "id": "macaron_bunny",
+                "name": "마카롱 토끼",
+                "x": 1045,
+                "y": 540,
+                "r": 85,
+                "desc": "마카롱 바구니를 소중히 안고 있는 토끼"
+            },
+            {
+                "id": "lollipop_duck",
+                "name": "롤리팝 아기오리",
+                "x": 1225,
+                "y": 650,
+                "r": 75,
+                "desc": "커다란 무지개 롤리팝 사탕을 든 노란 오리"
+            },
+            {
+                "id": "waffle_baduk",
+                "name": "와플 바둑판",
+                "x": 710,
+                "y": 520,
+                "r": 100,
+                "desc": "초콜릿 트러플과 슈가볼이 놓인 달콤한 바둑판"
+            },
+            {
+                "id": "choco_fountain",
+                "name": "3단 초콜릿 분수",
+                "x": 275,
+                "y": 350,
+                "r": 70,
+                "desc": "진한 초콜릿이 퐁퐁 솟아 흐르는 분수"
+            },
+            {
+                "id": "donut_swing",
+                "name": "도넛 그네",
+                "x": 670,
+                "y": 190,
+                "r": 80,
+                "desc": "달콤한 초코 & 딸기 도넛으로 만든 그네"
+            },
+            {
+                "id": "gingerbread_house",
+                "name": "진저브레드 과자집",
+                "x": 450,
+                "y": 250,
+                "r": 85,
+                "desc": "사탕 지붕과 과자 벽으로 지은 동화 속 집"
+            },
+            {
+                "id": "giant_cake",
+                "name": "3단 딸기 케이크",
+                "x": 1300,
+                "y": 230,
+                "r": 100,
+                "desc": "풍성한 딸기 크림이 덮인 대형 삼단 케이크"
+            },
+            {
+                "id": "cupcake",
+                "name": "딸기 컵케이크",
+                "x": 825,
+                "y": 400,
+                "r": 60,
+                "desc": "테이블 위 분홍 크림이 올라간 큰 컵케이크"
+            },
+            {
+                "id": "pretzel_bench",
+                "name": "프레첼 벤치",
+                "x": 1210,
+                "y": 415,
+                "r": 80,
+                "desc": "노릇노릇 프레첼 모양의 정원 벤치"
+            },
+            {
+                "id": "red_gummy",
+                "name": "빨간 곰젤리",
+                "x": 135,
+                "y": 530,
+                "r": 55,
+                "desc": "길가 울타리 옆에 서 있는 달콤한 빨간 젤리"
+            },
+            {
+                "id": "green_gummy",
+                "name": "초록 곰젤리",
+                "x": 80,
+                "y": 380,
+                "r": 55,
+                "desc": "과자 나무 옆에서 깜찍하게 서 있는 초록 젤리"
+            }
+        ]
     }
-  ];
-
+];
   /* ---------------- State ---------------- */
   var state = {
     stageIndex: 0,
@@ -624,19 +1043,24 @@
 
   function handleStageClick(screenX, screenY) {
     if (!state.running || !state.imageLoaded) return;
-    var pt = screenToVirtual(screenX, screenY);
 
-    // Check hit against active, unfound targets
+    // Check hit against active, unfound targets in SCREEN SPACE!
     var hitTarget = null;
     var bestDist = Infinity;
 
     state.targets.forEach(function (tgt) {
       if (state.foundIds[tgt.id]) return;
-      var dx = pt.x - tgt.x;
-      var dy = pt.y - tgt.y;
-      var dist = Math.sqrt(dx * dx + dy * dy);
-      if (dist <= tgt.r && dist < bestDist) {
-        bestDist = dist;
+
+      // Calculate target center in screen coordinates
+      var sCenter = virtualToScreen(tgt.x, tgt.y);
+      var screenDist = Math.hypot(screenX - sCenter.x, screenY - sCenter.y);
+
+      // Generous hit radius in screen pixels:
+      // Minimum 52px radius (104px touch diameter) ensures finger taps on phones never miss!
+      var hitRadiusScreen = Math.max(52, tgt.r * state.scale * 1.35);
+
+      if (screenDist <= hitRadiusScreen && screenDist < bestDist) {
+        bestDist = screenDist;
         hitTarget = tgt;
       }
     });
@@ -647,6 +1071,7 @@
     } else {
       // MISS
       sfx.miss();
+      var pt = screenToVirtual(screenX, screenY);
       state.missRipples.push({ x: pt.x, y: pt.y, startTime: performance.now() });
       requestAnimationFrame(render);
     }
@@ -806,7 +1231,7 @@
     var c = getContainerCoords(e);
     var dx = c.x - state.dragStartX;
     var dy = c.y - state.dragStartY;
-    if (Math.hypot(dx, dy) > 6) {
+    if (Math.hypot(dx, dy) > 18) {
       state.hasMoved = true;
       state.panX = state.lastPanX + dx;
       state.panY = state.lastPanY + dy;
