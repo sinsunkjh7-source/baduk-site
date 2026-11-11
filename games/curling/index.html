@@ -6,7 +6,7 @@
   <title>스톤 컬링 (Curling) - JH 바둑스쿨 에듀펀</title>
   <meta name="description" content="빙판 위의 두뇌 싸움! 스톤을 던지고 스위핑(빗질)으로 하우스 정중앙을 차지하는 정통 컬링 게임">
   <link rel="stylesheet" href="/unified-nav.css?v=20261103-nav-v11">
-  <link rel="stylesheet" href="style.css?v=20261111-v3">
+  <link rel="stylesheet" href="style.css?v=20261111-v4">
   <script src="/unified-nav.js?v=20261103-nav-v11" defer></script>
 </head>
 <body>
@@ -17,6 +17,10 @@
       <div class="header-left">
         <span class="game-badge">🥌 스톤 컬링 (Curling)</span>
         <span class="end-pill" id="endIndicator">제 1 / 3 엔드</span>
+      </div>
+
+      <div class="header-status-center" id="statusMessage">
+        🔴 내 차례! 스톤을 터치/드래그하여 방향과 파워를 조절하세요.
       </div>
 
       <div class="header-scoreboard">
@@ -84,10 +88,6 @@
 
       <!-- Center Column: Long Curling Rink -->
       <section class="center-col">
-        <div class="rink-top-status-bar" id="statusMessage">
-          🔴 내 차례! 스톤을 터치/드래그하여 방향과 파워를 조절하세요.
-        </div>
-
         <div class="rink-wrapper" id="rinkWrapper">
           <canvas id="rinkCanvas" width="400" height="900"></canvas>
 
@@ -232,7 +232,7 @@
   </div>
 
   <script src="audio.js?v=20261111-v3"></script>
-  <script src="engine.js?v=20261111-v3"></script>
-  <script src="game.js?v=20261111-v3"></script>
+  <script src="engine.js?v=20261111-v4"></script>
+  <script src="game.js?v=20261111-v4"></script>
 </body>
 </html>

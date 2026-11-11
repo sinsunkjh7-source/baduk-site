@@ -59,6 +59,7 @@
     this.endOver = false;
     this.gameOver = false;
     this.collisionCallbacks = [];
+    this.lineOutCallbacks = [];
   }
 
   CurlingEngine.prototype.initGame = function(totalEnds, stonesPerTeam) {
@@ -152,13 +153,13 @@
           anyMoving = true;
         }
 
-        // Side cushions bounce
-        if (s.x - s.radius < RINK.minX) {
-          s.x = RINK.minX + s.radius;
-          s.vx = -s.vx * 0.7;
-        } else if (s.x + s.radius > RINK.maxX) {
-          s.x = RINK.maxX - s.radius;
-          s.vx = -s.vx * 0.7;
+        // Official Curling Rule: Side Line contact = OUT OF PLAY (즉시 제거)
+        if (s.x - s.radius <= RINK.minX || s.x + s.radius >= RINK.maxX) {
+          s.inPlay = false;
+          s.isMoving = false;
+          s.vx = 0;
+          s.vy = 0;
+          this.notifyLineOut(s);
         }
 
         // Back line out-of-play check
@@ -229,6 +230,16 @@
     }
 
     return anyMoving;
+  };
+
+    CurlingEngine.prototype.notifyLineOut = function(stone) {
+    for (var i = 0; i < this.lineOutCallbacks.length; i++) {
+      this.lineOutCallbacks[i](stone);
+    }
+  };
+
+  CurlingEngine.prototype.onLineOut = function(cb) {
+    this.lineOutCallbacks.push(cb);
   };
 
   CurlingEngine.prototype.notifyCollision = function(speed) {

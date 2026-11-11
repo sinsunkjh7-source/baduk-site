@@ -32,7 +32,7 @@ body {
 }
 
 .curling-container {
-  max-width: 1320px;
+  max-width: 1400px;
   width: 100%;
   margin: 0 auto;
   padding: 10px 16px 30px;
@@ -50,15 +50,45 @@ body {
   align-items: center;
   background: #ffffff;
   border-radius: 14px;
-  padding: 10px 18px;
+  padding: 8px 18px;
   box-shadow: var(--bks-card-shadow);
   border: 1px solid var(--bks-border);
+  gap: 14px;
 }
 
 .header-left {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.header-status-center {
+  flex: 1 1 auto;
+  max-width: 640px;
+  background: #f0f9ff;
+  border: 1.5px solid #bae6fd;
+  border-radius: 24px;
+  padding: 7px 18px;
+  font-size: 13.5px;
+  font-weight: 700;
+  text-align: center;
+  color: #0369a1;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  transition: all 0.25s ease;
+  line-height: 1.35;
+}
+
+.header-status-center.sweeping-active {
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+  color: #ffffff;
+  border-color: #38bdf8;
+  box-shadow: 0 0 16px rgba(2, 132, 199, 0.45);
+  animation: sweepPulse 1s infinite alternate;
+}
+
+.header-scoreboard {
+  flex-shrink: 0;
 }
 
 .game-badge {
@@ -119,8 +149,8 @@ body {
    ======================================================== */
 .curling-arena-grid {
   display: grid;
-  grid-template-columns: 280px minmax(400px, 1fr) 280px;
-  gap: 20px;
+  grid-template-columns: 280px minmax(420px, 520px) 280px;
+  gap: 18px;
   align-items: start;
   justify-content: center;
   width: 100%;
@@ -285,31 +315,8 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   width: 100%;
-}
-
-.rink-top-status-bar {
-  width: 100%;
-  max-width: 480px;
-  background: #ffffff;
-  border-radius: 12px;
-  padding: 10px 16px;
-  font-size: 13.5px;
-  font-weight: 700;
-  text-align: center;
-  color: #0369a1;
-  border: 1px solid #bae6fd;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-  transition: all 0.2s ease;
-}
-
-.rink-top-status-bar.sweeping-active {
-  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
-  color: #ffffff;
-  border-color: #38bdf8;
-  box-shadow: 0 0 16px rgba(2, 132, 199, 0.45);
-  animation: sweepPulse 1s infinite alternate;
 }
 
 @keyframes sweepPulse {
@@ -320,8 +327,8 @@ body {
 .rink-wrapper {
   position: relative;
   width: 100%;
-  max-width: 480px;
-  height: min(calc(100vh - 140px), 840px);
+  max-width: 520px;
+  height: min(calc(100vh - 105px), 880px);
   aspect-ratio: 400 / 900;
   background: #f0f9ff;
   border-radius: 18px;
@@ -653,31 +660,37 @@ body {
    ======================================================== */
 @media (max-width: 900px) {
   .curling-container {
-  max-width: 1320px;
-  width: 100%;
-  margin: 0 auto;
-  padding: 10px 16px 30px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
+    padding: 8px 10px 24px;
+    gap: 8px;
+  }
 
   .curling-header-board {
-    flex-direction: column;
+    flex-wrap: wrap;
     gap: 8px;
     padding: 8px 12px;
   }
 
-  .curling-arena-grid {
-  display: grid;
-  grid-template-columns: 280px minmax(400px, 1fr) 280px;
-  gap: 20px;
-  align-items: start;
-  justify-content: center;
-  width: 100%;
-}
+  .header-left {
+    flex: 1 1 auto;
+  }
 
-  /* Center rink first on mobile */
+  .header-scoreboard {
+    flex: 0 0 auto;
+  }
+
+  .header-status-center {
+    order: 3;
+    width: 100%;
+    margin: 4px 0 0 0;
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+
+  .curling-arena-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
   .center-col {
     order: 1;
   }
@@ -691,19 +704,9 @@ body {
   }
 
   .rink-wrapper {
-  position: relative;
-  width: 100%;
-  max-width: 480px;
-  height: min(calc(100vh - 140px), 840px);
-  aspect-ratio: 400 / 900;
-  background: #f0f9ff;
-  border-radius: 18px;
-  overflow: hidden;
-  box-shadow: 0 18px 40px -6px rgba(15, 23, 42, 0.25), 0 4px 12px -2px rgba(15, 23, 42, 0.1);
-  border: 5px solid #0284c7;
-  user-select: none;
-  touch-action: none;
-}
+    max-width: 100%;
+    height: min(calc(100vh - 160px), 680px);
+  }
 
   .mobile-quick-actions {
     display: flex;

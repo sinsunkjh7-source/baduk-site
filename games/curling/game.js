@@ -88,6 +88,13 @@
     audio.playHit(vol);
   });
 
+  // Official curling rule: Side line out of play listener
+  engine.onLineOut(function(stone) {
+    audio.playHit(0.35);
+    addIceParticles(stone.x, stone.y, 12);
+    statusMessage.textContent = '🚫 사이드 라인 아웃! 공식 규칙에 따라 스톤이 빙판에서 제거되었습니다.';
+  });
+
   // -------------------------------------------------------------
   // High-DPI Canvas Resizing
   // -------------------------------------------------------------
@@ -273,7 +280,7 @@
     }
 
     // Draw active stone if not yet delivered
-    if (engine.activeStone && !engine.activeStone.isMoving) {
+    if (engine.activeStone && !engine.activeStone.wasDelivered) {
       drawStone(engine.activeStone);
     }
 
