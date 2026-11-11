@@ -265,11 +265,24 @@
     if (!pinG) {
       pinG = document.createElementNS('http://www.w3.org/2000/svg', 'g');
       pinG.setAttribute('id', 'targetPinGroup');
+      pinG.setAttribute('class', 'map-pin-group');
       pinG.innerHTML =
-        '<circle class="beacon-ring" cx="0" cy="0" r="16" />' +
-        '<circle class="beacon-dot" cx="0" cy="0" r="6" />';
+        '<ellipse cx="0" cy="0.6" rx="3.5" ry="1.4" class="pin-shadow" />' +
+        '<path class="pin-body" d="M 0,0 C -1.6,-2.8 -4.8,-6.5 -4.8,-11 C -4.8,-14.8 -2.6,-18 0,-18 C 2.6,-18 4.8,-14.8 4.8,-11 C 4.8,-6.5 1.6,-2.8 0,0 Z" />' +
+        '<circle class="pin-inner" cx="0" cy="-11" r="2.0" />';
       svgEl.appendChild(pinG);
     }
+  }
+
+  function updatePinTransform(svg, cx, cy, visibleW) {
+    if (!svg) return;
+    var pinG = svg.querySelector('#targetPinGroup');
+    if (!pinG) return;
+    var containerW = svg.clientWidth || (svg.parentElement ? svg.parentElement.clientWidth : 0) || 620;
+    var scaleFactor = (visibleW / containerW) * (24 / 18);
+    scaleFactor = Math.max(0.18, Math.min(2.5, scaleFactor));
+    pinG.setAttribute('transform', 'translate(' + cx.toFixed(2) + ',' + cy.toFixed(2) + ') scale(' + scaleFactor.toFixed(3) + ')');
+    svg.appendChild(pinG);
   }
 
   function renderMapHighlight(iso, targetContainer) {
@@ -294,7 +307,7 @@
       svg.appendChild(path);
     }
 
-    // 3. Move Beacon Pin
+    // 3. Move Teardrop Pin
     var pinG = svg.querySelector('#targetPinGroup');
     if (!pinG) {
       addMapPinGroup(svg);
@@ -316,15 +329,7 @@
 
     state.currentCenter = { x: cx, y: cy };
 
-    if (pinG) {
-      var ring = pinG.querySelector('.beacon-ring');
-      var dot = pinG.querySelector('.beacon-dot');
-      if (ring) { ring.setAttribute('cx', cx); ring.setAttribute('cy', cy); }
-      if (dot) { dot.setAttribute('cx', cx); dot.setAttribute('cy', cy); }
-      svg.appendChild(pinG);
-    }
-
-    // 4. ViewBox Zooming
+    // 4. ViewBox Zooming & Pin Scale
     if (state.mapZoomed && b) {
       var zoomW = Math.max(b[2] * 2.8, 140);
       var zoomH = Math.max(b[3] * 2.8, 95);
@@ -340,6 +345,7 @@
       applySvgViewBox(svg, cx, cy, zoomW, zoomH);
     } else {
       svg.setAttribute('viewBox', '0 0 1010 666');
+      updatePinTransform(svg, cx, cy, 1010);
     }
   }
 
@@ -352,6 +358,7 @@
     var vy = Math.max(0, Math.min(666 - finalH, cy - finalH / 2));
 
     svg.setAttribute('viewBox', vx.toFixed(1) + ' ' + vy.toFixed(1) + ' ' + finalW.toFixed(1) + ' ' + finalH.toFixed(1));
+    updatePinTransform(svg, cx, cy, finalW);
   }
 
   // ========================================================

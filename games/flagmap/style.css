@@ -946,33 +946,34 @@ body {
 }
 
 /* Highlight Target Country */
-.large-map-wrap svg path.active-target {
-  fill: #10b981 !important;
+.large-map-wrap svg path.active-target,
+.detail-map-wrap svg path.active-target {
+  fill: rgba(16, 185, 129, 0.45) !important;
   stroke: #047857 !important;
-  stroke-width: 1.6px !important;
-  filter: drop-shadow(0 0 8px rgba(16, 185, 129, 0.85)) !important;
+  stroke-width: 1.5px !important;
+  filter: drop-shadow(0 0 5px rgba(16, 185, 129, 0.65)) !important;
 }
 
-/* Beacon Pin */
-.beacon-dot {
+/* Map Pin Marker (Teardrop 📍) */
+.map-pin-group {
+  pointer-events: none;
+}
+
+.map-pin-group .pin-body {
   fill: #ef4444;
   stroke: #ffffff;
-  stroke-width: 2.5px;
+  stroke-width: 1.2px;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.35));
 }
 
-.beacon-ring {
-  fill: none;
-  stroke: #ef4444;
-  stroke-width: 2.5px;
-  opacity: 0.9;
-  transform-origin: center;
-  animation: beaconPulse 1.4s infinite ease-out;
+.map-pin-group .pin-inner {
+  fill: #ffffff;
 }
 
-@keyframes beaconPulse {
-  0% { r: 5; opacity: 1; stroke-width: 3px; }
-  100% { r: 28; opacity: 0; stroke-width: 0.5px; }
+.map-pin-group .pin-shadow {
+  fill: rgba(15, 23, 42, 0.35);
 }
+
 
 .map-bottom-guide {
   display: flex;
