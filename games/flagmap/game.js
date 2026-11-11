@@ -1,463 +1,921 @@
-/* 국기 지도 퍼즐 + 수도 맞추기 — 게임 로직 */
-(function () {
+/**
+ * World Flag Quiz (세계 국기 퀴즈 왕) - Game Engine & Interactive Controller
+ */
+(function() {
   'use strict';
 
   var DATA = window.FLAGMAP_DATA || {};
-  var CAP = window.FLAGMAP_CAPITALS || {};
-  var STAGE_SIZE = 8;
+  var CAPITALS = window.FLAGMAP_CAPITALS || {};
+  var audio = window.FlagAudio;
 
-  var mode = 'flags';       /* flags | capitals */
-  var continent = 'asia';
-  var stage = 0;
-  var svg, mapWrap, tray, msgEl;
-  var pending = [];
-  var placed = {};
-  var scores = [0, 0];
-  var turn = 0;
-  var over = false;
-  var selected = null;
-  var svgReady = false;
-  var nameOf = {};
+  // 30 Most Recognizable / Popular Countries for Beginners
+  var POPULAR_CODES = [
+    'kr', 'us', 'jp', 'cn', 'gb', 'fr', 'de', 'ca', 'br', 'it',
+    'es', 'au', 'ru', 'in', 'vn', 'th', 'eg', 'ar', 'mx', 'ch',
+    'nl', 'se', 'gr', 'tr', 'za', 'nz', 'ph', 'id', 'sg', 'kp'
+  ];
 
-  var quiz = { queue: [], idx: 0, options: [], locked: false };
+  // Lookup dictionaries
+  var countryMap = {};
+  var allCountries = [];
+  var scopePools = {
+    popular: [],
+    asia: [],
+    europe: [],
+    america: [],
+    africa: [],
+    oceania: [],
+    world: []
+  };
 
-  function el(id) { return document.getElementById(id); }
+  // Build Country Database
+  function initDatabase() {
+    var contKeys = Object.keys(DATA);
+    for (var cIdx = 0; cIdx < contKeys.length; cIdx++) {
+      var contKey = contKeys[cIdx];
+      var contObj = DATA[contKey];
+      var contName = contObj.name;
+      var list = contObj.list;
 
-  function shuffle(a) {
+      for (var i = 0; i < list.length; i++) {
+        var iso = list[i][0];
+        var name = list[i][1];
+        var capData = CAPITALS[iso] || ['정보 없음', '🏛️', ''];
+        var item = {
+          iso: iso,
+          name: name,
+          continent: contName,
+          contKey: contKey,
+          capital: capData[0],
+          landmarkIcon: capData[1] || '🏛️',
+          landmarkName: capData[2] || ''
+        };
+
+        countryMap[iso] = item;
+        allCountries.push(item);
+        if (scopePools[contKey]) {
+          scopePools[contKey].push(item);
+        }
+      }
+    }
+
+    scopePools.world = allCountries.slice();
+
+    // Populate popular pool
+    for (var p = 0; p < POPULAR_CODES.length; p++) {
+      var pIso = POPULAR_CODES[p];
+      if (countryMap[pIso]) {
+        scopePools.popular.push(countryMap[pIso]);
+      }
+    }
+  }
+
+  // State Variables
+  var state = {
+    mode: 'flag-to-country', // 'flag-to-country' | 'country-to-flag' | 'capital-quiz' | 'encyclopedia'
+    scope: 'popular',
+    qTotal: 10,
+    timerLimit: 10,
+    questions: [],
+    currentIndex: 0,
+    currentQuestion: null,
+    score: 0,
+    combo: 0,
+    maxCombo: 0,
+    correctCount: 0,
+    wrongCount: 0,
+    wrongList: [],
+    lifeline5050Count: 2,
+    hintUsed: false,
+    timerInterval: null,
+    timeRemaining: 0,
+    isLocked: false
+  };
+
+  // DOM Elements
+  var dom = {};
+
+  function cacheDom() {
+    dom.statQuestion = document.getElementById('statQuestion');
+    dom.statScore = document.getElementById('statScore');
+    dom.statCombo = document.getElementById('statCombo');
+    dom.statComboPill = document.getElementById('statComboPill');
+    dom.btnSoundToggle = document.getElementById('btnSoundToggle');
+    dom.soundIcon = document.getElementById('soundIcon');
+    dom.currentModeLabel = document.getElementById('currentModeLabel');
+
+    dom.timerBarWrap = document.getElementById('timerBarWrap');
+    dom.timerBar = document.getElementById('timerBar');
+
+    dom.modeTabNav = document.querySelector('.mode-tab-nav');
+    dom.tabBtns = document.querySelectorAll('.tab-btn');
+
+    dom.quizFilterBar = document.getElementById('quizFilterBar');
+    dom.scopeChips = document.getElementById('scopeChips');
+    dom.chipBtns = document.querySelectorAll('.chip-btn');
+    dom.selectQCount = document.getElementById('selectQCount');
+    dom.selectTimer = document.getElementById('selectTimer');
+    dom.btnRestartQuiz = document.getElementById('btnRestartQuiz');
+
+    dom.quizArena = document.getElementById('quizArena');
+    dom.lifelineBar = document.getElementById('lifelineBar');
+    dom.btnLifeline5050 = document.getElementById('btnLifeline5050');
+    dom.count5050 = document.getElementById('count5050');
+    dom.btnLifelineHint = document.getElementById('btnLifelineHint');
+    dom.hintBubble = document.getElementById('hintBubble');
+    dom.hintText = document.getElementById('hintText');
+
+    dom.questionCard = document.getElementById('questionCard');
+    dom.mainFlagImg = document.getElementById('mainFlagImg');
+    dom.landmarkTag = document.getElementById('landmarkTag');
+    dom.landmarkIcon = document.getElementById('landmarkIcon');
+    dom.landmarkName = document.getElementById('landmarkName');
+    dom.promptText = document.getElementById('promptText');
+    dom.promptSub = document.getElementById('promptSub');
+    dom.optionsGrid = document.getElementById('optionsGrid');
+    dom.optBtns = document.querySelectorAll('.opt-btn');
+
+    dom.countryToFlagCard = document.getElementById('countryToFlagCard');
+    dom.c2fContinent = document.getElementById('c2fContinent');
+    dom.c2fCountryName = document.getElementById('c2fCountryName');
+    dom.c2fCapitalHint = document.getElementById('c2fCapitalHint');
+    dom.flagOptionsGrid = document.getElementById('flagOptionsGrid');
+
+    dom.answerFeedback = document.getElementById('answerFeedback');
+    dom.fbIcon = document.getElementById('fbIcon');
+    dom.fbText = document.getElementById('fbText');
+
+    dom.encyclopediaView = document.getElementById('encyclopediaView');
+    dom.encySearchInput = document.getElementById('encySearchInput');
+    dom.encyTotalCount = document.getElementById('encyTotalCount');
+    dom.encyGrid = document.getElementById('encyGrid');
+
+    dom.countryDetailModal = document.getElementById('countryDetailModal');
+    dom.detailFlagImg = document.getElementById('detailFlagImg');
+    dom.detailCountryName = document.getElementById('detailCountryName');
+    dom.detailContinent = document.getElementById('detailContinent');
+    dom.detailCapital = document.getElementById('detailCapital');
+    dom.detailLandmark = document.getElementById('detailLandmark');
+    dom.detailIso = document.getElementById('detailIso');
+    dom.btnCloseDetail = document.getElementById('btnCloseDetail');
+    dom.btnCloseDetail2 = document.getElementById('btnCloseDetail2');
+    dom.btnQuizFromDetail = document.getElementById('btnQuizFromDetail');
+
+    dom.resultModal = document.getElementById('resultModal');
+    dom.resultBadgeIcon = document.getElementById('resultBadgeIcon');
+    dom.resultTitle = document.getElementById('resultTitle');
+    dom.resultGradeDesc = document.getElementById('resultGradeDesc');
+    dom.resultScore = document.getElementById('resultScore');
+    dom.resultCorrectCount = document.getElementById('resultCorrectCount');
+    dom.resultAccuracy = document.getElementById('resultAccuracy');
+    dom.resultMaxCombo = document.getElementById('resultMaxCombo');
+    dom.wrongReviewBox = document.getElementById('wrongReviewBox');
+    dom.wrongReviewList = document.getElementById('wrongReviewList');
+    dom.btnPlayAgain = document.getElementById('btnPlayAgain');
+    dom.btnGoEncyclopedia = document.getElementById('btnGoEncyclopedia');
+
+    dom.confettiCanvas = document.getElementById('confettiCanvas');
+  }
+
+  // Utility: Shuffle Array
+  function shuffle(arr) {
+    var a = arr.slice();
     for (var i = a.length - 1; i > 0; i--) {
       var j = Math.floor(Math.random() * (i + 1));
-      var t = a[i]; a[i] = a[j]; a[j] = t;
+      var temp = a[i];
+      a[i] = a[j];
+      a[j] = temp;
     }
     return a;
   }
 
-  function msg(t) { if (msgEl) msgEl.textContent = t; }
-  function list() { return (DATA[continent] || { list: [] }).list; }
-  function stageCount() { return Math.ceil(list().length / STAGE_SIZE); }
+  // ========================================================
+  // Confetti Particle System
+  // ========================================================
+  var confettiParticles = [];
+  var confettiAnimId = null;
 
-  function stageCountries() {
-    var all = list();
-    if (stage < 0) return all.slice();
-    return all.slice(stage * STAGE_SIZE, stage * STAGE_SIZE + STAGE_SIZE);
-  }
+  function launchConfetti(count) {
+    var canvas = dom.confettiCanvas;
+    if (!canvas) return;
+    var ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
 
-  function buildNameMap() {
-    Object.keys(DATA).forEach(function (k) {
-      DATA[k].list.forEach(function (c) { nameOf[c[0]] = c[1]; });
-    });
-  }
+    var colors = ['#0284c7', '#38bdf8', '#10b981', '#f59e0b', '#ef4444', '#ec4899', '#8b5cf6'];
+    confettiParticles = [];
 
-  /* ---------------- 지도 ---------------- */
-  function loadMap() {
-    return fetch('world.svg', { cache: 'force-cache' })
-      .then(function (r) { return r.text(); })
-      .then(function (txt) {
-        mapWrap.querySelector('#map').outerHTML = txt.replace('<svg', '<svg id="map"');
-        svg = document.getElementById('map');
-        svg.removeAttribute('width');
-        svg.removeAttribute('height');
-        svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
-        svgReady = true;
-        var l = el('loading'); if (l) l.hidden = true;
-        return true;
+    for (var i = 0; i < (count || 90); i++) {
+      confettiParticles.push({
+        x: Math.random() * canvas.width,
+        y: -20 - Math.random() * 50,
+        vx: (Math.random() - 0.5) * 4,
+        vy: Math.random() * 4 + 3,
+        size: Math.random() * 8 + 5,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        rotation: Math.random() * 360,
+        vRot: (Math.random() - 0.5) * 10
       });
-  }
+    }
 
-  function fitTo(isoList, padRatio) {
-    if (!svgReady) return;
-    var bb = null;
-    for (var i = 0; i < isoList.length; i++) {
-      var p = svg.querySelector('path[id="' + isoList[i] + '"]');
-      if (!p) continue;
-      var b = p.getBBox();
-      if (!bb) bb = { x: b.x, y: b.y, x2: b.x + b.width, y2: b.y + b.height };
-      else {
-        bb.x = Math.min(bb.x, b.x); bb.y = Math.min(bb.y, b.y);
-        bb.x2 = Math.max(bb.x2, b.x + b.width); bb.y2 = Math.max(bb.y2, b.y + b.height);
+    if (confettiAnimId) cancelAnimationFrame(confettiAnimId);
+
+    function updateConfetti() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      var alive = false;
+
+      for (var p = 0; p < confettiParticles.length; p++) {
+        var pt = confettiParticles[p];
+        pt.x += pt.vx;
+        pt.y += pt.vy;
+        pt.rotation += pt.vRot;
+
+        if (pt.y < canvas.height + 20) {
+          alive = true;
+          ctx.save();
+          ctx.translate(pt.x, pt.y);
+          ctx.rotate((pt.rotation * Math.PI) / 180);
+          ctx.fillStyle = pt.color;
+          ctx.fillRect(-pt.size / 2, -pt.size / 2, pt.size, pt.size * 0.6);
+          ctx.restore();
+        }
+      }
+
+      if (alive) {
+        confettiAnimId = requestAnimationFrame(updateConfetti);
+      } else {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
       }
     }
-    if (!bb) return;
-    var w = bb.x2 - bb.x, h = bb.y2 - bb.y;
-    var cx = (bb.x + bb.x2) / 2, cy = (bb.y + bb.y2) / 2;
-    var pad = padRatio || 0.16;
-    if (w / h > 2.4) w = h * 2.4;
-    svg.setAttribute('viewBox', (cx - w / 2 - w * pad) + ' ' + (cy - h / 2 - h * pad) + ' ' +
-      (w * (1 + pad * 2)) + ' ' + (h * (1 + pad * 2)));
+
+    confettiAnimId = requestAnimationFrame(updateConfetti);
   }
 
-  /* ---------------- 그리기 ---------------- */
-  function renderScores() {
-    el('s1').textContent = scores[0];
-    el('s2').textContent = scores[1];
-    if (el('left')) el('left').textContent = (mode === 'flags') ? pending.length : Math.max(0, quiz.queue.length - quiz.idx);
-    Array.prototype.forEach.call(document.querySelectorAll('.f-score'), function (n) {
-      n.classList.toggle('active-turn',
-        (n.classList.contains('p1') && turn === 0 && !over) ||
-        (n.classList.contains('p2') && turn === 1 && !over));
-    });
-  }
+  // ========================================================
+  // Question Generator
+  // ========================================================
+  function generateQuizQuestions() {
+    var pool = scopePools[state.scope] || scopePools.popular;
+    if (pool.length < 4) pool = allCountries;
 
-  function renderTray() {
-    tray.innerHTML = '';
-    pending.forEach(function (iso) {
-      var chip = document.createElement('div');
-      chip.className = 'f-chip' + (selected === iso ? ' sel' : '');
-      chip.dataset.iso = iso;
-      chip.innerHTML = '<img src="flags/' + iso + '.svg" alt="' + (nameOf[iso] || iso) + '">';
-      tray.appendChild(chip);
-    });
-  }
+    var shuffledPool = shuffle(pool);
+    var count = (state.qTotal >= 999) ? shuffledPool.length : Math.min(state.qTotal, shuffledPool.length);
+    var targetList = shuffledPool.slice(0, count);
 
-  function paintMap() {
-    if (!svgReady) return;
-    var ids = stageCountries().map(function (c) { return c[0]; });
-    Array.prototype.forEach.call(svg.querySelectorAll('path'), function (p) {
-      p.classList.remove('playable', 'placed', 'wrong');
-      p.style.fill = ''; p.style.stroke = '';
-      if (mode !== 'flags') return;
-      if (ids.indexOf(p.id) === -1) return;
-      if (placed[p.id]) p.classList.add('placed'); else p.classList.add('playable');
-    });
-    Array.prototype.forEach.call(svg.querySelectorAll('image.f-flagpin'), function (n) { n.remove(); });
-    if (mode !== 'flags') return;
-    Object.keys(placed).forEach(function (iso) {
-      var p = svg.querySelector('path[id="' + iso + '"]');
-      if (!p) return;
-      var b = p.getBBox();
-      var w = Math.min(Math.max(b.width * 0.9, 11), 42), h = w / 1.5;
-      var img = document.createElementNS('http://www.w3.org/2000/svg', 'image');
-      img.setAttributeNS('http://www.w3.org/1999/xlink', 'href', 'flags/' + iso + '.svg');
-      img.setAttribute('href', 'flags/' + iso + '.svg');
-      img.setAttribute('x', b.x + b.width / 2 - w / 2);
-      img.setAttribute('y', b.y + b.height / 2 - h / 2);
-      img.setAttribute('width', w); img.setAttribute('height', h);
-      img.setAttribute('class', 'f-flagpin');
-      svg.appendChild(img);
-    });
-  }
+    var questions = [];
+    for (var i = 0; i < targetList.length; i++) {
+      var target = targetList[i];
 
-  /* ---------------- 국기 모드 ---------------- */
-  function newFlagsGame() {
-    placed = {};
-    pending = shuffle(stageCountries().map(function (c) { return c[0]; }));
-    el('resultPanel').hidden = true;
-    renderScores(); renderTray(); paintMap();
-    fitTo(stageCountries().map(function (c) { return c[0]; }), 0.16);
-    var s = stage < 0 ? '대륙 전체' : (stage + 1) + '단계';
-    msg(DATA[continent].name + ' ' + s + ' · ' + pending.length + '개국 — 국기를 골라 나라 위에 놓아 보세요.');
-  }
+      // Select 3 distractors
+      // 1st priority: same continent; 2nd: general pool
+      var sameContPool = pool.filter(function(c) {
+        return c.iso !== target.iso && c.contKey === target.contKey;
+      });
+      var otherPool = pool.filter(function(c) {
+        return c.iso !== target.iso && c.contKey !== target.contKey;
+      });
 
-  function attemptFlag(iso, countryId) {
-    if (over) return;
-    if (placed[countryId]) { msg('이미 놓인 나라입니다.'); return; }
-    if (pending.indexOf(iso) === -1) return;
-    var inStage = stageCountries().some(function (c) { return c[0] === countryId; });
-    var correct = (iso === countryId) && inStage;
+      var distractors = [];
+      var shuffledSame = shuffle(sameContPool);
+      while (distractors.length < 2 && shuffledSame.length > 0) {
+        distractors.push(shuffledSame.pop());
+      }
+      var shuffledOther = shuffle(otherPool.concat(shuffledSame));
+      while (distractors.length < 3 && shuffledOther.length > 0) {
+        distractors.push(shuffledOther.pop());
+      }
 
-    if (correct) {
-      scores[turn] += 1;
-      placed[countryId] = true;
-      pending = pending.filter(function (x) { return x !== iso; });
-      selected = null;
-      msg('정답! ' + (nameOf[iso] || iso) + ' +1');
-    } else {
-      var p = svg.querySelector('path[id="' + countryId + '"]');
-      if (p && inStage) { p.classList.add('wrong'); setTimeout(function () { p.classList.remove('wrong'); }, 420); }
-      msg('틀렸습니다 — ' + (nameOf[iso] || iso) + ' 국기가 아닙니다. 차례가 넘어갑니다.');
+      var options = shuffle([target].concat(distractors));
+
+      questions.push({
+        target: target,
+        options: options
+      });
     }
-    turn = 1 - turn;
-    renderScores(); renderTray(); paintMap();
-    if (pending.length === 0) finish();
+
+    return questions;
   }
 
-  /* ---------------- 수도 모드 ---------------- */
-  function newQuiz() {
-    quiz.queue = shuffle(stageCountries().map(function (c) { return c[0]; }));
-    quiz.idx = 0; quiz.locked = false;
-    el('resultPanel').hidden = true;
-    renderScores(); renderQuestion();
+  // ========================================================
+  // Quiz Flow Controllers
+  // ========================================================
+  function startNewQuiz() {
+    clearInterval(state.timerInterval);
+
+    state.questions = generateQuizQuestions();
+    state.currentIndex = 0;
+    state.score = 0;
+    state.combo = 0;
+    state.maxCombo = 0;
+    state.correctCount = 0;
+    state.wrongCount = 0;
+    state.wrongList = [];
+    state.lifeline5050Count = 2;
+    state.isLocked = false;
+
+    updateHeaderStats();
+    updateLifelineUI();
+
+    dom.resultModal.hidden = true;
+    dom.hintBubble.hidden = true;
+
+    if (state.mode === 'encyclopedia') {
+      renderEncyclopedia();
+    } else {
+      renderQuestion();
+    }
   }
 
   function renderQuestion() {
-    if (quiz.idx >= quiz.queue.length) { finish(); return; }
-    var iso = quiz.queue[quiz.idx];
-    var cap = CAP[iso] || ['?', '❓', ''];
-    var others = list().filter(function (c) { return c[0] !== iso && CAP[c[0]]; }).map(function (c) { return c[0]; });
-    shuffle(others);
-    var wrongs = others.slice(0, 3);
-    var opts = shuffle([iso].concat(wrongs));
+    clearInterval(state.timerInterval);
+    state.isLocked = false;
+    state.hintUsed = false;
+    dom.hintBubble.hidden = true;
 
-    /* 지도: 해당 국가만 강조 + 확대 */
-    Array.prototype.forEach.call(svg.querySelectorAll('path'), function (p) {
-      p.classList.remove('playable', 'placed', 'wrong');
-      p.style.fill = ''; p.style.stroke = '';
-    });
-    var tp = svg.querySelector('path[id="' + iso + '"]');
-    if (tp) tp.classList.add('playable');
-    Array.prototype.forEach.call(svg.querySelectorAll('image.f-flagpin'), function (n) { n.remove(); });
-    fitTo([iso], 0.30);
-
-    el('quizFlag').innerHTML = '<img src="flags/' + iso + '.svg" alt="">';
-    el('quizClue').innerHTML = '<span class="f-clue-icon">' + cap[1] + '</span>' +
-      '<span class="f-clue-text">' + (cap[2] || cap[0]) + '</span>';
-
-    var box = el('quizOptions');
-    box.innerHTML = '';
-    opts.forEach(function (oid, i) {
-      var b = document.createElement('button');
-      b.type = 'button';
-      b.className = 'f-opt';
-      b.dataset.iso = oid;
-      b.innerHTML = '<span class="f-opt-num">' + (i + 1) + '</span>' + (CAP[oid] ? CAP[oid][0] : '?');
-      b.addEventListener('click', function () { answer(oid, iso); });
-      box.appendChild(b);
-    });
-    quiz.locked = false;
-    renderScores();
-    msg('이 나라의 수도는? (남은 문제 ' + (quiz.queue.length - quiz.idx) + ')');
-  }
-
-  function answer(iso, answerIso) {
-    if (quiz.locked || over) return;
-    quiz.locked = true;
-    var correct = (iso === answerIso);
-    var btns = el('quizOptions').querySelectorAll('.f-opt');
-    Array.prototype.forEach.call(btns, function (b) {
-      if (b.dataset.iso === answerIso) b.classList.add('right');
-      else if (b.dataset.iso === iso) b.classList.add('wrong');
-    });
-
-    if (correct) {
-      scores[turn] += 1;
-      msg('정답! ' + (CAP[iso] ? CAP[iso][0] : '') + ' +1');
-    } else {
-      msg('아쉬워요 — 정답은 ' + (CAP[answerIso] ? CAP[answerIso][0] : '') + ' (' + (nameOf[answerIso] || '') + ')');
-    }
-    turn = 1 - turn;
-    renderScores();
-
-    setTimeout(function () {
-      quiz.idx++;
-      if (quiz.idx >= quiz.queue.length) finish();
-      else renderQuestion();
-    }, correct ? 700 : 1200);
-  }
-
-  /* ---------------- 마무리 ---------------- */
-  function finish() {
-    over = true;
-    var title = scores[0] === scores[1] ? '무승부' : (scores[0] > scores[1] ? '1P 승리!' : '2P 승리!');
-    el('resultTitle').textContent = title;
-    el('resultDesc').textContent = '1P ' + scores[0] + ' : ' + scores[1] + ' 2P · ' +
-      DATA[continent].name + ' ' + (stage < 0 ? '전체' : (stage + 1) + '단계') +
-      ' · ' + (mode === 'flags' ? '국기 놓기' : '수도 맞추기');
-    el('resultPanel').hidden = false;
-    renderScores();
-  }
-
-  /* ---------------- 입력(국기) ---------------- */
-  var dragEl = null, dragIso = null, startX = 0, startY = 0, moved = false;
-
-  function startDrag(e) {
-    var chip = e.target.closest ? e.target.closest('.f-chip') : null;
-    if (!chip) return;
-    dragIso = chip.dataset.iso;
-    startX = e.clientX; startY = e.clientY; moved = false;
-    dragEl = chip;
-  }
-
-  function moveDrag(e) {
-    if (!dragIso) return;
-    if (!moved && Math.hypot(e.clientX - startX, e.clientY - startY) > 6) {
-      moved = true;
-      var ghost = document.createElement('div');
-      ghost.className = 'f-drag'; ghost.id = 'dragGhost';
-      ghost.innerHTML = '<img src="flags/' + dragIso + '.svg" alt="">';
-      document.body.appendChild(ghost);
-      dragEl.classList.add('dragging');
-    }
-    if (moved) {
-      var g = document.getElementById('dragGhost');
-      g.style.left = e.clientX + 'px';
-      g.style.top = e.clientY + 'px';
-    }
-  }
-
-  function endDrag(e) {
-    if (!dragIso) return;
-    var iso = dragIso, wasMoved = moved;
-    var g = document.getElementById('dragGhost');
-    if (g) g.remove();
-    if (dragEl) dragEl.classList.remove('dragging');
-    dragIso = null; dragEl = null; moved = false;
-    if (mode !== 'flags') return;
-
-    if (!wasMoved) {
-      selected = (selected === iso) ? null : iso;
-      renderTray();
-      msg(selected ? '놓을 나라를 지도에서 눌러 주세요.' : '국기를 골라 나라 위에 놓아 보세요.');
+    if (state.currentIndex >= state.questions.length) {
+      finishQuiz();
       return;
     }
-    var target = document.elementFromPoint(e.clientX, e.clientY);
-    var path = target && target.closest ? target.closest('path[id]') : null;
-    if (!path) { msg('나라 위에 놓아 주세요.'); return; }
-    attemptFlag(iso, path.id);
-  }
 
-  function mapClick(e) {
-    if (mode !== 'flags' || !selected) return;
-    var path = e.target.closest ? e.target.closest('path[id]') : null;
-    if (!path) return;
-    attemptFlag(selected, path.id);
-  }
+    var q = state.questions[state.currentIndex];
+    state.currentQuestion = q;
+    var target = q.target;
 
-  /* ---------------- 단계/모드 UI ---------------- */
-  function renderStages() {
-    var box = el('stageSeg');
-    if (!box) return;
-    box.innerHTML = '';
-    var n = stageCount();
-    for (var i = 0; i < n; i++) {
-      var b = document.createElement('button');
-      b.type = 'button';
-      b.className = 'f-stagebtn' + (stage === i ? ' active' : '');
-      b.dataset.stage = String(i);
-      b.textContent = (i + 1);
-      box.appendChild(b);
+    updateHeaderStats();
+    resetOptionStyles();
+
+    // Mode-Specific Setup
+    if (state.mode === 'flag-to-country') {
+      dom.questionCard.hidden = false;
+      dom.countryToFlagCard.hidden = true;
+      dom.landmarkTag.hidden = true;
+
+      dom.mainFlagImg.src = 'flags/' + target.iso + '.svg';
+      dom.promptText.textContent = '이 국기의 나라는 어디일까요?';
+      dom.promptSub.textContent = '4개의 보기 중 올바른 나라를 선택하세요!';
+
+      for (var o = 0; o < 4; o++) {
+        var opt = q.options[o];
+        var btn = dom.optBtns[o];
+        if (btn && opt) {
+          btn.querySelector('.opt-label').textContent = opt.name;
+          btn.dataset.iso = opt.iso;
+          btn.disabled = false;
+          btn.classList.remove('eliminated');
+        }
+      }
+
+    } else if (state.mode === 'capital-quiz') {
+      dom.questionCard.hidden = false;
+      dom.countryToFlagCard.hidden = true;
+
+      dom.mainFlagImg.src = 'flags/' + target.iso + '.svg';
+      dom.landmarkTag.hidden = false;
+      dom.landmarkIcon.textContent = target.landmarkIcon;
+      dom.landmarkName.textContent = target.name + ' · ' + (target.landmarkName || '대표 문화');
+
+      dom.promptText.textContent = target.name + '의 수도는 어디일까요?';
+      dom.promptSub.textContent = '올바른 수도 이름을 골라보세요!';
+
+      for (var c = 0; c < 4; c++) {
+        var cOpt = q.options[c];
+        var cBtn = dom.optBtns[c];
+        if (cBtn && cOpt) {
+          cBtn.querySelector('.opt-label').textContent = cOpt.capital;
+          cBtn.dataset.iso = cOpt.iso;
+          cBtn.disabled = false;
+          cBtn.classList.remove('eliminated');
+        }
+      }
+
+    } else if (state.mode === 'country-to-flag') {
+      dom.questionCard.hidden = true;
+      dom.countryToFlagCard.hidden = false;
+
+      dom.c2fContinent.textContent = '🌏 ' + target.continent;
+      dom.c2fCountryName.textContent = target.name;
+      dom.c2fCapitalHint.textContent = '수도: ' + target.capital + ' ' + target.landmarkIcon;
+
+      // Render 4 flag choice cards
+      dom.flagOptionsGrid.innerHTML = '';
+      for (var f = 0; f < 4; f++) {
+        var fOpt = q.options[f];
+        var fCard = document.createElement('button');
+        fCard.type = 'button';
+        fCard.className = 'flag-opt-card';
+        fCard.dataset.iso = fOpt.iso;
+        fCard.dataset.index = f;
+        fCard.innerHTML = '<img src="flags/' + fOpt.iso + '.svg" alt="국기">';
+
+        fCard.addEventListener('click', function(e) {
+          var selIso = this.dataset.iso;
+          handleAnswer(selIso, this);
+        });
+
+        dom.flagOptionsGrid.appendChild(fCard);
+      }
     }
-    var all = document.createElement('button');
-    all.type = 'button';
-    all.className = 'f-stagebtn all' + (stage === -1 ? ' active' : '');
-    all.dataset.stage = '-1';
-    all.textContent = '전체';
-    box.appendChild(all);
+
+    startTimer();
   }
 
-  function applyModeUI() {
-    var isFlags = mode === 'flags';
-    el('traybox').hidden = !isFlags;
-    el('quizBox').hidden = isFlags;
-    Array.prototype.forEach.call(document.querySelectorAll('.f-modebtn'), function (b) {
-      b.classList.toggle('active', b.dataset.mode === mode);
+  function resetOptionStyles() {
+    for (var i = 0; i < dom.optBtns.length; i++) {
+      dom.optBtns[i].className = 'opt-btn';
+    }
+  }
+
+  // ========================================================
+  // Timer Countdown Controller
+  // ========================================================
+  function startTimer() {
+    clearInterval(state.timerInterval);
+
+    if (state.timerLimit <= 0) {
+      dom.timerBarWrap.style.display = 'none';
+      return;
+    }
+
+    dom.timerBarWrap.style.display = 'block';
+    state.timeRemaining = state.timerLimit;
+    dom.timerBar.style.width = '100%';
+    dom.timerBar.classList.remove('warning');
+
+    var totalMs = state.timerLimit * 1000;
+    var startMs = Date.now();
+
+    state.timerInterval = setInterval(function() {
+      if (state.isLocked) return;
+
+      var elapsed = Date.now() - startMs;
+      var remainingMs = Math.max(0, totalMs - elapsed);
+      state.timeRemaining = remainingMs / 1000;
+
+      var pct = (remainingMs / totalMs) * 100;
+      dom.timerBar.style.width = pct + '%';
+
+      if (state.timeRemaining <= 3.2 && !dom.timerBar.classList.contains('warning')) {
+        dom.timerBar.classList.add('warning');
+        audio.playTick();
+      }
+
+      if (remainingMs <= 0) {
+        clearInterval(state.timerInterval);
+        handleTimeout();
+      }
+    }, 100);
+  }
+
+  function handleTimeout() {
+    if (state.isLocked) return;
+    state.isLocked = true;
+
+    audio.playWrong();
+    showFeedback('⏰', '시간 초과!', false);
+
+    var target = state.currentQuestion.target;
+    state.wrongCount++;
+    state.combo = 0;
+    state.wrongList.push(target);
+
+    highlightCorrectAnswer();
+
+    setTimeout(function() {
+      state.currentIndex++;
+      renderQuestion();
+    }, 1300);
+  }
+
+  // ========================================================
+  // Answer Evaluation
+  // ========================================================
+  function handleAnswer(selectedIso, clickedElement) {
+    if (state.isLocked) return;
+    state.isLocked = true;
+    clearInterval(state.timerInterval);
+
+    var target = state.currentQuestion.target;
+    var isCorrect = (selectedIso === target.iso);
+
+    if (isCorrect) {
+      state.correctCount++;
+      state.combo++;
+      if (state.combo > state.maxCombo) {
+        state.maxCombo = state.combo;
+      }
+
+      var timeBonus = Math.floor(state.timeRemaining * 10);
+      var comboBonus = Math.max(0, (state.combo - 1) * 20);
+      var gained = 100 + timeBonus + comboBonus;
+      state.score += gained;
+
+      if (clickedElement) {
+        clickedElement.classList.add('correct');
+      }
+
+      if (state.combo >= 3) {
+        audio.playCombo(state.combo);
+        showFeedback('🔥', state.combo + ' 콤보! +' + gained + '점', true);
+      } else {
+        audio.playCorrect();
+        showFeedback('⭕', '정답입니다! +' + gained + '점', true);
+      }
+
+      setTimeout(function() {
+        state.currentIndex++;
+        renderQuestion();
+      }, 850);
+
+    } else {
+      state.wrongCount++;
+      state.combo = 0;
+      state.wrongList.push(target);
+
+      audio.playWrong();
+      if (clickedElement) {
+        clickedElement.classList.add('wrong');
+      }
+
+      highlightCorrectAnswer();
+      showFeedback('❌', '오답! 정답은 ' + target.name + '입니다.', false);
+
+      setTimeout(function() {
+        state.currentIndex++;
+        renderQuestion();
+      }, 1400);
+    }
+
+    updateHeaderStats();
+  }
+
+  function highlightCorrectAnswer() {
+    var target = state.currentQuestion.target;
+
+    if (state.mode === 'country-to-flag') {
+      var cards = dom.flagOptionsGrid.querySelectorAll('.flag-opt-card');
+      for (var f = 0; f < cards.length; f++) {
+        if (cards[f].dataset.iso === target.iso) {
+          cards[f].classList.add('correct');
+        }
+      }
+    } else {
+      for (var o = 0; o < dom.optBtns.length; o++) {
+        if (dom.optBtns[o].dataset.iso === target.iso) {
+          dom.optBtns[o].classList.add('correct');
+        }
+      }
+    }
+  }
+
+  function showFeedback(icon, text, isSuccess) {
+    dom.fbIcon.textContent = icon;
+    dom.fbText.textContent = text;
+    dom.answerFeedback.hidden = false;
+
+    setTimeout(function() {
+      dom.answerFeedback.hidden = true;
+    }, 1100);
+  }
+
+  function updateHeaderStats() {
+    var totalText = (state.qTotal >= 999) ? state.questions.length : state.qTotal;
+    dom.statQuestion.textContent = (state.currentIndex + 1) + ' / ' + totalText;
+    dom.statScore.textContent = state.score.toLocaleString();
+
+    if (state.combo > 1) {
+      dom.statCombo.textContent = state.combo + ' COMBO';
+      dom.statComboPill.classList.add('active');
+    } else {
+      dom.statCombo.textContent = '0 COMBO';
+      dom.statComboPill.classList.remove('active');
+    }
+  }
+
+  function updateLifelineUI() {
+    dom.count5050.textContent = state.lifeline5050Count;
+    dom.btnLifeline5050.disabled = (state.lifeline5050Count <= 0);
+  }
+
+  // ========================================================
+  // Lifelines (50:50 and Hint)
+  // ========================================================
+  function useLifeline5050() {
+    if (state.isLocked || state.lifeline5050Count <= 0) return;
+    state.lifeline5050Count--;
+    updateLifelineUI();
+    audio.play5050();
+
+    var targetIso = state.currentQuestion.target.iso;
+
+    if (state.mode === 'country-to-flag') {
+      var cards = Array.from(dom.flagOptionsGrid.querySelectorAll('.flag-opt-card'));
+      var wrongCards = cards.filter(function(c) { return c.dataset.iso !== targetIso; });
+      var toEliminate = shuffle(wrongCards).slice(0, 2);
+      toEliminate.forEach(function(c) { c.classList.add('eliminated'); });
+    } else {
+      var btns = Array.from(dom.optBtns);
+      var wrongBtns = btns.filter(function(b) { return b.dataset.iso !== targetIso; });
+      var toEliminateBtns = shuffle(wrongBtns).slice(0, 2);
+      toEliminateBtns.forEach(function(b) {
+        b.classList.add('eliminated');
+        b.disabled = true;
+      });
+    }
+  }
+
+  function useLifelineHint() {
+    if (state.isLocked || state.hintUsed) return;
+    state.hintUsed = true;
+    audio.playHint();
+
+    var target = state.currentQuestion.target;
+    dom.hintText.innerHTML = '💡 <b>대륙:</b> ' + target.continent + ' &nbsp;|&nbsp; <b>수도:</b> ' + target.capital + ' ' + target.landmarkIcon;
+    dom.hintBubble.hidden = false;
+  }
+
+  // ========================================================
+  // Quiz Finish & Result Screen
+  // ========================================================
+  function finishQuiz() {
+    clearInterval(state.timerInterval);
+    audio.playVictory();
+
+    var totalAnswered = state.correctCount + state.wrongCount;
+    var accuracy = totalAnswered > 0 ? Math.round((state.correctCount / totalAnswered) * 100) : 0;
+
+    dom.resultScore.textContent = state.score.toLocaleString();
+    dom.resultCorrectCount.textContent = state.correctCount + ' / ' + totalAnswered;
+    dom.resultAccuracy.textContent = accuracy + '%';
+    dom.resultMaxCombo.textContent = state.maxCombo + ' 🔥';
+
+    // Determine Grade
+    if (accuracy === 100) {
+      dom.resultBadgeIcon.textContent = '👑';
+      dom.resultTitle.textContent = '완벽한 국기 마스터!';
+      dom.resultGradeDesc.textContent = '단 한 문제도 틀리지 않고 100% 모두 맞혔습니다!';
+      launchConfetti(120);
+    } else if (accuracy >= 80) {
+      dom.resultBadgeIcon.textContent = '🥇';
+      dom.resultTitle.textContent = '우수한 국기 박사!';
+      dom.resultGradeDesc.textContent = '놀라운 실력입니다! 조금만 더 하면 만점이에요!';
+      launchConfetti(80);
+    } else if (accuracy >= 60) {
+      dom.resultBadgeIcon.textContent = '🥈';
+      dom.resultTitle.textContent = '멋진 도전이었습니다!';
+      dom.resultGradeDesc.textContent = '틀린 나라들을 복습하고 다시 도전해 보세요!';
+    } else {
+      dom.resultBadgeIcon.textContent = '🥉';
+      dom.resultTitle.textContent = '좋은 배움의 기회!';
+      dom.resultGradeDesc.textContent = '세계 국기 도감에서 나라들을 둘러보고 재도전해 볼까요?';
+    }
+
+    // Wrong review items
+    if (state.wrongList.length > 0) {
+      dom.wrongReviewBox.hidden = false;
+      dom.wrongReviewList.innerHTML = '';
+      state.wrongList.forEach(function(item) {
+        var row = document.createElement('div');
+        row.className = 'review-item';
+        row.innerHTML =
+          '<img src="flags/' + item.iso + '.svg" alt="국기">' +
+          '<span class="review-name">' + item.name + '</span>' +
+          '<span class="review-cap">수도: ' + item.capital + ' ' + item.landmarkIcon + '</span>';
+        dom.wrongReviewList.appendChild(row);
+      });
+    } else {
+      dom.wrongReviewBox.hidden = true;
+    }
+
+    dom.resultModal.hidden = false;
+  }
+
+  // ========================================================
+  // World Flag Encyclopedia
+  // ========================================================
+  function renderEncyclopedia(filterKeyword) {
+    dom.quizArena.hidden = true;
+    dom.encyclopediaView.hidden = false;
+    dom.lifelineBar.hidden = true;
+
+    var pool = scopePools[state.scope] || scopePools.world;
+    if (state.scope === 'popular') pool = scopePools.popular;
+
+    var kw = (filterKeyword || dom.encySearchInput.value || '').trim().toLowerCase();
+
+    var filtered = pool.filter(function(c) {
+      if (!kw) return true;
+      return c.name.toLowerCase().indexOf(kw) !== -1 ||
+             c.capital.toLowerCase().indexOf(kw) !== -1 ||
+             c.landmarkName.toLowerCase().indexOf(kw) !== -1 ||
+             c.iso.toLowerCase().indexOf(kw) !== -1;
+    });
+
+    dom.encyTotalCount.textContent = filtered.length + '개국';
+    dom.encyGrid.innerHTML = '';
+
+    filtered.forEach(function(c) {
+      var card = document.createElement('div');
+      card.className = 'ency-card';
+      card.innerHTML =
+        '<div class="ency-card-flag">' +
+          '<img src="flags/' + c.iso + '.svg" alt="' + c.name + ' 국기" loading="lazy">' +
+        '</div>' +
+        '<div class="ency-card-info">' +
+          '<span class="ency-card-name">' + c.name + '</span>' +
+          '<span class="ency-card-cap">' + c.landmarkIcon + ' ' + c.capital + '</span>' +
+        '</div>';
+
+      card.addEventListener('click', function() {
+        openCountryDetail(c);
+      });
+
+      dom.encyGrid.appendChild(card);
     });
   }
 
-  function newGame() {
-    over = false; selected = null;
-    scores = [0, 0]; turn = 0;
-    applyModeUI();
-    if (mode === 'flags') newFlagsGame(); else newQuiz();
+  function openCountryDetail(c) {
+    audio.playClick();
+    dom.detailFlagImg.src = 'flags/' + c.iso + '.svg';
+    dom.detailCountryName.textContent = c.name;
+    dom.detailContinent.textContent = c.continent;
+    dom.detailCapital.textContent = c.capital;
+    dom.detailLandmark.textContent = c.landmarkIcon + ' ' + (c.landmarkName || '전통 문화');
+    dom.detailIso.textContent = c.iso.toUpperCase();
+
+    dom.btnQuizFromDetail.onclick = function() {
+      dom.countryDetailModal.hidden = true;
+      switchMode('flag-to-country');
+    };
+
+    dom.countryDetailModal.hidden = false;
   }
 
-  /* ---------------- 초기화 ---------------- */
+  function switchMode(newMode) {
+    state.mode = newMode;
+
+    dom.tabBtns.forEach(function(btn) {
+      btn.classList.toggle('active', btn.dataset.mode === newMode);
+    });
+
+    var modeLabels = {
+      'flag-to-country': '국기 보고 나라 맞추기',
+      'country-to-flag': '나라 보고 국기 맞추기',
+      'capital-quiz': '수도 & 랜드마크 퀴즈',
+      'encyclopedia': '세계 국기 도감'
+    };
+    dom.currentModeLabel.textContent = modeLabels[newMode] || '';
+
+    if (newMode === 'encyclopedia') {
+      dom.quizArena.hidden = true;
+      dom.encyclopediaView.hidden = false;
+      dom.lifelineBar.hidden = true;
+      renderEncyclopedia();
+    } else {
+      dom.quizArena.hidden = false;
+      dom.encyclopediaView.hidden = true;
+      dom.lifelineBar.hidden = false;
+      startNewQuiz();
+    }
+  }
+
+  // ========================================================
+  // Event Bindings
+  // ========================================================
+  function bindEvents() {
+    // Sound Toggle
+    dom.btnSoundToggle.addEventListener('click', function() {
+      var muted = audio.toggleMute();
+      dom.soundIcon.textContent = muted ? '🔇' : '🔊';
+      dom.btnSoundToggle.title = muted ? '효과음 켜기' : '효과음 끄기';
+    });
+
+    // Mode Tabs
+    dom.modeTabNav.addEventListener('click', function(e) {
+      var btn = e.target.closest('.tab-btn');
+      if (!btn) return;
+      audio.playClick();
+      switchMode(btn.dataset.mode);
+    });
+
+    // Scope Chips
+    dom.scopeChips.addEventListener('click', function(e) {
+      var chip = e.target.closest('.chip-btn');
+      if (!chip) return;
+      audio.playClick();
+
+      dom.chipBtns.forEach(function(c) { c.classList.remove('active'); });
+      chip.classList.add('active');
+      state.scope = chip.dataset.scope;
+
+      if (state.mode === 'encyclopedia') {
+        renderEncyclopedia();
+      } else {
+        startNewQuiz();
+      }
+    });
+
+    // Question Count & Timer Selects
+    dom.selectQCount.addEventListener('change', function() {
+      state.qTotal = parseInt(this.value, 10);
+      startNewQuiz();
+    });
+
+    dom.selectTimer.addEventListener('change', function() {
+      state.timerLimit = parseInt(this.value, 10);
+      startNewQuiz();
+    });
+
+    dom.btnRestartQuiz.addEventListener('click', function() {
+      audio.playClick();
+      startNewQuiz();
+    });
+
+    // Option Buttons Click (Mode 1 & Mode 3)
+    dom.optionsGrid.addEventListener('click', function(e) {
+      var btn = e.target.closest('.opt-btn');
+      if (!btn || btn.disabled) return;
+      handleAnswer(btn.dataset.iso, btn);
+    });
+
+    // Keyboard Shortcuts (1, 2, 3, 4)
+    window.addEventListener('keydown', function(e) {
+      if (dom.resultModal && !dom.resultModal.hidden) return;
+      if (dom.countryDetailModal && !dom.countryDetailModal.hidden) return;
+      if (state.mode === 'encyclopedia') return;
+
+      var num = parseInt(e.key, 10);
+      if (num >= 1 && num <= 4) {
+        var idx = num - 1;
+        if (state.mode === 'country-to-flag') {
+          var cards = dom.flagOptionsGrid.querySelectorAll('.flag-opt-card');
+          if (cards[idx]) cards[idx].click();
+        } else {
+          var btns = dom.optionsGrid.querySelectorAll('.opt-btn');
+          if (btns[idx]) btns[idx].click();
+        }
+      }
+    });
+
+    // Lifeline buttons
+    dom.btnLifeline5050.addEventListener('click', useLifeline5050);
+    dom.btnLifelineHint.addEventListener('click', useLifelineHint);
+
+    // Encyclopedia live search
+    dom.encySearchInput.addEventListener('input', function() {
+      renderEncyclopedia(this.value);
+    });
+
+    // Modal Closes
+    dom.btnCloseDetail.addEventListener('click', function() {
+      dom.countryDetailModal.hidden = true;
+    });
+    dom.btnCloseDetail2.addEventListener('click', function() {
+      dom.countryDetailModal.hidden = true;
+    });
+    dom.countryDetailModal.addEventListener('click', function(e) {
+      if (e.target === dom.countryDetailModal) dom.countryDetailModal.hidden = true;
+    });
+
+    dom.btnPlayAgain.addEventListener('click', function() {
+      dom.resultModal.hidden = true;
+      startNewQuiz();
+    });
+
+    dom.btnGoEncyclopedia.addEventListener('click', function() {
+      dom.resultModal.hidden = true;
+      switchMode('encyclopedia');
+    });
+  }
+
+  // ========================================================
+  // Boot
+  // ========================================================
   function init() {
-    mapWrap = el('mapWrap'); tray = el('tray'); msgEl = el('msg');
-    buildNameMap();
+    initDatabase();
+    cacheDom();
+    bindEvents();
 
-    tray.addEventListener('pointerdown', startDrag);
-    window.addEventListener('pointermove', moveDrag);
-    window.addEventListener('pointerup', endDrag);
-    window.addEventListener('pointercancel', endDrag);
+    var urlParams = new URLSearchParams(window.location.search);
+    var initMode = urlParams.get('mode');
+    var initScope = urlParams.get('scope');
 
-    el('contSeg').addEventListener('click', function (e) {
-      var b = e.target.closest('.f-segbtn');
-      if (!b) return;
-      continent = b.dataset.cont; stage = 0;
-      Array.prototype.forEach.call(document.querySelectorAll('.f-segbtn'), function (x) {
-        x.classList.toggle('active', x === b);
-      });
-      renderStages(); newGame();
-    });
-
-    var modeSeg = el('modeSeg');
-    if (modeSeg) {
-      modeSeg.addEventListener('click', function (e) {
-        var b = e.target.closest('.f-modebtn');
-        if (!b) return;
-        mode = b.dataset.mode;
-        newGame();
+    if (initScope && scopePools[initScope]) {
+      state.scope = initScope;
+      dom.chipBtns.forEach(function(c) {
+        c.classList.toggle('active', c.dataset.scope === initScope);
       });
     }
 
-    var stageSeg = el('stageSeg');
-    if (stageSeg) {
-      stageSeg.addEventListener('click', function (e) {
-        var b = e.target.closest('.f-stagebtn');
-        if (!b) return;
-        stage = parseInt(b.dataset.stage, 10);
-        renderStages(); newGame();
-      });
-    }
-
-    el('btnNew').addEventListener('click', newGame);
-    el('btnAgain').addEventListener('click', newGame);
-    el('btnCloseResult').addEventListener('click', function () { el('resultPanel').hidden = true; });
-    el('btnRules').addEventListener('click', function () { el('rulesPanel').hidden = false; });
-    el('btnCloseRules').addEventListener('click', function () { el('rulesPanel').hidden = true; });
-
-    renderStages();
-    loadMap().then(function () {
-      svg.addEventListener('click', mapClick);
-      newGame();
-      selftest();
-    });
-  }
-
-  /* ---------------- 자체 검증 ---------------- */
-  function selftest() {
-    if (!/[?&]selftest=1/.test(location.search)) return;
-    var log = [], ok = true, total = 0, noMap = 0, noCap = 0, stageSum = 0;
-
-    Object.keys(DATA).forEach(function (k) {
-      DATA[k].list.forEach(function (c) {
-        total++;
-        if (!svg.querySelector('path[id="' + c[0] + '"]')) { noMap++; log.push('no-map:' + c[0]); ok = false; }
-        if (!CAP[c[0]]) { noCap++; log.push('no-cap:' + c[0]); ok = false; }
-      });
-    });
-
-    var saveC = continent, saveS = stage;
-    Object.keys(DATA).forEach(function (k) {
-      continent = k;
-      var all = list().length, sum = 0, n = stageCount();
-      for (var i = 0; i < n; i++) { stage = i; sum += stageCountries().length; }
-      if (sum !== all) { ok = false; log.push('stage-sum:' + k); }
-      stageSum += sum;
-    });
-    continent = saveC; stage = saveS;
-
-    var imgs = 0, loaded = 0, done = false;
-    Object.keys(DATA).forEach(function (k) {
-      DATA[k].list.forEach(function (c) {
-        imgs++;
-        var im = new Image();
-        im.onload = function () { loaded++; check(); };
-        im.onerror = function () { log.push('no-flag:' + c[0]); ok = false; check(); };
-        im.src = 'flags/' + c[0] + '.svg';
-      });
-    });
-
-    mode = 'flags'; stage = 0; newGame();
-    var first = pending[0];
-    attemptFlag(first, first);
-    if (scores[0] + scores[1] !== 1) { ok = false; log.push('judge-flag'); }
-
-    mode = 'capitals'; newGame();
-    var q = quiz.queue[0];
-    if (!CAP[q]) { ok = false; log.push('quiz-data'); }
-    var before = scores[0] + scores[1];
-    answer(q, q);
-    if (scores[0] + scores[1] !== before + 1) { ok = false; log.push('judge-cap'); }
-
-    function check() {
-      if (done || loaded < imgs) return;
-      done = true;
-      document.body.setAttribute('data-selftest',
-        (ok ? 'PASS' : 'FAIL') + '|countries=' + total + '|noMap=' + noMap + '|noCap=' + noCap +
-        '|stageSum=' + stageSum + '|flags=' + loaded + '|' + log.join(','));
+    if (initMode && ['flag-to-country', 'country-to-flag', 'capital-quiz', 'encyclopedia'].indexOf(initMode) !== -1) {
+      switchMode(initMode);
+    } else {
+      startNewQuiz();
     }
   }
 
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
-  else init();
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
 })();
