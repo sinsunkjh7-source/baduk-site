@@ -1,0 +1,687 @@
+/* ========================================================
+   스톤 컬링 (Curling) 전용 스타일시트
+   ======================================================== */
+
+:root {
+  --bks-primary: #0284c7; /* Ice Sky Blue */
+  --bks-primary-dark: #0369a1;
+  --bks-danger: #e11d48;
+  --bks-bg: #f0f9ff;
+  --bks-card-bg: #ffffff;
+  --bks-card-shadow: 0 4px 16px -2px rgba(15, 23, 42, 0.08), 0 2px 6px -1px rgba(15, 23, 42, 0.04);
+  --bks-border: #e2e8f0;
+  --bks-text-muted: #64748b;
+  --team-red: #ef4444;
+  --team-yellow: #f59e0b;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans KR", sans-serif;
+  background: var(--bks-bg);
+  color: #0f172a;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.curling-container {
+  max-width: 1240px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 10px 16px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ========================================================
+   상단 스코어보드 헤더
+   ======================================================== */
+.curling-header-board {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 10px 18px;
+  box-shadow: var(--bks-card-shadow);
+  border: 1px solid var(--bks-border);
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.game-badge {
+  font-size: 17px;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.end-pill {
+  font-size: 13px;
+  font-weight: 700;
+  background: #e0f2fe;
+  color: #0369a1;
+  padding: 4px 12px;
+  border-radius: 20px;
+  border: 1px solid #bae6fd;
+}
+
+.mini-score-table {
+  border-collapse: collapse;
+  font-size: 12px;
+  text-align: center;
+}
+
+.mini-score-table th {
+  padding: 3px 10px;
+  font-weight: 700;
+  color: var(--bks-text-muted);
+  border-bottom: 1px solid var(--bks-border);
+}
+
+.mini-score-table td {
+  padding: 4px 10px;
+  font-weight: 700;
+}
+
+.team-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  vertical-align: middle;
+  margin-right: 4px;
+}
+
+.p1-dot { background: var(--team-red); }
+.p2-dot { background: var(--team-yellow); }
+
+.tot-col {
+  font-weight: 900 !important;
+  color: #0f172a;
+  background: #f8fafc;
+  border-left: 1px solid var(--bks-border);
+}
+
+/* ========================================================
+   메인 3열 아레나 그리드
+   ======================================================== */
+.curling-arena-grid {
+  display: grid;
+  grid-template-columns: 280px minmax(360px, 1fr) 280px;
+  gap: 18px;
+  align-items: start;
+  justify-content: center;
+  width: 100%;
+}
+
+.player-column {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* 대국자 카드 */
+.player-card {
+  background: var(--bks-card-bg);
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: var(--bks-card-shadow);
+  border: 2px solid transparent;
+  transition: all 0.2s ease;
+  text-align: center;
+  min-height: 290px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.player-card.active {
+  border-color: #0284c7;
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.2), var(--bks-card-shadow);
+}
+
+.player-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.player-badge {
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 12px;
+}
+
+.p1-badge {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.p2-badge {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+.player-score {
+  font-size: 16px;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.player-avatar-box {
+  display: flex;
+  justify-content: center;
+  margin: 8px 0;
+}
+
+.player-avatar-icon {
+  width: 66px;
+  height: 66px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 34px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+  border: 2px solid #e2e8f0;
+}
+
+.p1-avatar {
+  background: linear-gradient(135deg, #fee2e2 0%, #fca5a5 100%);
+  border-color: #f87171;
+}
+
+.p2-avatar {
+  background: linear-gradient(135deg, #fef3c7 0%, #fcd34d 100%);
+  border-color: #fbbf24;
+}
+
+.player-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 4px;
+}
+
+.turn-indicator-pill {
+  font-size: 12px;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: 10px;
+  background: #f1f5f9;
+  color: var(--bks-text-muted);
+  margin-top: 4px;
+}
+
+.player-card.active .turn-indicator-pill {
+  background: #e0f2fe;
+  color: #0369a1;
+}
+
+/* 남은 스톤 트레이 */
+.stones-tray-box {
+  background: #f8fafc;
+  border: 1px solid var(--bks-border);
+  border-radius: 10px;
+  padding: 8px 10px;
+  margin-top: 8px;
+  text-align: left;
+}
+
+.tray-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--bks-text-muted);
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.stones-icon-list {
+  display: flex;
+  gap: 6px;
+  min-height: 24px;
+}
+
+.stone-pip {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: inline-block;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.p1-pip {
+  background: radial-gradient(circle at 35% 35%, #f87171 0%, #dc2626 100%);
+  border: 1px solid #b91c1c;
+}
+
+.p2-pip {
+  background: radial-gradient(circle at 35% 35%, #fbbf24 0%, #d97706 100%);
+  border: 1px solid #b45309;
+}
+
+.stone-pip.used {
+  opacity: 0.2;
+}
+
+/* ========================================================
+   중앙 컬럼: 롱 컬링 시트 캔버스
+   ======================================================== */
+.center-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.rink-top-status-bar {
+  width: 100%;
+  max-width: 440px;
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 700;
+  text-align: center;
+  color: #0369a1;
+  border: 1px solid #bae6fd;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.rink-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  height: min(calc(100vh - 170px), 780px);
+  aspect-ratio: 400 / 900;
+  background: #f0f9ff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 16px 36px -6px rgba(15, 23, 42, 0.25), 0 4px 10px -2px rgba(15, 23, 42, 0.1);
+  border: 5px solid #0284c7;
+  user-select: none;
+  touch-action: none;
+}
+
+#rinkCanvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  cursor: grab;
+}
+
+#rinkCanvas:active {
+  cursor: grabbing;
+}
+
+/* 스위핑 안내 오버레이 */
+.sweeping-overlay {
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(4px);
+  color: #ffffff;
+  padding: 8px 16px;
+  border-radius: 20px;
+  pointer-events: none;
+  animation: pulseGlow 1.2s infinite alternate;
+  z-index: 10;
+}
+
+.sweep-banner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.sweep-icon {
+  font-size: 18px;
+  animation: sweepWiggle 0.4s infinite alternate;
+}
+
+@keyframes sweepWiggle {
+  from { transform: rotate(-15deg); }
+  to { transform: rotate(15deg); }
+}
+
+@keyframes pulseGlow {
+  from { box-shadow: 0 0 8px rgba(56, 189, 248, 0.4); }
+  to { box-shadow: 0 0 20px rgba(56, 189, 248, 0.9); }
+}
+
+/* ========================================================
+   우측 컬럼: 대국 메뉴 및 세부 설정
+   ======================================================== */
+.side-menu-card {
+  background: var(--bks-card-bg);
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: var(--bks-card-shadow);
+  border: 1px solid var(--bks-border);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.side-menu-header {
+  font-size: 14px;
+  font-weight: 800;
+  color: #475569;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid var(--bks-border);
+  padding-bottom: 8px;
+}
+
+.side-buttons-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 7px;
+}
+
+.act-btn {
+  background: #ffffff;
+  color: #1e293b;
+  border: 1px solid var(--bks-border);
+  border-radius: 10px;
+  padding: 9px 4px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  transition: all 0.15s ease;
+}
+
+.act-btn:hover {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+  transform: translateY(-1px);
+}
+
+.act-btn:active {
+  transform: translateY(0);
+}
+
+.act-btn .btn-icon {
+  font-size: 18px;
+  line-height: 1;
+}
+
+.act-btn .btn-text {
+  font-size: 12px;
+}
+
+.act-btn.primary {
+  background: var(--bks-primary);
+  color: #ffffff;
+  border-color: var(--bks-primary-dark);
+}
+
+.act-btn.primary:hover {
+  background: var(--bks-primary-dark);
+}
+
+.act-btn.danger {
+  background: #ffffff;
+  border-color: #fecdd3;
+  color: #e11d48;
+}
+
+.act-btn.danger:hover {
+  background: #fff1f2;
+  border-color: #fda4af;
+  color: #be123c;
+}
+
+.act-btn.full-col {
+  grid-column: span 3;
+  flex-direction: row;
+  gap: 8px;
+  padding: 8px 10px;
+  margin-top: 2px;
+}
+
+.act-btn.large {
+  padding: 11px 20px;
+  font-size: 14px;
+  flex-direction: row;
+  gap: 8px;
+}
+
+/* 세부 설정 */
+.settings-mini-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: #f8fafc;
+  border-radius: 10px;
+  padding: 10px 12px;
+  border: 1px solid var(--bks-border);
+}
+
+.setting-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #334155;
+  white-space: nowrap;
+  gap: 6px;
+}
+
+.setting-item select {
+  padding: 4px 6px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  font-size: 12px;
+  font-weight: 600;
+  color: #0f172a;
+  outline: none;
+  cursor: pointer;
+  max-width: 160px;
+  flex: 1;
+}
+
+/* 룰 접이식 */
+.rules-mini-accordion {
+  font-size: 13px;
+}
+
+.rules-summary {
+  font-weight: 800;
+  color: #0369a1;
+  cursor: pointer;
+  padding: 8px 6px;
+  border-radius: 6px;
+  background: #f0f9ff;
+  border: 1px solid #bae6fd;
+}
+
+.rules-content {
+  margin-top: 8px;
+  padding: 10px 12px;
+  background: #ffffff;
+  border: 1px solid var(--bks-border);
+  border-radius: 8px;
+  font-size: 12px;
+  color: #475569;
+  line-height: 1.5;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* 모바일 전용 액션 바 */
+.mobile-quick-actions {
+  display: none;
+  width: 100%;
+  max-width: 420px;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.mob-btn {
+  flex: 1;
+  padding: 9px 4px;
+  font-size: 12px;
+  font-weight: 700;
+  background: #ffffff;
+  border: 1px solid var(--bks-border);
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.mob-btn.primary {
+  background: var(--bks-primary);
+  color: #ffffff;
+}
+
+.mob-btn.highlight {
+  background: #e0f2fe;
+  border-color: #7dd3fc;
+  color: #0369a1;
+}
+
+.mob-btn.danger {
+  background: #fff1f2;
+  border-color: #fecdd3;
+  color: #e11d48;
+}
+
+/* ========================================================
+   모달 (End Result & Game Over)
+   ======================================================== */
+.modal-backdrop {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.modal-backdrop[hidden] {
+  display: none !important;
+}
+
+.modal-card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 28px 24px;
+  max-width: 420px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.3);
+  animation: modalPop 0.25s ease-out;
+}
+
+@keyframes modalPop {
+  from { opacity: 0; transform: scale(0.92); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.modal-icon {
+  font-size: 48px;
+  margin-bottom: 12px;
+}
+
+.modal-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 8px;
+}
+
+.modal-subtitle {
+  font-size: 14px;
+  color: #475569;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+/* ========================================================
+   반응형 모바일 미디어 쿼리
+   ======================================================== */
+@media (max-width: 900px) {
+  .curling-container {
+    padding: 8px 10px 20px;
+  }
+
+  .curling-header-board {
+    flex-direction: column;
+    gap: 8px;
+    padding: 8px 12px;
+  }
+
+  .curling-arena-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  /* Center rink first on mobile */
+  .center-col {
+    order: 1;
+  }
+
+  .left-col {
+    order: 2;
+  }
+
+  .right-col {
+    order: 3;
+  }
+
+  .rink-wrapper {
+    height: min(70vh, 580px);
+  }
+
+  .mobile-quick-actions {
+    display: flex;
+  }
+
+  .player-card {
+    min-height: auto;
+    padding: 12px;
+  }
+
+  .player-avatar-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 26px;
+  }
+}
