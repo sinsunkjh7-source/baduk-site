@@ -2966,6 +2966,18 @@
     });
   }
 
+  // Shared by editor actions defined outside initProblemEditor as well.
+  function pushProbEditSnapshot() {
+    var p = state.currentProblems[state.currentProblemIndex];
+    if (!p) return;
+    if (!Array.isArray(state.probEditHistory)) state.probEditHistory = [];
+    state.probEditHistory.push({
+      idx: state.currentProblemIndex,
+      problem: JSON.parse(JSON.stringify(p))
+    });
+    if (state.probEditHistory.length > 30) state.probEditHistory.shift();
+  }
+
   function initProblemEditor() {
     var btnToggle = document.getElementById('btnToggleProbEdit');
     var drawer = document.getElementById('probEditDrawer');
@@ -3028,18 +3040,7 @@
       });
     });
 
-        function pushProbEditSnapshot() {
-      var p = state.currentProblems[state.currentProblemIndex];
-      if (!p) return;
-      state.probEditHistory.push({
-        idx: state.currentProblemIndex,
-        data: p.data || '',
-        answer1: p.answer1 || '',
-        question: p.question || ''
-      });
-      if (state.probEditHistory.length > 30) state.probEditHistory.shift();
-    }
-
+    
     var btnUndoProbAct = document.getElementById('btnPedUndoProblemAction');
     if (btnUndoProbAct) {
       btnUndoProbAct.addEventListener('click', function () {
@@ -3053,9 +3054,15 @@
         }
         var p = state.currentProblems[state.currentProblemIndex];
         if (p) {
-          p.data = last.data;
-          p.answer1 = last.answer1;
-          p.question = last.question;
+          if (last.problem) {
+            // Restore every independent answer branch and the problem metadata.
+            Object.keys(p).forEach(function (key) { delete p[key]; });
+            Object.keys(last.problem).forEach(function (key) { p[key] = last.problem[key]; });
+          } else {
+            p.data = last.data;
+            p.answer1 = last.answer1;
+            p.question = last.question;
+          }
           saveCustomBookState('직전 편집 1수 취소됨');
           loadProblem(state.currentProblemIndex);
           showToast('직전 편집 동작이 1단계 취소되었습니다.');
