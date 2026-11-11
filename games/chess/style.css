@@ -328,11 +328,14 @@ body {
 .player-avatar-icon.white-icon {
   background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 100%);
   border: 1px solid #cbd5e1;
+  color: #1e293b;
 }
 
 .player-avatar-icon.black-icon {
   background: linear-gradient(135deg, #334155 0%, #0f172a 100%);
   border: 1px solid #475569;
+  color: #ffffff;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
 }
 
 .player-name {
