@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>초성 퀴즈 대모험 — JH 바둑스쿨 에듀펀</title>
+  <meta name="description" content="바둑 용어부터 속담·사자성어·동물·상식까지! 혼자 풀기도, 교실 팀 대항전으로도 즐기는 두뇌 초성 퀴즈">
+  <link rel="stylesheet" href="/unified-nav.css?v=20261103-nav-v11">
+  <link rel="stylesheet" href="style.css?v=20261112-v1">
+  <script src="/unified-nav.js?v=20261103-nav-v11" defer></script>
+</head>
+<body data-bks-page="chosung">
+  <main class="cs-wrap">
+    <!-- Top Header & Controls -->
+    <header class="cs-header">
+      <div class="cs-title-group">
+        <span class="cs-badge">🔤 두뇌 퍼즐</span>
+        <h1 class="cs-title">초성 퀴즈 대모험</h1>
+      </div>
+
+      <div class="cs-controls-bar">
+        <div class="cs-mode-tabs" role="tablist" aria-label="게임 모드 선택">
+          <button type="button" class="cs-mode-btn active" id="btnModeSolo" data-mode="solo">🎯 혼자 도전</button>
+          <button type="button" class="cs-mode-btn" id="btnModeTeam" data-mode="team">🏫 교실 2팀 대결</button>
+        </div>
+
+        <select id="selCategory" class="cs-select" aria-label="주제 선택">
+          <option value="all" selected>🌈 전체 주제 랜덤</option>
+          <option value="baduk">⚫ 바둑 용어</option>
+          <option value="proverb">📜 속담 · 사자성어</option>
+          <option value="animal">🐾 동물 · 자연</option>
+          <option value="food">🍓 음식 · 간식</option>
+          <option value="korea">🏫 우리나라 · 상식</option>
+        </select>
+
+        <button type="button" id="btnSound" class="cs-icon-btn" title="효과음 켜기/끄기" aria-label="효과음 전환">🔊</button>
+        <button type="button" id="btnRestart" class="cs-restart-btn">🔄 새 세트</button>
+      </div>
+    </header>
+
+    <!-- Status / Score Bar -->
+    <section class="cs-status-strip" aria-label="진행 상황">
+      <div class="cs-stat-pill">
+        <span class="cs-stat-label">문제</span>
+        <strong id="lblProgress">1 / 10</strong>
+      </div>
+      <div class="cs-stat-pill" id="pillSoloScore">
+        <span class="cs-stat-label">점수</span>
+        <strong id="lblScore">0점</strong>
+      </div>
+      <div class="cs-stat-pill" id="pillCombo">
+        <span class="cs-stat-label">연속 정답</span>
+        <strong id="lblCombo">0 콤보</strong>
+      </div>
+      <div class="cs-stat-pill cs-best-pill" id="pillBest">
+        <span class="cs-stat-label">최고 기록</span>
+        <strong id="lblBest">0점</strong>
+      </div>
+    </section>
+
+    <!-- Classroom 2-Team Scoreboard (Hidden in Solo Mode) -->
+    <section class="cs-team-board" id="teamBoard" hidden aria-label="팀 점수판">
+      <div class="cs-team-card blue">
+        <span class="cs-team-name">🔵 청팀</span>
+        <strong class="cs-team-score" id="scoreBlue">0점</strong>
+      </div>
+      <div class="cs-team-vs">VS</div>
+      <div class="cs-team-card white">
+        <span class="cs-team-name">⚪ 백팀</span>
+        <strong class="cs-team-score" id="scoreWhite">0점</strong>
+      </div>
+    </section>
+
+    <!-- Main Quiz Stage -->
+    <section class="cs-stage" id="quizStage">
+      <div class="cs-stage-top">
+        <span class="cs-cat-tag" id="lblCatTag">⚫ 바둑 용어</span>
+        <span class="cs-length-tag" id="lblLengthTag">2글자</span>
+      </div>
+
+      <!-- Big Chosung Tiles -->
+      <div class="cs-tiles-wrap" id="chosungTiles" aria-live="polite"></div>
+
+      <!-- Feedback / Hint / Fact Banner -->
+      <div class="cs-feedback" id="feedbackBox" hidden></div>
+
+      <div class="cs-hint-box" id="hintBox" hidden>
+        <span class="cs-hint-label">💡 힌트</span>
+        <p class="cs-hint-text" id="hintText"></p>
+      </div>
+
+      <div class="cs-fact-box" id="factBox" hidden>
+        <span class="cs-fact-label">📖 알고 가기!</span>
+        <p class="cs-fact-text" id="factText"></p>
+      </div>
+
+      <!-- Solo Answer Form -->
+      <form class="cs-answer-form" id="answerForm" autocomplete="off">
+        <input
+          type="text"
+          id="answerInput"
+          class="cs-input"
+          placeholder="정답을 입력하세요 (띄어쓰기 없이도 OK)"
+          maxlength="30"
+          aria-label="정답 입력"
+        >
+        <button type="submit" id="btnSubmit" class="cs-submit-btn">정답 확인</button>
+      </form>
+
+      <!-- Action / Hint Buttons (Solo) -->
+      <div class="cs-actions-row" id="soloActions">
+        <button type="button" id="btnHintMeaning" class="cs-action-btn">💡 뜻 힌트 (-2점)</button>
+        <button type="button" id="btnHintLetter" class="cs-action-btn">🔤 글자 1개 열기 (-3점)</button>
+        <button type="button" id="btnSkip" class="cs-action-btn warn">⏭️ 정답 보고 넘기기</button>
+        <button type="button" id="btnNextSolo" class="cs-action-btn next" hidden>➡️ 다음 문제</button>
+      </div>
+
+      <!-- Classroom Team Controls (Team Mode) -->
+      <div class="cs-team-controls" id="teamControls" hidden>
+        <div class="cs-team-award-row">
+          <button type="button" id="btnAwardBlue" class="cs-award-btn blue">🔵 청팀 정답! (+10점)</button>
+          <button type="button" id="btnAwardWhite" class="cs-award-btn white">⚪ 백팀 정답! (+10점)</button>
+        </div>
+        <div class="cs-actions-row">
+          <button type="button" id="btnTeamHint" class="cs-action-btn">💡 뜻 힌트</button>
+          <button type="button" id="btnTeamLetter" class="cs-action-btn">🔤 글자 1개 열기</button>
+          <button type="button" id="btnTeamReveal" class="cs-action-btn warn">👀 정답 공개</button>
+          <button type="button" id="btnTeamNext" class="cs-action-btn next">➡️ 다음 문제</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- End-of-Set Result & Review Card -->
+    <section class="cs-result-card" id="resultCard" hidden aria-label="퀴즈 결과">
+      <div class="cs-result-stars" id="resStars">★★★</div>
+      <h2 class="cs-result-title" id="resTitle">대단해요! 퀴즈 완료!</h2>
+      <p class="cs-result-sub" id="resSub">총 10문제 중 8문제를 맞혔어요.</p>
+
+      <div class="cs-result-stats">
+        <div class="cs-res-box">
+          <span>최종 점수</span>
+          <strong id="resScore">0점</strong>
+        </div>
+        <div class="cs-res-box">
+          <span>정답 수</span>
+          <strong id="resCorrect">0 / 10</strong>
+        </div>
+        <div class="cs-res-box">
+          <span>최고 콤보</span>
+          <strong id="resMaxCombo">0</strong>
+        </div>
+      </div>
+
+      <div class="cs-review-section">
+        <h3>📝 오늘 만난 단어 복습</h3>
+        <ul class="cs-review-list" id="reviewList"></ul>
+      </div>
+
+      <div class="cs-result-actions">
+        <button type="button" id="btnPlayAgain" class="cs-submit-btn">🔄 새 10문제 도전하기</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="questions.js?v=20261112-v1"></script>
+  <script src="game.js?v=20261112-v1"></script>
+</body>
+</html>
