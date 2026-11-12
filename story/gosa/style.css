@@ -52,6 +52,7 @@ body {
   font-weight: 800;
   padding: 4px 10px;
   border-radius: 999px;
+  font-variant-numeric: tabular-nums;
 }
 
 .pt-title {
@@ -73,35 +74,26 @@ body {
   color: var(--pt-muted);
 }
 
-/* True 3D Multi-Layer Stage */
+/* Steady Multi-Layer Diorama Stage */
 .pt-stage {
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 9;
-  max-height: 490px;
+  max-height: 500px;
   border-radius: 22px;
   overflow: hidden;
   background: #231912;
   border: 6px solid #3f2b1d;
   box-shadow:
-    0 22px 46px rgba(43, 33, 24, 0.25),
-    inset 0 0 40px rgba(0, 0, 0, 0.35);
+    0 20px 44px rgba(43, 33, 24, 0.24),
+    inset 0 0 40px rgba(0, 0, 0, 0.32);
   margin-bottom: 18px;
-  perspective: 820px;
-}
-
-.pt-scene-3d {
-  position: absolute;
-  inset: 0;
-  transform-style: preserve-3d;
-  will-change: transform;
 }
 
 .pt-depth-layer {
   position: absolute;
-  inset: -6%;
+  inset: 0;
   pointer-events: none;
-  will-change: transform;
 }
 
 .layer-img {
@@ -111,44 +103,53 @@ body {
   display: block;
 }
 
-/* Physical Paper Layer Shadows */
+/* Real Paper Cutout Shadows Between Steady Layers */
 .layer-mountains {
   filter: drop-shadow(0 12px 18px rgba(18, 22, 16, 0.45));
+  will-change: transform;
 }
 
 .layer-village {
   filter: drop-shadow(0 14px 22px rgba(20, 14, 10, 0.55));
+  will-change: transform;
 }
 
 .layer-pines {
   filter: drop-shadow(0 18px 26px rgba(10, 14, 10, 0.72));
+  animation: pineBreeze 6s ease-in-out infinite alternate;
+  transform-origin: center center;
 }
 
-/* Drifting Mist Behind Mountains */
+@keyframes pineBreeze {
+  0% { transform: scale(1.02) translateX(-3px) rotate(-0.25deg); }
+  100% { transform: scale(1.02) translateX(3px) rotate(0.25deg); }
+}
+
+/* Gentle Drifting Mist Behind Mountains */
 .mist-band {
   position: absolute;
-  left: -25%;
-  width: 150%;
+  left: -20%;
+  width: 140%;
   height: 36%;
   bottom: 24%;
-  background: radial-gradient(ellipse at 35% 60%, rgba(255, 250, 238, 0.48), transparent 62%),
-              radial-gradient(ellipse at 72% 55%, rgba(255, 246, 224, 0.38), transparent 58%);
-  animation: mistBandDrift 14s ease-in-out infinite alternate;
+  background: radial-gradient(ellipse at 35% 60%, rgba(255, 250, 238, 0.44), transparent 62%),
+              radial-gradient(ellipse at 72% 55%, rgba(255, 246, 224, 0.34), transparent 58%);
+  animation: mistBandDrift 16s ease-in-out infinite alternate;
 }
 
 .mist-band.band-2 {
   bottom: 14%;
-  opacity: 0.75;
-  animation-duration: 20s;
+  opacity: 0.72;
+  animation-duration: 22s;
   animation-direction: alternate-reverse;
 }
 
 @keyframes mistBandDrift {
-  0% { transform: translateX(-6%) translateY(4px); }
-  100% { transform: translateX(6%) translateY(-6px); }
+  0% { transform: translateX(-5%); }
+  100% { transform: translateX(5%); }
 }
 
-/* Floating Golden Motes / Cherry Blossoms */
+/* Floating Golden Motes / Finale Cherry Blossoms */
 .layer-particles {
   overflow: hidden;
 }
@@ -158,8 +159,8 @@ body {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: rgba(254, 240, 138, 0.88);
-  box-shadow: 0 0 10px rgba(250, 204, 21, 0.85);
+  background: rgba(254, 240, 138, 0.85);
+  box-shadow: 0 0 10px rgba(250, 204, 21, 0.8);
   animation: floatMote 8.5s ease-in-out infinite;
 }
 
@@ -184,30 +185,30 @@ body {
   0% { transform: translate(0, 0) scale(0.8) rotate(0deg); opacity: 0; }
   20% { opacity: 0.95; }
   80% { opacity: 0.85; }
-  100% { transform: translate(28px, -115px) scale(1.15) rotate(130deg); opacity: 0; }
+  100% { transform: translate(24px, -110px) scale(1.12) rotate(120deg); opacity: 0; }
 }
 
-/* Physical Theater Curtains */
+/* Theater Curtains */
 .curtain-left,
 .curtain-right {
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 28px;
+  width: 24px;
   background: linear-gradient(90deg, #691e0f 0%, #8c2d19 100%);
-  box-shadow: 6px 0 18px rgba(0, 0, 0, 0.45);
+  box-shadow: 5px 0 16px rgba(0, 0, 0, 0.45);
 }
 
 .curtain-left {
   left: 0;
-  border-bottom-right-radius: 24px;
+  border-bottom-right-radius: 20px;
 }
 
 .curtain-right {
   right: 0;
   background: linear-gradient(270deg, #691e0f 0%, #8c2d19 100%);
-  border-bottom-left-radius: 24px;
-  box-shadow: -6px 0 18px rgba(0, 0, 0, 0.45);
+  border-bottom-left-radius: 20px;
+  box-shadow: -5px 0 16px rgba(0, 0, 0, 0.45);
 }
 
 .stage-valance {
@@ -215,109 +216,109 @@ body {
   top: 0;
   left: 0;
   right: 0;
-  height: 18px;
+  height: 16px;
   background: #5c190c;
-  box-shadow: 0 5px 14px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
 }
 
-/* Stage Caption */
-.stage-caption {
+/* Top-left Chapter Pill */
+.stage-chapter {
   position: absolute;
-  top: 26px;
-  left: 44px;
+  top: 24px;
+  left: 36px;
   z-index: 12;
-  background: rgba(255, 250, 240, 0.92);
-  border: 1.5px solid #d6c5ab;
-  border-radius: 14px;
-  padding: 9px 15px;
-  box-shadow: 0 8px 20px rgba(24, 18, 12, 0.28);
-}
-
-.stage-kicker {
-  display: block;
-  font-size: 0.75rem;
+  background: rgba(43, 33, 24, 0.84);
+  color: #fef3c7;
+  font-size: 0.8rem;
   font-weight: 800;
-  color: var(--pt-accent);
-  margin-bottom: 2px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(251, 191, 36, 0.45);
 }
 
-.stage-headline {
+/* Shorts Subtitle Overlay */
+.shorts-subtitle-wrap {
+  position: absolute;
+  left: 38px;
+  right: 38px;
+  bottom: 52px;
+  z-index: 12;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.shorts-subtitle {
   margin: 0;
-  font-size: 1.05rem;
-  font-weight: 900;
-  color: #2b2118;
+  background: rgba(24, 18, 12, 0.84);
+  color: #fffdf8;
+  font-size: 1.04rem;
+  font-weight: 700;
+  line-height: 1.5;
+  padding: 10px 18px;
+  border-radius: 14px;
+  text-align: center;
+  max-width: 720px;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.38);
+  border: 1px solid rgba(255, 255, 255, 0.16);
 }
 
-/* Story Card */
+/* Shorts Bottom Controls & Progress Bar */
+.shorts-controls {
+  position: absolute;
+  left: 28px;
+  right: 28px;
+  bottom: 12px;
+  z-index: 14;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.shorts-ctrl-btn {
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(24, 18, 12, 0.82);
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 800;
+  padding: 5px 11px;
+  border-radius: 999px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.shorts-ctrl-btn:hover {
+  background: rgba(43, 33, 24, 0.95);
+}
+
+.shorts-progress-track {
+  flex: 1;
+  height: 7px;
+  background: rgba(255, 255, 255, 0.28);
+  border-radius: 999px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.shorts-progress-fill {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, #f59e0b, #fbbf24);
+  border-radius: 999px;
+}
+
+/* Study Card Below */
 .pt-story-card {
   background: #fffdf8;
   border: 1px solid #e2d6c1;
   border-radius: 20px;
-  padding: 22px 24px;
+  padding: 20px 22px;
   box-shadow: 0 8px 24px rgba(43, 33, 24, 0.08);
 }
 
-.pt-story-body {
-  margin: 0 0 18px;
-  font-size: 1.06rem;
-  line-height: 1.72;
-  color: #332c24;
-}
-
-.pt-interactive-box {
-  background: #fef7e8;
-  border: 1.5px dashed #d97706;
-  border-radius: 14px;
-  padding: 16px;
-  text-align: center;
-  margin-bottom: 18px;
-}
-
-.pt-interactive-box[hidden],
-.pt-study-box[hidden],
-.quiz-result[hidden] {
-  display: none;
-}
-
-.pt-shovel-btn {
-  border: 0;
-  background: #d97706;
-  color: #fff;
-  font-size: 1.02rem;
-  font-weight: 800;
-  padding: 12px 24px;
-  border-radius: 12px;
-  cursor: pointer;
-  box-shadow: 0 4px 0 #b45309;
-  transition: transform 0.1s, background 0.15s;
-}
-
-.pt-shovel-btn:hover:not(:disabled) {
-  background: #b45309;
-}
-
-.pt-shovel-btn:active:not(:disabled) {
-  transform: translateY(2px);
-}
-
-.pt-shovel-btn:disabled {
-  background: #16a34a;
-  box-shadow: 0 4px 0 #15803d;
-  cursor: default;
-}
-
-.pt-shovel-hint {
-  margin: 10px 0 0;
-  font-size: 0.9rem;
-  color: #78350f;
-  font-weight: 600;
-}
-
-/* Study Box (Act 3) */
 .pt-study-box {
   display: grid;
   gap: 14px;
-  margin-bottom: 18px;
 }
 
 .pt-hanja-grid {
@@ -406,69 +407,33 @@ body {
   color: #166534;
 }
 
-/* Navigation Row */
-.pt-nav-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding-top: 8px;
-  border-top: 1px solid #efe6d5;
-}
-
-.pt-nav-btn {
-  border: 1px solid #d6c5ab;
-  background: #fff;
-  color: #332c24;
-  font-size: 0.94rem;
-  font-weight: 800;
-  padding: 10px 18px;
-  border-radius: 11px;
-  cursor: pointer;
-}
-
-.pt-nav-btn.primary {
-  background: var(--pt-green);
-  border-color: var(--pt-green);
-  color: #fff;
-}
-
-.pt-nav-btn:disabled {
-  opacity: 0.42;
-  cursor: not-allowed;
-}
-
-.pt-dots {
-  display: flex;
-  gap: 7px;
-}
-
-.pt-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: #dfd2bc;
-}
-
-.pt-dot.active {
-  background: var(--pt-accent);
-  width: 24px;
-  border-radius: 999px;
+.quiz-result[hidden] {
+  display: none;
 }
 
 @media (max-width: 640px) {
   .curtain-left,
   .curtain-right {
-    width: 18px;
+    width: 14px;
   }
-  .stage-caption {
-    left: 26px;
-    right: 26px;
+  .stage-chapter {
     top: 20px;
-    padding: 7px 11px;
+    left: 20px;
+    font-size: 0.72rem;
   }
-  .stage-headline {
-    font-size: 0.94rem;
+  .shorts-subtitle-wrap {
+    left: 20px;
+    right: 20px;
+    bottom: 44px;
+  }
+  .shorts-subtitle {
+    font-size: 0.84rem;
+    padding: 7px 12px;
+  }
+  .shorts-controls {
+    left: 18px;
+    right: 18px;
+    bottom: 8px;
   }
   .pt-hanja-grid {
     grid-template-columns: repeat(2, 1fr);

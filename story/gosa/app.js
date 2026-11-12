@@ -1,176 +1,141 @@
 /**
- * 3D 다층 종이 극장 (Multi-Layer Paper Theater) — 우공이산 컨트롤러
- * 6개의 독립된 한지 레이어가 서로 다른 깊이와 속도로 엇갈리며 입체적으로 움직입니다.
+ * 종이 극장 쇼츠 (24초 연속 재생) — 우공이산 컨트롤러
+ * 무대 전체를 흔들지 않고, 이야기 흐름에 따라 필요한 요소(안개·소나무 바람·우공 삽질·산 이동·꽃잎)만 자연스럽게 움직입니다.
  */
 (function () {
   'use strict';
 
-  var ACTS = [
+  var DURATION = 24.0; // seconds
+
+  var BEATS = [
     {
-      kicker: '제1막 · 거대한 벽',
-      headline: '집 앞을 가로막은 두 개의 큰 산',
-      body: '옛날 중국에 아흔 살이 된 ‘우공’ 할아버지가 살았어요. 집 바로 앞에 태행산과 왕옥산이라는 너무 큰 산 두 개가 가로막고 있어서, 어디를 가든 멀리 돌아가야만 했지요. 우공은 가족들과 함께 삽을 들고 산을 옮기기로 결심했답니다!'
+      start: 0,
+      end: 6,
+      chapter: '제1장 · 거대한 산',
+      subtitle: '옛날 아흔 살 우공 할아버지 집 앞에는 너무 큰 두 산이 가로막고 있었어요.'
     },
     {
-      kicker: '제2막 · 매일 한 삽씩',
-      headline: '포기하지 않고 꾸준히 흙을 나르다',
-      body: '이웃 사람이 “아흔 살에 어떻게 그 큰 산을 옮기나요?” 하고 웃었지만, 우공은 말했어요. “내가 못 끝내면 자식이, 자식이 못 끝내면 손자가 계속할 걸세. 산은 더 커지지 않으니 언젠가는 반드시 평지가 될 걸세!”'
+      start: 6,
+      end: 12,
+      chapter: '제2장 · 매일 한 삽씩',
+      subtitle: '“내가 못 끝내면 자식이, 또 손자가 계속 옮기면 언젠간 평지가 될 걸세!”'
     },
     {
-      kicker: '제3막 · 하늘도 감동한 끈기',
-      headline: '작은 노력이 모여 큰 산을 움직이다',
-      body: '우공의 지치지 않는 정성에 하늘의 신마저 크게 감동해, 결국 산을 다른 곳으로 옮겨 주었어요. 아무리 크고 어려워 보이는 일도 포기하지 않고 꾸준히 노력하면 반드시 이루어 낸다는 멋진 교훈이 담겨 있답니다!'
+      start: 12,
+      end: 18,
+      chapter: '제3장 · 움직이는 산',
+      subtitle: '우공은 하루도 쉬지 않고 묵묵히 흙을 날랐고, 산은 조금씩 낮아지기 시작했어요.'
+    },
+    {
+      start: 18,
+      end: 24.1,
+      chapter: '제4장 · 하늘의 감동',
+      subtitle: '우공의 지치지 않는 끈기에 하늘도 감동해 산을 옮겨 주었답니다. 꾸준함이 산도 움직여요!'
     }
   ];
 
-  var paperStage = document.getElementById('paperStage');
-  var scene3d = document.getElementById('scene3d');
-  var layerSky = document.getElementById('layerSky');
-  var layerMist = document.getElementById('layerMist');
   var layerMountains = document.getElementById('layerMountains');
   var layerVillage = document.getElementById('layerVillage');
   var particlesLayer = document.getElementById('particlesLayer');
-  var layerPines = document.getElementById('layerPines');
-  var layerCurtains = document.getElementById('layerCurtains');
 
-  var actPill = document.getElementById('actPill');
-  var stageKicker = document.getElementById('stageKicker');
-  var stageHeadline = document.getElementById('stageHeadline');
-  var storyBody = document.getElementById('storyBody');
+  var timePill = document.getElementById('timePill');
+  var stageChapter = document.getElementById('stageChapter');
+  var shortsSubtitle = document.getElementById('shortsSubtitle');
+  var btnPlayPause = document.getElementById('btnPlayPause');
+  var btnReplay = document.getElementById('btnReplay');
+  var progressTrack = document.getElementById('progressTrack');
+  var progressFill = document.getElementById('progressFill');
 
-  var shovelBox = document.getElementById('shovelBox');
-  var btnShovel = document.getElementById('btnShovel');
-  var shovelCountEl = document.getElementById('shovelCount');
-  var shovelHint = document.getElementById('shovelHint');
-
-  var studyBox = document.getElementById('studyBox');
   var quizOpts = document.querySelectorAll('.quiz-opt');
   var quizResult = document.getElementById('quizResult');
 
-  var btnPrev = document.getElementById('btnPrev');
-  var btnNext = document.getElementById('btnNext');
-  var dots = document.querySelectorAll('#actDots .pt-dot');
+  var elapsed = 0;
+  var playing = true;
+  var lastTime = performance.now();
 
-  var currentAct = 0;
-  var shovels = 0;
-  var mountainDrop = 0;
-  var targetMountainDrop = 0;
-  var digPulse = 0;
-
-  var pointerX = 0;
-  var pointerY = 0;
-  var smoothX = 0;
-  var smoothY = 0;
-  var startTime = performance.now();
-
-  function animateStage(now) {
-    var t = (now - startTime) * 0.001;
-
-    // Smooth pointer + mountain drop lerp
-    smoothX += (pointerX - smoothX) * 0.08;
-    smoothY += (pointerY - smoothY) * 0.08;
-    mountainDrop += (targetMountainDrop - mountainDrop) * 0.07;
-    digPulse *= 0.9;
-
-    // Autonomous continuous 3D camera figure-8 sway
-    var camX = Math.sin(t * 0.75) * 1.0 + smoothX * 1.8;
-    var camY = Math.cos(t * 0.55) * 0.6 + smoothY * 1.3;
-
-    // Tilt the whole 3D stage slightly in perspective
-    var rotY = (camX * 2.2).toFixed(2);
-    var rotX = (-camY * 1.6).toFixed(2);
-    scene3d.style.transform = 'rotateY(' + rotY + 'deg) rotateX(' + rotX + 'deg)';
-
-    // Each layer moves at a dramatically different speed & Z-depth!
-    // Layer 1: Sky (furthest, slowest)
-    layerSky.style.transform =
-      'translate3d(' + (-camX * 4).toFixed(1) + 'px, ' + (-camY * 2).toFixed(1) + 'px, -110px) scale(1.16)';
-
-    // Layer 2: Mist behind mountains
-    layerMist.style.transform =
-      'translate3d(' + (-camX * 8).toFixed(1) + 'px, ' + (-camY * 4).toFixed(1) + 'px, -70px) scale(1.12)';
-
-    // Layer 3: Giant Twin Mountains (drops down as Ugong shovels!)
-    var mtnY = (-camY * 6 + mountainDrop).toFixed(1);
-    layerMountains.style.transform =
-      'translate3d(' + (-camX * 13).toFixed(1) + 'px, ' + mtnY + 'px, -35px) scale(1.08)';
-
-    // Layer 4: Village & Ugong foreground (moves faster + slight dig bob)
-    var digBob = Math.sin(digPulse * Math.PI * 3) * digPulse * 6;
-    layerVillage.style.transform =
-      'translate3d(' + (-camX * 22).toFixed(1) + 'px, ' + (-camY * 10 + digBob).toFixed(1) + 'px, 20px) scale(1.03)';
-
-    // Layer 5: Floating particles
-    particlesLayer.style.transform =
-      'translate3d(' + (-camX * 28).toFixed(1) + 'px, ' + (-camY * 14).toFixed(1) + 'px, 45px)';
-
-    // Layer 6: Closest pine branches & rocks (sways gently in breeze + fastest parallax!)
-    var breeze = Math.sin(t * 1.1) * 3.5;
-    layerPines.style.transform =
-      'translate3d(' + (-camX * 34 + breeze).toFixed(1) + 'px, ' + (-camY * 16).toFixed(1) + 'px, 75px) scale(1.04)';
-
-    // Layer 7: Theater curtains frame
-    layerCurtains.style.transform =
-      'translate3d(' + (-camX * 18).toFixed(1) + 'px, ' + (-camY * 8).toFixed(1) + 'px, 95px)';
-
-    requestAnimationFrame(animateStage);
+  function formatSec(sec) {
+    var s = Math.min(Math.floor(sec), Math.floor(DURATION));
+    return '00:' + (s < 10 ? '0' + s : String(s));
   }
 
-  function renderAct() {
-    var act = ACTS[currentAct];
-    actPill.textContent = '제' + (currentAct + 1) + '막 / ' + ACTS.length + '막';
-    stageKicker.textContent = act.kicker;
-    stageHeadline.textContent = act.headline;
-    storyBody.textContent = act.body;
+  function updateVisuals(t) {
+    // 1. Update progress bar & time pill
+    var pct = Math.min(100, Math.max(0, (t / DURATION) * 100));
+    progressFill.style.width = pct.toFixed(2) + '%';
+    progressTrack.setAttribute('aria-valuenow', String(Math.round(pct)));
+    timePill.textContent = formatSec(t) + ' / ' + formatSec(DURATION);
 
-    if (currentAct === 0) {
-      targetMountainDrop = 0;
-    } else if (currentAct === 1) {
-      targetMountainDrop = shovels * 48;
-    } else {
-      targetMountainDrop = 165; // Mountain moved aside, revealing bright sunrise sky!
+    // 2. Active subtitle beat
+    for (var i = 0; i < BEATS.length; i++) {
+      if (t >= BEATS[i].start && t < BEATS[i].end) {
+        stageChapter.textContent = BEATS[i].chapter;
+        shortsSubtitle.textContent = BEATS[i].subtitle;
+        break;
+      }
     }
 
-    particlesLayer.classList.toggle('blossoms', currentAct === 2);
-    shovelBox.hidden = currentAct !== 1;
-    studyBox.hidden = currentAct !== 2;
+    // 3. Only move the elements that should move:
+    //    - Mountains smoothly sink between 6s and 20s (revealing sunrise sky behind)
+    var mtnProgress = 0;
+    if (t > 6) {
+      mtnProgress = Math.min(1, (t - 6) / 14);
+    }
+    // Ease in-out
+    var eased = mtnProgress * mtnProgress * (3 - 2 * mtnProgress);
+    var mtnDropPx = eased * 175;
+    layerMountains.style.transform = 'translateY(' + mtnDropPx.toFixed(1) + 'px)';
 
-    btnPrev.disabled = currentAct === 0;
-    btnNext.disabled = currentAct === ACTS.length - 1;
-    btnNext.textContent = currentAct === ACTS.length - 1 ? '이야기 끝 🎉' : '다음 장면 ▶';
+    //    - Ugong & village foreground subtly bobs ONLY during digging phase (6s ~ 18s)
+    var digBob = 0;
+    if (t >= 6 && t <= 18 && playing) {
+      digBob = Math.abs(Math.sin(t * 3.8)) * -3.5;
+    }
+    layerVillage.style.transform = 'translateY(' + digBob.toFixed(2) + 'px)';
 
-    dots.forEach(function (dot, idx) {
-      dot.classList.toggle('active', idx === currentAct);
-    });
+    //    - Blossoms appear in the finale (18s+)
+    particlesLayer.classList.toggle('blossoms', t >= 18);
   }
 
-  paperStage.addEventListener('mousemove', function (e) {
-    var rect = paperStage.getBoundingClientRect();
-    pointerX = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
-    pointerY = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
-  });
+  function tick(now) {
+    var dt = Math.min(0.1, (now - lastTime) * 0.001);
+    lastTime = now;
 
-  paperStage.addEventListener('mouseleave', function () {
-    pointerX = 0;
-    pointerY = 0;
-  });
-
-  btnShovel.addEventListener('click', function () {
-    if (shovels >= 3) return;
-    shovels += 1;
-    digPulse = 1.0;
-    shovelCountEl.textContent = String(shovels);
-    targetMountainDrop = shovels * 48;
-
-    if (shovels === 1) {
-      shovelHint.textContent = '좋아요! 뒤쪽의 거대한 산 레이어가 조금 낮아졌어요! (2번 더!)';
-    } else if (shovels === 2) {
-      shovelHint.textContent = '우와! 산 너머로 따스한 아침 해가 보이기 시작했어요! (1번 더!)';
-    } else {
-      btnShovel.disabled = true;
-      btnShovel.textContent = '✅ 산을 옮겼어요! (3 / 3)';
-      shovelHint.textContent = '대단해요! 이제 ‘다음 장면’을 눌러 활짝 열린 길을 확인해 보세요!';
+    if (playing) {
+      elapsed += dt;
+      if (elapsed >= DURATION) {
+        elapsed = DURATION;
+        playing = false;
+        btnPlayPause.textContent = '▶️ 다시 재생';
+      }
     }
+
+    updateVisuals(elapsed);
+    requestAnimationFrame(tick);
+  }
+
+  btnPlayPause.addEventListener('click', function () {
+    if (elapsed >= DURATION) {
+      elapsed = 0;
+      playing = true;
+      btnPlayPause.textContent = '⏸️ 일시정지';
+      return;
+    }
+    playing = !playing;
+    btnPlayPause.textContent = playing ? '⏸️ 일시정지' : '▶️ 재생';
+  });
+
+  btnReplay.addEventListener('click', function () {
+    elapsed = 0;
+    playing = true;
+    btnPlayPause.textContent = '⏸️ 일시정지';
+    updateVisuals(0);
+  });
+
+  progressTrack.addEventListener('click', function (e) {
+    var rect = progressTrack.getBoundingClientRect();
+    var ratio = Math.min(1, Math.max(0, (e.clientX - rect.left) / rect.width));
+    elapsed = ratio * DURATION;
+    updateVisuals(elapsed);
   });
 
   quizOpts.forEach(function (btn) {
@@ -187,20 +152,6 @@
     });
   });
 
-  btnPrev.addEventListener('click', function () {
-    if (currentAct > 0) {
-      currentAct -= 1;
-      renderAct();
-    }
-  });
-
-  btnNext.addEventListener('click', function () {
-    if (currentAct < ACTS.length - 1) {
-      currentAct += 1;
-      renderAct();
-    }
-  });
-
-  renderAct();
-  requestAnimationFrame(animateStage);
+  updateVisuals(0);
+  requestAnimationFrame(tick);
 })();
