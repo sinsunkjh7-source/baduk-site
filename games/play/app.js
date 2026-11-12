@@ -19,7 +19,7 @@
     mode: isLiveParam ? 'live' : (modeFromUrl || localStorage.getItem('play_mode') || 'ai'),
     boardSize: parseInt(urlParams.get('boardSize') || localStorage.getItem('play_board_size') || '19', 10), // 19 | 13 | 9
     aiEngine: localStorage.getItem('play_ai_engine') === 'katago-lite' ? 'katago-lite' : 'gnugo',
-    difficulty: localStorage.getItem('play_ai_difficulty') || 'dan', // 'beginner' | 'intermediate' | 'advanced' | 'dan' | 'master'
+    difficulty: localStorage.getItem('play_ai_engine') === 'katago-lite' ? 'kata' : (localStorage.getItem('play_ai_difficulty') === 'beginner' ? 'beginner' : 'master'),
     humanColor: parseInt(localStorage.getItem('play_human_color') || '1', 10), // 1: BLACK, 2: WHITE
     colorChoice: localStorage.getItem('play_color_choice') || 'random', // '1' | '2' | 'random'
     handicap: parseInt(urlParams.get('handicap') || localStorage.getItem('play_handicap') || '0', 10), // 0: 호선, 1: 정선, 2~9: 접바둑
@@ -77,11 +77,9 @@
   };
 
   var BOTS = {
-    beginner: { name: 'AI 삐약이', title: '🌱 입문 (18급)', avatar: '🐥', img: '../../images/characters/char_chick_beginner.png', desc: '바둑의 첫걸음! 따내기와 단수를 배우는 귀여운 병아리 봇' },
-    intermediate: { name: 'AI 바둑이', title: '🌿 초급 (12급)', avatar: '🐶', img: '../../images/characters/char_pup_think.png', desc: '돌의 연결과 활로를 살피며 씩씩하게 두는 강아지 봇' },
-    advanced: { name: 'AI 영리한 여우', title: '🌲 중급 (5급)', avatar: '🦊', img: '../../images/characters/char_fox_victory.jpg', desc: '호구와 집 모양의 급소를 노리는 지혜로운 여우 봇' },
-    dan: { name: 'AI 지혜로운 판다', title: '⭐ 상급 (1~2급)', avatar: '🐼', img: '../../images/characters/char_panda_victory.jpg', desc: '두터운 정석과 대국적 안목을 지닌 상급자 판다 봇' },
-    master: { name: 'AI 용맹한 호랑이', title: '🔥 유단자 (기원 1단 / 타이젬 2~3단)', avatar: '🐯', img: '../../images/characters/char_tiger_cheer.png', desc: '강력한 전투력과 정확한 사활 수읽기를 펼치는 맹호 유단자 봇' }
+    beginner: { name: '스쿨봇 1', title: '1단계', avatar: '', img: '../../images/characters/char_chick_beginner.png', desc: '가볍게 연습하는 상대' },
+    master: { name: '스쿨봇 2', title: '2단계', avatar: '', img: '../../images/characters/char_panda_victory.jpg', desc: '한 단계 높은 도전' },
+    kata: { name: '스쿨봇 3', title: '3단계', avatar: '', img: '../../images/characters/char_tiger_cheer.png', desc: '가장 강한 상대' }
   };
 
   /* 엔진 & 오디오 */
@@ -737,9 +735,9 @@
     if (engineCard) {
       engineCard.style.display = (state.mode === 'ai' && state.isGameStarted) ? 'flex' : 'none';
       var engineTitle = engineCard.querySelector('.engine-badge-title'), engineSub = engineCard.querySelector('.engine-badge-sub');
-      if (engineTitle) engineTitle.textContent = isKataEngine() ? '카타고 경량판 · 시험' : 'GNU Go';
-      if (engineSub) engineSub.textContent = isKataEngine() ? 'b10 신경망 · 브라우저 기기 연산' : 'Wasm 로컬 인공지능 탑재';
-      if (isKataEngine()) { if (oppNameEl) oppNameEl.textContent = '카타고 경량판'; if (oppRankBadge) oppRankBadge.textContent = '시험 · 기력 미검증'; }
+      if (engineTitle) engineTitle.textContent = getAiBotName();
+      if (engineSub) engineSub.textContent = '바둑스쿨 AI 대국 상대';
+
     }
 
     // 캐릭터 이미지 동기화
@@ -1147,7 +1145,7 @@
   }
 
   function isKataEngine() { return state.mode === 'ai' && state.aiEngine === 'katago-lite'; }
-  function getAiBotName() { return isKataEngine() ? '카타고 경량판' : BOTS[state.difficulty].name; }
+  function getAiBotName() { return BOTS[state.difficulty].name; }
   function setKataLoadUI(busy, message, isError) {
     kataChoiceLoading = busy;
     var button = document.getElementById('btnStartCustomMatch');
@@ -1156,13 +1154,15 @@
     if (status) { status.textContent = message || ''; status.dataset.error = isError ? 'true' : 'false'; }
   }
   function syncAiEngineOptions() {
-    var section = document.getElementById('matchAiEngineSection'), isAi = pendingMatchOpts.mode === 'ai', isKata = pendingMatchOpts.aiEngine === 'katago-lite';
-    if (section) section.style.display = isAi ? 'flex' : 'none';
-    document.querySelectorAll('#matchEngineChips [data-ai-engine]').forEach(function (button) { var active = button.dataset.aiEngine === pendingMatchOpts.aiEngine; button.classList.toggle('active', active); button.setAttribute('aria-pressed', String(active)); });
+    var isAi = pendingMatchOpts.mode === 'ai';
+    pendingMatchOpts.aiEngine = pendingMatchOpts.difficulty === 'kata' ? 'katago-lite' : 'gnugo';
     var difficulty = document.getElementById('matchAiDifficultySection');
-    if (difficulty) { difficulty.dataset.kataHidden = String(isKata); difficulty.style.display = isAi && !isKata ? 'flex' : 'none'; }
-    var help = document.getElementById('matchEngineHelp');
-    if (help) help.textContent = isKata ? '원본 b10 신경망 · 수읽기(MCTS) 없는 시험판입니다. 급수·단수는 보장하지 않습니다. 최초 약 11MB를 내려받아 기기에서 계산합니다. 9·13·19줄 및 접바둑을 지원합니다.' : 'GNU Go는 기존 다섯 단계 동물 봇을 사용합니다.';
+    if (difficulty) difficulty.style.display = isAi ? 'flex' : 'none';
+    document.querySelectorAll('#matchBotGrid .match-bot-card').forEach(function (card) {
+      var active = card.dataset.bot === pendingMatchOpts.difficulty;
+      card.classList.toggle('active', active);
+      card.setAttribute('aria-pressed', String(active));
+    });
   }
 
   /* ---------- AI 착수 트리거 ---------- */
@@ -1171,7 +1171,7 @@
     var requestId = ++aiRequestGeneration, requestEngine = engine, requestStep = engine.currentStep, requestedAiEngine = state.aiEngine;
     function currentRequest() { return requestId === aiRequestGeneration && requestEngine === engine && requestStep === engine.currentStep && requestedAiEngine === state.aiEngine && state.mode === 'ai' && !state.isGameOver && state.currentTurn !== state.humanColor; }
     state.isThinking = true;
-    var bot = isKataEngine() ? { name: '카타고 경량판', title: '시험 · 신경망' } : BOTS[state.difficulty];
+    var bot = BOTS[state.difficulty];
     if (timerData.active) {
       if (aiThinkingBadge) aiThinkingBadge.hidden = true;
       var turnText = document.getElementById('timerTurnText');
@@ -1205,9 +1205,9 @@
         console.error('[AI Move Error]', aiErr);
         if (requestedAiEngine === 'katago-lite') {
           state.isThinking = false; if (aiThinkingBadge) aiThinkingBadge.hidden = true; pauseTimerInterval(); updateStatus();
-          toast('카타고 실행 실패: 임의의 수나 GNU Go로 바꾸지 않았습니다. 새 대국 설정에서 다시 시도해 주세요.');
+          toast('스쿨봇 3 실행 실패: 상대를 자동 변경하지 않았습니다. 다시 시도해 주세요.');
           openMatchModal();
-          setKataLoadUI(false, '카타고 실행 실패: ' + aiErr.message, true); return;
+          setKataLoadUI(false, '스쿨봇 3 실행에 실패했습니다. 다시 시도해 주세요.', true); return;
         }
       }
 
@@ -1215,7 +1215,7 @@
       state.isThinking = false;
       if (aiThinkingBadge) aiThinkingBadge.hidden = true;
       if (move && move.isPass) { handleAiPass(aiColor); return; }
-      if (requestedAiEngine === 'katago-lite' && !move) { pauseTimerInterval(); toast('카타고 응답이 없어 대국을 멈췄습니다. 새 대국 설정에서 다시 시도해 주세요.'); return; }
+      if (requestedAiEngine === 'katago-lite' && !move) { pauseTimerInterval(); toast('스쿨봇 3 응답이 없어 대국을 멈췄습니다. 새 대국 설정에서 다시 시도해 주세요.'); return; }
 
       if (!move) {
         var legal = [];
@@ -1259,7 +1259,7 @@
   /* ---------- AI 패스 처리 ---------- */
   function handleAiPass(aiColor) {
     var pRes = engine.pass(aiColor);
-    var botName = isKataEngine() ? '카타고 경량판' : getAiBotName();
+    var botName = getAiBotName();
     toast(botName + '이(가) 한 수 쉬었습니다 (패스).');
 
     // 양쪽 연속 패스 검사
@@ -1439,7 +1439,7 @@
 
     var isUserBlack = (state.humanColor === BLACK);
     var bot = (state.mode === 'ai' && BOTS[state.difficulty]) ? BOTS[state.difficulty] : null;
-    var oppName = isKataEngine() ? '카타고 경량판 · 시험' : (bot ? bot.name : '2P (상대)');
+    var oppName = bot ? bot.name : '2P (상대)';
     var oppImgSrc = bot ? bot.img : '../alkkagi/bullterrier/01-idle.png';
     var userImgSrc = ARENA_AVATARS[currentAvatarIdx] ? ARENA_AVATARS[currentAvatarIdx].src : '../alkkagi/bullterrier/01-idle.png';
 
@@ -1562,18 +1562,29 @@
     var launchId = ++kataLoadGeneration;
     ++aiRequestGeneration;
     var nextMode = customOpts && customOpts.mode || state.mode;
-    var nextEngine = customOpts && customOpts.aiEngine || state.aiEngine;
+    var nextDifficulty = customOpts && customOpts.difficulty || state.difficulty;
+    if (!BOTS[nextDifficulty]) nextDifficulty = 'master';
+    var nextEngine = nextDifficulty === 'kata' ? 'katago-lite' : 'gnugo';
+    if (nextMode === 'ai' && nextEngine === 'gnugo') {
+      setKataLoadUI(true, '스쿨봇을 준비하고 있습니다.');
+      try { await window.GNUGoBridge.init('gnugo/gnugo.wasm'); }
+      catch (error) { if (launchId === kataLoadGeneration) setKataLoadUI(false, '스쿨봇을 불러오지 못했습니다. 다시 시도해 주세요.', true); return; }
+      if (launchId !== kataLoadGeneration) return;
+      setKataLoadUI(false, '');
+    }
     if (nextMode === 'ai' && nextEngine === 'katago-lite') {
       state.isThinking = false; if (aiThinkingBadge) aiThinkingBadge.hidden = true;
-      setKataLoadUI(true, '카타고를 준비하고 있습니다. 최초 모델 약 11MB · 서버 대국 연산 없음');
+      setKataLoadUI(true, '스쿨봇 3을 준비하고 있습니다. 처음에는 약 11MB를 내려받습니다.');
       try { await window.KataLiteBridge.load(); }
-      catch (error) { if (launchId === kataLoadGeneration) { setKataLoadUI(false, '모델을 불러오지 못했습니다. 다시 시도하거나 GNU Go를 선택해 주세요. ' + error.message, true); toast('카타고 로딩 실패: 엔진을 자동 변경하지 않았습니다.'); } return; }
+      catch (error) { if (launchId === kataLoadGeneration) { setKataLoadUI(false, '스쿨봇 3을 불러오지 못했습니다. 다시 시도하거나 다른 단계를 선택해 주세요.', true); toast('스쿨봇 3 로딩 실패: 상대를 자동 변경하지 않았습니다.'); } return; }
       if (launchId !== kataLoadGeneration) return;
-      setKataLoadUI(false, '카타고 준비 완료 · ' + (window.KataLiteBridge.getInfo().backend || '기기 연산'));
+      setKataLoadUI(false, '스쿨봇 3 준비 완료');
     }
     if (launchId !== kataLoadGeneration) return;
     var matchModal = document.getElementById('matchModal');
     if (matchModal) { matchModal.setAttribute('hidden', ''); matchModal.style.display = 'none'; }
+    state.difficulty = nextDifficulty;
+    localStorage.setItem('play_ai_difficulty', state.difficulty);
     state.aiEngine = nextEngine === 'katago-lite' ? 'katago-lite' : 'gnugo';
     localStorage.setItem('play_ai_engine', state.aiEngine);
     state.isGameStarted = true;
@@ -1846,7 +1857,10 @@
       card.addEventListener('click', function () {
         document.querySelectorAll('#matchBotGrid .match-bot-card').forEach(function (c) { c.classList.remove('active'); });
         card.classList.add('active');
+        ++kataLoadGeneration;
         pendingMatchOpts.difficulty = card.dataset.bot;
+        setKataLoadUI(false, '');
+        syncAiEngineOptions();
       });
     });
 
