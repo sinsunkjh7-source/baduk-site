@@ -1,5 +1,5 @@
 /**
- * 다층 종이 극장 (Paper Theater) — 우공이산 샘플 컨트롤러
+ * 살아 움직이는 다층 종이 극장 (Paper Theater) — 우공이산 컨트롤러
  */
 (function () {
   'use strict';
@@ -23,10 +23,14 @@
   ];
 
   var paperStage = document.getElementById('paperStage');
-  var layers = document.querySelectorAll('.pt-layer[data-depth]');
-  var layerMountain = document.getElementById('layerMountain');
-  var paperSun = document.getElementById('paperSun');
-  var ugongChar = document.getElementById('ugongChar');
+  var artLayer = document.getElementById('artLayer');
+  var frameLayer = document.getElementById('frameLayer');
+  var particlesLayer = document.getElementById('particlesLayer');
+  var artImgs = [
+    document.getElementById('artImg0'),
+    document.getElementById('artImg1'),
+    document.getElementById('artImg2')
+  ];
 
   var actPill = document.getElementById('actPill');
   var stageKicker = document.getElementById('stageKicker');
@@ -49,13 +53,36 @@
   var currentAct = 0;
   var shovels = 0;
 
-  function applyMountainProgress() {
-    var dropY = currentAct === 2 ? 95 : shovels * 28;
-    layerMountain.style.transform = 'translateY(' + dropY + 'px)';
-    if (paperSun) {
-      var sunLift = currentAct === 2 ? -24 : -(shovels * 7);
-      paperSun.style.transform = 'translateY(' + sunLift + 'px) scale(' + (1 + shovels * 0.04) + ')';
-    }
+  // Pointer parallax state + continuous autonomous motion
+  var pointerX = 0;
+  var pointerY = 0;
+  var smoothX = 0;
+  var smoothY = 0;
+  var startTime = performance.now();
+
+  function animateStage(now) {
+    var t = (now - startTime) * 0.001;
+
+    // Smooth pointer lerp
+    smoothX += (pointerX - smoothX) * 0.07;
+    smoothY += (pointerY - smoothY) * 0.07;
+
+    // Autonomous continuous breathing & slow cinematic sway
+    var autoX = Math.sin(t * 0.55) * 10;
+    var autoY = Math.cos(t * 0.42) * 5;
+    var autoScale = 1.05 + Math.sin(t * 0.35) * 0.025 + (currentAct === 1 ? shovels * 0.015 : 0);
+
+    var artTx = (autoX - smoothX * 16).toFixed(2);
+    var artTy = (autoY - smoothY * 10).toFixed(2);
+    artLayer.style.transform =
+      'translate3d(' + artTx + 'px, ' + artTy + 'px, 0) scale(' + autoScale.toFixed(4) + ')';
+
+    // Foreground theater frame moves subtly in opposite depth
+    var frameTx = (-smoothX * 6 + Math.sin(t * 0.3) * 2).toFixed(2);
+    var frameTy = (-smoothY * 4).toFixed(2);
+    frameLayer.style.transform = 'translate3d(' + frameTx + 'px, ' + frameTy + 'px, 0)';
+
+    requestAnimationFrame(animateStage);
   }
 
   function renderAct() {
@@ -65,6 +92,11 @@
     stageHeadline.textContent = act.headline;
     storyBody.textContent = act.body;
 
+    artImgs.forEach(function (img, idx) {
+      img.classList.toggle('active', idx === currentAct);
+    });
+
+    particlesLayer.classList.toggle('blossoms', currentAct === 2);
     shovelBox.hidden = currentAct !== 1;
     studyBox.hidden = currentAct !== 2;
 
@@ -75,34 +107,17 @@
     dots.forEach(function (dot, idx) {
       dot.classList.toggle('active', idx === currentAct);
     });
-
-    applyMountainProgress();
-  }
-
-  // 2.5D Mouse / Touch Parallax
-  function updateParallax(clientX, clientY) {
-    var rect = paperStage.getBoundingClientRect();
-    var nx = (clientX - rect.left) / rect.width - 0.5;
-    var ny = (clientY - rect.top) / rect.height - 0.5;
-
-    layers.forEach(function (layer) {
-      if (layer === layerMountain) return; // mountain uses vertical shovel drop
-      var depth = parseFloat(layer.getAttribute('data-depth') || '0.3');
-      var tx = (-nx * 24 * depth).toFixed(1);
-      var ty = (-ny * 14 * depth).toFixed(1);
-      layer.style.transform = 'translate3d(' + tx + 'px, ' + ty + 'px, 0)';
-    });
   }
 
   paperStage.addEventListener('mousemove', function (e) {
-    updateParallax(e.clientX, e.clientY);
+    var rect = paperStage.getBoundingClientRect();
+    pointerX = (e.clientX - rect.left) / rect.width - 0.5;
+    pointerY = (e.clientY - rect.top) / rect.height - 0.5;
   });
 
   paperStage.addEventListener('mouseleave', function () {
-    layers.forEach(function (layer) {
-      if (layer === layerMountain) return;
-      layer.style.transform = 'translate3d(0, 0, 0)';
-    });
+    pointerX = 0;
+    pointerY = 0;
   });
 
   // Shovel interaction in Act 2
@@ -111,20 +126,14 @@
     shovels += 1;
     shovelCountEl.textContent = String(shovels);
 
-    ugongChar.classList.remove('digging');
-    void ugongChar.offsetWidth;
-    ugongChar.classList.add('digging');
-
-    applyMountainProgress();
-
     if (shovels === 1) {
-      shovelHint.textContent = '좋아요! 큰 산이 조금 낮아졌어요! (2번 더!)';
+      shovelHint.textContent = '좋아요! 우공 할아버지와 함께 한 걸음 내디뎠어요! (2번 더!)';
     } else if (shovels === 2) {
-      shovelHint.textContent = '우와! 산 너머로 햇살이 보이기 시작했어요! (1번 더!)';
+      shovelHint.textContent = '우와! 산 너머로 따스한 햇살이 더 밝게 비쳐요! (1번 더!)';
     } else {
       btnShovel.disabled = true;
       btnShovel.textContent = '✅ 산을 옮겼어요! (3 / 3)';
-      shovelHint.textContent = '대단해요! 우공의 끈기로 길이 환하게 열렸습니다!';
+      shovelHint.textContent = '대단해요! 이제 ‘다음 장면’을 눌러 기적의 길을 확인해 보세요!';
     }
   });
 
@@ -158,4 +167,5 @@
   });
 
   renderAct();
+  requestAnimationFrame(animateStage);
 })();
