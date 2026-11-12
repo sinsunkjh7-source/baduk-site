@@ -70,10 +70,17 @@
           onFinish: () => this.handleVictory(),
           onShake: (intensity) => {
             const viewport = document.getElementById('coasterViewport');
-            if (viewport) {
-              viewport.style.transform = `translate(${(Math.random()-0.5)*12*intensity}px, ${(Math.random()-0.5)*12*intensity}px)`;
-              setTimeout(() => { viewport.style.transform = ''; }, 200);
-            }
+            if (!viewport) return;
+            let count = 0;
+            const iv = setInterval(() => {
+              count++;
+              const mag = Math.max(4, 14 * intensity * (1 - count / 7));
+              viewport.style.transform = `translate(${(Math.random() - 0.5) * mag}px, ${(Math.random() - 0.5) * mag}px)`;
+              if (count >= 6) {
+                clearInterval(iv);
+                viewport.style.transform = '';
+              }
+            }, 55);
           }
         });
       } else {

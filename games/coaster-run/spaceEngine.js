@@ -614,45 +614,72 @@
     }
 
     spawnCollisionMeteor(isFatal = false) {
-      if (!this.scene || !this.curve || !this.camera || !window.THREE) {
+      if (!this.scene || !this.camera || !window.THREE) {
         if (this.options.onShake) this.options.onShake(isFatal ? 3.0 : 1.8);
         return;
       }
-      const aheadT = Math.min(0.995, this.t + 0.055);
-      const startPos = this.curve.getPointAt(aheadT).add(
-        new THREE.Vector3((Math.random() - 0.5) * 14, (Math.random() - 0.3) * 10 + 3, (Math.random() - 0.5) * 10)
-      );
-      const geo = new THREE.IcosahedronGeometry(isFatal ? 2.4 : 1.7, 0);
-      const mat = new THREE.MeshStandardMaterial({
-        color: 0x7c2d12,
-        emissive: 0xea580c,
-        emissiveIntensity: 0.9,
-        roughness: 0.7,
-        flatShading: true
+      const dir = new THREE.Vector3();
+      this.camera.getWorldDirection(dir);
+      const up = new THREE.Vector3(0, 1, 0);
+      const right = new THREE.Vector3().crossVectors(dir, up).normalize();
+
+      const startPos = this.camera.position.clone()
+        .addScaledVector(dir, 44)
+        .addScaledVector(right, (Math.random() - 0.5) * 6)
+        .addScaledVector(up, (Math.random() - 0.2) * 4 + 2);
+
+      const group = new THREE.Group();
+      const coreGeo = new THREE.IcosahedronGeometry(isFatal ? 3.2 : 2.3, 0);
+      const coreMat = new THREE.MeshBasicMaterial({
+        color: 0xff5722,
+        wireframe: false
       });
-      const mesh = new THREE.Mesh(geo, mat);
-      mesh.position.copy(startPos);
-      this.scene.add(mesh);
+      const coreMesh = new THREE.Mesh(coreGeo, coreMat);
+      group.add(coreMesh);
+
+      const wireGeo = new THREE.IcosahedronGeometry(isFatal ? 3.35 : 2.42, 0);
+      const wireMat = new THREE.MeshBasicMaterial({
+        color: 0xfef08a,
+        wireframe: true,
+        transparent: true,
+        opacity: 0.75
+      });
+      group.add(new THREE.Mesh(wireGeo, wireMat));
+
+      const haloGeo = new THREE.SphereGeometry(isFatal ? 4.4 : 3.2, 12, 12);
+      const haloMat = new THREE.MeshBasicMaterial({
+        color: 0xf97316,
+        transparent: true,
+        opacity: 0.38
+      });
+      group.add(new THREE.Mesh(haloGeo, haloMat));
+
+      group.position.copy(startPos);
+      this.scene.add(group);
       this.activeMeteors.push({
-        mesh,
+        mesh: group,
         startPos,
         progress: 0,
-        duration: 0.34,
+        duration: 0.55,
         isFatal
       });
     }
 
-    spawnImpactDebris(origin, count = 8) {
+    spawnImpactDebris(origin, count = 14) {
       if (!this.scene || !window.THREE) return;
-      const geo = new THREE.DodecahedronGeometry(0.32, 0);
+      const geo = new THREE.DodecahedronGeometry(0.45, 0);
       for (let i = 0; i < count; i++) {
-        const mat = new THREE.MeshBasicMaterial({ color: i % 2 === 0 ? 0xfb923c : 0xfacc15, transparent: true, opacity: 1 });
+        const mat = new THREE.MeshBasicMaterial({
+          color: i % 3 === 0 ? 0xfef08a : (i % 2 === 0 ? 0xfb923c : 0xef4444),
+          transparent: true,
+          opacity: 1
+        });
         const m = new THREE.Mesh(geo, mat);
         m.position.copy(origin);
         this.scene.add(m);
         this.meteorDebris.push({
           mesh: m,
-          vel: new THREE.Vector3((Math.random() - 0.5) * 0.55, (Math.random() - 0.3) * 0.45, (Math.random() - 0.5) * 0.55),
+          vel: new THREE.Vector3((Math.random() - 0.5) * 0.65, (Math.random() - 0.35) * 0.55, (Math.random() - 0.5) * 0.65),
           life: 1.0
         });
       }
@@ -728,15 +755,19 @@
         m.mesh.rotation.x += 0.14;
         m.mesh.rotation.y += 0.18;
         if (m.progress >= 1.0) {
-          const hitPos = this.camera ? this.camera.position.clone() : m.mesh.position.clone();
-          this.spawnImpactDebris(hitPos, m.isFatal ? 12 : 7);
-          if (this.options.onShake) this.options.onShake(m.isFatal ? 3.5 : 2.3);
+          const dir = new THREE.Vector3();
+          if (this.camera) this.camera.getWorldDirection(dir);
+          const hitPos = this.camera
+            ? this.camera.position.clone().addScaledVector(dir, 3.2)
+            : m.mesh.position.clone();
+          this.spawnImpactDebris(hitPos, m.isFatal ? 18 : 14);
+          if (this.options.onShake) this.options.onShake(m.isFatal ? 3.5 : 2.4);
           this.scene.remove(m.mesh);
-          if (m.mesh.geometry) m.mesh.geometry.dispose();
-          if (m.mesh.material) m.mesh.material.dispose();
           this.activeMeteors.splice(i, 1);
         } else if (this.camera) {
-          const targetPos = this.camera.position.clone();
+          const dir = new THREE.Vector3();
+          this.camera.getWorldDirection(dir);
+          const targetPos = this.camera.position.clone().addScaledVector(dir, 2.4);
           m.mesh.position.lerpVectors(m.startPos, targetPos, m.progress);
         }
       }
