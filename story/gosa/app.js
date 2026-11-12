@@ -89,6 +89,7 @@
   var timePill = document.getElementById('timePill');
   var stageChapter = document.getElementById('stageChapter');
   var shortsSubtitle = document.getElementById('shortsSubtitle');
+  var btnVoice = document.getElementById('btnVoice');
   var btnPlayPause = document.getElementById('btnPlayPause');
   var btnReplay = document.getElementById('btnReplay');
   var progressTrack = document.getElementById('progressTrack');
@@ -99,8 +100,50 @@
 
   var elapsed = 0;
   var playing = true;
+  var voiceEnabled = true;
   var lastTime = performance.now();
   var activeSlideIdx = -1;
+  var activeBeatIdx = -1;
+  var koVoice = null;
+
+  function pickKoreanVoice() {
+    if (!('speechSynthesis' in window)) return;
+    var voices = window.speechSynthesis.getVoices() || [];
+    for (var i = 0; i < voices.length; i++) {
+      if (voices[i].lang && voices[i].lang.toLowerCase().indexOf('ko') === 0) {
+        koVoice = voices[i];
+        break;
+      }
+    }
+  }
+
+  if ('speechSynthesis' in window) {
+    pickKoreanVoice();
+    if (window.speechSynthesis.onvoiceschanged !== undefined) {
+      window.speechSynthesis.onvoiceschanged = pickKoreanVoice;
+    }
+  }
+
+  function stopNarration() {
+    try {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+      }
+    } catch (e) {}
+  }
+
+  function speakLine(text) {
+    if (!voiceEnabled || !playing || !('speechSynthesis' in window)) return;
+    try {
+      window.speechSynthesis.cancel();
+      var u = new SpeechSynthesisUtterance(text);
+      u.lang = 'ko-KR';
+      u.rate = 0.96;
+      u.pitch = 1.02;
+      if (koVoice) u.voice = koVoice;
+      window.speechSynthesis.speak(u);
+    } catch (e) {}
+  }
 
   function formatSec(sec) {
     var s = Math.min(Math.floor(sec), Math.floor(DURATION));
@@ -114,15 +157,22 @@
     timePill.textContent = formatSec(t) + ' / ' + formatSec(DURATION);
 
     var currentBeat = BEATS[0];
+    var beatIdx = 0;
     for (var i = 0; i < BEATS.length; i++) {
       if (t >= BEATS[i].start && t < BEATS[i].end) {
         currentBeat = BEATS[i];
+        beatIdx = i;
         break;
       }
     }
 
     stageChapter.textContent = currentBeat.chapter;
     shortsSubtitle.textContent = currentBeat.subtitle;
+
+    if (activeBeatIdx !== beatIdx) {
+      activeBeatIdx = beatIdx;
+      speakLine(currentBeat.subtitle);
+    }
 
     if (activeSlideIdx !== currentBeat.slide) {
       activeSlideIdx = currentBeat.slide;
@@ -184,19 +234,40 @@
     requestAnimationFrame(tick);
   }
 
+  if (btnVoice) {
+    btnVoice.addEventListener('click', function () {
+      voiceEnabled = !voiceEnabled;
+      btnVoice.setAttribute('aria-pressed', String(voiceEnabled));
+      btnVoice.textContent = voiceEnabled ? '🔊 내레이션 켜짐' : '🔇 내레이션 꺼짐';
+      if (!voiceEnabled) {
+        stopNarration();
+      } else if (playing && activeBeatIdx >= 0 && BEATS[activeBeatIdx]) {
+        speakLine(BEATS[activeBeatIdx].subtitle);
+      }
+    });
+  }
+
   btnPlayPause.addEventListener('click', function () {
     if (elapsed >= DURATION) {
       elapsed = 0;
+      activeBeatIdx = -1;
       playing = true;
       btnPlayPause.textContent = '⏸️ 일시정지';
+      updateVisuals(0);
       return;
     }
     playing = !playing;
     btnPlayPause.textContent = playing ? '⏸️ 일시정지' : '▶️ 재생';
+    if (!playing) {
+      stopNarration();
+    } else if (activeBeatIdx >= 0 && BEATS[activeBeatIdx]) {
+      speakLine(BEATS[activeBeatIdx].subtitle);
+    }
   });
 
   btnReplay.addEventListener('click', function () {
     elapsed = 0;
+    activeBeatIdx = -1;
     playing = true;
     btnPlayPause.textContent = '⏸️ 일시정지';
     updateVisuals(0);
@@ -206,8 +277,11 @@
     var rect = progressTrack.getBoundingClientRect();
     var ratio = Math.min(1, Math.max(0, (e.clientX - rect.left) / rect.width));
     elapsed = ratio * DURATION;
+    activeBeatIdx = -1;
     updateVisuals(elapsed);
   });
+
+  window.addEventListener('beforeunload', stopNarration);
 
   quizOpts.forEach(function (btn) {
     btn.addEventListener('click', function () {
