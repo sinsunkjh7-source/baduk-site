@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>모션 그래픽 바둑 한자 — JH 바둑스쿨 Story</title>
+  <meta name="description" content="살아 움직이는 글자와 바둑돌 모션 그래픽으로 배우는 바둑 한자 3선 (圍·手·道)">
+  <link rel="stylesheet" href="/unified-nav.css?v=20261103-nav-v11">
+  <link rel="stylesheet" href="style.css?v=20261112-v1">
+  <script src="/unified-nav.js?v=20261103-nav-v11" defer></script>
+</head>
+<body data-bks-page="story-hanja">
+  <main class="mg-wrap">
+    <header class="mg-header">
+      <div class="mg-badge-row">
+        <span class="mg-badge">✨ 키네틱 모션 그래픽</span>
+        <span class="mg-pill" id="mgCountPill">1 / 3 한자</span>
+      </div>
+      <h1 class="mg-title">움직이는 바둑 한자</h1>
+      <p class="mg-subtitle">한자의 뜻이 바둑돌의 움직임과 글자 모션으로 한눈에 펼쳐집니다</p>
+    </header>
+
+    <!-- Selector Tabs -->
+    <div class="mg-tabs" role="tablist" aria-label="바둑 한자 선택">
+      <button type="button" class="mg-tab active" data-idx="0">圍 에워쌀 위</button>
+      <button type="button" class="mg-tab" data-idx="1">手 손 수</button>
+      <button type="button" class="mg-tab" data-idx="2">道 길 도</button>
+    </div>
+
+    <!-- Motion Graphic Stage (Clean, High-Contrast Kinetic Typography + Baduk Visual) -->
+    <section class="mg-stage" id="mgStage" aria-live="polite">
+      <div class="mg-bg-grid" aria-hidden="true"></div>
+
+      <!-- Visual Canvas / SVG Graphic -->
+      <div class="mg-visual-side">
+        <div class="mg-kanji-hero" id="kanjiHero">圍</div>
+
+        <!-- Graphic 0: 圍 (Surrounding stones) -->
+        <div class="mg-graphic active" id="gfx0" aria-hidden="true">
+          <div class="gfx-board">
+            <span class="g-stone b s1"></span>
+            <span class="g-stone b s2"></span>
+            <span class="g-stone b s3"></span>
+            <span class="g-stone b s4"></span>
+            <span class="g-stone w center-s"></span>
+            <span class="g-ring"></span>
+          </div>
+        </div>
+
+        <!-- Graphic 1: 手 (Crucial single move ripple) -->
+        <div class="mg-graphic" id="gfx1" aria-hidden="true">
+          <div class="gfx-board">
+            <span class="g-crosshair"></span>
+            <span class="g-stone b drop-s"></span>
+            <span class="g-ripple r1"></span>
+            <span class="g-ripple r2"></span>
+          </div>
+        </div>
+
+        <!-- Graphic 2: 道 (Connected path of stones) -->
+        <div class="mg-graphic" id="gfx2" aria-hidden="true">
+          <div class="gfx-board">
+            <svg viewBox="0 0 180 180" class="path-svg">
+              <path class="path-line" d="M28,140 Q68,125 88,88 T152,36" fill="none" stroke="#f59e0b" stroke-width="5" stroke-linecap="round" />
+            </svg>
+            <span class="g-stone b p1"></span>
+            <span class="g-stone w p2"></span>
+            <span class="g-stone b p3"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Kinetic Typography Side -->
+      <div class="mg-typo-side" id="typoSide">
+        <div class="kt-line kt-1" id="kt1">돌로 집을 둘러싸고</div>
+        <div class="kt-line kt-2" id="kt2">상대의 길을 에워싸는 지혜</div>
+        <div class="kt-main" id="ktMain">圍 · 에워쌀 위</div>
+        <div class="kt-words" id="ktWords">
+          <span class="kw-chip">바둑 <b>위</b>(圍)</span>
+          <span class="kw-chip">포<b>위</b>(包圍)</span>
+          <span class="kw-chip"><b>위</b>기(圍棋)</span>
+        </div>
+      </div>
+
+      <button type="button" id="btnReplayMotion" class="mg-replay-btn" title="모션 다시 재생">🔄 모션 다시 보기</button>
+    </section>
+
+    <!-- Explanation & Mini Check -->
+    <section class="mg-info-card">
+      <p class="mg-desc" id="mgDesc">
+        바둑의 한자 이름 ‘위기(圍棋)’의 첫 글자인 <b>圍(에워쌀 위)</b>는 사방을 빙 둘러싼다는 뜻을 가지고 있어요. 내 돌을 연결해 집을 에워싸고, 상대 돌의 숨구멍을 에워싸는 바둑의 핵심 원리가 그대로 담겨 있습니다.
+      </p>
+
+      <div class="mg-quiz-box">
+        <p class="mg-quiz-q" id="mgQuizQ">💡 <b>확인 퀴즈:</b> 바둑을 뜻하는 한자어 ‘위기(圍棋)’에서 ‘圍’의 뜻은 무엇일까요?</p>
+        <div class="mg-quiz-opts" id="mgQuizOpts"></div>
+        <p class="mg-quiz-res" id="mgQuizRes" hidden></p>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js?v=20261112-v1"></script>
+</body>
+</html>
