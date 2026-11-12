@@ -228,8 +228,8 @@
     <!-- 1. 오목 -->
     <a href="games/omok/index.html" class="learn-card fun-menu-card fun-card-board" data-category="board" aria-label="오목 시작하기">
      <div class="card-badge-row">
-      <span class="badge-hot" style="background:#059669;color:#fff;">🎲 보드게임</span>
-      <span class="badge-tech" style="background:#ecfdf5;color:#047857;border:1px solid #a7f3d0;">수읽기 훈련</span>
+      <span class="badge-hot badge-board">🎲 보드게임</span>
+      <span class="badge-tech badge-benefit-board">수읽기 훈련</span>
      </div>
      <div class="card-icon-title">
       <span class="card-emoji">⚪⚫</span>
@@ -254,8 +254,8 @@
     <!-- 2. 체스 -->
     <a href="games/chess/index.html" class="learn-card fun-menu-card fun-card-board" data-category="board" aria-label="체스 시작하기">
      <div class="card-badge-row">
-      <span class="badge-hot" style="background:#059669;color:#fff;">🎲 보드게임</span>
-      <span class="badge-tech" style="background:#ecfdf5;color:#047857;border:1px solid #a7f3d0;">전략적 사고</span>
+      <span class="badge-hot badge-board">🎲 보드게임</span>
+      <span class="badge-tech badge-benefit-board">전략적 사고</span>
      </div>
      <div class="card-icon-title">
       <span class="card-emoji">♟️</span>
@@ -280,8 +280,8 @@
     <!-- 3. 장기 -->
     <a href="games/janggi/index.html?v=3" class="learn-card fun-menu-card fun-card-board" data-category="board" aria-label="장기 시작하기">
      <div class="card-badge-row">
-      <span class="badge-hot" style="background:#059669;color:#fff;">🎲 보드게임</span>
-      <span class="badge-tech" style="background:#ecfdf5;color:#047857;border:1px solid #a7f3d0;">전통 지혜</span>
+      <span class="badge-hot badge-board">🎲 보드게임</span>
+      <span class="badge-tech badge-benefit-board">전통 지혜</span>
      </div>
      <div class="card-icon-title">
       <span class="card-emoji">🪨</span>
@@ -306,8 +306,8 @@
     <!-- 4. 오델로 -->
     <a href="games/othello/index.html" class="learn-card fun-menu-card fun-card-board" data-category="board" aria-label="오델로 시작하기">
      <div class="card-badge-row">
-      <span class="badge-hot" style="background:#059669;color:#fff;">🎲 보드게임</span>
-      <span class="badge-tech" style="background:#ecfdf5;color:#047857;border:1px solid #a7f3d0;">예측력 향상</span>
+      <span class="badge-hot badge-board">🎲 보드게임</span>
+      <span class="badge-tech badge-benefit-board">예측력 향상</span>
      </div>
      <div class="card-icon-title">
       <span class="card-emoji">⚪🟢</span>
@@ -332,8 +332,8 @@
     <!-- 5. 윷놀이 -->
     <a href="games/yut/index.html" class="learn-card fun-menu-card fun-card-board" data-category="board" aria-label="윷놀이 시작하기">
      <div class="card-badge-row">
-      <span class="badge-hot" style="background:#059669;color:#fff;">🎲 보드게임</span>
-      <span class="badge-tech" style="background:#ecfdf5;color:#047857;border:1px solid #a7f3d0;">확률적 판단</span>
+      <span class="badge-hot badge-board">🎲 보드게임</span>
+      <span class="badge-tech badge-benefit-board">확률적 판단</span>
      </div>
      <div class="card-icon-title">
       <span class="card-emoji">🪵</span>
@@ -541,62 +541,7 @@
   </div>
  </section>
 
- <script>
-  (function() {
-    function checkNavScreens() {
-      var h = (location.hash || '').split('?')[0];
-      var ls = document.getElementById('learn-screen');
-      var ps = document.getElementById('play-screen');
-      var fs = document.getElementById('fun-screen');
-      var hs = document.getElementById('home-screen');
-      var es = document.getElementById('empty-screen');
-      if (h === '#learn') {
-        if (ls) ls.hidden = false;
-        if (ps) ps.hidden = true;
-        if (fs) fs.hidden = true;
-        if (hs) hs.hidden = true;
-        if (es) es.hidden = true;
-      } else if (h === '#play') {
-        if (ls) ls.hidden = true;
-        if (ps) ps.hidden = false;
-        if (fs) fs.hidden = true;
-        if (hs) hs.hidden = true;
-        if (es) es.hidden = true;
-      } else if (h === '#fun') {
-        if (ls) ls.hidden = true;
-        if (ps) ps.hidden = true;
-        if (fs) fs.hidden = false;
-        if (hs) hs.hidden = true;
-        if (es) es.hidden = true;
-      } else if (h === '#home' || !h) {
-        if (ls) ls.hidden = true;
-        if (ps) ps.hidden = true;
-        if (fs) fs.hidden = true;
-        if (hs) hs.hidden = false;
-      }
-    }
-    window.addEventListener('DOMContentLoaded', checkNavScreens);
-    
-    // EduFun Category Tab Filtering
-    document.querySelectorAll('.fun-tab-btn').forEach(function(btn) {
-      btn.addEventListener('click', function() {
-        document.querySelectorAll('.fun-tab-btn').forEach(function(b) { b.classList.remove('active'); });
-        btn.classList.add('active');
-        var filter = btn.dataset.funFilter;
-        document.querySelectorAll('.fun-menu-card').forEach(function(card) {
-          if (filter === 'all' || card.dataset.category === filter) {
-            card.style.display = '';
-          } else {
-            card.style.display = 'none';
-          }
-        });
-      });
-    });
-
-    window.addEventListener('hashchange', checkNavScreens);
-    checkNavScreens();
-  })();
- </script>
+ 
  <section id="empty-screen" class="empty-screen" aria-labelledby="empty-title" hidden>
   <div class="empty-inner"><a class="back-link" href="#home">← 홈으로</a><p class="page-label">JH 바둑스쿨 · 아이들의 성장 놀이터</p><div class="empty-heading"><img id="empty-icon" src="assets/stat_2.png?v=static-68a173ca45abc653" alt="" width="400" height="400"><div><h1 id="empty-title"></h1><p id="empty-description"></p></div></div><div class="empty-state"><div class="empty-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5h6.2a2 2 0 0 1 2 2V19a2.2 2.2 0 0 0-2.2-2.2H4zm16 0h-6.2a2 2 0 0 0-2 2V19a2.2 2.2 0 0 1 2.2-2.2H20z" fill="currentColor"/></svg></div><h2>이곳은 아직 비어 있어요</h2><p>지금은 디자인과 메뉴 구조만 준비한 단계입니다.<br>기존 기능은 연결하지 않았으며, 이 자리에 새 기능을 하나씩 만들 예정입니다.</p><a class="return-button" href="#home">홈 화면으로 돌아가기</a></div></div>
  </section>
