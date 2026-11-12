@@ -1,0 +1,462 @@
+:root {
+  --pt-bg: #f6f1e6;
+  --pt-ink: #2b2620;
+  --pt-muted: #6c6257;
+  --pt-accent: #c85a32;
+  --pt-green: #2e7d32;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--pt-bg);
+  color: var(--pt-ink);
+  font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+  min-height: 100vh;
+}
+
+.pt-wrap {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 18px 16px 48px;
+}
+
+.pt-header {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.pt-badge-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.pt-badge {
+  background: #d97706;
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 800;
+  padding: 4px 11px;
+  border-radius: 999px;
+}
+
+.pt-act-pill {
+  background: #ebe2d0;
+  color: #5c4d3c;
+  font-size: 0.78rem;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+
+.pt-title {
+  margin: 0 0 4px;
+  font-size: 1.75rem;
+  font-weight: 900;
+  color: #2b2118;
+}
+
+.pt-hanja {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #7c5832;
+}
+
+.pt-subtitle {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--pt-muted);
+}
+
+/* Multi-layer Paper Theater Stage */
+.pt-stage {
+  position: relative;
+  width: 100%;
+  height: 360px;
+  border-radius: 22px;
+  overflow: hidden;
+  background: linear-gradient(180deg, #fcefd8 0%, #f5dfb8 70%, #edd0a3 100%);
+  border: 6px solid #4a3525;
+  box-shadow:
+    0 18px 40px rgba(43, 33, 24, 0.18),
+    inset 0 0 40px rgba(92, 64, 38, 0.18);
+  margin-bottom: 18px;
+  perspective: 900px;
+}
+
+.pt-layer {
+  position: absolute;
+  inset: -14px;
+  pointer-events: none;
+  transition: transform 0.18s ease-out;
+  will-change: transform;
+}
+
+.paper-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Paper Cutout Drop Shadows! */
+.layer-far-hills {
+  filter: drop-shadow(0 -6px 10px rgba(43, 33, 24, 0.22));
+}
+
+.layer-mountain {
+  filter: drop-shadow(0 -8px 14px rgba(30, 24, 18, 0.34));
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.layer-ground {
+  filter: drop-shadow(0 -8px 16px rgba(20, 16, 12, 0.42));
+}
+
+/* Paper Sun & Clouds */
+.paper-sun {
+  position: absolute;
+  top: 46px;
+  right: 120px;
+  width: 74px;
+  height: 74px;
+  border-radius: 50%;
+  background: #f59e0b;
+  box-shadow: 0 6px 14px rgba(180, 83, 9, 0.28), inset 0 0 0 6px #fbbf24;
+  transition: transform 0.6s ease, top 0.6s ease;
+}
+
+.paper-cloud {
+  position: absolute;
+  background: #fffaf0;
+  border-radius: 999px;
+  box-shadow: 0 6px 12px rgba(92, 64, 38, 0.14);
+  animation: cloudFloat 9s ease-in-out infinite alternate;
+}
+
+.cloud-1 {
+  top: 56px;
+  left: 95px;
+  width: 120px;
+  height: 36px;
+}
+
+.cloud-2 {
+  top: 96px;
+  left: 260px;
+  width: 88px;
+  height: 28px;
+  animation-delay: -3.5s;
+}
+
+@keyframes cloudFloat {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(22px); }
+}
+
+/* Ugong character subtle digging bounce */
+.ugong-char {
+  transform-origin: 240px 290px;
+  transition: transform 0.25s ease;
+}
+
+.ugong-char.digging {
+  animation: digMotion 0.4s ease;
+}
+
+@keyframes digMotion {
+  0% { transform: rotate(0deg); }
+  40% { transform: rotate(10deg) translateY(3px); }
+  100% { transform: rotate(0deg); }
+}
+
+/* Theater Curtains (Closest Paper Layer) */
+.curtain-left,
+.curtain-right {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 44px;
+  background: #8c2d19;
+  box-shadow: 6px 0 18px rgba(0, 0, 0, 0.35);
+}
+
+.curtain-left {
+  left: 0;
+  border-bottom-right-radius: 40px;
+}
+
+.curtain-right {
+  right: 0;
+  border-bottom-left-radius: 40px;
+  box-shadow: -6px 0 18px rgba(0, 0, 0, 0.35);
+}
+
+.stage-valance {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 26px;
+  background: #732212;
+  box-shadow: 0 5px 14px rgba(0, 0, 0, 0.32);
+}
+
+/* Stage Caption */
+.stage-caption {
+  position: absolute;
+  top: 32px;
+  left: 62px;
+  z-index: 6;
+  background: rgba(255, 250, 240, 0.9);
+  border: 1.5px solid #d6c5ab;
+  border-radius: 14px;
+  padding: 10px 16px;
+  box-shadow: 0 6px 18px rgba(43, 33, 24, 0.16);
+}
+
+.stage-kicker {
+  display: block;
+  font-size: 0.76rem;
+  font-weight: 800;
+  color: var(--pt-accent);
+  margin-bottom: 2px;
+}
+
+.stage-headline {
+  margin: 0;
+  font-size: 1.08rem;
+  font-weight: 900;
+  color: #2b2118;
+}
+
+/* Story Card */
+.pt-story-card {
+  background: #fffdf8;
+  border: 1px solid #e2d6c1;
+  border-radius: 20px;
+  padding: 22px 24px;
+  box-shadow: 0 8px 24px rgba(43, 33, 24, 0.08);
+}
+
+.pt-story-body {
+  margin: 0 0 18px;
+  font-size: 1.06rem;
+  line-height: 1.7;
+  color: #332c24;
+}
+
+.pt-interactive-box {
+  background: #fef7e8;
+  border: 1.5px dashed #d97706;
+  border-radius: 14px;
+  padding: 16px;
+  text-align: center;
+  margin-bottom: 18px;
+}
+
+.pt-interactive-box[hidden],
+.pt-study-box[hidden],
+.quiz-result[hidden] {
+  display: none;
+}
+
+.pt-shovel-btn {
+  border: 0;
+  background: #d97706;
+  color: #fff;
+  font-size: 1.02rem;
+  font-weight: 800;
+  padding: 12px 24px;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 4px 0 #b45309;
+  transition: transform 0.1s, background 0.15s;
+}
+
+.pt-shovel-btn:hover:not(:disabled) {
+  background: #b45309;
+}
+
+.pt-shovel-btn:active:not(:disabled) {
+  transform: translateY(2px);
+}
+
+.pt-shovel-btn:disabled {
+  background: #16a34a;
+  box-shadow: 0 4px 0 #15803d;
+  cursor: default;
+}
+
+.pt-shovel-hint {
+  margin: 10px 0 0;
+  font-size: 0.9rem;
+  color: #78350f;
+  font-weight: 600;
+}
+
+/* Study Box (Act 3) */
+.pt-study-box {
+  display: grid;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.pt-hanja-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.hanja-chip {
+  background: #f8f3e8;
+  border: 1px solid #dfd2bc;
+  border-radius: 12px;
+  padding: 10px 8px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.hanja-chip strong {
+  font-size: 1.5rem;
+  color: #5c3a1e;
+}
+
+.hanja-chip span {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--pt-muted);
+}
+
+.pt-baduk-tip {
+  background: #eef6ee;
+  border: 1px solid #c3dfc4;
+  border-radius: 12px;
+  padding: 12px 15px;
+  font-size: 0.96rem;
+  line-height: 1.55;
+  color: #1e4620;
+}
+
+.pt-mini-quiz {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 14px 16px;
+}
+
+.quiz-q {
+  margin: 0 0 10px;
+  font-size: 0.96rem;
+}
+
+.quiz-opts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.quiz-opt {
+  border: 1px solid #cbd5e1;
+  background: #fff;
+  color: #1e293b;
+  font-size: 0.9rem;
+  font-weight: 700;
+  padding: 9px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.quiz-opt.correct {
+  background: #dcfce7;
+  border-color: #16a34a;
+  color: #166534;
+}
+
+.quiz-opt.wrong {
+  background: #fee2e2;
+  border-color: #ef4444;
+  color: #991b1b;
+}
+
+.quiz-result {
+  margin: 10px 0 0;
+  font-size: 0.92rem;
+  font-weight: 800;
+  color: #166534;
+}
+
+/* Navigation Row */
+.pt-nav-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 8px;
+  border-top: 1px solid #efe6d5;
+}
+
+.pt-nav-btn {
+  border: 1px solid #d6c5ab;
+  background: #fff;
+  color: #332c24;
+  font-size: 0.94rem;
+  font-weight: 800;
+  padding: 10px 18px;
+  border-radius: 11px;
+  cursor: pointer;
+}
+
+.pt-nav-btn.primary {
+  background: var(--pt-green);
+  border-color: var(--pt-green);
+  color: #fff;
+}
+
+.pt-nav-btn:disabled {
+  opacity: 0.42;
+  cursor: not-allowed;
+}
+
+.pt-dots {
+  display: flex;
+  gap: 7px;
+}
+
+.pt-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #dfd2bc;
+}
+
+.pt-dot.active {
+  background: var(--pt-accent);
+  width: 24px;
+  border-radius: 999px;
+}
+
+@media (max-width: 640px) {
+  .pt-stage {
+    height: 270px;
+  }
+  .curtain-left,
+  .curtain-right {
+    width: 24px;
+  }
+  .stage-caption {
+    left: 34px;
+    right: 34px;
+    top: 24px;
+    padding: 8px 12px;
+  }
+  .pt-hanja-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

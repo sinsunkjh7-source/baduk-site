@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>종이 극장 고사성어: 우공이산 — JH 바둑스쿨 Story</title>
+  <meta name="description" content="여러 겹의 종이 극장(페이퍼 시어터)으로 만나는 고사성어 이야기 - 우공이산(愚公移山)">
+  <link rel="stylesheet" href="/unified-nav.css?v=20261103-nav-v11">
+  <link rel="stylesheet" href="style.css?v=20261112-v1">
+  <script src="/unified-nav.js?v=20261103-nav-v11" defer></script>
+</head>
+<body data-bks-page="story-gosa">
+  <main class="pt-wrap">
+    <header class="pt-header">
+      <div class="pt-badge-row">
+        <span class="pt-badge">📜 고사성어 종이 극장 (샘플)</span>
+        <span class="pt-act-pill" id="actPill">제1막 / 3막</span>
+      </div>
+      <h1 class="pt-title">우공이산 <span class="pt-hanja">(愚公移山)</span></h1>
+      <p class="pt-subtitle">마우스를 움직이거나 화면을 눌러 종이 무대의 입체감을 느껴보세요!</p>
+    </header>
+
+    <!-- Multi-Layer Paper Theater Stage -->
+    <section class="pt-stage" id="paperStage" aria-label="다층 종이 극장 무대">
+      <!-- Layer 1: Sky & Sun & Clouds (Farthest) -->
+      <div class="pt-layer layer-sky" data-depth="0.15">
+        <div class="paper-sun" id="paperSun"></div>
+        <div class="paper-cloud cloud-1"></div>
+        <div class="paper-cloud cloud-2"></div>
+      </div>
+
+      <!-- Layer 2: Distant Ridge -->
+      <div class="pt-layer layer-far-hills" data-depth="0.30">
+        <svg viewBox="0 0 900 380" preserveAspectRatio="none" class="paper-svg">
+          <path d="M0,380 L0,235 Q130,150 270,220 T560,195 T900,225 L900,380 Z" fill="#94b49f" />
+        </svg>
+      </div>
+
+      <!-- Layer 3: Main Giant Mountain (Interactive height in Act 2!) -->
+      <div class="pt-layer layer-mountain" id="layerMountain" data-depth="0.50">
+        <svg viewBox="0 0 900 380" preserveAspectRatio="none" class="paper-svg">
+          <path id="mountainPath" d="M120,380 L300,115 L445,215 L605,85 L790,380 Z" fill="#4f6f52" />
+          <path id="mountainCap" d="M300,115 L258,175 L302,162 L342,174 Z M605,85 L558,150 L606,136 L652,152 Z" fill="#f3efe0" />
+        </svg>
+      </div>
+
+      <!-- Layer 4: Foreground Ground, Pine Tree & Ugong Character -->
+      <div class="pt-layer layer-ground" data-depth="0.72">
+        <svg viewBox="0 0 900 380" preserveAspectRatio="none" class="paper-svg">
+          <path d="M0,380 L0,305 Q220,275 450,300 T900,290 L900,380 Z" fill="#3a4d39" />
+          <!-- Small Paper House -->
+          <rect x="86" y="254" width="66" height="44" rx="4" fill="#efe6d5" />
+          <polygon points="74,258 119,224 164,258" fill="#c85a32" />
+          <!-- Ugong Silhouette with Shovel -->
+          <g id="ugongChar" class="ugong-char">
+            <circle cx="240" cy="256" r="13" fill="#f6e6cb" />
+            <path d="M225,270 Q240,266 254,270 L258,302 L222,302 Z" fill="#d97706" />
+            <line x1="252" y1="280" x2="282" y2="296" stroke="#78350f" stroke-width="5" stroke-linecap="round" />
+            <polygon points="278,292 292,299 285,307 273,300" fill="#94a3b8" />
+          </g>
+          <!-- Rocks pile (grows/shrinks with shovels) -->
+          <g id="rockPile" class="rock-pile">
+            <polygon points="328,304 344,284 364,304" fill="#a8a29e" />
+            <polygon points="354,306 372,288 388,306" fill="#78716c" />
+          </g>
+        </svg>
+      </div>
+
+      <!-- Layer 5: Paper Theater Curtains / Frame (Closest) -->
+      <div class="pt-layer layer-frame" data-depth="0.95">
+        <div class="curtain-left"></div>
+        <div class="curtain-right"></div>
+        <div class="stage-valance"></div>
+      </div>
+
+      <!-- Floating Hanja / Title Overlay inside Stage -->
+      <div class="stage-caption" id="stageCaption">
+        <span class="stage-kicker" id="stageKicker">제1막 · 거대한 벽</span>
+        <h2 class="stage-headline" id="stageHeadline">집 앞을 가로막은 두 개의 큰 산</h2>
+      </div>
+    </section>
+
+    <!-- Story Card & Interactive Controls -->
+    <section class="pt-story-card">
+      <p class="pt-story-body" id="storyBody">
+        옛날 중국에 아흔 살이 된 ‘우공’ 할아버지가 살았어요. 집 바로 앞에 너무 큰 산 두 개가 가로막고 있어서 길을 돌아가야만 했지요. 우공은 가족들과 함께 삽을 들고 산을 옮기기로 결심했답니다!
+      </p>
+
+      <!-- Act 2 Interactive Shovel Meter -->
+      <div class="pt-interactive-box" id="shovelBox" hidden>
+        <button type="button" id="btnShovel" class="pt-shovel-btn">🪨 흙 한 삽 옮기기! (<span id="shovelCount">0</span> / 3)</button>
+        <p class="pt-shovel-hint" id="shovelHint">버튼을 3번 눌러 우공 할아버지와 함께 산을 낮춰 보세요!</p>
+      </div>
+
+      <!-- Act 3 Hanja Breakdown + Baduk Connection + Mini Quiz -->
+      <div class="pt-study-box" id="studyBox" hidden>
+        <div class="pt-hanja-grid">
+          <div class="hanja-chip"><strong>愚</strong><span>어리석을 우</span></div>
+          <div class="hanja-chip"><strong>公</strong><span>공 공 (할아버지)</span></div>
+          <div class="hanja-chip"><strong>移</strong><span>옮길 이</span></div>
+          <div class="hanja-chip"><strong>山</strong><span>뫼 산</span></div>
+        </div>
+        <div class="pt-baduk-tip">
+          <strong>⚫ 바둑 속 지혜:</strong> 처음엔 바둑판이 넓고 상대 집이 커 보여도, 포기하지 않고 한 수 한 수 정성을 다해 두면 결국 승리의 길을 열 수 있어요!
+        </div>
+        <div class="pt-mini-quiz" id="miniQuiz">
+          <p class="quiz-q">💡 <b>확인 퀴즈:</b> ‘우공이산’이 가르쳐 주는 가장 중요한 마음가짐은 무엇일까요?</p>
+          <div class="quiz-opts">
+            <button type="button" class="quiz-opt" data-ok="false">어려우면 빨리 포기하기</button>
+            <button type="button" class="quiz-opt" data-ok="true">끈기 있게 꾸준히 노력하기</button>
+            <button type="button" class="quiz-opt" data-ok="false">남에게 전부 미루기</button>
+          </div>
+          <p class="quiz-result" id="quizResult" hidden></p>
+        </div>
+      </div>
+
+      <div class="pt-nav-row">
+        <button type="button" id="btnPrev" class="pt-nav-btn" disabled>◀ 이전 장면</button>
+        <div class="pt-dots" id="actDots">
+          <span class="pt-dot active"></span>
+          <span class="pt-dot"></span>
+          <span class="pt-dot"></span>
+        </div>
+        <button type="button" id="btnNext" class="pt-nav-btn primary">다음 장면 ▶</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js?v=20261112-v1"></script>
+</body>
+</html>
