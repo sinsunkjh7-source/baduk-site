@@ -170,50 +170,52 @@ body {
   background: linear-gradient(145deg, #e7c27d 0%, #c89b52 100%);
   border: 3px solid #92662a;
   box-shadow: 0 14px 32px rgba(0, 0, 0, 0.45), inset 0 0 16px rgba(120, 72, 20, 0.3);
-  background-image:
-    linear-gradient(rgba(74, 46, 12, 0.25) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(74, 46, 12, 0.25) 1px, transparent 1px),
-    linear-gradient(145deg, #e7c27d 0%, #c89b52 100%);
-  background-size: 45px 45px, 45px 45px, 100% 100%;
-  background-position: 22.5px 22.5px, 22.5px 22.5px, 0 0;
+}
+
+.board-grid-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 
 .g-stone {
   position: absolute;
-  width: 34px;
-  height: 34px;
+  width: 26px;
+  height: 26px;
   border-radius: 50%;
   transform: translate(-50%, -50%) scale(0);
 }
 
 .g-stone.b {
   background: radial-gradient(circle at 32% 30%, #475569 0%, #0f172a 70%);
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.55);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.55);
 }
 
 .g-stone.w {
   background: radial-gradient(circle at 32% 30%, #ffffff 0%, #cbd5e1 85%);
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
 }
 
-/* Graphic 0: 圍 Surrounding */
+/* Graphic 0: 圍 Surrounding — exact 5x5 intersections (33.333%, 50%, 66.667%) */
 .center-s {
-  left: 90px;
-  top: 90px;
+  left: 50%;
+  top: 50%;
   animation: stonePop 0.45s cubic-bezier(0.22, 1, 0.36, 1) 0.1s forwards;
 }
 
-.s1 { left: 90px; top: 45px; animation: stonePop 0.4s cubic-bezier(0.22, 1, 0.36, 1) 0.45s forwards; }
-.s2 { left: 135px; top: 90px; animation: stonePop 0.4s cubic-bezier(0.22, 1, 0.36, 1) 0.7s forwards; }
-.s3 { left: 90px; top: 135px; animation: stonePop 0.4s cubic-bezier(0.22, 1, 0.36, 1) 0.95s forwards; }
-.s4 { left: 45px; top: 90px; animation: stonePop 0.4s cubic-bezier(0.22, 1, 0.36, 1) 1.2s forwards; }
+.s1 { left: 50%; top: 33.333%; animation: stonePop 0.4s cubic-bezier(0.22, 1, 0.36, 1) 0.45s forwards; }
+.s2 { left: 66.667%; top: 50%; animation: stonePop 0.4s cubic-bezier(0.22, 1, 0.36, 1) 0.7s forwards; }
+.s3 { left: 50%; top: 66.667%; animation: stonePop 0.4s cubic-bezier(0.22, 1, 0.36, 1) 0.95s forwards; }
+.s4 { left: 33.333%; top: 50%; animation: stonePop 0.4s cubic-bezier(0.22, 1, 0.36, 1) 1.2s forwards; }
 
 .g-ring {
   position: absolute;
-  left: 90px;
-  top: 90px;
-  width: 112px;
-  height: 112px;
+  left: 50%;
+  top: 50%;
+  width: 96px;
+  height: 96px;
   border-radius: 50%;
   border: 2.5px dashed #fbbf24;
   transform: translate(-50%, -50%) scale(0.6);
@@ -238,11 +240,11 @@ body {
 /* Graphic 1: 手 Crucial Move */
 .g-crosshair {
   position: absolute;
-  left: 90px;
-  top: 90px;
-  width: 44px;
-  height: 44px;
-  border: 2px solid rgba(251, 191, 36, 0.8);
+  left: 50%;
+  top: 50%;
+  width: 36px;
+  height: 36px;
+  border: 2px solid rgba(251, 191, 36, 0.85);
   border-radius: 50%;
   transform: translate(-50%, -50%);
   animation: pulseTarget 1.4s ease-in-out infinite;
@@ -254,8 +256,8 @@ body {
 }
 
 .drop-s {
-  left: 90px;
-  top: 90px;
+  left: 50%;
+  top: 50%;
   animation: stoneSlam 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.35s forwards;
 }
 
@@ -267,10 +269,10 @@ body {
 
 .g-ripple {
   position: absolute;
-  left: 90px;
-  top: 90px;
-  width: 34px;
-  height: 34px;
+  left: 50%;
+  top: 50%;
+  width: 26px;
+  height: 26px;
   border: 2.5px solid #38bdf8;
   border-radius: 50%;
   transform: translate(-50%, -50%) scale(1);
@@ -282,7 +284,7 @@ body {
 
 @keyframes rippleOut {
   0% { transform: translate(-50%, -50%) scale(1); opacity: 0.9; }
-  100% { transform: translate(-50%, -50%) scale(3.4); opacity: 0; }
+  100% { transform: translate(-50%, -50%) scale(3.6); opacity: 0; }
 }
 
 /* Graphic 2: 道 Connected Path */
@@ -303,9 +305,9 @@ body {
   to { stroke-dashoffset: 0; }
 }
 
-.p1 { left: 28px; top: 140px; animation: stonePop 0.4s ease 0.15s forwards; }
-.p2 { left: 88px; top: 88px; animation: stonePop 0.4s ease 0.65s forwards; }
-.p3 { left: 152px; top: 36px; animation: stonePop 0.4s ease 1.15s forwards; }
+.p1 { left: 16.667%; top: 83.333%; animation: stonePop 0.4s ease 0.15s forwards; }
+.p2 { left: 50%; top: 50%; animation: stonePop 0.4s ease 0.65s forwards; }
+.p3 { left: 83.333%; top: 16.667%; animation: stonePop 0.4s ease 1.15s forwards; }
 
 /* Right Kinetic Typography Side */
 .mg-typo-side {
