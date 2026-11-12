@@ -200,31 +200,399 @@
    </div>
   </div>
  </section>
+
+ <!-- 🌟 EduFun 놀이터 네모 카드 메뉴 스크린 🌟 -->
+ <section id="fun-screen" class="empty-screen fun-screen" aria-labelledby="fun-title" hidden>
+  <div class="empty-inner">
+   <a class="back-link" href="#home">← 홈으로</a>
+   <p class="page-label">JH 바둑스쿨 · 아이들의 성장 놀이터</p>
+   <div class="empty-heading">
+    <img id="fun-icon" src="assets/stat_3.png?v=static-68a173ca45abc653" alt="에듀펀 놀이터" width="400" height="400">
+    <div>
+     <h1 id="fun-title">EduFun 놀이터</h1>
+     <p id="fun-description">신나는 두뇌 게임과 스포츠를 통해 집중력, 공간지각력, 전략적 사고를 기르는 놀이 공간!</p>
+    </div>
+   </div>
+
+   <!-- 카테고리 필터 탭 (전체 / 보드게임 / 스포츠 / 두뇌 퍼즐) -->
+   <div class="fun-category-tabs" role="tablist" aria-label="에듀펀 분류">
+    <button type="button" class="fun-tab-btn active" data-fun-filter="all">전체 게임 (12)</button>
+    <button type="button" class="fun-tab-btn" data-fun-filter="board">🎲 보드게임 (5)</button>
+    <button type="button" class="fun-tab-btn" data-fun-filter="sports">🏅 스포츠 (3)</button>
+    <button type="button" class="fun-tab-btn" data-fun-filter="puzzle">🧠 두뇌 퍼즐 (4)</button>
+   </div>
+
+   <!-- 에듀펀 카드 그리드 -->
+   <div class="learn-card-grid fun-card-grid" id="funCardGrid">
+
+    <!-- 1. 오목 -->
+    <a href="games/omok/index.html" class="learn-card fun-menu-card fun-card-board" data-category="board" aria-label="오목 시작하기">
+     <div class="card-badge-row">
+      <span class="badge-hot" style="background:#059669;color:#fff;">🎲 보드게임</span>
+      <span class="badge-tech" style="background:#ecfdf5;color:#047857;border:1px solid #a7f3d0;">수읽기 훈련</span>
+     </div>
+     <div class="card-icon-title">
+      <span class="card-emoji">⚪⚫</span>
+      <div>
+       <h2 class="card-title">오목</h2>
+       <p class="card-subtitle">흑백 돌의 치열한 5목 완성 대결</p>
+      </div>
+     </div>
+     <p class="card-desc">
+      가로·세로·대각선으로 5개의 돌을 먼저 연결하는 전통 두뇌 경기입니다. 공격과 수비를 동시에 계획하며 <strong>다각적 수읽기와 고도의 집중력</strong>을 단련합니다.
+     </p>
+     <div class="card-course-tags">
+      <span>5목 완성 규칙</span>
+      <span>공격과 방어 수읽기</span>
+      <span>1인 AI · 2인 대전</span>
+     </div>
+     <div class="card-btn-action">
+      <span>오목 대국실 입장 ➔</span>
+     </div>
+    </a>
+
+    <!-- 2. 체스 -->
+    <a href="games/chess/index.html" class="learn-card fun-menu-card fun-card-board" data-category="board" aria-label="체스 시작하기">
+     <div class="card-badge-row">
+      <span class="badge-hot" style="background:#059669;color:#fff;">🎲 보드게임</span>
+      <span class="badge-tech" style="background:#ecfdf5;color:#047857;border:1px solid #a7f3d0;">전략적 사고</span>
+     </div>
+     <div class="card-icon-title">
+      <span class="card-emoji">♟️</span>
+      <div>
+       <h2 class="card-title">체스</h2>
+       <p class="card-subtitle">세계인이 즐기는 서양 장기 퍼즐</p>
+      </div>
+     </div>
+     <p class="card-desc">
+      킹, 퀸, 룩, 비숍, 나이트, 폰 6가지 기물의 독특한 행마를 활용해 킹을 체크메이트합니다. 기물 간의 협동과 공간 장악을 통해 <strong>논리적 전략 수립과 공간 통제력</strong>을 기릅니다.
+     </p>
+     <div class="card-course-tags">
+      <span>6가지 기물 행마</span>
+      <span>체크메이트 전술</span>
+      <span>전략적 문제 해결</span>
+     </div>
+     <div class="card-btn-action">
+      <span>체스 대국실 입장 ➔</span>
+     </div>
+    </a>
+
+    <!-- 3. 장기 -->
+    <a href="games/janggi/index.html?v=3" class="learn-card fun-menu-card fun-card-board" data-category="board" aria-label="장기 시작하기">
+     <div class="card-badge-row">
+      <span class="badge-hot" style="background:#059669;color:#fff;">🎲 보드게임</span>
+      <span class="badge-tech" style="background:#ecfdf5;color:#047857;border:1px solid #a7f3d0;">전통 지혜</span>
+     </div>
+     <div class="card-icon-title">
+      <span class="card-emoji">🪨</span>
+      <div>
+       <h2 class="card-title">장기</h2>
+       <p class="card-subtitle">초나라와 한나라의 전통 지혜 대결</p>
+      </div>
+     </div>
+     <p class="card-desc">
+      차, 포, 마, 상, 사, 졸 등 다양한 기물을 운용하여 궁성의 왕을 공략하는 우리 민속 지혜 놀이입니다. 포진 구성과 기물 교환을 통해 <strong>거시적 안목과 위기 대처 능력</strong>을 체득합니다.
+     </p>
+     <div class="card-course-tags">
+      <span>민속 전통 장기</span>
+      <span>포진과 기물 운용</span>
+      <span>위기 대처력</span>
+     </div>
+     <div class="card-btn-action">
+      <span>장기 대국실 입장 ➔</span>
+     </div>
+    </a>
+
+    <!-- 4. 오델로 -->
+    <a href="games/othello/index.html" class="learn-card fun-menu-card fun-card-board" data-category="board" aria-label="오델로 시작하기">
+     <div class="card-badge-row">
+      <span class="badge-hot" style="background:#059669;color:#fff;">🎲 보드게임</span>
+      <span class="badge-tech" style="background:#ecfdf5;color:#047857;border:1px solid #a7f3d0;">예측력 향상</span>
+     </div>
+     <div class="card-icon-title">
+      <span class="card-emoji">⚪🟢</span>
+      <div>
+       <h2 class="card-title">오델로 (리버시)</h2>
+       <p class="card-subtitle">판세를 한 번에 뒤집는 리버시 게임</p>
+      </div>
+     </div>
+     <p class="card-desc">
+      상대방의 돌을 사이에 끼워 내 색으로 뒤집는 규칙입니다. 모서리와 변을 차지하는 수순을 계산하며 <strong>패턴 인식 능력과 극적인 국면 전환 예측력</strong>을 극대화합니다.
+     </p>
+     <div class="card-course-tags">
+      <span>돌 뒤집기 묘미</span>
+      <span>모서리 선점 전략</span>
+      <span>국면 예측력</span>
+     </div>
+     <div class="card-btn-action">
+      <span>오델로 시작하기 ➔</span>
+     </div>
+    </a>
+
+    <!-- 5. 윷놀이 -->
+    <a href="games/yut/index.html" class="learn-card fun-menu-card fun-card-board" data-category="board" aria-label="윷놀이 시작하기">
+     <div class="card-badge-row">
+      <span class="badge-hot" style="background:#059669;color:#fff;">🎲 보드게임</span>
+      <span class="badge-tech" style="background:#ecfdf5;color:#047857;border:1px solid #a7f3d0;">확률적 판단</span>
+     </div>
+     <div class="card-icon-title">
+      <span class="card-emoji">🪵</span>
+      <div>
+       <h2 class="card-title">윷놀이</h2>
+       <p class="card-subtitle">온 가족이 함께 즐기는 전통 민속놀이</p>
+      </div>
+     </div>
+     <p class="card-desc">
+      도·개·걸·윷·모의 윷가락 확률과 말판 길을 선택하는 전략 게임입니다. 최적의 경로 선택과 말 엎기·잡기를 통해 <strong>확률적 사고와 유연한 상황 판단력</strong>을 길러줍니다.
+     </p>
+     <div class="card-course-tags">
+      <span>도·개·걸·윷·모</span>
+      <span>지름길 말판 선택</span>
+      <span>확률적 판단력</span>
+     </div>
+     <div class="card-btn-action">
+      <span>윷놀이 판 입장 ➔</span>
+     </div>
+    </a>
+
+    <!-- 6. 알까기 -->
+    <a href="games/alkkagi/index.html" class="learn-card fun-menu-card fun-card-sports" data-category="sports" aria-label="알까기 시작하기">
+     <div class="card-badge-row">
+      <span class="badge-hot" style="background:#0284c7;color:#fff;">🏅 스포츠</span>
+      <span class="badge-tech" style="background:#f0f9ff;color:#0369a1;border:1px solid #bae6fd;">각도·힘 조절</span>
+     </div>
+     <div class="card-icon-title">
+      <span class="card-emoji">⚪💥</span>
+      <div>
+       <h2 class="card-title">알까기</h2>
+       <p class="card-subtitle">짜릿한 손맛의 바둑돌 물리 대결</p>
+      </div>
+     </div>
+     <p class="card-desc">
+      조준선과 파워를 조절하여 상대 돌을 튕겨내는 실감 나는 물리 게임입니다. 입사각과 반사각, 충돌 에너지를 직관적으로 체득하며 <strong>소근육 미세 조절과 물리적 공간 감각</strong>을 기릅니다.
+     </p>
+     <div class="card-course-tags">
+      <span>정밀 물리 엔진</span>
+      <span>미세 파워 조절</span>
+      <span>입사·반사 각도 계산</span>
+     </div>
+     <div class="card-btn-action">
+      <span>알까기 시작하기 ➔</span>
+     </div>
+    </a>
+
+    <!-- 7. 당구 -->
+    <a href="games/billiards/index.html?v=15" class="learn-card fun-menu-card fun-card-sports" data-category="sports" aria-label="당구 시작하기">
+     <div class="card-badge-row">
+      <span class="badge-hot" style="background:#0284c7;color:#fff;">🏅 스포츠</span>
+      <span class="badge-tech" style="background:#f0f9ff;color:#0369a1;border:1px solid #bae6fd;">기하학적 사고</span>
+     </div>
+     <div class="card-icon-title">
+      <span class="card-emoji">🎱</span>
+      <div>
+       <h2 class="card-title">당구 (포켓볼 & 4구)</h2>
+       <p class="card-subtitle">쿠션과 회전의 마술, 포켓볼과 4구</p>
+      </div>
+     </div>
+     <p class="card-desc">
+      큐대로 수구를 쳐서 목적구를 맞추거나 포켓에 넣는 스포츠입니다. 쿠션 반사 궤적과 당점 스핀(회전)을 계산하며 <strong>기하학적 수학 원리와 높은 집중력</strong>을 자연스럽게 배웁니다.
+     </p>
+     <div class="card-course-tags">
+      <span>포켓볼 & 4구 선택</span>
+      <span>쿠션 반사 궤적</span>
+      <span>스핀·두께 컨트롤</span>
+     </div>
+     <div class="card-btn-action">
+      <span>당구장 입장하기 ➔</span>
+     </div>
+    </a>
+
+    <!-- 8. 컬링 -->
+    <a href="games/curling/index.html" class="learn-card fun-menu-card fun-card-sports" data-category="sports" aria-label="컬링 시작하기">
+     <div class="card-badge-row">
+      <span class="badge-hot" style="background:#0284c7;color:#fff;">🏅 스포츠</span>
+      <span class="badge-tech" style="background:#f0f9ff;color:#0369a1;border:1px solid #bae6fd;">빙판 위 체스</span>
+     </div>
+     <div class="card-icon-title">
+      <span class="card-emoji">🥌</span>
+      <div>
+       <h2 class="card-title">컬링</h2>
+       <p class="card-subtitle">하우스 중심을 향한 빙판 위의 두뇌 싸움</p>
+      </div>
+     </div>
+     <p class="card-desc">
+      빙판 위에 스톤을 투구하고 스위핑(비질)으로 궤적을 조절하여 하우스 중심에 가깝게 넣는 경기입니다. <strong>정밀한 투구 속도 조절과 전술적 스톤 배치 능력</strong>을 체계적으로 익힙니다.
+     </p>
+     <div class="card-course-tags">
+      <span>스톤 투구 & 스위핑</span>
+      <span>하우스 득점 경쟁</span>
+      <span>전술적 스톤 배치</span>
+     </div>
+     <div class="card-btn-action">
+      <span>빙상장 입장하기 ➔</span>
+     </div>
+    </a>
+
+    <!-- 9. 미로 찾기 -->
+    <a href="games/maze/index.html" class="learn-card fun-menu-card fun-card-puzzle" data-category="puzzle" aria-label="미로 찾기 시작하기">
+     <div class="card-badge-row">
+      <span class="badge-hot" style="background:#d97706;color:#fff;">🧠 두뇌 퍼즐</span>
+      <span class="badge-tech" style="background:#fffbeb;color:#b45309;border:1px solid #fde68a;">문제 해결력</span>
+     </div>
+     <div class="card-icon-title">
+      <span class="card-emoji">🌀</span>
+      <div>
+       <h2 class="card-title">미로 탐험대</h2>
+       <p class="card-subtitle">10단계로 펼쳐지는 미궁 탈출 어드벤처</p>
+      </div>
+     </div>
+     <p class="card-desc">
+      갈림길을 탐색하며 최적의 출구를 찾아가는 공간 탐험 퍼즐입니다. 막다른 길을 피하고 미로 전체의 구조를 시각화하며 <strong>공간기억력과 끈기 있는 문제 해결력</strong>을 발달시킵니다.
+     </p>
+     <div class="card-course-tags">
+      <span>1~10단계 정복</span>
+      <span>스릴 넘치는 안개 모드</span>
+      <span>최단 경로 탐색</span>
+     </div>
+     <div class="card-btn-action">
+      <span>미로 탐험 출발 ➔</span>
+     </div>
+    </a>
+
+    <!-- 10. 국기 퀴즈 -->
+    <a href="games/flagmap/index.html" class="learn-card fun-menu-card fun-card-puzzle" data-category="puzzle" aria-label="국기 퀴즈 시작하기">
+     <div class="card-badge-row">
+      <span class="badge-hot" style="background:#d97706;color:#fff;">🧠 두뇌 퍼즐</span>
+      <span class="badge-tech" style="background:#fffbeb;color:#b45309;border:1px solid #fde68a;">세계 지리 상식</span>
+     </div>
+     <div class="card-icon-title">
+      <span class="card-emoji">🌍</span>
+      <div>
+       <h2 class="card-title">국기 퀴즈 & 대백과</h2>
+       <p class="card-subtitle">대륙별 200여 개국 국기와 인터랙티브 지도</p>
+      </div>
+     </div>
+     <p class="card-desc">
+      세계 각국의 국기와 수도, 대륙별 지도를 맞추는 지리 탐구 게임입니다. 전 세계 국가들의 위치와 특징을 재미있게 익히며 <strong>글로벌 문화 상식과 시각적 기억력</strong>을 넓혀줍니다.
+     </p>
+     <div class="card-course-tags">
+      <span>세계 200여 개국 국기</span>
+      <span>스피드 퀴즈 모드</span>
+      <span>대륙별 인터랙티브 맵</span>
+     </div>
+     <div class="card-btn-action">
+      <span>국기 퀴즈 풀기 ➔</span>
+     </div>
+    </a>
+
+    <!-- 11. 2048 -->
+    <a href="games/2048/index.html" class="learn-card fun-menu-card fun-card-puzzle" data-category="puzzle" aria-label="2048 시작하기">
+     <div class="card-badge-row">
+      <span class="badge-hot" style="background:#d97706;color:#fff;">🧠 두뇌 퍼즐</span>
+      <span class="badge-tech" style="background:#fffbeb;color:#b45309;border:1px solid #fde68a;">수리적 논리</span>
+     </div>
+     <div class="card-icon-title">
+      <span class="card-emoji">🔢</span>
+      <div>
+       <h2 class="card-title">2048 숫자 퍼즐</h2>
+       <p class="card-subtitle">같은 숫자를 합쳐 2048 타일을 만드는 퍼즐</p>
+      </div>
+     </div>
+     <p class="card-desc">
+      상하좌우로 타일을 밀어 같은 숫자를 2, 4, 8, 16... 배수로 합쳐가는 게임입니다. 판이 가득 차지 않도록 공간을 배분하고 미래를 대비하는 <strong>수리 감각과 장기적 계획 능력</strong>을 키웁니다.
+     </p>
+     <div class="card-course-tags">
+      <span>숫자 배수 합체</span>
+      <span>공간 배분 전략</span>
+      <span>수리적 논리력</span>
+     </div>
+     <div class="card-btn-action">
+      <span>2048 도전하기 ➔</span>
+     </div>
+    </a>
+
+    <!-- 12. 메모리 -->
+    <a href="games/memory/index.html" class="learn-card fun-menu-card fun-card-puzzle" data-category="puzzle" aria-label="메모리 게임 시작하기">
+     <div class="card-badge-row">
+      <span class="badge-hot" style="background:#d97706;color:#fff;">🧠 두뇌 퍼즐</span>
+      <span class="badge-tech" style="background:#fffbeb;color:#b45309;border:1px solid #fde68a;">순간 기억력</span>
+     </div>
+     <div class="card-icon-title">
+      <span class="card-emoji">🃏</span>
+      <div>
+       <h2 class="card-title">메모리 (카드 짝맞추기)</h2>
+       <p class="card-subtitle">바둑돌과 캐릭터 카드의 위치를 기억하는 게임</p>
+      </div>
+     </div>
+     <p class="card-desc">
+      뒤집힌 카드의 위치를 기억하여 같은 그림 한 쌍을 찾아내는 게임입니다. 순간적인 이미지 잔상을 유지하고 회상하는 <strong>작업 기억(Working Memory)과 관찰 집중력</strong>을 극대화합니다.
+     </p>
+     <div class="card-course-tags">
+      <span>카드 짝맞추기</span>
+      <span>작업 기억력 훈련</span>
+      <span>관찰·집중력 향상</span>
+     </div>
+     <div class="card-btn-action">
+      <span>메모리 시작하기 ➔</span>
+     </div>
+    </a>
+
+   </div>
+  </div>
+ </section>
+
  <script>
   (function() {
     function checkNavScreens() {
       var h = (location.hash || '').split('?')[0];
       var ls = document.getElementById('learn-screen');
       var ps = document.getElementById('play-screen');
+      var fs = document.getElementById('fun-screen');
       var hs = document.getElementById('home-screen');
       var es = document.getElementById('empty-screen');
       if (h === '#learn') {
         if (ls) ls.hidden = false;
         if (ps) ps.hidden = true;
+        if (fs) fs.hidden = true;
         if (hs) hs.hidden = true;
         if (es) es.hidden = true;
       } else if (h === '#play') {
         if (ls) ls.hidden = true;
         if (ps) ps.hidden = false;
+        if (fs) fs.hidden = true;
+        if (hs) hs.hidden = true;
+        if (es) es.hidden = true;
+      } else if (h === '#fun') {
+        if (ls) ls.hidden = true;
+        if (ps) ps.hidden = true;
+        if (fs) fs.hidden = false;
         if (hs) hs.hidden = true;
         if (es) es.hidden = true;
       } else if (h === '#home' || !h) {
         if (ls) ls.hidden = true;
         if (ps) ps.hidden = true;
+        if (fs) fs.hidden = true;
         if (hs) hs.hidden = false;
       }
     }
     window.addEventListener('DOMContentLoaded', checkNavScreens);
+    
+    // EduFun Category Tab Filtering
+    document.querySelectorAll('.fun-tab-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.fun-tab-btn').forEach(function(b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        var filter = btn.dataset.funFilter;
+        document.querySelectorAll('.fun-menu-card').forEach(function(card) {
+          if (filter === 'all' || card.dataset.category === filter) {
+            card.style.display = '';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
     window.addEventListener('hashchange', checkNavScreens);
     checkNavScreens();
   })();

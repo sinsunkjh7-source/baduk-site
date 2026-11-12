@@ -285,3 +285,100 @@
     grid-template-columns: 1fr;
   }
 }
+
+
+/* ==============================================
+   🌟 EduFun 놀이터 메뉴 카드 그리드 (fun-card-grid) 🌟
+   ============================================== */
+.fun-card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  margin-top: 14px;
+  width: 100%;
+}
+
+.fun-card-grid .learn-card {
+  min-width: 0;
+  cursor: pointer;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Category Filter Tabs */
+.fun-category-tabs {
+  display: flex;
+  gap: 10px;
+  margin: 18px 0 10px;
+  flex-wrap: wrap;
+}
+.fun-tab-btn {
+  background: #ffffff;
+  border: 1.5px solid #e2e8f0;
+  color: #475569;
+  padding: 8px 18px;
+  border-radius: 24px;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.fun-tab-btn:hover {
+  border-color: #3b82f6;
+  color: #1d4ed8;
+  background: #eff6ff;
+  transform: translateY(-1px);
+}
+.fun-tab-btn.active {
+  background: #2563eb;
+  border-color: #1d4ed8;
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.28);
+}
+
+/* Card Themes by Category */
+.fun-card-grid .fun-card-board {
+  border: 1.5px solid #a7f3d0;
+  background: linear-gradient(135deg, #ffffff 0%, #f0fdf4 100%);
+}
+.fun-card-grid .fun-card-board:hover {
+  border-color: #059669;
+  box-shadow: 0 14px 28px rgba(5, 150, 105, 0.14);
+}
+
+.fun-card-grid .fun-card-sports {
+  border: 1.5px solid #bae6fd;
+  background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%);
+}
+.fun-card-grid .fun-card-sports:hover {
+  border-color: #0284c7;
+  box-shadow: 0 14px 28px rgba(2, 132, 199, 0.14);
+}
+
+.fun-card-grid .fun-card-puzzle {
+  border: 1.5px solid #fde68a;
+  background: linear-gradient(135deg, #ffffff 0%, #fffbeb 100%);
+}
+.fun-card-grid .fun-card-puzzle:hover {
+  border-color: #d97706;
+  box-shadow: 0 14px 28px rgba(217, 119, 6, 0.14);
+}
+
+@media (max-width: 1024px) {
+  .fun-card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 680px) {
+  .fun-card-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .fun-tab-btn {
+    font-size: 12.5px;
+    padding: 6px 14px;
+  }
+}
