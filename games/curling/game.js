@@ -43,7 +43,6 @@
   var selStoneStyle = document.getElementById('selStoneStyle');
   var selLevel = document.getElementById('selLevel');
   var selIceSkin = document.getElementById('selIceSkin');
-  var selTeeLine = document.getElementById('selTeeLine');
   var selSound = document.getElementById('selSound');
 
   var btnMobNew = document.getElementById('btnMobNew');
@@ -69,7 +68,6 @@
     aiLevel: 2,
     stoneStyle: 'olympic', // 'olympic' or 'baduk'
     iceSkin: 'blue',
-    teeLineStyle: 'subtle', // 'subtle', 'solid', 'none'
     isAiming: false,
     aimStartX: 0,
     aimStartY: 0,
@@ -230,19 +228,12 @@
     ctx.fill();
 
     // Tee Line
-    if (state.teeLineStyle !== 'none') {
-      if (state.teeLineStyle === 'solid') {
-        ctx.strokeStyle = isDark ? '#94a3b8' : '#475569';
-        ctx.lineWidth = 2;
-      } else {
-        ctx.strokeStyle = isDark ? 'rgba(148, 163, 184, 0.4)' : 'rgba(71, 85, 105, 0.28)';
-        ctx.lineWidth = 1.5;
-      }
-      ctx.beginPath();
-      ctx.moveTo(16, ty);
-      ctx.lineTo(384, ty);
-      ctx.stroke();
-    }
+    ctx.strokeStyle = isDark ? '#94a3b8' : '#475569';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(16, ty);
+    ctx.lineTo(384, ty);
+    ctx.stroke();
 
     // Hog Line (y = 420)
     ctx.strokeStyle = '#dc2626';
@@ -846,12 +837,6 @@
   selIceSkin.addEventListener('change', function() {
     state.iceSkin = selIceSkin.value;
   });
-
-  if (selTeeLine) {
-    selTeeLine.addEventListener('change', function() {
-      state.teeLineStyle = selTeeLine.value;
-    });
-  }
 
   selSound.addEventListener('change', function() {
     audio.setMuted(selSound.value === 'off');
