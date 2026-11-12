@@ -243,29 +243,34 @@ body {
   inset: 0;
   z-index: 20;
   display: flex;
-  justify-content: center; /* 화면 정중앙 홀로그램 투영 */
-  align-items: center;
-  padding: 0;
-  pointer-events: none; /* 카드 밖 정면 배경은 마우스 클릭 통과 */
-  background: transparent !important; /* 배경 암전 완전 제거 */
+  justify-content: flex-end; /* 우상단 홀로그램 배치 */
+  align-items: flex-start;
+  padding: 76px 20px 20px 20px;
+  pointer-events: none;
+  background: transparent !important;
   backdrop-filter: none !important;
 }
 
 .board-modal-card {
-  pointer-events: auto; /* 카드 내부만 클릭 상호작용 */
-  background: rgba(4, 15, 32, 0.28) !important; /* 70%+ 투명 크리스털 홀로그램 글래스 */
-  border: 1.5px solid rgba(56, 189, 248, 0.75);
-  border-radius: 24px;
-  padding: 16px 20px;
-  box-shadow: 0 0 35px rgba(56, 189, 248, 0.35), inset 0 0 25px rgba(56, 189, 248, 0.15);
+  pointer-events: auto;
+  background: rgba(4, 15, 32, 0.34) !important;
+  border: 1.5px solid rgba(56, 189, 248, 0.78);
+  border-radius: 22px;
+  padding: 14px 16px;
+  box-shadow: 0 0 32px rgba(56, 189, 248, 0.35), inset 0 0 22px rgba(56, 189, 248, 0.15);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   animation: hudScaleHoloIn 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-  max-width: 490px;
+  max-width: 340px;
   width: auto;
-  backdrop-filter: blur(2px); /* 155m 설산 빙벽과 트랙이 시원하게 비쳐 보임 */
+  backdrop-filter: blur(2px);
+}
+
+.board-modal-card canvas#goCanvas {
+  width: 280px !important;
+  height: 280px !important;
 }
 
 @keyframes hudScaleHoloIn {
@@ -275,14 +280,18 @@ body {
 
 @media (max-width: 820px) {
   .board-modal-overlay {
-    justify-content: center;
-    align-items: flex-end;
-    padding-right: 0;
-    padding-bottom: 24px;
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding: 72px 12px 12px 12px;
   }
   .board-modal-card {
-    max-width: 360px;
-    animation: hudSlideInBottom 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    max-width: 268px;
+    padding: 10px 12px;
+    animation: hudScaleHoloIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .board-modal-card canvas#goCanvas {
+    width: 220px !important;
+    height: 220px !important;
   }
   @keyframes hudSlideInBottom {
     0% { transform: translateY(50px); opacity: 0; }
@@ -834,8 +843,8 @@ canvas#goCanvas {
     padding: 14px;
   }
   canvas#goCanvas {
-    width: 310px !important;
-    height: 310px !important;
+    width: 220px !important;
+    height: 220px !important;
   }
   .setting-pill-grid {
     grid-template-columns: 1fr;
@@ -933,4 +942,20 @@ canvas#goCanvas {
 /* 사이드 HUD 문제 패널 활성화 시 상단 중복 배너 숨김 -> 전방 155m 절벽 시야 100% 완전 개방 */
 body:has(#boardModal:not([hidden])) #gateBanner {
   display: none !important;
+}
+
+/* 운석 충돌 붉은 충격 플래시 */
+.impact-flash-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 15;
+  pointer-events: none;
+  background: radial-gradient(circle at center, rgba(251, 146, 60, 0.15) 20%, rgba(220, 38, 38, 0.65) 100%);
+  animation: meteorImpactFlash 0.55s ease-out forwards;
+}
+.impact-flash-overlay[hidden] { display: none; }
+@keyframes meteorImpactFlash {
+  0% { opacity: 0; }
+  25% { opacity: 1; }
+  100% { opacity: 0; }
 }

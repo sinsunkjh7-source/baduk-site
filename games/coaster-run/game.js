@@ -129,7 +129,7 @@
         if (this.magmaCanvas) this.magmaCanvas.style.display = 'block';
         this.magmaCoaster.setTheme('magma');
         this.coaster = this.magmaCoaster;
-      } else if ((courseId === 'space' || courseId === 'space_epic') && this.spaceCoaster) {
+      } else if ((courseId === 'space' || courseId === 'space_epic' || courseId === 'space_meteor') && this.spaceCoaster) {
         if (this.magmaCanvas) this.magmaCanvas.style.display = 'none';
         if (this.spaceCanvas) this.spaceCanvas.style.display = 'block';
         this.coaster = this.spaceCoaster;
@@ -153,6 +153,7 @@
         if (courseId === 'magma') label = '2코스';
         if (courseId === 'space') label = '3코스';
         if (courseId === 'space_epic') label = '4코스';
+        if (courseId === 'space_meteor') label = '5코스 (운석 30초 런)';
         badge.textContent = `선택됨: ${label}`;
       }
 
@@ -163,6 +164,7 @@
         if (courseId === 'magma') hudText = '🔥 2코스 마그마';
         if (courseId === 'space') hudText = '🌌 3코스 심우주';
         if (courseId === 'space_epic') hudText = '🚀 4코스 1분 사활';
+        if (courseId === 'space_meteor') hudText = '☄️ 5코스 운석 30초 런';
         hudCourseTag.textContent = hudText;
       }
 
@@ -181,6 +183,9 @@
         } else if (courseId === 'space_epic') {
           btnTheme = 'linear-gradient(135deg, #f59e0b 0%, #ec4899 50%, #8b5cf6 100%)';
           btnShadow = 'rgba(245, 158, 11, 0.6)';
+        } else if (courseId === 'space_meteor') {
+          btnTheme = 'linear-gradient(135deg, #dc2626 0%, #ea580c 50%, #7c3aed 100%)';
+          btnShadow = 'rgba(234, 88, 12, 0.65)';
         }
         this.btnStart.style.background = btnTheme;
         this.btnStart.style.boxShadow = `0 10px 30px ${btnShadow}`;
@@ -700,24 +705,29 @@
           this.executeGateSuccess(problem);
         }, 550);
       } else {
-        // 오답 처리
+        // 오답 처리 (운석 충돌 연출 포함)
         CoasterAudio.playWrongAlarm();
-        this.coaster.triggerWrong();
-
         if (this.failureLimit > 0) {
           this.lives--;
           this.updateHUD();
         }
+        const isFatal = (this.failureLimit > 0 && this.lives <= 0);
+        this.coaster.triggerWrong(isFatal);
+        this.triggerImpactFlash();
 
-        if (this.failureLimit > 0 && this.lives <= 0) {
-          // 비상 정차 탈락
+        if (isFatal) {
           this.clearGateTimer();
-          this.hudBoardPrompt.innerHTML = `<span style="color:#ef4444; font-weight:900;">🚨 배터리 방전! 비상 정차합니다!</span>`;
-          setTimeout(() => this.handleGameOver(), 750);
+          const stopMsg = this.currentCourseId === 'space_meteor'
+            ? '💥 운석 3회 충돌! 열차가 비상 정지합니다!'
+            : '🚨 배터리 방전! 비상 정차합니다!';
+          this.hudBoardPrompt.innerHTML = `<span style="color:#ef4444; font-weight:900;">${stopMsg}</span>`;
+          setTimeout(() => this.handleGameOver(), 850);
         } else {
-          // 계속 도전 기회 제공 (시간이 남아있으면)
           const leftText = this.failureLimit === 0 ? '자유 모드' : `남은 기회: ${this.lives}번`;
-          this.hudBoardPrompt.innerHTML = `<span style="color:#ef4444; font-weight:900;">⚠️ 거기가 아닙니다! (${leftText})</span>`;
+          const hitMsg = this.currentCourseId === 'space_meteor'
+            ? `☄️ 운석 충돌! 열차가 흔들립니다! (${leftText})`
+            : `⚠️ 거기가 아닙니다! (${leftText})`;
+          this.hudBoardPrompt.innerHTML = `<span style="color:#ef4444; font-weight:900;">${hitMsg}</span>`;
         }
       }
     }
@@ -726,7 +736,6 @@
     handleTimeout() {
       CoasterAudio.playWrongAlarm();
       CoasterAudio.playPassSwoosh();
-      this.coaster.triggerWrong();
 
       const problem = (this.currentCourse && this.currentCourse.gates) ?
         this.currentCourse.gates[this.currentProblemIndex] : COASTER_PROBLEMS[this.currentProblemIndex];
@@ -735,8 +744,11 @@
         this.lives--;
         this.updateHUD();
       }
+      const isFatal = (this.failureLimit > 0 && this.lives <= 0);
+      this.coaster.triggerWrong(isFatal);
+      this.triggerImpactFlash();
 
-      if (this.failureLimit > 0 && this.lives <= 0) {
+      if (isFatal) {
         // 배터리 전량 소진 ➔ 비상 정차
         this.hudBoardPrompt.innerHTML = `<span style="color:#ef4444; font-weight:900;">🚨 시간 초과 & 배터리 방전! 비상 정차!</span>`;
         setTimeout(() => this.handleGameOver(), 700);
@@ -779,11 +791,23 @@
       this.checkAllGatesCompleted();
     }
 
+    triggerImpactFlash() {
+      const flash = document.getElementById('impactFlash');
+      if (!flash) return;
+      flash.hidden = false;
+      flash.style.animation = 'none';
+      void flash.offsetWidth;
+      flash.style.animation = '';
+      setTimeout(() => { flash.hidden = true; }, 560);
+    }
+
     checkAllGatesCompleted() {
-      if (this.currentProblemIndex >= COASTER_PROBLEMS.length - 1) {
+      const total = (this.currentCourse && this.currentCourse.gates) ? this.currentCourse.gates.length : COASTER_PROBLEMS.length;
+      if (this.currentProblemIndex >= total - 1) {
+        const delay = (this.currentCourse && this.currentCourse.speedScale >= 2) ? 3500 : 6500;
         setTimeout(() => {
           this.handleVictory();
-        }, 6500);
+        }, delay);
       }
     }
 

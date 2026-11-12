@@ -25,6 +25,7 @@
       this.trackLength = 0;
       this.t = 0.01; // 0.0 ~ 1.0
       this.baseSpeed = 0.00028; // 약 60초(1분) 완주 속도
+      this.speedScale = 1.0;
       this.currentSpeedFactor = 1.0;
       this.targetSpeedFactor = 1.0;
 
@@ -53,6 +54,8 @@
       this.saturnGroup = null;
       this.blazingStarGroup = null;
       this.asteroidList = [];
+      this.activeMeteors = [];
+      this.meteorDebris = [];
       this.nebulaGroup = null;
       this.speedStreakGroup = null;
 
@@ -521,6 +524,7 @@
 
     setCourse(course) {
       this.currentCourse = course;
+      this.speedScale = (course && course.speedScale) ? course.speedScale : 1.0;
       if (course.gates && course.gates.length) {
         this.gatePoints = course.gates.map((g, i) => ({
           ...g,
@@ -609,9 +613,67 @@
       this.triggerEmergencyStop();
     }
 
-    triggerWrong() {
+    spawnCollisionMeteor(isFatal = false) {
+      if (!this.scene || !this.curve || !this.camera || !window.THREE) {
+        if (this.options.onShake) this.options.onShake(isFatal ? 3.0 : 1.8);
+        return;
+      }
+      const aheadT = Math.min(0.995, this.t + 0.055);
+      const startPos = this.curve.getPointAt(aheadT).add(
+        new THREE.Vector3((Math.random() - 0.5) * 14, (Math.random() - 0.3) * 10 + 3, (Math.random() - 0.5) * 10)
+      );
+      const geo = new THREE.IcosahedronGeometry(isFatal ? 2.4 : 1.7, 0);
+      const mat = new THREE.MeshStandardMaterial({
+        color: 0x7c2d12,
+        emissive: 0xea580c,
+        emissiveIntensity: 0.9,
+        roughness: 0.7,
+        flatShading: true
+      });
+      const mesh = new THREE.Mesh(geo, mat);
+      mesh.position.copy(startPos);
+      this.scene.add(mesh);
+      this.activeMeteors.push({
+        mesh,
+        startPos,
+        progress: 0,
+        duration: 0.34,
+        isFatal
+      });
+    }
+
+    spawnImpactDebris(origin, count = 8) {
+      if (!this.scene || !window.THREE) return;
+      const geo = new THREE.DodecahedronGeometry(0.32, 0);
+      for (let i = 0; i < count; i++) {
+        const mat = new THREE.MeshBasicMaterial({ color: i % 2 === 0 ? 0xfb923c : 0xfacc15, transparent: true, opacity: 1 });
+        const m = new THREE.Mesh(geo, mat);
+        m.position.copy(origin);
+        this.scene.add(m);
+        this.meteorDebris.push({
+          mesh: m,
+          vel: new THREE.Vector3((Math.random() - 0.5) * 0.55, (Math.random() - 0.3) * 0.45, (Math.random() - 0.5) * 0.55),
+          life: 1.0
+        });
+      }
+    }
+
+    triggerWrong(isFatal = false) {
+      this.spawnCollisionMeteor(isFatal);
       if (this.options.onShake) {
-        this.options.onShake(1.3);
+        this.options.onShake(isFatal ? 3.2 : 2.0);
+      }
+      if (isFatal) {
+        this.targetSpeedFactor = 0.0;
+      } else {
+        const prevTarget = this.targetSpeedFactor;
+        this.currentSpeedFactor = Math.min(this.currentSpeedFactor, 0.25);
+        this.targetSpeedFactor = 0.45;
+        setTimeout(() => {
+          if (!this.isEmergencyStopped && !this.isGlidingSlow) {
+            this.targetSpeedFactor = Math.max(prevTarget, 1.15);
+          }
+        }, 650);
       }
     }
 
@@ -659,10 +721,43 @@
         }
       });
 
+      // 날아오는 운석 충돌 업데이트
+      for (let i = this.activeMeteors.length - 1; i >= 0; i--) {
+        const m = this.activeMeteors[i];
+        m.progress += 0.016 / m.duration;
+        m.mesh.rotation.x += 0.14;
+        m.mesh.rotation.y += 0.18;
+        if (m.progress >= 1.0) {
+          const hitPos = this.camera ? this.camera.position.clone() : m.mesh.position.clone();
+          this.spawnImpactDebris(hitPos, m.isFatal ? 12 : 7);
+          if (this.options.onShake) this.options.onShake(m.isFatal ? 3.5 : 2.3);
+          this.scene.remove(m.mesh);
+          if (m.mesh.geometry) m.mesh.geometry.dispose();
+          if (m.mesh.material) m.mesh.material.dispose();
+          this.activeMeteors.splice(i, 1);
+        } else if (this.camera) {
+          const targetPos = this.camera.position.clone();
+          m.mesh.position.lerpVectors(m.startPos, targetPos, m.progress);
+        }
+      }
+
+      // 충돌 파편 업데이트
+      for (let i = this.meteorDebris.length - 1; i >= 0; i--) {
+        const d = this.meteorDebris[i];
+        d.mesh.position.add(d.vel);
+        d.life -= 0.035;
+        d.mesh.material.opacity = Math.max(0, d.life);
+        if (d.life <= 0) {
+          this.scene.remove(d.mesh);
+          if (d.mesh.material) d.mesh.material.dispose();
+          this.meteorDebris.splice(i, 1);
+        }
+      }
+
       if (this.isPlaying && !this.isEmergencyStopped) {
         this.currentSpeedFactor += (this.targetSpeedFactor - this.currentSpeedFactor) * 0.08;
 
-        const delta = this.baseSpeed * this.currentSpeedFactor;
+        const delta = this.baseSpeed * this.speedScale * this.currentSpeedFactor;
         this.t += delta;
 
         if (this.t >= 0.99) {

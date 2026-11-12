@@ -390,6 +390,108 @@
           correct: { x: 7, y: 6 }
         }
       ]
+    },
+
+    // ☄️ 5코스: 운석 충돌 30초 사활 런 (5문제 / 3회 오답 시 정지)
+    space_meteor: {
+      id: 'space_meteor',
+      engineType: 'space',
+      speedScale: 2.0,
+      title: '☄️ 제5코스: 운석 충돌 30초 사활 런',
+      theme: '30초 초고속 우주 항해 & 5대 사활 돌파 (3회 오답 시 운석 충돌 정지)',
+      gates: [
+        {
+          id: 0,
+          t: 0.14,
+          time: 15.0,
+          solved: false,
+          gateName: '제1관문: 운석지대 진입! 단수 백돌 따내기',
+          mission: '앞을 막는 백돌을 한 수로 따내고 운석지대를 돌파하라!',
+          hint: '백돌의 마지막 숨구멍(아래쪽)을 클릭하세요.',
+          gateActionName: '⚡ 1단계 워프 부스터! 운석지대 돌파!',
+          boardSize: 5,
+          stones: [
+            { x: 2, y: 2, color: 'w' },
+            { x: 1, y: 2, color: 'b' },
+            { x: 3, y: 2, color: 'b' },
+            { x: 2, y: 1, color: 'b' }
+          ],
+          correct: { x: 2, y: 3 }
+        },
+        {
+          id: 1,
+          t: 0.32,
+          time: 15.0,
+          solved: false,
+          gateName: '제2관문: 소행성 벨트! 3칸 궁도 두 집 살리기',
+          mission: '운석 폭풍 속에서 흑 대마를 살리는 급소(두 집)를 찾아라!',
+          hint: '3칸 빈자리의 정중앙에 두어 두 집을 만드세요.',
+          gateActionName: '🌀 소행성 벨트 급선회 회피 성공!',
+          boardSize: 5,
+          stones: [
+            { x: 1, y: 1, color: 'b' }, { x: 2, y: 1, color: 'b' }, { x: 3, y: 1, color: 'b' },
+            { x: 1, y: 3, color: 'b' }, { x: 2, y: 3, color: 'b' }, { x: 3, y: 3, color: 'b' },
+            { x: 0, y: 2, color: 'b' }, { x: 4, y: 2, color: 'b' },
+            { x: 0, y: 1, color: 'w' }, { x: 4, y: 1, color: 'w' },
+            { x: 0, y: 3, color: 'w' }, { x: 4, y: 3, color: 'w' }
+          ],
+          correct: { x: 2, y: 2 }
+        },
+        {
+          id: 2,
+          t: 0.50,
+          time: 15.0,
+          solved: false,
+          gateName: '제3관문: 유성우 돌파! 먹여치기 한 수',
+          mission: '내 돌 하나를 과감히 던져 백돌을 단수로 몰아라!',
+          hint: '호구 속 빈칸(중앙)으로 먹여치기 하세요.',
+          gateActionName: '🔥 유성우 정면 돌파! 하이퍼 가속!',
+          boardSize: 5,
+          stones: [
+            { x: 2, y: 1, color: 'w' }, { x: 1, y: 2, color: 'w' }, { x: 3, y: 2, color: 'w' },
+            { x: 1, y: 1, color: 'b' }, { x: 3, y: 1, color: 'b' },
+            { x: 1, y: 3, color: 'b' }, { x: 2, y: 3, color: 'b' }, { x: 3, y: 3, color: 'b' }
+          ],
+          correct: { x: 2, y: 2 }
+        },
+        {
+          id: 3,
+          t: 0.68,
+          time: 15.0,
+          solved: false,
+          gateName: '제4관문: 암흑 성운! 백 대마 치중 급소',
+          mission: '백의 3칸 궁도 한가운데를 찔러 두 집을 없애버려라!',
+          hint: '백 안형의 정중앙 급소에 치중하세요.',
+          gateActionName: '💫 암흑 성운 중력 슬링샷 탈출!',
+          boardSize: 5,
+          stones: [
+            { x: 1, y: 1, color: 'w' }, { x: 2, y: 1, color: 'w' }, { x: 3, y: 1, color: 'w' },
+            { x: 1, y: 3, color: 'w' }, { x: 2, y: 3, color: 'w' }, { x: 3, y: 3, color: 'w' },
+            { x: 0, y: 2, color: 'w' }, { x: 4, y: 2, color: 'w' },
+            { x: 1, y: 0, color: 'b' }, { x: 2, y: 0, color: 'b' }, { x: 3, y: 0, color: 'b' },
+            { x: 1, y: 4, color: 'b' }, { x: 2, y: 4, color: 'b' }, { x: 3, y: 4, color: 'b' }
+          ],
+          correct: { x: 2, y: 2 }
+        },
+        {
+          id: 4,
+          t: 0.86,
+          time: 15.0,
+          solved: false,
+          gateName: '제5관문: 최종 귀환 워프! 백 2점 포획',
+          mission: '마지막 백 2점을 따내고 지구 귀환 웜홀을 열어라!',
+          hint: '백 2점의 마지막 남은 활로(아래쪽)를 막으세요.',
+          gateActionName: '🚀 초광속 지구 귀환 워프 성공!',
+          boardSize: 5,
+          stones: [
+            { x: 2, y: 2, color: 'w' }, { x: 2, y: 3, color: 'w' },
+            { x: 1, y: 2, color: 'b' }, { x: 3, y: 2, color: 'b' },
+            { x: 1, y: 3, color: 'b' }, { x: 3, y: 3, color: 'b' },
+            { x: 2, y: 1, color: 'b' }
+          ],
+          correct: { x: 2, y: 4 }
+        }
+      ]
     }
   };
 })(window);
