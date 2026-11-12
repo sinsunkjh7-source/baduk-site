@@ -137,6 +137,31 @@ body {
   transform-origin: center center;
 }
 
+.s2-outside-mtn {
+  filter: drop-shadow(0 8px 14px rgba(18, 22, 16, 0.35));
+  will-change: transform;
+}
+
+.s2-room {
+  filter: drop-shadow(0 10px 24px rgba(20, 14, 10, 0.55));
+}
+
+.s5-sunbeam {
+  background: radial-gradient(
+    ellipse at 62% 18%,
+    rgba(255, 244, 184, 0.45) 0%,
+    rgba(253, 224, 71, 0.14) 42%,
+    transparent 74%
+  );
+  mix-blend-mode: screen;
+  animation: sunbeamGlow 4.5s ease-in-out infinite alternate;
+}
+
+@keyframes sunbeamGlow {
+  0% { opacity: 0.45; transform: scale(1); }
+  100% { opacity: 0.95; transform: scale(1.1); }
+}
+
 @keyframes pineBreeze {
   0% { transform: scale(1.02) translateX(-3px) rotate(-0.22deg); }
   100% { transform: scale(1.02) translateX(3px) rotate(0.22deg); }

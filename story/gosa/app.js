@@ -1,5 +1,5 @@
 /**
- * 종이 극장 쇼츠 (48초 8장 · 상황별 7개 장면 전환) — 우공이산 컨트롤러
+ * 다층 종이 극장 쇼츠 (48초 8장 · 매 장면 레이어 분리 입체 움직임) — 우공이산 컨트롤러
  */
 (function () {
   'use strict';
@@ -75,8 +75,15 @@
     document.getElementById('slide6')
   ];
 
-  var layerMountains = document.getElementById('layerMountains');
-  var layerVillage = document.getElementById('layerVillage');
+  var s0MtnL = document.getElementById('s0MtnL');
+  var s0MtnR = document.getElementById('s0MtnR');
+  var s2Sky = document.getElementById('s2Sky');
+  var s2Mtn = document.getElementById('s2Mtn');
+  var s4MtnL = document.getElementById('s4MtnL');
+  var s4MtnR = document.getElementById('s4MtnR');
+  var s4Village = document.getElementById('s4Village');
+  var s6MtnL = document.getElementById('s6MtnL');
+  var s6MtnR = document.getElementById('s6MtnR');
   var particlesLayer = document.getElementById('particlesLayer');
 
   var timePill = document.getElementById('timePill');
@@ -124,16 +131,39 @@
       });
     }
 
-    // Slide 4 (24s ~ 36s): 6-layer diorama where mountains gradually sink as Ugong digs!
-    if (currentBeat.slide === 4) {
-      var mtnProgress = Math.min(1, Math.max(0, (t - 24) / 12));
-      var eased = mtnProgress * mtnProgress * (3 - 2 * mtnProgress);
-      layerMountains.style.transform = 'translateY(' + (eased * 145).toFixed(1) + 'px)';
-      var digBob = playing ? Math.abs(Math.sin(t * 3.6)) * -3.5 : 0;
-      layerVillage.style.transform = 'translateY(' + digBob.toFixed(2) + 'px)';
+    // Scene 1 (0~6s): Giant mountains slowly loom forward/upward
+    if (currentBeat.slide === 0) {
+      var p0 = Math.min(1, t / 6);
+      s0MtnL.style.transform = 'translate3d(' + (p0 * 8).toFixed(1) + 'px, ' + (-p0 * 14).toFixed(1) + 'px, 0) scale(' + (1 + p0 * 0.04).toFixed(3) + ')';
+      s0MtnR.style.transform = 'translate3d(' + (-p0 * 8).toFixed(1) + 'px, ' + (-p0 * 14).toFixed(1) + 'px, 0) scale(' + (1 + p0 * 0.04).toFixed(3) + ')';
     }
 
-    // Cherry blossoms in Finale (42s+)
+    // Scene 2 (6~12s): Outside the open hanok window, sky & mountain drift past each other
+    if (currentBeat.slide === 1) {
+      var p1 = Math.min(1, (t - 6) / 6);
+      s2Sky.style.transform = 'translateX(' + (16 - p1 * 24).toFixed(1) + 'px) scale(1.12)';
+      s2Mtn.style.transform = 'translate(' + (115 - p1 * 38).toFixed(1) + 'px, 26px) scale(0.66)';
+    }
+
+    // Scene 5-6 (24~36s): 6-layer diorama where mountains gradually sink as Ugong digs
+    if (currentBeat.slide === 4) {
+      var p4 = Math.min(1, Math.max(0, (t - 24) / 12));
+      var eased4 = p4 * p4 * (3 - 2 * p4);
+      var dropY = (eased4 * 145).toFixed(1);
+      s4MtnL.style.transform = 'translateY(' + dropY + 'px)';
+      s4MtnR.style.transform = 'translateY(' + dropY + 'px)';
+      var digBob = playing ? Math.abs(Math.sin(t * 3.6)) * -3.5 : 0;
+      s4Village.style.transform = 'translateY(' + digBob.toFixed(2) + 'px)';
+    }
+
+    // Scene 8 (42~48s): Two mountains physically slide apart left & right, revealing the sunny road!
+    if (currentBeat.slide === 6) {
+      var p6 = Math.min(1, Math.max(0, (t - 42) / 3.5));
+      var eased6 = p6 * p6 * (3 - 2 * p6);
+      s6MtnL.style.transform = 'translateX(' + (-eased6 * 420).toFixed(1) + 'px)';
+      s6MtnR.style.transform = 'translateX(' + (eased6 * 420).toFixed(1) + 'px)';
+    }
+
     particlesLayer.classList.toggle('blossoms', t >= 42);
   }
 
