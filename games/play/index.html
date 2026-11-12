@@ -30,9 +30,9 @@
         <div class="player-card-identity">
           <div class="player-card-name-wrap">
             <span class="timer-stone" id="arenaWhiteStone">⚪</span>
-            <span class="player-name" id="timerWhiteName">AI 지혜로운 판다</span>
+            <span class="player-name" id="timerWhiteName">스쿨봇 2</span>
           </div>
-          <span class="arena-player-badge" id="arenaWhiteRankBadge">⭐ 상급 (1~2급)</span>
+          <span class="arena-player-badge" id="arenaWhiteRankBadge">2단계</span>
         </div>
         <div class="arena-turn-status" id="arenaWhiteStatus">차례 대기 중</div>
       </div>
@@ -66,8 +66,8 @@
 
     <!-- 하단 엔진 배지 -->
     <div class="arena-engine-card" id="arenaEngineCard" style="display:none">
-      <div class="engine-badge-title">⚡ GNU Go 3.8.1</div>
-      <div class="engine-badge-sub">Wasm 로컬 인공지능 탑재</div>
+      <div class="engine-badge-title">스쿨봇</div>
+      <div class="engine-badge-sub">바둑스쿨 AI 대국 상대</div>
     </div>
   </aside>
 
@@ -180,57 +180,15 @@
           </div>
         </div>
 
-        <div class="match-section" id="matchAiEngineSection">
-          <label class="match-section-label">AI 엔진 선택</label>
-          <div class="match-chips" id="matchEngineChips" role="group" aria-label="AI 엔진 선택">
-            <button type="button" class="match-chip active" data-ai-engine="gnugo" aria-pressed="true">GNU Go · 기본</button>
-            <button type="button" class="match-chip" data-ai-engine="katago-lite" aria-pressed="false">카타고 경량판 · 시험</button>
-          </div>
-          <p id="matchEngineHelp" class="kata-engine-help">GNU Go는 기존 다섯 단계 동물 봇을 사용합니다.</p>
-          <p id="matchEngineStatus" class="kata-engine-status" role="status" aria-live="polite"></p>
-          <a class="kata-license-link" href="kata-licenses.txt" target="_blank" rel="noopener">엔진·모델 출처 및 사용 조건</a>
-        </div>
-
-        <!-- 2. AI 상대 기력 (난이도) -->
         <div class="match-section" id="matchAiDifficultySection">
-          <label class="match-section-label">🤖 AI 상대 기력 (5단계 동물 봇)</label>
-          <div class="match-bot-grid" id="matchBotGrid">
-            <button type="button" class="match-bot-card" data-bot="beginner">
-              <span class="bot-card-avatar">🐥</span>
-              <div class="bot-card-info">
-                <strong>AI 삐약이</strong>
-                <small>입문 (18급)</small>
-              </div>
-            </button>
-            <button type="button" class="match-bot-card" data-bot="intermediate">
-              <span class="bot-card-avatar">🐶</span>
-              <div class="bot-card-info">
-                <strong>AI 바둑이</strong>
-                <small>초급 (12급)</small>
-              </div>
-            </button>
-            <button type="button" class="match-bot-card" data-bot="advanced">
-              <span class="bot-card-avatar">🦊</span>
-              <div class="bot-card-info">
-                <strong>AI 영리한 여우</strong>
-                <small>중급 (5급)</small>
-              </div>
-            </button>
-            <button type="button" class="match-bot-card active" data-bot="dan">
-              <span class="bot-card-avatar">🐼</span>
-              <div class="bot-card-info">
-                <strong>AI 지혜로운 판다</strong>
-                <small>상급 (1~2급)</small>
-              </div>
-            </button>
-            <button type="button" class="match-bot-card" data-bot="master">
-              <span class="bot-card-avatar">🐯</span>
-              <div class="bot-card-info">
-                <strong>AI 용맹한 호랑이</strong>
-                <small>유단자 (기원 1단/타이젬 2~3단)</small>
-              </div>
-            </button>
+          <label class="match-section-label">스쿨봇 선택</label>
+          <div class="match-bot-grid" id="matchBotGrid" role="group" aria-label="스쿨봇 선택">
+            <button type="button" class="match-bot-card" data-bot="beginner" aria-pressed="false"><span class="bot-card-avatar">1</span><div class="bot-card-info"><strong>스쿨봇 1</strong><small>가볍게 연습</small></div></button>
+            <button type="button" class="match-bot-card active" data-bot="master" aria-pressed="true"><span class="bot-card-avatar">2</span><div class="bot-card-info"><strong>스쿨봇 2</strong><small>한 단계 높은 도전</small></div></button>
+            <button type="button" class="match-bot-card" data-bot="kata" aria-pressed="false"><span class="bot-card-avatar">3</span><div class="bot-card-info"><strong>스쿨봇 3</strong><small>가장 강한 상대</small></div></button>
           </div>
+          <p id="matchEngineStatus" class="kata-engine-status" role="status" aria-live="polite"></p>
+          <a class="kata-license-link" href="kata-licenses.txt" target="_blank" rel="noopener">오픈소스 사용 조건</a>
         </div>
 
         <!-- 3. 바둑판 크기 -->
@@ -349,7 +307,7 @@
             <img src="../../images/characters/char_chick_beginner.png" alt="상대 캐릭터" id="nigiriOppImg" class="nigiri-avatar-img">
             <span class="nigiri-stone-badge" id="nigiriOppStoneBadge">⚪ 백돌</span>
           </div>
-          <strong class="nigiri-player-name" id="nigiriOppName">AI 삐약이</strong>
+          <strong class="nigiri-player-name" id="nigiriOppName">스쿨봇 1</strong>
           <span class="nigiri-player-role" id="nigiriOppRole">후공 (덤 6.5집)</span>
         </div>
       </div>
@@ -457,7 +415,7 @@
 <script src="ai.js?v=20261029-play-ai-v6"></script>
 <script src="audio.js?v=20261029-play-ai-v6"></script>
 <script src="kata-lite-bridge.v1.js?v=engine-select-v1"></script>
-<script src="app.js?v=20261106-standby-cards-v1"></script>
+<script src="app.js?v=20261112-schoolbot-v1"></script>
 <script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
 <script src="live-p2p.js?v=20261105-live-v1"></script>
 </body>
