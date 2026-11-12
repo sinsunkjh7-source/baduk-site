@@ -4,46 +4,40 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>종이 극장 쇼츠: 우공이산 — JH 바둑스쿨 Story</title>
-  <meta name="description" content="하나의 짧은 쇼츠처럼 이어지는 6겹 한지 종이 극장 고사성어 - 우공이산(愚公移山)">
+  <meta name="description" content="그림을 가리지 않고 감상하는 48초 6겹 한지 종이 극장 - 우공이산(愚公移山)">
   <link rel="stylesheet" href="/unified-nav.css?v=20261103-nav-v11">
-  <link rel="stylesheet" href="style.css?v=20261112-v4">
+  <link rel="stylesheet" href="style.css?v=20261112-v5">
   <script src="/unified-nav.js?v=20261103-nav-v11" defer></script>
 </head>
 <body data-bks-page="story-gosa">
   <main class="pt-wrap">
     <header class="pt-header">
       <div class="pt-badge-row">
-        <span class="pt-badge">🎬 종이 극장 쇼츠</span>
-        <span class="pt-act-pill" id="timePill">00:00 / 00:24</span>
+        <span class="pt-badge">🎬 종이 극장 이야기</span>
+        <span class="pt-act-pill" id="timePill">00:00 / 00:48</span>
       </div>
       <h1 class="pt-title">우공이산 <span class="pt-hanja">(愚公移山)</span></h1>
-      <p class="pt-subtitle">넘기지 않고 한 편의 짧은 이야기처럼 자동으로 이어집니다</p>
     </header>
 
-    <!-- Steady Multi-Layer Paper Diorama Shorts Player -->
-    <section class="pt-stage" id="paperStage" aria-label="종이 극장 쇼츠 무대">
-      <!-- Layer 1: Sky & Distant Hills (Steady) -->
+    <!-- 100% Unobstructed Multi-Layer Paper Diorama Stage -->
+    <section class="pt-stage" id="paperStage" aria-label="종이 극장 무대">
       <div class="pt-depth-layer layer-sky" id="layerSky">
         <img src="assets/layer_sky.jpg" alt="하늘과 먼 산 배경" class="layer-img">
       </div>
 
-      <!-- Layer 2: Gentle Drifting Mist Behind Mountains -->
       <div class="pt-depth-layer layer-mist-back" id="layerMist">
         <div class="mist-band band-1"></div>
         <div class="mist-band band-2"></div>
       </div>
 
-      <!-- Layer 3: Giant Twin Mountains (Smoothly lowers as story progresses!) -->
       <div class="pt-depth-layer layer-mountains" id="layerMountains">
         <img src="assets/layer_mountains.png" alt="거대한 두 산 종이 레이어" class="layer-img">
       </div>
 
-      <!-- Layer 4: Hanok Village & Ugong -->
       <div class="pt-depth-layer layer-village" id="layerVillage">
         <img src="assets/layer_village.png" alt="한옥 마을과 우공 할아버지" class="layer-img">
       </div>
 
-      <!-- Layer 5: Subtle Sunlight Motes / Finale Blossoms -->
       <div class="pt-depth-layer layer-particles" id="particlesLayer" aria-hidden="true">
         <span class="pt-mote m1"></span>
         <span class="pt-mote m2"></span>
@@ -55,36 +49,34 @@
         <span class="pt-mote m8"></span>
       </div>
 
-      <!-- Layer 6: Foreground Pine Branches (Gentle breeze only) -->
       <div class="pt-depth-layer layer-pines" id="layerPines">
         <img src="assets/layer_pines.png" alt="앞쪽 소나무와 바위 프레임" class="layer-img">
       </div>
 
-      <!-- Theater Curtains -->
       <div class="pt-depth-layer layer-curtains">
         <div class="curtain-left"></div>
         <div class="curtain-right"></div>
         <div class="stage-valance"></div>
       </div>
+    </section>
 
-      <!-- Top-left Chapter Badge -->
-      <div class="stage-chapter" id="stageChapter">제1장 · 거대한 산</div>
-
-      <!-- Bottom Shorts Subtitle Bar -->
-      <div class="shorts-subtitle-wrap">
-        <p class="shorts-subtitle" id="shortsSubtitle">
-          옛날 아흔 살 우공 할아버지 집 앞에는 너무 큰 두 산이 가로막고 있었어요.
-        </p>
-      </div>
-
-      <!-- Bottom Progress Bar + Play/Pause Controls -->
-      <div class="shorts-controls">
-        <button type="button" id="btnPlayPause" class="shorts-ctrl-btn" aria-label="일시정지 또는 재생">⏸️ 일시정지</button>
-        <div class="shorts-progress-track" id="progressTrack" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-          <div class="shorts-progress-fill" id="progressFill"></div>
+    <!-- Dedicated Cinema Controls & Narration Panel BELOW the Stage (Zero overlap!) -->
+    <section class="pt-player-panel" aria-label="이야기 자막 및 재생 컨트롤">
+      <div class="pt-player-top">
+        <span class="stage-chapter" id="stageChapter">제1장 · 길을 막은 두 산</span>
+        <div class="pt-player-btns">
+          <button type="button" id="btnPlayPause" class="shorts-ctrl-btn">⏸️ 일시정지</button>
+          <button type="button" id="btnReplay" class="shorts-ctrl-btn">🔄 처음부터</button>
         </div>
-        <button type="button" id="btnReplay" class="shorts-ctrl-btn">🔄 처음부터</button>
       </div>
+
+      <div class="shorts-progress-track" id="progressTrack" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <div class="shorts-progress-fill" id="progressFill"></div>
+      </div>
+
+      <p class="shorts-subtitle" id="shortsSubtitle">
+        옛날 중국 북산에 아흔 살이 된 ‘우공’ 할아버지가 살았어요. 집 바로 앞을 거대한 두 산이 가로막고 있어 늘 멀리 돌아가야 했지요.
+      </p>
     </section>
 
     <!-- Hanja Breakdown + Baduk Wisdom + Quick Quiz -->
@@ -112,6 +104,6 @@
     </section>
   </main>
 
-  <script src="app.js?v=20261112-v4"></script>
+  <script src="app.js?v=20261112-v5"></script>
 </body>
 </html>

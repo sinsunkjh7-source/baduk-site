@@ -21,19 +21,19 @@ body {
 .pt-wrap {
   max-width: 920px;
   margin: 0 auto;
-  padding: 18px 16px 48px;
+  padding: 16px 16px 48px;
 }
 
 .pt-header {
   text-align: center;
-  margin-bottom: 14px;
+  margin-bottom: 12px;
 }
 
 .pt-badge-row {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 
 .pt-badge {
@@ -56,38 +56,30 @@ body {
 }
 
 .pt-title {
-  margin: 0 0 4px;
-  font-size: 1.75rem;
+  margin: 0;
+  font-size: 1.7rem;
   font-weight: 900;
   color: #2b2118;
 }
 
 .pt-hanja {
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   font-weight: 700;
   color: #7c5832;
 }
 
-.pt-subtitle {
-  margin: 0;
-  font-size: 0.9rem;
-  color: var(--pt-muted);
-}
-
-/* Steady Multi-Layer Diorama Stage */
+/* 100% Pure Unobstructed Multi-Layer Stage */
 .pt-stage {
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 9;
-  max-height: 500px;
-  border-radius: 22px;
+  max-height: 490px;
+  border-radius: 20px 20px 0 0;
   overflow: hidden;
   background: #231912;
   border: 6px solid #3f2b1d;
-  box-shadow:
-    0 20px 44px rgba(43, 33, 24, 0.24),
-    inset 0 0 40px rgba(0, 0, 0, 0.32);
-  margin-bottom: 18px;
+  border-bottom: 0;
+  box-shadow: 0 14px 34px rgba(43, 33, 24, 0.18);
 }
 
 .pt-depth-layer {
@@ -103,7 +95,6 @@ body {
   display: block;
 }
 
-/* Real Paper Cutout Shadows Between Steady Layers */
 .layer-mountains {
   filter: drop-shadow(0 12px 18px rgba(18, 22, 16, 0.45));
   will-change: transform;
@@ -116,16 +107,15 @@ body {
 
 .layer-pines {
   filter: drop-shadow(0 18px 26px rgba(10, 14, 10, 0.72));
-  animation: pineBreeze 6s ease-in-out infinite alternate;
+  animation: pineBreeze 6.5s ease-in-out infinite alternate;
   transform-origin: center center;
 }
 
 @keyframes pineBreeze {
-  0% { transform: scale(1.02) translateX(-3px) rotate(-0.25deg); }
-  100% { transform: scale(1.02) translateX(3px) rotate(0.25deg); }
+  0% { transform: scale(1.02) translateX(-3px) rotate(-0.22deg); }
+  100% { transform: scale(1.02) translateX(3px) rotate(0.22deg); }
 }
 
-/* Gentle Drifting Mist Behind Mountains */
 .mist-band {
   position: absolute;
   left: -20%;
@@ -149,7 +139,6 @@ body {
   100% { transform: translateX(5%); }
 }
 
-/* Floating Golden Motes / Finale Cherry Blossoms */
 .layer-particles {
   overflow: hidden;
 }
@@ -188,26 +177,25 @@ body {
   100% { transform: translate(24px, -110px) scale(1.12) rotate(120deg); opacity: 0; }
 }
 
-/* Theater Curtains */
 .curtain-left,
 .curtain-right {
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 24px;
+  width: 22px;
   background: linear-gradient(90deg, #691e0f 0%, #8c2d19 100%);
   box-shadow: 5px 0 16px rgba(0, 0, 0, 0.45);
 }
 
 .curtain-left {
   left: 0;
-  border-bottom-right-radius: 20px;
+  border-bottom-right-radius: 18px;
 }
 
 .curtain-right {
   right: 0;
   background: linear-gradient(270deg, #691e0f 0%, #8c2d19 100%);
-  border-bottom-left-radius: 20px;
+  border-bottom-left-radius: 18px;
   box-shadow: -5px 0 16px rgba(0, 0, 0, 0.45);
 }
 
@@ -216,88 +204,70 @@ body {
   top: 0;
   left: 0;
   right: 0;
-  height: 16px;
+  height: 14px;
   background: #5c190c;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
 }
 
-/* Top-left Chapter Pill */
-.stage-chapter {
-  position: absolute;
-  top: 24px;
-  left: 36px;
-  z-index: 12;
-  background: rgba(43, 33, 24, 0.84);
-  color: #fef3c7;
-  font-size: 0.8rem;
-  font-weight: 800;
-  padding: 5px 12px;
-  border-radius: 999px;
-  border: 1px solid rgba(251, 191, 36, 0.45);
-}
-
-/* Shorts Subtitle Overlay */
-.shorts-subtitle-wrap {
-  position: absolute;
-  left: 38px;
-  right: 38px;
-  bottom: 52px;
-  z-index: 12;
-  display: flex;
-  justify-content: center;
-  pointer-events: none;
-}
-
-.shorts-subtitle {
-  margin: 0;
-  background: rgba(24, 18, 12, 0.84);
+/* Dedicated Cinema Control + Narration Panel BELOW Stage */
+.pt-player-panel {
+  background: #2b2017;
   color: #fffdf8;
-  font-size: 1.04rem;
-  font-weight: 700;
-  line-height: 1.5;
-  padding: 10px 18px;
-  border-radius: 14px;
-  text-align: center;
-  max-width: 720px;
-  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.38);
-  border: 1px solid rgba(255, 255, 255, 0.16);
+  border: 6px solid #3f2b1d;
+  border-top: 2px solid #593e2b;
+  border-radius: 0 0 20px 20px;
+  padding: 14px 20px 18px;
+  margin-bottom: 18px;
+  box-shadow: 0 14px 32px rgba(43, 33, 24, 0.16);
 }
 
-/* Shorts Bottom Controls & Progress Bar */
-.shorts-controls {
-  position: absolute;
-  left: 28px;
-  right: 28px;
-  bottom: 12px;
-  z-index: 14;
+.pt-player-top {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 10px;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.stage-chapter {
+  background: rgba(245, 158, 11, 0.18);
+  color: #fde68a;
+  font-size: 0.84rem;
+  font-weight: 800;
+  padding: 4px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(251, 191, 36, 0.4);
+}
+
+.pt-player-btns {
+  display: flex;
+  gap: 8px;
 }
 
 .shorts-ctrl-btn {
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  background: rgba(24, 18, 12, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.08);
   color: #fff;
-  font-size: 0.78rem;
-  font-weight: 800;
-  padding: 5px 11px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 5px 12px;
   border-radius: 999px;
   cursor: pointer;
-  white-space: nowrap;
 }
 
 .shorts-ctrl-btn:hover {
-  background: rgba(43, 33, 24, 0.95);
+  background: rgba(255, 255, 255, 0.18);
 }
 
 .shorts-progress-track {
-  flex: 1;
-  height: 7px;
-  background: rgba(255, 255, 255, 0.28);
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.18);
   border-radius: 999px;
   overflow: hidden;
   cursor: pointer;
+  margin-bottom: 14px;
 }
 
 .shorts-progress-fill {
@@ -305,6 +275,15 @@ body {
   height: 100%;
   background: linear-gradient(90deg, #f59e0b, #fbbf24);
   border-radius: 999px;
+}
+
+.shorts-subtitle {
+  margin: 0;
+  font-size: 1.08rem;
+  font-weight: 600;
+  line-height: 1.65;
+  color: #fef9ee;
+  min-height: 3.3em;
 }
 
 /* Study Card Below */
@@ -414,26 +393,13 @@ body {
 @media (max-width: 640px) {
   .curtain-left,
   .curtain-right {
-    width: 14px;
+    width: 12px;
   }
-  .stage-chapter {
-    top: 20px;
-    left: 20px;
-    font-size: 0.72rem;
-  }
-  .shorts-subtitle-wrap {
-    left: 20px;
-    right: 20px;
-    bottom: 44px;
+  .pt-player-panel {
+    padding: 12px 14px 14px;
   }
   .shorts-subtitle {
-    font-size: 0.84rem;
-    padding: 7px 12px;
-  }
-  .shorts-controls {
-    left: 18px;
-    right: 18px;
-    bottom: 8px;
+    font-size: 0.95rem;
   }
   .pt-hanja-grid {
     grid-template-columns: repeat(2, 1fr);
