@@ -51,9 +51,16 @@
 
       this.camera = new THREE.PerspectiveCamera(74, width / height, 0.2, 3000);
 
-      this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
+      this.renderer = new THREE.WebGLRenderer({
+        antialias: true,
+        alpha: false,
+        powerPreference: 'default',
+        precision: 'mediump',
+        failIfMajorPerformanceCaveat: false
+      });
+      this.renderer.domElement.addEventListener('webglcontextlost', (e) => e.preventDefault(), false);
       this.renderer.setSize(width, height);
-      this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.0));
       this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
       this.renderer.toneMappingExposure = 1.15;
       this.container.appendChild(this.renderer.domElement);

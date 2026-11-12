@@ -76,10 +76,13 @@
       this.renderer = new THREE.WebGLRenderer({
         canvas: this.canvas,
         antialias: true,
-        powerPreference: "high-performance"
+        powerPreference: "default",
+        precision: "mediump",
+        failIfMajorPerformanceCaveat: false
       });
+      this.canvas.addEventListener('webglcontextlost', (e) => e.preventDefault(), false);
       this.renderer.setSize(width, height);
-      this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+      this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.0));
 
       // 3. 조명 (우주 은하 조명 + 항성 발광 조명)
       const ambientLight = new THREE.AmbientLight(0x223355, 0.7);
@@ -118,6 +121,7 @@
       const h = this.canvas.clientHeight || window.innerHeight;
       this.camera.aspect = w / h;
       this.camera.updateProjectionMatrix();
+      this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.0));
       this.renderer.setSize(w, h);
     }
 
