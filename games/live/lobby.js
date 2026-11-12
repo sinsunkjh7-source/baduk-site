@@ -66,112 +66,23 @@
 
   var myProfile = {
     id: storedId,
-    name: localStorage.getItem('baduk_user_name') || '김진홍선생님',
-    level: localStorage.getItem('baduk_user_level') || 'Lv2',
-    rank: '2단',
+    name: localStorage.getItem('baduk_user_name') || ('참가자 ' + storedId.slice(-4)),
+    level: '참가자',
+    rank: '',
     avatar: '/assets/stat_1.png',
     status: 'waiting', // 'waiting' | 'playing' | 'rest'
-    wins: 12,
-    losses: 4,
-    rating19: 292,
-    rating13: 69,
-    rating9: 45
+    wins: 0,
+    losses: 0
   };
 
-  // 실시간 접속자 목록 (실제 접속자 + 예시 친구들)
+  // 실시간 접속자 목록 (실제 접속자만)
+  var presenceConnected = false;
+  var presenceState = 'connecting';
+  var heartbeatTimer = null, pruneTimer = null, reconnectTimer = null;
+  var isLeaving = false;
   var realOnlinePeers = {}; // { id: { id, name, level, status, lastSeen } }
 
-  var mockUsers = [
-    { id: 'u_mock_1', name: '시연선생님', level: 'Lv1', rank: '1단', status: 'rest', avatar: '/assets/stat_2.png', manner: '😊', school: '강남지도교사', isMock: true },
-    { id: 'u_mock_2', name: '최현우선생님', level: 'Lv1', rank: '1단', status: 'waiting', avatar: '/assets/stat_3.png', manner: '😎', school: '마포지도교사', isMock: true },
-    { id: 'u_mock_3', name: '독수리 포에버', level: 'Lv48', rank: '4단', status: 'waiting', avatar: '/assets/stat_4.png', manner: '🦁', school: '대치초 4학년', isMock: true },
-    { id: 'u_mock_4', name: '은하수바둑', level: 'Lv1', rank: '1단', status: 'waiting', avatar: '/assets/stat_5.png', manner: '😊', school: '서초초 3학년', isMock: true },
-    { id: 'u_mock_5', name: '정지율', level: 'Lv21', rank: '2단', status: 'playing', avatar: '/assets/stat_1.png', manner: '🔥', school: '잠실초 5학년', isMock: true },
-    { id: 'u_mock_6', name: '염리초 하은서', level: 'Lv1', rank: '1단', status: 'waiting', avatar: '/assets/stat_1.png', manner: '⭐', school: '염리초 2학년', isMock: true },
-    { id: 'u_mock_7', name: '신명민', level: 'Lv7', rank: '7급', status: 'waiting', avatar: '/assets/stat_2.png', manner: '😄', school: '목동초 3학년', isMock: true },
-    { id: 'u_mock_8', name: '대남초 백승우', level: 'Lv3', rank: '3단', status: 'waiting', avatar: '/assets/stat_3.png', manner: '🌱', school: '대남초 4학년', isMock: true },
-    { id: 'u_mock_9', name: '김태린', level: 'Lv27', rank: '2단', status: 'playing', avatar: '/assets/stat_4.png', manner: '🏆', school: '반포초 6학년', isMock: true },
-    { id: 'u_mock_10', name: '염리초 이시온', level: 'Lv2', rank: '2단', status: 'playing', avatar: '/assets/stat_5.png', manner: '🌟', school: '염리초 3학년', isMock: true },
-    { id: 'u_mock_11', name: '바둑왕 민재', level: 'Lv12', rank: '1단', status: 'waiting', avatar: '/assets/stat_3.png', manner: '👑', school: '청담초 4학년', isMock: true },
-    { id: 'u_mock_12', name: '꿈나무 서현', level: 'Lv5', rank: '5급', status: 'waiting', avatar: '/assets/stat_1.png', manner: '✨', school: '도곡초 2학년', isMock: true }
-  ];
-
-  var roomsData = [
-    {
-      id: 1,
-      type: '친선대국',
-      boardSize: 19,
-      status: 'review',
-      pBlack: { name: '김진홍선생님', level: 'Lv2' },
-      pWhite: { name: 'AI 알파돌', level: 'Lv1' },
-      timeRule: '10분'
-    },
-    {
-      id: 2,
-      type: '레이팅대국',
-      boardSize: 19,
-      status: 'playing',
-      pBlack: { name: '염리초 하은서', level: 'Lv1' },
-      pWhite: { name: '신명민', level: 'Lv7' },
-      timeRule: '15분'
-    },
-    {
-      id: 3,
-      type: '레이팅대국',
-      boardSize: 19,
-      status: 'playing',
-      pBlack: { name: '정지율', level: 'Lv21' },
-      pWhite: { name: '김태린', level: 'Lv27' },
-      timeRule: '10분'
-    },
-    {
-      id: 4,
-      type: '친선대국',
-      boardSize: 13,
-      status: 'waiting',
-      pBlack: { name: '독수리 포에버', level: 'Lv48' },
-      pWhite: null,
-      timeRule: '5분',
-      roomCode: 'JH-1304'
-    },
-    {
-      id: 5,
-      type: '레이팅대국',
-      boardSize: 13,
-      status: 'playing',
-      pBlack: { name: '염리초 이시온', level: 'Lv2' },
-      pWhite: { name: '대남초 백승우', level: 'Lv3' },
-      timeRule: '10분'
-    },
-    {
-      id: 6,
-      type: '새싹대국',
-      boardSize: 9,
-      status: 'waiting',
-      pBlack: { name: '은하수바둑', level: 'Lv1' },
-      pWhite: null,
-      timeRule: '무제한',
-      roomCode: 'JH-0906'
-    },
-    {
-      id: 7,
-      type: '새싹대국',
-      boardSize: 9,
-      status: 'playing',
-      pBlack: { name: '꿈나무 서현', level: 'Lv5' },
-      pWhite: { name: '바둑왕 민재', level: 'Lv12' },
-      timeRule: '5분'
-    },
-    {
-      id: 8,
-      type: '친선대국',
-      boardSize: 19,
-      status: 'review',
-      pBlack: { name: '최현우선생님', level: 'Lv1' },
-      pWhite: { name: '시연선생님', level: 'Lv1' },
-      timeRule: '10분'
-    }
-  ];
+  var roomsData = [];
 
   // 필터 상태
   var currentRoomFilter = 'all';
@@ -193,67 +104,82 @@
   var TOPIC_CHALLENGES = 'jhbaduk/lobby/v2/challenges';
   var TOPIC_ROOMS = 'jhbaduk/lobby/v2/rooms';
 
+  function setPresenceState(status) {
+    presenceState = status;
+    presenceConnected = status === 'connected';
+    if (!presenceConnected) { realOnlinePeers = {}; roomsData = []; }
+    renderUsers(); renderRooms();
+  }
+
+  function scheduleReconnect() {
+    clearTimeout(reconnectTimer);
+    clearInterval(heartbeatTimer); clearInterval(pruneTimer);
+    heartbeatTimer = null; pruneTimer = null;
+    if (!isLeaving) reconnectTimer = setTimeout(initMqtt, 4000);
+  }
+
   function initMqtt() {
+    if (isLeaving) return;
     if (typeof Paho === 'undefined' || !Paho.MQTT) {
-      console.warn('[LobbyMQTT] Paho MQTT not available');
+      setPresenceState('error');
       return;
     }
-
     try {
-      var clientId = 'jh_lobby_' + myProfile.id + '_' + Math.floor(Math.random() * 10000);
-      mqttClient = new Paho.MQTT.Client('broker.hivemq.com', 8884, clientId);
-
-      mqttClient.onConnectionLost = function (responseObject) {
-        if (responseObject.errorCode !== 0) {
-          console.warn('[LobbyMQTT] Connection lost:', responseObject.errorMessage);
-          setTimeout(initMqtt, 3000);
-        }
+      var clientId = 'jh_lobby_' + myProfile.id + '_' + Math.floor(Math.random() * 1000000);
+      var client = new Paho.MQTT.Client('broker.hivemq.com', 8884, clientId);
+      mqttClient = client;
+      var will = new Paho.MQTT.Message(JSON.stringify({ action: 'leave', user: { id: myProfile.id } }));
+      will.destinationName = TOPIC_PRESENCE;
+      client.onConnectionLost = function () {
+        if (mqttClient !== client) return;
+        setPresenceState('error'); scheduleReconnect();
       };
-
-      mqttClient.onMessageArrived = function (message) {
+      client.onMessageArrived = function (message) {
+        if (mqttClient !== client) return;
         try {
           var data = JSON.parse(message.payloadString);
-          var topic = message.destinationName;
-
-          if (topic === TOPIC_PRESENCE) {
-            handlePresenceMessage(data);
-          } else if (topic === TOPIC_CHALLENGES) {
-            handleChallengeMessage(data);
-          } else if (topic === TOPIC_ROOMS) {
-            handleRoomBroadcast(data);
-          }
-        } catch (e) {
-          console.error('[LobbyMQTT] Parse error:', e);
-        }
+          if (message.destinationName === TOPIC_PRESENCE) handlePresenceMessage(data);
+          else if (message.destinationName === TOPIC_CHALLENGES) handleChallengeMessage(data);
+          else if (message.destinationName === TOPIC_ROOMS) handleRoomBroadcast(data);
+        } catch (e) { console.warn('[LobbyMQTT] Invalid message'); }
       };
-
-      mqttClient.connect({
-        useSSL: true,
-        timeout: 6,
-        keepAliveInterval: 30,
-        cleanSession: true,
+      client.connect({
+        useSSL: true, timeout: 6, keepAliveInterval: 15, cleanSession: true, willMessage: will,
         onSuccess: function () {
-          console.log('[LobbyMQTT] Connected to HiveMQ WSS broker!');
-          mqttClient.subscribe(TOPIC_PRESENCE);
-          mqttClient.subscribe(TOPIC_CHALLENGES);
-          mqttClient.subscribe(TOPIC_ROOMS);
-
-          // 첫 하트비트 전송
-          sendHeartbeat();
-          // 4초마다 온라인 상태 갱신
-          setInterval(sendHeartbeat, 4000);
-          // 3초마다 타임아웃된 접속자 정리
-          setInterval(pruneOfflinePeers, 3000);
+          if (mqttClient !== client || isLeaving) { client.disconnect(); return; }
+          client.subscribe(TOPIC_PRESENCE, { onSuccess: function () {
+            if (mqttClient !== client) return;
+            setPresenceState('connected'); sendHeartbeat();
+            var hello = new Paho.MQTT.Message(JSON.stringify({ action: 'hello', user: { id: myProfile.id } }));
+            hello.destinationName = TOPIC_PRESENCE; client.send(hello);
+          }});
+          client.subscribe(TOPIC_CHALLENGES); client.subscribe(TOPIC_ROOMS);
+          clearInterval(heartbeatTimer); clearInterval(pruneTimer);
+          heartbeatTimer = setInterval(sendHeartbeat, 4000);
+          pruneTimer = setInterval(pruneOfflinePeers, 3000);
         },
-        onFailure: function (err) {
-          console.warn('[LobbyMQTT] Connect failure, retry in 4s:', err.errorMessage);
-          setTimeout(initMqtt, 4000);
+        onFailure: function () {
+          if (mqttClient !== client) return;
+          setPresenceState('error'); scheduleReconnect();
         }
       });
-    } catch (e) {
-      console.error('[LobbyMQTT] Exception:', e);
+    } catch (e) { setPresenceState('error'); scheduleReconnect(); }
+  }
+
+  function leaveLobby() {
+    isLeaving = true;
+    clearTimeout(reconnectTimer); clearInterval(heartbeatTimer); clearInterval(pruneTimer);
+    if (mqttClient && mqttClient.isConnected()) {
+      try {
+        var msg = new Paho.MQTT.Message(JSON.stringify({ action: 'leave', user: { id: myProfile.id } }));
+        msg.destinationName = TOPIC_PRESENCE; mqttClient.send(msg); mqttClient.disconnect();
+      } catch (e) {}
     }
   }
+  window.addEventListener('pagehide', leaveLobby);
+  window.addEventListener('pageshow', function (event) {
+    if (event.persisted) { isLeaving = false; setPresenceState('connecting'); initMqtt(); }
+  });
 
   function sendHeartbeat() {
     if (!mqttClient || !mqttClient.isConnected()) return;
@@ -272,26 +198,35 @@
       var msg = new Paho.MQTT.Message(JSON.stringify(pkt));
       msg.destinationName = TOPIC_PRESENCE;
       mqttClient.send(msg);
+      roomsData.filter(function (room) { return room.ownerId === myProfile.id; }).forEach(function (room) {
+        room.lastSeen = Date.now();
+        var roomMsg = new Paho.MQTT.Message(JSON.stringify({ action: 'room_heartbeat', room: room }));
+        roomMsg.destinationName = TOPIC_ROOMS; mqttClient.send(roomMsg);
+      });
     } catch (e) {}
   }
 
   function handlePresenceMessage(data) {
     if (!data || !data.user) return;
     var u = data.user;
-    if (u.id === myProfile.id) return; // 내 자신 제외
+    if (typeof u.id !== 'string' || !/^[A-Za-z0-9_-]{1,96}$/.test(u.id) || u.id === myProfile.id || u.id.indexOf('u_mock_') === 0) return;
+    if (data.action === 'hello') { sendHeartbeat(); return; }
+    if (data.action !== 'leave' && data.action !== 'heartbeat') return;
 
     if (data.action === 'leave') {
       delete realOnlinePeers[u.id];
+      roomsData = roomsData.filter(function (room) { return room.ownerId !== u.id; });
+      renderRooms();
     } else {
       realOnlinePeers[u.id] = {
         id: u.id,
-        name: u.name,
-        level: u.level || 'Lv1',
-        rank: u.level || '1단',
-        status: u.status || 'waiting',
-        avatar: u.avatar || '/assets/stat_2.png',
+        name: typeof u.name === 'string' ? u.name.slice(0, 40) : '참가자',
+        level: '참가자',
+        rank: '',
+        status: ['waiting', 'playing', 'rest'].indexOf(u.status) >= 0 ? u.status : 'waiting',
+        avatar: '/assets/stat_2.png',
         manner: '🌟',
-        school: '실시간 접속 친구 🟢',
+        school: '실시간 접속 참가자',
         isReal: true,
         lastSeen: Date.now()
       };
@@ -308,6 +243,9 @@
         changed = true;
       }
     }
+    var oldRoomCount = roomsData.length;
+    roomsData = roomsData.filter(function (room) { return room.ownerId === myProfile.id || now - room.lastSeen <= 12000; });
+    if (oldRoomCount !== roomsData.length) renderRooms();
     if (changed) renderUsers();
   }
 
@@ -411,10 +349,13 @@
   }
 
   function handleRoomBroadcast(data) {
-    if (!data || !data.room) return;
-    var newR = data.room;
-    // 목록 맨 앞에 추가
-    roomsData.unshift(newR);
+    if (!presenceConnected || !data || !data.room) return;
+    var room = data.room;
+    if (typeof room.roomCode !== 'string' || !/^JH-[A-Z0-9-]{4,24}$/.test(room.roomCode) || typeof room.ownerId !== 'string' || !/^[A-Za-z0-9_-]{1,96}$/.test(room.ownerId) || !Number.isSafeInteger(room.id) || room.id < 1 || !room.pBlack || typeof room.pBlack.name !== 'string' || [9, 13, 19].indexOf(room.boardSize) < 0 || ['waiting', 'playing', 'review'].indexOf(room.status) < 0) return;
+    if (room.pWhite && typeof room.pWhite.name !== 'string') return;
+    room.lastSeen = Date.now();
+    var index = roomsData.findIndex(function (r) { return r.roomCode === room.roomCode; });
+    if (index >= 0) roomsData[index] = room; else roomsData.unshift(room);
     renderRooms();
   }
 
@@ -453,7 +394,7 @@
 
     if (filtered.length === 0) {
       grid.innerHTML = '<div style="padding:40px 20px;text-align:center;color:#94a3b8;font-size:0.95rem;">' +
-        '해당 조건의 대국실이 없습니다. 새 대국방을 개설해보세요!</div>';
+        (presenceConnected ? '현재 개설된 대국실이 없습니다. 참가자를 선택해 신청하거나 새 방을 만들어 보세요.' : '대기실 연결 후 실제 개설된 대국실을 표시합니다.') + '</div>';
       return;
     }
 
@@ -521,22 +462,19 @@
     });
   }
 
-  // --- 접속자 명단 렌더링 (실제 온라인 접속자 + 예시 친구) ---
+  // --- 접속자 명단 렌더링 (실제 온라인 접속자만) ---
   function renderUsers() {
     var list = document.getElementById('usersList');
     var badge = document.getElementById('userCount');
     var headerBadge = document.getElementById('onlineCountBadge');
     if (!list) return;
 
-    // 실제 접속자들을 맨 위에 배치
+    // 서버 연결로 확인한 다른 참가자만 표시
     var allList = [];
     for (var k in realOnlinePeers) {
       allList.push(realOnlinePeers[k]);
     }
-    // 예시 친구들 병합
-    mockUsers.forEach(function (m) {
-      allList.push(m);
-    });
+
 
     var filtered = allList.filter(function (u) {
       if (currentUserFilter === 'waiting' && u.status !== 'waiting') return false;
@@ -550,12 +488,14 @@
     });
 
     var totalOnline = allList.length;
-    if (badge) badge.textContent = totalOnline;
-    if (headerBadge) headerBadge.textContent = totalOnline + '명';
+    if (badge) badge.textContent = presenceConnected ? totalOnline : '-';
+    if (headerBadge) headerBadge.textContent = presenceConnected ? (totalOnline + 1) + '명' : '-';
+    var connectionStatus = document.getElementById('lobbyConnectionStatus');
+    if (connectionStatus) connectionStatus.textContent = presenceConnected ? '실시간 연결됨 · 친구 목록은 나를 제외한 접속자입니다.' : (presenceState === 'error' ? '대기실 연결에 실패했습니다. 재연결을 시도하고 있습니다.' : '실시간 접속자를 확인하고 있습니다.');
 
     if (filtered.length === 0) {
       list.innerHTML = '<div style="padding:24px;text-align:center;color:#94a3b8;font-size:0.88rem;">' +
-        '조건에 맞는 친구가 없습니다.</div>';
+        (presenceConnected ? (totalOnline === 0 ? '현재 대기 중인 다른 참가자가 없습니다.' : '조건에 맞는 참가자가 없습니다.') : (presenceState === 'error' ? '연결 상태를 확인해 주세요. 접속자 수를 확인할 수 없습니다.' : '실시간 접속자를 확인하고 있습니다.')) + '</div>';
       return;
     }
 
@@ -606,8 +546,7 @@
   }
 
   function findUserById(id) {
-    if (realOnlinePeers[id]) return realOnlinePeers[id];
-    return mockUsers.find(function (m) { return m.id === id; });
+    return realOnlinePeers[id] || null;
   }
 
   // --- 대국 신청 모달 열기 ---
@@ -636,88 +575,36 @@
   // --- 대국 신청 발송 (조이스쿨 1:1 신청 매칭) ---
   function sendChallenge() {
     if (!selectedTargetUser) return;
-    playChime();
-
-    var target = selectedTargetUser;
-    var bSize = challengeOptions.boardSize;
-    var rCode = 'JH-' + Math.floor(1000 + Math.random() * 9000);
-    closeChallengeModal();
-
-    showToast('⚔️ [' + target.name + '] 친구에게 ' + bSize + '줄 대국을 신청했습니다! 상대방의 수락을 기다립니다...', 4000);
-
-    // 실제 온라인 접속자인 경우: 실시간 MQTT 도전장 패킷 전송!
-    if (target.isReal && mqttClient && mqttClient.isConnected()) {
-      var req = {
-        type: 'challenge_request',
-        toId: target.id,
-        from: {
-          id: myProfile.id,
-          name: myProfile.name,
-          level: myProfile.level
-        },
-        boardSize: bSize,
-        timeRule: challengeOptions.timeRule,
-        handicap: challengeOptions.handicap,
-        roomCode: rCode
-      };
-      var msg = new Paho.MQTT.Message(JSON.stringify(req));
-      msg.destinationName = TOPIC_CHALLENGES;
-      mqttClient.send(msg);
-      // 상대방이 팝업에서 수락할 때까지 대기합니다.
-      return;
-    }
-
-    // 예시(가상) 친구인 경우: 2.5초 후 수락 시뮬레이션
-    setTimeout(function () {
-      playChime();
-      showToast('🎉 [' + target.name + '] 친구가 대국 신청을 수락했습니다! 대국실로 입장합니다...', 2500);
-
-      setTimeout(function () {
-        window.location.href = '/games/play/index.html?mode=live&room=' + rCode + '&host=1&boardSize=' + bSize +
-          '&handicap=' + (challengeOptions.handicap || 0) + '&timeLimit=' + encodeURIComponent(challengeOptions.timeRule || '10m') +
-          '&p1=' + encodeURIComponent(myProfile.name) + '&p2=' + encodeURIComponent(target.name);
-      }, 1000);
-    }, 2500);
+    var target = findUserById(selectedTargetUser.id);
+    if (!presenceConnected || !mqttClient || !mqttClient.isConnected()) { showToast('대기실 연결을 확인한 뒤 다시 신청해 주세요.'); return; }
+    if (!target || target.status !== 'waiting' || Date.now() - target.lastSeen > 12000) { closeChallengeModal(); showToast('상대방이 대기실을 떠났거나 신청할 수 없는 상태입니다.'); return; }
+    var req = {
+      type: 'challenge_request', toId: target.id,
+      from: { id: myProfile.id, name: myProfile.name, level: myProfile.level },
+      boardSize: challengeOptions.boardSize, timeRule: challengeOptions.timeRule,
+      handicap: challengeOptions.handicap, roomCode: 'JH-' + Math.random().toString(36).slice(2, 10).toUpperCase()
+    };
+    try {
+      var msg = new Paho.MQTT.Message(JSON.stringify(req)); msg.destinationName = TOPIC_CHALLENGES; mqttClient.send(msg);
+      closeChallengeModal(); playChime();
+      showToast('[' + target.name + '] 참가자에게 대국을 신청했습니다. 상대방의 수락을 기다립니다.', 4000);
+    } catch (e) { showToast('대국 신청을 보내지 못했습니다. 연결 상태를 확인해 주세요.'); }
   }
 
   // --- 자동 맞춤 대국 (원클릭 자동 매칭) ---
   function startAutoMatch() {
-    playClick();
-    showToast('🎲 나와 실력이 가장 비슷한 대기 친구를 찾는 중입니다...', 2500);
-
-    setTimeout(function () {
-      // 1. 실제 접속 중인 대기 친구가 있는지 확인
-      var realCandidates = [];
-      for (var k in realOnlinePeers) {
-        if (realOnlinePeers[k].status === 'waiting') realCandidates.push(realOnlinePeers[k]);
-      }
-
-      if (realCandidates.length > 0) {
-        // 실제 접속자와 즉시 매칭
-        var opp = realCandidates[0];
-        selectedTargetUser = opp;
-        sendChallenge();
-        return;
-      }
-
-      // 2. 실제 접속자가 없으면 예시 친구 중 매칭
-      var mockCandidates = mockUsers.filter(function (u) { return u.status === 'waiting'; });
-      var opponent = mockCandidates[Math.floor(Math.random() * mockCandidates.length)];
-      var rCode = 'JH-' + Math.floor(1000 + Math.random() * 9000);
-
-      playChime();
-      showToast('🎯 매칭 성공! [' + opponent.name + '] 친구와 연결되었습니다!', 2000);
-      setTimeout(function () {
-        window.location.href = '/games/play/index.html?mode=live&room=' + rCode + '&host=1&boardSize=19&p1=' +
-          encodeURIComponent(myProfile.name) + '&p2=' + encodeURIComponent(opponent.name);
-      }, 1000);
-    }, 1500);
+    playClick(); pruneOfflinePeers();
+    if (!presenceConnected) { showToast('대기실 연결을 확인한 뒤 다시 시도해 주세요.'); return; }
+    var candidates = Object.keys(realOnlinePeers).map(function (id) { return realOnlinePeers[id]; }).filter(function (u) { return u.status === 'waiting'; });
+    if (!candidates.length) { showToast('현재 대국을 신청할 수 있는 참가자가 없습니다. 다른 참가자가 들어올 때까지 기다려 주세요.', 4000); return; }
+    selectedTargetUser = candidates[0]; sendChallenge();
   }
 
   // --- 새 대국방 개설 모달 & 목록 등록 ---
   var currentCreatedRoomCode = null;
 
   function createNewRoom() {
+    if (!presenceConnected) { showToast('대기실 연결을 확인한 뒤 방을 만들어 주세요.'); return; }
     playChime();
     currentCreatedRoomCode = 'JH-' + Math.floor(1000 + Math.random() * 9000);
 
@@ -736,7 +623,9 @@
       pBlack: { name: myProfile.name, level: myProfile.level },
       pWhite: null,
       timeRule: '10분',
-      roomCode: currentCreatedRoomCode
+      roomCode: currentCreatedRoomCode,
+      ownerId: myProfile.id,
+      lastSeen: Date.now()
     };
 
     roomsData.unshift(newR);
