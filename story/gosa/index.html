@@ -4,53 +4,69 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>종이 극장 고사성어: 우공이산 — JH 바둑스쿨 Story</title>
-  <meta name="description" content="살아 움직이는 다층 종이 극장(페이퍼 디오라마)으로 만나는 고사성어 이야기 - 우공이산(愚公移山)">
+  <meta name="description" content="여러 겹의 종이 레이어가 입체로 엇갈리며 움직이는 3D 종이 극장 - 우공이산(愚公移山)">
   <link rel="stylesheet" href="/unified-nav.css?v=20261103-nav-v11">
-  <link rel="stylesheet" href="style.css?v=20261112-v2">
+  <link rel="stylesheet" href="style.css?v=20261112-v3">
   <script src="/unified-nav.js?v=20261103-nav-v11" defer></script>
 </head>
 <body data-bks-page="story-gosa">
   <main class="pt-wrap">
     <header class="pt-header">
       <div class="pt-badge-row">
-        <span class="pt-badge">📜 고사성어 종이 극장</span>
+        <span class="pt-badge">📜 3D 다층 종이 극장</span>
         <span class="pt-act-pill" id="actPill">제1막 / 3막</span>
       </div>
       <h1 class="pt-title">우공이산 <span class="pt-hanja">(愚公移山)</span></h1>
-      <p class="pt-subtitle">살아 움직이는 한지 종이 디오라마 · 마우스를 올리면 입체 시점이 따라 움직입니다</p>
+      <p class="pt-subtitle">6겹의 한지 레이어가 스스로 입체로 엇갈리며 움직입니다 · 마우스를 올리면 시점이 더 깊게 기울어집니다</p>
     </header>
 
-    <!-- Living Multi-Layer Paper Theater Stage -->
-    <section class="pt-stage" id="paperStage" aria-label="움직이는 다층 종이 극장 무대">
-      <!-- Backdrop Illustrated Paper Diorama Layer (Autonomous Ken Burns + Sway) -->
-      <div class="pt-art-layer" id="artLayer">
-        <img src="assets/act1.jpg" alt="제1막 우공이산 종이 디오라마" class="pt-art-img active" id="artImg0">
-        <img src="assets/act2.jpg" alt="제2막 흙을 나르는 우공 종이 디오라마" class="pt-art-img" id="artImg1">
-        <img src="assets/act3.jpg" alt="제3막 산이 열리고 빛나는 길 종이 디오라마" class="pt-art-img" id="artImg2">
-      </div>
+    <!-- True Multi-Layer 3D Paper Diorama Stage -->
+    <section class="pt-stage" id="paperStage" aria-label="3D 다층 종이 극장 무대">
+      <div class="pt-scene-3d" id="scene3d">
+        <!-- Layer 1: Sky & Distant Hills (Furthest) -->
+        <div class="pt-depth-layer layer-sky" id="layerSky">
+          <img src="assets/layer_sky.jpg" alt="하늘과 먼 산 배경" class="layer-img">
+        </div>
 
-      <!-- Autonomous Moving Sunbeam & Mist Layer -->
-      <div class="pt-sunbeam-layer" id="sunbeamLayer"></div>
-      <div class="pt-mist-layer mist-a"></div>
-      <div class="pt-mist-layer mist-b"></div>
+        <!-- Layer 2: Drifting Paper Mist Behind Mountains -->
+        <div class="pt-depth-layer layer-mist-back" id="layerMist">
+          <div class="mist-band band-1"></div>
+          <div class="mist-band band-2"></div>
+        </div>
 
-      <!-- Floating Motes / Petals Layer -->
-      <div class="pt-particles-layer" id="particlesLayer" aria-hidden="true">
-        <span class="pt-mote m1"></span>
-        <span class="pt-mote m2"></span>
-        <span class="pt-mote m3"></span>
-        <span class="pt-mote m4"></span>
-        <span class="pt-mote m5"></span>
-        <span class="pt-mote m6"></span>
-        <span class="pt-mote m7"></span>
-        <span class="pt-mote m8"></span>
-      </div>
+        <!-- Layer 3: Twin Giant Mountains Cutout (Drops down as Ugong digs!) -->
+        <div class="pt-depth-layer layer-mountains" id="layerMountains">
+          <img src="assets/layer_mountains.png" alt="거대한 두 산 종이 레이어" class="layer-img">
+        </div>
 
-      <!-- Foreground Paper Theater Frame & Curtains -->
-      <div class="pt-frame-layer" id="frameLayer">
-        <div class="curtain-left"></div>
-        <div class="curtain-right"></div>
-        <div class="stage-valance"></div>
+        <!-- Layer 4: Hanok Village & Ugong Cutout -->
+        <div class="pt-depth-layer layer-village" id="layerVillage">
+          <img src="assets/layer_village.png" alt="한옥 마을과 우공 할아버지 종이 레이어" class="layer-img">
+        </div>
+
+        <!-- Layer 5: Floating Sunlight Motes / Blossoms -->
+        <div class="pt-depth-layer layer-particles" id="particlesLayer" aria-hidden="true">
+          <span class="pt-mote m1"></span>
+          <span class="pt-mote m2"></span>
+          <span class="pt-mote m3"></span>
+          <span class="pt-mote m4"></span>
+          <span class="pt-mote m5"></span>
+          <span class="pt-mote m6"></span>
+          <span class="pt-mote m7"></span>
+          <span class="pt-mote m8"></span>
+        </div>
+
+        <!-- Layer 6: Foreground Pine Tree Frame (Closest & Fastest Parallax) -->
+        <div class="pt-depth-layer layer-pines" id="layerPines">
+          <img src="assets/layer_pines.png" alt="앞쪽 소나무와 바위 프레임 레이어" class="layer-img">
+        </div>
+
+        <!-- Layer 7: Physical Theater Curtains -->
+        <div class="pt-depth-layer layer-curtains" id="layerCurtains">
+          <div class="curtain-left"></div>
+          <div class="curtain-right"></div>
+          <div class="stage-valance"></div>
+        </div>
       </div>
 
       <!-- Stage Caption -->
@@ -69,7 +85,7 @@
       <!-- Act 2 Interactive Shovel Meter -->
       <div class="pt-interactive-box" id="shovelBox" hidden>
         <button type="button" id="btnShovel" class="pt-shovel-btn">🪨 흙 한 삽 옮기기! (<span id="shovelCount">0</span> / 3)</button>
-        <p class="pt-shovel-hint" id="shovelHint">버튼을 3번 눌러 우공 할아버지와 함께 햇살이 비치는 길을 열어 보세요!</p>
+        <p class="pt-shovel-hint" id="shovelHint">버튼을 3번 눌러 뒤쪽의 거대한 산 레이어를 직접 낮춰 보세요!</p>
       </div>
 
       <!-- Act 3 Hanja Breakdown + Baduk Connection + Mini Quiz -->
@@ -106,6 +122,6 @@
     </section>
   </main>
 
-  <script src="app.js?v=20261112-v2"></script>
+  <script src="app.js?v=20261112-v3"></script>
 </body>
 </html>
