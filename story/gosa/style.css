@@ -82,6 +82,32 @@ body {
   box-shadow: 0 14px 34px rgba(43, 33, 24, 0.18);
 }
 
+.pt-scene-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.85s ease-in-out;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.pt-scene-slide.active {
+  opacity: 1;
+}
+
+.slide-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transform: scale(1.0);
+  transition: transform 6.5s ease-out;
+}
+
+.pt-scene-slide.active .slide-img {
+  transform: scale(1.065);
+}
+
 .pt-depth-layer {
   position: absolute;
   inset: 0;
