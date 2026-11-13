@@ -1,0 +1,147 @@
+/* 개로왕과 도림 전용 다층 종이 극장 모션·원근·캐릭터 스타일 */
+
+.pt-stage-inner {
+  perspective: 1200px;
+  transform-style: preserve-3d;
+}
+
+/* 궁궐 배경 레이어 */
+.gaero-palace-bg {
+  position: absolute;
+  inset: -3%;
+  width: 106%;
+  height: 106%;
+  pointer-events: none;
+}
+.gaero-palace-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* 고구려 진격 배경 */
+.gaero-march-bg {
+  position: absolute;
+  inset: -3%;
+  width: 106%;
+  height: 106%;
+  pointer-events: none;
+}
+.gaero-march-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* 개로왕 스프라이트 */
+.gaero-king-sprite {
+  position: absolute;
+  bottom: 8%;
+  right: 12%;
+  width: 38%;
+  height: auto;
+  pointer-events: none;
+  filter: drop-shadow(0 14px 22px rgba(25, 15, 10, 0.55));
+  transform-origin: center bottom;
+  z-index: 5;
+}
+
+/* 도림 승려 스프라이트 */
+.gaero-dorim-sprite {
+  position: absolute;
+  bottom: 8%;
+  left: 10%;
+  width: 36%;
+  height: auto;
+  pointer-events: none;
+  filter: drop-shadow(0 14px 22px rgba(25, 15, 10, 0.55));
+  transform-origin: center bottom;
+  z-index: 5;
+}
+
+/* 대국용 바둑판 컷아웃 또는 라이브 바둑판 중앙 배치 */
+.gaero-board-wrap {
+  position: absolute;
+  bottom: 8%;
+  left: 35%;
+  width: 29%;
+  height: auto;
+  pointer-events: none;
+  filter: drop-shadow(0 14px 20px rgba(10, 10, 10, 0.45));
+  z-index: 6;
+}
+.gaero-board-wrap img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* 바둑판 신비로운 오라 & 촛불 깜빡임 */
+.gaero-candle-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 68%, rgba(255, 215, 120, 0.45) 0%, rgba(245, 160, 60, 0.15) 35%, transparent 65%);
+  mix-blend-mode: screen;
+  pointer-events: none;
+  z-index: 4;
+}
+
+/* 위기 경고 붉은 틴트 (Scene 6) */
+.gaero-crisis-tint {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(220, 38, 38, 0.28) 0%, rgba(150, 20, 20, 0.45) 100%);
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  z-index: 7;
+}
+
+/* 살아있는 착수 오버레이 (대국 장면) */
+.gaero-live-board {
+  position: absolute;
+  bottom: 16.5%;
+  left: 41%;
+  width: 17%;
+  height: 10%;
+  pointer-events: none;
+  transform: perspective(600px) rotateX(46deg) rotateZ(45deg);
+  transform-style: preserve-3d;
+  z-index: 7;
+}
+
+.gaero-stone {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
+  transition: transform 0.28s cubic-bezier(0.22, 1.35, 0.36, 1), opacity 0.18s ease;
+}
+.gaero-stone.placed {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+}
+.gaero-stone.black {
+  background: radial-gradient(circle at 35% 30%, #5a5a5a 0%, #1c1c1c 55%, #050505 100%);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+}
+.gaero-stone.white {
+  background: radial-gradient(circle at 35% 30%, #ffffff 0%, #f0ede5 65%, #cac4b3 100%);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+.gaero-stone.latest::after {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 230, 130, 0.9);
+  animation: gaeroStonePulse 0.7s ease-out forwards;
+}
+
+@keyframes gaeroStonePulse {
+  0% { transform: scale(0.6); opacity: 0.95; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
