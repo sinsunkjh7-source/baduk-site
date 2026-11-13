@@ -1,275 +1,70 @@
-/* 개로왕과 도림 - 관절 분리 페이퍼 퍼펫 (Articulated Paper Puppets) */
+/* 개로왕과 도림 - 명품 시네마틱 아트북 (Cinematic Art E-Book) */
+
+.pt-stage {
+  background: #0d0a07;
+  overflow: hidden;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.65);
+}
 
 .pt-stage-inner {
-  perspective: 1200px;
-  transform-style: preserve-3d;
+  perspective: 1000px;
 }
 
-/* 1. 최후경 창밖 풍경 */
-.gaero-window-scenery {
+/* 시네마틱 캔 번스(Ken Burns) 프레임 */
+.cinematic-art-frame {
   position: absolute;
-  top: 18%;
-  left: 8%;
-  width: 68%;
-  height: 48%;
+  inset: -6%;
+  width: 112%;
+  height: 112%;
   pointer-events: none;
-  z-index: 1;
   overflow: hidden;
-}
-.gaero-window-scenery img {
-  width: 120%;
-  height: 120%;
-  object-fit: cover;
-  display: block;
+  will-change: transform;
 }
 
-/* 2. 중경 궁궐 전각 기둥 및 난간 프레임 */
-.gaero-palace-frame {
-  position: absolute;
-  inset: -2%;
-  width: 104%;
-  height: 104%;
-  pointer-events: none;
-  z-index: 3;
-}
-.gaero-palace-frame img {
+.cinematic-art-frame img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
-}
-
-/* 통 배경 */
-.gaero-palace-bg {
-  position: absolute;
-  inset: -4%;
-  width: 108%;
-  height: 108%;
-  pointer-events: none;
-  z-index: 2;
-}
-.gaero-palace-bg img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-/* 고구려 진격 배경 */
-.gaero-march-bg {
-  position: absolute;
-  inset: -4%;
-  width: 108%;
-  height: 108%;
-  pointer-events: none;
-  z-index: 2;
-}
-.gaero-march-bg img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-/* 기병대 독립 돌격 레이어 */
-.gaero-cavalry-charge {
-  position: absolute;
-  bottom: 0;
-  left: -20%;
-  width: 140%;
-  height: 60%;
-  pointer-events: none;
-  z-index: 4;
-}
-.gaero-cavalry-charge img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  display: block;
-}
-
-/* ========================================================
-   [관절 분리 페이퍼 퍼펫: 승려 도림 (Monk Dorim)]
-   - 컨테이너: .puppet-dorim
-   - 몸통: .dorim-body
-   - 머리: .dorim-head (목덜미 기준 회전)
-   - 오른팔: .dorim-arm (어깨 관절 기준 회전 -> 착수 모션!)
-   ======================================================== */
-.puppet-dorim {
-  position: absolute;
-  bottom: 6%;
-  left: 10%;
-  width: 36%;
-  height: auto;
-  pointer-events: none;
-  filter: drop-shadow(0 16px 26px rgba(15, 10, 5, 0.6));
-  z-index: 5;
-}
-
-.puppet-dorim .dorim-body {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-.puppet-dorim .dorim-head {
-  position: absolute;
-  top: 7.1%;
-  left: 36.1%;
-  width: 24.1%;
-  height: auto;
-  transform-origin: 35% 85%; /* 목 깃 중심 회전 */
-  z-index: 2;
-  transition: transform 0.15s ease-out;
-}
-
-.puppet-dorim .dorim-arm {
-  position: absolute;
-  top: 52.7%;
-  left: 53.7%;
-  width: 36.2%;
-  height: auto;
-  transform-origin: 12% 25%; /* 어깨 관절 중심 회전 */
-  z-index: 3;
-  transition: transform 0.18s cubic-bezier(0.25, 1.4, 0.4, 1);
-}
-
-/* ========================================================
-   [관절 분리 페이퍼 퍼펫: 개로왕 (King Gaero)]
-   - 컨테이너: .puppet-gaero
-   - 몸통: .gaero-body
-   - 머리: .gaero-head (목 중심 끄덕임 회전)
-   - 오른팔: .gaero-arm (착수 손짓 회전)
-   ======================================================== */
-.puppet-gaero {
-  position: absolute;
-  bottom: 6%;
-  right: 12%;
-  width: 38%;
-  height: auto;
-  pointer-events: none;
-  filter: drop-shadow(0 16px 26px rgba(15, 10, 5, 0.6));
-  z-index: 5;
-}
-
-.puppet-gaero .gaero-body {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-.puppet-gaero .gaero-head {
-  position: absolute;
-  top: 6.6%;
-  left: 38.3%;
-  width: 24.2%;
-  height: auto;
-  transform-origin: 50% 88%; /* 목덜미 중심 회전 */
-  z-index: 2;
-  transition: transform 0.15s ease-out;
-}
-
-.puppet-gaero .gaero-arm {
-  position: absolute;
-  top: 47.8%;
-  left: 33.8%;
-  width: 16.4%;
-  height: auto;
-  transform-origin: 80% 40%; /* 손목/팔꿈치 관절 회전 */
-  z-index: 3;
-  transition: transform 0.18s cubic-bezier(0.25, 1.4, 0.4, 1);
-}
-
-/* 바둑판 및 착수 오버레이 */
-.gaero-board-wrap {
-  position: absolute;
-  bottom: 7%;
-  left: 35%;
-  width: 30%;
-  height: auto;
-  pointer-events: none;
-  filter: drop-shadow(0 16px 22px rgba(10, 10, 10, 0.5));
   transform-origin: center center;
-  z-index: 6;
-}
-.gaero-board-wrap img {
-  width: 100%;
-  height: auto;
-  display: block;
+  transition: filter 0.6s ease;
 }
 
-.gaero-candle-glow {
+/* 촛불 빛무리 & 공간감 조명 */
+.cinematic-candle-light {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 50% 68%, rgba(255, 215, 120, 0.55) 0%, rgba(245, 150, 40, 0.18) 38%, transparent 65%);
+  background: radial-gradient(circle at 62% 60%, rgba(255, 215, 120, 0.28) 0%, rgba(240, 140, 30, 0.08) 40%, transparent 70%);
   mix-blend-mode: screen;
   pointer-events: none;
   z-index: 4;
 }
 
-.gaero-crisis-tint {
+/* 위기 붉은 그림자 */
+.cinematic-crisis-vignette {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 50% 50%, rgba(220, 38, 38, 0.35) 0%, rgba(150, 10, 10, 0.65) 100%);
+  background: radial-gradient(circle at 50% 50%, rgba(220, 30, 30, 0.22) 0%, rgba(130, 10, 10, 0.6) 100%);
   mix-blend-mode: multiply;
   pointer-events: none;
-  z-index: 7;
+  z-index: 4;
 }
 
-.gaero-dust-storm {
+/* 햇살 & 먼지 입자 광선 */
+.cinematic-sunbeam {
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, rgba(210, 170, 110, 0.3) 0%, rgba(180, 130, 80, 0.5) 50%, rgba(210, 170, 110, 0.2) 100%);
+  background: linear-gradient(135deg, rgba(255, 235, 175, 0.25) 0%, transparent 60%);
   mix-blend-mode: screen;
-  filter: blur(6px);
   pointer-events: none;
-  z-index: 6;
-  opacity: 0;
+  z-index: 4;
 }
 
-.gaero-live-board {
+/* 고급스러운 필름 비네트 (외곽 어두움으로 몰입감 극대화) */
+.cinematic-vignette {
   position: absolute;
-  bottom: 16.5%;
-  left: 41%;
-  width: 17%;
-  height: 10%;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 65%, rgba(15, 10, 5, 0.65) 100%);
   pointer-events: none;
-  transform: perspective(600px) rotateX(46deg) rotateZ(45deg);
-  transform-style: preserve-3d;
-  z-index: 7;
-}
-
-.gaero-stone {
-  position: absolute;
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  transform: translate(-50%, -50%) scale(0);
-  opacity: 0;
-  transition: transform 0.28s cubic-bezier(0.22, 1.35, 0.36, 1), opacity 0.18s ease;
-}
-.gaero-stone.placed {
-  transform: translate(-50%, -50%) scale(1);
-  opacity: 1;
-}
-.gaero-stone.black {
-  background: radial-gradient(circle at 35% 30%, #5a5a5a 0%, #1c1c1c 55%, #050505 100%);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.65);
-}
-.gaero-stone.white {
-  background: radial-gradient(circle at 35% 30%, #ffffff 0%, #f0ede5 65%, #cac4b3 100%);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.45);
-}
-.gaero-stone.latest::after {
-  content: '';
-  position: absolute;
-  inset: -6px;
-  border-radius: 50%;
-  border: 2px solid rgba(255, 230, 130, 0.9);
-  animation: gaeroStonePulse 0.7s ease-out forwards;
-}
-
-@keyframes gaeroStonePulse {
-  0% { transform: scale(0.6); opacity: 0.95; }
-  100% { transform: scale(2.2); opacity: 0; }
+  z-index: 5;
 }
