@@ -88,8 +88,24 @@
   PaperTheaterEngine.prototype._buildDOM = function () {
     var s = this.story;
 
+    var catalog = [
+      { id: 'ugong', label: '📜 고사성어 · 우공이산 (愚公移山)', href: '/story/gosa/index.html' },
+      { id: 'nanga', label: '🪓 바둑전설 · 난가대국 (爛柯對局)', href: '/story/nanga/index.html' }
+    ];
+
+    var switcherHtml = '<nav class="pt-story-switcher" aria-label="종이 극장 작품 선택">' +
+      '<span class="pt-switcher-title">🎭 종이 극장 목록</span>' +
+      '<div class="pt-switcher-pills">';
+    for (var c = 0; c < catalog.length; c++) {
+      var item = catalog[c];
+      var isCurrent = (s.id === item.id);
+      switcherHtml += '<a href="' + item.href + '" class="pt-switcher-pill' + (isCurrent ? ' active' : '') + '"' + (isCurrent ? ' aria-current="page"' : '') + '>' + item.label + '</a>';
+    }
+    switcherHtml += '</div></nav>';
+
     var html = '' +
       '<div class="pt-standard-player">' +
+        switcherHtml +
         '<!-- 헤더 섹션 -->' +
         '<header class="pt-header">' +
           '<div class="pt-badge-row">' +

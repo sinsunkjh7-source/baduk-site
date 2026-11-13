@@ -26,6 +26,58 @@ body {
   padding: 16px 16px 48px;
 }
 
+/* Story Switcher Bar */
+.pt-story-switcher {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  margin-bottom: 14px;
+  padding: 10px 14px;
+  background: #ede4d3;
+  border: 1.5px solid #d5c6ae;
+  border-radius: 14px;
+}
+
+.pt-switcher-title {
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: #5c4936;
+}
+
+.pt-switcher-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+
+.pt-switcher-pill {
+  text-decoration: none;
+  font-size: 0.86rem;
+  font-weight: 800;
+  color: #4a3a2a;
+  background: #faf6ef;
+  border: 1.5px solid #cbbba0;
+  padding: 6px 13px;
+  border-radius: 999px;
+  transition: all 0.16s ease;
+}
+
+.pt-switcher-pill:hover {
+  background: #fff;
+  border-color: #c85a32;
+  color: #9a3d1a;
+}
+
+.pt-switcher-pill.active {
+  background: #c85a32;
+  border-color: #b44b25;
+  color: #fff;
+  box-shadow: 0 3px 10px rgba(200, 90, 50, 0.25);
+}
+
 /* Header */
 .pt-header {
   text-align: center;
