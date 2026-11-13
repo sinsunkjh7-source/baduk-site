@@ -34,9 +34,13 @@
     this.koVoice = null;
     this.animFrameId = null;
 
-    // Audio Player for Studio Voice
+    // Audio Player for Studio Voice & Procedural BGM/SFX
     this.currentAudio = null;
     this.audioCache = {};
+    this.audioCtx = null;
+    this.bgmTimer = null;
+    this.bgmStep = 0;
+    this._sfxFired = {};
 
     // DOM References
     this.dom = {};
@@ -298,6 +302,119 @@
     return (m < 10 ? '0' + m : String(m)) + ':' + (s < 10 ? '0' + s : String(s));
   };
 
+  PaperTheaterEngine.prototype._ensureAudioCtx = function () {
+    if (!this.audioCtx) {
+      var Ctx = window.AudioContext || window.webkitAudioContext;
+      if (Ctx) {
+        try {
+          this.audioCtx = new Ctx();
+        } catch (e) {}
+      }
+    }
+    if (this.audioCtx && this.audioCtx.state === 'suspended') {
+      try { this.audioCtx.resume(); } catch (e) {}
+    }
+    return this.audioCtx;
+  };
+
+  PaperTheaterEngine.prototype._playNote = function (freq, duration, gainVal, type) {
+    var ctx = this._ensureAudioCtx();
+    if (!ctx || !this.voiceEnabled) return;
+    try {
+      var now = ctx.currentTime;
+      var osc = ctx.createOscillator();
+      var gain = ctx.createGain();
+      osc.type = type || 'triangle';
+      osc.frequency.setValueAtTime(freq, now);
+      gain.gain.setValueAtTime(0.0001, now);
+      gain.gain.exponentialRampToValueAtTime(gainVal || 0.04, now + 0.04);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + (duration || 1.6));
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start(now);
+      osc.stop(now + (duration || 1.65));
+    } catch (e) {}
+  };
+
+  PaperTheaterEngine.prototype._startBGM = function () {
+    if (this.bgmTimer || !this.voiceEnabled || !this.playing) return;
+    this._ensureAudioCtx();
+    // Korean pentatonic scale (C4, D4, E4, G4, A4, C5, D5, E5)
+    var scale = [261.63, 293.66, 329.63, 392.00, 440.00, 523.25, 440.00, 392.00, 329.63, 293.66];
+    var self = this;
+    function tickNote() {
+      if (!self.playing || !self.voiceEnabled) return;
+      var freq = scale[self.bgmStep % scale.length];
+      self._playNote(freq, 2.0, 0.028, 'sine');
+      if (self.bgmStep % 4 === 0) {
+        self._playNote(freq * 0.5, 2.8, 0.018, 'triangle');
+      }
+      self.bgmStep++;
+    }
+    tickNote();
+    this.bgmTimer = setInterval(tickNote, 950);
+  };
+
+  PaperTheaterEngine.prototype._stopBGM = function () {
+    if (this.bgmTimer) {
+      clearInterval(this.bgmTimer);
+      this.bgmTimer = null;
+    }
+  };
+
+  PaperTheaterEngine.prototype.playSFX = function (type) {
+    if (!this.voiceEnabled || !this.playing) return;
+    var ctx = this._ensureAudioCtx();
+    if (!ctx) return;
+    var now = ctx.currentTime;
+    try {
+      if (type === 'stone') {
+        // Crisp wooden Go board "clack"
+        var osc = ctx.createOscillator();
+        var g = ctx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(920, now);
+        osc.frequency.exponentialRampToValueAtTime(240, now + 0.055);
+        g.gain.setValueAtTime(0.18, now);
+        g.gain.exponentialRampToValueAtTime(0.0001, now + 0.07);
+        osc.connect(g);
+        g.connect(ctx.destination);
+        osc.start(now);
+        osc.stop(now + 0.075);
+      } else if (type === 'chime') {
+        this._playNote(523.25, 1.4, 0.04, 'sine');
+        var self = this;
+        setTimeout(function () { self._playNote(659.25, 1.4, 0.035, 'sine'); }, 140);
+        setTimeout(function () { self._playNote(783.99, 1.8, 0.035, 'sine'); }, 280);
+      } else if (type === 'crumble') {
+        var bufSize = ctx.sampleRate * 0.35;
+        var buf = ctx.createBuffer(1, bufSize, ctx.sampleRate);
+        var data = buf.getChannelData(0);
+        for (var i = 0; i < bufSize; i++) {
+          data[i] = (Math.random() * 2 - 1) * Math.exp(-i / (ctx.sampleRate * 0.12));
+        }
+        var src = ctx.createBufferSource();
+        src.buffer = buf;
+        var filter = ctx.createBiquadFilter();
+        filter.type = 'bandpass';
+        filter.frequency.value = 600;
+        var g2 = ctx.createGain();
+        g2.gain.setValueAtTime(0.12, now);
+        g2.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
+        src.connect(filter);
+        filter.connect(g2);
+        g2.connect(ctx.destination);
+        src.start(now);
+      }
+    } catch (e) {}
+  };
+
+  PaperTheaterEngine.prototype.triggerOnce = function (key, fn) {
+    if (this._sfxFired[key]) return;
+    this._sfxFired[key] = true;
+    fn();
+  };
+
   PaperTheaterEngine.prototype.stopNarration = function () {
     if (this.currentAudio) {
       try {
@@ -375,6 +492,7 @@
     if (this.dom.bigPlayBtn) {
       this.dom.bigPlayBtn.hidden = true;
     }
+    this._startBGM();
     if (this.currentSceneIdx >= 0 && this.scenes[this.currentSceneIdx]) {
       var curSc = this.scenes[this.currentSceneIdx];
       this.playSceneNarration(curSc, this.elapsed - curSc.start);
@@ -393,6 +511,7 @@
         this.dom.bigPlayText.textContent = this.elapsed > 0 ? '이어서 재생하기' : '이야기 재생하기';
       }
     }
+    this._stopBGM();
     this.stopNarration();
   };
 
@@ -410,14 +529,17 @@
       this.dom.btnVoice.textContent = this.voiceEnabled ? '🔊 음성 켜짐' : '🔇 음성 꺼짐';
     }
     if (!this.voiceEnabled) {
+      this._stopBGM();
       this.stopNarration();
     } else if (this.playing && this.currentSceneIdx >= 0 && this.scenes[this.currentSceneIdx]) {
+      this._startBGM();
       var curSc = this.scenes[this.currentSceneIdx];
       this.playSceneNarration(curSc, this.elapsed - curSc.start);
     }
   };
 
   PaperTheaterEngine.prototype.replay = function () {
+    this._sfxFired = {};
     this.seek(0);
     this.play();
   };
@@ -511,7 +633,7 @@
       var sceneLocalTime = t - activeScene.start;
       var sceneProgress = Math.min(1, Math.max(0, sceneLocalTime / (activeScene.end - activeScene.start)));
       var slideEl = this.dom.slides[sceneIdx];
-      activeScene.animate(slideEl, sceneProgress, sceneLocalTime, t, this.playing);
+      activeScene.animate(slideEl, sceneProgress, sceneLocalTime, t, this.playing, this);
     }
 
     if (this.dom.particles && activeScene && activeScene.particlesClass) {
@@ -524,6 +646,7 @@
       cancelAnimationFrame(this.animFrameId);
       this.animFrameId = null;
     }
+    this._stopBGM();
     this.stopNarration();
     this.container.innerHTML = '';
   };
