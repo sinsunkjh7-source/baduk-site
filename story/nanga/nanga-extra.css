@@ -1,0 +1,85 @@
+/* 난가대국 전용 다층 종이 극장 모션·계절 효과 레이어 */
+
+.nanga-woodcutter-sprite {
+  position: absolute;
+  bottom: 4%;
+  left: 8%;
+  width: 24%;
+  height: auto;
+  pointer-events: none;
+  filter: drop-shadow(0 12px 18px rgba(15, 10, 5, 0.5));
+  transform-origin: bottom center;
+}
+
+.nanga-axe-sprite {
+  position: absolute;
+  bottom: 10%;
+  left: 34%;
+  width: 32%;
+  height: auto;
+  pointer-events: none;
+  filter: drop-shadow(0 14px 20px rgba(10, 8, 5, 0.55));
+  transform-origin: center center;
+}
+
+/* 바둑판 신비로운 빛 (Scene 2~4) */
+.nanga-board-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 62%, rgba(255, 240, 175, 0.58) 0%, rgba(255, 218, 120, 0.18) 32%, transparent 62%);
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+/* 사계절 색감 필터 & 시간 흐름 (Scene 4) */
+.nanga-season-tint {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  mix-blend-mode: soft-light;
+  transition: background 0.3s linear;
+}
+
+.nanga-season-badge {
+  position: absolute;
+  top: 12%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(35, 25, 18, 0.68);
+  color: #ffe8b3;
+  border: 1px solid rgba(255, 232, 179, 0.38);
+  padding: 5px 16px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  backdrop-filter: blur(4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+/* 계절별 파티클 스타일 */
+.layer-particles.autumn .pt-mote {
+  width: 10px;
+  height: 10px;
+  border-radius: 20% 80% 30% 70%;
+  background: radial-gradient(circle at 30% 30%, #fb923c, #dc2626);
+  box-shadow: 0 0 6px rgba(234, 88, 12, 0.55);
+  animation-duration: 4.5s;
+}
+
+.layer-particles.winter .pt-mote {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 0 8px rgba(224, 242, 254, 0.9);
+  animation-duration: 5s;
+}
+
+.layer-particles.mystic .pt-mote {
+  width: 6px;
+  height: 6px;
+  background: radial-gradient(circle, #fef08a, #f59e0b);
+  box-shadow: 0 0 10px rgba(250, 204, 21, 0.8);
+  animation-duration: 7s;
+}
