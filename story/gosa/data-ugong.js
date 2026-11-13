@@ -1,10 +1,9 @@
 /**
  * Paper Theater Story Data: 우공이산 (愚公移山)
  * ===============================================
- * 표준 규격 스펙:
- * - id, title, hanja, badge, summary, duration
- * - scenes: [ { id, start, end, chapter, subtitle, layers, animate(slideEl, p, localT, globalT, isPlaying) } ]
- * - study: { hanja: [...], badukWisdom, quiz: { question, options, correctMsg, wrongMsg } }
+ * 오디오 싱크 최적화 (총 61초 8개 씬):
+ * - 스튜디오 고음질 오디오 트랙(narration_scene1~8.mp3) 탑재로 끊김 없이 감미로운 낭독
+ * - 브라우저 TTS는 오디오 파일 실패 시 Fallback으로만 동작
  */
 
 window.STORY_UGONG = {
@@ -12,16 +11,17 @@ window.STORY_UGONG = {
   title: '우공이산',
   hanja: '愚公移山',
   badge: '🎬 다층 종이 극장 쇼츠',
-  summary: '매 장면마다 다층 종이 레이어가 살아 숨쉬는 48초 종이 극장 명작',
-  duration: 48.0,
+  summary: '매 장면마다 다층 종이 레이어와 감미로운 내레이션이 살아 숨쉬는 종이 극장',
+  duration: 61.0,
 
   scenes: [
     {
       id: 'scene1',
       start: 0,
-      end: 6,
+      end: 8.7,
       chapter: '제1장 · 길을 막은 두 산',
-      subtitle: '옛날 중국 북산에 아흔 살이 된 ‘우공’ 할아버지가 살았어요. 집 바로 앞을 거대한 태행산과 왕옥산 두 산이 가로막고 있어, 마을 사람들은 매일 먼 길을 빙 돌아가야 했지요.',
+      subtitle: '옛날 북산에 아흔 살 우공 할아버지가 살았어요. 집 앞 거대한 두 산 때문에 매일 먼 길을 돌아가야 했지요.',
+      audio: 'assets/narration_scene1.mp3',
       layers: [
         { type: 'image', src: 'assets/layer_sky.jpg', alt: '하늘 배경' },
         { type: 'custom', content: '<div class="mist-band band-1"></div><div class="mist-band band-2"></div>', className: 'layer-mist-back' },
@@ -39,10 +39,11 @@ window.STORY_UGONG = {
     },
     {
       id: 'scene2',
-      start: 6,
-      end: 12,
+      start: 8.7,
+      end: 17.9,
       chapter: '제2장 · 가족과의 결심',
-      subtitle: '어느 날 우공은 온 가족을 불러 모아 말했어요. “우리가 힘을 합쳐 저 두 산을 깎아 평평한 길을 내자꾸나!” 식구들은 모두 기쁘게 고개를 끄덕였습니다.',
+      subtitle: '우공은 가족을 모았어요. “저 산을 깎아 평평한 길을 냅시다!” 식구들도 기쁘게 뜻을 모았답니다.',
+      audio: 'assets/narration_scene2.mp3',
       layers: [
         { type: 'image', src: 'assets/layer_sky.jpg', alt: '창밖 하늘', className: 's2-outside-sky' },
         { type: 'custom', content: '<div class="mist-band band-1"></div>', className: 'layer-mist-back' },
@@ -58,12 +59,13 @@ window.STORY_UGONG = {
     },
     {
       id: 'scene3',
-      start: 12,
-      end: 18,
+      start: 17.9,
+      end: 25.1,
       chapter: '제3장 · 첫 삽을 뜨다',
-      subtitle: '다음 날 아침, 우공과 자식·손자들은 삽과 삼태기를 들고 산기슭으로 나섰어요. 커다란 바위를 깨고 흙을 퍼 담아 저 멀리 바닷가까지 부지런히 날랐지요.',
+      subtitle: '다음 날 아침, 우공과 손자들은 삼태기를 메고 바위를 깨며 흙을 멀리 부지런히 날랐어요.',
+      audio: 'assets/narration_scene3.mp3',
       layers: [
-        { type: 'image', src: 'assets/scene3.jpg', alt: '제3장 삽과 바구니로 흙을 나르는 우공과 손자들', className: 'slide-base-img' },
+        { type: 'image', src: 'assets/scene3.jpg', alt: '흙을 나르는 우공과 손자들', className: 'slide-base-img' },
         { type: 'custom', content: '<div class="mist-band band-1"></div>', className: 'layer-mist-back' },
         { type: 'image', src: 'assets/layer_pines.png', alt: '앞쪽 소나무', className: 'layer-pines' }
       ],
@@ -79,12 +81,13 @@ window.STORY_UGONG = {
     },
     {
       id: 'scene4',
-      start: 18,
-      end: 24,
+      start: 25.1,
+      end: 33.7,
       chapter: '제4장 · 이웃의 비웃음',
-      subtitle: '그 모습을 본 이웃 노인 ‘지소’가 혀를 차며 웃었어요. “아흔 살 노인이 어찌 그 큰 산을 옮긴단 말이오? 흙 한 줌도 다 못 옮기고 기력이 다할 텐데요!”',
+      subtitle: '이웃 지소가 비웃었어요. “아흔 살 노인이 어찌 큰 산을 옮긴단 말이오? 기력만 다할 텐데!”',
+      audio: 'assets/narration_scene4.mp3',
       layers: [
-        { type: 'image', src: 'assets/scene4.jpg', alt: '제4장 비웃는 이웃 지소와 묵묵히 웃는 우공', className: 'slide-base-img' },
+        { type: 'image', src: 'assets/scene4.jpg', alt: '비웃는 이웃 지소와 우공', className: 'slide-base-img' },
         { type: 'custom', content: '<div class="mist-band band-2"></div>', className: 'layer-mist-back' },
         { type: 'image', src: 'assets/layer_pines.png', alt: '앞쪽 소나무', className: 'layer-pines' }
       ],
@@ -95,26 +98,21 @@ window.STORY_UGONG = {
     },
     {
       id: 'scene5',
-      start: 24,
-      end: 36,
-      chapter: '제5-6장 · 우공의 대답과 낮아지는 산',
-      subtitle: '우공은 빙긋 웃으며 답했어요. “내가 죽으면 자식이, 자식이 죽으면 손자가 대를 이을 걸세. 산은 자라지 않으니 언젠간 평지가 되지 않겠소?” 그 끈기에 두 산이 낮아지기 시작했어요.',
+      start: 33.7,
+      end: 41.6,
+      chapter: '제5장 · 우공의 대답',
+      subtitle: '우공은 웃으며 답했지요. “내가 죽으면 아들이, 아들이 죽으면 손자가 대를 이어 파낼 걸세.”',
+      audio: 'assets/narration_scene5.mp3',
       layers: [
         { type: 'image', src: 'assets/layer_sky.jpg', alt: '하늘 배경' },
         { type: 'custom', content: '<div class="mist-band band-1"></div><div class="mist-band band-2"></div>', className: 'layer-mist-back' },
-        { type: 'image', src: 'assets/layer_mtn_left.png', alt: '낮아지는 왼쪽 산', className: 'layer-mountains layer-mtn-l' },
-        { type: 'image', src: 'assets/layer_mtn_right.png', alt: '낮아지는 오른쪽 산', className: 'layer-mountains layer-mtn-r' },
-        { type: 'image', src: 'assets/layer_village.png', alt: '우공과 마을 사람들', className: 'layer-village' },
+        { type: 'image', src: 'assets/layer_mtn_left.png', alt: '왼쪽 산', className: 'layer-mountains layer-mtn-l' },
+        { type: 'image', src: 'assets/layer_mtn_right.png', alt: '오른쪽 산', className: 'layer-mountains layer-mtn-r' },
+        { type: 'image', src: 'assets/layer_village.png', alt: '우공과 가족들', className: 'layer-village' },
         { type: 'image', src: 'assets/layer_pines.png', alt: '소나무 프레임', className: 'layer-pines' }
       ],
       animate: function (slideEl, p, localT, globalT, isPlaying) {
-        var mtnL = slideEl.querySelector('.layer-mtn-l');
-        var mtnR = slideEl.querySelector('.layer-mtn-r');
         var village = slideEl.querySelector('.layer-village');
-        var eased = p * p * (3 - 2 * p);
-        var dropY = (eased * 145).toFixed(1);
-        if (mtnL) mtnL.style.transform = 'translateY(' + dropY + 'px)';
-        if (mtnR) mtnR.style.transform = 'translateY(' + dropY + 'px)';
         if (village) {
           var digBob = isPlaying ? Math.abs(Math.sin(globalT * 3.6)) * -3.5 : 0;
           village.style.transform = 'translateY(' + digBob.toFixed(2) + 'px)';
@@ -122,13 +120,38 @@ window.STORY_UGONG = {
       }
     },
     {
-      id: 'scene7',
-      start: 36,
-      end: 42,
-      chapter: '제7장 · 하늘의 감동',
-      subtitle: '비가 오나 바람이 부나 하루도 쉬지 않는 우공 가족의 정성을, 하늘의 신(천제)이 굽어보고 크게 감동해 힘센 신령들을 내려보냈지요.',
+      id: 'scene6',
+      start: 41.6,
+      end: 47.9,
+      chapter: '제6장 · 낮아지는 산',
+      subtitle: '“산은 자라지 않지만 우리 자손은 끝없이 이어지니 언젠간 평지가 되지 않겠소?”',
+      audio: 'assets/narration_scene6.mp3',
       layers: [
-        { type: 'image', src: 'assets/scene7.jpg', alt: '제7장 하늘의 신이 감동하는 장면', className: 'slide-base-img' },
+        { type: 'image', src: 'assets/layer_sky.jpg', alt: '하늘 배경' },
+        { type: 'custom', content: '<div class="mist-band band-1"></div><div class="mist-band band-2"></div>', className: 'layer-mist-back' },
+        { type: 'image', src: 'assets/layer_mtn_left.png', alt: '낮아지는 왼쪽 산', className: 'layer-mountains layer-mtn-l' },
+        { type: 'image', src: 'assets/layer_mtn_right.png', alt: '낮아지는 오른쪽 산', className: 'layer-mountains layer-mtn-r' },
+        { type: 'image', src: 'assets/layer_village.png', alt: '우공과 가족들', className: 'layer-village' },
+        { type: 'image', src: 'assets/layer_pines.png', alt: '소나무 프레임', className: 'layer-pines' }
+      ],
+      animate: function (slideEl, p) {
+        var mtnL = slideEl.querySelector('.layer-mtn-l');
+        var mtnR = slideEl.querySelector('.layer-mtn-r');
+        var eased = p * p * (3 - 2 * p);
+        var dropY = (eased * 135).toFixed(1);
+        if (mtnL) mtnL.style.transform = 'translateY(' + dropY + 'px)';
+        if (mtnR) mtnR.style.transform = 'translateY(' + dropY + 'px)';
+      }
+    },
+    {
+      id: 'scene7',
+      start: 47.9,
+      end: 54.3,
+      chapter: '제7장 · 하늘의 감동',
+      subtitle: '쉬지 않고 노력하는 우공 가족의 정성에 마침내 하늘의 신령도 감동했답니다.',
+      audio: 'assets/narration_scene7.mp3',
+      layers: [
+        { type: 'image', src: 'assets/scene7.jpg', alt: '하늘의 신이 감동하는 장면', className: 'slide-base-img' },
         { type: 'custom', content: '', className: 's5-sunbeam' },
         { type: 'custom', content: '<div class="mist-band band-1"></div><div class="mist-band band-2"></div>', className: 'layer-mist-back' }
       ],
@@ -139,13 +162,14 @@ window.STORY_UGONG = {
     },
     {
       id: 'scene8',
-      start: 42,
-      end: 48.0,
-      chapter: '제8장 · 산이 움직이다',
-      subtitle: '마침내 신령들이 두 산을 번쩍 들어 다른 곳으로 옮겨 주었답니다. 포기하지 않는 꾸준함이 거대한 산도 움직인 거예요!',
+      start: 54.3,
+      end: 61.0,
+      chapter: '제8장 · 활짝 열린 큰길',
+      subtitle: '신령들이 거대한 두 산을 옮겨 주어 마침내 시원하고 넓은 큰길이 활짝 열렸답니다!',
+      audio: 'assets/narration_scene8.mp3',
       particlesClass: 'blossoms',
       layers: [
-        { type: 'image', src: 'assets/scene8.jpg', alt: '제8장 환하게 열린 길', className: 'slide-base-img' },
+        { type: 'image', src: 'assets/scene8.jpg', alt: '환하게 열린 길', className: 'slide-base-img' },
         { type: 'image', src: 'assets/layer_mtn_left.png', alt: '물러나는 왼쪽 산', className: 'layer-mountains layer-mtn-l' },
         { type: 'image', src: 'assets/layer_mtn_right.png', alt: '물러나는 오른쪽 산', className: 'layer-mountains layer-mtn-r' }
       ],
