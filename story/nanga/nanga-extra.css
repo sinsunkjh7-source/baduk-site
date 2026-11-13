@@ -1,32 +1,94 @@
-/* 난가대국 전용 다층 종이 극장 모션·계절 효과 레이어 */
+/* 난가대국 전용 다층 종이 극장 모션·계절·레이어 배치 */
 
 .nanga-woodcutter-sprite {
   position: absolute;
-  bottom: 4%;
-  left: 8%;
-  width: 24%;
+  bottom: 5%;
+  left: 14%;
+  width: 22%;
   height: auto;
   pointer-events: none;
-  filter: drop-shadow(0 12px 18px rgba(15, 10, 5, 0.5));
+  filter: drop-shadow(0 12px 18px rgba(15, 10, 5, 0.55));
   transform-origin: bottom center;
+}
+
+.nanga-woodcutter-noaxe-sprite {
+  position: absolute;
+  bottom: 4%;
+  left: 12%;
+  width: 21%;
+  height: auto;
+  pointer-events: none;
+  filter: drop-shadow(0 12px 18px rgba(15, 10, 5, 0.55));
+  transform-origin: bottom center;
+}
+
+.nanga-immortals-sprite {
+  position: absolute;
+  bottom: 10%;
+  right: 8%;
+  width: 54%;
+  height: auto;
+  pointer-events: none;
+  filter: drop-shadow(0 14px 20px rgba(20, 15, 10, 0.45));
+  transform-origin: center bottom;
+}
+
+.nanga-watcher-sprite {
+  position: absolute;
+  bottom: 4%;
+  left: 6%;
+  width: 32%;
+  height: auto;
+  pointer-events: none;
+  filter: drop-shadow(0 12px 18px rgba(15, 10, 5, 0.45));
+  transform-origin: left bottom;
 }
 
 .nanga-axe-sprite {
   position: absolute;
-  bottom: 10%;
+  bottom: 8%;
   left: 34%;
-  width: 32%;
+  width: 34%;
   height: auto;
   pointer-events: none;
   filter: drop-shadow(0 14px 20px rgba(10, 8, 5, 0.55));
   transform-origin: center center;
 }
 
+.nanga-ground-meadow {
+  position: absolute;
+  left: -8%;
+  right: -8%;
+  bottom: -6%;
+  height: 35%;
+  background:
+    radial-gradient(ellipse at 30% 10%, rgba(164, 184, 114, 0.35), transparent 60%),
+    linear-gradient(175deg, #6b8048 0%, #4e6333 45%, #324221 100%);
+  border-top: 3px solid #96ab6d;
+  border-radius: 58% 42% 0 0 / 32px 24px 0 0;
+  box-shadow: 0 -10px 24px rgba(15, 22, 10, 0.42), inset 0 8px 18px rgba(255, 245, 210, 0.14);
+  pointer-events: none;
+}
+
+.nanga-ground-meadow::before {
+  content: '';
+  position: absolute;
+  left: -6%;
+  right: 25%;
+  top: -18px;
+  height: 55%;
+  background: linear-gradient(180deg, #7c9156 0%, #586d3b 100%);
+  border-top: 3px solid #a8bc7e;
+  border-radius: 45% 55% 0 0 / 26px 26px 0 0;
+  box-shadow: 0 -6px 16px rgba(15, 22, 10, 0.28);
+  z-index: -1;
+}
+
 /* 바둑판 신비로운 빛 (Scene 2~4) */
 .nanga-board-glow {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 50% 62%, rgba(255, 240, 175, 0.58) 0%, rgba(255, 218, 120, 0.18) 32%, transparent 62%);
+  background: radial-gradient(circle at 64% 58%, rgba(255, 240, 175, 0.62) 0%, rgba(255, 218, 120, 0.2) 28%, transparent 56%);
   mix-blend-mode: screen;
   pointer-events: none;
 }
@@ -42,10 +104,10 @@
 
 .nanga-season-badge {
   position: absolute;
-  top: 12%;
+  top: 10%;
   left: 50%;
   transform: translateX(-50%);
-  background: rgba(35, 25, 18, 0.68);
+  background: rgba(35, 25, 18, 0.72);
   color: #ffe8b3;
   border: 1px solid rgba(255, 232, 179, 0.38);
   padding: 5px 16px;
