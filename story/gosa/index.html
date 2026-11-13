@@ -3,145 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>종이 극장 쇼츠: 우공이산 — JH 바둑스쿨 Story</title>
-  <meta name="description" content="매 장면마다 다층 종이 레이어가 살아 움직이는 48초 종이 극장 쇼츠 - 우공이산(愚公移山)">
+  <title>다층 종이 극장: 우공이산 — JH 바둑스쿨 Story</title>
+  <meta name="description" content="매 장면마다 다층 한지 레이어가 살아 움직이는 48초 종이 극장 표준 엔진 - 우공이산(愚公移山)">
   <link rel="stylesheet" href="/unified-nav.css?v=20261103-nav-v11">
-  <link rel="stylesheet" href="style.css?v=20261112-v7">
+  <link rel="stylesheet" href="style.css?v=20261113-v1">
   <script src="/unified-nav.js?v=20261103-nav-v11" defer></script>
 </head>
 <body data-bks-page="story-gosa">
-  <main class="pt-wrap">
-    <header class="pt-header">
-      <div class="pt-badge-row">
-        <span class="pt-badge">🎬 다층 종이 극장 쇼츠</span>
-        <span class="pt-act-pill" id="timePill">00:00 / 00:48</span>
-      </div>
-      <h1 class="pt-title">우공이산 <span class="pt-hanja">(愚公移山)</span></h1>
-    </header>
+  <!-- 표준 종이 극장 컨테이너 (PaperTheaterEngine 자동 마운트) -->
+  <main class="pt-wrap" id="paperTheaterApp"></main>
 
-    <!-- 100% Unobstructed Multi-Layer Multi-Scene Shorts Stage -->
-    <section class="pt-stage" id="paperStage" aria-label="종이 극장 쇼츠 무대">
-      <!-- Scene 1 (0-6s): 6-Layer Diorama - Giant Mountains Looming -->
-      <div class="pt-scene-slide active" id="slide0">
-        <div class="pt-depth-layer"><img src="assets/layer_sky.jpg" alt="하늘 배경" class="layer-img"></div>
-        <div class="pt-depth-layer layer-mist-back"><div class="mist-band band-1"></div><div class="mist-band band-2"></div></div>
-        <div class="pt-depth-layer layer-mountains" id="s0MtnL"><img src="assets/layer_mtn_left.png" alt="태행산" class="layer-img"></div>
-        <div class="pt-depth-layer layer-mountains" id="s0MtnR"><img src="assets/layer_mtn_right.png" alt="왕옥산" class="layer-img"></div>
-        <div class="pt-depth-layer layer-village"><img src="assets/layer_village.png" alt="마을과 우공" class="layer-img"></div>
-        <div class="pt-depth-layer layer-pines"><img src="assets/layer_pines.png" alt="소나무 프레임" class="layer-img"></div>
-      </div>
-
-      <!-- Scene 2 (6-12s): Open Hanok Window with Moving Sky/Clouds/Mountains Outside -->
-      <div class="pt-scene-slide" id="slide1">
-        <div class="pt-depth-layer s2-outside-sky" id="s2Sky"><img src="assets/layer_sky.jpg" alt="창밖 하늘" class="layer-img"></div>
-        <div class="pt-depth-layer layer-mist-back"><div class="mist-band band-1"></div></div>
-        <div class="pt-depth-layer s2-outside-mtn" id="s2Mtn"><img src="assets/layer_mountains.png" alt="창밖 거대한 산" class="layer-img"></div>
-        <div class="pt-depth-layer s2-room"><img src="assets/scene2_room.png" alt="한옥 방 안 우공 가족" class="layer-img"></div>
-      </div>
-
-      <!-- Scene 3 (12-18s): Digging & Carrying Soil + Drifting Mist + Swaying Pine Layer -->
-      <div class="pt-scene-slide" id="slide2">
-        <img src="assets/scene3.jpg" alt="제3장 삽과 바구니로 흙을 나르는 우공과 손자들" class="slide-img">
-        <div class="pt-depth-layer layer-mist-back"><div class="mist-band band-1"></div></div>
-        <div class="pt-depth-layer layer-pines"><img src="assets/layer_pines.png" alt="앞쪽 소나무" class="layer-img"></div>
-      </div>
-
-      <!-- Scene 4 (18-24s): Skeptical Neighbor + Drifting Valley Mist + Swaying Pine Layer -->
-      <div class="pt-scene-slide" id="slide3">
-        <img src="assets/scene4.jpg" alt="제4장 비웃는 이웃 지소와 묵묵히 웃는 우공" class="slide-img">
-        <div class="pt-depth-layer layer-mist-back"><div class="mist-band band-2"></div></div>
-        <div class="pt-depth-layer layer-pines"><img src="assets/layer_pines.png" alt="앞쪽 소나무" class="layer-img"></div>
-      </div>
-
-      <!-- Scene 5-6 (24-36s): 6-Layer Moving Mountain Diorama (Mountains Sink Down!) -->
-      <div class="pt-scene-slide" id="slide4">
-        <div class="pt-depth-layer"><img src="assets/layer_sky.jpg" alt="하늘 배경" class="layer-img"></div>
-        <div class="pt-depth-layer layer-mist-back"><div class="mist-band band-1"></div><div class="mist-band band-2"></div></div>
-        <div class="pt-depth-layer layer-mountains" id="s4MtnL"><img src="assets/layer_mtn_left.png" alt="낮아지는 왼쪽 산" class="layer-img"></div>
-        <div class="pt-depth-layer layer-mountains" id="s4MtnR"><img src="assets/layer_mtn_right.png" alt="낮아지는 오른쪽 산" class="layer-img"></div>
-        <div class="pt-depth-layer layer-village" id="s4Village"><img src="assets/layer_village.png" alt="우공 할아버지" class="layer-img"></div>
-        <div class="pt-depth-layer layer-pines"><img src="assets/layer_pines.png" alt="소나무 프레임" class="layer-img"></div>
-      </div>
-
-      <!-- Scene 7 (36-42s): Heavenly Emperor + Drifting Golden Clouds + Radiant Sunbeams -->
-      <div class="pt-scene-slide" id="slide5">
-        <img src="assets/scene7.jpg" alt="제7장 하늘의 신이 감동하는 장면" class="slide-img">
-        <div class="pt-depth-layer s5-sunbeam"></div>
-        <div class="pt-depth-layer layer-mist-back"><div class="mist-band band-1"></div><div class="mist-band band-2"></div></div>
-      </div>
-
-      <!-- Scene 8 (42-48s): Parting Mountains Opening the Bright Road + Cherry Blossoms -->
-      <div class="pt-scene-slide" id="slide6">
-        <img src="assets/scene8.jpg" alt="제8장 환하게 열린 길" class="slide-img">
-        <div class="pt-depth-layer layer-mountains" id="s6MtnL"><img src="assets/layer_mtn_left.png" alt="물러나는 왼쪽 산" class="layer-img"></div>
-        <div class="pt-depth-layer layer-mountains" id="s6MtnR"><img src="assets/layer_mtn_right.png" alt="물러나는 오른쪽 산" class="layer-img"></div>
-      </div>
-
-      <!-- Ambient Motes / Blossoms Overlay -->
-      <div class="pt-depth-layer layer-particles" id="particlesLayer" aria-hidden="true">
-        <span class="pt-mote m1"></span>
-        <span class="pt-mote m2"></span>
-        <span class="pt-mote m3"></span>
-        <span class="pt-mote m4"></span>
-        <span class="pt-mote m5"></span>
-        <span class="pt-mote m6"></span>
-        <span class="pt-mote m7"></span>
-        <span class="pt-mote m8"></span>
-      </div>
-
-      <!-- Theater Frame -->
-      <div class="pt-depth-layer layer-curtains">
-        <div class="curtain-left"></div>
-        <div class="curtain-right"></div>
-        <div class="stage-valance"></div>
-      </div>
-    </section>
-
-    <!-- Dedicated Cinema Controls & Narration Panel BELOW the Stage -->
-    <section class="pt-player-panel" aria-label="이야기 자막 및 재생 컨트롤">
-      <div class="pt-player-top">
-        <span class="stage-chapter" id="stageChapter">제1장 · 길을 막은 두 산</span>
-        <div class="pt-player-btns">
-          <button type="button" id="btnVoice" class="shorts-ctrl-btn" aria-pressed="true">🔊 내레이션 켜짐</button>
-          <button type="button" id="btnPlayPause" class="shorts-ctrl-btn">⏸️ 일시정지</button>
-          <button type="button" id="btnReplay" class="shorts-ctrl-btn">🔄 처음부터</button>
-        </div>
-      </div>
-
-      <div class="shorts-progress-track" id="progressTrack" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-        <div class="shorts-progress-fill" id="progressFill"></div>
-      </div>
-
-      <p class="shorts-subtitle" id="shortsSubtitle">
-        옛날 중국 북산에 아흔 살이 된 ‘우공’ 할아버지가 살았어요. 집 바로 앞을 거대한 태행산과 왕옥산 두 산이 가로막고 있어, 마을 사람들은 매일 먼 길을 빙 돌아가야 했지요.
-      </p>
-    </section>
-
-    <!-- Hanja Breakdown + Baduk Wisdom + Quick Quiz -->
-    <section class="pt-story-card">
-      <div class="pt-study-box">
-        <div class="pt-hanja-grid">
-          <div class="hanja-chip"><strong>愚</strong><span>어리석을 우</span></div>
-          <div class="hanja-chip"><strong>公</strong><span>공 공 (할아버지)</span></div>
-          <div class="hanja-chip"><strong>移</strong><span>옮길 이</span></div>
-          <div class="hanja-chip"><strong>山</strong><span>뫼 산</span></div>
-        </div>
-        <div class="pt-baduk-tip">
-          <strong>⚫ 바둑 속 지혜:</strong> 처음엔 바둑판이 넓고 불리해 보여도, 포기하지 않고 한 수 한 수 정성을 다해 두면 결국 승리의 길을 열 수 있어요!
-        </div>
-        <div class="pt-mini-quiz" id="miniQuiz">
-          <p class="quiz-q">💡 <b>확인 퀴즈:</b> ‘우공이산’이 가르쳐 주는 가장 중요한 마음가짐은 무엇일까요?</p>
-          <div class="quiz-opts">
-            <button type="button" class="quiz-opt" data-ok="false">어려우면 빨리 포기하기</button>
-            <button type="button" class="quiz-opt" data-ok="true">끈기 있게 꾸준히 노력하기</button>
-            <button type="button" class="quiz-opt" data-ok="false">남에게 전부 미루기</button>
-          </div>
-          <p class="quiz-result" id="quizResult" hidden></p>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <script src="app.js?v=20261112-v7"></script>
+  <!-- 엔진 및 스토리 데이터 스크립트 -->
+  <script src="engine.js?v=20261113-v1"></script>
+  <script src="data-ugong.js?v=20261113-v1"></script>
+  <script src="app.js?v=20261113-v1"></script>
 </body>
 </html>
