@@ -1,17 +1,52 @@
-/* 개로왕과 도림 전용 다층 종이 극장 모션·원근·캐릭터 스타일 */
+/* 개로왕과 도림 전용 고역동 모션 그래픽 스타일 */
 
 .pt-stage-inner {
   perspective: 1200px;
   transform-style: preserve-3d;
 }
 
-/* 궁궐 배경 레이어 */
+/* 1. 최후경 창밖 원경 풍경 레이어 */
+.gaero-window-scenery {
+  position: absolute;
+  top: 18%;
+  left: 8%;
+  width: 68%;
+  height: 48%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+.gaero-window-scenery img {
+  width: 120%;
+  height: 120%;
+  object-fit: cover;
+  display: block;
+}
+
+/* 2. 중경 궁궐 전각 기둥 및 난간 프레임 레이어 (창문 뚫림) */
+.gaero-palace-frame {
+  position: absolute;
+  inset: -2%;
+  width: 104%;
+  height: 104%;
+  pointer-events: none;
+  z-index: 3;
+}
+.gaero-palace-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* 통 배경 (필요시) */
 .gaero-palace-bg {
   position: absolute;
-  inset: -3%;
-  width: 106%;
-  height: 106%;
+  inset: -4%;
+  width: 108%;
+  height: 108%;
   pointer-events: none;
+  z-index: 2;
 }
 .gaero-palace-bg img {
   width: 100%;
@@ -23,10 +58,11 @@
 /* 고구려 진격 배경 */
 .gaero-march-bg {
   position: absolute;
-  inset: -3%;
-  width: 106%;
-  height: 106%;
+  inset: -4%;
+  width: 108%;
+  height: 108%;
   pointer-events: none;
+  z-index: 2;
 }
 .gaero-march-bg img {
   width: 100%;
@@ -35,41 +71,61 @@
   display: block;
 }
 
-/* 개로왕 스프라이트 */
+/* 기병대 독립 돌격 레이어 */
+.gaero-cavalry-charge {
+  position: absolute;
+  bottom: 0;
+  left: -20%;
+  width: 140%;
+  height: 60%;
+  pointer-events: none;
+  z-index: 4;
+}
+.gaero-cavalry-charge img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* 개로왕 스프라이트 - 왕의 역동적 상체 틸트와 줌인 */
 .gaero-king-sprite {
   position: absolute;
-  bottom: 8%;
+  bottom: 6%;
   right: 12%;
   width: 38%;
   height: auto;
   pointer-events: none;
-  filter: drop-shadow(0 14px 22px rgba(25, 15, 10, 0.55));
-  transform-origin: center bottom;
+  filter: drop-shadow(0 16px 26px rgba(15, 10, 5, 0.6));
+  transform-origin: bottom center;
   z-index: 5;
+  transition: filter 0.3s ease;
 }
 
-/* 도림 승려 스프라이트 */
+/* 도림 승려 스프라이트 - 걸어 들어오기, 속삭이기, 슬그머니 사라지기 */
 .gaero-dorim-sprite {
   position: absolute;
-  bottom: 8%;
+  bottom: 6%;
   left: 10%;
   width: 36%;
   height: auto;
   pointer-events: none;
-  filter: drop-shadow(0 14px 22px rgba(25, 15, 10, 0.55));
-  transform-origin: center bottom;
+  filter: drop-shadow(0 16px 26px rgba(15, 10, 5, 0.6));
+  transform-origin: bottom center;
   z-index: 5;
+  transition: opacity 0.5s ease;
 }
 
-/* 대국용 바둑판 컷아웃 또는 라이브 바둑판 중앙 배치 */
+/* 대국용 바둑판 */
 .gaero-board-wrap {
   position: absolute;
-  bottom: 8%;
+  bottom: 7%;
   left: 35%;
-  width: 29%;
+  width: 30%;
   height: auto;
   pointer-events: none;
-  filter: drop-shadow(0 14px 20px rgba(10, 10, 10, 0.45));
+  filter: drop-shadow(0 16px 22px rgba(10, 10, 10, 0.5));
+  transform-origin: center center;
   z-index: 6;
 }
 .gaero-board-wrap img {
@@ -82,20 +138,32 @@
 .gaero-candle-glow {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 50% 68%, rgba(255, 215, 120, 0.45) 0%, rgba(245, 160, 60, 0.15) 35%, transparent 65%);
+  background: radial-gradient(circle at 50% 68%, rgba(255, 215, 120, 0.55) 0%, rgba(245, 150, 40, 0.18) 38%, transparent 65%);
   mix-blend-mode: screen;
   pointer-events: none;
   z-index: 4;
 }
 
-/* 위기 경고 붉은 틴트 (Scene 6) */
+/* 위기 경고 및 카메라 충격 흔들림 (Scene 6) */
 .gaero-crisis-tint {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 50% 50%, rgba(220, 38, 38, 0.28) 0%, rgba(150, 20, 20, 0.45) 100%);
+  background: radial-gradient(circle at 50% 50%, rgba(220, 38, 38, 0.35) 0%, rgba(150, 10, 10, 0.65) 100%);
   mix-blend-mode: multiply;
   pointer-events: none;
   z-index: 7;
+}
+
+/* 자욱한 모래먼지 (Scene 6) */
+.gaero-dust-storm {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(210, 170, 110, 0.3) 0%, rgba(180, 130, 80, 0.5) 50%, rgba(210, 170, 110, 0.2) 100%);
+  mix-blend-mode: screen;
+  filter: blur(6px);
+  pointer-events: none;
+  z-index: 6;
+  opacity: 0;
 }
 
 /* 살아있는 착수 오버레이 (대국 장면) */
@@ -113,8 +181,8 @@
 
 .gaero-stone {
   position: absolute;
-  width: 8px;
-  height: 8px;
+  width: 9px;
+  height: 9px;
   border-radius: 50%;
   transform: translate(-50%, -50%) scale(0);
   opacity: 0;
@@ -126,11 +194,11 @@
 }
 .gaero-stone.black {
   background: radial-gradient(circle at 35% 30%, #5a5a5a 0%, #1c1c1c 55%, #050505 100%);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.65);
 }
 .gaero-stone.white {
   background: radial-gradient(circle at 35% 30%, #ffffff 0%, #f0ede5 65%, #cac4b3 100%);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.45);
 }
 .gaero-stone.latest::after {
   content: '';

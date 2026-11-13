@@ -2,8 +2,13 @@
  * Paper Theater Story Data: 개로왕과 도림 (蓋鹵王과 道琳)
  * =======================================================
  * - 백제 개로왕과 고구려 첩보 승려 도림의 역사 속 흥미진진한 바둑 이야기
- * - 6~7겹 독립 레이어: 궁궐 배경, 원경 산맥, 촛불 오라, 실시간 착수 바둑판, 개로왕·도림 컷아웃, 전경 소나무 프레임
- * - 따뜻하고 실감나는 구연동화 내레이션 (총 7장, 98.6초)
+ * - [진짜 살아 움직이는 고역동 모션 그래픽 적용]
+ *   1) 창밖 먼 산·성곽과 궁궐 기둥 프레임의 깊은 입체 시차 이동
+ *   2) 도림의 입장 걸음걸이, 개로왕의 바둑판 덮칠 듯한 상체 기울기와 전진
+ *   3) 바둑판 위 흑백돌의 역동적인 연속 착수 파동과 카메라 줌인
+ *   4) 도림의 은밀한 귓속말 전진과 놀란 개로왕의 흔들림
+ *   5) 6장 고구려 철갑기병의 대각선 고속 질주 돌격 + 모래먼지 + 카메라 지진 진동 셰이크!
+ *   6) 도림의 퇴장 페이드아웃과 홀로 남겨진 바둑판의 쓸쓸한 클로즈업
  */
 
 (function () {
@@ -68,27 +73,31 @@
         audio: 'assets/gaero_s1.mp3',
         particlesClass: 'mystic',
         layers: [
-          { type: 'image', src: 'assets/bg_palace_room.jpg', alt: '백제 궁궐 대청마루 배경', className: 'gaero-palace-bg' },
+          { type: 'custom', content: '<div class="gaero-window-scenery"><img src="assets/layer_window_scenery.jpg" alt="성곽과 산맥 원경"></div>', className: 'layer-scenery-wrap' },
+          { type: 'image', src: 'assets/layer_palace_frame.png', alt: '궁궐 기둥과 난간 중경', className: 'gaero-palace-frame' },
           { type: 'custom', content: '<div class="gaero-candle-glow"></div>', className: 'layer-glow-wrap' },
           { type: 'custom', content: '<div class="mist-band band-1"></div>', className: 'layer-mist-back' },
           { type: 'custom', content: '<img src="assets/cutout_gaero.png" alt="바둑돌을 쥐고 몰입하는 개로왕" class="gaero-king-sprite" draggable="false">', className: 'layer-king-wrap' },
-          { type: 'image', src: 'assets/layer_pines.png', alt: '소나무 창틀 프레임', className: 'layer-pines' }
+          { type: 'image', src: 'assets/layer_pines.png', alt: '소나무 창틀 전경', className: 'layer-pines' }
         ],
         animate: function (slideEl, p, localT, globalT, isPlaying, engine) {
-          var bg = slideEl.querySelector('.gaero-palace-bg');
+          var scenery = slideEl.querySelector('.gaero-window-scenery img');
+          var frame = slideEl.querySelector('.gaero-palace-frame');
           var king = slideEl.querySelector('.gaero-king-sprite');
-          var glow = slideEl.querySelector('.gaero-candle-glow');
           var pines = slideEl.querySelector('.layer-pines');
 
-          if (bg) bg.style.transform = 'scale(' + (1.02 + p * 0.05).toFixed(3) + ') translate3d(' + (-p * 14).toFixed(1) + 'px, 0, 0)';
+          // 뚜렷한 속도차: 창밖 풍경은 느리게, 전각 프레임은 크게 줌인, 인물은 앞으로 쑥 다가옴
+          if (scenery) scenery.style.transform = 'translate3d(' + (-p * 35).toFixed(1) + 'px, 0, 0) scale(' + (1.0 + p * 0.05).toFixed(3) + ')';
+          if (frame) frame.style.transform = 'scale(' + (1.0 + p * 0.08).toFixed(3) + ') translate3d(' + (-p * 45).toFixed(1) + 'px, 0, 0)';
           if (king) {
-            var breathe = Math.sin(globalT * 1.8) * 2.2;
-            king.style.transform = 'translate3d(' + (-p * 18).toFixed(1) + 'px, ' + breathe.toFixed(1) + 'px, 0) scale(' + (0.96 + p * 0.04).toFixed(3) + ')';
+            var breathe = Math.sin(globalT * 2.2) * 5.0;
+            var kingX = -p * 65;
+            var kingScale = 0.94 + p * 0.12;
+            king.style.transform = 'translate3d(' + kingX.toFixed(1) + 'px, ' + breathe.toFixed(1) + 'px, 0) scale(' + kingScale.toFixed(3) + ')';
           }
-          if (glow) glow.style.opacity = (0.5 + Math.sin(globalT * 2.2) * 0.2).toFixed(2);
-          if (pines) pines.style.transform = 'scale(' + (1.02 + p * 0.05).toFixed(3) + ') translateX(' + (p * 12).toFixed(1) + 'px)';
+          if (pines) pines.style.transform = 'translate3d(' + (p * 55).toFixed(1) + 'px, 0, 0) scale(' + (1.02 + p * 0.1).toFixed(3) + ')';
 
-          if (isPlaying && engine && engine.triggerOnce && p > 0.1) {
+          if (isPlaying && engine && engine.triggerOnce && p > 0.08) {
             engine.triggerOnce('gaero_s1_chime', function () { engine.playSFX('chime'); });
           }
         }
@@ -102,25 +111,34 @@
         audio: 'assets/gaero_s2.mp3',
         particlesClass: 'mystic',
         layers: [
-          { type: 'image', src: 'assets/bg_palace_room.jpg', alt: '백제 궁궐 대청마루 배경', className: 'gaero-palace-bg' },
+          { type: 'custom', content: '<div class="gaero-window-scenery"><img src="assets/layer_window_scenery.jpg" alt="성곽과 산맥"></div>', className: 'layer-scenery-wrap' },
+          { type: 'image', src: 'assets/layer_palace_frame.png', alt: '궁궐 기둥', className: 'gaero-palace-frame' },
           { type: 'custom', content: '<div class="gaero-candle-glow"></div>', className: 'layer-glow-wrap' },
-          { type: 'custom', content: '<img src="assets/cutout_dorim.png" alt="고구려 승려 도림의 등장" class="gaero-dorim-sprite" draggable="false">', className: 'layer-dorim-wrap' },
+          { type: 'custom', content: '<img src="assets/cutout_dorim.png" alt="고구려 승려 도림의 입장" class="gaero-dorim-sprite" draggable="false">', className: 'layer-dorim-wrap' },
           { type: 'custom', content: '<img src="assets/cutout_gaero.png" alt="반갑게 맞이하는 개로왕" class="gaero-king-sprite" draggable="false">', className: 'layer-king-wrap' },
           { type: 'image', src: 'assets/layer_pines.png', alt: '소나무 프레임', className: 'layer-pines' }
         ],
         animate: function (slideEl, p, localT, globalT, isPlaying, engine) {
-          var bg = slideEl.querySelector('.gaero-palace-bg');
           var dorim = slideEl.querySelector('.gaero-dorim-sprite');
           var king = slideEl.querySelector('.gaero-king-sprite');
+          var frame = slideEl.querySelector('.gaero-palace-frame');
 
-          if (bg) bg.style.transform = 'scale(' + (1.04 + p * 0.04).toFixed(3) + ')';
+          if (frame) frame.style.transform = 'scale(1.04) translate3d(' + (-p * 20).toFixed(1) + 'px, 0, 0)';
+
+          // 도림이 화면 왼쪽 밖에서 걸음걸이 바운스와 함께 성큼성큼 걸어 들어와 정중히 자리 잡음!
           if (dorim) {
-            var walkIn = -60 + Math.min(1, p * 2.2) * 60;
-            dorim.style.transform = 'translate3d(' + walkIn.toFixed(1) + 'px, 0, 0) scale(0.96)';
+            var walkProgress = Math.min(1.0, p * 1.5);
+            var walkX = -180 + walkProgress * 230; // -180px에서 +50px까지 큼직하게 걸어 들어옴!
+            var bob = isPlaying && walkProgress < 0.98 ? Math.abs(Math.sin(globalT * 6.0)) * -10.0 : 0;
+            var tilt = isPlaying && walkProgress < 0.98 ? Math.sin(globalT * 3.0) * 3.5 : 0;
+            dorim.style.transform = 'translate3d(' + walkX.toFixed(1) + 'px, ' + bob.toFixed(1) + 'px, 0) scale(0.96) rotate(' + tilt.toFixed(2) + 'deg)';
           }
+
+          // 개로왕이 반가워하며 상체를 앞으로 쑥 기울여 맞이함!
           if (king) {
-            var lean = Math.sin(globalT * 1.5) * 1.5;
-            king.style.transform = 'translate3d(0, ' + lean.toFixed(1) + 'px, 0) scale(0.98)';
+            var kingLean = Math.sin(Math.min(1.0, p * 1.4) * Math.PI * 0.5) * -4.0;
+            var kingShift = -Math.min(1.0, p * 1.4) * 45;
+            king.style.transform = 'translate3d(' + kingShift.toFixed(1) + 'px, 0, 0) scale(0.98) rotate(' + kingLean.toFixed(2) + 'deg)';
           }
         }
       },
@@ -133,10 +151,11 @@
         audio: 'assets/gaero_s3.mp3',
         particlesClass: 'blossoms',
         layers: [
-          { type: 'image', src: 'assets/bg_palace_room.jpg', alt: '궁궐 바둑방', className: 'gaero-palace-bg' },
+          { type: 'custom', content: '<div class="gaero-window-scenery"><img src="assets/layer_window_scenery.jpg" alt="궁궐 원경"></div>', className: 'layer-scenery-wrap' },
+          { type: 'image', src: 'assets/layer_palace_frame.png', alt: '궁궐 기둥', className: 'gaero-palace-frame' },
           { type: 'custom', content: '<div class="gaero-candle-glow"></div>', className: 'layer-glow-wrap' },
           { type: 'custom', content: '<img src="assets/cutout_dorim.png" alt="침착하게 수를 놓는 도림" class="gaero-dorim-sprite" draggable="false">', className: 'layer-dorim-wrap' },
-          { type: 'custom', content: '<div class="gaero-board-wrap"><img src="assets/cutout_board.png" alt="조선식 향나무 바둑판"></div>', className: 'layer-board-prop' },
+          { type: 'custom', content: '<div class="gaero-board-wrap"><img src="assets/cutout_board.png" alt="바둑판"></div>', className: 'layer-board-prop' },
           { type: 'custom', content: buildLiveBoardHTML(), className: 'layer-live-stones' },
           { type: 'custom', content: '<img src="assets/cutout_gaero.png" alt="열중하는 개로왕" class="gaero-king-sprite" draggable="false">', className: 'layer-king-wrap' },
           { type: 'image', src: 'assets/layer_pines.png', alt: '소나무 프레임', className: 'layer-pines' }
@@ -145,10 +164,33 @@
           var dorim = slideEl.querySelector('.gaero-dorim-sprite');
           var king = slideEl.querySelector('.gaero-king-sprite');
           var boardProp = slideEl.querySelector('.gaero-board-wrap');
+          var liveStones = slideEl.querySelector('.gaero-live-board');
+          var glow = slideEl.querySelector('.gaero-candle-glow');
 
-          if (dorim) dorim.style.transform = 'translate3d(' + (p * 15).toFixed(1) + 'px, 0, 0) scale(0.97)';
-          if (king) king.style.transform = 'translate3d(' + (-p * 15).toFixed(1) + 'px, 0, 0) scale(0.98)';
-          if (boardProp) boardProp.style.transform = 'scale(' + (0.98 + p * 0.04).toFixed(3) + ')';
+          // 대국 장면에 집중되는 시네마틱 줌인 (화면 전체가 바둑판 중심으로 쑥 당겨짐)
+          var zoom = 1.0 + p * 0.12;
+
+          // 두 사람이 바둑판 쪽으로 번갈아 몸을 기울이며 수담을 나눔!
+          if (dorim) {
+            var dorimMove = 30 + Math.sin(globalT * 2.2) * 16;
+            var dorimTilt = Math.sin(globalT * 2.2) * 3.0;
+            dorim.style.transform = 'translate3d(' + dorimMove.toFixed(1) + 'px, 0, 0) scale(' + (0.96 * zoom).toFixed(3) + ') rotate(' + dorimTilt.toFixed(2) + 'deg)';
+          }
+
+          if (king) {
+            var kingMove = -40 - Math.sin(globalT * 2.2 + Math.PI) * 18;
+            var kingTilt = -Math.sin(globalT * 2.2 + Math.PI) * 3.5;
+            king.style.transform = 'translate3d(' + kingMove.toFixed(1) + 'px, 0, 0) scale(' + (0.97 * zoom).toFixed(3) + ') rotate(' + kingTilt.toFixed(2) + 'deg)';
+          }
+
+          if (boardProp) {
+            boardProp.style.transform = 'scale(' + (zoom * 1.02).toFixed(3) + ') translate3d(0, ' + (-p * 15).toFixed(1) + 'px, 0)';
+          }
+          if (liveStones) {
+            liveStones.style.transform = 'perspective(600px) rotateX(46deg) rotateZ(45deg) scale(' + zoom.toFixed(3) + ') translate3d(0, ' + (-p * 15).toFixed(1) + 'px, 0)';
+          }
+
+          if (glow) glow.style.opacity = (0.55 + Math.sin(globalT * 3.5) * 0.35).toFixed(2);
 
           updateLiveBoard(slideEl, p, 0, 4, isPlaying, engine, 'gaero_s3');
         }
@@ -162,7 +204,8 @@
         audio: 'assets/gaero_s4.mp3',
         particlesClass: 'mystic',
         layers: [
-          { type: 'image', src: 'assets/bg_palace_room.jpg', alt: '궁궐 바둑방', className: 'gaero-palace-bg' },
+          { type: 'custom', content: '<div class="gaero-window-scenery"><img src="assets/layer_window_scenery.jpg" alt="궁궐 원경"></div>', className: 'layer-scenery-wrap' },
+          { type: 'image', src: 'assets/layer_palace_frame.png', alt: '궁궐 기둥', className: 'gaero-palace-frame' },
           { type: 'custom', content: '<div class="gaero-candle-glow"></div>', className: 'layer-glow-wrap' },
           { type: 'custom', content: '<img src="assets/cutout_dorim.png" alt="미소 짓는 도림" class="gaero-dorim-sprite" draggable="false">', className: 'layer-dorim-wrap' },
           { type: 'custom', content: '<div class="gaero-board-wrap"><img src="assets/cutout_board.png" alt="바둑판"></div>', className: 'layer-board-prop' },
@@ -173,9 +216,21 @@
         animate: function (slideEl, p, localT, globalT, isPlaying, engine) {
           var king = slideEl.querySelector('.gaero-king-sprite');
           var dorim = slideEl.querySelector('.gaero-dorim-sprite');
+          var glow = slideEl.querySelector('.gaero-candle-glow');
 
-          if (king) king.style.transform = 'translate3d(-20px, 0, 0) scale(' + (1.0 + p * 0.04).toFixed(3) + ')';
-          if (dorim) dorim.style.transform = 'translate3d(18px, ' + (Math.sin(globalT * 1.6) * 1.5).toFixed(1) + 'px, 0) scale(0.98)';
+          // 개로왕이 감탄하며 바둑판 위로 번쩍 상체를 일으켜 쳐다봄!
+          if (king) {
+            var kingExcitedY = Math.sin(globalT * 3.0) * -8.0;
+            var kingExcitedX = -60 - p * 30;
+            king.style.transform = 'translate3d(' + kingExcitedX.toFixed(1) + 'px, ' + kingExcitedY.toFixed(1) + 'px, 0) scale(' + (1.05 + p * 0.08).toFixed(3) + ') rotate(-4deg)';
+          }
+
+          if (dorim) {
+            var dorimCalm = 35 + Math.sin(globalT * 1.5) * 5.0;
+            dorim.style.transform = 'translate3d(' + dorimCalm.toFixed(1) + 'px, 0, 0) scale(1.02)';
+          }
+
+          if (glow) glow.style.opacity = (0.6 + Math.sin(globalT * 4.0) * 0.35).toFixed(2);
 
           updateLiveBoard(slideEl, p, 4, 4, isPlaying, engine, 'gaero_s4');
         }
@@ -189,7 +244,8 @@
         audio: 'assets/gaero_s5.mp3',
         particlesClass: 'autumn',
         layers: [
-          { type: 'image', src: 'assets/bg_palace_room.jpg', alt: '궁궐 밖 전경', className: 'gaero-palace-bg' },
+          { type: 'custom', content: '<div class="gaero-window-scenery"><img src="assets/layer_window_scenery.jpg" alt="원경"></div>', className: 'layer-scenery-wrap' },
+          { type: 'image', src: 'assets/layer_palace_frame.png', alt: '궁궐 기둥', className: 'gaero-palace-frame' },
           { type: 'custom', content: '<div class="mist-band band-1"></div><div class="mist-band band-2"></div>', className: 'layer-mist-back' },
           { type: 'custom', content: '<img src="assets/cutout_dorim.png" alt="왕에게 속삭이는 도림" class="gaero-dorim-sprite" draggable="false">', className: 'layer-dorim-wrap' },
           { type: 'custom', content: '<img src="assets/cutout_gaero.png" alt="고민 없이 수긍하는 개로왕" class="gaero-king-sprite" draggable="false">', className: 'layer-king-wrap' },
@@ -198,8 +254,20 @@
         animate: function (slideEl, p, localT, globalT) {
           var dorim = slideEl.querySelector('.gaero-dorim-sprite');
           var king = slideEl.querySelector('.gaero-king-sprite');
-          if (dorim) dorim.style.transform = 'translate3d(' + (35 + p * 20).toFixed(1) + 'px, 0, 0) scale(0.99)';
-          if (king) king.style.transform = 'translate3d(' + (-p * 12).toFixed(1) + 'px, 0, 0) scale(0.97)';
+
+          // 도림이 왕에게 바싹 다가가 귓속말을 속삭이듯 은밀하게 깊숙이 접근!
+          if (dorim) {
+            var whisperX = 30 + Math.min(1.0, p * 1.8) * 110; // +140px까지 왕 바로 앞까지 접근!
+            var whisperY = -Math.min(1.0, p * 1.8) * 20;
+            dorim.style.transform = 'translate3d(' + whisperX.toFixed(1) + 'px, ' + whisperY.toFixed(1) + 'px, 0) scale(1.04) rotate(4deg)';
+          }
+
+          // 개로왕이 홀린 듯 끄덕이며 뒤로 밀려나는 모션
+          if (king) {
+            var nod = Math.sin(globalT * 3.5) * 3.0;
+            var kingBack = -50 - p * 40;
+            king.style.transform = 'translate3d(' + kingBack.toFixed(1) + 'px, ' + nod.toFixed(1) + 'px, 0) scale(0.96) rotate(' + nod.toFixed(2) + 'deg)';
+          }
         }
       },
       {
@@ -211,21 +279,46 @@
         audio: 'assets/gaero_s6.mp3',
         particlesClass: 'autumn',
         layers: [
-          { type: 'image', src: 'assets/bg_goguryeo_march.jpg', alt: '고구려 군사의 진격', className: 'gaero-march-bg' },
+          { type: 'image', src: 'assets/bg_goguryeo_march.jpg', alt: '고구려 성곽과 북풍', className: 'gaero-march-bg' },
+          { type: 'custom', content: '<div class="gaero-cavalry-charge"><img src="assets/layer_cavalry.png" alt="고구려 철갑기병의 진격"></div>', className: 'layer-cavalry-wrap' },
+          { type: 'custom', content: '<div class="gaero-dust-storm"></div>', className: 'layer-dust-wrap' },
           { type: 'custom', content: '<div class="gaero-crisis-tint"></div>', className: 'layer-crisis' },
           { type: 'custom', content: '<div class="mist-band band-2"></div>', className: 'layer-mist-back' },
           { type: 'image', src: 'assets/layer_pines.png', alt: '소나무 프레임', className: 'layer-pines' }
         ],
         animate: function (slideEl, p, localT, globalT, isPlaying, engine) {
           var bg = slideEl.querySelector('.gaero-march-bg');
+          var cavalry = slideEl.querySelector('.gaero-cavalry-charge img');
+          var dust = slideEl.querySelector('.gaero-dust-storm');
           var tint = slideEl.querySelector('.gaero-crisis-tint');
           var pines = slideEl.querySelector('.layer-pines');
 
-          if (bg) bg.style.transform = 'scale(' + (1.02 + p * 0.08).toFixed(3) + ') translate3d(' + (-p * 24).toFixed(1) + 'px, 0, 0)';
-          if (tint) tint.style.opacity = (0.35 + Math.sin(globalT * 3.5) * 0.25).toFixed(2);
-          if (pines) pines.style.transform = 'scale(' + (1.03 + p * 0.05).toFixed(3) + ') translateX(' + (-p * 18).toFixed(1) + 'px)';
+          // [핵심 연출] 화면 전체를 뒤흔드는 전쟁 카메라 진동 (Earthquake shake)
+          var shakeX = isPlaying ? Math.sin(globalT * 28.0) * 4.5 : 0;
+          var shakeY = isPlaying ? Math.cos(globalT * 22.0) * 3.5 : 0;
 
-          if (isPlaying && engine && engine.triggerOnce && p > 0.15) {
+          if (bg) {
+            bg.style.transform = 'translate3d(' + (shakeX - p * 30).toFixed(1) + 'px, ' + shakeY.toFixed(1) + 'px, 0) scale(' + (1.05 + p * 0.1).toFixed(3) + ')';
+          }
+
+          // 고구려 철갑기병과 군사들이 오른쪽 위에서 왼쪽 아래로 거침없이 고속 돌격 질주!!
+          if (cavalry) {
+            var chargeX = 120 - p * 320; // 320px 대각선 전력 질주
+            var chargeY = -40 + p * 80;
+            var gallop = isPlaying ? Math.abs(Math.sin(globalT * 14.0)) * -14.0 : 0;
+            cavalry.style.transform = 'translate3d(' + chargeX.toFixed(1) + 'px, ' + (chargeY + gallop).toFixed(1) + 'px, 0) scale(' + (1.0 + p * 0.25).toFixed(3) + ')';
+          }
+
+          // 자욱한 모래먼지 폭풍 급증
+          if (dust) {
+            dust.style.opacity = (Math.min(1.0, p * 2.0) * 0.75).toFixed(2);
+            dust.style.transform = 'translate3d(' + (-p * 60).toFixed(1) + 'px, 0, 0)';
+          }
+
+          if (tint) tint.style.opacity = (0.35 + Math.sin(globalT * 4.5) * 0.3).toFixed(2);
+          if (pines) pines.style.transform = 'translate3d(' + (-p * 50).toFixed(1) + 'px, 0, 0) scale(' + (1.04 + p * 0.08).toFixed(3) + ')';
+
+          if (isPlaying && engine && engine.triggerOnce && p > 0.1) {
             engine.triggerOnce('gaero_s6_crumble', function () { engine.playSFX('crumble'); });
           }
         }
@@ -239,19 +332,28 @@
         audio: 'assets/gaero_s7.mp3',
         particlesClass: 'blossoms',
         layers: [
-          { type: 'image', src: 'assets/bg_palace_room.jpg', alt: '노을 지는 궁궐과 산맥', className: 'gaero-palace-bg' },
+          { type: 'custom', content: '<div class="gaero-window-scenery"><img src="assets/layer_window_scenery.jpg" alt="노을 원경"></div>', className: 'layer-scenery-wrap' },
+          { type: 'image', src: 'assets/layer_palace_frame.png', alt: '궁궐 기둥', className: 'gaero-palace-frame' },
           { type: 'custom', content: '<div class="s5-sunbeam"></div>', className: 'layer-sunbeam' },
-          { type: 'custom', content: '<div class="gaero-board-wrap" style="left:40%;"><img src="assets/cutout_board.png" alt="혼자 남겨진 바둑판"></div>', className: 'layer-board-prop' },
+          { type: 'custom', content: '<div class="gaero-board-wrap" style="left:38%;"><img src="assets/cutout_board.png" alt="혼자 남겨진 바둑판"></div>', className: 'layer-board-prop' },
           { type: 'image', src: 'assets/layer_pines.png', alt: '소나무 프레임', className: 'layer-pines' }
         ],
         animate: function (slideEl, p, localT, globalT, isPlaying, engine) {
-          var bg = slideEl.querySelector('.gaero-palace-bg');
+          var scenery = slideEl.querySelector('.gaero-window-scenery img');
+          var frame = slideEl.querySelector('.gaero-palace-frame');
           var beam = slideEl.querySelector('.s5-sunbeam');
           var boardProp = slideEl.querySelector('.gaero-board-wrap');
+          var pines = slideEl.querySelector('.layer-pines');
 
-          if (bg) bg.style.transform = 'scale(' + (1.0 + p * 0.05).toFixed(3) + ')';
-          if (beam) beam.style.opacity = (0.3 + p * 0.5).toFixed(2);
-          if (boardProp) boardProp.style.transform = 'scale(' + (0.95 + p * 0.06).toFixed(3) + ')';
+          // 텅 빈 대청마루와 홀로 남겨진 바둑판으로 쓸쓸하고 깊은 슬로우 줌인
+          if (scenery) scenery.style.transform = 'scale(' + (1.02 + p * 0.08).toFixed(3) + ') translate3d(' + (-p * 20).toFixed(1) + 'px, 0, 0)';
+          if (frame) frame.style.transform = 'scale(' + (1.04 + p * 0.06).toFixed(3) + ')';
+          if (beam) beam.style.opacity = (0.25 + p * 0.6).toFixed(2);
+          if (boardProp) {
+            var boardScale = 1.0 + p * 0.22; // 바둑판이 화면 가득 클로즈업되며 교훈을 줌
+            boardProp.style.transform = 'scale(' + boardScale.toFixed(3) + ') translate3d(0, ' + (-p * 25).toFixed(1) + 'px, 0)';
+          }
+          if (pines) pines.style.transform = 'scale(' + (1.02 + p * 0.05).toFixed(3) + ')';
 
           if (isPlaying && engine && engine.triggerOnce && p > 0.15) {
             engine.triggerOnce('gaero_s7_chime', function () { engine.playSFX('chime'); });
