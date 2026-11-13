@@ -6,8 +6,8 @@
  *   마스터급 전면 회화 일러스트와 영화적 카메라 워크(Ken Burns Effect) 탑재!
  * 
  * 샷 구성:
- *   1장: [와이드 샷] 백제 궁궐 대청과 노을 산맥 전경 (부드러운 슬로우 줌인)
- *   2장: [미디엄 투샷] 승려 도림의 첫 방문과 개로왕의 맞이 (도림에서 왕으로 우아한 팬)
+ *   1장: [왕의 일상] 백제 궁궐에서 바둑 삼매경에 빠진 개로왕의 평화로운 모습 (부드러운 슬로우 줌인)
+ *   2장: [운명적 첫 대면] 도림의 공손한 알현과 바둑 고수를 반기는 개로왕 (도림에서 왕으로 우아한 팬)
  *   3장: [로우앵글 대국 클로즈업] 도림의 침착한 착수 손길과 긴장감 넘치는 바둑판 (손에서 바둑알로 집중)
  *   4장: [익스트림 리액션 클로즈업] 신의 한 수에 넋을 잃은 개로왕의 경탄 표정 (왕의 눈빛으로 강렬한 슬로우 푸시인)
  *   5장: [음모의 미디엄 클로즈업] 왕의 귓가에 은밀히 계책을 속삭이는 도림 (도림의 미소에서 왕의 수긍으로 이동)
@@ -36,23 +36,19 @@
         audio: 'assets/gaero_s1.mp3',
         particlesClass: 'mystic',
         layers: [
-          { type: 'image', src: 'assets/bg_palace_room.jpg', alt: '백제 궁궐 대청과 노을 진 산맥', className: 'cinematic-art-frame frame-s1' },
-          { type: 'custom', content: '<div class="cinematic-candle-light"></div>', className: 'layer-lighting' },
-          { type: 'custom', content: '<div class="cinematic-vignette"></div>', className: 'layer-vignette' },
-          { type: 'image', src: 'assets/layer_pines.png', alt: '소나무 창틀', className: 'layer-pines' }
+          { type: 'image', src: 'assets/scene_gaero_studying.jpg', alt: '바둑 삼매경에 빠진 백제 개로왕', className: 'cinematic-art-frame frame-s1' },
+          { type: 'custom', content: '<div class="cinematic-sunbeam"></div>', className: 'layer-sunbeam' },
+          { type: 'custom', content: '<div class="cinematic-vignette"></div>', className: 'layer-vignette' }
         ],
         animate: function (slideEl, p, localT, globalT, isPlaying, engine) {
           var frame = slideEl.querySelector('.frame-s1 img');
-          var pines = slideEl.querySelector('.layer-pines');
 
-          // [와이드 샷: 대청마루에서 저 멀리 노을 진 백제 산맥으로 시선이 서서히 줌인되는 웅장한 오프닝]
+          // [미디엄 샷: 궁궐의 따스한 아침 햇살과 바둑에 몰입한 개로왕의 온화한 미소로 슬로우 줌인]
           if (frame) {
-            var scale = 1.0 + p * 0.08;
-            var panX = -p * 20;
-            frame.style.transform = 'scale(' + scale.toFixed(3) + ') translate3d(' + panX.toFixed(1) + 'px, 0, 0)';
-          }
-          if (pines) {
-            pines.style.transform = 'scale(' + (1.02 + p * 0.05).toFixed(3) + ')';
+            var scale = 1.02 + p * 0.10;
+            var panX = -p * 18;
+            var panY = -p * 8;
+            frame.style.transform = 'scale(' + scale.toFixed(3) + ') translate3d(' + panX.toFixed(1) + 'px, ' + panY.toFixed(1) + 'px, 0)';
           }
 
           if (isPlaying && engine && engine.triggerOnce && p > 0.08) {
@@ -69,18 +65,18 @@
         audio: 'assets/gaero_s2.mp3',
         particlesClass: 'mystic',
         layers: [
-          { type: 'image', src: 'assets/bg_palace_room.jpg', alt: '백제 궁궐과 방문객', className: 'cinematic-art-frame frame-s2' },
+          { type: 'image', src: 'assets/scene_dorim_arrival.jpg', alt: '승려 도림의 알현과 개로왕의 환대', className: 'cinematic-art-frame frame-s2' },
           { type: 'custom', content: '<div class="cinematic-candle-light"></div>', className: 'layer-lighting' },
-          { type: 'custom', content: '<div class="cinematic-vignette"></div>', className: 'layer-vignette' },
-          { type: 'image', src: 'assets/layer_pines.png', alt: '소나무 창틀', className: 'layer-pines' }
+          { type: 'custom', content: '<div class="cinematic-vignette"></div>', className: 'layer-vignette' }
         ],
         animate: function (slideEl, p, localT, globalT) {
           var frame = slideEl.querySelector('.frame-s2 img');
-          // [미디엄 투샷: 궁궐 입구 쪽에서 병풍과 옥좌 쪽으로 완만하게 패닝]
+          // [미디엄 투샷: 공손히 합장한 도림의 날카로운 눈빛에서, 반색하며 환영하는 옥좌의 개로왕으로 유려한 패닝]
           if (frame) {
-            var scale = 1.08 - p * 0.04;
-            var panX = -30 + p * 35;
-            frame.style.transform = 'scale(' + scale.toFixed(3) + ') translate3d(' + panX.toFixed(1) + 'px, 0, 0)';
+            var scale = 1.05 + p * 0.05;
+            var panX = 35 - p * 60;
+            var panY = -p * 6;
+            frame.style.transform = 'scale(' + scale.toFixed(3) + ') translate3d(' + panX.toFixed(1) + 'px, ' + panY.toFixed(1) + 'px, 0)';
           }
         }
       },
