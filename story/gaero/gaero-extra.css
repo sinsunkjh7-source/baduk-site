@@ -1,11 +1,11 @@
-/* 개로왕과 도림 전용 고역동 모션 그래픽 스타일 */
+/* 개로왕과 도림 - 관절 분리 페이퍼 퍼펫 (Articulated Paper Puppets) */
 
 .pt-stage-inner {
   perspective: 1200px;
   transform-style: preserve-3d;
 }
 
-/* 1. 최후경 창밖 원경 풍경 레이어 */
+/* 1. 최후경 창밖 풍경 */
 .gaero-window-scenery {
   position: absolute;
   top: 18%;
@@ -23,7 +23,7 @@
   display: block;
 }
 
-/* 2. 중경 궁궐 전각 기둥 및 난간 프레임 레이어 (창문 뚫림) */
+/* 2. 중경 궁궐 전각 기둥 및 난간 프레임 */
 .gaero-palace-frame {
   position: absolute;
   inset: -2%;
@@ -39,7 +39,7 @@
   display: block;
 }
 
-/* 통 배경 (필요시) */
+/* 통 배경 */
 .gaero-palace-bg {
   position: absolute;
   inset: -4%;
@@ -88,22 +88,14 @@
   display: block;
 }
 
-/* 개로왕 스프라이트 - 왕의 역동적 상체 틸트와 줌인 */
-.gaero-king-sprite {
-  position: absolute;
-  bottom: 6%;
-  right: 12%;
-  width: 38%;
-  height: auto;
-  pointer-events: none;
-  filter: drop-shadow(0 16px 26px rgba(15, 10, 5, 0.6));
-  transform-origin: bottom center;
-  z-index: 5;
-  transition: filter 0.3s ease;
-}
-
-/* 도림 승려 스프라이트 - 걸어 들어오기, 속삭이기, 슬그머니 사라지기 */
-.gaero-dorim-sprite {
+/* ========================================================
+   [관절 분리 페이퍼 퍼펫: 승려 도림 (Monk Dorim)]
+   - 컨테이너: .puppet-dorim
+   - 몸통: .dorim-body
+   - 머리: .dorim-head (목덜미 기준 회전)
+   - 오른팔: .dorim-arm (어깨 관절 기준 회전 -> 착수 모션!)
+   ======================================================== */
+.puppet-dorim {
   position: absolute;
   bottom: 6%;
   left: 10%;
@@ -111,12 +103,84 @@
   height: auto;
   pointer-events: none;
   filter: drop-shadow(0 16px 26px rgba(15, 10, 5, 0.6));
-  transform-origin: bottom center;
   z-index: 5;
-  transition: opacity 0.5s ease;
 }
 
-/* 대국용 바둑판 */
+.puppet-dorim .dorim-body {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.puppet-dorim .dorim-head {
+  position: absolute;
+  top: 7.1%;
+  left: 36.1%;
+  width: 24.1%;
+  height: auto;
+  transform-origin: 35% 85%; /* 목 깃 중심 회전 */
+  z-index: 2;
+  transition: transform 0.15s ease-out;
+}
+
+.puppet-dorim .dorim-arm {
+  position: absolute;
+  top: 52.7%;
+  left: 53.7%;
+  width: 36.2%;
+  height: auto;
+  transform-origin: 12% 25%; /* 어깨 관절 중심 회전 */
+  z-index: 3;
+  transition: transform 0.18s cubic-bezier(0.25, 1.4, 0.4, 1);
+}
+
+/* ========================================================
+   [관절 분리 페이퍼 퍼펫: 개로왕 (King Gaero)]
+   - 컨테이너: .puppet-gaero
+   - 몸통: .gaero-body
+   - 머리: .gaero-head (목 중심 끄덕임 회전)
+   - 오른팔: .gaero-arm (착수 손짓 회전)
+   ======================================================== */
+.puppet-gaero {
+  position: absolute;
+  bottom: 6%;
+  right: 12%;
+  width: 38%;
+  height: auto;
+  pointer-events: none;
+  filter: drop-shadow(0 16px 26px rgba(15, 10, 5, 0.6));
+  z-index: 5;
+}
+
+.puppet-gaero .gaero-body {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.puppet-gaero .gaero-head {
+  position: absolute;
+  top: 6.6%;
+  left: 38.3%;
+  width: 24.2%;
+  height: auto;
+  transform-origin: 50% 88%; /* 목덜미 중심 회전 */
+  z-index: 2;
+  transition: transform 0.15s ease-out;
+}
+
+.puppet-gaero .gaero-arm {
+  position: absolute;
+  top: 47.8%;
+  left: 33.8%;
+  width: 16.4%;
+  height: auto;
+  transform-origin: 80% 40%; /* 손목/팔꿈치 관절 회전 */
+  z-index: 3;
+  transition: transform 0.18s cubic-bezier(0.25, 1.4, 0.4, 1);
+}
+
+/* 바둑판 및 착수 오버레이 */
 .gaero-board-wrap {
   position: absolute;
   bottom: 7%;
@@ -134,7 +198,6 @@
   display: block;
 }
 
-/* 바둑판 신비로운 오라 & 촛불 깜빡임 */
 .gaero-candle-glow {
   position: absolute;
   inset: 0;
@@ -144,7 +207,6 @@
   z-index: 4;
 }
 
-/* 위기 경고 및 카메라 충격 흔들림 (Scene 6) */
 .gaero-crisis-tint {
   position: absolute;
   inset: 0;
@@ -154,7 +216,6 @@
   z-index: 7;
 }
 
-/* 자욱한 모래먼지 (Scene 6) */
 .gaero-dust-storm {
   position: absolute;
   inset: 0;
@@ -166,7 +227,6 @@
   opacity: 0;
 }
 
-/* 살아있는 착수 오버레이 (대국 장면) */
 .gaero-live-board {
   position: absolute;
   bottom: 16.5%;
