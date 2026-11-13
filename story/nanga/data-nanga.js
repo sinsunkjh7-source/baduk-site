@@ -67,34 +67,38 @@
         audio: 'assets/nanga_s1.mp3',
         particlesClass: 'mystic',
         layers: [
-          { type: 'image', src: 'assets/scene1_forest.jpg', alt: '사람 없는 깊은 소나무 숲길', className: 'slide-base-img' },
+          { type: 'image', src: 'assets/layer_sky.jpg', alt: '먼 산속 하늘', className: 'layer-sky' },
+          { type: 'image', src: 'assets/layer_mtn_left.png', alt: '숲 너머 왼쪽 원산', className: 'layer-mountains layer-mtn-l' },
+          { type: 'image', src: 'assets/layer_mtn_right.png', alt: '숲 너머 오른쪽 원산', className: 'layer-mountains layer-mtn-r' },
+          { type: 'image', src: 'assets/layer_forest_mid.png', alt: '깊은 소나무 숲길 중경', className: 'nanga-layer-full layer-forest-mid' },
           { type: 'custom', content: '<div class="s5-sunbeam"></div>', className: 'layer-sunbeam' },
           { type: 'custom', content: '<div class="mist-band band-1"></div><div class="mist-band band-2"></div>', className: 'layer-mist-back' },
           { type: 'custom', content: '<img src="assets/cutout_woodcutter.png" alt="도끼를 메고 산으로 들어가는 나무꾼" class="nanga-woodcutter-sprite" draggable="false">', className: 'layer-woodcutter-wrap' },
           { type: 'image', src: 'assets/layer_pines.png', alt: '앞쪽 소나무 프레임', className: 'layer-pines' }
         ],
         animate: function (slideEl, p, localT, globalT, isPlaying, engine) {
-          var bg = slideEl.querySelector('.slide-base-img img');
-          if (bg) {
-            bg.style.transform = 'scale(' + (1.0 + p * 0.06).toFixed(3) + ') translate3d(' + (-p * 12).toFixed(1) + 'px, 0, 0)';
-          }
+          var sky = slideEl.querySelector('.layer-sky');
+          var mtnL = slideEl.querySelector('.layer-mtn-l');
+          var mtnR = slideEl.querySelector('.layer-mtn-r');
+          var forest = slideEl.querySelector('.layer-forest-mid');
           var beam = slideEl.querySelector('.s5-sunbeam');
-          if (beam) {
-            beam.style.opacity = (0.35 + Math.sin(globalT * 1.4) * 0.12).toFixed(2);
-          }
           var sprite = slideEl.querySelector('.nanga-woodcutter-sprite');
+          var pines = slideEl.querySelector('.layer-pines');
+
+          if (sky) sky.style.transform = 'translate3d(' + (p * 18).toFixed(1) + 'px, 0, 0) scale(1.06)';
+          if (mtnL) mtnL.style.transform = 'translate3d(' + (-p * 24).toFixed(1) + 'px, 10px, 0) scale(1.04)';
+          if (mtnR) mtnR.style.transform = 'translate3d(' + (p * 24).toFixed(1) + 'px, 10px, 0) scale(1.04)';
+          if (forest) forest.style.transform = 'scale(' + (1.02 + p * 0.06).toFixed(3) + ') translate3d(' + (-p * 28).toFixed(1) + 'px, 0, 0)';
+          if (beam) beam.style.opacity = (0.35 + Math.sin(globalT * 1.4) * 0.12).toFixed(2);
           if (sprite) {
-            var walkX = p * 175;
+            var walkX = p * 185;
             var walkY = -p * 24;
             var walkScale = 0.96 - p * 0.2;
             var bob = isPlaying ? Math.abs(Math.sin(globalT * 5.2)) * -5.5 : 0;
             var tilt = isPlaying ? Math.sin(globalT * 2.6) * 1.6 : 0;
             sprite.style.transform = 'translate3d(' + walkX.toFixed(1) + 'px, ' + (walkY + bob).toFixed(1) + 'px, 0) scale(' + walkScale.toFixed(3) + ') rotate(' + tilt.toFixed(2) + 'deg)';
           }
-          var pines = slideEl.querySelector('.layer-pines');
-          if (pines) {
-            pines.style.transform = 'scale(' + (1.02 + p * 0.06).toFixed(3) + ')';
-          }
+          if (pines) pines.style.transform = 'translate3d(' + (-p * 46).toFixed(1) + 'px, 0, 0) scale(' + (1.04 + p * 0.08).toFixed(3) + ')';
           if (isPlaying && engine && engine.triggerOnce && p > 0.08) {
             engine.triggerOnce('s1_chime', function () { engine.playSFX('chime'); });
           }
@@ -109,26 +113,35 @@
         audio: 'assets/nanga_s2.mp3',
         particlesClass: 'mystic',
         layers: [
-          { type: 'image', src: 'assets/scene2_clearing.jpg', alt: '신비로운 산속 바위 쉼터 배경', className: 'slide-base-img' },
+          { type: 'image', src: 'assets/layer_sky.jpg', alt: '신비로운 산속 하늘', className: 'layer-sky' },
+          { type: 'image', src: 'assets/layer_mtn_left.png', alt: '왼쪽 겹산', className: 'layer-mountains layer-mtn-l' },
+          { type: 'image', src: 'assets/layer_mtn_right.png', alt: '오른쪽 겹산', className: 'layer-mountains layer-mtn-r' },
           { type: 'custom', content: '<div class="mist-band band-1"></div><div class="mist-band band-2"></div>', className: 'layer-mist-back' },
+          { type: 'image', src: 'assets/layer_clearing_ledge.png', alt: '이끼 바위 쉼터 중경', className: 'nanga-layer-full layer-clearing-mid' },
           { type: 'custom', content: '<img src="assets/cutout_immortals.png" alt="바위 위에서 바둑을 두는 두 동자" class="nanga-immortals-sprite" draggable="false">', className: 'layer-immortals-wrap' },
           { type: 'custom', content: buildLiveBoardHTML(), className: 'layer-board-wrap' },
           { type: 'custom', content: '<div class="nanga-board-glow"></div>', className: 'layer-glow-wrap' },
           { type: 'image', src: 'assets/layer_pines.png', alt: '앞쪽 소나무 프레임', className: 'layer-pines' }
         ],
         animate: function (slideEl, p, localT, globalT, isPlaying, engine) {
-          var bg = slideEl.querySelector('.slide-base-img img');
+          var sky = slideEl.querySelector('.layer-sky');
+          var mtnL = slideEl.querySelector('.layer-mtn-l');
+          var mtnR = slideEl.querySelector('.layer-mtn-r');
+          var clearing = slideEl.querySelector('.layer-clearing-mid');
           var imm = slideEl.querySelector('.nanga-immortals-sprite');
           var glow = slideEl.querySelector('.nanga-board-glow');
           var pines = slideEl.querySelector('.layer-pines');
 
-          if (bg) bg.style.transform = 'scale(' + (1.02 + p * 0.05).toFixed(3) + ') translate3d(' + (-p * 14).toFixed(1) + 'px, 0, 0)';
+          if (sky) sky.style.transform = 'translateX(' + (-p * 20).toFixed(1) + 'px) scale(1.08)';
+          if (mtnL) mtnL.style.transform = 'translate3d(' + (-p * 32).toFixed(1) + 'px, 8px, 0) scale(1.05)';
+          if (mtnR) mtnR.style.transform = 'translate3d(' + (p * 32).toFixed(1) + 'px, 8px, 0) scale(1.05)';
+          if (clearing) clearing.style.transform = 'translate3d(' + (-p * 18).toFixed(1) + 'px, 0, 0) scale(' + (1.03 + p * 0.03).toFixed(3) + ')';
           if (imm) {
             var breathe = Math.sin(globalT * 1.8) * 1.8;
             imm.style.transform = 'translate3d(' + (-p * 14).toFixed(1) + 'px, ' + breathe.toFixed(1) + 'px, 0) scale(' + (0.98 + p * 0.04).toFixed(3) + ')';
           }
           if (glow) glow.style.opacity = (0.45 + Math.sin(globalT * 2.2) * 0.25).toFixed(2);
-          if (pines) pines.style.transform = 'scale(' + (1.03 + p * 0.04).toFixed(3) + ') translateX(' + (-p * 10).toFixed(1) + 'px)';
+          if (pines) pines.style.transform = 'translate3d(' + (p * 36).toFixed(1) + 'px, 0, 0) scale(' + (1.03 + p * 0.05).toFixed(3) + ')';
 
           updateLiveBoard(slideEl, p, 0, 3, isPlaying, engine, 's2');
           if (isPlaying && engine && engine.triggerOnce && p > 0.12) {
@@ -145,8 +158,11 @@
         audio: 'assets/nanga_s3.mp3',
         particlesClass: 'mystic',
         layers: [
-          { type: 'image', src: 'assets/scene2_clearing.jpg', alt: '산속 바위 쉼터 배경', className: 'slide-base-img' },
+          { type: 'image', src: 'assets/layer_sky.jpg', alt: '산속 하늘', className: 'layer-sky' },
+          { type: 'image', src: 'assets/layer_mtn_left.png', alt: '왼쪽 겹산', className: 'layer-mountains layer-mtn-l' },
+          { type: 'image', src: 'assets/layer_mtn_right.png', alt: '오른쪽 겹산', className: 'layer-mountains layer-mtn-r' },
           { type: 'custom', content: '<div class="mist-band band-1"></div><div class="mist-band band-2"></div>', className: 'layer-mist-back' },
+          { type: 'image', src: 'assets/layer_clearing_ledge.png', alt: '이끼 바위 쉼터 중경', className: 'nanga-layer-full layer-clearing-mid' },
           { type: 'custom', content: '<img src="assets/cutout_immortals.png" alt="바둑을 두는 두 동자" class="nanga-immortals-sprite" draggable="false">', className: 'layer-immortals-wrap' },
           { type: 'custom', content: buildLiveBoardHTML(), className: 'layer-board-wrap' },
           { type: 'custom', content: '<img src="assets/cutout_watcher.png" alt="도끼를 내려놓고 구경하는 나무꾼" class="nanga-watcher-sprite" draggable="false">', className: 'layer-watcher-wrap' },
@@ -154,23 +170,29 @@
           { type: 'image', src: 'assets/layer_pines.png', alt: '앞쪽 소나무 프레임', className: 'layer-pines' }
         ],
         animate: function (slideEl, p, localT, globalT, isPlaying, engine) {
-          var bg = slideEl.querySelector('.slide-base-img img');
+          var sky = slideEl.querySelector('.layer-sky');
+          var mtnL = slideEl.querySelector('.layer-mtn-l');
+          var mtnR = slideEl.querySelector('.layer-mtn-r');
+          var clearing = slideEl.querySelector('.layer-clearing-mid');
           var imm = slideEl.querySelector('.nanga-immortals-sprite');
           var watcher = slideEl.querySelector('.nanga-watcher-sprite');
           var glow = slideEl.querySelector('.nanga-board-glow');
           var pines = slideEl.querySelector('.layer-pines');
 
-          if (bg) bg.style.transform = 'scale(' + (1.05 + p * 0.04).toFixed(3) + ') translate3d(' + (-12 - p * 8).toFixed(1) + 'px, 0, 0)';
+          if (sky) sky.style.transform = 'translateX(' + (-16 - p * 18).toFixed(1) + 'px) scale(1.08)';
+          if (mtnL) mtnL.style.transform = 'translate3d(' + (-20 - p * 24).toFixed(1) + 'px, 10px, 0) scale(1.05)';
+          if (mtnR) mtnR.style.transform = 'translate3d(' + (20 + p * 24).toFixed(1) + 'px, 10px, 0) scale(1.05)';
+          if (clearing) clearing.style.transform = 'translate3d(' + (-14 - p * 14).toFixed(1) + 'px, 0, 0) scale(1.05)';
           if (imm) {
             var breathe = Math.sin(globalT * 2.0) * 1.5;
             imm.style.transform = 'translate3d(-10px, ' + breathe.toFixed(1) + 'px, 0) scale(' + (1.01 + p * 0.03).toFixed(3) + ')';
           }
           if (watcher) {
-            var lean = p * 2.2;
-            watcher.style.transform = 'translate3d(' + (p * 34).toFixed(1) + 'px, 0, 0) scale(' + (0.94 + p * 0.05).toFixed(3) + ') rotate(' + lean.toFixed(2) + 'deg)';
+            var lean = p * 2.4;
+            watcher.style.transform = 'translate3d(' + (p * 36).toFixed(1) + 'px, 0, 0) scale(' + (0.94 + p * 0.05).toFixed(3) + ') rotate(' + lean.toFixed(2) + 'deg)';
           }
           if (glow) glow.style.opacity = (0.55 + Math.sin(globalT * 2.8) * 0.3).toFixed(2);
-          if (pines) pines.style.transform = 'scale(' + (1.04 + p * 0.04).toFixed(3) + ')';
+          if (pines) pines.style.transform = 'translate3d(' + (-p * 32).toFixed(1) + 'px, 0, 0) scale(' + (1.04 + p * 0.05).toFixed(3) + ')';
 
           updateLiveBoard(slideEl, p, 3, 3, isPlaying, engine, 's3');
         }
@@ -184,8 +206,11 @@
         audio: 'assets/nanga_s4.mp3',
         particlesClass: 'blossoms',
         layers: [
-          { type: 'image', src: 'assets/scene2_clearing.jpg', alt: '사계절이 흐르는 산속 쉼터', className: 'slide-base-img' },
+          { type: 'image', src: 'assets/layer_sky.jpg', alt: '흐르는 사계절 하늘', className: 'layer-sky' },
+          { type: 'image', src: 'assets/layer_mtn_left.png', alt: '왼쪽 겹산', className: 'layer-mountains layer-mtn-l' },
+          { type: 'image', src: 'assets/layer_mtn_right.png', alt: '오른쪽 겹산', className: 'layer-mountains layer-mtn-r' },
           { type: 'custom', content: '<div class="mist-band band-1"></div><div class="mist-band band-2"></div>', className: 'layer-mist-back' },
+          { type: 'image', src: 'assets/layer_clearing_ledge.png', alt: '사계절 이끼 바위 쉼터', className: 'nanga-layer-full layer-clearing-mid' },
           { type: 'custom', content: '<img src="assets/cutout_immortals.png" alt="바둑을 두는 동자들" class="nanga-immortals-sprite" draggable="false">', className: 'layer-immortals-wrap' },
           { type: 'custom', content: buildLiveBoardHTML(), className: 'layer-board-wrap' },
           { type: 'custom', content: '<img src="assets/cutout_watcher.png" alt="시간 가는 줄 모르고 구경하는 나무꾼" class="nanga-watcher-sprite" draggable="false">', className: 'layer-watcher-wrap' },
@@ -194,7 +219,10 @@
           { type: 'custom', content: '<div class="nanga-season-badge">🌸 봄 · 꽃이 피고</div>', className: 'layer-season-badge-wrap' }
         ],
         animate: function (slideEl, p, localT, globalT, isPlaying, engine) {
-          var bg = slideEl.querySelector('.slide-base-img img');
+          var sky = slideEl.querySelector('.layer-sky');
+          var mtnL = slideEl.querySelector('.layer-mtn-l');
+          var mtnR = slideEl.querySelector('.layer-mtn-r');
+          var clearing = slideEl.querySelector('.layer-clearing-mid');
           var imm = slideEl.querySelector('.nanga-immortals-sprite');
           var watcher = slideEl.querySelector('.nanga-watcher-sprite');
           var pines = slideEl.querySelector('.layer-pines');
@@ -202,35 +230,41 @@
           var badge = slideEl.querySelector('.nanga-season-badge');
           var particles = document.querySelector('[data-ref="particles"]');
 
-          if (bg) bg.style.transform = 'scale(' + (1.06 + p * 0.04).toFixed(3) + ') translate3d(' + (-p * 18).toFixed(1) + 'px, 0, 0)';
+          if (sky) sky.style.transform = 'translateX(' + (-p * 48).toFixed(1) + 'px) scale(1.12)';
+          if (mtnL) mtnL.style.transform = 'translate3d(' + (-p * 34).toFixed(1) + 'px, 12px, 0) scale(1.06)';
+          if (mtnR) mtnR.style.transform = 'translate3d(' + (p * 34).toFixed(1) + 'px, 12px, 0) scale(1.06)';
+          if (clearing) clearing.style.transform = 'translate3d(' + (-p * 16).toFixed(1) + 'px, 0, 0) scale(1.05)';
           if (imm) imm.style.transform = 'translate3d(-10px, ' + (Math.sin(globalT * 2.2) * 1.5).toFixed(1) + 'px, 0) scale(1.03)';
           if (watcher) watcher.style.transform = 'translate3d(28px, 0, 0) scale(0.98) rotate(2deg)';
           if (pines && isPlaying) {
-            var sway = Math.sin(globalT * 2.4) * 7;
+            var sway = Math.sin(globalT * 2.4) * 9;
             pines.style.transform = 'translateX(' + sway.toFixed(1) + 'px) scale(1.04)';
           }
 
+          var seasonFilter = 'none';
           if (p < 0.25) {
-            if (tint) tint.style.background = 'rgba(255, 192, 215, 0.28)';
-            if (bg) bg.style.filter = 'saturate(1.08) brightness(1.02)';
+            if (tint) tint.style.background = 'rgba(255, 192, 215, 0.24)';
+            seasonFilter = 'saturate(1.08) brightness(1.02)';
             if (badge) badge.textContent = '🌸 봄 · 꽃이 피고';
             if (particles) particles.className = 'pt-depth-layer layer-particles blossoms';
           } else if (p < 0.5) {
-            if (tint) tint.style.background = 'rgba(74, 222, 128, 0.22)';
-            if (bg) bg.style.filter = 'saturate(1.18) hue-rotate(-6deg)';
+            if (tint) tint.style.background = 'rgba(74, 222, 128, 0.20)';
+            seasonFilter = 'saturate(1.18) hue-rotate(-6deg)';
             if (badge) badge.textContent = '🌿 여름 · 녹음이 짙어지고';
             if (particles) particles.className = 'pt-depth-layer layer-particles mystic';
           } else if (p < 0.75) {
-            if (tint) tint.style.background = 'rgba(249, 115, 22, 0.3)';
-            if (bg) bg.style.filter = 'sepia(0.28) saturate(1.25)';
+            if (tint) tint.style.background = 'rgba(249, 115, 22, 0.28)';
+            seasonFilter = 'sepia(0.28) saturate(1.25)';
             if (badge) badge.textContent = '🍁 가을 · 단풍이 물들며';
             if (particles) particles.className = 'pt-depth-layer layer-particles autumn';
           } else {
-            if (tint) tint.style.background = 'rgba(186, 230, 253, 0.36)';
-            if (bg) bg.style.filter = 'saturate(0.75) brightness(1.06)';
+            if (tint) tint.style.background = 'rgba(186, 230, 253, 0.34)';
+            seasonFilter = 'saturate(0.75) brightness(1.06)';
             if (badge) badge.textContent = '❄️ 겨울 · 흰 눈이 내리고';
             if (particles) particles.className = 'pt-depth-layer layer-particles winter';
           }
+          if (sky) sky.style.filter = seasonFilter;
+          if (clearing) clearing.style.filter = seasonFilter;
 
           updateLiveBoard(slideEl, p, 6, 3, isPlaying, engine, 's4');
         }
@@ -244,19 +278,31 @@
         audio: 'assets/nanga_s5.mp3',
         particlesClass: 'autumn',
         layers: [
-          { type: 'image', src: 'assets/scene2_clearing.jpg', alt: '산속 바위 쉼터 배경', className: 'slide-base-img' },
+          { type: 'image', src: 'assets/layer_sky.jpg', alt: '산속 하늘', className: 'layer-sky' },
+          { type: 'image', src: 'assets/layer_mtn_left.png', alt: '왼쪽 겹산', className: 'layer-mountains layer-mtn-l' },
+          { type: 'image', src: 'assets/layer_mtn_right.png', alt: '오른쪽 겹산', className: 'layer-mountains layer-mtn-r' },
           { type: 'custom', content: '<div class="mist-band band-1"></div><div class="mist-band band-2"></div>', className: 'layer-mist-back' },
+          { type: 'image', src: 'assets/layer_clearing_ledge.png', alt: '이끼 바위 쉼터', className: 'nanga-layer-full layer-clearing-mid' },
           { type: 'custom', content: '<img src="assets/cutout_immortals.png" alt="동자의 말" class="nanga-immortals-sprite" draggable="false">', className: 'layer-immortals-wrap' },
           { type: 'custom', content: '<img src="assets/cutout_watcher.png" alt="놀라는 나무꾼" class="nanga-watcher-sprite" draggable="false">', className: 'layer-watcher-wrap' },
           { type: 'custom', content: '<div class="nanga-dust-puff"></div><img src="assets/cutout_axe.png" alt="썩어가는 도끼자루" class="nanga-axe-sprite" draggable="false">', className: 'layer-axe-wrap' },
           { type: 'image', src: 'assets/layer_pines.png', alt: '앞쪽 소나무 프레임', className: 'layer-pines' }
         ],
         animate: function (slideEl, p, localT, globalT, isPlaying, engine) {
+          var sky = slideEl.querySelector('.layer-sky');
+          var mtnL = slideEl.querySelector('.layer-mtn-l');
+          var mtnR = slideEl.querySelector('.layer-mtn-r');
+          var clearing = slideEl.querySelector('.layer-clearing-mid');
           var imm = slideEl.querySelector('.nanga-immortals-sprite');
           var watcher = slideEl.querySelector('.nanga-watcher-sprite');
           var axe = slideEl.querySelector('.nanga-axe-sprite');
           var dust = slideEl.querySelector('.nanga-dust-puff');
+          var pines = slideEl.querySelector('.layer-pines');
 
+          if (sky) sky.style.transform = 'translateX(' + (p * 16).toFixed(1) + 'px) scale(1.08)';
+          if (mtnL) mtnL.style.transform = 'translate3d(' + (-p * 22).toFixed(1) + 'px, 10px, 0) scale(1.05)';
+          if (mtnR) mtnR.style.transform = 'translate3d(' + (p * 22).toFixed(1) + 'px, 10px, 0) scale(1.05)';
+          if (clearing) clearing.style.transform = 'translate3d(' + (p * 12).toFixed(1) + 'px, 0, 0) scale(1.04)';
           if (imm) imm.style.transform = 'translate3d(0, ' + (-p * 14).toFixed(1) + 'px, 0) scale(0.96)';
           if (watcher) watcher.style.transform = 'translate3d(' + (-p * 18).toFixed(1) + 'px, 0, 0) scale(0.96) rotate(' + (-p * 2.2).toFixed(2) + 'deg)';
           if (axe) {
@@ -269,6 +315,7 @@
             dust.style.opacity = (Math.sin(Math.min(1, p * 1.4) * Math.PI) * 0.85).toFixed(2);
             dust.style.transform = 'scale(' + (0.9 + p * 0.35).toFixed(2) + ')';
           }
+          if (pines) pines.style.transform = 'translate3d(' + (-p * 28).toFixed(1) + 'px, 0, 0) scale(1.04)';
           if (isPlaying && engine && engine.triggerOnce && p > 0.25) {
             engine.triggerOnce('s5_crumble', function () { engine.playSFX('crumble'); });
           }
@@ -285,15 +332,15 @@
         layers: [
           { type: 'image', src: 'assets/scene6_axe.jpg', alt: '이끼 속에 삭아버린 도끼자루', className: 'slide-base-img' },
           { type: 'custom', content: '<div class="nanga-dust-puff"></div>', className: 'layer-dust-wrap' },
-          { type: 'custom', content: '<div class="mist-band band-2"></div>', className: 'layer-mist-back' },
+          { type: 'custom', content: '<div class="mist-band band-1"></div><div class="mist-band band-2"></div>', className: 'layer-mist-back' },
           { type: 'image', src: 'assets/layer_pines.png', alt: '소나무 프레임', className: 'layer-pines' }
         ],
         animate: function (slideEl, p, localT, globalT, isPlaying, engine) {
           var bg = slideEl.querySelector('.slide-base-img img');
           var pines = slideEl.querySelector('.layer-pines');
           var dust = slideEl.querySelector('.nanga-dust-puff');
-          if (bg) bg.style.transform = 'scale(' + (1.0 + p * 0.07).toFixed(3) + ') translate3d(0, ' + (-p * 8).toFixed(1) + 'px, 0)';
-          if (pines) pines.style.transform = 'scale(' + (1.02 + p * 0.08).toFixed(3) + ')';
+          if (bg) bg.style.transform = 'scale(' + (1.02 + p * 0.08).toFixed(3) + ') translate3d(' + (-p * 16).toFixed(1) + 'px, ' + (-p * 8).toFixed(1) + 'px, 0)';
+          if (pines) pines.style.transform = 'translate3d(' + (p * 34).toFixed(1) + 'px, 0, 0) scale(' + (1.03 + p * 0.09).toFixed(3) + ')';
           if (dust) dust.style.opacity = (0.35 + Math.sin(p * Math.PI) * 0.4).toFixed(2);
           if (isPlaying && engine && engine.triggerOnce && p > 0.15) {
             engine.triggerOnce('s6_crumble', function () { engine.playSFX('crumble'); });
@@ -309,24 +356,35 @@
         audio: 'assets/nanga_s7.mp3',
         particlesClass: 'mystic',
         layers: [
-          { type: 'image', src: 'assets/scene7_village.jpg', alt: '수백 년이 흘러 변해버린 마을', className: 'slide-base-img' },
+          { type: 'image', src: 'assets/layer_sky.jpg', alt: '노을 지는 하늘', className: 'layer-sky nanga-sunset-sky' },
+          { type: 'image', src: 'assets/layer_mtn_left.png', alt: '먼 왼쪽 산맥', className: 'layer-mountains layer-mtn-l' },
+          { type: 'image', src: 'assets/layer_mtn_right.png', alt: '먼 오른쪽 산맥', className: 'layer-mountains layer-mtn-r' },
           { type: 'custom', content: '<div class="mist-band band-1"></div><div class="mist-band band-2"></div>', className: 'layer-mist-back' },
-          { type: 'custom', content: '<img src="assets/cutout_woodcutter_noaxe.png" alt="빈손으로 놀란 나무꾼 왕질" class="nanga-woodcutter-noaxe-sprite" draggable="false">', className: 'layer-woodcutter-wrap' },
+          { type: 'image', src: 'assets/layer_village_mid.png', alt: '수백 년이 흘러 변해버린 마을 중경', className: 'nanga-layer-full layer-village-mid' },
+          { type: 'custom', content: '<img src="assets/cutout_woodcutter_noaxe.png" alt="빈손으로 마을을 향해 내려오는 나무꾼 왕질" class="nanga-woodcutter-noaxe-sprite" draggable="false">', className: 'layer-woodcutter-wrap' },
           { type: 'image', src: 'assets/layer_pines.png', alt: '앞쪽 소나무 프레임', className: 'layer-pines' }
         ],
         animate: function (slideEl, p, localT, globalT, isPlaying) {
-          var bg = slideEl.querySelector('.slide-base-img img');
+          var sky = slideEl.querySelector('.layer-sky');
+          var mtnL = slideEl.querySelector('.layer-mtn-l');
+          var mtnR = slideEl.querySelector('.layer-mtn-r');
+          var village = slideEl.querySelector('.layer-village-mid');
           var sprite = slideEl.querySelector('.nanga-woodcutter-noaxe-sprite');
           var pines = slideEl.querySelector('.layer-pines');
 
-          if (bg) bg.style.transform = 'scale(' + (1.07 - p * 0.06).toFixed(3) + ') translate3d(' + (-p * 10).toFixed(1) + 'px, 0, 0)';
+          if (sky) sky.style.transform = 'translateX(' + (p * 18).toFixed(1) + 'px) scale(1.08)';
+          if (mtnL) mtnL.style.transform = 'translate3d(' + (-p * 28).toFixed(1) + 'px, -4px, 0) scale(1.05)';
+          if (mtnR) mtnR.style.transform = 'translate3d(' + (p * 28).toFixed(1) + 'px, -4px, 0) scale(1.05)';
+          if (village) village.style.transform = 'translate3d(' + (p * 24).toFixed(1) + 'px, 0, 0) scale(' + (1.05 - p * 0.03).toFixed(3) + ')';
           if (sprite) {
-            var walkX = p * 85;
-            var bob = isPlaying ? Math.abs(Math.sin(globalT * 4.5)) * -3.5 : 0;
-            var tilt = isPlaying ? Math.sin(globalT * 2.3) * 1.4 : 0;
-            sprite.style.transform = 'translate3d(' + walkX.toFixed(1) + 'px, ' + bob.toFixed(1) + 'px, 0) scale(' + (0.94 - p * 0.08).toFixed(3) + ') rotate(' + tilt.toFixed(2) + 'deg)';
+            // Cutout faces LEFT, so move from right hill (-X toward left village, +Y downhill) -> natural forward walking!
+            var walkX = -p * 145;
+            var walkY = p * 26;
+            var bob = isPlaying ? Math.abs(Math.sin(globalT * 4.8)) * -4.0 : 0;
+            var tilt = isPlaying ? Math.sin(globalT * 2.4) * 1.5 : 0;
+            sprite.style.transform = 'translate3d(' + walkX.toFixed(1) + 'px, ' + (walkY + bob).toFixed(1) + 'px, 0) scale(' + (0.92 + p * 0.08).toFixed(3) + ') rotate(' + tilt.toFixed(2) + 'deg)';
           }
-          if (pines) pines.style.transform = 'scale(' + (1.05 - p * 0.04).toFixed(3) + ')';
+          if (pines) pines.style.transform = 'translate3d(' + (p * 46).toFixed(1) + 'px, 0, 0) scale(' + (1.06 - p * 0.04).toFixed(3) + ')';
         }
       },
       {
@@ -338,21 +396,30 @@
         audio: 'assets/nanga_s8.mp3',
         particlesClass: 'blossoms',
         layers: [
-          { type: 'image', src: 'assets/scene7_village.jpg', alt: '아름다운 노을과 바둑의 세계', className: 'slide-base-img' },
+          { type: 'image', src: 'assets/layer_sky.jpg', alt: '아름다운 노을 하늘', className: 'layer-sky nanga-sunset-sky' },
+          { type: 'image', src: 'assets/layer_mtn_left.png', alt: '노을빛 왼쪽 산맥', className: 'layer-mountains layer-mtn-l' },
+          { type: 'image', src: 'assets/layer_mtn_right.png', alt: '노을빛 오른쪽 산맥', className: 'layer-mountains layer-mtn-r' },
+          { type: 'image', src: 'assets/layer_village_mid.png', alt: '평화로운 마을 중경', className: 'nanga-layer-full layer-village-mid' },
           { type: 'custom', content: '<div class="s5-sunbeam"></div>', className: 'layer-sunbeam' },
-          { type: 'custom', content: '<img src="assets/cutout_woodcutter_noaxe.png" alt="노을을 바라보는 빈손의 나무꾼" class="nanga-woodcutter-noaxe-sprite" draggable="false">', className: 'layer-woodcutter-wrap' },
+          { type: 'custom', content: '<img src="assets/cutout_woodcutter_noaxe.png" alt="노을 아래 마을을 바라보는 빈손의 나무꾼" class="nanga-woodcutter-noaxe-sprite" draggable="false">', className: 'layer-woodcutter-wrap' },
           { type: 'image', src: 'assets/layer_pines.png', alt: '소나무 프레임', className: 'layer-pines' }
         ],
         animate: function (slideEl, p, localT, globalT, isPlaying, engine) {
-          var bg = slideEl.querySelector('.slide-base-img img');
+          var sky = slideEl.querySelector('.layer-sky');
+          var mtnL = slideEl.querySelector('.layer-mtn-l');
+          var mtnR = slideEl.querySelector('.layer-mtn-r');
+          var village = slideEl.querySelector('.layer-village-mid');
           var beam = slideEl.querySelector('.s5-sunbeam');
           var sprite = slideEl.querySelector('.nanga-woodcutter-noaxe-sprite');
           var pines = slideEl.querySelector('.layer-pines');
 
-          if (bg) bg.style.transform = 'scale(' + (1.0 + p * 0.05).toFixed(3) + ')';
+          if (sky) sky.style.transform = 'translateX(' + (18 - p * 16).toFixed(1) + 'px) scale(1.08)';
+          if (mtnL) mtnL.style.transform = 'translate3d(' + (-24 - p * 18).toFixed(1) + 'px, -4px, 0) scale(1.05)';
+          if (mtnR) mtnR.style.transform = 'translate3d(' + (24 + p * 18).toFixed(1) + 'px, -4px, 0) scale(1.05)';
+          if (village) village.style.transform = 'translate3d(' + (20 - p * 16).toFixed(1) + 'px, 0, 0) scale(' + (1.02 + p * 0.04).toFixed(3) + ')';
           if (beam) beam.style.opacity = (0.35 + p * 0.5).toFixed(2);
-          if (sprite) sprite.style.transform = 'translate3d(75px, ' + (Math.sin(globalT * 1.5) * 1.5).toFixed(1) + 'px, 0) scale(' + (0.86 - p * 0.04).toFixed(3) + ')';
-          if (pines) pines.style.transform = 'scale(' + (1.02 + p * 0.04).toFixed(3) + ')';
+          if (sprite) sprite.style.transform = 'translate3d(-145px, ' + (26 + Math.sin(globalT * 1.5) * 1.5).toFixed(1) + 'px, 0) scale(' + (1.0 - p * 0.03).toFixed(3) + ')';
+          if (pines) pines.style.transform = 'translate3d(' + (42 - p * 32).toFixed(1) + 'px, 0, 0) scale(' + (1.02 + p * 0.05).toFixed(3) + ')';
           if (isPlaying && engine && engine.triggerOnce && p > 0.15) {
             engine.triggerOnce('s8_chime', function () { engine.playSFX('chime'); });
           }
