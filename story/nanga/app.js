@@ -13,7 +13,7 @@
     window.paperTheater = new window.PaperTheaterEngine({
       container: container,
       story: window.STORY_NANGA,
-      autoPlay: true,
+      autoPlay: false,
       voiceEnabled: true,
       onEnded: function () {
         console.log('[PaperTheater] Nanga Daeguk ended.');

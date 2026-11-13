@@ -25,7 +25,7 @@
     this.onEnded = options.onEnded || null;
 
     this.elapsed = 0;
-    this.playing = options.autoPlay !== undefined ? options.autoPlay : true;
+    this.playing = options.autoPlay === true;
     this.voiceEnabled = options.voiceEnabled !== undefined ? options.voiceEnabled : true;
     this.playbackRate = options.playbackRate || 1.0;
 
@@ -145,6 +145,10 @@
               '<div class="curtain-right"></div>' +
               '<div class="stage-valance"></div>' +
             '</div>' +
+            '<button type="button" class="pt-big-play-overlay" data-ref="bigPlayBtn" aria-label="이야기 재생하기"' + (this.playing ? ' hidden' : '') + '>' +
+              '<span class="pt-big-play-circle"><span class="pt-big-play-icon">▶</span></span>' +
+              '<span class="pt-big-play-text" data-ref="bigPlayText">이야기 재생하기</span>' +
+            '</button>' +
           '</div>' +
         '</section>' +
 
@@ -230,6 +234,19 @@
       });
     }
 
+    if (this.dom.bigPlayBtn) {
+      this.dom.bigPlayBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        self.play();
+      });
+    }
+
+    if (this.dom.stageInner) {
+      this.dom.stageInner.addEventListener('click', function () {
+        self.togglePlay();
+      });
+    }
+
     if (this.dom.btnReplay) {
       this.dom.btnReplay.addEventListener('click', function () {
         self.replay();
@@ -275,8 +292,10 @@
   };
 
   PaperTheaterEngine.prototype._formatSec = function (sec) {
-    var s = Math.min(Math.floor(sec), Math.floor(this.duration));
-    return '00:' + (s < 10 ? '0' + s : String(s));
+    var total = Math.min(Math.floor(sec), Math.floor(this.duration));
+    var m = Math.floor(total / 60);
+    var s = total % 60;
+    return (m < 10 ? '0' + m : String(m)) + ':' + (s < 10 ? '0' + s : String(s));
   };
 
   PaperTheaterEngine.prototype.stopNarration = function () {
@@ -353,6 +372,9 @@
     if (this.dom.btnPlay) {
       this.dom.btnPlay.textContent = '⏸️ 일시정지';
     }
+    if (this.dom.bigPlayBtn) {
+      this.dom.bigPlayBtn.hidden = true;
+    }
     if (this.currentSceneIdx >= 0 && this.scenes[this.currentSceneIdx]) {
       var curSc = this.scenes[this.currentSceneIdx];
       this.playSceneNarration(curSc, this.elapsed - curSc.start);
@@ -364,6 +386,12 @@
     this.playing = false;
     if (this.dom.btnPlay) {
       this.dom.btnPlay.textContent = '▶️ 재생';
+    }
+    if (this.dom.bigPlayBtn) {
+      this.dom.bigPlayBtn.hidden = false;
+      if (this.dom.bigPlayText) {
+        this.dom.bigPlayText.textContent = this.elapsed > 0 ? '이어서 재생하기' : '이야기 재생하기';
+      }
     }
     this.stopNarration();
   };
@@ -414,6 +442,12 @@
           self.playing = false;
           if (self.dom.btnPlay) {
             self.dom.btnPlay.textContent = '▶️ 다시 재생';
+          }
+          if (self.dom.bigPlayBtn) {
+            self.dom.bigPlayBtn.hidden = false;
+            if (self.dom.bigPlayText) {
+              self.dom.bigPlayText.textContent = '처음부터 다시 재생';
+            }
           }
           self.stopNarration();
           if (typeof self.onEnded === 'function') {

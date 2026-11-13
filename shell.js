@@ -12,29 +12,44 @@
  document.addEventListener('click',event=>{if(!event.target.closest('.dropdown'))closeDropdowns();const link=event.target.closest('a[href^="#"]');if(link&&link.hash==='#home'&&location.hash==='#home'){closeMenu();window.scrollTo({top:0,behavior:'smooth'});}});
  document.addEventListener('keydown',event=>{if(event.key==='Escape'){const active=document.querySelector('.dropdown-toggle[aria-expanded="true"]');closeMenu();if(active)active.focus();}});
  const managed=document.getElementById('management-screen');
+ const storyMeta={
+  all:['Story','바둑 한자, 고사성어, 신비로운 바둑이야기와 인성 스토리를 종이 극장과 모션 그래픽으로 만나보세요!','#story'],
+  hanja:['바둑 한자','바둑에 담긴 핵심 한자의 뜻과 원리를 바둑돌과 선의 교차점 모션 그래픽으로 익혀요!','#hanja'],
+  gosa:['고사성어','우공이산 등 지혜가 담긴 고사성어를 다층 한지 종이 극장과 내레이션으로 만나보세요!','#idioms'],
+  badukstory:['바둑이야기','난가대국 등 신비로운 바둑 전설과 이야기를 다층 종이 극장으로 감상해 보세요!','#badukstory'],
+  proverb:['격언 한마디','바둑판 위의 지혜로운 짧은 가르침을 만나는 공간입니다.','#proverbs'],
+  character:['인성 스토리','상대를 존중하고 배려하는 바둑 인성 이야기 공간입니다.','#character']
+ };
+ window.BKSApplyStoryFilter=(filter,updateHash)=>{
+  const f=filter||'all';
+  document.querySelectorAll('.story-tab-btn').forEach(b=>{
+   b.classList.toggle('active',(b.dataset.storyFilter||'all')===f);
+  });
+  document.querySelectorAll('.story-menu-card').forEach(card=>{
+   const cat=card.dataset.category;
+   const isComing=card.getAttribute('aria-disabled')==='true';
+   const match=f==='all'?!isComing:cat===f;
+   card.hidden=!match;
+   card.classList.toggle('is-hidden',!match);
+  });
+  const meta=storyMeta[f]||storyMeta.all;
+  const tEl=document.getElementById('story-title');
+  const dEl=document.getElementById('story-description');
+  if(tEl)tEl.textContent=meta[0];
+  if(dEl)dEl.textContent=meta[1];
+  if(updateHash&&location.hash!==meta[2]){
+   history.replaceState(null,'',meta[2]);
+  }
+ };
+ document.addEventListener('click',e=>{
+  const sbtn=e.target.closest('.story-tab-btn');
+  if(!sbtn)return;
+  e.preventDefault();
+  window.BKSApplyStoryFilter(sbtn.dataset.storyFilter||'all',true);
+ });
  let renderSequence=0;
  const render=async()=>{const sequence=++renderSequence;if(window.BKSRuntime?.mode==='server')await window.BKSRuntime.ready;if(sequence!==renderSequence)return;let route=(location.hash.slice(1)||'home').split('?')[0].split('&')[0];if(route==='page-content')return;closeMenu();if((route==='omok'||route==='alkkagi')&&standaloneGames&&!Boolean(window.BKSManagement?.routeBlocked && window.BKSManagement.routeBlocked(route))){location.assign('games/'+route+'/index.html?v='+encodeURIComponent(omokVersion));return;}if((route==='play-ai'||route==='bots')&&standaloneGames&&!Boolean(window.BKSManagement?.routeBlocked && window.BKSManagement.routeBlocked(route))){location.assign('games/play/index.html?mode=ai&t=1793242000000');return;}if((route==='play-normal')&&standaloneGames&&!Boolean(window.BKSManagement?.routeBlocked && window.BKSManagement.routeBlocked(route))){location.assign('games/play/index.html?mode=pvp&t=1793242000000');return;}if(route==='teacher'){location.assign('teacher/index.html');return;}const isAuth=Boolean(window.BKSAuth&&window.BKSAuth.match(route)),isManaged=!isAuth&&Boolean(window.BKSManagement&&window.BKSManagement.match(route));if(route!=='home'&&!isManaged&&!isAuth&&!Object.hasOwn(pages,route)){location.replace('#home');return;}const storyRouteMap={story:'all',hanja:'hanja',idioms:'gosa',badukstory:'badukstory',proverbs:'proverb',character:'character'};const isStory=Object.hasOwn(storyRouteMap,route);const isHome=route==='home',isLearn=route==='learn',isPlay=route==='play',isFun=route==='fun';home.hidden=!isHome;const _learnEl=document.getElementById('learn-screen');if(_learnEl)_learnEl.hidden=!isLearn;const _playEl=document.getElementById('play-screen');if(_playEl)_playEl.hidden=!isPlay;const _funEl=document.getElementById('fun-screen');if(_funEl)_funEl.hidden=!isFun;const _storyEl=document.getElementById('story-screen');if(_storyEl){_storyEl.hidden=!isStory;if(isStory&&window.BKSApplyStoryFilter)window.BKSApplyStoryFilter(storyRouteMap[route]);}empty.hidden=isHome||isManaged||isAuth||isLearn||isPlay||isFun||isStory;managed.hidden=!isManaged;document.getElementById('auth-screen').hidden=!isAuth;if(isAuth&&window.BKSAuth)window.BKSAuth.render(route);else if(isManaged&&window.BKSManagement)window.BKSManagement.render(route);else{document.title=isHome?'바둑스쿨 · 아이들의 성장 놀이터':pages[route][0]+' | 바둑스쿨 · 아이들의 성장 놀이터';if(!isHome){const blocked=Boolean(window.BKSManagement?.routeBlocked && window.BKSManagement.routeBlocked(route));document.getElementById('empty-title').textContent=pages[route][0];document.getElementById('empty-description').textContent=blocked?'로컬 관리 설정에서 이 메뉴의 사용을 꺼두었습니다.':pages[route][1];if((route==='omok'||route==='alkkagi')&&!standaloneGames&&!blocked){const _gn=route==='omok'?'오목':'알까기';document.getElementById('empty-description').textContent=_gn+'은 온라인 사이트에서 이용할 수 있습니다. 이 단일 파일 미리보기에는 게임 파일이 포함되어 있지 않습니다.';}document.getElementById('empty-icon').src='assets/'+pages[route][2]+'?v=static-68a173ca45abc653';document.querySelector('.empty-state h2').textContent=blocked?'현재 이 메뉴는 꺼져 있어요':'이곳은 아직 비어 있어요';if((route==='omok'||route==='alkkagi')&&!standaloneGames&&!blocked){const _gn=route==='omok'?'오목':'알까기';document.querySelector('.empty-state h2').textContent='온라인에서 '+_gn+'을 열어 주세요';}document.querySelector('.empty-state p').innerHTML=blocked?'최고 관리자가 이 미리보기의 메뉴 사용을 꺼둔 상태입니다.<br>실제 게임 서버나 다른 사용자 기기를 제어하는 기능은 아직 없습니다.':((route==='omok'||route==='alkkagi')&&!standaloneGames?'이 미리보기에서는 홈 화면과 메뉴만 확인할 수 있습니다.<br>'+(route==='omok'?'오목':'알까기')+'은 온라인 사이트에서 열어 주세요.':'지금은 디자인과 메뉴 구조만 준비한 단계입니다.<br>기존 기능은 연결하지 않았으며, 이 자리에 새 기능을 하나씩 만들 예정입니다.');}}document.querySelectorAll('a[data-route]').forEach(link=>{if(link.dataset.route===route)link.setAttribute('aria-current','page');else link.removeAttribute('aria-current');});window.scrollTo({top:0,behavior:'instant'});if(!isHome)document.getElementById('page-content').focus({preventScroll:true});};
  window.addEventListener('hashchange',render);window.addEventListener('bks-session-change',render);render();
-
-  window.BKSApplyStoryFilter = (filter) => {
-    const f = filter || 'all';
-    document.querySelectorAll('.story-tab-btn').forEach(b => {
-      b.classList.toggle('active', (b.dataset.storyFilter || 'all') === f);
-    });
-    document.querySelectorAll('.story-menu-card').forEach(card => {
-      const cat = card.dataset.category;
-      const isComing = card.getAttribute('aria-disabled') === 'true';
-      const match = f === 'all' ? !isComing : cat === f;
-      card.hidden = !match;
-      card.classList.toggle('is-hidden', !match);
-    });
-  };
-  document.addEventListener('click', (e) => {
-    const sbtn = e.target.closest('.story-tab-btn');
-    if (!sbtn) return;
-    e.preventDefault();
-    window.BKSApplyStoryFilter(sbtn.dataset.storyFilter || 'all');
-  });
 
   document.addEventListener('click', (e) => {
     const btn = e.target.closest('.fun-tab-btn:not(.story-tab-btn)');

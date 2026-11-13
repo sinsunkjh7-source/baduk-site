@@ -13,11 +13,11 @@
       return;
     }
 
-    // 표준 엔진 인스턴스화
+    // 표준 엔진 인스턴스화 (사용자가 직접 재생 버튼을 누를 때 시작)
     window.paperTheater = new window.PaperTheaterEngine({
       container: container,
       story: window.STORY_UGONG,
-      autoPlay: true,
+      autoPlay: false,
       voiceEnabled: true,
       onEnded: function () {
         console.log('[PaperTheater] Story ended.');
