@@ -18163,17 +18163,17 @@
         "code": "test_stage_01_quadrant",
         "file": "book_test_stage_01_quadrant.json",
         "chapterCount": 12,
-        "totalProblems": 280,
-        "problemCount": 280,
-        "_buildVer": "v80-stage1-pure-rotation-280",
+        "totalProblems": 353,
+        "problemCount": 353,
+        "_buildVer": "v85-stage1-multiseries-dedup-353",
         "chapters": [
           {
             "code": "stage01_ch01",
             "chapterCode": "stage01_ch01",
-            "title": "제1단원: 돌의 활로 (24제 / 네 귀 순환)",
-            "chapter": "제1단원: 돌의 활로 (24제 / 네 귀 순환)",
-            "problemCount": 24,
-            "problemsCount": 24
+            "title": "제1단원: 돌의 활로 (전 시리즈 엄선 97제 / 네 귀 순환)",
+            "chapter": "제1단원: 돌의 활로 (전 시리즈 엄선 97제 / 네 귀 순환)",
+            "problemCount": 97,
+            "problemsCount": 97
           },
           {
             "code": "stage01_ch02",
