@@ -138,6 +138,7 @@
         <section class="question-bar" id="sidebarQuestionBar">
           <div class="question-header">
             <span class="q-num" id="qNumBadge">문제 1</span>
+            <span class="q-series" id="qSeriesBadge" hidden></span>
             <span class="q-turn" id="qTurnBadge">⚫ 흑선</span>
             <button type="button" id="btnHint" class="btn-hint">💡 힌트</button>
             <button type="button" id="btnAnswer" class="btn-answer">👁️ 정답</button>
@@ -416,10 +417,16 @@
           <p>💡 <b>문제를 클릭</b>하면 바둑판으로 즉시 확대되어 편집할 수 있습니다. <b>카드를 마우스로 드래그</b>하여 원하는 위치로 옮기면 순서가 자동으로 바뀝니다. (우상단 ✕ 버튼 클릭 시 즉시 삭제)</p>
         </div>
         <div class="prob-grid-actions">
+          <div id="gridSeriesFilterGroup" class="prob-grid-filter-group" hidden>
+            <button type="button" class="grid-filter-btn active" data-series="all">전체 (<span id="cntAll">62</span>)</button>
+            <button type="button" class="grid-filter-btn think" data-series="씽크탱크">🔵 씽크탱크 (<span id="cntThink">24</span>)</button>
+            <button type="button" class="grid-filter-btn logic" data-series="논리바둑">🟢 논리바둑 (<span id="cntLogic">19</span>)</button>
+            <button type="button" class="grid-filter-btn alpha" data-series="알파바둑">🟠 알파바둑 (<span id="cntAlpha">19</span>)</button>
+          </div>
           <button type="button" id="btnGridAddProb" class="prob-grid-btn success" title="새로운 빈 문제 추가">+ 문제 추가</button>
           <button type="button" id="btnGridSave" class="prob-grid-btn primary" title="현재 순서 및 편집 상태 저장">💾 저장</button>
           <button type="button" id="btnGridExport" class="prob-grid-btn" title="교재 JSON 파일 다운로드">📥 JSON 다운로드</button>
-                    <button type="button" id="btnGridFullscreen" class="prob-grid-btn" title="모아보기 창을 화면 전체로 확대/복원">⛶ 전체화면</button>
+          <button type="button" id="btnGridFullscreen" class="prob-grid-btn" title="모아보기 창을 화면 전체로 확대/복원">⛶ 전체화면</button>
           <button type="button" id="btnGridClose" class="prob-grid-btn danger" title="모아보기 창 닫고 바둑판으로 복귀">✕ 닫기</button>
         </div>
       </div>
@@ -431,7 +438,7 @@
 
 
 <script src="audio.js?v=20261028-solidwood&t=teacher-panel-v15"></script>
-<script src="app.js?v=v90-stage1-3series-pure-318"></script>
+<script src="app.js?v=v92-stage1-grouped-3series-318"></script>
 
 </body>
 </html>

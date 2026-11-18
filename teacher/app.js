@@ -481,6 +481,11 @@
       var cls = 'prob-btn';
       if (isActive) cls += ' active';
       if (isSolved) cls += ' solved';
+      if (p.source_series) {
+        if (p.source_series === '씽크탱크') cls += ' series-think';
+        else if (p.source_series === '논리바둑') cls += ' series-logic';
+        else if (p.source_series === '알파바둑') cls += ' series-alpha';
+      }
       btn.className = cls;
 
       btn.textContent = (idx + 1) + (isSolved ? ' ✓' : '번');
@@ -832,6 +837,19 @@
 
     var p = state.currentProblems[idx];
     qNumBadge.textContent = '문제 ' + (idx + 1);
+    var qSeriesBadge = document.getElementById('qSeriesBadge');
+    if (qSeriesBadge) {
+      if (p.source_series) {
+        qSeriesBadge.hidden = false;
+        qSeriesBadge.textContent = p.source_series;
+        qSeriesBadge.className = 'q-series ' + (
+          p.source_series === '씽크탱크' ? 'series-think' :
+          p.source_series === '논리바둑' ? 'series-logic' : 'series-alpha'
+        );
+      } else {
+        qSeriesBadge.hidden = true;
+      }
+    }
     questionText.textContent = (p.question || '알맞은 곳에 돌을 놓아 보세요.').replace(/\r\n/g, '\n');
 
     // 힌트가 있는 문제는 [💡 힌트] 버튼 활성화, 없으면 버튼 및 박스 모두 숨김(빈 공간)
@@ -895,10 +913,6 @@
     if (!p) return { cols: 10, rows: 10, isFull19: false, quadrant: 'BR' };
     
     var rawSize = p.size ? String(p.size).trim() : '';
-    // Explicit opt-in for source 9x9 full-board problems in new course books.
-    if (String(p._boardSize || '').trim() === '9') {
-      return { cols: 9, rows: 9, isFull19: true, quadrant: 'FULL9' };
-    }
     if (rawSize === '1' || rawSize === '2') {
       return { cols: 19, rows: 19, isFull19: true, quadrant: 'FULL19' };
     }
@@ -1339,14 +1353,14 @@
       ctx.lineWidth = 2.8;
       ctx.strokeRect(startX, startY, cell * (cols - 1), cell * (rows - 1));
 
-      var fullBoardStarPoints = (cols === 9 && rows === 9)
-        ? [[2, 2], [6, 2], [4, 4], [2, 6], [6, 6]]
-        : [[3, 3], [3, 9], [3, 15], [9, 3], [9, 9], [9, 15], [15, 3], [15, 9], [15, 15]];
-      fullBoardStarPoints.forEach(function(point){
-        ctx.fillStyle = '#4a2c11';
-        ctx.beginPath();
-        ctx.arc(startX + cell * point[0], startY + cell * point[1], Math.max(2.6, cell * 0.08), 0, Math.PI * 2);
-        ctx.fill();
+      // 19줄 9개 화점
+      [3, 9, 15].forEach(function(hx){
+        [3, 9, 15].forEach(function(hy){
+          ctx.fillStyle = '#4a2c11';
+          ctx.beginPath();
+          ctx.arc(startX + cell * hx, startY + cell * hy, Math.max(2.6, cell * 0.08), 0, Math.PI * 2);
+          ctx.fill();
+        });
       });
     }
 
@@ -2770,22 +2784,6 @@
     var p = state.currentProblems[state.currentProblemIndex];
     if (!p) return;
 
-    if (String(p._boardSize || '').trim() === '9') {
-      var full9Sgf = (p.data || '') + (p.answer || '');
-      for (var branch9 = 1; branch9 <= 5; branch9++) full9Sgf += (p['answer' + branch9] || '');
-      var full9Pattern = /([BWTCMSL]|TR|CR|SQ|MA|LB)\[([a-s]{2})(:[^\]]*)?\]/gi;
-      var point9;
-      while ((point9 = full9Pattern.exec(full9Sgf)) !== null) {
-        var shiftedX9 = point9[2].charCodeAt(0) - 97 + dx;
-        var shiftedY9 = point9[2].charCodeAt(1) - 97 + dy;
-        if (shiftedX9 < 0 || shiftedX9 > 8 || shiftedY9 < 0 || shiftedY9 > 8) {
-          var full9Badge = document.getElementById('pedSaveBadge');
-          if (full9Badge) full9Badge.textContent = '9줄 판의 경계를 벗어나 이동할 수 없습니다.';
-          return;
-        }
-      }
-    }
-
     function shiftSgfStr(sgf) {
       if (!sgf || typeof sgf !== 'string') return sgf;
       return sgf.replace(/([BWTCMSL]|TR|CR|SQ|MA|LB)\[([a-s]{2})(:[^\]]*)?\]/gi, function (full, tag, coords, rest) {
@@ -2961,18 +2959,6 @@
     });
   }
 
-  // Shared by editor actions defined outside initProblemEditor as well.
-  function pushProbEditSnapshot() {
-    var p = state.currentProblems[state.currentProblemIndex];
-    if (!p) return;
-    if (!Array.isArray(state.probEditHistory)) state.probEditHistory = [];
-    state.probEditHistory.push({
-      idx: state.currentProblemIndex,
-      problem: JSON.parse(JSON.stringify(p))
-    });
-    if (state.probEditHistory.length > 30) state.probEditHistory.shift();
-  }
-
   function initProblemEditor() {
     var btnToggle = document.getElementById('btnToggleProbEdit');
     var drawer = document.getElementById('probEditDrawer');
@@ -3035,7 +3021,18 @@
       });
     });
 
-    
+        function pushProbEditSnapshot() {
+      var p = state.currentProblems[state.currentProblemIndex];
+      if (!p) return;
+      state.probEditHistory.push({
+        idx: state.currentProblemIndex,
+        data: p.data || '',
+        answer1: p.answer1 || '',
+        question: p.question || ''
+      });
+      if (state.probEditHistory.length > 30) state.probEditHistory.shift();
+    }
+
     var btnUndoProbAct = document.getElementById('btnPedUndoProblemAction');
     if (btnUndoProbAct) {
       btnUndoProbAct.addEventListener('click', function () {
@@ -3049,15 +3046,9 @@
         }
         var p = state.currentProblems[state.currentProblemIndex];
         if (p) {
-          if (last.problem) {
-            // Restore every independent answer branch and the problem metadata.
-            Object.keys(p).forEach(function (key) { delete p[key]; });
-            Object.keys(last.problem).forEach(function (key) { p[key] = last.problem[key]; });
-          } else {
-            p.data = last.data;
-            p.answer1 = last.answer1;
-            p.question = last.question;
-          }
+          p.data = last.data;
+          p.answer1 = last.answer1;
+          p.question = last.question;
           saveCustomBookState('직전 편집 1수 취소됨');
           loadProblem(state.currentProblemIndex);
           showToast('직전 편집 동작이 1단계 취소되었습니다.');
@@ -3474,6 +3465,66 @@
       modal.setAttribute('hidden', 'true');
     }
 
+    var currentFilter = 'all';
+
+    function setupFilterTabs() {
+      var filterGroup = document.getElementById('gridSeriesFilterGroup');
+      if (!filterGroup) return;
+      var counts = { all: state.currentProblems.length, '씽크탱크': 0, '논리바둑': 0, '알파바둑': 0 };
+      var hasSeries = false;
+      state.currentProblems.forEach(function (p) {
+        if (p.source_series) {
+          hasSeries = true;
+          if (counts[p.source_series] !== undefined) counts[p.source_series]++;
+        }
+      });
+      if (hasSeries) {
+        filterGroup.removeAttribute('hidden');
+        var cntAll = document.getElementById('cntAll');
+        var cntThink = document.getElementById('cntThink');
+        var cntLogic = document.getElementById('cntLogic');
+        var cntAlpha = document.getElementById('cntAlpha');
+        if (cntAll) cntAll.textContent = counts.all;
+        if (cntThink) cntThink.textContent = counts['씽크탱크'];
+        if (cntLogic) cntLogic.textContent = counts['논리바둑'];
+        if (cntAlpha) cntAlpha.textContent = counts['알파바둑'];
+      } else {
+        filterGroup.setAttribute('hidden', 'true');
+      }
+
+      var filterBtns = filterGroup.querySelectorAll('.grid-filter-btn');
+      filterBtns.forEach(function (btn) {
+        btn.onclick = function () {
+          filterBtns.forEach(function (b) { b.classList.remove('active'); });
+          btn.classList.add('active');
+          currentFilter = btn.dataset.series;
+          applyCardFilter();
+        };
+      });
+    }
+
+    function applyCardFilter() {
+      if (!container) return;
+      var cards = container.querySelectorAll('.prob-card');
+      var headers = container.querySelectorAll('.prob-grid-section-header');
+      cards.forEach(function (card) {
+        var s = card.dataset.series || '';
+        if (currentFilter === 'all' || s === currentFilter) {
+          card.style.display = '';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+      headers.forEach(function (h) {
+        var s = h.dataset.series || '';
+        if (currentFilter === 'all' || s === currentFilter) {
+          h.style.display = '';
+        } else {
+          h.style.display = 'none';
+        }
+      });
+    }
+
     function renderCards() {
       if (!container) return;
       container.innerHTML = '';
@@ -3487,15 +3538,43 @@
         probCountEl.textContent = state.currentProblems.length;
       }
 
+      setupFilterTabs();
+
+      var lastSeries = null;
       state.currentProblems.forEach(function (p, idx) {
+        var sSeries = p.source_series || '';
+        if (sSeries && sSeries !== lastSeries) {
+          lastSeries = sSeries;
+          var sHeader = document.createElement('div');
+          var sClass = sSeries === '씽크탱크' ? 'think' : (sSeries === '논리바둑' ? 'logic' : 'alpha');
+          sHeader.className = 'prob-grid-section-header ' + sClass;
+          sHeader.dataset.series = sSeries;
+          var sTitle = sSeries === '씽크탱크' ? '🔹 1. 씽크탱크 활로 (24문제 / 네 귀 순환)' :
+                       (sSeries === '논리바둑' ? '🔹 2. 논리바둑 활로 (19문제 / 네 귀 순환)' :
+                        '🔹 3. 알파바둑 활로 (19문제 / 네 귀 순환)');
+          sHeader.innerHTML = '<span>' + sTitle + '</span>';
+          container.appendChild(sHeader);
+        }
+
         var card = document.createElement('div');
-        card.className = 'prob-card' + (idx === state.currentProblemIndex ? ' active' : '');
+        var sCardClass = sSeries === '씽크탱크' ? ' series-think' : (sSeries === '논리바둑' ? ' series-logic' : (sSeries === '알파바둑' ? ' series-alpha' : ''));
+        card.className = 'prob-card' + sCardClass + (idx === state.currentProblemIndex ? ' active' : '');
         card.draggable = true;
         card.dataset.index = idx;
+        if (sSeries) card.dataset.series = sSeries;
 
         // Card Header
         var header = document.createElement('div');
         header.className = 'prob-card-header';
+
+        if (sSeries) {
+          var sTag = document.createElement('span');
+          var sTagClass = sSeries === '씽크탱크' ? 'series-think' : (sSeries === '논리바둑' ? 'series-logic' : 'series-alpha');
+          var sShort = sSeries === '씽크탱크' ? '씽크' : (sSeries === '논리바둑' ? '논리' : '알파');
+          sTag.className = 'prob-card-series-tag ' + sTagClass;
+          sTag.textContent = sShort;
+          header.appendChild(sTag);
+        }
 
         var badge = document.createElement('span');
         badge.className = 'prob-card-badge';
@@ -3563,9 +3642,10 @@
         footer.className = 'prob-card-footer';
         var srcSpan = document.createElement('span');
         srcSpan.className = 'prob-card-source';
-        var srcText = p.source_book || '';
+        var srcText = p.source_book || (p.source_series ? (p.source_series + ' 1권') : '');
         srcText = srcText.replace('논리바둑', '논리').replace('씽크탱크', '씽크').replace('알파바둑', '알파');
         if (p.source_p_num) srcText += ' #' + p.source_p_num;
+        else if (p.code) srcText += ' #' + p.code;
         srcSpan.textContent = srcText;
         footer.appendChild(srcSpan);
         card.appendChild(footer);
@@ -3630,6 +3710,7 @@
           drawThumbnailBoard(canvas, p, idx === state.currentProblemIndex);
         }, 0);
       });
+      applyCardFilter();
     }
 
     function reorderProblem(fromIdx, toIdx) {

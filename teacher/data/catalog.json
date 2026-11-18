@@ -18165,13 +18165,13 @@
         "chapterCount": 12,
         "totalProblems": 318,
         "problemCount": 318,
-        "_buildVer": "v90-stage1-3series-pure-318",
+        "_buildVer": "v92-stage1-grouped-3series-318",
         "chapters": [
           {
             "code": "stage01_ch01",
             "chapterCode": "stage01_ch01",
-            "title": "제1단원: 돌의 활로 (3대 시리즈 엄선 62제 / 네 귀 순환)",
-            "chapter": "제1단원: 돌의 활로 (3대 시리즈 엄선 62제 / 네 귀 순환)",
+            "title": "제1단원: 돌의 활로 (3대 시리즈 엄선: 씽크 24 · 논리 19 · 알파 19) (62제 / 네 귀 순환)",
+            "chapter": "제1단원: 돌의 활로 (3대 시리즈 엄선: 씽크 24 · 논리 19 · 알파 19) (62제 / 네 귀 순환)",
             "problemCount": 62,
             "problemsCount": 62
           },

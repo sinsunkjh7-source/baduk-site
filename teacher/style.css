@@ -1777,3 +1777,90 @@ html, body {
   20%, 60% { transform: translateX(-6px); }
   40%, 80% { transform: translateX(6px); }
 }
+
+/* --- Series Badge & Modal Filters --- */
+.q-series {
+  display: inline-flex;
+  align-items: center;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 2px 7px;
+  border-radius: 6px;
+  color: #fff;
+  letter-spacing: -0.3px;
+  vertical-align: middle;
+}
+.q-series.series-think { background: #2563eb; }
+.q-series.series-logic { background: #16a34a; }
+.q-series.series-alpha { background: #ea580c; }
+
+.prob-grid-filter-group {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: #f1f5f9;
+  padding: 3px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+}
+.grid-filter-btn {
+  border: none;
+  background: transparent;
+  padding: 4px 9px;
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #475569;
+  transition: all 0.15s;
+}
+.grid-filter-btn:hover { background: #e2e8f0; }
+.grid-filter-btn.active {
+  background: #1e293b;
+  color: #fff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+.grid-filter-btn.think.active { background: #2563eb; color: #fff; }
+.grid-filter-btn.logic.active { background: #16a34a; color: #fff; }
+.grid-filter-btn.alpha.active { background: #ea580c; color: #fff; }
+
+.prob-card-series-tag {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 1px 5px;
+  border-radius: 4px;
+  color: #fff;
+  margin-right: 2px;
+  line-height: 1.2;
+}
+.prob-card-series-tag.series-think { background: #2563eb; }
+.prob-card-series-tag.series-logic { background: #16a34a; }
+.prob-card-series-tag.series-alpha { background: #ea580c; }
+
+.prob-card.series-think { border-top: 3px solid #2563eb !important; }
+.prob-card.series-logic { border-top: 3px solid #16a34a !important; }
+.prob-card.series-alpha { border-top: 3px solid #ea580c !important; }
+
+.prob-grid-section-header {
+  grid-column: 1 / -1;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-left: 4px solid #64748b;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 800;
+  color: #1e293b;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 6px 0 2px 0;
+}
+.prob-grid-section-header.think { border-left-color: #2563eb; background: #eff6ff; color: #1e40af; }
+.prob-grid-section-header.logic { border-left-color: #16a34a; background: #f0fdf4; color: #166534; }
+.prob-grid-section-header.alpha { border-left-color: #ea580c; background: #fff7ed; color: #9a3412; }
+
+.prob-btn.series-think { border-left: 3px solid #2563eb; }
+.prob-btn.series-logic { border-left: 3px solid #16a34a; }
+.prob-btn.series-alpha { border-left: 3px solid #ea580c; }
