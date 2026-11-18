@@ -4,6 +4,10 @@
 <script>
 (function() {
   try {
+    localStorage.removeItem('customBook_master_stage_01');
+    localStorage.removeItem('customBook_test_stage_01_quadrant');
+    localStorage.removeItem('teacher_book_custom_master_stage_01');
+    localStorage.removeItem('teacher_book_custom_test_stage_01_quadrant');
     var k1 = 'teacher_book_custom_new_tech_jangmun';
     var v1 = localStorage.getItem(k1);
     if (v1 && v1.indexOf('10. 빈축') === -1) {
@@ -58,6 +62,7 @@
         <button type="button" id="btnOpenSettings" class="btn-tool" title="환경설정 (바탕화면, 바둑판, 바둑알, 음량)">
           <span>⚙️</span> 환경설정
         </button>
+      <button type="button" onclick="location.reload(true)" class="btn-tool" style="background:#f8fafc; color:#0f172a; font-weight:700; border-color:#94a3b8;" title="최신 교재 및 단원 새로고침">🔄 새로고침</button>
       <button type="button" id="btnFullscreen" class="btn-tool" title="빔프로젝터/대형화면용 전체화면">⛶ 전체화면</button>
       <a href="/#home" class="btn-tool home">← 홈으로</a>
     </div>
@@ -94,7 +99,10 @@
       </div>
 
       <div class="sidebar-section">
-        <label for="seriesSelect" class="sidebar-label"><span id="seriesLabelText">📚 교육 시리즈</span></label>
+        <label for="seriesSelect" class="sidebar-label" style="display:flex; justify-content:space-between; align-items:center;">
+          <span id="seriesLabelText">📚 교육 시리즈</span>
+          <button type="button" onclick="location.reload(true)" style="background:#e2e8f0; border:1px solid #cbd5e1; border-radius:4px; padding:2px 7px; font-size:0.75rem; cursor:pointer; color:#1e293b; font-weight:700;" title="최신 목록 불러오기">🔄 새로고침</button>
+        </label>
         <select id="seriesSelect" class="form-select"></select>
       </div>
 
@@ -423,7 +431,7 @@
 
 
 <script src="audio.js?v=20261028-solidwood&t=teacher-panel-v15"></script>
-<script src="app.js?v=endgame-editor-safe-20261111022400538"></script>
+<script src="app.js?v=v72-stage1-pure-hwalro-17943149"></script>
 
 </body>
 </html>

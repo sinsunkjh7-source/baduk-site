@@ -311,16 +311,9 @@
     state.catalog.forEach(function (sec, idx) {
       var opt = document.createElement('option');
       opt.value = idx;
-      var tTitle = sec.title || '';
-      if (/^\d+\./.test(tTitle)) {
-        if (tTitle.indexOf('NEW 기법') !== -1 || tTitle.indexOf('13.') !== -1) {
-        opt.textContent = tTitle;
-      } else {
-        opt.textContent = tTitle + ' (' + (sec.books ? sec.books.length : 0) + '권)';
-      }
-      } else {
-        opt.textContent = (idx + 1) + '. ' + tTitle + ' (' + (sec.books ? sec.books.length : 0) + '권)';
-      }
+      var rawTitle = sec.title || '';
+      var cleanTitle = rawTitle.replace(/^\d+[\.\)]\s*/, '');
+      opt.textContent = (idx + 1) + '. ' + cleanTitle + ' (' + (sec.books ? sec.books.length : 0) + '권)';
       seriesSelect.appendChild(opt);
     });
 
@@ -942,7 +935,9 @@
 
     // 사분면 판별 (우하귀, 좌하귀, 좌상귀, 우상귀)
     var quadrant = 'BR';
-    if (rawSize === '7' || (minX <= 8 && minY >= 10 && maxX <= 9)) {
+    if (p.quadrant) {
+      quadrant = p.quadrant;
+    } else if (rawSize === '7' || (minX <= 8 && minY >= 10 && maxX <= 9)) {
       quadrant = 'BL';
     } else if (rawSize === '6' || (maxX <= 8 && maxY <= 8)) {
       quadrant = 'TL';

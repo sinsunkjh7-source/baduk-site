@@ -16936,7 +16936,7 @@
     ]
   },
   {
-    "title": "13. NEW 기법, 분야별 마스터관",
+    "title": "NEW 기법, 분야별 마스터관",
     "bookCount": 11,
     "books": [
       {
@@ -18148,6 +18148,32 @@
             "code": "maekjeom_22",
             "title": "53. 연결해서 살아가는 맥",
             "problemCount": 24
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "[테스트] 네 귀 순환 1단계 (돌의 활로 16제)",
+    "bookCount": 1,
+    "books": [
+      {
+        "title": "제1단계 : 돌의 생명과 활로의 역학",
+        "name": "제1단계 : 돌의 생명과 활로의 역학",
+        "code": "test_stage_01_quadrant",
+        "file": "book_test_stage_01_quadrant.json",
+        "chapterCount": 1,
+        "totalProblems": 16,
+        "problemCount": 16,
+        "_buildVer": "v1-stage1-pure-hwalro-16",
+        "chapters": [
+          {
+            "code": "test_s01_ch01",
+            "chapterCode": "test_s01_ch01",
+            "title": "제1단원: 돌의 활로 (16제 / 네 귀 순환)",
+            "chapter": "제1단원: 돌의 활로 (16제 / 네 귀 순환)",
+            "problemCount": 16,
+            "problemsCount": 16
           }
         ]
       }
