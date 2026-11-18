@@ -18154,7 +18154,7 @@
     ]
   },
   {
-    "title": "[테스트] 네 귀 순환 1단계 (돌의 활로 16제)",
+    "title": "테스트 30단계",
     "bookCount": 1,
     "books": [
       {
@@ -18162,18 +18162,106 @@
         "name": "제1단계 : 돌의 생명과 활로의 역학",
         "code": "test_stage_01_quadrant",
         "file": "book_test_stage_01_quadrant.json",
-        "chapterCount": 1,
-        "totalProblems": 16,
-        "problemCount": 16,
-        "_buildVer": "v1-stage1-pure-hwalro-16",
+        "chapterCount": 12,
+        "totalProblems": 280,
+        "problemCount": 280,
+        "_buildVer": "v80-stage1-pure-rotation-280",
         "chapters": [
           {
-            "code": "test_s01_ch01",
-            "chapterCode": "test_s01_ch01",
-            "title": "제1단원: 돌의 활로 (16제 / 네 귀 순환)",
-            "chapter": "제1단원: 돌의 활로 (16제 / 네 귀 순환)",
-            "problemCount": 16,
-            "problemsCount": 16
+            "code": "stage01_ch01",
+            "chapterCode": "stage01_ch01",
+            "title": "제1단원: 돌의 활로 (24제 / 네 귀 순환)",
+            "chapter": "제1단원: 돌의 활로 (24제 / 네 귀 순환)",
+            "problemCount": 24,
+            "problemsCount": 24
+          },
+          {
+            "code": "stage01_ch02",
+            "chapterCode": "stage01_ch02",
+            "title": "제2단원: 돌 따내기 1 (20제 / 네 귀 순환)",
+            "chapter": "제2단원: 돌 따내기 1 (20제 / 네 귀 순환)",
+            "problemCount": 20,
+            "problemsCount": 20
+          },
+          {
+            "code": "stage01_ch03",
+            "chapterCode": "stage01_ch03",
+            "title": "제3단원: 돌 살리기 1 (20제 / 네 귀 순환)",
+            "chapter": "제3단원: 돌 살리기 1 (20제 / 네 귀 순환)",
+            "problemCount": 20,
+            "problemsCount": 20
+          },
+          {
+            "code": "stage01_ch04",
+            "chapterCode": "stage01_ch04",
+            "title": "제4단원: 돌 따내기와 살리기 (20제 / 네 귀 순환)",
+            "chapter": "제4단원: 돌 따내기와 살리기 (20제 / 네 귀 순환)",
+            "problemCount": 20,
+            "problemsCount": 20
+          },
+          {
+            "code": "stage01_ch05",
+            "chapterCode": "stage01_ch05",
+            "title": "제5단원: 서로 단수 (24제 / 네 귀 순환)",
+            "chapter": "제5단원: 서로 단수 (24제 / 네 귀 순환)",
+            "problemCount": 24,
+            "problemsCount": 24
+          },
+          {
+            "code": "stage01_ch06",
+            "chapterCode": "stage01_ch06",
+            "title": "제6단원: 연결 (28제 / 네 귀 순환)",
+            "chapter": "제6단원: 연결 (28제 / 네 귀 순환)",
+            "problemCount": 28,
+            "problemsCount": 28
+          },
+          {
+            "code": "stage01_ch07",
+            "chapterCode": "stage01_ch07",
+            "title": "제7단원: 끊음 (28제 / 네 귀 순환)",
+            "chapter": "제7단원: 끊음 (28제 / 네 귀 순환)",
+            "problemCount": 28,
+            "problemsCount": 28
+          },
+          {
+            "code": "stage01_ch08",
+            "chapterCode": "stage01_ch08",
+            "title": "제8단원: 1선 방향으로 단수치기 (24제 / 네 귀 순환)",
+            "chapter": "제8단원: 1선 방향으로 단수치기 (24제 / 네 귀 순환)",
+            "problemCount": 24,
+            "problemsCount": 24
+          },
+          {
+            "code": "stage01_ch09",
+            "chapterCode": "stage01_ch09",
+            "title": "제9단원: 우리 편 쪽으로 단수치기 (24제 / 네 귀 순환)",
+            "chapter": "제9단원: 우리 편 쪽으로 단수치기 (24제 / 네 귀 순환)",
+            "problemCount": 24,
+            "problemsCount": 24
+          },
+          {
+            "code": "stage01_ch10",
+            "chapterCode": "stage01_ch10",
+            "title": "제10단원: 끊으면서 단수치기 (24제 / 네 귀 순환)",
+            "chapter": "제10단원: 끊으면서 단수치기 (24제 / 네 귀 순환)",
+            "problemCount": 24,
+            "problemsCount": 24
+          },
+          {
+            "code": "stage01_ch11",
+            "chapterCode": "stage01_ch11",
+            "title": "제11단원: 양단수 (24제 / 네 귀 순환)",
+            "chapter": "제11단원: 양단수 (24제 / 네 귀 순환)",
+            "problemCount": 24,
+            "problemsCount": 24
+          },
+          {
+            "code": "stage01_ch12",
+            "chapterCode": "stage01_ch12",
+            "title": "제12단원: 집 (20제 / 네 귀 순환)",
+            "chapter": "제12단원: 집 (20제 / 네 귀 순환)",
+            "problemCount": 20,
+            "problemsCount": 20
           }
         ]
       }
