@@ -1,16 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <style>
-    [hidden]{display:none!important;}
-    #matchAiDifficultySection .kata-license-link{font-size:12px;color:#64748b;text-decoration:underline;text-underline-offset:3px;align-self:flex-start;}
-    #matchModal .match-footer .btn-cancel-match{position:absolute;right:20px;}
-    @media(max-width:600px){
-      #matchModal .match-footer{flex-wrap:wrap;gap:8px;}
-      #matchModal .match-footer .btn-cancel-match{position:static!important;right:auto!important;}
-      #matchModal .match-footer .btn-start-match{width:100%;}
-    }
-  </style>
+  <style>[hidden]{display:none!important;}</style>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
@@ -19,10 +10,9 @@
   <title>🤖 AI 바둑 대국 — 바둑스쿨</title>
   <link rel="preload" as="image" href="images/board_wood_grain.png">
 
-  <link rel="stylesheet" href="style.css?v=20261106-player-cards-v3">
-  <link rel="stylesheet" href="/unified-nav.css?v=nav-v12d">
-  <script src="/unified-nav.js?v=nav-v12d" defer></script>
-  <link rel="stylesheet" href="kata-engine.v1.css?v=engine-select-v1">
+  <link rel="stylesheet" href="style.css?v=20261106_nigiri_v2">
+  <link rel="stylesheet" href="/unified-nav.css?v=20261119-settings-sync-v1">
+  <script src="/unified-nav.js?v=20261119-settings-sync-v1"></script>
 </head>
 <body data-bks-page="play">
 
@@ -33,15 +23,15 @@
   <!-- 👈 좌측 백돌 진영 패널 -->
   <aside class="arena-side arena-left" id="arenaLeft">
     <!-- 대국자 카드 (사이드 정중앙 위치) -->
-    <div class="arena-player-card white-player-card" id="arenaWhiteCard" style="display:none">
+    <div class="arena-player-card white-player-card" id="arenaWhiteCard">
       <!-- 1. 헤더: 플레이어 닉네임, 돌, 턴 상태 -->
       <div class="player-card-header">
         <div class="player-card-identity">
           <div class="player-card-name-wrap">
             <span class="timer-stone" id="arenaWhiteStone">⚪</span>
-            <span class="player-name" id="timerWhiteName">스쿨봇 2</span>
+            <span class="player-name" id="timerWhiteName">AI 지혜로운 판다</span>
           </div>
-          <span class="arena-player-badge" id="arenaWhiteRankBadge">2단계</span>
+          <span class="arena-player-badge" id="arenaWhiteRankBadge">⭐ 상급 (1~2급)</span>
         </div>
         <div class="arena-turn-status" id="arenaWhiteStatus">차례 대기 중</div>
       </div>
@@ -74,9 +64,9 @@
     </div>
 
     <!-- 하단 엔진 배지 -->
-    <div class="arena-engine-card" id="arenaEngineCard" style="display:none">
-      <div class="engine-badge-title">스쿨봇</div>
-      <div class="engine-badge-sub">바둑스쿨 AI 대국 상대</div>
+    <div class="arena-engine-card" id="arenaEngineCard">
+      <div class="engine-badge-title">⚡ GNU Go 3.8.1</div>
+      <div class="engine-badge-sub">Wasm 로컬 인공지능 탑재</div>
     </div>
   </aside>
 
@@ -108,7 +98,7 @@
   <!-- 👉 우측 흑돌 진영 & 조작 패널 -->
   <aside class="arena-side arena-right" id="arenaRight">
     <!-- 대국자 카드 (사이드 정중앙 위치 - 좌측 카드와 100% 동일 규격) -->
-    <div class="arena-player-card black-player-card" id="arenaBlackCard" style="display:none">
+    <div class="arena-player-card black-player-card" id="arenaBlackCard">
       <!-- 1. 헤더: 플레이어 닉네임, 돌, 턴 상태 -->
       <div class="player-card-header">
         <div class="player-card-identity">
@@ -189,15 +179,46 @@
           </div>
         </div>
 
+        <!-- 2. AI 상대 기력 (난이도) -->
         <div class="match-section" id="matchAiDifficultySection">
-          <label class="match-section-label">스쿨봇 선택</label>
-          <div class="match-bot-grid" id="matchBotGrid" role="group" aria-label="스쿨봇 선택">
-            <button type="button" class="match-bot-card" data-bot="beginner" aria-pressed="false"><span class="bot-card-avatar">1</span><div class="bot-card-info"><strong>스쿨봇 1</strong><small>가볍게 연습</small></div></button>
-            <button type="button" class="match-bot-card active" data-bot="master" aria-pressed="true"><span class="bot-card-avatar">2</span><div class="bot-card-info"><strong>스쿨봇 2</strong><small>한 단계 높은 도전</small></div></button>
-            <button type="button" class="match-bot-card" data-bot="kata" aria-pressed="false"><span class="bot-card-avatar">3</span><div class="bot-card-info"><strong>스쿨봇 3</strong><small>가장 강한 상대</small></div></button>
+          <label class="match-section-label">🤖 AI 상대 기력 (5단계 동물 봇)</label>
+          <div class="match-bot-grid" id="matchBotGrid">
+            <button type="button" class="match-bot-card" data-bot="beginner">
+              <span class="bot-card-avatar">🐥</span>
+              <div class="bot-card-info">
+                <strong>AI 삐약이</strong>
+                <small>입문 (18급)</small>
+              </div>
+            </button>
+            <button type="button" class="match-bot-card" data-bot="intermediate">
+              <span class="bot-card-avatar">🐶</span>
+              <div class="bot-card-info">
+                <strong>AI 바둑이</strong>
+                <small>초급 (12급)</small>
+              </div>
+            </button>
+            <button type="button" class="match-bot-card" data-bot="advanced">
+              <span class="bot-card-avatar">🦊</span>
+              <div class="bot-card-info">
+                <strong>AI 영리한 여우</strong>
+                <small>중급 (5급)</small>
+              </div>
+            </button>
+            <button type="button" class="match-bot-card active" data-bot="dan">
+              <span class="bot-card-avatar">🐼</span>
+              <div class="bot-card-info">
+                <strong>AI 지혜로운 판다</strong>
+                <small>상급 (1~2급)</small>
+              </div>
+            </button>
+            <button type="button" class="match-bot-card" data-bot="master">
+              <span class="bot-card-avatar">🐯</span>
+              <div class="bot-card-info">
+                <strong>AI 용맹한 호랑이</strong>
+                <small>유단자 (기원 1단/타이젬 2~3단)</small>
+              </div>
+            </button>
           </div>
-          <p id="matchEngineStatus" class="kata-engine-status" role="status" aria-live="polite"></p>
-          <a class="kata-license-link" href="kata-licenses.txt" target="_blank" rel="noopener">오픈소스 사용 조건</a>
         </div>
 
         <!-- 3. 바둑판 크기 -->
@@ -279,7 +300,7 @@
 
       <div class="match-footer" style="display: flex !important; justify-content: center !important; align-items: center !important; position: relative !important; padding: 16px 24px !important;">
         <button type="button" class="btn-start-match" id="btnStartCustomMatch">🚀 이 설정으로 대국 시작!</button>
-        <button type="button" class="btn-cancel-match" id="btnCancelMatch">✕ 닫기</button>
+        <button type="button" class="btn-cancel-match" id="btnCancelMatch" style="position: absolute !important; right: 20px !important;">✕ 닫기</button>
       </div>
     </div>
   </div>
@@ -316,7 +337,7 @@
             <img src="../../images/characters/char_chick_beginner.png" alt="상대 캐릭터" id="nigiriOppImg" class="nigiri-avatar-img">
             <span class="nigiri-stone-badge" id="nigiriOppStoneBadge">⚪ 백돌</span>
           </div>
-          <strong class="nigiri-player-name" id="nigiriOppName">스쿨봇 1</strong>
+          <strong class="nigiri-player-name" id="nigiriOppName">AI 삐약이</strong>
           <span class="nigiri-player-role" id="nigiriOppRole">후공 (덤 6.5집)</span>
         </div>
       </div>
@@ -345,10 +366,9 @@
       <h2 class="result-title" id="resultTitle">대국 결과</h2>
       <p class="result-desc" id="resultDesc">대국이 종료되었습니다.</p>
       <div class="result-stats-table" id="resultStatsTable"></div>
-      <div class="result-actions" style="flex-wrap:wrap">
+      <div class="result-actions">
         <button type="button" class="result-btn-again" id="btnResultAgain">한 판 더 두기</button>
-        <button type="button" class="result-btn-close" id="btnResultReview">판 살펴보기</button>
-        <button type="button" class="result-btn-close" id="btnResultClose">대기로 돌아가기</button>
+        <button type="button" class="result-btn-close" id="btnResultClose">판 살펴보기</button>
       </div>
     </div>
   </div>
@@ -423,8 +443,7 @@
 <script src="engine.js?v=20261030-gnugo-v1"></script>
 <script src="ai.js?v=20261029-play-ai-v6"></script>
 <script src="audio.js?v=20261029-play-ai-v6"></script>
-<script src="kata-lite-bridge.v1.js?v=engine-select-v1"></script>
-<script src="app.js?v=20261112-schoolbot-v1"></script>
+<script src="app.js?v=20261106_nigiri_v2"></script>
 <script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
 <script src="live-p2p.js?v=20261105-live-v1"></script>
 </body>

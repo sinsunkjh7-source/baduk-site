@@ -318,11 +318,11 @@
     });
 
     var savedSeries = localStorage.getItem('teacher_last_series');
-    var seriesIdx = 0;
+    var seriesIdx = 1;
     if (savedSeries !== null) {
       var parsed = parseInt(savedSeries, 10);
       if (!isNaN(parsed) && parsed >= 0 && parsed < state.catalog.length) {
-        seriesIdx = parsed;
+        seriesIdx = (parsed === 0) ? 1 : parsed;
       }
     }
     seriesSelect.value = seriesIdx;
@@ -380,7 +380,10 @@
       }
     }
     fetch('data/books/book_' + code + '.json?v=' + Date.now())
-      .then(function (res) { return res.json(); })
+      .then(function (res) {
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        return res.json();
+      })
       .then(function (bookData) {
         bookData.bookCode = code;
         state.currentBook = bookData;
@@ -390,6 +393,12 @@
       })
       .catch(function (err) {
         console.error('Failed to load book_' + code + '.json:', err);
+        if (code !== 'stage_01') {
+          console.warn('Fallback: loading stage_01 because', code, 'failed to load.');
+          state.currentSeriesIndex = 1;
+          if (seriesSelect) seriesSelect.value = '1';
+          onSeriesChange(false);
+        }
       });
   }
 
@@ -2552,6 +2561,7 @@
         } else if (settingType === 'stoneStyle') {
           state.stoneStyle = val;
           localStorage.setItem('teacher_stone_style', val);
+          localStorage.setItem('baduk_stone_style', val);
           drawBoard();
         } else if (settingType === 'soundType') {
           state.soundType = val;

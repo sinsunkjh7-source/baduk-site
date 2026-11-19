@@ -1304,6 +1304,8 @@
         document.querySelectorAll('#optSoundType .setting-opt-btn').forEach(function (b) { b.classList.remove('active'); });
         btn.classList.add('active');
         state.soundType = btn.dataset.sound;
+        localStorage.setItem('sandbox_audio_type', state.soundType);
+        localStorage.setItem('baduk_audio_type', state.soundType);
         if (window.badukAudio) {
           window.badukAudio.setSoundType(state.soundType);
           window.badukAudio.playPlaceSound(1);
@@ -1319,6 +1321,8 @@
       var val = parseInt(volumeSlider.value, 10);
       volumeVal.textContent = val + '%';
       state.volume = val / 100;
+      localStorage.setItem('sandbox_audio_volume', state.volume.toString());
+      localStorage.setItem('baduk_audio_volume', state.volume.toString());
       if (window.badukAudio) window.badukAudio.setVolume(state.volume);
     });
 

@@ -1,4 +1,4 @@
-:root{--bks-nav-h:64px;--bks-green:#4a8a3a;--bks-deep:#2f5c24;--bks-soft:#eff7e4;--bks-paper:#fffdf5;--bks-border:#cbdcbd;--bks-ink:#24381a}
+﻿:root{--bks-nav-h:64px;--bks-green:#4a8a3a;--bks-deep:#2f5c24;--bks-soft:#eff7e4;--bks-paper:#fffdf5;--bks-border:#cbdcbd;--bks-ink:#24381a}
 .bks-nav,.bks-nav *,.bks-settings,.bks-settings *,.bks-scrim{box-sizing:border-box}
 .bks-nav{height:var(--bks-nav-h);min-height:var(--bks-nav-h);flex:0 0 var(--bks-nav-h);position:sticky;top:0;z-index:200000;background:var(--bks-green);color:white;border-bottom:1px solid #356a2a;font-family:"Malgun Gothic","Apple SD Gothic Neo",sans-serif;box-shadow:0 2px 7px #24381a1a}
 .bks-nav-inner{height:100%;max-width:1480px;margin:auto;padding:0 20px;display:flex;align-items:center;gap:10px}
@@ -155,3 +155,12 @@ body[data-bks-page="coaster-run"] #coasterViewport{height:calc(100dvh - var(--bk
 body[data-bks-page="coaster-run"] .hud-overlay{padding-top:20px}
 body[data-bks-page="coaster-run"] .fullscreen-modal{padding-top:16px}
 body[data-bks-page="coaster-run"] .intro-card{max-height:calc(100dvh - var(--bks-nav-h,64px) - 32px)}
+
+/* BKS Common Settings Panel Grid & Buttons */
+.bks-settings-sec{display:flex;flex-direction:column;gap:14px;margin-top:10px}
+.bks-settings-group{display:flex;flex-direction:column;gap:6px}
+.bks-setting-label{font-size:13px;font-weight:700;color:var(--bks-deep,#24381a)}
+.bks-opt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:6px}
+.bks-opt-btn{border:1px solid #cbdcbd;color:#32452c;border-radius:8px;background:#f9fcf5;padding:8px 6px;font:700 12px/1.3 'Malgun Gothic',sans-serif;cursor:pointer;text-align:center;transition:all .15s ease}
+.bks-opt-btn:hover{background:#eef6e4;border-color:#a8c495}
+.bks-opt-btn.active{background:#2e7d32!important;color:#fff!important;border-color:#1b5e20!important;font-weight:bold}
