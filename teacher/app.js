@@ -2004,8 +2004,11 @@
       }
     });
 
-    if (capturedAny) sfx('playSuccess');
-    else sfx('playStone');
+    // 🌟 착수는 언제나 명쾌한 바둑돌 고유 착수음("딱!")이 먼저 100% 울립니다.
+    sfx('playStone');
+    if (capturedAny) {
+      setTimeout(function () { sfx('playCapture'); }, 60);
+    }
 
     drawBoard();
 
@@ -2016,8 +2019,12 @@
       var curKey = (state.currentBook ? (state.currentBook.bookCode || '') : '') + '_' + state.currentProblemIndex;
       state.solvedMap[curKey] = true;
       renderProblemGrid();
-      sfx('playSuccess');
       showSideFeedback('correct');
+
+      // 🌟 착수음("딱!")이 먼저 확실하게 들린 직후 150ms 시차를 두고 "딩동댕~" 정답 축하음 재생
+      setTimeout(function () {
+        sfx('playSuccess');
+      }, 150);
 
       // 🌟 문제 정답 시 1.1초 후 자동으로 다음 문제로 전환
       clearTimeout(state.autoNextTimer);
@@ -2052,10 +2059,9 @@
             }
           });
 
+          sfx('playStone');
           if (oppCapturedCount > 0) {
-            sfx('playCapture');
-          } else {
-            sfx('playStone');
+            setTimeout(function () { sfx('playCapture'); }, 60);
           }
 
           // 턴을 다시 내 차례(myColor)로 복귀
@@ -2069,8 +2075,10 @@
             var cKey = (state.currentBook ? (state.currentBook.bookCode || '') : '') + '_' + state.currentProblemIndex;
             state.solvedMap[cKey] = true;
             renderProblemGrid();
-            sfx('playSuccess');
             showSideFeedback('correct');
+            setTimeout(function () {
+              sfx('playSuccess');
+            }, 150);
             clearTimeout(state.autoNextTimer);
             state.autoNextTimer = setTimeout(function () {
               if (state.currentProblemIndex < state.currentProblems.length - 1) {
