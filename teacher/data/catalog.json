@@ -18266,54 +18266,5 @@
         ]
       }
     ]
-  },
-  {
-    "title": "원본 문제(시범)",
-    "bookCount": 1,
-    "books": [
-      {
-        "title": "원본 사활 생성 문제 (검수 전)",
-        "name": "원본 사활 생성 문제 (검수 전)",
-        "code": "original_sahwal_01",
-        "file": "book_original_sahwal_01.json",
-        "chapterCount": 4,
-        "totalProblems": 191,
-        "problemCount": 191,
-        "chapters": [
-          {
-            "code": "orgsh_0",
-            "chapterCode": "orgsh_0",
-            "title": "일자 3칸 (60문제)",
-            "chapter": "일자 3칸 (60문제)",
-            "problemCount": 60,
-            "problemsCount": 60
-          },
-          {
-            "code": "orgsh_1",
-            "chapterCode": "orgsh_1",
-            "title": "굽은 3칸 (60문제)",
-            "chapter": "굽은 3칸 (60문제)",
-            "problemCount": 60,
-            "problemsCount": 60
-          },
-          {
-            "code": "orgsh_2",
-            "chapterCode": "orgsh_2",
-            "title": "T자 4칸 (60문제)",
-            "chapter": "T자 4칸 (60문제)",
-            "problemCount": 60,
-            "problemsCount": 60
-          },
-          {
-            "code": "orgsh_3",
-            "chapterCode": "orgsh_3",
-            "title": "5칸 (11문제)",
-            "chapter": "5칸 (11문제)",
-            "problemCount": 11,
-            "problemsCount": 11
-          }
-        ]
-      }
-    ]
   }
 ]
