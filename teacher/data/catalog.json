@@ -18280,5 +18280,31 @@
         "totalProblems": 74
       }
     ]
+  },
+  {
+    "title": "클로드 문제집",
+    "bookCount": 1,
+    "books": [
+      {
+        "title": "3단계",
+        "name": "3단계",
+        "code": "claude_stage_03",
+        "file": "book_claude_stage_03.json",
+        "chapterCount": 1,
+        "totalProblems": 22,
+        "problemCount": 22,
+        "_buildVer": "claude-s03-v1-1795271564",
+        "chapters": [
+          {
+            "code": "claude_s03_u00",
+            "chapterCode": "claude_s03_u00",
+            "title": "0. 환격",
+            "chapter": "0. 환격",
+            "problemCount": 22,
+            "problemsCount": 22
+          }
+        ]
+      }
+    ]
   }
 ]
