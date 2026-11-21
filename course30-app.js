@@ -1,0 +1,4131 @@
+/* ============================================================
+   바둑스쿨 강사 모드 전용 수업 사령탑 엔진 (Teacher Command Center)
+   - 12개 시리즈 / 166권 교재 데이터 로더 & 인터랙티브 수업 바둑판
+   ============================================================ */
+
+(function () {
+  var courseProvider = window.BKSCourse30 || null;
+  function selectionKey(name) { return (courseProvider ? 'course30_last_' : 'teacher_last_') + name; }
+  function progressKey(index) { var code=state.currentBook ? (state.currentBook.bookCode || '') : ''; return code + '_' + (courseProvider ? state.currentChapterIndex + '_' + (state.currentProblems[index] ? state.currentProblems[index].code : '') + '_' : '') + index; }
+
+  var TEACHER_PASS = '5840';
+  var SESSION_KEY = 'bkTeacherOk';
+
+  var metrics = { displayW: 0, displayH: 0, cellSize: 0, startX: 0, startY: 0, dpr: 1 };
+  window.teacherMetrics = metrics;
+
+  /* ---------- 상태 ---------- */
+  var state = {
+    authenticated: true,
+    catalog: [],
+    currentSeriesIndex: 0,
+    currentBook: null,
+    currentChapterIndex: 0,
+    currentProblems: [],
+    currentProblemIndex: 0,
+    boardCols: 10,        // 🌟 원장님 지침: 세로선 10개
+    boardRows: 10,        // 🌟 원장님 지침: 가로선 10개 (10x10 규격)
+    boardSpec: null,
+    board: [],            // 0: 빈칸, 1: 흑, 2: 백
+    initialBoard: [],
+    shiftX: 0,
+    shiftY: 0,
+    answerMoves: [],      // [{x, y, color, step}]
+    showAnswer: false,
+    freeMode: false,
+    freeColor: 1,         // 1: 흑, 2: 백
+    solved: false,
+    solvedMap: {},        // { 'bookCode_probIdx': true }
+    autoNextTimer: null,
+
+    // 🌟 원장님 핵심 수업 도구 상태 🌟
+    trialMode: false,
+    placementMode: 'alternate', // 'alternate' | 'blackOnly' | 'whiteOnly'
+    nextTurn: 1,
+    trialMoves: [],             // [{x, y, color, step}]
+    historyStack: [],           // [boardCopy]
+    historyIndex: -1,
+    showAtari: localStorage.getItem('teacher_show_atari') !== null ? (localStorage.getItem('teacher_show_atari') === 'true') : true,
+    showSweat: localStorage.getItem('teacher_show_sweat') !== null ? (localStorage.getItem('teacher_show_sweat') === 'true') : true,
+    coordMode: localStorage.getItem('teacher_coord_mode') || 'right-bottom',
+    showStepNumbers: localStorage.getItem('teacher_show_step_numbers') === 'true',
+
+    // 🌟 원장님 4대 환경설정 (바탕화면, 바둑판, 바둑알, 음량) 🌟
+    theme: localStorage.getItem('teacher_theme') || 'theme-green',
+    boardSkin: (function() {
+      var saved = localStorage.getItem('baduk_board_skin') || localStorage.getItem('teacher_board_skin');
+      if (saved === 'green') return 'darkwood';
+      return saved || 'wood';
+    })(),
+    stoneStyle: localStorage.getItem('baduk_stone_style') || localStorage.getItem('teacher_stone_style') || 'classic',
+    soundType: localStorage.getItem('baduk_audio_type') || 'classic',
+    volume: parseFloat(localStorage.getItem('baduk_audio_volume') || '1.0'),
+
+    // 🌟 다중 수순 및 순서 무관 활로 정답 판정 엔진 🌟
+    answerBranches: [],         // 모든 정답 수순 분기 [[move1, move2], ...]
+    activeBranches: [],         // 현재 유효한 분기들
+    playedMoves: [],            // 현재 문제 풀이에서 둔 착수 목록
+    isOpponentResponding: false,// 상대방(컴퓨터) 응수 대기 플래그
+    boardEditTool: null,        // 'black' | 'white' | 'erase' | 'triangle' | 'answer' | null
+    lastDeletedProblem: null,   // { problem, chapterIdx, probIdx, bookCode }
+    pristineBook: null,         // 최초 원본 교재 데이터 원본 보존용
+    probEditHistory: []         // 현재 문제 편집 실행 취소(Undo)용 스택
+  };
+  window.teacherState = state;
+
+  /* DOM 요소 */
+    /* 🎨 바둑알 고화질 3D 스프라이트 프리로딩 (고양이, 우주, 흑백 다이아몬드) */
+  var stoneSprites = {};
+  var spriteUrls = {
+    cat_1: 'images/stone_cat_b.png',
+    cat_2: 'images/stone_cat_w.png',
+    galaxy_1: 'images/stone_galaxy_b.png',
+    galaxy_2: 'images/stone_galaxy_w.png',
+    crystal_1: 'images/stone_crystal_b.png',
+    crystal_2: 'images/stone_crystal_w.png'
+  };
+  Object.keys(spriteUrls).forEach(function (key) {
+    var img = new Image();
+    img.src = spriteUrls[key];
+    img.onload = function () {
+      if ((state.authenticated || courseProvider) && metrics.cellSize > 0 && document.getElementById('teachingBoard')) {
+        drawBoard();
+      }
+    };
+    stoneSprites[key] = img;
+  });
+
+  /* 🌲 천연 비자목(Kaya) 실물 나뭇결 텍스처 프리로딩 */
+  var woodGrainImg = new Image();
+  woodGrainImg.src = 'images/board_wood_grain.png';
+
+  function revealTeacherBoard() {
+    // 🌟 cellSize > 0 && displayW > 0 일 때만 (문제 레이아웃 계산 완료 후에만) 노출!
+    // 300x150 기본 캔버스가 단 1프레임도 번쩍이지 않도록 완벽 차단
+    if (metrics.cellSize > 0 && metrics.displayW > 0 && canvas) {
+      canvas.classList.add('is-ready');
+      canvas.style.opacity = '';
+      canvas.style.visibility = '';
+    }
+  }
+
+  woodGrainImg.onload = function () {
+    if ((state.authenticated || courseProvider) && metrics.cellSize > 0 && document.getElementById('teachingBoard')) {
+      drawBoard();
+      revealTeacherBoard();
+    }
+  };
+
+        var teacherApp = document.getElementById('teacherApp');
+  
+  var seriesSelect = document.getElementById('seriesSelect');
+  var bookSelect = document.getElementById('bookSelect');
+  var chapterSelect = document.getElementById('chapterSelect');
+  var problemGrid = document.getElementById('problemGrid');
+  var problemProgress = document.getElementById('problemProgress');
+  
+  var canvas = document.getElementById('teachingBoard');
+  var ctx = canvas.getContext('2d');
+  var boardContainer = document.getElementById('boardContainer');
+
+  var questionText = document.getElementById('questionText');
+  var hintBox = document.getElementById('hintBox');
+  var hintText = document.getElementById('hintText');
+  var qNumBadge = document.getElementById('qNumBadge');
+  var qTurnBadge = document.getElementById('qTurnBadge');
+  var navIndicator = document.getElementById('navIndicator');
+  var currentBookTitle = document.getElementById('currentBookTitle');
+  var currentChapterTitle = document.getElementById('currentChapterTitle');
+  var freeModeStatus = document.getElementById('freeModeStatus');
+
+  /* ---------- 효과음 ---------- */
+  function sfx(name) {
+    if (window.badukAudio && typeof window.badukAudio[name] === 'function') {
+      try { window.badukAudio[name](); } catch (e) {}
+    }
+  }
+
+  /* ---------- 토스트 ---------- */
+  var toastTimer = null;
+
+  function showToast(msg) {
+    if (!msg) return;
+    var el = document.getElementById('teacherToast');
+    if (!el) {
+      console.log('[Toast]', msg);
+      return;
+    }
+    el.textContent = msg;
+    el.hidden = false;
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { el.hidden = true; }, 1600);
+  }
+  window.showToast = showToast;
+
+  function getBookCode() {
+    if (state.currentBook && state.currentBook.bookCode) return state.currentBook.bookCode;
+    return bookSelect ? bookSelect.value : '';
+  }
+
+  function saveCustomBookState(statusText) {
+    var code = getBookCode();
+    if (!code || !state.currentBook) return;
+    if (code === 'new_tech_chuk') {
+      state.currentBook._buildVer = 'v16-ch5-teacher-final-126';
+    }
+    if (code === 'new_tech_sahwal') {
+      state.currentBook._buildVer = 'v22-sahwal-filtered-okjip-26p-208';
+    }
+    if (typeof updateBookOptionCountUI === 'function') {
+      updateBookOptionCountUI(code, state.currentBook);
+    }
+    try {
+      localStorage.setItem('teacher_book_custom_' + code, JSON.stringify(state.currentBook));
+    } catch (e) {
+      console.error('Failed to save custom book to localStorage:', e);
+    }
+    var badge = document.getElementById('pedSaveBadge');
+    if (badge) {
+      badge.textContent = '✓ ' + (statusText || '변경사항 자동저장됨');
+      badge.style.color = '#059669';
+    }
+  }
+  window.saveCustomBookState = saveCustomBookState;
+
+  function saveCustomBookToLocalStorage(msg) {
+    saveCustomBookState(msg || '변경사항 저장됨');
+  }
+  window.saveCustomBookToLocalStorage = saveCustomBookToLocalStorage;
+
+  function exportCustomBookJson() {
+    if (!state.currentBook) return;
+    var code = getBookCode() || 'custom';
+    var blob = new Blob([JSON.stringify(state.currentBook, null, 2)], { type: 'application/json;charset=utf-8' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = 'book_' + code + '.json';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    saveCustomBookState('book_' + code + '.json 다운로드됨');
+    showToast('교재 JSON 파일이 다운로드되었습니다.');
+  }
+  window.exportCustomBookJson = exportCustomBookJson;
+
+  function toast(msg) {
+    if (!msg) return;
+    // 🌟 [원장님 지침] 정답, 오답 외의 모든 안내 팝업 문구 원천 차단
+    if (msg.indexOf('정답') === -1 && msg.indexOf('오답') === -1 && msg.indexOf('착수금지') === -1 && msg.indexOf('금지') === -1) {
+      return;
+    }
+    var el = document.getElementById('teacherToast');
+    if (!el) return;
+    el.textContent = msg;
+    el.hidden = false;
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { el.hidden = true; }, 1600);
+  }
+
+  /* ---------- 🌟 바둑판 옆 차분한 피드백 카드 (정답 / 오답) 🌟 ---------- */
+  var sideFeedbackTimer = null;
+  function showSideFeedback(type) {
+    var card = document.getElementById('sideFeedbackCard');
+    var emblem = document.getElementById('feedbackEmblem');
+    var text = document.getElementById('feedbackText');
+    if (!card || !emblem || !text) return;
+
+    clearTimeout(sideFeedbackTimer);
+    card.classList.remove('correct', 'wrong', 'illegal', 'show');
+
+    // 🌟 바둑판 오른쪽 여백의 '정중앙'에 위치 계산 🌟
+    if (canvas && boardContainer) {
+      var cRect = canvas.getBoundingClientRect();
+      var bRect = boardContainer.getBoundingClientRect();
+      var emptySpace = bRect.right - cRect.right;
+      var cardWidth = 140;
+
+      if (emptySpace >= cardWidth + 16) {
+        var targetRight = Math.max(16, Math.floor((emptySpace - cardWidth) / 2));
+        card.style.right = targetRight + 'px';
+        card.style.left = 'auto';
+        card.style.top = '50%';
+        card.style.transform = 'translateY(-50%)';
+      } else {
+        card.style.right = '16px';
+        card.style.left = 'auto';
+        card.style.top = '50%';
+        card.style.transform = 'translateY(-50%)';
+      }
+    }
+
+    if (type === 'correct') {
+      card.classList.add('correct');
+      emblem.innerHTML = '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>';
+      text.textContent = courseProvider ? '저장 정답과 일치' : '정답입니다';
+    } else if (type === 'illegal') {
+      card.classList.add('illegal');
+      emblem.innerHTML = '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line></svg>';
+      text.textContent = '착수금지';
+    } else {
+      card.classList.add('wrong');
+      emblem.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>';
+      text.textContent = courseProvider ? '저장 정답과 다름' : '오답입니다';
+    }
+
+    card.hidden = false;
+    void card.offsetWidth;
+    card.classList.add('show');
+
+    var duration = type === 'correct' ? 1400 : (type === 'illegal' ? 1400 : 1200);
+    sideFeedbackTimer = setTimeout(function () {
+      card.classList.remove('show');
+      setTimeout(function () {
+        if (!card.classList.contains('show')) card.hidden = true;
+      }, 350);
+    }, duration);
+  }
+  window.showSideFeedback = showSideFeedback;
+
+
+  /* ---------- 강사모드 진입 (회원 계정 연동 전 다이렉트 진입) ---------- */
+  /* ---------- 카탈로그 및 교재 로드 ---------- */
+  function initCatalog() {
+    (courseProvider ? courseProvider.catalog() : fetch('data/catalog.json?v=' + Date.now()).then(function (res) { return res.json(); }))
+      .then(function (cat) {
+        state.catalog = cat;
+        populateSeries();
+      })
+      .catch(function (err) {
+        console.error('Failed to load catalog.json:', err);
+        if (courseProvider && courseProvider.onError) courseProvider.onError(err);
+        // toast 제거됨
+      });
+  }
+
+  // 🌟 마지막 선택한 교육 시리즈/교재/단원/문제 영구 보존 및 복원 🌟
+  function populateSeries() {
+    var sLbl = document.getElementById('seriesLabelText');
+    if (sLbl) sLbl.textContent = '📚 교육 시리즈 (총 ' + state.catalog.length + '종)';
+    var totalBooks = state.catalog.reduce(function(acc, s){ return acc + (s.books ? s.books.length : 0); }, 0);
+    var bLbl = document.getElementById('booksLabelText');
+    if (bLbl) bLbl.textContent = '📖 권 선택 (총 ' + totalBooks + '권)';
+    seriesSelect.innerHTML = '';
+    state.catalog.forEach(function (sec, idx) {
+      var opt = document.createElement('option');
+      opt.value = idx;
+      var rawTitle = sec.title || '';
+      var cleanTitle = rawTitle.replace(/^\d+[\.\)]\s*/, '');
+      opt.textContent = courseProvider ? sec.title + ' (' + (sec.books ? sec.books.length : 0) + '단계)' : (idx + 1) + '. ' + cleanTitle + ' (' + (sec.books ? sec.books.length : 0) + '권)';
+      seriesSelect.appendChild(opt);
+    });
+
+    var savedSeries = localStorage.getItem(selectionKey('series'));
+    var seriesIdx = courseProvider ? 0 : 1;
+    if (savedSeries !== null) {
+      var parsed = parseInt(savedSeries, 10);
+      if (!isNaN(parsed) && parsed >= 0 && parsed < state.catalog.length) {
+        seriesIdx = (!courseProvider && parsed === 0) ? 1 : parsed;
+      }
+    }
+    // 🌟 URL 파라미터(?series=16 또는 ?series=gpt)가 전달된 경우 우선 적용
+    try {
+      var urlParams = new URLSearchParams(window.location.search);
+      var paramSeries = urlParams.get('series') || urlParams.get('category');
+      if (paramSeries) {
+        var pNum = parseInt(paramSeries, 10);
+        if (!isNaN(pNum)) {
+          if (pNum >= 1 && pNum <= state.catalog.length) seriesIdx = pNum - 1; // 1-based (예: ?series=16)
+          else if (pNum >= 0 && pNum < state.catalog.length) seriesIdx = pNum;
+        } else {
+          for (var si = 0; si < state.catalog.length; si++) {
+            if ((state.catalog[si].title || '').toLowerCase().indexOf(paramSeries.toLowerCase()) !== -1) {
+              seriesIdx = si;
+              break;
+            }
+          }
+        }
+      }
+    } catch (e) {
+      console.warn('URL series parse error:', e);
+    }
+    seriesSelect.value = seriesIdx;
+    onSeriesChange(true);
+  }
+
+  function onSeriesChange(isRestoring) {
+    var secIdx = parseInt(seriesSelect.value, 10);
+    state.currentSeriesIndex = secIdx;
+    localStorage.setItem(selectionKey('series'), secIdx.toString());
+
+    var sec = state.catalog[secIdx];
+    bookSelect.innerHTML = '';
+    if (!sec || !sec.books) return;
+
+    sec.books.forEach(function (b) {
+      var opt = document.createElement('option');
+      opt.value = b.code;
+      opt.textContent = (b.title || '').replace(/\s*\(\s*\d+\s*[^)]*\)\s*$/, '');
+      bookSelect.appendChild(opt);
+    });
+
+    var targetBookCode = sec.books[0] ? sec.books[0].code : null;
+    if (isRestoring) {
+      var savedBook = localStorage.getItem(selectionKey('book'));
+      if (savedBook && sec.books.some(function (b) { return b.code === savedBook; })) {
+        targetBookCode = savedBook;
+      }
+    }
+
+    if (targetBookCode) {
+      bookSelect.value = targetBookCode;
+      loadBook(targetBookCode, isRestoring);
+    }
+  }
+
+  function loadBook(code, isRestoring, forceOriginal) {
+    localStorage.setItem(selectionKey('book'), code);
+    if (!forceOriginal && !courseProvider) {
+      try {
+        var savedCustom = localStorage.getItem('teacher_book_custom_' + code);
+        if (savedCustom) {
+          var customData = JSON.parse(savedCustom);
+          if ((code === 'tech_atari' && customData._buildVer !== 'v2-clean') || (code === 'new_tech_chokchoksu' && customData._buildVer !== 'v23-ch8-teacher-clean-200') || (code === 'new_tech_chuk' && customData._buildVer !== 'v17-ch6-138') || (code === 'new_tech_jangmun' && (customData._buildVer !== 'v30-ch9-9probs-179-1794267464' || !customData.chapters || customData.chapters.length !== 9)) || (code === 'new_tech_hwangyeok' && customData._buildVer !== 'v13-ch9-256probs-comprehensive-sahwal-hwangyeok') || (code === 'new_tech_meokyeochigi' && customData._buildVer !== 'v9-ch9-224probs-advanced-sahwal') || (code === 'new_tech_pae' && customData._buildVer !== 'v11-ch11-274probs-pae-master') || (code === 'new_tech_chaksu_geumji' && customData._buildVer !== 'v5-ch5-118probs-chaksu-final-master') || (code === 'new_tech_sahwal' && (customData._buildVer !== 'v22-sahwal-filtered-okjip-26p-208' || !customData.chapters || customData.chapters.length !== 8 || customData.chapters.some(function(c){ return !c.problems || c.problems.length === 0; })))) { localStorage.removeItem('teacher_book_custom_' + code); } else if (customData && Array.isArray(customData.chapters) && (customData.totalProblems > 0 || customData.chapters.some(function(c){ return (c.problems||[]).length > 0; }))) {
+            customData.bookCode = code;
+            state.currentBook = customData;
+            currentBookTitle.textContent = customData.book || customData.title || ('교재 ' + code);
+            populateChapters(customData, isRestoring);
+            updateBookOptionCountUI(code, customData);
+            return;
+          }
+        }
+      } catch (e) {
+        console.warn('Custom book parse error:', e);
+      }
+    }
+    (courseProvider ? courseProvider.book(code) : fetch('data/books/book_' + code + '.json?v=' + Date.now()).then(function (res) {
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        return res.json();
+      }))
+      .then(function (bookData) {
+        bookData.bookCode = code;
+        state.currentBook = bookData;
+        currentBookTitle.textContent = bookData.book || bookData.title || ('교재 ' + code);
+        populateChapters(bookData, isRestoring);
+        updateBookOptionCountUI(code, bookData);
+      })
+      .catch(function (err) {
+        console.error('Failed to load book_' + code + '.json:', err);
+        if (courseProvider) { if (courseProvider.onError) courseProvider.onError(err); return; }
+        if (code !== 'stage_01') {
+          console.warn('Fallback: loading stage_01 because', code, 'failed to load.');
+          state.currentSeriesIndex = 1;
+          if (seriesSelect) seriesSelect.value = '1';
+          onSeriesChange(false);
+        }
+      });
+  }
+
+  function updateBookOptionCountUI(code, bookData) {
+    if (!bookData || !Array.isArray(bookData.chapters)) return;
+    var total = 0;
+    bookData.chapters.forEach(function (ch) {
+      var cnt = (ch.problems || []).length;
+      ch.problemCount = cnt;
+      total += cnt;
+    });
+    bookData.totalProblems = total;
+    if (bookSelect) {
+      Array.from(bookSelect.options).forEach(function (opt) {
+        if (opt.value === code) {
+          var baseTitle = (bookData.title || bookData.book || opt.textContent).replace(/\s*\(\d+제\)\s*$/, '');
+          opt.textContent = baseTitle;
+        }
+      });
+    }
+  }
+
+  function populateChapters(bookData, isRestoring) {
+    chapterSelect.innerHTML = '';
+    var chapters = bookData.chapters || [];
+    chapters.forEach(function (ch, idx) {
+      var opt = document.createElement('option');
+      opt.value = idx;
+      var rawChTitle = (typeof ch.title === 'string' && ch.title) || (typeof ch.chapter === 'string' && ch.chapter) || String(ch.chapter || ch.title || ('제 ' + (idx + 1) + '단원'));
+      opt.textContent = String(rawChTitle).replace(/\s*\(\s*\d+\s*[^)]*\)\s*$/, '');
+      chapterSelect.appendChild(opt);
+    });
+
+    var targetChIdx = 0;
+    if (isRestoring) {
+      var savedCh = localStorage.getItem(selectionKey('chapter'));
+      if (savedCh !== null) {
+        var parsedCh = parseInt(savedCh, 10);
+        if (!isNaN(parsedCh) && parsedCh >= 0 && parsedCh < chapters.length) {
+          targetChIdx = parsedCh;
+        }
+      }
+    }
+    chapterSelect.value = targetChIdx;
+    onChapterChange(isRestoring);
+  }
+
+  function onChapterChange(isRestoring) {
+    var chIdx = parseInt(chapterSelect.value, 10);
+    state.currentChapterIndex = chIdx;
+    localStorage.setItem(selectionKey('chapter'), chIdx.toString());
+
+    var chapters = state.currentBook ? state.currentBook.chapters : [];
+    var ch = chapters[chIdx];
+    if (!ch) return;
+
+    currentChapterTitle.textContent = '— ' + (ch.chapter || ch.title || '');
+    state.currentProblems = courseProvider ? courseProvider.problems(ch) : (ch.problems || []);
+
+    var targetProblemIdx = 0;
+    if (isRestoring) {
+      var savedProb = localStorage.getItem(selectionKey('problem'));
+      if (savedProb !== null) {
+        var parsedProb = parseInt(savedProb, 10);
+        if (!isNaN(parsedProb) && parsedProb >= 0 && parsedProb < state.currentProblems.length) {
+          targetProblemIdx = parsedProb;
+        }
+      }
+    }
+
+    state.currentProblemIndex = targetProblemIdx;
+    renderProblemGrid();
+    loadProblem(targetProblemIdx);
+  }
+
+  function renderProblemGrid() {
+    problemGrid.innerHTML = '';
+    var total = state.currentProblems.length;
+    problemProgress.textContent = total > 0 ? ((state.currentProblemIndex + 1) + ' / ' + total) : '0 / 0';
+    var bookCode = state.currentBook ? (state.currentBook.bookCode || '') : '';
+
+    state.currentProblems.forEach(function (p, idx) {
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      var key = courseProvider ? progressKey(idx) : bookCode + '_' + idx;
+      var isSolved = Boolean(state.solvedMap[key]);
+      var isActive = (idx === state.currentProblemIndex);
+
+      var cls = 'prob-btn';
+      if (isActive) cls += ' active';
+      if (isSolved) cls += ' solved';
+      if (p.source_series) {
+        if (p.source_series === '씽크탱크') cls += ' series-think';
+        else if (p.source_series === '논리바둑') cls += ' series-logic';
+        else if (p.source_series === '알파바둑') cls += ' series-alpha';
+      }
+      btn.className = cls;
+
+      btn.textContent = (idx + 1) + (isSolved ? ' ✓' : '번');
+      btn.title = (idx + 1) + '번 문제' + (isSolved ? ' (완료)' : '');
+      btn.addEventListener('click', function () {
+        loadProblem(idx);
+      });
+      problemGrid.appendChild(btn);
+    });
+
+    // 20번 이상 등 현재 활성 문제가 5줄 뷰포트 밖일 경우 자동 스크롤
+    setTimeout(scrollActiveProblemIntoView, 50);
+  }
+
+  function scrollActiveProblemIntoView() {
+    if (!problemGrid) return;
+    var activeBtn = problemGrid.querySelector('.prob-btn.active');
+    if (!activeBtn) return;
+    var gridRect = problemGrid.getBoundingClientRect();
+    var btnRect = activeBtn.getBoundingClientRect();
+
+    if (btnRect.bottom > gridRect.bottom) {
+      problemGrid.scrollBy({
+        top: btnRect.bottom - gridRect.bottom + 6,
+        behavior: 'smooth'
+      });
+    } else if (btnRect.top < gridRect.top) {
+      problemGrid.scrollBy({
+        top: btnRect.top - gridRect.top - 4,
+        behavior: 'smooth'
+      });
+    }
+  }
+
+
+  /* ---------- 🌟 활로 & 단수 판별 엔진 🌟 ---------- */
+  function getStoneGroups(board, cols, rows) {
+    if (!board || !board.length || !board[0]) return [];
+    var visited = Array.from({ length: rows }, function () { return new Array(cols).fill(false); });
+    var groups = [];
+
+    for (var y = 0; y < rows; y++) {
+      for (var x = 0; x < cols; x++) {
+        var color = board[y][x];
+        if (color !== 0 && !visited[y][x]) {
+          var stones = [];
+          var libertiesSet = {};
+          var queue = [{ x: x, y: y }];
+          visited[y][x] = true;
+
+          while (queue.length > 0) {
+            var curr = queue.shift();
+            stones.push(curr);
+
+            var neighbors = [
+              { x: curr.x + 1, y: curr.y },
+              { x: curr.x - 1, y: curr.y },
+              { x: curr.x, y: curr.y + 1 },
+              { x: curr.x, y: curr.y - 1 }
+            ];
+
+            neighbors.forEach(function (nb) {
+              if (nb.x >= 0 && nb.x < cols && nb.y >= 0 && nb.y < rows) {
+                if (board[nb.y][nb.x] === 0) {
+                  libertiesSet[nb.x + ',' + nb.y] = true;
+                } else if (board[nb.y][nb.x] === color && !visited[nb.y][nb.x]) {
+                  visited[nb.y][nb.x] = true;
+                  queue.push(nb);
+                }
+              }
+            });
+          }
+
+          groups.push({
+            color: color,
+            stones: stones,
+            liberties: Object.keys(libertiesSet).length
+          });
+        }
+      }
+    }
+    return groups;
+  }
+
+  /* ---------- 🌟 3D 입체 땀방울 렌더링 🌟 ---------- */
+  function draw3DSweatDrop(cx, cy, r) {
+    var dropX = cx + r * 0.48;
+    var dropY = cy - r * 0.42;
+    var s = r * 0.28;
+    var angle = 0.22;
+
+    ctx.save();
+    ctx.translate(dropX, dropY);
+    ctx.rotate(angle);
+
+    // 1. 드롭 섀도우
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.38)';
+    ctx.shadowBlur = Math.max(3, s * 0.3);
+    ctx.shadowOffsetX = Math.max(1, s * 0.15);
+    ctx.shadowOffsetY = Math.max(2, s * 0.25);
+
+    // 물방울 본체 패스 (상단 뾰족, 하단 통통한 입체 티어드롭)
+    ctx.beginPath();
+    ctx.moveTo(0, -s);
+    ctx.bezierCurveTo(-s * 0.8, -s * 0.15, -s * 0.75, s * 0.75, 0, s * 0.75);
+    ctx.bezierCurveTo(s * 0.75, s * 0.75, s * 0.8, -s * 0.15, 0, -s);
+    ctx.closePath();
+
+    // 2. 3D 투명 하늘빛 그라데이션
+    var bodyGrad = ctx.createRadialGradient(-s * 0.25, -s * 0.2, s * 0.1, 0, 0, s);
+    bodyGrad.addColorStop(0, '#e0f2fe');
+    bodyGrad.addColorStop(0.35, '#7dd3fc');
+    bodyGrad.addColorStop(0.75, '#0284c7');
+    bodyGrad.addColorStop(1, '#0369a1');
+
+    ctx.fillStyle = bodyGrad;
+    ctx.fill();
+
+    // 3. 물방울 림 라이트 외곽선
+    ctx.shadowColor = 'transparent';
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.75)';
+    ctx.lineWidth = Math.max(0.8, s * 0.08);
+    ctx.stroke();
+
+    // 4. 물방울 좌상단 반사 하이라이트 광택
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+    ctx.beginPath();
+    ctx.ellipse(-s * 0.22, -s * 0.2, s * 0.25, s * 0.12, -0.4, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.restore();
+  }
+
+  /* ---------- 단일 문제 로드 ---------- */
+  /* ---------- 🌟 문제 시작 색상 판별 (정답 수순 최우선 & WA/WH 메타데이터 연동) 🌟 ---------- */
+  function getProblemStartingColor(p) {
+    if (!p) return 1;
+    // 1. 실제 정답 수순(answerBranches)의 1수 색상이 가장 확실한 정답 기준!
+    if (state.answerBranches && state.answerBranches.length > 0 && state.answerBranches[0].length > 0) {
+      return state.answerBranches[0][0].color;
+    }
+    // 2. answer1 직접 SGF 파싱
+    var ans = p.answer1 || p.answer || '';
+    if (typeof ans === 'string') {
+      var match = /;([BW])\[/i.exec(ans);
+      if (match) {
+        return match[1].toUpperCase() === 'W' ? 2 : 1;
+      }
+    }
+    // 3. 메타데이터 start 필드 (WA, WH, W 등 백선 접두사 판별)
+    if (p.start && typeof p.start === 'string') {
+      var st = p.start.trim().toUpperCase();
+      if (st.startsWith('W')) return 2;
+      if (st.startsWith('B')) return 1;
+    }
+    // 4. 문제 지문에 '백선' 또는 '백 차례'가 명시된 경우
+    if (p.question && (p.question.indexOf('백선') !== -1 || p.question.indexOf('백 차례') !== -1 || p.question.indexOf('백차례') !== -1)) {
+      return 2;
+    }
+    return 1; // 기본값 흑선
+  }
+
+  
+  /* ===================================================
+     🌟 O X 및 객관식 선택형 문제 완벽 지원 시스템 🌟
+     =================================================== */
+  function isChoiceProblem(p) {
+    if (!p) return false;
+    var s = (p.sample || '').trim();
+    if (s && s.indexOf('|') !== -1) {
+      var parts = s.split('|').map(function(item){ return item.trim(); }).filter(Boolean);
+      if (parts.length > 0) return true;
+    }
+    var tp = String(p.type || '').trim();
+    if (tp === '4' || tp === '5') return true;
+    if (p.question && (p.question.indexOf('○') !== -1 || p.question.indexOf('둘 수 있') !== -1)) return true;
+    return false;
+  }
+
+  function getChoiceParts(p) {
+    if (!p) return [];
+    var s = (p.sample || '').trim();
+    var parts = s ? s.split('|').map(function(item){ return item.trim(); }).filter(Boolean) : [];
+    if (parts.length === 0 && isChoiceProblem(p)) {
+      parts = ['○', 'Χ'];
+    }
+    return parts;
+  }
+
+  function checkChoiceAnswer(choiceIdx, choiceText, p) {
+    if (!p) return false;
+    var rawAns = String(p.answer !== undefined && p.answer !== null ? p.answer : '').trim();
+    
+    // 1) 1-based index 일치 (가장 정형화된 DB 규격: '1', '2', '3')
+    if (rawAns === String(choiceIdx + 1)) return true;
+
+    // 2) 텍스트 직접 일치
+    if (rawAns === choiceText.trim()) return true;
+
+    // 3) O / X 기호 호환 (○, O, 1) vs (Χ, ×, X, 2)
+    var isChoiceO = (choiceText.indexOf('○') !== -1 || choiceText.toUpperCase().indexOf('O') !== -1 || choiceText.indexOf('둘 수 있다') !== -1 || choiceText.indexOf('있다') !== -1);
+    var isChoiceX = (choiceText.indexOf('Χ') !== -1 || choiceText.indexOf('×') !== -1 || choiceText.toUpperCase().indexOf('X') !== -1 || choiceText.indexOf('착수금지') !== -1 || choiceText.indexOf('둘 수 없다') !== -1 || choiceText.indexOf('없다') !== -1);
+
+    if ((rawAns === '1' || rawAns === '○' || rawAns.toUpperCase() === 'O') && isChoiceO && !isChoiceX) return true;
+    if ((rawAns === '2' || rawAns === 'Χ' || rawAns === '×' || rawAns.toUpperCase() === 'X') && isChoiceX) return true;
+
+    return false;
+  }
+
+  function handleChoiceClick(choiceIdx, choiceText, btnEl) {
+    var p = state.currentProblems[state.currentProblemIndex];
+    if (!p) return;
+
+    var isCorrect = checkChoiceAnswer(choiceIdx, choiceText, p);
+    var allBtns = document.querySelectorAll('.choice-btn[data-choice-idx="' + choiceIdx + '"]');
+
+    if (isCorrect) {
+      if (window.badukAudio && typeof window.badukAudio.playDingDongDang === 'function') {
+        window.badukAudio.playDingDongDang();
+      }
+      showSideFeedback('correct');
+      state.solved = true;
+
+      allBtns.forEach(function(b){
+        b.classList.remove('wrong');
+        b.classList.add('correct');
+      });
+
+      // 문제 네비게이션 그리드 현재 버튼 풀이 완료 표시
+      var currentGridBtn = document.querySelector('.prob-btn.current');
+      if (currentGridBtn) currentGridBtn.classList.add('solved');
+
+      if (state.autoNextTimer) clearTimeout(state.autoNextTimer);
+      state.autoNextTimer = setTimeout(function () {
+        if (state.currentProblemIndex < state.currentProblems.length - 1) {
+          loadProblem(state.currentProblemIndex + 1);
+        }
+      }, 1200);
+    } else {
+      if (window.badukAudio && typeof window.badukAudio.playDdang === 'function') {
+        window.badukAudio.playDdang();
+      }
+      showSideFeedback('wrong');
+
+      allBtns.forEach(function(b){
+        b.classList.remove('correct');
+        b.classList.add('wrong');
+        setTimeout(function(){
+          b.classList.remove('wrong');
+        }, 800);
+      });
+    }
+  }
+
+  function renderChoiceButtons(p) {
+    var sbContainer = document.getElementById('sidebarChoiceContainer');
+    var bdContainer = document.getElementById('boardChoiceContainer');
+    if (bdContainer) { bdContainer.innerHTML = ''; bdContainer.hidden = true; }
+
+    if (!sbContainer) return;
+
+    var parts = getChoiceParts(p);
+
+    if (parts.length === 0) {
+      sbContainer.innerHTML = '';
+      sbContainer.hidden = true;
+      return;
+    }
+
+    // [원장님 지침] 문제 지문 바로 아래에 너무 크지 않게 컴팩트 단독 배치 (바둑판 크기 100% 보존)
+    sbContainer.innerHTML = '';
+    var row = document.createElement('div');
+    row.className = 'sidebar-choice-row';
+
+    parts.forEach(function(rawItem, idx) {
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.dataset.choiceIdx = idx.toString();
+
+      var isO = (rawItem === '○' || rawItem.toUpperCase() === 'O' || rawItem.indexOf('둘 수 있다') !== -1 || rawItem.indexOf('있다') !== -1);
+      var isX = (rawItem === 'Χ' || rawItem === '×' || rawItem.toUpperCase() === 'X' || rawItem.indexOf('착수금지') !== -1 || rawItem.indexOf('둘 수 없다') !== -1 || rawItem.indexOf('없다') !== -1);
+
+      var btnClass = 'choice-btn';
+      var label = rawItem;
+
+      var isChaksuQ = p && p.question && (p.question.indexOf('착수') !== -1 || p.question.indexOf('둘 수') !== -1);
+
+      if (isO && !isX) {
+        btnClass += ' choice-o';
+        if (isChaksuQ) {
+          label = (rawItem === '○' || rawItem.toUpperCase() === 'O') ? '⭕ (착수 가능)' : ('⭕ ' + rawItem);
+        } else {
+          label = (rawItem === '○' || rawItem.toUpperCase() === 'O') ? '⭕ O' : ('⭕ ' + rawItem);
+        }
+      } else if (isX) {
+        btnClass += ' choice-x';
+        if (isChaksuQ) {
+          label = (rawItem === 'Χ' || rawItem === '×' || rawItem.toUpperCase() === 'X') ? '❌ (착수금지)' : ('❌ ' + rawItem);
+        } else {
+          label = (rawItem === 'Χ' || rawItem === '×' || rawItem.toUpperCase() === 'X') ? '❌ X' : ('❌ ' + rawItem);
+        }
+      } else {
+        label = (idx + 1) + '. ' + rawItem;
+      }
+
+      btn.className = btnClass;
+      btn.innerHTML = label;
+
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        handleChoiceClick(idx, rawItem, btn);
+      });
+
+      row.appendChild(btn);
+    });
+
+    sbContainer.appendChild(row);
+    sbContainer.hidden = false;
+  }
+
+  function highlightCorrectChoice(p) {
+    if (!p) return;
+    var parts = getChoiceParts(p);
+    parts.forEach(function(rawItem, idx) {
+      if (checkChoiceAnswer(idx, rawItem, p)) {
+        var btns = document.querySelectorAll('.choice-btn[data-choice-idx="' + idx + '"]');
+        btns.forEach(function(b){
+          b.classList.add('reveal-answer');
+        });
+      }
+    });
+  }
+
+  function clearChoiceHighlights() {
+    var btns = document.querySelectorAll('.choice-btn');
+    btns.forEach(function(b){
+      b.classList.remove('reveal-answer', 'correct', 'wrong');
+    });
+  }
+
+  function loadProblem(idx) {
+      // 바둑판 옆 피드백 카드 초기화
+      var sCard = document.getElementById('sideFeedbackCard');
+      if (sCard) { sCard.classList.remove('show'); sCard.hidden = true; }
+
+    if (idx < 0 || idx >= state.currentProblems.length) return;
+    state.currentProblemIndex = idx;
+    localStorage.setItem(selectionKey('problem'), idx.toString());
+    state.showAnswer = false;
+    state.solved = false;
+
+    if (state.autoNextTimer) {
+      clearTimeout(state.autoNextTimer);
+      state.autoNextTimer = null;
+    }
+
+    // 문제 그리드 버튼 상태(현재/푼 문제/안 푼 문제) 갱신
+    renderProblemGrid();
+
+    var p = state.currentProblems[idx];
+    qNumBadge.textContent = '문제 ' + (idx + 1);
+    var qSeriesBadge = document.getElementById('qSeriesBadge');
+    if (qSeriesBadge) {
+      if (p.source_series) {
+        qSeriesBadge.hidden = false;
+        qSeriesBadge.textContent = p.source_series;
+        qSeriesBadge.className = 'q-series ' + (
+          p.source_series === '씽크탱크' ? 'series-think' :
+          p.source_series === '논리바둑' ? 'series-logic' : 'series-alpha'
+        );
+      } else {
+        qSeriesBadge.hidden = true;
+      }
+    }
+    // 🌟 메타데이터 뱃지 행 갱신 (문제 코드, 섹션, 필수/연습, 출처, 복습 여부)
+    var qMetaRow = document.getElementById('qMetaRow');
+    if (qMetaRow) {
+      if (p.code || p.curriculum_type || p.source_book || p.section_title) {
+        qMetaRow.hidden = false;
+        var metaHtml = '';
+        if (p.code) {
+          metaHtml += '<span class="badge-code" style="background:#f1f5f9;color:#334155;padding:2px 6px;border-radius:4px;font-weight:700;border:1px solid #cbd5e1;">코드 #' + p.code + '</span>';
+        }
+        if (p.section_title) {
+          metaHtml += '<span class="badge-sec" style="background:#e0f2fe;color:#0369a1;padding:2px 6px;border-radius:4px;font-weight:700;border:1px solid #bae6fd;">' + p.section_title + '</span>';
+        }
+        if (p.curriculum_type) {
+          var isReq = (p.curriculum_type === '필수');
+          metaHtml += '<span class="badge-type" style="background:' + (isReq ? '#dbeafe;color:#1d4ed8;border:1px solid #bfdbfe;' : '#f3f4f6;color:#4b5563;border:1px solid #e5e7eb;') + 'padding:2px 6px;border-radius:4px;font-weight:800;">' + p.curriculum_type + '</span>';
+        }
+        if (p.source_book) {
+          var srcStr = p.source_book + (p.source_p_num ? (' ' + p.source_p_num + '번') : '');
+          metaHtml += '<span class="badge-source" style="background:#fdf2f8;color:#be185d;padding:2px 6px;border-radius:4px;font-weight:600;border:1px solid #fbcfe8;">출처: ' + srcStr + '</span>';
+        }
+        // 🌟 복습 뱃지: hide_review_badge가 true인 경우(입문 1섹션)에는 학생에게 복습으로 안내하지 않음!
+        if (p.is_review && !p.hide_review_badge) {
+          metaHtml += '<span class="badge-review" style="background:#fef3c7;color:#b45309;padding:2px 6px;border-radius:4px;font-weight:800;border:1px solid #fde68a;">[복습] ' + (p.review_type || '반복 연습') + '</span>';
+        }
+        qMetaRow.innerHTML = metaHtml;
+      } else {
+        qMetaRow.hidden = true;
+        qMetaRow.innerHTML = '';
+      }
+    }
+    questionText.textContent = (p.question || '알맞은 곳에 돌을 놓아 보세요.').replace(/\r\n/g, '\n');
+
+    // 힌트가 있는 문제는 [💡 힌트] 버튼 활성화, 없으면 버튼 및 박스 모두 숨김(빈 공간)
+    var hasHint = !!(p.hint && p.hint.trim() && p.hint.trim() !== '힌트가 없는 문제입니다.');
+    var btnHintEl = document.getElementById('btnHint');
+    if (btnHintEl) {
+      btnHintEl.hidden = !hasHint;
+      btnHintEl.classList.remove('active');
+    }
+    hintBox.hidden = true;
+    hintText.textContent = hasHint ? p.hint.trim() : '';
+
+    var btnAnsEl = document.getElementById('btnAnswer');
+    if (btnAnsEl) btnAnsEl.textContent = '👁️ 정답';
+    navIndicator.textContent = (idx + 1) + ' / ' + state.currentProblems.length;
+    problemProgress.textContent = (idx + 1) + ' / ' + state.currentProblems.length;
+
+    // 🌟 원 교재 규격 자동 판별: 가로선 9, 세로선 10 (열린 선 다이어그램)
+    state.boardSpec = detectBoardSpec(p);
+    state.boardCols = state.boardSpec.cols;
+    state.boardRows = state.boardSpec.rows;
+    
+    // SGF 파싱 및 보드 초기화 (정답 분기 파싱 포함)
+    parseProblemSgf(p, state.boardSpec);
+
+    // 🌟 문제 시작 색상 정확하게 판정 (정답 1수 기준 & WA/WH 메타데이터 동기화)
+    var defColor = getProblemStartingColor(p);
+    state.nextTurn = defColor;
+
+    // 🌟 새 문제 로드 시 기본 착수 모드(교차)로 초기화하여 이전 문제의 흑만/백만 잔존 방지
+    state.placementMode = 'alternate';
+
+    // 🌟 상단 턴 배지 텍스트를 시작 색상과 100% 일치시킴!
+    qTurnBadge.textContent = (defColor === 2) ? '⚪ 백선' : '⚫ 흑선';
+
+    // 🌟 다른 번호/문제로 넘어갈 때 놓아보기 모드 자동 해제 및 문제 풀이 모드로 복귀
+    state.trialMode = false;
+    var btnTrialEl = document.getElementById('btnToggleTrial');
+    if (btnTrialEl) btnTrialEl.classList.remove('active');
+
+    // 놓아보기 히스토리 및 문제 풀이 수순 초기화
+    state.trialMoves = [];
+    state.playedMoves = [];
+    state.isOpponentResponding = false;
+
+    state.historyStack = [{
+      board: state.board.map(function(row){ return row.slice(); }),
+      nextTurn: state.nextTurn,
+      moves: []
+    }];
+    state.historyIndex = 0;
+    if (typeof renderChoiceButtons === 'function') renderChoiceButtons(p);
+    layoutBoard();
+    if (typeof updatePlacementUI === 'function') updatePlacementUI();
+    if (typeof syncProbEditDrawerUI === 'function') syncProbEditDrawerUI();
+    drawBoard();
+    if (courseProvider) courseProvider.onProblemLoaded(state, p);
+  }
+
+  /* ---------- 🌟 원 교재 규격 판별 (가로선 9, 세로선 10 / 열린 선) ---------- */
+  function detectBoardSpec(p) {
+    if (courseProvider) return courseProvider.boardSpec(p);
+    if (!p) return { cols: 10, rows: 10, isFull19: false, quadrant: 'BR' };
+    
+    var rawSize = p.size ? String(p.size).trim() : '';
+    if (rawSize === '1' || rawSize === '2') {
+      return { cols: 19, rows: 19, isFull19: true, quadrant: 'FULL19' };
+    }
+
+    var points = [];
+    // 🌟 돌(B, W)뿐만 아니라 마크(T, C, L, M, S) 및 모든 정답 분기의 점들을 수집하여 규격 및 사분면 결정
+    var reg = /(?:;|^)([BWTCMSL]|TR|CR|SQ|MA|LB)\[([a-s]{2})(?::[^\]]*)?\]/gi;
+    var allSgf = (p.data || '') + (p.answer1 || '');
+    for (var bi = 2; bi <= 5; bi++) {
+      var rawAns = p['answer' + bi];
+      if (rawAns && typeof rawAns === 'string') allSgf += rawAns;
+    }
+    var m;
+    while ((m = reg.exec(allSgf)) !== null) {
+      points.push({
+        x: m[2].charCodeAt(0) - 97,
+        y: m[2].charCodeAt(1) - 97
+      });
+    }
+
+    if (points.length === 0) {
+      return { cols: 10, rows: 10, isFull19: false, quadrant: 'BR' };
+    }
+
+    var minX = Math.min.apply(null, points.map(function(pt){return pt.x;}));
+    var minY = Math.min.apply(null, points.map(function(pt){return pt.y;}));
+    var maxX = Math.max.apply(null, points.map(function(pt){return pt.x;}));
+    var maxY = Math.max.apply(null, points.map(function(pt){return pt.y;}));
+
+    // 전판 사활/포석/축 등 범위가 넓은 경우 (19줄 전판)
+    if (maxX - minX >= 12 || maxY - minY >= 12 || (minX <= 4 && maxX >= 14) || (minY <= 4 && maxY >= 14)) {
+      return { cols: 19, rows: 19, isFull19: true, quadrant: 'FULL19' };
+    }
+
+    // 사분면 판별 (우하귀, 좌하귀, 좌상귀, 우상귀)
+    var quadrant = 'BR';
+    if (p.quadrant) {
+      quadrant = p.quadrant;
+    } else if (rawSize === '7' || (minX <= 8 && minY >= 10 && maxX <= 9)) {
+      quadrant = 'BL';
+    } else if (rawSize === '6' || (maxX <= 8 && maxY <= 8)) {
+      quadrant = 'TL';
+    } else if (rawSize === '5' || (minX >= 10 && maxY <= 8)) {
+      quadrant = 'TR';
+    } else {
+      quadrant = 'BR'; // 표준 교재 우하귀
+    }
+
+    // 🌟 원장님 핵심 지침: 기본 세로선 10, 가로선 9 (열린 선 다이어그램)를 유지하되,
+    // 정답 착점이 바둑판 밖으로 잘려 풀지 못하는 문제가 없도록 안전 적응형 확장!
+    var cols = 10;
+    var rows = 10;
+    if (quadrant === 'BR') {
+      cols = Math.max(10, 19 - minX);
+      rows = Math.max(10, 19 - minY);
+    } else if (quadrant === 'BL') {
+      cols = Math.max(10, maxX + 1);
+      rows = Math.max(10, 19 - minY);
+    } else if (quadrant === 'TL') {
+      cols = Math.max(10, maxX + 1);
+      rows = Math.max(10, maxY + 1);
+    } else if (quadrant === 'TR') {
+      cols = Math.max(10, 19 - minX);
+      rows = Math.max(10, maxY + 1);
+    }
+
+    if (cols >= 14 || rows >= 14) {
+      return { cols: 19, rows: 19, isFull19: true, quadrant: 'FULL19' };
+    }
+
+    return {
+      cols: cols,
+      rows: rows,
+      isFull19: false,
+      quadrant: quadrant
+    };
+  }
+
+  /* ---------- SGF -> 보드 좌표 변환 (가로선 9 x 세로선 10) ---------- */
+  function parseProblemSgf(p, spec) {
+    var cols = spec.cols;
+    var rows = spec.rows;
+
+    state.board = Array.from({ length: rows }, function () { return new Array(cols).fill(0); });
+    state.answerMoves = [];
+    state.shiftX = 0;
+    state.shiftY = 0;
+
+    if (!spec.isFull19) {
+      if (spec.quadrant === 'BR') {
+        // 우하귀: 우변 1선(18) -> cols-1 (9), 하변 1선(18) -> rows-1 (8)
+        state.shiftX = 19 - cols; // 19 - 10 = 9
+        state.shiftY = 19 - rows; // 19 - 9 = 10
+      } else if (spec.quadrant === 'BL') {
+        // 좌하귀: 좌변 1선(0) -> 0, 하변 1선(18) -> rows-1 (8)
+        state.shiftX = 0;
+        state.shiftY = 19 - rows; // 10
+      } else if (spec.quadrant === 'TL') {
+        // 좌상귀: 좌변 1선(0) -> 0, 상변 1선(0) -> 0
+        state.shiftX = 0;
+        state.shiftY = 0;
+      } else if (spec.quadrant === 'TR') {
+        // 우상귀: 우변 1선(18) -> cols-1 (9), 상변 1선(0) -> 0
+        state.shiftX = 19 - cols; // 9
+        state.shiftY = 0;
+      }
+    }
+
+    state.marks = []; // 🌟 세모(△), 동그라미(○), 문자 라벨(가/1/A), 네모(□) 마크 저장
+
+    // 초기 돌 배치 및 마크 파싱
+    var sgfData = p.data || '';
+    var regex = /(?:;|^)([BWTCMSL]|TR|CR|SQ|MA|LB)\[([a-s]{2})(?::([^\]]*))?\]/gi;
+    var m;
+    while ((m = regex.exec(sgfData)) !== null) {
+      var tag = m[1].toUpperCase();
+      var x = m[2].charCodeAt(0) - 97 - state.shiftX;
+      var y = m[2].charCodeAt(1) - 97 - state.shiftY;
+      if (x >= 0 && x < cols && y >= 0 && y < rows) {
+        if (tag === 'B') {
+          state.board[y][x] = 1; // 흑돌
+        } else if (tag === 'W') {
+          state.board[y][x] = 2; // 백돌
+        } else if (tag === 'T' || tag === 'TR') {
+          state.marks.push({ x: x, y: y, type: 'triangle' });
+        } else if (tag === 'C' || tag === 'CR') {
+          state.marks.push({ x: x, y: y, type: 'circle' });
+        } else if (tag === 'L' || tag === 'LB') {
+          state.marks.push({ x: x, y: y, type: 'label', label: m[3] || '' });
+        } else if (tag === 'M' || tag === 'MA' || tag === 'S' || tag === 'SQ') {
+          state.marks.push({ x: x, y: y, type: 'square' });
+        }
+      }
+    }
+
+    // 🌟 [원장님 지침] 모든 정답 수순 분기 파싱 (answer1 ~ answer5) 🌟
+    state.answerBranches = [];
+    for (var bi = 1; bi <= 5; bi++) {
+      var rawAns = p['answer' + bi] || (bi === 1 ? p.answer : '');
+      if (rawAns && typeof rawAns === 'string' && rawAns.trim()) {
+        var aRegex = /;([BW])\[([a-s]{2})\]/gi;
+        var am;
+        var bMoves = [];
+        while ((am = aRegex.exec(rawAns)) !== null) {
+          var acolor = am[1].toUpperCase() === 'B' ? 1 : 2;
+          var ax = am[2].charCodeAt(0) - 97 - state.shiftX;
+          var ay = am[2].charCodeAt(1) - 97 - state.shiftY;
+          if (ax >= 0 && ax < cols && ay >= 0 && ay < rows) {
+            bMoves.push({ x: ax, y: ay, color: acolor, step: bMoves.length + 1 });
+          }
+        }
+        if (bMoves.length > 0) {
+          state.answerBranches.push(bMoves);
+        }
+      }
+    }
+    state.activeBranches = state.answerBranches.slice();
+    state.answerMoves = state.answerBranches.length > 0 ? state.answerBranches[0] : [];
+    state.playedMoves = [];
+    state.isOpponentResponding = false;
+
+    // 원본 상태 복사본
+    state.initialBoard = state.board.map(function (row) { return row.slice(); });
+  }
+
+  /* ---------- 바둑판 렌더링 (가로선 9 x 세로선 10, 열린 선 다이어그램) ---------- */
+  // metrics moved to top
+
+  function layoutBoard() {
+    var rect = boardContainer.getBoundingClientRect();
+    // 🌟 [원장님 지침 6번] 바둑판 크기를 화면에 꽉 차도록 대폭 확대
+    var availW = rect.width - 8;
+    var availH = rect.height - 8;
+
+    var cols = state.boardCols; // 세로선 10
+    var rows = state.boardRows; // 가로선 9
+
+    // 셀 크기 최적화: 1선 가장자리에 돌이 놓여도 좌표가 돌에 가려지지 않도록 외곽 마진 넉넉히 확보
+    var marginPad = (state.coordMode !== 'none') ? 1.05 : 0.85;
+    var cell = Math.min((availW - 6) / (cols + marginPad), (availH - 6) / (rows + marginPad));
+    cell = Math.max(courseProvider ? 8 : 32, Math.min(cell, 150));
+
+    // 시작 마진(상/좌)과 끝 마진(하/우) - 우측·하단 좌표가 완전 가장자리에 안전하게 안착되도록 여백 배분
+    var startMargin = (state.coordMode === 'left-top' || state.coordMode === 'all-four') ? Math.round(cell * 0.95) : Math.round(cell * 0.72);
+    var endMargin = (state.coordMode === 'right-bottom' || state.coordMode === 'all-four') ? Math.round(cell * 1.05) : Math.round(cell * 0.72);
+
+    var dispW = Math.round(startMargin + cell * (cols - 1) + endMargin);
+    var dispH = Math.round(startMargin + cell * (rows - 1) + endMargin);
+
+    var dpr = window.devicePixelRatio || 1;
+    metrics.cellSize = cell;
+    metrics.startX = startMargin;
+    metrics.startY = startMargin;
+    metrics.displayW = dispW;
+    metrics.displayH = dispH;
+    metrics.dpr = dpr;
+
+    canvas.width = Math.round(dispW * dpr);
+    canvas.height = Math.round(dispH * dpr);
+    canvas.style.width = dispW + 'px';
+    canvas.style.height = dispH + 'px';
+  }
+
+  function drawBoard() {
+    if (!state.board || !state.board.length || !state.board[0]) return;
+    var cell = metrics.cellSize;
+    var cols = state.boardCols; // 세로선 10개
+    var rows = state.boardRows; // 가로선 9개
+    var startX = metrics.startX;
+    var startY = metrics.startY;
+    var dispW = metrics.displayW;
+    var dispH = metrics.displayH;
+    var dpr = metrics.dpr;
+    var spec = state.boardSpec || { isFull19: false, quadrant: 'BR' };
+
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, dispW, dispH);
+
+    // 🌟 바둑판 스킨 렌더링 (wood: 천연 비자목 실물 나뭇결, darkwood: 진한 원목 나뭇결, sky: 시원한 스카이) 🌟
+    var boardBorderColor = '#7c481e';
+    if (state.boardSkin === 'darkwood') {
+      if (woodGrainImg && woodGrainImg.complete && woodGrainImg.naturalWidth > 0) {
+        var pattern = ctx.createPattern(woodGrainImg, 'repeat');
+        ctx.fillStyle = pattern;
+        ctx.fillRect(0, 0, dispW, dispH);
+        ctx.fillStyle = 'rgba(100, 50, 10, 0.22)';
+        ctx.fillRect(0, 0, dispW, dispH);
+      } else {
+        ctx.fillStyle = '#deb06c';
+        ctx.fillRect(0, 0, dispW, dispH);
+      }
+      boardBorderColor = '#5c300c';
+    } else if (state.boardSkin === 'sky') {
+      ctx.fillStyle = '#dbeafe';
+      ctx.fillRect(0, 0, dispW, dispH);
+      boardBorderColor = '#2563eb';
+    } else {
+      // wood: 천연 비자목(Kaya) 실물 질감 나뭇결
+      if (woodGrainImg && woodGrainImg.complete && woodGrainImg.naturalWidth > 0) {
+        var pattern = ctx.createPattern(woodGrainImg, 'repeat');
+        ctx.fillStyle = pattern;
+        ctx.fillRect(0, 0, dispW, dispH);
+      } else {
+        ctx.fillStyle = '#f2cc84';
+        ctx.fillRect(0, 0, dispW, dispH);
+      }
+      boardBorderColor = '#8c5828';
+    }
+    canvas.style.borderColor = boardBorderColor;
+
+    var endX = startX + cell * (cols - 1);
+    var endY = startY + cell * (rows - 1);
+    var overhang = cell * 0.42; // 교재처럼 교차점 너머로 삐죽 나온 열린 선
+
+    // 🌟 [원장님 지침 1번] 테두리 외의 격자선은 얇고 또렷하게 (1px)
+    ctx.lineWidth = 1.0;
+    var gridLineColor = (state.boardSkin === 'darkwood') ? 'rgba(35, 18, 5, 0.92)' : ((state.boardSkin === 'sky') ? '#1e3a8a' : 'rgba(45, 25, 10, 0.85)');
+    ctx.strokeStyle = gridLineColor;
+
+    if (!spec.isFull19) {
+      // 🌟 [원장님 핵심 지침] 가로선 9개 x 세로선 10개, 선의 끝은 '열린 선(Overhang)'
+      if (spec.quadrant === 'BR') {
+        // 우하귀: 상변(위)과 좌변(왼쪽)은 열린 선, 우변(오른쪽)과 하변(아래쪽)은 1선 모서리
+
+        // 1) 세로선 10개 그리기 (위쪽으로 overhang만큼 삐죽 뻗음)
+        for (var c = 0; c < cols; c++) {
+          var cx = startX + cell * c;
+          ctx.beginPath();
+          ctx.moveTo(cx, startY - overhang);
+          ctx.lineTo(cx, endY);
+          ctx.stroke();
+        }
+
+        // 2) 가로선 9개 그리기 (왼쪽으로 overhang만큼 삐죽 뻗음)
+        for (var r = 0; r < rows; r++) {
+          var ry = startY + cell * r;
+          ctx.beginPath();
+          ctx.moveTo(startX - overhang, ry);
+          ctx.lineTo(endX, ry);
+          ctx.stroke();
+        }
+
+        // 3) 바둑판 1선 모서리만 굵게 (우변, 하변)
+        ctx.strokeStyle = '#2b1405';
+        ctx.lineWidth = 2.8;
+        ctx.beginPath();
+        ctx.moveTo(endX, startY - overhang);
+        ctx.lineTo(endX, endY);
+        ctx.lineTo(startX - overhang, endY);
+        ctx.stroke();
+
+        // 🌟 [원장님 지침] 화점 및 중앙 천원점 표시 (우하귀 10x10 다이어그램):
+        // ① 우하귀 4선 화점: (cols - 4, rows - 4)
+        // ② 하변 화점: (0, rows - 4) -> 하변 4선 라인과 10선 교차점
+        // ③ 우변 화점: (cols - 4, 0) -> 우변 4선 라인과 10선 교차점
+        // ④ 중앙 천원점(K10): (0, 0) -> 19줄 바둑판의 정중앙 천원점!
+        var starPoints = [
+          { x: startX + cell * (cols - 4), y: startY + cell * (rows - 4) }, // 우하귀 4-4 (화점)
+          { x: startX + cell * 0,          y: startY + cell * (rows - 4) }, // 하변 화점
+          { x: startX + cell * (cols - 4), y: startY + cell * 0 },          // 우변 화점
+          { x: startX + cell * 0,          y: startY + cell * 0 }           // 🌟 중앙 천원점 (10-10)
+        ];
+        ctx.fillStyle = '#2b1405';
+        starPoints.forEach(function (sp) {
+          ctx.beginPath();
+          ctx.arc(sp.x, sp.y, Math.max(2.6, cell * 0.08), 0, Math.PI * 2);
+          ctx.fill();
+        });
+
+      } else if (spec.quadrant === 'BL') {
+        // 좌하귀: 상변과 우변이 열린 선
+        for (var c = 0; c < cols; c++) {
+          var cx = startX + cell * c;
+          ctx.beginPath();
+          ctx.moveTo(cx, startY - overhang);
+          ctx.lineTo(cx, endY);
+          ctx.stroke();
+        }
+        for (var r = 0; r < rows; r++) {
+          var ry = startY + cell * r;
+          ctx.beginPath();
+          ctx.moveTo(startX, ry);
+          ctx.lineTo(endX + overhang, ry);
+          ctx.stroke();
+        }
+        ctx.strokeStyle = '#2b1405';
+        ctx.lineWidth = 2.8;
+        ctx.beginPath();
+        ctx.moveTo(startX, startY - overhang);
+        ctx.lineTo(startX, endY);
+        ctx.lineTo(endX + overhang, endY);
+        ctx.stroke();
+
+        var starPointsBL = [
+          { x: startX + cell * 3,          y: startY + cell * (rows - 4) },
+          { x: startX + cell * (cols - 1), y: startY + cell * (rows - 4) },
+          { x: startX + cell * 3,          y: startY + cell * 0 },
+          { x: startX + cell * (cols - 1), y: startY + cell * 0 }
+        ];
+        ctx.fillStyle = '#2b1405';
+        starPointsBL.forEach(function (sp) {
+          ctx.beginPath();
+          ctx.arc(sp.x, sp.y, Math.max(2.6, cell * 0.08), 0, Math.PI * 2);
+          ctx.fill();
+        });
+
+      } else if (spec.quadrant === 'TL') {
+        // 좌상귀
+        for (var c = 0; c < cols; c++) {
+          var cx = startX + cell * c;
+          ctx.beginPath();
+          ctx.moveTo(cx, startY);
+          ctx.lineTo(cx, endY + overhang);
+          ctx.stroke();
+        }
+        for (var r = 0; r < rows; r++) {
+          var ry = startY + cell * r;
+          ctx.beginPath();
+          ctx.moveTo(startX, ry);
+          ctx.lineTo(endX + overhang, ry);
+          ctx.stroke();
+        }
+        ctx.strokeStyle = '#2b1405';
+        ctx.lineWidth = 2.8;
+        ctx.beginPath();
+        ctx.moveTo(endX + overhang, startY);
+        ctx.lineTo(startX, startY);
+        ctx.lineTo(startX, endY + overhang);
+        ctx.stroke();
+
+        var starPointsTL = [
+          { x: startX + cell * 3,          y: startY + cell * 3 },
+          { x: startX + cell * (cols - 1), y: startY + cell * 3 },
+          { x: startX + cell * 3,          y: startY + cell * (rows - 1) },
+          { x: startX + cell * (cols - 1), y: startY + cell * (rows - 1) }
+        ];
+        ctx.fillStyle = '#2b1405';
+        starPointsTL.forEach(function (sp) {
+          ctx.beginPath();
+          ctx.arc(sp.x, sp.y, Math.max(2.6, cell * 0.08), 0, Math.PI * 2);
+          ctx.fill();
+        });
+
+      } else if (spec.quadrant === 'TR') {
+        // 우상귀
+        for (var c = 0; c < cols; c++) {
+          var cx = startX + cell * c;
+          ctx.beginPath();
+          ctx.moveTo(cx, startY);
+          ctx.lineTo(cx, endY + overhang);
+          ctx.stroke();
+        }
+        for (var r = 0; r < rows; r++) {
+          var ry = startY + cell * r;
+          ctx.beginPath();
+          ctx.moveTo(startX - overhang, ry);
+          ctx.lineTo(endX, ry);
+          ctx.stroke();
+        }
+        ctx.strokeStyle = '#2b1405';
+        ctx.lineWidth = 2.8;
+        ctx.beginPath();
+        ctx.moveTo(startX - overhang, startY);
+        ctx.lineTo(endX, startY);
+        ctx.lineTo(endX, endY + overhang);
+        ctx.stroke();
+
+        var starPointsTR = [
+          { x: startX + cell * (cols - 4), y: startY + cell * 3 },
+          { x: startX + cell * 0,          y: startY + cell * 3 },
+          { x: startX + cell * (cols - 4), y: startY + cell * (rows - 1) },
+          { x: startX + cell * 0,          y: startY + cell * (rows - 1) }
+        ];
+        ctx.fillStyle = '#2b1405';
+        starPointsTR.forEach(function (sp) {
+          ctx.beginPath();
+          ctx.arc(sp.x, sp.y, Math.max(2.6, cell * 0.08), 0, Math.PI * 2);
+          ctx.fill();
+        });
+      }
+
+    } else {
+      // 19줄 전판 문제
+      for (var i = 0; i < cols; i++) {
+        var coordX = startX + cell * i;
+        ctx.beginPath();
+        ctx.moveTo(coordX, startY);
+        ctx.lineTo(coordX, endY);
+        ctx.stroke();
+
+        var coordY = startY + cell * i;
+        ctx.beginPath();
+        ctx.moveTo(startX, coordY);
+        ctx.lineTo(endX, coordY);
+        ctx.stroke();
+      }
+      ctx.strokeStyle = '#3d2510';
+      ctx.lineWidth = 2.8;
+      ctx.strokeRect(startX, startY, cell * (cols - 1), cell * (rows - 1));
+
+      // 19줄 9개 화점
+      (courseProvider && spec.native9 ? [2, 4, 6] : [3, 9, 15]).forEach(function(hx){
+        (courseProvider && spec.native9 ? [2, 4, 6] : [3, 9, 15]).forEach(function(hy){
+          if (courseProvider && spec.native9 && (hx===4 || hy===4) && !(hx===4 && hy===4)) return;
+          ctx.fillStyle = '#4a2c11';
+          ctx.beginPath();
+          ctx.arc(startX + cell * hx, startY + cell * hy, Math.max(2.6, cell * 0.08), 0, Math.PI * 2);
+          ctx.fill();
+        });
+      });
+    }
+
+    // 🌟 [원장님 지침] 바둑판 좌표 회전 표시 (우측하변 -> 좌상 -> 전체 -> 숨김)
+    if (state.coordMode !== 'none') {
+      var coordTextColor = (state.boardSkin === 'darkwood') ? '#2e1503' : ((state.boardSkin === 'sky') ? '#1e3a8a' : '#5c3311');
+      ctx.fillStyle = coordTextColor;
+      ctx.font = 'bold ' + Math.max(11, Math.round(cell * 0.28)) + 'px -apple-system, BlinkMacSystemFont, "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+
+      var colLabels = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T'];
+
+      // 1) 상단 가로 좌표 (좌·상 또는 전체 모드) - 외곽 가장자리 쪽 배치
+      if (state.coordMode === 'left-top' || state.coordMode === 'all-four') {
+        var topCoordY = Math.round(startY - cell * 0.65);
+        for (var cc = 0; cc < cols; cc++) {
+          ctx.fillText(colLabels[cc] || (cc + 1), startX + cell * cc, topCoordY);
+        }
+      }
+
+      // 2) 하단 가로 좌표 (우·하 또는 전체 모드) - 🌟 1선 돌에 절대 가려지지 않도록 완전 바깥 가장자리 쪽으로 배치!
+      if (state.coordMode === 'right-bottom' || state.coordMode === 'all-four') {
+        var bottomCoordY = Math.round(endY + cell * 0.72);
+        for (var cc = 0; cc < cols; cc++) {
+          ctx.fillText(colLabels[cc] || (cc + 1), startX + cell * cc, bottomCoordY);
+        }
+      }
+
+      // 3) 좌측 세로 좌표 (좌·상 또는 전체 모드) - 외곽 가장자리 쪽 배치
+      if (state.coordMode === 'left-top' || state.coordMode === 'all-four') {
+        var leftCoordX = Math.round(startX - cell * 0.65);
+        for (var rr = 0; rr < rows; rr++) {
+          ctx.fillText(rows - rr, leftCoordX, startY + cell * rr);
+        }
+      }
+
+      // 4) 우측 세로 좌표 (우·하 또는 전체 모드) - 🌟 1선 돌에 절대 가려지지 않도록 완전 바깥 가장자리 쪽으로 배치!
+      if (state.coordMode === 'right-bottom' || state.coordMode === 'all-four') {
+        var rightCoordX = Math.round(endX + cell * 0.72);
+        for (var rr = 0; rr < rows; rr++) {
+          ctx.fillText(rows - rr, rightCoordX, startY + cell * rr);
+        }
+      }
+    }
+
+    // 🌟 [원장님 지침] 활로 및 단수(Atari) 돌 분석
+    var groups = getStoneGroups(state.board, cols, rows);
+    var atariStonesMap = {};
+    groups.forEach(function (g) {
+      if (g.liberties === 1) {
+        g.stones.forEach(function (s) {
+          atariStonesMap[s.x + ',' + s.y] = true;
+        });
+      }
+    });
+
+    // 5. 돌 그리기 (돌 크기 cell * 0.44)
+    var stoneRadius = cell * 0.44;
+    for (var y = 0; y < rows; y++) {
+      for (var x = 0; x < cols; x++) {
+        var v = state.board[y][x];
+        if (v) {
+          var stoneX = startX + cell * x;
+          var stoneY = startY + cell * y;
+          var isAtari = Boolean(atariStonesMap[x + ',' + y]);
+
+          drawStone(stoneX, stoneY, stoneRadius, v);
+
+          // 🌟 🚨 단수 링 렌더링 (단수 돌을 감싸는 세련된 경고 링)
+          if (isAtari && state.showAtari) {
+            ctx.save();
+            ctx.strokeStyle = 'rgba(239, 68, 68, 0.72)';
+            ctx.lineWidth = Math.max(1.4, Math.min(2.0, stoneRadius * 0.07));
+            ctx.shadowColor = 'rgba(239, 68, 68, 0.25)';
+            ctx.shadowBlur = 2;
+            ctx.beginPath();
+            ctx.arc(stoneX, stoneY, stoneRadius + 1.2, 0, Math.PI * 2);
+            ctx.stroke();
+            ctx.restore();
+          }
+
+          // 🌟 💦 3D 땀방울 연출 (단수 시 돌 우상단에 맺히는 물방울)
+          if (isAtari && state.showSweat && stoneRadius >= 10) {
+            draw3DSweatDrop(stoneX, stoneY, stoneRadius);
+          }
+        }
+      }
+    }
+
+    // 🌟 [원장님 지침] 마우스 호버 시 흐린 돌 프리뷰(Ghost Stone) 제거 (티칭 존)
+
+    // 🌟 5-2. 세모(△), 동그라미(○), 문자 라벨(가/1/A), 네모(□) 마크 렌더링 🌟
+    if (state.marks && state.marks.length > 0) {
+      // 🌟 [원장님 지침] 돌이 놓여지면 선택지 글자들(가, 나, 다 등)은 모두 사라짐
+      var isBoardChanged = false;
+      if (state.initialBoard) {
+        for (var r = 0; r < state.boardRows; r++) {
+          for (var c = 0; c < state.boardCols; c++) {
+            if (state.board[r][c] !== state.initialBoard[r][c]) {
+              isBoardChanged = true;
+              break;
+            }
+          }
+          if (isBoardChanged) break;
+        }
+      }
+      var hasMovesPlayed = (state.playedMoves && state.playedMoves.length > 0) ||
+                           (state.trialMoves && state.trialMoves.length > 0) ||
+                           isBoardChanged ||
+                           state.showAnswer;
+
+      state.marks.forEach(function (mk) {
+        var stoneColor = state.board[mk.y][mk.x]; // 0: 빈칸, 1: 흑돌, 2: 백돌
+
+        if (mk.type === 'label') {
+          var initColor = state.initialBoard ? state.initialBoard[mk.y][mk.x] : 0;
+          // 1) 원래 빈 교차점이었는데 수순 진행으로 돌이 놓여졌으면 라벨 숨김
+          if (initColor === 0 && stoneColor !== 0) return;
+          // 2) 원래 돌 위에 있던 라벨인데 돌이 따내어져 빈칸이 되었으면 라벨 숨김
+          if (initColor !== 0 && stoneColor === 0) return;
+          // 3) 원래 돌의 색상과 현재 돌의 색상이 달라졌으면(따내고 다른 색 돌 착수) 라벨 숨김
+          if (initColor !== 0 && stoneColor !== initColor) return;
+          // 4) 빈칸 라벨인데 수순 진행 중이면 숨김
+          if (initColor === 0 && hasMovesPlayed) return;
+        }
+
+        // 🌟 [원장님 지침] 세모(△), 동그라미(○), 네모(□) 표시 돌을 따내고 나면 마크가 빈 교차점에 남지 않도록 제거
+        if (mk.type === 'triangle' || mk.type === 'circle' || mk.type === 'square') {
+          // 1) 원래 돌 위에 있던 마크인데 돌이 따내어져 빈 교차점이 되었으면 마크를 숨김
+          if (state.initialBoard && state.initialBoard[mk.y][mk.x] !== 0 && stoneColor === 0) return;
+          // 2) 원래 표시되어 있던 돌이 따내어지고 다른 색 돌이 놓였을 때도 마크를 그리지 않음
+          if (state.initialBoard && state.initialBoard[mk.y][mk.x] !== 0 && state.board[mk.y][mk.x] !== state.initialBoard[mk.y][mk.x]) return;
+        }
+
+        var mx = startX + cell * mk.x;
+        var my = startY + cell * mk.y;
+        drawProblemMark(mx, my, cell, mk, stoneColor);
+      });
+    }
+
+    // 🌟 [원장님 지침] 수순 번호 표시 (놓아보기로 둔 돌 위에 1, 2, 3...)
+    // [수순 번호 표시] 놓아보기 및 문제 풀이 착수 돌 위에 1, 2, 3... 선명하게 렌더링
+    if (state.showStepNumbers) {
+      var movesToNumber = state.trialMode ? state.trialMoves : state.playedMoves;
+      if (movesToNumber && movesToNumber.length > 0) {
+        movesToNumber.forEach(function (tm, idx) {
+          if (state.board[tm.y][tm.x] === tm.color) {
+            var tX = startX + cell * tm.x;
+            var tY = startY + cell * tm.y;
+            var numStr = (tm.step || (idx + 1)).toString();
+            ctx.save();
+            ctx.font = 'bold ' + Math.round(cell * 0.46) + 'px "Fredoka", "Malgun Gothic", sans-serif';
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+            if (tm.color === 2) {
+              ctx.strokeStyle = "#ffffff";
+              ctx.lineWidth = Math.max(2, Math.round(cell * 0.06));
+              ctx.strokeText(numStr, tX, tY);
+              ctx.fillStyle = "#0f172a";
+              ctx.fillText(numStr, tX, tY);
+            } else {
+              ctx.strokeStyle = "#000000";
+              ctx.lineWidth = Math.max(2, Math.round(cell * 0.05));
+              ctx.strokeText(numStr, tX, tY);
+              ctx.fillStyle = "#ffffff";
+              ctx.fillText(numStr, tX, tY);
+            }
+            ctx.restore();
+          }
+        });
+      }
+    }
+
+    // 6. 정답 보기 활성화 시 번호 마커 표시
+    if (state.showAnswer && state.answerMoves.length > 0) {
+      state.answerMoves.forEach(function (m) {
+        var cx = startX + cell * m.x;
+        var cy = startY + cell * m.y;
+        drawStone(cx, cy, stoneRadius, m.color, 0.95);
+
+        ctx.fillStyle = (m.color === 1) ? '#FFFFFF' : '#000000';
+        ctx.font = 'bold ' + Math.round(cell * 0.48) + 'px "Fredoka", "Malgun Gothic", sans-serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(m.step, cx, cy);
+      });
+    }
+
+    // 🌟 무늬목 텍스처 렌더링 완료 시 바둑판 노출 (무늬목 전 색상 깜빡임 원천 차단)
+    if (state.boardSkin === 'sky' || (woodGrainImg && woodGrainImg.complete && woodGrainImg.naturalWidth > 0)) {
+      revealTeacherBoard();
+    }
+  }
+
+  /* ---------- 🌟 문제 마크 렌더링 (세모 △, 동그라미 ○, 문자 라벨, 네모 □) ---------- */
+  function drawProblemMark(cx, cy, cell, mk, stoneColor) {
+    ctx.save();
+    var strokeW = Math.max(1.8, Math.min(2.4, cell * 0.045));
+    ctx.lineWidth = strokeW;
+    ctx.lineJoin = 'round';
+    ctx.lineCap = 'round';
+
+    if (mk.type === 'triangle') {
+      // 🌟 세모(△): 정삼각형 (돌 크기 대비 아담하게 안착, 바깥으로 튀어나가지 않음)
+      var R = cell * 0.16;
+      var topY = cy - R * 1.05;
+      var botY = cy + R * 0.55;
+      var sideX = R * 0.90;
+      ctx.beginPath();
+      ctx.moveTo(cx, topY);
+      ctx.lineTo(cx + sideX, botY);
+      ctx.lineTo(cx - sideX, botY);
+      ctx.closePath();
+
+      if (stoneColor === 1) {
+        // 흑돌 위 세모: 화이트 (투명)
+        ctx.strokeStyle = '#ffffff';
+        ctx.stroke();
+      } else if (stoneColor === 2) {
+        // 백돌 위 세모: 다크 차콜 (투명)
+        ctx.strokeStyle = '#18181b';
+        ctx.stroke();
+      } else {
+        // 빈 교차점 위 세모: 다크 잉크 라인으로 렌더링
+        ctx.strokeStyle = '#0f172a';
+        ctx.stroke();
+      }
+    } else if (mk.type === 'circle') {
+      // 🌟 동그라미(○): 돌 중앙에 쏙 들어가는 단정한 원 (내부 투명)
+      var circleR = cell * 0.14;
+      ctx.beginPath();
+      ctx.arc(cx, cy, circleR, 0, Math.PI * 2);
+
+      if (stoneColor === 1) {
+        ctx.strokeStyle = '#ffffff';
+        ctx.stroke();
+      } else if (stoneColor === 2) {
+        ctx.strokeStyle = '#18181b';
+        ctx.stroke();
+      } else {
+        // 빈 교차점 위 동그라미: 다크 잉크 라인으로 렌더링
+        ctx.strokeStyle = '#0f172a';
+        ctx.stroke();
+      }
+    } else if (mk.type === 'label') {
+      // 🌟 문자 라벨: '가', '나', '다', '1', 'A' 등
+      // [원장님 지침] 흰돌 위에 올리는 방식(원형 배지)을 쓰지 말고, 그냥 글자만 선명하게 표시!
+      var text = mk.label || '';
+      var fontSize = Math.max(13, Math.round(cell * 0.40));
+      ctx.font = '900 ' + fontSize + 'px -apple-system, BlinkMacSystemFont, "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+
+      if (stoneColor === 1) {
+        ctx.fillStyle = '#ffffff';
+        ctx.fillText(text, cx, cy);
+      } else if (stoneColor === 2) {
+        ctx.fillStyle = '#18181b';
+        ctx.fillText(text, cx, cy);
+      } else {
+        // 🌟 빈 교차점 위: 흰돌 원형 배지 없이 글자만 직접 렌더링
+        // 바둑판 격자선에 글자가 묻히거나 잘리지 않도록 바둑판 톤의 부드러운 클리어링 외곽선 적용
+        ctx.lineWidth = Math.max(2.5, cell * 0.08);
+        ctx.lineJoin = 'round';
+        ctx.strokeStyle = (state.boardSkin === 'sky') ? 'rgba(219, 234, 254, 0.95)' : 'rgba(247, 238, 220, 0.95)';
+        ctx.strokeText(text, cx, cy);
+
+        // 깊고 선명한 잉크 블랙 텍스트
+        ctx.fillStyle = '#0f172a';
+        ctx.fillText(text, cx, cy);
+      }
+    } else if (mk.type === 'square') {
+      // 🌟 네모(□): 돌 중앙에 쏙 들어가는 사각형 (내부 투명)
+      var sqHalf = cell * 0.12;
+      ctx.beginPath();
+      ctx.rect(cx - sqHalf, cy - sqHalf, sqHalf * 2, sqHalf * 2);
+
+      if (stoneColor === 1) {
+        ctx.strokeStyle = '#ffffff';
+        ctx.stroke();
+      } else if (stoneColor === 2) {
+        ctx.strokeStyle = '#18181b';
+        ctx.stroke();
+      } else {
+        // 빈 교차점 위 네모: 다크 잉크 라인으로 렌더링
+        ctx.strokeStyle = '#0f172a';
+        ctx.stroke();
+      }
+    }
+    ctx.restore();
+  }
+
+  function drawStone(cx, cy, r, color, alpha) {
+    ctx.save();
+    if (alpha !== undefined) ctx.globalAlpha = alpha;
+
+    // 1. 고양이, 우주, 흑백 다이아몬드 (3D 고화질 스프라이트)
+    var spriteKey = state.stoneStyle + '_' + color;
+    var spriteImg = stoneSprites[spriteKey];
+
+    if (spriteImg && spriteImg.complete && spriteImg.naturalWidth > 0) {
+      ctx.shadowColor = 'rgba(0, 0, 0, 0.45)';
+      ctx.shadowBlur = r * 0.38;
+      ctx.shadowOffsetY = r * 0.14;
+      ctx.drawImage(spriteImg, cx - r, cy - r, r * 2, r * 2);
+    } else {
+      var grad = ctx.createRadialGradient(cx - r * 0.32, cy - r * 0.35, r * 0.08, cx, cy, r);
+
+      if (state.stoneStyle === 'gem') {
+        // 💎 영롱한 보석돌: 로열 블루 사파이어(흑) & 로즈 핑크(백)
+        if (color === 1) {
+          grad.addColorStop(0, '#dbeafe');
+          grad.addColorStop(0.2, '#60a5fa');
+          grad.addColorStop(0.5, '#2563eb');
+          grad.addColorStop(0.8, '#1e40af');
+          grad.addColorStop(1, '#0f172a');
+        } else {
+          grad.addColorStop(0, '#ffffff');
+          grad.addColorStop(0.2, '#fdf2f8');
+          grad.addColorStop(0.48, '#fbcfe8');
+          grad.addColorStop(0.8, '#f472b6');
+          grad.addColorStop(1, '#be185d');
+        }
+      } else {
+        // 정통 명품 바둑돌 (Classic) 및 눈 두개 돌 바탕
+        if (color === 1) {
+          grad.addColorStop(0, '#666666');
+          grad.addColorStop(0.55, '#1e1e1e');
+          grad.addColorStop(1, '#080808');
+        } else {
+          grad.addColorStop(0, '#ffffff');
+          grad.addColorStop(0.6, '#f3f3f3');
+          grad.addColorStop(1, '#d4d4d4');
+        }
+      }
+
+      ctx.beginPath();
+      ctx.arc(cx, cy, r, 0, Math.PI * 2);
+      ctx.fillStyle = grad;
+      ctx.shadowColor = 'rgba(0, 0, 0, 0.4)';
+      ctx.shadowBlur = r * 0.4;
+      ctx.shadowOffsetY = r * 0.15;
+      ctx.fill();
+    }
+    ctx.restore();
+
+    // 2. 앙증맞은 '눈 두개 돌' (cute): 반짝이는 초롱초롱 눈망울 렌더링
+    if (state.stoneStyle === 'cute' && r >= 10) {
+      ctx.save();
+      var eyeY = cy - r * 0.06;
+      ctx.fillStyle = '#ffffff';
+      ctx.beginPath();
+      ctx.arc(cx - r * 0.30, eyeY, r * 0.18, 0, Math.PI * 2);
+      ctx.arc(cx + r * 0.30, eyeY, r * 0.18, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.fillStyle = '#111111';
+      ctx.beginPath();
+      ctx.arc(cx - r * 0.28, eyeY, r * 0.10, 0, Math.PI * 2);
+      ctx.arc(cx + r * 0.32, eyeY, r * 0.10, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.fillStyle = '#ffffff';
+      ctx.beginPath();
+      ctx.arc(cx - r * 0.33, eyeY - r * 0.04, r * 0.04, 0, Math.PI * 2);
+      ctx.arc(cx + r * 0.27, eyeY - r * 0.04, r * 0.04, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+    }
+  }
+
+  /* ---------- 🌟 마우스 커서 포인터 처리 (흐린 돌 표시 제거) ---------- */
+  canvas.addEventListener('mousemove', function (e) {
+    if (!state.currentBook || state.isSolved) {
+      canvas.style.cursor = 'default';
+      return;
+    }
+    var rect = canvas.getBoundingClientRect();
+    var px = e.clientX - rect.left, py = e.clientY - rect.top;
+    var cell = metrics.cellSize;
+    var startX = metrics.startX, startY = metrics.startY;
+    var x = Math.round((px - startX) / cell);
+    var y = Math.round((py - startY) / cell);
+    var cols = state.boardCols, rows = state.boardRows;
+    if (x >= 0 && y >= 0 && x < cols && y < rows) {
+      var exactX = startX + cell * x, exactY = startY + cell * y;
+      var dist = Math.hypot(px - exactX, py - exactY);
+      if (dist <= cell * 0.48 && (state.boardEditTool || state.board[y][x] === 0)) {
+        canvas.style.cursor = 'pointer';
+        return;
+      }
+    }
+    canvas.style.cursor = 'default';
+  });
+
+  canvas.addEventListener('mouseleave', function () {
+    canvas.style.cursor = 'default';
+  });
+
+  /* ---------- 착수 인터랙션 ---------- */
+  canvas.addEventListener('click', function (e) {
+    state.hover = null;
+    if (!state.currentBook) return;
+    var rect = canvas.getBoundingClientRect();
+    var px = e.clientX - rect.left;
+    var py = e.clientY - rect.top;
+    var cell = metrics.cellSize;
+
+    var startX = metrics.startX || cell;
+    var startY = metrics.startY || cell;
+    var gx = Math.round((px - startX) / cell);
+    var gy = Math.round((py - startY) / cell);
+
+    if (gx < 0 || gx >= state.boardCols || gy < 0 || gy >= state.boardRows) return;
+
+    var currentProbForChoice = state.currentProblems ? state.currentProblems[state.currentProblemIndex] : null;
+    if (currentProbForChoice && typeof isChoiceProblem === 'function' && isChoiceProblem(currentProbForChoice) && !state.trialMode && !state.boardEditTool) {
+      showToast('하단의 O / X 선택 버튼을 클릭하여 문제를 풀어주세요! 👆');
+      return;
+    }
+
+    // 🌟 문제별 편집 모드(흑돌/백돌/지우개/세모/정답수순) 활성화 시 바둑판 직접 편집 처리 🌟
+    if (state.boardEditTool) {
+      handleBoardEditClick(gx, gy);
+      return;
+    }
+
+    if (courseProvider && !courseProvider.canGrade(state.currentProblems[state.currentProblemIndex])) state.trialMode = true;
+    // 🌟 [원장님 지침] 놓아보기 모드: 자유 착수, 흑/백 교차/연속 착수, 사석 완벽 따내기 & 착수금지 방지!
+    if (state.trialMode) {
+      if (state.board[gy][gx] !== 0) {
+        // 🌟 돌 두 번 클릭(이미 있는 돌 클릭) 시 제거!
+        var removedColor = state.board[gy][gx];
+        state.board[gy][gx] = 0;
+
+        // 수순 목록에서 제거 및 번호 재정렬
+        state.trialMoves = state.trialMoves.filter(function (m) {
+          return !(m.x === gx && m.y === gy);
+        });
+        state.trialMoves.forEach(function (m, idx) {
+          m.step = idx + 1;
+        });
+
+        // 교차 모드인 경우: 지운 돌의 색상으로 턴 복귀
+        if (state.placementMode === 'alternate') {
+          state.nextTurn = removedColor;
+        }
+
+        sfx('playStone');
+        // toast 제거됨
+        pushTrialHistory();
+        updatePlacementUI();
+        drawBoard();
+        return;
+      }
+
+      var playColor = state.nextTurn;
+      if (state.placementMode === 'blackOnly') playColor = 1;
+      else if (state.placementMode === 'whiteOnly') playColor = 2;
+
+      // 1. 가상 착수
+      state.board[gy][gx] = playColor;
+
+      // 2. 상대방 사석(활로 0) 따내기 처리
+      var oppColor = playColor === 1 ? 2 : 1;
+      var testGroups = getStoneGroups(state.board, state.boardCols, state.boardRows);
+      var capturedCount = 0;
+      testGroups.forEach(function (g) {
+        if (g.color === oppColor && g.liberties === 0) {
+          g.stones.forEach(function (s) {
+            state.board[s.y][s.x] = 0;
+            capturedCount++;
+          });
+        }
+      });
+
+      // 3. 착수금지점 검사: 상대를 따내지 못했는데 자신의 활로가 0인 경우
+      var ownGroups = getStoneGroups(state.board, state.boardCols, state.boardRows);
+      var selfSuicide = false;
+      ownGroups.forEach(function (g) {
+        if (g.color === playColor && g.liberties === 0) {
+          var hasPlaced = g.stones.some(function (s) { return s.x === gx && s.y === gy; });
+          if (hasPlaced) {
+            selfSuicide = true;
+          }
+        }
+      });
+
+      if (selfSuicide && capturedCount === 0) {
+        state.board[gy][gx] = 0; // 착수 취소
+        sfx('playDdang');
+        showSideFeedback('illegal');
+        toast('🚫 착수금지점에는 둘 수 없습니다!');
+        return;
+      }
+
+      // 사석 따내기 효과음 (화면 팝업 메시지는 제거하고 깔끔한 사운드만 재생)
+      if (capturedCount > 0) {
+        sfx('playCapture');
+      } else {
+        sfx('playStone');
+      }
+
+      // 수순 번호 기록
+      state.trialMoves.push({
+        x: gx,
+        y: gy,
+        color: playColor,
+        step: state.trialMoves.length + 1
+      });
+
+      // 교차 모드 턴 교대
+      if (state.placementMode === 'alternate') {
+        state.nextTurn = playColor === 1 ? 2 : 1;
+      }
+
+      pushTrialHistory();
+      updatePlacementUI();
+      drawBoard();
+      return;
+    }
+
+    // 자유 시연 모드
+    if (state.freeMode) {
+      if (state.board[gy][gx] !== 0) {
+        state.board[gy][gx] = 0; // 돌 제거
+      } else {
+        state.board[gy][gx] = state.freeColor;
+        sfx('playStone');
+        state.freeColor = state.freeColor === 1 ? 2 : 1;
+      }
+      drawBoard();
+      return;
+    }
+
+    // 문제 풀이 모드: 이미 돌이 놓여진 자리는 무시, 상대방 응수 중 클릭 방지
+    if (state.board[gy][gx] !== 0 || state.isOpponentResponding) return;
+
+    var p = state.currentProblems[state.currentProblemIndex];
+    var myColor = getProblemStartingColor(p);
+    var oppColor = myColor === 1 ? 2 : 1;
+
+    // 🌟 착수금지점 검사: 상대 돌을 따낼 수 없는데 자신의 활로가 0이 되는 곳 🌟
+    state.board[gy][gx] = myColor;
+    var testGroups = getStoneGroups(state.board, state.boardCols, state.boardRows);
+    var wouldCapture = false;
+    var isSuicide = false;
+
+    testGroups.forEach(function (g) {
+      if (g.color === oppColor && g.liberties === 0) {
+        wouldCapture = true;
+      }
+    });
+
+    testGroups.forEach(function (g) {
+      if (g.color === myColor && g.liberties === 0) {
+        if (g.stones.some(function (s) { return s.x === gx && s.y === gy; })) {
+          isSuicide = true;
+        }
+      }
+    });
+
+    state.board[gy][gx] = 0; // 원복
+
+    if (isSuicide && !wouldCapture) {
+      sfx('playDdang');
+      showSideFeedback('illegal');
+      toast('🚫 착수금지점에는 둘 수 없습니다!');
+      return;
+    }
+
+    // 🌟 [원장님 원칙] 활로 막기 등 정답 착점 다중 수순 및 순서 무관(Order-Independent) 판정! 🌟
+    var matchingBranches = [];
+    var userStep = state.playedMoves.length;
+
+    state.activeBranches.forEach(function (branch) {
+      var isAllMyColor = branch.every(function (m) { return m.color === myColor; });
+      if (isAllMyColor) {
+        // 상대방 응수 없는 다중 활로 착점: 남은 활로 중 어느 것을 먼저 두어도 정답 인정!
+        var playedCoords = state.playedMoves.map(function (m) { return m.x + ',' + m.y; });
+        var unplayedMoves = branch.filter(function (m) { return playedCoords.indexOf(m.x + ',' + m.y) === -1; });
+        var matchedIndex = -1;
+        for (var mi = 0; mi < unplayedMoves.length; mi++) {
+          if (unplayedMoves[mi].x === gx && unplayedMoves[mi].y === gy && unplayedMoves[mi].color === myColor) {
+            matchedIndex = mi;
+            break;
+          }
+        }
+        if (matchedIndex !== -1) {
+          var matchedMove = unplayedMoves[matchedIndex];
+          var remaining = unplayedMoves.filter(function (_, idx) { return idx !== matchedIndex; });
+          var reordered = branch.filter(function (m) { return playedCoords.indexOf(m.x + ',' + m.y) !== -1; })
+            .concat([matchedMove])
+            .concat(remaining);
+          matchingBranches.push(reordered);
+        }
+      } else {
+        // 정통 수순 문제 (상대방 자동 응수 포함)
+        var expectedMove = branch[userStep];
+        if (expectedMove && expectedMove.x === gx && expectedMove.y === gy && expectedMove.color === myColor) {
+          matchingBranches.push(branch);
+        }
+      }
+    });
+
+    if (matchingBranches.length === 0) {
+      // ❌ 오답: 수순이나 활로에 맞지 않는 곳에 둔 경우
+      state.board[gy][gx] = myColor;
+      sfx('playDdang');
+      showSideFeedback('wrong');
+      drawBoard();
+      setTimeout(function () {
+        state.board[gy][gx] = 0;
+        drawBoard();
+      }, 750);
+      return;
+    }
+
+    // ⭕ 유효한 정답 착수!
+    state.activeBranches = matchingBranches;
+    var currentBranch = matchingBranches[0];
+
+    state.board[gy][gx] = myColor;
+    state.playedMoves.push({ x: gx, y: gy, color: myColor, step: state.playedMoves.length + 1 });
+
+    // 사석 따내기 처리 (상대방 활로 0인 돌 제거)
+    var groups = getStoneGroups(state.board, state.boardCols, state.boardRows);
+    var capturedAny = false;
+    groups.forEach(function (g) {
+      if (g.color === oppColor && g.liberties === 0) {
+        g.stones.forEach(function (s) {
+          state.board[s.y][s.x] = 0;
+        });
+        capturedAny = true;
+      }
+    });
+
+    // 🌟 착수는 언제나 명쾌한 바둑돌 고유 착수음("딱!")이 먼저 100% 울립니다.
+    sfx('playStone');
+    if (capturedAny) {
+      setTimeout(function () { sfx('playCapture'); }, 60);
+    }
+
+    drawBoard();
+
+    // 문제 성공 여부 확인
+    var isFinished = state.playedMoves.length >= currentBranch.length;
+    if (isFinished) {
+      state.solved = true;
+      var curKey = progressKey(state.currentProblemIndex);
+      state.solvedMap[curKey] = true;
+      renderProblemGrid();
+      showSideFeedback('correct');
+
+      // 🌟 착수음("딱!")이 먼저 확실하게 들린 직후 150ms 시차를 두고 "딩동댕~" 정답 축하음 재생
+      setTimeout(function () {
+        sfx('playSuccess');
+      }, 150);
+
+      // 🌟 문제 정답 시 1.1초 후 자동으로 다음 문제로 전환
+      clearTimeout(state.autoNextTimer);
+      state.autoNextTimer = setTimeout(function () {
+        if (state.currentProblemIndex < state.currentProblems.length - 1) {
+          loadProblem(state.currentProblemIndex + 1);
+        } else {
+          // toast 제거됨
+        }
+      }, 1100);
+    } else {
+      // 다음 수가 상대방(컴퓨터) 응수인지 확인
+      var nextStep = state.playedMoves.length;
+      var nextOppMove = currentBranch[nextStep];
+      if (nextOppMove && nextOppMove.color === oppColor) {
+        state.isOpponentResponding = true;
+        // toast 제거됨
+        var courseResponseVersion = state._courseLoadVersion;
+        setTimeout(function () {
+          if (courseProvider && courseResponseVersion !== state._courseLoadVersion) return;
+          state.board[nextOppMove.y][nextOppMove.x] = oppColor;
+          state.playedMoves.push(nextOppMove);
+          state.isOpponentResponding = false;
+
+          // 🌟 상대방 착수로 인해 활로가 0이 된 내(흑/백) 돌 사석 따내기 완벽 처리!
+          var oppCheckGroups = getStoneGroups(state.board, state.boardCols, state.boardRows);
+          var oppCapturedCount = 0;
+          oppCheckGroups.forEach(function (g) {
+            if (g.color === myColor && g.liberties === 0) {
+              g.stones.forEach(function (s) {
+                state.board[s.y][s.x] = 0;
+                oppCapturedCount++;
+              });
+            }
+          });
+
+          sfx('playStone');
+          if (oppCapturedCount > 0) {
+            setTimeout(function () { sfx('playCapture'); }, 60);
+          }
+
+          // 턴을 다시 내 차례(myColor)로 복귀
+          state.nextTurn = myColor;
+          updatePlacementUI();
+          drawBoard();
+
+          // 상대방 응수 후 문제 완료 여부 확인
+          if (state.playedMoves.length >= currentBranch.length) {
+            state.solved = true;
+            var cKey = progressKey(state.currentProblemIndex);
+            state.solvedMap[cKey] = true;
+            renderProblemGrid();
+            showSideFeedback('correct');
+            setTimeout(function () {
+              sfx('playSuccess');
+            }, 150);
+            clearTimeout(state.autoNextTimer);
+            state.autoNextTimer = setTimeout(function () {
+              if (state.currentProblemIndex < state.currentProblems.length - 1) {
+                loadProblem(state.currentProblemIndex + 1);
+              }
+            }, 1100);
+          } else {
+            // toast 제거됨
+          }
+        }, 500);
+      } else {
+        // 남은 활로를 연속으로 막아야 하는 다중 착수 문제
+        // toast 제거됨
+      }
+    }
+  });
+
+  /* ---------- 버튼 이벤트 바인딩 ---------- */
+    seriesSelect.addEventListener('change', function () { onSeriesChange(false); });
+  bookSelect.addEventListener('change', function () { loadBook(bookSelect.value, false); });
+  chapterSelect.addEventListener('change', function () { onChapterChange(false); });
+
+  document.getElementById('btnPrevProblem').addEventListener('click', function () {
+    if (state.currentProblemIndex > 0) loadProblem(state.currentProblemIndex - 1);
+  });
+  document.getElementById('btnNextProblem').addEventListener('click', function () {
+    if (state.currentProblemIndex < state.currentProblems.length - 1) {
+      loadProblem(state.currentProblemIndex + 1);
+    }
+  });
+
+  function resetCurrentProblem() {
+    if (typeof clearChoiceHighlights === 'function') clearChoiceHighlights();
+    if (state.autoNextTimer) {
+      clearTimeout(state.autoNextTimer);
+      state.autoNextTimer = null;
+    }
+    state.trialMode = false;
+    var btnTrialEl = document.getElementById('btnToggleTrial');
+    if (btnTrialEl) btnTrialEl.classList.remove('active');
+    state.board = state.initialBoard.map(function (row) { return row.slice(); });
+    state.showAnswer = false;
+    state.playedMoves = [];
+    state.trialMoves = [];
+    state.activeBranches = state.answerBranches.slice();
+    state.isOpponentResponding = false;
+    state.placementMode = 'alternate';
+
+    var p = state.currentProblems[state.currentProblemIndex];
+    var defColor = getProblemStartingColor(p);
+    state.nextTurn = defColor;
+
+    state.historyStack = [{
+      board: state.board.map(function (row) { return row.slice(); }),
+      nextTurn: state.nextTurn,
+      moves: []
+    }];
+    state.historyIndex = 0;
+    updatePlacementUI();
+    var btnAnsReset = document.getElementById('btnAnswer');
+    if (btnAnsReset) btnAnsReset.textContent = '👁️ 정답';
+
+    hintBox.hidden = true;
+    var btnHintEl = document.getElementById('btnHint');
+    if (btnHintEl) btnHintEl.classList.remove('active');
+
+    drawBoard();
+    if (typeof renderChoiceButtons === 'function') renderChoiceButtons(p);
+    if (courseProvider) courseProvider.onProblemLoaded(state, p);
+  }
+
+  var btnHintEl = document.getElementById('btnHint');
+  if (btnHintEl) {
+    btnHintEl.addEventListener('click', function () {
+      hintBox.hidden = !hintBox.hidden;
+      btnHintEl.classList.toggle('active', !hintBox.hidden);
+    });
+  }
+
+  document.getElementById('btnAnswer').addEventListener('click', function () {
+    if (courseProvider && courseProvider.onAnswerClick(state, state.currentProblems[state.currentProblemIndex], this)) return;
+    if (state.autoNextTimer) {
+      clearTimeout(state.autoNextTimer);
+      state.autoNextTimer = null;
+    }
+    state.showAnswer = !state.showAnswer;
+    this.textContent = state.showAnswer ? '🙈 숨김' : '👁️ 정답';
+    if (state.showAnswer) {
+      if (typeof highlightCorrectChoice === 'function') highlightCorrectChoice(state.currentProblems[state.currentProblemIndex]);
+    } else {
+      if (typeof clearChoiceHighlights === 'function') clearChoiceHighlights();
+    }
+
+    // 정답을 볼 때는 놓아보기 모드를 자동으로 해제하여 잔존 돌과 충돌 방지
+    if (state.showAnswer && state.trialMode) {
+      state.trialMode = false;
+      var btnTrialEl = document.getElementById('btnToggleTrial');
+      if (btnTrialEl) btnTrialEl.classList.remove('active');
+      restoreProblemBoardState();
+      updatePlacementUI();
+    }
+    drawBoard();
+    if (typeof renderChoiceButtons === 'function') renderChoiceButtons(p);
+  });
+
+  var btnResetEl = document.getElementById('btnReset');
+  if (btnResetEl) {
+    btnResetEl.addEventListener('click', resetCurrentProblem);
+  }
+
+  var btnToggleFree = document.getElementById('btnToggleFree');
+  if (btnToggleFree) {
+    btnToggleFree.addEventListener('click', function () {
+      state.freeMode = !state.freeMode;
+      if (freeModeStatus) freeModeStatus.textContent = state.freeMode ? 'ON' : 'OFF';
+      this.classList.toggle('active', state.freeMode);
+      // toast 제거됨
+    });
+  }
+
+  document.getElementById('btnFullscreen').addEventListener('click', function () {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen().catch(function(){});
+    } else {
+      document.exitFullscreen().catch(function(){});
+    }
+  });
+
+    // 키보드 단축키 (좌우 화살표: 문제 이동, A: 정답, R: 초기화)
+  window.addEventListener('keydown', function (e) {
+    if (!state.authenticated && !courseProvider) return;
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT') return;
+    if (e.key === 'ArrowLeft') {
+      if (state.currentProblemIndex > 0) loadProblem(state.currentProblemIndex - 1);
+    } else if (e.key === 'ArrowRight') {
+      if (state.currentProblemIndex < state.currentProblems.length - 1) {
+        loadProblem(state.currentProblemIndex + 1);
+      }
+    } else if (e.key === 'a' || e.key === 'A') {
+      document.getElementById('btnAnswer').click();
+    } else if (e.key === 'r' || e.key === 'R') {
+      resetCurrentProblem();
+    }
+  });
+
+  window.addEventListener('resize', function () {
+    if (state.authenticated || courseProvider) {
+      layoutBoard();
+      drawBoard();
+    }
+  });
+
+  /* ---------- 시작 ---------- */
+  
+  /* ---------- 🌟 놓아보기 히스토리 스택 & 턴 보존 🌟 ---------- */
+  function pushTrialHistory() {
+    var copy = state.board.map(function (row) { return row.slice(); });
+    state.historyStack = state.historyStack.slice(0, state.historyIndex + 1);
+    state.historyStack.push({
+      board: copy,
+      nextTurn: state.nextTurn,
+      moves: state.trialMoves.slice()
+    });
+    state.historyIndex = state.historyStack.length - 1;
+  }
+
+  function applyHistoryIndex(idx) {
+    if (idx < 0 || idx >= state.historyStack.length) return;
+    state.historyIndex = idx;
+    var snap = state.historyStack[idx];
+    if (snap && snap.board) {
+      state.board = snap.board.map(function (row) { return row.slice(); });
+      state.nextTurn = snap.nextTurn;
+      state.trialMoves = (snap.moves || []).slice();
+    } else if (Array.isArray(snap)) {
+      state.board = snap.map(function (row) { return row.slice(); });
+    }
+    updatePlacementUI();
+    drawBoard();
+    if (typeof renderChoiceButtons === 'function') renderChoiceButtons(p);
+  }
+
+  function restoreProblemBoardState() {
+    state.board = state.initialBoard.map(function (row) { return row.slice(); });
+    state.playedMoves.forEach(function (m) {
+      state.board[m.y][m.x] = m.color;
+      var oc = m.color === 1 ? 2 : 1;
+      var groups = getStoneGroups(state.board, state.boardCols, state.boardRows);
+      groups.forEach(function (g) {
+        if (g.color === oc && g.liberties === 0) {
+          g.stones.forEach(function (s) {
+            state.board[s.y][s.x] = 0;
+          });
+        }
+      });
+    });
+    var defColor = 1;
+    if (state.answerBranches.length > 0 && state.answerBranches[0].length > 0) {
+      defColor = state.answerBranches[0][0].color;
+    } else if (state.currentProblems[state.currentProblemIndex] && state.currentProblems[state.currentProblemIndex].start && state.currentProblems[state.currentProblemIndex].start.toUpperCase() === 'W') {
+      defColor = 2;
+    }
+    state.nextTurn = defColor;
+  }
+
+  function updatePlacementUI() {
+    var btns = document.querySelectorAll('.placement-group .tool-btn');
+    btns.forEach(function (btn) {
+      var mode = btn.dataset.placeMode;
+      btn.classList.toggle('active', mode === state.placementMode);
+      if (mode === 'alternate') {
+        var nextStoneText = state.nextTurn === 1 ? '⚫ 흑' : '⚪ 백';
+        btn.title = '흑·백 교차 착수 (다음 착수: ' + nextStoneText + ')';
+      }
+    });
+
+    if (state.trialMode && qTurnBadge) {
+      var turnLabel = (state.placementMode === 'blackOnly') ? '⚫ 흑만' :
+                      (state.placementMode === 'whiteOnly') ? '⚪ 백만' :
+                      (state.nextTurn === 1 ? '🔄⚫ 흑선' : '🔄⚪ 백선');
+      qTurnBadge.textContent = '✍️ ' + turnLabel;
+    } else if (!state.trialMode && qTurnBadge && state.currentProblems[state.currentProblemIndex]) {
+      var p = state.currentProblems[state.currentProblemIndex];
+      var defCol = getProblemStartingColor(p);
+      qTurnBadge.textContent = (defCol === 2) ? '⚪ 백선' : '⚫ 흑선';
+    }
+  }
+
+  /* ---------- 🌟 강사용 수업 특수 툴바 이벤트 바인딩 🌟 ---------- */
+  function initTeachingToolbar() {
+    // 1. 놓아보기 토글
+    var btnTrial = document.getElementById('btnToggleTrial');
+    if (btnTrial) {
+      btnTrial.addEventListener('click', function () {
+        if (state.autoNextTimer) {
+          clearTimeout(state.autoNextTimer);
+          state.autoNextTimer = null;
+        }
+        state.trialMode = !state.trialMode;
+        btnTrial.classList.toggle('active', state.trialMode);
+
+        if (state.trialMode) {
+          // 놓아보기를 켤 때 정답 보기가 켜져 있으면 자동으로 숨김
+          if (state.showAnswer) {
+            state.showAnswer = false;
+            var btnAns = document.getElementById('btnAnswer');
+            if (btnAns) btnAns.textContent = '👁️ 정답 보기';
+          }
+          state.trialMoves = [];
+          var startTurn = 1;
+          if (state.playedMoves.length > 0) {
+            var lastM = state.playedMoves[state.playedMoves.length - 1];
+            startTurn = lastM.color === 1 ? 2 : 1;
+          } else if (state.answerBranches.length > 0 && state.answerBranches[0].length > 0) {
+            startTurn = state.answerBranches[0][0].color;
+          } else if (state.currentProblems[state.currentProblemIndex] && state.currentProblems[state.currentProblemIndex].start && state.currentProblems[state.currentProblemIndex].start.toUpperCase() === 'W') {
+            startTurn = 2;
+          }
+
+          if (state.placementMode === 'blackOnly') state.nextTurn = 1;
+          else if (state.placementMode === 'whiteOnly') state.nextTurn = 2;
+          else state.nextTurn = startTurn;
+
+          state.historyStack = [{
+            board: state.board.map(function (row) { return row.slice(); }),
+            nextTurn: state.nextTurn,
+            moves: []
+          }];
+          state.historyIndex = 0;
+          // toast 제거됨
+        } else {
+          restoreProblemBoardState();
+          // toast 제거됨
+        }
+
+        updatePlacementUI();
+        drawBoard();
+      });
+    }
+
+    // 2. 착수 모드 (교차 / 흑만 / 백만)
+    document.querySelectorAll('.placement-group .tool-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var mode = btn.dataset.placeMode || 'alternate';
+        state.placementMode = mode;
+        if (mode === 'blackOnly') {
+          state.nextTurn = 1;
+        } else if (mode === 'whiteOnly') {
+          state.nextTurn = 2;
+        } else if (mode === 'alternate') {
+          if (state.trialMoves && state.trialMoves.length > 0) {
+            var lastM = state.trialMoves[state.trialMoves.length - 1];
+            state.nextTurn = lastM.color === 1 ? 2 : 1;
+          } else {
+            var defColor = 1;
+            if (state.answerBranches.length > 0 && state.answerBranches[0].length > 0) {
+              defColor = state.answerBranches[0][0].color;
+            } else if (state.currentProblems[state.currentProblemIndex] && state.currentProblems[state.currentProblemIndex].start && state.currentProblems[state.currentProblemIndex].start.toUpperCase() === 'W') {
+              defColor = 2;
+            }
+            state.nextTurn = defColor;
+          }
+        }
+        updatePlacementUI();
+        // toast 제거됨
+      });
+    });
+
+    // 3. 수순 네비게이션
+    var btnNavFirst = document.getElementById('btnNavFirst');
+    if (btnNavFirst) {
+      btnNavFirst.addEventListener('click', function () {
+        applyHistoryIndex(0);
+        // toast 제거됨
+      });
+    }
+
+    var btnNavPrev = document.getElementById('btnNavPrev');
+    if (btnNavPrev) {
+      btnNavPrev.addEventListener('click', function () {
+        if (state.historyIndex > 0) {
+          applyHistoryIndex(state.historyIndex - 1);
+          sfx('playStone');
+        } else {
+          // toast 제거됨
+        }
+      });
+    }
+
+    var btnNavNext = document.getElementById('btnNavNext');
+    if (btnNavNext) {
+      btnNavNext.addEventListener('click', function () {
+        if (state.historyIndex < state.historyStack.length - 1) {
+          applyHistoryIndex(state.historyIndex + 1);
+          sfx('playStone');
+        }
+      });
+    }
+
+    var btnNavLast = document.getElementById('btnNavLast');
+    if (btnNavLast) {
+      btnNavLast.addEventListener('click', function () {
+        applyHistoryIndex(state.historyStack.length - 1);
+      });
+    }
+
+    var btnClearBoard = document.getElementById('btnClearBoard');
+    if (btnClearBoard) {
+      btnClearBoard.addEventListener('click', resetCurrentProblem);
+    }
+
+    // 4. 시각 보조 도구 (단수, 땀방울, 좌표, 수순 영구 보존)
+    var btnToggleAtari = document.getElementById('btnToggleAtari');
+    if (btnToggleAtari) {
+      btnToggleAtari.classList.toggle('active', state.showAtari);
+      btnToggleAtari.addEventListener('click', function () {
+        state.showAtari = !state.showAtari;
+        localStorage.setItem('teacher_show_atari', state.showAtari.toString());
+        btnToggleAtari.classList.toggle('active', state.showAtari);
+        drawBoard();
+      });
+    }
+
+    var btnToggleSweat = document.getElementById('btnToggleSweat');
+    if (btnToggleSweat) {
+      btnToggleSweat.classList.toggle('active', state.showSweat);
+      btnToggleSweat.addEventListener('click', function () {
+        state.showSweat = !state.showSweat;
+        localStorage.setItem('teacher_show_sweat', state.showSweat.toString());
+        btnToggleSweat.classList.toggle('active', state.showSweat);
+        drawBoard();
+      });
+    }
+
+    var coordModes = ['right-bottom', 'left-top', 'all-four', 'none'];
+    var coordModeNames = {
+      'right-bottom': '우·하 좌표 표시',
+      'left-top': '좌·상 좌표 표시',
+      'all-four': '전체 좌표 표시',
+      'none': '좌표 끄기'
+    };
+    var btnToggleCoords = document.getElementById('btnToggleCoords');
+    if (btnToggleCoords) {
+      btnToggleCoords.innerHTML = '🔤 좌표';
+      btnToggleCoords.classList.toggle('active', state.coordMode !== 'none');
+      btnToggleCoords.addEventListener('click', function () {
+        var cIdx = coordModes.indexOf(state.coordMode);
+        state.coordMode = coordModes[(cIdx + 1) % coordModes.length];
+        localStorage.setItem('teacher_coord_mode', state.coordMode);
+        btnToggleCoords.innerHTML = '🔤 좌표';
+        btnToggleCoords.classList.toggle('active', state.coordMode !== 'none');
+        // toast 제거됨
+        drawBoard();
+      });
+    }
+
+    var btnToggleNumbers = document.getElementById('btnToggleNumbers');
+    if (btnToggleNumbers) {
+      btnToggleNumbers.classList.toggle('active', state.showStepNumbers);
+      btnToggleNumbers.addEventListener('click', function () {
+        state.showStepNumbers = !state.showStepNumbers;
+        localStorage.setItem('teacher_show_step_numbers', state.showStepNumbers.toString());
+        btnToggleNumbers.classList.toggle('active', state.showStepNumbers);
+        drawBoard();
+      });
+    }
+  }
+
+  
+  /* ---------- 🌟 환경설정 모달 제어 (바탕화면, 바둑판, 바둑알, 음량) 🌟 ---------- */
+  function applyTheme(themeName) {
+    state.theme = themeName || 'theme-green';
+    var stage = document.querySelector('.teacher-stage');
+    if (stage) {
+      stage.classList.remove('theme-green', 'theme-forest', 'theme-cream', 'theme-slate');
+      stage.classList.add(state.theme);
+    }
+    localStorage.setItem('teacher_theme', state.theme);
+  }
+
+  function initSettingsModal() {
+    var modal = document.getElementById('settingsModal');
+    var btnOpen = document.getElementById('btnOpenSettings');
+    var btnClose = document.getElementById('btnCloseSettings');
+    var btnSave = document.getElementById('btnSaveSettings');
+    var volRange = document.getElementById('volRange');
+    var volLabel = document.getElementById('volValLabel');
+
+    applyTheme(state.theme);
+
+    // 열기 및 닫기 토글 제어
+    function openModal() {
+      syncModalUI();
+      modal.hidden = false;
+      if (btnOpen) btnOpen.classList.add('active');
+    }
+    function closeModal() {
+      modal.hidden = true;
+      if (btnOpen) btnOpen.classList.remove('active');
+    }
+
+    if (btnOpen) {
+      btnOpen.addEventListener('click', function (e) {
+        e.stopPropagation();
+        if (modal.hidden) {
+          openModal();
+        } else {
+          closeModal();
+        }
+      });
+    }
+
+    if (btnClose) btnClose.addEventListener('click', closeModal);
+    if (btnSave) btnSave.addEventListener('click', closeModal);
+
+    // ESC 키로 닫기
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !modal.hidden) {
+        closeModal();
+      }
+    });
+
+    // 바깥 클릭 시 닫기 (메인 화면 및 바둑판 조작 방해 없이 패널 외부 클릭 시 자연스럽게 닫힘)
+    document.addEventListener('pointerdown', function (e) {
+      if (!modal.hidden) {
+        var dialog = modal.querySelector('.settings-dialog');
+        if (dialog && !dialog.contains(e.target) && !btnOpen.contains(e.target)) {
+          closeModal();
+        }
+      }
+    });
+
+    // 바탕화면 / 바둑판 / 바둑알 옵션 카드 클릭
+    document.querySelectorAll('.settings-options .opt-card').forEach(function (card) {
+      card.addEventListener('click', function () {
+        var group = card.parentElement;
+        var settingType = group.dataset.setting;
+        var val = card.dataset.val;
+
+        group.querySelectorAll('.opt-card').forEach(function (c) { c.classList.remove('active'); });
+        card.classList.add('active');
+
+        if (settingType === 'theme') {
+          applyTheme(val);
+        } else if (settingType === 'boardSkin') {
+          state.boardSkin = val;
+          localStorage.setItem('teacher_board_skin', val);
+          localStorage.setItem('baduk_board_skin', val);
+          drawBoard();
+        } else if (settingType === 'stoneStyle') {
+          state.stoneStyle = val;
+          localStorage.setItem('teacher_stone_style', val);
+          localStorage.setItem('baduk_stone_style', val);
+          drawBoard();
+        } else if (settingType === 'soundType') {
+          state.soundType = val;
+          localStorage.setItem('baduk_audio_type', val);
+          if (window.badukAudio) {
+            window.badukAudio.setSoundType(val);
+            window.badukAudio.playStone(); // 미리듣기
+          }
+        } else if (settingType === 'sidebarPos') {
+          if (sidebarPosController) {
+            sidebarPosController.setPosition(val);
+          }
+        }
+      });
+    });
+
+    // 음량 슬라이더
+    if (volRange) {
+      var currentVol = Math.round((window.badukAudio ? window.badukAudio.volume : state.volume) * 100);
+      volRange.value = currentVol;
+      if (volLabel) volLabel.textContent = currentVol + '%';
+
+      volRange.addEventListener('input', function () {
+        var pct = parseInt(volRange.value, 10);
+        if (volLabel) volLabel.textContent = pct + '%';
+        var val = pct / 100;
+        state.volume = val;
+        localStorage.setItem('baduk_audio_volume', val.toString());
+        if (window.badukAudio) window.badukAudio.setVolume(val);
+      });
+
+      volRange.addEventListener('change', function () {
+        if (window.badukAudio) window.badukAudio.playStone();
+      });
+    }
+
+    function syncModalUI() {
+      document.querySelectorAll('[data-setting="theme"] .opt-card').forEach(function (c) {
+        c.classList.toggle('active', c.dataset.val === state.theme);
+      });
+      document.querySelectorAll('[data-setting="boardSkin"] .opt-card').forEach(function (c) {
+        c.classList.toggle('active', c.dataset.val === state.boardSkin);
+      });
+      document.querySelectorAll('[data-setting="stoneStyle"] .opt-card').forEach(function (c) {
+        c.classList.toggle('active', c.dataset.val === state.stoneStyle);
+      });
+      document.querySelectorAll('[data-setting="soundType"] .opt-card').forEach(function (c) {
+        c.classList.toggle('active', c.dataset.val === state.soundType);
+      });
+      var curSidebarPos = localStorage.getItem('teacher_sidebar_pos') || 'right';
+      document.querySelectorAll('[data-setting="sidebarPos"] .opt-card').forEach(function (c) {
+        c.classList.toggle('active', c.dataset.val === curSidebarPos);
+      });
+      if (volRange) {
+        var v = Math.round((window.badukAudio ? window.badukAudio.volume : state.volume) * 100);
+        volRange.value = v;
+        if (volLabel) volLabel.textContent = v + '%';
+      }
+    }
+  }
+
+  /* ---------- 🌟 문제별 접이식 간편 편집 엔진 (제거 / 돌 위치 변경 / 단원 이동 / 순서 변경) 🌟 ---------- */
+  function getBookCode() {
+    if (state.currentBook && state.currentBook.bookCode) return state.currentBook.bookCode;
+    return bookSelect ? bookSelect.value : '';
+  }
+
+  function saveCustomBookState(statusText) {
+    var code = getBookCode();
+    if (!code || !state.currentBook) return;
+    if (code === 'new_tech_chuk') {
+      state.currentBook._buildVer = 'v16-ch5-teacher-final-126';
+    }
+    if (code === 'new_tech_sahwal') {
+      state.currentBook._buildVer = 'v22-sahwal-filtered-okjip-26p-208';
+    }
+    updateBookOptionCountUI(code, state.currentBook);
+
+    try {
+      localStorage.setItem('teacher_book_custom_' + code, JSON.stringify(state.currentBook));
+    } catch (e) {
+      console.error('Failed to save custom book to localStorage:', e);
+    }
+    var badge = document.getElementById('pedSaveBadge');
+    if (badge) {
+      badge.textContent = '✓ ' + (statusText || '변경사항 자동저장됨');
+      badge.style.color = '#059669';
+    }
+  }
+
+  function serializeBoardToSgfData() {
+    var parts = [];
+    for (var y = 0; y < state.boardRows; y++) {
+      for (var x = 0; x < state.boardCols; x++) {
+        var v = state.initialBoard[y][x];
+        if (v === 1 || v === 2) {
+          var sx = Math.max(0, Math.min(18, x + state.shiftX));
+          var sy = Math.max(0, Math.min(18, y + state.shiftY));
+          parts.push(';' + (v === 1 ? 'B' : 'W') + '[' + String.fromCharCode(97 + sx) + String.fromCharCode(97 + sy) + ']');
+        }
+      }
+    }
+    (state.marks || []).forEach(function (mk) {
+      var sx = Math.max(0, Math.min(18, mk.x + state.shiftX));
+      var sy = Math.max(0, Math.min(18, mk.y + state.shiftY));
+      var coord = String.fromCharCode(97 + sx) + String.fromCharCode(97 + sy);
+      if (mk.type === 'triangle') parts.push(';T[' + coord + ']');
+      else if (mk.type === 'circle') parts.push(';C[' + coord + ']');
+      else if (mk.type === 'square') parts.push(';S[' + coord + ']');
+      else if (mk.type === 'label') parts.push(';L[' + coord + ':' + (mk.label || '') + ']');
+    });
+    return parts.join('');
+  }
+
+  function serializeAnswerMovesToSgf(moves) {
+    return (moves || []).map(function (m) {
+      var sx = Math.max(0, Math.min(18, m.x + state.shiftX));
+      var sy = Math.max(0, Math.min(18, m.y + state.shiftY));
+      var tag = m.color === 2 ? 'W' : 'B';
+      return ';' + tag + '[' + String.fromCharCode(97 + sx) + String.fromCharCode(97 + sy) + ']';
+    }).join('');
+  }
+
+  function setBoardEditTool(tool) {
+    state.boardEditTool = (state.boardEditTool === tool) ? null : tool;
+    var banner = document.getElementById('pedModeBanner');
+    var bannerText = document.getElementById('pedModeBannerText');
+    document.querySelectorAll('.ped-tool-btn').forEach(function (btn) {
+      btn.classList.toggle('active', btn.dataset.editTool === state.boardEditTool);
+    });
+
+    if (state.boardEditTool) {
+      if (state.trialMode) {
+        state.trialMode = false;
+        var btnTrialEl = document.getElementById('btnToggleTrial');
+        if (btnTrialEl) btnTrialEl.classList.remove('active');
+      }
+      state.playedMoves = [];
+      state.board = state.initialBoard.map(function (r) { return r.slice(); });
+
+      var toolMsgMap = {
+        black: '⚫ 바둑판 교차점을 클릭해 흑돌을 놓거나 지우세요',
+        white: '⚪ 바둑판 교차점을 클릭해 백돌을 놓거나 지우세요',
+        erase: '❌ 바둑판의 돌이나 표시를 클릭해 지우세요',
+        triangle: '△ 바둑판의 돌 위를 클릭해 세모 표시를 넣거나 빼세요',
+        answer: '🎯 정답 수순(1, 2, 3...)을 순서대로 바둑판에 클릭하세요'
+      };
+      if (bannerText) bannerText.textContent = toolMsgMap[state.boardEditTool] || '바둑판을 클릭해 편집하세요';
+      if (banner) banner.hidden = false;
+
+      if (state.boardEditTool === 'answer') {
+        state.showAnswer = true;
+        var btnAns = document.getElementById('btnAnswer');
+        if (btnAns) btnAns.textContent = '🙈 숨김';
+      }
+    } else {
+      if (banner) banner.hidden = true;
+    }
+    drawBoard();
+    if (typeof renderChoiceButtons === 'function') renderChoiceButtons(p);
+  }
+
+  function handleBoardEditClick(gx, gy) {
+    var p = state.currentProblems[state.currentProblemIndex];
+    if (!p) return;
+
+    if (state.boardEditTool === 'black') {
+      state.initialBoard[gy][gx] = (state.initialBoard[gy][gx] === 1) ? 0 : 1;
+      state.board[gy][gx] = state.initialBoard[gy][gx];
+      p.data = serializeBoardToSgfData();
+      sfx('playStone');
+      saveCustomBookState('흑돌 위치 수정됨');
+      drawBoard();
+    } else if (state.boardEditTool === 'white') {
+      state.initialBoard[gy][gx] = (state.initialBoard[gy][gx] === 2) ? 0 : 2;
+      state.board[gy][gx] = state.initialBoard[gy][gx];
+      p.data = serializeBoardToSgfData();
+      sfx('playStone');
+      saveCustomBookState('백돌 위치 수정됨');
+      drawBoard();
+    } else if (state.boardEditTool === 'erase') {
+      state.initialBoard[gy][gx] = 0;
+      state.board[gy][gx] = 0;
+      state.marks = (state.marks || []).filter(function (mk) { return !(mk.x === gx && mk.y === gy); });
+      p.data = serializeBoardToSgfData();
+      sfx('playStone');
+      saveCustomBookState('돌/표시 삭제됨');
+      drawBoard();
+    } else if (state.boardEditTool === 'triangle') {
+      var existingIdx = -1;
+      (state.marks || []).forEach(function (mk, idx) {
+        if (mk.x === gx && mk.y === gy && mk.type === 'triangle') existingIdx = idx;
+      });
+      if (existingIdx >= 0) {
+        state.marks.splice(existingIdx, 1);
+      } else {
+        state.marks.push({ x: gx, y: gy, type: 'triangle' });
+      }
+      p.data = serializeBoardToSgfData();
+      sfx('playStone');
+      saveCustomBookState('△ 표시 수정됨');
+      drawBoard();
+    } else if (state.boardEditTool === 'answer') {
+      state.showAnswer = true;
+      var btnAns = document.getElementById('btnAnswer');
+      if (btnAns) btnAns.textContent = '🙈 숨김';
+
+      var moves = state.answerMoves ? state.answerMoves.slice() : [];
+      var lastM = moves.length > 0 ? moves[moves.length - 1] : null;
+      if (lastM && lastM.x === gx && lastM.y === gy) {
+        moves.pop();
+      } else {
+        var startCol = getProblemStartingColor(p);
+        var nextCol = (moves.length % 2 === 0) ? startCol : (startCol === 1 ? 2 : 1);
+        moves.push({ x: gx, y: gy, color: nextCol, step: moves.length + 1 });
+      }
+      state.answerMoves = moves;
+      state.answerBranches = moves.length > 0 ? [moves.slice()] : [];
+      state.activeBranches = state.answerBranches.slice();
+      p.answer1 = serializeAnswerMovesToSgf(moves);
+      delete p.answer2; delete p.answer3; delete p.answer4; delete p.answer5;
+      sfx('playStone');
+      saveCustomBookState('정답 수순(' + moves.length + '수) 저장됨');
+      drawBoard();
+    }
+  }
+
+  function shiftCurrentProblemStones(dx, dy) {
+    pushProbEditSnapshot();
+    var p = state.currentProblems[state.currentProblemIndex];
+    if (!p) return;
+
+    function shiftSgfStr(sgf) {
+      if (!sgf || typeof sgf !== 'string') return sgf;
+      return sgf.replace(/([BWTCMSL]|TR|CR|SQ|MA|LB)\[([a-s]{2})(:[^\]]*)?\]/gi, function (full, tag, coords, rest) {
+        var nx = Math.max(0, Math.min(18, coords.charCodeAt(0) - 97 + dx));
+        var ny = Math.max(0, Math.min(18, coords.charCodeAt(1) - 97 + dy));
+        return tag + '[' + String.fromCharCode(97 + nx) + String.fromCharCode(97 + ny) + (rest || '') + ']';
+      });
+    }
+
+    p.data = shiftSgfStr(p.data || '');
+    for (var bi = 1; bi <= 5; bi++) {
+      if (p['answer' + bi]) p['answer' + bi] = shiftSgfStr(p['answer' + bi]);
+    }
+    if (p.answer) p.answer = shiftSgfStr(p.answer);
+
+    parseProblemSgf(p, state.boardSpec);
+    saveCustomBookState('돌 전체 위치 이동됨');
+    drawBoard();
+    if (typeof renderChoiceButtons === 'function') renderChoiceButtons(p);
+  }
+
+  function flipCurrentProblemDiagonal() {
+    pushProbEditSnapshot();
+    var p = state.currentProblems[state.currentProblemIndex];
+    if (!p) return;
+
+    function flipSgfStr(sgf) {
+      if (!sgf || typeof sgf !== 'string') return sgf;
+      return sgf.replace(/([BWTCMSL]|TR|CR|SQ|MA|LB)\[([a-s]{2})(:[^\]]*)?\]/gi, function (full, tag, coords, rest) {
+        var x = coords.charCodeAt(0) - 97;
+        var y = coords.charCodeAt(1) - 97;
+        return tag + '[' + String.fromCharCode(97 + y) + String.fromCharCode(97 + x) + (rest || '') + ']';
+      });
+    }
+
+    p.data = flipSgfStr(p.data || '');
+    for (var bi = 1; bi <= 5; bi++) {
+      if (p['answer' + bi]) p['answer' + bi] = flipSgfStr(p['answer' + bi]);
+    }
+    if (p.answer) p.answer = flipSgfStr(p.answer);
+
+    state.boardSpec = detectBoardSpec(p);
+    state.boardCols = state.boardSpec.cols;
+    state.boardRows = state.boardSpec.rows;
+    parseProblemSgf(p, state.boardSpec);
+    layoutBoard();
+    saveCustomBookState('귀 대칭 회전 적용됨');
+    drawBoard();
+    if (typeof renderChoiceButtons === 'function') renderChoiceButtons(p);
+  }
+
+  function swapCurrentProblemColors() {
+    pushProbEditSnapshot();
+    var p = state.currentProblems[state.currentProblemIndex];
+    if (!p) return;
+
+    function swapColorSgf(sgf) {
+      if (!sgf || typeof sgf !== 'string') return sgf;
+      return sgf.replace(/(;?)([BW])\[([a-s]{2})\]/gi, function (full, semi, col, coords) {
+        var nextCol = col.toUpperCase() === 'B' ? 'W' : 'B';
+        return semi + nextCol + '[' + coords + ']';
+      });
+    }
+
+    p.data = swapColorSgf(p.data || '');
+    for (var bi = 1; bi <= 5; bi++) {
+      if (p['answer' + bi]) p['answer' + bi] = swapColorSgf(p['answer' + bi]);
+    }
+    if (p.answer) p.answer = swapColorSgf(p.answer);
+
+    var curTurn = getProblemStartingColor(p);
+    p.start = (curTurn === 1) ? 'W' : 'B';
+    if (p.question) {
+      if (p.question.indexOf('흑선') !== -1) p.question = p.question.replace(/흑선/g, '백선');
+      else if (p.question.indexOf('백선') !== -1) p.question = p.question.replace(/백선/g, '흑선');
+    }
+
+    loadProblem(state.currentProblemIndex);
+    saveCustomBookState('흑백 돌 색상 전환됨');
+  }
+
+  function toggleCurrentProblemTurn() {
+    var p = state.currentProblems[state.currentProblemIndex];
+    if (!p) return;
+
+    var curTurn = getProblemStartingColor(p);
+    var newTurn = (curTurn === 1) ? 2 : 1;
+    p.start = (newTurn === 2) ? 'W' : 'B';
+
+    if (state.answerMoves && state.answerMoves.length > 0) {
+      state.answerMoves.forEach(function (m, idx) {
+        m.color = (idx % 2 === 0) ? newTurn : (newTurn === 1 ? 2 : 1);
+      });
+      p.answer1 = serializeAnswerMovesToSgf(state.answerMoves);
+    }
+    if (p.question) {
+      if (newTurn === 2 && p.question.indexOf('흑선') !== -1) {
+        p.question = p.question.replace(/흑선/g, '백선');
+      } else if (newTurn === 1 && p.question.indexOf('백선') !== -1) {
+        p.question = p.question.replace(/백선/g, '흑선');
+      }
+    }
+    loadProblem(state.currentProblemIndex);
+    saveCustomBookState((newTurn === 2 ? '백선' : '흑선') + '으로 변경됨');
+  }
+
+  function syncProbEditDrawerUI() {
+    var p = state.currentProblems[state.currentProblemIndex];
+    var choiceGroup = document.getElementById('pedChoiceGroup');
+    var curAnsLabel = document.getElementById('pedChoiceCurAns');
+    var sampleInput = document.getElementById('pedSampleInput');
+    if (choiceGroup && p) {
+      if (typeof isChoiceProblem === 'function' && isChoiceProblem(p)) {
+        choiceGroup.hidden = false;
+        var ansStr = String(p.answer !== undefined && p.answer !== null ? p.answer : '').trim();
+        var isAnsO = (ansStr === '1' || ansStr === '○' || ansStr.toUpperCase() === 'O');
+        if (curAnsLabel) {
+          curAnsLabel.textContent = '현재 정답: ' + (isAnsO ? '⭕ O (1번)' : '❌ X (2번)');
+          curAnsLabel.style.color = isAnsO ? '#059669' : '#e11d48';
+        }
+        if (sampleInput) {
+          sampleInput.value = p.sample || '○|Χ';
+        }
+      } else {
+        choiceGroup.hidden = true;
+      }
+    }
+    var p = state.currentProblems[state.currentProblemIndex];
+    var qInput = document.getElementById('pedQuestionInput');
+    if (qInput && p) {
+      qInput.value = (p.question || '').replace(/\r?\n/g, ' ');
+    }
+    var numInput = document.getElementById('pedTargetNumInput');
+    if (numInput) {
+      numInput.value = state.currentProblemIndex + 1;
+      numInput.max = state.currentProblems.length || 1;
+    }
+
+    var chSelect = document.getElementById('pedTargetChapterSelect');
+    if (chSelect && state.currentBook && Array.isArray(state.currentBook.chapters)) {
+      var prevVal = chSelect.value;
+      chSelect.innerHTML = '';
+      state.currentBook.chapters.forEach(function (ch, idx) {
+        var opt = document.createElement('option');
+        opt.value = idx;
+        var cnt = (ch.problems || []).length;
+        var chName = (ch.chapter || ch.title || ('제 ' + (idx + 1) + '단원')).replace(/\s*\(\d+제\)\s*$/, '');
+        opt.textContent = chName + (idx === state.currentChapterIndex ? ' [현재]' : '');
+        chSelect.appendChild(opt);
+      });
+      if (prevVal !== '' && parseInt(prevVal, 10) < state.currentBook.chapters.length && parseInt(prevVal, 10) !== state.currentChapterIndex) {
+        chSelect.value = prevVal;
+      } else {
+        var nextCh = (state.currentChapterIndex + 1) % state.currentBook.chapters.length;
+        chSelect.value = nextCh;
+      }
+    }
+
+    var undoBtn = document.getElementById('btnPedUndoDelete');
+    if (undoBtn) {
+      undoBtn.hidden = !(state.lastDeletedProblem && state.lastDeletedProblem.bookCode === getBookCode());
+    }
+  }
+
+  function refreshChapterDropdownCounts() {
+    if (!chapterSelect || !state.currentBook || !Array.isArray(state.currentBook.chapters)) return;
+    Array.from(chapterSelect.options).forEach(function (opt, idx) {
+      var ch = state.currentBook.chapters[idx];
+      if (ch) {
+        var baseName = (ch.chapter || ch.title || ('제 ' + (idx + 1) + '단원')).replace(/\s*\(\d+제\)\s*$/, '');
+        opt.textContent = baseName;
+      }
+    });
+  }
+
+  function initProblemEditor() {
+    var btnToggle = document.getElementById('btnToggleProbEdit');
+    var drawer = document.getElementById('probEditDrawer');
+    if (!btnToggle || !drawer) return;
+
+    var btnClose = document.getElementById('btnPedCloseDrawer');
+    if (btnClose) {
+      btnClose.addEventListener('click', function () {
+        drawer.hidden = true;
+        drawer.setAttribute('hidden', '');
+        drawer.style.display = 'none';
+        btnToggle.classList.remove('active');
+        btnToggle.textContent = '🛠️ 편집 ▾';
+        if (state.boardEditTool) setBoardEditTool(null);
+      });
+    }
+    btnToggle.addEventListener('click', function () {
+      var isHidden = drawer.hasAttribute('hidden') || drawer.hidden || drawer.style.display === 'none';
+      if (isHidden) {
+        drawer.hidden = false;
+        drawer.removeAttribute('hidden');
+        drawer.style.display = 'flex';
+        btnToggle.classList.add('active');
+        btnToggle.textContent = '🛠️ 편집 ▴';
+        syncProbEditDrawerUI();
+      } else {
+        drawer.hidden = true;
+        drawer.setAttribute('hidden', '');
+        drawer.style.display = 'none';
+        btnToggle.classList.remove('active');
+        btnToggle.textContent = '🛠️ 편집 ▾';
+        if (state.boardEditTool) {
+          setBoardEditTool(null);
+        }
+      }
+    });
+
+    // 1. 바둑판 편집 도구 버튼들 (흑돌, 백돌, 지우개, 세모, 정답수순)
+    document.querySelectorAll('.ped-tool-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        setBoardEditTool(btn.dataset.editTool);
+      });
+    });
+
+    var btnExitTool = document.getElementById('btnPedExitTool');
+    if (btnExitTool) {
+      btnExitTool.addEventListener('click', function () {
+        setBoardEditTool(null);
+      });
+    }
+
+    // 2. 상하좌우 1칸 이동 / 대칭 / 흑백전환 / 흑↔백선 / 정답비움
+    document.querySelectorAll('[data-shift-dir]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var dir = btn.dataset.shiftDir;
+        if (dir === 'up') shiftCurrentProblemStones(0, -1);
+        else if (dir === 'down') shiftCurrentProblemStones(0, 1);
+        else if (dir === 'left') shiftCurrentProblemStones(-1, 0);
+        else if (dir === 'right') shiftCurrentProblemStones(1, 0);
+      });
+    });
+
+        function pushProbEditSnapshot() {
+      var p = state.currentProblems[state.currentProblemIndex];
+      if (!p) return;
+      state.probEditHistory.push({
+        idx: state.currentProblemIndex,
+        data: p.data || '',
+        answer1: p.answer1 || '',
+        question: p.question || ''
+      });
+      if (state.probEditHistory.length > 30) state.probEditHistory.shift();
+    }
+
+    var btnUndoProbAct = document.getElementById('btnPedUndoProblemAction');
+    if (btnUndoProbAct) {
+      btnUndoProbAct.addEventListener('click', function () {
+        if (!state.probEditHistory || state.probEditHistory.length === 0) {
+          showToast('더 이상 되돌릴 편집 동작이 없습니다.');
+          return;
+        }
+        var last = state.probEditHistory.pop();
+        if (last.idx !== state.currentProblemIndex) {
+          loadProblem(last.idx);
+        }
+        var p = state.currentProblems[state.currentProblemIndex];
+        if (p) {
+          p.data = last.data;
+          p.answer1 = last.answer1;
+          p.question = last.question;
+          saveCustomBookState('직전 편집 1수 취소됨');
+          loadProblem(state.currentProblemIndex);
+          showToast('직전 편집 동작이 1단계 취소되었습니다.');
+        }
+      });
+    }
+
+    // 🌟 O/X 및 객관식 정답 설정 및 선택지 편집 이벤트 바인딩 🌟
+    var btnSetO = document.getElementById('btnPedSetAnsO');
+    if (btnSetO) {
+      btnSetO.addEventListener('click', function () {
+        var p = state.currentProblems[state.currentProblemIndex];
+        if (!p) return;
+        p.answer = '1';
+        saveCustomBookState('정답을 O로 변경');
+        syncProbEditDrawerUI();
+        if (typeof renderChoiceButtons === 'function') renderChoiceButtons(p);
+        showToast("현재 문제의 정답이 '⭕ O (1번)'로 설정되었습니다.");
+      });
+    }
+
+    var btnSetX = document.getElementById('btnPedSetAnsX');
+    if (btnSetX) {
+      btnSetX.addEventListener('click', function () {
+        var p = state.currentProblems[state.currentProblemIndex];
+        if (!p) return;
+        p.answer = '2';
+        saveCustomBookState('정답을 X로 변경');
+        syncProbEditDrawerUI();
+        if (typeof renderChoiceButtons === 'function') renderChoiceButtons(p);
+        showToast("현재 문제의 정답이 '❌ X (2번)'로 설정되었습니다.");
+      });
+    }
+
+    var btnSaveSample = document.getElementById('btnPedSaveSample');
+    if (btnSaveSample) {
+      btnSaveSample.addEventListener('click', function () {
+        var p = state.currentProblems[state.currentProblemIndex];
+        var sInput = document.getElementById('pedSampleInput');
+        if (!p || !sInput) return;
+        p.sample = sInput.value.trim();
+        saveCustomBookState('선택지 변경');
+        syncProbEditDrawerUI();
+        if (typeof renderChoiceButtons === 'function') renderChoiceButtons(p);
+        showToast("선택지가 저장되었습니다: " + p.sample);
+      });
+    }
+
+    var btnRevertProb = document.getElementById('btnPedRevertCurrentProb');
+    if (btnRevertProb) {
+      btnRevertProb.addEventListener('click', function () {
+        var pIdx = state.currentProblemIndex;
+        var chIdx = state.currentChapterIndex;
+        var curP = state.currentProblems[pIdx];
+        if (!curP) return;
+
+        function applyRevert(rawBook) {
+          var origP = null;
+          var ch = (rawBook && rawBook.chapters) ? rawBook.chapters[chIdx] : null;
+          if (ch && ch.problems && ch.problems[pIdx]) {
+            origP = ch.problems[pIdx];
+          }
+          if (!origP && rawBook && rawBook.chapters) {
+            for (var ci = 0; ci < rawBook.chapters.length; ci++) {
+              var cch = rawBook.chapters[ci];
+              if (!cch.problems) continue;
+              for (var pi = 0; pi < cch.problems.length; pi++) {
+                if (cch.problems[pi].code === curP.code) {
+                  origP = cch.problems[pi];
+                  break;
+                }
+              }
+              if (origP) break;
+            }
+          }
+          if (!origP) {
+            showToast('이 문제의 원본 데이터를 찾을 수 없습니다.');
+            return;
+          }
+
+          if (!window.confirm((pIdx + 1) + '번 문제를 편집 전 최초 원본 상태로 완전히 되돌리시겠습니까?')) return;
+          pushProbEditSnapshot();
+          state.currentProblems[pIdx] = JSON.parse(JSON.stringify(origP));
+          if (state.currentBook && state.currentBook.chapters[chIdx]) {
+            state.currentBook.chapters[chIdx].problems = state.currentProblems;
+          }
+          saveCustomBookState((pIdx + 1) + '번 문제 원본 복원됨');
+          loadProblem(pIdx);
+          showToast('✓ ' + (pIdx + 1) + '번 문제가 원래 원본 형태로 복원되었습니다.');
+        }
+
+        if (state.pristineBook && state.pristineBook.chapters) {
+          applyRevert(state.pristineBook);
+        } else {
+          var code = getBookCode();
+          fetch('data/books/book_' + code + '.json?v=' + Date.now())
+            .then(function (res) { return res.json(); })
+            .then(function (raw) {
+              state.pristineBook = raw;
+              applyRevert(raw);
+            })
+            .catch(function () {
+              showToast('원본 데이터를 불러오지 못했습니다.');
+            });
+        }
+      });
+    }
+
+    var btnDiagFlip = document.getElementById('btnPedDiagFlip');
+    if (btnDiagFlip) btnDiagFlip.addEventListener('click', flipCurrentProblemDiagonal);
+
+    var btnColorSwap = document.getElementById('btnPedColorSwap');
+    if (btnColorSwap) btnColorSwap.addEventListener('click', swapCurrentProblemColors);
+
+    var btnToggleTurn = document.getElementById('btnPedToggleTurn');
+    if (btnToggleTurn) btnToggleTurn.addEventListener('click', toggleCurrentProblemTurn);
+
+    var btnClearAns = document.getElementById('btnPedClearAns');
+    if (btnClearAns) {
+      btnClearAns.addEventListener('click', function () {
+        var p = state.currentProblems[state.currentProblemIndex];
+        if (!p) return;
+        state.answerMoves = [];
+        state.answerBranches = [];
+        state.activeBranches = [];
+        p.answer1 = '';
+        delete p.answer2; delete p.answer3; delete p.answer4; delete p.answer5;
+        setBoardEditTool('answer');
+        saveCustomBookState('정답 비움 — 바둑판에 새 정답을 찍으세요');
+        drawBoard();
+      });
+    }
+
+    // 3. 단원 내 문제 순서 변경 (앞으로 / 뒤로 / 지정 번호 이동)
+    var btnMovePrev = document.getElementById('btnPedMovePrev');
+    if (btnMovePrev) {
+      btnMovePrev.addEventListener('click', function () {
+        var idx = state.currentProblemIndex;
+        if (idx <= 0 || state.currentProblems.length < 2) return;
+        var tmp = state.currentProblems[idx - 1];
+        state.currentProblems[idx - 1] = state.currentProblems[idx];
+        state.currentProblems[idx] = tmp;
+        saveCustomBookState((idx + 1) + '번 → ' + idx + '번으로 이동됨');
+        loadProblem(idx - 1);
+      });
+    }
+
+    var btnMoveNext = document.getElementById('btnPedMoveNext');
+    if (btnMoveNext) {
+      btnMoveNext.addEventListener('click', function () {
+        var idx = state.currentProblemIndex;
+        if (idx >= state.currentProblems.length - 1) return;
+        var tmp = state.currentProblems[idx + 1];
+        state.currentProblems[idx + 1] = state.currentProblems[idx];
+        state.currentProblems[idx] = tmp;
+        saveCustomBookState((idx + 1) + '번 → ' + (idx + 2) + '번으로 이동됨');
+        loadProblem(idx + 1);
+      });
+    }
+
+    var btnJumpMove = document.getElementById('btnPedJumpMove');
+    if (btnJumpMove) {
+      btnJumpMove.addEventListener('click', function () {
+        var numInput = document.getElementById('pedTargetNumInput');
+        if (!numInput || state.currentProblems.length < 2) return;
+        var targetNum = parseInt(numInput.value, 10);
+        if (isNaN(targetNum)) return;
+        var targetIdx = Math.max(0, Math.min(state.currentProblems.length - 1, targetNum - 1));
+        var curIdx = state.currentProblemIndex;
+        if (targetIdx === curIdx) return;
+
+        var moved = state.currentProblems.splice(curIdx, 1)[0];
+        state.currentProblems.splice(targetIdx, 0, moved);
+        saveCustomBookState((curIdx + 1) + '번 → ' + (targetIdx + 1) + '번 위치로 이동됨');
+        loadProblem(targetIdx);
+      });
+    }
+
+    // 4. 현재 문제 제거 및 실행 취소
+    var btnDeleteProb = document.getElementById('btnPedDeleteProb');
+    if (btnDeleteProb) {
+      btnDeleteProb.addEventListener('click', function () {
+        if (!state.currentProblems || state.currentProblems.length === 0) return;
+        var curIdx = state.currentProblemIndex;
+        var removed = state.currentProblems.splice(curIdx, 1)[0];
+        state.lastDeletedProblem = {
+          problem: removed,
+          chapterIdx: state.currentChapterIndex,
+          probIdx: curIdx,
+          bookCode: getBookCode()
+        };
+        refreshChapterDropdownCounts();
+        saveCustomBookState((curIdx + 1) + '번 문제 삭제됨');
+
+        if (state.currentProblems.length === 0) {
+          renderProblemGrid();
+          syncProbEditDrawerUI();
+          return;
+        }
+        var nextIdx = Math.min(curIdx, state.currentProblems.length - 1);
+        loadProblem(nextIdx);
+      });
+    }
+
+    var btnUndoDelete = document.getElementById('btnPedUndoDelete');
+    if (btnUndoDelete) {
+      btnUndoDelete.addEventListener('click', function () {
+        var info = state.lastDeletedProblem;
+        if (!info || info.bookCode !== getBookCode() || !state.currentBook) return;
+        var ch = state.currentBook.chapters[info.chapterIdx];
+        if (!ch) return;
+        ch.problems = ch.problems || [];
+        var insertIdx = Math.min(info.probIdx, ch.problems.length);
+        ch.problems.splice(insertIdx, 0, info.problem);
+        state.lastDeletedProblem = null;
+        refreshChapterDropdownCounts();
+        saveCustomBookState('삭제된 문제 복구됨');
+        if (state.currentChapterIndex !== info.chapterIdx) {
+          chapterSelect.value = info.chapterIdx;
+          onChapterChange(false);
+        }
+        loadProblem(insertIdx);
+      });
+    }
+
+    // 5. 다른 단원으로 문제 이동
+    var btnMoveChapter = document.getElementById('btnPedMoveChapter');
+    if (btnMoveChapter) {
+      btnMoveChapter.addEventListener('click', function () {
+        var chSelect = document.getElementById('pedTargetChapterSelect');
+        if (!chSelect || !state.currentBook || !state.currentProblems.length) return;
+        var targetChIdx = parseInt(chSelect.value, 10);
+        if (isNaN(targetChIdx) || targetChIdx === state.currentChapterIndex) {
+          var badge = document.getElementById('pedSaveBadge');
+          if (badge) {
+            badge.textContent = '⚠ 이동할 다른 단원을 선택하세요';
+            badge.style.color = '#d97706';
+          }
+          return;
+        }
+        var targetCh = state.currentBook.chapters[targetChIdx];
+        if (!targetCh) return;
+        targetCh.problems = targetCh.problems || [];
+
+        var curIdx = state.currentProblemIndex;
+        var movedProb = state.currentProblems.splice(curIdx, 1)[0];
+        targetCh.problems.push(movedProb);
+
+        refreshChapterDropdownCounts();
+        var targetTitle = targetCh.chapter || targetCh.title || ((targetChIdx + 1) + '단원');
+        saveCustomBookState('[' + targetTitle + '] 끝으로 이동됨');
+
+        if (state.currentProblems.length > 0) {
+          loadProblem(Math.min(curIdx, state.currentProblems.length - 1));
+        } else {
+          renderProblemGrid();
+          syncProbEditDrawerUI();
+        }
+      });
+    }
+
+    // 6. 문제 지문 수정
+    var btnSaveQ = document.getElementById('btnPedSaveQuestion');
+    var qInput = document.getElementById('pedQuestionInput');
+    function applyQuestionEdit() {
+      var p = state.currentProblems[state.currentProblemIndex];
+      if (!p || !qInput) return;
+      p.question = qInput.value.trim();
+      questionText.textContent = p.question || '알맞은 곳에 돌을 놓아 보세요.';
+      saveCustomBookState('문제 지문 수정됨');
+    }
+    if (btnSaveQ) btnSaveQ.addEventListener('click', applyQuestionEdit);
+    if (qInput) {
+      qInput.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          applyQuestionEdit();
+        }
+      });
+    }
+
+    // 7. 수정된 교재 JSON 파일 다운로드 및 원본 복원
+    var btnExport = document.getElementById('btnPedExportJson');
+    if (btnExport) {
+      btnExport.addEventListener('click', function () {
+        exportCustomBookJson();
+      });
+    }
+
+    var btnResetBook = document.getElementById('btnPedResetBook');
+    if (btnResetBook) {
+      btnResetBook.addEventListener('click', function () {
+        var code = getBookCode();
+        if (!code) return;
+        if (!window.confirm('이 교재의 모든 편집 내역을 초기화하고 원본 상태로 되돌리시겠습니까?')) return;
+        localStorage.removeItem('teacher_book_custom_' + code);
+        state.lastDeletedProblem = null;
+        setBoardEditTool(null);
+        loadBook(code, true, true);
+        var badge = document.getElementById('pedSaveBadge');
+        if (badge) {
+          badge.textContent = '✓ 원본 교재로 복원됨';
+          badge.style.color = '#059669';
+        }
+      });
+    }
+  }
+
+  /* ---------- 🌟 사이드바 위치 (좌/우) 및 바둑판 화면 정중앙 고정 제어 🌟 ---------- */
+  function initSidebarPosition() {
+    var body = document.getElementById('teacherBody') || document.querySelector('.teacher-body');
+    var btnLeft = document.getElementById('btnPosLeft');
+    var btnRight = document.getElementById('btnPosRight');
+
+    var currentPos = localStorage.getItem('teacher_sidebar_pos') || 'right';
+
+    function setPosition(pos) {
+      if (pos !== 'left' && pos !== 'right') pos = 'right';
+      currentPos = pos;
+      try {
+        localStorage.setItem('teacher_sidebar_pos', pos);
+      } catch (e) {}
+
+      if (body) {
+        if (pos === 'left') {
+          body.classList.add('sidebar-left');
+        } else {
+          body.classList.remove('sidebar-left');
+        }
+      }
+
+      if (btnLeft && btnRight) {
+        btnLeft.classList.toggle('active', pos === 'left');
+        btnRight.classList.toggle('active', pos === 'right');
+      }
+
+      // 모달 내 옵션 동기화
+      document.querySelectorAll('[data-setting="sidebarPos"] .opt-card').forEach(function (c) {
+        c.classList.toggle('active', c.dataset.val === pos);
+      });
+
+      // 바둑판 레이아웃 재계산 및 렌더링 즉시 반영
+      if (typeof layoutBoard === 'function') {
+        layoutBoard();
+        if (state && Array.isArray(state.board) && state.board.length > 0 && state.board[0] && typeof drawBoard === 'function') {
+          drawBoard();
+        }
+      }
+    }
+
+    if (btnLeft) {
+      btnLeft.addEventListener('click', function () {
+        setPosition('left');
+      });
+    }
+    if (btnRight) {
+      btnRight.addEventListener('click', function () {
+        setPosition('right');
+      });
+    }
+
+    // 초기 로딩 시 저장된 위치 적용
+    setPosition(currentPos);
+
+    return {
+      setPosition: setPosition,
+      getPosition: function () { return currentPos; }
+    };
+  }
+
+  var sidebarPosController = initSidebarPosition();
+  initSettingsModal();
+  initTeachingToolbar();
+  initProblemEditor();
+  
+  /* ========================================================
+     10×5 문제 모아보기 & 마우스 드래그 순서 편집기 컨트롤러
+     ======================================================== */
+  function initGridViewModal() {
+    var modal = document.getElementById('probGridViewModal');
+    var btnHeader = document.getElementById('btnHeaderGridView');
+    var btnSidebar = document.getElementById('btnOpenGridView');
+    var btnClose = document.getElementById('btnGridClose');
+    var btnSave = document.getElementById('btnGridSave');
+    var btnExport = document.getElementById('btnGridExport');
+    var btnAddProb = document.getElementById('btnGridAddProb');
+    var btnFullscreen = document.getElementById('btnGridFullscreen');
+    var container = document.getElementById('probGridCards');
+
+    var draggedIdx = null;
+
+    function openModal() {
+      if (!modal) return;
+      if (!state.currentProblems || state.currentProblems.length === 0) {
+        showToast('현재 선택된 단원에 문제가 없습니다.');
+        return;
+      }
+      modal.removeAttribute('hidden');
+      renderCards();
+    }
+
+    function closeModal() {
+      if (!modal) return;
+      if (modal.classList.contains('is-fullscreen')) {
+        modal.classList.remove('is-fullscreen');
+        if (btnFullscreen) {
+          btnFullscreen.innerHTML = '⛶ 전체화면';
+          btnFullscreen.title = '모아보기 창을 화면 전체로 확대';
+        }
+        if (document.exitFullscreen && document.fullscreenElement) {
+          document.exitFullscreen().catch(function () {});
+        }
+      }
+      modal.setAttribute('hidden', 'true');
+    }
+
+    var currentFilter = 'all';
+
+    function setupFilterTabs() {
+      var filterGroup = document.getElementById('gridSeriesFilterGroup');
+      if (!filterGroup) return;
+      var counts = { all: state.currentProblems.length, '씽크탱크': 0, '논리바둑': 0, '알파바둑': 0 };
+      var hasSeries = false;
+      state.currentProblems.forEach(function (p) {
+        if (p.source_series) {
+          hasSeries = true;
+          if (counts[p.source_series] !== undefined) counts[p.source_series]++;
+        }
+      });
+      if (hasSeries) {
+        filterGroup.removeAttribute('hidden');
+        var cntAll = document.getElementById('cntAll');
+        var cntThink = document.getElementById('cntThink');
+        var cntLogic = document.getElementById('cntLogic');
+        var cntAlpha = document.getElementById('cntAlpha');
+        if (cntAll) cntAll.textContent = counts.all;
+        if (cntThink) cntThink.textContent = counts['씽크탱크'];
+        if (cntLogic) cntLogic.textContent = counts['논리바둑'];
+        if (cntAlpha) cntAlpha.textContent = counts['알파바둑'];
+      } else {
+        filterGroup.setAttribute('hidden', 'true');
+      }
+
+      var filterBtns = filterGroup.querySelectorAll('.grid-filter-btn');
+      filterBtns.forEach(function (btn) {
+        btn.onclick = function () {
+          filterBtns.forEach(function (b) { b.classList.remove('active'); });
+          btn.classList.add('active');
+          currentFilter = btn.dataset.series;
+          applyCardFilter();
+        };
+      });
+    }
+
+    function applyCardFilter() {
+      if (!container) return;
+      var cards = container.querySelectorAll('.prob-card');
+      var headers = container.querySelectorAll('.prob-grid-section-header');
+      cards.forEach(function (card) {
+        var s = card.dataset.series || '';
+        if (currentFilter === 'all' || s === currentFilter) {
+          card.style.display = '';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+      headers.forEach(function (h) {
+        var s = h.dataset.series || '';
+        if (currentFilter === 'all' || s === currentFilter) {
+          h.style.display = '';
+        } else {
+          h.style.display = 'none';
+        }
+      });
+    }
+
+    function renderCards() {
+      if (!container) return;
+      container.innerHTML = '';
+
+      var chapterTitleEl = document.getElementById('gridChapterTitle');
+      var probCountEl = document.getElementById('gridProbCount');
+      if (chapterTitleEl && state.currentBook && state.currentBook.chapters[state.currentChapterIndex]) {
+        chapterTitleEl.textContent = state.currentBook.chapters[state.currentChapterIndex].chapter || '단원';
+      }
+      if (probCountEl) {
+        probCountEl.textContent = state.currentProblems.length;
+      }
+
+      setupFilterTabs();
+
+      var lastSeries = null;
+      state.currentProblems.forEach(function (p, idx) {
+        var sSeries = p.source_series || '';
+        if (sSeries && sSeries !== lastSeries) {
+          lastSeries = sSeries;
+          var sHeader = document.createElement('div');
+          var sClass = sSeries === '씽크탱크' ? 'think' : (sSeries === '논리바둑' ? 'logic' : 'alpha');
+          sHeader.className = 'prob-grid-section-header ' + sClass;
+          sHeader.dataset.series = sSeries;
+          var sTitle = sSeries === '씽크탱크' ? '🔹 1. 씽크탱크 활로 (24문제 / 네 귀 순환)' :
+                       (sSeries === '논리바둑' ? '🔹 2. 논리바둑 활로 (19문제 / 네 귀 순환)' :
+                        '🔹 3. 알파바둑 활로 (19문제 / 네 귀 순환)');
+          sHeader.innerHTML = '<span>' + sTitle + '</span>';
+          container.appendChild(sHeader);
+        }
+
+        var card = document.createElement('div');
+        var sCardClass = sSeries === '씽크탱크' ? ' series-think' : (sSeries === '논리바둑' ? ' series-logic' : (sSeries === '알파바둑' ? ' series-alpha' : ''));
+        card.className = 'prob-card' + sCardClass + (idx === state.currentProblemIndex ? ' active' : '');
+        card.draggable = true;
+        card.dataset.index = idx;
+        if (sSeries) card.dataset.series = sSeries;
+
+        // Card Header
+        var header = document.createElement('div');
+        header.className = 'prob-card-header';
+
+        if (sSeries) {
+          var sTag = document.createElement('span');
+          var sTagClass = sSeries === '씽크탱크' ? 'series-think' : (sSeries === '논리바둑' ? 'series-logic' : 'series-alpha');
+          var sShort = sSeries === '씽크탱크' ? '씽크' : (sSeries === '논리바둑' ? '논리' : '알파');
+          sTag.className = 'prob-card-series-tag ' + sTagClass;
+          sTag.textContent = sShort;
+          header.appendChild(sTag);
+        }
+
+        var badge = document.createElement('span');
+        badge.className = 'prob-card-badge';
+        badge.textContent = '#' + (idx + 1);
+        header.appendChild(badge);
+
+        var moveCount = 0;
+        if (p.answer1) {
+          moveCount = (p.answer1.match(/;[BW]\[/gi) || []).length;
+        }
+        var meta = document.createElement('span');
+        meta.className = 'prob-card-meta';
+        meta.textContent = moveCount > 0 ? (moveCount + '수') : '';
+        header.appendChild(meta);
+
+        var btnGroup = document.createElement('div');
+        btnGroup.className = 'prob-card-btn-group';
+
+        var moveLeftBtn = document.createElement('button');
+        moveLeftBtn.type = 'button';
+        moveLeftBtn.className = 'prob-card-move-btn';
+        moveLeftBtn.textContent = '◀';
+        moveLeftBtn.title = '앞으로 한 칸 이동';
+        if (idx === 0) moveLeftBtn.disabled = true;
+        moveLeftBtn.addEventListener('click', function (e) {
+          e.stopPropagation();
+          reorderProblem(idx, idx - 1);
+        });
+        btnGroup.appendChild(moveLeftBtn);
+
+        var moveRightBtn = document.createElement('button');
+        moveRightBtn.type = 'button';
+        moveRightBtn.className = 'prob-card-move-btn';
+        moveRightBtn.textContent = '▶';
+        moveRightBtn.title = '뒤로 한 칸 이동';
+        if (idx === state.currentProblems.length - 1) moveRightBtn.disabled = true;
+        moveRightBtn.addEventListener('click', function (e) {
+          e.stopPropagation();
+          reorderProblem(idx, idx + 1);
+        });
+        btnGroup.appendChild(moveRightBtn);
+
+        var delBtn = document.createElement('button');
+        delBtn.type = 'button';
+        delBtn.className = 'prob-card-del';
+        delBtn.textContent = '✕';
+        delBtn.title = (idx + 1) + '번 문제 삭제';
+        delBtn.addEventListener('click', function (e) {
+          e.stopPropagation();
+          deleteCardAt(idx);
+        });
+        btnGroup.appendChild(delBtn);
+
+        header.appendChild(btnGroup);
+
+        card.appendChild(header);
+
+        // Canvas
+        var canvas = document.createElement('canvas');
+        canvas.className = 'prob-card-canvas';
+        card.appendChild(canvas);
+
+        // Footer
+        var footer = document.createElement('div');
+        footer.className = 'prob-card-footer';
+        var srcSpan = document.createElement('span');
+        srcSpan.className = 'prob-card-source';
+        var srcText = p.source_book || (p.source_series ? (p.source_series + ' 1권') : '');
+        srcText = srcText.replace('논리바둑', '논리').replace('씽크탱크', '씽크').replace('알파바둑', '알파');
+        if (p.source_p_num) srcText += ' #' + p.source_p_num;
+        else if (p.code) srcText += ' #' + p.code;
+        srcSpan.textContent = srcText;
+        footer.appendChild(srcSpan);
+        card.appendChild(footer);
+
+        // Drag and drop events
+        var hasDragged = false;
+        card.addEventListener('dragstart', function (e) {
+          draggedIdx = idx;
+          hasDragged = true;
+          window._isCardDragging = true;
+          card.classList.add('dragging');
+          e.dataTransfer.effectAllowed = 'move';
+          try { e.dataTransfer.setData('text/plain', String(idx)); } catch (err) {}
+        });
+
+        card.addEventListener('dragend', function () {
+          card.classList.remove('dragging');
+          document.querySelectorAll('.prob-card.drag-over').forEach(function (el) {
+            el.classList.remove('drag-over');
+          });
+          setTimeout(function() {
+            window._isCardDragging = false;
+            draggedIdx = null;
+          }, 100);
+        });
+
+        card.addEventListener('dragover', function (e) {
+          e.preventDefault();
+          e.dataTransfer.dropEffect = 'move';
+          if (!card.classList.contains('drag-over')) {
+            card.classList.add('drag-over');
+          }
+        });
+
+        card.addEventListener('dragleave', function (e) {
+          if (!card.contains(e.relatedTarget)) {
+            card.classList.remove('drag-over');
+          }
+        });
+
+        card.addEventListener('drop', function (e) {
+          e.preventDefault();
+          card.classList.remove('drag-over');
+          var from = (draggedIdx !== null) ? draggedIdx : parseInt(e.dataTransfer.getData('text/plain'), 10);
+          var to = idx;
+          if (!isNaN(from) && from !== null && from !== to) {
+            reorderProblem(from, to);
+          }
+        });
+
+        // Click on card to open in main board
+        card.addEventListener('click', function (e) {
+          if (window._isCardDragging) return;
+          closeModal();
+          loadProblem(idx);
+        });
+
+        container.appendChild(card);
+
+        // Mini board render
+        setTimeout(function () {
+          drawThumbnailBoard(canvas, p, idx === state.currentProblemIndex);
+        }, 0);
+      });
+      applyCardFilter();
+    }
+
+    function reorderProblem(fromIdx, toIdx) {
+      if (fromIdx < 0 || fromIdx >= state.currentProblems.length) return;
+      if (toIdx < 0 || toIdx >= state.currentProblems.length) return;
+      if (fromIdx === toIdx) return;
+
+      var moved = state.currentProblems.splice(fromIdx, 1)[0];
+      state.currentProblems.splice(toIdx, 0, moved);
+
+      // Re-number
+      state.currentProblems.forEach(function (p, i) {
+        p.no = i + 1;
+        p.name = (i + 1) + '번 문제';
+        p.code = '1' + String(i + 1).padStart(3, '0');
+      });
+
+      state.currentProblemIndex = toIdx;
+      if (state.currentBook && state.currentBook.chapters[state.currentChapterIndex]) {
+        state.currentBook.chapters[state.currentChapterIndex].problems = state.currentProblems;
+      }
+
+      saveCustomBookToLocalStorage();
+      renderCards();
+      renderProblemGrid();
+      showToast('문제 #' + (fromIdx + 1) + '이(가) #' + (toIdx + 1) + ' 위치로 이동되었습니다.');
+    }
+
+    function deleteCardAt(idx) {
+      if (idx < 0 || idx >= state.currentProblems.length) return;
+      var wasFullscreen = modal.classList.contains('is-fullscreen');
+      if (!confirm((idx + 1) + '번 문제를 삭제하시겠습니까?')) return;
+
+      state.currentProblems.splice(idx, 1);
+      state.currentProblems.forEach(function (p, i) {
+        p.no = i + 1;
+        p.name = (i + 1) + '번 문제';
+        p.code = '1' + String(i + 1).padStart(3, '0');
+      });
+
+      if (state.currentProblemIndex >= state.currentProblems.length) {
+        state.currentProblemIndex = Math.max(0, state.currentProblems.length - 1);
+      }
+      if (state.currentBook && state.currentBook.chapters[state.currentChapterIndex]) {
+        state.currentBook.chapters[state.currentChapterIndex].problems = state.currentProblems;
+      }
+
+      saveCustomBookToLocalStorage();
+      renderCards();
+      renderProblemGrid();
+      showToast('문제 #' + (idx + 1) + '이(가) 삭제되었습니다.');
+
+      // 🌟 문제 삭제 후에도 전체화면 모드 고정 유지 🌟
+      if (wasFullscreen) {
+        modal.classList.add('is-fullscreen');
+        if (btnFullscreen) {
+          btnFullscreen.innerHTML = '🗗 창 복원';
+          btnFullscreen.title = '원래 창 크기로 복원';
+        }
+        if (document.documentElement.requestFullscreen && !document.fullscreenElement) {
+          document.documentElement.requestFullscreen().catch(function () {});
+        }
+      }
+    }
+
+    function drawThumbnailBoard(canvas, p, isActive) {
+      if (!canvas || !p) return;
+      var dpr = window.devicePixelRatio || 1;
+      var w = canvas.clientWidth || 120;
+      var h = canvas.clientHeight || 120;
+      canvas.width = Math.round(w * dpr);
+      canvas.height = Math.round(h * dpr);
+      var ctx = canvas.getContext('2d');
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      // Wood background
+      ctx.fillStyle = isActive ? '#fef3c7' : '#f5cf8b';
+      ctx.fillRect(0, 0, w, h);
+
+      var spec = detectBoardSpec(p);
+      var cols = spec.cols || 10;
+      var rows = spec.rows || 10;
+
+      var pad = 8;
+      var availW = w - pad * 2;
+      var availH = h - pad * 2;
+      var cell = Math.min(availW / (cols - 1), availH / (rows - 1));
+      var startX = pad + (availW - cell * (cols - 1)) / 2;
+      var startY = pad + (availH - cell * (rows - 1)) / 2;
+
+      // Lines
+      ctx.strokeStyle = 'rgba(70, 35, 15, 0.72)';
+      ctx.lineWidth = 1;
+      for (var c = 0; c < cols; c++) {
+        var lx = startX + cell * c;
+        ctx.beginPath();
+        ctx.moveTo(lx, startY);
+        ctx.lineTo(lx, startY + cell * (rows - 1));
+        ctx.stroke();
+      }
+      for (var r = 0; r < rows; r++) {
+        var ly = startY + cell * r;
+        ctx.beginPath();
+        ctx.moveTo(startX, ly);
+        ctx.lineTo(startX + cell * (cols - 1), ly);
+        ctx.stroke();
+      }
+
+      // Stones
+      var shiftX = 0, shiftY = 0;
+      if (!spec.isFull19) {
+        if (spec.quadrant === 'BR') {
+          shiftX = 19 - cols;
+          shiftY = 19 - rows;
+        } else if (spec.quadrant === 'BL') {
+          shiftX = 0;
+          shiftY = 19 - rows;
+        } else if (spec.quadrant === 'TR') {
+          shiftX = 19 - cols;
+          shiftY = 0;
+        }
+      }
+
+      var reg = /(?:;|^)([BWTCMSL]|TR|CR|SQ|MA|LB)\[([a-s]{2})(?::([^\]]*))?\]/gi;
+      var sgf = (p.data || '');
+      var m;
+      var stones = [];
+      var marks = [];
+      while ((m = reg.exec(sgf)) !== null) {
+        var tag = m[1].toUpperCase();
+        var coords = m[2].toLowerCase();
+        var gx = coords.charCodeAt(0) - 97 - shiftX;
+        var gy = coords.charCodeAt(1) - 97 - shiftY;
+        if (gx >= 0 && gx < cols && gy >= 0 && gy < rows) {
+          if (tag === 'B') {
+            stones.push({ x: gx, y: gy, color: 1 });
+          } else if (tag === 'W') {
+            stones.push({ x: gx, y: gy, color: 2 });
+          } else if (tag === 'T' || tag === 'TR') {
+            marks.push({ x: gx, y: gy, type: 'triangle' });
+          } else if (tag === 'C' || tag === 'CR') {
+            marks.push({ x: gx, y: gy, type: 'circle' });
+          } else if (tag === 'S' || tag === 'SQ' || tag === 'M' || tag === 'MA') {
+            marks.push({ x: gx, y: gy, type: 'square' });
+          } else if (tag === 'L' || tag === 'LB') {
+            marks.push({ x: gx, y: gy, type: 'label', label: m[3] || '' });
+          }
+        }
+      }
+
+      var radius = Math.max(3, cell * 0.45);
+      stones.forEach(function (s) {
+        var sx = startX + cell * s.x;
+        var sy = startY + cell * s.y;
+        ctx.beginPath();
+        ctx.arc(sx, sy, radius, 0, Math.PI * 2);
+        if (s.color === 1) {
+          ctx.fillStyle = '#1e293b';
+          ctx.fill();
+        } else {
+          ctx.fillStyle = '#ffffff';
+          ctx.fill();
+          ctx.lineWidth = 1;
+          ctx.strokeStyle = '#64748b';
+          ctx.stroke();
+        }
+      });
+
+      // 🌟 [원장님 지침] 모아보기 카드 썸네일에도 세모(△), 동그라미(○), 네모(□), 라벨(가)을 선명하게 렌더링 🌟
+      marks.forEach(function (mk) {
+        var mx = startX + cell * mk.x;
+        var my = startY + cell * mk.y;
+        var st = stones.find(function (s) { return s.x === mk.x && s.y === mk.y; });
+        var mkColor = (st && st.color === 1) ? '#ffffff' : '#18181b';
+        if (!st) mkColor = '#dc2626'; // 빈 교차점 위 마크면 강조 빨간색
+
+        ctx.save();
+        ctx.strokeStyle = mkColor;
+        ctx.fillStyle = mkColor;
+        ctx.lineWidth = Math.max(1.8, Math.round(cell * 0.08));
+        ctx.lineJoin = 'round';
+        ctx.lineCap = 'round';
+
+        var type = mk.type || 'triangle';
+        if (type === 'triangle') {
+          var mr = Math.max(3.8, cell * 0.28);
+          ctx.beginPath();
+          ctx.moveTo(mx, my - mr * 1.05);
+          ctx.lineTo(mx + mr * 0.90, my + mr * 0.55);
+          ctx.lineTo(mx - mr * 0.90, my + mr * 0.55);
+          ctx.closePath();
+          ctx.stroke();
+        } else if (type === 'circle') {
+          var cr = Math.max(3.2, cell * 0.24);
+          ctx.beginPath();
+          ctx.arc(mx, my, cr, 0, Math.PI * 2);
+          ctx.stroke();
+        } else if (type === 'square') {
+          var sq = Math.max(3.0, cell * 0.22);
+          ctx.strokeRect(mx - sq, my - sq, sq * 2, sq * 2);
+        } else if (type === 'label') {
+          var fontSize = Math.max(9, Math.round(cell * 0.44));
+          ctx.font = 'bold ' + fontSize + 'px -apple-system, sans-serif';
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          ctx.fillText(mk.label || '', mx, my);
+        }
+        ctx.restore();
+      });
+    }
+
+    window.openProblemGridView = openModal;
+    window.closeProblemGridView = closeModal;
+    if (btnHeader) btnHeader.addEventListener('click', openModal);
+    if (btnSidebar) btnSidebar.addEventListener('click', openModal);
+
+    document.addEventListener('click', function (e) {
+      var t = e.target && e.target.closest ? e.target.closest('#btnOpenGridView, #btnHeaderGridView') : null;
+      if (t) {
+        e.preventDefault();
+        openModal();
+      }
+    });
+    if (btnClose) btnClose.addEventListener('click', closeModal);
+
+    if (btnSave) {
+      btnSave.addEventListener('click', function () {
+        saveCustomBookToLocalStorage();
+        
+        // 🌟 버튼 시각적 변화: 초록색 '✓ 저장 완료!' 즉시 표시 🌟
+        var origText = btnSave.innerHTML;
+        var origBg = btnSave.style.backgroundColor;
+        btnSave.innerHTML = '✓ 저장 완료!';
+        btnSave.style.backgroundColor = '#059669';
+        btnSave.style.borderColor = '#047857';
+        btnSave.style.color = '#ffffff';
+
+        showToast('✓ 현재 문제 순서 및 내용이 안전하게 저장되었습니다.');
+        sfx('correct');
+
+        setTimeout(function () {
+          btnSave.innerHTML = origText;
+          btnSave.style.backgroundColor = origBg || '';
+          btnSave.style.borderColor = '';
+          btnSave.style.color = '';
+        }, 1500);
+      });
+    }
+
+        if (btnFullscreen) {
+      btnFullscreen.addEventListener('click', function () {
+        var isFs = modal.classList.toggle('is-fullscreen');
+        if (isFs) {
+          btnFullscreen.innerHTML = '🗗 창 복원';
+          btnFullscreen.title = '원래 창 크기로 복원';
+          if (document.documentElement.requestFullscreen && !document.fullscreenElement) {
+            document.documentElement.requestFullscreen().catch(function () {});
+          }
+        } else {
+          btnFullscreen.innerHTML = '⛶ 전체화면';
+          btnFullscreen.title = '모아보기 창을 화면 전체로 확대';
+          if (document.exitFullscreen && document.fullscreenElement) {
+            document.exitFullscreen().catch(function () {});
+          }
+        }
+      });
+    }
+
+    // 🌟 확인 팝업 등으로 브라우저 전체화면이 일시 해제되어도 모달의 전체화면 스타일(100vw/100vh)은 고정 유지 🌟
+    document.addEventListener('fullscreenchange', function () {
+      // 사용자가 직접 '창 복원'이나 '닫기'를 누를 때만 해제되도록 자동 해제 비활성화
+    });
+
+    if (btnExport) {
+      btnExport.addEventListener('click', function () {
+        exportCustomBookJson();
+      });
+    }
+
+    if (btnAddProb) {
+      btnAddProb.addEventListener('click', function () {
+        var newNo = state.currentProblems.length + 1;
+        var newP = {
+          code: '1' + String(newNo).padStart(3, '0'),
+          type: '3',
+          question: (state.currentBook ? state.currentBook.chapters[state.currentChapterIndex].chapter : '새 문제') + '\r\n문제를 풀어보세요.',
+          hint: '',
+          data: '',
+          answer1: '',
+          answer2: '',
+          answer3: '',
+          answer4: '',
+          answer5: '',
+          sample: '',
+          answer: '',
+          auto: 'false',
+          size: '4',
+          start: 'BA',
+          source_book: '선생님 직접 작성',
+          source_chapter: '',
+          source_p_num: newNo,
+          no: newNo,
+          name: newNo + '번 문제'
+        };
+        state.currentProblems.push(newP);
+        if (state.currentBook && state.currentBook.chapters[state.currentChapterIndex]) {
+          state.currentBook.chapters[state.currentChapterIndex].problems = state.currentProblems;
+        }
+        saveCustomBookToLocalStorage();
+        state.currentProblemIndex = state.currentProblems.length - 1;
+        closeModal();
+        loadProblem(state.currentProblemIndex);
+        showToast('새 문제(#' + newNo + ')가 추가되었습니다. 바둑판에 돌을 배치해 보세요!');
+      });
+    }
+  }
+
+  initGridViewModal();
+  if (courseProvider) {
+    window.BKSCourse30LoadProblem = loadProblem;
+    window.BKSCourse30ReloadChapter = function () { onChapterChange(false); };
+  }
+  initCatalog();
+})();

@@ -22,7 +22,7 @@
   function ensureStage(n) {
     if (!isClaude) return Promise.resolve();
     data.loaded = data.loaded || {};
-    if (!data.loaded[n]) data.loaded[n] = fetch('/course30-claude/stage_' + n + '.json?v=claude-v4-1').then(function(r){if(!r.ok)throw new Error('단계 문제 자료를 불러오지 못했습니다 ('+r.status+')');return r.json();}).then(function(j){Object.assign(data.records, j.records);});
+    if (!data.loaded[n]) data.loaded[n] = fetch('/course30-claude/stage_' + n + '.json?v=claude-v4-4').then(function(r){if(!r.ok)throw new Error('단계 문제 자료를 불러오지 못했습니다 ('+r.status+')');return r.json();}).then(function(j){Object.assign(data.records, j.records);});
     return data.loaded[n];
   }
   function claudeUnit() {
@@ -30,7 +30,7 @@
     return st && c ? st.units.find(function(u){return u.key === c.courseUnit;}) : null;
   }
   function loadData() {
-    if (!dataPromise && isClaude) dataPromise = fetch('/course30-claude/meta.json?v=claude-v4-1').then(function(r){if(!r.ok)throw new Error('클로드 커리큘럼 자료를 불러오지 못했습니다 ('+r.status+')');return r.json();}).then(function(d){ d.records = {}; data = d; return d; });
+    if (!dataPromise && isClaude) dataPromise = fetch('/course30-claude/meta.json?v=claude-v4-4').then(function(r){if(!r.ok)throw new Error('클로드 커리큘럼 자료를 불러오지 못했습니다 ('+r.status+')');return r.json();}).then(function(d){ d.records = {}; data = d; return d; });
     if (!dataPromise) dataPromise = (window.BKSCourse30TestData ? Promise.resolve(window.BKSCourse30TestData) : fetch('/course30-data-v1.json?v=teacher-reuse-20261107').then(function(r){if(!r.ok)throw new Error('교육과정 자료를 불러오지 못했습니다 ('+r.status+')');return r.json();})).then(function(d){ data=d; return d; });
     return dataPromise;
   }
@@ -113,7 +113,7 @@
     $('courseProblemTab').setAttribute('aria-pressed',String(tab==='problem'));
     var st=stage(), ch=chapter();
     $('courseHeading').textContent=(view==='stages'||view==='curricula')?'단계별 학습관':stageNumber()+'단계 · '+(view==='units'?'단원 선택':ch?ch.title:'문제 학습');
-    $('courseStatus').textContent=isClaude?'클로드 30단계 v4 · 교재 문제 임시 배치 · 검수용 · 빌드 4-3':(stageNumber()>=28?'입문 후보 · ':'편성 v1 · ')+'이론 준비 중';
+    $('courseStatus').textContent=isClaude?'클로드 30단계 v4 · 1단계 원본 문제 · 2단계부터 교재 임시 · 빌드 4-4':(stageNumber()>=28?'입문 후보 · ':'편성 v1 · ')+'이론 준비 중';
     var info=$('courseStageInfo');if(!info){info=document.createElement('div');info.id='courseStageInfo';info.className='course-stage-info';$('courseCards').parentNode.insertBefore(info,$('courseCards'));}
     info.hidden=true;info.innerHTML='';
     if(view==='curricula'){
@@ -122,7 +122,7 @@
       $('courseCards').innerHTML='<button type="button" class="course-card" data-curriculum="claude"><small>1</small><strong>클로드 30단계 커리큘럼</strong><span>3대 시리즈 분석 기반 · 1단계(입문)부터 30단계까지</span><small>455단원 · 학습 목표·새 주제 포함 · 교재 문제 임시 배치</small></button>';
     }else if(view==='stages'&&isClaude){
       $('coursePickerTitle').textContent='1. 클로드 30단계 커리큘럼 · 1단계부터 30단계까지';
-      $('coursePickerDescription').textContent='학습할 단계를 선택하세요. 단계 주제와 학습 목표를 보고, 단원을 눌러 임시 배치된 문제를 풀어 볼 수 있습니다. 문제는 검수를 위해 교재 문제를 임시로 넣은 것이며, 이후 원본 문제로 교체합니다.';
+      $('coursePickerDescription').textContent='학습할 단계를 선택하세요. 단계 주제와 학습 목표를 보고, 단원을 눌러 임시 배치된 문제를 풀어 볼 수 있습니다. 1단계는 새로 만든 원본 문제이고, 2단계부터는 검수를 위해 교재 문제를 임시로 넣은 것이며 이후 원본 문제로 교체합니다.';
       $('courseCards').innerHTML=data.stages.map(function(s){return '<button type="button" class="course-card" data-course-stage="'+s.stage+'"><small>'+s.units.length+'단원 · '+s.units.reduce(function(n,u){return n+u.bodyIDs.length;},0)+'문항</small><strong>'+s.stage+'단계</strong><span>'+escape(s.title)+'</span></button>';}).join('');
     }else if(view==='stages'){
       $('coursePickerTitle').textContent='30단계부터 1단계까지';
@@ -133,7 +133,7 @@
       $('coursePickerDescription').textContent='단원을 선택하면 Teaching Zone의 바둑판과 학습 메뉴로 이어집니다.';
       if(isClaude){
         info.innerHTML='<h3>학습 목표</h3><ul>'+st.goals.map(function(g){return '<li>'+escape(g)+'</li>';}).join('')+'</ul>'+(st.newTopics&&st.newTopics.length?'<h3>새로 배우는 주제</h3><div class="course-chips">'+st.newTopics.map(function(t){return '<span>'+escape(t)+'</span>';}).join('')+'</div>':'')+(st.alpha&&st.alpha.length?'<h3>알파바둑 선택 과정</h3><p>'+st.alpha.map(escape).join(' · ')+'</p>':'');info.hidden=false;
-        $('courseCards').innerHTML=st.units.map(function(u,i){return '<button type="button" class="course-card" data-course-unit="'+i+'"><small>'+String(i+1).padStart(2,'0')+' · '+escape(u.field)+'</small><strong>'+escape(u.title)+'</strong><span>'+u.bodyIDs.length+'문항'+(u.extraIDs.length?' · 추가 연습 '+u.extraIDs.length+'문항':'')+'</span><small>'+escape(u.concept)+'</small></button>';}).join('');
+        $('courseCards').innerHTML=st.units.map(function(u,i){return '<button type="button" class="course-card" data-course-unit="'+i+'"><small>'+String(i+1).padStart(2,'0')+' · '+escape(u.field)+'</small><strong>'+escape(u.title)+'</strong><span>'+(u.original?'원본 ':'')+u.bodyIDs.length+'문항'+(u.extraIDs.length?' · 추가 연습 '+u.extraIDs.length+'문항':'')+'</span><small>'+escape(u.concept)+(u.original?' · 정답 검증 완료':' · 교재 임시')+'</small></button>';}).join('');
       }else{
         $('courseCards').innerHTML=st.units.map(function(u,i){return '<button type="button" class="course-card" data-course-unit="'+i+'"><small>'+String(i+1).padStart(2,'0')+' · '+escape(u.field)+'</small><strong>'+escape(u.title)+'</strong><span>'+u.bodyIDs.length+'문항'+(u.extraIDs.length?' · 추가 연습 '+u.extraIDs.length+'문항':'')+'</span></button>';}).join('');
       }
@@ -141,7 +141,7 @@
     if(isClaude&&view==='lesson'&&tab==='theory'){
       var cu=claudeUnit();
       if(cu&&st){var srcs=function(a){return a.map(function(x){return '<li>'+escape(x.series)+' · '+escape(x.book)+' · '+escape(x.chapter)+'</li>';}).join('');};
-        $('courseTheory').innerHTML='<h2 id="courseTheoryTitle"></h2><p><b>'+escape(st.stage+'단계 · '+st.title)+'</b> · '+escape(cu.field)+' · '+escape(cu.concept)+'</p><div class="course-stage-info"><h3>이 단계의 학습 목표</h3><ul>'+st.goals.map(function(g){return '<li>'+escape(g)+'</li>';}).join('')+'</ul><h3>이 단원의 문제 구성</h3><p>본문 '+cu.bodyIDs.length+'문항'+(cu.extraIDs.length?' · 추가 연습(알파 보강) '+cu.extraIDs.length+'문항':'')+(cu.pulled?' · 선생님 조건에 따라 앞 단계로 당겨 온 단원':'')+'</p><h3>임시 문제 출처(교재)</h3><ul>'+srcs(cu.sources)+'</ul>'+(cu.alphaSources.length?'<h3>추가 연습 출처</h3><ul>'+srcs(cu.alphaSources)+'</ul>':'')+'<p>이 단원의 설명과 영상, 원본 문제는 검수 후 제작합니다.</p></div>';}
+        $('courseTheory').innerHTML='<h2 id="courseTheoryTitle"></h2><p><b>'+escape(st.stage+'단계 · '+st.title)+'</b> · '+escape(cu.field)+' · '+escape(cu.concept)+'</p><div class="course-stage-info"><h3>이 단계의 학습 목표</h3><ul>'+st.goals.map(function(g){return '<li>'+escape(g)+'</li>';}).join('')+'</ul><h3>이 단원의 문제 구성</h3><p>'+(cu.original?'원본 문제 ':'본문 ')+cu.bodyIDs.length+'문항'+(cu.original?' · 바둑 규칙으로 정답을 검증했고, 교재와 같은 배치는 제외했습니다':'')+(cu.extraIDs.length?' · 추가 연습(알파 보강) '+cu.extraIDs.length+'문항':'')+(cu.pulled?' · 선생님 조건에 따라 앞 단계로 당겨 온 단원':'')+'</p><h3>'+(cu.original?'문제 출처':'임시 문제 출처(교재)')+'</h3><ul>'+srcs(cu.sources)+'</ul>'+(cu.alphaSources.length?'<h3>추가 연습 출처</h3><ul>'+srcs(cu.alphaSources)+'</ul>':'')+'<p>이 단원의 설명과 영상, 원본 문제는 검수 후 제작합니다.</p></div>';}
     }
     if(ch){
       $('courseExtra').disabled=!ch.extraProblems.length;
