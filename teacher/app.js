@@ -2759,8 +2759,28 @@
     }).join('');
   }
 
+  function pushProbEditSnapshot() {
+    var p = state.currentProblems[state.currentProblemIndex];
+    if (!p) return;
+    if (!state.probEditHistory) state.probEditHistory = [];
+    state.probEditHistory.push({
+      idx: state.currentProblemIndex,
+      data: p.data || '',
+      answer1: p.answer1 || '',
+      question: p.question || ''
+    });
+    if (state.probEditHistory.length > 30) state.probEditHistory.shift();
+  }
+
+  function updateAltBanner() {
+    var bt = document.getElementById('pedModeBannerText');
+    if (!bt || state.boardEditTool !== 'alternate') return;
+    bt.textContent = '⚫⚪ 클릭할 때마다 흑·백이 번갈아 놓입니다 (다음: ' + ((state.altNext || 1) === 1 ? '⚫ 흑' : '⚪ 백') + ') · 놓인 돌을 누르면 지워집니다';
+  }
+
   function setBoardEditTool(tool) {
     state.boardEditTool = (state.boardEditTool === tool) ? null : tool;
+    if (state.boardEditTool === 'alternate') state.altNext = 1;
     var banner = document.getElementById('pedModeBanner');
     var bannerText = document.getElementById('pedModeBannerText');
     document.querySelectorAll('.ped-tool-btn').forEach(function (btn) {
@@ -2779,12 +2799,14 @@
       var toolMsgMap = {
         black: '⚫ 바둑판 교차점을 클릭해 흑돌을 놓거나 지우세요',
         white: '⚪ 바둑판 교차점을 클릭해 백돌을 놓거나 지우세요',
+        alternate: '⚫⚪ 클릭할 때마다 흑·백이 번갈아 놓입니다',
         erase: '❌ 바둑판의 돌이나 표시를 클릭해 지우세요',
         triangle: '△ 바둑판의 돌 위를 클릭해 세모 표시를 넣거나 빼세요',
         answer: '🎯 정답 수순(1, 2, 3...)을 순서대로 바둑판에 클릭하세요'
       };
       if (bannerText) bannerText.textContent = toolMsgMap[state.boardEditTool] || '바둑판을 클릭해 편집하세요';
       if (banner) banner.hidden = false;
+      updateAltBanner();
 
       if (state.boardEditTool === 'answer') {
         state.showAnswer = true;
@@ -2802,7 +2824,25 @@
     var p = state.currentProblems[state.currentProblemIndex];
     if (!p) return;
 
-    if (state.boardEditTool === 'black') {
+    if (state.boardEditTool === 'alternate') {
+      pushProbEditSnapshot();
+      var curStone = state.initialBoard[gy][gx];
+      if (curStone === 1 || curStone === 2) {
+        state.initialBoard[gy][gx] = 0;
+        state.altNext = curStone;
+      } else {
+        var putColor = state.altNext || 1;
+        state.initialBoard[gy][gx] = putColor;
+        state.altNext = putColor === 1 ? 2 : 1;
+      }
+      state.board[gy][gx] = state.initialBoard[gy][gx];
+      p.data = serializeBoardToSgfData();
+      sfx('playStone');
+      saveCustomBookState('흑백 번갈아 놓기');
+      updateAltBanner();
+      drawBoard();
+    } else if (state.boardEditTool === 'black') {
+      pushProbEditSnapshot();
       state.initialBoard[gy][gx] = (state.initialBoard[gy][gx] === 1) ? 0 : 1;
       state.board[gy][gx] = state.initialBoard[gy][gx];
       p.data = serializeBoardToSgfData();
@@ -2810,6 +2850,7 @@
       saveCustomBookState('흑돌 위치 수정됨');
       drawBoard();
     } else if (state.boardEditTool === 'white') {
+      pushProbEditSnapshot();
       state.initialBoard[gy][gx] = (state.initialBoard[gy][gx] === 2) ? 0 : 2;
       state.board[gy][gx] = state.initialBoard[gy][gx];
       p.data = serializeBoardToSgfData();
@@ -2817,6 +2858,7 @@
       saveCustomBookState('백돌 위치 수정됨');
       drawBoard();
     } else if (state.boardEditTool === 'erase') {
+      pushProbEditSnapshot();
       state.initialBoard[gy][gx] = 0;
       state.board[gy][gx] = 0;
       state.marks = (state.marks || []).filter(function (mk) { return !(mk.x === gx && mk.y === gy); });
@@ -2825,6 +2867,7 @@
       saveCustomBookState('돌/표시 삭제됨');
       drawBoard();
     } else if (state.boardEditTool === 'triangle') {
+      pushProbEditSnapshot();
       var existingIdx = -1;
       (state.marks || []).forEach(function (mk, idx) {
         if (mk.x === gx && mk.y === gy && mk.type === 'triangle') existingIdx = idx;
@@ -3047,6 +3090,49 @@
     var btnToggle = document.getElementById('btnToggleProbEdit');
     var drawer = document.getElementById('probEditDrawer');
     if (!btnToggle || !drawer) return;
+
+    // 🌟 편집창 제목줄을 마우스(터치)로 끌어서 옮기기 — 위치는 브라우저에 기억, 제목줄 더블클릭으로 원위치 🌟
+    var dragHandle = document.getElementById('pedDragHandle');
+    if (dragHandle) {
+      var placeDrawer = function (l, t) {
+        l = Math.max(0, Math.min(window.innerWidth - 80, l));
+        t = Math.max(0, Math.min(window.innerHeight - 40, t));
+        drawer.style.left = l + 'px';
+        drawer.style.top = t + 'px';
+        drawer.style.right = 'auto';
+      };
+      try {
+        var savedPos = JSON.parse(localStorage.getItem('teacher_ped_pos') || 'null');
+        if (savedPos && typeof savedPos.l === 'number' && typeof savedPos.t === 'number') placeDrawer(savedPos.l, savedPos.t);
+      } catch (e) { }
+      var dragging = false, dragOX = 0, dragOY = 0;
+      dragHandle.addEventListener('pointerdown', function (e) {
+        if (e.target.closest && e.target.closest('button')) return;
+        dragging = true;
+        var r = drawer.getBoundingClientRect();
+        dragOX = e.clientX - r.left;
+        dragOY = e.clientY - r.top;
+        try { dragHandle.setPointerCapture(e.pointerId); } catch (err) { }
+        e.preventDefault();
+      });
+      dragHandle.addEventListener('pointermove', function (e) {
+        if (!dragging) return;
+        placeDrawer(e.clientX - dragOX, e.clientY - dragOY);
+      });
+      var endDrag = function (e) {
+        if (!dragging) return;
+        dragging = false;
+        try { dragHandle.releasePointerCapture(e.pointerId); } catch (err) { }
+        var r = drawer.getBoundingClientRect();
+        try { localStorage.setItem('teacher_ped_pos', JSON.stringify({ l: r.left, t: r.top })); } catch (err) { }
+      };
+      dragHandle.addEventListener('pointerup', endDrag);
+      dragHandle.addEventListener('pointercancel', endDrag);
+      dragHandle.addEventListener('dblclick', function () {
+        drawer.style.left = ''; drawer.style.top = ''; drawer.style.right = '';
+        try { localStorage.removeItem('teacher_ped_pos'); } catch (err) { }
+      });
+    }
 
     var btnClose = document.getElementById('btnPedCloseDrawer');
     if (btnClose) {

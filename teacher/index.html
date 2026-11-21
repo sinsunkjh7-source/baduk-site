@@ -41,7 +41,7 @@
 <title>🎓 Teaching Zone — 바둑스쿨 교재 사령탑</title>
 <link rel="preload" as="image" href="images/board_wood_grain.png">
 
-<link rel="stylesheet" href="style.css?v=1795238351">
+<link rel="stylesheet" href="style.css?v=ped-20261121c">
 <link rel="stylesheet" href="/unified-nav.css?v=20261119-settings-sync-v1">
 <script src="/unified-nav.js?v=20261119-settings-sync-v1"></script>
 </head>
@@ -156,8 +156,8 @@
 
           <!-- 🌟 문제별 접이식 간편 편집 메뉴 (클릭 시 펼쳐짐) 🌟 -->
           <div class="prob-edit-drawer" id="probEditDrawer" hidden>
-            <div style="display:flex;align-items:center;justify-content:space-between;padding-bottom:6px;border-bottom:1.5px solid #e2e8f0;margin-bottom:2px;">
-              <span style="font-size:13px;font-weight:900;color:#065f46;">🛠️ 문제 편집 도구</span>
+            <div id="pedDragHandle" title="끌어서 옮기기 (더블클릭하면 원위치)" style="display:flex;align-items:center;justify-content:space-between;padding-bottom:6px;border-bottom:1.5px solid #e2e8f0;margin-bottom:2px;cursor:move;user-select:none;touch-action:none;">
+              <span style="font-size:13px;font-weight:900;color:#065f46;">🛠️ 문제 편집 도구 <span style="font-size:11px;font-weight:700;color:#64748b;">(끌어서 이동)</span></span>
               <button type="button" id="btnPedCloseDrawer" style="border:none;background:#f1f5f9;color:#475569;font-weight:900;border-radius:6px;padding:3px 8px;cursor:pointer;">✕ 닫기</button>
             </div>
             <div class="ped-status-banner" id="pedModeBanner" hidden>
@@ -174,6 +174,7 @@
               <div class="ped-tool-row">
                 <button type="button" class="ped-tool-btn" data-edit-tool="black" title="바둑판 클릭 시 흑돌 추가/제거">⚫흑돌</button>
                 <button type="button" class="ped-tool-btn" data-edit-tool="white" title="바둑판 클릭 시 백돌 추가/제거">⚪백돌</button>
+                <button type="button" class="ped-tool-btn" data-edit-tool="alternate" title="바둑판을 클릭할 때마다 흑·백이 번갈아 놓입니다 (놓인 돌을 누르면 지워짐)">⚫⚪교대</button>
                 <button type="button" class="ped-tool-btn" data-edit-tool="erase" title="바둑판 클릭 시 돌/표시 지우기">❌지움</button>
                 <button type="button" class="ped-tool-btn" data-edit-tool="triangle" title="바둑판 클릭 시 △ 표시 추가/제거">△표시</button>
                 <button type="button" class="ped-tool-btn" data-edit-tool="answer" title="바둑판 클릭으로 정답 수순 새로 입력">🎯정답</button>
@@ -440,7 +441,7 @@
 
 
 <script src="audio.js?v=20261028-solidwood&t=teacher-panel-v15"></script>
-<script src="app.js?v=snd-20261121a"></script>
+<script src="app.js?v=ped-20261121c"></script>
 
 </body>
 </html>
