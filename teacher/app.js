@@ -2068,10 +2068,11 @@
       }
     });
 
-    // 🌟 착수는 언제나 명쾌한 바둑돌 고유 착수음("딱!")이 먼저 100% 울립니다.
-    sfx('playStone');
+    // 돌을 따낸 수는 따내는 소리만, 따내지 않은 수는 착수음만 낸다(두 소리가 겹치지 않게)
     if (capturedAny) {
-      setTimeout(function () { sfx('playCapture'); }, 60);
+      sfx('playCapture');
+    } else {
+      sfx('playStone');
     }
 
     drawBoard();
@@ -2088,7 +2089,7 @@
       // 🌟 착수음("딱!")이 먼저 확실하게 들린 직후 150ms 시차를 두고 "딩동댕~" 정답 축하음 재생
       setTimeout(function () {
         sfx('playSuccess');
-      }, 150);
+      }, 450);
 
       // 🌟 문제 정답 시 1.1초 후 자동으로 다음 문제로 전환
       clearTimeout(state.autoNextTimer);
@@ -2098,7 +2099,7 @@
         } else {
           // toast 제거됨
         }
-      }, 1100);
+      }, 1700);
     } else {
       // 다음 수가 상대방(컴퓨터) 응수인지 확인
       var nextStep = state.playedMoves.length;
@@ -2123,9 +2124,10 @@
             }
           });
 
-          sfx('playStone');
           if (oppCapturedCount > 0) {
-            setTimeout(function () { sfx('playCapture'); }, 60);
+            sfx('playCapture');
+          } else {
+            sfx('playStone');
           }
 
           // 턴을 다시 내 차례(myColor)로 복귀
@@ -2142,13 +2144,13 @@
             showSideFeedback('correct');
             setTimeout(function () {
               sfx('playSuccess');
-            }, 150);
+            }, 450);
             clearTimeout(state.autoNextTimer);
             state.autoNextTimer = setTimeout(function () {
               if (state.currentProblemIndex < state.currentProblems.length - 1) {
                 loadProblem(state.currentProblemIndex + 1);
               }
-            }, 1100);
+            }, 1700);
           } else {
             // toast 제거됨
           }
