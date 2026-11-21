@@ -2096,7 +2096,7 @@
       // 🌟 착수음("딱!")이 먼저 확실하게 들린 직후 150ms 시차를 두고 "딩동댕~" 정답 축하음 재생
       setTimeout(function () {
         sfx('playSuccess');
-      }, 150);
+      }, 450);
 
       // 🌟 문제 정답 시 1.1초 후 자동으로 다음 문제로 전환
       clearTimeout(state.autoNextTimer);
@@ -2106,7 +2106,7 @@
         } else {
           // toast 제거됨
         }
-      }, 1100);
+      }, 1700);
     } else {
       // 다음 수가 상대방(컴퓨터) 응수인지 확인
       var nextStep = state.playedMoves.length;
@@ -2152,13 +2152,13 @@
             showSideFeedback('correct');
             setTimeout(function () {
               sfx('playSuccess');
-            }, 150);
+            }, 450);
             clearTimeout(state.autoNextTimer);
             state.autoNextTimer = setTimeout(function () {
               if (state.currentProblemIndex < state.currentProblems.length - 1) {
                 loadProblem(state.currentProblemIndex + 1);
               }
-            }, 1100);
+            }, 1700);
           } else {
             // toast 제거됨
           }
