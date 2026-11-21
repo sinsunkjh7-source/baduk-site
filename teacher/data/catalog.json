@@ -18293,7 +18293,7 @@
         "chapterCount": 1,
         "totalProblems": 22,
         "problemCount": 22,
-        "_buildVer": "claude-s03-v2-1795275185",
+        "_buildVer": "claude-s03-v3-1795275509",
         "chapters": [
           {
             "code": "claude_s03_u00",
