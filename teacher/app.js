@@ -801,12 +801,22 @@
       var btnClass = 'choice-btn';
       var label = rawItem;
 
+      var isChaksuQ = p && p.question && (p.question.indexOf('착수') !== -1 || p.question.indexOf('둘 수') !== -1);
+
       if (isO && !isX) {
         btnClass += ' choice-o';
-        label = (rawItem === '○' || rawItem.toUpperCase() === 'O') ? '⭕ (착수 가능)' : ('⭕ ' + rawItem);
+        if (isChaksuQ) {
+          label = (rawItem === '○' || rawItem.toUpperCase() === 'O') ? '⭕ (착수 가능)' : ('⭕ ' + rawItem);
+        } else {
+          label = (rawItem === '○' || rawItem.toUpperCase() === 'O') ? '⭕ O' : ('⭕ ' + rawItem);
+        }
       } else if (isX) {
         btnClass += ' choice-x';
-        label = (rawItem === 'Χ' || rawItem === '×' || rawItem.toUpperCase() === 'X') ? '❌ (착수금지)' : ('❌ ' + rawItem);
+        if (isChaksuQ) {
+          label = (rawItem === 'Χ' || rawItem === '×' || rawItem.toUpperCase() === 'X') ? '❌ (착수금지)' : ('❌ ' + rawItem);
+        } else {
+          label = (rawItem === 'Χ' || rawItem === '×' || rawItem.toUpperCase() === 'X') ? '❌ X' : ('❌ ' + rawItem);
+        }
       } else {
         label = (idx + 1) + '. ' + rawItem;
       }
@@ -1550,8 +1560,8 @@
 
         // 🌟 [원장님 지침] 세모(△), 동그라미(○), 네모(□) 표시 돌을 따내고 나면 마크가 빈 교차점에 남지 않도록 제거
         if (mk.type === 'triangle' || mk.type === 'circle' || mk.type === 'square') {
-          // 1) 돌이 따내어져 빈 교차점이 되었으면 마크를 그리지 않음
-          if (stoneColor === 0) return;
+          // 1) 원래 돌 위에 있던 마크인데 돌이 따내어져 빈 교차점이 되었으면 마크를 숨김
+          if (state.initialBoard && state.initialBoard[mk.y][mk.x] !== 0 && stoneColor === 0) return;
           // 2) 원래 표시되어 있던 돌이 따내어지고 다른 색 돌이 놓였을 때도 마크를 그리지 않음
           if (state.initialBoard && state.initialBoard[mk.y][mk.x] !== 0 && state.board[mk.y][mk.x] !== state.initialBoard[mk.y][mk.x]) return;
         }
@@ -1645,8 +1655,9 @@
         ctx.strokeStyle = '#18181b';
         ctx.stroke();
       } else {
-        // 빈 교차점: 따냄 후 잔상 방지를 위해 그리지 않음
-        return;
+        // 빈 교차점 위 세모: 다크 잉크 라인으로 렌더링
+        ctx.strokeStyle = '#0f172a';
+        ctx.stroke();
       }
     } else if (mk.type === 'circle') {
       // 🌟 동그라미(○): 돌 중앙에 쏙 들어가는 단정한 원 (내부 투명)
@@ -1661,8 +1672,9 @@
         ctx.strokeStyle = '#18181b';
         ctx.stroke();
       } else {
-        // 빈 교차점: 따냄 후 잔상 방지를 위해 그리지 않음
-        return;
+        // 빈 교차점 위 동그라미: 다크 잉크 라인으로 렌더링
+        ctx.strokeStyle = '#0f172a';
+        ctx.stroke();
       }
     } else if (mk.type === 'label') {
       // 🌟 문자 라벨: '가', '나', '다', '1', 'A' 등
@@ -1704,8 +1716,9 @@
         ctx.strokeStyle = '#18181b';
         ctx.stroke();
       } else {
-        // 빈 교차점: 따냄 후 잔상 방지를 위해 그리지 않음
-        return;
+        // 빈 교차점 위 네모: 다크 잉크 라인으로 렌더링
+        ctx.strokeStyle = '#0f172a';
+        ctx.stroke();
       }
     }
     ctx.restore();
