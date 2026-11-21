@@ -18291,9 +18291,9 @@
         "code": "claude_stage_03",
         "file": "book_claude_stage_03.json",
         "chapterCount": 2,
-        "totalProblems": 45,
-        "problemCount": 45,
-        "_buildVer": "claude-s03-v4-1795277769",
+        "totalProblems": 39,
+        "problemCount": 39,
+        "_buildVer": "claude-s03-v5-1795305264",
         "chapters": [
           {
             "code": "claude_s03_u00",
@@ -18308,8 +18308,8 @@
             "chapterCode": "claude_s03_u00_jm",
             "title": "0. 장문",
             "chapter": "0. 장문",
-            "problemCount": 23,
-            "problemsCount": 23
+            "problemCount": 17,
+            "problemsCount": 17
           }
         ]
       }
