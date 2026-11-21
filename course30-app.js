@@ -2077,10 +2077,11 @@
     });
 
     // 🌟 착수는 언제나 명쾌한 바둑돌 고유 착수음("딱!")이 먼저 100% 울립니다.
-    sfx('playStone');
-    // 정답을 완성하는 마지막 수에서는 따내는 소리를 빼고(착수음 + 정답 알림음만) 소리가 겹치지 않게 한다
-    if (capturedAny && state.playedMoves.length < currentBranch.length) {
-      setTimeout(function () { sfx('playCapture'); }, 60);
+    // 돌을 따낸 수는 따내는 소리만, 따내지 않은 수는 착수음만 낸다(두 소리가 겹치지 않게)
+    if (capturedAny) {
+      sfx('playCapture');
+    } else {
+      sfx('playStone');
     }
 
     drawBoard();
@@ -2134,9 +2135,10 @@
             }
           });
 
-          sfx('playStone');
           if (oppCapturedCount > 0) {
-            setTimeout(function () { sfx('playCapture'); }, 60);
+            sfx('playCapture');
+          } else {
+            sfx('playStone');
           }
 
           // 턴을 다시 내 차례(myColor)로 복귀
