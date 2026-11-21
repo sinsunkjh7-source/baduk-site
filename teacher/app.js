@@ -4,10 +4,6 @@
    ============================================================ */
 
 (function () {
-  var courseProvider = window.BKSCourse30 || null;
-  function selectionKey(name) { return (courseProvider ? 'course30_last_' : 'teacher_last_') + name; }
-  function progressKey(index) { var code=state.currentBook ? (state.currentBook.bookCode || '') : ''; return code + '_' + (courseProvider ? state.currentChapterIndex + '_' + (state.currentProblems[index] ? state.currentProblems[index].code : '') + '_' : '') + index; }
-
   var TEACHER_PASS = '5840';
   var SESSION_KEY = 'bkTeacherOk';
 
@@ -88,7 +84,7 @@
     var img = new Image();
     img.src = spriteUrls[key];
     img.onload = function () {
-      if ((state.authenticated || courseProvider) && metrics.cellSize > 0 && document.getElementById('teachingBoard')) {
+      if (state.authenticated && metrics.cellSize > 0 && document.getElementById('teachingBoard')) {
         drawBoard();
       }
     };
@@ -110,7 +106,7 @@
   }
 
   woodGrainImg.onload = function () {
-    if ((state.authenticated || courseProvider) && metrics.cellSize > 0 && document.getElementById('teachingBoard')) {
+    if (state.authenticated && metrics.cellSize > 0 && document.getElementById('teachingBoard')) {
       drawBoard();
       revealTeacherBoard();
     }
@@ -263,7 +259,7 @@
     if (type === 'correct') {
       card.classList.add('correct');
       emblem.innerHTML = '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>';
-      text.textContent = courseProvider ? '저장 정답과 일치' : '정답입니다';
+      text.textContent = '정답입니다';
     } else if (type === 'illegal') {
       card.classList.add('illegal');
       emblem.innerHTML = '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line></svg>';
@@ -271,7 +267,7 @@
     } else {
       card.classList.add('wrong');
       emblem.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>';
-      text.textContent = courseProvider ? '저장 정답과 다름' : '오답입니다';
+      text.textContent = '오답입니다';
     }
 
     card.hidden = false;
@@ -292,14 +288,14 @@
   /* ---------- 강사모드 진입 (회원 계정 연동 전 다이렉트 진입) ---------- */
   /* ---------- 카탈로그 및 교재 로드 ---------- */
   function initCatalog() {
-    (courseProvider ? courseProvider.catalog() : fetch('data/catalog.json?v=' + Date.now()).then(function (res) { return res.json(); }))
+    fetch('data/catalog.json?v=' + Date.now())
+      .then(function (res) { return res.json(); })
       .then(function (cat) {
         state.catalog = cat;
         populateSeries();
       })
       .catch(function (err) {
         console.error('Failed to load catalog.json:', err);
-        if (courseProvider && courseProvider.onError) courseProvider.onError(err);
         // toast 제거됨
       });
   }
@@ -317,17 +313,38 @@
       opt.value = idx;
       var rawTitle = sec.title || '';
       var cleanTitle = rawTitle.replace(/^\d+[\.\)]\s*/, '');
-      opt.textContent = courseProvider ? sec.title + ' (' + (sec.books ? sec.books.length : 0) + '단계)' : (idx + 1) + '. ' + cleanTitle + ' (' + (sec.books ? sec.books.length : 0) + '권)';
+      opt.textContent = (idx + 1) + '. ' + cleanTitle + ' (' + (sec.books ? sec.books.length : 0) + '권)';
       seriesSelect.appendChild(opt);
     });
 
-    var savedSeries = localStorage.getItem(selectionKey('series'));
-    var seriesIdx = courseProvider ? 0 : 1;
+    var savedSeries = localStorage.getItem('teacher_last_series');
+    var seriesIdx = 1;
     if (savedSeries !== null) {
       var parsed = parseInt(savedSeries, 10);
       if (!isNaN(parsed) && parsed >= 0 && parsed < state.catalog.length) {
-        seriesIdx = (!courseProvider && parsed === 0) ? 1 : parsed;
+        seriesIdx = (parsed === 0) ? 1 : parsed;
       }
+    }
+    // 🌟 URL 파라미터(?series=16 또는 ?series=gpt)가 전달된 경우 우선 적용
+    try {
+      var urlParams = new URLSearchParams(window.location.search);
+      var paramSeries = urlParams.get('series') || urlParams.get('category');
+      if (paramSeries) {
+        var pNum = parseInt(paramSeries, 10);
+        if (!isNaN(pNum)) {
+          if (pNum >= 1 && pNum <= state.catalog.length) seriesIdx = pNum - 1; // 1-based (예: ?series=16)
+          else if (pNum >= 0 && pNum < state.catalog.length) seriesIdx = pNum;
+        } else {
+          for (var si = 0; si < state.catalog.length; si++) {
+            if ((state.catalog[si].title || '').toLowerCase().indexOf(paramSeries.toLowerCase()) !== -1) {
+              seriesIdx = si;
+              break;
+            }
+          }
+        }
+      }
+    } catch (e) {
+      console.warn('URL series parse error:', e);
     }
     seriesSelect.value = seriesIdx;
     onSeriesChange(true);
@@ -336,7 +353,7 @@
   function onSeriesChange(isRestoring) {
     var secIdx = parseInt(seriesSelect.value, 10);
     state.currentSeriesIndex = secIdx;
-    localStorage.setItem(selectionKey('series'), secIdx.toString());
+    localStorage.setItem('teacher_last_series', secIdx.toString());
 
     var sec = state.catalog[secIdx];
     bookSelect.innerHTML = '';
@@ -351,7 +368,7 @@
 
     var targetBookCode = sec.books[0] ? sec.books[0].code : null;
     if (isRestoring) {
-      var savedBook = localStorage.getItem(selectionKey('book'));
+      var savedBook = localStorage.getItem('teacher_last_book');
       if (savedBook && sec.books.some(function (b) { return b.code === savedBook; })) {
         targetBookCode = savedBook;
       }
@@ -364,8 +381,8 @@
   }
 
   function loadBook(code, isRestoring, forceOriginal) {
-    localStorage.setItem(selectionKey('book'), code);
-    if (!forceOriginal && !courseProvider) {
+    localStorage.setItem('teacher_last_book', code);
+    if (!forceOriginal) {
       try {
         var savedCustom = localStorage.getItem('teacher_book_custom_' + code);
         if (savedCustom) {
@@ -383,10 +400,11 @@
         console.warn('Custom book parse error:', e);
       }
     }
-    (courseProvider ? courseProvider.book(code) : fetch('data/books/book_' + code + '.json?v=' + Date.now()).then(function (res) {
+    fetch('data/books/book_' + code + '.json?v=' + Date.now())
+      .then(function (res) {
         if (!res.ok) throw new Error('HTTP ' + res.status);
         return res.json();
-      }))
+      })
       .then(function (bookData) {
         bookData.bookCode = code;
         state.currentBook = bookData;
@@ -396,7 +414,6 @@
       })
       .catch(function (err) {
         console.error('Failed to load book_' + code + '.json:', err);
-        if (courseProvider) { if (courseProvider.onError) courseProvider.onError(err); return; }
         if (code !== 'stage_01') {
           console.warn('Fallback: loading stage_01 because', code, 'failed to load.');
           state.currentSeriesIndex = 1;
@@ -438,7 +455,7 @@
 
     var targetChIdx = 0;
     if (isRestoring) {
-      var savedCh = localStorage.getItem(selectionKey('chapter'));
+      var savedCh = localStorage.getItem('teacher_last_chapter');
       if (savedCh !== null) {
         var parsedCh = parseInt(savedCh, 10);
         if (!isNaN(parsedCh) && parsedCh >= 0 && parsedCh < chapters.length) {
@@ -453,18 +470,18 @@
   function onChapterChange(isRestoring) {
     var chIdx = parseInt(chapterSelect.value, 10);
     state.currentChapterIndex = chIdx;
-    localStorage.setItem(selectionKey('chapter'), chIdx.toString());
+    localStorage.setItem('teacher_last_chapter', chIdx.toString());
 
     var chapters = state.currentBook ? state.currentBook.chapters : [];
     var ch = chapters[chIdx];
     if (!ch) return;
 
     currentChapterTitle.textContent = '— ' + (ch.chapter || ch.title || '');
-    state.currentProblems = courseProvider ? courseProvider.problems(ch) : (ch.problems || []);
+    state.currentProblems = ch.problems || [];
 
     var targetProblemIdx = 0;
     if (isRestoring) {
-      var savedProb = localStorage.getItem(selectionKey('problem'));
+      var savedProb = localStorage.getItem('teacher_last_problem');
       if (savedProb !== null) {
         var parsedProb = parseInt(savedProb, 10);
         if (!isNaN(parsedProb) && parsedProb >= 0 && parsedProb < state.currentProblems.length) {
@@ -487,7 +504,7 @@
     state.currentProblems.forEach(function (p, idx) {
       var btn = document.createElement('button');
       btn.type = 'button';
-      var key = courseProvider ? progressKey(idx) : bookCode + '_' + idx;
+      var key = bookCode + '_' + idx;
       var isSolved = Boolean(state.solvedMap[key]);
       var isActive = (idx === state.currentProblemIndex);
 
@@ -836,7 +853,7 @@
 
     if (idx < 0 || idx >= state.currentProblems.length) return;
     state.currentProblemIndex = idx;
-    localStorage.setItem(selectionKey('problem'), idx.toString());
+    localStorage.setItem('teacher_last_problem', idx.toString());
     state.showAnswer = false;
     state.solved = false;
 
@@ -861,6 +878,36 @@
         );
       } else {
         qSeriesBadge.hidden = true;
+      }
+    }
+    // 🌟 메타데이터 뱃지 행 갱신 (문제 코드, 섹션, 필수/연습, 출처, 복습 여부)
+    var qMetaRow = document.getElementById('qMetaRow');
+    if (qMetaRow) {
+      if (p.code || p.curriculum_type || p.source_book || p.section_title) {
+        qMetaRow.hidden = false;
+        var metaHtml = '';
+        if (p.code) {
+          metaHtml += '<span class="badge-code" style="background:#f1f5f9;color:#334155;padding:2px 6px;border-radius:4px;font-weight:700;border:1px solid #cbd5e1;">코드 #' + p.code + '</span>';
+        }
+        if (p.section_title) {
+          metaHtml += '<span class="badge-sec" style="background:#e0f2fe;color:#0369a1;padding:2px 6px;border-radius:4px;font-weight:700;border:1px solid #bae6fd;">' + p.section_title + '</span>';
+        }
+        if (p.curriculum_type) {
+          var isReq = (p.curriculum_type === '필수');
+          metaHtml += '<span class="badge-type" style="background:' + (isReq ? '#dbeafe;color:#1d4ed8;border:1px solid #bfdbfe;' : '#f3f4f6;color:#4b5563;border:1px solid #e5e7eb;') + 'padding:2px 6px;border-radius:4px;font-weight:800;">' + p.curriculum_type + '</span>';
+        }
+        if (p.source_book) {
+          var srcStr = p.source_book + (p.source_p_num ? (' ' + p.source_p_num + '번') : '');
+          metaHtml += '<span class="badge-source" style="background:#fdf2f8;color:#be185d;padding:2px 6px;border-radius:4px;font-weight:600;border:1px solid #fbcfe8;">출처: ' + srcStr + '</span>';
+        }
+        // 🌟 복습 뱃지: hide_review_badge가 true인 경우(입문 1섹션)에는 학생에게 복습으로 안내하지 않음!
+        if (p.is_review && !p.hide_review_badge) {
+          metaHtml += '<span class="badge-review" style="background:#fef3c7;color:#b45309;padding:2px 6px;border-radius:4px;font-weight:800;border:1px solid #fde68a;">[복습] ' + (p.review_type || '반복 연습') + '</span>';
+        }
+        qMetaRow.innerHTML = metaHtml;
+      } else {
+        qMetaRow.hidden = true;
+        qMetaRow.innerHTML = '';
       }
     }
     questionText.textContent = (p.question || '알맞은 곳에 돌을 놓아 보세요.').replace(/\r\n/g, '\n');
@@ -919,12 +966,10 @@
     if (typeof updatePlacementUI === 'function') updatePlacementUI();
     if (typeof syncProbEditDrawerUI === 'function') syncProbEditDrawerUI();
     drawBoard();
-    if (courseProvider) courseProvider.onProblemLoaded(state, p);
   }
 
   /* ---------- 🌟 원 교재 규격 판별 (가로선 9, 세로선 10 / 열린 선) ---------- */
   function detectBoardSpec(p) {
-    if (courseProvider) return courseProvider.boardSpec(p);
     if (!p) return { cols: 10, rows: 10, isFull19: false, quadrant: 'BR' };
     
     var rawSize = p.size ? String(p.size).trim() : '';
@@ -1108,7 +1153,7 @@
     // 셀 크기 최적화: 1선 가장자리에 돌이 놓여도 좌표가 돌에 가려지지 않도록 외곽 마진 넉넉히 확보
     var marginPad = (state.coordMode !== 'none') ? 1.05 : 0.85;
     var cell = Math.min((availW - 6) / (cols + marginPad), (availH - 6) / (rows + marginPad));
-    cell = Math.max(courseProvider ? 8 : 32, Math.min(cell, 150));
+    cell = Math.max(32, Math.min(cell, 150));
 
     // 시작 마진(상/좌)과 끝 마진(하/우) - 우측·하단 좌표가 완전 가장자리에 안전하게 안착되도록 여백 배분
     var startMargin = (state.coordMode === 'left-top' || state.coordMode === 'all-four') ? Math.round(cell * 0.95) : Math.round(cell * 0.72);
@@ -1369,9 +1414,8 @@
       ctx.strokeRect(startX, startY, cell * (cols - 1), cell * (rows - 1));
 
       // 19줄 9개 화점
-      (courseProvider && spec.native9 ? [2, 4, 6] : [3, 9, 15]).forEach(function(hx){
-        (courseProvider && spec.native9 ? [2, 4, 6] : [3, 9, 15]).forEach(function(hy){
-          if (courseProvider && spec.native9 && (hx===4 || hy===4) && !(hx===4 && hy===4)) return;
+      [3, 9, 15].forEach(function(hx){
+        [3, 9, 15].forEach(function(hy){
           ctx.fillStyle = '#4a2c11';
           ctx.beginPath();
           ctx.arc(startX + cell * hx, startY + cell * hy, Math.max(2.6, cell * 0.08), 0, Math.PI * 2);
@@ -1802,7 +1846,6 @@
       return;
     }
 
-    if (courseProvider && !courseProvider.canGrade(state.currentProblems[state.currentProblemIndex])) state.trialMode = true;
     // 🌟 [원장님 지침] 놓아보기 모드: 자유 착수, 흑/백 교차/연속 착수, 사석 완벽 따내기 & 착수금지 방지!
     if (state.trialMode) {
       if (state.board[gy][gx] !== 0) {
@@ -2024,7 +2067,7 @@
     var isFinished = state.playedMoves.length >= currentBranch.length;
     if (isFinished) {
       state.solved = true;
-      var curKey = progressKey(state.currentProblemIndex);
+      var curKey = (state.currentBook ? (state.currentBook.bookCode || '') : '') + '_' + state.currentProblemIndex;
       state.solvedMap[curKey] = true;
       renderProblemGrid();
       showSideFeedback('correct');
@@ -2050,9 +2093,7 @@
       if (nextOppMove && nextOppMove.color === oppColor) {
         state.isOpponentResponding = true;
         // toast 제거됨
-        var courseResponseVersion = state._courseLoadVersion;
         setTimeout(function () {
-          if (courseProvider && courseResponseVersion !== state._courseLoadVersion) return;
           state.board[nextOppMove.y][nextOppMove.x] = oppColor;
           state.playedMoves.push(nextOppMove);
           state.isOpponentResponding = false;
@@ -2082,7 +2123,7 @@
           // 상대방 응수 후 문제 완료 여부 확인
           if (state.playedMoves.length >= currentBranch.length) {
             state.solved = true;
-            var cKey = progressKey(state.currentProblemIndex);
+            var cKey = (state.currentBook ? (state.currentBook.bookCode || '') : '') + '_' + state.currentProblemIndex;
             state.solvedMap[cKey] = true;
             renderProblemGrid();
             showSideFeedback('correct');
@@ -2157,7 +2198,6 @@
 
     drawBoard();
     if (typeof renderChoiceButtons === 'function') renderChoiceButtons(p);
-    if (courseProvider) courseProvider.onProblemLoaded(state, p);
   }
 
   var btnHintEl = document.getElementById('btnHint');
@@ -2169,7 +2209,6 @@
   }
 
   document.getElementById('btnAnswer').addEventListener('click', function () {
-    if (courseProvider && courseProvider.onAnswerClick(state, state.currentProblems[state.currentProblemIndex], this)) return;
     if (state.autoNextTimer) {
       clearTimeout(state.autoNextTimer);
       state.autoNextTimer = null;
@@ -2219,7 +2258,7 @@
 
     // 키보드 단축키 (좌우 화살표: 문제 이동, A: 정답, R: 초기화)
   window.addEventListener('keydown', function (e) {
-    if (!state.authenticated && !courseProvider) return;
+    if (!state.authenticated) return;
     if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT') return;
     if (e.key === 'ArrowLeft') {
       if (state.currentProblemIndex > 0) loadProblem(state.currentProblemIndex - 1);
@@ -2235,7 +2274,7 @@
   });
 
   window.addEventListener('resize', function () {
-    if (state.authenticated || courseProvider) {
+    if (state.authenticated) {
       layoutBoard();
       drawBoard();
     }
@@ -4059,9 +4098,5 @@
   }
 
   initGridViewModal();
-  if (courseProvider) {
-    window.BKSCourse30LoadProblem = loadProblem;
-    window.BKSCourse30ReloadChapter = function () { onChapterChange(false); };
-  }
   initCatalog();
 })();

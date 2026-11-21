@@ -18266,5 +18266,19 @@
         ]
       }
     ]
+  },
+  {
+    "title": "GPT+안티그래비티 30단계",
+    "bookCount": 1,
+    "books": [
+      {
+        "title": "제1단계 : 돌의 생명과 활로의 역학",
+        "name": "제1단계 : 돌의 생명과 활로의 역학",
+        "code": "gpt_anti_stage_01",
+        "file": "book_gpt_anti_stage_01.json",
+        "chapterCount": 5,
+        "totalProblems": 84
+      }
+    ]
   }
 ]
