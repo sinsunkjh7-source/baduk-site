@@ -22,7 +22,7 @@
   function ensureStage(n) {
     if (!isClaude) return Promise.resolve();
     data.loaded = data.loaded || {};
-    if (!data.loaded[n]) data.loaded[n] = fetch('/course30-claude/stage_' + n + '.json?v=claude-v4-10').then(function(r){if(!r.ok)throw new Error('단계 문제 자료를 불러오지 못했습니다 ('+r.status+')');return r.json();}).then(function(j){Object.assign(data.records, j.records);});
+    if (!data.loaded[n]) data.loaded[n] = fetch('/course30-claude/stage_' + n + '.json?v=claude-v4-11').then(function(r){if(!r.ok)throw new Error('단계 문제 자료를 불러오지 못했습니다 ('+r.status+')');return r.json();}).then(function(j){Object.assign(data.records, j.records);});
     return data.loaded[n];
   }
   function claudeUnit() {
@@ -30,7 +30,7 @@
     return st && c ? st.units.find(function(u){return u.key === c.courseUnit;}) : null;
   }
   function loadData() {
-    if (!dataPromise && isClaude) dataPromise = fetch('/course30-claude/meta.json?v=claude-v4-10').then(function(r){if(!r.ok)throw new Error('클로드 커리큘럼 자료를 불러오지 못했습니다 ('+r.status+')');return r.json();}).then(function(d){ d.records = {}; data = d; return d; });
+    if (!dataPromise && isClaude) dataPromise = fetch('/course30-claude/meta.json?v=claude-v4-11').then(function(r){if(!r.ok)throw new Error('클로드 커리큘럼 자료를 불러오지 못했습니다 ('+r.status+')');return r.json();}).then(function(d){ d.records = {}; data = d; return d; });
     if (!dataPromise) dataPromise = (window.BKSCourse30TestData ? Promise.resolve(window.BKSCourse30TestData) : fetch('/course30-data-v1.json?v=teacher-reuse-20261107').then(function(r){if(!r.ok)throw new Error('교육과정 자료를 불러오지 못했습니다 ('+r.status+')');return r.json();})).then(function(d){ data=d; return d; });
     return dataPromise;
   }
@@ -42,7 +42,7 @@
     return p;
   }
   function canGrade(p) {
-    if (!p || !/^(1|3)$/.test(String(p.type))) return false;
+    if (!p || !/^(1|2|3)$/.test(String(p.type))) return false;
     var fields=[];
     for(var i=1;i<=5;i++){var a=String(p['answer'+i]||'').trim();if(a)fields.push(a);}
     if(!fields.length || fields.some(function(a){return !/^(?:;[BW]\[[a-s]{2}\])+$/.test(a);}))return false;
@@ -52,7 +52,8 @@
       if(!moves.length)return false;
       if(first===null)first=moves[0][1];
       if(moves[0][1]!==first)return false;
-      for(var j=1;j<moves.length;j++)if(moves[j][1]===moves[j-1][1])return false;
+      var allSame=moves.every(function(m){return m[1]===moves[0][1];});
+      if(!allSame){for(var j=1;j<moves.length;j++)if(moves[j][1]===moves[j-1][1])return false;}
       return true;
     });
   }
@@ -113,7 +114,7 @@
     $('courseProblemTab').setAttribute('aria-pressed',String(tab==='problem'));
     var st=stage(), ch=chapter();
     $('courseHeading').textContent=(view==='stages'||view==='curricula')?'단계별 학습관':stageNumber()+'단계 · '+(view==='units'?'단원 선택':ch?ch.title:'문제 학습');
-    $('courseStatus').textContent=isClaude?'클로드 30단계 v4 · 1단계 원본 문제 · 2단계부터 교재 임시 · 빌드 4-10':(stageNumber()>=28?'입문 후보 · ':'편성 v1 · ')+'이론 준비 중';
+    $('courseStatus').textContent=isClaude?'클로드 30단계 v4 · 1단계 원본 문제 · 2단계부터 교재 임시 · 빌드 4-11':(stageNumber()>=28?'입문 후보 · ':'편성 v1 · ')+'이론 준비 중';
     var info=$('courseStageInfo');if(!info){info=document.createElement('div');info.id='courseStageInfo';info.className='course-stage-info';$('courseCards').parentNode.insertBefore(info,$('courseCards'));}
     info.hidden=true;info.innerHTML='';
     if(view==='curricula'){
