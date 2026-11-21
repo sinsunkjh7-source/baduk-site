@@ -22,7 +22,7 @@
   function ensureStage(n) {
     if (!isClaude) return Promise.resolve();
     data.loaded = data.loaded || {};
-    if (!data.loaded[n]) data.loaded[n] = fetch('/course30-claude/stage_' + n + '.json?v=claude-v4-9').then(function(r){if(!r.ok)throw new Error('단계 문제 자료를 불러오지 못했습니다 ('+r.status+')');return r.json();}).then(function(j){Object.assign(data.records, j.records);});
+    if (!data.loaded[n]) data.loaded[n] = fetch('/course30-claude/stage_' + n + '.json?v=claude-v4-10').then(function(r){if(!r.ok)throw new Error('단계 문제 자료를 불러오지 못했습니다 ('+r.status+')');return r.json();}).then(function(j){Object.assign(data.records, j.records);});
     return data.loaded[n];
   }
   function claudeUnit() {
@@ -30,7 +30,7 @@
     return st && c ? st.units.find(function(u){return u.key === c.courseUnit;}) : null;
   }
   function loadData() {
-    if (!dataPromise && isClaude) dataPromise = fetch('/course30-claude/meta.json?v=claude-v4-9').then(function(r){if(!r.ok)throw new Error('클로드 커리큘럼 자료를 불러오지 못했습니다 ('+r.status+')');return r.json();}).then(function(d){ d.records = {}; data = d; return d; });
+    if (!dataPromise && isClaude) dataPromise = fetch('/course30-claude/meta.json?v=claude-v4-10').then(function(r){if(!r.ok)throw new Error('클로드 커리큘럼 자료를 불러오지 못했습니다 ('+r.status+')');return r.json();}).then(function(d){ d.records = {}; data = d; return d; });
     if (!dataPromise) dataPromise = (window.BKSCourse30TestData ? Promise.resolve(window.BKSCourse30TestData) : fetch('/course30-data-v1.json?v=teacher-reuse-20261107').then(function(r){if(!r.ok)throw new Error('교육과정 자료를 불러오지 못했습니다 ('+r.status+')');return r.json();})).then(function(d){ data=d; return d; });
     return dataPromise;
   }
@@ -113,7 +113,7 @@
     $('courseProblemTab').setAttribute('aria-pressed',String(tab==='problem'));
     var st=stage(), ch=chapter();
     $('courseHeading').textContent=(view==='stages'||view==='curricula')?'단계별 학습관':stageNumber()+'단계 · '+(view==='units'?'단원 선택':ch?ch.title:'문제 학습');
-    $('courseStatus').textContent=isClaude?'클로드 30단계 v4 · 1단계 원본 문제 · 2단계부터 교재 임시 · 빌드 4-9':(stageNumber()>=28?'입문 후보 · ':'편성 v1 · ')+'이론 준비 중';
+    $('courseStatus').textContent=isClaude?'클로드 30단계 v4 · 1단계 원본 문제 · 2단계부터 교재 임시 · 빌드 4-10':(stageNumber()>=28?'입문 후보 · ':'편성 v1 · ')+'이론 준비 중';
     var info=$('courseStageInfo');if(!info){info=document.createElement('div');info.id='courseStageInfo';info.className='course-stage-info';$('courseCards').parentNode.insertBefore(info,$('courseCards'));}
     info.hidden=true;info.innerHTML='';
     if(view==='curricula'){
@@ -133,7 +133,7 @@
       $('coursePickerDescription').textContent='단원을 선택하면 Teaching Zone의 바둑판과 학습 메뉴로 이어집니다.';
       if(isClaude){
         info.innerHTML='<h3>학습 목표</h3><ul>'+st.goals.map(function(g){return '<li>'+escape(g)+'</li>';}).join('')+'</ul>'+(st.newTopics&&st.newTopics.length?'<h3>새로 배우는 주제</h3><div class="course-chips">'+st.newTopics.map(function(t){return '<span>'+escape(t)+'</span>';}).join('')+'</div>':'')+(st.alpha&&st.alpha.length?'<h3>알파바둑 선택 과정</h3><p>'+st.alpha.map(escape).join(' · ')+'</p>':'');info.hidden=false;
-        $('courseCards').innerHTML=st.units.map(function(u,i){return '<button type="button" class="course-card" data-course-unit="'+i+'"><small>'+String(i+1).padStart(2,'0')+' · '+escape(u.field)+'</small><strong>'+escape(u.title)+'</strong><span>'+(u.original?'원본 ':'')+u.bodyIDs.length+'문항'+(u.extraIDs.length?' · 추가 연습 '+u.extraIDs.length+'문항':'')+'</span><small>'+escape(u.concept)+(u.original?' · 정답 검증 완료':' · 교재 임시')+'</small></button>';}).join('');
+        $('courseCards').innerHTML=st.units.map(function(u,i){return '<button type="button" class="course-card" data-course-unit="'+i+'"><small>'+String(i+1).padStart(2,'0')+' · '+escape(u.field)+'</small><strong>'+escape(u.title)+'</strong><span>'+(u.original?'원본 ':u.mixed?'교재 '+u.nBase+' + 보충 '+u.nSupp+' = ':'')+u.bodyIDs.length+'문항'+(u.extraIDs.length?' · 추가 연습 '+u.extraIDs.length+'문항':'')+'</span><small>'+escape(u.concept)+(u.original?' · 정답 검증 완료':u.mixed?' · 표시 있는 문제 먼저':' · 교재 임시')+'</small></button>';}).join('');
       }else{
         $('courseCards').innerHTML=st.units.map(function(u,i){return '<button type="button" class="course-card" data-course-unit="'+i+'"><small>'+String(i+1).padStart(2,'0')+' · '+escape(u.field)+'</small><strong>'+escape(u.title)+'</strong><span>'+u.bodyIDs.length+'문항'+(u.extraIDs.length?' · 추가 연습 '+u.extraIDs.length+'문항':'')+'</span></button>';}).join('');
       }
