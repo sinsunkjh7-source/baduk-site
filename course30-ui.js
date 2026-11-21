@@ -113,13 +113,13 @@
     $('courseProblemTab').setAttribute('aria-pressed',String(tab==='problem'));
     var st=stage(), ch=chapter();
     $('courseHeading').textContent=(view==='stages'||view==='curricula')?'단계별 학습관':stageNumber()+'단계 · '+(view==='units'?'단원 선택':ch?ch.title:'문제 학습');
-    $('courseStatus').textContent=isClaude?'클로드 30단계 v4 · 교재 문제 임시 배치 · 검수용 · 빌드 4-2':(stageNumber()>=28?'입문 후보 · ':'편성 v1 · ')+'이론 준비 중';
+    $('courseStatus').textContent=isClaude?'클로드 30단계 v4 · 교재 문제 임시 배치 · 검수용 · 빌드 4-3':(stageNumber()>=28?'입문 후보 · ':'편성 v1 · ')+'이론 준비 중';
     var info=$('courseStageInfo');if(!info){info=document.createElement('div');info.id='courseStageInfo';info.className='course-stage-info';$('courseCards').parentNode.insertBefore(info,$('courseCards'));}
     info.hidden=true;info.innerHTML='';
     if(view==='curricula'){
       $('coursePickerTitle').textContent='교육과정 선택';
-      $('coursePickerDescription').textContent='보고 싶은 교육과정을 선택하세요. 클로드 30단계 커리큘럼은 검수를 위해 단계마다 단원과 임시 문제가 배치되어 있습니다.';
-      $('courseCards').innerHTML='<button type="button" class="course-card" data-curriculum="claude"><small>1</small><strong>클로드 30단계 커리큘럼</strong><span>3대 시리즈 분석 기반 · 1단계(입문)부터 30단계까지</span><small>455단원 · 학습 목표·새 주제 포함 · 교재 문제 임시 배치</small></button><button type="button" class="course-card" data-curriculum="v1"><small>2</small><strong>기존 편성 v1</strong><span>30단계부터 1단계까지 · 다른 AI가 편성한 1차 편집본</span><small>200단원 · 문항 편성 v1</small></button>';
+      $('coursePickerDescription').textContent='보고 싶은 교육과정을 선택하세요. 새 편성안이 생기면 이 목록에 번호를 붙여 추가합니다. 1번은 검수를 위해 단계마다 단원과 임시 문제가 배치되어 있습니다.';
+      $('courseCards').innerHTML='<button type="button" class="course-card" data-curriculum="claude"><small>1</small><strong>클로드 30단계 커리큘럼</strong><span>3대 시리즈 분석 기반 · 1단계(입문)부터 30단계까지</span><small>455단원 · 학습 목표·새 주제 포함 · 교재 문제 임시 배치</small></button>';
     }else if(view==='stages'&&isClaude){
       $('coursePickerTitle').textContent='1. 클로드 30단계 커리큘럼 · 1단계부터 30단계까지';
       $('coursePickerDescription').textContent='학습할 단계를 선택하세요. 단계 주제와 학습 목표를 보고, 단원을 눌러 임시 배치된 문제를 풀어 볼 수 있습니다. 문제는 검수를 위해 교재 문제를 임시로 넣은 것이며, 이후 원본 문제로 교체합니다.';
