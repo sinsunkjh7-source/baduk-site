@@ -18276,8 +18276,8 @@
         "name": "제1단계 : 돌의 생명과 활로의 역학",
         "code": "gpt_anti_stage_01",
         "file": "book_gpt_anti_stage_01.json",
-        "chapterCount": 5,
-        "totalProblems": 84
+        "chapterCount": 4,
+        "totalProblems": 74
       }
     ]
   }
