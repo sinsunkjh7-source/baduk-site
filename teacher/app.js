@@ -380,6 +380,17 @@
     }
   }
 
+  // 🌟 클로드 문제집(claude_*)은 사이트에 새 버전이 올라오면 브라우저에 남은 옛 편집본을 자동으로 버린다 🌟
+  function isStaleClaudeCustom(code, customData) {
+    try {
+      var catVer = null;
+      (state.catalog || []).forEach(function (s) {
+        (s.books || []).forEach(function (b) { if (b.code === code) catVer = b._buildVer; });
+      });
+      return !!(catVer && customData && customData._buildVer !== catVer);
+    } catch (e) { return false; }
+  }
+
   function loadBook(code, isRestoring, forceOriginal) {
     localStorage.setItem('teacher_last_book', code);
     if (!forceOriginal) {
@@ -387,7 +398,7 @@
         var savedCustom = localStorage.getItem('teacher_book_custom_' + code);
         if (savedCustom) {
           var customData = JSON.parse(savedCustom);
-          if ((code === 'tech_atari' && customData._buildVer !== 'v2-clean') || (code === 'new_tech_chokchoksu' && customData._buildVer !== 'v23-ch8-teacher-clean-200') || (code === 'new_tech_chuk' && customData._buildVer !== 'v17-ch6-138') || (code === 'new_tech_jangmun' && (customData._buildVer !== 'v30-ch9-9probs-179-1794267464' || !customData.chapters || customData.chapters.length !== 9)) || (code === 'new_tech_hwangyeok' && customData._buildVer !== 'v13-ch9-256probs-comprehensive-sahwal-hwangyeok') || (code === 'new_tech_meokyeochigi' && customData._buildVer !== 'v9-ch9-224probs-advanced-sahwal') || (code === 'new_tech_pae' && customData._buildVer !== 'v11-ch11-274probs-pae-master') || (code === 'new_tech_chaksu_geumji' && customData._buildVer !== 'v5-ch5-118probs-chaksu-final-master') || (code === 'new_tech_sahwal' && (customData._buildVer !== 'v22-sahwal-filtered-okjip-26p-208' || !customData.chapters || customData.chapters.length !== 8 || customData.chapters.some(function(c){ return !c.problems || c.problems.length === 0; })))) { localStorage.removeItem('teacher_book_custom_' + code); } else if (customData && Array.isArray(customData.chapters) && (customData.totalProblems > 0 || customData.chapters.some(function(c){ return (c.problems||[]).length > 0; }))) {
+          if (code.indexOf('claude_') === 0 && isStaleClaudeCustom(code, customData)) { localStorage.removeItem('teacher_book_custom_' + code); } else if ((code === 'tech_atari' && customData._buildVer !== 'v2-clean') || (code === 'new_tech_chokchoksu' && customData._buildVer !== 'v23-ch8-teacher-clean-200') || (code === 'new_tech_chuk' && customData._buildVer !== 'v17-ch6-138') || (code === 'new_tech_jangmun' && (customData._buildVer !== 'v30-ch9-9probs-179-1794267464' || !customData.chapters || customData.chapters.length !== 9)) || (code === 'new_tech_hwangyeok' && customData._buildVer !== 'v13-ch9-256probs-comprehensive-sahwal-hwangyeok') || (code === 'new_tech_meokyeochigi' && customData._buildVer !== 'v9-ch9-224probs-advanced-sahwal') || (code === 'new_tech_pae' && customData._buildVer !== 'v11-ch11-274probs-pae-master') || (code === 'new_tech_chaksu_geumji' && customData._buildVer !== 'v5-ch5-118probs-chaksu-final-master') || (code === 'new_tech_sahwal' && (customData._buildVer !== 'v22-sahwal-filtered-okjip-26p-208' || !customData.chapters || customData.chapters.length !== 8 || customData.chapters.some(function(c){ return !c.problems || c.problems.length === 0; })))) { localStorage.removeItem('teacher_book_custom_' + code); } else if (customData && Array.isArray(customData.chapters) && (customData.totalProblems > 0 || customData.chapters.some(function(c){ return (c.problems||[]).length > 0; }))) {
             customData.bookCode = code;
             state.currentBook = customData;
             currentBookTitle.textContent = customData.book || customData.title || ('교재 ' + code);
