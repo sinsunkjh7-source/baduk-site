@@ -263,7 +263,7 @@
     if (type === 'correct') {
       card.classList.add('correct');
       emblem.innerHTML = '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>';
-      text.textContent = courseProvider ? '저장 정답과 일치' : '정답입니다';
+      text.textContent = '정답입니다';
     } else if (type === 'illegal') {
       card.classList.add('illegal');
       emblem.innerHTML = '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line></svg>';
@@ -271,7 +271,7 @@
     } else {
       card.classList.add('wrong');
       emblem.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>';
-      text.textContent = courseProvider ? '저장 정답과 다름' : '오답입니다';
+      text.textContent = '오답입니다';
     }
 
     card.hidden = false;
