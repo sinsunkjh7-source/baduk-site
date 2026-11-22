@@ -391,7 +391,7 @@
         var savedCustom = localStorage.getItem('teacher_book_custom_' + code);
         if (savedCustom) {
           var customData = JSON.parse(savedCustom);
-          if ((code === 'tech_atari' && customData._buildVer !== 'v2-clean') || (code === 'new_tech_chokchoksu' && customData._buildVer !== 'v23-ch8-teacher-clean-200') || (code === 'new_tech_chuk' && customData._buildVer !== 'v17-ch6-138') || (code === 'new_tech_jangmun' && (customData._buildVer !== 'v30-ch9-9probs-179-1794267464' || !customData.chapters || customData.chapters.length !== 9)) || (code === 'new_tech_hwangyeok' && customData._buildVer !== 'v13-ch9-256probs-comprehensive-sahwal-hwangyeok') || (code === 'new_tech_meokyeochigi' && customData._buildVer !== 'v9-ch9-224probs-advanced-sahwal') || (code === 'new_tech_pae' && customData._buildVer !== 'v11-ch11-274probs-pae-master') || (code === 'new_tech_chaksu_geumji' && customData._buildVer !== 'v5-ch5-118probs-chaksu-final-master') || (code === 'new_tech_sahwal' && (customData._buildVer !== 'v22-sahwal-filtered-okjip-26p-208' || !customData.chapters || customData.chapters.length !== 8 || customData.chapters.some(function(c){ return !c.problems || c.problems.length === 0; })))) { localStorage.removeItem('teacher_book_custom_' + code); } else if (customData && Array.isArray(customData.chapters) && (customData.totalProblems > 0 || customData.chapters.some(function(c){ return (c.problems||[]).length > 0; }))) {
+          if (code === 'gpt_anti_stage_01' && (customData._buildVer !== 'v6-ch03-unified-q' || (customData.chapters && customData.chapters[2] && customData.chapters[2].problems && customData.chapters[2].problems[0] && customData.chapters[2].problems[0].question !== '단수되어 있는 백△를 따내어 보세요.'))) { localStorage.removeItem('teacher_book_custom_' + code); } else if ((code === 'tech_atari' && customData._buildVer !== 'v2-clean') || (code === 'new_tech_chokchoksu' && customData._buildVer !== 'v23-ch8-teacher-clean-200') || (code === 'new_tech_chuk' && customData._buildVer !== 'v17-ch6-138') || (code === 'new_tech_jangmun' && (customData._buildVer !== 'v30-ch9-9probs-179-1794267464' || !customData.chapters || customData.chapters.length !== 9)) || (code === 'new_tech_hwangyeok' && customData._buildVer !== 'v13-ch9-256probs-comprehensive-sahwal-hwangyeok') || (code === 'new_tech_meokyeochigi' && customData._buildVer !== 'v9-ch9-224probs-advanced-sahwal') || (code === 'new_tech_pae' && customData._buildVer !== 'v11-ch11-274probs-pae-master') || (code === 'new_tech_chaksu_geumji' && customData._buildVer !== 'v5-ch5-118probs-chaksu-final-master') || (code === 'new_tech_sahwal' && (customData._buildVer !== 'v22-sahwal-filtered-okjip-26p-208' || !customData.chapters || customData.chapters.length !== 8 || customData.chapters.some(function(c){ return !c.problems || c.problems.length === 0; })))) { localStorage.removeItem('teacher_book_custom_' + code); } else if (customData && Array.isArray(customData.chapters) && (customData.totalProblems > 0 || customData.chapters.some(function(c){ return (c.problems||[]).length > 0; }))) {
             customData.bookCode = code;
             state.currentBook = customData;
             currentBookTitle.textContent = customData.book || customData.title || ('교재 ' + code);
@@ -3564,15 +3564,24 @@
 
     var currentFilter = 'all';
 
+    function normalizeSeriesName(s) {
+      if (!s || typeof s !== 'string') return '';
+      if (s.indexOf('씽크') !== -1) return '씽크탱크';
+      if (s.indexOf('논리') !== -1) return '논리바둑';
+      if (s.indexOf('알파') !== -1) return '알파바둑';
+      return s;
+    }
+
     function setupFilterTabs() {
       var filterGroup = document.getElementById('gridSeriesFilterGroup');
       if (!filterGroup) return;
       var counts = { all: state.currentProblems.length, '씽크탱크': 0, '논리바둑': 0, '알파바둑': 0 };
       var hasSeries = false;
       state.currentProblems.forEach(function (p) {
-        if (p.source_series) {
+        var norm = normalizeSeriesName(p.source_series);
+        if (norm) {
           hasSeries = true;
-          if (counts[p.source_series] !== undefined) counts[p.source_series]++;
+          if (counts[norm] !== undefined) counts[norm]++;
         }
       });
       if (hasSeries) {
@@ -3639,16 +3648,14 @@
 
       var lastSeries = null;
       state.currentProblems.forEach(function (p, idx) {
-        var sSeries = p.source_series || '';
+        var sSeries = normalizeSeriesName(p.source_series);
         if (sSeries && sSeries !== lastSeries) {
           lastSeries = sSeries;
           var sHeader = document.createElement('div');
           var sClass = sSeries === '씽크탱크' ? 'think' : (sSeries === '논리바둑' ? 'logic' : 'alpha');
           sHeader.className = 'prob-grid-section-header ' + sClass;
           sHeader.dataset.series = sSeries;
-          var sTitle = sSeries === '씽크탱크' ? '🔹 1. 씽크탱크 활로 (24문제 / 네 귀 순환)' :
-                       (sSeries === '논리바둑' ? '🔹 2. 논리바둑 활로 (19문제 / 네 귀 순환)' :
-                        '🔹 3. 알파바둑 활로 (19문제 / 네 귀 순환)');
+          var sTitle = '🔹 ' + sSeries + ' 학습 문제';
           sHeader.innerHTML = '<span>' + sTitle + '</span>';
           container.appendChild(sHeader);
         }
