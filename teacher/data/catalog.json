@@ -18277,7 +18277,7 @@
         "code": "gpt_anti_stage_01",
         "file": "book_gpt_anti_stage_01.json",
         "chapterCount": 11,
-        "totalProblems": 426,
+        "totalProblems": 412,
         "chapters": [
           {
             "title": "01-01. 돌의 활로와 활로 막기 (44제)",
@@ -18296,8 +18296,8 @@
             "problemCount": 43
           },
           {
-            "title": "01-05. 따내기와 살리기 응용 (호구 속 따내기·이어서 살리기·잡으며 도망가기) (44제)",
-            "problemCount": 44
+            "title": "01-05. 따내기와 살리기 응용 (호구 속 따내기·이어서 살리기·잡으며 도망가기) (30제)",
+            "problemCount": 30
           },
           {
             "title": "01-06. 서로 단수 (먼저 따내기) (56제)",
@@ -18324,7 +18324,7 @@
             "problemCount": 26
           }
         ],
-        "_buildVer": "v10-ch05-unified-q"
+        "_buildVer": "v11-ch05-curated-30"
       }
     ]
   },
