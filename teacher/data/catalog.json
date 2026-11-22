@@ -18277,11 +18277,11 @@
         "code": "gpt_anti_stage_01",
         "file": "book_gpt_anti_stage_01.json",
         "chapterCount": 11,
-        "totalProblems": 495,
+        "totalProblems": 475,
         "chapters": [
           {
-            "title": "01-01. 돌의 활로와 활로 막기 (64제)",
-            "problemCount": 64
+            "title": "01-01. 돌의 활로와 활로 막기 (44제)",
+            "problemCount": 44
           },
           {
             "title": "01-02. 단수의 원리와 판별 (26제)",
