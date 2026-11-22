@@ -18277,7 +18277,7 @@
         "code": "gpt_anti_stage_01",
         "file": "book_gpt_anti_stage_01.json",
         "chapterCount": 11,
-        "totalProblems": 475,
+        "totalProblems": 426,
         "chapters": [
           {
             "title": "01-01. 돌의 활로와 활로 막기 (44제)",
@@ -18288,12 +18288,12 @@
             "problemCount": 26
           },
           {
-            "title": "01-03. 단수된 돌 따내기 (66제)",
-            "problemCount": 66
+            "title": "01-03. 단수된 돌 따내기 (41제)",
+            "problemCount": 41
           },
           {
-            "title": "01-04. 단수된 돌 살리기 (도망가기) (67제)",
-            "problemCount": 67
+            "title": "01-04. 단수된 돌 살리기 (도망가기) (43제)",
+            "problemCount": 43
           },
           {
             "title": "01-05. 따내기와 살리기 응용 (호구 속 따내기·이어서 살리기·잡으며 도망가기) (44제)",
@@ -18324,7 +18324,7 @@
             "problemCount": 26
           }
         ],
-        "_buildVer": "v7-ch04-unified-q"
+        "_buildVer": "v8-user-curated-ch03-41-ch04-43"
       }
     ]
   },
