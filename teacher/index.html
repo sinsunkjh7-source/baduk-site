@@ -143,6 +143,7 @@
             <button type="button" id="btnHint" class="btn-hint">💡 힌트</button>
             <button type="button" id="btnAnswer" class="btn-answer">👁️ 정답</button>
             <button type="button" id="btnToggleProbEdit" class="btn-prob-edit" title="현재 문제 편집 메뉴 펼치기/접기">🛠️ 편집 ▾</button>
+            <button type="button" id="btnShowOrig" class="btn-prob-edit" hidden title="이 문제가 참고한 교재 원본을 옆에 띄웁니다">📖 원본</button>
           </div>
           <!-- 🌟 문제 메타데이터 뱃지 행 (코드 / 학습유형 / 섹션 / 출처 / 복습) 🌟 -->
           <div class="q-meta-row" id="qMetaRow" style="display:flex;flex-wrap:wrap;gap:4px;margin:4px 0 6px 0;font-size:11px;" hidden></div>
@@ -441,7 +442,15 @@
 
 
 <script src="audio.js?v=20261028-solidwood&t=teacher-panel-v15"></script>
-<script src="app.js?v=ped-20261122a"></script>
+<div id="origPanel" hidden style="position:fixed;left:20px;top:90px;z-index:10040;background:#fff;border:2px solid #0369a1;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.25);overflow:hidden;max-width:96vw;">
+  <div id="origPanelHead" title="끌어서 옮기기" style="display:flex;align-items:center;justify-content:space-between;gap:10px;padding:6px 10px;background:#e0f2fe;cursor:move;user-select:none;touch-action:none;">
+    <span style="font-size:13px;font-weight:900;color:#075985;">📖 교재 원본 (참고)</span>
+    <button type="button" id="origPanelClose" style="border:none;background:#f1f5f9;color:#475569;font-weight:900;border-radius:6px;padding:2px 8px;cursor:pointer;">✕</button>
+  </div>
+  <div id="origPanelBody" style="padding:6px;"></div>
+  <div id="origPanelCap" style="padding:0 10px 8px;font-size:11px;color:#475569;"></div>
+</div>
+<script src="app.js?v=orig-20261122b"></script>
 
 </body>
 </html>

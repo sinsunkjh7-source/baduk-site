@@ -887,6 +887,7 @@
     renderProblemGrid();
 
     var p = state.currentProblems[idx];
+    try { refreshOrigPanel(p); } catch (e) { console.warn('orig panel', e); }
     qNumBadge.textContent = '문제 ' + (idx + 1);
     var qSeriesBadge = document.getElementById('qSeriesBadge');
     if (qSeriesBadge) {
@@ -2770,6 +2771,112 @@
     }).join('');
   }
 
+  // 🌟 원본 보기: 클로드 문제집 문제가 참고한 교재 원본을 작은 바둑판으로 옆에 띄워, 원본과 비교하며 고칠 수 있게 한다 🌟
+  var origBookCache = {};
+  function parseSgfStones(data) {
+    var st = [], mk = [], re = /;([BWT])\[([a-s]{2})\]/g, m;
+    while ((m = re.exec(data || ''))) {
+      var x = m[2].charCodeAt(0) - 97, y = m[2].charCodeAt(1) - 97;
+      if (m[1] === 'T') mk.push([x, y]); else st.push([x, y, m[1]]);
+    }
+    return { st: st, mk: mk };
+  }
+  function findOriginalProblem(ref, cb) {
+    var m = /^(.+?)\s*\|\s*(.+?)\s*\|\s*#(\d+)\s*$/.exec(ref || '');
+    if (!m) { cb(null); return; }
+    var bookTitle = m[1].replace(/\s+/g, ' ').trim(), code = m[3], first = bookTitle.split(' ')[0], bookCode = null;
+    (state.catalog || []).forEach(function (s) {
+      (s.books || []).forEach(function (b) {
+        if (!bookCode && (b.title || '').replace(/\s+/g, ' ').trim() === bookTitle && (s.title || '').indexOf(first) === 0) bookCode = b.code;
+      });
+    });
+    if (!bookCode) { cb(null); return; }
+    function pick(bk) {
+      var found = null;
+      (bk.chapters || []).forEach(function (c) { (c.problems || []).forEach(function (p) { if (String(p.code) === code) found = p; }); });
+      cb(found ? { p: found, label: bookTitle + ' · ' + m[2] + ' · ' + code + '번' } : null);
+    }
+    if (origBookCache[bookCode]) { pick(origBookCache[bookCode]); return; }
+    fetch('data/books/book_' + bookCode + '.json').then(function (r) { return r.json(); }).then(function (bk) {
+      origBookCache[bookCode] = bk; pick(bk);
+    }).catch(function () { cb(null); });
+  }
+  function origBoardSvg(p) {
+    var d = parseSgfStones(p.data), st = d.st;
+    if (!st.length) return '';
+    var xs = st.map(function (s) { return s[0]; }), ys = st.map(function (s) { return s[1]; });
+    var x0 = Math.max(0, Math.min.apply(null, xs) - 1), x1 = Math.min(18, Math.max.apply(null, xs) + 1);
+    var y0 = Math.max(0, Math.min.apply(null, ys) - 1), y1 = Math.min(18, Math.max.apply(null, ys) + 1);
+    while (x1 - x0 < 8) { if (x0 > 0) x0--; else if (x1 < 18) x1++; else break; if (x1 - x0 < 8) { if (x1 < 18) x1++; else if (x0 > 0) x0--; } }
+    while (y1 - y0 < 8) { if (y0 > 0) y0--; else if (y1 < 18) y1++; else break; if (y1 - y0 < 8) { if (y1 < 18) y1++; else if (y0 > 0) y0--; } }
+    var C = 24, M = 14, W = M * 2 + C * (x1 - x0), H = M * 2 + C * (y1 - y0);
+    var g = '<svg viewBox="0 0 ' + W + ' ' + H + '" width="' + W + '" height="' + H + '" style="display:block"><rect width="' + W + '" height="' + H + '" fill="#E3C07A"/>';
+    for (var xx = x0; xx <= x1; xx++) { var px = M + (xx - x0) * C; g += '<line x1="' + px + '" y1="' + M + '" x2="' + px + '" y2="' + (H - M) + '" stroke="#6B4F1D" stroke-width="' + ((xx === 0 || xx === 18) ? 2.2 : 0.8) + '"/>'; }
+    for (var yy = y0; yy <= y1; yy++) { var py = M + (yy - y0) * C; g += '<line x1="' + M + '" y1="' + py + '" x2="' + (W - M) + '" y2="' + py + '" stroke="#6B4F1D" stroke-width="' + ((yy === 0 || yy === 18) ? 2.2 : 0.8) + '"/>'; }
+    st.forEach(function (s) {
+      var cx = M + (s[0] - x0) * C, cy = M + (s[1] - y0) * C, b = s[2] === 'B';
+      g += '<circle cx="' + cx + '" cy="' + cy + '" r="10.5" fill="' + (b ? '#1A1A1A' : '#FAFAFA') + '" stroke="#333"/>';
+      if (!b && d.mk.some(function (q) { return q[0] === s[0] && q[1] === s[1]; })) {
+        g += '<polygon points="' + cx + ',' + (cy - 6) + ' ' + (cx - 5.5) + ',' + (cy + 4) + ' ' + (cx + 5.5) + ',' + (cy + 4) + '" fill="none" stroke="#1A1A1A" stroke-width="1.6"/>';
+      }
+    });
+    var am = /;([BW])\[([a-s]{2})\]/g, mm, n = 0;
+    while ((mm = am.exec(p.answer1 || '')) && n < 5) {
+      n++;
+      var ax = M + (mm[2].charCodeAt(0) - 97 - x0) * C, ay = M + (mm[2].charCodeAt(1) - 97 - y0) * C;
+      if (ax < 0 || ay < 0 || ax > W || ay > H) continue;
+      g += '<circle cx="' + ax + '" cy="' + ay + '" r="9" fill="rgba(226,75,74,0.18)" stroke="#E24B4A" stroke-width="1.6"/><text x="' + ax + '" y="' + (ay + 4) + '" text-anchor="middle" font-size="12" font-weight="800" fill="#B3261E">' + n + '</text>';
+    }
+    return g + '</svg>';
+  }
+  function refreshOrigPanel(p) {
+    var btn = document.getElementById('btnShowOrig'), panel = document.getElementById('origPanel');
+    if (!btn || !panel) return;
+    var ref = p && p.reference;
+    btn.hidden = !ref;
+    if (!ref) { panel.hidden = true; return; }
+    if (panel.hidden) return;
+    var body = document.getElementById('origPanelBody'), cap = document.getElementById('origPanelCap');
+    body.innerHTML = '<div style="padding:18px;color:#64748b;font-size:12px;">원본을 불러오는 중…</div>';
+    findOriginalProblem(ref, function (r) {
+      if (!r) { body.innerHTML = '<div style="padding:18px;color:#b91c1c;font-size:12px;">원본을 찾지 못했습니다: ' + ref + '</div>'; if (cap) cap.textContent = ''; return; }
+      body.innerHTML = origBoardSvg(r.p);
+      if (cap) cap.textContent = r.label + ' (빨간 번호 = 원본 정답 수순)';
+    });
+  }
+  function initOrigPanel() {
+    var btn = document.getElementById('btnShowOrig'), panel = document.getElementById('origPanel'), head = document.getElementById('origPanelHead'), close = document.getElementById('origPanelClose');
+    if (!btn || !panel || !head) return;
+    btn.addEventListener('click', function () {
+      panel.hidden = !panel.hidden;
+      btn.classList.toggle('active', !panel.hidden);
+      if (!panel.hidden) refreshOrigPanel(state.currentProblems[state.currentProblemIndex]);
+    });
+    if (close) close.addEventListener('click', function () { panel.hidden = true; btn.classList.remove('active'); });
+    try {
+      var sp = JSON.parse(localStorage.getItem('teacher_orig_pos') || 'null');
+      if (sp && typeof sp.l === 'number') { panel.style.left = Math.max(0, Math.min(window.innerWidth - 80, sp.l)) + 'px'; panel.style.top = Math.max(0, Math.min(window.innerHeight - 40, sp.t)) + 'px'; }
+    } catch (e) { }
+    var dragging = false, ox = 0, oy = 0;
+    head.addEventListener('pointerdown', function (e) {
+      if (e.target.closest && e.target.closest('button')) return;
+      dragging = true; var r = panel.getBoundingClientRect(); ox = e.clientX - r.left; oy = e.clientY - r.top;
+      try { head.setPointerCapture(e.pointerId); } catch (err) { } e.preventDefault();
+    });
+    head.addEventListener('pointermove', function (e) {
+      if (!dragging) return;
+      panel.style.left = Math.max(0, Math.min(window.innerWidth - 80, e.clientX - ox)) + 'px';
+      panel.style.top = Math.max(0, Math.min(window.innerHeight - 40, e.clientY - oy)) + 'px';
+    });
+    var end = function (e) {
+      if (!dragging) return; dragging = false;
+      try { head.releasePointerCapture(e.pointerId); } catch (err) { }
+      var r = panel.getBoundingClientRect();
+      try { localStorage.setItem('teacher_orig_pos', JSON.stringify({ l: r.left, t: r.top })); } catch (err) { }
+    };
+    head.addEventListener('pointerup', end); head.addEventListener('pointercancel', end);
+  }
+
   function pushProbEditSnapshot() {
     var p = state.currentProblems[state.currentProblemIndex];
     if (!p) return;
@@ -3604,6 +3711,7 @@
   initSettingsModal();
   initTeachingToolbar();
   initProblemEditor();
+  initOrigPanel();
   
   /* ========================================================
      10×5 문제 모아보기 & 마우스 드래그 순서 편집기 컨트롤러
