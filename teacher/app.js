@@ -425,7 +425,8 @@
         bookData.bookCode = code;
         state.currentBook = bookData;
         currentBookTitle.textContent = bookData.book || bookData.title || ('교재 ' + code);
-        populateChapters(bookData, isRestoring);\n        checkAndInitBackupRestore();
+        populateChapters(bookData, isRestoring);
+        checkAndInitBackupRestore();
         updateBookOptionCountUI(code, bookData);
       })
       .catch(function (err) {
