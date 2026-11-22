@@ -18276,8 +18276,50 @@
         "name": "제1단계 : 돌의 생명과 활로의 역학",
         "code": "gpt_anti_stage_01",
         "file": "book_gpt_anti_stage_01.json",
-        "chapterCount": 5,
-        "totalProblems": 84
+        "chapterCount": 4,
+        "totalProblems": 64
+      }
+    ]
+  },
+  {
+    "title": "클로드 문제집",
+    "bookCount": 1,
+    "books": [
+      {
+        "title": "3단계",
+        "name": "3단계",
+        "code": "claude_stage_03",
+        "file": "book_claude_stage_03.json",
+        "chapterCount": 3,
+        "totalProblems": 53,
+        "problemCount": 53,
+        "_buildVer": "claude-s03-v6-1795314038",
+        "chapters": [
+          {
+            "code": "claude_s03_u00",
+            "chapterCode": "claude_s03_u00",
+            "title": "0. 환격",
+            "chapter": "0. 환격",
+            "problemCount": 22,
+            "problemsCount": 22
+          },
+          {
+            "code": "claude_s03_u00_jm",
+            "chapterCode": "claude_s03_u00_jm",
+            "title": "0. 장문",
+            "chapter": "0. 장문",
+            "problemCount": 17,
+            "problemsCount": 17
+          },
+          {
+            "code": "claude_s03_u00_my",
+            "chapterCode": "claude_s03_u00_my",
+            "title": "0. 먹여치기",
+            "chapter": "0. 먹여치기",
+            "problemCount": 14,
+            "problemsCount": 14
+          }
+        ]
       }
     ]
   }
