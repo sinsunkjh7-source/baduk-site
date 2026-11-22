@@ -3808,6 +3808,22 @@
   /* ========================================================
      10×5 문제 모아보기 & 마우스 드래그 순서 편집기 컨트롤러
      ======================================================== */
+
+  function buildGridProblemOrder(problems, indices, firstNumber) {
+    var unique = Array.from(new Set(indices)).filter(function (i) { return Number.isInteger(i) && i >= 0 && i < problems.length; }).sort(function (a, b) { return a - b; });
+    if (!unique.length || !Number.isFinite(Number(firstNumber))) return null;
+    var selected = new Set(unique), moving = unique.map(function (i) { return problems[i]; }), rest = problems.filter(function (_, i) { return !selected.has(i); });
+    var at = Math.max(0, Math.min(rest.length, Math.trunc(Number(firstNumber)) - 1));
+    return { order: rest.slice(0, at).concat(moving, rest.slice(at)), firstIndex: at, count: moving.length };
+  }
+  function gridInsertionIndex(length, current, where) {
+    current = Math.max(0, Math.min(Math.max(0, length - 1), current || 0));
+    if (where === 'front') return 0;
+    if (where === 'before') return current;
+    if (where === 'after') return length ? current + 1 : 0;
+    return length;
+  }
+
   function initGridViewModal() {
     var modal = document.getElementById('probGridViewModal');
     var btnHeader = document.getElementById('btnHeaderGridView');
@@ -3821,14 +3837,80 @@
 
     var draggedIdx = null;
 
+    var selectionMode = false, selectedProblems = new Set(), selectionList = null, lastSelectedProblem = null, lastOrderSnapshot = null;
+    var batchStatus = document.getElementById('gridBatchStatus');
+    function batchMessage(text) { if (batchStatus) batchStatus.textContent = text; }
+    function selectedIndices() { return state.currentProblems.reduce(function (out, p, i) { if (selectedProblems.has(p)) out.push(i); return out; }, []); }
+    function updateBatchUI() {
+      var n = selectedIndices().length;
+      var toggle = document.getElementById('btnGridSelectMode'), area = document.getElementById('gridBatchActions'), label = document.getElementById('gridSelectionCount'), number = document.getElementById('gridMoveNumber'), undo = document.getElementById('btnGridUndoOrder');
+      if (toggle) { toggle.textContent = selectionMode ? '선택 마침' : '여러 문제 선택'; toggle.setAttribute('aria-pressed', String(selectionMode)); }
+      if (area) area.style.display = selectionMode ? 'flex' : 'none';
+      if (label) label.textContent = n + '개 선택';
+      if (number) number.max = Math.max(1, state.currentProblems.length - n + 1);
+      ['btnGridMoveFront','btnGridMoveEnd','btnGridMoveNumber','btnGridClearSelection'].forEach(function (id) { var b = document.getElementById(id); if (b) b.disabled = !n; });
+      if (undo) undo.disabled = !lastOrderSnapshot;
+    }
+    function focusCard(index) { requestAnimationFrame(function () { var card = container.querySelector('[data-index="' + index + '"]'); if (card) card.scrollIntoView({ block: 'nearest', inline: 'nearest' }); }); }
+    function chooseProblem(p, index, range, checked) {
+      var lastSelectedIndex = state.currentProblems.indexOf(lastSelectedProblem);
+      if (range && lastSelectedIndex >= 0) {
+        var lo = Math.min(index, lastSelectedIndex), hi = Math.max(index, lastSelectedIndex);
+        for (var i = lo; i <= hi; i++) { var s = normalizeSeriesName(state.currentProblems[i].source_series); if (currentFilter === 'all' || s === currentFilter) selectedProblems.add(state.currentProblems[i]); }
+      } else if (checked) selectedProblems.add(p); else selectedProblems.delete(p);
+      lastSelectedProblem = p;
+      container.querySelectorAll('.prob-card').forEach(function (card) {
+        var cp = state.currentProblems[Number(card.dataset.index)], yes = selectedProblems.has(cp), checkbox = card.querySelector('.grid-problem-select');
+        if (checkbox) checkbox.checked = yes;
+        card.style.boxShadow = yes ? '0 0 0 3px #059669' : '';
+      });
+      updateBatchUI();
+    }
+    function persistOrder(focus) {
+      state.currentProblemIndex = Math.max(0, state.currentProblems.indexOf(focus));
+      state.probEditHistory = [];
+      if (state.currentBook && state.currentBook.chapters[state.currentChapterIndex]) state.currentBook.chapters[state.currentChapterIndex].problems = state.currentProblems;
+      saveCustomBookToLocalStorage('문제 순서 저장됨');
+      loadProblem(state.currentProblemIndex);
+      renderCards(false); focusCard(state.currentProblemIndex);
+    }
+    function moveGridProblems(indices, firstNumber) {
+      var plan = buildGridProblemOrder(state.currentProblems, indices, firstNumber);
+      if (!plan) { batchMessage('이동할 문제와 이동 후 첫 번호를 확인하세요.'); return; }
+      if (plan.order.every(function (p, i) { return p === state.currentProblems[i]; })) { batchMessage('이미 그 위치에 있습니다.'); return; }
+      var focus = state.currentProblems[state.currentProblemIndex];
+      lastOrderSnapshot = { order: state.currentProblems.slice(), focus: focus };
+      if (indices.indexOf(state.currentProblemIndex) < 0) focus = state.currentProblems[indices.slice().sort(function(a,b){return a-b;})[0]];
+      state.currentProblems.splice.apply(state.currentProblems, [0, state.currentProblems.length].concat(plan.order));
+      persistOrder(focus);
+      batchMessage(plan.count + '개를 ' + (plan.firstIndex + 1) + '번부터 순서대로 이동했습니다.');
+    }
+    var selectModeButton = document.getElementById('btnGridSelectMode');
+    if (selectModeButton) selectModeButton.addEventListener('click', function () { selectionMode = !selectionMode; if (!selectionMode) { selectedProblems.clear(); lastSelectedProblem = null; } renderCards(); });
+    var selectVisible = document.getElementById('btnGridSelectVisible');
+    if (selectVisible) selectVisible.addEventListener('click', function () { state.currentProblems.forEach(function (p) { if (currentFilter === 'all' || normalizeSeriesName(p.source_series) === currentFilter) selectedProblems.add(p); }); renderCards(); });
+    var clearSelection = document.getElementById('btnGridClearSelection');
+    if (clearSelection) clearSelection.addEventListener('click', function () { selectedProblems.clear(); lastSelectedProblem = null; renderCards(); });
+    var moveFront = document.getElementById('btnGridMoveFront');
+    if (moveFront) moveFront.addEventListener('click', function () { moveGridProblems(selectedIndices(), 1); });
+    var moveEnd = document.getElementById('btnGridMoveEnd');
+    if (moveEnd) moveEnd.addEventListener('click', function () { var indices = selectedIndices(); moveGridProblems(indices, state.currentProblems.length - indices.length + 1); });
+    var moveNumber = document.getElementById('btnGridMoveNumber');
+    if (moveNumber) moveNumber.addEventListener('click', function () { var target = document.getElementById('gridMoveNumber'); var n = Number(target && target.value); if (!Number.isInteger(n) || n < 1 || n > Number(target.max)) { batchMessage('이동 후 첫 번호는 1~' + target.max + ' 사이로 입력하세요.'); return; } moveGridProblems(selectedIndices(), n); });
+    var undoOrder = document.getElementById('btnGridUndoOrder');
+    if (undoOrder) undoOrder.addEventListener('click', function () {
+      var old = lastOrderSnapshot;
+      if (!old || old.order.length !== state.currentProblems.length || old.order.some(function (p) { return state.currentProblems.indexOf(p) < 0; })) { lastOrderSnapshot = null; updateBatchUI(); return; }
+      state.currentProblems.splice.apply(state.currentProblems, [0, state.currentProblems.length].concat(old.order)); lastOrderSnapshot = null; persistOrder(old.focus); batchMessage('직전 이동을 취소했습니다.');
+    });
+
+
     function openModal() {
       if (!modal) return;
-      if (!state.currentProblems || state.currentProblems.length === 0) {
-        showToast('현재 선택된 단원에 문제가 없습니다.');
-        return;
-      }
+      if (!state.currentBook || !state.currentBook.chapters[state.currentChapterIndex]) return;
+      if (selectionList !== state.currentProblems) { selectionMode = false; selectedProblems.clear(); lastSelectedProblem = null; lastOrderSnapshot = null; currentFilter = 'all'; selectionList = state.currentProblems; }
       modal.removeAttribute('hidden');
-      renderCards();
+      renderCards(false); focusCard(state.currentProblemIndex);
     }
 
     function closeModal() {
@@ -3884,6 +3966,7 @@
 
       var filterBtns = filterGroup.querySelectorAll('.grid-filter-btn');
       filterBtns.forEach(function (btn) {
+        btn.classList.toggle('active', btn.dataset.series === currentFilter);
         btn.onclick = function () {
           filterBtns.forEach(function (b) { b.classList.remove('active'); });
           btn.classList.add('active');
@@ -3915,8 +3998,9 @@
       });
     }
 
-    function renderCards() {
+    function renderCards(preserveScroll) {
       if (!container) return;
+      var scroller = container.parentElement, scrollTop = preserveScroll === false ? 0 : scroller.scrollTop, scrollLeft = preserveScroll === false ? 0 : scroller.scrollLeft;
       container.innerHTML = '';
 
       var chapterTitleEl = document.getElementById('gridChapterTitle');
@@ -3947,7 +4031,7 @@
         var card = document.createElement('div');
         var sCardClass = sSeries === '씽크탱크' ? ' series-think' : (sSeries === '논리바둑' ? ' series-logic' : (sSeries === '알파바둑' ? ' series-alpha' : ''));
         card.className = 'prob-card' + sCardClass + (idx === state.currentProblemIndex ? ' active' : '');
-        card.draggable = true;
+        card.draggable = !selectionMode;
         card.dataset.index = idx;
         if (sSeries) card.dataset.series = sSeries;
 
@@ -4019,6 +4103,14 @@
         header.appendChild(btnGroup);
 
         card.appendChild(header);
+        if (selectionMode) {
+          card.style.position = 'relative';
+          card.style.boxShadow = selectedProblems.has(p) ? '0 0 0 3px #059669' : '';
+          var selector = document.createElement('input'); selector.type = 'checkbox'; selector.className = 'grid-problem-select'; selector.checked = selectedProblems.has(p); selector.setAttribute('aria-label', (idx + 1) + '번 문제 선택'); selector.title = '여러 문제 선택 · Shift+클릭으로 구간 선택';
+          selector.style.cssText = 'position:absolute;left:8px;top:39px;width:21px;height:21px;z-index:5;accent-color:#059669;cursor:pointer;';
+          selector.addEventListener('click', function (e) { e.stopPropagation(); chooseProblem(p, idx, e.shiftKey, selector.checked); });
+          card.appendChild(selector);
+        }
 
         // Canvas
         var canvas = document.createElement('canvas');
@@ -4087,6 +4179,7 @@
         // Click on card to open in main board
         card.addEventListener('click', function (e) {
           if (window._isCardDragging) return;
+          if (selectionMode) { chooseProblem(p, idx, e.shiftKey, !selectedProblems.has(p)); return; }
           closeModal();
           loadProblem(idx);
         });
@@ -4099,32 +4192,13 @@
         }, 0);
       });
       applyCardFilter();
+      updateBatchUI();
+      scroller.scrollTop = scrollTop; scroller.scrollLeft = scrollLeft;
     }
 
     function reorderProblem(fromIdx, toIdx) {
-      if (fromIdx < 0 || fromIdx >= state.currentProblems.length) return;
-      if (toIdx < 0 || toIdx >= state.currentProblems.length) return;
-      if (fromIdx === toIdx) return;
-
-      var moved = state.currentProblems.splice(fromIdx, 1)[0];
-      state.currentProblems.splice(toIdx, 0, moved);
-
-      // Re-number
-      state.currentProblems.forEach(function (p, i) {
-        p.no = i + 1;
-        p.name = (i + 1) + '번 문제';
-        p.code = '1' + String(i + 1).padStart(3, '0');
-      });
-
-      state.currentProblemIndex = toIdx;
-      if (state.currentBook && state.currentBook.chapters[state.currentChapterIndex]) {
-        state.currentBook.chapters[state.currentChapterIndex].problems = state.currentProblems;
-      }
-
-      saveCustomBookToLocalStorage();
-      renderCards();
-      renderProblemGrid();
-      showToast('문제 #' + (fromIdx + 1) + '이(가) #' + (toIdx + 1) + ' 위치로 이동되었습니다.');
+      if (fromIdx < 0 || fromIdx >= state.currentProblems.length || toIdx < 0 || toIdx >= state.currentProblems.length || fromIdx === toIdx) return;
+      moveGridProblems([fromIdx], toIdx + 1);
     }
 
     function deleteCardAt(idx) {
@@ -4132,12 +4206,9 @@
       var wasFullscreen = modal.classList.contains('is-fullscreen');
       if (!confirm((idx + 1) + '번 문제를 삭제하시겠습니까?')) return;
 
+      selectedProblems.delete(state.currentProblems[idx]);
+      lastOrderSnapshot = null;
       state.currentProblems.splice(idx, 1);
-      state.currentProblems.forEach(function (p, i) {
-        p.no = i + 1;
-        p.name = (i + 1) + '번 문제';
-        p.code = '1' + String(i + 1).padStart(3, '0');
-      });
 
       if (state.currentProblemIndex >= state.currentProblems.length) {
         state.currentProblemIndex = Math.max(0, state.currentProblems.length - 1);
@@ -4380,38 +4451,18 @@
 
     if (btnAddProb) {
       btnAddProb.addEventListener('click', function () {
-        var newNo = state.currentProblems.length + 1;
-        var newP = {
-          code: '1' + String(newNo).padStart(3, '0'),
-          type: '3',
-          question: (state.currentBook ? state.currentBook.chapters[state.currentChapterIndex].chapter : '새 문제') + '\r\n문제를 풀어보세요.',
-          hint: '',
-          data: '',
-          answer1: '',
-          answer2: '',
-          answer3: '',
-          answer4: '',
-          answer5: '',
-          sample: '',
-          answer: '',
-          auto: 'false',
-          size: '4',
-          start: 'BA',
-          source_book: '선생님 직접 작성',
-          source_chapter: '',
-          source_p_num: newNo,
-          no: newNo,
-          name: newNo + '번 문제'
-        };
-        state.currentProblems.push(newP);
-        if (state.currentBook && state.currentBook.chapters[state.currentChapterIndex]) {
-          state.currentBook.chapters[state.currentChapterIndex].problems = state.currentProblems;
+        var where = document.getElementById('gridAddPosition'), countInput = document.getElementById('gridAddCount'), count = Number(countInput && countInput.value || 1);
+        if (!Number.isInteger(count) || count < 1 || count > 100) { batchMessage('추가 개수는 1~100 사이로 입력하세요.'); return; }
+        var at = gridInsertionIndex(state.currentProblems.length, state.currentProblemIndex, where ? where.value : 'after'), oldLength = state.currentProblems.length, additions = [];
+        for (var j = 0; j < count; j++) {
+          var newNo = at + j + 1;
+          additions.push({ code: 'teacher_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 10) + '_' + j, type: '3', question: (state.currentBook ? state.currentBook.chapters[state.currentChapterIndex].chapter : '새 문제') + '\r\n문제를 풀어보세요.', hint: '', data: '', answer1: '', answer2: '', answer3: '', answer4: '', answer5: '', sample: '', answer: '', auto: 'false', size: '4', start: 'BA', source_book: '선생님 직접 작성', source_chapter: '', source_p_num: oldLength + j + 1, no: newNo, name: newNo + '번 문제' });
         }
-        saveCustomBookToLocalStorage();
-        state.currentProblemIndex = state.currentProblems.length - 1;
-        closeModal();
-        loadProblem(state.currentProblemIndex);
-        showToast('새 문제(#' + newNo + ')가 추가되었습니다. 바둑판에 돌을 배치해 보세요!');
+        state.currentProblems.splice.apply(state.currentProblems, [at, 0].concat(additions));
+        if (state.currentBook && state.currentBook.chapters[state.currentChapterIndex]) state.currentBook.chapters[state.currentChapterIndex].problems = state.currentProblems;
+        state.currentProblemIndex = at; state.probEditHistory = []; lastOrderSnapshot = null; selectedProblems.clear(); lastSelectedProblem = null; currentFilter = 'all';
+        saveCustomBookToLocalStorage('새 문제 ' + count + '개 추가됨'); closeModal(); loadProblem(at);
+        batchMessage(count + '개를 ' + (at + 1) + '번부터 추가했습니다.');
       });
     }
   }
