@@ -1158,6 +1158,11 @@
 
     // 원본 상태 복사본
     state.initialBoard = state.board.map(function (row) { return row.slice(); });
+    state.answerSetDraft = null;
+    if (state.boardEditTool === 'answerSet') {
+      prepareAnswerPositionDraft(p);
+      state.showAnswer = true;
+    }
   }
 
   /* ---------- 바둑판 렌더링 (가로선 9 x 세로선 10, 열린 선 다이어그램) ---------- */
@@ -1617,9 +1622,13 @@
       }
     }
 
-    // 6. 정답 보기 활성화 시 번호 마커 표시
-    if (state.showAnswer && state.answerMoves.length > 0) {
-      state.answerMoves.forEach(function (m) {
+    // Unordered answer positions are shown as same-color stones without move numbers.
+    var answerProblem = state.currentProblems[state.currentProblemIndex];
+    var answerDisplayMoves = state.boardEditTool === 'answerSet' ? (state.answerSetDraft || []) : state.answerMoves;
+    if (state.boardEditTool === 'answer' && answerProblem && answerProblem.answerMode === 'unordered') answerDisplayMoves = [];
+    var answerPositionsOnly = state.boardEditTool === 'answerSet' || (answerProblem && answerProblem.answerMode === 'unordered');
+    if (state.showAnswer && answerDisplayMoves.length > 0) {
+      answerDisplayMoves.forEach(function (m) {
         var cx = startX + cell * m.x;
         var cy = startY + cell * m.y;
         drawStone(cx, cy, stoneRadius, m.color, 0.95);
@@ -1628,7 +1637,14 @@
         ctx.font = 'bold ' + Math.round(cell * 0.48) + 'px "Fredoka", "Malgun Gothic", sans-serif';
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
-        ctx.fillText(m.step, cx, cy);
+        if (!answerPositionsOnly) ctx.fillText(m.step, cx, cy);
+        else {
+          ctx.strokeStyle = '#18a77a';
+          ctx.lineWidth = Math.max(2, cell * 0.035);
+          ctx.beginPath();
+          ctx.arc(cx, cy, stoneRadius * 0.52, 0, Math.PI * 2);
+          ctx.stroke();
+        }
       });
     }
 
@@ -2885,6 +2901,9 @@
       idx: state.currentProblemIndex,
       data: p.data || '',
       answer1: p.answer1 || '',
+      answerAlternatives: [p.answer2, p.answer3, p.answer4, p.answer5],
+      answerMode: p.answerMode,
+      start: p.start,
       question: p.question || ''
     });
     if (state.probEditHistory.length > 30) state.probEditHistory.shift();
@@ -2896,7 +2915,22 @@
     bt.textContent = '⚫⚪ 클릭할 때마다 흑·백이 번갈아 놓입니다 (다음: ' + ((state.altNext || 1) === 1 ? '⚫ 흑' : '⚪ 백') + ') · 놓인 돌을 누르면 지워집니다';
   }
 
+  // Position sets use the existing same-color, order-independent answer matcher.
+  function prepareAnswerPositionDraft(p) {
+    state.answerSetColor = getProblemStartingColor(p);
+    var moves = state.answerMoves || [];
+    var sameColor = moves.every(function (m) { return m.color === state.answerSetColor; });
+    var seen = {};
+    state.answerSetDraft = sameColor ? moves.filter(function (m) {
+      var key = m.x + ',' + m.y;
+      if (seen[key] || !state.initialBoard[m.y] || state.initialBoard[m.y][m.x] !== 0) return false;
+      seen[key] = true;
+      return true;
+    }).map(function (m, i) { return { x: m.x, y: m.y, color: state.answerSetColor, step: i + 1 }; }) : [];
+  }
+
   function setBoardEditTool(tool) {
+    var p = state.currentProblems[state.currentProblemIndex];
     state.boardEditTool = (state.boardEditTool === tool) ? null : tool;
     if (state.boardEditTool === 'alternate') state.altNext = 1;
     var banner = document.getElementById('pedModeBanner');
@@ -2920,13 +2954,15 @@
         alternate: '⚫⚪ 클릭할 때마다 흑·백이 번갈아 놓입니다',
         erase: '❌ 바둑판의 돌이나 표시를 클릭해 지우세요',
         triangle: '△ 바둑판의 돌 위를 클릭해 세모 표시를 넣거나 빼세요',
-        answer: '🎯 정답 수순(1, 2, 3...)을 순서대로 바둑판에 클릭하세요'
+        answer: '정답 수순: 흑백이 번갈아 놓입니다. 순서대로 클릭하세요',
+        answerSet: '정답 위치(순서 무관): 같은 색으로 모든 정답 자리를 지정합니다. 다시 누르면 해제됩니다. 편집 시 기존 정답 갈래를 이 위치 목록으로 대체합니다.'
       };
       if (bannerText) bannerText.textContent = toolMsgMap[state.boardEditTool] || '바둑판을 클릭해 편집하세요';
       if (banner) banner.hidden = false;
       updateAltBanner();
 
-      if (state.boardEditTool === 'answer') {
+      if (state.boardEditTool === 'answerSet' && p) prepareAnswerPositionDraft(p);
+      if (state.boardEditTool === 'answer' || state.boardEditTool === 'answerSet') {
         state.showAnswer = true;
         var btnAns = document.getElementById('btnAnswer');
         if (btnAns) btnAns.textContent = '🙈 숨김';
@@ -2999,12 +3035,41 @@
       sfx('playStone');
       saveCustomBookState('△ 표시 수정됨');
       drawBoard();
+    } else if (state.boardEditTool === 'answerSet') {
+      if (!state.initialBoard[gy] || state.initialBoard[gy][gx] !== 0) {
+        showToast('정답 위치는 빈 교차점에만 지정할 수 있습니다.');
+        return;
+      }
+      pushProbEditSnapshot();
+      if (!state.answerSetDraft) prepareAnswerPositionDraft(p);
+      var setMoves = state.answerSetDraft.slice();
+      var selected = setMoves.findIndex(function (m) { return m.x === gx && m.y === gy; });
+      if (selected >= 0) setMoves.splice(selected, 1);
+      else setMoves.push({ x: gx, y: gy, color: state.answerSetColor });
+      setMoves = setMoves.map(function (m, i) {
+        return { x: m.x, y: m.y, color: state.answerSetColor, step: i + 1 };
+      });
+      state.answerSetDraft = setMoves;
+      state.answerMoves = setMoves;
+      state.answerBranches = setMoves.length ? [setMoves.slice()] : [];
+      state.activeBranches = state.answerBranches.slice();
+      p.answerMode = 'unordered';
+      p.start = state.answerSetColor === 2 ? 'W' : 'B';
+      p.answer1 = serializeAnswerMovesToSgf(setMoves);
+      delete p.answer2; delete p.answer3; delete p.answer4; delete p.answer5;
+      state.showAnswer = true;
+      sfx('playStone');
+      saveCustomBookState('순서 무관 정답 위치 ' + setMoves.length + '곳 저장됨');
+      drawBoard();
     } else if (state.boardEditTool === 'answer') {
+      pushProbEditSnapshot();
+      var replacePositionSet = p.answerMode === 'unordered';
+      p.answerMode = 'sequence';
       state.showAnswer = true;
       var btnAns = document.getElementById('btnAnswer');
       if (btnAns) btnAns.textContent = '🙈 숨김';
 
-      var moves = state.answerMoves ? state.answerMoves.slice() : [];
+      var moves = replacePositionSet ? [] : (state.answerMoves ? state.answerMoves.slice() : []);
       var lastM = moves.length > 0 ? moves[moves.length - 1] : null;
       if (lastM && lastM.x === gx && lastM.y === gy) {
         moves.pop();
@@ -3120,7 +3185,7 @@
 
     if (state.answerMoves && state.answerMoves.length > 0) {
       state.answerMoves.forEach(function (m, idx) {
-        m.color = (idx % 2 === 0) ? newTurn : (newTurn === 1 ? 2 : 1);
+        m.color = p.answerMode === 'unordered' ? newTurn : ((idx % 2 === 0) ? newTurn : (newTurn === 1 ? 2 : 1));
       });
       p.answer1 = serializeAnswerMovesToSgf(state.answerMoves);
     }
@@ -3316,6 +3381,9 @@
         idx: state.currentProblemIndex,
         data: p.data || '',
         answer1: p.answer1 || '',
+        answerAlternatives: [p.answer2, p.answer3, p.answer4, p.answer5],
+        answerMode: p.answerMode,
+        start: p.start,
         question: p.question || ''
       });
       if (state.probEditHistory.length > 30) state.probEditHistory.shift();
@@ -3336,6 +3404,16 @@
         if (p) {
           p.data = last.data;
           p.answer1 = last.answer1;
+          if (Array.isArray(last.answerAlternatives)) {
+            last.answerAlternatives.forEach(function (value, i) {
+              if (value === undefined) delete p['answer' + (i + 2)];
+              else p['answer' + (i + 2)] = value;
+            });
+          }
+          if (last.answerMode === undefined) delete p.answerMode;
+          else p.answerMode = last.answerMode;
+          if (last.start === undefined) delete p.start;
+          else p.start = last.start;
           p.question = last.question;
           saveCustomBookState('직전 편집 1수 취소됨');
           loadProblem(state.currentProblemIndex);
@@ -3459,12 +3537,16 @@
       btnClearAns.addEventListener('click', function () {
         var p = state.currentProblems[state.currentProblemIndex];
         if (!p) return;
+        pushProbEditSnapshot();
+        var clearToPositions = state.boardEditTool === 'answerSet' || p.answerMode === 'unordered';
         state.answerMoves = [];
+        state.answerSetDraft = null;
         state.answerBranches = [];
         state.activeBranches = [];
         p.answer1 = '';
         delete p.answer2; delete p.answer3; delete p.answer4; delete p.answer5;
-        setBoardEditTool('answer');
+        state.boardEditTool = null;
+        setBoardEditTool(clearToPositions ? 'answerSet' : 'answer');
         saveCustomBookState('정답 비움 — 바둑판에 새 정답을 찍으세요');
         drawBoard();
       });
