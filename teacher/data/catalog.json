@@ -18336,10 +18336,10 @@
         "name": "3단계",
         "code": "claude_stage_03",
         "file": "book_claude_stage_03.json",
-        "chapterCount": 3,
-        "totalProblems": 53,
-        "problemCount": 53,
-        "_buildVer": "claude-s03-v6-1795314038",
+        "chapterCount": 4,
+        "totalProblems": 63,
+        "problemCount": 63,
+        "_buildVer": "claude-s03-v7-1795321429",
         "chapters": [
           {
             "code": "claude_s03_u00",
@@ -18364,6 +18364,14 @@
             "chapter": "0. 먹여치기",
             "problemCount": 14,
             "problemsCount": 14
+          },
+          {
+            "code": "claude_s03_u00_my_ln",
+            "chapterCode": "claude_s03_u00_my_ln",
+            "title": "0. 먹여치기 (논리바둑 바탕)",
+            "chapter": "0. 먹여치기 (논리바둑 바탕)",
+            "problemCount": 10,
+            "problemsCount": 10
           }
         ]
       }
