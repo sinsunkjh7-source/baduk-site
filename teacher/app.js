@@ -425,7 +425,7 @@
         bookData.bookCode = code;
         state.currentBook = bookData;
         currentBookTitle.textContent = bookData.book || bookData.title || ('교재 ' + code);
-        populateChapters(bookData, isRestoring);
+        populateChapters(bookData, isRestoring);\n        checkAndInitBackupRestore();
         updateBookOptionCountUI(code, bookData);
       })
       .catch(function (err) {
@@ -3808,6 +3808,63 @@
   initSettingsModal();
   initTeachingToolbar();
   initProblemEditor();
+  checkAndInitBackupRestore();
+  // 🌟 원장님 편집본 비상 복구 시스템 🌟
+  function checkAndInitBackupRestore() {
+    var btn = document.getElementById('btnRestoreBackup');
+    var code = (state && state.currentBook && state.currentBook.bookCode) || 'gpt_anti_stage_01';
+    var prefix = 'teacher_book_backup_' + code + '_';
+    var keys = [];
+    for (var i = 0; i < localStorage.length; i++) {
+      var k = localStorage.key(i);
+      if (k && k.indexOf(prefix) === 0) {
+        keys.push(k);
+      }
+    }
+    if (keys.length > 0 && btn) {
+      btn.style.display = 'inline-flex';
+      btn.onclick = function() {
+        restoreLatestBackup(code);
+      };
+    }
+  }
+
+  function restoreLatestBackup(code) {
+    code = code || (state && state.currentBook && state.currentBook.bookCode) || 'gpt_anti_stage_01';
+    var prefix = 'teacher_book_backup_' + code + '_';
+    var keys = [];
+    for (var i = 0; i < localStorage.length; i++) {
+      var k = localStorage.key(i);
+      if (k && k.indexOf(prefix) === 0) {
+        keys.push(k);
+      }
+    }
+    keys.sort().reverse();
+    if (keys.length === 0) {
+      alert('보관된 편집 백업본이 없습니다.');
+      return;
+    }
+    var latestKey = keys[0];
+    var raw = localStorage.getItem(latestKey);
+    if (!raw) return;
+    try {
+      var parsed = JSON.parse(raw);
+      var timeStr = new Date(parseInt(latestKey.replace(prefix, '')) || Date.now()).toLocaleTimeString();
+      if (!confirm('새로고침 전 (' + timeStr + ')에 편집 중이셨던 작업본을 복구하시겠습니까?\n(총 ' + (parsed.totalProblems || '여러') + '문제)')) {
+        return;
+      }
+      // Set buildVer to avoid re-invalidation
+      parsed._buildVer = 'v10-ch05-unified-q';
+      localStorage.setItem('teacher_book_custom_' + code, JSON.stringify(parsed));
+      alert('편집본이 성공적으로 복구되었습니다! 화면을 새로고침합니다.');
+      location.reload();
+    } catch(err) {
+      alert('복구 중 오류가 발생했습니다: ' + err.message);
+    }
+  }
+  window.restoreLatestBackup = restoreLatestBackup;
+  window.checkAndInitBackupRestore = checkAndInitBackupRestore;
+
   initOrigPanel();
   
   /* ========================================================
