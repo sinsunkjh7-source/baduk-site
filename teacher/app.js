@@ -2968,7 +2968,19 @@
         if (btnAns) btnAns.textContent = '🙈 숨김';
       }
     } else {
+      // Finishing editing must return to the unsolved starting diagram, not the answer preview.
       if (banner) banner.hidden = true;
+      state.showAnswer = false;
+      state.answerSetDraft = null;
+      state.playedMoves = [];
+      state.trialMoves = [];
+      state.isOpponentResponding = false;
+      state.solved = false;
+      if (state.autoNextTimer) { clearTimeout(state.autoNextTimer); state.autoNextTimer = null; }
+      state.board = state.initialBoard.map(function (row) { return row.slice(); });
+      state.activeBranches = state.answerBranches.map(function (branch) { return branch.slice(); });
+      var answerButton = document.getElementById('btnAnswer');
+      if (answerButton) answerButton.textContent = '👁️ 정답';
     }
     drawBoard();
     if (typeof renderChoiceButtons === 'function') renderChoiceButtons(p);
@@ -3325,7 +3337,7 @@
         drawer.style.display = 'none';
         btnToggle.classList.remove('active');
         btnToggle.textContent = '🛠️ 편집 ▾';
-        if (state.boardEditTool) setBoardEditTool(null);
+        setBoardEditTool(null);
       });
     }
     btnToggle.addEventListener('click', function () {
@@ -3343,9 +3355,7 @@
         drawer.style.display = 'none';
         btnToggle.classList.remove('active');
         btnToggle.textContent = '🛠️ 편집 ▾';
-        if (state.boardEditTool) {
-          setBoardEditTool(null);
-        }
+        setBoardEditTool(null);
       }
     });
 
