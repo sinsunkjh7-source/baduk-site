@@ -18277,7 +18277,7 @@
         "code": "gpt_anti_stage_01",
         "file": "book_gpt_anti_stage_01.json",
         "chapterCount": 11,
-        "totalProblems": 426,
+        "totalProblems": 425,
         "chapters": [
           {
             "title": "01-01. 돌의 활로와 활로 막기 (44제)",
@@ -18320,11 +18320,11 @@
             "problemCount": 38
           },
           {
-            "title": "01-11. 집의 기초 개념과 경계 막기 (26제)",
-            "problemCount": 26
+            "title": "01-11. 집의 기초 개념과 경계 막기 (25제)",
+            "problemCount": 25
           }
         ],
-        "_buildVer": "v12-ch05-reverted-to-44"
+        "_buildVer": "v15-ch11-user-curated-25probs"
       }
     ]
   },
