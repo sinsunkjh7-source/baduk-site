@@ -3824,6 +3824,32 @@
     return length;
   }
 
+
+  function gridDragEdgeSpeed(position, start, end, zone) {
+    zone = Math.min(zone || 64, Math.max(1, (end - start) / 3));
+    if (position < start + zone) return -Math.ceil(24 * Math.min(1, (start + zone - position) / zone));
+    if (position > end - zone) return Math.ceil(24 * Math.min(1, (position - end + zone) / zone));
+    return 0;
+  }
+  function createGridDragAutoScroll(scroller, isActive, schedule, cancel) {
+    schedule = schedule || requestAnimationFrame; cancel = cancel || cancelAnimationFrame;
+    var frame = 0, point = null, previousTime = 0;
+    function stop() { if (frame) cancel(frame); frame = 0; point = null; previousTime = 0; }
+    function tick(time) {
+      frame = 0;
+      if (!point || !scroller || !isActive()) { stop(); return; }
+      var r = scroller.getBoundingClientRect(), factor = previousTime ? Math.min(32, Math.max(0, time - previousTime)) / (1000 / 60) : 1;
+      previousTime = time;
+      var dy = point.x >= r.left - 24 && point.x <= r.right + 24 ? gridDragEdgeSpeed(point.y, r.top, r.bottom, 64) : 0;
+      var dx = point.y >= r.top - 24 && point.y <= r.bottom + 24 ? gridDragEdgeSpeed(point.x, r.left, r.right, 48) : 0;
+      var oldY = scroller.scrollTop, oldX = scroller.scrollLeft;
+      scroller.scrollTop += dy * factor; scroller.scrollLeft += dx * factor;
+      if ((scroller.scrollTop !== oldY || scroller.scrollLeft !== oldX) && (dy || dx)) frame = schedule(tick);
+      else previousTime = 0;
+    }
+    return { update: function (x, y) { point = { x: x, y: y }; if (!frame) frame = schedule(tick); }, stop: stop };
+  }
+
   function initGridViewModal() {
     var modal = document.getElementById('probGridViewModal');
     var btnHeader = document.getElementById('btnHeaderGridView');
@@ -3836,6 +3862,22 @@
     var container = document.getElementById('probGridCards');
 
     var draggedIdx = null;
+
+    var dragAutoScroll = createGridDragAutoScroll(container && container.parentElement, function () { return draggedIdx !== null && modal && !modal.hidden; });
+    document.addEventListener('dragover', function (e) {
+      if (draggedIdx === null) return;
+      if (!modal || modal.hidden || !modal.contains(e.target)) { dragAutoScroll.stop(); return; }
+      e.preventDefault();
+      dragAutoScroll.update(e.clientX, e.clientY);
+    }, true);
+    function finishGridDrag() {
+      dragAutoScroll.stop();
+      setTimeout(function () { draggedIdx = null; window._isCardDragging = false; }, 100);
+    }
+    document.addEventListener('drop', finishGridDrag, true);
+    document.addEventListener('dragend', finishGridDrag, true);
+    window.addEventListener('blur', function () { dragAutoScroll.stop(); });
+
 
     var selectionMode = false, selectedProblems = new Set(), selectionList = null, lastSelectedProblem = null, lastOrderSnapshot = null;
     var batchStatus = document.getElementById('gridBatchStatus');
@@ -3914,6 +3956,7 @@
     }
 
     function closeModal() {
+      dragAutoScroll.stop();
       if (!modal) return;
       if (modal.classList.contains('is-fullscreen')) {
         modal.classList.remove('is-fullscreen');
