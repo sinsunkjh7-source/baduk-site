@@ -839,7 +839,7 @@
           label = (rawItem === 'Χ' || rawItem === '×' || rawItem.toUpperCase() === 'X') ? '❌ X' : ('❌ ' + rawItem);
         }
       } else {
-        label = (idx + 1) + '. ' + rawItem;
+        label = rawItem;
       }
 
       btn.className = btnClass;
@@ -942,7 +942,8 @@
         qMetaRow.innerHTML = '';
       }
     }
-    questionText.textContent = (p.question || '알맞은 곳에 돌을 놓아 보세요.').replace(/\r\n/g, '\n');
+    var cleanQ = (p.question || '알맞은 곳에 돌을 놓아 보세요.').replace(/\r\n/g, '\n').replace(/^\d+\.\s*[가-힣\w\s]+\n+/g, '').trim();
+    questionText.textContent = cleanQ || (p.question || '알맞은 곳에 돌을 놓아 보세요.').replace(/\r\n/g, '\n');
 
     // 힌트가 있는 문제는 [💡 힌트] 버튼 활성화, 없으면 버튼 및 박스 모두 숨김(빈 공간)
     var hasHint = !!(p.hint && p.hint.trim() && p.hint.trim() !== '힌트가 없는 문제입니다.');

@@ -827,7 +827,7 @@
           label = (rawItem === 'Χ' || rawItem === '×' || rawItem.toUpperCase() === 'X') ? '❌ X' : ('❌ ' + rawItem);
         }
       } else {
-        label = (idx + 1) + '. ' + rawItem;
+        label = rawItem;
       }
 
       btn.className = btnClass;
