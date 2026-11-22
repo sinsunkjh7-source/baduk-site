@@ -700,14 +700,19 @@
      =================================================== */
   function isChoiceProblem(p) {
     if (!p) return false;
+    var tp = String(p.type || '').trim();
+    var ans1 = String(p.answer1 || '').trim();
+    // 🌟 정답 착수좌표(;B[...] / ;W[...])가 있거나 type 1(착수 문제)인 경우 절대 객관식으로 오판하지 않음!
+    if (ans1.indexOf(';B[') !== -1 || ans1.indexOf(';W[') !== -1 || tp === '1') {
+      return false;
+    }
     var s = (p.sample || '').trim();
     if (s && s.indexOf('|') !== -1) {
       var parts = s.split('|').map(function(item){ return item.trim(); }).filter(Boolean);
       if (parts.length > 0) return true;
     }
-    var tp = String(p.type || '').trim();
     if (tp === '4' || tp === '5') return true;
-    if (p.question && (p.question.indexOf('○') !== -1 || p.question.indexOf('둘 수 있') !== -1)) return true;
+    if (p.question && (p.question.indexOf('둘 수 있') !== -1 || p.question.indexOf('착수금지') !== -1)) return true;
     return false;
   }
 
