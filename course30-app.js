@@ -2799,6 +2799,7 @@
         white: '⚪ 바둑판 교차점을 클릭해 백돌을 놓거나 지우세요',
         erase: '❌ 바둑판의 돌이나 표시를 클릭해 지우세요',
         triangle: '△ 바둑판의 돌 위를 클릭해 세모 표시를 넣거나 빼세요',
+        circle: '○ 바둑판을 클릭해 동그라미 표시를 넣거나 빼세요',
         answer: '🎯 정답 수순(1, 2, 3...)을 순서대로 바둑판에 클릭하세요'
       };
       if (bannerText) bannerText.textContent = toolMsgMap[state.boardEditTool] || '바둑판을 클릭해 편집하세요';
@@ -2850,11 +2851,27 @@
       if (existingIdx >= 0) {
         state.marks.splice(existingIdx, 1);
       } else {
+        state.marks = (state.marks || []).filter(function (mk) { return !(mk.x === gx && mk.y === gy); });
         state.marks.push({ x: gx, y: gy, type: 'triangle' });
       }
       p.data = serializeBoardToSgfData();
       sfx('playStone');
       saveCustomBookState('△ 표시 수정됨');
+      drawBoard();
+    } else if (state.boardEditTool === 'circle') {
+      var existingIdx = -1;
+      (state.marks || []).forEach(function (mk, idx) {
+        if (mk.x === gx && mk.y === gy && mk.type === 'circle') existingIdx = idx;
+      });
+      if (existingIdx >= 0) {
+        state.marks.splice(existingIdx, 1);
+      } else {
+        state.marks = (state.marks || []).filter(function (mk) { return !(mk.x === gx && mk.y === gy); });
+        state.marks.push({ x: gx, y: gy, type: 'circle' });
+      }
+      p.data = serializeBoardToSgfData();
+      sfx('playStone');
+      saveCustomBookState('○ 표시 수정됨');
       drawBoard();
     } else if (state.boardEditTool === 'answer') {
       state.showAnswer = true;
