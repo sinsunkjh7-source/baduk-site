@@ -18272,8 +18272,8 @@
     "bookCount": 2,
     "books": [
       {
-        "title": "제1단계 : 돌의 생명과 활로의 역학",
-        "name": "제1단계 : 돌의 생명과 활로의 역학",
+        "title": "1단계",
+        "name": "1단계",
         "code": "gpt_anti_stage_01",
         "file": "book_gpt_anti_stage_01.json",
         "chapterCount": 11,
@@ -18324,11 +18324,11 @@
             "problemCount": 25
           }
         ],
-        "_buildVer": "v15-ch11-user-curated-25probs"
+        "_buildVer": "v16-clean-title-1step"
       },
       {
-        "title": "제2단계 : 돌의 연결과 끊음·기초 행마",
-        "name": "제2단계 : 돌의 연결과 끊음·기초 행마",
+        "title": "2단계",
+        "name": "2단계",
         "code": "gpt_anti_stage_02",
         "file": "book_gpt_anti_stage_02.json",
         "chapterCount": 12,
