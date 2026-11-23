@@ -2016,15 +2016,15 @@
         "code": "gpt_anti_stage_01",
         "title": "1단계",
         "chapterCount": 12,
-        "totalProblems": 425,
+        "totalProblems": 424,
         "chapters": [
           {
             "code": "gpt_anti_01_01",
             "chapterCode": "gpt_anti_01_01",
-            "title": "1. 돌의 활로와 활로 막기(1) (21제)",
+            "title": "1. 돌의 활로와 활로 막기(1) (20제)",
             "chapter": "1. 돌의 활로와 활로 막기(1)",
-            "problemCount": 21,
-            "problemsCount": 21
+            "problemCount": 20,
+            "problemsCount": 20
           },
           {
             "code": "gpt_anti_01_02",
@@ -17003,15 +17003,15 @@
         "code": "gpt_anti_stage_01",
         "file": "book_gpt_anti_stage_01.json",
         "chapterCount": 12,
-        "totalProblems": 425,
+        "totalProblems": 424,
         "chapters": [
           {
             "code": "gpt_anti_01_01",
             "chapterCode": "gpt_anti_01_01",
-            "title": "1. 돌의 활로와 활로 막기(1) (21제)",
+            "title": "1. 돌의 활로와 활로 막기(1) (20제)",
             "chapter": "1. 돌의 활로와 활로 막기(1)",
-            "problemCount": 21,
-            "problemsCount": 21
+            "problemCount": 20,
+            "problemsCount": 20
           },
           {
             "code": "gpt_anti_01_02",

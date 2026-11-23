@@ -5,16 +5,16 @@
   "bookCode": "gpt_anti_stage_01",
   "code": "gpt_anti_stage_01",
   "chapterCount": 12,
-  "totalProblems": 425,
-  "problemCount": 425,
-  "_buildVer": "v15-split-ch1-ch2",
+  "totalProblems": 424,
+  "problemCount": 424,
+  "_buildVer": "v16-ch1-20probs",
   "chapters": [
     {
       "code": "gpt_anti_01_01",
       "chapterCode": "gpt_anti_01_01",
-      "title": "1. 돌의 활로와 활로 막기(1) (21제)",
+      "title": "1. 돌의 활로와 활로 막기(1) (20제)",
       "chapter": "1. 돌의 활로와 활로 막기(1)",
-      "problemCount": 21,
+      "problemCount": 20,
       "problemsCount": 44,
       "problems": [
         {
@@ -376,25 +376,6 @@
           "source_p_num": 83,
           "no": 19,
           "name": "19번 문제",
-          "answerMode": "unordered"
-        },
-        {
-          "code": "teacher_mwrm9lyw_lahqkvxy_6",
-          "type": "3",
-          "question": "백돌의 활로를 전부 막아보세요.",
-          "hint": "",
-          "data": ";W[mq];W[nq];W[oq];W[pq];W[qq];W[nr];W[or];W[pr];W[os]",
-          "answer1": ";B[mp];B[np];B[op];B[pp];B[qp];B[rq];B[qr];B[lq];B[mr];B[ns];B[ps]",
-          "sample": "",
-          "answer": "",
-          "auto": "false",
-          "size": "4",
-          "start": "B",
-          "source_book": "선생님 직접 작성",
-          "source_chapter": "",
-          "source_p_num": 84,
-          "no": 20,
-          "name": "20번 문제",
           "answerMode": "unordered"
         },
         {
