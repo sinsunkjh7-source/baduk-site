@@ -1764,6 +1764,8 @@ html, body {
   border-color: #10b981;
   color: #065f46;
   background: #f0fdf4;
+  font-size: 19px;
+  line-height: 1;
 }
 
 .sidebar-choice-row .choice-btn.choice-o:hover {
@@ -1775,6 +1777,8 @@ html, body {
   border-color: #f43f5e;
   color: #9f1239;
   background: #fff1f2;
+  font-size: 19px;
+  line-height: 1;
 }
 
 .sidebar-choice-row .choice-btn.choice-x:hover {

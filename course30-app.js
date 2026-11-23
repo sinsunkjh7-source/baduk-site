@@ -817,14 +817,14 @@
         if (isChaksuQ) {
           label = (rawItem === '○' || rawItem.toUpperCase() === 'O') ? '⭕ (착수 가능)' : ('⭕ ' + rawItem);
         } else {
-          label = (rawItem === '○' || rawItem.toUpperCase() === 'O') ? '⭕ O' : ('⭕ ' + rawItem);
+          label = (rawItem === '○' || rawItem.toUpperCase() === 'O') ? '⭕' : ('⭕ ' + rawItem);
         }
       } else if (isX) {
         btnClass += ' choice-x';
         if (isChaksuQ) {
           label = (rawItem === 'Χ' || rawItem === '×' || rawItem.toUpperCase() === 'X') ? '❌ (착수금지)' : ('❌ ' + rawItem);
         } else {
-          label = (rawItem === 'Χ' || rawItem === '×' || rawItem.toUpperCase() === 'X') ? '❌ X' : ('❌ ' + rawItem);
+          label = (rawItem === 'Χ' || rawItem === '×' || rawItem.toUpperCase() === 'X') ? '❌' : ('❌ ' + rawItem);
         }
       } else {
         label = rawItem;
