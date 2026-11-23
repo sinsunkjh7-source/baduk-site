@@ -2015,7 +2015,7 @@
       {
         "code": "gpt_anti_stage_01",
         "title": "1단계",
-        "chapterCount": 12,
+        "chapterCount": 13,
         "totalProblems": 395,
         "chapters": [
           {
@@ -2076,48 +2076,56 @@
             "problemsCount": 56
           },
           {
+            "code": "gpt_anti_01_14",
+            "chapterCode": "gpt_anti_01_14",
+            "title": "8. 양단수",
+            "chapter": "8. 양단수",
+            "problemCount": 0,
+            "problemsCount": 0
+          },
+          {
             "code": "gpt_anti_01_09",
             "chapterCode": "gpt_anti_01_09",
-            "title": "8. 상대 돌이 없는 넓은 방향으로 도망가기",
-            "chapter": "8. 상대 돌이 없는 넓은 방향으로 도망가기",
+            "title": "9. 상대 돌이 없는 넓은 방향으로 도망가기",
+            "chapter": "9. 상대 돌이 없는 넓은 방향으로 도망가기",
             "problemCount": 12,
             "problemsCount": 12
           },
           {
             "code": "gpt_anti_01_10",
             "chapterCode": "gpt_anti_01_10",
-            "title": "9. 착수금지와 착수 가능(따내는 예외) 판별",
-            "chapter": "9. 착수금지와 착수 가능(따내는 예외) 판별",
+            "title": "10. 착수금지와 착수 가능(따내는 예외) 판별",
+            "chapter": "10. 착수금지와 착수 가능(따내는 예외) 판별",
             "problemCount": 83,
             "problemsCount": 83
           },
           {
             "code": "gpt_anti_01_11",
             "chapterCode": "gpt_anti_01_11",
-            "title": "10. 패의 기본 규칙",
-            "chapter": "10. 패의 기본 규칙",
+            "title": "11. 패의 기본 규칙",
+            "chapter": "11. 패의 기본 규칙",
             "problemCount": 13,
             "problemsCount": 13
           },
           {
             "code": "gpt_anti_01_12",
             "chapterCode": "gpt_anti_01_12",
-            "title": "11. 수상전 기초 - 활로의 개수 세기",
-            "chapter": "11. 수상전 기초 - 활로의 개수 세기",
+            "title": "12. 수상전 기초 - 활로의 개수 세기",
+            "chapter": "12. 수상전 기초 - 활로의 개수 세기",
             "problemCount": 38,
             "problemsCount": 38
           },
           {
             "code": "gpt_anti_01_13",
             "chapterCode": "gpt_anti_01_13",
-            "title": "12. 집의 기초 개념과 경계 막기",
-            "chapter": "12. 집의 기초 개념과 경계 막기",
+            "title": "13. 집의 기초 개념과 경계 막기",
+            "chapter": "13. 집의 기초 개념과 경계 막기",
             "problemCount": 25,
             "problemsCount": 25
           }
         ],
         "file": "book_gpt_anti_stage_01.json",
-        "_buildVer": "v35-titles-no-count"
+        "_buildVer": "v36-add-ch8-yangdansu"
       }
     ]
   },
@@ -17004,7 +17012,7 @@
         "name": "1단계",
         "code": "gpt_anti_stage_01",
         "file": "book_gpt_anti_stage_01.json",
-        "chapterCount": 12,
+        "chapterCount": 13,
         "totalProblems": 395,
         "chapters": [
           {
@@ -17065,47 +17073,55 @@
             "problemsCount": 56
           },
           {
+            "code": "gpt_anti_01_14",
+            "chapterCode": "gpt_anti_01_14",
+            "title": "8. 양단수",
+            "chapter": "8. 양단수",
+            "problemCount": 0,
+            "problemsCount": 0
+          },
+          {
             "code": "gpt_anti_01_09",
             "chapterCode": "gpt_anti_01_09",
-            "title": "8. 상대 돌이 없는 넓은 방향으로 도망가기",
-            "chapter": "8. 상대 돌이 없는 넓은 방향으로 도망가기",
+            "title": "9. 상대 돌이 없는 넓은 방향으로 도망가기",
+            "chapter": "9. 상대 돌이 없는 넓은 방향으로 도망가기",
             "problemCount": 12,
             "problemsCount": 12
           },
           {
             "code": "gpt_anti_01_10",
             "chapterCode": "gpt_anti_01_10",
-            "title": "9. 착수금지와 착수 가능(따내는 예외) 판별",
-            "chapter": "9. 착수금지와 착수 가능(따내는 예외) 판별",
+            "title": "10. 착수금지와 착수 가능(따내는 예외) 판별",
+            "chapter": "10. 착수금지와 착수 가능(따내는 예외) 판별",
             "problemCount": 83,
             "problemsCount": 83
           },
           {
             "code": "gpt_anti_01_11",
             "chapterCode": "gpt_anti_01_11",
-            "title": "10. 패의 기본 규칙",
-            "chapter": "10. 패의 기본 규칙",
+            "title": "11. 패의 기본 규칙",
+            "chapter": "11. 패의 기본 규칙",
             "problemCount": 13,
             "problemsCount": 13
           },
           {
             "code": "gpt_anti_01_12",
             "chapterCode": "gpt_anti_01_12",
-            "title": "11. 수상전 기초 - 활로의 개수 세기",
-            "chapter": "11. 수상전 기초 - 활로의 개수 세기",
+            "title": "12. 수상전 기초 - 활로의 개수 세기",
+            "chapter": "12. 수상전 기초 - 활로의 개수 세기",
             "problemCount": 38,
             "problemsCount": 38
           },
           {
             "code": "gpt_anti_01_13",
             "chapterCode": "gpt_anti_01_13",
-            "title": "12. 집의 기초 개념과 경계 막기",
-            "chapter": "12. 집의 기초 개념과 경계 막기",
+            "title": "13. 집의 기초 개념과 경계 막기",
+            "chapter": "13. 집의 기초 개념과 경계 막기",
             "problemCount": 25,
             "problemsCount": 25
           }
         ],
-        "_buildVer": "v35-titles-no-count"
+        "_buildVer": "v36-add-ch8-yangdansu"
       },
       {
         "title": "2단계",
