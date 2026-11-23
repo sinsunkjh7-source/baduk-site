@@ -700,7 +700,7 @@
       if (parts.length > 0) return true;
     }
     if (tp === '4' || tp === '5') return true;
-    if (p.question && (p.question.indexOf('둘 수 있') !== -1 || p.question.indexOf('착수금지') !== -1)) return true;
+    if (p.question && (p.question.indexOf('둘 수 있') !== -1 || p.question.indexOf('착수금지') !== -1 || p.question.indexOf('단수(활로가 1개)') !== -1 || p.question.indexOf('면 ⭕') !== -1)) return true;
     return false;
   }
 
@@ -804,8 +804,8 @@
       btn.type = 'button';
       btn.dataset.choiceIdx = idx.toString();
 
-      var isO = (rawItem === '○' || rawItem.toUpperCase() === 'O' || rawItem.indexOf('둘 수 있다') !== -1 || rawItem.indexOf('있다') !== -1);
-      var isX = (rawItem === 'Χ' || rawItem === '×' || rawItem.toUpperCase() === 'X' || rawItem.indexOf('착수금지') !== -1 || rawItem.indexOf('둘 수 없다') !== -1 || rawItem.indexOf('없다') !== -1);
+      var isO = (rawItem === '○' || rawItem === '⭕' || rawItem.toUpperCase() === 'O' || rawItem.indexOf('둘 수 있다') !== -1 || rawItem.indexOf('있다') !== -1);
+      var isX = (rawItem === 'Χ' || rawItem === '×' || rawItem === '❌' || rawItem.toUpperCase() === 'X' || rawItem.indexOf('착수금지') !== -1 || rawItem.indexOf('둘 수 없다') !== -1 || rawItem.indexOf('없다') !== -1);
 
       var btnClass = 'choice-btn';
       var label = rawItem;
@@ -814,18 +814,10 @@
 
       if (isO && !isX) {
         btnClass += ' choice-o';
-        if (isChaksuQ) {
-          label = (rawItem === '○' || rawItem.toUpperCase() === 'O') ? '⭕ (착수 가능)' : ('⭕ ' + rawItem);
-        } else {
-          label = (rawItem === '○' || rawItem.toUpperCase() === 'O') ? '⭕' : ('⭕ ' + rawItem);
-        }
+        label = isChaksuQ ? '⭕ (착수 가능)' : '⭕';
       } else if (isX) {
         btnClass += ' choice-x';
-        if (isChaksuQ) {
-          label = (rawItem === 'Χ' || rawItem === '×' || rawItem.toUpperCase() === 'X') ? '❌ (착수금지)' : ('❌ ' + rawItem);
-        } else {
-          label = (rawItem === 'Χ' || rawItem === '×' || rawItem.toUpperCase() === 'X') ? '❌' : ('❌ ' + rawItem);
-        }
+        label = isChaksuQ ? '❌ (착수금지)' : '❌';
       } else {
         label = rawItem;
       }

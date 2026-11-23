@@ -712,7 +712,7 @@
       if (parts.length > 0) return true;
     }
     if (tp === '4' || tp === '5') return true;
-    if (p.question && (p.question.indexOf('둘 수 있') !== -1 || p.question.indexOf('착수금지') !== -1)) return true;
+    if (p.question && (p.question.indexOf('둘 수 있') !== -1 || p.question.indexOf('착수금지') !== -1 || p.question.indexOf('단수(활로가 1개)') !== -1 || p.question.indexOf('면 ⭕') !== -1)) return true;
     return false;
   }
 
@@ -816,8 +816,8 @@
       btn.type = 'button';
       btn.dataset.choiceIdx = idx.toString();
 
-      var isO = (rawItem === '○' || rawItem.toUpperCase() === 'O' || rawItem.indexOf('둘 수 있다') !== -1 || rawItem.indexOf('있다') !== -1);
-      var isX = (rawItem === 'Χ' || rawItem === '×' || rawItem.toUpperCase() === 'X' || rawItem.indexOf('착수금지') !== -1 || rawItem.indexOf('둘 수 없다') !== -1 || rawItem.indexOf('없다') !== -1);
+      var isO = (rawItem === '○' || rawItem === '⭕' || rawItem.toUpperCase() === 'O' || rawItem.indexOf('둘 수 있다') !== -1 || rawItem.indexOf('있다') !== -1);
+      var isX = (rawItem === 'Χ' || rawItem === '×' || rawItem === '❌' || rawItem.toUpperCase() === 'X' || rawItem.indexOf('착수금지') !== -1 || rawItem.indexOf('둘 수 없다') !== -1 || rawItem.indexOf('없다') !== -1);
 
       var btnClass = 'choice-btn';
       var label = rawItem;
@@ -826,18 +826,10 @@
 
       if (isO && !isX) {
         btnClass += ' choice-o';
-        if (isChaksuQ) {
-          label = (rawItem === '○' || rawItem.toUpperCase() === 'O') ? '⭕ (착수 가능)' : ('⭕ ' + rawItem);
-        } else {
-          label = (rawItem === '○' || rawItem.toUpperCase() === 'O') ? '⭕' : ('⭕ ' + rawItem);
-        }
+        label = isChaksuQ ? '⭕ (착수 가능)' : '⭕';
       } else if (isX) {
         btnClass += ' choice-x';
-        if (isChaksuQ) {
-          label = (rawItem === 'Χ' || rawItem === '×' || rawItem.toUpperCase() === 'X') ? '❌ (착수금지)' : ('❌ ' + rawItem);
-        } else {
-          label = (rawItem === 'Χ' || rawItem === '×' || rawItem.toUpperCase() === 'X') ? '❌' : ('❌ ' + rawItem);
-        }
+        label = isChaksuQ ? '❌ (착수금지)' : '❌';
       } else {
         label = rawItem;
       }
@@ -2998,6 +2990,33 @@
     if (typeof renderChoiceButtons === 'function') renderChoiceButtons(p);
   }
 
+  function autoEvaluateAtariChoice(p) {
+    if (!p) return;
+    var isAtariQ = p.question && (p.question.indexOf('단수(활로가 1개)') !== -1 || p.question.indexOf('활로와 단수') !== -1 || p.question.indexOf('면 ⭕') !== -1);
+    var curCh = (state.currentBook && state.currentBook.chapters) ? state.currentBook.chapters[state.currentChapterIndex] : null;
+    var isCh3 = curCh && (curCh.chapterCode === 'gpt_anti_01_03' || (curCh.title && curCh.title.indexOf('활로와 단수') !== -1));
+    if (!isAtariQ && !isCh3) return;
+
+    var triMark = (state.marks || []).find(function (m) { return m.type === 'triangle'; });
+    if (!triMark) return;
+
+    var groups = getStoneGroups(state.board, state.boardCols, state.boardRows);
+    var targetGroup = groups.find(function (g) {
+      return g.stones.some(function (s) { return s.x === triMark.x && s.y === triMark.y; });
+    });
+
+    if (targetGroup) {
+      var isAtari = (targetGroup.liberties === 1);
+      p.answer = isAtari ? '1' : '2';
+      p.sample = '○|Χ';
+      p.auto = 'false';
+      if (!p.question || p.question.indexOf('백△가 단수') === -1) {
+        p.question = '백△가 단수(활로가 1개)면 ⭕,\n아니면 ❌';
+      }
+      if (typeof syncProbEditDrawerUI === 'function') syncProbEditDrawerUI();
+    }
+  }
+
   function handleBoardEditClick(gx, gy) {
     var p = state.currentProblems[state.currentProblemIndex];
     if (!p) return;
@@ -3015,6 +3034,7 @@
       }
       state.board[gy][gx] = state.initialBoard[gy][gx];
       p.data = serializeBoardToSgfData();
+      autoEvaluateAtariChoice(p);
       sfx('playStone');
       saveCustomBookState('흑백 번갈아 놓기');
       updateAltBanner();
@@ -3024,6 +3044,7 @@
       state.initialBoard[gy][gx] = (state.initialBoard[gy][gx] === 1) ? 0 : 1;
       state.board[gy][gx] = state.initialBoard[gy][gx];
       p.data = serializeBoardToSgfData();
+      autoEvaluateAtariChoice(p);
       sfx('playStone');
       saveCustomBookState('흑돌 위치 수정됨');
       drawBoard();
@@ -3032,6 +3053,7 @@
       state.initialBoard[gy][gx] = (state.initialBoard[gy][gx] === 2) ? 0 : 2;
       state.board[gy][gx] = state.initialBoard[gy][gx];
       p.data = serializeBoardToSgfData();
+      autoEvaluateAtariChoice(p);
       sfx('playStone');
       saveCustomBookState('백돌 위치 수정됨');
       drawBoard();
@@ -3041,6 +3063,7 @@
       state.board[gy][gx] = 0;
       state.marks = (state.marks || []).filter(function (mk) { return !(mk.x === gx && mk.y === gy); });
       p.data = serializeBoardToSgfData();
+      autoEvaluateAtariChoice(p);
       sfx('playStone');
       saveCustomBookState('돌/표시 삭제됨');
       drawBoard();
@@ -3057,6 +3080,7 @@
         state.marks.push({ x: gx, y: gy, type: 'triangle' });
       }
       p.data = serializeBoardToSgfData();
+      autoEvaluateAtariChoice(p);
       sfx('playStone');
       saveCustomBookState('△ 표시 수정됨');
       drawBoard();
@@ -4532,7 +4556,12 @@
         var at = gridInsertionIndex(state.currentProblems.length, state.currentProblemIndex, where ? where.value : 'after'), oldLength = state.currentProblems.length, additions = [];
         for (var j = 0; j < count; j++) {
           var newNo = at + j + 1;
-          additions.push({ code: 'teacher_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 10) + '_' + j, type: '3', question: (state.currentBook ? state.currentBook.chapters[state.currentChapterIndex].chapter : '새 문제') + '\r\n문제를 풀어보세요.', hint: '', data: '', answer1: '', answer2: '', answer3: '', answer4: '', answer5: '', sample: '', answer: '', auto: 'false', size: '4', start: 'BA', source_book: '선생님 직접 작성', source_chapter: '', source_p_num: oldLength + j + 1, no: newNo, name: newNo + '번 문제' });
+          var curCh = (state.currentBook && state.currentBook.chapters) ? state.currentBook.chapters[state.currentChapterIndex] : null;
+          var isCh3 = curCh && (curCh.chapterCode === 'gpt_anti_01_03' || (curCh.title && curCh.title.indexOf('활로와 단수') !== -1));
+          var defQ = isCh3 ? '백△가 단수(활로가 1개)면 ⭕,\n아니면 ❌' : ((state.currentBook ? state.currentBook.chapters[state.currentChapterIndex].chapter : '새 문제') + '\r\n문제를 풀어보세요.');
+          var defSample = isCh3 ? '○|Χ' : '';
+          var defAns = isCh3 ? '1' : '';
+          additions.push({ code: 'teacher_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 10) + '_' + j, type: '3', question: defQ, hint: '', data: '', answer1: '', answer2: '', answer3: '', answer4: '', answer5: '', sample: defSample, answer: defAns, auto: 'false', size: '4', start: 'BA', source_book: '선생님 직접 작성', source_chapter: '', source_p_num: oldLength + j + 1, no: newNo, name: newNo + '번 문제' });
         }
         state.currentProblems.splice.apply(state.currentProblems, [at, 0].concat(additions));
         if (state.currentBook && state.currentBook.chapters[state.currentChapterIndex]) state.currentBook.chapters[state.currentChapterIndex].problems = state.currentProblems;

@@ -2124,7 +2124,7 @@
           }
         ],
         "file": "book_gpt_anti_stage_01.json",
-        "_buildVer": "v22-ch3-large-ox-question"
+        "_buildVer": "v24-ch3-auto-atari-evaluation"
       }
     ]
   },
@@ -17119,7 +17119,7 @@
             "problemsCount": 25
           }
         ],
-        "_buildVer": "v22-ch3-large-ox-question"
+        "_buildVer": "v24-ch3-auto-atari-evaluation"
       },
       {
         "title": "2단계",

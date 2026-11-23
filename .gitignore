@@ -6,3 +6,6 @@ local_dev_server.py
 
 # Large video assets (>100MB)
 games/coaster-run/assets/*1080p*.webm
+
+# Local Netlify folder
+.netlify
