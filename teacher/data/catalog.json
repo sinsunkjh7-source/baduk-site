@@ -2125,7 +2125,7 @@
           }
         ],
         "file": "book_gpt_anti_stage_01.json",
-        "_buildVer": "v37-ch7-30problems"
+        "_buildVer": "v38-ch7-4corners"
       }
     ]
   },
@@ -17121,7 +17121,7 @@
             "problemsCount": 25
           }
         ],
-        "_buildVer": "v37-ch7-30problems"
+        "_buildVer": "v38-ch7-4corners"
       },
       {
         "title": "2단계",
