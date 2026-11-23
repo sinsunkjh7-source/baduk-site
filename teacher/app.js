@@ -158,6 +158,36 @@
   }
   window.showToast = showToast;
 
+  function sanitizeBookData(bookData, code) {
+    if (!bookData || !Array.isArray(bookData.chapters)) return bookData;
+    if (code === 'gpt_anti_stage_01') {
+      bookData.chapters.forEach(function (ch, idx) {
+        var isCh7 = idx === 6 || ch.id === 'gpt_anti_01_07' || (ch.chapter && ch.chapter.indexOf('7.') === 0) || (ch.title && ch.title.indexOf('7.') === 0);
+        if (isCh7 && Array.isArray(ch.problems)) {
+          var prevLen = ch.problems.length;
+          ch.problems = ch.problems.filter(function (p) {
+            var sSeries = (p.source_series || '').trim();
+            var sBook = (p.source_book || '').trim();
+            var idStr = String(p.id || '');
+            if (sSeries === '알파바둑' || sBook.indexOf('알파') >= 0 || idStr.indexOf('387') === 0) {
+              return false;
+            }
+            return true;
+          });
+          if (ch.problems.length !== prevLen) {
+            var baseTitle = (ch.chapter || ch.title || '').replace(/\s*\(\s*\d+\s*[^)]*\)\s*$/, '');
+            var newTitle = baseTitle + ' (' + ch.problems.length + '제)';
+            ch.chapter = newTitle;
+            ch.title = newTitle;
+            ch.problemCount = ch.problems.length;
+          }
+        }
+      });
+    }
+    return bookData;
+  }
+  window.sanitizeBookData = sanitizeBookData;
+
   function getBookCode() {
     if (state.currentBook && state.currentBook.bookCode) return state.currentBook.bookCode;
     return bookSelect ? bookSelect.value : '';
@@ -166,6 +196,7 @@
   function saveCustomBookState(statusText) {
     var code = getBookCode();
     if (!code || !state.currentBook) return;
+    sanitizeBookData(state.currentBook, code);
     var curP = state.currentProblems ? state.currentProblems[state.currentProblemIndex] : null;
     if (curP && curP.source_book !== '선생님 직접 작성') {
       curP.is_modified = true;
@@ -189,7 +220,20 @@
     try {
       localStorage.setItem('teacher_book_custom_' + code, JSON.stringify(state.currentBook));
     } catch (e) {
-      console.error('Failed to save custom book to localStorage:', e);
+      console.warn('Failed to save custom book to localStorage, cleaning quota:', e);
+      try {
+        var toRemove = [];
+        for (var i = 0; i < localStorage.length; i++) {
+          var k = localStorage.key(i);
+          if (k && (k.indexOf('teacher_book_backup_') === 0 || k.indexOf('bks_backup_') === 0 || k.indexOf('baduk_debug_') === 0)) {
+            toRemove.push(k);
+          }
+        }
+        toRemove.forEach(function (k) { localStorage.removeItem(k); });
+        localStorage.setItem('teacher_book_custom_' + code, JSON.stringify(state.currentBook));
+      } catch (e2) {
+        console.error('Failed to save custom book to localStorage even after cleanup:', e2);
+      }
     }
     var badge = document.getElementById('pedSaveBadge');
     if (badge) {
@@ -411,6 +455,10 @@
           var customData = JSON.parse(savedCustom);
           // 🌟 원장님의 삭제/수정 편집본 최우선 적용 (어떤 경우에도 덮어쓰거나 롤백하지 않고 즉시 로드)
           if (customData && Array.isArray(customData.chapters) && customData.chapters.length > 0) {
+            customData = sanitizeBookData(customData, code);
+            try {
+              localStorage.setItem('teacher_book_custom_' + code, JSON.stringify(customData));
+            } catch (err) {}
             customData.bookCode = code;
             state.currentBook = customData;
             currentBookTitle.textContent = customData.book || customData.title || ('교재 ' + code);
@@ -432,6 +480,7 @@
         return res.json();
       })
       .then(function (bookData) {
+        bookData = sanitizeBookData(bookData, code);
         bookData.bookCode = code;
         state.currentBook = bookData;
         currentBookTitle.textContent = bookData.book || bookData.title || ('교재 ' + code);
@@ -2764,45 +2813,6 @@
   }
 
   /* ---------- 🌟 문제별 접이식 간편 편집 엔진 (제거 / 돌 위치 변경 / 단원 이동 / 순서 변경) 🌟 ---------- */
-  function getBookCode() {
-    if (state.currentBook && state.currentBook.bookCode) return state.currentBook.bookCode;
-    return bookSelect ? bookSelect.value : '';
-  }
-
-  function saveCustomBookState(statusText) {
-    var code = getBookCode();
-    if (!code || !state.currentBook) return;
-    var curP = state.currentProblems ? state.currentProblems[state.currentProblemIndex] : null;
-    if (curP && curP.source_book !== '선생님 직접 작성') {
-      curP.is_modified = true;
-    }
-    if (code === 'new_tech_chuk') {
-      state.currentBook._buildVer = 'v16-ch5-teacher-final-126';
-    }
-    if (code === 'new_tech_sahwal') {
-      state.currentBook._buildVer = 'v22-sahwal-filtered-okjip-26p-208';
-    }
-    var catalogVer = null;
-    (state.catalog || []).forEach(function (s) {
-      (s.books || []).forEach(function (b) { if (b.code === code) catalogVer = b._buildVer; });
-    });
-    if (catalogVer) {
-      state.currentBook._buildVer = catalogVer;
-    }
-    updateBookOptionCountUI(code, state.currentBook);
-
-    try {
-      localStorage.setItem('teacher_book_custom_' + code, JSON.stringify(state.currentBook));
-    } catch (e) {
-      console.error('Failed to save custom book to localStorage:', e);
-    }
-    var badge = document.getElementById('pedSaveBadge');
-    if (badge) {
-      badge.textContent = '✓ ' + (statusText || '변경사항 자동저장됨');
-      badge.style.color = '#059669';
-    }
-  }
-
   function serializeBoardToSgfData() {
     var parts = [];
     for (var y = 0; y < state.boardRows; y++) {
@@ -4060,9 +4070,18 @@
     function openModal() {
       if (!modal) return;
       if (!state.currentBook || !state.currentBook.chapters[state.currentChapterIndex]) return;
-      if (selectionList !== state.currentProblems) { selectionMode = false; selectedProblems.clear(); lastSelectedProblem = null; lastOrderSnapshot = null; currentFilter = 'all'; selectionList = state.currentProblems; }
+      var curCh = state.currentBook.chapters[state.currentChapterIndex];
+      sanitizeBookData(state.currentBook, getBookCode());
+      state.currentProblems = curCh.problems || [];
+      selectionMode = false;
+      selectedProblems.clear();
+      lastSelectedProblem = null;
+      lastOrderSnapshot = null;
+      currentFilter = 'all';
+      selectionList = state.currentProblems;
       modal.removeAttribute('hidden');
-      renderCards(false); focusCard(state.currentProblemIndex);
+      renderCards(false);
+      focusCard(state.currentProblemIndex);
     }
 
     function closeModal() {

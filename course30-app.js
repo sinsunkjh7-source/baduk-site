@@ -162,6 +162,36 @@
   }
   window.showToast = showToast;
 
+  function sanitizeBookData(bookData, code) {
+    if (!bookData || !Array.isArray(bookData.chapters)) return bookData;
+    if (code === 'gpt_anti_stage_01') {
+      bookData.chapters.forEach(function (ch, idx) {
+        var isCh7 = idx === 6 || ch.id === 'gpt_anti_01_07' || (ch.chapter && ch.chapter.indexOf('7.') === 0) || (ch.title && ch.title.indexOf('7.') === 0);
+        if (isCh7 && Array.isArray(ch.problems)) {
+          var prevLen = ch.problems.length;
+          ch.problems = ch.problems.filter(function (p) {
+            var sSeries = (p.source_series || '').trim();
+            var sBook = (p.source_book || '').trim();
+            var idStr = String(p.id || '');
+            if (sSeries === '알파바둑' || sBook.indexOf('알파') >= 0 || idStr.indexOf('387') === 0) {
+              return false;
+            }
+            return true;
+          });
+          if (ch.problems.length !== prevLen) {
+            var baseTitle = (ch.chapter || ch.title || '').replace(/\s*\(\s*\d+\s*[^)]*\)\s*$/, '');
+            var newTitle = baseTitle + ' (' + ch.problems.length + '제)';
+            ch.chapter = newTitle;
+            ch.title = newTitle;
+            ch.problemCount = ch.problems.length;
+          }
+        }
+      });
+    }
+    return bookData;
+  }
+  window.sanitizeBookData = sanitizeBookData;
+
   function getBookCode() {
     if (state.currentBook && state.currentBook.bookCode) return state.currentBook.bookCode;
     return bookSelect ? bookSelect.value : '';
@@ -170,6 +200,7 @@
   function saveCustomBookState(statusText) {
     var code = getBookCode();
     if (!code || !state.currentBook) return;
+    sanitizeBookData(state.currentBook, code);
     if (code === 'new_tech_chuk') {
       state.currentBook._buildVer = 'v16-ch5-teacher-final-126';
     }
@@ -182,7 +213,20 @@
     try {
       localStorage.setItem('teacher_book_custom_' + code, JSON.stringify(state.currentBook));
     } catch (e) {
-      console.error('Failed to save custom book to localStorage:', e);
+      console.warn('Failed to save custom book to localStorage, cleaning quota:', e);
+      try {
+        var toRemove = [];
+        for (var i = 0; i < localStorage.length; i++) {
+          var k = localStorage.key(i);
+          if (k && (k.indexOf('teacher_book_backup_') === 0 || k.indexOf('bks_backup_') === 0 || k.indexOf('baduk_debug_') === 0)) {
+            toRemove.push(k);
+          }
+        }
+        toRemove.forEach(function (k) { localStorage.removeItem(k); });
+        localStorage.setItem('teacher_book_custom_' + code, JSON.stringify(state.currentBook));
+      } catch (e2) {
+        console.error('Failed to save custom book to localStorage even after cleanup:', e2);
+      }
     }
     var badge = document.getElementById('pedSaveBadge');
     if (badge) {
@@ -391,7 +435,11 @@
         var savedCustom = localStorage.getItem('teacher_book_custom_' + code);
         if (savedCustom) {
           var customData = JSON.parse(savedCustom);
-          if (code === 'gpt_anti_stage_01' && (customData._buildVer !== 'v7-ch04-unified-q' || (customData.chapters && customData.chapters[2] && customData.chapters[2].problems && customData.chapters[2].problems[0] && customData.chapters[2].problems[0].question !== '단수되어 있는 백△를 따내어 보세요.'))) { localStorage.removeItem('teacher_book_custom_' + code); } else if ((code === 'tech_atari' && customData._buildVer !== 'v2-clean') || (code === 'new_tech_chokchoksu' && customData._buildVer !== 'v23-ch8-teacher-clean-200') || (code === 'new_tech_chuk' && customData._buildVer !== 'v17-ch6-138') || (code === 'new_tech_jangmun' && (customData._buildVer !== 'v30-ch9-9probs-179-1794267464' || !customData.chapters || customData.chapters.length !== 9)) || (code === 'new_tech_hwangyeok' && customData._buildVer !== 'v13-ch9-256probs-comprehensive-sahwal-hwangyeok') || (code === 'new_tech_meokyeochigi' && customData._buildVer !== 'v9-ch9-224probs-advanced-sahwal') || (code === 'new_tech_pae' && customData._buildVer !== 'v11-ch11-274probs-pae-master') || (code === 'new_tech_chaksu_geumji' && customData._buildVer !== 'v5-ch5-118probs-chaksu-final-master') || (code === 'new_tech_sahwal' && (customData._buildVer !== 'v22-sahwal-filtered-okjip-26p-208' || !customData.chapters || customData.chapters.length !== 8 || customData.chapters.some(function(c){ return !c.problems || c.problems.length === 0; })))) { localStorage.removeItem('teacher_book_custom_' + code); } else if (customData && Array.isArray(customData.chapters) && (customData.totalProblems > 0 || customData.chapters.some(function(c){ return (c.problems||[]).length > 0; }))) {
+          if (customData && Array.isArray(customData.chapters) && (customData.totalProblems > 0 || customData.chapters.some(function(c){ return (c.problems||[]).length > 0; }))) {
+            customData = sanitizeBookData(customData, code);
+            try {
+              localStorage.setItem('teacher_book_custom_' + code, JSON.stringify(customData));
+            } catch (err) {}
             customData.bookCode = code;
             state.currentBook = customData;
             currentBookTitle.textContent = customData.book || customData.title || ('교재 ' + code);
@@ -2734,34 +2782,6 @@
   }
 
   /* ---------- 🌟 문제별 접이식 간편 편집 엔진 (제거 / 돌 위치 변경 / 단원 이동 / 순서 변경) 🌟 ---------- */
-  function getBookCode() {
-    if (state.currentBook && state.currentBook.bookCode) return state.currentBook.bookCode;
-    return bookSelect ? bookSelect.value : '';
-  }
-
-  function saveCustomBookState(statusText) {
-    var code = getBookCode();
-    if (!code || !state.currentBook) return;
-    if (code === 'new_tech_chuk') {
-      state.currentBook._buildVer = 'v16-ch5-teacher-final-126';
-    }
-    if (code === 'new_tech_sahwal') {
-      state.currentBook._buildVer = 'v22-sahwal-filtered-okjip-26p-208';
-    }
-    updateBookOptionCountUI(code, state.currentBook);
-
-    try {
-      localStorage.setItem('teacher_book_custom_' + code, JSON.stringify(state.currentBook));
-    } catch (e) {
-      console.error('Failed to save custom book to localStorage:', e);
-    }
-    var badge = document.getElementById('pedSaveBadge');
-    if (badge) {
-      badge.textContent = '✓ ' + (statusText || '변경사항 자동저장됨');
-      badge.style.color = '#059669';
-    }
-  }
-
   function serializeBoardToSgfData() {
     var parts = [];
     for (var y = 0; y < state.boardRows; y++) {
@@ -3582,6 +3602,10 @@
 
     function openModal() {
       if (!modal) return;
+      if (!state.currentBook || !state.currentBook.chapters[state.currentChapterIndex]) return;
+      var curCh = state.currentBook.chapters[state.currentChapterIndex];
+      sanitizeBookData(state.currentBook, getBookCode());
+      state.currentProblems = curCh.problems || [];
       if (!state.currentProblems || state.currentProblems.length === 0) {
         showToast('현재 선택된 단원에 문제가 없습니다.');
         return;
