@@ -2064,7 +2064,7 @@
             "code": "gpt_anti_01_06",
             "chapterCode": "gpt_anti_01_06",
             "title": "6. 단수된 돌 살리기 (도망가기) (43제)",
-            "chapter": "6. 단수된 돌 살리기 (도망가기) (43제)",
+            "chapter": "6. 단수된 돌 살리기 (43제)",
             "problemCount": 43,
             "problemsCount": 43
           },
@@ -2126,7 +2126,7 @@
           }
         ],
         "file": "book_gpt_anti_stage_01.json",
-        "_buildVer": "v26-modified-badge-ch5-ch6"
+        "_buildVer": "v27-ch6-remove-domang-title"
       }
     ]
   },
@@ -17062,7 +17062,7 @@
             "code": "gpt_anti_01_06",
             "chapterCode": "gpt_anti_01_06",
             "title": "6. 단수된 돌 살리기 (도망가기) (43제)",
-            "chapter": "6. 단수된 돌 살리기 (도망가기) (43제)",
+            "chapter": "6. 단수된 돌 살리기 (43제)",
             "problemCount": 43,
             "problemsCount": 43
           },
@@ -17123,7 +17123,7 @@
             "problemsCount": 25
           }
         ],
-        "_buildVer": "v26-modified-badge-ch5-ch6"
+        "_buildVer": "v27-ch6-remove-domang-title"
       },
       {
         "title": "2단계",
