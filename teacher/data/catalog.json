@@ -2016,7 +2016,7 @@
         "code": "gpt_anti_stage_01",
         "title": "1단계",
         "chapterCount": 13,
-        "totalProblems": 439,
+        "totalProblems": 415,
         "chapters": [
           {
             "code": "gpt_anti_01_01",
@@ -2071,10 +2071,10 @@
           {
             "code": "gpt_anti_01_07",
             "chapterCode": "gpt_anti_01_07",
-            "title": "7. 따내기와 살리기 응용 (호구 속 따내기·이어서 살리기·잡으며 도망가기) (44제)",
-            "chapter": "7. 따내기와 살리기 응용 (호구 속 따내기·이어서 살리기·잡으며 도망가기) (44제)",
-            "problemCount": 44,
-            "problemsCount": 44
+            "title": "7. 따내기와 살리기 응용 (호구 속 따내기·이어서 살리기·잡으며 도망가기) (20제)",
+            "chapter": "7. 따내기와 살리기 응용 (호구 속 따내기·이어서 살리기·잡으며 도망가기) (20제)",
+            "problemCount": 20,
+            "problemsCount": 20
           },
           {
             "code": "gpt_anti_01_08",
@@ -2126,7 +2126,7 @@
           }
         ],
         "file": "book_gpt_anti_stage_01.json",
-        "_buildVer": "v30-fix-quadrant-circulation"
+        "_buildVer": "v31-ch7-remove-alpha-20p"
       }
     ]
   },
@@ -17014,7 +17014,7 @@
         "code": "gpt_anti_stage_01",
         "file": "book_gpt_anti_stage_01.json",
         "chapterCount": 13,
-        "totalProblems": 439,
+        "totalProblems": 415,
         "chapters": [
           {
             "code": "gpt_anti_01_01",
@@ -17069,10 +17069,10 @@
           {
             "code": "gpt_anti_01_07",
             "chapterCode": "gpt_anti_01_07",
-            "title": "7. 따내기와 살리기 응용 (호구 속 따내기·이어서 살리기·잡으며 도망가기) (44제)",
-            "chapter": "7. 따내기와 살리기 응용 (호구 속 따내기·이어서 살리기·잡으며 도망가기) (44제)",
-            "problemCount": 44,
-            "problemsCount": 44
+            "title": "7. 따내기와 살리기 응용 (호구 속 따내기·이어서 살리기·잡으며 도망가기) (20제)",
+            "chapter": "7. 따내기와 살리기 응용 (호구 속 따내기·이어서 살리기·잡으며 도망가기) (20제)",
+            "problemCount": 20,
+            "problemsCount": 20
           },
           {
             "code": "gpt_anti_01_08",
@@ -17123,7 +17123,7 @@
             "problemsCount": 25
           }
         ],
-        "_buildVer": "v30-fix-quadrant-circulation"
+        "_buildVer": "v31-ch7-remove-alpha-20p"
       },
       {
         "title": "2단계",
