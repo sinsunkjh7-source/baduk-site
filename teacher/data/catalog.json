@@ -16936,5 +16936,125 @@
         ]
       }
     ]
+  },
+  {
+    "title": "바둑 입문 & 첫걸음",
+    "bookCount": 2,
+    "books": [
+      {
+        "title": "1단계",
+        "name": "1단계",
+        "code": "gpt_anti_stage_01",
+        "file": "book_gpt_anti_stage_01.json",
+        "chapterCount": 11,
+        "totalProblems": 425,
+        "chapters": [
+          {
+            "title": "01-01. 돌의 활로와 활로 막기 (44제)",
+            "problemCount": 44
+          },
+          {
+            "title": "01-02. 단수의 원리와 판별 (26제)",
+            "problemCount": 26
+          },
+          {
+            "title": "01-03. 단수된 돌 따내기 (41제)",
+            "problemCount": 41
+          },
+          {
+            "title": "01-04. 단수된 돌 살리기 (도망가기) (43제)",
+            "problemCount": 43
+          },
+          {
+            "title": "01-05. 따내기와 살리기 응용 (호구 속 따내기·이어서 살리기·잡으며 도망가기) (44제)",
+            "problemCount": 44
+          },
+          {
+            "title": "01-06. 서로 단수 (먼저 따내기) (56제)",
+            "problemCount": 56
+          },
+          {
+            "title": "01-07. 상대 돌이 없는 넓은 방향으로 도망가기 (12제)",
+            "problemCount": 12
+          },
+          {
+            "title": "01-08. 착수금지와 착수 가능(따내는 예외) 판별 (83제)",
+            "problemCount": 83
+          },
+          {
+            "title": "01-09. 패의 기본 규칙 (되따내기 금지와 패 따내기) (13제)",
+            "problemCount": 13
+          },
+          {
+            "title": "01-10. 수상전 기초 - 활로의 개수 세기 (38제)",
+            "problemCount": 38
+          },
+          {
+            "title": "01-11. 집의 기초 개념과 경계 막기 (25제)",
+            "problemCount": 25
+          }
+        ],
+        "_buildVer": "v16-clean-title-1step"
+      },
+      {
+        "title": "2단계",
+        "name": "2단계",
+        "code": "gpt_anti_stage_02",
+        "file": "book_gpt_anti_stage_02.json",
+        "chapterCount": 12,
+        "totalProblems": 502,
+        "chapters": [
+          {
+            "title": "02-01. 돌의 연결 (끊어지는 약점 잇기) (76제)",
+            "problemCount": 76
+          },
+          {
+            "title": "02-02. 돌의 끊음 (상대 돌 갈라놓기) (76제)",
+            "problemCount": 76
+          },
+          {
+            "title": "02-03. 강한 돌과 약한 돌 (연결·끊음 기초 종합) (78제)",
+            "problemCount": 78
+          },
+          {
+            "title": "02-04. 호구 연결과 호구 안의 무리한 끊음 (24제)",
+            "problemCount": 24
+          },
+          {
+            "title": "02-05. 따내면서 연결하기 (58제)",
+            "problemCount": 58
+          },
+          {
+            "title": "02-06. 뚫어서 끊기 (3수 돌파 전술) (38제)",
+            "problemCount": 38
+          },
+          {
+            "title": "02-07. 접촉 행마 1 - 뻗어서 연결하기 (늘기) (12제)",
+            "problemCount": 12
+          },
+          {
+            "title": "02-08. 접촉 행마 2 - 붙이기와 젖히기 (붙이면 젖혀라) (33제)",
+            "problemCount": 33
+          },
+          {
+            "title": "02-09. 접촉 행마 3 - 호구 젖히기 (12제)",
+            "problemCount": 12
+          },
+          {
+            "title": "02-10. 접촉 행마 4 - 두 점 머리 막기 (23제)",
+            "problemCount": 23
+          },
+          {
+            "title": "02-11. 집의 경계 막기와 집 계산 (39제)",
+            "problemCount": 39
+          },
+          {
+            "title": "02-12. 사활 입문 - 독립된 두 집과 산 돌·죽은 돌 판별 (33제)",
+            "problemCount": 33
+          }
+        ],
+        "_buildVer": "v1-stage02-init"
+      }
+    ]
   }
 ]
