@@ -7,7 +7,7 @@
   "chapterCount": 13,
   "totalProblems": 425,
   "problemCount": 425,
-  "_buildVer": "v20-ch3-ch4-split",
+  "_buildVer": "v21-ch3-ch4-random-quadrants-ox",
   "chapters": [
     {
       "code": "gpt_anti_01_01",
@@ -1138,19 +1138,20 @@
           "source_book": "알파바둑 1권",
           "source_p_num": 1,
           "source_chapter": "단수의 원리",
-          "question": "백△의 활로 개수는?",
+          "question": "백△가 단수(활로가 1개)면 O표, 아니면 X표 하세요.",
           "hint": "",
-          "data": ";B[qp];B[po];B[pq];W[pp];T[pp]",
+          "data": ";B[cd];B[de];B[dc];W[dd];T[dd]",
           "answer1": "",
           "answer2": "",
           "answer3": "",
           "answer4": "",
           "answer5": "",
-          "sample": "1|2||",
+          "sample": "○|Χ",
           "answer": "1",
           "auto": "false",
-          "size": "4",
-          "start": "NO"
+          "size": "6",
+          "start": "NO",
+          "quadrant": "TL"
         },
         {
           "code": "38841",
@@ -1166,19 +1167,20 @@
           "source_book": "알파바둑 1권",
           "source_p_num": 2,
           "source_chapter": "단수의 원리",
-          "question": "백△의 활로 개수는?",
+          "question": "백△가 단수(활로가 1개)면 O표, 아니면 X표 하세요.",
           "hint": "",
-          "data": ";B[qp];B[po];B[oo];B[pq];W[pp];W[op];T[op];T[pp]",
+          "data": ";B[qd];B[pe];B[oe];B[pc];W[pd];W[od];T[od];T[pd]",
           "answer1": "",
           "answer2": "",
           "answer3": "",
           "answer4": "",
           "answer5": "",
-          "sample": "1|2||",
+          "sample": "○|Χ",
           "answer": "2",
           "auto": "false",
-          "size": "4",
-          "start": "NO"
+          "size": "5",
+          "start": "NO",
+          "quadrant": "TR"
         },
         {
           "code": "38842",
@@ -1194,7 +1196,7 @@
           "source_book": "알파바둑 1권",
           "source_p_num": 3,
           "source_chapter": "단수의 원리",
-          "question": "백△의 활로 개수는?",
+          "question": "백△가 단수(활로가 1개)면 O표, 아니면 X표 하세요.",
           "hint": "",
           "data": ";B[qp];B[po];B[oo];B[pq];W[pp];W[op];W[oq];T[pp];T[op];T[oq]",
           "answer1": "",
@@ -1202,11 +1204,12 @@
           "answer3": "",
           "answer4": "",
           "answer5": "",
-          "sample": "2|3||",
+          "sample": "○|Χ",
           "answer": "2",
           "auto": "false",
           "size": "4",
-          "start": "NO"
+          "start": "NO",
+          "quadrant": "BR"
         },
         {
           "code": "38843",
@@ -1222,19 +1225,20 @@
           "source_book": "알파바둑 1권",
           "source_p_num": 4,
           "source_chapter": "단수의 원리",
-          "question": "백△의 활로 개수는?",
+          "question": "백△가 단수(활로가 1개)면 O표, 아니면 X표 하세요.",
           "hint": "",
-          "data": ";B[rp];B[qq];B[pr];B[qo];B[po];B[op];W[qp];W[pp];W[pq];T[pq];T[pp];T[qp]",
+          "data": ";B[bp];B[cq];B[dr];B[co];B[do];B[ep];W[cp];W[dp];W[dq];T[dq];T[dp];T[cp]",
           "answer1": "",
           "answer2": "",
           "answer3": "",
           "answer4": "",
           "answer5": "",
-          "sample": "1|2||",
+          "sample": "○|Χ",
           "answer": "1",
           "auto": "false",
-          "size": "4",
-          "start": "NO"
+          "size": "7",
+          "start": "NO",
+          "quadrant": "BL"
         },
         {
           "code": "38844",
@@ -1250,19 +1254,20 @@
           "source_book": "알파바둑 1권",
           "source_p_num": 5,
           "source_chapter": "단수의 원리",
-          "question": "백△의 활로 개수는?",
+          "question": "백△가 단수(활로가 1개)면 O표, 아니면 X표 하세요.",
           "hint": "",
-          "data": ";B[rp];B[qq];B[pr];B[qo];B[po];B[op];W[qp];W[pp];W[pq];W[oq];T[oq];T[pq];T[pp];T[qp]",
+          "data": ";B[bd];B[cc];B[db];B[ce];B[de];B[ed];W[cd];W[dd];W[dc];W[ec];T[ec];T[dc];T[dd];T[cd]",
           "answer1": "",
           "answer2": "",
           "answer3": "",
           "answer4": "",
           "answer5": "",
-          "sample": "1|2||",
+          "sample": "○|Χ",
           "answer": "2",
           "auto": "false",
-          "size": "4",
-          "start": "NO"
+          "size": "6",
+          "start": "NO",
+          "quadrant": "TL"
         },
         {
           "code": "38845",
@@ -1278,19 +1283,20 @@
           "source_book": "알파바둑 1권",
           "source_p_num": 6,
           "source_chapter": "단수의 원리",
-          "question": "백△의 활로 개수는?",
+          "question": "백△가 단수(활로가 1개)면 O표, 아니면 X표 하세요.",
           "hint": "",
-          "data": ";B[rp];B[qq];B[pr];B[qo];B[po];B[op];W[qp];W[pp];W[pq];W[oq];W[or];T[qp];T[pp];T[pq];T[oq];T[or]",
+          "data": ";B[bp];B[cq];B[dr];B[co];B[do];B[ep];W[cp];W[dp];W[dq];W[eq];W[er];T[cp];T[dp];T[dq];T[eq];T[er]",
           "answer1": "",
           "answer2": "",
           "answer3": "",
           "answer4": "",
           "answer5": "",
-          "sample": "2|3||",
+          "sample": "○|Χ",
           "answer": "2",
           "auto": "false",
-          "size": "4",
-          "start": "NO"
+          "size": "7",
+          "start": "NO",
+          "quadrant": "BL"
         },
         {
           "code": "38846",
@@ -1308,7 +1314,7 @@
           "source_chapter": "단수의 원리",
           "question": "백△가 단수(활로가 1개)면 O표, 아니면 X표 하세요.",
           "hint": "",
-          "data": ";B[qq];B[pq];B[op];B[po];B[qo];W[qp];W[pp];T[pp];T[qp]",
+          "data": ";B[qc];B[pc];B[od];B[pe];B[qe];W[qd];W[pd];T[pd];T[qd]",
           "answer1": "",
           "answer2": "",
           "answer3": "",
@@ -1317,8 +1323,9 @@
           "sample": "○|Χ",
           "answer": "1",
           "auto": "false",
-          "size": "4",
-          "start": "NO"
+          "size": "5",
+          "start": "NO",
+          "quadrant": "TR"
         },
         {
           "code": "38847",
@@ -1336,7 +1343,7 @@
           "source_chapter": "단수의 원리",
           "question": "백△가 단수(활로가 1개)면 O표, 아니면 X표 하세요.",
           "hint": "",
-          "data": ";B[qq];B[pq];B[po];B[qo];W[qp];W[pp];T[pp];T[qp]",
+          "data": ";B[cc];B[dc];B[de];B[ce];W[cd];W[dd];T[dd];T[cd]",
           "answer1": "",
           "answer2": "",
           "answer3": "",
@@ -1345,8 +1352,9 @@
           "sample": "○|Χ",
           "answer": "2",
           "auto": "false",
-          "size": "4",
-          "start": "NO"
+          "size": "6",
+          "start": "NO",
+          "quadrant": "TL"
         },
         {
           "code": "38848",
@@ -1364,7 +1372,7 @@
           "source_chapter": "단수의 원리",
           "question": "백△가 단수(활로가 1개)면 O표, 아니면 X표 하세요.",
           "hint": "",
-          "data": ";B[qp];B[po];B[pq];W[qq];W[pp];T[pp]",
+          "data": ";B[cp];B[do];B[dq];W[cq];W[dp];T[dp]",
           "answer1": "",
           "answer2": "",
           "answer3": "",
@@ -1373,8 +1381,9 @@
           "sample": "○|Χ",
           "answer": "1",
           "auto": "false",
-          "size": "4",
-          "start": "NO"
+          "size": "7",
+          "start": "NO",
+          "quadrant": "BL"
         },
         {
           "code": "38849",
@@ -1402,7 +1411,8 @@
           "answer": "2",
           "auto": "false",
           "size": "4",
-          "start": "NO"
+          "start": "NO",
+          "quadrant": "BR"
         },
         {
           "code": "38850",
@@ -1430,7 +1440,8 @@
           "answer": "1",
           "auto": "false",
           "size": "4",
-          "start": "NO"
+          "start": "NO",
+          "quadrant": "BR"
         },
         {
           "code": "38851",
@@ -1448,7 +1459,7 @@
           "source_chapter": "단수의 원리",
           "question": "백△가 단수(활로가 1개)면 O표, 아니면 X표 하세요.",
           "hint": "",
-          "data": ";B[rp];B[qq];B[pq];B[qo];B[oo];W[ro];W[qp];W[pp];W[op];T[op];T[pp];T[qp]",
+          "data": ";B[rd];B[qc];B[pc];B[qe];B[oe];W[re];W[qd];W[pd];W[od];T[od];T[pd];T[qd]",
           "answer1": "",
           "answer2": "",
           "answer3": "",
@@ -1457,8 +1468,9 @@
           "sample": "○|Χ",
           "answer": "2",
           "auto": "false",
-          "size": "4",
-          "start": "NO"
+          "size": "5",
+          "start": "NO",
+          "quadrant": "TR"
         }
       ]
     },
@@ -1486,8 +1498,8 @@
           "source_chapter": "단수의 원리",
           "question": "백△를 단수로 만들려면 가, 나 중 어디에 두어야 할까요?",
           "hint": "",
-          "data": ";B[qp];B[pq];W[pp];T[pp];L[po:가];L[oo:나]",
-          "answer1": ";B[po]",
+          "data": ";B[cp];B[dq];W[dp];T[dp];L[do:가];L[eo:나]",
+          "answer1": ";B[do]",
           "answer2": "",
           "answer3": "",
           "answer4": "",
@@ -1495,8 +1507,9 @@
           "sample": "",
           "answer": "",
           "auto": "false",
-          "size": "4",
-          "start": "BA"
+          "size": "7",
+          "start": "BA",
+          "quadrant": "BL"
         },
         {
           "code": "38853",
@@ -1524,7 +1537,8 @@
           "answer": "",
           "auto": "false",
           "size": "4",
-          "start": "BA"
+          "start": "BA",
+          "quadrant": "BR"
         },
         {
           "code": "38854",
@@ -1542,8 +1556,8 @@
           "source_chapter": "단수의 원리",
           "question": "백△를 단수로 만들려면 가, 나 중 어디에 두어야 할까요?",
           "hint": "",
-          "data": ";B[qp];B[pq];B[oq];B[np];B[no];W[pp];W[op];W[oo];T[oo];T[op];T[pp];L[nn:가];L[on:나]",
-          "answer1": ";B[on]",
+          "data": ";B[qd];B[pc];B[oc];B[nd];B[ne];W[pd];W[od];W[oe];T[oe];T[od];T[pd];L[nf:가];L[of:나]",
+          "answer1": ";B[of]",
           "answer2": "",
           "answer3": "",
           "answer4": "",
@@ -1551,8 +1565,9 @@
           "sample": "",
           "answer": "",
           "auto": "false",
-          "size": "4",
-          "start": "BA"
+          "size": "5",
+          "start": "BA",
+          "quadrant": "TR"
         },
         {
           "code": "38855",
@@ -1570,8 +1585,8 @@
           "source_chapter": "단수의 원리",
           "question": "백△를 단수로 만들려면 가, 나 중 어디에 두어야 할까요?",
           "hint": "",
-          "data": ";B[rp];B[qq];B[pq];B[oq];B[qo];B[po];W[ro];W[qp];W[op];W[pp];T[op];T[pp];T[qp];L[np:가];L[mp:나]",
-          "answer1": ";B[np]",
+          "data": ";B[bp];B[cq];B[dq];B[eq];B[co];B[do];W[bo];W[cp];W[ep];W[dp];T[ep];T[dp];T[cp];L[fp:가];L[gp:나]",
+          "answer1": ";B[fp]",
           "answer2": "",
           "answer3": "",
           "answer4": "",
@@ -1579,8 +1594,9 @@
           "sample": "",
           "answer": "",
           "auto": "false",
-          "size": "4",
-          "start": "BA"
+          "size": "7",
+          "start": "BA",
+          "quadrant": "BL"
         },
         {
           "code": "38856",
@@ -1608,7 +1624,8 @@
           "answer": "",
           "auto": "false",
           "size": "4",
-          "start": "BA"
+          "start": "BA",
+          "quadrant": "BR"
         },
         {
           "code": "38857",
@@ -1626,8 +1643,8 @@
           "source_chapter": "단수의 원리",
           "question": "백△를 단수로 만들려면 가, 나 중 어디에 두어야 할까요?",
           "hint": "",
-          "data": ";B[rp];B[ro];B[qp];B[qn];B[oo];B[op];W[qo];W[po];W[pp];W[oq];W[pr];W[qq];T[qo];T[po];T[pp];L[pn:가];L[on:나]",
-          "answer1": ";B[pn]",
+          "data": ";B[bp];B[bo];B[cp];B[cn];B[eo];B[ep];W[co];W[do];W[dp];W[eq];W[dr];W[cq];T[co];T[do];T[dp];L[dn:가];L[en:나]",
+          "answer1": ";B[dn]",
           "answer2": "",
           "answer3": "",
           "answer4": "",
@@ -1635,8 +1652,9 @@
           "sample": "",
           "answer": "",
           "auto": "false",
-          "size": "4",
-          "start": "BA"
+          "size": "7",
+          "start": "BA",
+          "quadrant": "BL"
         },
         {
           "code": "38858",
@@ -1654,8 +1672,8 @@
           "source_chapter": "단수의 원리",
           "question": "백△를 단수로 만들어 보세요.",
           "hint": "",
-          "data": ";W[rp];W[qo];W[pp];W[qq];T[pp];B[po];B[op]",
-          "answer1": ";B[pq]",
+          "data": ";W[bd];W[ce];W[dd];W[cc];T[dd];B[de];B[ed]",
+          "answer1": ";B[dc]",
           "answer2": "",
           "answer3": "",
           "answer4": "",
@@ -1663,8 +1681,9 @@
           "sample": "",
           "answer": "",
           "auto": "false",
-          "size": "4",
-          "start": "BK"
+          "size": "6",
+          "start": "BK",
+          "quadrant": "TL"
         },
         {
           "code": "38859",
@@ -1682,8 +1701,8 @@
           "source_chapter": "단수의 원리",
           "question": "백△를 단수로 만들어 보세요.",
           "hint": "",
-          "data": ";W[sr];W[sq];W[rq];W[rs];W[qs];W[ps];W[pr];W[pq];W[nq];T[rq];T[sq];T[sr];B[rr];B[qr];B[qq];B[qp];B[rp]",
-          "answer1": ";B[sp]",
+          "data": ";W[sb];W[sc];W[rc];W[ra];W[qa];W[pa];W[pb];W[pc];W[nc];T[rc];T[sc];T[sb];B[rb];B[qb];B[qc];B[qd];B[rd]",
+          "answer1": ";B[sd]",
           "answer2": "",
           "answer3": "",
           "answer4": "",
@@ -1691,8 +1710,9 @@
           "sample": "",
           "answer": "",
           "auto": "false",
-          "size": "4",
-          "start": "BK"
+          "size": "5",
+          "start": "BK",
+          "quadrant": "TR"
         },
         {
           "code": "38860",
@@ -1720,7 +1740,8 @@
           "answer": "",
           "auto": "false",
           "size": "4",
-          "start": "BK"
+          "start": "BK",
+          "quadrant": "BR"
         },
         {
           "code": "38861",
@@ -1738,8 +1759,8 @@
           "source_chapter": "단수의 원리",
           "question": "백△를 단수로 만들어 보세요.",
           "hint": "",
-          "data": ";W[qs];W[ps];W[pr];W[oq];W[op];T[pr];T[ps];T[qs];B[pq];B[qq];B[qr];B[rs]",
-          "answer1": ";B[or]",
+          "data": ";W[qa];W[pa];W[pb];W[oc];W[od];T[pb];T[pa];T[qa];B[pc];B[qc];B[qb];B[ra]",
+          "answer1": ";B[ob]",
           "answer2": "",
           "answer3": "",
           "answer4": "",
@@ -1747,8 +1768,9 @@
           "sample": "",
           "answer": "",
           "auto": "false",
-          "size": "4",
-          "start": "BK"
+          "size": "5",
+          "start": "BK",
+          "quadrant": "TR"
         },
         {
           "code": "38862",
@@ -1766,8 +1788,8 @@
           "source_chapter": "단수의 원리",
           "question": "백△를 단수로 만들어 보세요.",
           "hint": "",
-          "data": ";W[qp];W[qq];W[pq];W[po];W[or];T[pq];T[qq];T[qp];B[qr];B[pr];B[rq];B[rp];B[ro];B[qo]",
-          "answer1": ";B[oq]",
+          "data": ";W[cd];W[cc];W[dc];W[de];W[eb];T[dc];T[cc];T[cd];B[cb];B[db];B[bc];B[bd];B[be];B[ce]",
+          "answer1": ";B[ec]",
           "answer2": "",
           "answer3": "",
           "answer4": "",
@@ -1775,8 +1797,9 @@
           "sample": "",
           "answer": "",
           "auto": "false",
-          "size": "4",
-          "start": "BK"
+          "size": "6",
+          "start": "BK",
+          "quadrant": "TL"
         },
         {
           "code": "39391",
@@ -1794,7 +1817,7 @@
           "source_chapter": "수상전(활로 수계산)",
           "question": "백△의 활로 개수는?",
           "hint": "",
-          "data": ";B[pq];W[pp];T[pp]",
+          "data": ";B[dq];W[dp];T[dp]",
           "answer1": "",
           "answer2": "",
           "answer3": "",
@@ -1803,8 +1826,9 @@
           "sample": "2|3||",
           "answer": "2",
           "auto": "false",
-          "size": "4",
-          "start": "NO"
+          "size": "7",
+          "start": "NO",
+          "quadrant": "BL"
         },
         {
           "code": "39392",
@@ -1832,7 +1856,8 @@
           "answer": "2",
           "auto": "false",
           "size": "4",
-          "start": "NO"
+          "start": "NO",
+          "quadrant": "BR"
         },
         {
           "code": "39394",
@@ -1850,7 +1875,7 @@
           "source_chapter": "수상전(활로 수계산)",
           "question": "백△의 활로 개수는?",
           "hint": "",
-          "data": ";B[qp];B[qo];B[pn];W[pp];W[po];T[pp];T[po]",
+          "data": ";B[cd];B[ce];B[df];W[dd];W[de];T[dd];T[de]",
           "answer1": "",
           "answer2": "",
           "answer3": "",
@@ -1859,8 +1884,9 @@
           "sample": "2|3||",
           "answer": "2",
           "auto": "false",
-          "size": "4",
-          "start": "NO"
+          "size": "6",
+          "start": "NO",
+          "quadrant": "TL"
         }
       ]
     },

@@ -2124,7 +2124,7 @@
           }
         ],
         "file": "book_gpt_anti_stage_01.json",
-        "_buildVer": "v20-ch3-ch4-split"
+        "_buildVer": "v21-ch3-ch4-random-quadrants-ox"
       }
     ]
   },
@@ -17119,7 +17119,7 @@
             "problemsCount": 25
           }
         ],
-        "_buildVer": "v20-ch3-ch4-split"
+        "_buildVer": "v21-ch3-ch4-random-quadrants-ox"
       },
       {
         "title": "2단계",
