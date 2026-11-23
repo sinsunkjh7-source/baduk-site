@@ -2015,7 +2015,7 @@
       {
         "code": "gpt_anti_stage_01",
         "title": "1단계",
-        "chapterCount": 12,
+        "chapterCount": 13,
         "totalProblems": 425,
         "chapters": [
           {
@@ -2037,86 +2037,94 @@
           {
             "code": "gpt_anti_01_03",
             "chapterCode": "gpt_anti_01_03",
-            "title": "3. 활로와 단수 (26제)",
+            "title": "3. 활로와 단수 (12제)",
             "chapter": "3. 활로와 단수",
-            "problemCount": 26,
-            "problemsCount": 26
-          },
-          {
-            "code": "gpt_anti_01_04",
-            "chapterCode": "gpt_anti_01_04",
-            "title": "4. 단수된 돌 따내기 (41제)",
-            "chapter": "4. 단수된 돌 따내기 (41제)",
-            "problemCount": 41,
-            "problemsCount": 41
-          },
-          {
-            "code": "gpt_anti_01_05",
-            "chapterCode": "gpt_anti_01_05",
-            "title": "5. 단수된 돌 살리기 (도망가기) (43제)",
-            "chapter": "5. 단수된 돌 살리기 (도망가기) (43제)",
-            "problemCount": 43,
-            "problemsCount": 43
-          },
-          {
-            "code": "gpt_anti_01_06",
-            "chapterCode": "gpt_anti_01_06",
-            "title": "6. 따내기와 살리기 응용 (호구 속 따내기·이어서 살리기·잡으며 도망가기) (44제)",
-            "chapter": "6. 따내기와 살리기 응용 (호구 속 따내기·이어서 살리기·잡으며 도망가기) (44제)",
-            "problemCount": 44,
-            "problemsCount": 44
-          },
-          {
-            "code": "gpt_anti_01_07",
-            "chapterCode": "gpt_anti_01_07",
-            "title": "7. 서로 단수 (먼저 따내기) (56제)",
-            "chapter": "7. 서로 단수 (먼저 따내기) (56제)",
-            "problemCount": 56,
-            "problemsCount": 56
-          },
-          {
-            "code": "gpt_anti_01_08",
-            "chapterCode": "gpt_anti_01_08",
-            "title": "8. 상대 돌이 없는 넓은 방향으로 도망가기 (12제)",
-            "chapter": "8. 상대 돌이 없는 넓은 방향으로 도망가기 (12제)",
             "problemCount": 12,
             "problemsCount": 12
           },
           {
+            "code": "gpt_anti_01_04",
+            "chapterCode": "gpt_anti_01_04",
+            "title": "4. 단수치기 (14제)",
+            "chapter": "4. 단수치기",
+            "problemCount": 14,
+            "problemsCount": 14
+          },
+          {
+            "code": "gpt_anti_01_05",
+            "chapterCode": "gpt_anti_01_05",
+            "title": "5. 단수된 돌 따내기 (41제)",
+            "chapter": "5. 단수된 돌 따내기 (41제)",
+            "problemCount": 41,
+            "problemsCount": 41
+          },
+          {
+            "code": "gpt_anti_01_06",
+            "chapterCode": "gpt_anti_01_06",
+            "title": "6. 단수된 돌 살리기 (도망가기) (43제)",
+            "chapter": "6. 단수된 돌 살리기 (도망가기) (43제)",
+            "problemCount": 43,
+            "problemsCount": 43
+          },
+          {
+            "code": "gpt_anti_01_07",
+            "chapterCode": "gpt_anti_01_07",
+            "title": "7. 따내기와 살리기 응용 (호구 속 따내기·이어서 살리기·잡으며 도망가기) (44제)",
+            "chapter": "7. 따내기와 살리기 응용 (호구 속 따내기·이어서 살리기·잡으며 도망가기) (44제)",
+            "problemCount": 44,
+            "problemsCount": 44
+          },
+          {
+            "code": "gpt_anti_01_08",
+            "chapterCode": "gpt_anti_01_08",
+            "title": "8. 서로 단수 (먼저 따내기) (56제)",
+            "chapter": "8. 서로 단수 (먼저 따내기) (56제)",
+            "problemCount": 56,
+            "problemsCount": 56
+          },
+          {
             "code": "gpt_anti_01_09",
             "chapterCode": "gpt_anti_01_09",
-            "title": "9. 착수금지와 착수 가능(따내는 예외) 판별 (83제)",
-            "chapter": "9. 착수금지와 착수 가능(따내는 예외) 판별 (83제)",
-            "problemCount": 83,
-            "problemsCount": 83
+            "title": "9. 상대 돌이 없는 넓은 방향으로 도망가기 (12제)",
+            "chapter": "9. 상대 돌이 없는 넓은 방향으로 도망가기 (12제)",
+            "problemCount": 12,
+            "problemsCount": 12
           },
           {
             "code": "gpt_anti_01_10",
             "chapterCode": "gpt_anti_01_10",
-            "title": "10. 패의 기본 규칙 (되따내기 금지와 패 따내기) (13제)",
-            "chapter": "10. 패의 기본 규칙 (되따내기 금지와 패 따내기) (13제)",
-            "problemCount": 13,
-            "problemsCount": 13
+            "title": "10. 착수금지와 착수 가능(따내는 예외) 판별 (83제)",
+            "chapter": "10. 착수금지와 착수 가능(따내는 예외) 판별 (83제)",
+            "problemCount": 83,
+            "problemsCount": 83
           },
           {
             "code": "gpt_anti_01_11",
             "chapterCode": "gpt_anti_01_11",
-            "title": "11. 수상전 기초 - 활로의 개수 세기 (38제)",
-            "chapter": "11. 수상전 기초 - 활로의 개수 세기 (38제)",
-            "problemCount": 38,
-            "problemsCount": 38
+            "title": "11. 패의 기본 규칙 (되따내기 금지와 패 따내기) (13제)",
+            "chapter": "11. 패의 기본 규칙 (되따내기 금지와 패 따내기) (13제)",
+            "problemCount": 13,
+            "problemsCount": 13
           },
           {
             "code": "gpt_anti_01_12",
             "chapterCode": "gpt_anti_01_12",
-            "title": "12. 집의 기초 개념과 경계 막기 (25제)",
-            "chapter": "12. 집의 기초 개념과 경계 막기 (26제)",
+            "title": "12. 수상전 기초 - 활로의 개수 세기 (38제)",
+            "chapter": "12. 수상전 기초 - 활로의 개수 세기 (38제)",
+            "problemCount": 38,
+            "problemsCount": 38
+          },
+          {
+            "code": "gpt_anti_01_13",
+            "chapterCode": "gpt_anti_01_13",
+            "title": "13. 집의 기초 개념과 경계 막기 (25제)",
+            "chapter": "13. 집의 기초 개념과 경계 막기 (26제)",
             "problemCount": 25,
             "problemsCount": 25
           }
         ],
         "file": "book_gpt_anti_stage_01.json",
-        "_buildVer": "v19-ch3-title-hwalro-dansu"
+        "_buildVer": "v20-ch3-ch4-split"
       }
     ]
   },
@@ -17003,7 +17011,7 @@
         "name": "1단계",
         "code": "gpt_anti_stage_01",
         "file": "book_gpt_anti_stage_01.json",
-        "chapterCount": 12,
+        "chapterCount": 13,
         "totalProblems": 425,
         "chapters": [
           {
@@ -17025,85 +17033,93 @@
           {
             "code": "gpt_anti_01_03",
             "chapterCode": "gpt_anti_01_03",
-            "title": "3. 활로와 단수 (26제)",
+            "title": "3. 활로와 단수 (12제)",
             "chapter": "3. 활로와 단수",
-            "problemCount": 26,
-            "problemsCount": 26
-          },
-          {
-            "code": "gpt_anti_01_04",
-            "chapterCode": "gpt_anti_01_04",
-            "title": "4. 단수된 돌 따내기 (41제)",
-            "chapter": "4. 단수된 돌 따내기 (41제)",
-            "problemCount": 41,
-            "problemsCount": 41
-          },
-          {
-            "code": "gpt_anti_01_05",
-            "chapterCode": "gpt_anti_01_05",
-            "title": "5. 단수된 돌 살리기 (도망가기) (43제)",
-            "chapter": "5. 단수된 돌 살리기 (도망가기) (43제)",
-            "problemCount": 43,
-            "problemsCount": 43
-          },
-          {
-            "code": "gpt_anti_01_06",
-            "chapterCode": "gpt_anti_01_06",
-            "title": "6. 따내기와 살리기 응용 (호구 속 따내기·이어서 살리기·잡으며 도망가기) (44제)",
-            "chapter": "6. 따내기와 살리기 응용 (호구 속 따내기·이어서 살리기·잡으며 도망가기) (44제)",
-            "problemCount": 44,
-            "problemsCount": 44
-          },
-          {
-            "code": "gpt_anti_01_07",
-            "chapterCode": "gpt_anti_01_07",
-            "title": "7. 서로 단수 (먼저 따내기) (56제)",
-            "chapter": "7. 서로 단수 (먼저 따내기) (56제)",
-            "problemCount": 56,
-            "problemsCount": 56
-          },
-          {
-            "code": "gpt_anti_01_08",
-            "chapterCode": "gpt_anti_01_08",
-            "title": "8. 상대 돌이 없는 넓은 방향으로 도망가기 (12제)",
-            "chapter": "8. 상대 돌이 없는 넓은 방향으로 도망가기 (12제)",
             "problemCount": 12,
             "problemsCount": 12
           },
           {
+            "code": "gpt_anti_01_04",
+            "chapterCode": "gpt_anti_01_04",
+            "title": "4. 단수치기 (14제)",
+            "chapter": "4. 단수치기",
+            "problemCount": 14,
+            "problemsCount": 14
+          },
+          {
+            "code": "gpt_anti_01_05",
+            "chapterCode": "gpt_anti_01_05",
+            "title": "5. 단수된 돌 따내기 (41제)",
+            "chapter": "5. 단수된 돌 따내기 (41제)",
+            "problemCount": 41,
+            "problemsCount": 41
+          },
+          {
+            "code": "gpt_anti_01_06",
+            "chapterCode": "gpt_anti_01_06",
+            "title": "6. 단수된 돌 살리기 (도망가기) (43제)",
+            "chapter": "6. 단수된 돌 살리기 (도망가기) (43제)",
+            "problemCount": 43,
+            "problemsCount": 43
+          },
+          {
+            "code": "gpt_anti_01_07",
+            "chapterCode": "gpt_anti_01_07",
+            "title": "7. 따내기와 살리기 응용 (호구 속 따내기·이어서 살리기·잡으며 도망가기) (44제)",
+            "chapter": "7. 따내기와 살리기 응용 (호구 속 따내기·이어서 살리기·잡으며 도망가기) (44제)",
+            "problemCount": 44,
+            "problemsCount": 44
+          },
+          {
+            "code": "gpt_anti_01_08",
+            "chapterCode": "gpt_anti_01_08",
+            "title": "8. 서로 단수 (먼저 따내기) (56제)",
+            "chapter": "8. 서로 단수 (먼저 따내기) (56제)",
+            "problemCount": 56,
+            "problemsCount": 56
+          },
+          {
             "code": "gpt_anti_01_09",
             "chapterCode": "gpt_anti_01_09",
-            "title": "9. 착수금지와 착수 가능(따내는 예외) 판별 (83제)",
-            "chapter": "9. 착수금지와 착수 가능(따내는 예외) 판별 (83제)",
-            "problemCount": 83,
-            "problemsCount": 83
+            "title": "9. 상대 돌이 없는 넓은 방향으로 도망가기 (12제)",
+            "chapter": "9. 상대 돌이 없는 넓은 방향으로 도망가기 (12제)",
+            "problemCount": 12,
+            "problemsCount": 12
           },
           {
             "code": "gpt_anti_01_10",
             "chapterCode": "gpt_anti_01_10",
-            "title": "10. 패의 기본 규칙 (되따내기 금지와 패 따내기) (13제)",
-            "chapter": "10. 패의 기본 규칙 (되따내기 금지와 패 따내기) (13제)",
-            "problemCount": 13,
-            "problemsCount": 13
+            "title": "10. 착수금지와 착수 가능(따내는 예외) 판별 (83제)",
+            "chapter": "10. 착수금지와 착수 가능(따내는 예외) 판별 (83제)",
+            "problemCount": 83,
+            "problemsCount": 83
           },
           {
             "code": "gpt_anti_01_11",
             "chapterCode": "gpt_anti_01_11",
-            "title": "11. 수상전 기초 - 활로의 개수 세기 (38제)",
-            "chapter": "11. 수상전 기초 - 활로의 개수 세기 (38제)",
-            "problemCount": 38,
-            "problemsCount": 38
+            "title": "11. 패의 기본 규칙 (되따내기 금지와 패 따내기) (13제)",
+            "chapter": "11. 패의 기본 규칙 (되따내기 금지와 패 따내기) (13제)",
+            "problemCount": 13,
+            "problemsCount": 13
           },
           {
             "code": "gpt_anti_01_12",
             "chapterCode": "gpt_anti_01_12",
-            "title": "12. 집의 기초 개념과 경계 막기 (25제)",
-            "chapter": "12. 집의 기초 개념과 경계 막기 (26제)",
+            "title": "12. 수상전 기초 - 활로의 개수 세기 (38제)",
+            "chapter": "12. 수상전 기초 - 활로의 개수 세기 (38제)",
+            "problemCount": 38,
+            "problemsCount": 38
+          },
+          {
+            "code": "gpt_anti_01_13",
+            "chapterCode": "gpt_anti_01_13",
+            "title": "13. 집의 기초 개념과 경계 막기 (25제)",
+            "chapter": "13. 집의 기초 개념과 경계 막기 (26제)",
             "problemCount": 25,
             "problemsCount": 25
           }
         ],
-        "_buildVer": "v19-ch3-title-hwalro-dansu"
+        "_buildVer": "v20-ch3-ch4-split"
       },
       {
         "title": "2단계",
