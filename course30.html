@@ -124,13 +124,17 @@
                 <span class="ped-label">🪨 돌 위치 · 정답 편집 (바둑판 클릭)</span>
                 <button type="button" id="btnPedToggleTurn" class="ped-btn-mini" title="흑선/백선 전환">흑↔백선</button>
               </div>
-              <div class="ped-tool-row">
-                <button type="button" class="ped-tool-btn" data-edit-tool="black" title="바둑판 클릭 시 흑돌 추가/제거">⚫흑돌</button>
-                <button type="button" class="ped-tool-btn" data-edit-tool="white" title="바둑판 클릭 시 백돌 추가/제거">⚪백돌</button>
-                <button type="button" class="ped-tool-btn" data-edit-tool="erase" title="바둑판 클릭 시 돌/표시 지우기">❌지움</button>
-                <button type="button" class="ped-tool-btn" data-edit-tool="triangle" title="바둑판 클릭 시 △ 표시 추가/제거">△표시</button>
-                <button type="button" class="ped-tool-btn" data-edit-tool="circle" title="바둑판 클릭 시 ○ 표시 추가/제거">○표시</button>
-                <button type="button" class="ped-tool-btn" data-edit-tool="answer" title="바둑판 클릭으로 정답 수순 새로 입력">🎯정답</button>
+              <div class="ped-tool-row-stones">
+                <button type="button" class="ped-tool-btn" data-edit-tool="black" title="바둑판 클릭 시 흑돌 추가/제거">⚫ 흑돌</button>
+                <button type="button" class="ped-tool-btn" data-edit-tool="white" title="바둑판 클릭 시 백돌 추가/제거">⚪ 백돌</button>
+                <button type="button" class="ped-tool-btn" data-edit-tool="erase" title="바둑판 클릭 시 돌/표시 지우기">❌ 지움</button>
+              </div>
+              <div class="ped-tool-row-marks" style="display:grid; grid-template-columns: 1fr 1fr; gap: 4px; margin-top: 4px;">
+                <button type="button" class="ped-tool-btn" data-edit-tool="triangle" title="바둑판 클릭 시 △ 세모 표시 추가/제거 (한 번 더 누르면 삭제)">△ 세모 표시</button>
+                <button type="button" class="ped-tool-btn" data-edit-tool="circle" title="바둑판 클릭 시 ○ 동그라미 표시 추가/제거 (한 번 더 누르면 삭제)">○ 동그라미</button>
+              </div>
+              <div class="ped-tool-row-answers" style="display:grid; grid-template-columns: 1fr; gap: 4px; margin-top: 4px;">
+                <button type="button" class="ped-tool-btn" data-edit-tool="answer" title="바둑판 클릭으로 정답 수순 새로 입력">🎯 정답 수순 새로 입력</button>
               </div>
               <div class="ped-sub-row">
                 <button type="button" class="ped-mini-act" data-shift-dir="up" title="모든 돌 위로 1칸 이동">↑</button>
@@ -358,6 +362,6 @@
 
 <script src="audio.js?v=20261028-solidwood&t=teacher-panel-v15"></script>
 <script src="/course30-ui.js?v=claude-v4-15"></script>
-<script src="/course30-app.js?v=live_1795396833"></script>
+<script src="/course30-app.js?v=live_1795397405"></script>
 </body>
 </html>

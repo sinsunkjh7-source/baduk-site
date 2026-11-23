@@ -41,7 +41,7 @@
 <title>🎓 Teaching Zone — 바둑스쿨 교재 사령탑</title>
 <link rel="preload" as="image" href="images/board_wood_grain.png">
 
-<link rel="stylesheet" href="style.css?v=1795315240">
+<link rel="stylesheet" href="style.css?v=live_1795397405">
 <link rel="stylesheet" href="/unified-nav.css?v=20261119-settings-sync-v1">
 <script src="/unified-nav.js?v=20261119-settings-sync-v1"></script>
 <style>#gridOrderToolbar button:disabled{opacity:.45;cursor:not-allowed}#gridOrderToolbar label{white-space:nowrap}#gridOrderToolbar input,#gridOrderToolbar select{font:inherit}#gridOrderToolbar button{font-size:13px;padding:7px 10px}</style>
@@ -173,15 +173,19 @@
                 <span class="ped-label">🪨 돌 위치 · 정답 편집 (바둑판 클릭)</span>
                 <button type="button" id="btnPedToggleTurn" class="ped-btn-mini" title="흑선/백선 전환">흑↔백선</button>
               </div>
-              <div class="ped-tool-row">
-                <button type="button" class="ped-tool-btn" data-edit-tool="black" title="바둑판 클릭 시 흑돌 추가/제거">⚫흑돌</button>
-                <button type="button" class="ped-tool-btn" data-edit-tool="white" title="바둑판 클릭 시 백돌 추가/제거">⚪백돌</button>
-                <button type="button" class="ped-tool-btn" data-edit-tool="alternate" title="바둑판을 클릭할 때마다 흑·백이 번갈아 놓입니다 (놓인 돌을 누르면 지워짐)">⚫⚪교대</button>
-                <button type="button" class="ped-tool-btn" data-edit-tool="erase" title="바둑판 클릭 시 돌/표시 지우기">❌지움</button>
-                <button type="button" class="ped-tool-btn" data-edit-tool="triangle" title="바둑판 클릭 시 △ 표시 추가/제거">△표시</button>
-                <button type="button" class="ped-tool-btn" data-edit-tool="circle" title="바둑판 클릭 시 ○ 표시 추가/제거">○표시</button>
-                <button type="button" class="ped-tool-btn" data-edit-tool="answer" style="grid-column: span 3;" title="흑백 교대 정답 수순을 순서대로 입력">정답 수순</button>
-                <button type="button" class="ped-tool-btn" data-edit-tool="answerSet" style="grid-column: span 3;" title="순서 관계없이 같은 색으로 모든 정답 위치 지정·해제">정답 위치(순서 무관)</button>
+              <div class="ped-tool-row-stones">
+                <button type="button" class="ped-tool-btn" data-edit-tool="black" title="바둑판 클릭 시 흑돌 추가/제거">⚫ 흑돌</button>
+                <button type="button" class="ped-tool-btn" data-edit-tool="white" title="바둑판 클릭 시 백돌 추가/제거">⚪ 백돌</button>
+                <button type="button" class="ped-tool-btn" data-edit-tool="alternate" title="바둑판을 클릭할 때마다 흑·백이 번갈아 놓입니다 (놓인 돌을 누르면 지워짐)">⚫⚪ 교대</button>
+                <button type="button" class="ped-tool-btn" data-edit-tool="erase" title="바둑판 클릭 시 돌/표시 지우기">❌ 지움</button>
+              </div>
+              <div class="ped-tool-row-marks">
+                <button type="button" class="ped-tool-btn" data-edit-tool="triangle" title="바둑판 클릭 시 △ 세모 표시 추가/제거 (한 번 더 누르면 삭제)">△ 세모 표시</button>
+                <button type="button" class="ped-tool-btn" data-edit-tool="circle" title="바둑판 클릭 시 ○ 동그라미 표시 추가/제거 (한 번 더 누르면 삭제)">○ 동그라미</button>
+              </div>
+              <div class="ped-tool-row-answers">
+                <button type="button" class="ped-tool-btn" data-edit-tool="answer" title="흑백 교대 정답 수순을 순서대로 입력">🎯 정답 수순</button>
+                <button type="button" class="ped-tool-btn" data-edit-tool="answerSet" title="순서 관계없이 같은 색으로 모든 정답 위치 지정·해제">📍 정답 위치(순서 무관)</button>
               </div>
               <div class="ped-sub-row">
                 <button type="button" class="ped-mini-act" data-shift-dir="up" title="모든 돌 위로 1칸 이동">↑</button>
@@ -473,7 +477,7 @@
   <div id="origPanelBody" style="padding:6px;"></div>
   <div id="origPanelCap" style="padding:0 10px 8px;font-size:11px;color:#475569;"></div>
 </div>
-<script src="app.js?v=live_1795396833"></script>
+<script src="app.js?v=live_1795397405"></script>
 
 </body>
 </html>

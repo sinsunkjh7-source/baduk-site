@@ -1136,18 +1136,38 @@ html, body {
   border-color: #94a3b8;
 }
 
+.ped-tool-row-stones {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4px;
+  width: 100%;
+}
+.ped-tool-row-marks {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+  width: 100%;
+  margin-top: 4px;
+}
+.ped-tool-row-answers {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+  width: 100%;
+  margin-top: 4px;
+}
 .ped-tool-row {
   display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
-  gap: 3px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4px;
   width: 100%;
 }
 .ped-tool-btn {
   min-width: 0;
-  padding: 5px 1px;
-  font-size: 10.5px;
+  padding: 6px 3px;
+  font-size: 11px;
   font-weight: 800;
-  letter-spacing: -0.4px;
+  letter-spacing: -0.3px;
   border-radius: 6px;
   border: 1px solid #cbd5e1;
   background: #ffffff;
@@ -1155,8 +1175,7 @@ html, body {
   cursor: pointer;
   text-align: center;
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  overflow: visible;
   transition: all 0.12s;
 }
 .ped-tool-btn:hover {

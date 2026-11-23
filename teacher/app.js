@@ -3265,7 +3265,9 @@
     var p = state.currentProblems[state.currentProblemIndex];
     var qInput = document.getElementById('pedQuestionInput');
     if (qInput && p) {
-      qInput.value = (p.question || '').replace(/\r?\n/g, ' ');
+      var rawQ = p.question || '';
+      var cleanQVal = rawQ.replace(/^\d+\.\s*[가-힣\w\s]+(\r?\n)+/g, '').trim();
+      qInput.value = (cleanQVal || rawQ).replace(/\r?\n/g, ' ');
     }
     var numInput = document.getElementById('pedTargetNumInput');
     if (numInput) {
@@ -3725,7 +3727,8 @@
     function applyQuestionEdit() {
       var p = state.currentProblems[state.currentProblemIndex];
       if (!p || !qInput) return;
-      p.question = qInput.value.trim();
+      var cleanVal = qInput.value.trim().replace(/^\d+\.\s*[가-힣\w\s]+(\r?\n|\s)+/g, '').trim();
+      p.question = cleanVal || qInput.value.trim();
       questionText.textContent = p.question || '알맞은 곳에 돌을 놓아 보세요.';
       saveCustomBookState('문제 지문 수정됨');
     }
