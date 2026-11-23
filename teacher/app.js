@@ -176,6 +176,13 @@
     if (code === 'new_tech_sahwal') {
       state.currentBook._buildVer = 'v22-sahwal-filtered-okjip-26p-208';
     }
+    var catalogVer = null;
+    (state.catalog || []).forEach(function (s) {
+      (s.books || []).forEach(function (b) { if (b.code === code) catalogVer = b._buildVer; });
+    });
+    if (catalogVer) {
+      state.currentBook._buildVer = catalogVer;
+    }
     if (typeof updateBookOptionCountUI === 'function') {
       updateBookOptionCountUI(code, state.currentBook);
     }
@@ -405,8 +412,12 @@
           if (code.indexOf('claude_') === 0 && isStaleBookCustom(code, customData)) { 
             localStorage.removeItem('teacher_book_custom_' + code); 
           } else if (code === 'gpt_anti_stage_01' && isStaleBookCustom(code, customData)) {
-            localStorage.setItem('teacher_book_backup_' + code + '_' + Date.now(), savedCustom);
-            localStorage.removeItem('teacher_book_custom_' + code);
+            // 🌟 원장님의 소중한 수정/삭제 내역 보존: 새로고침 시 빌드 버전 차이로 자동 삭제하지 않고 커스텀 편집본 최우선 유지
+            var catVer = null;
+            (state.catalog || []).forEach(function (s) {
+              (s.books || []).forEach(function (b) { if (b.code === code) catVer = b._buildVer; });
+            });
+            if (catVer) customData._buildVer = catVer;
           } else if ((code === 'tech_atari' && customData._buildVer !== 'v2-clean') || (code === 'new_tech_chokchoksu' && customData._buildVer !== 'v23-ch8-teacher-clean-200') || (code === 'new_tech_chuk' && customData._buildVer !== 'v17-ch6-138') || (code === 'new_tech_jangmun' && (customData._buildVer !== 'v30-ch9-9probs-179-1794267464' || !customData.chapters || customData.chapters.length !== 9)) || (code === 'new_tech_hwangyeok' && customData._buildVer !== 'v13-ch9-256probs-comprehensive-sahwal-hwangyeok') || (code === 'new_tech_meokyeochigi' && customData._buildVer !== 'v9-ch9-224probs-advanced-sahwal') || (code === 'new_tech_pae' && customData._buildVer !== 'v11-ch11-274probs-pae-master') || (code === 'new_tech_chaksu_geumji' && customData._buildVer !== 'v5-ch5-118probs-chaksu-final-master') || (code === 'new_tech_sahwal' && (customData._buildVer !== 'v22-sahwal-filtered-okjip-26p-208' || !customData.chapters || customData.chapters.length !== 8 || customData.chapters.some(function(c){ return !c.problems || c.problems.length === 0; })))) { localStorage.removeItem('teacher_book_custom_' + code); } else if (customData && Array.isArray(customData.chapters) && (customData.totalProblems > 0 || customData.chapters.some(function(c){ return (c.problems||[]).length > 0; }))) {
             customData.bookCode = code;
             state.currentBook = customData;
@@ -2775,6 +2786,13 @@
     }
     if (code === 'new_tech_sahwal') {
       state.currentBook._buildVer = 'v22-sahwal-filtered-okjip-26p-208';
+    }
+    var catalogVer = null;
+    (state.catalog || []).forEach(function (s) {
+      (s.books || []).forEach(function (b) { if (b.code === code) catalogVer = b._buildVer; });
+    });
+    if (catalogVer) {
+      state.currentBook._buildVer = catalogVer;
     }
     updateBookOptionCountUI(code, state.currentBook);
 
