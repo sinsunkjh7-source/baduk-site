@@ -7,7 +7,7 @@
   "chapterCount": 12,
   "totalProblems": 424,
   "problemCount": 424,
-  "_buildVer": "v16-ch1-20probs",
+  "_buildVer": "v17-ch1-ch2-random-4quadrants",
   "chapters": [
     {
       "code": "gpt_anti_01_01",
@@ -22,38 +22,40 @@
           "type": "3",
           "question": "백돌의 활로를 전부 막아보세요.",
           "hint": "",
-          "data": ";W[pp]",
-          "answer1": ";B[po];B[op];B[qp];B[pq]",
+          "data": ";W[dd]",
+          "answer1": ";B[de];B[ed];B[cd];B[dc]",
           "sample": "",
           "answer": "",
           "auto": "false",
-          "size": "4",
+          "size": "6",
           "start": "B",
           "source_book": "선생님 직접 작성",
           "source_chapter": "",
           "source_p_num": 65,
           "no": 65,
           "name": "65번 문제",
-          "answerMode": "unordered"
+          "answerMode": "unordered",
+          "quadrant": "TL"
         },
         {
           "code": "1066",
           "type": "3",
           "question": "백돌의 활로를 전부 막아보세요.",
           "hint": "",
-          "data": ";W[sn]",
-          "answer1": ";B[sm];B[rn];B[so]",
+          "data": ";W[af]",
+          "answer1": ";B[ag];B[bf];B[ae]",
           "sample": "",
           "answer": "",
           "auto": "false",
-          "size": "4",
+          "size": "6",
           "start": "B",
           "source_book": "선생님 직접 작성",
           "source_chapter": "",
           "source_p_num": 66,
           "no": 66,
           "name": "66번 문제",
-          "answerMode": "unordered"
+          "answerMode": "unordered",
+          "quadrant": "TL"
         },
         {
           "code": "1067",
@@ -72,45 +74,48 @@
           "source_p_num": 67,
           "no": 67,
           "name": "67번 문제",
-          "answerMode": "unordered"
+          "answerMode": "unordered",
+          "quadrant": "BR"
         },
         {
           "code": "1068",
           "type": "3",
           "question": "백돌의 활로를 전부 막아보세요.",
           "hint": "",
-          "data": ";W[nn];W[on]",
-          "answer1": ";B[nm];B[om];B[mn];B[pn];B[no];B[oo]",
+          "data": ";W[fn];W[en]",
+          "answer1": ";B[fm];B[em];B[gn];B[dn];B[fo];B[eo]",
           "sample": "",
           "answer": "",
           "auto": "false",
-          "size": "4",
+          "size": "7",
           "start": "B",
           "source_book": "선생님 직접 작성",
           "source_chapter": "",
           "source_p_num": 68,
           "no": 68,
           "name": "68번 문제",
-          "answerMode": "unordered"
+          "answerMode": "unordered",
+          "quadrant": "BL"
         },
         {
           "code": "1069",
           "type": "3",
           "question": "백돌의 활로를 전부 막아보세요.",
           "hint": "",
-          "data": ";W[sn];W[so]",
-          "answer1": ";B[rn];B[sm];B[ro];B[sp]",
+          "data": ";W[sf];W[se]",
+          "answer1": ";B[rf];B[sg];B[re];B[sd]",
           "sample": "",
           "answer": "",
           "auto": "false",
-          "size": "4",
+          "size": "5",
           "start": "B",
           "source_book": "선생님 직접 작성",
           "source_chapter": "",
           "source_p_num": 69,
           "no": 69,
           "name": "69번 문제",
-          "answerMode": "unordered"
+          "answerMode": "unordered",
+          "quadrant": "TR"
         },
         {
           "code": "1070",
@@ -129,64 +134,68 @@
           "source_p_num": 70,
           "no": 70,
           "name": "70번 문제",
-          "answerMode": "unordered"
+          "answerMode": "unordered",
+          "quadrant": "BR"
         },
         {
           "code": "teacher_mwrlg5f6_548sn4cs_0",
           "type": "3",
           "question": "백돌의 활로를 전부 막아보세요.",
           "hint": "",
-          "data": ";W[sr];W[rs];W[ss]",
-          "answer1": ";B[sq];B[rr];B[qs]",
+          "data": ";W[ab];W[ba];W[aa]",
+          "answer1": ";B[ac];B[bb];B[ca]",
           "sample": "",
           "answer": "",
           "auto": "false",
-          "size": "4",
+          "size": "6",
           "start": "B",
           "source_book": "선생님 직접 작성",
           "source_chapter": "",
           "source_p_num": 71,
           "no": 8,
           "name": "8번 문제",
-          "answerMode": "unordered"
+          "answerMode": "unordered",
+          "quadrant": "TL"
         },
         {
           "code": "teacher_mwrli29p_73suth55_0",
           "type": "3",
           "question": "백돌의 활로를 전부 막아보세요.",
           "hint": "",
-          "data": ";W[po];W[op];W[pp]",
-          "answer1": ";B[pn];B[oo];B[np];B[oq];B[pq];B[qp];B[qo]",
+          "data": ";W[pe];W[od];W[pd]",
+          "answer1": ";B[pf];B[oe];B[nd];B[oc];B[pc];B[qd];B[qe]",
           "sample": "",
           "answer": "",
           "auto": "false",
-          "size": "4",
+          "size": "5",
           "start": "B",
           "source_book": "선생님 직접 작성",
           "source_chapter": "",
           "source_p_num": 72,
           "no": 8,
           "name": "8번 문제",
-          "answerMode": "unordered"
+          "answerMode": "unordered",
+          "quadrant": "TR"
         },
         {
           "code": "teacher_mwrliee4_qtwugm7d_0",
           "type": "3",
           "question": "백돌의 활로를 전부 막아보세요.",
           "hint": "",
-          "data": ";W[oo];W[po];W[op];W[pp]",
-          "answer1": ";B[on];B[pn];B[qo];B[qp];B[pq];B[oq];B[np];B[no]",
+          "data": ";W[eo];W[do];W[ep];W[dp]",
+          "answer1": ";B[en];B[dn];B[co];B[cp];B[dq];B[eq];B[fp];B[fo]",
           "sample": "",
           "answer": "",
           "auto": "false",
-          "size": "4",
+          "size": "7",
           "start": "B",
           "source_book": "선생님 직접 작성",
           "source_chapter": "",
           "source_p_num": 73,
           "no": 9,
           "name": "9번 문제",
-          "answerMode": "unordered"
+          "answerMode": "unordered",
+          "quadrant": "BL"
         },
         {
           "code": "teacher_mwrliee4_0msy4elj_1",
@@ -205,26 +214,28 @@
           "source_p_num": 74,
           "no": 10,
           "name": "10번 문제",
-          "answerMode": "unordered"
+          "answerMode": "unordered",
+          "quadrant": "BR"
         },
         {
           "code": "teacher_mwrliee4_fvieopbt_2",
           "type": "3",
           "question": "백돌의 활로를 전부 막아보세요.",
           "hint": "",
-          "data": ";W[nm];W[mn];W[nn];W[on];W[no]",
-          "answer1": ";B[nl];B[mm];B[ln];B[mo];B[np];B[oo];B[pn];B[om]",
+          "data": ";W[fg];W[gf];W[ff];W[ef];W[fe]",
+          "answer1": ";B[fh];B[gg];B[hf];B[ge];B[fd];B[ee];B[df];B[eg]",
           "sample": "",
           "answer": "",
           "auto": "false",
-          "size": "4",
+          "size": "6",
           "start": "B",
           "source_book": "선생님 직접 작성",
           "source_chapter": "",
           "source_p_num": 75,
           "no": 11,
           "name": "11번 문제",
-          "answerMode": "unordered"
+          "answerMode": "unordered",
+          "quadrant": "TL"
         },
         {
           "code": "teacher_mwrliee4_loyb02cd_3",
@@ -243,45 +254,48 @@
           "source_p_num": 76,
           "no": 12,
           "name": "12번 문제",
-          "answerMode": "unordered"
+          "answerMode": "unordered",
+          "quadrant": "BR"
         },
         {
           "code": "teacher_mwrliee4_i1dmq8mw_4",
           "type": "3",
           "question": "백돌의 활로를 전부 막아보세요.",
           "hint": "",
-          "data": ";W[on];W[no];W[oo];W[po];W[op];W[pp]",
-          "answer1": ";B[om];B[nn];B[mo];B[np];B[oq];B[pq];B[qp];B[qo];B[pn]",
+          "data": ";W[of];W[ne];W[oe];W[pe];W[od];W[pd]",
+          "answer1": ";B[og];B[nf];B[me];B[nd];B[oc];B[pc];B[qd];B[qe];B[pf]",
           "sample": "",
           "answer": "",
           "auto": "false",
-          "size": "4",
+          "size": "5",
           "start": "B",
           "source_book": "선생님 직접 작성",
           "source_chapter": "",
           "source_p_num": 77,
           "no": 13,
           "name": "13번 문제",
-          "answerMode": "unordered"
+          "answerMode": "unordered",
+          "quadrant": "TR"
         },
         {
           "code": "teacher_mwrm9lyw_lhfv2je6_0",
           "type": "3",
           "question": "백돌의 활로를 전부 막아보세요.",
           "hint": "",
-          "data": ";W[or];W[ns];W[os]",
-          "answer1": ";B[oq];B[nr];B[ms];B[pr];B[ps]",
+          "data": ";W[er];W[fs];W[es]",
+          "answer1": ";B[eq];B[fr];B[gs];B[dr];B[ds]",
           "sample": "",
           "answer": "",
           "auto": "false",
-          "size": "4",
+          "size": "7",
           "start": "B",
           "source_book": "선생님 직접 작성",
           "source_chapter": "",
           "source_p_num": 78,
           "no": 14,
           "name": "14번 문제",
-          "answerMode": "unordered"
+          "answerMode": "unordered",
+          "quadrant": "BL"
         },
         {
           "code": "teacher_mwrm9lyw_ncerp32r_1",
@@ -300,102 +314,108 @@
           "source_p_num": 79,
           "no": 15,
           "name": "15번 문제",
-          "answerMode": "unordered"
+          "answerMode": "unordered",
+          "quadrant": "BR"
         },
         {
           "code": "teacher_mwrm9lyw_hffbbbp5_2",
           "type": "3",
           "question": "백돌의 활로를 전부 막아보세요.",
           "hint": "",
-          "data": ";W[rr];W[sr];W[rs];W[ss]",
-          "answer1": ";B[sq];B[rq];B[qr];B[qs]",
+          "data": ";W[rb];W[sb];W[ra];W[sa]",
+          "answer1": ";B[sc];B[rc];B[qb];B[qa]",
           "sample": "",
           "answer": "",
           "auto": "false",
-          "size": "4",
+          "size": "5",
           "start": "B",
           "source_book": "선생님 직접 작성",
           "source_chapter": "",
           "source_p_num": 80,
           "no": 16,
           "name": "16번 문제",
-          "answerMode": "unordered"
+          "answerMode": "unordered",
+          "quadrant": "TR"
         },
         {
           "code": "teacher_mwrm9lyw_kt4c4u5c_3",
           "type": "3",
           "question": "백돌의 활로를 전부 막아보세요.",
           "hint": "",
-          "data": ";W[nr];W[or];W[ms];W[ns];W[os]",
-          "answer1": ";B[oq];B[nq];B[mr];B[pr];B[ps];B[ls]",
+          "data": ";W[fr];W[er];W[gs];W[fs];W[es]",
+          "answer1": ";B[eq];B[fq];B[gr];B[dr];B[ds];B[hs]",
           "sample": "",
           "answer": "",
           "auto": "false",
-          "size": "4",
+          "size": "7",
           "start": "B",
           "source_book": "선생님 직접 작성",
           "source_chapter": "",
           "source_p_num": 81,
           "no": 17,
           "name": "17번 문제",
-          "answerMode": "unordered"
+          "answerMode": "unordered",
+          "quadrant": "BL"
         },
         {
           "code": "teacher_mwrm9lyw_6h2csa94_4",
           "type": "3",
           "question": "백돌의 활로를 전부 막아보세요.",
           "hint": "",
-          "data": ";W[oq];W[nr];W[or];W[pr];W[ns];W[os]",
-          "answer1": ";B[op];B[nq];B[mr];B[ms];B[pq];B[qr];B[ps]",
+          "data": ";W[eq];W[fr];W[er];W[dr];W[fs];W[es]",
+          "answer1": ";B[ep];B[fq];B[gr];B[gs];B[dq];B[cr];B[ds]",
           "sample": "",
           "answer": "",
           "auto": "false",
-          "size": "4",
+          "size": "7",
           "start": "B",
           "source_book": "선생님 직접 작성",
           "source_chapter": "",
           "source_p_num": 82,
           "no": 18,
           "name": "18번 문제",
-          "answerMode": "unordered"
+          "answerMode": "unordered",
+          "quadrant": "BL"
         },
         {
           "code": "teacher_mwrm9lyw_8enb2hjs_5",
           "type": "3",
           "question": "백돌의 활로를 전부 막아보세요.",
           "hint": "",
-          "data": ";W[oq];W[nr];W[or];W[pr];W[ms];W[ns];W[os];W[ps];W[qs]",
-          "answer1": ";B[op];B[nq];B[mr];B[ls];B[pq];B[qr];B[rs]",
+          "data": ";W[ec];W[fb];W[eb];W[db];W[ga];W[fa];W[ea];W[da];W[ca]",
+          "answer1": ";B[ed];B[fc];B[gb];B[ha];B[dc];B[cb];B[ba]",
           "sample": "",
           "answer": "",
           "auto": "false",
-          "size": "4",
+          "size": "6",
           "start": "B",
           "source_book": "선생님 직접 작성",
           "source_chapter": "",
           "source_p_num": 83,
           "no": 19,
           "name": "19번 문제",
-          "answerMode": "unordered"
+          "answerMode": "unordered",
+          "quadrant": "TL"
         },
         {
           "code": "teacher_mwrm9lyw_2tb8upaa_7",
           "type": "3",
           "question": "백돌의 활로를 전부 막아보세요.",
           "hint": "",
-          "data": ";W[sq];W[sr];W[qs];W[rs];W[ss]",
-          "answer1": ";B[rq];B[rr];B[qr];B[sp];B[ps]",
+          "data": ";W[sc];W[sb];W[qa];W[ra];W[sa]",
+          "answer1": ";B[rc];B[rb];B[qb];B[sd];B[pa]",
           "sample": "",
           "answer": "",
           "auto": "false",
-          "size": "4",
+          "size": "5",
           "start": "B",
           "source_book": "선생님 직접 작성",
           "source_chapter": "",
           "source_p_num": 85,
           "no": 21,
           "name": "21번 문제",
-          "answerMode": "unordered"
+          "answerMode": "unordered",
+          "quadrant": "TR"
         }
       ]
     },
@@ -423,8 +443,8 @@
           "source_chapter": "돌의 활로",
           "question": "백돌의 활로를 전부 막아보세요.",
           "hint": "활로 3개, 활로는 직선으로만 이어집니다.",
-          "data": ";W[pp];B[qp];B[po];B[op]",
-          "answer1": ";B[pq]",
+          "data": ";W[dp];B[cp];B[do];B[ep]",
+          "answer1": ";B[dq]",
           "answer2": "",
           "answer3": "",
           "answer4": "",
@@ -432,8 +452,9 @@
           "sample": "",
           "answer": "",
           "auto": "false",
-          "size": "4",
-          "start": "BK"
+          "size": "7",
+          "start": "BK",
+          "quadrant": "BL"
         },
         {
           "code": "718",
@@ -451,8 +472,8 @@
           "source_chapter": "돌의 활로",
           "question": "백돌의 활로를 전부 막아보세요.",
           "hint": "활로 3개, 활로는 직선으로만 이어집니다.",
-          "data": ";W[ps];B[pr];B[os]",
-          "answer1": ";B[qs]",
+          "data": ";W[da];B[db];B[ea]",
+          "answer1": ";B[ca]",
           "answer2": "",
           "answer3": "",
           "answer4": "",
@@ -460,8 +481,9 @@
           "sample": "",
           "answer": "",
           "auto": "false",
-          "size": "4",
-          "start": "BK"
+          "size": "6",
+          "start": "BK",
+          "quadrant": "TL"
         },
         {
           "code": "719",
@@ -489,7 +511,8 @@
           "answer": "",
           "auto": "false",
           "size": "4",
-          "start": "BK"
+          "start": "BK",
+          "quadrant": "BR"
         },
         {
           "code": "723",
@@ -507,8 +530,8 @@
           "source_chapter": "돌의 활로",
           "question": "백돌의 활로를 전부 막아보세요.",
           "hint": "활로 6개, 활로는 직선으로만 이어집니다.",
-          "data": ";W[pp];W[op];B[oo];B[po];B[np];B[oq];B[pq]",
-          "answer1": ";B[qp]",
+          "data": ";W[pd];W[od];B[oe];B[pe];B[nd];B[oc];B[pc]",
+          "answer1": ";B[qd]",
           "answer2": "",
           "answer3": "",
           "answer4": "",
@@ -516,8 +539,9 @@
           "sample": "",
           "answer": "",
           "auto": "false",
-          "size": "4",
-          "start": "BK"
+          "size": "5",
+          "start": "BK",
+          "quadrant": "TR"
         },
         {
           "code": "724",
@@ -535,8 +559,8 @@
           "source_chapter": "돌의 활로",
           "question": "백돌의 활로를 전부 막아보세요.",
           "hint": "활로 5개, 활로는 직선으로만 이어집니다.",
-          "data": ";W[ps];W[pr];B[or];B[os];B[qr];B[qs]",
-          "answer1": ";B[pq]",
+          "data": ";W[da];W[db];B[eb];B[ea];B[cb];B[ca]",
+          "answer1": ";B[dc]",
           "answer2": "",
           "answer3": "",
           "answer4": "",
@@ -544,8 +568,9 @@
           "sample": "",
           "answer": "",
           "auto": "false",
-          "size": "4",
-          "start": "BK"
+          "size": "6",
+          "start": "BK",
+          "quadrant": "TL"
         },
         {
           "code": "725",
@@ -563,8 +588,8 @@
           "source_chapter": "돌의 활로",
           "question": "백돌의 활로를 전부 막아보세요.",
           "hint": "활로 4개, 활로는 직선으로만 이어집니다.",
-          "data": ";W[ps];W[os];B[ns];B[or];B[pr]",
-          "answer1": ";B[qs]",
+          "data": ";W[ds];W[es];B[fs];B[er];B[dr]",
+          "answer1": ";B[cs]",
           "answer2": "",
           "answer3": "",
           "answer4": "",
@@ -572,8 +597,9 @@
           "sample": "",
           "answer": "",
           "auto": "false",
-          "size": "4",
-          "start": "BK"
+          "size": "7",
+          "start": "BK",
+          "quadrant": "BL"
         },
         {
           "code": "726",
@@ -601,7 +627,8 @@
           "answer": "",
           "auto": "false",
           "size": "4",
-          "start": "BK"
+          "start": "BK",
+          "quadrant": "BR"
         },
         {
           "code": "727",
@@ -619,8 +646,8 @@
           "source_chapter": "돌의 활로",
           "question": "백돌의 활로를 전부 막아보세요.",
           "hint": "활로 7개, 활로는 직선으로만 이어집니다.",
-          "data": ";W[po];W[pp];W[op];B[pn];B[oo];B[np];B[qo];B[qp];B[pq]",
-          "answer1": ";B[oq]",
+          "data": ";W[de];W[dd];W[ed];B[df];B[ee];B[fd];B[ce];B[cd];B[dc]",
+          "answer1": ";B[ec]",
           "answer2": "",
           "answer3": "",
           "answer4": "",
@@ -628,8 +655,9 @@
           "sample": "",
           "answer": "",
           "auto": "false",
-          "size": "4",
-          "start": "BK"
+          "size": "6",
+          "start": "BK",
+          "quadrant": "TL"
         },
         {
           "code": "728",
@@ -657,7 +685,8 @@
           "answer": "",
           "auto": "false",
           "size": "4",
-          "start": "BK"
+          "start": "BK",
+          "quadrant": "BR"
         },
         {
           "code": "729",
@@ -675,8 +704,8 @@
           "source_chapter": "돌의 활로",
           "question": "백돌의 활로를 전부 막아보세요.",
           "hint": "활로 3개, 활로는 직선으로만 이어집니다.\r\n",
-          "data": ";W[rs];W[ss];W[sr];B[sq];B[qs]",
-          "answer1": ";B[rr]",
+          "data": ";W[ra];W[sa];W[sb];B[sc];B[qa]",
+          "answer1": ";B[rb]",
           "answer2": "",
           "answer3": "",
           "answer4": "",
@@ -684,8 +713,9 @@
           "sample": "",
           "answer": "",
           "auto": "false",
-          "size": "4",
-          "start": "BK"
+          "size": "5",
+          "start": "BK",
+          "quadrant": "TR"
         },
         {
           "code": "730",
@@ -703,8 +733,8 @@
           "source_chapter": "돌의 활로",
           "question": "백돌의 활로를 전부 막아보세요.",
           "hint": "활로 5개, 활로는 직선으로만 이어집니다.\r\n",
-          "data": ";W[pr];W[ps];W[qs];W[os];B[pq];B[qr];B[rs];B[or]",
-          "answer1": ";B[ns]",
+          "data": ";W[dr];W[ds];W[cs];W[es];B[dq];B[cr];B[bs];B[er]",
+          "answer1": ";B[fs]",
           "answer2": "",
           "answer3": "",
           "answer4": "",
@@ -712,8 +742,9 @@
           "sample": "",
           "answer": "",
           "auto": "false",
-          "size": "4",
-          "start": "BK"
+          "size": "7",
+          "start": "BK",
+          "quadrant": "BL"
         },
         {
           "code": "731",
@@ -731,8 +762,8 @@
           "source_chapter": "돌의 활로",
           "question": "백돌의 활로를 전부 막아보세요.",
           "hint": "활로 8개, 활로는 직선으로만 이어집니다.\r\n",
-          "data": ";W[pp];W[po];W[pq];W[op];B[pn];B[oo];B[np];B[qo];B[qp];B[qq]",
-          "answer1": ";B[pr];B[oq]",
+          "data": ";W[dp];W[do];W[dq];W[ep];B[dn];B[eo];B[fp];B[co];B[cp];B[cq]",
+          "answer1": ";B[dr];B[eq]",
           "answer2": "",
           "answer3": "",
           "answer4": "",
@@ -740,8 +771,9 @@
           "sample": "",
           "answer": "",
           "auto": "false",
-          "size": "4",
-          "start": "BK"
+          "size": "7",
+          "start": "BK",
+          "quadrant": "BL"
         },
         {
           "code": "732",
@@ -769,7 +801,8 @@
           "answer": "",
           "auto": "false",
           "size": "4",
-          "start": "BK"
+          "start": "BK",
+          "quadrant": "BR"
         },
         {
           "code": "733",
@@ -787,8 +820,8 @@
           "source_chapter": "돌의 활로",
           "question": "백돌의 활로를 전부 막아보세요.",
           "hint": "활로 6개, 활로는 직선으로만 이어집니다.",
-          "data": ";W[ps];W[pr];W[or];W[os];B[qr];B[qs];B[nr];B[ns]",
-          "answer1": ";B[oq];B[pq]",
+          "data": ";W[pa];W[pb];W[ob];W[oa];B[qb];B[qa];B[nb];B[na]",
+          "answer1": ";B[oc];B[pc]",
           "answer2": "",
           "answer3": "",
           "answer4": "",
@@ -796,8 +829,9 @@
           "sample": "",
           "answer": "",
           "auto": "false",
-          "size": "4",
-          "start": "BK"
+          "size": "5",
+          "start": "BK",
+          "quadrant": "TR"
         },
         {
           "code": "734",
@@ -825,7 +859,8 @@
           "answer": "",
           "auto": "false",
           "size": "4",
-          "start": "BK"
+          "start": "BK",
+          "quadrant": "BR"
         },
         {
           "code": "735",
@@ -843,8 +878,8 @@
           "source_chapter": "돌의 활로",
           "question": "백돌의 활로를 전부 막아보세요.",
           "hint": "활로 9개, 활로는 직선으로만 이어집니다.",
-          "data": ";W[pp];W[pq];W[oq];W[nq];B[po];B[op];B[qp];B[qq];B[pr];B[or];B[nr]",
-          "answer1": ";B[np];B[mq]",
+          "data": ";W[dp];W[dq];W[eq];W[fq];B[do];B[ep];B[cp];B[cq];B[dr];B[er];B[fr]",
+          "answer1": ";B[fp];B[gq]",
           "answer2": "",
           "answer3": "",
           "answer4": "",
@@ -852,8 +887,9 @@
           "sample": "",
           "answer": "",
           "auto": "false",
-          "size": "4",
-          "start": "BK"
+          "size": "7",
+          "start": "BK",
+          "quadrant": "BL"
         },
         {
           "code": "38625",
@@ -871,8 +907,8 @@
           "source_chapter": "활로 막기",
           "question": "백돌의 활로를 전부 막아보세요.",
           "hint": "",
-          "data": ";W[pp];W[op];W[oo];W[np];B[qp];B[on];B[pq];B[oq];B[nq];B[mp]",
-          "answer1": ";B[no];B[po]",
+          "data": ";W[pd];W[od];W[oe];W[nd];B[qd];B[of];B[pc];B[oc];B[nc];B[md]",
+          "answer1": ";B[ne];B[pe]",
           "answer2": "",
           "answer3": "",
           "answer4": "",
@@ -880,8 +916,9 @@
           "sample": "",
           "answer": "",
           "auto": "false",
-          "size": "4",
-          "start": "BK"
+          "size": "5",
+          "start": "BK",
+          "quadrant": "TR"
         },
         {
           "code": "38626",
@@ -909,7 +946,8 @@
           "answer": "",
           "auto": "false",
           "size": "4",
-          "start": "BK"
+          "start": "BK",
+          "quadrant": "BR"
         },
         {
           "code": "736",
@@ -927,8 +965,8 @@
           "source_chapter": "돌의 활로",
           "question": "백돌의 활로를 전부 막아보세요.",
           "hint": "활로 8개, 활로는 직선으로만 이어집니다.",
-          "data": ";W[pp];W[qp];W[pq];W[oq];B[po];B[op];B[nq];B[or];B[pr];B[qq]",
-          "answer1": ";B[rp];B[qo]",
+          "data": ";W[pd];W[qd];W[pc];W[oc];B[pe];B[od];B[nc];B[ob];B[pb];B[qc]",
+          "answer1": ";B[rd];B[qe]",
           "answer2": "",
           "answer3": "",
           "answer4": "",
@@ -936,8 +974,9 @@
           "sample": "",
           "answer": "",
           "auto": "false",
-          "size": "4",
-          "start": "BK"
+          "size": "5",
+          "start": "BK",
+          "quadrant": "TR"
         },
         {
           "code": "737",
@@ -955,8 +994,8 @@
           "source_chapter": "돌의 활로",
           "question": "백돌의 활로를 전부 막아보세요.",
           "hint": "활로 8개, 활로는 직선으로만 이어집니다.",
-          "data": ";W[pp];W[qp];W[po];W[op];W[pq];B[pn];B[oo];B[np];B[qo];B[rp];B[pr]",
-          "answer1": ";B[oq];B[qq]",
+          "data": ";W[dd];W[cd];W[de];W[ed];W[dc];B[df];B[ee];B[fd];B[ce];B[bd];B[db]",
+          "answer1": ";B[ec];B[cc]",
           "answer2": "",
           "answer3": "",
           "answer4": "",
@@ -964,8 +1003,9 @@
           "sample": "",
           "answer": "",
           "auto": "false",
-          "size": "4",
-          "start": "BK"
+          "size": "6",
+          "start": "BK",
+          "quadrant": "TL"
         },
         {
           "code": "738",
@@ -983,8 +1023,8 @@
           "source_chapter": "돌의 활로",
           "question": "백돌의 활로를 전부 막아보세요.",
           "hint": "활로 9개, 활로는 직선으로만 이어집니다.",
-          "data": ";W[pp];W[po];W[oo];W[op];W[np];B[on];B[pn];B[qo];B[qp];B[no];B[mp];B[pq]",
-          "answer1": ";B[nq];B[oq]",
+          "data": ";W[dp];W[do];W[eo];W[ep];W[fp];B[en];B[dn];B[co];B[cp];B[fo];B[gp];B[dq]",
+          "answer1": ";B[fq];B[eq]",
           "answer2": "",
           "answer3": "",
           "answer4": "",
@@ -992,8 +1032,9 @@
           "sample": "",
           "answer": "",
           "auto": "false",
-          "size": "4",
-          "start": "BK"
+          "size": "7",
+          "start": "BK",
+          "quadrant": "BL"
         },
         {
           "code": "739",
@@ -1011,8 +1052,8 @@
           "source_chapter": "돌의 활로",
           "question": "백돌의 활로를 전부 막아보세요.",
           "hint": "활로 6개, 활로는 직선으로만 이어집니다.",
-          "data": ";W[ps];W[pr];W[or];W[os];W[ns];B[oq];B[pq];B[nr];B[qr]",
-          "answer1": ";B[ms];B[qs]",
+          "data": ";W[pa];W[pb];W[ob];W[oa];W[na];B[oc];B[pc];B[nb];B[qb]",
+          "answer1": ";B[ma];B[qa]",
           "answer2": "",
           "answer3": "",
           "answer4": "",
@@ -1020,8 +1061,9 @@
           "sample": "",
           "answer": "",
           "auto": "false",
-          "size": "4",
-          "start": "BK"
+          "size": "5",
+          "start": "BK",
+          "quadrant": "TR"
         },
         {
           "code": "740",
@@ -1039,8 +1081,8 @@
           "source_chapter": "돌의 활로",
           "question": "백돌의 활로를 전부 막아보세요.",
           "hint": "활로 4개, 활로는 직선으로만 이어집니다.",
-          "data": ";W[sr];W[rr];W[ss];W[rs];W[qs];B[rq];B[qr]",
-          "answer1": ";B[ps];B[sq]",
+          "data": ";W[ab];W[bb];W[aa];W[ba];W[ca];B[bc];B[cb]",
+          "answer1": ";B[da];B[ac]",
           "answer2": "",
           "answer3": "",
           "answer4": "",
@@ -1048,8 +1090,9 @@
           "sample": "",
           "answer": "",
           "auto": "false",
-          "size": "4",
-          "start": "BK"
+          "size": "6",
+          "start": "BK",
+          "quadrant": "TL"
         }
       ]
     },

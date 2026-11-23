@@ -8,6 +8,16 @@
     localStorage.removeItem('customBook_test_stage_01_quadrant');
     localStorage.removeItem('teacher_book_custom_master_stage_01');
     localStorage.removeItem('teacher_book_custom_test_stage_01_quadrant');
+    var k0 = 'teacher_book_custom_gpt_anti_stage_01';
+    var v0 = localStorage.getItem(k0);
+    if (v0) {
+      try {
+        var p0 = JSON.parse(v0);
+        if (p0._buildVer !== 'v17-ch1-ch2-random-4quadrants') {
+          localStorage.removeItem(k0);
+        }
+      } catch(e) { localStorage.removeItem(k0); }
+    }
     var k1 = 'teacher_book_custom_new_tech_jangmun';
     var v1 = localStorage.getItem(k1);
     if (v1 && v1.indexOf('10. 빈축') === -1) {
@@ -477,7 +487,7 @@
   <div id="origPanelBody" style="padding:6px;"></div>
   <div id="origPanelCap" style="padding:0 10px 8px;font-size:11px;color:#475569;"></div>
 </div>
-<script src="app.js?v=live_1795398903"></script>
+<script src="app.js?v=live_1795399405"></script>
 
 </body>
 </html>
