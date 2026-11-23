@@ -158,6 +158,9 @@
   }
   window.showToast = showToast;
 
+  // 단원 제목 끝의 "(41제)" 같은 문제수/부가 괄호만 제거한다. "(1)", "(2)"처럼 숫자만 있는 괄호는 제목의 일부로 유지한다.
+  var CH_COUNT_RE = /\s*\(\s*\d+\s*[^)\s][^)]*\)\s*$/;
+
   function sanitizeBookData(bookData, code) {
     if (!bookData || !Array.isArray(bookData.chapters)) return bookData;
     return bookData;
@@ -505,7 +508,7 @@
       var opt = document.createElement('option');
       opt.value = idx;
       var rawChTitle = (typeof ch.title === 'string' && ch.title) || (typeof ch.chapter === 'string' && ch.chapter) || String(ch.chapter || ch.title || ('제 ' + (idx + 1) + '단원'));
-      opt.textContent = String(rawChTitle).replace(/\s*\(\s*\d+\s*[^)]*\)\s*$/, '');
+      opt.textContent = String(rawChTitle).replace(CH_COUNT_RE, '');
       chapterSelect.appendChild(opt);
     });
 
@@ -3367,16 +3370,14 @@
     Array.from(chapterSelect.options).forEach(function (opt, idx) {
       var ch = state.currentBook.chapters[idx];
       if (ch) {
-        var cnt = (ch.problems || []).length;
-        var baseName = (ch.chapter || ch.title || ('제 ' + (idx + 1) + '단원')).replace(/\s*\(\s*\d+\s*[^)]*\)\s*$/, '');
-        opt.textContent = baseName + ' (' + cnt + '제)';
+        var baseName = (ch.chapter || ch.title || ('제 ' + (idx + 1) + '단원')).replace(CH_COUNT_RE, '');
+        opt.textContent = baseName;
       }
     });
     var curCh = state.currentBook.chapters[state.currentChapterIndex];
     if (curCh && typeof currentChapterTitle !== 'undefined' && currentChapterTitle) {
-      var curCnt = (curCh.problems || []).length;
-      var curBase = (curCh.chapter || curCh.title || '').replace(/\s*\(\s*\d+\s*[^)]*\)\s*$/, '');
-      currentChapterTitle.textContent = '— ' + curBase + ' (' + curCnt + '제)';
+      var curBase = (curCh.chapter || curCh.title || '').replace(CH_COUNT_RE, '');
+      currentChapterTitle.textContent = '— ' + curBase;
     }
   }
 
@@ -4385,8 +4386,8 @@
       // 🌟 문제 삭제 즉시 단원 정보 및 메인 바둑판에 실시간 동기화
       var curCh = state.currentBook && state.currentBook.chapters ? state.currentBook.chapters[state.currentChapterIndex] : null;
       if (curCh) {
-        var baseTitle = (curCh.chapter || curCh.title || '').replace(/\s*\(\s*\d+\s*[^)]*\)\s*$/, '');
-        var newTitle = baseTitle + ' (' + state.currentProblems.length + '제)';
+        var baseTitle = (curCh.chapter || curCh.title || '').replace(CH_COUNT_RE, '');
+        var newTitle = baseTitle;
         curCh.chapter = newTitle;
         curCh.title = newTitle;
         curCh.problemCount = state.currentProblems.length;
@@ -4578,8 +4579,8 @@
       btnSave.addEventListener('click', function () {
         var curCh = state.currentBook && state.currentBook.chapters ? state.currentBook.chapters[state.currentChapterIndex] : null;
         if (curCh) {
-          var baseTitle = (curCh.chapter || curCh.title || '').replace(/\s*\(\s*\d+\s*[^)]*\)\s*$/, '');
-          var newTitle = baseTitle + ' (' + state.currentProblems.length + '제)';
+          var baseTitle = (curCh.chapter || curCh.title || '').replace(CH_COUNT_RE, '');
+          var newTitle = baseTitle;
           curCh.chapter = newTitle;
           curCh.title = newTitle;
           curCh.problemCount = state.currentProblems.length;
