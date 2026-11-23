@@ -2016,7 +2016,7 @@
         "code": "gpt_anti_stage_01",
         "title": "1단계",
         "chapterCount": 13,
-        "totalProblems": 395,
+        "totalProblems": 369,
         "chapters": [
           {
             "code": "gpt_anti_01_01",
@@ -2072,8 +2072,8 @@
             "chapterCode": "gpt_anti_01_08",
             "title": "7. 서로 단수",
             "chapter": "7. 서로 단수",
-            "problemCount": 56,
-            "problemsCount": 56
+            "problemCount": 30,
+            "problemsCount": 30
           },
           {
             "code": "gpt_anti_01_14",
@@ -2125,7 +2125,7 @@
           }
         ],
         "file": "book_gpt_anti_stage_01.json",
-        "_buildVer": "v36-add-ch8-yangdansu"
+        "_buildVer": "v37-ch7-30problems"
       }
     ]
   },
@@ -17013,7 +17013,7 @@
         "code": "gpt_anti_stage_01",
         "file": "book_gpt_anti_stage_01.json",
         "chapterCount": 13,
-        "totalProblems": 395,
+        "totalProblems": 369,
         "chapters": [
           {
             "code": "gpt_anti_01_01",
@@ -17069,8 +17069,8 @@
             "chapterCode": "gpt_anti_01_08",
             "title": "7. 서로 단수",
             "chapter": "7. 서로 단수",
-            "problemCount": 56,
-            "problemsCount": 56
+            "problemCount": 30,
+            "problemsCount": 30
           },
           {
             "code": "gpt_anti_01_14",
@@ -17121,7 +17121,7 @@
             "problemsCount": 25
           }
         ],
-        "_buildVer": "v36-add-ch8-yangdansu"
+        "_buildVer": "v37-ch7-30problems"
       },
       {
         "title": "2단계",
