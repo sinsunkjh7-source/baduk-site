@@ -160,30 +160,6 @@
 
   function sanitizeBookData(bookData, code) {
     if (!bookData || !Array.isArray(bookData.chapters)) return bookData;
-    if (code === 'gpt_anti_stage_01') {
-      bookData.chapters.forEach(function (ch, idx) {
-        var isCh7 = idx === 6 || ch.id === 'gpt_anti_01_07' || (ch.chapter && ch.chapter.indexOf('7.') === 0) || (ch.title && ch.title.indexOf('7.') === 0);
-        if (isCh7 && Array.isArray(ch.problems)) {
-          var prevLen = ch.problems.length;
-          ch.problems = ch.problems.filter(function (p) {
-            var sSeries = (p.source_series || '').trim();
-            var sBook = (p.source_book || '').trim();
-            var idStr = String(p.id || '');
-            if (sSeries === '알파바둑' || sBook.indexOf('알파') >= 0 || idStr.indexOf('387') === 0) {
-              return false;
-            }
-            return true;
-          });
-          if (ch.problems.length !== prevLen) {
-            var baseTitle = (ch.chapter || ch.title || '').replace(/\s*\(\s*\d+\s*[^)]*\)\s*$/, '');
-            var newTitle = baseTitle + ' (' + ch.problems.length + '제)';
-            ch.chapter = newTitle;
-            ch.title = newTitle;
-            ch.problemCount = ch.problems.length;
-          }
-        }
-      });
-    }
     return bookData;
   }
   window.sanitizeBookData = sanitizeBookData;
@@ -453,6 +429,11 @@
         var savedCustom = localStorage.getItem('teacher_book_custom_' + code);
         if (savedCustom) {
           var customData = JSON.parse(savedCustom);
+          // gpt_anti_stage_01: 서버 책 버전이 새로 배포되면(편집 내용이 이미 서버 파일에 반영됨) 브라우저 저장본을 한 번 버리고 서버본을 쓴다.
+          if (code === 'gpt_anti_stage_01' && isStaleBookCustom(code, customData)) {
+            localStorage.removeItem('teacher_book_custom_' + code);
+            customData = null;
+          }
           // 🌟 원장님의 삭제/수정 편집본 최우선 적용 (어떤 경우에도 덮어쓰거나 롤백하지 않고 즉시 로드)
           if (customData && Array.isArray(customData.chapters) && customData.chapters.length > 0) {
             customData = sanitizeBookData(customData, code);

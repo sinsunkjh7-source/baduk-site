@@ -2061,20 +2061,20 @@
             "problemsCount": 41
           },
           {
-            "code": "gpt_anti_01_06",
-            "chapterCode": "gpt_anti_01_06",
-            "title": "6. 단수된 돌 살리기 (도망가기) (43제)",
-            "chapter": "6. 단수된 돌 살리기 (43제)",
-            "problemCount": 43,
-            "problemsCount": 43
-          },
-          {
             "code": "gpt_anti_01_07",
             "chapterCode": "gpt_anti_01_07",
-            "title": "7. 따내기와 살리기 응용 (호구 속 따내기·이어서 살리기·잡으며 도망가기) (20제)",
-            "chapter": "7. 따내기와 살리기 응용 (호구 속 따내기·이어서 살리기·잡으며 도망가기) (20제)",
+            "title": "6. 단수된 돌 따내기(2) (20제)",
+            "chapter": "6. 단수된 돌 따내기(2) (20제)",
             "problemCount": 20,
             "problemsCount": 20
+          },
+          {
+            "code": "gpt_anti_01_06",
+            "chapterCode": "gpt_anti_01_06",
+            "title": "7. 단수된 돌 살리기 (43제)",
+            "chapter": "7. 단수된 돌 살리기 (43제)",
+            "problemCount": 43,
+            "problemsCount": 43
           },
           {
             "code": "gpt_anti_01_08",
@@ -2126,7 +2126,7 @@
           }
         ],
         "file": "book_gpt_anti_stage_01.json",
-        "_buildVer": "v31-ch7-remove-alpha-20p"
+        "_buildVer": "v32-ch6-ttanaegi2-20p"
       }
     ]
   },
@@ -17059,20 +17059,20 @@
             "problemsCount": 41
           },
           {
-            "code": "gpt_anti_01_06",
-            "chapterCode": "gpt_anti_01_06",
-            "title": "6. 단수된 돌 살리기 (도망가기) (43제)",
-            "chapter": "6. 단수된 돌 살리기 (43제)",
-            "problemCount": 43,
-            "problemsCount": 43
-          },
-          {
             "code": "gpt_anti_01_07",
             "chapterCode": "gpt_anti_01_07",
-            "title": "7. 따내기와 살리기 응용 (호구 속 따내기·이어서 살리기·잡으며 도망가기) (20제)",
-            "chapter": "7. 따내기와 살리기 응용 (호구 속 따내기·이어서 살리기·잡으며 도망가기) (20제)",
+            "title": "6. 단수된 돌 따내기(2) (20제)",
+            "chapter": "6. 단수된 돌 따내기(2) (20제)",
             "problemCount": 20,
             "problemsCount": 20
+          },
+          {
+            "code": "gpt_anti_01_06",
+            "chapterCode": "gpt_anti_01_06",
+            "title": "7. 단수된 돌 살리기 (43제)",
+            "chapter": "7. 단수된 돌 살리기 (43제)",
+            "problemCount": 43,
+            "problemsCount": 43
           },
           {
             "code": "gpt_anti_01_08",
@@ -17123,7 +17123,7 @@
             "problemsCount": 25
           }
         ],
-        "_buildVer": "v31-ch7-remove-alpha-20p"
+        "_buildVer": "v32-ch6-ttanaegi2-20p"
       },
       {
         "title": "2단계",
