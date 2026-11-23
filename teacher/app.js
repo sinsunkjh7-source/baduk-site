@@ -3363,10 +3363,17 @@
     Array.from(chapterSelect.options).forEach(function (opt, idx) {
       var ch = state.currentBook.chapters[idx];
       if (ch) {
-        var baseName = (ch.chapter || ch.title || ('제 ' + (idx + 1) + '단원')).replace(/\s*\(\d+제\)\s*$/, '');
-        opt.textContent = baseName;
+        var cnt = (ch.problems || []).length;
+        var baseName = (ch.chapter || ch.title || ('제 ' + (idx + 1) + '단원')).replace(/\s*\(\s*\d+\s*[^)]*\)\s*$/, '');
+        opt.textContent = baseName + ' (' + cnt + '제)';
       }
     });
+    var curCh = state.currentBook.chapters[state.currentChapterIndex];
+    if (curCh && typeof currentChapterTitle !== 'undefined' && currentChapterTitle) {
+      var curCnt = (curCh.problems || []).length;
+      var curBase = (curCh.chapter || curCh.title || '').replace(/\s*\(\s*\d+\s*[^)]*\)\s*$/, '');
+      currentChapterTitle.textContent = '— ' + curBase + ' (' + curCnt + '제)';
+    }
   }
 
   function initProblemEditor() {
@@ -4059,6 +4066,12 @@
         }
       }
       modal.setAttribute('hidden', 'true');
+      // 🌟 모아보기 닫고 본 단원 복귀 시 바둑판 및 문제 목록 즉시 최신화
+      renderProblemGrid();
+      if (state.currentProblems && state.currentProblems.length > 0) {
+        loadProblem(Math.max(0, Math.min(state.currentProblemIndex, state.currentProblems.length - 1)));
+      }
+      if (typeof refreshChapterDropdownCounts === 'function') refreshChapterDropdownCounts();
     }
 
     var currentFilter = 'all';
@@ -4356,9 +4369,23 @@
         state.currentBook.chapters[state.currentChapterIndex].problems = state.currentProblems;
       }
 
+      // 🌟 문제 삭제 즉시 단원 정보 및 메인 바둑판에 실시간 동기화
+      var curCh = state.currentBook && state.currentBook.chapters ? state.currentBook.chapters[state.currentChapterIndex] : null;
+      if (curCh) {
+        var baseTitle = (curCh.chapter || curCh.title || '').replace(/\s*\(\s*\d+\s*[^)]*\)\s*$/, '');
+        var newTitle = baseTitle + ' (' + state.currentProblems.length + '제)';
+        curCh.chapter = newTitle;
+        curCh.title = newTitle;
+        curCh.problemCount = state.currentProblems.length;
+        if (typeof currentChapterTitle !== 'undefined' && currentChapterTitle) {
+          currentChapterTitle.textContent = '— ' + newTitle;
+        }
+      }
       saveCustomBookToLocalStorage();
       renderCards();
       renderProblemGrid();
+      loadProblem(state.currentProblemIndex);
+      if (typeof refreshChapterDropdownCounts === 'function') refreshChapterDropdownCounts();
       showToast('문제 #' + (idx + 1) + '이(가) 삭제되었습니다.');
 
       // 🌟 문제 삭제 후에도 전체화면 모드 고정 유지 🌟
@@ -4536,7 +4563,23 @@
 
     if (btnSave) {
       btnSave.addEventListener('click', function () {
+        var curCh = state.currentBook && state.currentBook.chapters ? state.currentBook.chapters[state.currentChapterIndex] : null;
+        if (curCh) {
+          var baseTitle = (curCh.chapter || curCh.title || '').replace(/\s*\(\s*\d+\s*[^)]*\)\s*$/, '');
+          var newTitle = baseTitle + ' (' + state.currentProblems.length + '제)';
+          curCh.chapter = newTitle;
+          curCh.title = newTitle;
+          curCh.problemCount = state.currentProblems.length;
+          if (typeof currentChapterTitle !== 'undefined' && currentChapterTitle) {
+            currentChapterTitle.textContent = '— ' + newTitle;
+          }
+        }
         saveCustomBookToLocalStorage();
+        renderProblemGrid();
+        if (state.currentProblems && state.currentProblems.length > 0) {
+          loadProblem(Math.max(0, Math.min(state.currentProblemIndex, state.currentProblems.length - 1)));
+        }
+        if (typeof refreshChapterDropdownCounts === 'function') refreshChapterDropdownCounts();
         
         // 🌟 버튼 시각적 변화: 초록색 '✓ 저장 완료!' 즉시 표시 🌟
         var origText = btnSave.innerHTML;
