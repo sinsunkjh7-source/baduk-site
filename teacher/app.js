@@ -1040,35 +1040,57 @@
     }
 
     // 사분면 판별 (우하귀, 좌하귀, 좌상귀, 우상귀)
+    var sumX = 0, sumY = 0;
+    for (var pi = 0; pi < points.length; pi++) {
+      sumX += points[pi].x;
+      sumY += points[pi].y;
+    }
+    var avgX = sumX / points.length;
+    var avgY = sumY / points.length;
+    var actualQuadrant = (avgX < 9.5 && avgY < 9.5) ? 'TL' :
+                         (avgX >= 9.5 && avgY < 9.5) ? 'TR' :
+                         (avgX < 9.5 && avgY >= 9.5) ? 'BL' : 'BR';
+
     var quadrant = 'BR';
-    if (p.quadrant) {
+    if (p.quadrant && ['BR', 'BL', 'TL', 'TR'].indexOf(p.quadrant) !== -1) {
       quadrant = p.quadrant;
-    } else if (rawSize === '7' || (minX <= 8 && minY >= 10 && maxX <= 9)) {
-      quadrant = 'BL';
-    } else if (rawSize === '6' || (maxX <= 8 && maxY <= 8)) {
-      quadrant = 'TL';
-    } else if (rawSize === '5' || (minX >= 10 && maxY <= 8)) {
-      quadrant = 'TR';
+    } else if (rawSize === '4' || rawSize === '5' || rawSize === '6' || rawSize === '7') {
+      var sizeMap = { '4': 'BR', '5': 'TR', '6': 'TL', '7': 'BL' };
+      quadrant = sizeMap[rawSize] || actualQuadrant;
     } else {
-      quadrant = 'BR'; // 표준 교재 우하귀
+      quadrant = actualQuadrant;
     }
 
     // 🌟 원장님 핵심 지침: 기본 세로선 10, 가로선 9 (열린 선 다이어그램)를 유지하되,
     // 정답 착점이 바둑판 밖으로 잘려 풀지 못하는 문제가 없도록 안전 적응형 확장!
-    var cols = 10;
-    var rows = 10;
-    if (quadrant === 'BR') {
-      cols = Math.max(10, 19 - minX);
-      rows = Math.max(10, 19 - minY);
-    } else if (quadrant === 'BL') {
-      cols = Math.max(10, maxX + 1);
-      rows = Math.max(10, 19 - minY);
-    } else if (quadrant === 'TL') {
-      cols = Math.max(10, maxX + 1);
-      rows = Math.max(10, maxY + 1);
-    } else if (quadrant === 'TR') {
-      cols = Math.max(10, 19 - minX);
-      rows = Math.max(10, maxY + 1);
+    function calcColsRows(q) {
+      var c = 10, r = 10;
+      if (q === 'BR') {
+        c = Math.max(10, 19 - minX);
+        r = Math.max(10, 19 - minY);
+      } else if (q === 'BL') {
+        c = Math.max(10, maxX + 1);
+        r = Math.max(10, 19 - minY);
+      } else if (q === 'TL') {
+        c = Math.max(10, maxX + 1);
+        r = Math.max(10, maxY + 1);
+      } else if (q === 'TR') {
+        c = Math.max(10, 19 - minX);
+        r = Math.max(10, maxY + 1);
+      }
+      return { cols: c, rows: r };
+    }
+
+    var dim = calcColsRows(quadrant);
+    var cols = dim.cols;
+    var rows = dim.rows;
+
+    // 만약 지정된 quadrant와 실제 좌표 평균 사분면이 달라 비정상적으로 확장된 경우 actualQuadrant로 자동 복구
+    if ((cols >= 14 || rows >= 14) && quadrant !== actualQuadrant) {
+      quadrant = actualQuadrant;
+      dim = calcColsRows(quadrant);
+      cols = dim.cols;
+      rows = dim.rows;
     }
 
     if (cols >= 14 || rows >= 14) {

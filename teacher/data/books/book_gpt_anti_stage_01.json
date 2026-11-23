@@ -7,7 +7,7 @@
   "chapterCount": 13,
   "totalProblems": 439,
   "problemCount": 425,
-  "_buildVer": "v29-quadrant-circulation-ch3-5-6",
+  "_buildVer": "v30-fix-quadrant-circulation",
   "chapters": [
     {
       "code": "gpt_anti_01_01",
@@ -1174,7 +1174,7 @@
           "auto": "false",
           "size": "4",
           "start": "NO",
-          "quadrant": "TL",
+          "quadrant": "BR",
           "no": 1,
           "name": "1번 문제",
           "is_modified": true
@@ -1199,7 +1199,9 @@
           "source_chapter": "",
           "source_p_num": 13,
           "no": 2,
-          "name": "2번 문제"
+          "name": "2번 문제",
+          "quadrant": "BR",
+          "is_modified": true
         },
         {
           "code": "38841",
@@ -1228,7 +1230,7 @@
           "auto": "false",
           "size": "6",
           "start": "NO",
-          "quadrant": "TR",
+          "quadrant": "TL",
           "no": 3,
           "name": "3번 문제",
           "is_modified": true
@@ -1253,7 +1255,9 @@
           "source_chapter": "",
           "source_p_num": 14,
           "no": 4,
-          "name": "4번 문제"
+          "name": "4번 문제",
+          "quadrant": "TR",
+          "is_modified": true
         },
         {
           "code": "38842",
@@ -1282,7 +1286,7 @@
           "auto": "false",
           "size": "6",
           "start": "NO",
-          "quadrant": "BR",
+          "quadrant": "TL",
           "no": 5,
           "name": "5번 문제",
           "is_modified": true
@@ -1314,7 +1318,7 @@
           "auto": "false",
           "size": "4",
           "start": "NO",
-          "quadrant": "BL",
+          "quadrant": "BR",
           "no": 6,
           "name": "6번 문제",
           "is_modified": true
@@ -1346,7 +1350,7 @@
           "auto": "false",
           "size": "4",
           "start": "NO",
-          "quadrant": "TL",
+          "quadrant": "BR",
           "no": 7,
           "name": "7번 문제",
           "is_modified": true
@@ -1371,7 +1375,9 @@
           "source_chapter": "",
           "source_p_num": 16,
           "no": 8,
-          "name": "8번 문제"
+          "name": "8번 문제",
+          "quadrant": "TR",
+          "is_modified": true
         },
         {
           "code": "38845",
@@ -1425,7 +1431,9 @@
           "source_chapter": "",
           "source_p_num": 18,
           "no": 10,
-          "name": "10번 문제"
+          "name": "10번 문제",
+          "quadrant": "BR",
+          "is_modified": true
         },
         {
           "code": "38846",
@@ -1454,7 +1462,7 @@
           "auto": "false",
           "size": "6",
           "start": "NO",
-          "quadrant": "TR",
+          "quadrant": "TL",
           "no": 11,
           "name": "11번 문제",
           "is_modified": true
@@ -1486,7 +1494,7 @@
           "auto": "false",
           "size": "7",
           "start": "NO",
-          "quadrant": "TL",
+          "quadrant": "BL",
           "no": 12,
           "name": "12번 문제",
           "is_modified": true
@@ -1518,7 +1526,7 @@
           "auto": "false",
           "size": "6",
           "start": "NO",
-          "quadrant": "BL",
+          "quadrant": "TL",
           "no": 13,
           "name": "13번 문제",
           "is_modified": true
@@ -1550,7 +1558,7 @@
           "auto": "false",
           "size": "5",
           "start": "NO",
-          "quadrant": "BR",
+          "quadrant": "TR",
           "no": 14,
           "name": "14번 문제",
           "is_modified": true
@@ -1582,7 +1590,7 @@
           "auto": "false",
           "size": "7",
           "start": "NO",
-          "quadrant": "BR",
+          "quadrant": "BL",
           "no": 15,
           "name": "15번 문제",
           "is_modified": true
@@ -1607,7 +1615,9 @@
           "source_chapter": "",
           "source_p_num": 15,
           "no": 16,
-          "name": "16번 문제"
+          "name": "16번 문제",
+          "quadrant": "BL",
+          "is_modified": true
         },
         {
           "code": "38851",
@@ -1661,7 +1671,9 @@
           "source_chapter": "",
           "source_p_num": 17,
           "no": 18,
-          "name": "18번 문제"
+          "name": "18번 문제",
+          "quadrant": "BL",
+          "is_modified": true
         },
         {
           "code": "teacher_mwso9l1t_35ljr170_6",
@@ -1683,7 +1695,9 @@
           "source_chapter": "",
           "source_p_num": 19,
           "no": 19,
-          "name": "19번 문제"
+          "name": "19번 문제",
+          "quadrant": "TR",
+          "is_modified": true
         },
         {
           "code": "teacher_mwso9l1t_chats1a7_7",
@@ -1705,7 +1719,9 @@
           "source_chapter": "",
           "source_p_num": 20,
           "no": 20,
-          "name": "20번 문제"
+          "name": "20번 문제",
+          "quadrant": "TL",
+          "is_modified": true
         }
       ]
     },
@@ -2306,7 +2322,8 @@
           "start": "BA",
           "no": 1,
           "name": "1번 문제",
-          "is_modified": true
+          "is_modified": true,
+          "quadrant": "BR"
         },
         {
           "code": "1002",
@@ -2333,7 +2350,8 @@
           "start": "BA",
           "no": 2,
           "name": "2번 문제",
-          "is_modified": true
+          "is_modified": true,
+          "quadrant": "TR"
         },
         {
           "code": "1003",
@@ -2364,7 +2382,8 @@
           "start": "BA",
           "no": 3,
           "name": "3번 문제",
-          "is_modified": true
+          "is_modified": true,
+          "quadrant": "BR"
         },
         {
           "code": "1004",
@@ -2395,7 +2414,8 @@
           "start": "BA",
           "no": 4,
           "name": "4번 문제",
-          "is_modified": true
+          "is_modified": true,
+          "quadrant": "BR"
         },
         {
           "code": "1005",
@@ -2426,7 +2446,8 @@
           "start": "BA",
           "no": 5,
           "name": "5번 문제",
-          "is_modified": true
+          "is_modified": true,
+          "quadrant": "TR"
         },
         {
           "code": "1006",
@@ -2457,7 +2478,8 @@
           "start": "BA",
           "no": 6,
           "name": "6번 문제",
-          "is_modified": true
+          "is_modified": true,
+          "quadrant": "BL"
         },
         {
           "code": "1007",
@@ -2488,7 +2510,8 @@
           "start": "BA",
           "no": 7,
           "name": "7번 문제",
-          "is_modified": true
+          "is_modified": true,
+          "quadrant": "BL"
         },
         {
           "code": "1008",
@@ -2519,7 +2542,8 @@
           "start": "BA",
           "no": 8,
           "name": "8번 문제",
-          "is_modified": true
+          "is_modified": true,
+          "quadrant": "TL"
         },
         {
           "code": "1009",
@@ -2550,7 +2574,8 @@
           "start": "BA",
           "no": 9,
           "name": "9번 문제",
-          "is_modified": true
+          "is_modified": true,
+          "quadrant": "TR"
         },
         {
           "code": "1010",
@@ -2581,7 +2606,8 @@
           "start": "BA",
           "no": 10,
           "name": "10번 문제",
-          "is_modified": true
+          "is_modified": true,
+          "quadrant": "BR"
         },
         {
           "code": "1011",
@@ -2612,7 +2638,8 @@
           "start": "BA",
           "no": 11,
           "name": "11번 문제",
-          "is_modified": true
+          "is_modified": true,
+          "quadrant": "BR"
         },
         {
           "code": "1012",
@@ -2643,7 +2670,8 @@
           "start": "BA",
           "no": 12,
           "name": "12번 문제",
-          "is_modified": true
+          "is_modified": true,
+          "quadrant": "TR"
         },
         {
           "code": "1013",
@@ -2670,7 +2698,8 @@
           "start": "BA",
           "no": 13,
           "name": "13번 문제",
-          "is_modified": true
+          "is_modified": true,
+          "quadrant": "BL"
         },
         {
           "code": "1014",
@@ -2701,7 +2730,8 @@
           "start": "BA",
           "no": 14,
           "name": "14번 문제",
-          "is_modified": true
+          "is_modified": true,
+          "quadrant": "BL"
         },
         {
           "code": "1015",
@@ -2732,7 +2762,8 @@
           "start": "BA",
           "no": 15,
           "name": "15번 문제",
-          "is_modified": true
+          "is_modified": true,
+          "quadrant": "TR"
         },
         {
           "code": "1016",
@@ -2763,7 +2794,8 @@
           "start": "BK",
           "no": 16,
           "name": "16번 문제",
-          "is_modified": true
+          "is_modified": true,
+          "quadrant": "BL"
         },
         {
           "code": "1017",
@@ -2794,7 +2826,8 @@
           "start": "BK",
           "no": 17,
           "name": "17번 문제",
-          "is_modified": true
+          "is_modified": true,
+          "quadrant": "BL"
         },
         {
           "code": "1018",
@@ -2825,7 +2858,8 @@
           "start": "BK",
           "no": 18,
           "name": "18번 문제",
-          "is_modified": true
+          "is_modified": true,
+          "quadrant": "TL"
         },
         {
           "code": "1019",
@@ -2856,7 +2890,8 @@
           "start": "BK",
           "no": 19,
           "name": "19번 문제",
-          "is_modified": true
+          "is_modified": true,
+          "quadrant": "TR"
         },
         {
           "code": "1020",
@@ -2887,7 +2922,8 @@
           "start": "BK",
           "no": 20,
           "name": "20번 문제",
-          "is_modified": true
+          "is_modified": true,
+          "quadrant": "BR"
         },
         {
           "code": "1021",
@@ -2918,7 +2954,8 @@
           "start": "BK",
           "no": 21,
           "name": "21번 문제",
-          "is_modified": true
+          "is_modified": true,
+          "quadrant": "BL"
         },
         {
           "code": "1022",
@@ -2949,7 +2986,8 @@
           "start": "BK",
           "no": 22,
           "name": "22번 문제",
-          "is_modified": true
+          "is_modified": true,
+          "quadrant": "TL"
         },
         {
           "code": "1023",
@@ -2976,7 +3014,8 @@
           "start": "BK",
           "no": 23,
           "name": "23번 문제",
-          "is_modified": true
+          "is_modified": true,
+          "quadrant": "TL"
         },
         {
           "code": "1024",
@@ -3007,7 +3046,8 @@
           "start": "BK",
           "no": 24,
           "name": "24번 문제",
-          "is_modified": true
+          "is_modified": true,
+          "quadrant": "BR"
         },
         {
           "code": "1025",
@@ -3038,7 +3078,8 @@
           "start": "BK",
           "no": 25,
           "name": "25번 문제",
-          "is_modified": true
+          "is_modified": true,
+          "quadrant": "TL"
         },
         {
           "code": "1026",
@@ -3069,7 +3110,8 @@
           "start": "BK",
           "no": 26,
           "name": "26번 문제",
-          "is_modified": true
+          "is_modified": true,
+          "quadrant": "TL"
         },
         {
           "code": "1027",
@@ -3100,7 +3142,8 @@
           "start": "BK",
           "no": 27,
           "name": "27번 문제",
-          "is_modified": true
+          "is_modified": true,
+          "quadrant": "TR"
         },
         {
           "code": "1028",
@@ -3131,7 +3174,8 @@
           "start": "BK",
           "no": 28,
           "name": "28번 문제",
-          "is_modified": true
+          "is_modified": true,
+          "quadrant": "TL"
         },
         {
           "code": "1029",
@@ -3162,7 +3206,8 @@
           "start": "BK",
           "no": 29,
           "name": "29번 문제",
-          "is_modified": true
+          "is_modified": true,
+          "quadrant": "BR"
         },
         {
           "code": "1030",
@@ -3193,7 +3238,8 @@
           "start": "BK",
           "no": 30,
           "name": "30번 문제",
-          "is_modified": true
+          "is_modified": true,
+          "quadrant": "BR"
         },
         {
           "code": "1031",
@@ -3224,7 +3270,8 @@
           "start": "BK",
           "no": 31,
           "name": "31번 문제",
-          "is_modified": true
+          "is_modified": true,
+          "quadrant": "BL"
         },
         {
           "code": "1032",
@@ -3255,7 +3302,8 @@
           "start": "BA",
           "no": 32,
           "name": "32번 문제",
-          "is_modified": true
+          "is_modified": true,
+          "quadrant": "TR"
         },
         {
           "code": "1033",
@@ -3286,7 +3334,8 @@
           "start": "BA",
           "no": 33,
           "name": "33번 문제",
-          "is_modified": true
+          "is_modified": true,
+          "quadrant": "TR"
         },
         {
           "code": "1034",
@@ -3317,7 +3366,8 @@
           "start": "BA",
           "no": 34,
           "name": "34번 문제",
-          "is_modified": true
+          "is_modified": true,
+          "quadrant": "TL"
         },
         {
           "code": "1035",
@@ -3348,7 +3398,8 @@
           "start": "BK",
           "no": 35,
           "name": "35번 문제",
-          "is_modified": true
+          "is_modified": true,
+          "quadrant": "TL"
         },
         {
           "code": "1036",
@@ -3379,7 +3430,8 @@
           "start": "BK",
           "no": 36,
           "name": "36번 문제",
-          "is_modified": true
+          "is_modified": true,
+          "quadrant": "BR"
         },
         {
           "code": "1037",
@@ -3410,7 +3462,8 @@
           "start": "BK",
           "no": 37,
           "name": "37번 문제",
-          "is_modified": true
+          "is_modified": true,
+          "quadrant": "BL"
         },
         {
           "code": "1038",
@@ -3441,7 +3494,8 @@
           "start": "BK",
           "no": 38,
           "name": "38번 문제",
-          "is_modified": true
+          "is_modified": true,
+          "quadrant": "BR"
         },
         {
           "code": "1039",
@@ -3472,7 +3526,8 @@
           "start": "BK",
           "no": 39,
           "name": "39번 문제",
-          "is_modified": true
+          "is_modified": true,
+          "quadrant": "TR"
         },
         {
           "code": "1040",
@@ -3503,7 +3558,8 @@
           "start": "BK",
           "no": 40,
           "name": "40번 문제",
-          "is_modified": true
+          "is_modified": true,
+          "quadrant": "TL"
         },
         {
           "code": "1041",
@@ -3534,7 +3590,8 @@
           "start": "BK",
           "no": 41,
           "name": "41번 문제",
-          "is_modified": true
+          "is_modified": true,
+          "quadrant": "BL"
         }
       ]
     },
@@ -3575,7 +3632,8 @@
           "start": "BK",
           "no": 1,
           "name": "1번 문제",
-          "is_modified": true
+          "is_modified": true,
+          "quadrant": "BR"
         },
         {
           "code": "1002",
@@ -3606,7 +3664,8 @@
           "start": "BK",
           "no": 2,
           "name": "2번 문제",
-          "is_modified": true
+          "is_modified": true,
+          "quadrant": "BL"
         },
         {
           "code": "1003",
@@ -3637,7 +3696,8 @@
           "start": "BK",
           "no": 3,
           "name": "3번 문제",
-          "is_modified": true
+          "is_modified": true,
+          "quadrant": "BR"
         },
         {
           "code": "1004",
@@ -3668,7 +3728,8 @@
           "start": "BK",
           "no": 4,
           "name": "4번 문제",
-          "is_modified": true
+          "is_modified": true,
+          "quadrant": "TR"
         },
         {
           "code": "1005",
@@ -3699,7 +3760,8 @@
           "start": "BK",
           "no": 5,
           "name": "5번 문제",
-          "is_modified": true
+          "is_modified": true,
+          "quadrant": "BR"
         },
         {
           "code": "1006",
@@ -3726,7 +3788,8 @@
           "start": "BK",
           "no": 6,
           "name": "6번 문제",
-          "is_modified": true
+          "is_modified": true,
+          "quadrant": "TL"
         },
         {
           "code": "1007",
@@ -3753,7 +3816,8 @@
           "start": "BK",
           "no": 7,
           "name": "7번 문제",
-          "is_modified": true
+          "is_modified": true,
+          "quadrant": "BL"
         },
         {
           "code": "1008",
@@ -3780,7 +3844,8 @@
           "start": "BK",
           "no": 8,
           "name": "8번 문제",
-          "is_modified": true
+          "is_modified": true,
+          "quadrant": "TL"
         },
         {
           "code": "1009",
@@ -3807,7 +3872,8 @@
           "start": "BK",
           "no": 9,
           "name": "9번 문제",
-          "is_modified": true
+          "is_modified": true,
+          "quadrant": "BL"
         },
         {
           "code": "1010",
@@ -3834,7 +3900,8 @@
           "start": "BK",
           "no": 10,
           "name": "10번 문제",
-          "is_modified": true
+          "is_modified": true,
+          "quadrant": "TL"
         },
         {
           "code": "1011",
@@ -3861,7 +3928,8 @@
           "start": "BK",
           "no": 11,
           "name": "11번 문제",
-          "is_modified": true
+          "is_modified": true,
+          "quadrant": "TR"
         },
         {
           "code": "1012",
@@ -3892,7 +3960,8 @@
           "start": "BK",
           "no": 12,
           "name": "12번 문제",
-          "is_modified": true
+          "is_modified": true,
+          "quadrant": "TL"
         },
         {
           "code": "1013",
@@ -3923,7 +3992,8 @@
           "start": "BK",
           "no": 13,
           "name": "13번 문제",
-          "is_modified": true
+          "is_modified": true,
+          "quadrant": "BL"
         },
         {
           "code": "1014",
@@ -3954,7 +4024,8 @@
           "start": "BK",
           "no": 14,
           "name": "14번 문제",
-          "is_modified": true
+          "is_modified": true,
+          "quadrant": "TL"
         },
         {
           "code": "1015",
@@ -3981,7 +4052,8 @@
           "start": "BK",
           "no": 15,
           "name": "15번 문제",
-          "is_modified": true
+          "is_modified": true,
+          "quadrant": "TL"
         },
         {
           "code": "1016",
@@ -4012,7 +4084,8 @@
           "start": "BK",
           "no": 16,
           "name": "16번 문제",
-          "is_modified": true
+          "is_modified": true,
+          "quadrant": "TR"
         },
         {
           "code": "1018",
@@ -4043,7 +4116,8 @@
           "start": "BK",
           "no": 18,
           "name": "18번 문제",
-          "is_modified": true
+          "is_modified": true,
+          "quadrant": "BR"
         },
         {
           "code": "1019",
@@ -4074,7 +4148,8 @@
           "start": "BK",
           "no": 19,
           "name": "19번 문제",
-          "is_modified": true
+          "is_modified": true,
+          "quadrant": "BL"
         },
         {
           "code": "1020",
@@ -4105,7 +4180,8 @@
           "start": "BK",
           "no": 20,
           "name": "20번 문제",
-          "is_modified": true
+          "is_modified": true,
+          "quadrant": "BR"
         },
         {
           "code": "1022",
@@ -4136,7 +4212,8 @@
           "start": "BK",
           "no": 22,
           "name": "22번 문제",
-          "is_modified": true
+          "is_modified": true,
+          "quadrant": "BL"
         },
         {
           "code": "1023",
@@ -4167,7 +4244,8 @@
           "start": "BK",
           "no": 23,
           "name": "23번 문제",
-          "is_modified": true
+          "is_modified": true,
+          "quadrant": "BR"
         },
         {
           "code": "1024",
@@ -4198,7 +4276,8 @@
           "start": "BK",
           "no": 24,
           "name": "24번 문제",
-          "is_modified": true
+          "is_modified": true,
+          "quadrant": "BR"
         },
         {
           "code": "1025",
@@ -4225,7 +4304,8 @@
           "start": "BK",
           "no": 25,
           "name": "25번 문제",
-          "is_modified": true
+          "is_modified": true,
+          "quadrant": "BL"
         },
         {
           "code": "1026",
@@ -4256,7 +4336,8 @@
           "start": "BA",
           "no": 26,
           "name": "26번 문제",
-          "is_modified": true
+          "is_modified": true,
+          "quadrant": "BR"
         },
         {
           "code": "1028",
@@ -4287,7 +4368,8 @@
           "start": "BA",
           "no": 28,
           "name": "28번 문제",
-          "is_modified": true
+          "is_modified": true,
+          "quadrant": "TR"
         },
         {
           "code": "1029",
@@ -4318,7 +4400,8 @@
           "start": "BA",
           "no": 29,
           "name": "29번 문제",
-          "is_modified": true
+          "is_modified": true,
+          "quadrant": "TR"
         },
         {
           "code": "1031",
@@ -4349,7 +4432,8 @@
           "start": "BA",
           "no": 31,
           "name": "31번 문제",
-          "is_modified": true
+          "is_modified": true,
+          "quadrant": "BR"
         },
         {
           "code": "1032",
@@ -4376,7 +4460,8 @@
           "start": "BA",
           "no": 32,
           "name": "32번 문제",
-          "is_modified": true
+          "is_modified": true,
+          "quadrant": "TR"
         },
         {
           "code": "1034",
@@ -4407,7 +4492,8 @@
           "start": "BA",
           "no": 34,
           "name": "34번 문제",
-          "is_modified": true
+          "is_modified": true,
+          "quadrant": "TL"
         },
         {
           "code": "1037",
@@ -4438,7 +4524,8 @@
           "start": "BA",
           "no": 37,
           "name": "37번 문제",
-          "is_modified": true
+          "is_modified": true,
+          "quadrant": "BL"
         },
         {
           "code": "1038",
@@ -4465,7 +4552,8 @@
           "start": "BA",
           "no": 38,
           "name": "38번 문제",
-          "is_modified": true
+          "is_modified": true,
+          "quadrant": "BR"
         },
         {
           "code": "1039",
@@ -4496,7 +4584,8 @@
           "start": "BA",
           "no": 39,
           "name": "39번 문제",
-          "is_modified": true
+          "is_modified": true,
+          "quadrant": "TR"
         },
         {
           "code": "1040",
@@ -4527,7 +4616,8 @@
           "start": "BA",
           "no": 40,
           "name": "40번 문제",
-          "is_modified": true
+          "is_modified": true,
+          "quadrant": "BL"
         },
         {
           "code": "1044",
@@ -4558,7 +4648,8 @@
           "start": "BA",
           "no": 44,
           "name": "44번 문제",
-          "is_modified": true
+          "is_modified": true,
+          "quadrant": "TR"
         },
         {
           "code": "1047",
@@ -4589,7 +4680,8 @@
           "start": "BK",
           "no": 47,
           "name": "47번 문제",
-          "is_modified": true
+          "is_modified": true,
+          "quadrant": "BR"
         },
         {
           "code": "1048",
@@ -4620,7 +4712,8 @@
           "start": "BK",
           "no": 48,
           "name": "48번 문제",
-          "is_modified": true
+          "is_modified": true,
+          "quadrant": "TL"
         },
         {
           "code": "1049",
@@ -4651,7 +4744,8 @@
           "start": "BK",
           "no": 49,
           "name": "49번 문제",
-          "is_modified": true
+          "is_modified": true,
+          "quadrant": "TL"
         },
         {
           "code": "1050",
@@ -4682,7 +4776,8 @@
           "start": "BK",
           "no": 50,
           "name": "50번 문제",
-          "is_modified": true
+          "is_modified": true,
+          "quadrant": "BL"
         },
         {
           "code": "1051",
@@ -4713,7 +4808,8 @@
           "start": "BK",
           "no": 51,
           "name": "51번 문제",
-          "is_modified": true
+          "is_modified": true,
+          "quadrant": "TR"
         },
         {
           "code": "1052",
@@ -4744,7 +4840,8 @@
           "start": "BK",
           "no": 52,
           "name": "52번 문제",
-          "is_modified": true
+          "is_modified": true,
+          "quadrant": "TR"
         },
         {
           "code": "1054",
@@ -4775,7 +4872,8 @@
           "start": "BK",
           "no": 54,
           "name": "54번 문제",
-          "is_modified": true
+          "is_modified": true,
+          "quadrant": "TL"
         },
         {
           "code": "1056",
@@ -4806,7 +4904,8 @@
           "start": "BK",
           "no": 56,
           "name": "56번 문제",
-          "is_modified": true
+          "is_modified": true,
+          "quadrant": "TR"
         },
         {
           "code": "1064",
@@ -4837,7 +4936,8 @@
           "start": "BA",
           "no": 64,
           "name": "64번 문제",
-          "is_modified": true
+          "is_modified": true,
+          "quadrant": "BL"
         }
       ]
     },
