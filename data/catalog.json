@@ -2016,7 +2016,7 @@
         "code": "gpt_anti_stage_01",
         "title": "1단계",
         "chapterCount": 13,
-        "totalProblems": 425,
+        "totalProblems": 439,
         "chapters": [
           {
             "code": "gpt_anti_01_01",
@@ -2040,7 +2040,8 @@
             "title": "3. 활로와 단수 (12제)",
             "chapter": "3. 활로와 단수",
             "problemCount": 12,
-            "problemsCount": 12
+            "problemsCount": 12,
+            "problems": 20
           },
           {
             "code": "gpt_anti_01_04",
@@ -2048,7 +2049,8 @@
             "title": "4. 단수치기 (14제)",
             "chapter": "4. 단수치기",
             "problemCount": 14,
-            "problemsCount": 14
+            "problemsCount": 14,
+            "problems": 20
           },
           {
             "code": "gpt_anti_01_05",
@@ -2124,7 +2126,7 @@
           }
         ],
         "file": "book_gpt_anti_stage_01.json",
-        "_buildVer": "v24-ch3-auto-atari-evaluation"
+        "_buildVer": "v25-ch3-ch4-restored-20p"
       }
     ]
   },
@@ -17012,7 +17014,7 @@
         "code": "gpt_anti_stage_01",
         "file": "book_gpt_anti_stage_01.json",
         "chapterCount": 13,
-        "totalProblems": 425,
+        "totalProblems": 439,
         "chapters": [
           {
             "code": "gpt_anti_01_01",
@@ -17036,7 +17038,8 @@
             "title": "3. 활로와 단수 (12제)",
             "chapter": "3. 활로와 단수",
             "problemCount": 12,
-            "problemsCount": 12
+            "problemsCount": 12,
+            "problems": 20
           },
           {
             "code": "gpt_anti_01_04",
@@ -17044,7 +17047,8 @@
             "title": "4. 단수치기 (14제)",
             "chapter": "4. 단수치기",
             "problemCount": 14,
-            "problemsCount": 14
+            "problemsCount": 14,
+            "problems": 20
           },
           {
             "code": "gpt_anti_01_05",
@@ -17119,7 +17123,7 @@
             "problemsCount": 25
           }
         ],
-        "_buildVer": "v24-ch3-auto-atari-evaluation"
+        "_buildVer": "v25-ch3-ch4-restored-20p"
       },
       {
         "title": "2단계",
