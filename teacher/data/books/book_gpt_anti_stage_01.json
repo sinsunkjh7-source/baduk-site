@@ -5,9 +5,9 @@
   "bookCode": "gpt_anti_stage_01",
   "code": "gpt_anti_stage_01",
   "chapterCount": 12,
-  "totalProblems": 424,
-  "problemCount": 424,
-  "_buildVer": "v17-ch1-ch2-random-4quadrants",
+  "totalProblems": 425,
+  "problemCount": 425,
+  "_buildVer": "v18-ch2-24probs-director-final",
   "chapters": [
     {
       "code": "gpt_anti_01_01",
@@ -422,9 +422,9 @@
     {
       "code": "gpt_anti_01_02",
       "chapterCode": "gpt_anti_01_02",
-      "title": "2. 돌의 활로와 활로막기(2) (23제)",
+      "title": "2. 돌의 활로와 활로막기(2) (24제)",
       "chapter": "2. 돌의 활로와 활로막기(2)",
-      "problemCount": 23,
+      "problemCount": 24,
       "problemsCount": 44,
       "problems": [
         {
@@ -1093,6 +1093,26 @@
           "size": "6",
           "start": "BK",
           "quadrant": "TL"
+        },
+        {
+          "code": "teacher_mwsmjjy3_zez47gs7_0",
+          "type": "3",
+          "question": "2. 돌의 활로와 활로막기(2)\r\n문제를 풀어보세요.",
+          "hint": "",
+          "data": ";B[rp];W[rq];B[pr];W[qr];W[rr];W[sr];B[ps];B[qs];W[rs];W[ss]",
+          "answer1": ";B[qq];B[sq]",
+          "sample": "",
+          "answer": "",
+          "auto": "false",
+          "size": "4",
+          "start": "B",
+          "source_book": "선생님 직접 작성",
+          "source_chapter": "",
+          "source_p_num": 24,
+          "no": 2,
+          "name": "2번 문제",
+          "answerMode": "unordered",
+          "quadrant": "BR"
         }
       ]
     },
