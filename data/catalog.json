@@ -2037,8 +2037,8 @@
           {
             "code": "gpt_anti_01_03",
             "chapterCode": "gpt_anti_01_03",
-            "title": "3. 단수의 원리와 판별 (26제)",
-            "chapter": "3. 단수의 원리와 판별 (26제)",
+            "title": "3. 활로와 단수 (26제)",
+            "chapter": "3. 활로와 단수",
             "problemCount": 26,
             "problemsCount": 26
           },
@@ -2116,7 +2116,7 @@
           }
         ],
         "file": "book_gpt_anti_stage_01.json",
-        "_buildVer": "v18-ch2-24probs-director-final"
+        "_buildVer": "v19-ch3-title-hwalro-dansu"
       }
     ]
   },
@@ -17025,8 +17025,8 @@
           {
             "code": "gpt_anti_01_03",
             "chapterCode": "gpt_anti_01_03",
-            "title": "3. 단수의 원리와 판별 (26제)",
-            "chapter": "3. 단수의 원리와 판별 (26제)",
+            "title": "3. 활로와 단수 (26제)",
+            "chapter": "3. 활로와 단수",
             "problemCount": 26,
             "problemsCount": 26
           },
@@ -17103,7 +17103,7 @@
             "problemsCount": 25
           }
         ],
-        "_buildVer": "v18-ch2-24probs-director-final"
+        "_buildVer": "v19-ch3-title-hwalro-dansu"
       },
       {
         "title": "2단계",
