@@ -409,22 +409,17 @@
         var savedCustom = localStorage.getItem('teacher_book_custom_' + code);
         if (savedCustom) {
           var customData = JSON.parse(savedCustom);
-          if (code.indexOf('claude_') === 0 && isStaleBookCustom(code, customData)) { 
-            localStorage.removeItem('teacher_book_custom_' + code); 
-          } else if (code === 'gpt_anti_stage_01' && isStaleBookCustom(code, customData)) {
-            // 🌟 원장님의 소중한 수정/삭제 내역 보존: 새로고침 시 빌드 버전 차이로 자동 삭제하지 않고 커스텀 편집본 최우선 유지
-            var catVer = null;
-            (state.catalog || []).forEach(function (s) {
-              (s.books || []).forEach(function (b) { if (b.code === code) catVer = b._buildVer; });
-            });
-            if (catVer) customData._buildVer = catVer;
-          } else if ((code === 'tech_atari' && customData._buildVer !== 'v2-clean') || (code === 'new_tech_chokchoksu' && customData._buildVer !== 'v23-ch8-teacher-clean-200') || (code === 'new_tech_chuk' && customData._buildVer !== 'v17-ch6-138') || (code === 'new_tech_jangmun' && (customData._buildVer !== 'v30-ch9-9probs-179-1794267464' || !customData.chapters || customData.chapters.length !== 9)) || (code === 'new_tech_hwangyeok' && customData._buildVer !== 'v13-ch9-256probs-comprehensive-sahwal-hwangyeok') || (code === 'new_tech_meokyeochigi' && customData._buildVer !== 'v9-ch9-224probs-advanced-sahwal') || (code === 'new_tech_pae' && customData._buildVer !== 'v11-ch11-274probs-pae-master') || (code === 'new_tech_chaksu_geumji' && customData._buildVer !== 'v5-ch5-118probs-chaksu-final-master') || (code === 'new_tech_sahwal' && (customData._buildVer !== 'v22-sahwal-filtered-okjip-26p-208' || !customData.chapters || customData.chapters.length !== 8 || customData.chapters.some(function(c){ return !c.problems || c.problems.length === 0; })))) { localStorage.removeItem('teacher_book_custom_' + code); } else if (customData && Array.isArray(customData.chapters) && (customData.totalProblems > 0 || customData.chapters.some(function(c){ return (c.problems||[]).length > 0; }))) {
+          // 🌟 원장님의 삭제/수정 편집본 최우선 적용 (어떤 경우에도 덮어쓰거나 롤백하지 않고 즉시 로드)
+          if (customData && Array.isArray(customData.chapters) && customData.chapters.length > 0) {
             customData.bookCode = code;
             state.currentBook = customData;
             currentBookTitle.textContent = customData.book || customData.title || ('교재 ' + code);
             populateChapters(customData, isRestoring);
             updateBookOptionCountUI(code, customData);
             return;
+          }
+          if (code.indexOf('claude_') === 0 && isStaleBookCustom(code, customData)) { 
+            localStorage.removeItem('teacher_book_custom_' + code); 
           }
         }
       } catch (e) {
