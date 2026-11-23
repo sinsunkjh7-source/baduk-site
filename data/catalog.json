@@ -2126,7 +2126,7 @@
           }
         ],
         "file": "book_gpt_anti_stage_01.json",
-        "_buildVer": "v25-ch3-ch4-restored-20p"
+        "_buildVer": "v26-modified-badge-ch5-ch6"
       }
     ]
   },
@@ -17123,7 +17123,7 @@
             "problemsCount": 25
           }
         ],
-        "_buildVer": "v25-ch3-ch4-restored-20p"
+        "_buildVer": "v26-modified-badge-ch5-ch6"
       },
       {
         "title": "2단계",

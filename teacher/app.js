@@ -166,6 +166,10 @@
   function saveCustomBookState(statusText) {
     var code = getBookCode();
     if (!code || !state.currentBook) return;
+    var curP = state.currentProblems ? state.currentProblems[state.currentProblemIndex] : null;
+    if (curP && curP.source_book !== '선생님 직접 작성') {
+      curP.is_modified = true;
+    }
     if (code === 'new_tech_chuk') {
       state.currentBook._buildVer = 'v16-ch5-teacher-final-126';
     }
@@ -923,6 +927,9 @@
         if (p.source_book) {
           var srcStr = p.source_book + (p.source_p_num ? (' ' + p.source_p_num + '번') : '');
           metaHtml += '<span class="badge-source" style="background:#fdf2f8;color:#be185d;padding:2px 6px;border-radius:4px;font-weight:600;border:1px solid #fbcfe8;">출처: ' + srcStr + '</span>';
+        }
+        if (p.is_modified && p.source_book !== '선생님 직접 작성') {
+          metaHtml += '<span class="badge-modified" style="background:#eff6ff;color:#1d4ed8;padding:2px 6px;border-radius:4px;font-weight:700;border:1px solid #bfdbfe;">✏️ 선생님 수정</span>';
         }
         // 🌟 복습 뱃지: hide_review_badge가 true인 경우(입문 1섹션)에는 학생에게 복습으로 안내하지 않음!
         if (p.is_review && !p.hide_review_badge) {
@@ -2737,6 +2744,10 @@
   function saveCustomBookState(statusText) {
     var code = getBookCode();
     if (!code || !state.currentBook) return;
+    var curP = state.currentProblems ? state.currentProblems[state.currentProblemIndex] : null;
+    if (curP && curP.source_book !== '선생님 직접 작성') {
+      curP.is_modified = true;
+    }
     if (code === 'new_tech_chuk') {
       state.currentBook._buildVer = 'v16-ch5-teacher-final-126';
     }
@@ -4228,6 +4239,12 @@
         else if (p.code) srcText += ' #' + p.code;
         srcSpan.textContent = srcText;
         footer.appendChild(srcSpan);
+        if (p.is_modified && p.source_book !== '선생님 직접 작성') {
+          var modBadge = document.createElement('span');
+          modBadge.style.cssText = 'background:#eff6ff;color:#1d4ed8;padding:1px 5px;border-radius:3px;font-size:11px;font-weight:700;border:1px solid #bfdbfe;margin-left:auto;';
+          modBadge.textContent = '✏️ 수정';
+          footer.appendChild(modBadge);
+        }
         card.appendChild(footer);
 
         // Drag and drop events
