@@ -7,7 +7,7 @@
   "chapterCount": 13,
   "totalProblems": 415,
   "problemCount": 415,
-  "_buildVer": "v32-ch6-ttanaegi2-20p",
+  "_buildVer": "v33-ch5-ttanaegi1",
   "chapters": [
     {
       "code": "gpt_anti_01_01",
@@ -2288,8 +2288,8 @@
     {
       "code": "gpt_anti_01_05",
       "chapterCode": "gpt_anti_01_05",
-      "title": "5. 단수된 돌 따내기 (41제)",
-      "chapter": "5. 단수된 돌 따내기 (41제)",
+      "title": "5. 단수된 돌 따내기(1) (41제)",
+      "chapter": "5. 단수된 돌 따내기(1) (41제)",
       "problemCount": 41,
       "problemsCount": 66,
       "problems": [
