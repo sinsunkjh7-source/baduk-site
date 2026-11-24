@@ -2027,7 +2027,7 @@
           }
         ],
         "file": "book_gpt_anti_stage_02.json",
-        "_buildVer": "v17-stage02-ch5-edited"
+        "_buildVer": "v18-stage02-ch5-hint"
       },
       {
         "code": "gpt_anti_stage_01",
@@ -17185,7 +17185,7 @@
             "problemCount": 0
           }
         ],
-        "_buildVer": "v17-stage02-ch5-edited"
+        "_buildVer": "v18-stage02-ch5-hint"
       }
     ]
   }
