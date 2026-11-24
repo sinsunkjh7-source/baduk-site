@@ -7,7 +7,7 @@
   "chapterCount": 5,
   "totalProblems": 152,
   "problemCount": 152,
-  "_buildVer": "v2-stage02-5chapters",
+  "_buildVer": "v3-stage02-ch5-ourside",
   "chapters": [
     {
       "code": "gpt_anti_02_01",
@@ -4306,8 +4306,8 @@
     {
       "code": "gpt_anti_02_05",
       "chapterCode": "gpt_anti_02_05",
-      "title": "5. 자기돌 쪽으로 단수치기",
-      "chapter": "5. 자기돌 쪽으로 단수치기",
+      "title": "5. 우리 편 방향으로 단수치기",
+      "chapter": "5. 우리 편 방향으로 단수치기",
       "problemCount": 0,
       "problemsCount": 0,
       "problems": []
