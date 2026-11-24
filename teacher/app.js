@@ -4174,10 +4174,20 @@
 
       setupFilterTabs();
 
+      // 출처가 번갈아 섞인 단원(난이도순 배열 등)은 띠를 넣으면 카드가 한 줄에 하나씩 쌓이므로 띠를 생략한다.
+      var runCount = 0, distinctSeries = {}, prevSeries = null;
+      state.currentProblems.forEach(function (p) {
+        var s = normalizeSeriesName(p.source_series);
+        if (!s) return;
+        distinctSeries[s] = true;
+        if (s !== prevSeries) { runCount++; prevSeries = s; }
+      });
+      var showSeriesHeaders = runCount <= Object.keys(distinctSeries).length;
+
       var lastSeries = null;
       state.currentProblems.forEach(function (p, idx) {
         var sSeries = normalizeSeriesName(p.source_series);
-        if (sSeries && sSeries !== lastSeries) {
+        if (showSeriesHeaders && sSeries && sSeries !== lastSeries) {
           lastSeries = sSeries;
           var sHeader = document.createElement('div');
           var sClass = sSeries === '씽크탱크' ? 'think' : (sSeries === '논리바둑' ? 'logic' : 'alpha');
