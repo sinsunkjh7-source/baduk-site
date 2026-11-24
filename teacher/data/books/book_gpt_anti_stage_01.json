@@ -7,7 +7,7 @@
   "chapterCount": 13,
   "totalProblems": 399,
   "problemCount": 399,
-  "_buildVer": "v43-ch8-add-30th",
+  "_buildVer": "v44-ch8-30th-edited",
   "chapters": [
     {
       "code": "gpt_anti_01_01",
@@ -6660,7 +6660,7 @@
           "source_chapter": "3. 양단수",
           "question": "백△를 양단수 치세요.",
           "hint": "양단수란 한 수로 두 곳을 동시에 단수치는 방법입니다.",
-          "data": ";B[cq];B[cp];B[dr];B[do];B[en];B[fn];B[go];W[dp];W[dq];W[eo];W[fo];W[gp];W[fq];W[er];T[dq];T[dp];T[eo];T[fo]",
+          "data": ";B[dn];B[en];B[fn];W[co];B[do];W[eo];W[fo];B[go];B[ho];B[cp];W[dp];W[gp];B[hp];B[cq];W[dq];W[fq];W[hq];B[br];W[cr];B[dr];W[er];B[ds];T[dq];T[dp];T[eo];T[fo]",
           "answer1": ";B[ep]",
           "answer2": "",
           "answer3": "",
@@ -6671,7 +6671,7 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "is_modified": false
+          "is_modified": true
         }
       ]
     },
