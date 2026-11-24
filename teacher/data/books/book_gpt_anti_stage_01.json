@@ -5,9 +5,9 @@
   "bookCode": "gpt_anti_stage_01",
   "code": "gpt_anti_stage_01",
   "chapterCount": 13,
-  "totalProblems": 398,
-  "problemCount": 398,
-  "_buildVer": "v42-ch8-edited-text",
+  "totalProblems": 399,
+  "problemCount": 399,
+  "_buildVer": "v43-ch8-add-30th",
   "chapters": [
     {
       "code": "gpt_anti_01_01",
@@ -5803,8 +5803,8 @@
       "chapterCode": "gpt_anti_01_14",
       "title": "8. 양단수",
       "chapter": "8. 양단수",
-      "problemCount": 29,
-      "problemsCount": 29,
+      "problemCount": 30,
+      "problemsCount": 30,
       "problems": [
         {
           "code": "yd1019",
@@ -6643,6 +6643,35 @@
           "size": "4",
           "start": "BK",
           "is_modified": true
+        },
+        {
+          "code": "yd39565",
+          "type": "1",
+          "curriculum_type": "필수",
+          "is_review": false,
+          "review_type": "해당 없음",
+          "review_detail": "일반 본문 진도 문항",
+          "hide_review_badge": false,
+          "section_idx": "1",
+          "section_title": "01. 양단수",
+          "source_series": "알파바둑",
+          "source_book": "알파바둑 3권",
+          "source_p_num": "5",
+          "source_chapter": "3. 양단수",
+          "question": "백△를 양단수 치세요.",
+          "hint": "양단수란 한 수로 두 곳을 동시에 단수치는 방법입니다.",
+          "data": ";B[cq];B[cp];B[dr];B[do];B[en];B[fn];B[go];W[dp];W[dq];W[eo];W[fo];W[gp];W[fq];W[er];T[dq];T[dp];T[eo];T[fo]",
+          "answer1": ";B[ep]",
+          "answer2": "",
+          "answer3": "",
+          "answer4": "",
+          "answer5": "",
+          "sample": "",
+          "answer": "",
+          "auto": "false",
+          "size": "4",
+          "start": "BK",
+          "is_modified": false
         }
       ]
     },
