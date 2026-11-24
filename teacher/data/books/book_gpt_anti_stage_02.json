@@ -7,7 +7,7 @@
   "chapterCount": 5,
   "totalProblems": 148,
   "problemCount": 148,
-  "_buildVer": "v13-stage02-ch5-30",
+  "_buildVer": "v14-stage02-ch4-edited",
   "chapters": [
     {
       "code": "gpt_anti_02_01",
@@ -2511,9 +2511,9 @@
           "source_book": "씽크탱크 1권",
           "source_p_num": "2",
           "source_chapter": "10. 끊으면서 단수치기",
-          "question": "흑이 둘 차례입니다. 백이 서로 연결하지 못하도록 끊으면서 단수쳐 보세요.",
+          "question": "백△를 끊으면서 단수쳐서 잡아보세요.",
           "hint": "돌이 연결되면 활로가 늘어나서 잡기가 어렵습니다. 따라서 상대가 연결되지 않도록 끊으면서 단수를 쳐야합니다.",
-          "data": ";W[db];W[ec];B[cb];B[dc];B[dd];T[db]",
+          "data": ";B[cb];W[db];B[dc];W[ec];B[dd];W[ed];T[db]",
           "answer1": ";B[eb]",
           "answer2": "",
           "answer3": "",
@@ -2524,7 +2524,7 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "is_modified": false
+          "is_modified": true
         },
         {
           "code": "cd996",
@@ -2540,9 +2540,9 @@
           "source_book": "씽크탱크 1권",
           "source_p_num": "3",
           "source_chapter": "10. 끊으면서 단수치기",
-          "question": "흑이 둘 차례입니다. 백이 서로 연결하지 못하도록 끊으면서 단수쳐 보세요.",
+          "question": "백△를 끊으면서 단수쳐서 잡아보세요.",
           "hint": "돌이 연결되면 활로가 늘어나서 잡기가 어렵습니다. 따라서 상대가 연결되지 않도록 끊으면서 단수를 쳐야합니다.",
-          "data": ";W[ob];W[nc];W[nd];B[oc];B[pc];B[pb];T[ob]",
+          "data": ";W[oa];B[pa];W[ob];B[pb];W[kc];W[nc];B[oc];B[pc];W[nd];T[ob];T[oa]",
           "answer1": ";B[nb]",
           "answer2": "",
           "answer3": "",
@@ -2553,7 +2553,7 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "is_modified": false
+          "is_modified": true
         },
         {
           "code": "cd6575",
@@ -2569,20 +2569,17 @@
           "source_book": "논리바둑 1권",
           "source_p_num": "3",
           "source_chapter": "10. 끊으면서 단수치기",
-          "question": "흑이 둘 차례입니다. 백이 서로 연결하지 못하도록 끊으면서 단수쳐 보세요.",
+          "question": "백△를 끊으면서 단수쳐서 잡아보세요.",
           "hint": "상대방이 연결하지 못하게 끊으면서 단수를 쳐야 합니다.",
-          "data": ";B[pq];B[or];B[nr];B[mq];W[oq];W[pp];T[oq]",
-          "answer1": ";B[op]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
+          "data": ";W[qk];W[po];W[qo];B[mp];W[op];B[pp];B[qp];B[nq];B[oq];T[op]",
+          "answer1": ";B[oo]",
           "sample": "",
           "answer": "",
           "auto": "false",
           "size": "4",
-          "start": "BA",
-          "is_modified": false
+          "start": "B",
+          "is_modified": true,
+          "answerMode": "unordered"
         },
         {
           "code": "cd994",
@@ -2598,9 +2595,9 @@
           "source_book": "씽크탱크 1권",
           "source_p_num": "1",
           "source_chapter": "10. 끊으면서 단수치기",
-          "question": "흑이 둘 차례입니다. 백이 서로 연결하지 못하도록 끊으면서 단수쳐 보세요.",
+          "question": "백△를 끊으면서 단수쳐서 잡아보세요.",
           "hint": "돌이 연결되면 활로가 늘어나서 잡기가 어렵습니다. 따라서 상대가 연결되지 않도록 끊으면서 단수를 쳐야합니다.",
-          "data": ";W[br];W[cq];W[dq];W[fq];B[ar];B[bq];B[cp];B[bo];T[br]",
+          "data": ";B[dn];B[bo];B[do];W[eo];B[cp];W[dp];B[bq];W[cq];W[dq];W[fq];B[ar];W[br];T[br]",
           "answer1": ";B[cr]",
           "answer2": "",
           "answer3": "",
@@ -2611,7 +2608,7 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "is_modified": false
+          "is_modified": true
         },
         {
           "code": "cd998",
@@ -2627,9 +2624,9 @@
           "source_book": "씽크탱크 1권",
           "source_p_num": "5",
           "source_chapter": "10. 끊으면서 단수치기",
-          "question": "흑이 둘 차례입니다. 백이 서로 연결하지 못하도록 끊으면서 단수쳐 보세요.",
+          "question": "백△를 끊으면서 단수쳐서 잡아보세요.",
           "hint": "돌이 연결되면 활로가 늘어나서 잡기가 어렵습니다. 따라서 상대가 연결되지 않도록 끊으면서 단수를 쳐야합니다.\r\n",
-          "data": ";W[cd];W[cc];W[db];W[eb];B[ea];B[fb];B[ec];B[dc];T[eb];T[db]",
+          "data": ";B[ea];B[fa];W[db];W[eb];W[fb];B[gb];W[cc];B[dc];B[ec];B[fc];W[cd];W[cg];T[eb];T[db];T[fb]",
           "answer1": ";B[cb]",
           "answer2": "",
           "answer3": "",
@@ -2640,7 +2637,7 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "is_modified": false
+          "is_modified": true
         },
         {
           "code": "cd6574",
@@ -2656,9 +2653,9 @@
           "source_book": "논리바둑 1권",
           "source_p_num": "2",
           "source_chapter": "10. 끊으면서 단수치기",
-          "question": "흑이 둘 차례입니다. 백이 서로 연결하지 못하도록 끊으면서 단수쳐 보세요.",
+          "question": "백△를 끊으면서 단수쳐서 잡아보세요.",
           "hint": "상대방이 연결하지 못하게 끊으면서 단수를 쳐야 합니다.",
-          "data": ";B[qb];B[pb];B[qc];B[qd];B[pe];W[pc];W[ob];W[mc];T[pc]",
+          "data": ";W[ob];B[pb];W[jc];W[mc];W[pc];B[qc];B[qd];B[pe];T[pc]",
           "answer1": ";B[oc]",
           "answer2": "",
           "answer3": "",
@@ -2669,7 +2666,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "is_modified": false
+          "is_modified": true
         },
         {
           "code": "cd6591",
@@ -2685,9 +2682,9 @@
           "source_book": "논리바둑 1권",
           "source_p_num": "19",
           "source_chapter": "10. 끊으면서 단수치기",
-          "question": "흑이 둘 차례입니다. 백이 서로 연결하지 못하도록 끊으면서 단수쳐 보세요.",
+          "question": "백△를 끊으면서 단수쳐서 잡아보세요.",
           "hint": "상대방이 연결하지 못하게 끊으면서 단수를 쳐야 합니다.",
-          "data": ";B[qq];B[pq];B[rp];B[ro];B[qn];W[qp];W[qo];W[oo];T[qo];T[qp]",
+          "data": ";W[pm];W[qm];W[rm];W[nn];B[pn];B[qn];W[rn];W[oo];W[qo];B[ro];W[qp];B[rp];B[pq];B[qq];T[qo];T[qp]",
           "answer1": ";B[po]",
           "answer2": "",
           "answer3": "",
@@ -2698,7 +2695,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "is_modified": false
+          "is_modified": true
         },
         {
           "code": "cd1010",
@@ -2714,9 +2711,9 @@
           "source_book": "씽크탱크 1권",
           "source_p_num": "17",
           "source_chapter": "10. 끊으면서 단수치기",
-          "question": "흑이 둘 차례입니다. 백이 서로 연결하지 못하도록 끊으면서 단수쳐 보세요.",
+          "question": "백△를 끊으면서 단수쳐서 잡아보세요.",
           "hint": "돌이 연결되면 활로가 늘어나서 잡기가 어렵습니다. 따라서 상대가 연결되지 않도록 끊으면서 단수를 쳐야합니다.",
-          "data": ";W[br];W[cr];W[dq];W[dp];W[fq];B[eq];B[eo];B[do];B[cp];B[cq];T[dp];T[dq]",
+          "data": ";B[cn];W[bo];W[co];B[do];B[eo];B[cp];W[dp];B[cq];W[dq];B[eq];W[fq];W[hq];W[br];W[cr];T[dp];T[dq]",
           "answer1": ";B[dr]",
           "answer2": "",
           "answer3": "",
@@ -2727,7 +2724,7 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "is_modified": false
+          "is_modified": true
         },
         {
           "code": "cd6577",
@@ -2743,9 +2740,9 @@
           "source_book": "논리바둑 1권",
           "source_p_num": "5",
           "source_chapter": "10. 끊으면서 단수치기",
-          "question": "흑이 둘 차례입니다. 백이 서로 연결하지 못하도록 끊으면서 단수쳐 보세요.",
+          "question": "백△를 끊으면서 단수쳐서 잡아보세요.",
           "hint": "상대방이 연결하지 못하게 끊으면서 단수를 쳐야 합니다.",
-          "data": ";B[dc];B[dd];B[eb];B[fb];B[gc];W[ec];W[fc];W[gd];W[hd];T[fc];T[ec]",
+          "data": ";W[cb];W[db];B[eb];B[fb];B[ib];W[jb];W[cc];B[dc];W[ec];W[fc];B[gc];B[hc];W[ic];B[dd];W[gd];W[hd];W[id];W[be];T[fc];T[ec]",
           "answer1": ";B[fd]",
           "answer2": "",
           "answer3": "",
@@ -2756,7 +2753,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "is_modified": false
+          "is_modified": true
         },
         {
           "code": "cd1011",
@@ -2772,9 +2769,9 @@
           "source_book": "씽크탱크 1권",
           "source_p_num": "18",
           "source_chapter": "10. 끊으면서 단수치기",
-          "question": "흑이 둘 차례입니다. 백이 서로 연결하지 못하도록 끊으면서 단수쳐 보세요.",
+          "question": "백△를 끊으면서 단수쳐서 잡아보세요.",
           "hint": "돌이 연결되면 활로가 늘어나서 잡기가 어렵습니다. 따라서 상대가 연결되지 않도록 끊으면서 단수를 쳐야합니다.",
-          "data": ";W[pc];W[pd];W[qe];W[re];B[qd];B[qc];B[pb];B[oc];B[oe];T[pc];T[pd]",
+          "data": ";B[pb];W[qb];W[rb];B[oc];W[pc];B[qc];W[pd];B[qd];B[oe];W[qe];W[rf];T[pc];T[pd]",
           "answer1": ";B[pe]",
           "answer2": "",
           "answer3": "",
@@ -2785,7 +2782,7 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "is_modified": false
+          "is_modified": true
         },
         {
           "code": "cd997",
@@ -2801,9 +2798,9 @@
           "source_book": "씽크탱크 1권",
           "source_p_num": "4",
           "source_chapter": "10. 끊으면서 단수치기",
-          "question": "흑이 둘 차례입니다. 백이 서로 연결하지 못하도록 끊으면서 단수쳐 보세요.",
+          "question": "백△를 끊으면서 단수쳐서 잡아보세요.",
           "hint": "돌이 연결되면 활로가 늘어나서 잡기가 어렵습니다. 따라서 상대가 연결되지 않도록 끊으면서 단수를 쳐야합니다.\r\n",
-          "data": ";W[pr];W[qq];W[qp];W[oq];W[nq];W[mr];B[or];B[pq];B[pp];B[po];B[qo];T[pr]",
+          "data": ";B[qm];B[rn];B[po];B[qo];W[ro];B[pp];W[qp];W[sp];W[lq];W[nq];W[oq];B[pq];W[qq];W[mr];B[nr];B[or];W[pr];T[pr]",
           "answer1": ";B[qr]",
           "answer2": "",
           "answer3": "",
@@ -2814,7 +2811,7 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "is_modified": false
+          "is_modified": true
         },
         {
           "code": "cd6576",
@@ -2830,9 +2827,9 @@
           "source_book": "논리바둑 1권",
           "source_p_num": "4",
           "source_chapter": "10. 끊으면서 단수치기",
-          "question": "흑이 둘 차례입니다. 백이 서로 연결하지 못하도록 끊으면서 단수쳐 보세요.",
+          "question": "백△를 끊으면서 단수쳐서 잡아보세요.",
           "hint": "상대방이 연결하지 못하게 끊으면서 단수를 쳐야 합니다.",
-          "data": ";B[cr];B[dq];B[dp];B[do];B[dn];B[co];W[cp];W[bo];W[cn];W[cm];W[dm];T[cp]",
+          "data": ";W[cl];W[dm];W[fm];W[bn];W[cn];B[dn];W[bo];B[co];B[do];W[cp];B[dp];B[gp];B[dq];B[cr];T[cp]",
           "answer1": ";B[bp]",
           "answer2": "",
           "answer3": "",
@@ -2843,7 +2840,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "is_modified": false
+          "is_modified": true
         },
         {
           "code": "cd6580",
@@ -2859,9 +2856,9 @@
           "source_book": "논리바둑 1권",
           "source_p_num": "8",
           "source_chapter": "10. 끊으면서 단수치기",
-          "question": "흑이 둘 차례입니다. 백이 서로 연결하지 못하도록 끊으면서 단수쳐 보세요.",
+          "question": "백△를 끊으면서 단수쳐서 잡아보세요.",
           "hint": "상대방이 연결하지 못하게 끊으면서 단수를 쳐야 합니다.",
-          "data": ";B[dc];B[cc];B[bd];B[de];B[cf];W[cd];W[dd];W[fe];W[ec];W[eb];T[dd];T[cd]",
+          "data": ";W[cb];W[eb];B[cc];B[dc];W[ec];W[gc];B[bd];W[cd];W[dd];B[de];W[fe];B[cf];T[dd];T[cd]",
           "answer1": ";B[ed]",
           "answer2": "",
           "answer3": "",
@@ -2872,7 +2869,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "is_modified": false
+          "is_modified": true
         },
         {
           "code": "cd1013",
@@ -2888,9 +2885,9 @@
           "source_book": "씽크탱크 1권",
           "source_p_num": "20",
           "source_chapter": "10. 끊으면서 단수치기",
-          "question": "흑이 둘 차례입니다. 백이 서로 연결하지 못하도록 끊으면서 단수쳐 보세요.",
+          "question": "백△를 끊으면서 단수쳐서 잡아보세요.",
           "hint": "돌이 연결되면 활로가 늘어나서 잡기가 어렵습니다. 따라서 상대가 연결되지 않도록 끊으면서 단수를 쳐야합니다.",
-          "data": ";W[pd];W[od];W[ne];W[nf];W[mc];B[oe];B[pe];B[qd];B[qc];B[oc];T[od];T[pd]",
+          "data": ";B[pa];B[ob];W[pb];B[qb];W[kc];W[mc];W[pc];B[qc];W[od];W[pd];B[qd];W[ne];B[oe];B[pe];W[nf];T[od];T[pd];T[pb];T[pc]",
           "answer1": ";B[nd]",
           "answer2": "",
           "answer3": "",
@@ -2901,7 +2898,7 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "is_modified": false
+          "is_modified": true
         },
         {
           "code": "cd6592",
@@ -2917,9 +2914,9 @@
           "source_book": "논리바둑 1권",
           "source_p_num": "20",
           "source_chapter": "10. 끊으면서 단수치기",
-          "question": "흑이 둘 차례입니다. 백이 서로 연결하지 못하도록 끊으면서 단수쳐 보세요.",
+          "question": "백△를 끊으면서 단수쳐서 잡아보세요.",
           "hint": "상대방이 연결하지 못하게 끊으면서 단수를 쳐야 합니다.",
-          "data": ";B[rp];B[qq];B[oq];B[qo];B[po];B[oo];W[qp];W[pp];W[op];W[mp];T[op];T[pp];T[qp]",
+          "data": ";W[mn];B[oo];B[po];B[qo];W[mp];W[op];W[pp];W[qp];B[rp];B[oq];W[qq];B[rq];W[mr];B[qr];T[op];T[pp];T[qp];T[qq]",
           "answer1": ";B[np]",
           "answer2": "",
           "answer3": "",
@@ -2930,7 +2927,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "is_modified": false
+          "is_modified": true
         },
         {
           "code": "cd1012",
@@ -2946,9 +2943,9 @@
           "source_book": "씽크탱크 1권",
           "source_p_num": "19",
           "source_chapter": "10. 끊으면서 단수치기",
-          "question": "흑이 둘 차례입니다. 백이 서로 연결하지 못하도록 끊으면서 단수쳐 보세요.",
+          "question": "백△를 끊으면서 단수쳐서 잡아보세요.",
           "hint": "돌이 연결되면 활로가 늘어나서 잡기가 어렵습니다. 따라서 상대가 연결되지 않도록 끊으면서 단수를 쳐야합니다.",
-          "data": ";W[br];W[cr];W[dq];W[dp];W[co];W[bo];B[cp];B[cq];B[dr];B[er];B[ep];T[dq];T[dp]",
+          "data": ";W[bn];W[en];W[co];B[cp];W[dp];B[ep];B[cq];W[dq];B[hq];W[br];W[cr];B[dr];B[er];T[dq];T[dp]",
           "answer1": ";B[do]",
           "answer2": "",
           "answer3": "",
@@ -2959,7 +2956,7 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "is_modified": false
+          "is_modified": true
         },
         {
           "code": "cd1004",
@@ -2975,9 +2972,9 @@
           "source_book": "씽크탱크 1권",
           "source_p_num": "11",
           "source_chapter": "10. 끊으면서 단수치기",
-          "question": "흑이 둘 차례입니다. 백이 서로 연결하지 못하도록 끊으면서 단수쳐 보세요.",
+          "question": "백△를 끊으면서 단수쳐서 잡아보세요.",
           "hint": "돌이 연결되면 활로가 늘어나서 잡기가 어렵습니다. 따라서 상대가 연결되지 않도록 끊으면서 단수를 쳐야합니다.",
-          "data": ";W[bc];W[bd];W[cd];W[cf];W[dc];W[ec];B[fd];B[fc];B[eb];B[db];B[cb];B[cc];T[ec];T[dc]",
+          "data": ";W[bb];B[cb];B[db];B[eb];W[fb];W[gb];W[bc];B[cc];W[dc];W[ec];B[fc];W[hc];W[bd];W[cd];B[fd];B[ge];W[cf];T[ec];T[dc]",
           "answer1": ";B[dd]",
           "answer2": "",
           "answer3": "",
@@ -2988,7 +2985,7 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "is_modified": false
+          "is_modified": true
         },
         {
           "code": "cd1009",
@@ -3004,9 +3001,9 @@
           "source_book": "씽크탱크 1권",
           "source_p_num": "16",
           "source_chapter": "10. 끊으면서 단수치기",
-          "question": "흑이 둘 차례입니다. 백이 서로 연결하지 못하도록 끊으면서 단수쳐 보세요.",
+          "question": "백△를 끊으면서 단수쳐서 잡아보세요.",
           "hint": "돌이 연결되면 활로가 늘어나서 잡기가 어렵습니다. 따라서 상대가 연결되지 않도록 끊으면서 단수를 쳐야합니다.",
-          "data": ";W[rb];W[rc];W[qd];W[pd];W[re];W[oc];W[nc];B[pc];B[qc];B[rd];B[sd];B[od];B[pf];T[pd];T[qd]",
+          "data": ";W[nb];B[ob];W[rb];W[nc];W[oc];B[pc];B[qc];W[rc];B[nd];B[od];W[pd];W[qd];B[rd];B[sd];W[re];B[pf];T[pd];T[qd]",
           "answer1": ";B[qe]",
           "answer2": "",
           "answer3": "",
@@ -3017,7 +3014,7 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "is_modified": false
+          "is_modified": true
         },
         {
           "code": "cd1006",
@@ -3033,9 +3030,9 @@
           "source_book": "씽크탱크 1권",
           "source_p_num": "13",
           "source_chapter": "10. 끊으면서 단수치기",
-          "question": "흑이 둘 차례입니다. 백이 서로 연결하지 못하도록 끊으면서 단수쳐 보세요.",
+          "question": "백△를 끊으면서 단수쳐서 잡아보세요.",
           "hint": "돌이 연결되면 활로가 늘어나서 잡기가 어렵습니다. 따라서 상대가 연결되지 않도록 끊으면서 단수를 쳐야합니다.",
-          "data": ";W[qr];W[pq];W[oq];W[qp];W[qo];W[np];W[mp];W[mq];B[nr];B[nq];B[op];B[pp];B[qq];B[rq];T[oq];T[pq]",
+          "data": ";W[qm];B[on];W[qo];W[lp];W[mp];B[np];B[op];B[pp];W[qp];W[lq];B[mq];W[nq];W[oq];W[pq];B[qq];B[rq];B[sq];W[lr];B[mr];B[nr];W[qr];W[rr];T[oq];T[pq];T[nq]",
           "answer1": ";B[pr]",
           "answer2": "",
           "answer3": "",
@@ -3046,7 +3043,7 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "is_modified": false
+          "is_modified": true
         },
         {
           "code": "cd6664",
@@ -3062,9 +3059,9 @@
           "source_book": "논리바둑 1권",
           "source_p_num": "14",
           "source_chapter": "13. 단수치기 종합문제",
-          "question": "흑이 둘 차례입니다. 백의 연결을 끊으면서 단수쳐서 잡아보세요.",
+          "question": "백△를 끊으면서 단수쳐서 잡아보세요.",
           "hint": "끊으면서 단수치기",
-          "data": ";W[cr];W[cq];W[cp];W[dp];W[eq];W[fq];W[gr];W[hr];B[gq];B[gp];B[ep];B[fp];B[dq];B[dr];T[fq];T[eq]",
+          "data": ";B[do];W[cp];W[dp];B[ep];B[fp];B[gp];W[cq];B[dq];W[eq];W[fq];B[gq];W[iq];W[br];B[cr];B[dr];W[gr];W[hr];T[fq];T[eq]",
           "answer1": ";B[fr]",
           "answer2": "",
           "answer3": "",
@@ -3075,7 +3072,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "is_modified": false
+          "is_modified": true
         },
         {
           "code": "cd6581",
@@ -3091,9 +3088,9 @@
           "source_book": "논리바둑 1권",
           "source_p_num": "9",
           "source_chapter": "10. 끊으면서 단수치기",
-          "question": "흑이 둘 차례입니다. 백이 서로 연결하지 못하도록 끊으면서 단수쳐 보세요.",
+          "question": "백△를 끊으면서 단수쳐서 잡아보세요.",
           "hint": "상대방이 연결하지 못하게 끊으면서 단수를 쳐야 합니다.",
-          "data": ";B[bd];B[bc];B[cc];B[db];B[eb];B[fc];B[fd];W[ec];W[dc];W[cd];W[ce];W[be];W[dg];T[dc];T[ec]",
+          "data": ";W[bb];W[cb];B[db];B[eb];W[fb];W[gb];B[bc];B[cc];W[dc];W[ec];B[fc];W[hc];B[bd];W[cd];B[fd];W[be];W[ce];B[ge];B[hf];W[dg];W[di];T[dc];T[ec]",
           "answer1": ";B[dd]",
           "answer2": "",
           "answer3": "",
@@ -3104,7 +3101,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "is_modified": false
+          "is_modified": true
         },
         {
           "code": "cd1003",
@@ -3120,9 +3117,9 @@
           "source_book": "씽크탱크 1권",
           "source_p_num": "10",
           "source_chapter": "10. 끊으면서 단수치기",
-          "question": "흑이 둘 차례입니다. 백이 서로 연결하지 못하도록 끊으면서 단수쳐 보세요.",
+          "question": "백△를 끊으면서 단수쳐서 잡아보세요.",
           "hint": "돌이 연결되면 활로가 늘어나서 잡기가 어렵습니다. 따라서 상대가 연결되지 않도록 끊으면서 단수를 쳐야합니다.",
-          "data": ";W[ra];W[rb];W[qc];W[qd];W[pe];W[oe];W[od];W[oc];W[ob];B[qb];B[pb];B[pd];B[pc];B[qe];B[re];T[qd];T[qc]",
+          "data": ";W[oa];W[ra];W[mb];W[nb];B[ob];B[pb];B[qb];W[rb];B[nc];W[oc];B[pc];W[qc];W[od];B[pd];W[qd];W[oe];W[pe];B[qe];B[re];B[qh];T[qd];T[qc]",
           "answer1": ";B[rc]",
           "answer2": "",
           "answer3": "",
@@ -3133,7 +3130,7 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "is_modified": false
+          "is_modified": true
         },
         {
           "code": "cd6668",
@@ -3149,9 +3146,9 @@
           "source_book": "논리바둑 1권",
           "source_p_num": "18",
           "source_chapter": "13. 단수치기 종합문제",
-          "question": "흑이 둘 차례입니다. 백의 연결을 끊으면서 단수쳐서 잡아보세요.",
+          "question": "백△를 끊으면서 단수쳐서 잡아보세요.",
           "hint": "끊으면서 단수치기",
-          "data": ";B[qp];B[po];B[pq];B[oq];B[nq];B[mp];W[pp];W[op];W[np];W[mo];W[lo];W[kp];T[np];T[op];T[pp]",
+          "data": ";W[pl];W[qm];B[pn];W[qn];W[lo];W[mo];W[po];B[qo];W[kp];B[mp];W[np];W[op];W[pp];B[qp];B[nq];B[oq];B[pq];T[np];T[op];T[pp];T[po]",
           "answer1": ";B[no]",
           "answer2": "",
           "answer3": "",
@@ -3162,7 +3159,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "is_modified": false
+          "is_modified": true
         },
         {
           "code": "cd1015",
@@ -3178,9 +3175,9 @@
           "source_book": "씽크탱크 1권",
           "source_p_num": "22",
           "source_chapter": "10. 끊으면서 단수치기",
-          "question": "흑이 둘 차례입니다. 백이 서로 연결하지 못하도록 끊으면서 단수쳐 보세요.",
+          "question": "백△를 끊으면서 단수쳐서 잡아보세요.",
           "hint": "돌이 연결되면 활로가 늘어나서 잡기가 어렵습니다. 따라서 상대가 연결되지 않도록 끊으면서 단수를 쳐야합니다.",
-          "data": ";W[dq];W[dp];W[cp];W[bo];W[bn];W[dm];W[eo];B[do];B[co];B[bp];B[bq];B[cq];B[dr];B[er];T[cp];T[dp];T[dq]",
+          "data": ";W[cm];W[bn];W[en];W[bo];B[co];B[do];W[eo];B[bp];W[cp];W[dp];W[gp];B[bq];B[cq];W[dq];W[br];W[cr];B[dr];B[er];T[cp];T[dp];T[dq]",
           "answer1": ";B[ep]",
           "answer2": "",
           "answer3": "",
@@ -3191,7 +3188,7 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "is_modified": false
+          "is_modified": true
         },
         {
           "code": "cd1005",
@@ -3207,9 +3204,9 @@
           "source_book": "씽크탱크 1권",
           "source_p_num": "12",
           "source_chapter": "10. 끊으면서 단수치기",
-          "question": "흑이 둘 차례입니다. 백이 서로 연결하지 못하도록 끊으면서 단수쳐 보세요.",
+          "question": "백△를 끊으면서 단수쳐서 잡아보세요.",
           "hint": "돌이 연결되면 활로가 늘어나서 잡기가 어렵습니다. 따라서 상대가 연결되지 않도록 끊으면서 단수를 쳐야합니다.",
-          "data": ";W[ba];W[cb];W[db];W[dc];W[cd];W[ce];W[bf];W[bg];W[cg];B[cf];B[df];B[de];B[dd];B[cc];B[bc];B[bb];T[ce];T[cd]",
+          "data": ";W[ba];B[bb];W[cb];W[db];W[eb];W[fb];B[bc];B[cc];W[dc];B[ec];B[fc];W[gc];W[cd];B[dd];W[ce];B[de];B[fe];W[bf];B[cf];B[df];W[bg];W[cg];T[ce];T[cd]",
           "answer1": ";B[be]",
           "answer2": "",
           "answer3": "",
@@ -3220,7 +3217,7 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "is_modified": false
+          "is_modified": true
         },
         {
           "code": "cd6585",
@@ -3236,9 +3233,9 @@
           "source_book": "논리바둑 1권",
           "source_p_num": "13",
           "source_chapter": "10. 끊으면서 단수치기",
-          "question": "흑이 둘 차례입니다. 백이 서로 연결하지 못하도록 끊으면서 단수쳐 보세요.",
+          "question": "백△를 끊으면서 단수쳐서 잡아보세요.",
           "hint": "상대방이 연결하지 못하게 끊으면서 단수를 쳐야 합니다.",
-          "data": ";W[rb];W[qc];W[pc];W[od];W[oe];W[pe];W[qf];W[rf];W[sf];B[rc];B[sd];B[se];B[re];B[qd];B[pd];B[oc];B[ob];T[qc];T[pc]",
+          "data": ";B[ob];W[rb];W[sb];B[oc];W[pc];W[qc];B[rc];W[od];B[pd];B[qd];B[sd];W[oe];W[pe];B[re];B[se];W[qf];W[rf];W[sf];T[qc];T[pc]",
           "answer1": ";B[qb]",
           "answer2": "",
           "answer3": "",
@@ -3249,7 +3246,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "is_modified": false
+          "is_modified": true
         },
         {
           "code": "cd1014",
@@ -3265,9 +3262,9 @@
           "source_book": "씽크탱크 1권",
           "source_p_num": "21",
           "source_chapter": "10. 끊으면서 단수치기",
-          "question": "흑이 둘 차례입니다. 백이 서로 연결하지 못하도록 끊으면서 단수쳐 보세요.",
+          "question": "백△를 끊으면서 단수쳐서 잡아보세요.",
           "hint": "돌이 연결되면 활로가 늘어나서 잡기가 어렵습니다. 따라서 상대가 연결되지 않도록 끊으면서 단수를 쳐야합니다.",
-          "data": ";W[qr];W[qq];W[pp];W[po];W[oo];W[np];W[nq];W[qn];W[rn];B[qp];B[qo];B[pq];B[oq];B[op];B[no];B[nn];T[oo];T[po];T[pp]",
+          "data": ";W[pl];B[ln];B[nn];W[qn];W[rn];B[no];W[oo];W[po];B[qo];W[lp];W[np];B[op];W[pp];B[qp];W[lq];W[nq];B[oq];B[pq];W[qq];W[mr];B[nr];B[or];W[qr];T[oo];T[po];T[pp]",
           "answer1": ";B[pn]",
           "answer2": "",
           "answer3": "",
@@ -3278,7 +3275,7 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "is_modified": false
+          "is_modified": true
         },
         {
           "code": "cd6666",
@@ -3294,9 +3291,9 @@
           "source_book": "논리바둑 1권",
           "source_p_num": "16",
           "source_chapter": "13. 단수치기 종합문제",
-          "question": "흑이 둘 차례입니다. 백의 연결을 끊으면서 단수쳐서 잡아보세요.",
+          "question": "백△를 끊으면서 단수쳐서 잡아보세요.",
           "hint": "끊으면서 단수치기",
-          "data": ";W[br];W[cr];W[cq];W[bp];W[aq];W[dp];W[do];W[dn];W[eq];B[cp];B[co];B[cn];B[dm];B[en];B[dq];B[dr];T[dp];T[do];T[dn]",
+          "data": ";B[dm];W[em];W[fm];B[cn];W[dn];B[en];W[bo];B[co];W[do];W[bp];B[cp];W[dp];W[aq];W[bq];W[cq];B[dq];W[eq];W[br];B[cr];B[dr];T[dp];T[do];T[dn]",
           "answer1": ";B[ep]",
           "answer2": "",
           "answer3": "",
@@ -3307,7 +3304,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "is_modified": false
+          "is_modified": true
         },
         {
           "code": "cd6596",
@@ -3323,9 +3320,9 @@
           "source_book": "논리바둑 1권",
           "source_p_num": "24",
           "source_chapter": "10. 끊으면서 단수치기",
-          "question": "흑이 둘 차례입니다. 백이 서로 연결하지 못하도록 끊으면서 단수쳐 보세요.",
+          "question": "백△를 끊으면서 단수쳐서 잡아보세요.",
           "hint": "상대방이 연결하지 못하게 끊으면서 단수를 쳐야 합니다.",
-          "data": ";W[cb];W[bb];W[bc];W[bd];W[cf];W[dc];W[ec];W[fc];W[gc];B[fb];B[gb];B[hc];B[hd];B[gd];B[fd];B[ed];B[dd];B[cd];B[cc];T[gc];T[fc];T[ec];T[dc]",
+          "data": ";W[bb];W[cb];B[fb];B[gb];W[hb];W[bc];B[cc];W[dc];W[ec];W[fc];B[gc];W[hc];W[bd];B[cd];B[dd];B[ed];B[fd];W[gd];B[hd];W[id];W[ge];W[cf];B[ef];T[fc];T[ec];T[dc]",
           "answer1": ";B[db]",
           "answer2": "",
           "answer3": "",
@@ -3336,7 +3333,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "is_modified": false
+          "is_modified": true
         },
         {
           "code": "cd1016",
@@ -3352,9 +3349,9 @@
           "source_book": "씽크탱크 1권",
           "source_p_num": "23",
           "source_chapter": "10. 끊으면서 단수치기",
-          "question": "흑이 둘 차례입니다. 백이 서로 연결하지 못하도록 끊으면서 단수쳐 보세요.",
+          "question": "백△를 끊으면서 단수쳐서 잡아보세요.",
           "hint": "돌이 연결되면 활로가 늘어나서 잡기가 어렵습니다. 따라서 상대가 연결되지 않도록 끊으면서 단수를 쳐야합니다.",
-          "data": ";W[qb];W[qc];W[pd];W[pe];W[pf];W[oc];W[nc];W[nb];W[og];W[oh];W[ph];W[qh];B[of];B[pg];B[qg];B[qf];B[qe];B[qd];B[pc];B[pb];B[ob];T[pf];T[pe];T[pd]",
+          "data": ";W[nb];B[ob];B[pb];B[qb];W[rb];W[kc];W[nc];W[oc];B[pc];W[qc];W[rc];W[pd];B[qd];W[pe];B[qe];B[of];W[pf];B[qf];B[rf];W[og];B[pg];B[qg];W[rg];W[oh];W[ph];W[qh];W[sh];T[pf];T[pe];T[pd]",
           "answer1": ";B[od]",
           "answer2": "",
           "answer3": "",
@@ -3365,7 +3362,7 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "is_modified": false
+          "is_modified": true
         }
       ]
     },
