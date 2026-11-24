@@ -1951,7 +1951,7 @@
         "code": "gpt_anti_stage_02",
         "title": "2단계",
         "chapterCount": 5,
-        "totalProblems": 106,
+        "totalProblems": 60,
         "chapters": [
           {
             "code": "gpt_anti_02_01",
@@ -1966,8 +1966,8 @@
             "chapterCode": "gpt_anti_02_02",
             "title": "2. 돌의 끊음",
             "chapter": "2. 돌의 끊음",
-            "problemCount": 76,
-            "problemsCount": 76
+            "problemCount": 30,
+            "problemsCount": 30
           },
           {
             "code": "gpt_anti_02_03",
@@ -1995,7 +1995,7 @@
           }
         ],
         "file": "book_gpt_anti_stage_02.json",
-        "_buildVer": "v5-stage02-ch1-edited"
+        "_buildVer": "v6-stage02-ch2-30"
       },
       {
         "code": "gpt_anti_stage_01",
@@ -17114,7 +17114,7 @@
         "code": "gpt_anti_stage_02",
         "file": "book_gpt_anti_stage_02.json",
         "chapterCount": 5,
-        "totalProblems": 106,
+        "totalProblems": 60,
         "chapters": [
           {
             "title": "1. 돌의 연결",
@@ -17122,7 +17122,7 @@
           },
           {
             "title": "2. 돌의 끊음",
-            "problemCount": 76
+            "problemCount": 30
           },
           {
             "title": "3. 1선 방향으로 단수치기",
@@ -17137,7 +17137,7 @@
             "problemCount": 0
           }
         ],
-        "_buildVer": "v5-stage02-ch1-edited"
+        "_buildVer": "v6-stage02-ch2-30"
       }
     ]
   }
