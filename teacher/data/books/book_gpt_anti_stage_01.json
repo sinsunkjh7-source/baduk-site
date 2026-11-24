@@ -5,9 +5,9 @@
   "bookCode": "gpt_anti_stage_01",
   "code": "gpt_anti_stage_01",
   "chapterCount": 13,
-  "totalProblems": 399,
-  "problemCount": 399,
-  "_buildVer": "v41-ch8-yangdansu-30",
+  "totalProblems": 398,
+  "problemCount": 398,
+  "_buildVer": "v42-ch8-edited-text",
   "chapters": [
     {
       "code": "gpt_anti_01_01",
@@ -5803,8 +5803,8 @@
       "chapterCode": "gpt_anti_01_14",
       "title": "8. 양단수",
       "chapter": "8. 양단수",
-      "problemCount": 30,
-      "problemsCount": 30,
+      "problemCount": 29,
+      "problemsCount": 29,
       "problems": [
         {
           "code": "yd1019",
@@ -5820,9 +5820,9 @@
           "source_book": "씽크탱크 1권",
           "source_p_num": "1",
           "source_chapter": "11. 양단수",
-          "question": "흑이 둘 차례입니다. 백의 약점을 찾아 두 곳을 동시에 단수치는 양단수를 만들어 보세요.",
-          "hint": "양단수란 한 번 두어 단수를 2개 만드는 것입니다. 상대가 한 쪽을 살려도 다른 쪽은 잡을 수 있습니다.",
-          "data": ";B[pc];B[qd];B[re];W[pd];W[qe];T[pd];T[qe]",
+          "question": "백△를 양단수 치세요.",
+          "hint": "양단수란 한 수로 두 곳을 동시에 단수치는 방법입니다.",
+          "data": ";B[pb];W[oc];B[pc];B[rc];W[nd];W[pd];B[qd];W[qe];B[re];W[rf];W[qg];T[pd];T[qe]",
           "answer1": ";B[pe]",
           "answer2": "",
           "answer3": "",
@@ -5833,7 +5833,7 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "is_modified": false
+          "is_modified": true
         },
         {
           "code": "yd1021",
@@ -5849,9 +5849,9 @@
           "source_book": "씽크탱크 1권",
           "source_p_num": "3",
           "source_chapter": "11. 양단수",
-          "question": "흑이 둘 차례입니다. 백의 약점을 찾아 두 곳을 동시에 단수치는 양단수를 만들어 보세요.",
-          "hint": "양단수란 한 번 두어 단수를 2개 만드는 것입니다. 상대가 한 쪽을 살려도 다른 쪽은 잡을 수 있습니다.",
-          "data": ";B[eb];B[dc];B[cc];B[cd];W[ec];W[dd];W[ce];W[be];T[dd];T[ec]",
+          "question": "백△를 양단수 치세요.",
+          "hint": "양단수란 한 수로 두 곳을 동시에 단수치는 방법입니다.",
+          "data": ";W[ea];B[ab];B[cb];B[db];B[eb];W[fb];W[ac];B[bc];B[cc];B[dc];W[ec];W[gc];W[ic];W[bd];B[cd];W[dd];W[be];W[ce];T[dd];T[ec]",
           "answer1": ";B[ed]",
           "answer2": "",
           "answer3": "",
@@ -5862,7 +5862,7 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "is_modified": false
+          "is_modified": true
         },
         {
           "code": "yd1028",
@@ -5878,9 +5878,9 @@
           "source_book": "씽크탱크 1권",
           "source_p_num": "10",
           "source_chapter": "11. 양단수",
-          "question": "흑이 둘 차례입니다. 백의 약점을 찾아 두 곳을 동시에 단수치는 양단수를 만들어 보세요.",
-          "hint": "양단수란 한 번 두어 단수를 2개 만드는 것입니다. 상대가 한 쪽을 살려도 다른 쪽은 잡을 수 있습니다.",
-          "data": ";W[bb];W[cc];W[bd];W[ce];B[bc];B[cd];B[dd];B[de];T[bd];T[ce]",
+          "question": "백△를 양단수 치세요.",
+          "hint": "양단수란 한 수로 두 곳을 동시에 단수치는 방법입니다.",
+          "data": ";W[bb];W[cb];B[db];B[bc];W[cc];B[dc];W[fc];W[bd];B[cd];B[dd];W[ce];B[de];W[fe];T[bd];T[ce]",
           "answer1": ";B[be]",
           "answer2": "",
           "answer3": "",
@@ -5891,7 +5891,7 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "is_modified": false
+          "is_modified": true
         },
         {
           "code": "yd6643",
@@ -5907,9 +5907,9 @@
           "source_book": "논리바둑 1권",
           "source_p_num": "19",
           "source_chapter": "12. 양단수",
-          "question": "흑이 둘 차례입니다. 백의 약점을 찾아 두 곳을 동시에 단수치는 양단수를 만들어 보세요.",
-          "hint": "양단수란 한 수로 두 곳이 단수되는 것을 말합니다.",
-          "data": ";B[bq];B[bp];B[cp];B[do];W[cn];W[co];W[dp];W[cq];T[dp];T[cq]",
+          "question": "백△를 양단수 치세요.",
+          "hint": "양단수란 한 수로 두 곳을 동시에 단수치는 방법입니다.",
+          "data": ";W[cm];B[dm];W[cn];B[dn];W[bo];W[co];B[do];B[bp];B[cp];W[dp];B[bq];W[cq];W[ar];W[br];T[dp];T[cq]",
           "answer1": ";B[dq]",
           "answer2": "",
           "answer3": "",
@@ -5920,7 +5920,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "is_modified": false
+          "is_modified": true
         },
         {
           "code": "yd6632",
@@ -5936,9 +5936,9 @@
           "source_book": "논리바둑 1권",
           "source_p_num": "8",
           "source_chapter": "12. 양단수",
-          "question": "흑이 둘 차례입니다. 백의 약점을 찾아 두 곳을 동시에 단수치는 양단수를 만들어 보세요.",
-          "hint": "양단수란 한 수로 두 곳이 단수되는 것을 말합니다.",
-          "data": ";B[qc];B[pc];B[pd];B[oe];B[nd];W[rc];W[qd];W[pe];W[qg];T[pe];T[qd]",
+          "question": "백△를 양단수 치세요.",
+          "hint": "양단수란 한 수로 두 곳을 동시에 단수치는 방법입니다.",
+          "data": ";B[qa];B[pb];W[qb];W[rb];B[pc];B[qc];W[rc];B[nd];B[pd];W[qd];B[oe];W[pe];B[nf];W[of];W[og];W[qg];T[pe];T[qd]",
           "answer1": ";B[qe]",
           "answer2": "",
           "answer3": "",
@@ -5949,7 +5949,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "is_modified": false
+          "is_modified": true
         },
         {
           "code": "yd6671",
@@ -5965,9 +5965,9 @@
           "source_book": "논리바둑 1권",
           "source_p_num": "21",
           "source_chapter": "13. 단수치기 종합문제",
-          "question": "흑이 둘 차례입니다. 백의 약점을 찾아 두 곳을 동시에 단수치는 양단수를 만들어 보세요.",
-          "hint": "양단수란 한 수로 두 곳이 단수되는 것을 말합니다.",
-          "data": ";B[pp];B[op];B[qo];B[rn];W[ro];W[qp];W[pq];W[oq];W[np];T[ro];T[qp]",
+          "question": "백△를 양단수 치세요.",
+          "hint": "양단수란 한 수로 두 곳을 동시에 단수치는 방법입니다.",
+          "data": ";B[nn];B[pn];B[rn];W[sn];W[mo];B[no];B[qo];W[ro];W[mp];W[np];B[op];B[pp];W[qp];B[nq];W[oq];W[pq];W[nr];T[ro];T[qp]",
           "answer1": ";B[rp]",
           "answer2": "",
           "answer3": "",
@@ -5978,7 +5978,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "is_modified": false
+          "is_modified": true
         },
         {
           "code": "yd1032",
@@ -5994,9 +5994,9 @@
           "source_book": "씽크탱크 1권",
           "source_p_num": "14",
           "source_chapter": "11. 양단수",
-          "question": "흑이 둘 차례입니다. 백의 약점을 찾아 두 곳을 동시에 단수치는 양단수를 만들어 보세요.",
-          "hint": "양단수란 한 번 두어 단수를 2개 만드는 것입니다. 상대가 한 쪽을 살려도 다른 쪽은 잡을 수 있습니다.",
-          "data": ";W[bf];W[ce];W[dd];W[ed];W[fe];B[be];B[cd];B[dc];B[ec];B[fd];T[ce];T[dd];T[ed]",
+          "question": "백△를 양단수 치세요.",
+          "hint": "양단수란 한 수로 두 곳을 동시에 단수치는 방법입니다.",
+          "data": ";W[ca];W[bb];W[db];B[eb];W[bc];W[cc];B[dc];B[ec];B[bd];B[cd];W[dd];W[ed];B[fd];B[gd];B[be];W[ce];W[fe];W[ge];W[bf];T[ce];T[dd];T[ed]",
           "answer1": ";B[de]",
           "answer2": "",
           "answer3": "",
@@ -6007,7 +6007,7 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "is_modified": false
+          "is_modified": true
         },
         {
           "code": "yd6639",
@@ -6023,9 +6023,9 @@
           "source_book": "논리바둑 1권",
           "source_p_num": "15",
           "source_chapter": "12. 양단수",
-          "question": "흑이 둘 차례입니다. 백의 약점을 찾아 두 곳을 동시에 단수치는 양단수를 만들어 보세요.",
-          "hint": "양단수란 한 수로 두 곳이 단수되는 것을 말합니다.",
-          "data": ";B[pp];B[pq];B[oq];B[qo];B[ro];W[pm];W[qn];W[po];W[op];W[nq];W[nr];T[po];T[op]",
+          "question": "백△를 양단수 치세요.",
+          "hint": "양단수란 한 수로 두 곳을 동시에 단수치는 방법입니다.",
+          "data": ";W[pm];W[qn];W[rn];W[po];B[qo];B[ro];B[mp];W[np];W[op];B[pp];W[mq];B[nq];B[oq];B[pq];W[mr];W[nr];T[po];T[op];T[np]",
           "answer1": ";B[oo]",
           "answer2": "",
           "answer3": "",
@@ -6036,7 +6036,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "is_modified": false
+          "is_modified": true
         },
         {
           "code": "yd39562",
@@ -6052,9 +6052,9 @@
           "source_book": "알파바둑 3권",
           "source_p_num": "2",
           "source_chapter": "3. 양단수",
-          "question": "흑이 둘 차례입니다. 백의 약점을 찾아 두 곳을 동시에 단수치는 양단수를 만들어 보세요.",
-          "hint": "",
-          "data": ";B[qb];B[pc];B[oc];B[od];W[qc];W[pd];T[pd];T[qc]",
+          "question": "백△를 양단수 치세요.",
+          "hint": "양단수란 한 수로 두 곳을 동시에 단수치는 방법입니다.",
+          "data": ";B[pa];W[ra];B[qb];W[rb];B[oc];B[pc];W[qc];B[od];W[pd];B[ne];W[oe];W[of];W[qf];T[pd];T[qc]",
           "answer1": ";B[qd]",
           "answer2": "",
           "answer3": "",
@@ -6065,7 +6065,7 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "is_modified": false
+          "is_modified": true
         },
         {
           "code": "yd1035",
@@ -6081,9 +6081,9 @@
           "source_book": "씽크탱크 1권",
           "source_p_num": "17",
           "source_chapter": "11. 양단수",
-          "question": "흑이 둘 차례입니다. 백의 약점을 찾아 두 곳을 동시에 단수치는 양단수를 만들어 보세요.",
-          "hint": "양단수란 한 번 두어 단수를 2개 만드는 것입니다. 상대가 한 쪽을 살려도 다른 쪽은 잡을 수 있습니다.",
-          "data": ";W[cr];W[dq];W[cp];W[co];W[ep];W[fp];B[dr];B[dp];B[do];B[eo];B[fo];B[gp];T[dq];T[fp];T[ep]",
+          "question": "백△를 양단수 치세요.",
+          "hint": "양단수란 한 수로 두 곳을 동시에 단수치는 방법입니다.",
+          "data": ";W[dn];W[gn];W[co];B[do];B[eo];B[fo];W[go];W[cp];B[dp];W[ep];W[fp];B[gp];B[hp];W[dq];W[cr];B[dr];B[gr];T[dq];T[fp];T[ep]",
           "answer1": ";B[eq]",
           "answer2": "",
           "answer3": "",
@@ -6094,7 +6094,7 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "is_modified": false
+          "is_modified": true
         },
         {
           "code": "yd6645",
@@ -6110,9 +6110,9 @@
           "source_book": "논리바둑 1권",
           "source_p_num": "21",
           "source_chapter": "12. 양단수",
-          "question": "흑이 둘 차례입니다. 백의 약점을 찾아 두 곳을 동시에 단수치는 양단수를 만들어 보세요.",
-          "hint": "양단수란 한 수로 두 곳이 단수되는 것을 말합니다.",
-          "data": ";B[cb];B[dc];B[eb];B[ed];B[ee];B[df];W[cc];W[dd];W[de];W[eg];W[cf];W[cg]",
+          "question": "백△를 양단수 치세요.",
+          "hint": "양단수란 한 수로 두 곳을 동시에 단수치는 방법입니다.",
+          "data": ";B[cb];B[eb];W[cc];B[dc];W[dd];B[ed];W[de];B[ee];W[cf];B[df];W[cg];B[dg];W[eg];W[eh];W[ci];T[cc];T[dd];T[de]",
           "answer1": ";B[cd]",
           "answer2": "",
           "answer3": "",
@@ -6123,7 +6123,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "is_modified": false
+          "is_modified": true
         },
         {
           "code": "yd1026",
@@ -6139,9 +6139,9 @@
           "source_book": "씽크탱크 1권",
           "source_p_num": "8",
           "source_chapter": "11. 양단수",
-          "question": "흑이 둘 차례입니다. 백의 약점을 찾아 두 곳을 동시에 단수치는 양단수를 만들어 보세요.",
-          "hint": "양단수란 한 번 두어 단수를 2개 만드는 것입니다. 상대가 한 쪽을 살려도 다른 쪽은 잡을 수 있습니다.",
-          "data": ";W[cd];W[ce];W[cg];W[df];W[ee];W[fd];W[gc];B[fc];B[ed];B[dd];B[de];B[cc];B[bc];T[ee];T[fd]",
+          "question": "백△를 양단수 치세요.",
+          "hint": "양단수란 한 수로 두 곳을 동시에 단수치는 방법입니다.",
+          "data": ";B[eb];B[gb];B[bc];B[cc];B[fc];W[gc];W[hc];W[cd];B[dd];B[ed];W[fd];W[id];W[ce];B[de];W[ee];W[df];W[cg];T[ee];T[fd]",
           "answer1": ";B[fe]",
           "answer2": "",
           "answer3": "",
@@ -6152,7 +6152,7 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "is_modified": false
+          "is_modified": true
         },
         {
           "code": "yd1034",
@@ -6168,9 +6168,9 @@
           "source_book": "씽크탱크 1권",
           "source_p_num": "16",
           "source_chapter": "11. 양단수",
-          "question": "흑이 둘 차례입니다. 백의 약점을 찾아 두 곳을 동시에 단수치는 양단수를 만들어 보세요.",
-          "hint": "양단수란 한 번 두어 단수를 2개 만드는 것입니다. 상대가 한 쪽을 살려도 다른 쪽은 잡을 수 있습니다.",
-          "data": ";W[qb];W[pc];W[oc];W[nb];W[mc];W[lb];B[nc];B[nd];B[od];B[pd];B[qc];B[rd];B[rb];T[oc];T[pc];T[qb]",
+          "question": "백△를 양단수 치세요.",
+          "hint": "양단수란 한 수로 두 곳을 동시에 단수치는 방법입니다.",
+          "data": ";W[oa];W[lb];W[nb];W[qb];B[rb];W[mc];B[nc];W[oc];W[pc];B[qc];W[md];B[nd];B[od];B[pd];B[rd];W[le];B[me];W[qe];B[mf];W[qg];T[oc];T[pc];T[qb]",
           "answer1": ";B[pb]",
           "answer2": "",
           "answer3": "",
@@ -6181,7 +6181,7 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "is_modified": false
+          "is_modified": true
         },
         {
           "code": "yd6673",
@@ -6197,9 +6197,9 @@
           "source_book": "논리바둑 1권",
           "source_p_num": "23",
           "source_chapter": "13. 단수치기 종합문제",
-          "question": "흑이 둘 차례입니다. 백의 약점을 찾아 두 곳을 동시에 단수치는 양단수를 만들어 보세요.",
-          "hint": "양단수란 한 수로 두 곳이 단수되는 것을 말합니다.",
-          "data": ";W[rq];W[qp];W[pp];W[po];W[oq];W[nr];B[or];B[pr];B[pq];B[qq];B[rp];B[ro];B[qo];B[pn];T[oq];T[po];T[pp];T[qp]",
+          "question": "백△를 양단수 치세요.",
+          "hint": "양단수란 한 수로 두 곳을 동시에 단수치는 방법입니다.",
+          "data": ";W[om];B[pm];W[on];B[pn];W[no];W[po];B[qo];B[ro];W[pp];W[qp];B[rp];B[mq];W[nq];W[oq];B[pq];B[qq];W[rq];W[lr];W[mr];B[nr];B[or];B[pr];W[rr];T[oq];T[po];T[pp];T[qp];T[nq]",
           "answer1": ";B[op]",
           "answer2": "",
           "answer3": "",
@@ -6210,7 +6210,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "is_modified": false
+          "is_modified": true
         },
         {
           "code": "yd1039",
@@ -6226,9 +6226,9 @@
           "source_book": "씽크탱크 1권",
           "source_p_num": "21",
           "source_chapter": "11. 양단수",
-          "question": "흑이 둘 차례입니다. 백의 약점을 찾아 두 곳을 동시에 단수치는 양단수를 만들어 보세요.",
-          "hint": "양단수란 한 번 두어 단수를 2개 만드는 것입니다. 상대가 한 쪽을 살려도 다른 쪽은 잡을 수 있습니다.",
-          "data": ";W[cq];W[bq];W[br];W[dr];W[eq];W[ep];W[fp];W[gq];W[hq];B[cr];B[dq];B[dp];B[cp];B[eo];B[fo];B[gp];T[dr];T[eq];T[ep];T[fp]",
+          "question": "백△를 양단수 치세요.",
+          "hint": "양단수란 한 수로 두 곳을 동시에 단수치는 방법입니다.",
+          "data": ";B[eo];B[fo];B[bp];B[cp];B[dp];W[ep];W[fp];B[gp];W[bq];W[cq];B[dq];W[eq];W[gq];W[hq];W[br];B[cr];W[dr];B[cs];W[ds];T[dr];T[eq];T[ep];T[fp];T[ds]",
           "answer1": ";B[er]",
           "answer2": "",
           "answer3": "",
@@ -6239,7 +6239,7 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "is_modified": false
+          "is_modified": true
         },
         {
           "code": "yd1041",
@@ -6255,9 +6255,9 @@
           "source_book": "씽크탱크 1권",
           "source_p_num": "23",
           "source_chapter": "11. 양단수",
-          "question": "흑이 둘 차례입니다. 백의 약점을 찾아 두 곳을 동시에 단수치는 양단수를 만들어 보세요.",
-          "hint": "양단수란 한 번 두어 단수를 2개 만드는 것입니다. 상대가 한 쪽을 살려도 다른 쪽은 잡을 수 있습니다.",
-          "data": ";W[dc];W[ec];W[fd];W[ee];W[df];W[ce];W[cd];B[cf];B[bf];B[be];B[bd];B[cc];B[db];B[eb];B[fc];B[gc];T[ec];T[dc];T[ce];T[cd]",
+          "question": "백△를 양단수 치세요.",
+          "hint": "양단수란 한 수로 두 곳을 동시에 단수치는 방법입니다.",
+          "data": ";B[bb];B[db];B[eb];B[cc];W[dc];W[ec];B[fc];B[gc];B[bd];W[cd];W[fd];W[gd];B[be];W[ce];W[ee];B[bf];B[cf];W[df];W[cg];W[dh];T[ec];T[dc];T[ce];T[cd]",
           "answer1": ";B[dd]",
           "answer2": "",
           "answer3": "",
@@ -6268,7 +6268,7 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "is_modified": false
+          "is_modified": true
         },
         {
           "code": "yd39388",
@@ -6284,20 +6284,17 @@
           "source_book": "알파바둑 2권",
           "source_p_num": "24",
           "source_chapter": "13. 단수(올바른 방향)",
-          "question": "흑이 둘 차례입니다. 백의 약점을 찾아 두 곳을 동시에 단수치는 양단수를 만들어 보세요.",
-          "hint": "",
-          "data": ";B[pc];B[oc];B[pd];B[qd];B[qe];W[qc];W[rc];W[pb];W[ob];W[nc];W[od];W[pe]",
-          "answer1": ";B[oe]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
+          "question": "백△를 양단수 치세요.",
+          "hint": "양단수란 한 수로 두 곳을 동시에 단수치는 방법입니다.",
+          "data": ";W[nb];W[ob];W[pb];W[mc];B[nc];B[oc];B[pc];W[qc];W[rc];W[nd];W[od];B[pd];B[qd];W[pe];B[qe];W[qf];B[rf];W[rg];T[pe];T[qf]",
+          "answer1": ";B[pf]",
           "sample": "",
           "answer": "",
           "auto": "false",
           "size": "4",
-          "start": "BK",
-          "is_modified": false
+          "start": "B",
+          "is_modified": true,
+          "answerMode": "unordered"
         },
         {
           "code": "yd6672",
@@ -6313,9 +6310,9 @@
           "source_book": "논리바둑 1권",
           "source_p_num": "22",
           "source_chapter": "13. 단수치기 종합문제",
-          "question": "흑이 둘 차례입니다. 백의 약점을 찾아 두 곳을 동시에 단수치는 양단수를 만들어 보세요.",
-          "hint": "양단수란 한 수로 두 곳이 단수되는 것을 말합니다.",
-          "data": ";B[rq];B[qp];B[pp];B[po];B[on];B[oq];B[or];B[nr];W[pq];W[pr];W[mr];W[lq];W[nq];W[op];W[oo];W[pn];W[qn];T[nq];T[op];T[oo]",
+          "question": "백△를 양단수 치세요.",
+          "hint": "양단수란 한 수로 두 곳을 동시에 단수치는 방법입니다.",
+          "data": ";W[qk];W[ml];W[lm];B[om];B[on];W[pn];W[qn];W[rn];W[oo];B[po];B[ro];B[kp];B[lp];W[op];B[pp];B[qp];W[lq];W[nq];B[oq];W[pq];B[rq];W[mr];B[nr];B[or];W[pr];T[nq];T[op];T[oo]",
           "answer1": ";B[np]",
           "answer2": "",
           "answer3": "",
@@ -6326,7 +6323,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "is_modified": false
+          "is_modified": true
         },
         {
           "code": "yd39571",
@@ -6342,9 +6339,9 @@
           "source_book": "알파바둑 3권",
           "source_p_num": "11",
           "source_chapter": "3. 양단수",
-          "question": "흑이 둘 차례입니다. 백의 약점을 찾아 두 곳을 동시에 단수치는 양단수를 만들어 보세요.",
-          "hint": "",
-          "data": ";B[bq];B[bp];B[cq];B[dr];W[br];W[cr];W[dq];W[er];W[cp];W[bo];T[dq];T[cp]",
+          "question": "백△를 양단수 치세요.",
+          "hint": "양단수란 한 수로 두 곳을 동시에 단수치는 방법입니다.",
+          "data": ";W[cl];W[bn];W[bo];B[bp];W[cp];B[bq];B[cq];W[dq];B[ar];W[br];W[cr];B[dr];W[er];B[ds];W[es];T[dq];T[cp]",
           "answer1": ";B[dp]",
           "answer2": "",
           "answer3": "",
@@ -6355,7 +6352,7 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "is_modified": false
+          "is_modified": true
         },
         {
           "code": "yd39564",
@@ -6371,9 +6368,9 @@
           "source_book": "알파바둑 3권",
           "source_p_num": "4",
           "source_chapter": "3. 양단수",
-          "question": "흑이 둘 차례입니다. 백의 약점을 찾아 두 곳을 동시에 단수치는 양단수를 만들어 보세요.",
-          "hint": "",
-          "data": ";B[pq];B[op];B[no];B[nn];B[om];W[pp];W[oo];W[on];W[pm];W[pl];W[qn];T[on];T[oo];T[pp]",
+          "question": "백△를 양단수 치세요.",
+          "hint": "양단수란 한 수로 두 곳을 동시에 단수치는 방법입니다.",
+          "data": ";W[pl];B[om];W[pm];B[nn];W[on];W[qn];B[no];W[oo];W[ro];W[mp];W[np];B[op];W[pp];W[qp];B[rp];B[oq];B[pq];B[qq];T[on];T[oo];T[pp];T[qp]",
           "answer1": ";B[po]",
           "answer2": "",
           "answer3": "",
@@ -6384,7 +6381,7 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "is_modified": false
+          "is_modified": true
         },
         {
           "code": "yd39575",
@@ -6400,9 +6397,9 @@
           "source_book": "알파바둑 3권",
           "source_p_num": "15",
           "source_chapter": "3. 양단수",
-          "question": "흑이 둘 차례입니다. 백의 약점을 찾아 두 곳을 동시에 단수치는 양단수를 만들어 보세요.",
-          "hint": "",
-          "data": ";B[rd];B[rc];B[qc];B[pc];B[ob];B[qe];W[oc];W[pd];W[qd];W[re];W[qf];W[pf]",
+          "question": "백△를 양단수 치세요.",
+          "hint": "양단수란 한 수로 두 곳을 동시에 단수치는 방법입니다.",
+          "data": ";W[lb];W[nb];B[ob];W[oc];B[pc];B[qc];B[rc];W[pd];W[qd];B[rd];B[qe];W[re];B[se];W[pf];W[qf];W[rf];T[oc];T[pd];T[qd]",
           "answer1": ";B[od]",
           "answer2": "",
           "answer3": "",
@@ -6413,7 +6410,7 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "is_modified": false
+          "is_modified": true
         },
         {
           "code": "yd39581",
@@ -6429,9 +6426,9 @@
           "source_book": "알파바둑 3권",
           "source_p_num": "21",
           "source_chapter": "3. 양단수",
-          "question": "흑이 둘 차례입니다. 백의 약점을 찾아 두 곳을 동시에 단수치는 양단수를 만들어 보세요.",
-          "hint": "",
-          "data": ";B[pr];B[qq];B[rq];B[rp];B[ro];B[qn];W[qr];W[rr];W[or];W[pq];W[qp];W[qo]",
+          "question": "백△를 양단수 치세요.",
+          "hint": "양단수란 한 수로 두 곳을 동시에 단수치는 방법입니다.",
+          "data": ";W[nm];W[pm];B[qm];W[pn];B[qn];W[qo];B[ro];W[qp];B[rp];W[pq];B[qq];B[rq];W[or];B[pr];W[qr];W[rr];B[sr];T[pq];T[qp];T[qo]",
           "answer1": ";B[pp]",
           "answer2": "",
           "answer3": "",
@@ -6442,7 +6439,7 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "is_modified": false
+          "is_modified": true
         },
         {
           "code": "yd39584",
@@ -6458,9 +6455,9 @@
           "source_book": "알파바둑 3권",
           "source_p_num": "24",
           "source_chapter": "3. 양단수",
-          "question": "흑이 둘 차례입니다. 백의 약점을 찾아 두 곳을 동시에 단수치는 양단수를 만들어 보세요.",
-          "hint": "",
-          "data": ";B[dr];B[er];B[eq];B[ep];B[do];B[cn];W[cr];W[bq];W[dq];W[dp];W[co];W[bn];W[bm]",
+          "question": "백△를 양단수 치세요.",
+          "hint": "양단수란 한 수로 두 곳을 동시에 단수치는 방법입니다.",
+          "data": ";W[bm];W[cm];W[bn];B[cn];W[co];B[do];W[dp];B[ep];W[bq];W[dq];B[eq];B[iq];W[cr];B[dr];B[er];W[bs];B[cs];B[ds];T[co];T[dp];T[dq]",
           "answer1": ";B[cp]",
           "answer2": "",
           "answer3": "",
@@ -6471,36 +6468,7 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "is_modified": false
-        },
-        {
-          "code": "yd40728",
-          "type": "1",
-          "curriculum_type": "필수",
-          "is_review": false,
-          "review_type": "해당 없음",
-          "review_detail": "일반 본문 진도 문항",
-          "hide_review_badge": false,
-          "section_idx": "1",
-          "section_title": "01. 양단수",
-          "source_series": "알파바둑",
-          "source_book": "알파바둑 5권",
-          "source_p_num": "1",
-          "source_chapter": "3. 양단수",
-          "question": "흑이 둘 차례입니다. 백 모양에서 양단수가 되는 급소를 찾아 백돌을 잡아보세요.",
-          "hint": "",
-          "data": ";W[cd];W[de];W[ef];B[ee];B[dd];B[cc]",
-          "answer1": ";B[ce]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "O|X||",
-          "answer": "2",
-          "auto": "false",
-          "size": "4",
-          "start": "BK",
-          "is_modified": false
+          "is_modified": true
         },
         {
           "code": "yd40737",
@@ -6516,9 +6484,9 @@
           "source_book": "알파바둑 5권",
           "source_p_num": "6",
           "source_chapter": "3. 양단수",
-          "question": "흑이 둘 차례입니다. 백 모양에서 양단수가 되는 급소를 찾아 백돌을 잡아보세요.",
-          "hint": "",
-          "data": ";B[pd];B[qd];B[qc];B[oe];W[ne];W[od];W[pc];W[qb];W[rb]",
+          "question": "백△를 양단수 치세요.",
+          "hint": "양단수란 한 수로 두 곳을 동시에 단수치는 방법입니다.",
+          "data": ";W[qb];W[rb];W[pc];B[qc];W[sc];W[ld];W[od];B[pd];B[qd];W[sd];W[me];W[ne];B[oe];B[re];W[se];B[nf];B[pf];B[rf];B[sf];T[od];T[pc]",
           "answer1": ";B[oc]",
           "answer2": "",
           "answer3": "",
@@ -6529,7 +6497,7 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "is_modified": false
+          "is_modified": true
         },
         {
           "code": "yd40732",
@@ -6545,9 +6513,9 @@
           "source_book": "알파바둑 5권",
           "source_p_num": "3",
           "source_chapter": "3. 양단수",
-          "question": "흑이 둘 차례입니다. 백 모양에서 양단수가 되는 급소를 찾아 백돌을 잡아보세요.",
-          "hint": "",
-          "data": ";B[qq];B[rq];B[rp];B[pr];B[or];W[qp];W[pq];W[qr];W[rr];W[ro];W[qn]",
+          "question": "백△를 양단수 치세요.",
+          "hint": "양단수란 한 수로 두 곳을 동시에 단수치는 방법입니다.",
+          "data": ";W[qm];W[qn];B[rn];W[ro];W[qp];B[rp];B[nq];W[oq];W[pq];B[qq];B[rq];B[or];B[pr];W[qr];W[rr];T[qp];T[pq];T[oq]",
           "answer1": ";B[pp]",
           "answer2": "",
           "answer3": "",
@@ -6558,7 +6526,7 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "is_modified": false
+          "is_modified": true
         },
         {
           "code": "yd40745",
@@ -6574,9 +6542,9 @@
           "source_book": "알파바둑 5권",
           "source_p_num": "8",
           "source_chapter": "3. 양단수",
-          "question": "흑이 둘 차례입니다. 백 모양에서 양단수가 되는 급소를 찾아 백돌을 잡아보세요.",
-          "hint": "",
-          "data": ";B[cd];B[bc];B[de];B[ee];B[fd];W[fc];W[eb];W[ed];W[dd];W[cc];W[bb];W[ab]",
+          "question": "백△를 양단수 치세요.",
+          "hint": "양단수란 한 수로 두 곳을 동시에 단수치는 방법입니다.",
+          "data": ";W[ab];W[bb];W[eb];W[gb];B[bc];W[cc];W[fc];B[gc];W[bd];B[cd];W[dd];W[ed];B[fd];B[gd];B[be];B[ce];B[de];B[ee];T[cc];T[dd];T[ed]",
           "answer1": ";B[dc]",
           "answer2": "",
           "answer3": "",
@@ -6587,7 +6555,7 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "is_modified": false
+          "is_modified": true
         },
         {
           "code": "yd39578",
@@ -6603,9 +6571,9 @@
           "source_book": "알파바둑 3권",
           "source_p_num": "18",
           "source_chapter": "3. 양단수",
-          "question": "흑이 둘 차례입니다. 백의 약점을 찾아 두 곳을 동시에 단수치는 양단수를 만들어 보세요.",
-          "hint": "",
-          "data": ";B[rc];B[rb];B[qb];B[pb];B[oc];B[nd];B[ne];B[nf];B[og];B[pg];B[qg];B[qf];W[od];W[oe];W[of];W[pf];W[pc];W[qc];W[rd];W[qe];W[rf];W[se]",
+          "question": "백△를 양단수 치세요.",
+          "hint": "양단수란 한 수로 두 곳을 동시에 단수치는 방법입니다.",
+          "data": ";W[nb];B[ob];B[pb];B[qb];B[rb];W[lc];W[nc];B[oc];W[pc];W[qc];B[rc];W[sc];B[nd];W[od];W[rd];B[ne];W[oe];W[qe];W[se];B[nf];W[of];W[pf];B[qf];W[rf];B[og];B[pg];B[qg];W[rg];B[rh];B[qi];T[od];T[oe];T[of];T[pf];T[pc];T[qc]",
           "answer1": ";B[pd]",
           "answer2": "",
           "answer3": "",
@@ -6616,7 +6584,7 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "is_modified": false
+          "is_modified": true
         },
         {
           "code": "yd40749",
@@ -6632,9 +6600,9 @@
           "source_book": "알파바둑 5권",
           "source_p_num": "11",
           "source_chapter": "3. 양단수",
-          "question": "흑이 둘 차례입니다. 백 모양에서 양단수가 되는 급소를 찾아 백돌을 잡아보세요.",
-          "hint": "",
-          "data": ";B[br];B[bq];B[bp];B[cq];B[dq];B[eq];B[ep];B[fo];W[cn];W[bo];W[cp];W[dp];W[eo];W[fp];W[fq];W[er];W[dr];W[cr]",
+          "question": "백△를 양단수 치세요.",
+          "hint": "양단수란 한 수로 두 곳을 동시에 단수치는 방법입니다.",
+          "data": ";W[cn];W[fn];W[bo];W[eo];B[fo];B[go];B[bp];W[cp];W[dp];B[ep];W[fp];B[bq];B[cq];B[dq];B[eq];W[fq];B[br];W[cr];W[dr];W[er];B[fr];W[gr];T[eo];T[dp];T[cp]",
           "answer1": ";B[do]",
           "answer2": "",
           "answer3": "",
@@ -6645,7 +6613,7 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "is_modified": false
+          "is_modified": true
         },
         {
           "code": "yd40765",
@@ -6661,9 +6629,9 @@
           "source_book": "알파바둑 5권",
           "source_p_num": "18",
           "source_chapter": "3. 양단수",
-          "question": "흑이 둘 차례입니다. 백 모양에서 양단수가 되는 급소를 찾아 백돌을 잡아보세요.",
-          "hint": "",
-          "data": ";B[qb];B[rc];B[rd];B[qe];B[pf];B[of];B[nf];B[me];B[md];B[nc];B[nb];W[mb];W[mc];W[nd];W[ne];W[oe];W[pe];W[oc];W[pb];W[qd];W[qc]",
+          "question": "백△를 양단수 치세요.",
+          "hint": "양단수란 한 수로 두 곳을 동시에 단수치는 방법입니다.",
+          "data": ";W[lb];W[mb];B[nb];W[pb];B[qb];W[rb];B[kc];B[lc];W[mc];B[nc];W[oc];W[qc];B[rc];B[md];W[nd];W[qd];B[rd];B[me];W[ne];W[oe];W[pe];B[qe];W[re];B[nf];W[of];B[pf];B[qf];B[ng];B[og];T[nd];T[ne];T[oe];T[pe];T[qd];T[qc];T[of]",
           "answer1": ";B[pd]",
           "answer2": "",
           "answer3": "",
@@ -6674,7 +6642,7 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "is_modified": false
+          "is_modified": true
         }
       ]
     },

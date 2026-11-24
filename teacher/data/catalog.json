@@ -2016,7 +2016,7 @@
         "code": "gpt_anti_stage_01",
         "title": "1단계",
         "chapterCount": 13,
-        "totalProblems": 399,
+        "totalProblems": 398,
         "chapters": [
           {
             "code": "gpt_anti_01_01",
@@ -2080,8 +2080,8 @@
             "chapterCode": "gpt_anti_01_14",
             "title": "8. 양단수",
             "chapter": "8. 양단수",
-            "problemCount": 30,
-            "problemsCount": 30
+            "problemCount": 29,
+            "problemsCount": 29
           },
           {
             "code": "gpt_anti_01_09",
@@ -2125,7 +2125,7 @@
           }
         ],
         "file": "book_gpt_anti_stage_01.json",
-        "_buildVer": "v41-ch8-yangdansu-30"
+        "_buildVer": "v42-ch8-edited-text"
       }
     ]
   },
@@ -17013,7 +17013,7 @@
         "code": "gpt_anti_stage_01",
         "file": "book_gpt_anti_stage_01.json",
         "chapterCount": 13,
-        "totalProblems": 399,
+        "totalProblems": 398,
         "chapters": [
           {
             "code": "gpt_anti_01_01",
@@ -17077,8 +17077,8 @@
             "chapterCode": "gpt_anti_01_14",
             "title": "8. 양단수",
             "chapter": "8. 양단수",
-            "problemCount": 30,
-            "problemsCount": 30
+            "problemCount": 29,
+            "problemsCount": 29
           },
           {
             "code": "gpt_anti_01_09",
@@ -17121,7 +17121,7 @@
             "problemsCount": 25
           }
         ],
-        "_buildVer": "v41-ch8-yangdansu-30"
+        "_buildVer": "v42-ch8-edited-text"
       },
       {
         "title": "2단계",
