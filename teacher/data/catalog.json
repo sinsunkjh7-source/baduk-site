@@ -1951,7 +1951,7 @@
         "code": "gpt_anti_stage_02",
         "title": "2단계",
         "chapterCount": 9,
-        "totalProblems": 148,
+        "totalProblems": 147,
         "chapters": [
           {
             "code": "gpt_anti_02_01",
@@ -1990,8 +1990,8 @@
             "chapterCode": "gpt_anti_02_05",
             "title": "5. 우리 편 방향으로 단수치기",
             "chapter": "5. 우리 편 방향으로 단수치기",
-            "problemCount": 30,
-            "problemsCount": 30
+            "problemCount": 29,
+            "problemsCount": 29
           },
           {
             "code": "gpt_anti_02_06",
@@ -2027,7 +2027,7 @@
           }
         ],
         "file": "book_gpt_anti_stage_02.json",
-        "_buildVer": "v16-stage02-rules-chapters"
+        "_buildVer": "v17-stage02-ch5-edited"
       },
       {
         "code": "gpt_anti_stage_01",
@@ -17146,7 +17146,7 @@
         "code": "gpt_anti_stage_02",
         "file": "book_gpt_anti_stage_02.json",
         "chapterCount": 9,
-        "totalProblems": 148,
+        "totalProblems": 147,
         "chapters": [
           {
             "title": "1. 돌의 연결",
@@ -17166,7 +17166,7 @@
           },
           {
             "title": "5. 우리 편 방향으로 단수치기",
-            "problemCount": 30
+            "problemCount": 29
           },
           {
             "title": "6. 착수금지",
@@ -17185,7 +17185,7 @@
             "problemCount": 0
           }
         ],
-        "_buildVer": "v16-stage02-rules-chapters"
+        "_buildVer": "v17-stage02-ch5-edited"
       }
     ]
   }
