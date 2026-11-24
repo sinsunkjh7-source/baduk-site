@@ -1951,7 +1951,7 @@
         "code": "gpt_anti_stage_02",
         "title": "2단계",
         "chapterCount": 9,
-        "totalProblems": 147,
+        "totalProblems": 177,
         "chapters": [
           {
             "code": "gpt_anti_02_01",
@@ -1998,8 +1998,8 @@
             "chapterCode": "gpt_anti_02_06",
             "title": "6. 착수금지",
             "chapter": "6. 착수금지",
-            "problemCount": 0,
-            "problemsCount": 0
+            "problemCount": 30,
+            "problemsCount": 30
           },
           {
             "code": "gpt_anti_02_07",
@@ -2027,7 +2027,7 @@
           }
         ],
         "file": "book_gpt_anti_stage_02.json",
-        "_buildVer": "v18-stage02-ch5-hint"
+        "_buildVer": "v19-stage02-ch6-30"
       },
       {
         "code": "gpt_anti_stage_01",
@@ -17146,7 +17146,7 @@
         "code": "gpt_anti_stage_02",
         "file": "book_gpt_anti_stage_02.json",
         "chapterCount": 9,
-        "totalProblems": 147,
+        "totalProblems": 177,
         "chapters": [
           {
             "title": "1. 돌의 연결",
@@ -17170,7 +17170,7 @@
           },
           {
             "title": "6. 착수금지",
-            "problemCount": 0
+            "problemCount": 30
           },
           {
             "title": "7. 패",
@@ -17185,7 +17185,7 @@
             "problemCount": 0
           }
         ],
-        "_buildVer": "v18-stage02-ch5-hint"
+        "_buildVer": "v19-stage02-ch6-30"
       }
     ]
   }
