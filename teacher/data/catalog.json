@@ -1995,7 +1995,7 @@
           }
         ],
         "file": "book_gpt_anti_stage_02.json",
-        "_buildVer": "v6-stage02-ch2-30"
+        "_buildVer": "v7-stage02-ch2-edited"
       },
       {
         "code": "gpt_anti_stage_01",
@@ -17137,7 +17137,7 @@
             "problemCount": 0
           }
         ],
-        "_buildVer": "v6-stage02-ch2-30"
+        "_buildVer": "v7-stage02-ch2-edited"
       }
     ]
   }

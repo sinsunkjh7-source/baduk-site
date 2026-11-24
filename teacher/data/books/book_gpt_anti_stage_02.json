@@ -7,7 +7,7 @@
   "chapterCount": 5,
   "totalProblems": 60,
   "problemCount": 60,
-  "_buildVer": "v6-stage02-ch2-30",
+  "_buildVer": "v7-stage02-ch2-edited",
   "chapters": [
     {
       "code": "gpt_anti_02_01",
@@ -830,32 +830,23 @@
       "problemsCount": 30,
       "problems": [
         {
-          "code": "922",
-          "type": "1",
-          "curriculum_type": "필수",
-          "is_review": false,
-          "review_type": "해당 없음",
-          "review_detail": "일반 본문 진도 문항",
-          "hide_review_badge": false,
-          "section_idx": 2,
-          "section_title": "02-02. 돌의 끊음 (상대 돌 갈라놓기)",
-          "source_series": "씽크탱크",
-          "source_book": "씽크탱크 1권",
-          "source_p_num": 13,
-          "source_chapter": "끊음",
+          "code": "teacher_mwu5f4bg_xhlrknd8_0",
+          "type": "3",
           "question": "백△와 ◎를 끊어 보세요.",
-          "hint": "끊음이란, 내 돌로 상대방 돌의 연결을 방해하는 것을 말합니다. 끊어지면 약한 모양이 됩니다. 따라서 내돌은 연결하고 상대방의 돌은 끊어야 합니다.",
-          "data": ";W[cc];W[dd];B[ec];B[dc];B[ce];T[dd];C[cc]",
-          "answer1": ";B[cd]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
+          "hint": "",
+          "data": ";W[om];W[on];W[oo];B[lp];B[mp];B[np];B[pp];B[qp];B[rp];W[oq];W[or];W[os];T[om];T[on];T[oo];C[oq];C[or];C[os]",
+          "answer1": ";B[op]",
           "sample": "",
           "answer": "",
           "auto": "false",
           "size": "4",
-          "start": "BK"
+          "start": "B",
+          "source_book": "선생님 직접 작성",
+          "source_chapter": "",
+          "source_p_num": 30,
+          "no": 1,
+          "name": "1번 문제",
+          "answerMode": "unordered"
         },
         {
           "code": "912",
@@ -873,7 +864,7 @@
           "source_chapter": "끊음",
           "question": "백△와 ◎를 끊어 보세요.",
           "hint": "끊음이란, 내 돌로 상대방 돌의 연결을 방해하는 것을 말합니다. 끊어지면 약한 모양이 됩니다. 따라서 내돌은 연결하고 상대방의 돌은 끊어야 합니다.",
-          "data": ";B[qd];B[pd];B[nd];B[md];W[oc];W[oe];T[oc];C[oe]",
+          "data": ";B[mb];W[ob];B[qb];W[oc];B[md];B[nd];B[pd];B[qd];W[oe];W[of];W[og];T[oc];C[oe];T[ob];C[of];C[og]",
           "answer1": ";B[od]",
           "answer2": "",
           "answer3": "",
@@ -883,7 +874,37 @@
           "answer": "",
           "auto": "false",
           "size": "4",
-          "start": "BK"
+          "start": "BK",
+          "is_modified": true
+        },
+        {
+          "code": "922",
+          "type": "1",
+          "curriculum_type": "필수",
+          "is_review": false,
+          "review_type": "해당 없음",
+          "review_detail": "일반 본문 진도 문항",
+          "hide_review_badge": false,
+          "section_idx": 2,
+          "section_title": "02-02. 돌의 끊음 (상대 돌 갈라놓기)",
+          "source_series": "씽크탱크",
+          "source_book": "씽크탱크 1권",
+          "source_p_num": 13,
+          "source_chapter": "끊음",
+          "question": "백△와 ◎를 끊어 보세요.",
+          "hint": "끊음이란, 내 돌로 상대방 돌의 연결을 방해하는 것을 말합니다. 끊어지면 약한 모양이 됩니다. 따라서 내돌은 연결하고 상대방의 돌은 끊어야 합니다.",
+          "data": ";W[cb];W[cc];B[dc];B[ec];B[fc];B[ic];W[dd];W[ed];B[ce];B[cg];T[dd];C[cc];T[ed];C[cb]",
+          "answer1": ";B[cd]",
+          "answer2": "",
+          "answer3": "",
+          "answer4": "",
+          "answer5": "",
+          "sample": "",
+          "answer": "",
+          "auto": "false",
+          "size": "4",
+          "start": "BK",
+          "is_modified": true
         },
         {
           "code": "918",
@@ -901,7 +922,7 @@
           "source_chapter": "끊음",
           "question": "백△와 ◎를 끊어 보세요.",
           "hint": "끊음이란, 내 돌로 상대방 돌의 연결을 방해하는 것을 말합니다. 끊어지면 약한 모양이 됩니다. 따라서 내돌은 연결하고 상대방의 돌은 끊어야 합니다.",
-          "data": ";W[qp];W[op];W[np];B[oq];B[pq];B[po];B[qo];T[np];T[op];C[qp]",
+          "data": ";B[qk];B[po];B[qo];W[np];W[op];W[qp];W[nq];B[oq];B[pq];W[qq];T[np];T[op];C[qp];T[nq];C[qq]",
           "answer1": ";B[pp]",
           "answer2": "",
           "answer3": "",
@@ -911,7 +932,8 @@
           "answer": "",
           "auto": "false",
           "size": "4",
-          "start": "BK"
+          "start": "BK",
+          "is_modified": true
         },
         {
           "code": "915",
@@ -929,7 +951,7 @@
           "source_chapter": "끊음",
           "question": "백△와 ◎를 끊어 보세요.",
           "hint": "끊음이란, 내 돌로 상대방 돌의 연결을 방해하는 것을 말합니다. 끊어지면 약한 모양이 됩니다. 따라서 내돌은 연결하고 상대방의 돌은 끊어야 합니다.",
-          "data": ";W[dr];W[dq];W[do];W[dn];B[bp];B[cp];B[ep];B[fp];T[dn];T[do];C[dq];C[dr]",
+          "data": ";W[cm];W[cn];W[do];B[bp];B[cp];B[ep];B[fp];B[ip];W[dq];W[br];W[cr];B[er];T[do];C[dq];T[cn];T[cm];C[cr];C[br]",
           "answer1": ";B[dp]",
           "answer2": "",
           "answer3": "",
@@ -939,7 +961,8 @@
           "answer": "",
           "auto": "false",
           "size": "4",
-          "start": "BK"
+          "start": "BK",
+          "is_modified": true
         },
         {
           "code": "930",
@@ -957,7 +980,7 @@
           "source_chapter": "끊음",
           "question": "백△와 ◎를 끊어 보세요.",
           "hint": "끊음이란, 내 돌로 상대방 돌의 연결을 방해하는 것을 말합니다. 끊어지면 약한 모양이 됩니다. 따라서 내돌은 연결하고 상대방의 돌은 끊어야 합니다.",
-          "data": ";W[bc];W[cc];W[dd];W[de];B[cf];B[ce];B[cd];B[ec];T[de];T[dd];C[cc];C[bc]",
+          "data": ";W[bc];W[cc];B[ec];B[gc];B[cd];W[dd];B[ce];W[de];B[cf];W[df];B[dg];B[ci];T[de];T[dd];C[cc];C[bc];T[df]",
           "answer1": ";B[dc]",
           "answer2": "",
           "answer3": "",
@@ -967,7 +990,8 @@
           "answer": "",
           "auto": "false",
           "size": "4",
-          "start": "BK"
+          "start": "BK",
+          "is_modified": true
         },
         {
           "code": "6471",
@@ -983,9 +1007,9 @@
           "source_book": "논리바둑 1권",
           "source_p_num": 1,
           "source_chapter": "돌의 끊음",
-          "question": "흑이 둘 차례입니다. 백△와 백◎를 끊어보세요.",
+          "question": "백△와 ◎를 끊어 보세요.",
           "hint": "돌이 끊어지면 잡히게 되거나 불리해집니다. 내 돌은 연결하고 상대방 돌은 끊어야 합니다.",
-          "data": ";B[qd];B[pc];B[oc];W[od];W[nc];T[od];C[nc]",
+          "data": ";W[kc];W[nc];B[oc];B[pc];W[od];B[qd];B[qf];T[od];C[nc]",
           "answer1": ";B[nd]",
           "answer2": "",
           "answer3": "",
@@ -995,7 +1019,8 @@
           "answer": "",
           "auto": "false",
           "size": "4",
-          "start": "BA"
+          "start": "BA",
+          "is_modified": true
         },
         {
           "code": "921",
@@ -1013,7 +1038,7 @@
           "source_chapter": "끊음",
           "question": "백△와 ◎를 끊어 보세요.",
           "hint": "끊음이란, 내 돌로 상대방 돌의 연결을 방해하는 것을 말합니다. 끊어지면 약한 모양이 됩니다. 따라서 내돌은 연결하고 상대방의 돌은 끊어야 합니다.",
-          "data": ";B[qp];B[pp];B[np];B[nq];W[oq];W[pq];W[no];W[oo];W[po];T[oq];T[pq];C[no];C[oo];C[po]",
+          "data": ";B[qm];W[no];W[oo];W[po];B[qo];B[lp];B[np];B[pp];B[qp];B[nq];W[oq];W[pq];W[qq];B[rq];B[rr];T[oq];T[pq];C[no];C[oo];C[po];T[qq]",
           "answer1": ";B[op]",
           "answer2": "",
           "answer3": "",
@@ -1023,7 +1048,8 @@
           "answer": "",
           "auto": "false",
           "size": "4",
-          "start": "BK"
+          "start": "BK",
+          "is_modified": true
         },
         {
           "code": "933",
@@ -1041,17 +1067,15 @@
           "source_chapter": "끊음",
           "question": "백△와 ◎를 끊어 보세요.",
           "hint": "끊음이란, 내 돌로 상대방 돌의 연결을 방해하는 것을 말합니다. 끊어지면 약한 모양이 됩니다. 따라서 내돌은 연결하고 상대방의 돌은 끊어야 합니다.",
-          "data": ";W[dq];W[eq];W[fp];W[gp];B[gq];B[ep];B[dp];B[cq];B[cr];T[eq];T[dq];C[fp];C[gp]",
-          "answer1": ";B[fq]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
+          "data": ";W[gn];B[in];B[dp];B[ep];B[fp];W[gp];W[hp];B[ip];B[cq];W[dq];W[eq];W[fq];B[hq];B[iq];B[cr];T[eq];T[dq];C[gp];C[hp];T[fq];C[gn]",
+          "answer1": ";B[gq]",
           "sample": "",
           "answer": "",
           "auto": "false",
           "size": "4",
-          "start": "BK"
+          "start": "B",
+          "is_modified": true,
+          "answerMode": "unordered"
         },
         {
           "code": "937",
@@ -1069,7 +1093,7 @@
           "source_chapter": "끊음",
           "question": "백△와 ◎를 끊어 보세요.",
           "hint": "끊음이란, 내 돌로 상대방 돌의 연결을 방해하는 것을 말합니다. 끊어지면 약한 모양이 됩니다. 따라서 내돌은 연결하고 상대방의 돌은 끊어야 합니다.",
-          "data": ";W[bd];W[cd];W[dc];W[db];W[da];B[cb];B[cc];B[ed];B[ec];B[eb];T[da];T[db];T[dc];C[cd];C[bd]",
+          "data": ";W[da];B[cb];W[db];B[eb];B[bc];B[cc];W[dc];B[ec];B[hc];W[bd];W[cd];B[ed];W[cf];T[da];T[db];T[dc];C[cd];C[bd]",
           "answer1": ";B[dd]",
           "answer2": "",
           "answer3": "",
@@ -1079,35 +1103,8 @@
           "answer": "",
           "auto": "false",
           "size": "4",
-          "start": "BK"
-        },
-        {
-          "code": "38828",
-          "type": "1",
-          "curriculum_type": "추가 연습",
-          "is_review": false,
-          "review_type": "해당 없음",
-          "review_detail": "일반 본문 진도 문항",
-          "hide_review_badge": false,
-          "section_idx": 2,
-          "section_title": "02-02. 돌의 끊음 (상대 돌 갈라놓기)",
-          "source_series": "알파바둑",
-          "source_book": "알파바둑 1권",
-          "source_p_num": 13,
-          "source_chapter": "끊기",
-          "question": "백을 끊어보세요.",
-          "hint": "",
-          "data": ";B[qb];B[pc];W[pb];W[oc]",
-          "answer1": ";B[ob]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "",
-          "answer": "",
-          "auto": "false",
-          "size": "4",
-          "start": "BK"
+          "start": "BK",
+          "is_modified": true
         },
         {
           "code": "38817",
@@ -1123,9 +1120,9 @@
           "source_book": "알파바둑 1권",
           "source_p_num": 2,
           "source_chapter": "끊기",
-          "question": "백을 끊어보세요.",
+          "question": "백△와 ◎를 끊어 보세요.",
           "hint": "",
-          "data": ";B[qq];B[pq];B[op];W[pp];W[oo]",
+          "data": ";W[no];W[oo];B[ro];B[np];B[op];W[pp];B[pq];B[qq];T[no];T[oo];C[pp]",
           "answer1": ";B[po]",
           "answer2": "",
           "answer3": "",
@@ -1135,7 +1132,8 @@
           "answer": "",
           "auto": "false",
           "size": "4",
-          "start": "BK"
+          "start": "BK",
+          "is_modified": true
         },
         {
           "code": "38832",
@@ -1151,9 +1149,9 @@
           "source_book": "알파바둑 1권",
           "source_p_num": 17,
           "source_chapter": "끊기",
-          "question": "백을 끊어보세요.",
+          "question": "백△와 ◎를 끊어 보세요.",
           "hint": "",
-          "data": ";B[cp];B[dp];B[bo];W[co];W[eo];W[ep]",
+          "data": ";B[bl];B[dl];B[em];W[cn];B[bo];W[co];W[eo];B[cp];B[dp];W[ep];W[gp];B[eq];W[fq];B[dr];T[cn];T[co];C[eo];C[ep];C[fq];C[gp]",
           "answer1": ";B[do]",
           "answer2": "",
           "answer3": "",
@@ -1163,7 +1161,8 @@
           "answer": "",
           "auto": "false",
           "size": "4",
-          "start": "BK"
+          "start": "BK",
+          "is_modified": true
         },
         {
           "code": "938",
@@ -1181,7 +1180,7 @@
           "source_chapter": "끊음",
           "question": "백△와 ◎를 끊어 보세요.",
           "hint": "끊음이란, 내 돌로 상대방 돌의 연결을 방해하는 것을 말합니다. 끊어지면 약한 모양이 됩니다. 따라서 내돌은 연결하고 상대방의 돌은 끊어야 합니다.",
-          "data": ";W[db];W[eb];W[ec];W[fc];W[gd];W[ge];B[bc];B[cb];B[dc];B[dd];B[ed];B[fd];B[hc];T[fc];T[ec];T[eb];T[db];C[gd];C[ge]",
+          "data": ";B[cb];W[db];W[eb];B[gb];B[bc];B[dc];W[ec];W[fc];B[hc];B[jc];B[dd];B[ed];B[fd];W[gd];W[ge];W[ie];T[fc];T[ec];T[eb];T[db];C[gd];C[ge];C[ie]",
           "answer1": ";B[gc]",
           "answer2": "",
           "answer3": "",
@@ -1191,7 +1190,8 @@
           "answer": "",
           "auto": "false",
           "size": "4",
-          "start": "BK"
+          "start": "BK",
+          "is_modified": true
         },
         {
           "code": "38830",
@@ -1207,9 +1207,9 @@
           "source_book": "알파바둑 1권",
           "source_p_num": 15,
           "source_chapter": "끊기",
-          "question": "백을 끊어보세요.",
+          "question": "백△와 ◎를 끊어 보세요.",
           "hint": "",
-          "data": ";B[qc];B[pd];B[od];W[oe];W[ne];W[nd];W[oc]",
+          "data": ";W[oc];B[qc];W[nd];B[od];B[pd];W[ne];W[oe];B[qf];W[oh];T[nd];T[ne];T[oe];C[oc]",
           "answer1": ";B[nc]",
           "answer2": "",
           "answer3": "",
@@ -1219,7 +1219,8 @@
           "answer": "",
           "auto": "false",
           "size": "4",
-          "start": "BK"
+          "start": "BK",
+          "is_modified": true
         },
         {
           "code": "6478",
@@ -1235,9 +1236,9 @@
           "source_book": "논리바둑 1권",
           "source_p_num": 8,
           "source_chapter": "돌의 끊음",
-          "question": "흑이 둘 차례입니다. 백△와 백◎를 끊어보세요.",
+          "question": "백△와 ◎를 끊어 보세요.",
           "hint": "돌이 끊어지면 잡히게 되거나 불리해집니다. 내 돌은 연결하고 상대방 돌은 끊어야 합니다.",
-          "data": ";B[sq];B[rp];B[qq];B[qr];B[op];B[nq];W[pr];W[pq];W[qp];W[qo];W[ro];T[qp];T[qo];T[ro];C[pr];C[pq]",
+          "data": ";W[ql];W[qo];W[ro];B[op];W[qp];B[rp];B[lq];B[nq];W[pq];B[qq];B[sq];B[mr];W[nr];W[or];W[pr];B[qr];B[rr];T[qp];T[qo];T[ro];C[pr];C[nr];C[or];C[pq]",
           "answer1": ";B[pp]",
           "answer2": "",
           "answer3": "",
@@ -1247,7 +1248,8 @@
           "answer": "",
           "auto": "false",
           "size": "4",
-          "start": "BA"
+          "start": "BA",
+          "is_modified": true
         },
         {
           "code": "6484",
@@ -1263,19 +1265,17 @@
           "source_book": "논리바둑 1권",
           "source_p_num": 14,
           "source_chapter": "돌의 끊음",
-          "question": "흑이 둘 차례입니다. 백△와 백◎를 끊어보세요.",
+          "question": "백△와 ◎를 끊어 보세요.",
           "hint": "돌이 끊어지면 잡히게 되거나 불리해집니다. 내 돌은 연결하고 상대방 돌은 끊어야 합니다.",
-          "data": ";W[bq];W[bp];W[cp];W[do];W[eo];B[co];B[cn];B[fp];B[ep];B[cq];B[cr];T[bq];T[bp];T[cp];C[do];C[eo]",
-          "answer1": ";B[dp]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
+          "data": ";B[ck];B[cm];W[dm];W[fm];B[cn];B[co];W[do];W[eo];B[cp];W[dp];B[ep];B[fp];W[bq];W[cq];W[br];B[cr];B[dr];B[er];C[do];C[eo];T[bq];T[br];T[cq];C[dp]",
+          "answer1": ";B[dq]",
           "sample": "",
           "answer": "",
           "auto": "false",
           "size": "4",
-          "start": "BA"
+          "start": "B",
+          "is_modified": true,
+          "answerMode": "unordered"
         },
         {
           "code": "38821",
@@ -1291,19 +1291,17 @@
           "source_book": "알파바둑 1권",
           "source_p_num": 6,
           "source_chapter": "끊기",
-          "question": "백을 끊어보세요.",
+          "question": "백△와 ◎를 끊어 보세요.",
           "hint": "",
-          "data": ";B[bb];B[cb];B[dc];B[dd];B[de];W[cf];W[cd];W[cc]",
+          "data": ";B[bb];B[cb];W[cc];B[dc];W[cd];B[dd];B[de];W[cf];W[df];B[ef];B[ff];W[eg];W[dh];T[cc];T[cd];C[cf];C[df];C[eg];C[dh]",
           "answer1": ";B[ce]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
           "sample": "",
           "answer": "",
           "auto": "false",
           "size": "4",
-          "start": "BK"
+          "start": "B",
+          "is_modified": true,
+          "answerMode": "unordered"
         },
         {
           "code": "38831",
@@ -1319,9 +1317,9 @@
           "source_book": "알파바둑 1권",
           "source_p_num": 16,
           "source_chapter": "끊기",
-          "question": "백을 끊어보세요.",
+          "question": "백△와 ◎를 끊어 보세요.",
           "hint": "",
-          "data": ";B[qc];B[pd];B[od];B[qf];W[oe];W[nd];W[nc];W[oc]",
+          "data": ";B[kc];W[nc];W[oc];B[qc];W[nd];B[od];B[pd];B[ke];W[oe];B[qf];T[nc];T[oc];T[nd];C[oe]",
           "answer1": ";B[ne]",
           "answer2": "",
           "answer3": "",
@@ -1331,7 +1329,8 @@
           "answer": "",
           "auto": "false",
           "size": "4",
-          "start": "BK"
+          "start": "BK",
+          "is_modified": true
         },
         {
           "code": "6479",
@@ -1347,9 +1346,9 @@
           "source_book": "논리바둑 1권",
           "source_p_num": 9,
           "source_chapter": "돌의 끊음",
-          "question": "흑이 둘 차례입니다. 백△와 백◎를 끊어보세요.",
+          "question": "백△와 ◎를 끊어 보세요.",
           "hint": "돌이 끊어지면 잡히게 되거나 불리해집니다. 내 돌은 연결하고 상대방 돌은 끊어야 합니다.",
-          "data": ";B[rq];B[rp];B[pq];B[oq];B[np];B[oo];W[qr];W[qq];W[pp];W[qo];W[qn];T[qn];T[qo];T[pp];C[qq];C[qr]",
+          "data": ";W[qm];W[on];W[qn];B[oo];W[po];B[np];B[rp];B[oq];B[pq];W[qq];B[rq];B[pr];W[qr];W[rr];B[sr];T[qn];C[qq];C[qr];T[qm];T[po];C[rr];T[on]",
           "answer1": ";B[qp]",
           "answer2": "",
           "answer3": "",
@@ -1359,7 +1358,8 @@
           "answer": "",
           "auto": "false",
           "size": "4",
-          "start": "BA"
+          "start": "BA",
+          "is_modified": true
         },
         {
           "code": "6481",
@@ -1375,9 +1375,9 @@
           "source_book": "논리바둑 1권",
           "source_p_num": 11,
           "source_chapter": "돌의 끊음",
-          "question": "흑이 둘 차례입니다. 백△와 백◎를 끊어보세요.",
+          "question": "백△와 ◎를 끊어 보세요.",
           "hint": "돌이 끊어지면 잡히게 되거나 불리해집니다. 내 돌은 연결하고 상대방 돌은 끊어야 합니다.",
-          "data": ";B[bq];B[cq];B[dr];B[er];B[eq];B[gp];B[hq];W[fr];W[fq];W[ep];W[dp];W[cp];W[dq];T[ep];T[dp];T[cp];T[dq];C[fq];C[fr]",
+          "data": ";W[dl];W[bp];W[cp];W[dp];W[ep];B[gp];B[bq];B[cq];W[dq];B[eq];W[fq];B[hq];B[iq];B[br];B[dr];B[er];W[fr];W[gr];W[hr];B[ir];T[ep];T[dp];T[cp];T[dq];C[fq];C[fr];T[bp];C[gr];C[hr]",
           "answer1": ";B[fp]",
           "answer2": "",
           "answer3": "",
@@ -1387,7 +1387,8 @@
           "answer": "",
           "auto": "false",
           "size": "4",
-          "start": "BA"
+          "start": "BA",
+          "is_modified": true
         },
         {
           "code": "38822",
@@ -1403,9 +1404,9 @@
           "source_book": "알파바둑 1권",
           "source_p_num": 7,
           "source_chapter": "끊기",
-          "question": "백을 끊어보세요.",
+          "question": "백△와 ◎를 끊어 보세요.",
           "hint": "",
-          "data": ";B[cc];B[cd];B[de];B[db];B[eb];B[fc];W[dd];W[dc];W[ee];W[ef]",
+          "data": ";B[db];B[eb];B[cc];W[dc];B[fc];B[hc];B[cd];W[dd];B[ce];B[de];W[ee];W[cf];W[df];W[ef];W[dj];T[dc];T[dd];C[ef];C[ee];C[df];C[cf]",
           "answer1": ";B[ed]",
           "answer2": "",
           "answer3": "",
@@ -1415,7 +1416,8 @@
           "answer": "",
           "auto": "false",
           "size": "4",
-          "start": "BK"
+          "start": "BK",
+          "is_modified": true
         },
         {
           "code": "38826",
@@ -1431,9 +1433,9 @@
           "source_book": "알파바둑 1권",
           "source_p_num": 11,
           "source_chapter": "끊기",
-          "question": "백을 끊어보세요.",
+          "question": "백△와 ◎를 끊어 보세요.",
           "hint": "",
-          "data": ";B[qb];B[rc];B[re];B[pc];B[pd];B[pe];W[pf];W[of];W[qe];W[qd];W[qc]",
+          "data": ";B[qb];B[pc];W[qc];B[rc];W[od];B[pd];W[qd];W[oe];B[pe];W[qe];B[re];W[pf];W[og];T[qc];T[qd];T[qe];C[pf];C[og];C[oe];C[od]",
           "answer1": ";B[qf]",
           "answer2": "",
           "answer3": "",
@@ -1443,7 +1445,8 @@
           "answer": "",
           "auto": "false",
           "size": "4",
-          "start": "BK"
+          "start": "BK",
+          "is_modified": true
         },
         {
           "code": "6494",
@@ -1459,9 +1462,9 @@
           "source_book": "논리바둑 1권",
           "source_p_num": 24,
           "source_chapter": "돌의 끊음",
-          "question": "흑이 둘 차례입니다. 백을 끊어보세요.",
+          "question": "백△와 ◎를 끊어 보세요.",
           "hint": "돌이 끊어지면 잡히게 되거나 불리해집니다. 내 돌은 연결하고 상대방 돌은 끊어야 합니다.",
-          "data": ";B[rr];B[rq];B[pq];B[oq];B[nq];B[nr];W[or];W[pr];W[qq];W[qp];W[pp];T[pp];T[qp];T[qq];C[or];C[pr]",
+          "data": ";W[no];W[mp];W[pp];W[qp];W[rp];W[kq];B[nq];B[oq];B[pq];W[qq];B[rq];B[nr];W[or];W[pr];B[rr];T[pp];T[qp];T[qq];C[or];C[pr];T[rp]",
           "answer1": ";B[qr]",
           "answer2": "",
           "answer3": "",
@@ -1471,7 +1474,8 @@
           "answer": "",
           "auto": "false",
           "size": "4",
-          "start": "BA"
+          "start": "BA",
+          "is_modified": true
         },
         {
           "code": "6488",
@@ -1487,9 +1491,9 @@
           "source_book": "논리바둑 1권",
           "source_p_num": 18,
           "source_chapter": "돌의 끊음",
-          "question": "흑이 둘 차례입니다. 백△와 백◎를 끊어보세요.",
+          "question": "백△와 ◎를 끊어 보세요.",
           "hint": "돌이 끊어지면 잡히게 되거나 불리해집니다. 내 돌은 연결하고 상대방 돌은 끊어야 합니다.",
-          "data": ";B[bq];B[cr];B[dp];B[dq];B[cp];B[cn];B[dn];B[en];W[bo];W[co];W[do];W[fo];W[ep];W[eq];W[er];T[fo];T[ep];T[eq];T[er];C[do];C[co];C[bo]",
+          "data": ";B[bm];W[bn];B[cn];B[dn];B[en];W[bo];W[co];W[do];W[fo];B[cp];B[dp];W[ep];W[ip];B[bq];B[dq];W[eq];B[cr];W[er];T[fo];T[ep];T[eq];T[er];C[do];C[co];C[bo];C[bn]",
           "answer1": ";B[eo]",
           "answer2": "",
           "answer3": "",
@@ -1499,7 +1503,8 @@
           "answer": "",
           "auto": "false",
           "size": "4",
-          "start": "BA"
+          "start": "BA",
+          "is_modified": true
         },
         {
           "code": "38838",
@@ -1515,9 +1520,9 @@
           "source_book": "알파바둑 1권",
           "source_p_num": 23,
           "source_chapter": "끊기",
-          "question": "백을 끊어보세요.",
+          "question": "백△와 ◎를 끊어 보세요.",
           "hint": "",
-          "data": ";B[bb];B[ba];B[cc];B[cd];B[ce];B[ed];B[ec];B[fb];W[df];W[cf];W[dd];W[dc];W[db];W[cb]",
+          "data": ";B[ba];B[bb];W[cb];W[db];B[fb];B[cc];W[dc];B[ec];B[cd];W[dd];B[ed];B[ce];W[bf];W[cf];W[ef];W[dg];T[cb];T[db];T[dc];T[dd];C[bf];C[cf];C[dg];C[ef]",
           "answer1": ";B[de]",
           "answer2": "",
           "answer3": "",
@@ -1527,7 +1532,8 @@
           "answer": "",
           "auto": "false",
           "size": "4",
-          "start": "BK"
+          "start": "BK",
+          "is_modified": true
         },
         {
           "code": "6495",
@@ -1543,9 +1549,9 @@
           "source_book": "논리바둑 1권",
           "source_p_num": 25,
           "source_chapter": "돌의 끊음",
-          "question": "흑이 둘 차례입니다. 백을 끊어보세요.",
+          "question": "백△와 ◎를 끊어 보세요.",
           "hint": "돌이 끊어지면 잡히게 되거나 불리해집니다. 내 돌은 연결하고 상대방 돌은 끊어야 합니다.",
-          "data": ";B[rb];B[rc];B[qc];B[oc];B[ob];B[mc];B[pe];W[pc];W[pb];W[qb];W[qd];W[rd];W[od];W[nd]",
+          "data": ";W[ra];B[ob];W[pb];W[qb];B[rb];B[sb];B[mc];B[oc];W[pc];B[qc];B[rc];W[nd];W[od];W[qd];W[rd];W[le];B[pe];W[nf];B[qf];B[qh];T[pc];T[pb];T[qb];C[qd];C[rd];T[ra]",
           "answer1": ";B[pd]",
           "answer2": "",
           "answer3": "",
@@ -1555,7 +1561,8 @@
           "answer": "",
           "auto": "false",
           "size": "4",
-          "start": "BA"
+          "start": "BA",
+          "is_modified": true
         },
         {
           "code": "6489",
@@ -1571,9 +1578,9 @@
           "source_book": "논리바둑 1권",
           "source_p_num": 19,
           "source_chapter": "돌의 끊음",
-          "question": "흑이 둘 차례입니다. 백을 끊어보세요.",
+          "question": "백△와 ◎를 끊어 보세요.",
           "hint": "돌이 끊어지면 잡히게 되거나 불리해집니다. 내 돌은 연결하고 상대방 돌은 끊어야 합니다.",
-          "data": ";B[qr];B[qq];B[or];B[nr];B[nq];B[mp];B[lq];W[ps];W[pr];W[oq];W[np];W[no];W[pp];W[qp];T[no];T[np];T[oq];T[pp];T[qp];C[pr];C[ps]",
+          "data": ";W[no];W[ro];B[mp];W[np];W[pp];W[qp];B[rp];W[sp];B[lq];B[nq];W[oq];B[qq];B[rq];B[nr];B[or];W[pr];B[qr];B[rr];W[ps];T[no];T[np];T[oq];T[pp];T[qp];C[pr];C[ps]",
           "answer1": ";B[pq]",
           "answer2": "",
           "answer3": "",
@@ -1583,7 +1590,8 @@
           "answer": "",
           "auto": "false",
           "size": "4",
-          "start": "BA"
+          "start": "BA",
+          "is_modified": true
         },
         {
           "code": "6490",
@@ -1599,9 +1607,9 @@
           "source_book": "논리바둑 1권",
           "source_p_num": 20,
           "source_chapter": "돌의 끊음",
-          "question": "흑이 둘 차례입니다. 백을 끊어보세요.",
+          "question": "백△와 ◎를 끊어 보세요.",
           "hint": "돌이 끊어지면 잡히게 되거나 불리해집니다. 내 돌은 연결하고 상대방 돌은 끊어야 합니다.",
-          "data": ";W[bs];W[cr];W[dq];W[eq];W[ep];W[eo];B[do];B[dp];B[cq];B[bp];B[br];B[er];B[fq];B[gr];T[eo];T[ep];T[eq];T[dq];C[cr];C[bs]",
+          "data": ";B[cm];W[en];B[do];W[eo];B[bp];B[dp];W[ep];B[bq];B[cq];W[dq];W[eq];B[fq];W[ar];B[br];W[cr];B[er];B[gr];W[bs];T[eo];T[ep];T[eq];T[dq];C[cr];C[bs];T[en];C[ar]",
           "answer1": ";B[dr]",
           "answer2": "",
           "answer3": "",
@@ -1611,7 +1619,8 @@
           "answer": "",
           "auto": "false",
           "size": "4",
-          "start": "BA"
+          "start": "BA",
+          "is_modified": true
         },
         {
           "code": "38837",
@@ -1627,9 +1636,9 @@
           "source_book": "알파바둑 1권",
           "source_p_num": 22,
           "source_chapter": "끊기",
-          "question": "백을 끊어보세요.",
+          "question": "백△와 ◎를 끊어 보세요.",
           "hint": "",
-          "data": ";B[cb];B[db];B[ec];B[fc];B[fd];B[bc];B[bd];B[bf];B[cg];B[dg];W[ed];W[dd];W[dc];W[cc];W[fe];W[ge];W[gd]",
+          "data": ";B[cb];B[db];B[fb];W[gb];B[bc];W[cc];W[dc];B[ec];B[fc];W[gc];B[bd];W[ed];B[fd];W[gd];W[de];W[fe];W[ge];B[bf];B[ef];B[cg];B[dg];T[cc];T[dc];T[ed];T[de];C[gd];C[gc];C[gb];C[fe];C[ge]",
           "answer1": ";B[ee]",
           "answer2": "",
           "answer3": "",
@@ -1639,7 +1648,8 @@
           "answer": "",
           "auto": "false",
           "size": "4",
-          "start": "BK"
+          "start": "BK",
+          "is_modified": true
         },
         {
           "code": "6491",
@@ -1655,9 +1665,9 @@
           "source_book": "논리바둑 1권",
           "source_p_num": 21,
           "source_chapter": "돌의 끊음",
-          "question": "흑이 둘 차례입니다. 백을 끊어보세요.",
+          "question": "백△와 ◎를 끊어 보세요.",
           "hint": "돌이 끊어지면 잡히게 되거나 불리해집니다. 내 돌은 연결하고 상대방 돌은 끊어야 합니다.",
-          "data": ";B[rb];B[rc];B[rd];B[qd];B[od];B[nd];B[nc];B[lc];B[pf];B[pg];W[pd];W[oc];W[pc];W[qc];W[qe];W[re];W[oe];W[ne];W[me]",
+          "data": ";W[qb];B[rb];B[lc];B[nc];W[oc];W[pc];W[qc];B[rc];B[nd];B[od];W[pd];B[qd];B[rd];W[me];W[ne];W[oe];W[qe];W[re];B[pf];W[mg];B[pg];W[nh];T[oc];T[pc];T[qc];T[qb];T[pd];C[qe];C[re];C[me];C[ne];C[oe]",
           "answer1": ";B[pe]",
           "answer2": "",
           "answer3": "",
@@ -1667,7 +1677,8 @@
           "answer": "",
           "auto": "false",
           "size": "4",
-          "start": "BA"
+          "start": "BA",
+          "is_modified": true
         }
       ]
     },
