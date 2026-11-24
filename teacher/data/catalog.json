@@ -1950,7 +1950,7 @@
       {
         "code": "gpt_anti_stage_02",
         "title": "2단계",
-        "chapterCount": 5,
+        "chapterCount": 9,
         "totalProblems": 148,
         "chapters": [
           {
@@ -1992,10 +1992,42 @@
             "chapter": "5. 우리 편 방향으로 단수치기",
             "problemCount": 30,
             "problemsCount": 30
+          },
+          {
+            "code": "gpt_anti_02_06",
+            "chapterCode": "gpt_anti_02_06",
+            "title": "6. 착수금지",
+            "chapter": "6. 착수금지",
+            "problemCount": 0,
+            "problemsCount": 0
+          },
+          {
+            "code": "gpt_anti_02_07",
+            "chapterCode": "gpt_anti_02_07",
+            "title": "7. 패",
+            "chapter": "7. 패",
+            "problemCount": 0,
+            "problemsCount": 0
+          },
+          {
+            "code": "gpt_anti_02_08",
+            "chapterCode": "gpt_anti_02_08",
+            "title": "8. 집과 승패",
+            "chapter": "8. 집과 승패",
+            "problemCount": 0,
+            "problemsCount": 0
+          },
+          {
+            "code": "gpt_anti_02_09",
+            "chapterCode": "gpt_anti_02_09",
+            "title": "9. 집과 공배",
+            "chapter": "9. 집과 공배",
+            "problemCount": 0,
+            "problemsCount": 0
           }
         ],
         "file": "book_gpt_anti_stage_02.json",
-        "_buildVer": "v15-stage02-ch4-hint"
+        "_buildVer": "v16-stage02-rules-chapters"
       },
       {
         "code": "gpt_anti_stage_01",
@@ -17113,7 +17145,7 @@
         "name": "2단계",
         "code": "gpt_anti_stage_02",
         "file": "book_gpt_anti_stage_02.json",
-        "chapterCount": 5,
+        "chapterCount": 9,
         "totalProblems": 148,
         "chapters": [
           {
@@ -17135,9 +17167,25 @@
           {
             "title": "5. 우리 편 방향으로 단수치기",
             "problemCount": 30
+          },
+          {
+            "title": "6. 착수금지",
+            "problemCount": 0
+          },
+          {
+            "title": "7. 패",
+            "problemCount": 0
+          },
+          {
+            "title": "8. 집과 승패",
+            "problemCount": 0
+          },
+          {
+            "title": "9. 집과 공배",
+            "problemCount": 0
           }
         ],
-        "_buildVer": "v15-stage02-ch4-hint"
+        "_buildVer": "v16-stage02-rules-chapters"
       }
     ]
   }

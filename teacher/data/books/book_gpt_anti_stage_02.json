@@ -4,10 +4,10 @@
   "title": "2단계",
   "bookCode": "gpt_anti_stage_02",
   "code": "gpt_anti_stage_02",
-  "chapterCount": 5,
+  "chapterCount": 9,
   "totalProblems": 148,
   "problemCount": 148,
-  "_buildVer": "v15-stage02-ch4-hint",
+  "_buildVer": "v16-stage02-rules-chapters",
   "chapters": [
     {
       "code": "gpt_anti_02_01",
@@ -4245,6 +4245,42 @@
           "is_modified": false
         }
       ]
+    },
+    {
+      "code": "gpt_anti_02_06",
+      "chapterCode": "gpt_anti_02_06",
+      "title": "6. 착수금지",
+      "chapter": "6. 착수금지",
+      "problemCount": 0,
+      "problemsCount": 0,
+      "problems": []
+    },
+    {
+      "code": "gpt_anti_02_07",
+      "chapterCode": "gpt_anti_02_07",
+      "title": "7. 패",
+      "chapter": "7. 패",
+      "problemCount": 0,
+      "problemsCount": 0,
+      "problems": []
+    },
+    {
+      "code": "gpt_anti_02_08",
+      "chapterCode": "gpt_anti_02_08",
+      "title": "8. 집과 승패",
+      "chapter": "8. 집과 승패",
+      "problemCount": 0,
+      "problemsCount": 0,
+      "problems": []
+    },
+    {
+      "code": "gpt_anti_02_09",
+      "chapterCode": "gpt_anti_02_09",
+      "title": "9. 집과 공배",
+      "chapter": "9. 집과 공배",
+      "problemCount": 0,
+      "problemsCount": 0,
+      "problems": []
     }
   ]
 }
