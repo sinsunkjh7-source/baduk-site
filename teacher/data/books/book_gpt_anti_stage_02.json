@@ -5,9 +5,9 @@
   "bookCode": "gpt_anti_stage_02",
   "code": "gpt_anti_stage_02",
   "chapterCount": 5,
-  "totalProblems": 90,
-  "problemCount": 90,
-  "_buildVer": "v9-stage02-ch3-30",
+  "totalProblems": 88,
+  "problemCount": 88,
+  "_buildVer": "v10-stage02-ch3-edited",
   "chapters": [
     {
       "code": "gpt_anti_02_01",
@@ -1687,8 +1687,8 @@
       "chapterCode": "gpt_anti_02_03",
       "title": "3. 1선 방향으로 단수치기",
       "chapter": "3. 1선 방향으로 단수치기",
-      "problemCount": 30,
-      "problemsCount": 30,
+      "problemCount": 28,
+      "problemsCount": 28,
       "problems": [
         {
           "code": "sd39034",
@@ -1704,7 +1704,7 @@
           "source_book": "알파바둑 1권",
           "source_p_num": "1",
           "source_chapter": "19. 1선 방향으로 몰기",
-          "question": "흑이 둘 차례입니다. 백△를 1선(바둑판 가장자리) 방향으로 몰아 단수쳐 보세요.",
+          "question": "백△를 1선 방향으로 단수쳐 보세요.",
           "hint": "",
           "data": ";B[cb];B[dc];W[db];T[db]",
           "answer1": ";B[eb]",
@@ -1733,49 +1733,17 @@
           "source_book": "논리바둑 1권",
           "source_p_num": "19",
           "source_chapter": "9. 1선 방향으로 단수치기",
-          "question": "흑이 둘 차례입니다. 백△를 1선(바둑판 가장자리) 방향으로 몰아 단수쳐 보세요.",
+          "question": "백△를 1선 방향으로 단수쳐 보세요.",
           "hint": "상대방이 도망가지 못하게 1선(사망선)방향으로 단수를 쳐야 합니다.",
-          "data": ";W[qa];W[pa];B[oa];B[pb];T[pa];T[qa]",
-          "answer1": ";B[qb]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
+          "data": ";B[la];W[ma];W[na];B[mb];W[pd];T[ma];T[na]",
+          "answer1": ";B[nb]",
           "sample": "",
           "answer": "",
           "auto": "false",
           "size": "4",
-          "start": "BA",
-          "is_modified": false
-        },
-        {
-          "code": "sd39038",
-          "type": "1",
-          "curriculum_type": "필수",
-          "is_review": false,
-          "review_type": "해당 없음",
-          "review_detail": "일반 본문 진도 문항",
-          "hide_review_badge": false,
-          "section_idx": "1",
-          "section_title": "01. 1선 방향으로 단수치기",
-          "source_series": "알파바둑",
-          "source_book": "알파바둑 1권",
-          "source_p_num": "5",
-          "source_chapter": "19. 1선 방향으로 몰기",
-          "question": "흑이 둘 차례입니다. 백△를 1선(바둑판 가장자리) 방향으로 몰아 단수쳐 보세요.",
-          "hint": "",
-          "data": ";B[rr];B[qq];W[pq];W[pp];W[qr];T[qr]",
-          "answer1": ";B[pr]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "",
-          "answer": "",
-          "auto": "false",
-          "size": "4",
-          "start": "BK",
-          "is_modified": false
+          "start": "B",
+          "is_modified": true,
+          "answerMode": "unordered"
         },
         {
           "code": "sd39045",
@@ -1791,20 +1759,17 @@
           "source_book": "알파바둑 1권",
           "source_p_num": "12",
           "source_chapter": "19. 1선 방향으로 몰기",
-          "question": "흑이 둘 차례입니다. 백△를 1선(바둑판 가장자리) 방향으로 몰아 단수쳐 보세요.",
+          "question": "백△를 1선 방향으로 단수쳐 보세요.",
           "hint": "",
-          "data": ";B[bo];B[bn];B[am];W[ap];W[ao];W[an];T[an];T[ao];T[ap]",
-          "answer1": ";B[bp]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
+          "data": ";B[ak];W[al];B[bl];W[am];B[bm];W[an];W[cp];W[ep];T[an];T[al];T[am]",
+          "answer1": ";B[bn]",
           "sample": "",
           "answer": "",
           "auto": "false",
           "size": "4",
-          "start": "BK",
-          "is_modified": false
+          "start": "B",
+          "is_modified": true,
+          "answerMode": "unordered"
         },
         {
           "code": "sd39041",
@@ -1820,20 +1785,17 @@
           "source_book": "알파바둑 1권",
           "source_p_num": "8",
           "source_chapter": "19. 1선 방향으로 몰기",
-          "question": "흑이 둘 차례입니다. 백△를 1선(바둑판 가장자리) 방향으로 몰아 단수쳐 보세요.",
+          "question": "백△를 1선 방향으로 단수쳐 보세요.",
           "hint": "",
-          "data": ";B[bc];B[bd];B[ce];W[be];W[cd];W[cc];W[bb];T[be]",
-          "answer1": ";B[bf]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
+          "data": ";W[bb];B[bc];W[cc];B[bd];W[cd];B[be];W[ce];W[bf];B[cf];B[df];W[ch];T[bf]",
+          "answer1": ";B[bg]",
           "sample": "",
           "answer": "",
           "auto": "false",
           "size": "4",
-          "start": "BK",
-          "is_modified": false
+          "start": "B",
+          "is_modified": true,
+          "answerMode": "unordered"
         },
         {
           "code": "sd6550",
@@ -1849,9 +1811,9 @@
           "source_book": "논리바둑 1권",
           "source_p_num": "4",
           "source_chapter": "9. 1선 방향으로 단수치기",
-          "question": "흑이 둘 차례입니다. 백△를 1선(바둑판 가장자리) 방향으로 몰아 단수쳐 보세요.",
+          "question": "백△를 1선 방향으로 단수쳐 보세요.",
           "hint": "상대방이 도망가지 못하게 1선(사망선)방향으로 단수를 쳐야 합니다.",
-          "data": ";B[pc];B[oc];B[nb];W[mc];W[nc];W[ob];W[od];W[pd];T[ob]",
+          "data": ";W[lb];B[mb];B[nb];W[ob];W[kc];W[mc];W[nc];B[oc];B[pc];B[rc];W[od];W[pd];W[qd];T[ob]",
           "answer1": ";B[pb]",
           "answer2": "",
           "answer3": "",
@@ -1862,7 +1824,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "is_modified": false
+          "is_modified": true
         },
         {
           "code": "sd39039",
@@ -1878,7 +1840,7 @@
           "source_book": "알파바둑 1권",
           "source_p_num": "6",
           "source_chapter": "19. 1선 방향으로 몰기",
-          "question": "흑이 둘 차례입니다. 백△를 1선(바둑판 가장자리) 방향으로 몰아 단수쳐 보세요.",
+          "question": "백△를 1선 방향으로 단수쳐 보세요.",
           "hint": "",
           "data": ";B[sq];B[rr];B[qq];B[qp];W[qo];W[po];W[rp];W[rq];T[rq];T[rp]",
           "answer1": ";B[ro]",
@@ -1907,9 +1869,9 @@
           "source_book": "알파바둑 1권",
           "source_p_num": "11",
           "source_chapter": "19. 1선 방향으로 몰기",
-          "question": "흑이 둘 차례입니다. 백△를 1선(바둑판 가장자리) 방향으로 몰아 단수쳐 보세요.",
+          "question": "백△를 1선 방향으로 단수쳐 보세요.",
           "hint": "",
-          "data": ";B[er];B[fq];B[gr];B[gs];W[fr];W[fs];W[es];W[ds];T[ds];T[es];T[fs];T[fr]",
+          "data": ";W[dp];W[cq];B[fq];B[hq];B[er];W[fr];B[gr];W[ds];W[es];W[fs];B[gs];T[ds];T[es];T[fs];T[fr]",
           "answer1": ";B[dr]",
           "answer2": "",
           "answer3": "",
@@ -1920,7 +1882,7 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "is_modified": false
+          "is_modified": true
         },
         {
           "code": "sd941",
@@ -1936,9 +1898,9 @@
           "source_book": "씽크탱크 1권",
           "source_p_num": "3",
           "source_chapter": " 8. 1선 방향으로 단수치기",
-          "question": "흑이 둘 차례입니다. 백△를 1선(바둑판 가장자리) 방향으로 몰아 단수쳐 보세요.",
+          "question": "백△를 1선 방향으로 단수쳐 보세요.",
           "hint": "1선 방향으로 단수를 치면 더 이상 달아날 곳이 없기 때문에 상대의 돌을 잡을 수 있습니다.\r\n",
-          "data": ";W[bb];W[bc];W[cc];W[dc];W[eb];B[cb];B[db];B[ec];B[ed];T[eb]",
+          "data": ";W[ba];W[bb];B[cb];B[db];W[eb];W[bc];W[cc];W[dc];B[ec];B[gc];B[ed];B[be];B[de];T[eb]",
           "answer1": ";B[fb]",
           "answer2": "",
           "answer3": "",
@@ -1949,7 +1911,7 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "is_modified": false
+          "is_modified": true
         },
         {
           "code": "sd39047",
@@ -1965,9 +1927,9 @@
           "source_book": "알파바둑 1권",
           "source_p_num": "14",
           "source_chapter": "19. 1선 방향으로 몰기",
-          "question": "흑이 둘 차례입니다. 백△를 1선(바둑판 가장자리) 방향으로 몰아 단수쳐 보세요.",
+          "question": "백△를 1선 방향으로 단수쳐 보세요.",
           "hint": "",
-          "data": ";B[rc];B[qc];B[pd];B[qe];W[qg];W[pf];W[pe];W[qd];W[rd];T[qd];T[rd]",
+          "data": ";W[ob];W[pb];B[qb];W[oc];B[pc];B[qc];B[rc];W[od];B[pd];W[qd];W[rd];W[pe];B[qe];W[pf];W[qg];T[qd];T[rd]",
           "answer1": ";B[re]",
           "answer2": "",
           "answer3": "",
@@ -1978,7 +1940,7 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "is_modified": false
+          "is_modified": true
         },
         {
           "code": "sd39053",
@@ -1994,7 +1956,7 @@
           "source_book": "알파바둑 1권",
           "source_p_num": "22",
           "source_chapter": "19. 1선 방향으로 몰기",
-          "question": "흑이 둘 차례입니다. 백△를 1선(바둑판 가장자리) 방향으로 몰아 단수쳐 보세요.",
+          "question": "백△를 1선 방향으로 단수쳐 보세요.",
           "hint": "",
           "data": ";B[po];B[qo];B[rp];B[sp];W[ro];W[qn];W[qp];W[qq];W[rq];T[ro]",
           "answer1": ";B[rn]",
@@ -2023,7 +1985,7 @@
           "source_book": "씽크탱크 1권",
           "source_p_num": "1",
           "source_chapter": " 8. 1선 방향으로 단수치기",
-          "question": "흑이 둘 차례입니다. 백△를 1선(바둑판 가장자리) 방향으로 몰아 단수쳐 보세요. (3수 끝)",
+          "question": "백△를 1선 방향으로 단수쳐 보세요.",
           "hint": "1선 방향으로 단수를 치면 더 이상 달아날 곳이 없기 때문에 상대의 돌을 잡을 수 있습니다.",
           "data": ";W[cs];B[ds];T[cs]",
           "answer1": ";B[cr];W[bs];B[br]",
@@ -2052,9 +2014,9 @@
           "source_book": "논리바둑 1권",
           "source_p_num": "5",
           "source_chapter": "9. 1선 방향으로 단수치기",
-          "question": "흑이 둘 차례입니다. 백△를 1선(바둑판 가장자리) 방향으로 몰아 단수쳐 보세요.",
+          "question": "백△를 1선 방향으로 단수쳐 보세요.",
           "hint": "상대방이 도망가지 못하게 1선(사망선)방향으로 단수를 쳐야 합니다.",
-          "data": ";B[bc];B[cc];B[db];B[eb];B[ec];B[ed];W[cb];W[dc];W[dd];W[cd];W[bd];T[cb]",
+          "data": ";W[cb];B[db];B[fb];B[bc];B[cc];W[dc];B[ec];W[bd];W[cd];W[dd];B[ed];B[ef];W[cg];T[cb]",
           "answer1": ";B[bb]",
           "answer2": "",
           "answer3": "",
@@ -2065,7 +2027,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "is_modified": false
+          "is_modified": true
         },
         {
           "code": "sd946",
@@ -2081,9 +2043,9 @@
           "source_book": "씽크탱크 1권",
           "source_p_num": "8",
           "source_chapter": " 8. 1선 방향으로 단수치기",
-          "question": "흑이 둘 차례입니다. 백△를 1선(바둑판 가장자리) 방향으로 몰아 단수쳐 보세요.",
+          "question": "백△를 1선 방향으로 단수쳐 보세요.",
           "hint": "1선 방향으로 단수를 치면 더 이상 달아날 곳이 없기 때문에 상대의 돌을 잡을 수 있습니다.",
-          "data": ";W[rd];W[qd];W[pd];W[od];W[oc];W[nb];B[nc];B[ob];B[pc];B[qc];B[rc];T[nb]",
+          "data": ";W[nb];B[ob];B[nc];W[oc];B[pc];B[qc];W[od];W[pd];W[qd];T[nb]",
           "answer1": ";B[mb]",
           "answer2": "",
           "answer3": "",
@@ -2094,7 +2056,7 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "is_modified": false
+          "is_modified": true
         },
         {
           "code": "sd947",
@@ -2110,9 +2072,9 @@
           "source_book": "씽크탱크 1권",
           "source_p_num": "9",
           "source_chapter": " 8. 1선 방향으로 단수치기",
-          "question": "흑이 둘 차례입니다. 백△를 1선(바둑판 가장자리) 방향으로 몰아 단수쳐 보세요.",
+          "question": "백△를 1선 방향으로 단수쳐 보세요.",
           "hint": "1선 방향으로 단수를 치면 더 이상 달아날 곳이 없기 때문에 상대의 돌을 잡을 수 있습니다.",
-          "data": ";W[qr];W[qq];W[pp];W[op];W[oq];W[nr];B[or];B[pr];B[pq];B[nq];B[np];T[nr]",
+          "data": ";B[on];B[oo];W[po];B[np];W[op];W[pp];W[rp];B[lq];B[nq];W[oq];B[pq];W[qq];W[nr];B[or];B[pr];B[qr];W[rr];W[qs];T[nr]",
           "answer1": ";B[mr]",
           "answer2": "",
           "answer3": "",
@@ -2123,7 +2085,7 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "is_modified": false
+          "is_modified": true
         },
         {
           "code": "sd39051",
@@ -2139,9 +2101,9 @@
           "source_book": "알파바둑 1권",
           "source_p_num": "20",
           "source_chapter": "19. 1선 방향으로 몰기",
-          "question": "흑이 둘 차례입니다. 백△를 1선(바둑판 가장자리) 방향으로 몰아 단수쳐 보세요.",
+          "question": "백△를 1선 방향으로 단수쳐 보세요.",
           "hint": "",
-          "data": ";B[dr];B[dq];B[ep];B[eo];B[fq];W[dp];W[cp];W[cr];W[eq];W[er];W[gq];T[er];T[eq]",
+          "data": ";B[do];B[eo];W[cp];W[dp];B[ep];B[dq];W[eq];B[fq];W[gq];W[iq];W[cr];B[dr];W[er];T[er];T[eq]",
           "answer1": ";B[fr]",
           "answer2": "",
           "answer3": "",
@@ -2152,7 +2114,7 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "is_modified": false
+          "is_modified": true
         },
         {
           "code": "sd951",
@@ -2168,9 +2130,9 @@
           "source_book": "씽크탱크 1권",
           "source_p_num": "13",
           "source_chapter": " 8. 1선 방향으로 단수치기",
-          "question": "흑이 둘 차례입니다. 백△를 1선(바둑판 가장자리) 방향으로 몰아 단수쳐 보세요.",
+          "question": "백△를 1선 방향으로 단수쳐 보세요.",
           "hint": "1선 방향으로 단수를 치면 더 이상 달아날 곳이 없기 때문에 상대의 돌을 잡을 수 있습니다.",
-          "data": ";W[cb];W[cc];W[be];W[ce];W[dd];W[ed];W[fc];B[dc];B[cd];B[bd];B[bc];B[bb];T[cb];T[cc]",
+          "data": ";B[bb];W[cb];B[ac];B[bc];W[cc];B[dc];W[fc];W[ad];B[bd];B[cd];W[dd];W[ed];W[ae];W[be];W[ce];T[cb];T[cc]",
           "answer1": ";B[db]",
           "answer2": "",
           "answer3": "",
@@ -2181,7 +2143,7 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "is_modified": false
+          "is_modified": true
         },
         {
           "code": "sd954",
@@ -2197,9 +2159,9 @@
           "source_book": "씽크탱크 1권",
           "source_p_num": "16",
           "source_chapter": " 8. 1선 방향으로 단수치기",
-          "question": "흑이 둘 차례입니다. 백△를 1선(바둑판 가장자리) 방향으로 몰아 단수쳐 보세요.",
+          "question": "백△를 1선 방향으로 단수쳐 보세요.",
           "hint": "1선 방향으로 단수를 치면 더 이상 달아날 곳이 없기 때문에 상대의 돌을 잡을 수 있습니다.",
-          "data": ";W[qc];W[qd];W[pd];W[od];W[nd];W[pb];W[nb];B[oc];B[pc];B[qb];B[rb];B[rc];T[pb]",
+          "data": ";W[nb];W[pb];B[qb];B[rb];W[mc];B[oc];B[pc];W[qc];B[rc];W[nd];W[od];W[pd];W[qd];W[rd];T[pb]",
           "answer1": ";B[ob]",
           "answer2": "",
           "answer3": "",
@@ -2210,7 +2172,7 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "is_modified": false
+          "is_modified": true
         },
         {
           "code": "sd39055",
@@ -2226,9 +2188,9 @@
           "source_book": "알파바둑 1권",
           "source_p_num": "24",
           "source_chapter": "19. 1선 방향으로 몰기",
-          "question": "흑이 둘 차례입니다. 백△를 1선(바둑판 가장자리) 방향으로 몰아 단수쳐 보세요.",
+          "question": "백△를 1선 방향으로 단수쳐 보세요.",
           "hint": "",
-          "data": ";B[rp];B[so];B[sn];B[rn];B[qn];B[pm];W[sp];W[sq];W[ro];W[qo];W[po];W[pq];T[sq];T[sp]",
+          "data": ";B[ol];B[ql];W[nm];W[om];B[pm];W[pn];B[qn];B[rn];B[sn];W[po];W[qo];W[ro];B[so];B[rp];W[sp];W[pq];W[sq];W[qr];T[sq];T[sp]",
           "answer1": ";B[rq]",
           "answer2": "",
           "answer3": "",
@@ -2239,7 +2201,7 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "is_modified": false
+          "is_modified": true
         },
         {
           "code": "sd39046",
@@ -2255,9 +2217,9 @@
           "source_book": "알파바둑 1권",
           "source_p_num": "13",
           "source_chapter": "19. 1선 방향으로 몰기",
-          "question": "흑이 둘 차례입니다. 백△를 1선(바둑판 가장자리) 방향으로 몰아 단수쳐 보세요.",
+          "question": "백△를 1선 방향으로 단수쳐 보세요.",
           "hint": "",
-          "data": ";B[br];B[bq];B[cp];B[co];B[dq];B[eq];W[cq];W[cr];W[dp];W[ep];W[fp];W[fq];W[fr];T[cr];T[cq]",
+          "data": ";W[bm];W[cn];W[dn];W[bo];B[co];B[bp];B[cp];W[dp];W[ep];W[fp];B[bq];W[cq];B[dq];B[eq];W[fq];B[br];W[cr];W[fr];T[cr];T[cq]",
           "answer1": ";B[dr]",
           "answer2": "",
           "answer3": "",
@@ -2268,7 +2230,7 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "is_modified": false
+          "is_modified": true
         },
         {
           "code": "sd40124",
@@ -2284,9 +2246,9 @@
           "source_book": "알파바둑 1권",
           "source_p_num": "16",
           "source_chapter": "19. 1선 방향으로 몰기",
-          "question": "흑이 둘 차례입니다. 백△를 1선(바둑판 가장자리) 방향으로 몰아 단수쳐 보세요.",
+          "question": "백△를 1선 방향으로 단수쳐 보세요.",
           "hint": "",
-          "data": ";W[bb];W[db];W[dc];W[dd];W[ce];W[be];W[bd];B[cd];B[cc];B[de];B[cf];B[bf];B[ae];T[ce];T[be];T[bd]",
+          "data": ";W[bb];W[db];B[cc];W[dc];W[gc];W[bd];B[cd];W[dd];B[ae];W[be];W[ce];B[de];B[ee];B[af];W[bf];B[cf];B[bg];T[ce];T[be];T[bd];T[bf]",
           "answer1": ";B[bc]",
           "answer2": "",
           "answer3": "",
@@ -2297,7 +2259,7 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "is_modified": false
+          "is_modified": true
         },
         {
           "code": "sd39054",
@@ -2313,9 +2275,9 @@
           "source_book": "알파바둑 1권",
           "source_p_num": "23",
           "source_chapter": "19. 1선 방향으로 몰기",
-          "question": "흑이 둘 차례입니다. 백△를 1선(바둑판 가장자리) 방향으로 몰아 단수쳐 보세요.",
+          "question": "백△를 1선 방향으로 단수쳐 보세요.",
           "hint": "",
-          "data": ";B[rd];B[se];B[sf];B[rf];B[qf];B[pf];B[of];W[qc];W[pe];W[qe];W[re];W[sd];W[sc];T[sd];T[sc]",
+          "data": ";B[mb];W[nb];W[ob];B[lc];B[nc];W[oc];W[qc];W[sc];B[nd];W[od];B[rd];W[sd];B[oe];W[pe];W[qe];W[re];B[se];B[of];B[pf];B[qf];B[rf];B[sf];T[sd];T[sc]",
           "answer1": ";B[rc]",
           "answer2": "",
           "answer3": "",
@@ -2326,7 +2288,7 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "is_modified": false
+          "is_modified": true
         },
         {
           "code": "sd6558",
@@ -2342,9 +2304,9 @@
           "source_book": "논리바둑 1권",
           "source_p_num": "12",
           "source_chapter": "9. 1선 방향으로 단수치기",
-          "question": "흑이 둘 차례입니다. 백△를 1선(바둑판 가장자리) 방향으로 몰아 단수쳐 보세요.",
+          "question": "백△를 1선 방향으로 단수쳐 보세요.",
           "hint": "상대방이 도망가지 못하게 1선(사망선)방향으로 단수를 쳐야 합니다.",
-          "data": ";B[rq];B[rp];B[ro];B[qp];B[qn];B[pn];W[rn];W[qo];W[po];W[pp];W[oq];W[qq];W[qr];W[rr];T[rn]",
+          "data": ";W[pk];W[ql];B[nn];B[pn];B[qn];W[rn];W[po];W[qo];B[ro];W[pp];B[qp];B[rp];W[oq];W[qq];B[rq];W[qr];W[rr];T[rn]",
           "answer1": ";B[rm]",
           "answer2": "",
           "answer3": "",
@@ -2355,7 +2317,7 @@
           "auto": "false",
           "size": "4",
           "start": "BA",
-          "is_modified": false
+          "is_modified": true
         },
         {
           "code": "sd39050",
@@ -2371,9 +2333,9 @@
           "source_book": "알파바둑 1권",
           "source_p_num": "19",
           "source_chapter": "19. 1선 방향으로 몰기",
-          "question": "흑이 둘 차례입니다. 백△를 1선(바둑판 가장자리) 방향으로 몰아 단수쳐 보세요.",
+          "question": "백△를 1선 방향으로 단수쳐 보세요.",
           "hint": "",
-          "data": ";B[br];B[cr];B[dq];B[eq];B[cp];B[co];B[cn];W[bq];W[cq];W[bn];W[cm];W[dn];W[do];W[dp];T[cq];T[bq]",
+          "data": ";W[cm];W[bn];B[cn];W[dn];B[co];W[do];B[cp];W[dp];W[ep];W[bq];W[cq];B[dq];B[eq];W[fq];B[br];B[cr];B[dr];W[er];W[fr];T[cq];T[bq]",
           "answer1": ";B[bp]",
           "answer2": "",
           "answer3": "",
@@ -2384,7 +2346,7 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "is_modified": false
+          "is_modified": true
         },
         {
           "code": "sd960",
@@ -2400,9 +2362,9 @@
           "source_book": "씽크탱크 1권",
           "source_p_num": "22",
           "source_chapter": " 8. 1선 방향으로 단수치기",
-          "question": "흑이 둘 차례입니다. 백△를 1선(바둑판 가장자리) 방향으로 몰아 단수쳐 보세요.",
+          "question": "백△를 1선 방향으로 단수쳐 보세요.",
           "hint": "1선 방향으로 단수를 치면 더 이상 달아날 곳이 없기 때문에 상대의 돌을 잡을 수 있습니다.",
-          "data": ";W[cb];W[dc];W[ec];W[ed];W[de];W[ce];W[be];B[cd];B[dd];B[ee];B[ef];B[df];B[cf];B[bf];T[be];T[ce];T[de]",
+          "data": ";W[bb];W[cb];W[dc];W[fc];B[cd];B[dd];W[ed];W[be];W[ce];W[de];B[ee];W[fe];B[bf];B[cf];B[df];B[ef];T[be];T[ce];T[de]",
           "answer1": ";B[bd]",
           "answer2": "",
           "answer3": "",
@@ -2413,7 +2375,7 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "is_modified": false
+          "is_modified": true
         },
         {
           "code": "sd961",
@@ -2429,9 +2391,9 @@
           "source_book": "씽크탱크 1권",
           "source_p_num": "23",
           "source_chapter": " 8. 1선 방향으로 단수치기",
-          "question": "흑이 둘 차례입니다. 백△를 1선(바둑판 가장자리) 방향으로 몰아 단수쳐 보세요.",
+          "question": "백△를 1선 방향으로 단수쳐 보세요.",
           "hint": "1선 방향으로 단수를 치면 더 이상 달아날 곳이 없기 때문에 상대의 돌을 잡을 수 있습니다.",
-          "data": ";W[rc];W[qc];W[pd];W[od];W[og];W[pg];W[qf];W[qe];W[rf];B[re];B[rd];B[qd];B[pe];B[pf];B[qg];T[rf];T[qf];T[qe]",
+          "data": ";W[nb];B[mc];W[nc];W[qc];W[rc];B[nd];W[od];W[pd];B[qd];B[rd];B[ne];B[pe];W[qe];B[re];B[nf];B[pf];W[qf];W[rf];W[og];W[pg];B[qg];T[rf];T[qf];T[qe]",
           "answer1": ";B[rg]",
           "answer2": "",
           "answer3": "",
@@ -2442,7 +2404,7 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "is_modified": false
+          "is_modified": true
         },
         {
           "code": "sd963",
@@ -2458,20 +2420,17 @@
           "source_book": "씽크탱크 1권",
           "source_p_num": "19",
           "source_chapter": " 8. 1선 방향으로 단수치기",
-          "question": "흑이 둘 차례입니다. 백△를 1선(바둑판 가장자리) 방향으로 몰아 단수쳐 보세요.",
+          "question": "백△를 1선 방향으로 단수쳐 보세요.",
           "hint": "1선 방향으로 단수를 치면 더 이상 달아날 곳이 없기 때문에 상대의 돌을 잡을 수 있습니다.",
-          "data": ";W[sr];W[rr];W[qq];W[qp];W[pp];W[oq];W[or];W[mr];W[mq];B[nq];B[np];B[op];B[pq];B[pr];B[qr];B[rs];T[oq];T[or]",
-          "answer1": ";B[nr]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
+          "data": ";W[lp];B[mp];B[np];B[op];W[pp];W[qp];B[lq];W[mq];W[nq];W[oq];B[pq];W[qq];W[mr];B[nr];B[or];B[pr];B[qr];W[rr];W[sr];B[rs];T[oq];T[mq];T[nq];T[mr]",
+          "answer1": ";B[lr]",
           "sample": "",
           "answer": "",
           "auto": "false",
           "size": "4",
-          "start": "BK",
-          "is_modified": false
+          "start": "B",
+          "is_modified": true,
+          "answerMode": "unordered"
         },
         {
           "code": "sd955",
@@ -2487,9 +2446,9 @@
           "source_book": "씽크탱크 1권",
           "source_p_num": "17",
           "source_chapter": " 8. 1선 방향으로 단수치기",
-          "question": "흑이 둘 차례입니다. 백△를 1선(바둑판 가장자리) 방향으로 몰아 단수쳐 보세요.",
+          "question": "백△를 1선 방향으로 단수쳐 보세요.",
           "hint": "1선 방향으로 단수를 치면 더 이상 달아날 곳이 없기 때문에 상대의 돌을 잡을 수 있습니다.",
-          "data": ";B[bq];B[bp];B[cq];B[dq];B[dr];B[co];B[cn];B[dn];W[bo];W[cp];W[dp];W[do];W[eo];W[en];W[dm];W[cl];W[eq];W[er];T[bo]",
+          "data": ";W[bl];W[cl];W[el];B[cm];W[dm];B[cn];B[dn];W[en];W[bo];B[co];W[do];W[eo];B[bp];W[cp];W[dp];B[bq];B[cq];B[dq];W[eq];B[dr];W[er];B[cs];W[ds];W[es];T[bo]",
           "answer1": ";B[bn]",
           "answer2": "",
           "answer3": "",
@@ -2500,7 +2459,7 @@
           "auto": "false",
           "size": "4",
           "start": "BK",
-          "is_modified": false
+          "is_modified": true
         },
         {
           "code": "sd6564",
@@ -2516,49 +2475,17 @@
           "source_book": "논리바둑 1권",
           "source_p_num": "18",
           "source_chapter": "9. 1선 방향으로 단수치기",
-          "question": "흑이 둘 차례입니다. 백△를 1선(바둑판 가장자리) 방향으로 몰아 단수쳐 보세요. (3수 끝)",
+          "question": "백△를 1선 방향으로 단수쳐 보세요.",
           "hint": "상대방이 도망가지 못하게 1선(사망선)방향으로 단수를 쳐야 합니다.",
-          "data": ";B[eb];B[fa];B[ga];B[gb];B[gc];B[hd];W[fb];W[fc];W[fd];W[ea];W[da];W[dc];T[ea];T[da]",
-          "answer1": ";B[db];W[ca];B[cb]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
+          "data": ";W[ca];W[da];W[ea];B[fa];B[ga];B[db];B[eb];W[fb];B[gb];W[cc];W[fc];B[gc];W[dd];W[fd];B[hd];W[cf];T[ea];T[da];T[ca]",
+          "answer1": ";B[cb]",
           "sample": "",
           "answer": "",
           "auto": "false",
           "size": "4",
-          "start": "BA",
-          "is_modified": false
-        },
-        {
-          "code": "sd958",
-          "type": "3",
-          "curriculum_type": "필수",
-          "is_review": false,
-          "review_type": "해당 없음",
-          "review_detail": "일반 본문 진도 문항",
-          "hide_review_badge": false,
-          "section_idx": "1",
-          "section_title": "01. 1선 방향으로 단수치기",
-          "source_series": "씽크탱크",
-          "source_book": "씽크탱크 1권",
-          "source_p_num": "20",
-          "source_chapter": " 8. 1선 방향으로 단수치기",
-          "question": "흑이 둘 차례입니다. 백△를 1선(바둑판 가장자리) 방향으로 몰아 단수쳐 보세요. (3수 끝)",
-          "hint": "1선 방향으로 단수를 치면 더 이상 달아날 곳이 없기 때문에 상대의 돌을 잡을 수 있습니다.\r\n",
-          "data": ";B[pb];B[oa];B[na];B[nb];B[nc];B[lc];W[pa];W[qa];W[qc];W[ob];W[oc];W[od];W[nd];T[pa];T[qa]",
-          "answer1": ";B[qb];W[ra];B[rb]",
-          "answer2": "",
-          "answer3": "",
-          "answer4": "",
-          "answer5": "",
-          "sample": "",
-          "answer": "",
-          "auto": "false",
-          "size": "4",
-          "start": "BA",
-          "is_modified": false
+          "start": "B",
+          "is_modified": true,
+          "answerMode": "unordered"
         }
       ]
     },
