@@ -15,7 +15,6 @@
     capturedWhite: 0, // 흑이 따낸 백돌 수
     currentTurn: 1, // 1: 흑, 2: 백
     placementMode: 'alternate', // 'alternate' | 'blackOnly' | 'whiteOnly'
-    hoverPos: null,
 
     // 시각 보조 도구
     showAtari: localStorage.getItem('sandbox_show_atari') !== 'false',
@@ -315,18 +314,6 @@
           }
         }
       }
-    }
-
-    // 4.5. 마우스 호버 시 착수 임시 돌 가이드 (Ghost Stone Preview)
-    if (state.hoverPos && !state.drawingEnabled) {
-      var hoverColor = (state.placementMode === 'blackOnly') ? 1 :
-                       ((state.placementMode === 'whiteOnly') ? 2 : state.currentTurn);
-      var hx = startX + state.hoverPos.x * cell;
-      var hy = startY + state.hoverPos.y * cell;
-      bCtx.save();
-      bCtx.globalAlpha = 0.52;
-      drawStone(hx, hy, stoneR, hoverColor);
-      bCtx.restore();
     }
 
     // 5. 착수 수순 번호 표시
@@ -993,36 +980,6 @@
   }
 
   /* 마우스/터치 리스너 연결 */
-  // 마우스 이동 시 호버 임시 돌 좌표 추적
-  drawingCanvas.addEventListener('mousemove', function (e) {
-    if (state.drawingEnabled) {
-      if (state.hoverPos) { state.hoverPos = null; drawBoard(); }
-      return;
-    }
-    var pos = getCanvasPos(e);
-    var cell = metrics.cellSize;
-    var c = Math.round((pos.x - metrics.startX) / cell);
-    var r = Math.round((pos.y - metrics.startY) / cell);
-    if (c >= 0 && c < state.boardSize && r >= 0 && r < state.boardSize && state.board[r][c] === 0) {
-      if (!state.hoverPos || state.hoverPos.x !== c || state.hoverPos.y !== r) {
-        state.hoverPos = { x: c, y: r };
-        drawBoard();
-      }
-    } else {
-      if (state.hoverPos) {
-        state.hoverPos = null;
-        drawBoard();
-      }
-    }
-  });
-
-  drawingCanvas.addEventListener('mouseleave', function () {
-    if (state.hoverPos) {
-      state.hoverPos = null;
-      drawBoard();
-    }
-  });
-
   drawingCanvas.addEventListener('mousedown', onPointerDown);
   window.addEventListener('mousemove', onPointerMove);
   window.addEventListener('mouseup', onPointerUp);
