@@ -18,8 +18,8 @@
   var state = {
     mode: isLiveParam ? 'live' : (modeFromUrl || localStorage.getItem('play_mode') || 'ai'),
     boardSize: parseInt(urlParams.get('boardSize') || localStorage.getItem('play_board_size') || '19', 10), // 19 | 13 | 9
-    aiEngine: localStorage.getItem('play_ai_engine') === 'katago-lite' ? 'katago-lite' : 'gnugo',
-    difficulty: localStorage.getItem('play_ai_engine') === 'katago-lite' ? 'kata' : (localStorage.getItem('play_ai_difficulty') === 'beginner' ? 'beginner' : 'master'),
+    aiEngine: 'katago-lite',
+    difficulty: ['beginner', 'master', 'kata'].indexOf(localStorage.getItem('play_ai_difficulty')) >= 0 ? localStorage.getItem('play_ai_difficulty') : 'master',
     humanColor: parseInt(localStorage.getItem('play_human_color') || '1', 10), // 1: BLACK, 2: WHITE
     colorChoice: localStorage.getItem('play_color_choice') || 'random', // '1' | '2' | 'random'
     handicap: parseInt(urlParams.get('handicap') || localStorage.getItem('play_handicap') || '0', 10), // 0: 호선, 1: 정선, 2~9: 접바둑
@@ -76,9 +76,10 @@
   };
 
   var BOTS = {
-    beginner: { name: '스쿨봇 LV1', title: 'LV1', avatar: '', img: '../../images/characters/char_chick_beginner.png', desc: '가볍게 연습하는 상대' },
-    master: { name: '스쿨봇 LV2', title: 'LV2', avatar: '', img: '../../images/characters/char_panda_victory.jpg', desc: '한 단계 높은 도전' },
-    kata: { name: '스쿨봇 LV3', title: 'LV3', avatar: '', img: '../../images/characters/char_tiger_cheer.png', desc: '가장 강한 상대' }
+    /* temperature: 카타고가 가장 좋은 수 말고 다른 수를 고르는 정도 (0 = 항상 가장 좋은 수, 클수록 약해짐) */
+    beginner: { name: '스쿨봇 LV1', title: 'LV1', avatar: '', img: '../../images/characters/char_chick_beginner.png', desc: '가볍게 연습하는 상대', temperature: 1.5 },
+    master: { name: '스쿨봇 LV2', title: 'LV2', avatar: '', img: '../../images/characters/char_panda_victory.jpg', desc: '한 단계 높은 도전', temperature: 0.6 },
+    kata: { name: '스쿨봇 LV3', title: 'LV3', avatar: '', img: '../../images/characters/char_tiger_cheer.png', desc: '가장 강한 상대', temperature: 0 }
   };
 
   /* 엔진 & 오디오 */
@@ -1144,7 +1145,7 @@
   }
   function syncAiEngineOptions() {
     var isAi = pendingMatchOpts.mode === 'ai';
-    pendingMatchOpts.aiEngine = pendingMatchOpts.difficulty === 'kata' ? 'katago-lite' : 'gnugo';
+    pendingMatchOpts.aiEngine = 'katago-lite';
     var difficulty = document.getElementById('matchAiDifficultySection');
     if (difficulty) difficulty.style.display = isAi ? 'flex' : 'none';
     document.querySelectorAll('#matchBotGrid .match-bot-card').forEach(function (card) {
@@ -1188,15 +1189,15 @@
       var aiColor = state.currentTurn;
       var move = null;
       try {
-        move = requestedAiEngine === 'katago-lite' ? await window.KataLiteBridge.findBestMove(engine, aiColor) : ai.findBestMove(engine, aiColor, state.difficulty);
+        move = requestedAiEngine === 'katago-lite' ? await window.KataLiteBridge.findBestMove(engine, aiColor, { temperature: bot.temperature }) : ai.findBestMove(engine, aiColor, state.difficulty === 'kata' ? 'master' : state.difficulty);
       } catch (aiErr) {
         if (!currentRequest()) return;
         console.error('[AI Move Error]', aiErr);
         if (requestedAiEngine === 'katago-lite') {
           state.isThinking = false; if (aiThinkingBadge) aiThinkingBadge.hidden = true; pauseTimerInterval(); updateStatus();
-          toast('스쿨봇 LV3 실행 실패: 상대를 자동 변경하지 않았습니다. 다시 시도해 주세요.');
+          toast('스쿨봇 실행 실패: 상대를 자동 변경하지 않았습니다. 다시 시도해 주세요.');
           openMatchModal();
-          setKataLoadUI(false, '스쿨봇 LV3 실행에 실패했습니다. 다시 시도해 주세요.', true); return;
+          setKataLoadUI(false, '스쿨봇 실행에 실패했습니다. 다시 시도해 주세요.', true); return;
         }
       }
 
@@ -1204,7 +1205,7 @@
       state.isThinking = false;
       if (aiThinkingBadge) aiThinkingBadge.hidden = true;
       if (move && move.isPass) { handleAiPass(aiColor); return; }
-      if (requestedAiEngine === 'katago-lite' && !move) { pauseTimerInterval(); toast('스쿨봇 LV3 응답이 없어 대국을 멈췄습니다. 새 대국 설정에서 다시 시도해 주세요.'); return; }
+      if (requestedAiEngine === 'katago-lite' && !move) { pauseTimerInterval(); toast('스쿨봇 응답이 없어 대국을 멈췄습니다. 새 대국 설정에서 다시 시도해 주세요.'); return; }
 
       if (!move) {
         var legal = [];
@@ -1553,29 +1554,28 @@
     var nextMode = customOpts && customOpts.mode || state.mode;
     var nextDifficulty = customOpts && customOpts.difficulty || state.difficulty;
     if (!BOTS[nextDifficulty]) nextDifficulty = 'master';
-    var nextEngine = nextDifficulty === 'kata' ? 'katago-lite' : 'gnugo';
-    if (nextMode === 'ai' && nextEngine === 'gnugo') {
-      setKataLoadUI(true, '스쿨봇을 준비하고 있습니다.');
-      try { await window.GNUGoBridge.init('gnugo/gnugo.wasm'); }
-      catch (error) { if (launchId === kataLoadGeneration) setKataLoadUI(false, '스쿨봇을 불러오지 못했습니다. 다시 시도해 주세요.', true); return; }
-      if (launchId !== kataLoadGeneration) return;
-      setKataLoadUI(false, '');
-    }
-    if (nextMode === 'ai' && nextEngine === 'katago-lite') {
+    // 모든 레벨이 카타고 경량판을 쓴다(WebGPU가 없으면 작업자가 자동으로 CPU 방식으로 바꿔 더 느리다).
+    // 불러오기가 끝내 실패하면 이번 판만 사이트 자체 AI(간단한 상대)로 진행하고 알려 준다.
+    var nextEngine = 'katago-lite';
+    if (nextMode === 'ai') {
       state.isThinking = false; if (aiThinkingBadge) aiThinkingBadge.hidden = true;
-      setKataLoadUI(true, '스쿨봇 LV3을 준비하고 있습니다. 처음에는 약 11MB를 내려받습니다.');
+      var hasGpu = !!(window.navigator && navigator.gpu);
+      setKataLoadUI(true, '스쿨봇을 준비하고 있습니다. 처음에는 약 11MB를 내려받습니다.' + (hasGpu ? '' : ' 이 기기에서는 조금 느릴 수 있어요.'));
       try { await window.KataLiteBridge.load(); }
-      catch (error) { if (launchId === kataLoadGeneration) { setKataLoadUI(false, '스쿨봇 LV3을 불러오지 못했습니다. 다시 시도하거나 다른 레벨을 선택해 주세요.', true); toast('스쿨봇 LV3 로딩 실패: 상대를 자동 변경하지 않았습니다.'); } return; }
+      catch (error) {
+        if (launchId !== kataLoadGeneration) return;
+        nextEngine = 'rules';
+        toast('스쿨봇을 불러오지 못해 이번 판은 간단한 상대로 진행합니다. 인터넷 연결을 확인해 주세요.');
+      }
       if (launchId !== kataLoadGeneration) return;
-      setKataLoadUI(false, '스쿨봇 LV3 준비 완료');
+      setKataLoadUI(false, nextEngine === 'rules' ? '' : '스쿨봇 준비 완료');
     }
     if (launchId !== kataLoadGeneration) return;
     var matchModal = document.getElementById('matchModal');
     if (matchModal) { matchModal.setAttribute('hidden', ''); matchModal.style.display = 'none'; }
     state.difficulty = nextDifficulty;
     localStorage.setItem('play_ai_difficulty', state.difficulty);
-    state.aiEngine = nextEngine === 'katago-lite' ? 'katago-lite' : 'gnugo';
-    localStorage.setItem('play_ai_engine', state.aiEngine);
+    state.aiEngine = nextEngine;
     state.isGameStarted = true;
     var freePlacementMode = false;
     var wasRandomNigiri = false;

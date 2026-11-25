@@ -10,7 +10,7 @@ Verified on the separately deployed `games/play/kata-preview.html` in the deskto
 - Closing setup while model initialization is pending keeps the board in standby, including after the delayed initialization settles.
 - Setup controls at a mobile viewport. This is not a physical-mobile-device performance test.
 
-The production integration retains GNU Go as the default and adds an explicit `katago-lite` choice. The official g170 b10 network is policy-only: there is no MCTS search and no independently established rank. Model weights are loaded on demand and cached locally where available. No dedicated inference server is used.
+Update 2026-11-26: GNU Go has been removed. All three 스쿨봇 levels now use `katago-lite`: LV3 plays the top policy move, LV1 and LV2 sample moves from the policy with temperatures 1.5 and 0.6 (`BOTS` in `games/play/app.js`). If the model cannot be loaded, that game falls back to the site's own rule-based AI (`ai.js`) with a notice. The preview page and GNU Go notes above describe the 2026-11-06 trial. The official g170 b10 network is policy-only: there is no MCTS search and no independently established rank. Model weights are loaded on demand and cached locally where available. No dedicated inference server is used.
 
 Still to verify after the production deployment: production-page selection and actual replies, selection persistence across reloads, matched strength comparisons, low-end-device latency and thermal/battery impact.
 
