@@ -76,9 +76,9 @@
   };
 
   var BOTS = {
-    beginner: { name: '스쿨봇 1', title: '1단계', avatar: '', img: '../../images/characters/char_chick_beginner.png', desc: '가볍게 연습하는 상대' },
-    master: { name: '스쿨봇 2', title: '2단계', avatar: '', img: '../../images/characters/char_panda_victory.jpg', desc: '한 단계 높은 도전' },
-    kata: { name: '스쿨봇 3', title: '3단계', avatar: '', img: '../../images/characters/char_tiger_cheer.png', desc: '가장 강한 상대' }
+    beginner: { name: '스쿨봇 LV1', title: 'LV1', avatar: '', img: '../../images/characters/char_chick_beginner.png', desc: '가볍게 연습하는 상대' },
+    master: { name: '스쿨봇 LV2', title: 'LV2', avatar: '', img: '../../images/characters/char_panda_victory.jpg', desc: '한 단계 높은 도전' },
+    kata: { name: '스쿨봇 LV3', title: 'LV3', avatar: '', img: '../../images/characters/char_tiger_cheer.png', desc: '가장 강한 상대' }
   };
 
   /* 엔진 & 오디오 */
@@ -1194,9 +1194,9 @@
         console.error('[AI Move Error]', aiErr);
         if (requestedAiEngine === 'katago-lite') {
           state.isThinking = false; if (aiThinkingBadge) aiThinkingBadge.hidden = true; pauseTimerInterval(); updateStatus();
-          toast('스쿨봇 3 실행 실패: 상대를 자동 변경하지 않았습니다. 다시 시도해 주세요.');
+          toast('스쿨봇 LV3 실행 실패: 상대를 자동 변경하지 않았습니다. 다시 시도해 주세요.');
           openMatchModal();
-          setKataLoadUI(false, '스쿨봇 3 실행에 실패했습니다. 다시 시도해 주세요.', true); return;
+          setKataLoadUI(false, '스쿨봇 LV3 실행에 실패했습니다. 다시 시도해 주세요.', true); return;
         }
       }
 
@@ -1204,7 +1204,7 @@
       state.isThinking = false;
       if (aiThinkingBadge) aiThinkingBadge.hidden = true;
       if (move && move.isPass) { handleAiPass(aiColor); return; }
-      if (requestedAiEngine === 'katago-lite' && !move) { pauseTimerInterval(); toast('스쿨봇 3 응답이 없어 대국을 멈췄습니다. 새 대국 설정에서 다시 시도해 주세요.'); return; }
+      if (requestedAiEngine === 'katago-lite' && !move) { pauseTimerInterval(); toast('스쿨봇 LV3 응답이 없어 대국을 멈췄습니다. 새 대국 설정에서 다시 시도해 주세요.'); return; }
 
       if (!move) {
         var legal = [];
@@ -1563,11 +1563,11 @@
     }
     if (nextMode === 'ai' && nextEngine === 'katago-lite') {
       state.isThinking = false; if (aiThinkingBadge) aiThinkingBadge.hidden = true;
-      setKataLoadUI(true, '스쿨봇 3을 준비하고 있습니다. 처음에는 약 11MB를 내려받습니다.');
+      setKataLoadUI(true, '스쿨봇 LV3을 준비하고 있습니다. 처음에는 약 11MB를 내려받습니다.');
       try { await window.KataLiteBridge.load(); }
-      catch (error) { if (launchId === kataLoadGeneration) { setKataLoadUI(false, '스쿨봇 3을 불러오지 못했습니다. 다시 시도하거나 다른 단계를 선택해 주세요.', true); toast('스쿨봇 3 로딩 실패: 상대를 자동 변경하지 않았습니다.'); } return; }
+      catch (error) { if (launchId === kataLoadGeneration) { setKataLoadUI(false, '스쿨봇 LV3을 불러오지 못했습니다. 다시 시도하거나 다른 레벨을 선택해 주세요.', true); toast('스쿨봇 LV3 로딩 실패: 상대를 자동 변경하지 않았습니다.'); } return; }
       if (launchId !== kataLoadGeneration) return;
-      setKataLoadUI(false, '스쿨봇 3 준비 완료');
+      setKataLoadUI(false, '스쿨봇 LV3 준비 완료');
     }
     if (launchId !== kataLoadGeneration) return;
     var matchModal = document.getElementById('matchModal');
