@@ -26,7 +26,6 @@
     timeLimit: urlParams.get('timeLimit') || urlParams.get('time') || localStorage.getItem('play_time_limit') || 'none',
     freeStones: [],
     isFreePlacementActive: false,
-    hoverPos: null,
     currentTurn: BLACK,
     isThinking: false,
     isGameStarted: false,
@@ -347,16 +346,6 @@
           drawStone(c, r, color, radius, stepNum);
         }
       }
-    }
-
-    // 🌟 6.5. 마우스 호버 시 착수 임시 돌 가이드 (Ghost Stone Preview)
-    if (state.hoverPos && !state.showingTerritory) {
-      var hoverColor = state.isFreePlacementActive ? BLACK :
-                       (state.mode === 'ai' ? state.humanColor : state.currentTurn);
-      ctx.save();
-      ctx.globalAlpha = 0.52; // 반투명 임시 돌 모양
-      drawStone(state.hoverPos.x, state.hoverPos.y, hoverColor, radius, null);
-      ctx.restore();
     }
 
     // 7. 단수(Atari) 경고 링 및 땀방울
@@ -2001,7 +1990,6 @@
   function bindEvents() {
     // 1. 바둑판 캔버스 클릭
     boardCanvas.addEventListener('click', function (e) {
-      state.hoverPos = null;
       audio.init(); // 사용자 인터랙션 시 오디오 활성화
       var rect = boardCanvas.getBoundingClientRect();
       var dpr = metrics.dpr;
@@ -2027,7 +2015,7 @@
       }
     });
 
-    // 🌟 1-2. 바둑판 마우스 이동 시 임시 돌 모양 가이드 (Hover Ghost Stone)
+    // 🌟 1-2. 둘 수 있는 자리 위에서는 손가락 커서만 보여 준다 (반투명 임시 돌은 표시하지 않음)
     boardCanvas.addEventListener('mousemove', function (e) {
       var rect = boardCanvas.getBoundingClientRect();
       var clickX = e.clientX - rect.left;
@@ -2039,6 +2027,7 @@
       var col = Math.round((clickX - startX) / cs);
       var row = Math.round((clickY - startY) / cs);
       var size = state.boardSize;
+      var pointer = false;
 
       if (col >= 0 && col < size && row >= 0 && row < size) {
         var exactX = startX + col * cs;
@@ -2057,31 +2046,14 @@
           } else if (state.mode === 'live') {
             if (window.LiveP2P && !window.LiveP2P.canMove(state.currentTurn)) canHover = false;
           }
-
-          if (canHover) {
-            if (!state.hoverPos || state.hoverPos.x !== col || state.hoverPos.y !== row) {
-              state.hoverPos = { x: col, y: row };
-              boardCanvas.style.cursor = 'pointer';
-              drawBoard();
-            }
-            return;
-          }
+          pointer = canHover;
         }
       }
-
-      if (state.hoverPos !== null) {
-        state.hoverPos = null;
-        boardCanvas.style.cursor = 'default';
-        drawBoard();
-      }
+      boardCanvas.style.cursor = pointer ? 'pointer' : 'default';
     });
 
     boardCanvas.addEventListener('mouseleave', function () {
-      if (state.hoverPos !== null) {
-        state.hoverPos = null;
-        boardCanvas.style.cursor = 'default';
-        drawBoard();
-      }
+      boardCanvas.style.cursor = 'default';
     });
 
     // 2. 바둑판 크기 버튼 (19줄 / 13줄 / 9줄)
