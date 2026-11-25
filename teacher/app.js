@@ -433,7 +433,7 @@
         if (savedCustom) {
           var customData = JSON.parse(savedCustom);
           // gpt_anti_stage_01·02: 서버 책 버전이 새로 배포되면(편집 내용이 이미 서버 파일에 반영됨) 브라우저 저장본을 한 번 버리고 서버본을 쓴다.
-          if ((code === 'gpt_anti_stage_01' || code === 'gpt_anti_stage_02') && isStaleBookCustom(code, customData)) {
+          if ((code === 'gpt_anti_stage_01' || code === 'gpt_anti_stage_02' || code.indexOf('std30_') === 0) && isStaleBookCustom(code, customData)) {
             localStorage.removeItem('teacher_book_custom_' + code);
             customData = null;
           }
