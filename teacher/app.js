@@ -551,6 +551,23 @@
 
     state.currentProblemIndex = targetProblemIdx;
     renderProblemGrid();
+    if (state.currentProblems.length === 0) {
+      if (qNumBadge) qNumBadge.textContent = '목차 등록';
+      if (qTurnBadge) qTurnBadge.textContent = '📋 준비 중';
+      if (questionText) questionText.textContent = ch.goal ? ('[핵심 학습 목표] ' + ch.goal + ' (문항 편성 준비 중)') : '문항 편성 준비 중인 단원입니다.';
+      if (navIndicator) navIndicator.textContent = '0 / 0';
+      if (hintBox) hintBox.hidden = true;
+      var qMetaRowEmpty = document.getElementById('qMetaRow');
+      if (qMetaRowEmpty) { qMetaRowEmpty.hidden = true; qMetaRowEmpty.innerHTML = ''; }
+      if (typeof renderChoiceButtons === 'function') renderChoiceButtons({ type: '1', sample: '' });
+      state.boardSpec = { cols: 10, rows: 10, isFull19: false, quadrant: 'BR' };
+      state.boardCols = 10;
+      state.boardRows = 10;
+      parseProblemSgf({ data: '', answer1: '' }, state.boardSpec);
+      layoutBoard();
+      drawBoard();
+      return;
+    }
     loadProblem(targetProblemIdx);
   }
 
