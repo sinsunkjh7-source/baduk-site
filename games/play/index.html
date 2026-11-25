@@ -3,7 +3,8 @@
 <head>
   <style>
     [hidden]{display:none!important;}
-    #matchAiDifficultySection .kata-license-link{font-size:12px;color:#64748b;text-decoration:underline;text-underline-offset:3px;align-self:flex-start;}
+    #matchModal .match-credit{text-align:center;padding:0 24px 10px;background:#f8fafc;}
+    #matchModal .kata-license-link{font-size:11px;color:#94a3b8;text-decoration:underline;text-underline-offset:3px;}
     #matchModal .match-footer .btn-cancel-match{position:absolute;right:20px;}
     @media(max-width:600px){
       #matchModal .match-footer{flex-wrap:wrap;gap:8px;}
@@ -197,7 +198,6 @@
             <button type="button" class="match-bot-card" data-bot="kata" aria-pressed="false"><span class="bot-card-avatar"><img src="../../images/characters/bot_lv3.webp" alt="" loading="lazy"></span><div class="bot-card-info"><strong>스쿨봇 LV3</strong><small>가장 강한 상대</small></div></button>
           </div>
           <p id="matchEngineStatus" class="kata-engine-status" role="status" aria-live="polite"></p>
-          <a class="kata-license-link" href="kata-licenses.txt" target="_blank" rel="noopener">오픈소스 사용 조건</a>
         </div>
 
         <!-- 3. 바둑판 크기 -->
@@ -281,6 +281,7 @@
         <button type="button" class="btn-start-match" id="btnStartCustomMatch">🚀 이 설정으로 대국 시작!</button>
         <button type="button" class="btn-cancel-match" id="btnCancelMatch">✕ 닫기</button>
       </div>
+      <div class="match-credit"><a class="kata-license-link" href="kata-licenses.txt" target="_blank" rel="noopener">오픈소스 사용 조건</a></div>
     </div>
   </div>
 
