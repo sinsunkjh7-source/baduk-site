@@ -1,17 +1,17 @@
 {
   "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-  "book": "제10단계 : 복합 축·장문과 패(Ko) 사활 입문 · 1선 수상전 맥",
-  "title": "제10단계 : 복합 축·장문과 패(Ko) 사활 입문 · 1선 수상전 맥",
+  "book": "10단계",
+  "title": "10단계",
   "bookCode": "std30_stage_10",
   "code": "std30_stage_10",
   "chapterCount": 17,
   "totalProblems": 0,
   "problemCount": 0,
-  "_buildVer": "std30-v2-20261125",
+  "_buildVer": "std30-v6-clean-title-10",
   "chapters": [
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제10단계 : 복합 축·장문과 패(Ko) 사활 입문 · 1선 수상전 맥",
+      "book": "10단계",
       "bookCode": "std30_stage_10",
       "code": "std30_10_01",
       "chapterCode": "std30_10_01",
@@ -24,7 +24,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제10단계 : 복합 축·장문과 패(Ko) 사활 입문 · 1선 수상전 맥",
+      "book": "10단계",
       "bookCode": "std30_stage_10",
       "code": "std30_10_02",
       "chapterCode": "std30_10_02",
@@ -37,7 +37,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제10단계 : 복합 축·장문과 패(Ko) 사활 입문 · 1선 수상전 맥",
+      "book": "10단계",
       "bookCode": "std30_stage_10",
       "code": "std30_10_03",
       "chapterCode": "std30_10_03",
@@ -50,7 +50,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제10단계 : 복합 축·장문과 패(Ko) 사활 입문 · 1선 수상전 맥",
+      "book": "10단계",
       "bookCode": "std30_stage_10",
       "code": "std30_10_04",
       "chapterCode": "std30_10_04",
@@ -63,7 +63,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제10단계 : 복합 축·장문과 패(Ko) 사활 입문 · 1선 수상전 맥",
+      "book": "10단계",
       "bookCode": "std30_stage_10",
       "code": "std30_10_05",
       "chapterCode": "std30_10_05",
@@ -76,7 +76,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제10단계 : 복합 축·장문과 패(Ko) 사활 입문 · 1선 수상전 맥",
+      "book": "10단계",
       "bookCode": "std30_stage_10",
       "code": "std30_10_06",
       "chapterCode": "std30_10_06",
@@ -89,7 +89,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제10단계 : 복합 축·장문과 패(Ko) 사활 입문 · 1선 수상전 맥",
+      "book": "10단계",
       "bookCode": "std30_stage_10",
       "code": "std30_10_07",
       "chapterCode": "std30_10_07",
@@ -102,7 +102,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제10단계 : 복합 축·장문과 패(Ko) 사활 입문 · 1선 수상전 맥",
+      "book": "10단계",
       "bookCode": "std30_stage_10",
       "code": "std30_10_08",
       "chapterCode": "std30_10_08",
@@ -115,7 +115,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제10단계 : 복합 축·장문과 패(Ko) 사활 입문 · 1선 수상전 맥",
+      "book": "10단계",
       "bookCode": "std30_stage_10",
       "code": "std30_10_09",
       "chapterCode": "std30_10_09",
@@ -128,7 +128,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제10단계 : 복합 축·장문과 패(Ko) 사활 입문 · 1선 수상전 맥",
+      "book": "10단계",
       "bookCode": "std30_stage_10",
       "code": "std30_10_10",
       "chapterCode": "std30_10_10",
@@ -141,7 +141,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제10단계 : 복합 축·장문과 패(Ko) 사활 입문 · 1선 수상전 맥",
+      "book": "10단계",
       "bookCode": "std30_stage_10",
       "code": "std30_10_11",
       "chapterCode": "std30_10_11",
@@ -154,7 +154,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제10단계 : 복합 축·장문과 패(Ko) 사활 입문 · 1선 수상전 맥",
+      "book": "10단계",
       "bookCode": "std30_stage_10",
       "code": "std30_10_12",
       "chapterCode": "std30_10_12",
@@ -167,7 +167,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제10단계 : 복합 축·장문과 패(Ko) 사활 입문 · 1선 수상전 맥",
+      "book": "10단계",
       "bookCode": "std30_stage_10",
       "code": "std30_10_13",
       "chapterCode": "std30_10_13",
@@ -180,7 +180,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제10단계 : 복합 축·장문과 패(Ko) 사활 입문 · 1선 수상전 맥",
+      "book": "10단계",
       "bookCode": "std30_stage_10",
       "code": "std30_10_14",
       "chapterCode": "std30_10_14",
@@ -193,7 +193,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제10단계 : 복합 축·장문과 패(Ko) 사활 입문 · 1선 수상전 맥",
+      "book": "10단계",
       "bookCode": "std30_stage_10",
       "code": "std30_10_15",
       "chapterCode": "std30_10_15",
@@ -206,7 +206,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제10단계 : 복합 축·장문과 패(Ko) 사활 입문 · 1선 수상전 맥",
+      "book": "10단계",
       "bookCode": "std30_stage_10",
       "code": "std30_10_16",
       "chapterCode": "std30_10_16",
@@ -219,7 +219,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제10단계 : 복합 축·장문과 패(Ko) 사활 입문 · 1선 수상전 맥",
+      "book": "10단계",
       "bookCode": "std30_stage_10",
       "code": "std30_10_17",
       "chapterCode": "std30_10_17",

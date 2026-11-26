@@ -1,17 +1,17 @@
 {
   "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-  "book": "제25단계 : 실전 약점 공방과 복합 옥집 맥 · 고급 과정 종합",
-  "title": "제25단계 : 실전 약점 공방과 복합 옥집 맥 · 고급 과정 종합",
+  "book": "25단계",
+  "title": "25단계",
   "bookCode": "std30_stage_25",
   "code": "std30_stage_25",
   "chapterCount": 15,
   "totalProblems": 0,
   "problemCount": 0,
-  "_buildVer": "std30-v2-20261125",
+  "_buildVer": "std30-v6-clean-title-25",
   "chapters": [
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제25단계 : 실전 약점 공방과 복합 옥집 맥 · 고급 과정 종합",
+      "book": "25단계",
       "bookCode": "std30_stage_25",
       "code": "std30_25_01",
       "chapterCode": "std30_25_01",
@@ -24,7 +24,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제25단계 : 실전 약점 공방과 복합 옥집 맥 · 고급 과정 종합",
+      "book": "25단계",
       "bookCode": "std30_stage_25",
       "code": "std30_25_02",
       "chapterCode": "std30_25_02",
@@ -37,7 +37,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제25단계 : 실전 약점 공방과 복합 옥집 맥 · 고급 과정 종합",
+      "book": "25단계",
       "bookCode": "std30_stage_25",
       "code": "std30_25_03",
       "chapterCode": "std30_25_03",
@@ -50,7 +50,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제25단계 : 실전 약점 공방과 복합 옥집 맥 · 고급 과정 종합",
+      "book": "25단계",
       "bookCode": "std30_stage_25",
       "code": "std30_25_04",
       "chapterCode": "std30_25_04",
@@ -63,7 +63,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제25단계 : 실전 약점 공방과 복합 옥집 맥 · 고급 과정 종합",
+      "book": "25단계",
       "bookCode": "std30_stage_25",
       "code": "std30_25_05",
       "chapterCode": "std30_25_05",
@@ -76,7 +76,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제25단계 : 실전 약점 공방과 복합 옥집 맥 · 고급 과정 종합",
+      "book": "25단계",
       "bookCode": "std30_stage_25",
       "code": "std30_25_06",
       "chapterCode": "std30_25_06",
@@ -89,7 +89,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제25단계 : 실전 약점 공방과 복합 옥집 맥 · 고급 과정 종합",
+      "book": "25단계",
       "bookCode": "std30_stage_25",
       "code": "std30_25_07",
       "chapterCode": "std30_25_07",
@@ -102,7 +102,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제25단계 : 실전 약점 공방과 복합 옥집 맥 · 고급 과정 종합",
+      "book": "25단계",
       "bookCode": "std30_stage_25",
       "code": "std30_25_08",
       "chapterCode": "std30_25_08",
@@ -115,7 +115,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제25단계 : 실전 약점 공방과 복합 옥집 맥 · 고급 과정 종합",
+      "book": "25단계",
       "bookCode": "std30_stage_25",
       "code": "std30_25_09",
       "chapterCode": "std30_25_09",
@@ -128,7 +128,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제25단계 : 실전 약점 공방과 복합 옥집 맥 · 고급 과정 종합",
+      "book": "25단계",
       "bookCode": "std30_stage_25",
       "code": "std30_25_10",
       "chapterCode": "std30_25_10",
@@ -141,7 +141,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제25단계 : 실전 약점 공방과 복합 옥집 맥 · 고급 과정 종합",
+      "book": "25단계",
       "bookCode": "std30_stage_25",
       "code": "std30_25_11",
       "chapterCode": "std30_25_11",
@@ -154,7 +154,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제25단계 : 실전 약점 공방과 복합 옥집 맥 · 고급 과정 종합",
+      "book": "25단계",
       "bookCode": "std30_stage_25",
       "code": "std30_25_12",
       "chapterCode": "std30_25_12",
@@ -167,7 +167,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제25단계 : 실전 약점 공방과 복합 옥집 맥 · 고급 과정 종합",
+      "book": "25단계",
       "bookCode": "std30_stage_25",
       "code": "std30_25_13",
       "chapterCode": "std30_25_13",
@@ -180,7 +180,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제25단계 : 실전 약점 공방과 복합 옥집 맥 · 고급 과정 종합",
+      "book": "25단계",
       "bookCode": "std30_stage_25",
       "code": "std30_25_14",
       "chapterCode": "std30_25_14",
@@ -193,7 +193,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제25단계 : 실전 약점 공방과 복합 옥집 맥 · 고급 과정 종합",
+      "book": "25단계",
       "bookCode": "std30_stage_25",
       "code": "std30_25_15",
       "chapterCode": "std30_25_15",

@@ -1,17 +1,17 @@
 {
   "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-  "book": "제2단계 : 연결과 끊음의 원리 · 단수 몰기 기초",
-  "title": "제2단계 : 연결과 끊음의 원리 · 단수 몰기 기초",
+  "book": "2단계",
+  "title": "2단계",
   "bookCode": "std30_stage_02",
   "code": "std30_stage_02",
   "chapterCount": 16,
   "totalProblems": 403,
   "problemCount": 403,
-  "_buildVer": "std30-v5-stage2-brandnew",
+  "_buildVer": "std30-v6-clean-title-02",
   "chapters": [
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제2단계 : 연결과 끊음의 원리 · 단수 몰기 기초",
+      "book": "2단계",
       "bookCode": "std30_stage_02",
       "code": "std30_02_01",
       "chapterCode": "std30_02_01",
@@ -519,7 +519,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제2단계 : 연결과 끊음의 원리 · 단수 몰기 기초",
+      "book": "2단계",
       "bookCode": "std30_stage_02",
       "code": "std30_02_02",
       "chapterCode": "std30_02_02",
@@ -1027,7 +1027,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제2단계 : 연결과 끊음의 원리 · 단수 몰기 기초",
+      "book": "2단계",
       "bookCode": "std30_stage_02",
       "code": "std30_02_03",
       "chapterCode": "std30_02_03",
@@ -1478,7 +1478,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제2단계 : 연결과 끊음의 원리 · 단수 몰기 기초",
+      "book": "2단계",
       "bookCode": "std30_stage_02",
       "code": "std30_02_04",
       "chapterCode": "std30_02_04",
@@ -1986,7 +1986,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제2단계 : 연결과 끊음의 원리 · 단수 몰기 기초",
+      "book": "2단계",
       "bookCode": "std30_stage_02",
       "code": "std30_02_05",
       "chapterCode": "std30_02_05",
@@ -2520,7 +2520,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제2단계 : 연결과 끊음의 원리 · 단수 몰기 기초",
+      "book": "2단계",
       "bookCode": "std30_stage_02",
       "code": "std30_02_06",
       "chapterCode": "std30_02_06",
@@ -3054,7 +3054,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제2단계 : 연결과 끊음의 원리 · 단수 몰기 기초",
+      "book": "2단계",
       "bookCode": "std30_stage_02",
       "code": "std30_02_07",
       "chapterCode": "std30_02_07",
@@ -3588,7 +3588,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제2단계 : 연결과 끊음의 원리 · 단수 몰기 기초",
+      "book": "2단계",
       "bookCode": "std30_stage_02",
       "code": "std30_02_08",
       "chapterCode": "std30_02_08",
@@ -4110,7 +4110,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제2단계 : 연결과 끊음의 원리 · 단수 몰기 기초",
+      "book": "2단계",
       "bookCode": "std30_stage_02",
       "code": "std30_02_09",
       "chapterCode": "std30_02_09",
@@ -4618,7 +4618,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제2단계 : 연결과 끊음의 원리 · 단수 몰기 기초",
+      "book": "2단계",
       "bookCode": "std30_stage_02",
       "code": "std30_02_10",
       "chapterCode": "std30_02_10",
@@ -5088,7 +5088,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제2단계 : 연결과 끊음의 원리 · 단수 몰기 기초",
+      "book": "2단계",
       "bookCode": "std30_stage_02",
       "code": "std30_02_11",
       "chapterCode": "std30_02_11",
@@ -5558,7 +5558,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제2단계 : 연결과 끊음의 원리 · 단수 몰기 기초",
+      "book": "2단계",
       "bookCode": "std30_stage_02",
       "code": "std30_02_12",
       "chapterCode": "std30_02_12",
@@ -6028,7 +6028,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제2단계 : 연결과 끊음의 원리 · 단수 몰기 기초",
+      "book": "2단계",
       "bookCode": "std30_stage_02",
       "code": "std30_02_13",
       "chapterCode": "std30_02_13",
@@ -6498,7 +6498,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제2단계 : 연결과 끊음의 원리 · 단수 몰기 기초",
+      "book": "2단계",
       "bookCode": "std30_stage_02",
       "code": "std30_02_14",
       "chapterCode": "std30_02_14",
@@ -6968,7 +6968,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제2단계 : 연결과 끊음의 원리 · 단수 몰기 기초",
+      "book": "2단계",
       "bookCode": "std30_stage_02",
       "code": "std30_02_15",
       "chapterCode": "std30_02_15",
@@ -7476,7 +7476,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제2단계 : 연결과 끊음의 원리 · 단수 몰기 기초",
+      "book": "2단계",
       "bookCode": "std30_stage_02",
       "code": "std30_02_16",
       "chapterCode": "std30_02_16",

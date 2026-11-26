@@ -1,17 +1,17 @@
 {
   "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-  "book": "제1단계 : 바둑의 첫걸음 — 활로·단수·따내기와 착수금지",
-  "title": "제1단계 : 바둑의 첫걸음 — 활로·단수·따내기와 착수금지",
+  "book": "1단계",
+  "title": "1단계",
   "bookCode": "std30_stage_01",
   "code": "std30_stage_01",
   "chapterCount": 15,
   "totalProblems": 391,
   "problemCount": 391,
-  "_buildVer": "std30-v5-stage1-brandnew",
+  "_buildVer": "std30-v6-clean-title-01",
   "chapters": [
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제1단계 : 바둑의 첫걸음 — 활로·단수·따내기와 착수금지",
+      "book": "1단계",
       "bookCode": "std30_stage_01",
       "code": "std30_01_01",
       "chapterCode": "std30_01_01",
@@ -577,7 +577,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제1단계 : 바둑의 첫걸음 — 활로·단수·따내기와 착수금지",
+      "book": "1단계",
       "bookCode": "std30_stage_01",
       "code": "std30_01_02",
       "chapterCode": "std30_01_02",
@@ -1086,7 +1086,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제1단계 : 바둑의 첫걸음 — 활로·단수·따내기와 착수금지",
+      "book": "1단계",
       "bookCode": "std30_stage_01",
       "code": "std30_01_03",
       "chapterCode": "std30_01_03",
@@ -1499,7 +1499,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제1단계 : 바둑의 첫걸음 — 활로·단수·따내기와 착수금지",
+      "book": "1단계",
       "bookCode": "std30_stage_01",
       "code": "std30_01_04",
       "chapterCode": "std30_01_04",
@@ -2007,7 +2007,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제1단계 : 바둑의 첫걸음 — 활로·단수·따내기와 착수금지",
+      "book": "1단계",
       "bookCode": "std30_stage_01",
       "code": "std30_01_05",
       "chapterCode": "std30_01_05",
@@ -2553,7 +2553,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제1단계 : 바둑의 첫걸음 — 활로·단수·따내기와 착수금지",
+      "book": "1단계",
       "bookCode": "std30_stage_01",
       "code": "std30_01_06",
       "chapterCode": "std30_01_06",
@@ -3099,7 +3099,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제1단계 : 바둑의 첫걸음 — 활로·단수·따내기와 착수금지",
+      "book": "1단계",
       "bookCode": "std30_stage_01",
       "code": "std30_01_07",
       "chapterCode": "std30_01_07",
@@ -3645,7 +3645,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제1단계 : 바둑의 첫걸음 — 활로·단수·따내기와 착수금지",
+      "book": "1단계",
       "bookCode": "std30_stage_01",
       "code": "std30_01_08",
       "chapterCode": "std30_01_08",
@@ -4153,7 +4153,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제1단계 : 바둑의 첫걸음 — 활로·단수·따내기와 착수금지",
+      "book": "1단계",
       "bookCode": "std30_stage_01",
       "code": "std30_01_09",
       "chapterCode": "std30_01_09",
@@ -4661,7 +4661,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제1단계 : 바둑의 첫걸음 — 활로·단수·따내기와 착수금지",
+      "book": "1단계",
       "bookCode": "std30_stage_01",
       "code": "std30_01_10",
       "chapterCode": "std30_01_10",
@@ -5169,7 +5169,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제1단계 : 바둑의 첫걸음 — 활로·단수·따내기와 착수금지",
+      "book": "1단계",
       "bookCode": "std30_stage_01",
       "code": "std30_01_11",
       "chapterCode": "std30_01_11",
@@ -5677,7 +5677,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제1단계 : 바둑의 첫걸음 — 활로·단수·따내기와 착수금지",
+      "book": "1단계",
       "bookCode": "std30_stage_01",
       "code": "std30_01_12",
       "chapterCode": "std30_01_12",
@@ -6147,7 +6147,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제1단계 : 바둑의 첫걸음 — 활로·단수·따내기와 착수금지",
+      "book": "1단계",
       "bookCode": "std30_stage_01",
       "code": "std30_01_13",
       "chapterCode": "std30_01_13",
@@ -6655,7 +6655,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제1단계 : 바둑의 첫걸음 — 활로·단수·따내기와 착수금지",
+      "book": "1단계",
       "bookCode": "std30_stage_01",
       "code": "std30_01_14",
       "chapterCode": "std30_01_14",
@@ -7163,7 +7163,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제1단계 : 바둑의 첫걸음 — 활로·단수·따내기와 착수금지",
+      "book": "1단계",
       "bookCode": "std30_stage_01",
       "code": "std30_01_15",
       "chapterCode": "std30_01_15",

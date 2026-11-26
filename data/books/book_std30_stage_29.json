@@ -1,17 +1,17 @@
 {
   "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-  "book": "제29단계 : 끝내기 수의 크기 정밀 계량과 정석 이후의 중반전",
-  "title": "제29단계 : 끝내기 수의 크기 정밀 계량과 정석 이후의 중반전",
+  "book": "29단계",
+  "title": "29단계",
   "bookCode": "std30_stage_29",
   "code": "std30_stage_29",
   "chapterCount": 14,
   "totalProblems": 0,
   "problemCount": 0,
-  "_buildVer": "std30-v2-20261125",
+  "_buildVer": "std30-v6-clean-title-29",
   "chapters": [
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제29단계 : 끝내기 수의 크기 정밀 계량과 정석 이후의 중반전",
+      "book": "29단계",
       "bookCode": "std30_stage_29",
       "code": "std30_29_01",
       "chapterCode": "std30_29_01",
@@ -24,7 +24,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제29단계 : 끝내기 수의 크기 정밀 계량과 정석 이후의 중반전",
+      "book": "29단계",
       "bookCode": "std30_stage_29",
       "code": "std30_29_02",
       "chapterCode": "std30_29_02",
@@ -37,7 +37,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제29단계 : 끝내기 수의 크기 정밀 계량과 정석 이후의 중반전",
+      "book": "29단계",
       "bookCode": "std30_stage_29",
       "code": "std30_29_03",
       "chapterCode": "std30_29_03",
@@ -50,7 +50,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제29단계 : 끝내기 수의 크기 정밀 계량과 정석 이후의 중반전",
+      "book": "29단계",
       "bookCode": "std30_stage_29",
       "code": "std30_29_04",
       "chapterCode": "std30_29_04",
@@ -63,7 +63,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제29단계 : 끝내기 수의 크기 정밀 계량과 정석 이후의 중반전",
+      "book": "29단계",
       "bookCode": "std30_stage_29",
       "code": "std30_29_05",
       "chapterCode": "std30_29_05",
@@ -76,7 +76,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제29단계 : 끝내기 수의 크기 정밀 계량과 정석 이후의 중반전",
+      "book": "29단계",
       "bookCode": "std30_stage_29",
       "code": "std30_29_06",
       "chapterCode": "std30_29_06",
@@ -89,7 +89,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제29단계 : 끝내기 수의 크기 정밀 계량과 정석 이후의 중반전",
+      "book": "29단계",
       "bookCode": "std30_stage_29",
       "code": "std30_29_07",
       "chapterCode": "std30_29_07",
@@ -102,7 +102,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제29단계 : 끝내기 수의 크기 정밀 계량과 정석 이후의 중반전",
+      "book": "29단계",
       "bookCode": "std30_stage_29",
       "code": "std30_29_08",
       "chapterCode": "std30_29_08",
@@ -115,7 +115,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제29단계 : 끝내기 수의 크기 정밀 계량과 정석 이후의 중반전",
+      "book": "29단계",
       "bookCode": "std30_stage_29",
       "code": "std30_29_09",
       "chapterCode": "std30_29_09",
@@ -128,7 +128,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제29단계 : 끝내기 수의 크기 정밀 계량과 정석 이후의 중반전",
+      "book": "29단계",
       "bookCode": "std30_stage_29",
       "code": "std30_29_10",
       "chapterCode": "std30_29_10",
@@ -141,7 +141,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제29단계 : 끝내기 수의 크기 정밀 계량과 정석 이후의 중반전",
+      "book": "29단계",
       "bookCode": "std30_stage_29",
       "code": "std30_29_11",
       "chapterCode": "std30_29_11",
@@ -154,7 +154,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제29단계 : 끝내기 수의 크기 정밀 계량과 정석 이후의 중반전",
+      "book": "29단계",
       "bookCode": "std30_stage_29",
       "code": "std30_29_12",
       "chapterCode": "std30_29_12",
@@ -167,7 +167,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제29단계 : 끝내기 수의 크기 정밀 계량과 정석 이후의 중반전",
+      "book": "29단계",
       "bookCode": "std30_stage_29",
       "code": "std30_29_13",
       "chapterCode": "std30_29_13",
@@ -180,7 +180,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제29단계 : 끝내기 수의 크기 정밀 계량과 정석 이후의 중반전",
+      "book": "29단계",
       "bookCode": "std30_stage_29",
       "code": "std30_29_14",
       "chapterCode": "std30_29_14",

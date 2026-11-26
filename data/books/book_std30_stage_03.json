@@ -1,17 +1,17 @@
 {
   "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-  "book": "제3단계 : 양단수와 촉촉수 · 기초 접촉 행마",
-  "title": "제3단계 : 양단수와 촉촉수 · 기초 접촉 행마",
+  "book": "3단계",
+  "title": "3단계",
   "bookCode": "std30_stage_03",
   "code": "std30_stage_03",
   "chapterCount": 16,
   "totalProblems": 418,
   "problemCount": 418,
-  "_buildVer": "std30-v5-stage3-curated",
+  "_buildVer": "std30-v6-clean-title-03",
   "chapters": [
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제3단계 : 양단수와 촉촉수 · 기초 접촉 행마",
+      "book": "3단계",
       "bookCode": "std30_stage_03",
       "code": "std30_03_01",
       "chapterCode": "std30_03_01",
@@ -558,7 +558,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제3단계 : 양단수와 촉촉수 · 기초 접촉 행마",
+      "book": "3단계",
       "bookCode": "std30_stage_03",
       "code": "std30_03_02",
       "chapterCode": "std30_03_02",
@@ -1104,7 +1104,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제3단계 : 양단수와 촉촉수 · 기초 접촉 행마",
+      "book": "3단계",
       "bookCode": "std30_stage_03",
       "code": "std30_03_03",
       "chapterCode": "std30_03_03",
@@ -1574,7 +1574,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제3단계 : 양단수와 촉촉수 · 기초 접촉 행마",
+      "book": "3단계",
       "bookCode": "std30_stage_03",
       "code": "std30_03_04",
       "chapterCode": "std30_03_04",
@@ -2084,7 +2084,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제3단계 : 양단수와 촉촉수 · 기초 접촉 행마",
+      "book": "3단계",
       "bookCode": "std30_stage_03",
       "code": "std30_03_05",
       "chapterCode": "std30_03_05",
@@ -2592,7 +2592,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제3단계 : 양단수와 촉촉수 · 기초 접촉 행마",
+      "book": "3단계",
       "bookCode": "std30_stage_03",
       "code": "std30_03_06",
       "chapterCode": "std30_03_06",
@@ -3166,7 +3166,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제3단계 : 양단수와 촉촉수 · 기초 접촉 행마",
+      "book": "3단계",
       "bookCode": "std30_stage_03",
       "code": "std30_03_07",
       "chapterCode": "std30_03_07",
@@ -3740,7 +3740,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제3단계 : 양단수와 촉촉수 · 기초 접촉 행마",
+      "book": "3단계",
       "bookCode": "std30_stage_03",
       "code": "std30_03_08",
       "chapterCode": "std30_03_08",
@@ -4248,7 +4248,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제3단계 : 양단수와 촉촉수 · 기초 접촉 행마",
+      "book": "3단계",
       "bookCode": "std30_stage_03",
       "code": "std30_03_09",
       "chapterCode": "std30_03_09",
@@ -4718,7 +4718,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제3단계 : 양단수와 촉촉수 · 기초 접촉 행마",
+      "book": "3단계",
       "bookCode": "std30_stage_03",
       "code": "std30_03_10",
       "chapterCode": "std30_03_10",
@@ -5226,7 +5226,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제3단계 : 양단수와 촉촉수 · 기초 접촉 행마",
+      "book": "3단계",
       "bookCode": "std30_stage_03",
       "code": "std30_03_11",
       "chapterCode": "std30_03_11",
@@ -5696,7 +5696,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제3단계 : 양단수와 촉촉수 · 기초 접촉 행마",
+      "book": "3단계",
       "bookCode": "std30_stage_03",
       "code": "std30_03_12",
       "chapterCode": "std30_03_12",
@@ -6204,7 +6204,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제3단계 : 양단수와 촉촉수 · 기초 접촉 행마",
+      "book": "3단계",
       "bookCode": "std30_stage_03",
       "code": "std30_03_13",
       "chapterCode": "std30_03_13",
@@ -6736,7 +6736,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제3단계 : 양단수와 촉촉수 · 기초 접촉 행마",
+      "book": "3단계",
       "bookCode": "std30_stage_03",
       "code": "std30_03_14",
       "chapterCode": "std30_03_14",
@@ -7244,7 +7244,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제3단계 : 양단수와 촉촉수 · 기초 접촉 행마",
+      "book": "3단계",
       "bookCode": "std30_stage_03",
       "code": "std30_03_15",
       "chapterCode": "std30_03_15",
@@ -7752,7 +7752,7 @@
     },
     {
       "series": "🌟 JH 표준 마스터 커리큘럼 (30단계)",
-      "book": "제3단계 : 양단수와 촉촉수 · 기초 접촉 행마",
+      "book": "3단계",
       "bookCode": "std30_stage_03",
       "code": "std30_03_16",
       "chapterCode": "std30_03_16",
