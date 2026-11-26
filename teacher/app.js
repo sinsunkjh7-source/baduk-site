@@ -184,6 +184,16 @@
         }
       });
     }
+    if (code === 'gpt_anti_stage_02') {
+      var ch6 = bookData.chapters[5];
+      if (ch6 && Array.isArray(ch6.problems)) {
+        for (var qi = 0; qi < Math.min(5, ch6.problems.length); qi++) {
+          if (ch6.problems[qi]) {
+            ch6.problems[qi].question = '흑1로 둘 수 있으면 ○표, 둘 수 없으면 ×표를 선택하세요.';
+          }
+        }
+      }
+    }
     return bookData;
   }
   window.sanitizeBookData = sanitizeBookData;

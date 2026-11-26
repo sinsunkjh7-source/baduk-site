@@ -1951,7 +1951,7 @@
         "code": "gpt_anti_stage_02",
         "title": "2단계",
         "chapterCount": 9,
-        "totalProblems": 177,
+        "totalProblems": 180,
         "chapters": [
           {
             "code": "gpt_anti_02_01",
@@ -1996,10 +1996,10 @@
           {
             "code": "gpt_anti_02_06",
             "chapterCode": "gpt_anti_02_06",
-            "title": "6. 착수금지",
-            "chapter": "6. 착수금지",
-            "problemCount": 30,
-            "problemsCount": 30
+            "title": "6. 착수금지 (33제)",
+            "chapter": "6. 착수금지 (33제)",
+            "problemCount": 33,
+            "problemsCount": 33
           },
           {
             "code": "gpt_anti_02_07",
@@ -2027,7 +2027,8 @@
           }
         ],
         "file": "book_gpt_anti_stage_02.json",
-        "_buildVer": "v20-stage02-ch6-mixed-30"
+        "_buildVer": "v20-stage02-ch6-mixed-30",
+        "problemCount": 180
       },
       {
         "code": "gpt_anti_stage_01",
@@ -17146,46 +17147,83 @@
         "code": "gpt_anti_stage_02",
         "file": "book_gpt_anti_stage_02.json",
         "chapterCount": 9,
-        "totalProblems": 177,
+        "totalProblems": 180,
         "chapters": [
           {
+            "code": "gpt_anti_02_01",
+            "chapterCode": "gpt_anti_02_01",
             "title": "1. 돌의 연결",
-            "problemCount": 30
+            "chapter": "1. 돌의 연결",
+            "problemCount": 30,
+            "problemsCount": 30
           },
           {
+            "code": "gpt_anti_02_02",
+            "chapterCode": "gpt_anti_02_02",
             "title": "2. 돌의 끊음",
-            "problemCount": 30
+            "chapter": "2. 돌의 끊음",
+            "problemCount": 30,
+            "problemsCount": 30
           },
           {
+            "code": "gpt_anti_02_03",
+            "chapterCode": "gpt_anti_02_03",
             "title": "3. 1선 방향으로 단수치기",
-            "problemCount": 28
+            "chapter": "3. 1선 방향으로 단수치기",
+            "problemCount": 28,
+            "problemsCount": 28
           },
           {
+            "code": "gpt_anti_02_04",
+            "chapterCode": "gpt_anti_02_04",
             "title": "4. 끊어서 단수치기",
-            "problemCount": 30
+            "chapter": "4. 끊어서 단수치기",
+            "problemCount": 30,
+            "problemsCount": 30
           },
           {
+            "code": "gpt_anti_02_05",
+            "chapterCode": "gpt_anti_02_05",
             "title": "5. 우리 편 방향으로 단수치기",
-            "problemCount": 29
+            "chapter": "5. 우리 편 방향으로 단수치기",
+            "problemCount": 29,
+            "problemsCount": 29
           },
           {
-            "title": "6. 착수금지",
-            "problemCount": 30
+            "code": "gpt_anti_02_06",
+            "chapterCode": "gpt_anti_02_06",
+            "title": "6. 착수금지 (33제)",
+            "chapter": "6. 착수금지 (33제)",
+            "problemCount": 33,
+            "problemsCount": 33
           },
           {
+            "code": "gpt_anti_02_07",
+            "chapterCode": "gpt_anti_02_07",
             "title": "7. 패",
-            "problemCount": 0
+            "chapter": "7. 패",
+            "problemCount": 0,
+            "problemsCount": 0
           },
           {
+            "code": "gpt_anti_02_08",
+            "chapterCode": "gpt_anti_02_08",
             "title": "8. 집과 승패",
-            "problemCount": 0
+            "chapter": "8. 집과 승패",
+            "problemCount": 0,
+            "problemsCount": 0
           },
           {
+            "code": "gpt_anti_02_09",
+            "chapterCode": "gpt_anti_02_09",
             "title": "9. 집과 공배",
-            "problemCount": 0
+            "chapter": "9. 집과 공배",
+            "problemCount": 0,
+            "problemsCount": 0
           }
         ],
-        "_buildVer": "v20-stage02-ch6-mixed-30"
+        "_buildVer": "v20-stage02-ch6-mixed-30",
+        "problemCount": 180
       }
     ]
   },
