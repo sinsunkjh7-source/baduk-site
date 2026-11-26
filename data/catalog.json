@@ -17330,124 +17330,141 @@
         "file": "book_std30_stage_02.json",
         "title": "제2단계 : 연결과 끊음의 원리 · 단수 몰기 기초",
         "name": "제2단계 : 연결과 끊음의 원리 · 단수 몰기 기초",
-        "_buildVer": "std30-v3-20261125",
+        "_buildVer": "std30-v5-stage2-brandnew",
         "chapterCount": 16,
-        "totalProblems": 0,
-        "problemCount": 0,
+        "totalProblems": 403,
+        "problemCount": 403,
         "chapters": [
           {
             "code": "std30_02_01",
             "chapterCode": "std30_02_01",
-            "title": "01. [연결] 대각선으로 갈라진 내 돌 직접 잇기",
-            "chapter": "01. [연결] 대각선으로 갈라진 내 돌 직접 잇기",
-            "problemCount": 0
+            "title": "01. [연결] 대각선으로 갈라진 내 돌 직접 잇기 (26제)",
+            "chapter": "01. [연결] 대각선으로 갈라진 내 돌 직접 잇기 (26제)",
+            "problemCount": 26,
+            "count": 26
           },
           {
             "code": "std30_02_02",
             "chapterCode": "std30_02_02",
-            "title": "02. [끊음] 상대의 대각선 약점 직접 끊기",
-            "chapter": "02. [끊음] 상대의 대각선 약점 직접 끊기",
-            "problemCount": 0
+            "title": "02. [끊음] 상대의 대각선 약점 직접 끊기 (26제)",
+            "chapter": "02. [끊음] 상대의 대각선 약점 직접 끊기 (26제)",
+            "problemCount": 26,
+            "count": 26
           },
           {
             "code": "std30_02_03",
             "chapterCode": "std30_02_03",
-            "title": "03. [형태] 강한 돌과 약한 돌 식별하기",
-            "chapter": "03. [형태] 강한 돌과 약한 돌 식별하기",
-            "problemCount": 0
+            "title": "03. [형태] 강한 돌과 약한 돌 식별하기 (23제)",
+            "chapter": "03. [형태] 강한 돌과 약한 돌 식별하기 (23제)",
+            "problemCount": 23,
+            "count": 23
           },
           {
             "code": "std30_02_04",
             "chapterCode": "std30_02_04",
-            "title": "04. [연결] 끊으러 온 상대 돌을 따내며 연결하기",
-            "chapter": "04. [연결] 끊으러 온 상대 돌을 따내며 연결하기",
-            "problemCount": 0
+            "title": "04. [연결] 끊으러 온 상대 돌을 따내며 연결하기 (26제)",
+            "chapter": "04. [연결] 끊으러 온 상대 돌을 따내며 연결하기 (26제)",
+            "problemCount": 26,
+            "count": 26
           },
           {
             "code": "std30_02_05",
             "chapterCode": "std30_02_05",
-            "title": "05. [끊음] 허술한 연결 고리를 뚫고 나가 분단하기",
-            "chapter": "05. [끊음] 허술한 연결 고리를 뚫고 나가 분단하기",
-            "problemCount": 0
+            "title": "05. [끊음] 허술한 연결 고리를 뚫고 나가 분단하기 (26제)",
+            "chapter": "05. [끊음] 허술한 연결 고리를 뚫고 나가 분단하기 (26제)",
+            "problemCount": 26,
+            "count": 26
           },
           {
             "code": "std30_02_06",
             "chapterCode": "std30_02_06",
-            "title": "06. [포획] 바둑판 끝(1선) 방향으로 단수쳐 몰기",
-            "chapter": "06. [포획] 바둑판 끝(1선) 방향으로 단수쳐 몰기",
-            "problemCount": 0
+            "title": "06. [포획] 바둑판 끝(1선) 방향으로 단수쳐 몰기 (26제)",
+            "chapter": "06. [포획] 바둑판 끝(1선) 방향으로 단수쳐 몰기 (26제)",
+            "problemCount": 26,
+            "count": 26
           },
           {
             "code": "std30_02_07",
             "chapterCode": "std30_02_07",
-            "title": "07. [포획] 아군 지원군이 있는 방향으로 단수쳐 몰기",
-            "chapter": "07. [포획] 아군 지원군이 있는 방향으로 단수쳐 몰기",
-            "problemCount": 0
+            "title": "07. [포획] 아군 지원군이 있는 방향으로 단수쳐 몰기 (26제)",
+            "chapter": "07. [포획] 아군 지원군이 있는 방향으로 단수쳐 몰기 (26제)",
+            "problemCount": 26,
+            "count": 26
           },
           {
             "code": "std30_02_08",
             "chapterCode": "std30_02_08",
-            "title": "08. [포획] 연결을 끊으면서 동시에 단수치기",
-            "chapter": "08. [포획] 연결을 끊으면서 동시에 단수치기",
-            "problemCount": 0
+            "title": "08. [포획] 연결을 끊으면서 동시에 단수치기 (26제)",
+            "chapter": "08. [포획] 연결을 끊으면서 동시에 단수치기 (26제)",
+            "problemCount": 26,
+            "count": 26
           },
           {
             "code": "std30_02_09",
             "chapterCode": "std30_02_09",
-            "title": "09. [수비] 스스로 활로를 메우는 자충 단수 피하기",
-            "chapter": "09. [수비] 스스로 활로를 메우는 자충 단수 피하기",
-            "problemCount": 0
+            "title": "09. [수비] 스스로 활로를 메우는 자충 단수 피하기 (26제)",
+            "chapter": "09. [수비] 스스로 활로를 메우는 자충 단수 피하기 (26제)",
+            "problemCount": 26,
+            "count": 26
           },
           {
             "code": "std30_02_10",
             "chapterCode": "std30_02_10",
-            "title": "10. [수상전] 마주 갇힌 흑백 돌의 활로 수 비교하기",
-            "chapter": "10. [수상전] 마주 갇힌 흑백 돌의 활로 수 비교하기",
-            "problemCount": 0
+            "title": "10. [수상전] 마주 갇힌 흑백 돌의 활로 수 비교하기 (24제)",
+            "chapter": "10. [수상전] 마주 갇힌 흑백 돌의 활로 수 비교하기 (24제)",
+            "problemCount": 24,
+            "count": 24
           },
           {
             "code": "std30_02_11",
             "chapterCode": "std30_02_11",
-            "title": "11. [행마] 접촉 행마의 시작 — 젖혀서 기세 잡기",
-            "chapter": "11. [행마] 접촉 행마의 시작 — 젖혀서 기세 잡기",
-            "problemCount": 0
+            "title": "11. [행마] 접촉 행마의 시작 — 젖혀서 기세 잡기 (24제)",
+            "chapter": "11. [행마] 접촉 행마의 시작 — 젖혀서 기세 잡기 (24제)",
+            "problemCount": 24,
+            "count": 24
           },
           {
             "code": "std30_02_12",
             "chapterCode": "std30_02_12",
-            "title": "12. [행마] 접촉 행마의 시작 — 곧게 뻗어 자세 잡기",
-            "chapter": "12. [행마] 접촉 행마의 시작 — 곧게 뻗어 자세 잡기",
-            "problemCount": 0
+            "title": "12. [행마] 접촉 행마의 시작 — 곧게 뻗어 자세 잡기 (24제)",
+            "chapter": "12. [행마] 접촉 행마의 시작 — 곧게 뻗어 자세 잡기 (24제)",
+            "problemCount": 24,
+            "count": 24
           },
           {
             "code": "std30_02_13",
             "chapterCode": "std30_02_13",
-            "title": "13. [포석] 귀·변·중앙의 집 짓기 효율 비교",
-            "chapter": "13. [포석] 귀·변·중앙의 집 짓기 효율 비교",
-            "problemCount": 0
+            "title": "13. [포석] 귀·변·중앙의 집 짓기 효율 비교 (24제)",
+            "chapter": "13. [포석] 귀·변·중앙의 집 짓기 효율 비교 (24제)",
+            "problemCount": 24,
+            "count": 24
           },
           {
             "code": "std30_02_14",
             "chapterCode": "std30_02_14",
-            "title": "14. [포석] 뭉친 줄바둑을 피하고 넓게 포진하기",
-            "chapter": "14. [포석] 뭉친 줄바둑을 피하고 넓게 포진하기",
-            "problemCount": 0
+            "title": "14. [포석] 뭉친 줄바둑을 피하고 넓게 포진하기 (24제)",
+            "chapter": "14. [포석] 뭉친 줄바둑을 피하고 넓게 포진하기 (24제)",
+            "problemCount": 24,
+            "count": 24
           },
           {
             "code": "std30_02_15",
             "chapterCode": "std30_02_15",
-            "title": "15. [끝내기] 열린 집 경계를 닫고 집 차이 계산하기",
-            "chapter": "15. [끝내기] 열린 집 경계를 닫고 집 차이 계산하기",
-            "problemCount": 0
+            "title": "15. [끝내기] 열린 집 경계를 닫고 집 차이 계산하기 (26제)",
+            "chapter": "15. [끝내기] 열린 집 경계를 닫고 집 차이 계산하기 (26제)",
+            "problemCount": 26,
+            "count": 26
           },
           {
             "code": "std30_02_16",
             "chapterCode": "std30_02_16",
-            "title": "16. [판별] 단수 모는 방향과 연결·끊음 실전 판별",
-            "chapter": "16. [판별] 단수 모는 방향과 연결·끊음 실전 판별",
-            "problemCount": 0
+            "title": "16. [판별] 단수 모는 방향과 연결·끊음 실전 판별 (26제)",
+            "chapter": "16. [판별] 단수 모는 방향과 연결·끊음 실전 판별 (26제)",
+            "problemCount": 26,
+            "count": 26
           }
-        ]
+        ],
+        "problem_count": 403
       },
       {
         "code": "std30_stage_03",
