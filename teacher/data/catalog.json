@@ -17199,7 +17199,7 @@
         "file": "book_std30_stage_01.json",
         "title": "제1단계 : 바둑의 첫걸음 — 활로·단수·따내기와 착수금지",
         "name": "제1단계 : 바둑의 첫걸음 — 활로·단수·따내기와 착수금지",
-        "_buildVer": "std30-v3-20261125",
+        "_buildVer": "std30-v5-stage1-brandnew",
         "chapterCount": 15,
         "totalProblems": 391,
         "problemCount": 391,
@@ -17209,107 +17209,123 @@
             "chapterCode": "std30_01_01",
             "title": "01. [규칙] 돌의 활로 이해하기 (28제)",
             "chapter": "01. [규칙] 돌의 활로 이해하기 (28제)",
-            "problemCount": 28
+            "problemCount": 28,
+            "count": 28
           },
           {
             "code": "std30_01_02",
             "chapterCode": "std30_01_02",
             "title": "02. [규칙] 단수의 원리와 위기 돌 찾기 (26제)",
             "chapter": "02. [규칙] 단수의 원리와 위기 돌 찾기 (26제)",
-            "problemCount": 26
+            "problemCount": 26,
+            "count": 26
           },
           {
             "code": "std30_01_03",
             "chapterCode": "std30_01_03",
             "title": "03. [포획] 단수된 돌 한 점 따내기 (21제)",
             "chapter": "03. [포획] 단수된 돌 한 점 따내기 (21제)",
-            "problemCount": 21
+            "problemCount": 21,
+            "count": 21
           },
           {
             "code": "std30_01_04",
             "chapterCode": "std30_01_04",
             "title": "04. [생존] 단수된 내 돌 뻗어서 살리기 (26제)",
             "chapter": "04. [생존] 단수된 내 돌 뻗어서 살리기 (26제)",
-            "problemCount": 26
+            "problemCount": 26,
+            "count": 26
           },
           {
             "code": "std30_01_05",
             "chapterCode": "std30_01_05",
             "title": "05. [포획] 두 점 이상 뭉친 돌 따내기 (28제)",
             "chapter": "05. [포획] 두 점 이상 뭉친 돌 따내기 (28제)",
-            "problemCount": 28
+            "problemCount": 28,
+            "count": 28
           },
           {
             "code": "std30_01_06",
             "chapterCode": "std30_01_06",
             "title": "06. [생존] 두 점 이상 단수된 내 돌 구출하기 (28제)",
             "chapter": "06. [생존] 두 점 이상 단수된 내 돌 구출하기 (28제)",
-            "problemCount": 28
+            "problemCount": 28,
+            "count": 28
           },
           {
             "code": "std30_01_07",
             "chapterCode": "std30_01_07",
             "title": "07. [공방] 서로 단수에서 선수 잡기 (28제)",
             "chapter": "07. [공방] 서로 단수에서 선수 잡기 (28제)",
-            "problemCount": 28
+            "problemCount": 28,
+            "count": 28
           },
           {
             "code": "std30_01_08",
             "chapterCode": "std30_01_08",
             "title": "08. [공방] 상대 돌을 따내며 위기 탈출하기 (26제)",
             "chapter": "08. [공방] 상대 돌을 따내며 위기 탈출하기 (26제)",
-            "problemCount": 26
+            "problemCount": 26,
+            "count": 26
           },
           {
             "code": "std30_01_09",
             "chapterCode": "std30_01_09",
             "title": "09. [규칙] 착수금지 자리 판별하기 (26제)",
             "chapter": "09. [규칙] 착수금지 자리 판별하기 (26제)",
-            "problemCount": 26
+            "problemCount": 26,
+            "count": 26
           },
           {
             "code": "std30_01_10",
             "chapterCode": "std30_01_10",
             "title": "10. [규칙] 따내면서 들어가는 착수금지 예외 (26제)",
             "chapter": "10. [규칙] 따내면서 들어가는 착수금지 예외 (26제)",
-            "problemCount": 26
+            "problemCount": 26,
+            "count": 26
           },
           {
             "code": "std30_01_11",
             "chapterCode": "std30_01_11",
             "title": "11. [규칙] 패의 기본 규칙과 한 수 쉬어 따내기 (26제)",
             "chapter": "11. [규칙] 패의 기본 규칙과 한 수 쉬어 따내기 (26제)",
-            "problemCount": 26
+            "problemCount": 26,
+            "count": 26
           },
           {
             "code": "std30_01_12",
             "chapterCode": "std30_01_12",
             "title": "12. [행마] 수비선이 없는 넓은 곳으로 활로 넓히기 (24제)",
             "chapter": "12. [행마] 수비선이 없는 넓은 곳으로 활로 넓히기 (24제)",
-            "problemCount": 24
+            "problemCount": 24,
+            "count": 24
           },
           {
             "code": "std30_01_13",
             "chapterCode": "std30_01_13",
             "title": "13. [집] 집의 개념과 열린 경계 마무리하기 (26제)",
             "chapter": "13. [집] 집의 개념과 열린 경계 마무리하기 (26제)",
-            "problemCount": 26
+            "problemCount": 26,
+            "count": 26
           },
           {
             "code": "std30_01_14",
             "chapterCode": "std30_01_14",
             "title": "14. [집] 완성된 집의 크기 비교하기 (26제)",
             "chapter": "14. [집] 완성된 집의 크기 비교하기 (26제)",
-            "problemCount": 26
+            "problemCount": 26,
+            "count": 26
           },
           {
             "code": "std30_01_15",
             "chapterCode": "std30_01_15",
             "title": "15. [판별] 입문 기초 규칙과 따내기·살리기 실전 판별 (26제)",
             "chapter": "15. [판별] 입문 기초 규칙과 따내기·살리기 실전 판별 (26제)",
-            "problemCount": 26
+            "problemCount": 26,
+            "count": 26
           }
-        ]
+        ],
+        "problem_count": 391
       },
       {
         "code": "std30_stage_02",
