@@ -196,6 +196,12 @@
             ch6.problems[qi].question = '흑1로 둘 수 있으면 ○표, 둘 수 없으면 ×표를 선택하세요.';
           }
         }
+        [0, 1, 3].forEach(function (ti) {
+          var tp = ch6.problems[ti];
+          if (tp && tp.data && tp.data.indexOf(';T[') !== -1) {
+            tp.data = tp.data.replace(/;T\[([a-s]{2})\]/gi, ';L[$1:1]');
+          }
+        });
       }
     }
     return bookData;
