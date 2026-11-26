@@ -686,7 +686,7 @@
     var ownGrp = getGroupLiberties(state.board, size, r, c);
     if (ownGrp.liberties === 0 && capturedStones.length === 0) {
       state.board[r][c] = 0; // 착수 취소
-      toast('자충수(활로 없음) 자리입니다!');
+      toast('착수금지 자리입니다! 활로가 하나도 없어서 둘 수 없어요.');
       return;
     }
 

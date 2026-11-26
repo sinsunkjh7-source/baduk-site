@@ -1099,7 +1099,7 @@
     var res = engine.playMove(c, r, state.currentTurn);
     if (!res.success) {
       if (res.reason === 'SUICIDE') {
-        toast('착수 금지점(자충수)에는 둘 수 없습니다!');
+        toast('착수금지 자리입니다! 활로가 하나도 없어서 둘 수 없어요.');
       } else if (res.reason === 'KO') {
         toast('패(Ko) 형태이므로 다른 곳에 먼저 두어야 합니다!');
       } else {
