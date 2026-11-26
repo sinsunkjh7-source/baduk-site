@@ -17472,124 +17472,141 @@
         "file": "book_std30_stage_03.json",
         "title": "제3단계 : 양단수와 촉촉수 · 기초 접촉 행마",
         "name": "제3단계 : 양단수와 촉촉수 · 기초 접촉 행마",
-        "_buildVer": "std30-v3-20261125",
+        "_buildVer": "std30-v5-stage3-curated",
         "chapterCount": 16,
-        "totalProblems": 0,
-        "problemCount": 0,
+        "totalProblems": 418,
+        "problemCount": 418,
         "chapters": [
           {
             "code": "std30_03_01",
             "chapterCode": "std30_03_01",
-            "title": "01. [포획] 양단수의 원리와 급소 찾기",
-            "chapter": "01. [포획] 양단수의 원리와 급소 찾기",
-            "problemCount": 0
+            "title": "01. [포획] 양단수의 원리와 급소 찾기 (28제)",
+            "chapter": "01. [포획] 양단수의 원리와 급소 찾기 (28제)",
+            "problemCount": 28,
+            "count": 28
           },
           {
             "code": "std30_03_02",
             "chapterCode": "std30_03_02",
-            "title": "02. [포획] 복잡한 실전 배치에서 양단수 발견하기",
-            "chapter": "02. [포획] 복잡한 실전 배치에서 양단수 발견하기",
-            "problemCount": 0
+            "title": "02. [포획] 복잡한 실전 배치에서 양단수 발견하기 (28제)",
+            "chapter": "02. [포획] 복잡한 실전 배치에서 양단수 발견하기 (28제)",
+            "problemCount": 28,
+            "count": 28
           },
           {
             "code": "std30_03_03",
             "chapterCode": "std30_03_03",
-            "title": "03. [수비] 양단수 노림을 미리 읽고 약점 지키기",
-            "chapter": "03. [수비] 양단수 노림을 미리 읽고 약점 지키기",
-            "problemCount": 0
+            "title": "03. [수비] 양단수 노림을 미리 읽고 약점 지키기 (24제)",
+            "chapter": "03. [수비] 양단수 노림을 미리 읽고 약점 지키기 (24제)",
+            "problemCount": 24,
+            "count": 24
           },
           {
             "code": "std30_03_04",
             "chapterCode": "std30_03_04",
-            "title": "04. [포획] 약점을 끊은 뒤 단수쳐 제압하기",
-            "chapter": "04. [포획] 약점을 끊은 뒤 단수쳐 제압하기",
-            "problemCount": 0
+            "title": "04. [포획] 약점을 끊은 뒤 단수쳐 제압하기 (26제)",
+            "chapter": "04. [포획] 약점을 끊은 뒤 단수쳐 제압하기 (26제)",
+            "problemCount": 26,
+            "count": 26
           },
           {
             "code": "std30_03_05",
             "chapterCode": "std30_03_05",
-            "title": "05. [포획] 변과 귀의 2선에서 끊어 잡기",
-            "chapter": "05. [포획] 변과 귀의 2선에서 끊어 잡기",
-            "problemCount": 0
+            "title": "05. [포획] 변과 귀의 2선에서 끊어 잡기 (26제)",
+            "chapter": "05. [포획] 변과 귀의 2선에서 끊어 잡기 (26제)",
+            "problemCount": 26,
+            "count": 26
           },
           {
             "code": "std30_03_06",
             "chapterCode": "std30_03_06",
-            "title": "06. [기법] 1선 촉촉수의 원리 체득하기",
-            "chapter": "06. [기법] 1선 촉촉수의 원리 체득하기",
-            "problemCount": 0
+            "title": "06. [기법] 1선 촉촉수의 원리 체득하기 (28제)",
+            "chapter": "06. [기법] 1선 촉촉수의 원리 체득하기 (28제)",
+            "problemCount": 28,
+            "count": 28
           },
           {
             "code": "std30_03_07",
             "chapterCode": "std30_03_07",
-            "title": "07. [기법] 중앙 촉촉수로 뭉친 돌 포획하기",
-            "chapter": "07. [기법] 중앙 촉촉수로 뭉친 돌 포획하기",
-            "problemCount": 0
+            "title": "07. [기법] 중앙 촉촉수로 뭉친 돌 포획하기 (28제)",
+            "chapter": "07. [기법] 중앙 촉촉수로 뭉친 돌 포획하기 (28제)",
+            "problemCount": 28,
+            "count": 28
           },
           {
             "code": "std30_03_08",
             "chapterCode": "std30_03_08",
-            "title": "08. [연결] 호구 모양으로 탄력 있게 연결하기",
-            "chapter": "08. [연결] 호구 모양으로 탄력 있게 연결하기",
-            "problemCount": 0
+            "title": "08. [연결] 호구 모양으로 탄력 있게 연결하기 (26제)",
+            "chapter": "08. [연결] 호구 모양으로 탄력 있게 연결하기 (26제)",
+            "problemCount": 26,
+            "count": 26
           },
           {
             "code": "std30_03_09",
             "chapterCode": "std30_03_09",
-            "title": "09. [행마] 호구 젖히기로 공방을 겸해 자세 잡기",
-            "chapter": "09. [행마] 호구 젖히기로 공방을 겸해 자세 잡기",
-            "problemCount": 0
+            "title": "09. [행마] 호구 젖히기로 공방을 겸해 자세 잡기 (24제)",
+            "chapter": "09. [행마] 호구 젖히기로 공방을 겸해 자세 잡기 (24제)",
+            "problemCount": 24,
+            "count": 24
           },
           {
             "code": "std30_03_10",
             "chapterCode": "std30_03_10",
-            "title": "10. [행마] 접촉전 기본 원리 — 붙여 오면 젖혀 응수하기",
-            "chapter": "10. [행마] 접촉전 기본 원리 — 붙여 오면 젖혀 응수하기",
-            "problemCount": 0
+            "title": "10. [행마] 접촉전 기본 원리 — 붙여 오면 젖혀 응수하기 (26제)",
+            "chapter": "10. [행마] 접촉전 기본 원리 — 붙여 오면 젖혀 응수하기 (26제)",
+            "problemCount": 26,
+            "count": 26
           },
           {
             "code": "std30_03_11",
             "chapterCode": "std30_03_11",
-            "title": "11. [행마] 접촉전 기본 원리 — 나란히 선 두 점 머리 막기",
-            "chapter": "11. [행마] 접촉전 기본 원리 — 나란히 선 두 점 머리 막기",
-            "problemCount": 0
+            "title": "11. [행마] 접촉전 기본 원리 — 나란히 선 두 점 머리 막기 (24제)",
+            "chapter": "11. [행마] 접촉전 기본 원리 — 나란히 선 두 점 머리 막기 (24제)",
+            "problemCount": 24,
+            "count": 24
           },
           {
             "code": "std30_03_12",
             "chapterCode": "std30_03_12",
-            "title": "12. [수상전] 같은 활로 수일 때 선수로 수 줄여 이기기",
-            "chapter": "12. [수상전] 같은 활로 수일 때 선수로 수 줄여 이기기",
-            "problemCount": 0
+            "title": "12. [수상전] 같은 활로 수일 때 선수로 수 줄여 이기기 (26제)",
+            "chapter": "12. [수상전] 같은 활로 수일 때 선수로 수 줄여 이기기 (26제)",
+            "problemCount": 26,
+            "count": 26
           },
           {
             "code": "std30_03_13",
             "chapterCode": "std30_03_13",
-            "title": "13. [수상전] 바깥 활로부터 안전하게 메우는 순서",
-            "chapter": "13. [수상전] 바깥 활로부터 안전하게 메우는 순서",
-            "problemCount": 0
+            "title": "13. [수상전] 바깥 활로부터 안전하게 메우는 순서 (26제)",
+            "chapter": "13. [수상전] 바깥 활로부터 안전하게 메우는 순서 (26제)",
+            "problemCount": 26,
+            "count": 26
           },
           {
             "code": "std30_03_14",
             "chapterCode": "std30_03_14",
-            "title": "14. [사활] 절대 잡히지 않는 ‘나누어진 두 집’의 원리",
-            "chapter": "14. [사활] 절대 잡히지 않는 ‘나누어진 두 집’의 원리",
-            "problemCount": 0
+            "title": "14. [사활] 절대 잡히지 않는 ‘나누어진 두 집’의 원리 (26제)",
+            "chapter": "14. [사활] 절대 잡히지 않는 ‘나누어진 두 집’의 원리 (26제)",
+            "problemCount": 26,
+            "count": 26
           },
           {
             "code": "std30_03_15",
             "chapterCode": "std30_03_15",
-            "title": "15. [포석] 3선(실리선)과 4선(세력선)의 역할 이해하기",
-            "chapter": "15. [포석] 3선(실리선)과 4선(세력선)의 역할 이해하기",
-            "problemCount": 0
+            "title": "15. [포석] 3선(실리선)과 4선(세력선)의 역할 이해하기 (26제)",
+            "chapter": "15. [포석] 3선(실리선)과 4선(세력선)의 역할 이해하기 (26제)",
+            "problemCount": 26,
+            "count": 26
           },
           {
             "code": "std30_03_16",
             "chapterCode": "std30_03_16",
-            "title": "16. [판별] 양단수·촉촉수와 기초 접촉 행마 실전 판별",
-            "chapter": "16. [판별] 양단수·촉촉수와 기초 접촉 행마 실전 판별",
-            "problemCount": 0
+            "title": "16. [판별] 양단수·촉촉수와 기초 접촉 행마 실전 판별 (26제)",
+            "chapter": "16. [판별] 양단수·촉촉수와 기초 접촉 행마 실전 판별 (26제)",
+            "problemCount": 26,
+            "count": 26
           }
-        ]
+        ],
+        "problem_count": 418
       },
       {
         "code": "std30_stage_04",
