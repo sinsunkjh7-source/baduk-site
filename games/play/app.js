@@ -22,7 +22,7 @@
     difficulty: ['beginner', 'master', 'kata'].indexOf(localStorage.getItem('play_ai_difficulty')) >= 0 ? localStorage.getItem('play_ai_difficulty') : 'master',
     humanColor: parseInt(localStorage.getItem('play_human_color') || '1', 10), // 1: BLACK, 2: WHITE
     colorChoice: localStorage.getItem('play_color_choice') || 'random', // '1' | '2' | 'random'
-    handicap: parseInt(urlParams.get('handicap') || localStorage.getItem('play_handicap') || '0', 10), // 0: 호선, 1: 정선, 2~9: 접바둑
+    handicap: (function () { var h = urlParams.get('handicap') || localStorage.getItem('play_handicap') || '0'; return h === 'free' ? 'free' : (parseInt(h, 10) || 0); })(), // 0: 호선, 1: 정선, 2~9: 접바둑, 'free'/10~: 프리
     timeLimit: urlParams.get('timeLimit') || urlParams.get('time') || localStorage.getItem('play_time_limit') || 'none',
     freeStones: [],
     isFreePlacementActive: false,
@@ -1573,6 +1573,7 @@
     if (launchId !== kataLoadGeneration) return;
     var matchModal = document.getElementById('matchModal');
     if (matchModal) { matchModal.setAttribute('hidden', ''); matchModal.style.display = 'none'; }
+    matchTouched = {}; // 대국에 반영되는 순간부터는 state가 기준
     state.difficulty = nextDifficulty;
     localStorage.setItem('play_ai_difficulty', state.difficulty);
     state.aiEngine = nextEngine;
@@ -1708,6 +1709,12 @@
   }
 
   /* ---------- 새 대국 설정 모달 제어 ---------- */
+  // 설정창에서 고른 값은 누르는 즉시 저장해 두었다가, 다음에 열 때 기본값으로 보여 준다.
+  function savePref(key, value) {
+    try { localStorage.setItem(key, String(value)); } catch (e) { /* 저장 못 해도 대국에는 지장 없음 */ }
+  }
+  var matchTouched = {}; // 이번 접속에서 설정창에서 직접 고른 항목 (고른 값이 우선)
+  var savedFreeCount = parseInt(localStorage.getItem('play_free_count') || '10', 10);
   var pendingMatchOpts = {
     mode: state.mode,
     aiEngine: state.aiEngine,
@@ -1715,19 +1722,19 @@
     boardSize: state.boardSize,
     colorChoice: state.colorChoice,
     handicap: state.handicap,
-    freeMode: 'preset',
-    freeCount: 10,
+    freeMode: localStorage.getItem('play_free_mode') === 'custom' ? 'custom' : 'preset',
+    freeCount: savedFreeCount >= 2 && savedFreeCount <= 25 ? savedFreeCount : 10,
     timeLimit: state.timeLimit
   };
 
   function syncMatchModalUI() {
     pendingMatchOpts.mode = state.mode;
     pendingMatchOpts.aiEngine = state.aiEngine;
-    pendingMatchOpts.difficulty = state.difficulty;
-    pendingMatchOpts.boardSize = state.boardSize;
-    pendingMatchOpts.colorChoice = state.colorChoice;
-    pendingMatchOpts.handicap = state.handicap;
-    pendingMatchOpts.timeLimit = state.timeLimit;
+    if (!matchTouched.difficulty) pendingMatchOpts.difficulty = state.difficulty;
+    if (!matchTouched.boardSize) pendingMatchOpts.boardSize = state.boardSize;
+    if (!matchTouched.colorChoice) pendingMatchOpts.colorChoice = state.colorChoice;
+    if (!matchTouched.handicap) pendingMatchOpts.handicap = state.handicap;
+    if (!matchTouched.timeLimit) pendingMatchOpts.timeLimit = state.timeLimit;
 
     // 모드: AI 대국은 AI만, 일반 대국(PVP)은 일반 대국만 표시
     var chipAi = document.querySelector('#matchModeChips [data-mode="ai"]');
@@ -1778,11 +1785,17 @@
       }
     });
 
-    // 프리 접바둑 세부 패널
+    // 프리 접바둑 세부 패널 (마지막에 고른 점수/방식도 되살린다)
     var freeSub = document.getElementById('freeHandicapSub');
     if (freeSub) {
       freeSub.style.display = isFreeActive ? 'block' : 'none';
     }
+    var freeCountInput = document.getElementById('inputFreeCount');
+    if (freeCountInput) freeCountInput.value = pendingMatchOpts.freeCount;
+    document.querySelectorAll('#freePresetChips .free-preset-chip').forEach(function (c) {
+      var key = c.dataset.freePreset || c.dataset.count;
+      c.classList.toggle('active', pendingMatchOpts.freeMode === 'custom' ? key === 'custom' : key === String(pendingMatchOpts.freeCount));
+    });
 
     // 제한 시간 칩
     document.querySelectorAll('#matchTimeChips .match-chip').forEach(function (btn) {
@@ -1848,6 +1861,7 @@
         card.classList.add('active');
         ++kataLoadGeneration;
         pendingMatchOpts.difficulty = card.dataset.bot;
+        matchTouched.difficulty = true; savePref('play_ai_difficulty', card.dataset.bot);
         setKataLoadUI(false, '');
         syncAiEngineOptions();
       });
@@ -1859,6 +1873,7 @@
         document.querySelectorAll('#matchSizeChips .match-chip').forEach(function (b) { b.classList.remove('active'); });
         btn.classList.add('active');
         pendingMatchOpts.boardSize = parseInt(btn.dataset.size, 10);
+        matchTouched.boardSize = true; savePref('play_board_size', pendingMatchOpts.boardSize);
       });
     });
 
@@ -1868,6 +1883,7 @@
         document.querySelectorAll('#matchColorChips .match-chip').forEach(function (b) { b.classList.remove('active'); });
         btn.classList.add('active');
         pendingMatchOpts.colorChoice = btn.dataset.color;
+        matchTouched.colorChoice = true; savePref('play_color_choice', btn.dataset.color);
       });
     });
 
@@ -1884,6 +1900,7 @@
           pendingMatchOpts.handicap = parseInt(btn.dataset.handicap, 10);
           if (freeSub) freeSub.style.display = 'none';
         }
+        matchTouched.handicap = true; savePref('play_handicap', pendingMatchOpts.handicap);
       });
     });
 
@@ -1902,6 +1919,7 @@
           var inp = document.getElementById('inputFreeCount');
           if (inp) inp.value = count;
         }
+        savePref('play_free_mode', pendingMatchOpts.freeMode); savePref('play_free_count', pendingMatchOpts.freeCount);
       });
     });
 
@@ -1949,6 +1967,7 @@
         document.querySelectorAll('#matchTimeChips .match-chip').forEach(function (b) { b.classList.remove('active'); });
         btn.classList.add('active');
         pendingMatchOpts.timeLimit = btn.dataset.time;
+        matchTouched.timeLimit = true; savePref('play_time_limit', btn.dataset.time);
       });
     });
 
