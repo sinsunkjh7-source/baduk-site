@@ -366,11 +366,11 @@
     });
 
     var savedSeries = localStorage.getItem(selectionKey('series'));
-    var seriesIdx = courseProvider ? 0 : 1;
+    var seriesIdx = 0;
     if (savedSeries !== null) {
       var parsed = parseInt(savedSeries, 10);
       if (!isNaN(parsed) && parsed >= 0 && parsed < state.catalog.length) {
-        seriesIdx = (!courseProvider && parsed === 0) ? 1 : parsed;
+        seriesIdx = parsed;
       }
     }
     // 🌟 URL 파라미터(?series=16 또는 ?series=gpt)가 전달된 경우 우선 적용
@@ -466,12 +466,7 @@
       .catch(function (err) {
         console.error('Failed to load book_' + code + '.json:', err);
         if (courseProvider) { if (courseProvider.onError) courseProvider.onError(err); return; }
-        if (code !== 'stage_01') {
-          console.warn('Fallback: loading stage_01 because', code, 'failed to load.');
-          state.currentSeriesIndex = 1;
-          if (seriesSelect) seriesSelect.value = '1';
-          onSeriesChange(false);
-        }
+        if (questionText) questionText.textContent = '교재 데이터를 불러오는 중 오류가 발생했습니다 (' + code + ').';
       });
   }
 
