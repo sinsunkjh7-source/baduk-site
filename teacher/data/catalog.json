@@ -17656,124 +17656,142 @@
         "file": "book_std30_stage_04.json",
         "title": "4단계",
         "name": "제4단계 : 축과 장문 포획술 · 두 집 사활 입문",
-        "_buildVer": "std30-v6-clean-title-04",
+        "_buildVer": "std30-v9-stage4-brandnew-aidict",
         "chapterCount": 16,
-        "totalProblems": 0,
-        "problemCount": 0,
+        "totalProblems": 418,
+        "problemCount": 418,
         "chapters": [
           {
             "code": "std30_04_01",
             "chapterCode": "std30_04_01",
-            "title": "01. [포획] 축의 원리와 지그재그 추격 수순",
-            "chapter": "01. [포획] 축의 원리와 지그재그 추격 수순",
-            "problemCount": 0
+            "title": "01. [포획] 축의 원리와 지그재그 추격 수순 (28제)",
+            "chapter": "01. [포획] 축의 원리와 지그재그 추격 수순 (28제)",
+            "problemCount": 28,
+            "count": 28
           },
           {
             "code": "std30_04_02",
             "chapterCode": "std30_04_02",
-            "title": "02. [포획] 축이 성립하는 첫 단수 방향 고르기",
-            "chapter": "02. [포획] 축이 성립하는 첫 단수 방향 고르기",
-            "problemCount": 0
+            "title": "02. [포획] 축이 성립하는 첫 단수 방향 고르기 (26제)",
+            "chapter": "02. [포획] 축이 성립하는 첫 단수 방향 고르기 (26제)",
+            "problemCount": 26,
+            "count": 26
           },
           {
             "code": "std30_04_03",
             "chapterCode": "std30_04_03",
-            "title": "03. [포획] 축머리의 유무 미리 확인하기",
-            "chapter": "03. [포획] 축머리의 유무 미리 확인하기",
-            "problemCount": 0
+            "title": "03. [포획] 축머리의 유무 미리 확인하기 (26제)",
+            "chapter": "03. [포획] 축머리의 유무 미리 확인하기 (26제)",
+            "problemCount": 26,
+            "count": 26
           },
           {
             "code": "std30_04_04",
             "chapterCode": "std30_04_04",
-            "title": "04. [포획] 아군 돌을 축머리 삼아 안전하게 몰기",
-            "chapter": "04. [포획] 아군 돌을 축머리 삼아 안전하게 몰기",
-            "problemCount": 0
+            "title": "04. [포획] 아군 돌을 축머리 삼아 안전하게 몰기 (26제)",
+            "chapter": "04. [포획] 아군 돌을 축머리 삼아 안전하게 몰기 (26제)",
+            "problemCount": 26,
+            "count": 26
           },
           {
             "code": "std30_04_05",
             "chapterCode": "std30_04_05",
-            "title": "05. [포획] 장문의 원리 — 활로 2개인 돌 그물 씌우기",
-            "chapter": "05. [포획] 장문의 원리 — 활로 2개인 돌 그물 씌우기",
-            "problemCount": 0
+            "title": "05. [포획] 장문의 원리 — 활로 2개인 돌 그물 씌우기 (28제)",
+            "chapter": "05. [포획] 장문의 원리 — 활로 2개인 돌 그물 씌우기 (28제)",
+            "problemCount": 28,
+            "count": 28
           },
           {
             "code": "std30_04_06",
             "chapterCode": "std30_04_06",
-            "title": "06. [포획] 활로가 3개인 돌을 가두는 응용 장문",
-            "chapter": "06. [포획] 활로가 3개인 돌을 가두는 응용 장문",
-            "problemCount": 0
+            "title": "06. [포획] 활로가 3개인 돌을 가두는 응용 장문 (26제)",
+            "chapter": "06. [포획] 활로가 3개인 돌을 가두는 응용 장문 (26제)",
+            "problemCount": 26,
+            "count": 26
           },
           {
             "code": "std30_04_07",
             "chapterCode": "std30_04_07",
-            "title": "07. [형태] 바른 모양(한 칸 뜀)과 나쁜 모양(빈삼각) 비교",
-            "chapter": "07. [형태] 바른 모양(한 칸 뜀)과 나쁜 모양(빈삼각) 비교",
-            "problemCount": 0
+            "title": "07. [형태] 바른 모양(한 칸 뜀)과 나쁜 모양(빈삼각) 비교 (24제)",
+            "chapter": "07. [형태] 바른 모양(한 칸 뜀)과 나쁜 모양(빈삼각) 비교 (24제)",
+            "problemCount": 24,
+            "count": 24
           },
           {
             "code": "std30_04_08",
             "chapterCode": "std30_04_08",
-            "title": "08. [행마] 접촉전 기본 원리 — 상대가 젖히면 곧게 뻗기",
-            "chapter": "08. [행마] 접촉전 기본 원리 — 상대가 젖히면 곧게 뻗기",
-            "problemCount": 0
+            "title": "08. [행마] 접촉전 기본 원리 — 상대가 젖히면 곧게 뻗기 (26제)",
+            "chapter": "08. [행마] 접촉전 기본 원리 — 상대가 젖히면 곧게 뻗기 (26제)",
+            "problemCount": 26,
+            "count": 26
           },
           {
             "code": "std30_04_09",
             "chapterCode": "std30_04_09",
-            "title": "09. [사활] 사는 수 1 — 열린 입구를 막아 두 집 확보하기",
-            "chapter": "09. [사활] 사는 수 1 — 열린 입구를 막아 두 집 확보하기",
-            "problemCount": 0
+            "title": "09. [사활] 사는 수 1 — 열린 입구를 막아 두 집 확보하기 (26제)",
+            "chapter": "09. [사활] 사는 수 1 — 열린 입구를 막아 두 집 확보하기 (26제)",
+            "problemCount": 26,
+            "count": 26
           },
           {
             "code": "std30_04_10",
             "chapterCode": "std30_04_10",
-            "title": "10. [사활] 사는 수 2 — 궁도 급소를 지켜 두 집 나누기",
-            "chapter": "10. [사활] 사는 수 2 — 궁도 급소를 지켜 두 집 나누기",
-            "problemCount": 0
+            "title": "10. [사활] 사는 수 2 — 궁도 급소를 지켜 두 집 나누기 (28제)",
+            "chapter": "10. [사활] 사는 수 2 — 궁도 급소를 지켜 두 집 나누기 (28제)",
+            "problemCount": 28,
+            "count": 28
           },
           {
             "code": "std30_04_11",
             "chapterCode": "std30_04_11",
-            "title": "11. [사활] 잡는 수 1 — 경계를 밀고 들어가 궁도 좁히기",
-            "chapter": "11. [사활] 잡는 수 1 — 경계를 밀고 들어가 궁도 좁히기",
-            "problemCount": 0
+            "title": "11. [사활] 잡는 수 1 — 경계를 밀고 들어가 궁도 좁히기 (26제)",
+            "chapter": "11. [사활] 잡는 수 1 — 경계를 밀고 들어가 궁도 좁히기 (26제)",
+            "problemCount": 26,
+            "count": 26
           },
           {
             "code": "std30_04_12",
             "chapterCode": "std30_04_12",
-            "title": "12. [사활] 잡는 수 2 — 급소 치중으로 두 집 분리 막기",
-            "chapter": "12. [사활] 잡는 수 2 — 급소 치중으로 두 집 분리 막기",
-            "problemCount": 0
+            "title": "12. [사활] 잡는 수 2 — 급소 치중으로 두 집 분리 막기 (28제)",
+            "chapter": "12. [사활] 잡는 수 2 — 급소 치중으로 두 집 분리 막기 (28제)",
+            "problemCount": 28,
+            "count": 28
           },
           {
             "code": "std30_04_13",
             "chapterCode": "std30_04_13",
-            "title": "13. [수상전] 2궁·3궁 작은 집 모양의 활로 메우기",
-            "chapter": "13. [수상전] 2궁·3궁 작은 집 모양의 활로 메우기",
-            "problemCount": 0
+            "title": "13. [수상전] 2궁·3궁 작은 집 모양의 활로 메우기 (26제)",
+            "chapter": "13. [수상전] 2궁·3궁 작은 집 모양의 활로 메우기 (26제)",
+            "problemCount": 26,
+            "count": 26
           },
           {
             "code": "std30_04_14",
             "chapterCode": "std30_04_14",
-            "title": "14. [끝내기] 틈새 없는 완전한 집으로 경계 마무리하기",
-            "chapter": "14. [끝내기] 틈새 없는 완전한 집으로 경계 마무리하기",
-            "problemCount": 0
+            "title": "14. [끝내기] 틈새 없는 완전한 집으로 경계 마무리하기 (24제)",
+            "chapter": "14. [끝내기] 틈새 없는 완전한 집으로 경계 마무리하기 (24제)",
+            "problemCount": 24,
+            "count": 24
           },
           {
             "code": "std30_04_15",
             "chapterCode": "std30_04_15",
-            "title": "15. [끝내기] 집과 공배를 정확히 구분하여 메우기",
-            "chapter": "15. [끝내기] 집과 공배를 정확히 구분하여 메우기",
-            "problemCount": 0
+            "title": "15. [끝내기] 집과 공배를 정확히 구분하여 메우기 (24제)",
+            "chapter": "15. [끝내기] 집과 공배를 정확히 구분하여 메우기 (24제)",
+            "problemCount": 24,
+            "count": 24
           },
           {
             "code": "std30_04_16",
             "chapterCode": "std30_04_16",
-            "title": "16. [판별] 축·장문 포획과 기초 두 집 사활 실전 판별",
-            "chapter": "16. [판별] 축·장문 포획과 기초 두 집 사활 실전 판별",
-            "problemCount": 0
+            "title": "16. [판별] 축·장문 포획과 기초 두 집 사활 실전 판별 (26제)",
+            "chapter": "16. [판별] 축·장문 포획과 기초 두 집 사활 실전 판별 (26제)",
+            "problemCount": 26,
+            "count": 26
           }
-        ]
+        ],
+        "book": "4단계",
+        "problem_count": 418
       },
       {
         "code": "std30_stage_05",
