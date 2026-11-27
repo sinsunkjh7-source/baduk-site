@@ -17800,131 +17800,150 @@
         "file": "book_std30_stage_05.json",
         "title": "5단계",
         "name": "제5단계 : 환격과 들여다보기 공방 · 입문 전술 완성",
-        "_buildVer": "std30-v6-clean-title-05",
+        "_buildVer": "std30-v10-stage5-brandnew-aidict",
         "chapterCount": 17,
-        "totalProblems": 0,
-        "problemCount": 0,
+        "totalProblems": 436,
+        "problemCount": 436,
         "chapters": [
           {
             "code": "std30_05_01",
             "chapterCode": "std30_05_01",
-            "title": "01. [포획] 1선 환격의 원리 — 먹여치고 되따내기",
-            "chapter": "01. [포획] 1선 환격의 원리 — 먹여치고 되따내기",
-            "problemCount": 0
+            "title": "01. [포획] 1선 환격의 원리 — 먹여치고 되따내기 (26제)",
+            "chapter": "01. [포획] 1선 환격의 원리 — 먹여치고 되따내기 (26제)",
+            "problemCount": 26,
+            "count": 26
           },
           {
             "code": "std30_05_02",
             "chapterCode": "std30_05_02",
-            "title": "02. [포획] 중앙 환격 — 안쪽 빈틈에 먹여쳐 되잡기",
-            "chapter": "02. [포획] 중앙 환격 — 안쪽 빈틈에 먹여쳐 되잡기",
-            "problemCount": 0
+            "title": "02. [포획] 중앙 환격 — 안쪽 빈틈에 먹여쳐 되잡기 (26제)",
+            "chapter": "02. [포획] 중앙 환격 — 안쪽 빈틈에 먹여쳐 되잡기 (26제)",
+            "problemCount": 26,
+            "count": 26
           },
           {
             "code": "std30_05_03",
             "chapterCode": "std30_05_03",
-            "title": "03. [연결] 상대가 들여다본 급소 놓치지 않고 잇기",
-            "chapter": "03. [연결] 상대가 들여다본 급소 놓치지 않고 잇기",
-            "problemCount": 0
+            "title": "03. [연결] 상대가 들여다본 급소 놓치지 않고 잇기 (26제)",
+            "chapter": "03. [연결] 상대가 들여다본 급소 놓치지 않고 잇기 (26제)",
+            "problemCount": 26,
+            "count": 26
           },
           {
             "code": "std30_05_04",
             "chapterCode": "std30_05_04",
-            "title": "04. [끊음] 들여다본 곳에 손 뺐을 때 정확히 절단하기",
-            "chapter": "04. [끊음] 들여다본 곳에 손 뺐을 때 정확히 절단하기",
-            "problemCount": 0
+            "title": "04. [끊음] 들여다본 곳에 손 뺐을 때 정확히 절단하기 (26제)",
+            "chapter": "04. [끊음] 들여다본 곳에 손 뺐을 때 정확히 절단하기 (26제)",
+            "problemCount": 26,
+            "count": 26
           },
           {
             "code": "std30_05_05",
             "chapterCode": "std30_05_05",
-            "title": "05. [연결] 입구자(마늘모) 연결로 두 길 확보하기",
-            "chapter": "05. [연결] 입구자(마늘모) 연결로 두 길 확보하기",
-            "problemCount": 0
+            "title": "05. [연결] 입구자(마늘모) 연결로 두 길 확보하기 (26제)",
+            "chapter": "05. [연결] 입구자(마늘모) 연결로 두 길 확보하기 (26제)",
+            "problemCount": 26,
+            "count": 26
           },
           {
             "code": "std30_05_06",
             "chapterCode": "std30_05_06",
-            "title": "06. [끊음] 성립하는 끊음과 무리한 끊음 구별하기",
-            "chapter": "06. [끊음] 성립하는 끊음과 무리한 끊음 구별하기",
-            "problemCount": 0
+            "title": "06. [끊음] 성립하는 끊음과 무리한 끊음 구별하기 (24제)",
+            "chapter": "06. [끊음] 성립하는 끊음과 무리한 끊음 구별하기 (24제)",
+            "problemCount": 24,
+            "count": 24
           },
           {
             "code": "std30_05_07",
             "chapterCode": "std30_05_07",
-            "title": "07. [행마] 도망가는 길목을 선점해 포위망 완성하기",
-            "chapter": "07. [행마] 도망가는 길목을 선점해 포위망 완성하기",
-            "problemCount": 0
+            "title": "07. [행마] 도망가는 길목을 선점해 포위망 완성하기 (24제)",
+            "chapter": "07. [행마] 도망가는 길목을 선점해 포위망 완성하기 (24제)",
+            "problemCount": 24,
+            "count": 24
           },
           {
             "code": "std30_05_08",
             "chapterCode": "std30_05_08",
-            "title": "08. [행마] 포위망의 약점을 단수치며 가볍게 탈출하기",
-            "chapter": "08. [행마] 포위망의 약점을 단수치며 가볍게 탈출하기",
-            "problemCount": 0
+            "title": "08. [행마] 포위망의 약점을 단수치며 가볍게 탈출하기 (26제)",
+            "chapter": "08. [행마] 포위망의 약점을 단수치며 가볍게 탈출하기 (26제)",
+            "problemCount": 26,
+            "count": 26
           },
           {
             "code": "std30_05_09",
             "chapterCode": "std30_05_09",
-            "title": "09. [수상전] 안쪽에서부터 수를 줄여야 이기는 수상전",
-            "chapter": "09. [수상전] 안쪽에서부터 수를 줄여야 이기는 수상전",
-            "problemCount": 0
+            "title": "09. [수상전] 안쪽에서부터 수를 줄여야 이기는 수상전 (26제)",
+            "chapter": "09. [수상전] 안쪽에서부터 수를 줄여야 이기는 수상전 (26제)",
+            "problemCount": 26,
+            "count": 26
           },
           {
             "code": "std30_05_10",
             "chapterCode": "std30_05_10",
-            "title": "10. [수상전] 자충 함정을 피하며 침착하게 수 줄이기",
-            "chapter": "10. [수상전] 자충 함정을 피하며 침착하게 수 줄이기",
-            "problemCount": 0
+            "title": "10. [수상전] 자충 함정을 피하며 침착하게 수 줄이기 (26제)",
+            "chapter": "10. [수상전] 자충 함정을 피하며 침착하게 수 줄이기 (26제)",
+            "problemCount": 26,
+            "count": 26
           },
           {
             "code": "std30_05_11",
             "chapterCode": "std30_05_11",
-            "title": "11. [사활] 사는 수 응용 1 — 상대 돌을 따내며 두 집 내기",
-            "chapter": "11. [사활] 사는 수 응용 1 — 상대 돌을 따내며 두 집 내기",
-            "problemCount": 0
+            "title": "11. [사활] 사는 수 응용 1 — 상대 돌을 따내며 두 집 내기 (26제)",
+            "chapter": "11. [사활] 사는 수 응용 1 — 상대 돌을 따내며 두 집 내기 (26제)",
+            "problemCount": 26,
+            "count": 26
           },
           {
             "code": "std30_05_12",
             "chapterCode": "std30_05_12",
-            "title": "12. [사활] 사는 수 응용 2 — 내 요석을 살리며 두 집 내기",
-            "chapter": "12. [사활] 사는 수 응용 2 — 내 요석을 살리며 두 집 내기",
-            "problemCount": 0
+            "title": "12. [사활] 사는 수 응용 2 — 내 요석을 살리며 두 집 내기 (26제)",
+            "chapter": "12. [사활] 사는 수 응용 2 — 내 요석을 살리며 두 집 내기 (26제)",
+            "problemCount": 26,
+            "count": 26
           },
           {
             "code": "std30_05_13",
             "chapterCode": "std30_05_13",
-            "title": "13. [사활] 잡는 수 응용 1 — 상대 돌을 따내며 두 집 없애기",
-            "chapter": "13. [사활] 잡는 수 응용 1 — 상대 돌을 따내며 두 집 없애기",
-            "problemCount": 0
+            "title": "13. [사활] 잡는 수 응용 1 — 상대 돌을 따내며 두 집 없애기 (26제)",
+            "chapter": "13. [사활] 잡는 수 응용 1 — 상대 돌을 따내며 두 집 없애기 (26제)",
+            "problemCount": 26,
+            "count": 26
           },
           {
             "code": "std30_05_14",
             "chapterCode": "std30_05_14",
-            "title": "14. [사활] 잡는 수 응용 2 — 약한 내 돌을 살리며 잡기",
-            "chapter": "14. [사활] 잡는 수 응용 2 — 약한 내 돌을 살리며 잡기",
-            "problemCount": 0
+            "title": "14. [사활] 잡는 수 응용 2 — 약한 내 돌을 살리며 잡기 (26제)",
+            "chapter": "14. [사활] 잡는 수 응용 2 — 약한 내 돌을 살리며 잡기 (26제)",
+            "problemCount": 26,
+            "count": 26
           },
           {
             "code": "std30_05_15",
             "chapterCode": "std30_05_15",
-            "title": "15. [끝내기] 내 집은 넓히고 상대 집은 깎는 끝내기 기초",
-            "chapter": "15. [끝내기] 내 집은 넓히고 상대 집은 깎는 끝내기 기초",
-            "problemCount": 0
+            "title": "15. [끝내기] 내 집은 넓히고 상대 집은 깎는 끝내기 기초 (24제)",
+            "chapter": "15. [끝내기] 내 집은 넓히고 상대 집은 깎는 끝내기 기초 (24제)",
+            "problemCount": 24,
+            "count": 24
           },
           {
             "code": "std30_05_16",
             "chapterCode": "std30_05_16",
-            "title": "16. [끝내기] 공배를 모두 메운 뒤 정식 계가 실습하기",
-            "chapter": "16. [끝내기] 공배를 모두 메운 뒤 정식 계가 실습하기",
-            "problemCount": 0
+            "title": "16. [끝내기] 공배를 모두 메운 뒤 정식 계가 실습하기 (24제)",
+            "chapter": "16. [끝내기] 공배를 모두 메운 뒤 정식 계가 실습하기 (24제)",
+            "problemCount": 24,
+            "count": 24
           },
           {
             "code": "std30_05_17",
             "chapterCode": "std30_05_17",
-            "title": "17. [판별] 입문 과정(1~5단계) 전술·사활 종합 승급 평가",
-            "chapter": "17. [판별] 입문 과정(1~5단계) 전술·사활 종합 승급 평가",
-            "problemCount": 0
+            "title": "17. [판별] 입문 과정(1~5단계) 전술·사활 종합 승급 평가 (28제)",
+            "chapter": "17. [판별] 입문 과정(1~5단계) 전술·사활 종합 승급 평가 (28제)",
+            "problemCount": 28,
+            "count": 28
           }
-        ]
+        ],
+        "book": "5단계",
+        "problem_count": 436
       },
       {
         "code": "std30_stage_06",
