@@ -21635,5 +21635,4365 @@
         "problem_count": 325
       }
     ]
+  },
+  {
+    "title": "💎 JH 정통 3시리즈 마스터 커리큘럼 (30단계)",
+    "bookCount": 30,
+    "books": [
+      {
+        "code": "std30_pure_stage_01",
+        "bookCode": "std30_pure_stage_01",
+        "file": "book_std30_pure_stage_01.json",
+        "title": "1단계",
+        "name": "제1단계 : 바둑의 첫걸음 — 활로·단수·따내기와 착수금지",
+        "_buildVer": "std30-s16-v1-pure-3series",
+        "chapterCount": 15,
+        "totalProblems": 328,
+        "problemCount": 328,
+        "chapters": [
+          {
+            "code": "std30_pure_unit_01_01",
+            "chapterCode": "std30_pure_unit_01_01",
+            "title": "01. [규칙] 돌의 활로 이해하기 (24제)",
+            "chapter": "01. [규칙] 돌의 활로 이해하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_01_02",
+            "chapterCode": "std30_pure_unit_01_02",
+            "title": "02. [규칙] 단수의 원리와 위기 돌 찾기 (24제)",
+            "chapter": "02. [규칙] 단수의 원리와 위기 돌 찾기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_01_03",
+            "chapterCode": "std30_pure_unit_01_03",
+            "title": "03. [포획] 단수된 돌 한 점 따내기 (13제)",
+            "chapter": "03. [포획] 단수된 돌 한 점 따내기 (13제)",
+            "problemCount": 13,
+            "count": 13
+          },
+          {
+            "code": "std30_pure_unit_01_04",
+            "chapterCode": "std30_pure_unit_01_04",
+            "title": "04. [생존] 단수된 내 돌 뻗어서 살리기 (20제)",
+            "chapter": "04. [생존] 단수된 내 돌 뻗어서 살리기 (20제)",
+            "problemCount": 20,
+            "count": 20
+          },
+          {
+            "code": "std30_pure_unit_01_05",
+            "chapterCode": "std30_pure_unit_01_05",
+            "title": "05. [포획] 두 점 이상 뭉친 돌 따내기 (22제)",
+            "chapter": "05. [포획] 두 점 이상 뭉친 돌 따내기 (22제)",
+            "problemCount": 22,
+            "count": 22
+          },
+          {
+            "code": "std30_pure_unit_01_06",
+            "chapterCode": "std30_pure_unit_01_06",
+            "title": "06. [생존] 두 점 이상 단수된 내 돌 구출하기 (22제)",
+            "chapter": "06. [생존] 두 점 이상 단수된 내 돌 구출하기 (22제)",
+            "problemCount": 22,
+            "count": 22
+          },
+          {
+            "code": "std30_pure_unit_01_07",
+            "chapterCode": "std30_pure_unit_01_07",
+            "title": "07. [공방] 서로 단수에서 선수 잡기 (24제)",
+            "chapter": "07. [공방] 서로 단수에서 선수 잡기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_01_08",
+            "chapterCode": "std30_pure_unit_01_08",
+            "title": "08. [공방] 상대 돌을 따내며 위기 탈출하기 (22제)",
+            "chapter": "08. [공방] 상대 돌을 따내며 위기 탈출하기 (22제)",
+            "problemCount": 22,
+            "count": 22
+          },
+          {
+            "code": "std30_pure_unit_01_09",
+            "chapterCode": "std30_pure_unit_01_09",
+            "title": "09. [규칙] 착수금지 자리 판별하기 (23제)",
+            "chapter": "09. [규칙] 착수금지 자리 판별하기 (23제)",
+            "problemCount": 23,
+            "count": 23
+          },
+          {
+            "code": "std30_pure_unit_01_10",
+            "chapterCode": "std30_pure_unit_01_10",
+            "title": "10. [규칙] 따내면서 들어가는 착수금지 예외 (20제)",
+            "chapter": "10. [규칙] 따내면서 들어가는 착수금지 예외 (20제)",
+            "problemCount": 20,
+            "count": 20
+          },
+          {
+            "code": "std30_pure_unit_01_11",
+            "chapterCode": "std30_pure_unit_01_11",
+            "title": "11. [규칙] 패의 기본 규칙과 한 수 쉬어 따내기 (22제)",
+            "chapter": "11. [규칙] 패의 기본 규칙과 한 수 쉬어 따내기 (22제)",
+            "problemCount": 22,
+            "count": 22
+          },
+          {
+            "code": "std30_pure_unit_01_12",
+            "chapterCode": "std30_pure_unit_01_12",
+            "title": "12. [행마] 수비선이 없는 넓은 곳으로 활로 넓히기 (24제)",
+            "chapter": "12. [행마] 수비선이 없는 넓은 곳으로 활로 넓히기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_01_13",
+            "chapterCode": "std30_pure_unit_01_13",
+            "title": "13. [집] 집의 개념과 열린 경계 마무리하기 (22제)",
+            "chapter": "13. [집] 집의 개념과 열린 경계 마무리하기 (22제)",
+            "problemCount": 22,
+            "count": 22
+          },
+          {
+            "code": "std30_pure_unit_01_14",
+            "chapterCode": "std30_pure_unit_01_14",
+            "title": "14. [집] 완성된 집의 크기 비교하기 (22제)",
+            "chapter": "14. [집] 완성된 집의 크기 비교하기 (22제)",
+            "problemCount": 22,
+            "count": 22
+          },
+          {
+            "code": "std30_pure_unit_01_15",
+            "chapterCode": "std30_pure_unit_01_15",
+            "title": "15. [판별] 입문 기초 규칙과 따내기·살리기 실전 판별 (24제)",
+            "chapter": "15. [판별] 입문 기초 규칙과 따내기·살리기 실전 판별 (24제)",
+            "problemCount": 24,
+            "count": 24
+          }
+        ],
+        "problem_count": 328,
+        "book": "1단계"
+      },
+      {
+        "code": "std30_pure_stage_02",
+        "bookCode": "std30_pure_stage_02",
+        "file": "book_std30_pure_stage_02.json",
+        "title": "2단계",
+        "name": "제2단계 : 연결과 끊음의 원리 · 단수 몰기 기초",
+        "_buildVer": "std30-s16-v1-pure-3series",
+        "chapterCount": 16,
+        "totalProblems": 372,
+        "problemCount": 372,
+        "chapters": [
+          {
+            "code": "std30_pure_unit_02_01",
+            "chapterCode": "std30_pure_unit_02_01",
+            "title": "01. [연결] 대각선으로 갈라진 내 돌 직접 잇기 (24제)",
+            "chapter": "01. [연결] 대각선으로 갈라진 내 돌 직접 잇기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_02_02",
+            "chapterCode": "std30_pure_unit_02_02",
+            "title": "02. [끊음] 상대의 대각선 약점 직접 끊기 (24제)",
+            "chapter": "02. [끊음] 상대의 대각선 약점 직접 끊기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_02_03",
+            "chapterCode": "std30_pure_unit_02_03",
+            "title": "03. [형태] 강한 돌과 약한 돌 식별하기 (24제)",
+            "chapter": "03. [형태] 강한 돌과 약한 돌 식별하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_02_04",
+            "chapterCode": "std30_pure_unit_02_04",
+            "title": "04. [연결] 끊으러 온 상대 돌을 따내며 연결하기 (24제)",
+            "chapter": "04. [연결] 끊으러 온 상대 돌을 따내며 연결하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_02_05",
+            "chapterCode": "std30_pure_unit_02_05",
+            "title": "05. [끊음] 허술한 연결 고리를 뚫고 나가 분단하기 (24제)",
+            "chapter": "05. [끊음] 허술한 연결 고리를 뚫고 나가 분단하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_02_06",
+            "chapterCode": "std30_pure_unit_02_06",
+            "title": "06. [포획] 바둑판 끝(1선) 방향으로 단수쳐 몰기 (24제)",
+            "chapter": "06. [포획] 바둑판 끝(1선) 방향으로 단수쳐 몰기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_02_07",
+            "chapterCode": "std30_pure_unit_02_07",
+            "title": "07. [포획] 아군 지원군이 있는 방향으로 단수쳐 몰기 (24제)",
+            "chapter": "07. [포획] 아군 지원군이 있는 방향으로 단수쳐 몰기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_02_08",
+            "chapterCode": "std30_pure_unit_02_08",
+            "title": "08. [포획] 연결을 끊으면서 동시에 단수치기 (24제)",
+            "chapter": "08. [포획] 연결을 끊으면서 동시에 단수치기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_02_09",
+            "chapterCode": "std30_pure_unit_02_09",
+            "title": "09. [수비] 스스로 활로를 메우는 자충 단수 피하기 (24제)",
+            "chapter": "09. [수비] 스스로 활로를 메우는 자충 단수 피하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_02_10",
+            "chapterCode": "std30_pure_unit_02_10",
+            "title": "10. [수상전] 마주 갇힌 흑백 돌의 활로 수 비교하기 (24제)",
+            "chapter": "10. [수상전] 마주 갇힌 흑백 돌의 활로 수 비교하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_02_11",
+            "chapterCode": "std30_pure_unit_02_11",
+            "title": "11. [행마] 접촉 행마의 시작 — 젖혀서 기세 잡기 (22제)",
+            "chapter": "11. [행마] 접촉 행마의 시작 — 젖혀서 기세 잡기 (22제)",
+            "problemCount": 22,
+            "count": 22
+          },
+          {
+            "code": "std30_pure_unit_02_12",
+            "chapterCode": "std30_pure_unit_02_12",
+            "title": "12. [행마] 접촉 행마의 시작 — 곧게 뻗어 자세 잡기 (20제)",
+            "chapter": "12. [행마] 접촉 행마의 시작 — 곧게 뻗어 자세 잡기 (20제)",
+            "problemCount": 20,
+            "count": 20
+          },
+          {
+            "code": "std30_pure_unit_02_13",
+            "chapterCode": "std30_pure_unit_02_13",
+            "title": "13. [포석] 귀·변·중앙의 집 짓기 효율 비교 (22제)",
+            "chapter": "13. [포석] 귀·변·중앙의 집 짓기 효율 비교 (22제)",
+            "problemCount": 22,
+            "count": 22
+          },
+          {
+            "code": "std30_pure_unit_02_14",
+            "chapterCode": "std30_pure_unit_02_14",
+            "title": "14. [포석] 뭉친 줄바둑을 피하고 넓게 포진하기 (22제)",
+            "chapter": "14. [포석] 뭉친 줄바둑을 피하고 넓게 포진하기 (22제)",
+            "problemCount": 22,
+            "count": 22
+          },
+          {
+            "code": "std30_pure_unit_02_15",
+            "chapterCode": "std30_pure_unit_02_15",
+            "title": "15. [끝내기] 열린 집 경계를 닫고 집 차이 계산하기 (22제)",
+            "chapter": "15. [끝내기] 열린 집 경계를 닫고 집 차이 계산하기 (22제)",
+            "problemCount": 22,
+            "count": 22
+          },
+          {
+            "code": "std30_pure_unit_02_16",
+            "chapterCode": "std30_pure_unit_02_16",
+            "title": "16. [판별] 단수 모는 방향과 연결·끊음 실전 판별 (24제)",
+            "chapter": "16. [판별] 단수 모는 방향과 연결·끊음 실전 판별 (24제)",
+            "problemCount": 24,
+            "count": 24
+          }
+        ],
+        "problem_count": 372,
+        "book": "2단계"
+      },
+      {
+        "code": "std30_pure_stage_03",
+        "bookCode": "std30_pure_stage_03",
+        "file": "book_std30_pure_stage_03.json",
+        "title": "3단계",
+        "name": "제3단계 : 양단수와 촉촉수 · 기초 접촉 행마",
+        "_buildVer": "std30-s16-v1-pure-3series",
+        "chapterCount": 16,
+        "totalProblems": 373,
+        "problemCount": 373,
+        "chapters": [
+          {
+            "code": "std30_pure_unit_03_01",
+            "chapterCode": "std30_pure_unit_03_01",
+            "title": "01. [포획] 양단수의 원리와 급소 찾기 (24제)",
+            "chapter": "01. [포획] 양단수의 원리와 급소 찾기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_03_02",
+            "chapterCode": "std30_pure_unit_03_02",
+            "title": "02. [포획] 복잡한 실전 배치에서 양단수 발견하기 (24제)",
+            "chapter": "02. [포획] 복잡한 실전 배치에서 양단수 발견하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_03_03",
+            "chapterCode": "std30_pure_unit_03_03",
+            "title": "03. [수비] 양단수 노림을 미리 읽고 약점 지키기 (24제)",
+            "chapter": "03. [수비] 양단수 노림을 미리 읽고 약점 지키기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_03_04",
+            "chapterCode": "std30_pure_unit_03_04",
+            "title": "04. [포획] 약점을 끊은 뒤 단수쳐 제압하기 (24제)",
+            "chapter": "04. [포획] 약점을 끊은 뒤 단수쳐 제압하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_03_05",
+            "chapterCode": "std30_pure_unit_03_05",
+            "title": "05. [포획] 변과 귀의 2선에서 끊어 잡기 (22제)",
+            "chapter": "05. [포획] 변과 귀의 2선에서 끊어 잡기 (22제)",
+            "problemCount": 22,
+            "count": 22
+          },
+          {
+            "code": "std30_pure_unit_03_06",
+            "chapterCode": "std30_pure_unit_03_06",
+            "title": "06. [기법] 1선 촉촉수의 원리 체득하기 (24제)",
+            "chapter": "06. [기법] 1선 촉촉수의 원리 체득하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_03_07",
+            "chapterCode": "std30_pure_unit_03_07",
+            "title": "07. [기법] 중앙 촉촉수로 뭉친 돌 포획하기 (24제)",
+            "chapter": "07. [기법] 중앙 촉촉수로 뭉친 돌 포획하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_03_08",
+            "chapterCode": "std30_pure_unit_03_08",
+            "title": "08. [연결] 호구 모양으로 탄력 있게 연결하기 (24제)",
+            "chapter": "08. [연결] 호구 모양으로 탄력 있게 연결하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_03_09",
+            "chapterCode": "std30_pure_unit_03_09",
+            "title": "09. [행마] 호구 젖히기로 공방을 겸해 자세 잡기 (24제)",
+            "chapter": "09. [행마] 호구 젖히기로 공방을 겸해 자세 잡기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_03_10",
+            "chapterCode": "std30_pure_unit_03_10",
+            "title": "10. [행마] 접촉전 기본 원리 — 붙여 오면 젖혀 응수하기 (24제)",
+            "chapter": "10. [행마] 접촉전 기본 원리 — 붙여 오면 젖혀 응수하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_03_11",
+            "chapterCode": "std30_pure_unit_03_11",
+            "title": "11. [행마] 접촉전 기본 원리 — 나란히 선 두 점 머리 막기 (21제)",
+            "chapter": "11. [행마] 접촉전 기본 원리 — 나란히 선 두 점 머리 막기 (21제)",
+            "problemCount": 21,
+            "count": 21
+          },
+          {
+            "code": "std30_pure_unit_03_12",
+            "chapterCode": "std30_pure_unit_03_12",
+            "title": "12. [수상전] 같은 활로 수일 때 선수로 수 줄여 이기기 (22제)",
+            "chapter": "12. [수상전] 같은 활로 수일 때 선수로 수 줄여 이기기 (22제)",
+            "problemCount": 22,
+            "count": 22
+          },
+          {
+            "code": "std30_pure_unit_03_13",
+            "chapterCode": "std30_pure_unit_03_13",
+            "title": "13. [수상전] 바깥 활로부터 안전하게 메우는 순서 (24제)",
+            "chapter": "13. [수상전] 바깥 활로부터 안전하게 메우는 순서 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_03_14",
+            "chapterCode": "std30_pure_unit_03_14",
+            "title": "14. [사활] 절대 잡히지 않는 ‘나누어진 두 집’의 원리 (24제)",
+            "chapter": "14. [사활] 절대 잡히지 않는 ‘나누어진 두 집’의 원리 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_03_15",
+            "chapterCode": "std30_pure_unit_03_15",
+            "title": "15. [포석] 3선(실리선)과 4선(세력선)의 역할 이해하기 (22제)",
+            "chapter": "15. [포석] 3선(실리선)과 4선(세력선)의 역할 이해하기 (22제)",
+            "problemCount": 22,
+            "count": 22
+          },
+          {
+            "code": "std30_pure_unit_03_16",
+            "chapterCode": "std30_pure_unit_03_16",
+            "title": "16. [판별] 양단수·촉촉수와 기초 접촉 행마 실전 판별 (22제)",
+            "chapter": "16. [판별] 양단수·촉촉수와 기초 접촉 행마 실전 판별 (22제)",
+            "problemCount": 22,
+            "count": 22
+          }
+        ],
+        "problem_count": 373,
+        "book": "3단계"
+      },
+      {
+        "code": "std30_pure_stage_04",
+        "bookCode": "std30_pure_stage_04",
+        "file": "book_std30_pure_stage_04.json",
+        "title": "4단계",
+        "name": "제4단계 : 축과 장문 포획술 · 두 집 사활 입문",
+        "_buildVer": "std30-s16-v1-pure-3series",
+        "chapterCount": 16,
+        "totalProblems": 377,
+        "problemCount": 377,
+        "chapters": [
+          {
+            "code": "std30_pure_unit_04_01",
+            "chapterCode": "std30_pure_unit_04_01",
+            "title": "01. [포획] 축의 원리와 지그재그 추격 수순 (24제)",
+            "chapter": "01. [포획] 축의 원리와 지그재그 추격 수순 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_04_02",
+            "chapterCode": "std30_pure_unit_04_02",
+            "title": "02. [포획] 축이 성립하는 첫 단수 방향 고르기 (24제)",
+            "chapter": "02. [포획] 축이 성립하는 첫 단수 방향 고르기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_04_03",
+            "chapterCode": "std30_pure_unit_04_03",
+            "title": "03. [포획] 축머리의 유무 미리 확인하기 (23제)",
+            "chapter": "03. [포획] 축머리의 유무 미리 확인하기 (23제)",
+            "problemCount": 23,
+            "count": 23
+          },
+          {
+            "code": "std30_pure_unit_04_04",
+            "chapterCode": "std30_pure_unit_04_04",
+            "title": "04. [포획] 아군 돌을 축머리 삼아 안전하게 몰기 (24제)",
+            "chapter": "04. [포획] 아군 돌을 축머리 삼아 안전하게 몰기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_04_05",
+            "chapterCode": "std30_pure_unit_04_05",
+            "title": "05. [포획] 장문의 원리 — 활로 2개인 돌 그물 씌우기 (24제)",
+            "chapter": "05. [포획] 장문의 원리 — 활로 2개인 돌 그물 씌우기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_04_06",
+            "chapterCode": "std30_pure_unit_04_06",
+            "title": "06. [포획] 활로가 3개인 돌을 가두는 응용 장문 (24제)",
+            "chapter": "06. [포획] 활로가 3개인 돌을 가두는 응용 장문 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_04_07",
+            "chapterCode": "std30_pure_unit_04_07",
+            "title": "07. [형태] 바른 모양(한 칸 뜀)과 나쁜 모양(빈삼각) 비교 (23제)",
+            "chapter": "07. [형태] 바른 모양(한 칸 뜀)과 나쁜 모양(빈삼각) 비교 (23제)",
+            "problemCount": 23,
+            "count": 23
+          },
+          {
+            "code": "std30_pure_unit_04_08",
+            "chapterCode": "std30_pure_unit_04_08",
+            "title": "08. [행마] 접촉전 기본 원리 — 상대가 젖히면 곧게 뻗기 (24제)",
+            "chapter": "08. [행마] 접촉전 기본 원리 — 상대가 젖히면 곧게 뻗기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_04_09",
+            "chapterCode": "std30_pure_unit_04_09",
+            "title": "09. [사활] 사는 수 1 — 열린 입구를 막아 두 집 확보하기 (20제)",
+            "chapter": "09. [사활] 사는 수 1 — 열린 입구를 막아 두 집 확보하기 (20제)",
+            "problemCount": 20,
+            "count": 20
+          },
+          {
+            "code": "std30_pure_unit_04_10",
+            "chapterCode": "std30_pure_unit_04_10",
+            "title": "10. [사활] 사는 수 2 — 궁도 급소를 지켜 두 집 나누기 (24제)",
+            "chapter": "10. [사활] 사는 수 2 — 궁도 급소를 지켜 두 집 나누기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_04_11",
+            "chapterCode": "std30_pure_unit_04_11",
+            "title": "11. [사활] 잡는 수 1 — 경계를 밀고 들어가 궁도 좁히기 (23제)",
+            "chapter": "11. [사활] 잡는 수 1 — 경계를 밀고 들어가 궁도 좁히기 (23제)",
+            "problemCount": 23,
+            "count": 23
+          },
+          {
+            "code": "std30_pure_unit_04_12",
+            "chapterCode": "std30_pure_unit_04_12",
+            "title": "12. [사활] 잡는 수 2 — 급소 치중으로 두 집 분리 막기 (24제)",
+            "chapter": "12. [사활] 잡는 수 2 — 급소 치중으로 두 집 분리 막기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_04_13",
+            "chapterCode": "std30_pure_unit_04_13",
+            "title": "13. [수상전] 2궁·3궁 작은 집 모양의 활로 메우기 (24제)",
+            "chapter": "13. [수상전] 2궁·3궁 작은 집 모양의 활로 메우기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_04_14",
+            "chapterCode": "std30_pure_unit_04_14",
+            "title": "14. [끝내기] 틈새 없는 완전한 집으로 경계 마무리하기 (24제)",
+            "chapter": "14. [끝내기] 틈새 없는 완전한 집으로 경계 마무리하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_04_15",
+            "chapterCode": "std30_pure_unit_04_15",
+            "title": "15. [끝내기] 집과 공배를 정확히 구분하여 메우기 (24제)",
+            "chapter": "15. [끝내기] 집과 공배를 정확히 구분하여 메우기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_04_16",
+            "chapterCode": "std30_pure_unit_04_16",
+            "title": "16. [판별] 축·장문 포획과 기초 두 집 사활 실전 판별 (24제)",
+            "chapter": "16. [판별] 축·장문 포획과 기초 두 집 사활 실전 판별 (24제)",
+            "problemCount": 24,
+            "count": 24
+          }
+        ],
+        "book": "4단계",
+        "problem_count": 377
+      },
+      {
+        "code": "std30_pure_stage_05",
+        "bookCode": "std30_pure_stage_05",
+        "file": "book_std30_pure_stage_05.json",
+        "title": "5단계",
+        "name": "제5단계 : 환격과 들여다보기 공방 · 입문 전술 완성",
+        "_buildVer": "std30-s16-v1-pure-3series",
+        "chapterCount": 17,
+        "totalProblems": 404,
+        "problemCount": 404,
+        "chapters": [
+          {
+            "code": "std30_pure_unit_05_01",
+            "chapterCode": "std30_pure_unit_05_01",
+            "title": "01. [포획] 1선 환격의 원리 — 먹여치고 되따내기 (24제)",
+            "chapter": "01. [포획] 1선 환격의 원리 — 먹여치고 되따내기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_05_02",
+            "chapterCode": "std30_pure_unit_05_02",
+            "title": "02. [포획] 중앙 환격 — 안쪽 빈틈에 먹여쳐 되잡기 (24제)",
+            "chapter": "02. [포획] 중앙 환격 — 안쪽 빈틈에 먹여쳐 되잡기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_05_03",
+            "chapterCode": "std30_pure_unit_05_03",
+            "title": "03. [연결] 상대가 들여다본 급소 놓치지 않고 잇기 (24제)",
+            "chapter": "03. [연결] 상대가 들여다본 급소 놓치지 않고 잇기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_05_04",
+            "chapterCode": "std30_pure_unit_05_04",
+            "title": "04. [끊음] 들여다본 곳에 손 뺐을 때 정확히 절단하기 (24제)",
+            "chapter": "04. [끊음] 들여다본 곳에 손 뺐을 때 정확히 절단하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_05_05",
+            "chapterCode": "std30_pure_unit_05_05",
+            "title": "05. [연결] 입구자(마늘모) 연결로 두 길 확보하기 (24제)",
+            "chapter": "05. [연결] 입구자(마늘모) 연결로 두 길 확보하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_05_06",
+            "chapterCode": "std30_pure_unit_05_06",
+            "title": "06. [끊음] 성립하는 끊음과 무리한 끊음 구별하기 (22제)",
+            "chapter": "06. [끊음] 성립하는 끊음과 무리한 끊음 구별하기 (22제)",
+            "problemCount": 22,
+            "count": 22
+          },
+          {
+            "code": "std30_pure_unit_05_07",
+            "chapterCode": "std30_pure_unit_05_07",
+            "title": "07. [행마] 도망가는 길목을 선점해 포위망 완성하기 (24제)",
+            "chapter": "07. [행마] 도망가는 길목을 선점해 포위망 완성하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_05_08",
+            "chapterCode": "std30_pure_unit_05_08",
+            "title": "08. [행마] 포위망의 약점을 단수치며 가볍게 탈출하기 (24제)",
+            "chapter": "08. [행마] 포위망의 약점을 단수치며 가볍게 탈출하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_05_09",
+            "chapterCode": "std30_pure_unit_05_09",
+            "title": "09. [수상전] 안쪽에서부터 수를 줄여야 이기는 수상전 (24제)",
+            "chapter": "09. [수상전] 안쪽에서부터 수를 줄여야 이기는 수상전 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_05_10",
+            "chapterCode": "std30_pure_unit_05_10",
+            "title": "10. [수상전] 자충 함정을 피하며 침착하게 수 줄이기 (24제)",
+            "chapter": "10. [수상전] 자충 함정을 피하며 침착하게 수 줄이기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_05_11",
+            "chapterCode": "std30_pure_unit_05_11",
+            "title": "11. [사활] 사는 수 응용 1 — 상대 돌을 따내며 두 집 내기 (24제)",
+            "chapter": "11. [사활] 사는 수 응용 1 — 상대 돌을 따내며 두 집 내기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_05_12",
+            "chapterCode": "std30_pure_unit_05_12",
+            "title": "12. [사활] 사는 수 응용 2 — 내 요석을 살리며 두 집 내기 (24제)",
+            "chapter": "12. [사활] 사는 수 응용 2 — 내 요석을 살리며 두 집 내기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_05_13",
+            "chapterCode": "std30_pure_unit_05_13",
+            "title": "13. [사활] 잡는 수 응용 1 — 상대 돌을 따내며 두 집 없애기 (24제)",
+            "chapter": "13. [사활] 잡는 수 응용 1 — 상대 돌을 따내며 두 집 없애기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_05_14",
+            "chapterCode": "std30_pure_unit_05_14",
+            "title": "14. [사활] 잡는 수 응용 2 — 약한 내 돌을 살리며 잡기 (24제)",
+            "chapter": "14. [사활] 잡는 수 응용 2 — 약한 내 돌을 살리며 잡기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_05_15",
+            "chapterCode": "std30_pure_unit_05_15",
+            "title": "15. [끝내기] 내 집은 넓히고 상대 집은 깎는 끝내기 기초 (24제)",
+            "chapter": "15. [끝내기] 내 집은 넓히고 상대 집은 깎는 끝내기 기초 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_05_16",
+            "chapterCode": "std30_pure_unit_05_16",
+            "title": "16. [끝내기] 공배를 모두 메운 뒤 정식 계가 실습하기 (22제)",
+            "chapter": "16. [끝내기] 공배를 모두 메운 뒤 정식 계가 실습하기 (22제)",
+            "problemCount": 22,
+            "count": 22
+          },
+          {
+            "code": "std30_pure_unit_05_17",
+            "chapterCode": "std30_pure_unit_05_17",
+            "title": "17. [판별] 입문 과정(1~5단계) 전술·사활 종합 승급 평가 (24제)",
+            "chapter": "17. [판별] 입문 과정(1~5단계) 전술·사활 종합 승급 평가 (24제)",
+            "problemCount": 24,
+            "count": 24
+          }
+        ],
+        "book": "5단계",
+        "problem_count": 404
+      },
+      {
+        "code": "std30_pure_stage_06",
+        "bookCode": "std30_pure_stage_06",
+        "file": "book_std30_pure_stage_06.json",
+        "title": "6단계",
+        "name": "제6단계 : 1·2선 연결 공방과 옥집의 원리 · 3궁 사활",
+        "_buildVer": "std30-s16-v1-pure-3series",
+        "chapterCount": 17,
+        "totalProblems": 401,
+        "problemCount": 401,
+        "chapters": [
+          {
+            "code": "std30_pure_unit_06_01",
+            "chapterCode": "std30_pure_unit_06_01",
+            "title": "01. [연결] 1선 밑길로 넘어가 연결하기 (24제)",
+            "chapter": "01. [연결] 1선 밑길로 넘어가 연결하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_06_02",
+            "chapterCode": "std30_pure_unit_06_02",
+            "title": "02. [연결] 2선 다리를 놓아 안정적으로 연결하기 (24제)",
+            "chapter": "02. [연결] 2선 다리를 놓아 안정적으로 연결하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_06_03",
+            "chapterCode": "std30_pure_unit_06_03",
+            "title": "03. [끊음] 1·2선 내려막기(빠짐)로 연결 차단하기 (24제)",
+            "chapter": "03. [끊음] 1·2선 내려막기(빠짐)로 연결 차단하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_06_04",
+            "chapterCode": "std30_pure_unit_06_04",
+            "title": "04. [포획] 1선 특수 지형을 이용한 촉촉수 포획 (24제)",
+            "chapter": "04. [포획] 1선 특수 지형을 이용한 촉촉수 포획 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_06_05",
+            "chapterCode": "std30_pure_unit_06_05",
+            "title": "05. [포획] 1선 모서리와 변에서 환격으로 잡기 (24제)",
+            "chapter": "05. [포획] 1선 모서리와 변에서 환격으로 잡기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_06_06",
+            "chapterCode": "std30_pure_unit_06_06",
+            "title": "06. [행마] 상황에 맞는 붙여가기와 한 칸 뛰어가기 (21제)",
+            "chapter": "06. [행마] 상황에 맞는 붙여가기와 한 칸 뛰어가기 (21제)",
+            "problemCount": 21,
+            "count": 21
+          },
+          {
+            "code": "std30_pure_unit_06_07",
+            "chapterCode": "std30_pure_unit_06_07",
+            "title": "07. [행마] 상대의 뻗음에 단단히 연결해 자세 정비하기 (20제)",
+            "chapter": "07. [행마] 상대의 뻗음에 단단히 연결해 자세 정비하기 (20제)",
+            "problemCount": 20,
+            "count": 20
+          },
+          {
+            "code": "std30_pure_unit_06_08",
+            "chapterCode": "std30_pure_unit_06_08",
+            "title": "08. [형태] 빈삼각 나쁜 모양의 급소 찌르기 (24제)",
+            "chapter": "08. [형태] 빈삼각 나쁜 모양의 급소 찌르기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_06_09",
+            "chapterCode": "std30_pure_unit_06_09",
+            "title": "09. [사활] 단수를 이용해 진짜 집을 옥집으로 바꾸기 (24제)",
+            "chapter": "09. [사활] 단수를 이용해 진짜 집을 옥집으로 바꾸기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_06_10",
+            "chapterCode": "std30_pure_unit_06_10",
+            "title": "10. [사활] 대각선 약점을 찝어서 옥집 만들기 (24제)",
+            "chapter": "10. [사활] 대각선 약점을 찝어서 옥집 만들기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_06_11",
+            "chapterCode": "std30_pure_unit_06_11",
+            "title": "11. [사활] 사는 수 — 3궁(직삼궁·곡삼궁) 급소 지켜 살기 (24제)",
+            "chapter": "11. [사활] 사는 수 — 3궁(직삼궁·곡삼궁) 급소 지켜 살기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_06_12",
+            "chapterCode": "std30_pure_unit_06_12",
+            "title": "12. [사활] 잡는 수 — 3궁 급소에 치중하여 잡기 (24제)",
+            "chapter": "12. [사활] 잡는 수 — 3궁 급소에 치중하여 잡기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_06_13",
+            "chapterCode": "std30_pure_unit_06_13",
+            "title": "13. [사활] 잡는 수 — 따낸 자리에 다시 치중해 잡기 (24제)",
+            "chapter": "13. [사활] 잡는 수 — 따낸 자리에 다시 치중해 잡기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_06_14",
+            "chapterCode": "std30_pure_unit_06_14",
+            "title": "14. [수상전] 핵심 요석부터 겨냥해 먼저 수 줄이기 (24제)",
+            "chapter": "14. [수상전] 핵심 요석부터 겨냥해 먼저 수 줄이기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_06_15",
+            "chapterCode": "std30_pure_unit_06_15",
+            "title": "15. [포석] 벌림의 기본 자 — 일립이전과 이립삼전 (24제)",
+            "chapter": "15. [포석] 벌림의 기본 자 — 일립이전과 이립삼전 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_06_16",
+            "chapterCode": "std30_pure_unit_06_16",
+            "title": "16. [끝내기] 1선 젖혀 잇기로 선수 실리 챙기기 (24제)",
+            "chapter": "16. [끝내기] 1선 젖혀 잇기로 선수 실리 챙기기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_06_17",
+            "chapterCode": "std30_pure_unit_06_17",
+            "title": "17. [판별] 옥집 판별과 3궁 사활·1·2선 공방 종합 (24제)",
+            "chapter": "17. [판별] 옥집 판별과 3궁 사활·1·2선 공방 종합 (24제)",
+            "problemCount": 24,
+            "count": 24
+          }
+        ],
+        "book": "6단계",
+        "problem_count": 401
+      },
+      {
+        "code": "std30_pure_stage_07",
+        "bookCode": "std30_pure_stage_07",
+        "file": "book_std30_pure_stage_07.json",
+        "title": "7단계",
+        "name": "제7단계 : 연속 촉촉수와 먹여치기 · 옥집 파호 사활",
+        "_buildVer": "std30-s16-v1-pure-3series",
+        "chapterCount": 18,
+        "totalProblems": 424,
+        "problemCount": 424,
+        "chapters": [
+          {
+            "code": "std30_pure_unit_07_01",
+            "chapterCode": "std30_pure_unit_07_01",
+            "title": "01. [기법] 단수치고 연달아 단수치는 연속 촉촉수 (24제)",
+            "chapter": "01. [기법] 단수치고 연달아 단수치는 연속 촉촉수 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_07_02",
+            "chapterCode": "std30_pure_unit_07_02",
+            "title": "02. [기법] 선수 단수 후 연결 고리를 끊어 잡기 (24제)",
+            "chapter": "02. [기법] 선수 단수 후 연결 고리를 끊어 잡기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_07_03",
+            "chapterCode": "std30_pure_unit_07_03",
+            "title": "03. [기법] 호구 안쪽에 먹여쳐 활로 줄이기 (24제)",
+            "chapter": "03. [기법] 호구 안쪽에 먹여쳐 활로 줄이기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_07_04",
+            "chapterCode": "std30_pure_unit_07_04",
+            "title": "04. [기법] 1선에 먹여쳐 촉촉수 모양 만들기 (24제)",
+            "chapter": "04. [기법] 1선에 먹여쳐 촉촉수 모양 만들기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_07_05",
+            "chapterCode": "std30_pure_unit_07_05",
+            "title": "05. [포획] 되단수(맞단수)로 위기를 역전하기 (24제)",
+            "chapter": "05. [포획] 되단수(맞단수)로 위기를 역전하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_07_06",
+            "chapterCode": "std30_pure_unit_07_06",
+            "title": "06. [포획] 먹여치고 몰아서 상대 돌 포획하기 (24제)",
+            "chapter": "06. [포획] 먹여치고 몰아서 상대 돌 포획하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_07_07",
+            "chapterCode": "std30_pure_unit_07_07",
+            "title": "07. [수상전] 촉촉수 맥점을 활용해 부족한 수 뒤집기 (24제)",
+            "chapter": "07. [수상전] 촉촉수 맥점을 활용해 부족한 수 뒤집기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_07_08",
+            "chapterCode": "std30_pure_unit_07_08",
+            "title": "08. [수상전] 끊어진 내 돌을 연결하며 수상전 이기기 (24제)",
+            "chapter": "08. [수상전] 끊어진 내 돌을 연결하며 수상전 이기기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_07_09",
+            "chapterCode": "std30_pure_unit_07_09",
+            "title": "09. [수상전] 상대의 연결을 끊어 활로를 줄이는 수상전 (24제)",
+            "chapter": "09. [수상전] 상대의 연결을 끊어 활로를 줄이는 수상전 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_07_10",
+            "chapterCode": "std30_pure_unit_07_10",
+            "title": "10. [사활] 사는 수 — 손대지 않아도 살아있는 돌 판별하기 (21제)",
+            "chapter": "10. [사활] 사는 수 — 손대지 않아도 살아있는 돌 판별하기 (21제)",
+            "problemCount": 21,
+            "count": 21
+          },
+          {
+            "code": "std30_pure_unit_07_11",
+            "chapterCode": "std30_pure_unit_07_11",
+            "title": "11. [사활] 사는 수 — 옥집 함정을 피해 진짜 집 만들기 (24제)",
+            "chapter": "11. [사활] 사는 수 — 옥집 함정을 피해 진짜 집 만들기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_07_12",
+            "chapterCode": "std30_pure_unit_07_12",
+            "title": "12. [사활] 잡는 수 — 단수로 옥집을 만들어 대마 잡기 (24제)",
+            "chapter": "12. [사활] 잡는 수 — 단수로 옥집을 만들어 대마 잡기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_07_13",
+            "chapterCode": "std30_pure_unit_07_13",
+            "title": "13. [사활] 잡는 수 — 찝는 맥점으로 옥집 만들어 잡기 (24제)",
+            "chapter": "13. [사활] 잡는 수 — 찝는 맥점으로 옥집 만들어 잡기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_07_14",
+            "chapterCode": "std30_pure_unit_07_14",
+            "title": "14. [행마] 빈삼각 우형을 피하며 바르게 젖혀 가기 (24제)",
+            "chapter": "14. [행마] 빈삼각 우형을 피하며 바르게 젖혀 가기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_07_15",
+            "chapterCode": "std30_pure_unit_07_15",
+            "title": "15. [포석] 귀의 5대 착점(화점·소목·고목·외목·삼삼) 이해 (19제)",
+            "chapter": "15. [포석] 귀의 5대 착점(화점·소목·고목·외목·삼삼) 이해 (19제)",
+            "problemCount": 19,
+            "count": 19
+          },
+          {
+            "code": "std30_pure_unit_07_16",
+            "chapterCode": "std30_pure_unit_07_16",
+            "title": "16. [끝내기] 2선 젖혀 잇기로 굵직한 끝내기 득점하기 (24제)",
+            "chapter": "16. [끝내기] 2선 젖혀 잇기로 굵직한 끝내기 득점하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_07_17",
+            "chapterCode": "std30_pure_unit_07_17",
+            "title": "17. [끝내기] 종반 내 집 주변의 숨은 약점 점검하기 (24제)",
+            "chapter": "17. [끝내기] 종반 내 집 주변의 숨은 약점 점검하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_07_18",
+            "chapterCode": "std30_pure_unit_07_18",
+            "title": "18. [판별] 먹여치기·촉촉수와 옥집 파호 사활 종합 (24제)",
+            "chapter": "18. [판별] 먹여치기·촉촉수와 옥집 파호 사활 종합 (24제)",
+            "problemCount": 24,
+            "count": 24
+          }
+        ],
+        "book": "7단계",
+        "problem_count": 424
+      },
+      {
+        "code": "std30_pure_stage_08",
+        "bookCode": "std30_pure_stage_08",
+        "file": "book_std30_pure_stage_08.json",
+        "title": "8단계",
+        "name": "제8단계 : 4궁·5궁 기본 사활과 빅(공생)의 원리",
+        "_buildVer": "std30-s16-v1-pure-3series",
+        "chapterCount": 16,
+        "totalProblems": 383,
+        "problemCount": 383,
+        "chapters": [
+          {
+            "code": "std30_pure_unit_08_01",
+            "chapterCode": "std30_pure_unit_08_01",
+            "title": "01. [연결] 배석에 맞는 쌍립 연결과 입구자 연결 고르기 (24제)",
+            "chapter": "01. [연결] 배석에 맞는 쌍립 연결과 입구자 연결 고르기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_08_02",
+            "chapterCode": "std30_pure_unit_08_02",
+            "title": "02. [끊음] 넘어가는 길목을 정면으로 가로막아 끊기 (24제)",
+            "chapter": "02. [끊음] 넘어가는 길목을 정면으로 가로막아 끊기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_08_03",
+            "chapterCode": "std30_pure_unit_08_03",
+            "title": "03. [포획] 한 칸 간격으로 씌우는 응용 장문 (24제)",
+            "chapter": "03. [포획] 한 칸 간격으로 씌우는 응용 장문 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_08_04",
+            "chapterCode": "std30_pure_unit_08_04",
+            "title": "04. [포획] 젖힘 한 수로 퇴로를 닫는 응용 장문 (24제)",
+            "chapter": "04. [포획] 젖힘 한 수로 퇴로를 닫는 응용 장문 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_08_05",
+            "chapterCode": "std30_pure_unit_08_05",
+            "title": "05. [수상전] 내 뒷문 약점부터 먼저 잇고 수 줄이기 (23제)",
+            "chapter": "05. [수상전] 내 뒷문 약점부터 먼저 잇고 수 줄이기 (23제)",
+            "problemCount": 23,
+            "count": 23
+          },
+          {
+            "code": "std30_pure_unit_08_06",
+            "chapterCode": "std30_pure_unit_08_06",
+            "title": "06. [수상전] 1선 내림(빠짐)으로 내 활로 수 늘리기 (24제)",
+            "chapter": "06. [수상전] 1선 내림(빠짐)으로 내 활로 수 늘리기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_08_07",
+            "chapterCode": "std30_pure_unit_08_07",
+            "title": "07. [사활] 4궁 사활(삶) — 직사궁·곡사궁 완생과 정사궁 수비 (24제)",
+            "chapter": "07. [사활] 4궁 사활(삶) — 직사궁·곡사궁 완생과 정사궁 수비 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_08_08",
+            "chapterCode": "std30_pure_unit_08_08",
+            "title": "08. [사활] 4궁 사활(잡기) — 정사궁·모자사궁 급소 치중 (24제)",
+            "chapter": "08. [사활] 4궁 사활(잡기) — 정사궁·모자사궁 급소 치중 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_08_09",
+            "chapterCode": "std30_pure_unit_08_09",
+            "title": "09. [사활] 5궁 사활(삶) — 매화오궁·칼오궁 급소 지키기 (24제)",
+            "chapter": "09. [사활] 5궁 사활(삶) — 매화오궁·칼오궁 급소 지키기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_08_10",
+            "chapterCode": "std30_pure_unit_08_10",
+            "title": "10. [사활] 5궁 사활(잡기) — 매화오궁·칼오궁 급소 치중 (24제)",
+            "chapter": "10. [사활] 5궁 사활(잡기) — 매화오궁·칼오궁 급소 치중 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_08_11",
+            "chapterCode": "std30_pure_unit_08_11",
+            "title": "11. [사활] 빅(공생)의 원리와 공배 유지해 함께 살기 (24제)",
+            "chapter": "11. [사활] 빅(공생)의 원리와 공배 유지해 함께 살기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_08_12",
+            "chapterCode": "std30_pure_unit_08_12",
+            "title": "12. [사활] 상대 돌을 끊으면서 빅 만들어 타개하기 (24제)",
+            "chapter": "12. [사활] 상대 돌을 끊으면서 빅 만들어 타개하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_08_13",
+            "chapterCode": "std30_pure_unit_08_13",
+            "title": "13. [포석] 귀를 지키는 굳힘과 상대 귀를 두드리는 걸침 (24제)",
+            "chapter": "13. [포석] 귀를 지키는 굳힘과 상대 귀를 두드리는 걸침 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_08_14",
+            "chapterCode": "std30_pure_unit_08_14",
+            "title": "14. [끝내기] 사석 1점의 가치(2집)와 덤·반집의 원리 (24제)",
+            "chapter": "14. [끝내기] 사석 1점의 가치(2집)와 덤·반집의 원리 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_08_15",
+            "chapterCode": "std30_pure_unit_08_15",
+            "title": "15. [끝내기] 19줄 실전 계가와 정확한 승패 판정 (24제)",
+            "chapter": "15. [끝내기] 19줄 실전 계가와 정확한 승패 판정 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_08_16",
+            "chapterCode": "std30_pure_unit_08_16",
+            "title": "16. [판별] 4·5궁 기본 사활과 빅·응용 장문 실전 판별 (24제)",
+            "chapter": "16. [판별] 4·5궁 기본 사활과 빅·응용 장문 실전 판별 (24제)",
+            "problemCount": 24,
+            "count": 24
+          }
+        ],
+        "book": "8단계",
+        "problem_count": 383
+      },
+      {
+        "code": "std30_pure_stage_09",
+        "bookCode": "std30_pure_stage_09",
+        "file": "book_std30_pure_stage_09.json",
+        "title": "9단계",
+        "name": "제9단계 : 먹여치기·키움 옥집 사활과 화점 기본 정석",
+        "_buildVer": "std30-s16-v1-pure-3series",
+        "chapterCount": 17,
+        "totalProblems": 386,
+        "problemCount": 386,
+        "chapters": [
+          {
+            "code": "std30_pure_unit_09_01",
+            "chapterCode": "std30_pure_unit_09_01",
+            "title": "01. [연결] 한 수로 두 곳을 지키는 양호구 연결 (24제)",
+            "chapter": "01. [연결] 한 수로 두 곳을 지키는 양호구 연결 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_09_02",
+            "chapterCode": "std30_pure_unit_09_02",
+            "title": "02. [연결] 반대쪽 약점을 보강하여 연결 완성하기 (24제)",
+            "chapter": "02. [연결] 반대쪽 약점을 보강하여 연결 완성하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_09_03",
+            "chapterCode": "std30_pure_unit_09_03",
+            "title": "03. [연결] 2·3선 젖힘으로 연결 고리 만들기 (24제)",
+            "chapter": "03. [연결] 2·3선 젖힘으로 연결 고리 만들기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_09_04",
+            "chapterCode": "std30_pure_unit_09_04",
+            "title": "04. [포획] 축머리를 피해 안전한 방향으로 축 몰기 (24제)",
+            "chapter": "04. [포획] 축머리를 피해 안전한 방향으로 축 몰기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_09_05",
+            "chapterCode": "std30_pure_unit_09_05",
+            "title": "05. [포획] 선수 단수 교환 후 양단수 터뜨리기 (23제)",
+            "chapter": "05. [포획] 선수 단수 교환 후 양단수 터뜨리기 (23제)",
+            "problemCount": 23,
+            "count": 23
+          },
+          {
+            "code": "std30_pure_unit_09_06",
+            "chapterCode": "std30_pure_unit_09_06",
+            "title": "06. [행마] 부분에 묶이지 않고 중앙으로 한 발 앞서가기 (21제)",
+            "chapter": "06. [행마] 부분에 묶이지 않고 중앙으로 한 발 앞서가기 (21제)",
+            "problemCount": 21,
+            "count": 21
+          },
+          {
+            "code": "std30_pure_unit_09_07",
+            "chapterCode": "std30_pure_unit_09_07",
+            "title": "07. [행마] 버릴 돌과 꼭 살려야 할 요석 구별하기 (24제)",
+            "chapter": "07. [행마] 버릴 돌과 꼭 살려야 할 요석 구별하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_09_08",
+            "chapterCode": "std30_pure_unit_09_08",
+            "title": "08. [수상전] 내 돌을 뻗어 수를 늘리면서 상대 압박하기 (21제)",
+            "chapter": "08. [수상전] 내 돌을 뻗어 수를 늘리면서 상대 압박하기 (21제)",
+            "problemCount": 21,
+            "count": 21
+          },
+          {
+            "code": "std30_pure_unit_09_09",
+            "chapterCode": "std30_pure_unit_09_09",
+            "title": "09. [사활] 사는 수 — 상대의 먹여치기 노림 방어하기 (24제)",
+            "chapter": "09. [사활] 사는 수 — 상대의 먹여치기 노림 방어하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_09_10",
+            "chapterCode": "std30_pure_unit_09_10",
+            "title": "10. [사활] 사는 수 — 따내도 옥집이 되는 함정 피하기 (24제)",
+            "chapter": "10. [사활] 사는 수 — 따내도 옥집이 되는 함정 피하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_09_11",
+            "chapterCode": "std30_pure_unit_09_11",
+            "title": "11. [사활] 잡는 수 — 호구에 먹여쳐 옥집 만들어 잡기 (24제)",
+            "chapter": "11. [사활] 잡는 수 — 호구에 먹여쳐 옥집 만들어 잡기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_09_12",
+            "chapterCode": "std30_pure_unit_09_12",
+            "title": "12. [사활] 잡는 수 — 한 점을 두 점으로 키워 옥집 만들기 (24제)",
+            "chapter": "12. [사활] 잡는 수 — 한 점을 두 점으로 키워 옥집 만들기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_09_13",
+            "chapterCode": "std30_pure_unit_09_13",
+            "title": "13. [포석] 걸침에 대한 침착한 응수와 바른 초반 포석 (24제)",
+            "chapter": "13. [포석] 걸침에 대한 침착한 응수와 바른 초반 포석 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_09_14",
+            "chapterCode": "std30_pure_unit_09_14",
+            "title": "14. [정석] 화점 기본 정석 1 — 날일자 걸침과 날일자 받기 (18제)",
+            "chapter": "14. [정석] 화점 기본 정석 1 — 날일자 걸침과 날일자 받기 (18제)",
+            "problemCount": 18,
+            "count": 18
+          },
+          {
+            "code": "std30_pure_unit_09_15",
+            "chapterCode": "std30_pure_unit_09_15",
+            "title": "15. [정석] 화점 기본 정석 2 — 날일자 걸침과 한 칸 받기 (19제)",
+            "chapter": "15. [정석] 화점 기본 정석 2 — 날일자 걸침과 한 칸 받기 (19제)",
+            "problemCount": 19,
+            "count": 19
+          },
+          {
+            "code": "std30_pure_unit_09_16",
+            "chapterCode": "std30_pure_unit_09_16",
+            "title": "16. [끝내기] 상대 끝내기 침투 방어와 맞끝내기 공방 (20제)",
+            "chapter": "16. [끝내기] 상대 끝내기 침투 방어와 맞끝내기 공방 (20제)",
+            "problemCount": 20,
+            "count": 20
+          },
+          {
+            "code": "std30_pure_unit_09_17",
+            "chapterCode": "std30_pure_unit_09_17",
+            "title": "17. [판별] 먹여치기·키움 옥집 사활과 3수 포획 종합 (24제)",
+            "chapter": "17. [판별] 먹여치기·키움 옥집 사활과 3수 포획 종합 (24제)",
+            "problemCount": 24,
+            "count": 24
+          }
+        ],
+        "book": "9단계",
+        "problem_count": 386
+      },
+      {
+        "code": "std30_pure_stage_10",
+        "bookCode": "std30_pure_stage_10",
+        "file": "book_std30_pure_stage_10.json",
+        "title": "10단계",
+        "name": "제10단계 : 복합 축·장문과 패(Ko) 사활 입문 · 1선 수상전 맥",
+        "_buildVer": "std30-s16-v1-pure-3series",
+        "chapterCount": 17,
+        "totalProblems": 399,
+        "problemCount": 399,
+        "chapters": [
+          {
+            "code": "std30_pure_unit_10_01",
+            "chapterCode": "std30_pure_unit_10_01",
+            "title": "01. [연결] 벌어진 틈새에 끼워 이어 연결하기 (24제)",
+            "chapter": "01. [연결] 벌어진 틈새에 끼워 이어 연결하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_10_02",
+            "chapterCode": "std30_pure_unit_10_02",
+            "title": "02. [끊음] 선수 단수를 교환한 뒤 연결 고리 끊기 (24제)",
+            "chapter": "02. [끊음] 선수 단수를 교환한 뒤 연결 고리 끊기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_10_03",
+            "chapterCode": "std30_pure_unit_10_03",
+            "title": "03. [포획] 상대를 끊으면서 축 그물에 태워 잡기 (24제)",
+            "chapter": "03. [포획] 상대를 끊으면서 축 그물에 태워 잡기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_10_04",
+            "chapterCode": "std30_pure_unit_10_04",
+            "title": "04. [포획] 선수 단수로 무겁게 만든 뒤 축으로 잡기 (24제)",
+            "chapter": "04. [포획] 선수 단수로 무겁게 만든 뒤 축으로 잡기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_10_05",
+            "chapterCode": "std30_pure_unit_10_05",
+            "title": "05. [포획] 선수 단수로 활로를 줄인 뒤 장문 씌우기 (24제)",
+            "chapter": "05. [포획] 선수 단수로 활로를 줄인 뒤 장문 씌우기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_10_06",
+            "chapterCode": "std30_pure_unit_10_06",
+            "title": "06. [판별] 축과 장문 중 성립하는 포획법 선택하기 (24제)",
+            "chapter": "06. [판별] 축과 장문 중 성립하는 포획법 선택하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_10_07",
+            "chapterCode": "std30_pure_unit_10_07",
+            "title": "07. [형태] 피아간에 호구·쌍립이 되는 모양의 급소 선점 (21제)",
+            "chapter": "07. [형태] 피아간에 호구·쌍립이 되는 모양의 급소 선점 (21제)",
+            "problemCount": 21,
+            "count": 21
+          },
+          {
+            "code": "std30_pure_unit_10_08",
+            "chapterCode": "std30_pure_unit_10_08",
+            "title": "08. [수상전] 1선 입구자(마늘모) 맥점으로 수 줄이기 (22제)",
+            "chapter": "08. [수상전] 1선 입구자(마늘모) 맥점으로 수 줄이기 (22제)",
+            "problemCount": 22,
+            "count": 22
+          },
+          {
+            "code": "std30_pure_unit_10_09",
+            "chapterCode": "std30_pure_unit_10_09",
+            "title": "09. [수상전] 상대 돌에 바짝 붙여 활로 확장 차단하기 (24제)",
+            "chapter": "09. [수상전] 상대 돌에 바짝 붙여 활로 확장 차단하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_10_10",
+            "chapterCode": "std30_pure_unit_10_10",
+            "title": "10. [사활] 돌을 따내고도 죽는 3점·4점 치중 원리 (24제)",
+            "chapter": "10. [사활] 돌을 따내고도 죽는 3점·4점 치중 원리 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_10_11",
+            "chapterCode": "std30_pure_unit_10_11",
+            "title": "11. [사활] 바깥 궁도부터 먼저 좁히고 급소 치중하기 (24제)",
+            "chapter": "11. [사활] 바깥 궁도부터 먼저 좁히고 급소 치중하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_10_12",
+            "chapterCode": "std30_pure_unit_10_12",
+            "title": "12. [사활] 그냥 살 수 없을 때 패를 만들어 버티기 (24제)",
+            "chapter": "12. [사활] 그냥 살 수 없을 때 패를 만들어 버티기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_10_13",
+            "chapterCode": "std30_pure_unit_10_13",
+            "title": "13. [사활] 그냥 잡을 수 없을 때 패를 걸어 추궁하기 (24제)",
+            "chapter": "13. [사활] 그냥 잡을 수 없을 때 패를 걸어 추궁하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_10_14",
+            "chapterCode": "std30_pure_unit_10_14",
+            "title": "14. [포석] 초반 접촉전의 호흡 — 붙이면 젖히고 젖히면 뻗기 (24제)",
+            "chapter": "14. [포석] 초반 접촉전의 호흡 — 붙이면 젖히고 젖히면 뻗기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_10_15",
+            "chapterCode": "std30_pure_unit_10_15",
+            "title": "15. [정석] 화점 기본 정석 3 — 날일자 걸침과 붙여 뻗기 (20제)",
+            "chapter": "15. [정석] 화점 기본 정석 3 — 날일자 걸침과 붙여 뻗기 (20제)",
+            "problemCount": 20,
+            "count": 20
+          },
+          {
+            "code": "std30_pure_unit_10_16",
+            "chapterCode": "std30_pure_unit_10_16",
+            "title": "16. [끝내기] 1선 젖혀 잇기 이후의 후속 마무리 완결 (24제)",
+            "chapter": "16. [끝내기] 1선 젖혀 잇기 이후의 후속 마무리 완결 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_10_17",
+            "chapterCode": "std30_pure_unit_10_17",
+            "title": "17. [판별] 초급 과정(6~10단계) 패 사활·복합 포획·수상전 총괄 평가 (24제)",
+            "chapter": "17. [판별] 초급 과정(6~10단계) 패 사활·복합 포획·수상전 총괄 평가 (24제)",
+            "problemCount": 24,
+            "count": 24
+          }
+        ],
+        "book": "10단계",
+        "problem_count": 399
+      },
+      {
+        "code": "std30_pure_stage_11",
+        "bookCode": "std30_pure_stage_11",
+        "file": "book_std30_pure_stage_11.json",
+        "title": "11단계",
+        "name": "제11단계 : 맞보기·패 활용 연결과 착수금지·환격 사활",
+        "_buildVer": "std30-s16-v1-pure-3series",
+        "chapterCount": 18,
+        "totalProblems": 420,
+        "problemCount": 420,
+        "chapters": [
+          {
+            "code": "std30_pure_unit_11_01",
+            "chapterCode": "std30_pure_unit_11_01",
+            "title": "01. [연결] 패를 버팀목 삼아 탄력 있게 연결하기 (24제)",
+            "chapter": "01. [연결] 패를 버팀목 삼아 탄력 있게 연결하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_11_02",
+            "chapterCode": "std30_pure_unit_11_02",
+            "title": "02. [끊음] 두 곳의 약점을 동시에 노리는 맞보기 끊음 (24제)",
+            "chapter": "02. [끊음] 두 곳의 약점을 동시에 노리는 맞보기 끊음 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_11_03",
+            "chapterCode": "std30_pure_unit_11_03",
+            "title": "03. [끊음] 패를 결행하여 단단한 상대 연결 끊기 (24제)",
+            "chapter": "03. [끊음] 패를 결행하여 단단한 상대 연결 끊기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_11_04",
+            "chapterCode": "std30_pure_unit_11_04",
+            "title": "04. [포획] 연결 틈새에 끼워 넣어 환격 유도하기 (24제)",
+            "chapter": "04. [포획] 연결 틈새에 끼워 넣어 환격 유도하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_11_05",
+            "chapterCode": "std30_pure_unit_11_05",
+            "title": "05. [포획] 대각선 입구자(마늘모) 장문으로 가두기 (24제)",
+            "chapter": "05. [포획] 대각선 입구자(마늘모) 장문으로 가두기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_11_06",
+            "chapterCode": "std30_pure_unit_11_06",
+            "title": "06. [행마] 끊긴 장면에서 당황하지 않고 뻗어 싸우기 (24제)",
+            "chapter": "06. [행마] 끊긴 장면에서 당황하지 않고 뻗어 싸우기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_11_07",
+            "chapterCode": "std30_pure_unit_11_07",
+            "title": "07. [끊음] 젖힘과 뻗기 수순으로 상대 연결 끊기 (24제)",
+            "chapter": "07. [끊음] 젖힘과 뻗기 수순으로 상대 연결 끊기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_11_08",
+            "chapterCode": "std30_pure_unit_11_08",
+            "title": "08. [수상전] 먹여치기와 연속 단수를 결합해 수 줄이기 (24제)",
+            "chapter": "08. [수상전] 먹여치기와 연속 단수를 결합해 수 줄이기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_11_09",
+            "chapterCode": "std30_pure_unit_11_09",
+            "title": "09. [수상전] 1선 젖히기 급소로 상대 활로 단축하기 (24제)",
+            "chapter": "09. [수상전] 1선 젖히기 급소로 상대 활로 단축하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_11_10",
+            "chapterCode": "std30_pure_unit_11_10",
+            "title": "10. [사활] 사는 수 — 상대가 못 들어오는 착수금지 활용 생존 (24제)",
+            "chapter": "10. [사활] 사는 수 — 상대가 못 들어오는 착수금지 활용 생존 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_11_11",
+            "chapterCode": "std30_pure_unit_11_11",
+            "title": "11. [사활] 사는 수 — 바깥 단수를 선수한 뒤 두 집 만들기 (24제)",
+            "chapter": "11. [사활] 사는 수 — 바깥 단수를 선수한 뒤 두 집 만들기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_11_12",
+            "chapterCode": "std30_pure_unit_11_12",
+            "title": "12. [사활] 잡는 수 — 환격 맥점으로 상대 두 집 파괴하기 (24제)",
+            "chapter": "12. [사활] 잡는 수 — 환격 맥점으로 상대 두 집 파괴하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_11_13",
+            "chapterCode": "std30_pure_unit_11_13",
+            "title": "13. [사활] 잡는 수 — 1선 붙임 맥점으로 안형 무너뜨리기 (24제)",
+            "chapter": "13. [사활] 잡는 수 — 1선 붙임 맥점으로 안형 무너뜨리기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_11_14",
+            "chapterCode": "std30_pure_unit_11_14",
+            "title": "14. [포석] 두터운 세력을 배경으로 변으로 넓게 벌리기 (24제)",
+            "chapter": "14. [포석] 두터운 세력을 배경으로 변으로 넓게 벌리기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_11_15",
+            "chapterCode": "std30_pure_unit_11_15",
+            "title": "15. [포석] 초반 2선 기어가기(패망선)의 손해 이해하기 (18제)",
+            "chapter": "15. [포석] 초반 2선 기어가기(패망선)의 손해 이해하기 (18제)",
+            "problemCount": 18,
+            "count": 18
+          },
+          {
+            "code": "std30_pure_unit_11_16",
+            "chapterCode": "std30_pure_unit_11_16",
+            "title": "16. [정석] 화점 기본 정석 4 — 붙여 막기(호구) 정석과 선택법 (18제)",
+            "chapter": "16. [정석] 화점 기본 정석 4 — 붙여 막기(호구) 정석과 선택법 (18제)",
+            "problemCount": 18,
+            "count": 18
+          },
+          {
+            "code": "std30_pure_unit_11_17",
+            "chapterCode": "std30_pure_unit_11_17",
+            "title": "17. [끝내기] 날일자 달림 침투와 한 칸 막아 지키는 정수 (24제)",
+            "chapter": "17. [끝내기] 날일자 달림 침투와 한 칸 막아 지키는 정수 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_11_18",
+            "chapterCode": "std30_pure_unit_11_18",
+            "title": "18. [판별] 맞보기·패 공방과 착수금지·환격 사활 종합 (24제)",
+            "chapter": "18. [판별] 맞보기·패 공방과 착수금지·환격 사활 종합 (24제)",
+            "problemCount": 24,
+            "count": 24
+          }
+        ],
+        "book": "11단계",
+        "problem_count": 420
+      },
+      {
+        "code": "std30_pure_stage_12",
+        "bookCode": "std30_pure_stage_12",
+        "file": "book_std30_pure_stage_12.json",
+        "title": "12단계",
+        "name": "제12단계 : 자충 유도와 회돌이 · 매화육궁 사활",
+        "_buildVer": "std30-s16-v1-pure-3series",
+        "chapterCount": 17,
+        "totalProblems": 399,
+        "problemCount": 399,
+        "chapters": [
+          {
+            "code": "std30_pure_unit_12_01",
+            "chapterCode": "std30_pure_unit_12_01",
+            "title": "01. [연결] 상대의 자충을 유도해 밑으로 넘어가기 (24제)",
+            "chapter": "01. [연결] 상대의 자충을 유도해 밑으로 넘어가기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_12_02",
+            "chapterCode": "std30_pure_unit_12_02",
+            "title": "02. [연결] 약점을 선수로 찝어 튼튼하게 연결하기 (24제)",
+            "chapter": "02. [연결] 약점을 선수로 찝어 튼튼하게 연결하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_12_03",
+            "chapterCode": "std30_pure_unit_12_03",
+            "title": "03. [끊음] 상대가 이을 수 없는 자충 약점 찔러 끊기 (24제)",
+            "chapter": "03. [끊음] 상대가 이을 수 없는 자충 약점 찔러 끊기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_12_04",
+            "chapterCode": "std30_pure_unit_12_04",
+            "title": "04. [기법] 회돌이(돌려치기)로 상대 모양 뭉치게 하기 (24제)",
+            "chapter": "04. [기법] 회돌이(돌려치기)로 상대 모양 뭉치게 하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_12_05",
+            "chapterCode": "std30_pure_unit_12_05",
+            "title": "05. [약점] 내 진영에 숨어 있는 끊김 단점 찾아내기 (24제)",
+            "chapter": "05. [약점] 내 진영에 숨어 있는 끊김 단점 찾아내기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_12_06",
+            "chapterCode": "std30_pure_unit_12_06",
+            "title": "06. [약점] 뒷맛과 팻감 없이 깔끔하게 단점 지키기 (24제)",
+            "chapter": "06. [약점] 뒷맛과 팻감 없이 깔끔하게 단점 지키기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_12_07",
+            "chapterCode": "std30_pure_unit_12_07",
+            "title": "07. [수상전] 상대의 자충을 유도하여 수상전 역전하기 (24제)",
+            "chapter": "07. [수상전] 상대의 자충을 유도하여 수상전 역전하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_12_08",
+            "chapterCode": "std30_pure_unit_12_08",
+            "title": "08. [사활] 매화육궁 사활 1 — 급소를 지켜 두 집 내기 (24제)",
+            "chapter": "08. [사활] 매화육궁 사활 1 — 급소를 지켜 두 집 내기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_12_09",
+            "chapterCode": "std30_pure_unit_12_09",
+            "title": "09. [사활] 매화육궁 사활 2 — 급소에 치중하여 잡기 (24제)",
+            "chapter": "09. [사활] 매화육궁 사활 2 — 급소에 치중하여 잡기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_12_10",
+            "chapterCode": "std30_pure_unit_12_10",
+            "title": "10. [사활] 사는 수 — 촉촉수로 포위망 돌을 잡고 살기 (24제)",
+            "chapter": "10. [사활] 사는 수 — 촉촉수로 포위망 돌을 잡고 살기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_12_11",
+            "chapterCode": "std30_pure_unit_12_11",
+            "title": "11. [사활] 잡는 수 — 상대의 자충을 유도해 두 집 막기 (24제)",
+            "chapter": "11. [사활] 잡는 수 — 상대의 자충을 유도해 두 집 막기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_12_12",
+            "chapterCode": "std30_pure_unit_12_12",
+            "title": "12. [사활] 상대 집을 지우면서 빅(무집)으로 만들기 (24제)",
+            "chapter": "12. [사활] 상대 집을 지우면서 빅(무집)으로 만들기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_12_13",
+            "chapterCode": "std30_pure_unit_12_13",
+            "title": "13. [행마] 1선으로 기어 탈출하는 돌 정확히 차단하기 (24제)",
+            "chapter": "13. [행마] 1선으로 기어 탈출하는 돌 정확히 차단하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_12_14",
+            "chapterCode": "std30_pure_unit_12_14",
+            "title": "14. [포석] 갈라치기 — 상대 벌림 한가운데로 뛰어들기 (21제)",
+            "chapter": "14. [포석] 갈라치기 — 상대 벌림 한가운데로 뛰어들기 (21제)",
+            "problemCount": 21,
+            "count": 21
+          },
+          {
+            "code": "std30_pure_unit_12_15",
+            "chapterCode": "std30_pure_unit_12_15",
+            "title": "15. [정석] 소목 기본 정석 1 — 소목 걸침의 이해와 날일자 밑붙임 (18제)",
+            "chapter": "15. [정석] 소목 기본 정석 1 — 소목 걸침의 이해와 날일자 밑붙임 (18제)",
+            "problemCount": 18,
+            "count": 18
+          },
+          {
+            "code": "std30_pure_unit_12_16",
+            "chapterCode": "std30_pure_unit_12_16",
+            "title": "16. [끝내기] 2선 마늘모 끝내기와 후수에서 손 빼기 (24제)",
+            "chapter": "16. [끝내기] 2선 마늘모 끝내기와 후수에서 손 빼기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_12_17",
+            "chapterCode": "std30_pure_unit_12_17",
+            "title": "17. [판별] 자충 유도·회돌이와 매화육궁 사활 실전 판별 (24제)",
+            "chapter": "17. [판별] 자충 유도·회돌이와 매화육궁 사활 실전 판별 (24제)",
+            "problemCount": 24,
+            "count": 24
+          }
+        ],
+        "book": "12단계",
+        "problem_count": 399
+      },
+      {
+        "code": "std30_pure_stage_13",
+        "bookCode": "std30_pure_stage_13",
+        "file": "book_std30_pure_stage_13.json",
+        "title": "13단계",
+        "name": "제13단계 : 궁도 수 계산과 귀 4사6생·변 6사8생 공식",
+        "_buildVer": "std30-s16-v1-pure-3series",
+        "chapterCount": 18,
+        "totalProblems": 424,
+        "problemCount": 424,
+        "chapters": [
+          {
+            "code": "std30_pure_unit_13_01",
+            "chapterCode": "std30_pure_unit_13_01",
+            "title": "01. [연결] 1선 입구자(마늘모) 맥점으로 넘어가기 (24제)",
+            "chapter": "01. [연결] 1선 입구자(마늘모) 맥점으로 넘어가기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_13_02",
+            "chapterCode": "std30_pure_unit_13_02",
+            "title": "02. [연결] 선수 단수 교환 후 호구 모양으로 잇기 (24제)",
+            "chapter": "02. [연결] 선수 단수 교환 후 호구 모양으로 잇기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_13_03",
+            "chapterCode": "std30_pure_unit_13_03",
+            "title": "03. [끊음] 마주 선 쌍립 모양의 한가운데 급소 찔러 끊기 (24제)",
+            "chapter": "03. [끊음] 마주 선 쌍립 모양의 한가운데 급소 찔러 끊기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_13_04",
+            "chapterCode": "std30_pure_unit_13_04",
+            "title": "04. [포획] 두 곳의 환격을 동시에 노리는 양환격 포획 (21제)",
+            "chapter": "04. [포획] 두 곳의 환격을 동시에 노리는 양환격 포획 (21제)",
+            "problemCount": 21,
+            "count": 21
+          },
+          {
+            "code": "std30_pure_unit_13_05",
+            "chapterCode": "std30_pure_unit_13_05",
+            "title": "05. [포획] 배붙이기 맥점으로 상대 퇴로 차단해 잡기 (24제)",
+            "chapter": "05. [포획] 배붙이기 맥점으로 상대 퇴로 차단해 잡기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_13_06",
+            "chapterCode": "std30_pure_unit_13_06",
+            "title": "06. [수상전] 궁도 수 계산 공식 — 3궁(3수)과 4궁(5수)의 원리 (24제)",
+            "chapter": "06. [수상전] 궁도 수 계산 공식 — 3궁(3수)과 4궁(5수)의 원리 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_13_07",
+            "chapterCode": "std30_pure_unit_13_07",
+            "title": "07. [수상전] 궁도 공식을 적용한 실전 수상전과 수 늘리기 (24제)",
+            "chapter": "07. [수상전] 궁도 공식을 적용한 실전 수상전과 수 늘리기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_13_08",
+            "chapterCode": "std30_pure_unit_13_08",
+            "title": "08. [사활] 사활 대공식(삶) — 귀 6생·변 8생 완생 수법 (24제)",
+            "chapter": "08. [사활] 사활 대공식(삶) — 귀 6생·변 8생 완생 수법 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_13_09",
+            "chapterCode": "std30_pure_unit_13_09",
+            "title": "09. [사활] 사활 대공식(잡기) — 귀 4사·변 6사 추궁 수법 (24제)",
+            "chapter": "09. [사활] 사활 대공식(잡기) — 귀 4사·변 6사 추궁 수법 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_13_10",
+            "chapterCode": "std30_pure_unit_13_10",
+            "title": "10. [사활] 잡는 수 — 1선 눈목자 달림으로 궁도 파호하기 (24제)",
+            "chapter": "10. [사활] 잡는 수 — 1선 눈목자 달림으로 궁도 파호하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_13_11",
+            "chapterCode": "std30_pure_unit_13_11",
+            "title": "11. [사활] 안쪽에 한 집을 확보하며 빅으로 살아가기 (24제)",
+            "chapter": "11. [사활] 안쪽에 한 집을 확보하며 빅으로 살아가기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_13_12",
+            "chapterCode": "std30_pure_unit_13_12",
+            "title": "12. [행마] 아군 세력권 방향으로 뻗어 힘 모으기 (22제)",
+            "chapter": "12. [행마] 아군 세력권 방향으로 뻗어 힘 모으기 (22제)",
+            "problemCount": 22,
+            "count": 22
+          },
+          {
+            "code": "std30_pure_unit_13_13",
+            "chapterCode": "std30_pure_unit_13_13",
+            "title": "13. [판별] 선수 단수 교환 후 포획과 탈출 결단하기 (24제)",
+            "chapter": "13. [판별] 선수 단수 교환 후 포획과 탈출 결단하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_13_14",
+            "chapterCode": "std30_pure_unit_13_14",
+            "title": "14. [포석] 다가서기 압박 포석과 바른 굳힘·걸침 판별 (24제)",
+            "chapter": "14. [포석] 다가서기 압박 포석과 바른 굳힘·걸침 판별 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_13_15",
+            "chapterCode": "std30_pure_unit_13_15",
+            "title": "15. [정석] 화점 기본 정석 5 — 화점 삼삼(3·3) 직침과 막는 방향 (21제)",
+            "chapter": "15. [정석] 화점 기본 정석 5 — 화점 삼삼(3·3) 직침과 막는 방향 (21제)",
+            "problemCount": 21,
+            "count": 21
+          },
+          {
+            "code": "std30_pure_unit_13_16",
+            "chapterCode": "std30_pure_unit_13_16",
+            "title": "16. [끝내기] 경계선의 약점을 끊어 잡는 실전 끝내기 (24제)",
+            "chapter": "16. [끝내기] 경계선의 약점을 끊어 잡는 실전 끝내기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_13_17",
+            "chapterCode": "std30_pure_unit_13_17",
+            "title": "17. [끝내기] 2선 한 칸 뜀 맥점으로 상대 집 줄이기 (24제)",
+            "chapter": "17. [끝내기] 2선 한 칸 뜀 맥점으로 상대 집 줄이기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_13_18",
+            "chapterCode": "std30_pure_unit_13_18",
+            "title": "18. [판별] 4사6생·6사8생 공식과 궁도 수 계산 종합 (24제)",
+            "chapter": "18. [판별] 4사6생·6사8생 공식과 궁도 수 계산 종합 (24제)",
+            "problemCount": 24,
+            "count": 24
+          }
+        ],
+        "book": "13단계",
+        "problem_count": 424
+      },
+      {
+        "code": "std30_pure_stage_14",
+        "bookCode": "std30_pure_stage_14",
+        "file": "book_std30_pure_stage_14.json",
+        "title": "14단계",
+        "name": "제14단계 : 사석 활용 연결과 봉쇄·탈출 · 유가무가의 원리",
+        "_buildVer": "std30-s16-v1-pure-3series",
+        "chapterCount": 19,
+        "totalProblems": 451,
+        "problemCount": 451,
+        "chapters": [
+          {
+            "code": "std30_pure_unit_14_01",
+            "chapterCode": "std30_pure_unit_14_01",
+            "title": "01. [연결] 이미 죽은 돌(사석)을 키워 버리며 연결하기 (24제)",
+            "chapter": "01. [연결] 이미 죽은 돌(사석)을 키워 버리며 연결하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_14_02",
+            "chapterCode": "std30_pure_unit_14_02",
+            "title": "02. [끊음] 두 갈래 끊는 방향 중 유리한 쪽 선택하기 (21제)",
+            "chapter": "02. [끊음] 두 갈래 끊는 방향 중 유리한 쪽 선택하기 (21제)",
+            "problemCount": 21,
+            "count": 21
+          },
+          {
+            "code": "std30_pure_unit_14_03",
+            "chapterCode": "std30_pure_unit_14_03",
+            "title": "03. [행마] 경쾌한 날일자 행마로 세력과 연결 도모하기 (24제)",
+            "chapter": "03. [행마] 경쾌한 날일자 행마로 세력과 연결 도모하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_14_04",
+            "chapterCode": "std30_pure_unit_14_04",
+            "title": "04. [행마] 급소 들여다보기로 상대를 뭉친 우형으로 만들기 (24제)",
+            "chapter": "04. [행마] 급소 들여다보기로 상대를 뭉친 우형으로 만들기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_14_05",
+            "chapterCode": "std30_pure_unit_14_05",
+            "title": "05. [행마] 상대 포위망의 약한 고리를 찔러 돌파하기 (22제)",
+            "chapter": "05. [행마] 상대 포위망의 약한 고리를 찔러 돌파하기 (22제)",
+            "problemCount": 22,
+            "count": 22
+          },
+          {
+            "code": "std30_pure_unit_14_06",
+            "chapterCode": "std30_pure_unit_14_06",
+            "title": "06. [행마] 중앙 한 칸 뜀으로 대마의 숨통 틔우기 (24제)",
+            "chapter": "06. [행마] 중앙 한 칸 뜀으로 대마의 숨통 틔우기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_14_07",
+            "chapterCode": "std30_pure_unit_14_07",
+            "title": "07. [수상전] 유가무가 원리 1 — 집 있는 돌이 뒤에서 막아 이기기 (24제)",
+            "chapter": "07. [수상전] 유가무가 원리 1 — 집 있는 돌이 뒤에서 막아 이기기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_14_08",
+            "chapterCode": "std30_pure_unit_14_08",
+            "title": "08. [수상전] 유가무가 원리 2 — 내 안쪽에 한 집 만들어 이기기 (24제)",
+            "chapter": "08. [수상전] 유가무가 원리 2 — 내 안쪽에 한 집 만들어 이기기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_14_09",
+            "chapterCode": "std30_pure_unit_14_09",
+            "title": "09. [수상전] 상대 궁도 급소 치중으로 활로 단축하기 (24제)",
+            "chapter": "09. [수상전] 상대 궁도 급소 치중으로 활로 단축하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_14_10",
+            "chapterCode": "std30_pure_unit_14_10",
+            "title": "10. [수상전] 먹잇감 돌을 키워 버리며 상대 활로 조이기 (24제)",
+            "chapter": "10. [수상전] 먹잇감 돌을 키워 버리며 상대 활로 조이기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_14_11",
+            "chapterCode": "std30_pure_unit_14_11",
+            "title": "11. [사활] 바깥의 유효한 팻감을 찾아 쓰고 패 해소하기 (24제)",
+            "chapter": "11. [사활] 바깥의 유효한 팻감을 찾아 쓰고 패 해소하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_14_12",
+            "chapterCode": "std30_pure_unit_14_12",
+            "title": "12. [사활] 사는 수 — 두 집이 생기는 정확한 방향 선택하기 (24제)",
+            "chapter": "12. [사활] 사는 수 — 두 집이 생기는 정확한 방향 선택하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_14_13",
+            "chapterCode": "std30_pure_unit_14_13",
+            "title": "13. [사활] 사는 수 — 바깥 선수 활용으로 안형 확보하기 (24제)",
+            "chapter": "13. [사활] 사는 수 — 바깥 선수 활용으로 안형 확보하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_14_14",
+            "chapterCode": "std30_pure_unit_14_14",
+            "title": "14. [사활] 잡는 수 — 상대 안형을 지워 유가무가로 잡기 (24제)",
+            "chapter": "14. [사활] 잡는 수 — 상대 안형을 지워 유가무가로 잡기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_14_15",
+            "chapterCode": "std30_pure_unit_14_15",
+            "title": "15. [포석] 걸침의 방향 — 가치가 큰 넓은 변에서 걸치기 (24제)",
+            "chapter": "15. [포석] 걸침의 방향 — 가치가 큰 넓은 변에서 걸치기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_14_16",
+            "chapterCode": "std30_pure_unit_14_16",
+            "title": "16. [정석] 삼삼 정석 — 삼삼 포석에 대한 걸침과 응수 완성 (24제)",
+            "chapter": "16. [정석] 삼삼 정석 — 삼삼 포석에 대한 걸침과 응수 완성 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_14_17",
+            "chapterCode": "std30_pure_unit_14_17",
+            "title": "17. [끝내기] 1선 한 칸 뜀 맥점으로 상대 집 파호하기 (24제)",
+            "chapter": "17. [끝내기] 1선 한 칸 뜀 맥점으로 상대 집 파호하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_14_18",
+            "chapterCode": "std30_pure_unit_14_18",
+            "title": "18. [끝내기] 경계선의 환격 노림을 활용한 알뜰 끝내기 (24제)",
+            "chapter": "18. [끝내기] 경계선의 환격 노림을 활용한 알뜰 끝내기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_14_19",
+            "chapterCode": "std30_pure_unit_14_19",
+            "title": "19. [판별] 사석 연결·봉쇄 돌파와 유가무가 원리 종합 (24제)",
+            "chapter": "19. [판별] 사석 연결·봉쇄 돌파와 유가무가 원리 종합 (24제)",
+            "problemCount": 24,
+            "count": 24
+          }
+        ],
+        "book": "14단계",
+        "problem_count": 451
+      },
+      {
+        "code": "std30_pure_stage_15",
+        "bookCode": "std30_pure_stage_15",
+        "file": "book_std30_pure_stage_15.json",
+        "title": "15단계",
+        "name": "제15단계 : 유가무가 4대 실전 기법과 빈축 · 패 공방 심화",
+        "_buildVer": "std30-s16-v1-pure-3series",
+        "chapterCount": 17,
+        "totalProblems": 404,
+        "problemCount": 404,
+        "chapters": [
+          {
+            "code": "std30_pure_unit_15_01",
+            "chapterCode": "std30_pure_unit_15_01",
+            "title": "01. [포획] 빈축(헛축)의 원리 — 축이 안 될 때도 몰아 잡기 (24제)",
+            "chapter": "01. [포획] 빈축(헛축)의 원리 — 축이 안 될 때도 몰아 잡기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_15_02",
+            "chapterCode": "std30_pure_unit_15_02",
+            "title": "02. [포획] 선수 단수 교환으로 환격 모양 강제하기 (24제)",
+            "chapter": "02. [포획] 선수 단수 교환으로 환격 모양 강제하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_15_03",
+            "chapterCode": "std30_pure_unit_15_03",
+            "title": "03. [포획] 변의 2선에 고립된 상대 침입 돌 제압하기 (24제)",
+            "chapter": "03. [포획] 변의 2선에 고립된 상대 침입 돌 제압하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_15_04",
+            "chapterCode": "std30_pure_unit_15_04",
+            "title": "04. [기법] 상대의 무리한 젖힘 약점을 찔러 응징하기 (24제)",
+            "chapter": "04. [기법] 상대의 무리한 젖힘 약점을 찔러 응징하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_15_05",
+            "chapterCode": "std30_pure_unit_15_05",
+            "title": "05. [연결] 난전 속 날일자 연결과 접근전 침착 대응 (21제)",
+            "chapter": "05. [연결] 난전 속 날일자 연결과 접근전 침착 대응 (21제)",
+            "problemCount": 21,
+            "count": 21
+          },
+          {
+            "code": "std30_pure_unit_15_06",
+            "chapterCode": "std30_pure_unit_15_06",
+            "title": "06. [수상전] 유가무가 기법 1 — 단수로 상대 집 지워 이기기 (24제)",
+            "chapter": "06. [수상전] 유가무가 기법 1 — 단수로 상대 집 지워 이기기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_15_07",
+            "chapterCode": "std30_pure_unit_15_07",
+            "title": "07. [수상전] 유가무가 기법 2 — 찝기로 상대 집 지워 이기기 (24제)",
+            "chapter": "07. [수상전] 유가무가 기법 2 — 찝기로 상대 집 지워 이기기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_15_08",
+            "chapterCode": "std30_pure_unit_15_08",
+            "title": "08. [수상전] 유가무가 기법 3 — 먹여쳐서 가짜 집 만들기 (24제)",
+            "chapter": "08. [수상전] 유가무가 기법 3 — 먹여쳐서 가짜 집 만들기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_15_09",
+            "chapterCode": "std30_pure_unit_15_09",
+            "title": "09. [수상전] 유가무가 기법 4 — 돌을 키워 버려 옥집화하기 (24제)",
+            "chapter": "09. [수상전] 유가무가 기법 4 — 돌을 키워 버려 옥집화하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_15_10",
+            "chapterCode": "std30_pure_unit_15_10",
+            "title": "10. [사활] 사는 수 — 패의 여지를 주지 않고 그냥 살기 (24제)",
+            "chapter": "10. [사활] 사는 수 — 패의 여지를 주지 않고 그냥 살기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_15_11",
+            "chapterCode": "std30_pure_unit_15_11",
+            "title": "11. [사활] 호구 버팀으로 패를 내어 살기와 패로 잡기 (24제)",
+            "chapter": "11. [사활] 호구 버팀으로 패를 내어 살기와 패로 잡기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_15_12",
+            "chapterCode": "std30_pure_unit_15_12",
+            "title": "12. [사활] 잡는 수 — 따내게 유도한 뒤 되따내어 잡기 (24제)",
+            "chapter": "12. [사활] 잡는 수 — 따내게 유도한 뒤 되따내어 잡기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_15_13",
+            "chapterCode": "std30_pure_unit_15_13",
+            "title": "13. [포석] 벌림의 방향과 돌 사이의 이상적인 간격 잡기 (24제)",
+            "chapter": "13. [포석] 벌림의 방향과 돌 사이의 이상적인 간격 잡기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_15_14",
+            "chapterCode": "std30_pure_unit_15_14",
+            "title": "14. [정석] 화점 기본 정석 6 — 날일자 걸침과 한 칸 협공 (23제)",
+            "chapter": "14. [정석] 화점 기본 정석 6 — 날일자 걸침과 한 칸 협공 (23제)",
+            "problemCount": 23,
+            "count": 23
+          },
+          {
+            "code": "std30_pure_unit_15_15",
+            "chapterCode": "std30_pure_unit_15_15",
+            "title": "15. [끝내기] 1선 눈목자(비마) 끝내기 입문과 과수 막기 주의 (24제)",
+            "chapter": "15. [끝내기] 1선 눈목자(비마) 끝내기 입문과 과수 막기 주의 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_15_16",
+            "chapterCode": "std30_pure_unit_15_16",
+            "title": "16. [끝내기] 선수 끝내기의 우선순위와 2선 굵은 끝내기 (24제)",
+            "chapter": "16. [끝내기] 선수 끝내기의 우선순위와 2선 굵은 끝내기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_15_17",
+            "chapterCode": "std30_pure_unit_15_17",
+            "title": "17. [판별] 중급 입문(11~15단계) 유가무가·빈축·패 사활 총괄 평가 (24제)",
+            "chapter": "17. [판별] 중급 입문(11~15단계) 유가무가·빈축·패 사활 총괄 평가 (24제)",
+            "problemCount": 24,
+            "count": 24
+          }
+        ],
+        "book": "15단계",
+        "problem_count": 404
+      },
+      {
+        "code": "std30_pure_stage_16",
+        "bookCode": "std30_pure_stage_16",
+        "file": "book_std30_pure_stage_16.json",
+        "title": "16단계",
+        "name": "제16단계 : 건너붙임·끼움 절단 맥점과 귀의 급소(2의 2)",
+        "_buildVer": "std30-s16-v1-pure-3series",
+        "chapterCount": 19,
+        "totalProblems": 443,
+        "problemCount": 443,
+        "chapters": [
+          {
+            "code": "std30_pure_unit_16_01",
+            "chapterCode": "std30_pure_unit_16_01",
+            "title": "01. [연결] 1·2선 틈새에 껴붙여 넘어가 연결하기 (24제)",
+            "chapter": "01. [연결] 1·2선 틈새에 껴붙여 넘어가 연결하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_16_02",
+            "chapterCode": "std30_pure_unit_16_02",
+            "title": "02. [끊음] 절단의 맥 1 — 날일자 허리에 건너붙여 끊기 (24제)",
+            "chapter": "02. [끊음] 절단의 맥 1 — 날일자 허리에 건너붙여 끊기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_16_03",
+            "chapterCode": "std30_pure_unit_16_03",
+            "title": "03. [끊음] 절단의 맥 2 — 끼워서 자충을 유도해 끊기 (24제)",
+            "chapter": "03. [끊음] 절단의 맥 2 — 끼워서 자충을 유도해 끊기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_16_04",
+            "chapterCode": "std30_pure_unit_16_04",
+            "title": "04. [끊음] 절단의 맥 3 — 비스듬히 찝어 연결 고리 끊기 (24제)",
+            "chapter": "04. [끊음] 절단의 맥 3 — 비스듬히 찝어 연결 고리 끊기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_16_05",
+            "chapterCode": "std30_pure_unit_16_05",
+            "title": "05. [기법] 회돌이 희생타를 결합한 촉촉수 포획 (24제)",
+            "chapter": "05. [기법] 회돌이 희생타를 결합한 촉촉수 포획 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_16_06",
+            "chapterCode": "std30_pure_unit_16_06",
+            "title": "06. [기법] 회돌이 교환으로 성립시키는 축과 장문 (24제)",
+            "chapter": "06. [기법] 회돌이 교환으로 성립시키는 축과 장문 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_16_07",
+            "chapterCode": "std30_pure_unit_16_07",
+            "title": "07. [행마] 2선 달리기로 변의 실리와 근거 선점하기 (22제)",
+            "chapter": "07. [행마] 2선 달리기로 변의 실리와 근거 선점하기 (22제)",
+            "problemCount": 22,
+            "count": 22
+          },
+          {
+            "code": "std30_pure_unit_16_08",
+            "chapterCode": "std30_pure_unit_16_08",
+            "title": "08. [행마] 중앙 한 칸 뜀으로 집 모양 입체 확장하기 (24제)",
+            "chapter": "08. [행마] 중앙 한 칸 뜀으로 집 모양 입체 확장하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_16_09",
+            "chapterCode": "std30_pure_unit_16_09",
+            "title": "09. [수상전] 패를 결행하여 불리한 수상전 역전하기 (24제)",
+            "chapter": "09. [수상전] 패를 결행하여 불리한 수상전 역전하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_16_10",
+            "chapterCode": "std30_pure_unit_16_10",
+            "title": "10. [수상전] 1·2선 젖힘 맥점으로 상대 활로 단축하기 (24제)",
+            "chapter": "10. [수상전] 1·2선 젖힘 맥점으로 상대 활로 단축하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_16_11",
+            "chapterCode": "std30_pure_unit_16_11",
+            "title": "11. [사활] 사는 수 — 두 곳의 안형을 맞보기로 살기 (24제)",
+            "chapter": "11. [사활] 사는 수 — 두 곳의 안형을 맞보기로 살기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_16_12",
+            "chapterCode": "std30_pure_unit_16_12",
+            "title": "12. [사활] 사는 수 — 상대 포위망의 약점을 추궁해 살기 (24제)",
+            "chapter": "12. [사활] 사는 수 — 상대 포위망의 약점을 추궁해 살기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_16_13",
+            "chapterCode": "std30_pure_unit_16_13",
+            "title": "13. [사활] 잡는 수 — 1선 입구자(마늘모) 치중으로 잡기 (24제)",
+            "chapter": "13. [사활] 잡는 수 — 1선 입구자(마늘모) 치중으로 잡기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_16_14",
+            "chapterCode": "std30_pure_unit_16_14",
+            "title": "14. [사활] 잡는 수 — 귀의 급소 ‘2의 2(二·二)’ 타격하기 (24제)",
+            "chapter": "14. [사활] 잡는 수 — 귀의 급소 ‘2의 2(二·二)’ 타격하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_16_15",
+            "chapterCode": "std30_pure_unit_16_15",
+            "title": "15. [사활] 잡는 수 — 끼우는 맥으로 궁도를 좁혀 잡기 (24제)",
+            "chapter": "15. [사활] 잡는 수 — 끼우는 맥으로 궁도를 좁혀 잡기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_16_16",
+            "chapterCode": "std30_pure_unit_16_16",
+            "title": "16. [포석] 전판 대세관 — 큰 곳보다 급한 곳이 먼저다 (20제)",
+            "chapter": "16. [포석] 전판 대세관 — 큰 곳보다 급한 곳이 먼저다 (20제)",
+            "problemCount": 20,
+            "count": 20
+          },
+          {
+            "code": "std30_pure_unit_16_17",
+            "chapterCode": "std30_pure_unit_16_17",
+            "title": "17. [정석] 화점 기본 정석 7 — 두 칸 높은 협공과 양걸침 응수 (17제)",
+            "chapter": "17. [정석] 화점 기본 정석 7 — 두 칸 높은 협공과 양걸침 응수 (17제)",
+            "problemCount": 17,
+            "count": 17
+          },
+          {
+            "code": "std30_pure_unit_16_18",
+            "chapterCode": "std30_pure_unit_16_18",
+            "title": "18. [끝내기] 상대의 선수를 먼저 빼앗는 역끝내기의 원리 (24제)",
+            "chapter": "18. [끝내기] 상대의 선수를 먼저 빼앗는 역끝내기의 원리 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_16_19",
+            "chapterCode": "std30_pure_unit_16_19",
+            "title": "19. [판별] 건너붙임·끼움 절단과 귀 2의 2 사활 실전 판별 (24제)",
+            "chapter": "19. [판별] 건너붙임·끼움 절단과 귀 2의 2 사활 실전 판별 (24제)",
+            "problemCount": 24,
+            "count": 24
+          }
+        ],
+        "book": "16단계",
+        "problem_count": 443
+      },
+      {
+        "code": "std30_pure_stage_17",
+        "bookCode": "std30_pure_stage_17",
+        "file": "book_std30_pure_stage_17.json",
+        "title": "17단계",
+        "name": "제17단계 : 후절수(後絶手)와 요석 판별 · 끼움 수상전",
+        "_buildVer": "std30-s16-v1-pure-3series",
+        "chapterCount": 17,
+        "totalProblems": 406,
+        "problemCount": 406,
+        "chapters": [
+          {
+            "code": "std30_pure_unit_17_01",
+            "chapterCode": "std30_pure_unit_17_01",
+            "title": "01. [기법] 후절수의 원리 — 잡힌 뒤 뒤를 끊어 되잡기 (24제)",
+            "chapter": "01. [기법] 후절수의 원리 — 잡힌 뒤 뒤를 끊어 되잡기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_17_02",
+            "chapterCode": "std30_pure_unit_17_02",
+            "title": "02. [판별] 요석 포획 — 진영을 가르는 핵심 돌 제압하기 (24제)",
+            "chapter": "02. [판별] 요석 포획 — 진영을 가르는 핵심 돌 제압하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_17_03",
+            "chapterCode": "std30_pure_unit_17_03",
+            "title": "03. [판별] 요석 생존 — 절대 버릴 수 없는 내 요석 구출하기 (24제)",
+            "chapter": "03. [판별] 요석 생존 — 절대 버릴 수 없는 내 요석 구출하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_17_04",
+            "chapterCode": "std30_pure_unit_17_04",
+            "title": "04. [연결] 1선 눈목자 맥점으로 넓은 간격 연결하기 (24제)",
+            "chapter": "04. [연결] 1선 눈목자 맥점으로 넓은 간격 연결하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_17_05",
+            "chapterCode": "std30_pure_unit_17_05",
+            "title": "05. [행마] 이단젖힘의 강수로 접근전 주도권 장악하기 (22제)",
+            "chapter": "05. [행마] 이단젖힘의 강수로 접근전 주도권 장악하기 (22제)",
+            "problemCount": 22,
+            "count": 22
+          },
+          {
+            "code": "std30_pure_unit_17_06",
+            "chapterCode": "std30_pure_unit_17_06",
+            "title": "06. [행마] 외곽을 두텁게 막아 상대 돌 완벽히 봉쇄하기 (24제)",
+            "chapter": "06. [행마] 외곽을 두텁게 막아 상대 돌 완벽히 봉쇄하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_17_07",
+            "chapterCode": "std30_pure_unit_17_07",
+            "title": "07. [행마] 가벼운 돌을 사석으로 버려 외세 구축하기 (24제)",
+            "chapter": "07. [행마] 가벼운 돌을 사석으로 버려 외세 구축하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_17_08",
+            "chapterCode": "std30_pure_unit_17_08",
+            "title": "08. [수상전] 끼우는 묘수로 부족한 수상전 뒤집기 (24제)",
+            "chapter": "08. [수상전] 끼우는 묘수로 부족한 수상전 뒤집기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_17_09",
+            "chapterCode": "std30_pure_unit_17_09",
+            "title": "09. [수상전] 무리한 추격을 피하는 수상전과 빅의 판별 (24제)",
+            "chapter": "09. [수상전] 무리한 추격을 피하는 수상전과 빅의 판별 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_17_10",
+            "chapterCode": "std30_pure_unit_17_10",
+            "title": "10. [수상전] 장문 그물을 씌워 바깥에서 수 줄이기 (24제)",
+            "chapter": "10. [수상전] 장문 그물을 씌워 바깥에서 수 줄이기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_17_11",
+            "chapterCode": "std30_pure_unit_17_11",
+            "title": "11. [수상전] 상대의 패 버팀을 봉쇄하여 수상전 끝내기 (24제)",
+            "chapter": "11. [수상전] 상대의 패 버팀을 봉쇄하여 수상전 끝내기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_17_12",
+            "chapterCode": "std30_pure_unit_17_12",
+            "title": "12. [사활] 사는 수 — 후절수를 이용해 두 집 확보하기 (24제)",
+            "chapter": "12. [사활] 사는 수 — 후절수를 이용해 두 집 확보하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_17_13",
+            "chapterCode": "std30_pure_unit_17_13",
+            "title": "13. [사활] 잡는 수 — 후절수를 노려 상대 대마 잡기 (24제)",
+            "chapter": "13. [사활] 잡는 수 — 후절수를 노려 상대 대마 잡기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_17_14",
+            "chapterCode": "std30_pure_unit_17_14",
+            "title": "14. [사활] 잡는 수 — 세 점으로 키워 잡는 중앙 급소 (24제)",
+            "chapter": "14. [사활] 잡는 수 — 세 점으로 키워 잡는 중앙 급소 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_17_15",
+            "chapterCode": "std30_pure_unit_17_15",
+            "title": "15. [포석] 고저장단(高低長短) — 3선과 4선의 입체 배합 (24제)",
+            "chapter": "15. [포석] 고저장단(高低長短) — 3선과 4선의 입체 배합 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_17_16",
+            "chapterCode": "std30_pure_unit_17_16",
+            "title": "16. [끝내기] 약점을 남기지 않고 한 발 늦춰 받는 수비 정수 (24제)",
+            "chapter": "16. [끝내기] 약점을 남기지 않고 한 발 늦춰 받는 수비 정수 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_17_17",
+            "chapterCode": "std30_pure_unit_17_17",
+            "title": "17. [판별] 후절수 공방·요석 판별과 끼움 수상전 종합 (24제)",
+            "chapter": "17. [판별] 후절수 공방·요석 판별과 끼움 수상전 종합 (24제)",
+            "problemCount": 24,
+            "count": 24
+          }
+        ],
+        "book": "17단계",
+        "problem_count": 406
+      },
+      {
+        "code": "std30_pure_stage_18",
+        "bookCode": "std30_pure_stage_18",
+        "file": "book_std30_pure_stage_18.json",
+        "title": "18단계",
+        "name": "제18단계 : 쌍립·석점 중앙 급소와 침투·삭감 전략",
+        "_buildVer": "std30-s16-v1-pure-3series",
+        "chapterCount": 15,
+        "totalProblems": 358,
+        "problemCount": 358,
+        "chapters": [
+          {
+            "code": "std30_pure_unit_18_01",
+            "chapterCode": "std30_pure_unit_18_01",
+            "title": "01. [연결] 집 손실과 뒷맛 없는 가장 효율적인 연결 (24제)",
+            "chapter": "01. [연결] 집 손실과 뒷맛 없는 가장 효율적인 연결 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_18_02",
+            "chapterCode": "std30_pure_unit_18_02",
+            "title": "02. [맥점] 쌍립의 급소를 찔러 상대를 우형으로 만들기 (24제)",
+            "chapter": "02. [맥점] 쌍립의 급소를 찔러 상대를 우형으로 만들기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_18_03",
+            "chapterCode": "std30_pure_unit_18_03",
+            "title": "03. [맥점] 끼움 맥점으로 연결 방해 및 선수 이득 챙기기 (24제)",
+            "chapter": "03. [맥점] 끼움 맥점으로 연결 방해 및 선수 이득 챙기기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_18_04",
+            "chapterCode": "std30_pure_unit_18_04",
+            "title": "04. [약점] 전투 전 내 약점 보강과 상대 엷음 추궁하기 (24제)",
+            "chapter": "04. [약점] 전투 전 내 약점 보강과 상대 엷음 추궁하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_18_05",
+            "chapterCode": "std30_pure_unit_18_05",
+            "title": "05. [수상전] 단단한 이음으로 내 수를 늘리고 패 방지하기 (24제)",
+            "chapter": "05. [수상전] 단단한 이음으로 내 수를 늘리고 패 방지하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_18_06",
+            "chapterCode": "std30_pure_unit_18_06",
+            "title": "06. [수상전] 회돌이와 요석 타격을 결합한 수상전 (24제)",
+            "chapter": "06. [수상전] 회돌이와 요석 타격을 결합한 수상전 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_18_07",
+            "chapterCode": "std30_pure_unit_18_07",
+            "title": "07. [사활] 사는 수 — 석 점의 정중앙 급소를 지켜 생존하기 (24제)",
+            "chapter": "07. [사활] 사는 수 — 석 점의 정중앙 급소를 지켜 생존하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_18_08",
+            "chapterCode": "std30_pure_unit_18_08",
+            "title": "08. [사활] 잡는 수 — 양환격 노림으로 두 집 무너뜨리기 (24제)",
+            "chapter": "08. [사활] 잡는 수 — 양환격 노림으로 두 집 무너뜨리기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_18_09",
+            "chapterCode": "std30_pure_unit_18_09",
+            "title": "09. [사활] 빅과 매화육궁의 경계 판별 및 집 안의 빅 (24제)",
+            "chapter": "09. [사활] 빅과 매화육궁의 경계 판별 및 집 안의 빅 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_18_10",
+            "chapterCode": "std30_pure_unit_18_10",
+            "title": "10. [포석] 상대 세력에 맞서는 깊은 침투와 가벼운 삭감 (24제)",
+            "chapter": "10. [포석] 상대 세력에 맞서는 깊은 침투와 가벼운 삭감 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_18_11",
+            "chapterCode": "std30_pure_unit_18_11",
+            "title": "11. [포석] 협공과 갈라치기를 결합한 중반 주도권 장악 (24제)",
+            "chapter": "11. [포석] 협공과 갈라치기를 결합한 중반 주도권 장악 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_18_12",
+            "chapterCode": "std30_pure_unit_18_12",
+            "title": "12. [정석] 화점 기본 정석 9 — 날일자 받기 후 옆구리 붙임 (22제)",
+            "chapter": "12. [정석] 화점 기본 정석 9 — 날일자 받기 후 옆구리 붙임 (22제)",
+            "problemCount": 22,
+            "count": 22
+          },
+          {
+            "code": "std30_pure_unit_18_13",
+            "chapterCode": "std30_pure_unit_18_13",
+            "title": "13. [끝내기] 1선 눈목자 달리기(비마 끝내기) 완결 수순 (24제)",
+            "chapter": "13. [끝내기] 1선 눈목자 달리기(비마 끝내기) 완결 수순 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_18_14",
+            "chapterCode": "std30_pure_unit_18_14",
+            "title": "14. [끝내기] 껴붙이기 맥점으로 굳은 상대 경계 파호하기 (24제)",
+            "chapter": "14. [끝내기] 껴붙이기 맥점으로 굳은 상대 경계 파호하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_18_15",
+            "chapterCode": "std30_pure_unit_18_15",
+            "title": "15. [판별] 쌍립·끼움 맥점과 침투·비마 끝내기 실전 판별 (24제)",
+            "chapter": "15. [판별] 쌍립·끼움 맥점과 침투·비마 끝내기 실전 판별 (24제)",
+            "problemCount": 24,
+            "count": 24
+          }
+        ],
+        "book": "18단계",
+        "problem_count": 358
+      },
+      {
+        "code": "std30_pure_stage_19",
+        "bookCode": "std30_pure_stage_19",
+        "file": "book_std30_pure_stage_19.json",
+        "title": "19단계",
+        "name": "제19단계 : 수순의 묘와 귀삼수(隅三手) · 3선 사석 작전",
+        "_buildVer": "std30-s16-v1-pure-3series",
+        "chapterCount": 17,
+        "totalProblems": 387,
+        "problemCount": 387,
+        "chapters": [
+          {
+            "code": "std30_pure_unit_19_01",
+            "chapterCode": "std30_pure_unit_19_01",
+            "title": "01. [맥점] 수순의 묘 — 사전 선수 교환으로 성공시키기 (24제)",
+            "chapter": "01. [맥점] 수순의 묘 — 사전 선수 교환으로 성공시키기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_19_02",
+            "chapterCode": "std30_pure_unit_19_02",
+            "title": "02. [행마] 피아간에 서로 한 칸이 되는 행마 요처 선점 (22제)",
+            "chapter": "02. [행마] 피아간에 서로 한 칸이 되는 행마 요처 선점 (22제)",
+            "problemCount": 22,
+            "count": 22
+          },
+          {
+            "code": "std30_pure_unit_19_03",
+            "chapterCode": "std30_pure_unit_19_03",
+            "title": "03. [행마] 고등 사석 작전 — 3선의 고립된 돌 키워 버리기 (21제)",
+            "chapter": "03. [행마] 고등 사석 작전 — 3선의 고립된 돌 키워 버리기 (21제)",
+            "problemCount": 21,
+            "count": 21
+          },
+          {
+            "code": "std30_pure_unit_19_04",
+            "chapterCode": "std30_pure_unit_19_04",
+            "title": "04. [포획] 넓은 간격으로 퇴로를 닫는 고급 장문의 맥 (24제)",
+            "chapter": "04. [포획] 넓은 간격으로 퇴로를 닫는 고급 장문의 맥 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_19_05",
+            "chapterCode": "std30_pure_unit_19_05",
+            "title": "05. [포획] 두 번 연속 먹여쳐 잡는 복합 환격 수읽기 (24제)",
+            "chapter": "05. [포획] 두 번 연속 먹여쳐 잡는 복합 환격 수읽기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_19_06",
+            "chapterCode": "std30_pure_unit_19_06",
+            "title": "06. [수상전] 귀삼수(隅三手) — 귀의 특수성으로 수 늘리기 (24제)",
+            "chapter": "06. [수상전] 귀삼수(隅三手) — 귀의 특수성으로 수 늘리기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_19_07",
+            "chapterCode": "std30_pure_unit_19_07",
+            "title": "07. [수상전] 1선의 연속 묘수를 활용한 수상전 대역전 (24제)",
+            "chapter": "07. [수상전] 1선의 연속 묘수를 활용한 수상전 대역전 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_19_08",
+            "chapterCode": "std30_pure_unit_19_08",
+            "title": "08. [수상전] 수상전 여유 수 계산과 손 빼기(선수 전환) 판단 (24제)",
+            "chapter": "08. [수상전] 수상전 여유 수 계산과 손 빼기(선수 전환) 판단 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_19_09",
+            "chapterCode": "std30_pure_unit_19_09",
+            "title": "09. [사활] 사는 수 — 귀의 탄력을 이용해 한 칸 뛰어 살기 (24제)",
+            "chapter": "09. [사활] 사는 수 — 귀의 탄력을 이용해 한 칸 뛰어 살기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_19_10",
+            "chapterCode": "std30_pure_unit_19_10",
+            "title": "10. [사활] 잡는 수 — 껴붙임 맥점으로 궁도를 좁혀 잡기 (21제)",
+            "chapter": "10. [사활] 잡는 수 — 껴붙임 맥점으로 궁도를 좁혀 잡기 (21제)",
+            "problemCount": 21,
+            "count": 21
+          },
+          {
+            "code": "std30_pure_unit_19_11",
+            "chapterCode": "std30_pure_unit_19_11",
+            "title": "11. [사활] 비대칭 6집 형태(번개 모양 등)의 생사 급소 (24제)",
+            "chapter": "11. [사활] 비대칭 6집 형태(번개 모양 등)의 생사 급소 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_19_12",
+            "chapterCode": "std30_pure_unit_19_12",
+            "title": "12. [포석] 확정 실리와 중앙 세력의 균형 잡힌 전판 설계 (24제)",
+            "chapter": "12. [포석] 확정 실리와 중앙 세력의 균형 잡힌 전판 설계 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_19_13",
+            "chapterCode": "std30_pure_unit_19_13",
+            "title": "13. [정석] 소목 기본 정석 2 — 한 칸 걸침과 날일자 받기 변화 (13제)",
+            "chapter": "13. [정석] 소목 기본 정석 2 — 한 칸 걸침과 날일자 받기 변화 (13제)",
+            "problemCount": 13,
+            "count": 13
+          },
+          {
+            "code": "std30_pure_unit_19_14",
+            "chapterCode": "std30_pure_unit_19_14",
+            "title": "14. [끝내기] 양선수 끝내기 — 서로 선수인 최우선 자리 포착 (24제)",
+            "chapter": "14. [끝내기] 양선수 끝내기 — 서로 선수인 최우선 자리 포착 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_19_15",
+            "chapterCode": "std30_pure_unit_19_15",
+            "title": "15. [끝내기] 1선 뛰어붙이기 맥점으로 변의 실리 도려내기 (24제)",
+            "chapter": "15. [끝내기] 1선 뛰어붙이기 맥점으로 변의 실리 도려내기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_19_16",
+            "chapterCode": "std30_pure_unit_19_16",
+            "title": "16. [끝내기] 양선수·역끝내기·편선수의 종반 우선순위 배열 (22제)",
+            "chapter": "16. [끝내기] 양선수·역끝내기·편선수의 종반 우선순위 배열 (22제)",
+            "problemCount": 22,
+            "count": 22
+          },
+          {
+            "code": "std30_pure_unit_19_17",
+            "chapterCode": "std30_pure_unit_19_17",
+            "title": "17. [판별] 수순의 묘·귀삼수와 상급 끝내기 실전 판별 (24제)",
+            "chapter": "17. [판별] 수순의 묘·귀삼수와 상급 끝내기 실전 판별 (24제)",
+            "problemCount": 24,
+            "count": 24
+          }
+        ],
+        "book": "19단계",
+        "problem_count": 387
+      },
+      {
+        "code": "std30_pure_stage_20",
+        "bookCode": "std30_pure_stage_20",
+        "file": "book_std30_pure_stage_20.json",
+        "title": "20단계",
+        "name": "제20단계 : 4대 맥점(붙임·젖힘·끼움·찝음)과 귀곡사(隅曲四)",
+        "_buildVer": "std30-s16-v1-pure-3series",
+        "chapterCount": 18,
+        "totalProblems": 432,
+        "problemCount": 432,
+        "chapters": [
+          {
+            "code": "std30_pure_unit_20_01",
+            "chapterCode": "std30_pure_unit_20_01",
+            "title": "01. [맥점] 붙임의 맥 — 코붙임과 배붙임으로 돌파구 열기 (24제)",
+            "chapter": "01. [맥점] 붙임의 맥 — 코붙임과 배붙임으로 돌파구 열기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_20_02",
+            "chapterCode": "std30_pure_unit_20_02",
+            "title": "02. [맥점] 젖힘의 맥 — 기세의 젖힘으로 활로와 안형 압박 (24제)",
+            "chapter": "02. [맥점] 젖힘의 맥 — 기세의 젖힘으로 활로와 안형 압박 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_20_03",
+            "chapterCode": "std30_pure_unit_20_03",
+            "title": "03. [맥점] 끼움의 맥 심화 — 견고한 진영에 단점 만들기 (24제)",
+            "chapter": "03. [맥점] 끼움의 맥 심화 — 견고한 진영에 단점 만들기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_20_04",
+            "chapterCode": "std30_pure_unit_20_04",
+            "title": "04. [맥점] 찝음의 맥 — 비스듬히 찝어 연결과 파호 겸하기 (24제)",
+            "chapter": "04. [맥점] 찝음의 맥 — 비스듬히 찝어 연결과 파호 겸하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_20_05",
+            "chapterCode": "std30_pure_unit_20_05",
+            "title": "05. [행마] 두 점 머리를 강타해 중반 전투 주도권 잡기 (24제)",
+            "chapter": "05. [행마] 두 점 머리를 강타해 중반 전투 주도권 잡기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_20_06",
+            "chapterCode": "std30_pure_unit_20_06",
+            "title": "06. [행마] 선수 단수를 디딤돌 삼아 포위망 탈출하기 (24제)",
+            "chapter": "06. [행마] 선수 단수를 디딤돌 삼아 포위망 탈출하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_20_07",
+            "chapterCode": "std30_pure_unit_20_07",
+            "title": "07. [행마] 도를 넘은 상대의 무리수(과수) 정확히 응징하기 (24제)",
+            "chapter": "07. [행마] 도를 넘은 상대의 무리수(과수) 정확히 응징하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_20_08",
+            "chapterCode": "std30_pure_unit_20_08",
+            "title": "08. [수상전] 환격 노림으로 상대 활로를 묶는 수상전 (24제)",
+            "chapter": "08. [수상전] 환격 노림으로 상대 활로를 묶는 수상전 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_20_09",
+            "chapterCode": "std30_pure_unit_20_09",
+            "title": "09. [수상전] 찝는 맥점으로 한 수 빠르게 조이는 수상전 (24제)",
+            "chapter": "09. [수상전] 찝는 맥점으로 한 수 빠르게 조이는 수상전 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_20_10",
+            "chapterCode": "std30_pure_unit_20_10",
+            "title": "10. [사활] 대칭형 사활의 대원칙 — 좌우동형은 중앙이 급소 (24제)",
+            "chapter": "10. [사활] 대칭형 사활의 대원칙 — 좌우동형은 중앙이 급소 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_20_11",
+            "chapterCode": "std30_pure_unit_20_11",
+            "title": "11. [사활] 잡는 수 — 1선 입구자 심화 수읽기로 대마 포획 (24제)",
+            "chapter": "11. [사활] 잡는 수 — 1선 입구자 심화 수읽기로 대마 포획 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_20_12",
+            "chapterCode": "std30_pure_unit_20_12",
+            "title": "12. [사활] 잡는 수 — 1선 젖힘 맥점으로 안형 무너뜨리기 (24제)",
+            "chapter": "12. [사활] 잡는 수 — 1선 젖힘 맥점으로 안형 무너뜨리기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_20_13",
+            "chapterCode": "std30_pure_unit_20_13",
+            "title": "13. [사활] 귀곡사(隅曲四) — 귀의 곡사궁이 죽는 원리 마스터 (24제)",
+            "chapter": "13. [사활] 귀곡사(隅曲四) — 귀의 곡사궁이 죽는 원리 마스터 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_20_14",
+            "chapterCode": "std30_pure_unit_20_14",
+            "title": "14. [사활] 주변 배석과 외곽 약점을 추궁해 기사회생하기 (24제)",
+            "chapter": "14. [사활] 주변 배석과 외곽 약점을 추궁해 기사회생하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_20_15",
+            "chapterCode": "std30_pure_unit_20_15",
+            "title": "15. [포석] 어깨집기로 상대 세력을 자연스럽게 삭감하기 (24제)",
+            "chapter": "15. [포석] 어깨집기로 상대 세력을 자연스럽게 삭감하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_20_16",
+            "chapterCode": "std30_pure_unit_20_16",
+            "title": "16. [끝내기] 자충 약점을 찔러 손 안 대고 깎는 끝내기 (24제)",
+            "chapter": "16. [끝내기] 자충 약점을 찔러 손 안 대고 깎는 끝내기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_20_17",
+            "chapterCode": "std30_pure_unit_20_17",
+            "title": "17. [끝내기] 궁도 급소 치중으로 상대 집을 반감시키는 끝내기 (24제)",
+            "chapter": "17. [끝내기] 궁도 급소 치중으로 상대 집을 반감시키는 끝내기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_20_18",
+            "chapterCode": "std30_pure_unit_20_18",
+            "title": "18. [판별] 중급 심화(16~20단계) 4대 맥점·귀곡사 총괄 평가 (24제)",
+            "chapter": "18. [판별] 중급 심화(16~20단계) 4대 맥점·귀곡사 총괄 평가 (24제)",
+            "problemCount": 24,
+            "count": 24
+          }
+        ],
+        "book": "20단계",
+        "problem_count": 432
+      },
+      {
+        "code": "std30_pure_stage_21",
+        "bookCode": "std30_pure_stage_21",
+        "file": "book_std30_pure_stage_21.json",
+        "title": "21단계",
+        "name": "제21단계 : 3선 4사6활과 오궁도화 · 귀의 특수성 수상전",
+        "_buildVer": "std30-s16-v1-pure-3series",
+        "chapterCount": 19,
+        "totalProblems": 451,
+        "problemCount": 451,
+        "chapters": [
+          {
+            "code": "std30_pure_unit_21_01",
+            "chapterCode": "std30_pure_unit_21_01",
+            "title": "01. [끊음] 환격 노림을 결합한 고급 절단 맥점 (24제)",
+            "chapter": "01. [끊음] 환격 노림을 결합한 고급 절단 맥점 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_21_02",
+            "chapterCode": "std30_pure_unit_21_02",
+            "title": "02. [행마] 끊기 공격 대응 1 — 단수 대신 곧게 늘어 싸우기 (24제)",
+            "chapter": "02. [행마] 끊기 공격 대응 1 — 단수 대신 곧게 늘어 싸우기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_21_03",
+            "chapterCode": "std30_pure_unit_21_03",
+            "title": "03. [행마] 끊기 공격 대응 2 — 가벼운 돌을 버려 외곽 장악 (22제)",
+            "chapter": "03. [행마] 끊기 공격 대응 2 — 가벼운 돌을 버려 외곽 장악 (22제)",
+            "problemCount": 22,
+            "count": 22
+          },
+          {
+            "code": "std30_pure_unit_21_04",
+            "chapterCode": "std30_pure_unit_21_04",
+            "title": "04. [행마] 공격당하기 전에 변과 귀에 근거 확보하기 (21제)",
+            "chapter": "04. [행마] 공격당하기 전에 변과 귀에 근거 확보하기 (21제)",
+            "problemCount": 21,
+            "count": 21
+          },
+          {
+            "code": "std30_pure_unit_21_05",
+            "chapterCode": "std30_pure_unit_21_05",
+            "title": "05. [행마] 모자 씌우기 공격과 날일자로 벗어나는 호흡 (24제)",
+            "chapter": "05. [행마] 모자 씌우기 공격과 날일자로 벗어나는 호흡 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_21_06",
+            "chapterCode": "std30_pure_unit_21_06",
+            "title": "06. [행마] 3선 연속 밀기의 비효율과 중앙 전환 타이밍 (24제)",
+            "chapter": "06. [행마] 3선 연속 밀기의 비효율과 중앙 전환 타이밍 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_21_07",
+            "chapterCode": "std30_pure_unit_21_07",
+            "title": "07. [수상전] 귀의 특수성 수상전 1 — 착수금지로 줄어드는 내 수 (24제)",
+            "chapter": "07. [수상전] 귀의 특수성 수상전 1 — 착수금지로 줄어드는 내 수 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_21_08",
+            "chapterCode": "std30_pure_unit_21_08",
+            "title": "08. [수상전] 귀의 특수성 수상전 2 — 귀 모서리로 수 늘리기 (24제)",
+            "chapter": "08. [수상전] 귀의 특수성 수상전 2 — 귀 모서리로 수 늘리기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_21_09",
+            "chapterCode": "std30_pure_unit_21_09",
+            "title": "09. [수상전] 두 번 연속 먹여쳐 큰 궁도의 활로 단축하기 (24제)",
+            "chapter": "09. [수상전] 두 번 연속 먹여쳐 큰 궁도의 활로 단축하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_21_10",
+            "chapterCode": "std30_pure_unit_21_10",
+            "title": "10. [사활] 3선에 뜬 대마의 4사6활 생사 공식 (24제)",
+            "chapter": "10. [사활] 3선에 뜬 대마의 4사6활 생사 공식 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_21_11",
+            "chapterCode": "std30_pure_unit_21_11",
+            "title": "11. [사활] 사는 수 — 한 발 늦춰 받아 약점 없이 완생하기 (24제)",
+            "chapter": "11. [사활] 사는 수 — 한 발 늦춰 받아 약점 없이 완생하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_21_12",
+            "chapterCode": "std30_pure_unit_21_12",
+            "title": "12. [사활] 사는 수 — 1선의 숨은 급소를 찾아 두 집 내기 (24제)",
+            "chapter": "12. [사활] 사는 수 — 1선의 숨은 급소를 찾아 두 집 내기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_21_13",
+            "chapterCode": "std30_pure_unit_21_13",
+            "title": "13. [사활] 잡는 수 — 오궁도화(매화오궁 나카데) 유도해 잡기 (24제)",
+            "chapter": "13. [사활] 잡는 수 — 오궁도화(매화오궁 나카데) 유도해 잡기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_21_14",
+            "chapterCode": "std30_pure_unit_21_14",
+            "title": "14. [사활] 잡는 수 — 첫수 급소 치중 후 옥집 만들어 잡기 (24제)",
+            "chapter": "14. [사활] 잡는 수 — 첫수 급소 치중 후 옥집 만들어 잡기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_21_15",
+            "chapterCode": "std30_pure_unit_21_15",
+            "title": "15. [포석] 마주 보는 양쪽 세력의 정중앙 요처 선점하기 (24제)",
+            "chapter": "15. [포석] 마주 보는 양쪽 세력의 정중앙 요처 선점하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_21_16",
+            "chapterCode": "std30_pure_unit_21_16",
+            "title": "16. [끝내기] 허술한 2선 경계로 과감히 뛰어들어 집 깎기 (24제)",
+            "chapter": "16. [끝내기] 허술한 2선 경계로 과감히 뛰어들어 집 깎기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_21_17",
+            "chapterCode": "std30_pure_unit_21_17",
+            "title": "17. [끝내기] 경계선의 끊는 약점을 노리는 고급 끝내기 (24제)",
+            "chapter": "17. [끝내기] 경계선의 끊는 약점을 노리는 고급 끝내기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_21_18",
+            "chapterCode": "std30_pure_unit_21_18",
+            "title": "18. [끝내기] 1선 입구자(마늘모) 끝내기 1 — 침투와 파호 (24제)",
+            "chapter": "18. [끝내기] 1선 입구자(마늘모) 끝내기 1 — 침투와 파호 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_21_19",
+            "chapterCode": "std30_pure_unit_21_19",
+            "title": "19. [판별] 오궁도화·귀 특수성 수상전과 중앙 공방 실전 판별 (24제)",
+            "chapter": "19. [판별] 오궁도화·귀 특수성 수상전과 중앙 공방 실전 판별 (24제)",
+            "problemCount": 24,
+            "count": 24
+          }
+        ],
+        "book": "21단계",
+        "problem_count": 451
+      },
+      {
+        "code": "std30_pure_stage_22",
+        "bookCode": "std30_pure_stage_22",
+        "file": "book_std30_pure_stage_22.json",
+        "title": "22단계",
+        "name": "제22단계 : 선패·후패 수상전과 대형 6궁 사활 · 완벽 봉쇄",
+        "_buildVer": "std30-s16-v1-pure-3series",
+        "chapterCount": 14,
+        "totalProblems": 333,
+        "problemCount": 333,
+        "chapters": [
+          {
+            "code": "std30_pure_unit_22_01",
+            "chapterCode": "std30_pure_unit_22_01",
+            "title": "01. [맥점] 피아의 급소 — 상대 호구자리를 먼저 찌르기 (24제)",
+            "chapter": "01. [맥점] 피아의 급소 — 상대 호구자리를 먼저 찌르기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_22_02",
+            "chapterCode": "std30_pure_unit_22_02",
+            "title": "02. [행마] 빈틈없이 틀어막아 외세를 완성하는 봉쇄법 (24제)",
+            "chapter": "02. [행마] 빈틈없이 틀어막아 외세를 완성하는 봉쇄법 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_22_03",
+            "chapterCode": "std30_pure_unit_22_03",
+            "title": "03. [행마] 한 발 떨어진 그물 행마로 가두는 봉쇄법 (24제)",
+            "chapter": "03. [행마] 한 발 떨어진 그물 행마로 가두는 봉쇄법 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_22_04",
+            "chapterCode": "std30_pure_unit_22_04",
+            "title": "04. [판별] 큰 패와 급한 패의 경중 비교와 대국적 선택 (24제)",
+            "chapter": "04. [판별] 큰 패와 급한 패의 경중 비교와 대국적 선택 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_22_05",
+            "chapterCode": "std30_pure_unit_22_05",
+            "title": "05. [수상전] 패 수상전의 우열 — 선패(유리한 패)와 후패 구분 (24제)",
+            "chapter": "05. [수상전] 패 수상전의 우열 — 선패(유리한 패)와 후패 구분 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_22_06",
+            "chapterCode": "std30_pure_unit_22_06",
+            "title": "06. [수상전] 끊어진 돌을 묘수로 연결해 수상전 역전하기 (24제)",
+            "chapter": "06. [수상전] 끊어진 돌을 묘수로 연결해 수상전 역전하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_22_07",
+            "chapterCode": "std30_pure_unit_22_07",
+            "title": "07. [사활] 대형 6궁 사활 1 — 넓은 6궁에서 완생 급소 찾기 (24제)",
+            "chapter": "07. [사활] 대형 6궁 사활 1 — 넓은 6궁에서 완생 급소 찾기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_22_08",
+            "chapterCode": "std30_pure_unit_22_08",
+            "title": "08. [사활] 대형 6궁 사활 2 — 넓은 6궁의 맹점 치중해 잡기 (24제)",
+            "chapter": "08. [사활] 대형 6궁 사활 2 — 넓은 6궁의 맹점 치중해 잡기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_22_09",
+            "chapterCode": "std30_pure_unit_22_09",
+            "title": "09. [사활] 바깥 공배와 연계한 두 점 키움 옥집 심화 (24제)",
+            "chapter": "09. [사활] 바깥 공배와 연계한 두 점 키움 옥집 심화 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_22_10",
+            "chapterCode": "std30_pure_unit_22_10",
+            "title": "10. [정석] 화점 심화 정석 — 옆구리 붙임과 협공 이후의 전투 (21제)",
+            "chapter": "10. [정석] 화점 심화 정석 — 옆구리 붙임과 협공 이후의 전투 (21제)",
+            "problemCount": 21,
+            "count": 21
+          },
+          {
+            "code": "std30_pure_unit_22_11",
+            "chapterCode": "std30_pure_unit_22_11",
+            "title": "11. [끝내기] 1선 입구자(마늘모) 끝내기 2 — 최선의 수비 대응 (24제)",
+            "chapter": "11. [끝내기] 1선 입구자(마늘모) 끝내기 2 — 최선의 수비 대응 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_22_12",
+            "chapterCode": "std30_pure_unit_22_12",
+            "title": "12. [끝내기] 경계 너머 상대 단점을 추궁하는 3~6수 끝내기 (24제)",
+            "chapter": "12. [끝내기] 경계 너머 상대 단점을 추궁하는 3~6수 끝내기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_22_13",
+            "chapterCode": "std30_pure_unit_22_13",
+            "title": "13. [끝내기] 넓은 1선 공간으로 깊숙이 뛰어들어가기 (24제)",
+            "chapter": "13. [끝내기] 넓은 1선 공간으로 깊숙이 뛰어들어가기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_22_14",
+            "chapterCode": "std30_pure_unit_22_14",
+            "title": "14. [판별] 선패·후패 수상전과 대형 6궁 사활 실전 판별 (24제)",
+            "chapter": "14. [판별] 선패·후패 수상전과 대형 6궁 사활 실전 판별 (24제)",
+            "problemCount": 24,
+            "count": 24
+          }
+        ],
+        "book": "22단계",
+        "problem_count": 333
+      },
+      {
+        "code": "std30_pure_stage_23",
+        "bookCode": "std30_pure_stage_23",
+        "file": "book_std30_pure_stage_23.json",
+        "title": "23단계",
+        "name": "제23단계 : 판육궁과 ‘2의 1’ 급소 · 5·6궁 대형 궁도 수상전",
+        "_buildVer": "std30-s16-v1-pure-3series",
+        "chapterCount": 14,
+        "totalProblems": 336,
+        "problemCount": 336,
+        "chapters": [
+          {
+            "code": "std30_pure_unit_23_01",
+            "chapterCode": "std30_pure_unit_23_01",
+            "title": "01. [맥점] 수순의 묘 심화 — 3~5수 사전 활용 공작 (24제)",
+            "chapter": "01. [맥점] 수순의 묘 심화 — 3~5수 사전 활용 공작 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_23_02",
+            "chapterCode": "std30_pure_unit_23_02",
+            "title": "02. [행마] 응수타진 — 상대의 받는 태도를 보고 작전 정하기 (24제)",
+            "chapter": "02. [행마] 응수타진 — 상대의 받는 태도를 보고 작전 정하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_23_03",
+            "chapterCode": "std30_pure_unit_23_03",
+            "title": "03. [판별] 중반 난전 속 요석 포획 고급 수읽기 (24제)",
+            "chapter": "03. [판별] 중반 난전 속 요석 포획 고급 수읽기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_23_04",
+            "chapterCode": "std30_pure_unit_23_04",
+            "title": "04. [판별] 중반 난전 속 요석 구출 고급 수읽기 (24제)",
+            "chapter": "04. [판별] 중반 난전 속 요석 구출 고급 수읽기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_23_05",
+            "chapterCode": "std30_pure_unit_23_05",
+            "title": "05. [수상전] 대형 궁도 수 계산 공식 — 5궁(8수)과 6궁(12수) (24제)",
+            "chapter": "05. [수상전] 대형 궁도 수 계산 공식 — 5궁(8수)과 6궁(12수) (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_23_06",
+            "chapterCode": "std30_pure_unit_23_06",
+            "title": "06. [수상전] 대형 수상전의 여유 수 계산과 선수 전환 (24제)",
+            "chapter": "06. [수상전] 대형 수상전의 여유 수 계산과 선수 전환 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_23_07",
+            "chapterCode": "std30_pure_unit_23_07",
+            "title": "07. [사활] 사는 수 — 1선 호구 묘수로 절체절명에서 살기 (24제)",
+            "chapter": "07. [사활] 사는 수 — 1선 호구 묘수로 절체절명에서 살기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_23_08",
+            "chapterCode": "std30_pure_unit_23_08",
+            "title": "08. [사활] 귀 사활의 정수 1 — ‘2의 1(二·一)’ 급소로 살기 (24제)",
+            "chapter": "08. [사활] 귀 사활의 정수 1 — ‘2의 1(二·一)’ 급소로 살기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_23_09",
+            "chapterCode": "std30_pure_unit_23_09",
+            "title": "09. [사활] 귀 사활의 정수 2 — ‘2의 1(二·一)’ 급소로 잡기 (24제)",
+            "chapter": "09. [사활] 귀 사활의 정수 2 — ‘2의 1(二·一)’ 급소로 잡기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_23_10",
+            "chapterCode": "std30_pure_unit_23_10",
+            "title": "10. [사활] 귀 사활의 정수 3 — 판육궁(모서리 6궁) 완전 정복 (24제)",
+            "chapter": "10. [사활] 귀 사활의 정수 3 — 판육궁(모서리 6궁) 완전 정복 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_23_11",
+            "chapterCode": "std30_pure_unit_23_11",
+            "title": "11. [사활] 잡는 수 — 1선 젖힘과 먹여치기로 패 유도하기 (24제)",
+            "chapter": "11. [사활] 잡는 수 — 1선 젖힘과 먹여치기로 패 유도하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_23_12",
+            "chapterCode": "std30_pure_unit_23_12",
+            "title": "12. [포석] 판 전체의 흐름을 지배하는 대세점 찾아내기 (24제)",
+            "chapter": "12. [포석] 판 전체의 흐름을 지배하는 대세점 찾아내기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_23_13",
+            "chapterCode": "std30_pure_unit_23_13",
+            "title": "13. [끝내기] 빅을 유도해 집 손실을 막는 끝내기 수비 (24제)",
+            "chapter": "13. [끝내기] 빅을 유도해 집 손실을 막는 끝내기 수비 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_23_14",
+            "chapterCode": "std30_pure_unit_23_14",
+            "title": "14. [판별] 판육궁·2의 1 급소와 5·6궁 대형 수상전 종합 (24제)",
+            "chapter": "14. [판별] 판육궁·2의 1 급소와 5·6궁 대형 수상전 종합 (24제)",
+            "problemCount": 24,
+            "count": 24
+          }
+        ],
+        "book": "23단계",
+        "problem_count": 336
+      },
+      {
+        "code": "std30_pure_stage_24",
+        "bookCode": "std30_pure_stage_24",
+        "file": "book_std30_pure_stage_24.json",
+        "title": "24단계",
+        "name": "제24단계 : 단수의 유보와 굴절 행마 · 변의 사활과 팻감 공작",
+        "_buildVer": "std30-s16-v1-pure-3series",
+        "chapterCount": 15,
+        "totalProblems": 351,
+        "problemCount": 351,
+        "chapters": [
+          {
+            "code": "std30_pure_unit_24_01",
+            "chapterCode": "std30_pure_unit_24_01",
+            "title": "01. [기법] 단수의 유보 — 뒷맛을 남겨 활용 가치 높이기 (24제)",
+            "chapter": "01. [기법] 단수의 유보 — 뒷맛을 남겨 활용 가치 높이기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_24_02",
+            "chapterCode": "std30_pure_unit_24_02",
+            "title": "02. [기법] 5수 앞을 내다보는 단수 방향의 정밀 선택 (21제)",
+            "chapter": "02. [기법] 5수 앞을 내다보는 단수 방향의 정밀 선택 (21제)",
+            "problemCount": 21,
+            "count": 21
+          },
+          {
+            "code": "std30_pure_unit_24_03",
+            "chapterCode": "std30_pure_unit_24_03",
+            "title": "03. [맥점] 급소 젖히기 일격으로 상대 모양 무너뜨리기 (24제)",
+            "chapter": "03. [맥점] 급소 젖히기 일격으로 상대 모양 무너뜨리기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_24_04",
+            "chapterCode": "std30_pure_unit_24_04",
+            "title": "04. [행마] 들여다보기의 적시 타이밍과 반발 대응 (24제)",
+            "chapter": "04. [행마] 들여다보기의 적시 타이밍과 반발 대응 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_24_05",
+            "chapterCode": "std30_pure_unit_24_05",
+            "title": "05. [행마] 굴절(ㄱ자) 접촉 형태에서의 약점 방어와 반격 (21제)",
+            "chapter": "05. [행마] 굴절(ㄱ자) 접촉 형태에서의 약점 방어와 반격 (21제)",
+            "problemCount": 21,
+            "count": 21
+          },
+          {
+            "code": "std30_pure_unit_24_06",
+            "chapterCode": "std30_pure_unit_24_06",
+            "title": "06. [행마] 날일자 그물 장문과 우아한 중앙 봉쇄 (24제)",
+            "chapter": "06. [행마] 날일자 그물 장문과 우아한 중앙 봉쇄 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_24_07",
+            "chapterCode": "std30_pure_unit_24_07",
+            "title": "07. [수상전] 외곽 조임과 안쪽 치중을 결합한 5~7수 수상전 (24제)",
+            "chapter": "07. [수상전] 외곽 조임과 안쪽 치중을 결합한 5~7수 수상전 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_24_08",
+            "chapterCode": "std30_pure_unit_24_08",
+            "title": "08. [사활] 변의 실전 사활 1 — 양쪽이 트인 변에서 완생하기 (24제)",
+            "chapter": "08. [사활] 변의 실전 사활 1 — 양쪽이 트인 변에서 완생하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_24_09",
+            "chapterCode": "std30_pure_unit_24_09",
+            "title": "09. [사활] 변의 실전 사활 2 — 젖힘과 치중 조합으로 잡기 (24제)",
+            "chapter": "09. [사활] 변의 실전 사활 2 — 젖힘과 치중 조합으로 잡기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_24_10",
+            "chapterCode": "std30_pure_unit_24_10",
+            "title": "10. [사활] 변형 대칭 사활에서의 중앙 급소 응용 (24제)",
+            "chapter": "10. [사활] 변형 대칭 사활에서의 중앙 급소 응용 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_24_11",
+            "chapterCode": "std30_pure_unit_24_11",
+            "title": "11. [사활] 패의 고등 전략 — 자체 팻감 공작과 개수 계산 (24제)",
+            "chapter": "11. [사활] 패의 고등 전략 — 자체 팻감 공작과 개수 계산 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_24_12",
+            "chapterCode": "std30_pure_unit_24_12",
+            "title": "12. [행마] 중앙 한 칸 행마와 성급한 악수 교환 경계하기 (24제)",
+            "chapter": "12. [행마] 중앙 한 칸 행마와 성급한 악수 교환 경계하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_24_13",
+            "chapterCode": "std30_pure_unit_24_13",
+            "title": "13. [정석] 고목 정석 — 한 칸 걸침에 씌우기와 날일자 밑붙임 완성 (21제)",
+            "chapter": "13. [정석] 고목 정석 — 한 칸 걸침에 씌우기와 날일자 밑붙임 완성 (21제)",
+            "problemCount": 21,
+            "count": 21
+          },
+          {
+            "code": "std30_pure_unit_24_14",
+            "chapterCode": "std30_pure_unit_24_14",
+            "title": "14. [끝내기] 이미 잡힌 사석을 재활용하는 선수 끝내기 (24제)",
+            "chapter": "14. [끝내기] 이미 잡힌 사석을 재활용하는 선수 끝내기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_24_15",
+            "chapterCode": "std30_pure_unit_24_15",
+            "title": "15. [판별] 단수 유보·굴절 행마와 변 사활·팻감 실전 판별 (24제)",
+            "chapter": "15. [판별] 단수 유보·굴절 행마와 변 사활·팻감 실전 판별 (24제)",
+            "problemCount": 24,
+            "count": 24
+          }
+        ],
+        "book": "24단계",
+        "problem_count": 351
+      },
+      {
+        "code": "std30_pure_stage_25",
+        "bookCode": "std30_pure_stage_25",
+        "file": "book_std30_pure_stage_25.json",
+        "title": "25단계",
+        "name": "제25단계 : 실전 약점 공방과 복합 옥집 맥 · 고급 과정 종합",
+        "_buildVer": "std30-s16-v1-pure-3series",
+        "chapterCount": 14,
+        "totalProblems": 334,
+        "problemCount": 334,
+        "chapters": [
+          {
+            "code": "std30_pure_unit_25_01",
+            "chapterCode": "std30_pure_unit_25_01",
+            "title": "01. [연결] 실전 한 칸 연결의 탄력과 보강 타이밍 (24제)",
+            "chapter": "01. [연결] 실전 한 칸 연결의 탄력과 보강 타이밍 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_25_02",
+            "chapterCode": "std30_pure_unit_25_02",
+            "title": "02. [연결] 중반 난전에서의 맞보기 연결 심화 (24제)",
+            "chapter": "02. [연결] 중반 난전에서의 맞보기 연결 심화 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_25_03",
+            "chapterCode": "std30_pure_unit_25_03",
+            "title": "03. [약점] 전판 시야로 상대 진영의 숨은 단점 폭로하기 (24제)",
+            "chapter": "03. [약점] 전판 시야로 상대 진영의 숨은 단점 폭로하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_25_04",
+            "chapterCode": "std30_pure_unit_25_04",
+            "title": "04. [약점] 여러 곳이 얽힌 내 진영 단점을 한 수로 지키기 (24제)",
+            "chapter": "04. [약점] 여러 곳이 얽힌 내 진영 단점을 한 수로 지키기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_25_05",
+            "chapterCode": "std30_pure_unit_25_05",
+            "title": "05. [행마] 사석 활용 심화 — 선수 활용을 끝까지 뽑고 버리기 (24제)",
+            "chapter": "05. [행마] 사석 활용 심화 — 선수 활용을 끝까지 뽑고 버리기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_25_06",
+            "chapterCode": "std30_pure_unit_25_06",
+            "title": "06. [수상전] 메울 수 없는 ‘착시 활로(가짜 활로)’ 간파하기 (24제)",
+            "chapter": "06. [수상전] 메울 수 없는 ‘착시 활로(가짜 활로)’ 간파하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_25_07",
+            "chapterCode": "std30_pure_unit_25_07",
+            "title": "07. [수상전] 패가 얽힌 복합 수상전의 정밀 승패 계산 (24제)",
+            "chapter": "07. [수상전] 패가 얽힌 복합 수상전의 정밀 승패 계산 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_25_08",
+            "chapterCode": "std30_pure_unit_25_08",
+            "title": "08. [사활] 고급 옥집 맥 1 — 1·2선 젖힘으로 자충 옥집 유도 (24제)",
+            "chapter": "08. [사활] 고급 옥집 맥 1 — 1·2선 젖힘으로 자충 옥집 유도 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_25_09",
+            "chapterCode": "std30_pure_unit_25_09",
+            "title": "09. [사활] 고급 옥집 맥 2 — 먹여치기와 찝기 연속 콤보 (24제)",
+            "chapter": "09. [사활] 고급 옥집 맥 2 — 먹여치기와 찝기 연속 콤보 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_25_10",
+            "chapterCode": "std30_pure_unit_25_10",
+            "title": "10. [사활] 착수금지와 촉촉수 함정을 결합한 고급 사활 (22제)",
+            "chapter": "10. [사활] 착수금지와 촉촉수 함정을 결합한 고급 사활 (22제)",
+            "problemCount": 22,
+            "count": 22
+          },
+          {
+            "code": "std30_pure_unit_25_11",
+            "chapterCode": "std30_pure_unit_25_11",
+            "title": "11. [포석] 후속 침입과 공격 노림을 품은 전략적 벌림 (24제)",
+            "chapter": "11. [포석] 후속 침입과 공격 노림을 품은 전략적 벌림 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_25_12",
+            "chapterCode": "std30_pure_unit_25_12",
+            "title": "12. [끝내기] 선수 끝내기 불응에 대한 준엄한 후속 타격 (24제)",
+            "chapter": "12. [끝내기] 선수 끝내기 불응에 대한 준엄한 후속 타격 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_25_13",
+            "chapterCode": "std30_pure_unit_25_13",
+            "title": "13. [끝내기] 공배 정리 시 생기는 양쪽 단점 동시에 지키기 (24제)",
+            "chapter": "13. [끝내기] 공배 정리 시 생기는 양쪽 단점 동시에 지키기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_25_14",
+            "chapterCode": "std30_pure_unit_25_14",
+            "title": "14. [판별] 고급 과정(21~25단계) 사활·수상전·중반전 총괄 평가 (24제)",
+            "chapter": "14. [판별] 고급 과정(21~25단계) 사활·수상전·중반전 총괄 평가 (24제)",
+            "problemCount": 24,
+            "count": 24
+          }
+        ],
+        "book": "25단계",
+        "problem_count": 334
+      },
+      {
+        "code": "std30_pure_stage_26",
+        "bookCode": "std30_pure_stage_26",
+        "file": "book_std30_pure_stage_26.json",
+        "title": "26단계",
+        "name": "제26단계 : 기대기 공격과 성동격서 절단 · 바깥 공략 사활",
+        "_buildVer": "std30-s16-v1-pure-3series",
+        "chapterCount": 15,
+        "totalProblems": 358,
+        "problemCount": 358,
+        "chapters": [
+          {
+            "code": "std30_pure_unit_26_01",
+            "chapterCode": "std30_pure_unit_26_01",
+            "title": "01. [행마] 기대기 공격 — 이웃한 돌에 기대어 공격 세력 쌓기 (24제)",
+            "chapter": "01. [행마] 기대기 공격 — 이웃한 돌에 기대어 공격 세력 쌓기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_26_02",
+            "chapterCode": "std30_pure_unit_26_02",
+            "title": "02. [행마] 2선 날일자 침투에 대한 정확한 차단과 응수 (24제)",
+            "chapter": "02. [행마] 2선 날일자 침투에 대한 정확한 차단과 응수 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_26_03",
+            "chapterCode": "std30_pure_unit_26_03",
+            "title": "03. [끊음] 성동격서 절단술 — 목표 반대쪽을 끊어 제압하기 (24제)",
+            "chapter": "03. [끊음] 성동격서 절단술 — 목표 반대쪽을 끊어 제압하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_26_04",
+            "chapterCode": "std30_pure_unit_26_04",
+            "title": "04. [맥점] 한 수 밀어 올려 연결과 파호를 맞보기로 만들기 (23제)",
+            "chapter": "04. [맥점] 한 수 밀어 올려 연결과 파호를 맞보기로 만들기 (23제)",
+            "problemCount": 23,
+            "count": 23
+          },
+          {
+            "code": "std30_pure_unit_26_05",
+            "chapterCode": "std30_pure_unit_26_05",
+            "title": "05. [수상전] 수세에 몰린 돌의 활로를 최대로 늘리는 1선 묘수 (24제)",
+            "chapter": "05. [수상전] 수세에 몰린 돌의 활로를 최대로 늘리는 1선 묘수 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_26_06",
+            "chapterCode": "std30_pure_unit_26_06",
+            "title": "06. [수상전] 상대 안형을 옥집으로 바꾸며 수 줄이는 수상전 (24제)",
+            "chapter": "06. [수상전] 상대 안형을 옥집으로 바꾸며 수 줄이는 수상전 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_26_07",
+            "chapterCode": "std30_pure_unit_26_07",
+            "title": "07. [사활] 외곽 선수 교환을 먼저 활용한 뒤 완생하기 (24제)",
+            "chapter": "07. [사활] 외곽 선수 교환을 먼저 활용한 뒤 완생하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_26_08",
+            "chapterCode": "std30_pure_unit_26_08",
+            "title": "08. [사활] 외곽 선수 교환으로 퇴로를 닫은 뒤 대마 잡기 (24제)",
+            "chapter": "08. [사활] 외곽 선수 교환으로 퇴로를 닫은 뒤 대마 잡기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_26_09",
+            "chapterCode": "std30_pure_unit_26_09",
+            "title": "09. [사활] 바깥 공략 사활 — 안쪽 치중 대신 외곽 조여 잡기 (24제)",
+            "chapter": "09. [사활] 바깥 공략 사활 — 안쪽 치중 대신 외곽 조여 잡기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_26_10",
+            "chapterCode": "std30_pure_unit_26_10",
+            "title": "10. [사활] 5~7수 수읽기 끝에 터지는 후절수 복합 사활 (24제)",
+            "chapter": "10. [사활] 5~7수 수읽기 끝에 터지는 후절수 복합 사활 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_26_11",
+            "chapterCode": "std30_pure_unit_26_11",
+            "title": "11. [포석] 주변에 상대 세력이 있을 때의 안전한 벌림 감각 (24제)",
+            "chapter": "11. [포석] 주변에 상대 세력이 있을 때의 안전한 벌림 감각 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_26_12",
+            "chapterCode": "std30_pure_unit_26_12",
+            "title": "12. [포석] 침투와 삭감 이후의 깔끔한 타개 마무리 (23제)",
+            "chapter": "12. [포석] 침투와 삭감 이후의 깔끔한 타개 마무리 (23제)",
+            "problemCount": 23,
+            "count": 23
+          },
+          {
+            "code": "std30_pure_unit_26_13",
+            "chapterCode": "std30_pure_unit_26_13",
+            "title": "13. [끝내기] 따내진 자리에서 되따내며 득점하는 끝내기 (24제)",
+            "chapter": "13. [끝내기] 따내진 자리에서 되따내며 득점하는 끝내기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_26_14",
+            "chapterCode": "std30_pure_unit_26_14",
+            "title": "14. [끝내기] 껴붙이기 끝내기 심화 — 상대 응수별 완결 변화 (24제)",
+            "chapter": "14. [끝내기] 껴붙이기 끝내기 심화 — 상대 응수별 완결 변화 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_26_15",
+            "chapterCode": "std30_pure_unit_26_15",
+            "title": "15. [판별] 기대기·성동격서 절단과 바깥 공략 사활 종합 (24제)",
+            "chapter": "15. [판별] 기대기·성동격서 절단과 바깥 공략 사활 종합 (24제)",
+            "problemCount": 24,
+            "count": 24
+          }
+        ],
+        "book": "26단계",
+        "problem_count": 358
+      },
+      {
+        "code": "std30_pure_stage_27",
+        "bookCode": "std30_pure_stage_27",
+        "file": "book_std30_pure_stage_27.json",
+        "title": "27단계",
+        "name": "제27단계 : 양자충과 조이기 수상전 · 돌의 안정과 약점 활용",
+        "_buildVer": "std30-s16-v1-pure-3series",
+        "chapterCount": 15,
+        "totalProblems": 353,
+        "problemCount": 353,
+        "chapters": [
+          {
+            "code": "std30_pure_unit_27_01",
+            "chapterCode": "std30_pure_unit_27_01",
+            "title": "01. [포획] 외곽 포위망의 복합 맥점 연속 포획 (24제)",
+            "chapter": "01. [포획] 외곽 포위망의 복합 맥점 연속 포획 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_27_02",
+            "chapterCode": "std30_pure_unit_27_02",
+            "title": "02. [포획] 상대의 최강 버팀수를 꺾는 유도 포획 (24제)",
+            "chapter": "02. [포획] 상대의 최강 버팀수를 꺾는 유도 포획 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_27_03",
+            "chapterCode": "std30_pure_unit_27_03",
+            "title": "03. [기법] 양자충의 마법 — 상대가 양쪽 모두 못 두게 하기 (24제)",
+            "chapter": "03. [기법] 양자충의 마법 — 상대가 양쪽 모두 못 두게 하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_27_04",
+            "chapterCode": "std30_pure_unit_27_04",
+            "title": "04. [수상전] 연단수 조이기(회돌이 조이기)를 활용한 수상전 (24제)",
+            "chapter": "04. [수상전] 연단수 조이기(회돌이 조이기)를 활용한 수상전 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_27_05",
+            "chapterCode": "std30_pure_unit_27_05",
+            "title": "05. [수상전] 5집 궁도 모양과 키움·조이기 결합 수상전 (20제)",
+            "chapter": "05. [수상전] 5집 궁도 모양과 키움·조이기 결합 수상전 (20제)",
+            "problemCount": 20,
+            "count": 20
+          },
+          {
+            "code": "std30_pure_unit_27_06",
+            "chapterCode": "std30_pure_unit_27_06",
+            "title": "06. [행마] 2선 붙임 맥점으로 근거 없는 돌 빠르게 안정시키기 (24제)",
+            "chapter": "06. [행마] 2선 붙임 맥점으로 근거 없는 돌 빠르게 안정시키기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_27_07",
+            "chapterCode": "std30_pure_unit_27_07",
+            "title": "07. [포석] 진영을 넓힐 때와 좁혀 지킬 때의 전략적 판단 (21제)",
+            "chapter": "07. [포석] 진영을 넓힐 때와 좁혀 지킬 때의 전략적 판단 (21제)",
+            "problemCount": 21,
+            "count": 21
+          },
+          {
+            "code": "std30_pure_unit_27_08",
+            "chapterCode": "std30_pure_unit_27_08",
+            "title": "08. [행마] 상대 약점을 추궁하며 자연스럽게 대마 타개하기 (24제)",
+            "chapter": "08. [행마] 상대 약점을 추궁하며 자연스럽게 대마 타개하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_27_09",
+            "chapterCode": "std30_pure_unit_27_09",
+            "title": "09. [사활] 패 맛을 지렛대 삼아 불리한 대마 타개하기 (24제)",
+            "chapter": "09. [사활] 패 맛을 지렛대 삼아 불리한 대마 타개하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_27_10",
+            "chapterCode": "std30_pure_unit_27_10",
+            "title": "10. [사활] 비정형 실전 사활 1 — 낯선 궁도에서 사는 급소 찾기 (24제)",
+            "chapter": "10. [사활] 비정형 실전 사활 1 — 낯선 궁도에서 사는 급소 찾기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_27_11",
+            "chapterCode": "std30_pure_unit_27_11",
+            "title": "11. [사활] 비정형 실전 사활 2 — 낯선 궁도의 유일한 치중 급소 (24제)",
+            "chapter": "11. [사활] 비정형 실전 사활 2 — 낯선 궁도의 유일한 치중 급소 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_27_12",
+            "chapterCode": "std30_pure_unit_27_12",
+            "title": "12. [행마] 한 칸·날일자 행마의 약점과 건너붙임 공방 (24제)",
+            "chapter": "12. [행마] 한 칸·날일자 행마의 약점과 건너붙임 공방 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_27_13",
+            "chapterCode": "std30_pure_unit_27_13",
+            "title": "13. [끝내기] 궁도 급소 치중을 활용한 고급 선수 끝내기 (24제)",
+            "chapter": "13. [끝내기] 궁도 급소 치중을 활용한 고급 선수 끝내기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_27_14",
+            "chapterCode": "std30_pure_unit_27_14",
+            "title": "14. [끝내기] 미세한 반집 승부를 가르는 1선 선수 끝내기 완결 (24제)",
+            "chapter": "14. [끝내기] 미세한 반집 승부를 가르는 1선 선수 끝내기 완결 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_27_15",
+            "chapterCode": "std30_pure_unit_27_15",
+            "title": "15. [판별] 양자충·조이기 수상전과 비정형 실전 사활 종합 (24제)",
+            "chapter": "15. [판별] 양자충·조이기 수상전과 비정형 실전 사활 종합 (24제)",
+            "problemCount": 24,
+            "count": 24
+          }
+        ],
+        "book": "27단계",
+        "problem_count": 353
+      },
+      {
+        "code": "std30_pure_stage_28",
+        "bookCode": "std30_pure_stage_28",
+        "file": "book_std30_pure_stage_28.json",
+        "title": "28단계",
+        "name": "제28단계 : 대궁소궁(大宮小宮) 수상전과 늘어진 패 · 근거 빼앗기",
+        "_buildVer": "std30-s16-v1-pure-3series",
+        "chapterCount": 15,
+        "totalProblems": 354,
+        "problemCount": 354,
+        "chapters": [
+          {
+            "code": "std30_pure_unit_28_01",
+            "chapterCode": "std30_pure_unit_28_01",
+            "title": "01. [포석] 돌의 안정도 진단과 중반 세력권 주도권 다툼 (24제)",
+            "chapter": "01. [포석] 돌의 안정도 진단과 중반 세력권 주도권 다툼 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_28_02",
+            "chapterCode": "std30_pure_unit_28_02",
+            "title": "02. [행마] 근거 빼앗기 — 상대 대마의 뿌리를 잘라 추격하기 (24제)",
+            "chapter": "02. [행마] 근거 빼앗기 — 상대 대마의 뿌리를 잘라 추격하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_28_03",
+            "chapterCode": "std30_pure_unit_28_03",
+            "title": "03. [행마] 늦추어 막기 — 끊김 약점 없이 두텁게 가두기 (24제)",
+            "chapter": "03. [행마] 늦추어 막기 — 끊김 약점 없이 두텁게 가두기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_28_04",
+            "chapterCode": "std30_pure_unit_28_04",
+            "title": "04. [포석] 공격을 통해 반대편 내 집 모양 자연스레 키우기 (24제)",
+            "chapter": "04. [포석] 공격을 통해 반대편 내 집 모양 자연스레 키우기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_28_05",
+            "chapterCode": "std30_pure_unit_28_05",
+            "title": "05. [수상전] 교묘한 자충 유도로 뒤집는 고급 수상전 (24제)",
+            "chapter": "05. [수상전] 교묘한 자충 유도로 뒤집는 고급 수상전 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_28_06",
+            "chapterCode": "std30_pure_unit_28_06",
+            "title": "06. [수상전] 대궁소궁(큰 집 대 작은 집) 수상전의 원리와 계산 (24제)",
+            "chapter": "06. [수상전] 대궁소궁(큰 집 대 작은 집) 수상전의 원리와 계산 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_28_07",
+            "chapterCode": "std30_pure_unit_28_07",
+            "title": "07. [수상전] 수상전의 쌍방 급소 — 먼저 두는 쪽이 이기는 맥 (24제)",
+            "chapter": "07. [수상전] 수상전의 쌍방 급소 — 먼저 두는 쪽이 이기는 맥 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_28_08",
+            "chapterCode": "std30_pure_unit_28_08",
+            "title": "08. [사활] 실전 귀 사활 총정리 1 — 정석 이후 필수 완생·패 모양 (24제)",
+            "chapter": "08. [사활] 실전 귀 사활 총정리 1 — 정석 이후 필수 완생·패 모양 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_28_09",
+            "chapterCode": "std30_pure_unit_28_09",
+            "title": "09. [사활] 실전 귀 사활 총정리 2 — 귀 굳힘과 침입의 치중 급소 (20제)",
+            "chapter": "09. [사활] 실전 귀 사활 총정리 2 — 귀 굳힘과 침입의 치중 급소 (20제)",
+            "problemCount": 20,
+            "count": 20
+          },
+          {
+            "code": "std30_pure_unit_28_10",
+            "chapterCode": "std30_pure_unit_28_10",
+            "title": "10. [사활] 외곽 절단 맛과 패를 엮어 절망적 대마 살려내기 (24제)",
+            "chapter": "10. [사활] 외곽 절단 맛과 패를 엮어 절망적 대마 살려내기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_28_11",
+            "chapterCode": "std30_pure_unit_28_11",
+            "title": "11. [사활] 늘어진 패(이단패·삼단패)의 원리와 실전 운용 (24제)",
+            "chapter": "11. [사활] 늘어진 패(이단패·삼단패)의 원리와 실전 운용 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_28_12",
+            "chapterCode": "std30_pure_unit_28_12",
+            "title": "12. [포석] 중반에서 종반으로 넘어가는 열린 집 경계 지키기 (22제)",
+            "chapter": "12. [포석] 중반에서 종반으로 넘어가는 열린 집 경계 지키기 (22제)",
+            "problemCount": 22,
+            "count": 22
+          },
+          {
+            "code": "std30_pure_unit_28_13",
+            "chapterCode": "std30_pure_unit_28_13",
+            "title": "13. [끝내기] 상대의 눈목자(비마) 끝내기에 대한 정수 수비 (24제)",
+            "chapter": "13. [끝내기] 상대의 눈목자(비마) 끝내기에 대한 정수 수비 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_28_14",
+            "chapterCode": "std30_pure_unit_28_14",
+            "title": "14. [끝내기] 눈목자 끝내기의 정확한 집 크기 산출하기 (24제)",
+            "chapter": "14. [끝내기] 눈목자 끝내기의 정확한 집 크기 산출하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_28_15",
+            "chapterCode": "std30_pure_unit_28_15",
+            "title": "15. [판별] 대궁소궁 수상전·늘어진 패와 실전 귀 사활 종합 (24제)",
+            "chapter": "15. [판별] 대궁소궁 수상전·늘어진 패와 실전 귀 사활 종합 (24제)",
+            "problemCount": 24,
+            "count": 24
+          }
+        ],
+        "book": "28단계",
+        "problem_count": 354
+      },
+      {
+        "code": "std30_pure_stage_29",
+        "bookCode": "std30_pure_stage_29",
+        "file": "book_std30_pure_stage_29.json",
+        "title": "29단계",
+        "name": "제29단계 : 끝내기 수의 크기 정밀 계량과 정석 이후의 중반전",
+        "_buildVer": "std30-s16-v1-pure-3series",
+        "chapterCount": 13,
+        "totalProblems": 304,
+        "problemCount": 304,
+        "chapters": [
+          {
+            "code": "std30_pure_unit_29_01",
+            "chapterCode": "std30_pure_unit_29_01",
+            "title": "01. [행마] 초반·중반 접촉전을 지배하는 행마의 급소 총결산 (24제)",
+            "chapter": "01. [행마] 초반·중반 접촉전을 지배하는 행마의 급소 총결산 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_29_02",
+            "chapterCode": "std30_pure_unit_29_02",
+            "title": "02. [행마] 중앙 완벽 봉쇄와 두터운 외세의 실리 전환 (24제)",
+            "chapter": "02. [행마] 중앙 완벽 봉쇄와 두터운 외세의 실리 전환 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_29_03",
+            "chapterCode": "std30_pure_unit_29_03",
+            "title": "03. [포석] 날개 포석과 양날개 포석의 전판 경영 전략 (23제)",
+            "chapter": "03. [포석] 날개 포석과 양날개 포석의 전판 경영 전략 (23제)",
+            "problemCount": 23,
+            "count": 23
+          },
+          {
+            "code": "std30_pure_unit_29_04",
+            "chapterCode": "std30_pure_unit_29_04",
+            "title": "04. [정석] 정석·접근전 이탈 무리수 응징과 실전 반격 (24제)",
+            "chapter": "04. [정석] 정석·접근전 이탈 무리수 응징과 실전 반격 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_29_05",
+            "chapterCode": "std30_pure_unit_29_05",
+            "title": "05. [사활] 실전 빈출 사각지대 사활 1 — 완생 급소 찾기 (24제)",
+            "chapter": "05. [사활] 실전 빈출 사각지대 사활 1 — 완생 급소 찾기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_29_06",
+            "chapterCode": "std30_pure_unit_29_06",
+            "title": "06. [사활] 실전 빈출 사각지대 사활 2 — 치중 급소 찾기 (24제)",
+            "chapter": "06. [사활] 실전 빈출 사각지대 사활 2 — 치중 급소 찾기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_29_07",
+            "chapterCode": "std30_pure_unit_29_07",
+            "title": "07. [사활] 실전 빈출 패·빅 경계 판별 사활 (24제)",
+            "chapter": "07. [사활] 실전 빈출 패·빅 경계 판별 사활 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_29_08",
+            "chapterCode": "std30_pure_unit_29_08",
+            "title": "08. [끝내기] 끝내기 계량 공식 1 — 양선수·편선수·후수의 가치 환산 (24제)",
+            "chapter": "08. [끝내기] 끝내기 계량 공식 1 — 양선수·편선수·후수의 가치 환산 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_29_09",
+            "chapterCode": "std30_pure_unit_29_09",
+            "title": "09. [끝내기] 끝내기 계량 공식 2 — 1·2선 젖혀 잇기의 정확한 크기 (24제)",
+            "chapter": "09. [끝내기] 끝내기 계량 공식 2 — 1·2선 젖혀 잇기의 정확한 크기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_29_10",
+            "chapterCode": "std30_pure_unit_29_10",
+            "title": "10. [끝내기] 끝내기 계량 공식 3 — 따내는 수와 되따내는 수의 크기 (21제)",
+            "chapter": "10. [끝내기] 끝내기 계량 공식 3 — 따내는 수와 되따내는 수의 크기 (21제)",
+            "problemCount": 21,
+            "count": 21
+          },
+          {
+            "code": "std30_pure_unit_29_11",
+            "chapterCode": "std30_pure_unit_29_11",
+            "title": "11. [끝내기] 끝내기 계량 공식 4 — 잇는 수와 막는 수의 숨은 가치 (20제)",
+            "chapter": "11. [끝내기] 끝내기 계량 공식 4 — 잇는 수와 막는 수의 숨은 가치 (20제)",
+            "problemCount": 20,
+            "count": 20
+          },
+          {
+            "code": "std30_pure_unit_29_12",
+            "chapterCode": "std30_pure_unit_29_12",
+            "title": "12. [끝내기] 전판 끝내기 실전 — 가장 큰 자리부터 순서대로 두기 (24제)",
+            "chapter": "12. [끝내기] 전판 끝내기 실전 — 가장 큰 자리부터 순서대로 두기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_29_13",
+            "chapterCode": "std30_pure_unit_29_13",
+            "title": "13. [판별] 끝내기 정밀 계량 계산과 실전 사각지대 사활 종합 (24제)",
+            "chapter": "13. [판별] 끝내기 정밀 계량 계산과 실전 사각지대 사활 종합 (24제)",
+            "problemCount": 24,
+            "count": 24
+          }
+        ],
+        "book": "29단계",
+        "problem_count": 304
+      },
+      {
+        "code": "std30_pure_stage_30",
+        "bookCode": "std30_pure_stage_30",
+        "file": "book_std30_pure_stage_30.json",
+        "title": "30단계",
+        "name": "제30단계 : 7수 심층 수읽기와 전 영역 유단자 마스터 완성",
+        "_buildVer": "std30-s16-v1-pure-3series",
+        "chapterCount": 14,
+        "totalProblems": 336,
+        "problemCount": 336,
+        "chapters": [
+          {
+            "code": "std30_pure_unit_30_01",
+            "chapterCode": "std30_pure_unit_30_01",
+            "title": "01. [수읽기] 5수 정밀 수읽기 — 복합 포획과 포위망 돌파 (24제)",
+            "chapter": "01. [수읽기] 5수 정밀 수읽기 — 복합 포획과 포위망 돌파 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_30_02",
+            "chapterCode": "std30_pure_unit_30_02",
+            "title": "02. [수읽기] 7수 이상 심층 수읽기 — 절단과 타개의 외길 승부 (24제)",
+            "chapter": "02. [수읽기] 7수 이상 심층 수읽기 — 절단과 타개의 외길 승부 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_30_03",
+            "chapterCode": "std30_pure_unit_30_03",
+            "title": "03. [행마] 실전 행마 원리 마스터 1 — 공격·절단·기세 편 (24제)",
+            "chapter": "03. [행마] 실전 행마 원리 마스터 1 — 공격·절단·기세 편 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_30_04",
+            "chapterCode": "std30_pure_unit_30_04",
+            "title": "04. [행마] 실전 행마 원리 마스터 2 — 수비·형태·사석 편 (24제)",
+            "chapter": "04. [행마] 실전 행마 원리 마스터 2 — 수비·형태·사석 편 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_30_05",
+            "chapterCode": "std30_pure_unit_30_05",
+            "title": "05. [사활] 최고난도 복합 사활 1 — 절체절명에서 완생하기 (24제)",
+            "chapter": "05. [사활] 최고난도 복합 사활 1 — 절체절명에서 완생하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_30_06",
+            "chapterCode": "std30_pure_unit_30_06",
+            "title": "06. [사활] 최고난도 복합 사활 2 — 난공불락 대마 제압하기 (24제)",
+            "chapter": "06. [사활] 최고난도 복합 사활 2 — 난공불락 대마 제압하기 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_30_07",
+            "chapterCode": "std30_pure_unit_30_07",
+            "title": "07. [사활] 최고난도 패 사활·특수 사활 마스터 판별 (24제)",
+            "chapter": "07. [사활] 최고난도 패 사활·특수 사활 마스터 판별 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_30_08",
+            "chapterCode": "std30_pure_unit_30_08",
+            "title": "08. [수상전] 최고난도 수상전 1 — 대궁소궁·귀삼수·옥집 파호 (24제)",
+            "chapter": "08. [수상전] 최고난도 수상전 1 — 대궁소궁·귀삼수·옥집 파호 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_30_09",
+            "chapterCode": "std30_pure_unit_30_09",
+            "title": "09. [수상전] 최고난도 수상전 2 — 선패·양자충·조이기 결전 (24제)",
+            "chapter": "09. [수상전] 최고난도 수상전 2 — 선패·양자충·조이기 결전 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_30_10",
+            "chapterCode": "std30_pure_unit_30_10",
+            "title": "10. [포석] 초반 포석 구상과 배석 맞춤형 정석 선택 마스터 (24제)",
+            "chapter": "10. [포석] 초반 포석 구상과 배석 맞춤형 정석 선택 마스터 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_30_11",
+            "chapterCode": "std30_pure_unit_30_11",
+            "title": "11. [중반] 중반 대세점 포착과 공격·침투·타개 작전 마스터 (24제)",
+            "chapter": "11. [중반] 중반 대세점 포착과 공격·침투·타개 작전 마스터 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_30_12",
+            "chapterCode": "std30_pure_unit_30_12",
+            "title": "12. [끝내기] 종반 정밀 끝내기 수순 설계와 반집 승부 완성 (24제)",
+            "chapter": "12. [끝내기] 종반 정밀 끝내기 수순 설계와 반집 승부 완성 (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_30_13",
+            "chapterCode": "std30_pure_unit_30_13",
+            "title": "13. [졸업] 30단계 마스터 졸업 검정 1 (사활·수상전·맥점 종합) (24제)",
+            "chapter": "13. [졸업] 30단계 마스터 졸업 검정 1 (사활·수상전·맥점 종합) (24제)",
+            "problemCount": 24,
+            "count": 24
+          },
+          {
+            "code": "std30_pure_unit_30_14",
+            "chapterCode": "std30_pure_unit_30_14",
+            "title": "14. [졸업] 30단계 마스터 졸업 검정 2 (포석·중반·끝내기 전판 종합) (24제)",
+            "chapter": "14. [졸업] 30단계 마스터 졸업 검정 2 (포석·중반·끝내기 전판 종합) (24제)",
+            "problemCount": 24,
+            "count": 24
+          }
+        ],
+        "book": "30단계",
+        "problem_count": 336
+      }
+    ]
   }
 ]
